@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of KinematicViscosity.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _squareMetersPerSecond;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly KinematicViscosityUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public KinematicViscosityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public KinematicViscosity() : this(0)
+        public KinematicViscosity()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public KinematicViscosity(double squaremeterspersecond)
         {
-            _squareMetersPerSecond = Convert.ToDouble(squaremeterspersecond);
+            _value = Convert.ToDouble(squaremeterspersecond);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          KinematicViscosity(double numericValue, KinematicViscosityUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit SquareMeterPerSecond.
+        /// </summary>
+        /// <param name="squaremeterspersecond">Value assuming base unit SquareMeterPerSecond.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        KinematicViscosity(long squaremeterspersecond)
-        {
-            _squareMetersPerSecond = Convert.ToDouble(squaremeterspersecond);
-        }
+        KinematicViscosity(long squaremeterspersecond) : this(Convert.ToDouble(squaremeterspersecond), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit SquareMeterPerSecond.
+        /// </summary>
+        /// <param name="squaremeterspersecond">Value assuming base unit SquareMeterPerSecond.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        KinematicViscosity(decimal squaremeterspersecond)
-        {
-            _squareMetersPerSecond = Convert.ToDouble(squaremeterspersecond);
-        }
+        KinematicViscosity(decimal squaremeterspersecond) : this(Convert.ToDouble(squaremeterspersecond), BaseUnit) { }
 
         #region Properties
 
@@ -119,88 +156,50 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static KinematicViscosityUnit BaseUnit
-        {
-            get { return KinematicViscosityUnit.SquareMeterPerSecond; }
-        }
+        public static KinematicViscosityUnit BaseUnit => KinematicViscosityUnit.SquareMeterPerSecond;
 
         /// <summary>
         ///     All units of measurement for the KinematicViscosity quantity.
         /// </summary>
         public static KinematicViscosityUnit[] Units { get; } = Enum.GetValues(typeof(KinematicViscosityUnit)).Cast<KinematicViscosityUnit>().ToArray();
-
         /// <summary>
         ///     Get KinematicViscosity in Centistokes.
         /// </summary>
-        public double Centistokes
-        {
-            get { return (_squareMetersPerSecond*1e4) / 1e-2d; }
-        }
-
+        public double Centistokes => As(KinematicViscosityUnit.Centistokes);
         /// <summary>
         ///     Get KinematicViscosity in Decistokes.
         /// </summary>
-        public double Decistokes
-        {
-            get { return (_squareMetersPerSecond*1e4) / 1e-1d; }
-        }
-
+        public double Decistokes => As(KinematicViscosityUnit.Decistokes);
         /// <summary>
         ///     Get KinematicViscosity in Kilostokes.
         /// </summary>
-        public double Kilostokes
-        {
-            get { return (_squareMetersPerSecond*1e4) / 1e3d; }
-        }
-
+        public double Kilostokes => As(KinematicViscosityUnit.Kilostokes);
         /// <summary>
         ///     Get KinematicViscosity in Microstokes.
         /// </summary>
-        public double Microstokes
-        {
-            get { return (_squareMetersPerSecond*1e4) / 1e-6d; }
-        }
-
+        public double Microstokes => As(KinematicViscosityUnit.Microstokes);
         /// <summary>
         ///     Get KinematicViscosity in Millistokes.
         /// </summary>
-        public double Millistokes
-        {
-            get { return (_squareMetersPerSecond*1e4) / 1e-3d; }
-        }
-
+        public double Millistokes => As(KinematicViscosityUnit.Millistokes);
         /// <summary>
         ///     Get KinematicViscosity in Nanostokes.
         /// </summary>
-        public double Nanostokes
-        {
-            get { return (_squareMetersPerSecond*1e4) / 1e-9d; }
-        }
-
+        public double Nanostokes => As(KinematicViscosityUnit.Nanostokes);
         /// <summary>
         ///     Get KinematicViscosity in SquareMetersPerSecond.
         /// </summary>
-        public double SquareMetersPerSecond
-        {
-            get { return _squareMetersPerSecond; }
-        }
-
+        public double SquareMetersPerSecond => As(KinematicViscosityUnit.SquareMeterPerSecond);
         /// <summary>
         ///     Get KinematicViscosity in Stokes.
         /// </summary>
-        public double Stokes
-        {
-            get { return _squareMetersPerSecond*1e4; }
-        }
+        public double Stokes => As(KinematicViscosityUnit.Stokes);
 
         #endregion
 
         #region Static
 
-        public static KinematicViscosity Zero
-        {
-            get { return new KinematicViscosity(); }
-        }
+        public static KinematicViscosity Zero => new KinematicViscosity(0, BaseUnit);
 
         /// <summary>
         ///     Get KinematicViscosity from Centistokes.
@@ -208,17 +207,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromCentistokes(double centistokes)
-        {
-            double value = (double) centistokes;
-            return new KinematicViscosity((value/1e4) * 1e-2d);
-        }
 #else
         public static KinematicViscosity FromCentistokes(QuantityValue centistokes)
+#endif
         {
             double value = (double) centistokes;
-            return new KinematicViscosity(((value/1e4) * 1e-2d));
+            return new KinematicViscosity(value, KinematicViscosityUnit.Centistokes);
         }
-#endif
 
         /// <summary>
         ///     Get KinematicViscosity from Decistokes.
@@ -226,17 +221,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromDecistokes(double decistokes)
-        {
-            double value = (double) decistokes;
-            return new KinematicViscosity((value/1e4) * 1e-1d);
-        }
 #else
         public static KinematicViscosity FromDecistokes(QuantityValue decistokes)
+#endif
         {
             double value = (double) decistokes;
-            return new KinematicViscosity(((value/1e4) * 1e-1d));
+            return new KinematicViscosity(value, KinematicViscosityUnit.Decistokes);
         }
-#endif
 
         /// <summary>
         ///     Get KinematicViscosity from Kilostokes.
@@ -244,17 +235,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromKilostokes(double kilostokes)
-        {
-            double value = (double) kilostokes;
-            return new KinematicViscosity((value/1e4) * 1e3d);
-        }
 #else
         public static KinematicViscosity FromKilostokes(QuantityValue kilostokes)
+#endif
         {
             double value = (double) kilostokes;
-            return new KinematicViscosity(((value/1e4) * 1e3d));
+            return new KinematicViscosity(value, KinematicViscosityUnit.Kilostokes);
         }
-#endif
 
         /// <summary>
         ///     Get KinematicViscosity from Microstokes.
@@ -262,17 +249,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromMicrostokes(double microstokes)
-        {
-            double value = (double) microstokes;
-            return new KinematicViscosity((value/1e4) * 1e-6d);
-        }
 #else
         public static KinematicViscosity FromMicrostokes(QuantityValue microstokes)
+#endif
         {
             double value = (double) microstokes;
-            return new KinematicViscosity(((value/1e4) * 1e-6d));
+            return new KinematicViscosity(value, KinematicViscosityUnit.Microstokes);
         }
-#endif
 
         /// <summary>
         ///     Get KinematicViscosity from Millistokes.
@@ -280,17 +263,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromMillistokes(double millistokes)
-        {
-            double value = (double) millistokes;
-            return new KinematicViscosity((value/1e4) * 1e-3d);
-        }
 #else
         public static KinematicViscosity FromMillistokes(QuantityValue millistokes)
+#endif
         {
             double value = (double) millistokes;
-            return new KinematicViscosity(((value/1e4) * 1e-3d));
+            return new KinematicViscosity(value, KinematicViscosityUnit.Millistokes);
         }
-#endif
 
         /// <summary>
         ///     Get KinematicViscosity from Nanostokes.
@@ -298,17 +277,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromNanostokes(double nanostokes)
-        {
-            double value = (double) nanostokes;
-            return new KinematicViscosity((value/1e4) * 1e-9d);
-        }
 #else
         public static KinematicViscosity FromNanostokes(QuantityValue nanostokes)
+#endif
         {
             double value = (double) nanostokes;
-            return new KinematicViscosity(((value/1e4) * 1e-9d));
+            return new KinematicViscosity(value, KinematicViscosityUnit.Nanostokes);
         }
-#endif
 
         /// <summary>
         ///     Get KinematicViscosity from SquareMetersPerSecond.
@@ -316,17 +291,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromSquareMetersPerSecond(double squaremeterspersecond)
-        {
-            double value = (double) squaremeterspersecond;
-            return new KinematicViscosity(value);
-        }
 #else
         public static KinematicViscosity FromSquareMetersPerSecond(QuantityValue squaremeterspersecond)
+#endif
         {
             double value = (double) squaremeterspersecond;
-            return new KinematicViscosity((value));
+            return new KinematicViscosity(value, KinematicViscosityUnit.SquareMeterPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get KinematicViscosity from Stokes.
@@ -334,17 +305,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromStokes(double stokes)
-        {
-            double value = (double) stokes;
-            return new KinematicViscosity(value/1e4);
-        }
 #else
         public static KinematicViscosity FromStokes(QuantityValue stokes)
+#endif
         {
             double value = (double) stokes;
-            return new KinematicViscosity((value/1e4));
+            return new KinematicViscosity(value, KinematicViscosityUnit.Stokes);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -484,28 +451,7 @@ namespace UnitsNet
         public static KinematicViscosity From(QuantityValue value, KinematicViscosityUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case KinematicViscosityUnit.Centistokes:
-                    return FromCentistokes(value);
-                case KinematicViscosityUnit.Decistokes:
-                    return FromDecistokes(value);
-                case KinematicViscosityUnit.Kilostokes:
-                    return FromKilostokes(value);
-                case KinematicViscosityUnit.Microstokes:
-                    return FromMicrostokes(value);
-                case KinematicViscosityUnit.Millistokes:
-                    return FromMillistokes(value);
-                case KinematicViscosityUnit.Nanostokes:
-                    return FromNanostokes(value);
-                case KinematicViscosityUnit.SquareMeterPerSecond:
-                    return FromSquareMetersPerSecond(value);
-                case KinematicViscosityUnit.Stokes:
-                    return FromStokes(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new KinematicViscosity((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -522,28 +468,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case KinematicViscosityUnit.Centistokes:
-                    return FromCentistokes(value.Value);
-                case KinematicViscosityUnit.Decistokes:
-                    return FromDecistokes(value.Value);
-                case KinematicViscosityUnit.Kilostokes:
-                    return FromKilostokes(value.Value);
-                case KinematicViscosityUnit.Microstokes:
-                    return FromMicrostokes(value.Value);
-                case KinematicViscosityUnit.Millistokes:
-                    return FromMillistokes(value.Value);
-                case KinematicViscosityUnit.Nanostokes:
-                    return FromNanostokes(value.Value);
-                case KinematicViscosityUnit.SquareMeterPerSecond:
-                    return FromSquareMetersPerSecond(value.Value);
-                case KinematicViscosityUnit.Stokes:
-                    return FromStokes(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new KinematicViscosity((double)value.Value, fromUnit);
         }
 #endif
 
@@ -562,12 +488,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(KinematicViscosityUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          KinematicViscosityUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -578,37 +521,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static KinematicViscosity operator -(KinematicViscosity right)
         {
-            return new KinematicViscosity(-right._squareMetersPerSecond);
+            return new KinematicViscosity(-right.Value, right.Unit);
         }
 
         public static KinematicViscosity operator +(KinematicViscosity left, KinematicViscosity right)
         {
-            return new KinematicViscosity(left._squareMetersPerSecond + right._squareMetersPerSecond);
+            return new KinematicViscosity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static KinematicViscosity operator -(KinematicViscosity left, KinematicViscosity right)
         {
-            return new KinematicViscosity(left._squareMetersPerSecond - right._squareMetersPerSecond);
+            return new KinematicViscosity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static KinematicViscosity operator *(double left, KinematicViscosity right)
         {
-            return new KinematicViscosity(left*right._squareMetersPerSecond);
+            return new KinematicViscosity(left * right.Value, right.Unit);
         }
 
         public static KinematicViscosity operator *(KinematicViscosity left, double right)
         {
-            return new KinematicViscosity(left._squareMetersPerSecond*(double)right);
+            return new KinematicViscosity(left.Value * right, left.Unit);
         }
 
         public static KinematicViscosity operator /(KinematicViscosity left, double right)
         {
-            return new KinematicViscosity(left._squareMetersPerSecond/(double)right);
+            return new KinematicViscosity(left.Value / right, left.Unit);
         }
 
         public static double operator /(KinematicViscosity left, KinematicViscosity right)
         {
-            return Convert.ToDouble(left._squareMetersPerSecond/right._squareMetersPerSecond);
+            return left.SquareMetersPerSecond / right.SquareMetersPerSecond;
         }
 #endif
 
@@ -631,43 +574,43 @@ namespace UnitsNet
 #endif
         int CompareTo(KinematicViscosity other)
         {
-            return _squareMetersPerSecond.CompareTo(other._squareMetersPerSecond);
+            return AsBaseUnitSquareMetersPerSecond().CompareTo(other.AsBaseUnitSquareMetersPerSecond());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(KinematicViscosity left, KinematicViscosity right)
         {
-            return left._squareMetersPerSecond <= right._squareMetersPerSecond;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(KinematicViscosity left, KinematicViscosity right)
         {
-            return left._squareMetersPerSecond >= right._squareMetersPerSecond;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(KinematicViscosity left, KinematicViscosity right)
         {
-            return left._squareMetersPerSecond < right._squareMetersPerSecond;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(KinematicViscosity left, KinematicViscosity right)
         {
-            return left._squareMetersPerSecond > right._squareMetersPerSecond;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(KinematicViscosity left, KinematicViscosity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._squareMetersPerSecond == right._squareMetersPerSecond;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(KinematicViscosity left, KinematicViscosity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._squareMetersPerSecond != right._squareMetersPerSecond;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -679,7 +622,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _squareMetersPerSecond.Equals(((KinematicViscosity) obj)._squareMetersPerSecond);
+            return AsBaseUnitSquareMetersPerSecond().Equals(((KinematicViscosity) obj).AsBaseUnitSquareMetersPerSecond());
         }
 
         /// <summary>
@@ -692,12 +635,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(KinematicViscosity other, KinematicViscosity maxError)
         {
-            return Math.Abs(_squareMetersPerSecond - other._squareMetersPerSecond) <= maxError._squareMetersPerSecond;
+            return Math.Abs(AsBaseUnitSquareMetersPerSecond() - other.AsBaseUnitSquareMetersPerSecond()) <= maxError.AsBaseUnitSquareMetersPerSecond();
         }
 
         public override int GetHashCode()
         {
-            return _squareMetersPerSecond.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -707,28 +650,26 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(KinematicViscosityUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitSquareMetersPerSecond();
+
             switch (unit)
             {
-                case KinematicViscosityUnit.Centistokes:
-                    return Centistokes;
-                case KinematicViscosityUnit.Decistokes:
-                    return Decistokes;
-                case KinematicViscosityUnit.Kilostokes:
-                    return Kilostokes;
-                case KinematicViscosityUnit.Microstokes:
-                    return Microstokes;
-                case KinematicViscosityUnit.Millistokes:
-                    return Millistokes;
-                case KinematicViscosityUnit.Nanostokes:
-                    return Nanostokes;
-                case KinematicViscosityUnit.SquareMeterPerSecond:
-                    return SquareMetersPerSecond;
-                case KinematicViscosityUnit.Stokes:
-                    return Stokes;
+                case KinematicViscosityUnit.Centistokes: return (baseUnitValue*1e4) / 1e-2d;
+                case KinematicViscosityUnit.Decistokes: return (baseUnitValue*1e4) / 1e-1d;
+                case KinematicViscosityUnit.Kilostokes: return (baseUnitValue*1e4) / 1e3d;
+                case KinematicViscosityUnit.Microstokes: return (baseUnitValue*1e4) / 1e-6d;
+                case KinematicViscosityUnit.Millistokes: return (baseUnitValue*1e4) / 1e-3d;
+                case KinematicViscosityUnit.Nanostokes: return (baseUnitValue*1e4) / 1e-9d;
+                case KinematicViscosityUnit.SquareMeterPerSecond: return baseUnitValue;
+                case KinematicViscosityUnit.Stokes: return baseUnitValue*1e4;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -770,7 +711,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -789,17 +734,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static KinematicViscosity Parse(string str, [CanBeNull] Culture culture)
+        public static KinematicViscosity Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<KinematicViscosity, KinematicViscosityUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<KinematicViscosity, KinematicViscosityUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -825,16 +777,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out KinematicViscosity result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out KinematicViscosity result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -847,6 +824,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -860,11 +838,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static KinematicViscosityUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -873,6 +854,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -885,18 +868,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static KinematicViscosityUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static KinematicViscosityUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<KinematicViscosityUnit>(str.Trim());
 
             if (unit == KinematicViscosityUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized KinematicViscosityUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -905,6 +888,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is SquareMeterPerSecond
         /// </summary>
@@ -916,7 +900,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -933,74 +917,136 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(KinematicViscosityUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          KinematicViscosityUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(KinematicViscosityUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            KinematicViscosityUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(KinematicViscosityUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            KinematicViscosityUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of KinematicViscosity
         /// </summary>
-        public static KinematicViscosity MaxValue
-        {
-            get
-            {
-                return new KinematicViscosity(double.MaxValue);
-            }
-        }
+        public static KinematicViscosity MaxValue => new KinematicViscosity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of KinematicViscosity
         /// </summary>
-        public static KinematicViscosity MinValue
+        public static KinematicViscosity MinValue => new KinematicViscosity(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitSquareMetersPerSecond()
         {
-            get
+			if (Unit == KinematicViscosityUnit.SquareMeterPerSecond) { return _value; }
+
+            switch (Unit)
             {
-                return new KinematicViscosity(double.MinValue);
-            }
-        }
-    }
+                case KinematicViscosityUnit.Centistokes: return (_value/1e4) * 1e-2d;
+                case KinematicViscosityUnit.Decistokes: return (_value/1e4) * 1e-1d;
+                case KinematicViscosityUnit.Kilostokes: return (_value/1e4) * 1e3d;
+                case KinematicViscosityUnit.Microstokes: return (_value/1e4) * 1e-6d;
+                case KinematicViscosityUnit.Millistokes: return (_value/1e4) * 1e-3d;
+                case KinematicViscosityUnit.Nanostokes: return (_value/1e4) * 1e-9d;
+                case KinematicViscosityUnit.SquareMeterPerSecond: return _value;
+                case KinematicViscosityUnit.Stokes: return _value/1e4;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(KinematicViscosityUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

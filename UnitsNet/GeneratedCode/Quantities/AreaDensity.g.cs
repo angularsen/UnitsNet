@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of AreaDensity.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _kilogramsPerSquareMeter;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly AreaDensityUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public AreaDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public AreaDensity() : this(0)
+        public AreaDensity()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public AreaDensity(double kilogramspersquaremeter)
         {
-            _kilogramsPerSquareMeter = Convert.ToDouble(kilogramspersquaremeter);
+            _value = Convert.ToDouble(kilogramspersquaremeter);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          AreaDensity(double numericValue, AreaDensityUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit KilogramPerSquareMeter.
+        /// </summary>
+        /// <param name="kilogramspersquaremeter">Value assuming base unit KilogramPerSquareMeter.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        AreaDensity(long kilogramspersquaremeter)
-        {
-            _kilogramsPerSquareMeter = Convert.ToDouble(kilogramspersquaremeter);
-        }
+        AreaDensity(long kilogramspersquaremeter) : this(Convert.ToDouble(kilogramspersquaremeter), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit KilogramPerSquareMeter.
+        /// </summary>
+        /// <param name="kilogramspersquaremeter">Value assuming base unit KilogramPerSquareMeter.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        AreaDensity(decimal kilogramspersquaremeter)
-        {
-            _kilogramsPerSquareMeter = Convert.ToDouble(kilogramspersquaremeter);
-        }
+        AreaDensity(decimal kilogramspersquaremeter) : this(Convert.ToDouble(kilogramspersquaremeter), BaseUnit) { }
 
         #region Properties
 
@@ -119,32 +156,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static AreaDensityUnit BaseUnit
-        {
-            get { return AreaDensityUnit.KilogramPerSquareMeter; }
-        }
+        public static AreaDensityUnit BaseUnit => AreaDensityUnit.KilogramPerSquareMeter;
 
         /// <summary>
         ///     All units of measurement for the AreaDensity quantity.
         /// </summary>
         public static AreaDensityUnit[] Units { get; } = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>().ToArray();
-
         /// <summary>
         ///     Get AreaDensity in KilogramsPerSquareMeter.
         /// </summary>
-        public double KilogramsPerSquareMeter
-        {
-            get { return _kilogramsPerSquareMeter; }
-        }
+        public double KilogramsPerSquareMeter => As(AreaDensityUnit.KilogramPerSquareMeter);
 
         #endregion
 
         #region Static
 
-        public static AreaDensity Zero
-        {
-            get { return new AreaDensity(); }
-        }
+        public static AreaDensity Zero => new AreaDensity(0, BaseUnit);
 
         /// <summary>
         ///     Get AreaDensity from KilogramsPerSquareMeter.
@@ -152,17 +179,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AreaDensity FromKilogramsPerSquareMeter(double kilogramspersquaremeter)
-        {
-            double value = (double) kilogramspersquaremeter;
-            return new AreaDensity(value);
-        }
 #else
         public static AreaDensity FromKilogramsPerSquareMeter(QuantityValue kilogramspersquaremeter)
+#endif
         {
             double value = (double) kilogramspersquaremeter;
-            return new AreaDensity((value));
+            return new AreaDensity(value, AreaDensityUnit.KilogramPerSquareMeter);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -197,14 +220,7 @@ namespace UnitsNet
         public static AreaDensity From(QuantityValue value, AreaDensityUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case AreaDensityUnit.KilogramPerSquareMeter:
-                    return FromKilogramsPerSquareMeter(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new AreaDensity((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -221,14 +237,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case AreaDensityUnit.KilogramPerSquareMeter:
-                    return FromKilogramsPerSquareMeter(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new AreaDensity((double)value.Value, fromUnit);
         }
 #endif
 
@@ -247,12 +257,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(AreaDensityUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          AreaDensityUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -263,37 +290,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static AreaDensity operator -(AreaDensity right)
         {
-            return new AreaDensity(-right._kilogramsPerSquareMeter);
+            return new AreaDensity(-right.Value, right.Unit);
         }
 
         public static AreaDensity operator +(AreaDensity left, AreaDensity right)
         {
-            return new AreaDensity(left._kilogramsPerSquareMeter + right._kilogramsPerSquareMeter);
+            return new AreaDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static AreaDensity operator -(AreaDensity left, AreaDensity right)
         {
-            return new AreaDensity(left._kilogramsPerSquareMeter - right._kilogramsPerSquareMeter);
+            return new AreaDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static AreaDensity operator *(double left, AreaDensity right)
         {
-            return new AreaDensity(left*right._kilogramsPerSquareMeter);
+            return new AreaDensity(left * right.Value, right.Unit);
         }
 
         public static AreaDensity operator *(AreaDensity left, double right)
         {
-            return new AreaDensity(left._kilogramsPerSquareMeter*(double)right);
+            return new AreaDensity(left.Value * right, left.Unit);
         }
 
         public static AreaDensity operator /(AreaDensity left, double right)
         {
-            return new AreaDensity(left._kilogramsPerSquareMeter/(double)right);
+            return new AreaDensity(left.Value / right, left.Unit);
         }
 
         public static double operator /(AreaDensity left, AreaDensity right)
         {
-            return Convert.ToDouble(left._kilogramsPerSquareMeter/right._kilogramsPerSquareMeter);
+            return left.KilogramsPerSquareMeter / right.KilogramsPerSquareMeter;
         }
 #endif
 
@@ -316,43 +343,43 @@ namespace UnitsNet
 #endif
         int CompareTo(AreaDensity other)
         {
-            return _kilogramsPerSquareMeter.CompareTo(other._kilogramsPerSquareMeter);
+            return AsBaseUnitKilogramsPerSquareMeter().CompareTo(other.AsBaseUnitKilogramsPerSquareMeter());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(AreaDensity left, AreaDensity right)
         {
-            return left._kilogramsPerSquareMeter <= right._kilogramsPerSquareMeter;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(AreaDensity left, AreaDensity right)
         {
-            return left._kilogramsPerSquareMeter >= right._kilogramsPerSquareMeter;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(AreaDensity left, AreaDensity right)
         {
-            return left._kilogramsPerSquareMeter < right._kilogramsPerSquareMeter;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(AreaDensity left, AreaDensity right)
         {
-            return left._kilogramsPerSquareMeter > right._kilogramsPerSquareMeter;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(AreaDensity left, AreaDensity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kilogramsPerSquareMeter == right._kilogramsPerSquareMeter;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(AreaDensity left, AreaDensity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._kilogramsPerSquareMeter != right._kilogramsPerSquareMeter;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -364,7 +391,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _kilogramsPerSquareMeter.Equals(((AreaDensity) obj)._kilogramsPerSquareMeter);
+            return AsBaseUnitKilogramsPerSquareMeter().Equals(((AreaDensity) obj).AsBaseUnitKilogramsPerSquareMeter());
         }
 
         /// <summary>
@@ -377,12 +404,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(AreaDensity other, AreaDensity maxError)
         {
-            return Math.Abs(_kilogramsPerSquareMeter - other._kilogramsPerSquareMeter) <= maxError._kilogramsPerSquareMeter;
+            return Math.Abs(AsBaseUnitKilogramsPerSquareMeter() - other.AsBaseUnitKilogramsPerSquareMeter()) <= maxError.AsBaseUnitKilogramsPerSquareMeter();
         }
 
         public override int GetHashCode()
         {
-            return _kilogramsPerSquareMeter.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -392,14 +419,19 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(AreaDensityUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitKilogramsPerSquareMeter();
+
             switch (unit)
             {
-                case AreaDensityUnit.KilogramPerSquareMeter:
-                    return KilogramsPerSquareMeter;
+                case AreaDensityUnit.KilogramPerSquareMeter: return baseUnitValue;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -441,7 +473,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -460,17 +496,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static AreaDensity Parse(string str, [CanBeNull] Culture culture)
+        public static AreaDensity Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<AreaDensity, AreaDensityUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<AreaDensity, AreaDensityUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -496,16 +539,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out AreaDensity result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out AreaDensity result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -518,6 +586,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -531,11 +600,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static AreaDensityUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -544,6 +616,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -556,18 +630,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static AreaDensityUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static AreaDensityUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<AreaDensityUnit>(str.Trim());
 
             if (unit == AreaDensityUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized AreaDensityUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -576,6 +650,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is KilogramPerSquareMeter
         /// </summary>
@@ -587,7 +662,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -604,74 +679,129 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(AreaDensityUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          AreaDensityUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(AreaDensityUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            AreaDensityUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(AreaDensityUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            AreaDensityUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of AreaDensity
         /// </summary>
-        public static AreaDensity MaxValue
-        {
-            get
-            {
-                return new AreaDensity(double.MaxValue);
-            }
-        }
+        public static AreaDensity MaxValue => new AreaDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of AreaDensity
         /// </summary>
-        public static AreaDensity MinValue
+        public static AreaDensity MinValue => new AreaDensity(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitKilogramsPerSquareMeter()
         {
-            get
+			if (Unit == AreaDensityUnit.KilogramPerSquareMeter) { return _value; }
+
+            switch (Unit)
             {
-                return new AreaDensity(double.MinValue);
-            }
-        }
-    }
+                case AreaDensityUnit.KilogramPerSquareMeter: return _value;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(AreaDensityUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

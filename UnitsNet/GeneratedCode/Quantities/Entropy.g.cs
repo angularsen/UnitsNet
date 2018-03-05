@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of Entropy.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _joulesPerKelvin;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly EntropyUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public EntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public Entropy() : this(0)
+        public Entropy()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Entropy(double joulesperkelvin)
         {
-            _joulesPerKelvin = Convert.ToDouble(joulesperkelvin);
+            _value = Convert.ToDouble(joulesperkelvin);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          Entropy(double numericValue, EntropyUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit JoulePerKelvin.
+        /// </summary>
+        /// <param name="joulesperkelvin">Value assuming base unit JoulePerKelvin.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Entropy(long joulesperkelvin)
-        {
-            _joulesPerKelvin = Convert.ToDouble(joulesperkelvin);
-        }
+        Entropy(long joulesperkelvin) : this(Convert.ToDouble(joulesperkelvin), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit JoulePerKelvin.
+        /// </summary>
+        /// <param name="joulesperkelvin">Value assuming base unit JoulePerKelvin.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Entropy(decimal joulesperkelvin)
-        {
-            _joulesPerKelvin = Convert.ToDouble(joulesperkelvin);
-        }
+        Entropy(decimal joulesperkelvin) : this(Convert.ToDouble(joulesperkelvin), BaseUnit) { }
 
         #region Properties
 
@@ -119,80 +156,46 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static EntropyUnit BaseUnit
-        {
-            get { return EntropyUnit.JoulePerKelvin; }
-        }
+        public static EntropyUnit BaseUnit => EntropyUnit.JoulePerKelvin;
 
         /// <summary>
         ///     All units of measurement for the Entropy quantity.
         /// </summary>
         public static EntropyUnit[] Units { get; } = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().ToArray();
-
         /// <summary>
         ///     Get Entropy in CaloriesPerKelvin.
         /// </summary>
-        public double CaloriesPerKelvin
-        {
-            get { return _joulesPerKelvin/4.184; }
-        }
-
+        public double CaloriesPerKelvin => As(EntropyUnit.CaloriePerKelvin);
         /// <summary>
         ///     Get Entropy in JoulesPerDegreeCelsius.
         /// </summary>
-        public double JoulesPerDegreeCelsius
-        {
-            get { return _joulesPerKelvin; }
-        }
-
+        public double JoulesPerDegreeCelsius => As(EntropyUnit.JoulePerDegreeCelsius);
         /// <summary>
         ///     Get Entropy in JoulesPerKelvin.
         /// </summary>
-        public double JoulesPerKelvin
-        {
-            get { return _joulesPerKelvin; }
-        }
-
+        public double JoulesPerKelvin => As(EntropyUnit.JoulePerKelvin);
         /// <summary>
         ///     Get Entropy in KilocaloriesPerKelvin.
         /// </summary>
-        public double KilocaloriesPerKelvin
-        {
-            get { return (_joulesPerKelvin/4.184) / 1e3d; }
-        }
-
+        public double KilocaloriesPerKelvin => As(EntropyUnit.KilocaloriePerKelvin);
         /// <summary>
         ///     Get Entropy in KilojoulesPerDegreeCelsius.
         /// </summary>
-        public double KilojoulesPerDegreeCelsius
-        {
-            get { return (_joulesPerKelvin) / 1e3d; }
-        }
-
+        public double KilojoulesPerDegreeCelsius => As(EntropyUnit.KilojoulePerDegreeCelsius);
         /// <summary>
         ///     Get Entropy in KilojoulesPerKelvin.
         /// </summary>
-        public double KilojoulesPerKelvin
-        {
-            get { return (_joulesPerKelvin) / 1e3d; }
-        }
-
+        public double KilojoulesPerKelvin => As(EntropyUnit.KilojoulePerKelvin);
         /// <summary>
         ///     Get Entropy in MegajoulesPerKelvin.
         /// </summary>
-        public double MegajoulesPerKelvin
-        {
-            get { return (_joulesPerKelvin) / 1e6d; }
-        }
+        public double MegajoulesPerKelvin => As(EntropyUnit.MegajoulePerKelvin);
 
         #endregion
 
         #region Static
 
-        public static Entropy Zero
-        {
-            get { return new Entropy(); }
-        }
+        public static Entropy Zero => new Entropy(0, BaseUnit);
 
         /// <summary>
         ///     Get Entropy from CaloriesPerKelvin.
@@ -200,17 +203,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromCaloriesPerKelvin(double caloriesperkelvin)
-        {
-            double value = (double) caloriesperkelvin;
-            return new Entropy(value*4.184);
-        }
 #else
         public static Entropy FromCaloriesPerKelvin(QuantityValue caloriesperkelvin)
+#endif
         {
             double value = (double) caloriesperkelvin;
-            return new Entropy((value*4.184));
+            return new Entropy(value, EntropyUnit.CaloriePerKelvin);
         }
-#endif
 
         /// <summary>
         ///     Get Entropy from JoulesPerDegreeCelsius.
@@ -218,17 +217,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromJoulesPerDegreeCelsius(double joulesperdegreecelsius)
-        {
-            double value = (double) joulesperdegreecelsius;
-            return new Entropy(value);
-        }
 #else
         public static Entropy FromJoulesPerDegreeCelsius(QuantityValue joulesperdegreecelsius)
+#endif
         {
             double value = (double) joulesperdegreecelsius;
-            return new Entropy((value));
+            return new Entropy(value, EntropyUnit.JoulePerDegreeCelsius);
         }
-#endif
 
         /// <summary>
         ///     Get Entropy from JoulesPerKelvin.
@@ -236,17 +231,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromJoulesPerKelvin(double joulesperkelvin)
-        {
-            double value = (double) joulesperkelvin;
-            return new Entropy(value);
-        }
 #else
         public static Entropy FromJoulesPerKelvin(QuantityValue joulesperkelvin)
+#endif
         {
             double value = (double) joulesperkelvin;
-            return new Entropy((value));
+            return new Entropy(value, EntropyUnit.JoulePerKelvin);
         }
-#endif
 
         /// <summary>
         ///     Get Entropy from KilocaloriesPerKelvin.
@@ -254,17 +245,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromKilocaloriesPerKelvin(double kilocaloriesperkelvin)
-        {
-            double value = (double) kilocaloriesperkelvin;
-            return new Entropy((value*4.184) * 1e3d);
-        }
 #else
         public static Entropy FromKilocaloriesPerKelvin(QuantityValue kilocaloriesperkelvin)
+#endif
         {
             double value = (double) kilocaloriesperkelvin;
-            return new Entropy(((value*4.184) * 1e3d));
+            return new Entropy(value, EntropyUnit.KilocaloriePerKelvin);
         }
-#endif
 
         /// <summary>
         ///     Get Entropy from KilojoulesPerDegreeCelsius.
@@ -272,17 +259,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromKilojoulesPerDegreeCelsius(double kilojoulesperdegreecelsius)
-        {
-            double value = (double) kilojoulesperdegreecelsius;
-            return new Entropy((value) * 1e3d);
-        }
 #else
         public static Entropy FromKilojoulesPerDegreeCelsius(QuantityValue kilojoulesperdegreecelsius)
+#endif
         {
             double value = (double) kilojoulesperdegreecelsius;
-            return new Entropy(((value) * 1e3d));
+            return new Entropy(value, EntropyUnit.KilojoulePerDegreeCelsius);
         }
-#endif
 
         /// <summary>
         ///     Get Entropy from KilojoulesPerKelvin.
@@ -290,17 +273,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromKilojoulesPerKelvin(double kilojoulesperkelvin)
-        {
-            double value = (double) kilojoulesperkelvin;
-            return new Entropy((value) * 1e3d);
-        }
 #else
         public static Entropy FromKilojoulesPerKelvin(QuantityValue kilojoulesperkelvin)
+#endif
         {
             double value = (double) kilojoulesperkelvin;
-            return new Entropy(((value) * 1e3d));
+            return new Entropy(value, EntropyUnit.KilojoulePerKelvin);
         }
-#endif
 
         /// <summary>
         ///     Get Entropy from MegajoulesPerKelvin.
@@ -308,17 +287,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromMegajoulesPerKelvin(double megajoulesperkelvin)
-        {
-            double value = (double) megajoulesperkelvin;
-            return new Entropy((value) * 1e6d);
-        }
 #else
         public static Entropy FromMegajoulesPerKelvin(QuantityValue megajoulesperkelvin)
+#endif
         {
             double value = (double) megajoulesperkelvin;
-            return new Entropy(((value) * 1e6d));
+            return new Entropy(value, EntropyUnit.MegajoulePerKelvin);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -443,26 +418,7 @@ namespace UnitsNet
         public static Entropy From(QuantityValue value, EntropyUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case EntropyUnit.CaloriePerKelvin:
-                    return FromCaloriesPerKelvin(value);
-                case EntropyUnit.JoulePerDegreeCelsius:
-                    return FromJoulesPerDegreeCelsius(value);
-                case EntropyUnit.JoulePerKelvin:
-                    return FromJoulesPerKelvin(value);
-                case EntropyUnit.KilocaloriePerKelvin:
-                    return FromKilocaloriesPerKelvin(value);
-                case EntropyUnit.KilojoulePerDegreeCelsius:
-                    return FromKilojoulesPerDegreeCelsius(value);
-                case EntropyUnit.KilojoulePerKelvin:
-                    return FromKilojoulesPerKelvin(value);
-                case EntropyUnit.MegajoulePerKelvin:
-                    return FromMegajoulesPerKelvin(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Entropy((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -479,26 +435,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case EntropyUnit.CaloriePerKelvin:
-                    return FromCaloriesPerKelvin(value.Value);
-                case EntropyUnit.JoulePerDegreeCelsius:
-                    return FromJoulesPerDegreeCelsius(value.Value);
-                case EntropyUnit.JoulePerKelvin:
-                    return FromJoulesPerKelvin(value.Value);
-                case EntropyUnit.KilocaloriePerKelvin:
-                    return FromKilocaloriesPerKelvin(value.Value);
-                case EntropyUnit.KilojoulePerDegreeCelsius:
-                    return FromKilojoulesPerDegreeCelsius(value.Value);
-                case EntropyUnit.KilojoulePerKelvin:
-                    return FromKilojoulesPerKelvin(value.Value);
-                case EntropyUnit.MegajoulePerKelvin:
-                    return FromMegajoulesPerKelvin(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Entropy((double)value.Value, fromUnit);
         }
 #endif
 
@@ -517,12 +455,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(EntropyUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          EntropyUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -533,37 +488,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Entropy operator -(Entropy right)
         {
-            return new Entropy(-right._joulesPerKelvin);
+            return new Entropy(-right.Value, right.Unit);
         }
 
         public static Entropy operator +(Entropy left, Entropy right)
         {
-            return new Entropy(left._joulesPerKelvin + right._joulesPerKelvin);
+            return new Entropy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Entropy operator -(Entropy left, Entropy right)
         {
-            return new Entropy(left._joulesPerKelvin - right._joulesPerKelvin);
+            return new Entropy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Entropy operator *(double left, Entropy right)
         {
-            return new Entropy(left*right._joulesPerKelvin);
+            return new Entropy(left * right.Value, right.Unit);
         }
 
         public static Entropy operator *(Entropy left, double right)
         {
-            return new Entropy(left._joulesPerKelvin*(double)right);
+            return new Entropy(left.Value * right, left.Unit);
         }
 
         public static Entropy operator /(Entropy left, double right)
         {
-            return new Entropy(left._joulesPerKelvin/(double)right);
+            return new Entropy(left.Value / right, left.Unit);
         }
 
         public static double operator /(Entropy left, Entropy right)
         {
-            return Convert.ToDouble(left._joulesPerKelvin/right._joulesPerKelvin);
+            return left.JoulesPerKelvin / right.JoulesPerKelvin;
         }
 #endif
 
@@ -586,43 +541,43 @@ namespace UnitsNet
 #endif
         int CompareTo(Entropy other)
         {
-            return _joulesPerKelvin.CompareTo(other._joulesPerKelvin);
+            return AsBaseUnitJoulesPerKelvin().CompareTo(other.AsBaseUnitJoulesPerKelvin());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(Entropy left, Entropy right)
         {
-            return left._joulesPerKelvin <= right._joulesPerKelvin;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(Entropy left, Entropy right)
         {
-            return left._joulesPerKelvin >= right._joulesPerKelvin;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(Entropy left, Entropy right)
         {
-            return left._joulesPerKelvin < right._joulesPerKelvin;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(Entropy left, Entropy right)
         {
-            return left._joulesPerKelvin > right._joulesPerKelvin;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(Entropy left, Entropy right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._joulesPerKelvin == right._joulesPerKelvin;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(Entropy left, Entropy right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._joulesPerKelvin != right._joulesPerKelvin;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -634,7 +589,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _joulesPerKelvin.Equals(((Entropy) obj)._joulesPerKelvin);
+            return AsBaseUnitJoulesPerKelvin().Equals(((Entropy) obj).AsBaseUnitJoulesPerKelvin());
         }
 
         /// <summary>
@@ -647,12 +602,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Entropy other, Entropy maxError)
         {
-            return Math.Abs(_joulesPerKelvin - other._joulesPerKelvin) <= maxError._joulesPerKelvin;
+            return Math.Abs(AsBaseUnitJoulesPerKelvin() - other.AsBaseUnitJoulesPerKelvin()) <= maxError.AsBaseUnitJoulesPerKelvin();
         }
 
         public override int GetHashCode()
         {
-            return _joulesPerKelvin.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -662,26 +617,25 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(EntropyUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitJoulesPerKelvin();
+
             switch (unit)
             {
-                case EntropyUnit.CaloriePerKelvin:
-                    return CaloriesPerKelvin;
-                case EntropyUnit.JoulePerDegreeCelsius:
-                    return JoulesPerDegreeCelsius;
-                case EntropyUnit.JoulePerKelvin:
-                    return JoulesPerKelvin;
-                case EntropyUnit.KilocaloriePerKelvin:
-                    return KilocaloriesPerKelvin;
-                case EntropyUnit.KilojoulePerDegreeCelsius:
-                    return KilojoulesPerDegreeCelsius;
-                case EntropyUnit.KilojoulePerKelvin:
-                    return KilojoulesPerKelvin;
-                case EntropyUnit.MegajoulePerKelvin:
-                    return MegajoulesPerKelvin;
+                case EntropyUnit.CaloriePerKelvin: return baseUnitValue/4.184;
+                case EntropyUnit.JoulePerDegreeCelsius: return baseUnitValue;
+                case EntropyUnit.JoulePerKelvin: return baseUnitValue;
+                case EntropyUnit.KilocaloriePerKelvin: return (baseUnitValue/4.184) / 1e3d;
+                case EntropyUnit.KilojoulePerDegreeCelsius: return (baseUnitValue) / 1e3d;
+                case EntropyUnit.KilojoulePerKelvin: return (baseUnitValue) / 1e3d;
+                case EntropyUnit.MegajoulePerKelvin: return (baseUnitValue) / 1e6d;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -723,7 +677,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -742,17 +700,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Entropy Parse(string str, [CanBeNull] Culture culture)
+        public static Entropy Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<Entropy, EntropyUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<Entropy, EntropyUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -778,16 +743,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out Entropy result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out Entropy result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -800,6 +790,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -813,11 +804,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static EntropyUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -826,6 +820,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -838,18 +834,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static EntropyUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static EntropyUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<EntropyUnit>(str.Trim());
 
             if (unit == EntropyUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized EntropyUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -858,6 +854,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is JoulePerKelvin
         /// </summary>
@@ -869,7 +866,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -886,74 +883,135 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(EntropyUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          EntropyUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(EntropyUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            EntropyUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(EntropyUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            EntropyUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of Entropy
         /// </summary>
-        public static Entropy MaxValue
-        {
-            get
-            {
-                return new Entropy(double.MaxValue);
-            }
-        }
+        public static Entropy MaxValue => new Entropy(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Entropy
         /// </summary>
-        public static Entropy MinValue
+        public static Entropy MinValue => new Entropy(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitJoulesPerKelvin()
         {
-            get
+			if (Unit == EntropyUnit.JoulePerKelvin) { return _value; }
+
+            switch (Unit)
             {
-                return new Entropy(double.MinValue);
-            }
-        }
-    }
+                case EntropyUnit.CaloriePerKelvin: return _value*4.184;
+                case EntropyUnit.JoulePerDegreeCelsius: return _value;
+                case EntropyUnit.JoulePerKelvin: return _value;
+                case EntropyUnit.KilocaloriePerKelvin: return (_value*4.184) * 1e3d;
+                case EntropyUnit.KilojoulePerDegreeCelsius: return (_value) * 1e3d;
+                case EntropyUnit.KilojoulePerKelvin: return (_value) * 1e3d;
+                case EntropyUnit.MegajoulePerKelvin: return (_value) * 1e6d;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(EntropyUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

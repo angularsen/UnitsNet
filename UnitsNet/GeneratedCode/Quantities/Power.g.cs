@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of Power.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly decimal _watts;
+        private readonly decimal _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly PowerUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public decimal Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public PowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public Power() : this(0)
+        public Power()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Power(double watts)
         {
-            _watts = Convert.ToDecimal(watts);
+            _value = Convert.ToDecimal(watts);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          Power(decimal numericValue, PowerUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Watt.
+        /// </summary>
+        /// <param name="watts">Value assuming base unit Watt.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Power(long watts)
-        {
-            _watts = Convert.ToDecimal(watts);
-        }
+        Power(long watts) : this(Convert.ToDecimal(watts), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Watt.
+        /// </summary>
+        /// <param name="watts">Value assuming base unit Watt.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Power(decimal watts)
-        {
-            _watts = Convert.ToDecimal(watts);
-        }
+        Power(decimal watts) : this(Convert.ToDecimal(watts), BaseUnit) { }
 
         #region Properties
 
@@ -119,184 +156,98 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static PowerUnit BaseUnit
-        {
-            get { return PowerUnit.Watt; }
-        }
+        public static PowerUnit BaseUnit => PowerUnit.Watt;
 
         /// <summary>
         ///     All units of measurement for the Power quantity.
         /// </summary>
         public static PowerUnit[] Units { get; } = Enum.GetValues(typeof(PowerUnit)).Cast<PowerUnit>().ToArray();
-
         /// <summary>
         ///     Get Power in BoilerHorsepower.
         /// </summary>
-        public double BoilerHorsepower
-        {
-            get { return Convert.ToDouble(_watts/9812.5m); }
-        }
-
+        public double BoilerHorsepower => As(PowerUnit.BoilerHorsepower);
         /// <summary>
         ///     Get Power in BritishThermalUnitsPerHour.
         /// </summary>
-        public double BritishThermalUnitsPerHour
-        {
-            get { return Convert.ToDouble(_watts/0.293071m); }
-        }
-
+        public double BritishThermalUnitsPerHour => As(PowerUnit.BritishThermalUnitPerHour);
         /// <summary>
         ///     Get Power in Decawatts.
         /// </summary>
-        public double Decawatts
-        {
-            get { return Convert.ToDouble((_watts) / 1e1m); }
-        }
-
+        public double Decawatts => As(PowerUnit.Decawatt);
         /// <summary>
         ///     Get Power in Deciwatts.
         /// </summary>
-        public double Deciwatts
-        {
-            get { return Convert.ToDouble((_watts) / 1e-1m); }
-        }
-
+        public double Deciwatts => As(PowerUnit.Deciwatt);
         /// <summary>
         ///     Get Power in ElectricalHorsepower.
         /// </summary>
-        public double ElectricalHorsepower
-        {
-            get { return Convert.ToDouble(_watts/746m); }
-        }
-
+        public double ElectricalHorsepower => As(PowerUnit.ElectricalHorsepower);
         /// <summary>
         ///     Get Power in Femtowatts.
         /// </summary>
-        public double Femtowatts
-        {
-            get { return Convert.ToDouble((_watts) / 1e-15m); }
-        }
-
+        public double Femtowatts => As(PowerUnit.Femtowatt);
         /// <summary>
         ///     Get Power in Gigawatts.
         /// </summary>
-        public double Gigawatts
-        {
-            get { return Convert.ToDouble((_watts) / 1e9m); }
-        }
-
+        public double Gigawatts => As(PowerUnit.Gigawatt);
         /// <summary>
         ///     Get Power in HydraulicHorsepower.
         /// </summary>
-        public double HydraulicHorsepower
-        {
-            get { return Convert.ToDouble(_watts/745.69988145m); }
-        }
-
+        public double HydraulicHorsepower => As(PowerUnit.HydraulicHorsepower);
         /// <summary>
         ///     Get Power in KilobritishThermalUnitsPerHour.
         /// </summary>
-        public double KilobritishThermalUnitsPerHour
-        {
-            get { return Convert.ToDouble((_watts/0.293071m) / 1e3m); }
-        }
-
+        public double KilobritishThermalUnitsPerHour => As(PowerUnit.KilobritishThermalUnitPerHour);
         /// <summary>
         ///     Get Power in Kilowatts.
         /// </summary>
-        public double Kilowatts
-        {
-            get { return Convert.ToDouble((_watts) / 1e3m); }
-        }
-
+        public double Kilowatts => As(PowerUnit.Kilowatt);
         /// <summary>
         ///     Get Power in MechanicalHorsepower.
         /// </summary>
-        public double MechanicalHorsepower
-        {
-            get { return Convert.ToDouble(_watts/745.69m); }
-        }
-
+        public double MechanicalHorsepower => As(PowerUnit.MechanicalHorsepower);
         /// <summary>
         ///     Get Power in Megawatts.
         /// </summary>
-        public double Megawatts
-        {
-            get { return Convert.ToDouble((_watts) / 1e6m); }
-        }
-
+        public double Megawatts => As(PowerUnit.Megawatt);
         /// <summary>
         ///     Get Power in MetricHorsepower.
         /// </summary>
-        public double MetricHorsepower
-        {
-            get { return Convert.ToDouble(_watts/735.49875m); }
-        }
-
+        public double MetricHorsepower => As(PowerUnit.MetricHorsepower);
         /// <summary>
         ///     Get Power in Microwatts.
         /// </summary>
-        public double Microwatts
-        {
-            get { return Convert.ToDouble((_watts) / 1e-6m); }
-        }
-
+        public double Microwatts => As(PowerUnit.Microwatt);
         /// <summary>
         ///     Get Power in Milliwatts.
         /// </summary>
-        public double Milliwatts
-        {
-            get { return Convert.ToDouble((_watts) / 1e-3m); }
-        }
-
+        public double Milliwatts => As(PowerUnit.Milliwatt);
         /// <summary>
         ///     Get Power in Nanowatts.
         /// </summary>
-        public double Nanowatts
-        {
-            get { return Convert.ToDouble((_watts) / 1e-9m); }
-        }
-
+        public double Nanowatts => As(PowerUnit.Nanowatt);
         /// <summary>
         ///     Get Power in Petawatts.
         /// </summary>
-        public double Petawatts
-        {
-            get { return Convert.ToDouble((_watts) / 1e15m); }
-        }
-
+        public double Petawatts => As(PowerUnit.Petawatt);
         /// <summary>
         ///     Get Power in Picowatts.
         /// </summary>
-        public double Picowatts
-        {
-            get { return Convert.ToDouble((_watts) / 1e-12m); }
-        }
-
+        public double Picowatts => As(PowerUnit.Picowatt);
         /// <summary>
         ///     Get Power in Terawatts.
         /// </summary>
-        public double Terawatts
-        {
-            get { return Convert.ToDouble((_watts) / 1e12m); }
-        }
-
+        public double Terawatts => As(PowerUnit.Terawatt);
         /// <summary>
         ///     Get Power in Watts.
         /// </summary>
-        public double Watts
-        {
-            get { return Convert.ToDouble(_watts); }
-        }
+        public double Watts => As(PowerUnit.Watt);
 
         #endregion
 
         #region Static
 
-        public static Power Zero
-        {
-            get { return new Power(); }
-        }
+        public static Power Zero => new Power(0, BaseUnit);
 
         /// <summary>
         ///     Get Power from BoilerHorsepower.
@@ -304,17 +255,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromBoilerHorsepower(double boilerhorsepower)
-        {
-            double value = (double) boilerhorsepower;
-            return new Power(Convert.ToDecimal(value*9812.5d));
-        }
 #else
         public static Power FromBoilerHorsepower(QuantityValue boilerhorsepower)
-        {
-            double value = (double) boilerhorsepower;
-            return new Power((Convert.ToDecimal(value*9812.5d)));
-        }
 #endif
+        {
+            decimal value = (decimal) boilerhorsepower;
+            return new Power(value, PowerUnit.BoilerHorsepower);
+        }
 
         /// <summary>
         ///     Get Power from BritishThermalUnitsPerHour.
@@ -322,17 +269,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromBritishThermalUnitsPerHour(double britishthermalunitsperhour)
-        {
-            double value = (double) britishthermalunitsperhour;
-            return new Power(Convert.ToDecimal(value*0.293071d));
-        }
 #else
         public static Power FromBritishThermalUnitsPerHour(QuantityValue britishthermalunitsperhour)
-        {
-            double value = (double) britishthermalunitsperhour;
-            return new Power((Convert.ToDecimal(value*0.293071d)));
-        }
 #endif
+        {
+            decimal value = (decimal) britishthermalunitsperhour;
+            return new Power(value, PowerUnit.BritishThermalUnitPerHour);
+        }
 
         /// <summary>
         ///     Get Power from Decawatts.
@@ -340,17 +283,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromDecawatts(double decawatts)
-        {
-            double value = (double) decawatts;
-            return new Power(Convert.ToDecimal((value) * 1e1d));
-        }
 #else
         public static Power FromDecawatts(QuantityValue decawatts)
-        {
-            double value = (double) decawatts;
-            return new Power((Convert.ToDecimal((value) * 1e1d)));
-        }
 #endif
+        {
+            decimal value = (decimal) decawatts;
+            return new Power(value, PowerUnit.Decawatt);
+        }
 
         /// <summary>
         ///     Get Power from Deciwatts.
@@ -358,17 +297,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromDeciwatts(double deciwatts)
-        {
-            double value = (double) deciwatts;
-            return new Power(Convert.ToDecimal((value) * 1e-1d));
-        }
 #else
         public static Power FromDeciwatts(QuantityValue deciwatts)
-        {
-            double value = (double) deciwatts;
-            return new Power((Convert.ToDecimal((value) * 1e-1d)));
-        }
 #endif
+        {
+            decimal value = (decimal) deciwatts;
+            return new Power(value, PowerUnit.Deciwatt);
+        }
 
         /// <summary>
         ///     Get Power from ElectricalHorsepower.
@@ -376,17 +311,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromElectricalHorsepower(double electricalhorsepower)
-        {
-            double value = (double) electricalhorsepower;
-            return new Power(Convert.ToDecimal(value*746d));
-        }
 #else
         public static Power FromElectricalHorsepower(QuantityValue electricalhorsepower)
-        {
-            double value = (double) electricalhorsepower;
-            return new Power((Convert.ToDecimal(value*746d)));
-        }
 #endif
+        {
+            decimal value = (decimal) electricalhorsepower;
+            return new Power(value, PowerUnit.ElectricalHorsepower);
+        }
 
         /// <summary>
         ///     Get Power from Femtowatts.
@@ -394,17 +325,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromFemtowatts(double femtowatts)
-        {
-            double value = (double) femtowatts;
-            return new Power(Convert.ToDecimal((value) * 1e-15d));
-        }
 #else
         public static Power FromFemtowatts(QuantityValue femtowatts)
-        {
-            double value = (double) femtowatts;
-            return new Power((Convert.ToDecimal((value) * 1e-15d)));
-        }
 #endif
+        {
+            decimal value = (decimal) femtowatts;
+            return new Power(value, PowerUnit.Femtowatt);
+        }
 
         /// <summary>
         ///     Get Power from Gigawatts.
@@ -412,17 +339,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromGigawatts(double gigawatts)
-        {
-            double value = (double) gigawatts;
-            return new Power(Convert.ToDecimal((value) * 1e9d));
-        }
 #else
         public static Power FromGigawatts(QuantityValue gigawatts)
-        {
-            double value = (double) gigawatts;
-            return new Power((Convert.ToDecimal((value) * 1e9d)));
-        }
 #endif
+        {
+            decimal value = (decimal) gigawatts;
+            return new Power(value, PowerUnit.Gigawatt);
+        }
 
         /// <summary>
         ///     Get Power from HydraulicHorsepower.
@@ -430,17 +353,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromHydraulicHorsepower(double hydraulichorsepower)
-        {
-            double value = (double) hydraulichorsepower;
-            return new Power(Convert.ToDecimal(value*745.69988145d));
-        }
 #else
         public static Power FromHydraulicHorsepower(QuantityValue hydraulichorsepower)
-        {
-            double value = (double) hydraulichorsepower;
-            return new Power((Convert.ToDecimal(value*745.69988145d)));
-        }
 #endif
+        {
+            decimal value = (decimal) hydraulichorsepower;
+            return new Power(value, PowerUnit.HydraulicHorsepower);
+        }
 
         /// <summary>
         ///     Get Power from KilobritishThermalUnitsPerHour.
@@ -448,17 +367,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromKilobritishThermalUnitsPerHour(double kilobritishthermalunitsperhour)
-        {
-            double value = (double) kilobritishthermalunitsperhour;
-            return new Power(Convert.ToDecimal((value*0.293071d) * 1e3d));
-        }
 #else
         public static Power FromKilobritishThermalUnitsPerHour(QuantityValue kilobritishthermalunitsperhour)
-        {
-            double value = (double) kilobritishthermalunitsperhour;
-            return new Power((Convert.ToDecimal((value*0.293071d) * 1e3d)));
-        }
 #endif
+        {
+            decimal value = (decimal) kilobritishthermalunitsperhour;
+            return new Power(value, PowerUnit.KilobritishThermalUnitPerHour);
+        }
 
         /// <summary>
         ///     Get Power from Kilowatts.
@@ -466,17 +381,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromKilowatts(double kilowatts)
-        {
-            double value = (double) kilowatts;
-            return new Power(Convert.ToDecimal((value) * 1e3d));
-        }
 #else
         public static Power FromKilowatts(QuantityValue kilowatts)
-        {
-            double value = (double) kilowatts;
-            return new Power((Convert.ToDecimal((value) * 1e3d)));
-        }
 #endif
+        {
+            decimal value = (decimal) kilowatts;
+            return new Power(value, PowerUnit.Kilowatt);
+        }
 
         /// <summary>
         ///     Get Power from MechanicalHorsepower.
@@ -484,17 +395,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromMechanicalHorsepower(double mechanicalhorsepower)
-        {
-            double value = (double) mechanicalhorsepower;
-            return new Power(Convert.ToDecimal(value*745.69d));
-        }
 #else
         public static Power FromMechanicalHorsepower(QuantityValue mechanicalhorsepower)
-        {
-            double value = (double) mechanicalhorsepower;
-            return new Power((Convert.ToDecimal(value*745.69d)));
-        }
 #endif
+        {
+            decimal value = (decimal) mechanicalhorsepower;
+            return new Power(value, PowerUnit.MechanicalHorsepower);
+        }
 
         /// <summary>
         ///     Get Power from Megawatts.
@@ -502,17 +409,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromMegawatts(double megawatts)
-        {
-            double value = (double) megawatts;
-            return new Power(Convert.ToDecimal((value) * 1e6d));
-        }
 #else
         public static Power FromMegawatts(QuantityValue megawatts)
-        {
-            double value = (double) megawatts;
-            return new Power((Convert.ToDecimal((value) * 1e6d)));
-        }
 #endif
+        {
+            decimal value = (decimal) megawatts;
+            return new Power(value, PowerUnit.Megawatt);
+        }
 
         /// <summary>
         ///     Get Power from MetricHorsepower.
@@ -520,17 +423,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromMetricHorsepower(double metrichorsepower)
-        {
-            double value = (double) metrichorsepower;
-            return new Power(Convert.ToDecimal(value*735.49875d));
-        }
 #else
         public static Power FromMetricHorsepower(QuantityValue metrichorsepower)
-        {
-            double value = (double) metrichorsepower;
-            return new Power((Convert.ToDecimal(value*735.49875d)));
-        }
 #endif
+        {
+            decimal value = (decimal) metrichorsepower;
+            return new Power(value, PowerUnit.MetricHorsepower);
+        }
 
         /// <summary>
         ///     Get Power from Microwatts.
@@ -538,17 +437,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromMicrowatts(double microwatts)
-        {
-            double value = (double) microwatts;
-            return new Power(Convert.ToDecimal((value) * 1e-6d));
-        }
 #else
         public static Power FromMicrowatts(QuantityValue microwatts)
-        {
-            double value = (double) microwatts;
-            return new Power((Convert.ToDecimal((value) * 1e-6d)));
-        }
 #endif
+        {
+            decimal value = (decimal) microwatts;
+            return new Power(value, PowerUnit.Microwatt);
+        }
 
         /// <summary>
         ///     Get Power from Milliwatts.
@@ -556,17 +451,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromMilliwatts(double milliwatts)
-        {
-            double value = (double) milliwatts;
-            return new Power(Convert.ToDecimal((value) * 1e-3d));
-        }
 #else
         public static Power FromMilliwatts(QuantityValue milliwatts)
-        {
-            double value = (double) milliwatts;
-            return new Power((Convert.ToDecimal((value) * 1e-3d)));
-        }
 #endif
+        {
+            decimal value = (decimal) milliwatts;
+            return new Power(value, PowerUnit.Milliwatt);
+        }
 
         /// <summary>
         ///     Get Power from Nanowatts.
@@ -574,17 +465,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromNanowatts(double nanowatts)
-        {
-            double value = (double) nanowatts;
-            return new Power(Convert.ToDecimal((value) * 1e-9d));
-        }
 #else
         public static Power FromNanowatts(QuantityValue nanowatts)
-        {
-            double value = (double) nanowatts;
-            return new Power((Convert.ToDecimal((value) * 1e-9d)));
-        }
 #endif
+        {
+            decimal value = (decimal) nanowatts;
+            return new Power(value, PowerUnit.Nanowatt);
+        }
 
         /// <summary>
         ///     Get Power from Petawatts.
@@ -592,17 +479,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromPetawatts(double petawatts)
-        {
-            double value = (double) petawatts;
-            return new Power(Convert.ToDecimal((value) * 1e15d));
-        }
 #else
         public static Power FromPetawatts(QuantityValue petawatts)
-        {
-            double value = (double) petawatts;
-            return new Power((Convert.ToDecimal((value) * 1e15d)));
-        }
 #endif
+        {
+            decimal value = (decimal) petawatts;
+            return new Power(value, PowerUnit.Petawatt);
+        }
 
         /// <summary>
         ///     Get Power from Picowatts.
@@ -610,17 +493,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromPicowatts(double picowatts)
-        {
-            double value = (double) picowatts;
-            return new Power(Convert.ToDecimal((value) * 1e-12d));
-        }
 #else
         public static Power FromPicowatts(QuantityValue picowatts)
-        {
-            double value = (double) picowatts;
-            return new Power((Convert.ToDecimal((value) * 1e-12d)));
-        }
 #endif
+        {
+            decimal value = (decimal) picowatts;
+            return new Power(value, PowerUnit.Picowatt);
+        }
 
         /// <summary>
         ///     Get Power from Terawatts.
@@ -628,17 +507,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromTerawatts(double terawatts)
-        {
-            double value = (double) terawatts;
-            return new Power(Convert.ToDecimal((value) * 1e12d));
-        }
 #else
         public static Power FromTerawatts(QuantityValue terawatts)
-        {
-            double value = (double) terawatts;
-            return new Power((Convert.ToDecimal((value) * 1e12d)));
-        }
 #endif
+        {
+            decimal value = (decimal) terawatts;
+            return new Power(value, PowerUnit.Terawatt);
+        }
 
         /// <summary>
         ///     Get Power from Watts.
@@ -646,17 +521,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromWatts(double watts)
-        {
-            double value = (double) watts;
-            return new Power(Convert.ToDecimal(value));
-        }
 #else
         public static Power FromWatts(QuantityValue watts)
-        {
-            double value = (double) watts;
-            return new Power((Convert.ToDecimal(value)));
-        }
 #endif
+        {
+            decimal value = (decimal) watts;
+            return new Power(value, PowerUnit.Watt);
+        }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -976,52 +847,7 @@ namespace UnitsNet
         public static Power From(QuantityValue value, PowerUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case PowerUnit.BoilerHorsepower:
-                    return FromBoilerHorsepower(value);
-                case PowerUnit.BritishThermalUnitPerHour:
-                    return FromBritishThermalUnitsPerHour(value);
-                case PowerUnit.Decawatt:
-                    return FromDecawatts(value);
-                case PowerUnit.Deciwatt:
-                    return FromDeciwatts(value);
-                case PowerUnit.ElectricalHorsepower:
-                    return FromElectricalHorsepower(value);
-                case PowerUnit.Femtowatt:
-                    return FromFemtowatts(value);
-                case PowerUnit.Gigawatt:
-                    return FromGigawatts(value);
-                case PowerUnit.HydraulicHorsepower:
-                    return FromHydraulicHorsepower(value);
-                case PowerUnit.KilobritishThermalUnitPerHour:
-                    return FromKilobritishThermalUnitsPerHour(value);
-                case PowerUnit.Kilowatt:
-                    return FromKilowatts(value);
-                case PowerUnit.MechanicalHorsepower:
-                    return FromMechanicalHorsepower(value);
-                case PowerUnit.Megawatt:
-                    return FromMegawatts(value);
-                case PowerUnit.MetricHorsepower:
-                    return FromMetricHorsepower(value);
-                case PowerUnit.Microwatt:
-                    return FromMicrowatts(value);
-                case PowerUnit.Milliwatt:
-                    return FromMilliwatts(value);
-                case PowerUnit.Nanowatt:
-                    return FromNanowatts(value);
-                case PowerUnit.Petawatt:
-                    return FromPetawatts(value);
-                case PowerUnit.Picowatt:
-                    return FromPicowatts(value);
-                case PowerUnit.Terawatt:
-                    return FromTerawatts(value);
-                case PowerUnit.Watt:
-                    return FromWatts(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Power((decimal)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -1038,52 +864,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case PowerUnit.BoilerHorsepower:
-                    return FromBoilerHorsepower(value.Value);
-                case PowerUnit.BritishThermalUnitPerHour:
-                    return FromBritishThermalUnitsPerHour(value.Value);
-                case PowerUnit.Decawatt:
-                    return FromDecawatts(value.Value);
-                case PowerUnit.Deciwatt:
-                    return FromDeciwatts(value.Value);
-                case PowerUnit.ElectricalHorsepower:
-                    return FromElectricalHorsepower(value.Value);
-                case PowerUnit.Femtowatt:
-                    return FromFemtowatts(value.Value);
-                case PowerUnit.Gigawatt:
-                    return FromGigawatts(value.Value);
-                case PowerUnit.HydraulicHorsepower:
-                    return FromHydraulicHorsepower(value.Value);
-                case PowerUnit.KilobritishThermalUnitPerHour:
-                    return FromKilobritishThermalUnitsPerHour(value.Value);
-                case PowerUnit.Kilowatt:
-                    return FromKilowatts(value.Value);
-                case PowerUnit.MechanicalHorsepower:
-                    return FromMechanicalHorsepower(value.Value);
-                case PowerUnit.Megawatt:
-                    return FromMegawatts(value.Value);
-                case PowerUnit.MetricHorsepower:
-                    return FromMetricHorsepower(value.Value);
-                case PowerUnit.Microwatt:
-                    return FromMicrowatts(value.Value);
-                case PowerUnit.Milliwatt:
-                    return FromMilliwatts(value.Value);
-                case PowerUnit.Nanowatt:
-                    return FromNanowatts(value.Value);
-                case PowerUnit.Petawatt:
-                    return FromPetawatts(value.Value);
-                case PowerUnit.Picowatt:
-                    return FromPicowatts(value.Value);
-                case PowerUnit.Terawatt:
-                    return FromTerawatts(value.Value);
-                case PowerUnit.Watt:
-                    return FromWatts(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Power((decimal)value.Value, fromUnit);
         }
 #endif
 
@@ -1102,12 +884,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(PowerUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          PowerUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -1118,37 +917,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Power operator -(Power right)
         {
-            return new Power(-right._watts);
+            return new Power(-right.Value, right.Unit);
         }
 
         public static Power operator +(Power left, Power right)
         {
-            return new Power(left._watts + right._watts);
+            return new Power(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Power operator -(Power left, Power right)
         {
-            return new Power(left._watts - right._watts);
+            return new Power(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Power operator *(decimal left, Power right)
         {
-            return new Power(left*right._watts);
+            return new Power(left * right.Value, right.Unit);
         }
 
-        public static Power operator *(Power left, double right)
+        public static Power operator *(Power left, decimal right)
         {
-            return new Power(left._watts*(decimal)right);
+            return new Power(left.Value * right, left.Unit);
         }
 
-        public static Power operator /(Power left, double right)
+        public static Power operator /(Power left, decimal right)
         {
-            return new Power(left._watts/(decimal)right);
+            return new Power(left.Value / right, left.Unit);
         }
 
         public static double operator /(Power left, Power right)
         {
-            return Convert.ToDouble(left._watts/right._watts);
+            return left.Watts / right.Watts;
         }
 #endif
 
@@ -1171,41 +970,41 @@ namespace UnitsNet
 #endif
         int CompareTo(Power other)
         {
-            return _watts.CompareTo(other._watts);
+            return AsBaseUnitWatts().CompareTo(other.AsBaseUnitWatts());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(Power left, Power right)
         {
-            return left._watts <= right._watts;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(Power left, Power right)
         {
-            return left._watts >= right._watts;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(Power left, Power right)
         {
-            return left._watts < right._watts;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(Power left, Power right)
         {
-            return left._watts > right._watts;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator ==(Power left, Power right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._watts == right._watts;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator !=(Power left, Power right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._watts != right._watts;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -1216,7 +1015,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _watts.Equals(((Power) obj)._watts);
+            return AsBaseUnitWatts().Equals(((Power) obj).AsBaseUnitWatts());
         }
 
         /// <summary>
@@ -1229,12 +1028,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Power other, Power maxError)
         {
-            return Math.Abs(_watts - other._watts) <= maxError._watts;
+            return Math.Abs(AsBaseUnitWatts() - other.AsBaseUnitWatts()) <= maxError.AsBaseUnitWatts();
         }
 
         public override int GetHashCode()
         {
-            return _watts.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1244,52 +1043,38 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(PowerUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            decimal baseUnitValue = AsBaseUnitWatts();
+
             switch (unit)
             {
-                case PowerUnit.BoilerHorsepower:
-                    return BoilerHorsepower;
-                case PowerUnit.BritishThermalUnitPerHour:
-                    return BritishThermalUnitsPerHour;
-                case PowerUnit.Decawatt:
-                    return Decawatts;
-                case PowerUnit.Deciwatt:
-                    return Deciwatts;
-                case PowerUnit.ElectricalHorsepower:
-                    return ElectricalHorsepower;
-                case PowerUnit.Femtowatt:
-                    return Femtowatts;
-                case PowerUnit.Gigawatt:
-                    return Gigawatts;
-                case PowerUnit.HydraulicHorsepower:
-                    return HydraulicHorsepower;
-                case PowerUnit.KilobritishThermalUnitPerHour:
-                    return KilobritishThermalUnitsPerHour;
-                case PowerUnit.Kilowatt:
-                    return Kilowatts;
-                case PowerUnit.MechanicalHorsepower:
-                    return MechanicalHorsepower;
-                case PowerUnit.Megawatt:
-                    return Megawatts;
-                case PowerUnit.MetricHorsepower:
-                    return MetricHorsepower;
-                case PowerUnit.Microwatt:
-                    return Microwatts;
-                case PowerUnit.Milliwatt:
-                    return Milliwatts;
-                case PowerUnit.Nanowatt:
-                    return Nanowatts;
-                case PowerUnit.Petawatt:
-                    return Petawatts;
-                case PowerUnit.Picowatt:
-                    return Picowatts;
-                case PowerUnit.Terawatt:
-                    return Terawatts;
-                case PowerUnit.Watt:
-                    return Watts;
+                case PowerUnit.BoilerHorsepower: return Convert.ToDouble(baseUnitValue/9812.5m);
+                case PowerUnit.BritishThermalUnitPerHour: return Convert.ToDouble(baseUnitValue/0.293071m);
+                case PowerUnit.Decawatt: return Convert.ToDouble((baseUnitValue) / 1e1m);
+                case PowerUnit.Deciwatt: return Convert.ToDouble((baseUnitValue) / 1e-1m);
+                case PowerUnit.ElectricalHorsepower: return Convert.ToDouble(baseUnitValue/746m);
+                case PowerUnit.Femtowatt: return Convert.ToDouble((baseUnitValue) / 1e-15m);
+                case PowerUnit.Gigawatt: return Convert.ToDouble((baseUnitValue) / 1e9m);
+                case PowerUnit.HydraulicHorsepower: return Convert.ToDouble(baseUnitValue/745.69988145m);
+                case PowerUnit.KilobritishThermalUnitPerHour: return Convert.ToDouble((baseUnitValue/0.293071m) / 1e3m);
+                case PowerUnit.Kilowatt: return Convert.ToDouble((baseUnitValue) / 1e3m);
+                case PowerUnit.MechanicalHorsepower: return Convert.ToDouble(baseUnitValue/745.69m);
+                case PowerUnit.Megawatt: return Convert.ToDouble((baseUnitValue) / 1e6m);
+                case PowerUnit.MetricHorsepower: return Convert.ToDouble(baseUnitValue/735.49875m);
+                case PowerUnit.Microwatt: return Convert.ToDouble((baseUnitValue) / 1e-6m);
+                case PowerUnit.Milliwatt: return Convert.ToDouble((baseUnitValue) / 1e-3m);
+                case PowerUnit.Nanowatt: return Convert.ToDouble((baseUnitValue) / 1e-9m);
+                case PowerUnit.Petawatt: return Convert.ToDouble((baseUnitValue) / 1e15m);
+                case PowerUnit.Picowatt: return Convert.ToDouble((baseUnitValue) / 1e-12m);
+                case PowerUnit.Terawatt: return Convert.ToDouble((baseUnitValue) / 1e12m);
+                case PowerUnit.Watt: return Convert.ToDouble(baseUnitValue);
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -1331,7 +1116,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -1350,17 +1139,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Power Parse(string str, [CanBeNull] Culture culture)
+        public static Power Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<Power, PowerUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<Power, PowerUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -1386,16 +1182,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out Power result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out Power result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -1408,6 +1229,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1421,11 +1243,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static PowerUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -1434,6 +1259,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1446,18 +1273,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static PowerUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static PowerUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<PowerUnit>(str.Trim());
 
             if (unit == PowerUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized PowerUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -1466,6 +1293,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Watt
         /// </summary>
@@ -1477,7 +1305,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -1494,74 +1322,148 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(PowerUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          PowerUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(PowerUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            PowerUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(PowerUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            PowerUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of Power
         /// </summary>
-        public static Power MaxValue
-        {
-            get
-            {
-                return new Power(decimal.MaxValue);
-            }
-        }
+        public static Power MaxValue => new Power(decimal.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Power
         /// </summary>
-        public static Power MinValue
+        public static Power MinValue => new Power(decimal.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private decimal AsBaseUnitWatts()
         {
-            get
+			if (Unit == PowerUnit.Watt) { return _value; }
+
+            switch (Unit)
             {
-                return new Power(decimal.MinValue);
-            }
-        }
-    }
+                case PowerUnit.BoilerHorsepower: return Convert.ToDecimal(_value*9812.5m);
+                case PowerUnit.BritishThermalUnitPerHour: return Convert.ToDecimal(_value*0.293071m);
+                case PowerUnit.Decawatt: return Convert.ToDecimal((_value) * 1e1m);
+                case PowerUnit.Deciwatt: return Convert.ToDecimal((_value) * 1e-1m);
+                case PowerUnit.ElectricalHorsepower: return Convert.ToDecimal(_value*746m);
+                case PowerUnit.Femtowatt: return Convert.ToDecimal((_value) * 1e-15m);
+                case PowerUnit.Gigawatt: return Convert.ToDecimal((_value) * 1e9m);
+                case PowerUnit.HydraulicHorsepower: return Convert.ToDecimal(_value*745.69988145m);
+                case PowerUnit.KilobritishThermalUnitPerHour: return Convert.ToDecimal((_value*0.293071m) * 1e3m);
+                case PowerUnit.Kilowatt: return Convert.ToDecimal((_value) * 1e3m);
+                case PowerUnit.MechanicalHorsepower: return Convert.ToDecimal(_value*745.69m);
+                case PowerUnit.Megawatt: return Convert.ToDecimal((_value) * 1e6m);
+                case PowerUnit.MetricHorsepower: return Convert.ToDecimal(_value*735.49875m);
+                case PowerUnit.Microwatt: return Convert.ToDecimal((_value) * 1e-6m);
+                case PowerUnit.Milliwatt: return Convert.ToDecimal((_value) * 1e-3m);
+                case PowerUnit.Nanowatt: return Convert.ToDecimal((_value) * 1e-9m);
+                case PowerUnit.Petawatt: return Convert.ToDecimal((_value) * 1e15m);
+                case PowerUnit.Picowatt: return Convert.ToDecimal((_value) * 1e-12m);
+                case PowerUnit.Terawatt: return Convert.ToDecimal((_value) * 1e12m);
+                case PowerUnit.Watt: return Convert.ToDecimal(_value);
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private decimal AsBaseNumericType(PowerUnit unit) => Convert.ToDecimal(As(unit));
+	}
 }

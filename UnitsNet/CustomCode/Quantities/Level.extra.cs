@@ -20,17 +20,16 @@
 // THE SOFTWARE.
 
 using System;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class Level
-#else
+    // Cannot have methods with same name and same number of parameters.
+#if !WINDOWS_UWP
     public partial struct Level
-#endif
     {
         /// <summary>
         ///     Initializes a new instance of the logarithmic <see cref="Level" /> struct which is the ratio of a quantity Q to a
@@ -49,7 +48,9 @@ namespace UnitsNet
             if ((reference == 0) || ((quantity > 0) && (reference < 0)))
                 throw new ArgumentOutOfRangeException(nameof(reference), errorMessage);
 
-            _decibels = 10*Math.Log10(quantity/reference);
+            _value = 10*Math.Log10(quantity/reference);
+            _unit = LevelUnit.Decibel;
         }
     }
+#endif
 }

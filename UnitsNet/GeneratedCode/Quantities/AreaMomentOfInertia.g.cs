@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of AreaMomentOfInertia.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _metersToTheFourth;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly AreaMomentOfInertiaUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public AreaMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public AreaMomentOfInertia() : this(0)
+        public AreaMomentOfInertia()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public AreaMomentOfInertia(double meterstothefourth)
         {
-            _metersToTheFourth = Convert.ToDouble(meterstothefourth);
+            _value = Convert.ToDouble(meterstothefourth);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          AreaMomentOfInertia(double numericValue, AreaMomentOfInertiaUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit MeterToTheFourth.
+        /// </summary>
+        /// <param name="meterstothefourth">Value assuming base unit MeterToTheFourth.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        AreaMomentOfInertia(long meterstothefourth)
-        {
-            _metersToTheFourth = Convert.ToDouble(meterstothefourth);
-        }
+        AreaMomentOfInertia(long meterstothefourth) : this(Convert.ToDouble(meterstothefourth), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit MeterToTheFourth.
+        /// </summary>
+        /// <param name="meterstothefourth">Value assuming base unit MeterToTheFourth.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        AreaMomentOfInertia(decimal meterstothefourth)
-        {
-            _metersToTheFourth = Convert.ToDouble(meterstothefourth);
-        }
+        AreaMomentOfInertia(decimal meterstothefourth) : this(Convert.ToDouble(meterstothefourth), BaseUnit) { }
 
         #region Properties
 
@@ -119,72 +156,42 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static AreaMomentOfInertiaUnit BaseUnit
-        {
-            get { return AreaMomentOfInertiaUnit.MeterToTheFourth; }
-        }
+        public static AreaMomentOfInertiaUnit BaseUnit => AreaMomentOfInertiaUnit.MeterToTheFourth;
 
         /// <summary>
         ///     All units of measurement for the AreaMomentOfInertia quantity.
         /// </summary>
         public static AreaMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(AreaMomentOfInertiaUnit)).Cast<AreaMomentOfInertiaUnit>().ToArray();
-
         /// <summary>
         ///     Get AreaMomentOfInertia in CentimetersToTheFourth.
         /// </summary>
-        public double CentimetersToTheFourth
-        {
-            get { return _metersToTheFourth*1e8; }
-        }
-
+        public double CentimetersToTheFourth => As(AreaMomentOfInertiaUnit.CentimeterToTheFourth);
         /// <summary>
         ///     Get AreaMomentOfInertia in DecimetersToTheFourth.
         /// </summary>
-        public double DecimetersToTheFourth
-        {
-            get { return _metersToTheFourth*1e4; }
-        }
-
+        public double DecimetersToTheFourth => As(AreaMomentOfInertiaUnit.DecimeterToTheFourth);
         /// <summary>
         ///     Get AreaMomentOfInertia in FeetToTheFourth.
         /// </summary>
-        public double FeetToTheFourth
-        {
-            get { return _metersToTheFourth/Math.Pow(0.3048, 4); }
-        }
-
+        public double FeetToTheFourth => As(AreaMomentOfInertiaUnit.FootToTheFourth);
         /// <summary>
         ///     Get AreaMomentOfInertia in InchesToTheFourth.
         /// </summary>
-        public double InchesToTheFourth
-        {
-            get { return _metersToTheFourth/Math.Pow(2.54e-2, 4); }
-        }
-
+        public double InchesToTheFourth => As(AreaMomentOfInertiaUnit.InchToTheFourth);
         /// <summary>
         ///     Get AreaMomentOfInertia in MetersToTheFourth.
         /// </summary>
-        public double MetersToTheFourth
-        {
-            get { return _metersToTheFourth; }
-        }
-
+        public double MetersToTheFourth => As(AreaMomentOfInertiaUnit.MeterToTheFourth);
         /// <summary>
         ///     Get AreaMomentOfInertia in MillimetersToTheFourth.
         /// </summary>
-        public double MillimetersToTheFourth
-        {
-            get { return _metersToTheFourth*1e12; }
-        }
+        public double MillimetersToTheFourth => As(AreaMomentOfInertiaUnit.MillimeterToTheFourth);
 
         #endregion
 
         #region Static
 
-        public static AreaMomentOfInertia Zero
-        {
-            get { return new AreaMomentOfInertia(); }
-        }
+        public static AreaMomentOfInertia Zero => new AreaMomentOfInertia(0, BaseUnit);
 
         /// <summary>
         ///     Get AreaMomentOfInertia from CentimetersToTheFourth.
@@ -192,17 +199,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AreaMomentOfInertia FromCentimetersToTheFourth(double centimeterstothefourth)
-        {
-            double value = (double) centimeterstothefourth;
-            return new AreaMomentOfInertia(value/1e8);
-        }
 #else
         public static AreaMomentOfInertia FromCentimetersToTheFourth(QuantityValue centimeterstothefourth)
+#endif
         {
             double value = (double) centimeterstothefourth;
-            return new AreaMomentOfInertia((value/1e8));
+            return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.CentimeterToTheFourth);
         }
-#endif
 
         /// <summary>
         ///     Get AreaMomentOfInertia from DecimetersToTheFourth.
@@ -210,17 +213,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AreaMomentOfInertia FromDecimetersToTheFourth(double decimeterstothefourth)
-        {
-            double value = (double) decimeterstothefourth;
-            return new AreaMomentOfInertia(value/1e4);
-        }
 #else
         public static AreaMomentOfInertia FromDecimetersToTheFourth(QuantityValue decimeterstothefourth)
+#endif
         {
             double value = (double) decimeterstothefourth;
-            return new AreaMomentOfInertia((value/1e4));
+            return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.DecimeterToTheFourth);
         }
-#endif
 
         /// <summary>
         ///     Get AreaMomentOfInertia from FeetToTheFourth.
@@ -228,17 +227,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AreaMomentOfInertia FromFeetToTheFourth(double feettothefourth)
-        {
-            double value = (double) feettothefourth;
-            return new AreaMomentOfInertia(value*Math.Pow(0.3048, 4));
-        }
 #else
         public static AreaMomentOfInertia FromFeetToTheFourth(QuantityValue feettothefourth)
+#endif
         {
             double value = (double) feettothefourth;
-            return new AreaMomentOfInertia((value*Math.Pow(0.3048, 4)));
+            return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.FootToTheFourth);
         }
-#endif
 
         /// <summary>
         ///     Get AreaMomentOfInertia from InchesToTheFourth.
@@ -246,17 +241,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AreaMomentOfInertia FromInchesToTheFourth(double inchestothefourth)
-        {
-            double value = (double) inchestothefourth;
-            return new AreaMomentOfInertia(value*Math.Pow(2.54e-2, 4));
-        }
 #else
         public static AreaMomentOfInertia FromInchesToTheFourth(QuantityValue inchestothefourth)
+#endif
         {
             double value = (double) inchestothefourth;
-            return new AreaMomentOfInertia((value*Math.Pow(2.54e-2, 4)));
+            return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.InchToTheFourth);
         }
-#endif
 
         /// <summary>
         ///     Get AreaMomentOfInertia from MetersToTheFourth.
@@ -264,17 +255,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AreaMomentOfInertia FromMetersToTheFourth(double meterstothefourth)
-        {
-            double value = (double) meterstothefourth;
-            return new AreaMomentOfInertia(value);
-        }
 #else
         public static AreaMomentOfInertia FromMetersToTheFourth(QuantityValue meterstothefourth)
+#endif
         {
             double value = (double) meterstothefourth;
-            return new AreaMomentOfInertia((value));
+            return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.MeterToTheFourth);
         }
-#endif
 
         /// <summary>
         ///     Get AreaMomentOfInertia from MillimetersToTheFourth.
@@ -282,17 +269,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AreaMomentOfInertia FromMillimetersToTheFourth(double millimeterstothefourth)
-        {
-            double value = (double) millimeterstothefourth;
-            return new AreaMomentOfInertia(value/1e12);
-        }
 #else
         public static AreaMomentOfInertia FromMillimetersToTheFourth(QuantityValue millimeterstothefourth)
+#endif
         {
             double value = (double) millimeterstothefourth;
-            return new AreaMomentOfInertia((value/1e12));
+            return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.MillimeterToTheFourth);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -402,24 +385,7 @@ namespace UnitsNet
         public static AreaMomentOfInertia From(QuantityValue value, AreaMomentOfInertiaUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case AreaMomentOfInertiaUnit.CentimeterToTheFourth:
-                    return FromCentimetersToTheFourth(value);
-                case AreaMomentOfInertiaUnit.DecimeterToTheFourth:
-                    return FromDecimetersToTheFourth(value);
-                case AreaMomentOfInertiaUnit.FootToTheFourth:
-                    return FromFeetToTheFourth(value);
-                case AreaMomentOfInertiaUnit.InchToTheFourth:
-                    return FromInchesToTheFourth(value);
-                case AreaMomentOfInertiaUnit.MeterToTheFourth:
-                    return FromMetersToTheFourth(value);
-                case AreaMomentOfInertiaUnit.MillimeterToTheFourth:
-                    return FromMillimetersToTheFourth(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new AreaMomentOfInertia((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -436,24 +402,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case AreaMomentOfInertiaUnit.CentimeterToTheFourth:
-                    return FromCentimetersToTheFourth(value.Value);
-                case AreaMomentOfInertiaUnit.DecimeterToTheFourth:
-                    return FromDecimetersToTheFourth(value.Value);
-                case AreaMomentOfInertiaUnit.FootToTheFourth:
-                    return FromFeetToTheFourth(value.Value);
-                case AreaMomentOfInertiaUnit.InchToTheFourth:
-                    return FromInchesToTheFourth(value.Value);
-                case AreaMomentOfInertiaUnit.MeterToTheFourth:
-                    return FromMetersToTheFourth(value.Value);
-                case AreaMomentOfInertiaUnit.MillimeterToTheFourth:
-                    return FromMillimetersToTheFourth(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new AreaMomentOfInertia((double)value.Value, fromUnit);
         }
 #endif
 
@@ -472,12 +422,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(AreaMomentOfInertiaUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          AreaMomentOfInertiaUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -488,37 +455,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static AreaMomentOfInertia operator -(AreaMomentOfInertia right)
         {
-            return new AreaMomentOfInertia(-right._metersToTheFourth);
+            return new AreaMomentOfInertia(-right.Value, right.Unit);
         }
 
         public static AreaMomentOfInertia operator +(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
-            return new AreaMomentOfInertia(left._metersToTheFourth + right._metersToTheFourth);
+            return new AreaMomentOfInertia(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static AreaMomentOfInertia operator -(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
-            return new AreaMomentOfInertia(left._metersToTheFourth - right._metersToTheFourth);
+            return new AreaMomentOfInertia(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static AreaMomentOfInertia operator *(double left, AreaMomentOfInertia right)
         {
-            return new AreaMomentOfInertia(left*right._metersToTheFourth);
+            return new AreaMomentOfInertia(left * right.Value, right.Unit);
         }
 
         public static AreaMomentOfInertia operator *(AreaMomentOfInertia left, double right)
         {
-            return new AreaMomentOfInertia(left._metersToTheFourth*(double)right);
+            return new AreaMomentOfInertia(left.Value * right, left.Unit);
         }
 
         public static AreaMomentOfInertia operator /(AreaMomentOfInertia left, double right)
         {
-            return new AreaMomentOfInertia(left._metersToTheFourth/(double)right);
+            return new AreaMomentOfInertia(left.Value / right, left.Unit);
         }
 
         public static double operator /(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
-            return Convert.ToDouble(left._metersToTheFourth/right._metersToTheFourth);
+            return left.MetersToTheFourth / right.MetersToTheFourth;
         }
 #endif
 
@@ -541,43 +508,43 @@ namespace UnitsNet
 #endif
         int CompareTo(AreaMomentOfInertia other)
         {
-            return _metersToTheFourth.CompareTo(other._metersToTheFourth);
+            return AsBaseUnitMetersToTheFourth().CompareTo(other.AsBaseUnitMetersToTheFourth());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
-            return left._metersToTheFourth <= right._metersToTheFourth;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
-            return left._metersToTheFourth >= right._metersToTheFourth;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
-            return left._metersToTheFourth < right._metersToTheFourth;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
-            return left._metersToTheFourth > right._metersToTheFourth;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._metersToTheFourth == right._metersToTheFourth;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._metersToTheFourth != right._metersToTheFourth;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -589,7 +556,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _metersToTheFourth.Equals(((AreaMomentOfInertia) obj)._metersToTheFourth);
+            return AsBaseUnitMetersToTheFourth().Equals(((AreaMomentOfInertia) obj).AsBaseUnitMetersToTheFourth());
         }
 
         /// <summary>
@@ -602,12 +569,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(AreaMomentOfInertia other, AreaMomentOfInertia maxError)
         {
-            return Math.Abs(_metersToTheFourth - other._metersToTheFourth) <= maxError._metersToTheFourth;
+            return Math.Abs(AsBaseUnitMetersToTheFourth() - other.AsBaseUnitMetersToTheFourth()) <= maxError.AsBaseUnitMetersToTheFourth();
         }
 
         public override int GetHashCode()
         {
-            return _metersToTheFourth.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -617,24 +584,24 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(AreaMomentOfInertiaUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitMetersToTheFourth();
+
             switch (unit)
             {
-                case AreaMomentOfInertiaUnit.CentimeterToTheFourth:
-                    return CentimetersToTheFourth;
-                case AreaMomentOfInertiaUnit.DecimeterToTheFourth:
-                    return DecimetersToTheFourth;
-                case AreaMomentOfInertiaUnit.FootToTheFourth:
-                    return FeetToTheFourth;
-                case AreaMomentOfInertiaUnit.InchToTheFourth:
-                    return InchesToTheFourth;
-                case AreaMomentOfInertiaUnit.MeterToTheFourth:
-                    return MetersToTheFourth;
-                case AreaMomentOfInertiaUnit.MillimeterToTheFourth:
-                    return MillimetersToTheFourth;
+                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return baseUnitValue*1e8;
+                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return baseUnitValue*1e4;
+                case AreaMomentOfInertiaUnit.FootToTheFourth: return baseUnitValue/Math.Pow(0.3048, 4);
+                case AreaMomentOfInertiaUnit.InchToTheFourth: return baseUnitValue/Math.Pow(2.54e-2, 4);
+                case AreaMomentOfInertiaUnit.MeterToTheFourth: return baseUnitValue;
+                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return baseUnitValue*1e12;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -676,7 +643,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -695,17 +666,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static AreaMomentOfInertia Parse(string str, [CanBeNull] Culture culture)
+        public static AreaMomentOfInertia Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -731,16 +709,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out AreaMomentOfInertia result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out AreaMomentOfInertia result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -753,6 +756,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -766,11 +770,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static AreaMomentOfInertiaUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -779,6 +786,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -791,18 +800,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static AreaMomentOfInertiaUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static AreaMomentOfInertiaUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<AreaMomentOfInertiaUnit>(str.Trim());
 
             if (unit == AreaMomentOfInertiaUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized AreaMomentOfInertiaUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -811,6 +820,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is MeterToTheFourth
         /// </summary>
@@ -822,7 +832,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -839,74 +849,134 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(AreaMomentOfInertiaUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          AreaMomentOfInertiaUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(AreaMomentOfInertiaUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            AreaMomentOfInertiaUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(AreaMomentOfInertiaUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            AreaMomentOfInertiaUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of AreaMomentOfInertia
         /// </summary>
-        public static AreaMomentOfInertia MaxValue
-        {
-            get
-            {
-                return new AreaMomentOfInertia(double.MaxValue);
-            }
-        }
+        public static AreaMomentOfInertia MaxValue => new AreaMomentOfInertia(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of AreaMomentOfInertia
         /// </summary>
-        public static AreaMomentOfInertia MinValue
+        public static AreaMomentOfInertia MinValue => new AreaMomentOfInertia(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitMetersToTheFourth()
         {
-            get
+			if (Unit == AreaMomentOfInertiaUnit.MeterToTheFourth) { return _value; }
+
+            switch (Unit)
             {
-                return new AreaMomentOfInertia(double.MinValue);
-            }
-        }
-    }
+                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return _value/1e8;
+                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return _value/1e4;
+                case AreaMomentOfInertiaUnit.FootToTheFourth: return _value*Math.Pow(0.3048, 4);
+                case AreaMomentOfInertiaUnit.InchToTheFourth: return _value*Math.Pow(2.54e-2, 4);
+                case AreaMomentOfInertiaUnit.MeterToTheFourth: return _value;
+                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return _value/1e12;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(AreaMomentOfInertiaUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

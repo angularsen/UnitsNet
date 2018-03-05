@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of PressureChangeRate.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _pascalsPerSecond;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly PressureChangeRateUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public PressureChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public PressureChangeRate() : this(0)
+        public PressureChangeRate()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public PressureChangeRate(double pascalspersecond)
         {
-            _pascalsPerSecond = Convert.ToDouble(pascalspersecond);
+            _value = Convert.ToDouble(pascalspersecond);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          PressureChangeRate(double numericValue, PressureChangeRateUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit PascalPerSecond.
+        /// </summary>
+        /// <param name="pascalspersecond">Value assuming base unit PascalPerSecond.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        PressureChangeRate(long pascalspersecond)
-        {
-            _pascalsPerSecond = Convert.ToDouble(pascalspersecond);
-        }
+        PressureChangeRate(long pascalspersecond) : this(Convert.ToDouble(pascalspersecond), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit PascalPerSecond.
+        /// </summary>
+        /// <param name="pascalspersecond">Value assuming base unit PascalPerSecond.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        PressureChangeRate(decimal pascalspersecond)
-        {
-            _pascalsPerSecond = Convert.ToDouble(pascalspersecond);
-        }
+        PressureChangeRate(decimal pascalspersecond) : this(Convert.ToDouble(pascalspersecond), BaseUnit) { }
 
         #region Properties
 
@@ -119,56 +156,34 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static PressureChangeRateUnit BaseUnit
-        {
-            get { return PressureChangeRateUnit.PascalPerSecond; }
-        }
+        public static PressureChangeRateUnit BaseUnit => PressureChangeRateUnit.PascalPerSecond;
 
         /// <summary>
         ///     All units of measurement for the PressureChangeRate quantity.
         /// </summary>
         public static PressureChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(PressureChangeRateUnit)).Cast<PressureChangeRateUnit>().ToArray();
-
         /// <summary>
         ///     Get PressureChangeRate in AtmospheresPerSecond.
         /// </summary>
-        public double AtmospheresPerSecond
-        {
-            get { return _pascalsPerSecond / (1.01325*1e5); }
-        }
-
+        public double AtmospheresPerSecond => As(PressureChangeRateUnit.AtmospherePerSecond);
         /// <summary>
         ///     Get PressureChangeRate in KilopascalsPerSecond.
         /// </summary>
-        public double KilopascalsPerSecond
-        {
-            get { return (_pascalsPerSecond) / 1e3d; }
-        }
-
+        public double KilopascalsPerSecond => As(PressureChangeRateUnit.KilopascalPerSecond);
         /// <summary>
         ///     Get PressureChangeRate in MegapascalsPerSecond.
         /// </summary>
-        public double MegapascalsPerSecond
-        {
-            get { return (_pascalsPerSecond) / 1e6d; }
-        }
-
+        public double MegapascalsPerSecond => As(PressureChangeRateUnit.MegapascalPerSecond);
         /// <summary>
         ///     Get PressureChangeRate in PascalsPerSecond.
         /// </summary>
-        public double PascalsPerSecond
-        {
-            get { return _pascalsPerSecond; }
-        }
+        public double PascalsPerSecond => As(PressureChangeRateUnit.PascalPerSecond);
 
         #endregion
 
         #region Static
 
-        public static PressureChangeRate Zero
-        {
-            get { return new PressureChangeRate(); }
-        }
+        public static PressureChangeRate Zero => new PressureChangeRate(0, BaseUnit);
 
         /// <summary>
         ///     Get PressureChangeRate from AtmospheresPerSecond.
@@ -176,17 +191,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PressureChangeRate FromAtmospheresPerSecond(double atmospherespersecond)
-        {
-            double value = (double) atmospherespersecond;
-            return new PressureChangeRate(value * 1.01325*1e5);
-        }
 #else
         public static PressureChangeRate FromAtmospheresPerSecond(QuantityValue atmospherespersecond)
+#endif
         {
             double value = (double) atmospherespersecond;
-            return new PressureChangeRate((value * 1.01325*1e5));
+            return new PressureChangeRate(value, PressureChangeRateUnit.AtmospherePerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get PressureChangeRate from KilopascalsPerSecond.
@@ -194,17 +205,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PressureChangeRate FromKilopascalsPerSecond(double kilopascalspersecond)
-        {
-            double value = (double) kilopascalspersecond;
-            return new PressureChangeRate((value) * 1e3d);
-        }
 #else
         public static PressureChangeRate FromKilopascalsPerSecond(QuantityValue kilopascalspersecond)
+#endif
         {
             double value = (double) kilopascalspersecond;
-            return new PressureChangeRate(((value) * 1e3d));
+            return new PressureChangeRate(value, PressureChangeRateUnit.KilopascalPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get PressureChangeRate from MegapascalsPerSecond.
@@ -212,17 +219,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PressureChangeRate FromMegapascalsPerSecond(double megapascalspersecond)
-        {
-            double value = (double) megapascalspersecond;
-            return new PressureChangeRate((value) * 1e6d);
-        }
 #else
         public static PressureChangeRate FromMegapascalsPerSecond(QuantityValue megapascalspersecond)
+#endif
         {
             double value = (double) megapascalspersecond;
-            return new PressureChangeRate(((value) * 1e6d));
+            return new PressureChangeRate(value, PressureChangeRateUnit.MegapascalPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get PressureChangeRate from PascalsPerSecond.
@@ -230,17 +233,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PressureChangeRate FromPascalsPerSecond(double pascalspersecond)
-        {
-            double value = (double) pascalspersecond;
-            return new PressureChangeRate(value);
-        }
 #else
         public static PressureChangeRate FromPascalsPerSecond(QuantityValue pascalspersecond)
+#endif
         {
             double value = (double) pascalspersecond;
-            return new PressureChangeRate((value));
+            return new PressureChangeRate(value, PressureChangeRateUnit.PascalPerSecond);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -320,20 +319,7 @@ namespace UnitsNet
         public static PressureChangeRate From(QuantityValue value, PressureChangeRateUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case PressureChangeRateUnit.AtmospherePerSecond:
-                    return FromAtmospheresPerSecond(value);
-                case PressureChangeRateUnit.KilopascalPerSecond:
-                    return FromKilopascalsPerSecond(value);
-                case PressureChangeRateUnit.MegapascalPerSecond:
-                    return FromMegapascalsPerSecond(value);
-                case PressureChangeRateUnit.PascalPerSecond:
-                    return FromPascalsPerSecond(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new PressureChangeRate((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -350,20 +336,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case PressureChangeRateUnit.AtmospherePerSecond:
-                    return FromAtmospheresPerSecond(value.Value);
-                case PressureChangeRateUnit.KilopascalPerSecond:
-                    return FromKilopascalsPerSecond(value.Value);
-                case PressureChangeRateUnit.MegapascalPerSecond:
-                    return FromMegapascalsPerSecond(value.Value);
-                case PressureChangeRateUnit.PascalPerSecond:
-                    return FromPascalsPerSecond(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new PressureChangeRate((double)value.Value, fromUnit);
         }
 #endif
 
@@ -382,12 +356,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(PressureChangeRateUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          PressureChangeRateUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -398,37 +389,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static PressureChangeRate operator -(PressureChangeRate right)
         {
-            return new PressureChangeRate(-right._pascalsPerSecond);
+            return new PressureChangeRate(-right.Value, right.Unit);
         }
 
         public static PressureChangeRate operator +(PressureChangeRate left, PressureChangeRate right)
         {
-            return new PressureChangeRate(left._pascalsPerSecond + right._pascalsPerSecond);
+            return new PressureChangeRate(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static PressureChangeRate operator -(PressureChangeRate left, PressureChangeRate right)
         {
-            return new PressureChangeRate(left._pascalsPerSecond - right._pascalsPerSecond);
+            return new PressureChangeRate(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static PressureChangeRate operator *(double left, PressureChangeRate right)
         {
-            return new PressureChangeRate(left*right._pascalsPerSecond);
+            return new PressureChangeRate(left * right.Value, right.Unit);
         }
 
         public static PressureChangeRate operator *(PressureChangeRate left, double right)
         {
-            return new PressureChangeRate(left._pascalsPerSecond*(double)right);
+            return new PressureChangeRate(left.Value * right, left.Unit);
         }
 
         public static PressureChangeRate operator /(PressureChangeRate left, double right)
         {
-            return new PressureChangeRate(left._pascalsPerSecond/(double)right);
+            return new PressureChangeRate(left.Value / right, left.Unit);
         }
 
         public static double operator /(PressureChangeRate left, PressureChangeRate right)
         {
-            return Convert.ToDouble(left._pascalsPerSecond/right._pascalsPerSecond);
+            return left.PascalsPerSecond / right.PascalsPerSecond;
         }
 #endif
 
@@ -451,43 +442,43 @@ namespace UnitsNet
 #endif
         int CompareTo(PressureChangeRate other)
         {
-            return _pascalsPerSecond.CompareTo(other._pascalsPerSecond);
+            return AsBaseUnitPascalsPerSecond().CompareTo(other.AsBaseUnitPascalsPerSecond());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(PressureChangeRate left, PressureChangeRate right)
         {
-            return left._pascalsPerSecond <= right._pascalsPerSecond;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(PressureChangeRate left, PressureChangeRate right)
         {
-            return left._pascalsPerSecond >= right._pascalsPerSecond;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(PressureChangeRate left, PressureChangeRate right)
         {
-            return left._pascalsPerSecond < right._pascalsPerSecond;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(PressureChangeRate left, PressureChangeRate right)
         {
-            return left._pascalsPerSecond > right._pascalsPerSecond;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(PressureChangeRate left, PressureChangeRate right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._pascalsPerSecond == right._pascalsPerSecond;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(PressureChangeRate left, PressureChangeRate right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._pascalsPerSecond != right._pascalsPerSecond;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -499,7 +490,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _pascalsPerSecond.Equals(((PressureChangeRate) obj)._pascalsPerSecond);
+            return AsBaseUnitPascalsPerSecond().Equals(((PressureChangeRate) obj).AsBaseUnitPascalsPerSecond());
         }
 
         /// <summary>
@@ -512,12 +503,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(PressureChangeRate other, PressureChangeRate maxError)
         {
-            return Math.Abs(_pascalsPerSecond - other._pascalsPerSecond) <= maxError._pascalsPerSecond;
+            return Math.Abs(AsBaseUnitPascalsPerSecond() - other.AsBaseUnitPascalsPerSecond()) <= maxError.AsBaseUnitPascalsPerSecond();
         }
 
         public override int GetHashCode()
         {
-            return _pascalsPerSecond.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -527,20 +518,22 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(PressureChangeRateUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitPascalsPerSecond();
+
             switch (unit)
             {
-                case PressureChangeRateUnit.AtmospherePerSecond:
-                    return AtmospheresPerSecond;
-                case PressureChangeRateUnit.KilopascalPerSecond:
-                    return KilopascalsPerSecond;
-                case PressureChangeRateUnit.MegapascalPerSecond:
-                    return MegapascalsPerSecond;
-                case PressureChangeRateUnit.PascalPerSecond:
-                    return PascalsPerSecond;
+                case PressureChangeRateUnit.AtmospherePerSecond: return baseUnitValue / (1.01325*1e5);
+                case PressureChangeRateUnit.KilopascalPerSecond: return (baseUnitValue) / 1e3d;
+                case PressureChangeRateUnit.MegapascalPerSecond: return (baseUnitValue) / 1e6d;
+                case PressureChangeRateUnit.PascalPerSecond: return baseUnitValue;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -582,7 +575,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -601,17 +598,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static PressureChangeRate Parse(string str, [CanBeNull] Culture culture)
+        public static PressureChangeRate Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<PressureChangeRate, PressureChangeRateUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<PressureChangeRate, PressureChangeRateUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -637,16 +641,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out PressureChangeRate result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out PressureChangeRate result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -659,6 +688,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -672,11 +702,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static PressureChangeRateUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -685,6 +718,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -697,18 +732,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static PressureChangeRateUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static PressureChangeRateUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<PressureChangeRateUnit>(str.Trim());
 
             if (unit == PressureChangeRateUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized PressureChangeRateUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -717,6 +752,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is PascalPerSecond
         /// </summary>
@@ -728,7 +764,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -745,74 +781,132 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(PressureChangeRateUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          PressureChangeRateUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(PressureChangeRateUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            PressureChangeRateUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(PressureChangeRateUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            PressureChangeRateUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of PressureChangeRate
         /// </summary>
-        public static PressureChangeRate MaxValue
-        {
-            get
-            {
-                return new PressureChangeRate(double.MaxValue);
-            }
-        }
+        public static PressureChangeRate MaxValue => new PressureChangeRate(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of PressureChangeRate
         /// </summary>
-        public static PressureChangeRate MinValue
+        public static PressureChangeRate MinValue => new PressureChangeRate(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitPascalsPerSecond()
         {
-            get
+			if (Unit == PressureChangeRateUnit.PascalPerSecond) { return _value; }
+
+            switch (Unit)
             {
-                return new PressureChangeRate(double.MinValue);
-            }
-        }
-    }
+                case PressureChangeRateUnit.AtmospherePerSecond: return _value * 1.01325*1e5;
+                case PressureChangeRateUnit.KilopascalPerSecond: return (_value) * 1e3d;
+                case PressureChangeRateUnit.MegapascalPerSecond: return (_value) * 1e6d;
+                case PressureChangeRateUnit.PascalPerSecond: return _value;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(PressureChangeRateUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

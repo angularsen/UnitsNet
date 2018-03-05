@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of Ratio.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _decimalFractions;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly RatioUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public RatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public Ratio() : this(0)
+        public Ratio()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Ratio(double decimalfractions)
         {
-            _decimalFractions = Convert.ToDouble(decimalfractions);
+            _value = Convert.ToDouble(decimalfractions);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          Ratio(double numericValue, RatioUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit DecimalFraction.
+        /// </summary>
+        /// <param name="decimalfractions">Value assuming base unit DecimalFraction.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Ratio(long decimalfractions)
-        {
-            _decimalFractions = Convert.ToDouble(decimalfractions);
-        }
+        Ratio(long decimalfractions) : this(Convert.ToDouble(decimalfractions), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit DecimalFraction.
+        /// </summary>
+        /// <param name="decimalfractions">Value assuming base unit DecimalFraction.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Ratio(decimal decimalfractions)
-        {
-            _decimalFractions = Convert.ToDouble(decimalfractions);
-        }
+        Ratio(decimal decimalfractions) : this(Convert.ToDouble(decimalfractions), BaseUnit) { }
 
         #region Properties
 
@@ -119,72 +156,42 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static RatioUnit BaseUnit
-        {
-            get { return RatioUnit.DecimalFraction; }
-        }
+        public static RatioUnit BaseUnit => RatioUnit.DecimalFraction;
 
         /// <summary>
         ///     All units of measurement for the Ratio quantity.
         /// </summary>
         public static RatioUnit[] Units { get; } = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>().ToArray();
-
         /// <summary>
         ///     Get Ratio in DecimalFractions.
         /// </summary>
-        public double DecimalFractions
-        {
-            get { return _decimalFractions; }
-        }
-
+        public double DecimalFractions => As(RatioUnit.DecimalFraction);
         /// <summary>
         ///     Get Ratio in PartsPerBillion.
         /// </summary>
-        public double PartsPerBillion
-        {
-            get { return _decimalFractions*1e9; }
-        }
-
+        public double PartsPerBillion => As(RatioUnit.PartPerBillion);
         /// <summary>
         ///     Get Ratio in PartsPerMillion.
         /// </summary>
-        public double PartsPerMillion
-        {
-            get { return _decimalFractions*1e6; }
-        }
-
+        public double PartsPerMillion => As(RatioUnit.PartPerMillion);
         /// <summary>
         ///     Get Ratio in PartsPerThousand.
         /// </summary>
-        public double PartsPerThousand
-        {
-            get { return _decimalFractions*1e3; }
-        }
-
+        public double PartsPerThousand => As(RatioUnit.PartPerThousand);
         /// <summary>
         ///     Get Ratio in PartsPerTrillion.
         /// </summary>
-        public double PartsPerTrillion
-        {
-            get { return _decimalFractions*1e12; }
-        }
-
+        public double PartsPerTrillion => As(RatioUnit.PartPerTrillion);
         /// <summary>
         ///     Get Ratio in Percent.
         /// </summary>
-        public double Percent
-        {
-            get { return _decimalFractions*1e2; }
-        }
+        public double Percent => As(RatioUnit.Percent);
 
         #endregion
 
         #region Static
 
-        public static Ratio Zero
-        {
-            get { return new Ratio(); }
-        }
+        public static Ratio Zero => new Ratio(0, BaseUnit);
 
         /// <summary>
         ///     Get Ratio from DecimalFractions.
@@ -192,17 +199,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Ratio FromDecimalFractions(double decimalfractions)
-        {
-            double value = (double) decimalfractions;
-            return new Ratio(value);
-        }
 #else
         public static Ratio FromDecimalFractions(QuantityValue decimalfractions)
+#endif
         {
             double value = (double) decimalfractions;
-            return new Ratio((value));
+            return new Ratio(value, RatioUnit.DecimalFraction);
         }
-#endif
 
         /// <summary>
         ///     Get Ratio from PartsPerBillion.
@@ -210,17 +213,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Ratio FromPartsPerBillion(double partsperbillion)
-        {
-            double value = (double) partsperbillion;
-            return new Ratio(value/1e9);
-        }
 #else
         public static Ratio FromPartsPerBillion(QuantityValue partsperbillion)
+#endif
         {
             double value = (double) partsperbillion;
-            return new Ratio((value/1e9));
+            return new Ratio(value, RatioUnit.PartPerBillion);
         }
-#endif
 
         /// <summary>
         ///     Get Ratio from PartsPerMillion.
@@ -228,17 +227,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Ratio FromPartsPerMillion(double partspermillion)
-        {
-            double value = (double) partspermillion;
-            return new Ratio(value/1e6);
-        }
 #else
         public static Ratio FromPartsPerMillion(QuantityValue partspermillion)
+#endif
         {
             double value = (double) partspermillion;
-            return new Ratio((value/1e6));
+            return new Ratio(value, RatioUnit.PartPerMillion);
         }
-#endif
 
         /// <summary>
         ///     Get Ratio from PartsPerThousand.
@@ -246,17 +241,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Ratio FromPartsPerThousand(double partsperthousand)
-        {
-            double value = (double) partsperthousand;
-            return new Ratio(value/1e3);
-        }
 #else
         public static Ratio FromPartsPerThousand(QuantityValue partsperthousand)
+#endif
         {
             double value = (double) partsperthousand;
-            return new Ratio((value/1e3));
+            return new Ratio(value, RatioUnit.PartPerThousand);
         }
-#endif
 
         /// <summary>
         ///     Get Ratio from PartsPerTrillion.
@@ -264,17 +255,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Ratio FromPartsPerTrillion(double partspertrillion)
-        {
-            double value = (double) partspertrillion;
-            return new Ratio(value/1e12);
-        }
 #else
         public static Ratio FromPartsPerTrillion(QuantityValue partspertrillion)
+#endif
         {
             double value = (double) partspertrillion;
-            return new Ratio((value/1e12));
+            return new Ratio(value, RatioUnit.PartPerTrillion);
         }
-#endif
 
         /// <summary>
         ///     Get Ratio from Percent.
@@ -282,17 +269,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Ratio FromPercent(double percent)
-        {
-            double value = (double) percent;
-            return new Ratio(value/1e2);
-        }
 #else
         public static Ratio FromPercent(QuantityValue percent)
+#endif
         {
             double value = (double) percent;
-            return new Ratio((value/1e2));
+            return new Ratio(value, RatioUnit.Percent);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -402,24 +385,7 @@ namespace UnitsNet
         public static Ratio From(QuantityValue value, RatioUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case RatioUnit.DecimalFraction:
-                    return FromDecimalFractions(value);
-                case RatioUnit.PartPerBillion:
-                    return FromPartsPerBillion(value);
-                case RatioUnit.PartPerMillion:
-                    return FromPartsPerMillion(value);
-                case RatioUnit.PartPerThousand:
-                    return FromPartsPerThousand(value);
-                case RatioUnit.PartPerTrillion:
-                    return FromPartsPerTrillion(value);
-                case RatioUnit.Percent:
-                    return FromPercent(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Ratio((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -436,24 +402,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case RatioUnit.DecimalFraction:
-                    return FromDecimalFractions(value.Value);
-                case RatioUnit.PartPerBillion:
-                    return FromPartsPerBillion(value.Value);
-                case RatioUnit.PartPerMillion:
-                    return FromPartsPerMillion(value.Value);
-                case RatioUnit.PartPerThousand:
-                    return FromPartsPerThousand(value.Value);
-                case RatioUnit.PartPerTrillion:
-                    return FromPartsPerTrillion(value.Value);
-                case RatioUnit.Percent:
-                    return FromPercent(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Ratio((double)value.Value, fromUnit);
         }
 #endif
 
@@ -472,12 +422,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(RatioUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          RatioUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -488,37 +455,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Ratio operator -(Ratio right)
         {
-            return new Ratio(-right._decimalFractions);
+            return new Ratio(-right.Value, right.Unit);
         }
 
         public static Ratio operator +(Ratio left, Ratio right)
         {
-            return new Ratio(left._decimalFractions + right._decimalFractions);
+            return new Ratio(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Ratio operator -(Ratio left, Ratio right)
         {
-            return new Ratio(left._decimalFractions - right._decimalFractions);
+            return new Ratio(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Ratio operator *(double left, Ratio right)
         {
-            return new Ratio(left*right._decimalFractions);
+            return new Ratio(left * right.Value, right.Unit);
         }
 
         public static Ratio operator *(Ratio left, double right)
         {
-            return new Ratio(left._decimalFractions*(double)right);
+            return new Ratio(left.Value * right, left.Unit);
         }
 
         public static Ratio operator /(Ratio left, double right)
         {
-            return new Ratio(left._decimalFractions/(double)right);
+            return new Ratio(left.Value / right, left.Unit);
         }
 
         public static double operator /(Ratio left, Ratio right)
         {
-            return Convert.ToDouble(left._decimalFractions/right._decimalFractions);
+            return left.DecimalFractions / right.DecimalFractions;
         }
 #endif
 
@@ -541,43 +508,43 @@ namespace UnitsNet
 #endif
         int CompareTo(Ratio other)
         {
-            return _decimalFractions.CompareTo(other._decimalFractions);
+            return AsBaseUnitDecimalFractions().CompareTo(other.AsBaseUnitDecimalFractions());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(Ratio left, Ratio right)
         {
-            return left._decimalFractions <= right._decimalFractions;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(Ratio left, Ratio right)
         {
-            return left._decimalFractions >= right._decimalFractions;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(Ratio left, Ratio right)
         {
-            return left._decimalFractions < right._decimalFractions;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(Ratio left, Ratio right)
         {
-            return left._decimalFractions > right._decimalFractions;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(Ratio left, Ratio right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._decimalFractions == right._decimalFractions;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(Ratio left, Ratio right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._decimalFractions != right._decimalFractions;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -589,7 +556,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _decimalFractions.Equals(((Ratio) obj)._decimalFractions);
+            return AsBaseUnitDecimalFractions().Equals(((Ratio) obj).AsBaseUnitDecimalFractions());
         }
 
         /// <summary>
@@ -602,12 +569,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Ratio other, Ratio maxError)
         {
-            return Math.Abs(_decimalFractions - other._decimalFractions) <= maxError._decimalFractions;
+            return Math.Abs(AsBaseUnitDecimalFractions() - other.AsBaseUnitDecimalFractions()) <= maxError.AsBaseUnitDecimalFractions();
         }
 
         public override int GetHashCode()
         {
-            return _decimalFractions.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -617,24 +584,24 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(RatioUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitDecimalFractions();
+
             switch (unit)
             {
-                case RatioUnit.DecimalFraction:
-                    return DecimalFractions;
-                case RatioUnit.PartPerBillion:
-                    return PartsPerBillion;
-                case RatioUnit.PartPerMillion:
-                    return PartsPerMillion;
-                case RatioUnit.PartPerThousand:
-                    return PartsPerThousand;
-                case RatioUnit.PartPerTrillion:
-                    return PartsPerTrillion;
-                case RatioUnit.Percent:
-                    return Percent;
+                case RatioUnit.DecimalFraction: return baseUnitValue;
+                case RatioUnit.PartPerBillion: return baseUnitValue*1e9;
+                case RatioUnit.PartPerMillion: return baseUnitValue*1e6;
+                case RatioUnit.PartPerThousand: return baseUnitValue*1e3;
+                case RatioUnit.PartPerTrillion: return baseUnitValue*1e12;
+                case RatioUnit.Percent: return baseUnitValue*1e2;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -676,7 +643,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -695,17 +666,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Ratio Parse(string str, [CanBeNull] Culture culture)
+        public static Ratio Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<Ratio, RatioUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<Ratio, RatioUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -731,16 +709,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out Ratio result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out Ratio result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -753,6 +756,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -766,11 +770,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static RatioUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -779,6 +786,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -791,18 +800,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static RatioUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static RatioUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<RatioUnit>(str.Trim());
 
             if (unit == RatioUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized RatioUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -811,6 +820,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is DecimalFraction
         /// </summary>
@@ -822,7 +832,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -839,74 +849,134 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(RatioUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          RatioUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(RatioUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            RatioUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(RatioUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            RatioUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of Ratio
         /// </summary>
-        public static Ratio MaxValue
-        {
-            get
-            {
-                return new Ratio(double.MaxValue);
-            }
-        }
+        public static Ratio MaxValue => new Ratio(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Ratio
         /// </summary>
-        public static Ratio MinValue
+        public static Ratio MinValue => new Ratio(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitDecimalFractions()
         {
-            get
+			if (Unit == RatioUnit.DecimalFraction) { return _value; }
+
+            switch (Unit)
             {
-                return new Ratio(double.MinValue);
-            }
-        }
-    }
+                case RatioUnit.DecimalFraction: return _value;
+                case RatioUnit.PartPerBillion: return _value/1e9;
+                case RatioUnit.PartPerMillion: return _value/1e6;
+                case RatioUnit.PartPerThousand: return _value/1e3;
+                case RatioUnit.PartPerTrillion: return _value/1e12;
+                case RatioUnit.Percent: return _value/1e2;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(RatioUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of MassFlow.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _gramsPerSecond;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly MassFlowUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public MassFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public MassFlow() : this(0)
+        public MassFlow()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public MassFlow(double gramspersecond)
         {
-            _gramsPerSecond = Convert.ToDouble(gramspersecond);
+            _value = Convert.ToDouble(gramspersecond);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          MassFlow(double numericValue, MassFlowUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit GramPerSecond.
+        /// </summary>
+        /// <param name="gramspersecond">Value assuming base unit GramPerSecond.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        MassFlow(long gramspersecond)
-        {
-            _gramsPerSecond = Convert.ToDouble(gramspersecond);
-        }
+        MassFlow(long gramspersecond) : this(Convert.ToDouble(gramspersecond), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit GramPerSecond.
+        /// </summary>
+        /// <param name="gramspersecond">Value assuming base unit GramPerSecond.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        MassFlow(decimal gramspersecond)
-        {
-            _gramsPerSecond = Convert.ToDouble(gramspersecond);
-        }
+        MassFlow(decimal gramspersecond) : this(Convert.ToDouble(gramspersecond), BaseUnit) { }
 
         #region Properties
 
@@ -119,144 +156,78 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static MassFlowUnit BaseUnit
-        {
-            get { return MassFlowUnit.GramPerSecond; }
-        }
+        public static MassFlowUnit BaseUnit => MassFlowUnit.GramPerSecond;
 
         /// <summary>
         ///     All units of measurement for the MassFlow quantity.
         /// </summary>
         public static MassFlowUnit[] Units { get; } = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>().ToArray();
-
         /// <summary>
         ///     Get MassFlow in CentigramsPerSecond.
         /// </summary>
-        public double CentigramsPerSecond
-        {
-            get { return (_gramsPerSecond) / 1e-2d; }
-        }
-
+        public double CentigramsPerSecond => As(MassFlowUnit.CentigramPerSecond);
         /// <summary>
         ///     Get MassFlow in DecagramsPerSecond.
         /// </summary>
-        public double DecagramsPerSecond
-        {
-            get { return (_gramsPerSecond) / 1e1d; }
-        }
-
+        public double DecagramsPerSecond => As(MassFlowUnit.DecagramPerSecond);
         /// <summary>
         ///     Get MassFlow in DecigramsPerSecond.
         /// </summary>
-        public double DecigramsPerSecond
-        {
-            get { return (_gramsPerSecond) / 1e-1d; }
-        }
-
+        public double DecigramsPerSecond => As(MassFlowUnit.DecigramPerSecond);
         /// <summary>
         ///     Get MassFlow in GramsPerSecond.
         /// </summary>
-        public double GramsPerSecond
-        {
-            get { return _gramsPerSecond; }
-        }
-
+        public double GramsPerSecond => As(MassFlowUnit.GramPerSecond);
         /// <summary>
         ///     Get MassFlow in HectogramsPerSecond.
         /// </summary>
-        public double HectogramsPerSecond
-        {
-            get { return (_gramsPerSecond) / 1e2d; }
-        }
-
+        public double HectogramsPerSecond => As(MassFlowUnit.HectogramPerSecond);
         /// <summary>
         ///     Get MassFlow in KilogramsPerHour.
         /// </summary>
-        public double KilogramsPerHour
-        {
-            get { return _gramsPerSecond*3.6; }
-        }
-
+        public double KilogramsPerHour => As(MassFlowUnit.KilogramPerHour);
         /// <summary>
         ///     Get MassFlow in KilogramsPerSecond.
         /// </summary>
-        public double KilogramsPerSecond
-        {
-            get { return (_gramsPerSecond) / 1e3d; }
-        }
-
+        public double KilogramsPerSecond => As(MassFlowUnit.KilogramPerSecond);
         /// <summary>
         ///     Get MassFlow in MegapoundsPerHour.
         /// </summary>
-        public double MegapoundsPerHour
-        {
-            get { return (_gramsPerSecond*7.93664) / 1e6d; }
-        }
-
+        public double MegapoundsPerHour => As(MassFlowUnit.MegapoundPerHour);
         /// <summary>
         ///     Get MassFlow in MicrogramsPerSecond.
         /// </summary>
-        public double MicrogramsPerSecond
-        {
-            get { return (_gramsPerSecond) / 1e-6d; }
-        }
-
+        public double MicrogramsPerSecond => As(MassFlowUnit.MicrogramPerSecond);
         /// <summary>
         ///     Get MassFlow in MilligramsPerSecond.
         /// </summary>
-        public double MilligramsPerSecond
-        {
-            get { return (_gramsPerSecond) / 1e-3d; }
-        }
-
+        public double MilligramsPerSecond => As(MassFlowUnit.MilligramPerSecond);
         /// <summary>
         ///     Get MassFlow in NanogramsPerSecond.
         /// </summary>
-        public double NanogramsPerSecond
-        {
-            get { return (_gramsPerSecond) / 1e-9d; }
-        }
-
+        public double NanogramsPerSecond => As(MassFlowUnit.NanogramPerSecond);
         /// <summary>
         ///     Get MassFlow in PoundsPerHour.
         /// </summary>
-        public double PoundsPerHour
-        {
-            get { return _gramsPerSecond*7.93664; }
-        }
-
+        public double PoundsPerHour => As(MassFlowUnit.PoundPerHour);
         /// <summary>
         ///     Get MassFlow in ShortTonsPerHour.
         /// </summary>
-        public double ShortTonsPerHour
-        {
-            get { return _gramsPerSecond/251.9957611; }
-        }
-
+        public double ShortTonsPerHour => As(MassFlowUnit.ShortTonPerHour);
         /// <summary>
         ///     Get MassFlow in TonnesPerDay.
         /// </summary>
-        public double TonnesPerDay
-        {
-            get { return _gramsPerSecond*0.0864000; }
-        }
-
+        public double TonnesPerDay => As(MassFlowUnit.TonnePerDay);
         /// <summary>
         ///     Get MassFlow in TonnesPerHour.
         /// </summary>
-        public double TonnesPerHour
-        {
-            get { return _gramsPerSecond*3.6/1000; }
-        }
+        public double TonnesPerHour => As(MassFlowUnit.TonnePerHour);
 
         #endregion
 
         #region Static
 
-        public static MassFlow Zero
-        {
-            get { return new MassFlow(); }
-        }
+        public static MassFlow Zero => new MassFlow(0, BaseUnit);
 
         /// <summary>
         ///     Get MassFlow from CentigramsPerSecond.
@@ -264,17 +235,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromCentigramsPerSecond(double centigramspersecond)
-        {
-            double value = (double) centigramspersecond;
-            return new MassFlow((value) * 1e-2d);
-        }
 #else
         public static MassFlow FromCentigramsPerSecond(QuantityValue centigramspersecond)
+#endif
         {
             double value = (double) centigramspersecond;
-            return new MassFlow(((value) * 1e-2d));
+            return new MassFlow(value, MassFlowUnit.CentigramPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from DecagramsPerSecond.
@@ -282,17 +249,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromDecagramsPerSecond(double decagramspersecond)
-        {
-            double value = (double) decagramspersecond;
-            return new MassFlow((value) * 1e1d);
-        }
 #else
         public static MassFlow FromDecagramsPerSecond(QuantityValue decagramspersecond)
+#endif
         {
             double value = (double) decagramspersecond;
-            return new MassFlow(((value) * 1e1d));
+            return new MassFlow(value, MassFlowUnit.DecagramPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from DecigramsPerSecond.
@@ -300,17 +263,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromDecigramsPerSecond(double decigramspersecond)
-        {
-            double value = (double) decigramspersecond;
-            return new MassFlow((value) * 1e-1d);
-        }
 #else
         public static MassFlow FromDecigramsPerSecond(QuantityValue decigramspersecond)
+#endif
         {
             double value = (double) decigramspersecond;
-            return new MassFlow(((value) * 1e-1d));
+            return new MassFlow(value, MassFlowUnit.DecigramPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from GramsPerSecond.
@@ -318,17 +277,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromGramsPerSecond(double gramspersecond)
-        {
-            double value = (double) gramspersecond;
-            return new MassFlow(value);
-        }
 #else
         public static MassFlow FromGramsPerSecond(QuantityValue gramspersecond)
+#endif
         {
             double value = (double) gramspersecond;
-            return new MassFlow((value));
+            return new MassFlow(value, MassFlowUnit.GramPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from HectogramsPerSecond.
@@ -336,17 +291,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromHectogramsPerSecond(double hectogramspersecond)
-        {
-            double value = (double) hectogramspersecond;
-            return new MassFlow((value) * 1e2d);
-        }
 #else
         public static MassFlow FromHectogramsPerSecond(QuantityValue hectogramspersecond)
+#endif
         {
             double value = (double) hectogramspersecond;
-            return new MassFlow(((value) * 1e2d));
+            return new MassFlow(value, MassFlowUnit.HectogramPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from KilogramsPerHour.
@@ -354,17 +305,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromKilogramsPerHour(double kilogramsperhour)
-        {
-            double value = (double) kilogramsperhour;
-            return new MassFlow(value/3.6);
-        }
 #else
         public static MassFlow FromKilogramsPerHour(QuantityValue kilogramsperhour)
+#endif
         {
             double value = (double) kilogramsperhour;
-            return new MassFlow((value/3.6));
+            return new MassFlow(value, MassFlowUnit.KilogramPerHour);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from KilogramsPerSecond.
@@ -372,17 +319,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromKilogramsPerSecond(double kilogramspersecond)
-        {
-            double value = (double) kilogramspersecond;
-            return new MassFlow((value) * 1e3d);
-        }
 #else
         public static MassFlow FromKilogramsPerSecond(QuantityValue kilogramspersecond)
+#endif
         {
             double value = (double) kilogramspersecond;
-            return new MassFlow(((value) * 1e3d));
+            return new MassFlow(value, MassFlowUnit.KilogramPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from MegapoundsPerHour.
@@ -390,17 +333,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromMegapoundsPerHour(double megapoundsperhour)
-        {
-            double value = (double) megapoundsperhour;
-            return new MassFlow((value/7.93664) * 1e6d);
-        }
 #else
         public static MassFlow FromMegapoundsPerHour(QuantityValue megapoundsperhour)
+#endif
         {
             double value = (double) megapoundsperhour;
-            return new MassFlow(((value/7.93664) * 1e6d));
+            return new MassFlow(value, MassFlowUnit.MegapoundPerHour);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from MicrogramsPerSecond.
@@ -408,17 +347,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromMicrogramsPerSecond(double microgramspersecond)
-        {
-            double value = (double) microgramspersecond;
-            return new MassFlow((value) * 1e-6d);
-        }
 #else
         public static MassFlow FromMicrogramsPerSecond(QuantityValue microgramspersecond)
+#endif
         {
             double value = (double) microgramspersecond;
-            return new MassFlow(((value) * 1e-6d));
+            return new MassFlow(value, MassFlowUnit.MicrogramPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from MilligramsPerSecond.
@@ -426,17 +361,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromMilligramsPerSecond(double milligramspersecond)
-        {
-            double value = (double) milligramspersecond;
-            return new MassFlow((value) * 1e-3d);
-        }
 #else
         public static MassFlow FromMilligramsPerSecond(QuantityValue milligramspersecond)
+#endif
         {
             double value = (double) milligramspersecond;
-            return new MassFlow(((value) * 1e-3d));
+            return new MassFlow(value, MassFlowUnit.MilligramPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from NanogramsPerSecond.
@@ -444,17 +375,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromNanogramsPerSecond(double nanogramspersecond)
-        {
-            double value = (double) nanogramspersecond;
-            return new MassFlow((value) * 1e-9d);
-        }
 #else
         public static MassFlow FromNanogramsPerSecond(QuantityValue nanogramspersecond)
+#endif
         {
             double value = (double) nanogramspersecond;
-            return new MassFlow(((value) * 1e-9d));
+            return new MassFlow(value, MassFlowUnit.NanogramPerSecond);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from PoundsPerHour.
@@ -462,17 +389,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromPoundsPerHour(double poundsperhour)
-        {
-            double value = (double) poundsperhour;
-            return new MassFlow(value/7.93664);
-        }
 #else
         public static MassFlow FromPoundsPerHour(QuantityValue poundsperhour)
+#endif
         {
             double value = (double) poundsperhour;
-            return new MassFlow((value/7.93664));
+            return new MassFlow(value, MassFlowUnit.PoundPerHour);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from ShortTonsPerHour.
@@ -480,17 +403,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromShortTonsPerHour(double shorttonsperhour)
-        {
-            double value = (double) shorttonsperhour;
-            return new MassFlow(value*251.9957611);
-        }
 #else
         public static MassFlow FromShortTonsPerHour(QuantityValue shorttonsperhour)
+#endif
         {
             double value = (double) shorttonsperhour;
-            return new MassFlow((value*251.9957611));
+            return new MassFlow(value, MassFlowUnit.ShortTonPerHour);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from TonnesPerDay.
@@ -498,17 +417,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromTonnesPerDay(double tonnesperday)
-        {
-            double value = (double) tonnesperday;
-            return new MassFlow(value/0.0864000);
-        }
 #else
         public static MassFlow FromTonnesPerDay(QuantityValue tonnesperday)
+#endif
         {
             double value = (double) tonnesperday;
-            return new MassFlow((value/0.0864000));
+            return new MassFlow(value, MassFlowUnit.TonnePerDay);
         }
-#endif
 
         /// <summary>
         ///     Get MassFlow from TonnesPerHour.
@@ -516,17 +431,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromTonnesPerHour(double tonnesperhour)
-        {
-            double value = (double) tonnesperhour;
-            return new MassFlow(1000*value/3.6);
-        }
 #else
         public static MassFlow FromTonnesPerHour(QuantityValue tonnesperhour)
+#endif
         {
             double value = (double) tonnesperhour;
-            return new MassFlow((1000*value/3.6));
+            return new MassFlow(value, MassFlowUnit.TonnePerHour);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -771,42 +682,7 @@ namespace UnitsNet
         public static MassFlow From(QuantityValue value, MassFlowUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case MassFlowUnit.CentigramPerSecond:
-                    return FromCentigramsPerSecond(value);
-                case MassFlowUnit.DecagramPerSecond:
-                    return FromDecagramsPerSecond(value);
-                case MassFlowUnit.DecigramPerSecond:
-                    return FromDecigramsPerSecond(value);
-                case MassFlowUnit.GramPerSecond:
-                    return FromGramsPerSecond(value);
-                case MassFlowUnit.HectogramPerSecond:
-                    return FromHectogramsPerSecond(value);
-                case MassFlowUnit.KilogramPerHour:
-                    return FromKilogramsPerHour(value);
-                case MassFlowUnit.KilogramPerSecond:
-                    return FromKilogramsPerSecond(value);
-                case MassFlowUnit.MegapoundPerHour:
-                    return FromMegapoundsPerHour(value);
-                case MassFlowUnit.MicrogramPerSecond:
-                    return FromMicrogramsPerSecond(value);
-                case MassFlowUnit.MilligramPerSecond:
-                    return FromMilligramsPerSecond(value);
-                case MassFlowUnit.NanogramPerSecond:
-                    return FromNanogramsPerSecond(value);
-                case MassFlowUnit.PoundPerHour:
-                    return FromPoundsPerHour(value);
-                case MassFlowUnit.ShortTonPerHour:
-                    return FromShortTonsPerHour(value);
-                case MassFlowUnit.TonnePerDay:
-                    return FromTonnesPerDay(value);
-                case MassFlowUnit.TonnePerHour:
-                    return FromTonnesPerHour(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new MassFlow((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -823,42 +699,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case MassFlowUnit.CentigramPerSecond:
-                    return FromCentigramsPerSecond(value.Value);
-                case MassFlowUnit.DecagramPerSecond:
-                    return FromDecagramsPerSecond(value.Value);
-                case MassFlowUnit.DecigramPerSecond:
-                    return FromDecigramsPerSecond(value.Value);
-                case MassFlowUnit.GramPerSecond:
-                    return FromGramsPerSecond(value.Value);
-                case MassFlowUnit.HectogramPerSecond:
-                    return FromHectogramsPerSecond(value.Value);
-                case MassFlowUnit.KilogramPerHour:
-                    return FromKilogramsPerHour(value.Value);
-                case MassFlowUnit.KilogramPerSecond:
-                    return FromKilogramsPerSecond(value.Value);
-                case MassFlowUnit.MegapoundPerHour:
-                    return FromMegapoundsPerHour(value.Value);
-                case MassFlowUnit.MicrogramPerSecond:
-                    return FromMicrogramsPerSecond(value.Value);
-                case MassFlowUnit.MilligramPerSecond:
-                    return FromMilligramsPerSecond(value.Value);
-                case MassFlowUnit.NanogramPerSecond:
-                    return FromNanogramsPerSecond(value.Value);
-                case MassFlowUnit.PoundPerHour:
-                    return FromPoundsPerHour(value.Value);
-                case MassFlowUnit.ShortTonPerHour:
-                    return FromShortTonsPerHour(value.Value);
-                case MassFlowUnit.TonnePerDay:
-                    return FromTonnesPerDay(value.Value);
-                case MassFlowUnit.TonnePerHour:
-                    return FromTonnesPerHour(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new MassFlow((double)value.Value, fromUnit);
         }
 #endif
 
@@ -877,12 +719,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(MassFlowUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          MassFlowUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -893,37 +752,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static MassFlow operator -(MassFlow right)
         {
-            return new MassFlow(-right._gramsPerSecond);
+            return new MassFlow(-right.Value, right.Unit);
         }
 
         public static MassFlow operator +(MassFlow left, MassFlow right)
         {
-            return new MassFlow(left._gramsPerSecond + right._gramsPerSecond);
+            return new MassFlow(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static MassFlow operator -(MassFlow left, MassFlow right)
         {
-            return new MassFlow(left._gramsPerSecond - right._gramsPerSecond);
+            return new MassFlow(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static MassFlow operator *(double left, MassFlow right)
         {
-            return new MassFlow(left*right._gramsPerSecond);
+            return new MassFlow(left * right.Value, right.Unit);
         }
 
         public static MassFlow operator *(MassFlow left, double right)
         {
-            return new MassFlow(left._gramsPerSecond*(double)right);
+            return new MassFlow(left.Value * right, left.Unit);
         }
 
         public static MassFlow operator /(MassFlow left, double right)
         {
-            return new MassFlow(left._gramsPerSecond/(double)right);
+            return new MassFlow(left.Value / right, left.Unit);
         }
 
         public static double operator /(MassFlow left, MassFlow right)
         {
-            return Convert.ToDouble(left._gramsPerSecond/right._gramsPerSecond);
+            return left.GramsPerSecond / right.GramsPerSecond;
         }
 #endif
 
@@ -946,43 +805,43 @@ namespace UnitsNet
 #endif
         int CompareTo(MassFlow other)
         {
-            return _gramsPerSecond.CompareTo(other._gramsPerSecond);
+            return AsBaseUnitGramsPerSecond().CompareTo(other.AsBaseUnitGramsPerSecond());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(MassFlow left, MassFlow right)
         {
-            return left._gramsPerSecond <= right._gramsPerSecond;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(MassFlow left, MassFlow right)
         {
-            return left._gramsPerSecond >= right._gramsPerSecond;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(MassFlow left, MassFlow right)
         {
-            return left._gramsPerSecond < right._gramsPerSecond;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(MassFlow left, MassFlow right)
         {
-            return left._gramsPerSecond > right._gramsPerSecond;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(MassFlow left, MassFlow right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._gramsPerSecond == right._gramsPerSecond;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(MassFlow left, MassFlow right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._gramsPerSecond != right._gramsPerSecond;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -994,7 +853,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _gramsPerSecond.Equals(((MassFlow) obj)._gramsPerSecond);
+            return AsBaseUnitGramsPerSecond().Equals(((MassFlow) obj).AsBaseUnitGramsPerSecond());
         }
 
         /// <summary>
@@ -1007,12 +866,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(MassFlow other, MassFlow maxError)
         {
-            return Math.Abs(_gramsPerSecond - other._gramsPerSecond) <= maxError._gramsPerSecond;
+            return Math.Abs(AsBaseUnitGramsPerSecond() - other.AsBaseUnitGramsPerSecond()) <= maxError.AsBaseUnitGramsPerSecond();
         }
 
         public override int GetHashCode()
         {
-            return _gramsPerSecond.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1022,42 +881,33 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(MassFlowUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitGramsPerSecond();
+
             switch (unit)
             {
-                case MassFlowUnit.CentigramPerSecond:
-                    return CentigramsPerSecond;
-                case MassFlowUnit.DecagramPerSecond:
-                    return DecagramsPerSecond;
-                case MassFlowUnit.DecigramPerSecond:
-                    return DecigramsPerSecond;
-                case MassFlowUnit.GramPerSecond:
-                    return GramsPerSecond;
-                case MassFlowUnit.HectogramPerSecond:
-                    return HectogramsPerSecond;
-                case MassFlowUnit.KilogramPerHour:
-                    return KilogramsPerHour;
-                case MassFlowUnit.KilogramPerSecond:
-                    return KilogramsPerSecond;
-                case MassFlowUnit.MegapoundPerHour:
-                    return MegapoundsPerHour;
-                case MassFlowUnit.MicrogramPerSecond:
-                    return MicrogramsPerSecond;
-                case MassFlowUnit.MilligramPerSecond:
-                    return MilligramsPerSecond;
-                case MassFlowUnit.NanogramPerSecond:
-                    return NanogramsPerSecond;
-                case MassFlowUnit.PoundPerHour:
-                    return PoundsPerHour;
-                case MassFlowUnit.ShortTonPerHour:
-                    return ShortTonsPerHour;
-                case MassFlowUnit.TonnePerDay:
-                    return TonnesPerDay;
-                case MassFlowUnit.TonnePerHour:
-                    return TonnesPerHour;
+                case MassFlowUnit.CentigramPerSecond: return (baseUnitValue) / 1e-2d;
+                case MassFlowUnit.DecagramPerSecond: return (baseUnitValue) / 1e1d;
+                case MassFlowUnit.DecigramPerSecond: return (baseUnitValue) / 1e-1d;
+                case MassFlowUnit.GramPerSecond: return baseUnitValue;
+                case MassFlowUnit.HectogramPerSecond: return (baseUnitValue) / 1e2d;
+                case MassFlowUnit.KilogramPerHour: return baseUnitValue*3.6;
+                case MassFlowUnit.KilogramPerSecond: return (baseUnitValue) / 1e3d;
+                case MassFlowUnit.MegapoundPerHour: return (baseUnitValue*7.93664) / 1e6d;
+                case MassFlowUnit.MicrogramPerSecond: return (baseUnitValue) / 1e-6d;
+                case MassFlowUnit.MilligramPerSecond: return (baseUnitValue) / 1e-3d;
+                case MassFlowUnit.NanogramPerSecond: return (baseUnitValue) / 1e-9d;
+                case MassFlowUnit.PoundPerHour: return baseUnitValue*7.93664;
+                case MassFlowUnit.ShortTonPerHour: return baseUnitValue/251.9957611;
+                case MassFlowUnit.TonnePerDay: return baseUnitValue*0.0864000;
+                case MassFlowUnit.TonnePerHour: return baseUnitValue*3.6/1000;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -1099,7 +949,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -1118,17 +972,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static MassFlow Parse(string str, [CanBeNull] Culture culture)
+        public static MassFlow Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<MassFlow, MassFlowUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<MassFlow, MassFlowUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -1154,16 +1015,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out MassFlow result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out MassFlow result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -1176,6 +1062,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1189,11 +1076,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static MassFlowUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -1202,6 +1092,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1214,18 +1106,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static MassFlowUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static MassFlowUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<MassFlowUnit>(str.Trim());
 
             if (unit == MassFlowUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized MassFlowUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -1234,6 +1126,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is GramPerSecond
         /// </summary>
@@ -1245,7 +1138,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -1262,74 +1155,143 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(MassFlowUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          MassFlowUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MassFlowUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            MassFlowUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(MassFlowUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            MassFlowUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of MassFlow
         /// </summary>
-        public static MassFlow MaxValue
-        {
-            get
-            {
-                return new MassFlow(double.MaxValue);
-            }
-        }
+        public static MassFlow MaxValue => new MassFlow(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MassFlow
         /// </summary>
-        public static MassFlow MinValue
+        public static MassFlow MinValue => new MassFlow(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitGramsPerSecond()
         {
-            get
+			if (Unit == MassFlowUnit.GramPerSecond) { return _value; }
+
+            switch (Unit)
             {
-                return new MassFlow(double.MinValue);
-            }
-        }
-    }
+                case MassFlowUnit.CentigramPerSecond: return (_value) * 1e-2d;
+                case MassFlowUnit.DecagramPerSecond: return (_value) * 1e1d;
+                case MassFlowUnit.DecigramPerSecond: return (_value) * 1e-1d;
+                case MassFlowUnit.GramPerSecond: return _value;
+                case MassFlowUnit.HectogramPerSecond: return (_value) * 1e2d;
+                case MassFlowUnit.KilogramPerHour: return _value/3.6;
+                case MassFlowUnit.KilogramPerSecond: return (_value) * 1e3d;
+                case MassFlowUnit.MegapoundPerHour: return (_value/7.93664) * 1e6d;
+                case MassFlowUnit.MicrogramPerSecond: return (_value) * 1e-6d;
+                case MassFlowUnit.MilligramPerSecond: return (_value) * 1e-3d;
+                case MassFlowUnit.NanogramPerSecond: return (_value) * 1e-9d;
+                case MassFlowUnit.PoundPerHour: return _value/7.93664;
+                case MassFlowUnit.ShortTonPerHour: return _value*251.9957611;
+                case MassFlowUnit.TonnePerDay: return _value/0.0864000;
+                case MassFlowUnit.TonnePerHour: return 1000*_value/3.6;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(MassFlowUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

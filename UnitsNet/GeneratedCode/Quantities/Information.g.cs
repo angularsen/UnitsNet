@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of Information.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly decimal _bits;
+        private readonly decimal _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly InformationUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public decimal Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public InformationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public Information() : this(0)
+        public Information()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Information(double bits)
         {
-            _bits = Convert.ToDecimal(bits);
+            _value = Convert.ToDecimal(bits);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          Information(decimal numericValue, InformationUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Bit.
+        /// </summary>
+        /// <param name="bits">Value assuming base unit Bit.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Information(long bits)
-        {
-            _bits = Convert.ToDecimal(bits);
-        }
+        Information(long bits) : this(Convert.ToDecimal(bits), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Bit.
+        /// </summary>
+        /// <param name="bits">Value assuming base unit Bit.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Information(decimal bits)
-        {
-            _bits = Convert.ToDecimal(bits);
-        }
+        Information(decimal bits) : this(Convert.ToDecimal(bits), BaseUnit) { }
 
         #region Properties
 
@@ -119,232 +156,122 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static InformationUnit BaseUnit
-        {
-            get { return InformationUnit.Bit; }
-        }
+        public static InformationUnit BaseUnit => InformationUnit.Bit;
 
         /// <summary>
         ///     All units of measurement for the Information quantity.
         /// </summary>
         public static InformationUnit[] Units { get; } = Enum.GetValues(typeof(InformationUnit)).Cast<InformationUnit>().ToArray();
-
         /// <summary>
         ///     Get Information in Bits.
         /// </summary>
-        public double Bits
-        {
-            get { return Convert.ToDouble(_bits); }
-        }
-
+        public double Bits => As(InformationUnit.Bit);
         /// <summary>
         ///     Get Information in Bytes.
         /// </summary>
-        public double Bytes
-        {
-            get { return Convert.ToDouble(_bits/8m); }
-        }
-
+        public double Bytes => As(InformationUnit.Byte);
         /// <summary>
         ///     Get Information in Exabits.
         /// </summary>
-        public double Exabits
-        {
-            get { return Convert.ToDouble((_bits) / 1e18m); }
-        }
-
+        public double Exabits => As(InformationUnit.Exabit);
         /// <summary>
         ///     Get Information in Exabytes.
         /// </summary>
-        public double Exabytes
-        {
-            get { return Convert.ToDouble((_bits/8m) / 1e18m); }
-        }
-
+        public double Exabytes => As(InformationUnit.Exabyte);
         /// <summary>
         ///     Get Information in Exbibits.
         /// </summary>
-        public double Exbibits
-        {
-            get { return Convert.ToDouble((_bits) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024)); }
-        }
-
+        public double Exbibits => As(InformationUnit.Exbibit);
         /// <summary>
         ///     Get Information in Exbibytes.
         /// </summary>
-        public double Exbibytes
-        {
-            get { return Convert.ToDouble((_bits/8m) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024)); }
-        }
-
+        public double Exbibytes => As(InformationUnit.Exbibyte);
         /// <summary>
         ///     Get Information in Gibibits.
         /// </summary>
-        public double Gibibits
-        {
-            get { return Convert.ToDouble((_bits) / (1024m * 1024 * 1024)); }
-        }
-
+        public double Gibibits => As(InformationUnit.Gibibit);
         /// <summary>
         ///     Get Information in Gibibytes.
         /// </summary>
-        public double Gibibytes
-        {
-            get { return Convert.ToDouble((_bits/8m) / (1024m * 1024 * 1024)); }
-        }
-
+        public double Gibibytes => As(InformationUnit.Gibibyte);
         /// <summary>
         ///     Get Information in Gigabits.
         /// </summary>
-        public double Gigabits
-        {
-            get { return Convert.ToDouble((_bits) / 1e9m); }
-        }
-
+        public double Gigabits => As(InformationUnit.Gigabit);
         /// <summary>
         ///     Get Information in Gigabytes.
         /// </summary>
-        public double Gigabytes
-        {
-            get { return Convert.ToDouble((_bits/8m) / 1e9m); }
-        }
-
+        public double Gigabytes => As(InformationUnit.Gigabyte);
         /// <summary>
         ///     Get Information in Kibibits.
         /// </summary>
-        public double Kibibits
-        {
-            get { return Convert.ToDouble((_bits) / 1024m); }
-        }
-
+        public double Kibibits => As(InformationUnit.Kibibit);
         /// <summary>
         ///     Get Information in Kibibytes.
         /// </summary>
-        public double Kibibytes
-        {
-            get { return Convert.ToDouble((_bits/8m) / 1024m); }
-        }
-
+        public double Kibibytes => As(InformationUnit.Kibibyte);
         /// <summary>
         ///     Get Information in Kilobits.
         /// </summary>
-        public double Kilobits
-        {
-            get { return Convert.ToDouble((_bits) / 1e3m); }
-        }
-
+        public double Kilobits => As(InformationUnit.Kilobit);
         /// <summary>
         ///     Get Information in Kilobytes.
         /// </summary>
-        public double Kilobytes
-        {
-            get { return Convert.ToDouble((_bits/8m) / 1e3m); }
-        }
-
+        public double Kilobytes => As(InformationUnit.Kilobyte);
         /// <summary>
         ///     Get Information in Mebibits.
         /// </summary>
-        public double Mebibits
-        {
-            get { return Convert.ToDouble((_bits) / (1024m * 1024)); }
-        }
-
+        public double Mebibits => As(InformationUnit.Mebibit);
         /// <summary>
         ///     Get Information in Mebibytes.
         /// </summary>
-        public double Mebibytes
-        {
-            get { return Convert.ToDouble((_bits/8m) / (1024m * 1024)); }
-        }
-
+        public double Mebibytes => As(InformationUnit.Mebibyte);
         /// <summary>
         ///     Get Information in Megabits.
         /// </summary>
-        public double Megabits
-        {
-            get { return Convert.ToDouble((_bits) / 1e6m); }
-        }
-
+        public double Megabits => As(InformationUnit.Megabit);
         /// <summary>
         ///     Get Information in Megabytes.
         /// </summary>
-        public double Megabytes
-        {
-            get { return Convert.ToDouble((_bits/8m) / 1e6m); }
-        }
-
+        public double Megabytes => As(InformationUnit.Megabyte);
         /// <summary>
         ///     Get Information in Pebibits.
         /// </summary>
-        public double Pebibits
-        {
-            get { return Convert.ToDouble((_bits) / (1024m * 1024 * 1024 * 1024 * 1024)); }
-        }
-
+        public double Pebibits => As(InformationUnit.Pebibit);
         /// <summary>
         ///     Get Information in Pebibytes.
         /// </summary>
-        public double Pebibytes
-        {
-            get { return Convert.ToDouble((_bits/8m) / (1024m * 1024 * 1024 * 1024 * 1024)); }
-        }
-
+        public double Pebibytes => As(InformationUnit.Pebibyte);
         /// <summary>
         ///     Get Information in Petabits.
         /// </summary>
-        public double Petabits
-        {
-            get { return Convert.ToDouble((_bits) / 1e15m); }
-        }
-
+        public double Petabits => As(InformationUnit.Petabit);
         /// <summary>
         ///     Get Information in Petabytes.
         /// </summary>
-        public double Petabytes
-        {
-            get { return Convert.ToDouble((_bits/8m) / 1e15m); }
-        }
-
+        public double Petabytes => As(InformationUnit.Petabyte);
         /// <summary>
         ///     Get Information in Tebibits.
         /// </summary>
-        public double Tebibits
-        {
-            get { return Convert.ToDouble((_bits) / (1024m * 1024 * 1024 * 1024)); }
-        }
-
+        public double Tebibits => As(InformationUnit.Tebibit);
         /// <summary>
         ///     Get Information in Tebibytes.
         /// </summary>
-        public double Tebibytes
-        {
-            get { return Convert.ToDouble((_bits/8m) / (1024m * 1024 * 1024 * 1024)); }
-        }
-
+        public double Tebibytes => As(InformationUnit.Tebibyte);
         /// <summary>
         ///     Get Information in Terabits.
         /// </summary>
-        public double Terabits
-        {
-            get { return Convert.ToDouble((_bits) / 1e12m); }
-        }
-
+        public double Terabits => As(InformationUnit.Terabit);
         /// <summary>
         ///     Get Information in Terabytes.
         /// </summary>
-        public double Terabytes
-        {
-            get { return Convert.ToDouble((_bits/8m) / 1e12m); }
-        }
+        public double Terabytes => As(InformationUnit.Terabyte);
 
         #endregion
 
         #region Static
 
-        public static Information Zero
-        {
-            get { return new Information(); }
-        }
+        public static Information Zero => new Information(0, BaseUnit);
 
         /// <summary>
         ///     Get Information from Bits.
@@ -352,17 +279,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromBits(double bits)
-        {
-            double value = (double) bits;
-            return new Information(Convert.ToDecimal(value));
-        }
 #else
         public static Information FromBits(QuantityValue bits)
-        {
-            double value = (double) bits;
-            return new Information((Convert.ToDecimal(value)));
-        }
 #endif
+        {
+            decimal value = (decimal) bits;
+            return new Information(value, InformationUnit.Bit);
+        }
 
         /// <summary>
         ///     Get Information from Bytes.
@@ -370,17 +293,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromBytes(double bytes)
-        {
-            double value = (double) bytes;
-            return new Information(Convert.ToDecimal(value*8d));
-        }
 #else
         public static Information FromBytes(QuantityValue bytes)
-        {
-            double value = (double) bytes;
-            return new Information((Convert.ToDecimal(value*8d)));
-        }
 #endif
+        {
+            decimal value = (decimal) bytes;
+            return new Information(value, InformationUnit.Byte);
+        }
 
         /// <summary>
         ///     Get Information from Exabits.
@@ -388,17 +307,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromExabits(double exabits)
-        {
-            double value = (double) exabits;
-            return new Information(Convert.ToDecimal((value) * 1e18d));
-        }
 #else
         public static Information FromExabits(QuantityValue exabits)
-        {
-            double value = (double) exabits;
-            return new Information((Convert.ToDecimal((value) * 1e18d)));
-        }
 #endif
+        {
+            decimal value = (decimal) exabits;
+            return new Information(value, InformationUnit.Exabit);
+        }
 
         /// <summary>
         ///     Get Information from Exabytes.
@@ -406,17 +321,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromExabytes(double exabytes)
-        {
-            double value = (double) exabytes;
-            return new Information(Convert.ToDecimal((value*8d) * 1e18d));
-        }
 #else
         public static Information FromExabytes(QuantityValue exabytes)
-        {
-            double value = (double) exabytes;
-            return new Information((Convert.ToDecimal((value*8d) * 1e18d)));
-        }
 #endif
+        {
+            decimal value = (decimal) exabytes;
+            return new Information(value, InformationUnit.Exabyte);
+        }
 
         /// <summary>
         ///     Get Information from Exbibits.
@@ -424,17 +335,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromExbibits(double exbibits)
-        {
-            double value = (double) exbibits;
-            return new Information(Convert.ToDecimal((value) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
-        }
 #else
         public static Information FromExbibits(QuantityValue exbibits)
-        {
-            double value = (double) exbibits;
-            return new Information((Convert.ToDecimal((value) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024))));
-        }
 #endif
+        {
+            decimal value = (decimal) exbibits;
+            return new Information(value, InformationUnit.Exbibit);
+        }
 
         /// <summary>
         ///     Get Information from Exbibytes.
@@ -442,17 +349,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromExbibytes(double exbibytes)
-        {
-            double value = (double) exbibytes;
-            return new Information(Convert.ToDecimal((value*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024)));
-        }
 #else
         public static Information FromExbibytes(QuantityValue exbibytes)
-        {
-            double value = (double) exbibytes;
-            return new Information((Convert.ToDecimal((value*8d) * (1024d * 1024 * 1024 * 1024 * 1024 * 1024))));
-        }
 #endif
+        {
+            decimal value = (decimal) exbibytes;
+            return new Information(value, InformationUnit.Exbibyte);
+        }
 
         /// <summary>
         ///     Get Information from Gibibits.
@@ -460,17 +363,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromGibibits(double gibibits)
-        {
-            double value = (double) gibibits;
-            return new Information(Convert.ToDecimal((value) * (1024d * 1024 * 1024)));
-        }
 #else
         public static Information FromGibibits(QuantityValue gibibits)
-        {
-            double value = (double) gibibits;
-            return new Information((Convert.ToDecimal((value) * (1024d * 1024 * 1024))));
-        }
 #endif
+        {
+            decimal value = (decimal) gibibits;
+            return new Information(value, InformationUnit.Gibibit);
+        }
 
         /// <summary>
         ///     Get Information from Gibibytes.
@@ -478,17 +377,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromGibibytes(double gibibytes)
-        {
-            double value = (double) gibibytes;
-            return new Information(Convert.ToDecimal((value*8d) * (1024d * 1024 * 1024)));
-        }
 #else
         public static Information FromGibibytes(QuantityValue gibibytes)
-        {
-            double value = (double) gibibytes;
-            return new Information((Convert.ToDecimal((value*8d) * (1024d * 1024 * 1024))));
-        }
 #endif
+        {
+            decimal value = (decimal) gibibytes;
+            return new Information(value, InformationUnit.Gibibyte);
+        }
 
         /// <summary>
         ///     Get Information from Gigabits.
@@ -496,17 +391,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromGigabits(double gigabits)
-        {
-            double value = (double) gigabits;
-            return new Information(Convert.ToDecimal((value) * 1e9d));
-        }
 #else
         public static Information FromGigabits(QuantityValue gigabits)
-        {
-            double value = (double) gigabits;
-            return new Information((Convert.ToDecimal((value) * 1e9d)));
-        }
 #endif
+        {
+            decimal value = (decimal) gigabits;
+            return new Information(value, InformationUnit.Gigabit);
+        }
 
         /// <summary>
         ///     Get Information from Gigabytes.
@@ -514,17 +405,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromGigabytes(double gigabytes)
-        {
-            double value = (double) gigabytes;
-            return new Information(Convert.ToDecimal((value*8d) * 1e9d));
-        }
 #else
         public static Information FromGigabytes(QuantityValue gigabytes)
-        {
-            double value = (double) gigabytes;
-            return new Information((Convert.ToDecimal((value*8d) * 1e9d)));
-        }
 #endif
+        {
+            decimal value = (decimal) gigabytes;
+            return new Information(value, InformationUnit.Gigabyte);
+        }
 
         /// <summary>
         ///     Get Information from Kibibits.
@@ -532,17 +419,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromKibibits(double kibibits)
-        {
-            double value = (double) kibibits;
-            return new Information(Convert.ToDecimal((value) * 1024d));
-        }
 #else
         public static Information FromKibibits(QuantityValue kibibits)
-        {
-            double value = (double) kibibits;
-            return new Information((Convert.ToDecimal((value) * 1024d)));
-        }
 #endif
+        {
+            decimal value = (decimal) kibibits;
+            return new Information(value, InformationUnit.Kibibit);
+        }
 
         /// <summary>
         ///     Get Information from Kibibytes.
@@ -550,17 +433,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromKibibytes(double kibibytes)
-        {
-            double value = (double) kibibytes;
-            return new Information(Convert.ToDecimal((value*8d) * 1024d));
-        }
 #else
         public static Information FromKibibytes(QuantityValue kibibytes)
-        {
-            double value = (double) kibibytes;
-            return new Information((Convert.ToDecimal((value*8d) * 1024d)));
-        }
 #endif
+        {
+            decimal value = (decimal) kibibytes;
+            return new Information(value, InformationUnit.Kibibyte);
+        }
 
         /// <summary>
         ///     Get Information from Kilobits.
@@ -568,17 +447,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromKilobits(double kilobits)
-        {
-            double value = (double) kilobits;
-            return new Information(Convert.ToDecimal((value) * 1e3d));
-        }
 #else
         public static Information FromKilobits(QuantityValue kilobits)
-        {
-            double value = (double) kilobits;
-            return new Information((Convert.ToDecimal((value) * 1e3d)));
-        }
 #endif
+        {
+            decimal value = (decimal) kilobits;
+            return new Information(value, InformationUnit.Kilobit);
+        }
 
         /// <summary>
         ///     Get Information from Kilobytes.
@@ -586,17 +461,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromKilobytes(double kilobytes)
-        {
-            double value = (double) kilobytes;
-            return new Information(Convert.ToDecimal((value*8d) * 1e3d));
-        }
 #else
         public static Information FromKilobytes(QuantityValue kilobytes)
-        {
-            double value = (double) kilobytes;
-            return new Information((Convert.ToDecimal((value*8d) * 1e3d)));
-        }
 #endif
+        {
+            decimal value = (decimal) kilobytes;
+            return new Information(value, InformationUnit.Kilobyte);
+        }
 
         /// <summary>
         ///     Get Information from Mebibits.
@@ -604,17 +475,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromMebibits(double mebibits)
-        {
-            double value = (double) mebibits;
-            return new Information(Convert.ToDecimal((value) * (1024d * 1024)));
-        }
 #else
         public static Information FromMebibits(QuantityValue mebibits)
-        {
-            double value = (double) mebibits;
-            return new Information((Convert.ToDecimal((value) * (1024d * 1024))));
-        }
 #endif
+        {
+            decimal value = (decimal) mebibits;
+            return new Information(value, InformationUnit.Mebibit);
+        }
 
         /// <summary>
         ///     Get Information from Mebibytes.
@@ -622,17 +489,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromMebibytes(double mebibytes)
-        {
-            double value = (double) mebibytes;
-            return new Information(Convert.ToDecimal((value*8d) * (1024d * 1024)));
-        }
 #else
         public static Information FromMebibytes(QuantityValue mebibytes)
-        {
-            double value = (double) mebibytes;
-            return new Information((Convert.ToDecimal((value*8d) * (1024d * 1024))));
-        }
 #endif
+        {
+            decimal value = (decimal) mebibytes;
+            return new Information(value, InformationUnit.Mebibyte);
+        }
 
         /// <summary>
         ///     Get Information from Megabits.
@@ -640,17 +503,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromMegabits(double megabits)
-        {
-            double value = (double) megabits;
-            return new Information(Convert.ToDecimal((value) * 1e6d));
-        }
 #else
         public static Information FromMegabits(QuantityValue megabits)
-        {
-            double value = (double) megabits;
-            return new Information((Convert.ToDecimal((value) * 1e6d)));
-        }
 #endif
+        {
+            decimal value = (decimal) megabits;
+            return new Information(value, InformationUnit.Megabit);
+        }
 
         /// <summary>
         ///     Get Information from Megabytes.
@@ -658,17 +517,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromMegabytes(double megabytes)
-        {
-            double value = (double) megabytes;
-            return new Information(Convert.ToDecimal((value*8d) * 1e6d));
-        }
 #else
         public static Information FromMegabytes(QuantityValue megabytes)
-        {
-            double value = (double) megabytes;
-            return new Information((Convert.ToDecimal((value*8d) * 1e6d)));
-        }
 #endif
+        {
+            decimal value = (decimal) megabytes;
+            return new Information(value, InformationUnit.Megabyte);
+        }
 
         /// <summary>
         ///     Get Information from Pebibits.
@@ -676,17 +531,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromPebibits(double pebibits)
-        {
-            double value = (double) pebibits;
-            return new Information(Convert.ToDecimal((value) * (1024d * 1024 * 1024 * 1024 * 1024)));
-        }
 #else
         public static Information FromPebibits(QuantityValue pebibits)
-        {
-            double value = (double) pebibits;
-            return new Information((Convert.ToDecimal((value) * (1024d * 1024 * 1024 * 1024 * 1024))));
-        }
 #endif
+        {
+            decimal value = (decimal) pebibits;
+            return new Information(value, InformationUnit.Pebibit);
+        }
 
         /// <summary>
         ///     Get Information from Pebibytes.
@@ -694,17 +545,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromPebibytes(double pebibytes)
-        {
-            double value = (double) pebibytes;
-            return new Information(Convert.ToDecimal((value*8d) * (1024d * 1024 * 1024 * 1024 * 1024)));
-        }
 #else
         public static Information FromPebibytes(QuantityValue pebibytes)
-        {
-            double value = (double) pebibytes;
-            return new Information((Convert.ToDecimal((value*8d) * (1024d * 1024 * 1024 * 1024 * 1024))));
-        }
 #endif
+        {
+            decimal value = (decimal) pebibytes;
+            return new Information(value, InformationUnit.Pebibyte);
+        }
 
         /// <summary>
         ///     Get Information from Petabits.
@@ -712,17 +559,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromPetabits(double petabits)
-        {
-            double value = (double) petabits;
-            return new Information(Convert.ToDecimal((value) * 1e15d));
-        }
 #else
         public static Information FromPetabits(QuantityValue petabits)
-        {
-            double value = (double) petabits;
-            return new Information((Convert.ToDecimal((value) * 1e15d)));
-        }
 #endif
+        {
+            decimal value = (decimal) petabits;
+            return new Information(value, InformationUnit.Petabit);
+        }
 
         /// <summary>
         ///     Get Information from Petabytes.
@@ -730,17 +573,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromPetabytes(double petabytes)
-        {
-            double value = (double) petabytes;
-            return new Information(Convert.ToDecimal((value*8d) * 1e15d));
-        }
 #else
         public static Information FromPetabytes(QuantityValue petabytes)
-        {
-            double value = (double) petabytes;
-            return new Information((Convert.ToDecimal((value*8d) * 1e15d)));
-        }
 #endif
+        {
+            decimal value = (decimal) petabytes;
+            return new Information(value, InformationUnit.Petabyte);
+        }
 
         /// <summary>
         ///     Get Information from Tebibits.
@@ -748,17 +587,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromTebibits(double tebibits)
-        {
-            double value = (double) tebibits;
-            return new Information(Convert.ToDecimal((value) * (1024d * 1024 * 1024 * 1024)));
-        }
 #else
         public static Information FromTebibits(QuantityValue tebibits)
-        {
-            double value = (double) tebibits;
-            return new Information((Convert.ToDecimal((value) * (1024d * 1024 * 1024 * 1024))));
-        }
 #endif
+        {
+            decimal value = (decimal) tebibits;
+            return new Information(value, InformationUnit.Tebibit);
+        }
 
         /// <summary>
         ///     Get Information from Tebibytes.
@@ -766,17 +601,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromTebibytes(double tebibytes)
-        {
-            double value = (double) tebibytes;
-            return new Information(Convert.ToDecimal((value*8d) * (1024d * 1024 * 1024 * 1024)));
-        }
 #else
         public static Information FromTebibytes(QuantityValue tebibytes)
-        {
-            double value = (double) tebibytes;
-            return new Information((Convert.ToDecimal((value*8d) * (1024d * 1024 * 1024 * 1024))));
-        }
 #endif
+        {
+            decimal value = (decimal) tebibytes;
+            return new Information(value, InformationUnit.Tebibyte);
+        }
 
         /// <summary>
         ///     Get Information from Terabits.
@@ -784,17 +615,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromTerabits(double terabits)
-        {
-            double value = (double) terabits;
-            return new Information(Convert.ToDecimal((value) * 1e12d));
-        }
 #else
         public static Information FromTerabits(QuantityValue terabits)
-        {
-            double value = (double) terabits;
-            return new Information((Convert.ToDecimal((value) * 1e12d)));
-        }
 #endif
+        {
+            decimal value = (decimal) terabits;
+            return new Information(value, InformationUnit.Terabit);
+        }
 
         /// <summary>
         ///     Get Information from Terabytes.
@@ -802,17 +629,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromTerabytes(double terabytes)
-        {
-            double value = (double) terabytes;
-            return new Information(Convert.ToDecimal((value*8d) * 1e12d));
-        }
 #else
         public static Information FromTerabytes(QuantityValue terabytes)
-        {
-            double value = (double) terabytes;
-            return new Information((Convert.ToDecimal((value*8d) * 1e12d)));
-        }
 #endif
+        {
+            decimal value = (decimal) terabytes;
+            return new Information(value, InformationUnit.Terabyte);
+        }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -1222,64 +1045,7 @@ namespace UnitsNet
         public static Information From(QuantityValue value, InformationUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case InformationUnit.Bit:
-                    return FromBits(value);
-                case InformationUnit.Byte:
-                    return FromBytes(value);
-                case InformationUnit.Exabit:
-                    return FromExabits(value);
-                case InformationUnit.Exabyte:
-                    return FromExabytes(value);
-                case InformationUnit.Exbibit:
-                    return FromExbibits(value);
-                case InformationUnit.Exbibyte:
-                    return FromExbibytes(value);
-                case InformationUnit.Gibibit:
-                    return FromGibibits(value);
-                case InformationUnit.Gibibyte:
-                    return FromGibibytes(value);
-                case InformationUnit.Gigabit:
-                    return FromGigabits(value);
-                case InformationUnit.Gigabyte:
-                    return FromGigabytes(value);
-                case InformationUnit.Kibibit:
-                    return FromKibibits(value);
-                case InformationUnit.Kibibyte:
-                    return FromKibibytes(value);
-                case InformationUnit.Kilobit:
-                    return FromKilobits(value);
-                case InformationUnit.Kilobyte:
-                    return FromKilobytes(value);
-                case InformationUnit.Mebibit:
-                    return FromMebibits(value);
-                case InformationUnit.Mebibyte:
-                    return FromMebibytes(value);
-                case InformationUnit.Megabit:
-                    return FromMegabits(value);
-                case InformationUnit.Megabyte:
-                    return FromMegabytes(value);
-                case InformationUnit.Pebibit:
-                    return FromPebibits(value);
-                case InformationUnit.Pebibyte:
-                    return FromPebibytes(value);
-                case InformationUnit.Petabit:
-                    return FromPetabits(value);
-                case InformationUnit.Petabyte:
-                    return FromPetabytes(value);
-                case InformationUnit.Tebibit:
-                    return FromTebibits(value);
-                case InformationUnit.Tebibyte:
-                    return FromTebibytes(value);
-                case InformationUnit.Terabit:
-                    return FromTerabits(value);
-                case InformationUnit.Terabyte:
-                    return FromTerabytes(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Information((decimal)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -1296,64 +1062,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case InformationUnit.Bit:
-                    return FromBits(value.Value);
-                case InformationUnit.Byte:
-                    return FromBytes(value.Value);
-                case InformationUnit.Exabit:
-                    return FromExabits(value.Value);
-                case InformationUnit.Exabyte:
-                    return FromExabytes(value.Value);
-                case InformationUnit.Exbibit:
-                    return FromExbibits(value.Value);
-                case InformationUnit.Exbibyte:
-                    return FromExbibytes(value.Value);
-                case InformationUnit.Gibibit:
-                    return FromGibibits(value.Value);
-                case InformationUnit.Gibibyte:
-                    return FromGibibytes(value.Value);
-                case InformationUnit.Gigabit:
-                    return FromGigabits(value.Value);
-                case InformationUnit.Gigabyte:
-                    return FromGigabytes(value.Value);
-                case InformationUnit.Kibibit:
-                    return FromKibibits(value.Value);
-                case InformationUnit.Kibibyte:
-                    return FromKibibytes(value.Value);
-                case InformationUnit.Kilobit:
-                    return FromKilobits(value.Value);
-                case InformationUnit.Kilobyte:
-                    return FromKilobytes(value.Value);
-                case InformationUnit.Mebibit:
-                    return FromMebibits(value.Value);
-                case InformationUnit.Mebibyte:
-                    return FromMebibytes(value.Value);
-                case InformationUnit.Megabit:
-                    return FromMegabits(value.Value);
-                case InformationUnit.Megabyte:
-                    return FromMegabytes(value.Value);
-                case InformationUnit.Pebibit:
-                    return FromPebibits(value.Value);
-                case InformationUnit.Pebibyte:
-                    return FromPebibytes(value.Value);
-                case InformationUnit.Petabit:
-                    return FromPetabits(value.Value);
-                case InformationUnit.Petabyte:
-                    return FromPetabytes(value.Value);
-                case InformationUnit.Tebibit:
-                    return FromTebibits(value.Value);
-                case InformationUnit.Tebibyte:
-                    return FromTebibytes(value.Value);
-                case InformationUnit.Terabit:
-                    return FromTerabits(value.Value);
-                case InformationUnit.Terabyte:
-                    return FromTerabytes(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Information((decimal)value.Value, fromUnit);
         }
 #endif
 
@@ -1372,12 +1082,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(InformationUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          InformationUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -1388,37 +1115,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Information operator -(Information right)
         {
-            return new Information(-right._bits);
+            return new Information(-right.Value, right.Unit);
         }
 
         public static Information operator +(Information left, Information right)
         {
-            return new Information(left._bits + right._bits);
+            return new Information(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Information operator -(Information left, Information right)
         {
-            return new Information(left._bits - right._bits);
+            return new Information(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Information operator *(decimal left, Information right)
         {
-            return new Information(left*right._bits);
+            return new Information(left * right.Value, right.Unit);
         }
 
-        public static Information operator *(Information left, double right)
+        public static Information operator *(Information left, decimal right)
         {
-            return new Information(left._bits*(decimal)right);
+            return new Information(left.Value * right, left.Unit);
         }
 
-        public static Information operator /(Information left, double right)
+        public static Information operator /(Information left, decimal right)
         {
-            return new Information(left._bits/(decimal)right);
+            return new Information(left.Value / right, left.Unit);
         }
 
         public static double operator /(Information left, Information right)
         {
-            return Convert.ToDouble(left._bits/right._bits);
+            return left.Bits / right.Bits;
         }
 #endif
 
@@ -1441,41 +1168,41 @@ namespace UnitsNet
 #endif
         int CompareTo(Information other)
         {
-            return _bits.CompareTo(other._bits);
+            return AsBaseUnitBits().CompareTo(other.AsBaseUnitBits());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(Information left, Information right)
         {
-            return left._bits <= right._bits;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(Information left, Information right)
         {
-            return left._bits >= right._bits;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(Information left, Information right)
         {
-            return left._bits < right._bits;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(Information left, Information right)
         {
-            return left._bits > right._bits;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator ==(Information left, Information right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._bits == right._bits;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator !=(Information left, Information right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._bits != right._bits;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -1486,7 +1213,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _bits.Equals(((Information) obj)._bits);
+            return AsBaseUnitBits().Equals(((Information) obj).AsBaseUnitBits());
         }
 
         /// <summary>
@@ -1499,12 +1226,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Information other, Information maxError)
         {
-            return Math.Abs(_bits - other._bits) <= maxError._bits;
+            return Math.Abs(AsBaseUnitBits() - other.AsBaseUnitBits()) <= maxError.AsBaseUnitBits();
         }
 
         public override int GetHashCode()
         {
-            return _bits.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1514,64 +1241,44 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(InformationUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            decimal baseUnitValue = AsBaseUnitBits();
+
             switch (unit)
             {
-                case InformationUnit.Bit:
-                    return Bits;
-                case InformationUnit.Byte:
-                    return Bytes;
-                case InformationUnit.Exabit:
-                    return Exabits;
-                case InformationUnit.Exabyte:
-                    return Exabytes;
-                case InformationUnit.Exbibit:
-                    return Exbibits;
-                case InformationUnit.Exbibyte:
-                    return Exbibytes;
-                case InformationUnit.Gibibit:
-                    return Gibibits;
-                case InformationUnit.Gibibyte:
-                    return Gibibytes;
-                case InformationUnit.Gigabit:
-                    return Gigabits;
-                case InformationUnit.Gigabyte:
-                    return Gigabytes;
-                case InformationUnit.Kibibit:
-                    return Kibibits;
-                case InformationUnit.Kibibyte:
-                    return Kibibytes;
-                case InformationUnit.Kilobit:
-                    return Kilobits;
-                case InformationUnit.Kilobyte:
-                    return Kilobytes;
-                case InformationUnit.Mebibit:
-                    return Mebibits;
-                case InformationUnit.Mebibyte:
-                    return Mebibytes;
-                case InformationUnit.Megabit:
-                    return Megabits;
-                case InformationUnit.Megabyte:
-                    return Megabytes;
-                case InformationUnit.Pebibit:
-                    return Pebibits;
-                case InformationUnit.Pebibyte:
-                    return Pebibytes;
-                case InformationUnit.Petabit:
-                    return Petabits;
-                case InformationUnit.Petabyte:
-                    return Petabytes;
-                case InformationUnit.Tebibit:
-                    return Tebibits;
-                case InformationUnit.Tebibyte:
-                    return Tebibytes;
-                case InformationUnit.Terabit:
-                    return Terabits;
-                case InformationUnit.Terabyte:
-                    return Terabytes;
+                case InformationUnit.Bit: return Convert.ToDouble(baseUnitValue);
+                case InformationUnit.Byte: return Convert.ToDouble(baseUnitValue/8m);
+                case InformationUnit.Exabit: return Convert.ToDouble((baseUnitValue) / 1e18m);
+                case InformationUnit.Exabyte: return Convert.ToDouble((baseUnitValue/8m) / 1e18m);
+                case InformationUnit.Exbibit: return Convert.ToDouble((baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024));
+                case InformationUnit.Exbibyte: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024));
+                case InformationUnit.Gibibit: return Convert.ToDouble((baseUnitValue) / (1024m * 1024 * 1024));
+                case InformationUnit.Gibibyte: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024 * 1024));
+                case InformationUnit.Gigabit: return Convert.ToDouble((baseUnitValue) / 1e9m);
+                case InformationUnit.Gigabyte: return Convert.ToDouble((baseUnitValue/8m) / 1e9m);
+                case InformationUnit.Kibibit: return Convert.ToDouble((baseUnitValue) / 1024m);
+                case InformationUnit.Kibibyte: return Convert.ToDouble((baseUnitValue/8m) / 1024m);
+                case InformationUnit.Kilobit: return Convert.ToDouble((baseUnitValue) / 1e3m);
+                case InformationUnit.Kilobyte: return Convert.ToDouble((baseUnitValue/8m) / 1e3m);
+                case InformationUnit.Mebibit: return Convert.ToDouble((baseUnitValue) / (1024m * 1024));
+                case InformationUnit.Mebibyte: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024));
+                case InformationUnit.Megabit: return Convert.ToDouble((baseUnitValue) / 1e6m);
+                case InformationUnit.Megabyte: return Convert.ToDouble((baseUnitValue/8m) / 1e6m);
+                case InformationUnit.Pebibit: return Convert.ToDouble((baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024));
+                case InformationUnit.Pebibyte: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024));
+                case InformationUnit.Petabit: return Convert.ToDouble((baseUnitValue) / 1e15m);
+                case InformationUnit.Petabyte: return Convert.ToDouble((baseUnitValue/8m) / 1e15m);
+                case InformationUnit.Tebibit: return Convert.ToDouble((baseUnitValue) / (1024m * 1024 * 1024 * 1024));
+                case InformationUnit.Tebibyte: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024));
+                case InformationUnit.Terabit: return Convert.ToDouble((baseUnitValue) / 1e12m);
+                case InformationUnit.Terabyte: return Convert.ToDouble((baseUnitValue/8m) / 1e12m);
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -1613,7 +1320,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -1632,17 +1343,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Information Parse(string str, [CanBeNull] Culture culture)
+        public static Information Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<Information, InformationUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<Information, InformationUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -1668,16 +1386,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out Information result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out Information result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -1690,6 +1433,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1703,11 +1447,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static InformationUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -1716,6 +1463,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1728,18 +1477,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static InformationUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static InformationUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<InformationUnit>(str.Trim());
 
             if (unit == InformationUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized InformationUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -1748,6 +1497,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Bit
         /// </summary>
@@ -1759,7 +1509,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -1776,74 +1526,154 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(InformationUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          InformationUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(InformationUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            InformationUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(InformationUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            InformationUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of Information
         /// </summary>
-        public static Information MaxValue
-        {
-            get
-            {
-                return new Information(decimal.MaxValue);
-            }
-        }
+        public static Information MaxValue => new Information(decimal.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Information
         /// </summary>
-        public static Information MinValue
+        public static Information MinValue => new Information(decimal.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private decimal AsBaseUnitBits()
         {
-            get
+			if (Unit == InformationUnit.Bit) { return _value; }
+
+            switch (Unit)
             {
-                return new Information(decimal.MinValue);
-            }
-        }
-    }
+                case InformationUnit.Bit: return Convert.ToDecimal(_value);
+                case InformationUnit.Byte: return Convert.ToDecimal(_value*8m);
+                case InformationUnit.Exabit: return Convert.ToDecimal((_value) * 1e18m);
+                case InformationUnit.Exabyte: return Convert.ToDecimal((_value*8m) * 1e18m);
+                case InformationUnit.Exbibit: return Convert.ToDecimal((_value) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024));
+                case InformationUnit.Exbibyte: return Convert.ToDecimal((_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024));
+                case InformationUnit.Gibibit: return Convert.ToDecimal((_value) * (1024m * 1024 * 1024));
+                case InformationUnit.Gibibyte: return Convert.ToDecimal((_value*8m) * (1024m * 1024 * 1024));
+                case InformationUnit.Gigabit: return Convert.ToDecimal((_value) * 1e9m);
+                case InformationUnit.Gigabyte: return Convert.ToDecimal((_value*8m) * 1e9m);
+                case InformationUnit.Kibibit: return Convert.ToDecimal((_value) * 1024m);
+                case InformationUnit.Kibibyte: return Convert.ToDecimal((_value*8m) * 1024m);
+                case InformationUnit.Kilobit: return Convert.ToDecimal((_value) * 1e3m);
+                case InformationUnit.Kilobyte: return Convert.ToDecimal((_value*8m) * 1e3m);
+                case InformationUnit.Mebibit: return Convert.ToDecimal((_value) * (1024m * 1024));
+                case InformationUnit.Mebibyte: return Convert.ToDecimal((_value*8m) * (1024m * 1024));
+                case InformationUnit.Megabit: return Convert.ToDecimal((_value) * 1e6m);
+                case InformationUnit.Megabyte: return Convert.ToDecimal((_value*8m) * 1e6m);
+                case InformationUnit.Pebibit: return Convert.ToDecimal((_value) * (1024m * 1024 * 1024 * 1024 * 1024));
+                case InformationUnit.Pebibyte: return Convert.ToDecimal((_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024));
+                case InformationUnit.Petabit: return Convert.ToDecimal((_value) * 1e15m);
+                case InformationUnit.Petabyte: return Convert.ToDecimal((_value*8m) * 1e15m);
+                case InformationUnit.Tebibit: return Convert.ToDecimal((_value) * (1024m * 1024 * 1024 * 1024));
+                case InformationUnit.Tebibyte: return Convert.ToDecimal((_value*8m) * (1024m * 1024 * 1024 * 1024));
+                case InformationUnit.Terabit: return Convert.ToDecimal((_value) * 1e12m);
+                case InformationUnit.Terabyte: return Convert.ToDecimal((_value*8m) * 1e12m);
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private decimal AsBaseNumericType(InformationUnit unit) => Convert.ToDecimal(As(unit));
+	}
 }

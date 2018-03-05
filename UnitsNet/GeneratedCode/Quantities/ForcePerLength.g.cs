@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of ForcePerLength.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _newtonsPerMeter;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly ForcePerLengthUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public ForcePerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public ForcePerLength() : this(0)
+        public ForcePerLength()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public ForcePerLength(double newtonspermeter)
         {
-            _newtonsPerMeter = Convert.ToDouble(newtonspermeter);
+            _value = Convert.ToDouble(newtonspermeter);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          ForcePerLength(double numericValue, ForcePerLengthUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit NewtonPerMeter.
+        /// </summary>
+        /// <param name="newtonspermeter">Value assuming base unit NewtonPerMeter.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ForcePerLength(long newtonspermeter)
-        {
-            _newtonsPerMeter = Convert.ToDouble(newtonspermeter);
-        }
+        ForcePerLength(long newtonspermeter) : this(Convert.ToDouble(newtonspermeter), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit NewtonPerMeter.
+        /// </summary>
+        /// <param name="newtonspermeter">Value assuming base unit NewtonPerMeter.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ForcePerLength(decimal newtonspermeter)
-        {
-            _newtonsPerMeter = Convert.ToDouble(newtonspermeter);
-        }
+        ForcePerLength(decimal newtonspermeter) : this(Convert.ToDouble(newtonspermeter), BaseUnit) { }
 
         #region Properties
 
@@ -119,96 +156,54 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static ForcePerLengthUnit BaseUnit
-        {
-            get { return ForcePerLengthUnit.NewtonPerMeter; }
-        }
+        public static ForcePerLengthUnit BaseUnit => ForcePerLengthUnit.NewtonPerMeter;
 
         /// <summary>
         ///     All units of measurement for the ForcePerLength quantity.
         /// </summary>
         public static ForcePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(ForcePerLengthUnit)).Cast<ForcePerLengthUnit>().ToArray();
-
         /// <summary>
         ///     Get ForcePerLength in CentinewtonsPerMeter.
         /// </summary>
-        public double CentinewtonsPerMeter
-        {
-            get { return (_newtonsPerMeter) / 1e-2d; }
-        }
-
+        public double CentinewtonsPerMeter => As(ForcePerLengthUnit.CentinewtonPerMeter);
         /// <summary>
         ///     Get ForcePerLength in DecinewtonsPerMeter.
         /// </summary>
-        public double DecinewtonsPerMeter
-        {
-            get { return (_newtonsPerMeter) / 1e-1d; }
-        }
-
+        public double DecinewtonsPerMeter => As(ForcePerLengthUnit.DecinewtonPerMeter);
         /// <summary>
         ///     Get ForcePerLength in KilogramsForcePerMeter.
         /// </summary>
-        public double KilogramsForcePerMeter
-        {
-            get { return _newtonsPerMeter/9.80665002864; }
-        }
-
+        public double KilogramsForcePerMeter => As(ForcePerLengthUnit.KilogramForcePerMeter);
         /// <summary>
         ///     Get ForcePerLength in KilonewtonsPerMeter.
         /// </summary>
-        public double KilonewtonsPerMeter
-        {
-            get { return (_newtonsPerMeter) / 1e3d; }
-        }
-
+        public double KilonewtonsPerMeter => As(ForcePerLengthUnit.KilonewtonPerMeter);
         /// <summary>
         ///     Get ForcePerLength in MeganewtonsPerMeter.
         /// </summary>
-        public double MeganewtonsPerMeter
-        {
-            get { return (_newtonsPerMeter) / 1e6d; }
-        }
-
+        public double MeganewtonsPerMeter => As(ForcePerLengthUnit.MeganewtonPerMeter);
         /// <summary>
         ///     Get ForcePerLength in MicronewtonsPerMeter.
         /// </summary>
-        public double MicronewtonsPerMeter
-        {
-            get { return (_newtonsPerMeter) / 1e-6d; }
-        }
-
+        public double MicronewtonsPerMeter => As(ForcePerLengthUnit.MicronewtonPerMeter);
         /// <summary>
         ///     Get ForcePerLength in MillinewtonsPerMeter.
         /// </summary>
-        public double MillinewtonsPerMeter
-        {
-            get { return (_newtonsPerMeter) / 1e-3d; }
-        }
-
+        public double MillinewtonsPerMeter => As(ForcePerLengthUnit.MillinewtonPerMeter);
         /// <summary>
         ///     Get ForcePerLength in NanonewtonsPerMeter.
         /// </summary>
-        public double NanonewtonsPerMeter
-        {
-            get { return (_newtonsPerMeter) / 1e-9d; }
-        }
-
+        public double NanonewtonsPerMeter => As(ForcePerLengthUnit.NanonewtonPerMeter);
         /// <summary>
         ///     Get ForcePerLength in NewtonsPerMeter.
         /// </summary>
-        public double NewtonsPerMeter
-        {
-            get { return _newtonsPerMeter; }
-        }
+        public double NewtonsPerMeter => As(ForcePerLengthUnit.NewtonPerMeter);
 
         #endregion
 
         #region Static
 
-        public static ForcePerLength Zero
-        {
-            get { return new ForcePerLength(); }
-        }
+        public static ForcePerLength Zero => new ForcePerLength(0, BaseUnit);
 
         /// <summary>
         ///     Get ForcePerLength from CentinewtonsPerMeter.
@@ -216,17 +211,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromCentinewtonsPerMeter(double centinewtonspermeter)
-        {
-            double value = (double) centinewtonspermeter;
-            return new ForcePerLength((value) * 1e-2d);
-        }
 #else
         public static ForcePerLength FromCentinewtonsPerMeter(QuantityValue centinewtonspermeter)
+#endif
         {
             double value = (double) centinewtonspermeter;
-            return new ForcePerLength(((value) * 1e-2d));
+            return new ForcePerLength(value, ForcePerLengthUnit.CentinewtonPerMeter);
         }
-#endif
 
         /// <summary>
         ///     Get ForcePerLength from DecinewtonsPerMeter.
@@ -234,17 +225,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromDecinewtonsPerMeter(double decinewtonspermeter)
-        {
-            double value = (double) decinewtonspermeter;
-            return new ForcePerLength((value) * 1e-1d);
-        }
 #else
         public static ForcePerLength FromDecinewtonsPerMeter(QuantityValue decinewtonspermeter)
+#endif
         {
             double value = (double) decinewtonspermeter;
-            return new ForcePerLength(((value) * 1e-1d));
+            return new ForcePerLength(value, ForcePerLengthUnit.DecinewtonPerMeter);
         }
-#endif
 
         /// <summary>
         ///     Get ForcePerLength from KilogramsForcePerMeter.
@@ -252,17 +239,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromKilogramsForcePerMeter(double kilogramsforcepermeter)
-        {
-            double value = (double) kilogramsforcepermeter;
-            return new ForcePerLength(value*9.80665002864);
-        }
 #else
         public static ForcePerLength FromKilogramsForcePerMeter(QuantityValue kilogramsforcepermeter)
+#endif
         {
             double value = (double) kilogramsforcepermeter;
-            return new ForcePerLength((value*9.80665002864));
+            return new ForcePerLength(value, ForcePerLengthUnit.KilogramForcePerMeter);
         }
-#endif
 
         /// <summary>
         ///     Get ForcePerLength from KilonewtonsPerMeter.
@@ -270,17 +253,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromKilonewtonsPerMeter(double kilonewtonspermeter)
-        {
-            double value = (double) kilonewtonspermeter;
-            return new ForcePerLength((value) * 1e3d);
-        }
 #else
         public static ForcePerLength FromKilonewtonsPerMeter(QuantityValue kilonewtonspermeter)
+#endif
         {
             double value = (double) kilonewtonspermeter;
-            return new ForcePerLength(((value) * 1e3d));
+            return new ForcePerLength(value, ForcePerLengthUnit.KilonewtonPerMeter);
         }
-#endif
 
         /// <summary>
         ///     Get ForcePerLength from MeganewtonsPerMeter.
@@ -288,17 +267,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromMeganewtonsPerMeter(double meganewtonspermeter)
-        {
-            double value = (double) meganewtonspermeter;
-            return new ForcePerLength((value) * 1e6d);
-        }
 #else
         public static ForcePerLength FromMeganewtonsPerMeter(QuantityValue meganewtonspermeter)
+#endif
         {
             double value = (double) meganewtonspermeter;
-            return new ForcePerLength(((value) * 1e6d));
+            return new ForcePerLength(value, ForcePerLengthUnit.MeganewtonPerMeter);
         }
-#endif
 
         /// <summary>
         ///     Get ForcePerLength from MicronewtonsPerMeter.
@@ -306,17 +281,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromMicronewtonsPerMeter(double micronewtonspermeter)
-        {
-            double value = (double) micronewtonspermeter;
-            return new ForcePerLength((value) * 1e-6d);
-        }
 #else
         public static ForcePerLength FromMicronewtonsPerMeter(QuantityValue micronewtonspermeter)
+#endif
         {
             double value = (double) micronewtonspermeter;
-            return new ForcePerLength(((value) * 1e-6d));
+            return new ForcePerLength(value, ForcePerLengthUnit.MicronewtonPerMeter);
         }
-#endif
 
         /// <summary>
         ///     Get ForcePerLength from MillinewtonsPerMeter.
@@ -324,17 +295,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromMillinewtonsPerMeter(double millinewtonspermeter)
-        {
-            double value = (double) millinewtonspermeter;
-            return new ForcePerLength((value) * 1e-3d);
-        }
 #else
         public static ForcePerLength FromMillinewtonsPerMeter(QuantityValue millinewtonspermeter)
+#endif
         {
             double value = (double) millinewtonspermeter;
-            return new ForcePerLength(((value) * 1e-3d));
+            return new ForcePerLength(value, ForcePerLengthUnit.MillinewtonPerMeter);
         }
-#endif
 
         /// <summary>
         ///     Get ForcePerLength from NanonewtonsPerMeter.
@@ -342,17 +309,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromNanonewtonsPerMeter(double nanonewtonspermeter)
-        {
-            double value = (double) nanonewtonspermeter;
-            return new ForcePerLength((value) * 1e-9d);
-        }
 #else
         public static ForcePerLength FromNanonewtonsPerMeter(QuantityValue nanonewtonspermeter)
+#endif
         {
             double value = (double) nanonewtonspermeter;
-            return new ForcePerLength(((value) * 1e-9d));
+            return new ForcePerLength(value, ForcePerLengthUnit.NanonewtonPerMeter);
         }
-#endif
 
         /// <summary>
         ///     Get ForcePerLength from NewtonsPerMeter.
@@ -360,17 +323,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromNewtonsPerMeter(double newtonspermeter)
-        {
-            double value = (double) newtonspermeter;
-            return new ForcePerLength(value);
-        }
 #else
         public static ForcePerLength FromNewtonsPerMeter(QuantityValue newtonspermeter)
+#endif
         {
             double value = (double) newtonspermeter;
-            return new ForcePerLength((value));
+            return new ForcePerLength(value, ForcePerLengthUnit.NewtonPerMeter);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -525,30 +484,7 @@ namespace UnitsNet
         public static ForcePerLength From(QuantityValue value, ForcePerLengthUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case ForcePerLengthUnit.CentinewtonPerMeter:
-                    return FromCentinewtonsPerMeter(value);
-                case ForcePerLengthUnit.DecinewtonPerMeter:
-                    return FromDecinewtonsPerMeter(value);
-                case ForcePerLengthUnit.KilogramForcePerMeter:
-                    return FromKilogramsForcePerMeter(value);
-                case ForcePerLengthUnit.KilonewtonPerMeter:
-                    return FromKilonewtonsPerMeter(value);
-                case ForcePerLengthUnit.MeganewtonPerMeter:
-                    return FromMeganewtonsPerMeter(value);
-                case ForcePerLengthUnit.MicronewtonPerMeter:
-                    return FromMicronewtonsPerMeter(value);
-                case ForcePerLengthUnit.MillinewtonPerMeter:
-                    return FromMillinewtonsPerMeter(value);
-                case ForcePerLengthUnit.NanonewtonPerMeter:
-                    return FromNanonewtonsPerMeter(value);
-                case ForcePerLengthUnit.NewtonPerMeter:
-                    return FromNewtonsPerMeter(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ForcePerLength((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -565,30 +501,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case ForcePerLengthUnit.CentinewtonPerMeter:
-                    return FromCentinewtonsPerMeter(value.Value);
-                case ForcePerLengthUnit.DecinewtonPerMeter:
-                    return FromDecinewtonsPerMeter(value.Value);
-                case ForcePerLengthUnit.KilogramForcePerMeter:
-                    return FromKilogramsForcePerMeter(value.Value);
-                case ForcePerLengthUnit.KilonewtonPerMeter:
-                    return FromKilonewtonsPerMeter(value.Value);
-                case ForcePerLengthUnit.MeganewtonPerMeter:
-                    return FromMeganewtonsPerMeter(value.Value);
-                case ForcePerLengthUnit.MicronewtonPerMeter:
-                    return FromMicronewtonsPerMeter(value.Value);
-                case ForcePerLengthUnit.MillinewtonPerMeter:
-                    return FromMillinewtonsPerMeter(value.Value);
-                case ForcePerLengthUnit.NanonewtonPerMeter:
-                    return FromNanonewtonsPerMeter(value.Value);
-                case ForcePerLengthUnit.NewtonPerMeter:
-                    return FromNewtonsPerMeter(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ForcePerLength((double)value.Value, fromUnit);
         }
 #endif
 
@@ -607,12 +521,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ForcePerLengthUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          ForcePerLengthUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -623,37 +554,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ForcePerLength operator -(ForcePerLength right)
         {
-            return new ForcePerLength(-right._newtonsPerMeter);
+            return new ForcePerLength(-right.Value, right.Unit);
         }
 
         public static ForcePerLength operator +(ForcePerLength left, ForcePerLength right)
         {
-            return new ForcePerLength(left._newtonsPerMeter + right._newtonsPerMeter);
+            return new ForcePerLength(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ForcePerLength operator -(ForcePerLength left, ForcePerLength right)
         {
-            return new ForcePerLength(left._newtonsPerMeter - right._newtonsPerMeter);
+            return new ForcePerLength(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ForcePerLength operator *(double left, ForcePerLength right)
         {
-            return new ForcePerLength(left*right._newtonsPerMeter);
+            return new ForcePerLength(left * right.Value, right.Unit);
         }
 
         public static ForcePerLength operator *(ForcePerLength left, double right)
         {
-            return new ForcePerLength(left._newtonsPerMeter*(double)right);
+            return new ForcePerLength(left.Value * right, left.Unit);
         }
 
         public static ForcePerLength operator /(ForcePerLength left, double right)
         {
-            return new ForcePerLength(left._newtonsPerMeter/(double)right);
+            return new ForcePerLength(left.Value / right, left.Unit);
         }
 
         public static double operator /(ForcePerLength left, ForcePerLength right)
         {
-            return Convert.ToDouble(left._newtonsPerMeter/right._newtonsPerMeter);
+            return left.NewtonsPerMeter / right.NewtonsPerMeter;
         }
 #endif
 
@@ -676,43 +607,43 @@ namespace UnitsNet
 #endif
         int CompareTo(ForcePerLength other)
         {
-            return _newtonsPerMeter.CompareTo(other._newtonsPerMeter);
+            return AsBaseUnitNewtonsPerMeter().CompareTo(other.AsBaseUnitNewtonsPerMeter());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(ForcePerLength left, ForcePerLength right)
         {
-            return left._newtonsPerMeter <= right._newtonsPerMeter;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(ForcePerLength left, ForcePerLength right)
         {
-            return left._newtonsPerMeter >= right._newtonsPerMeter;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(ForcePerLength left, ForcePerLength right)
         {
-            return left._newtonsPerMeter < right._newtonsPerMeter;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(ForcePerLength left, ForcePerLength right)
         {
-            return left._newtonsPerMeter > right._newtonsPerMeter;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(ForcePerLength left, ForcePerLength right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._newtonsPerMeter == right._newtonsPerMeter;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(ForcePerLength left, ForcePerLength right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._newtonsPerMeter != right._newtonsPerMeter;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -724,7 +655,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _newtonsPerMeter.Equals(((ForcePerLength) obj)._newtonsPerMeter);
+            return AsBaseUnitNewtonsPerMeter().Equals(((ForcePerLength) obj).AsBaseUnitNewtonsPerMeter());
         }
 
         /// <summary>
@@ -737,12 +668,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ForcePerLength other, ForcePerLength maxError)
         {
-            return Math.Abs(_newtonsPerMeter - other._newtonsPerMeter) <= maxError._newtonsPerMeter;
+            return Math.Abs(AsBaseUnitNewtonsPerMeter() - other.AsBaseUnitNewtonsPerMeter()) <= maxError.AsBaseUnitNewtonsPerMeter();
         }
 
         public override int GetHashCode()
         {
-            return _newtonsPerMeter.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -752,30 +683,27 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(ForcePerLengthUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitNewtonsPerMeter();
+
             switch (unit)
             {
-                case ForcePerLengthUnit.CentinewtonPerMeter:
-                    return CentinewtonsPerMeter;
-                case ForcePerLengthUnit.DecinewtonPerMeter:
-                    return DecinewtonsPerMeter;
-                case ForcePerLengthUnit.KilogramForcePerMeter:
-                    return KilogramsForcePerMeter;
-                case ForcePerLengthUnit.KilonewtonPerMeter:
-                    return KilonewtonsPerMeter;
-                case ForcePerLengthUnit.MeganewtonPerMeter:
-                    return MeganewtonsPerMeter;
-                case ForcePerLengthUnit.MicronewtonPerMeter:
-                    return MicronewtonsPerMeter;
-                case ForcePerLengthUnit.MillinewtonPerMeter:
-                    return MillinewtonsPerMeter;
-                case ForcePerLengthUnit.NanonewtonPerMeter:
-                    return NanonewtonsPerMeter;
-                case ForcePerLengthUnit.NewtonPerMeter:
-                    return NewtonsPerMeter;
+                case ForcePerLengthUnit.CentinewtonPerMeter: return (baseUnitValue) / 1e-2d;
+                case ForcePerLengthUnit.DecinewtonPerMeter: return (baseUnitValue) / 1e-1d;
+                case ForcePerLengthUnit.KilogramForcePerMeter: return baseUnitValue/9.80665002864;
+                case ForcePerLengthUnit.KilonewtonPerMeter: return (baseUnitValue) / 1e3d;
+                case ForcePerLengthUnit.MeganewtonPerMeter: return (baseUnitValue) / 1e6d;
+                case ForcePerLengthUnit.MicronewtonPerMeter: return (baseUnitValue) / 1e-6d;
+                case ForcePerLengthUnit.MillinewtonPerMeter: return (baseUnitValue) / 1e-3d;
+                case ForcePerLengthUnit.NanonewtonPerMeter: return (baseUnitValue) / 1e-9d;
+                case ForcePerLengthUnit.NewtonPerMeter: return baseUnitValue;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -817,7 +745,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -836,17 +768,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ForcePerLength Parse(string str, [CanBeNull] Culture culture)
+        public static ForcePerLength Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<ForcePerLength, ForcePerLengthUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<ForcePerLength, ForcePerLengthUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -872,16 +811,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ForcePerLength result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out ForcePerLength result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -894,6 +858,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -907,11 +872,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static ForcePerLengthUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -920,6 +888,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -932,18 +902,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static ForcePerLengthUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ForcePerLengthUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<ForcePerLengthUnit>(str.Trim());
 
             if (unit == ForcePerLengthUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ForcePerLengthUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -952,6 +922,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is NewtonPerMeter
         /// </summary>
@@ -963,7 +934,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -980,74 +951,137 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(ForcePerLengthUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          ForcePerLengthUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ForcePerLengthUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            ForcePerLengthUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ForcePerLengthUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            ForcePerLengthUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of ForcePerLength
         /// </summary>
-        public static ForcePerLength MaxValue
-        {
-            get
-            {
-                return new ForcePerLength(double.MaxValue);
-            }
-        }
+        public static ForcePerLength MaxValue => new ForcePerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ForcePerLength
         /// </summary>
-        public static ForcePerLength MinValue
+        public static ForcePerLength MinValue => new ForcePerLength(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitNewtonsPerMeter()
         {
-            get
+			if (Unit == ForcePerLengthUnit.NewtonPerMeter) { return _value; }
+
+            switch (Unit)
             {
-                return new ForcePerLength(double.MinValue);
-            }
-        }
-    }
+                case ForcePerLengthUnit.CentinewtonPerMeter: return (_value) * 1e-2d;
+                case ForcePerLengthUnit.DecinewtonPerMeter: return (_value) * 1e-1d;
+                case ForcePerLengthUnit.KilogramForcePerMeter: return _value*9.80665002864;
+                case ForcePerLengthUnit.KilonewtonPerMeter: return (_value) * 1e3d;
+                case ForcePerLengthUnit.MeganewtonPerMeter: return (_value) * 1e6d;
+                case ForcePerLengthUnit.MicronewtonPerMeter: return (_value) * 1e-6d;
+                case ForcePerLengthUnit.MillinewtonPerMeter: return (_value) * 1e-3d;
+                case ForcePerLengthUnit.NanonewtonPerMeter: return (_value) * 1e-9d;
+                case ForcePerLengthUnit.NewtonPerMeter: return _value;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(ForcePerLengthUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

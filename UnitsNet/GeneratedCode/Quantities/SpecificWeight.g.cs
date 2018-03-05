@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of SpecificWeight.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _newtonsPerCubicMeter;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly SpecificWeightUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public SpecificWeightUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public SpecificWeight() : this(0)
+        public SpecificWeight()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public SpecificWeight(double newtonspercubicmeter)
         {
-            _newtonsPerCubicMeter = Convert.ToDouble(newtonspercubicmeter);
+            _value = Convert.ToDouble(newtonspercubicmeter);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          SpecificWeight(double numericValue, SpecificWeightUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit NewtonPerCubicMeter.
+        /// </summary>
+        /// <param name="newtonspercubicmeter">Value assuming base unit NewtonPerCubicMeter.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        SpecificWeight(long newtonspercubicmeter)
-        {
-            _newtonsPerCubicMeter = Convert.ToDouble(newtonspercubicmeter);
-        }
+        SpecificWeight(long newtonspercubicmeter) : this(Convert.ToDouble(newtonspercubicmeter), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit NewtonPerCubicMeter.
+        /// </summary>
+        /// <param name="newtonspercubicmeter">Value assuming base unit NewtonPerCubicMeter.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        SpecificWeight(decimal newtonspercubicmeter)
-        {
-            _newtonsPerCubicMeter = Convert.ToDouble(newtonspercubicmeter);
-        }
+        SpecificWeight(decimal newtonspercubicmeter) : this(Convert.ToDouble(newtonspercubicmeter), BaseUnit) { }
 
         #region Properties
 
@@ -119,152 +156,82 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static SpecificWeightUnit BaseUnit
-        {
-            get { return SpecificWeightUnit.NewtonPerCubicMeter; }
-        }
+        public static SpecificWeightUnit BaseUnit => SpecificWeightUnit.NewtonPerCubicMeter;
 
         /// <summary>
         ///     All units of measurement for the SpecificWeight quantity.
         /// </summary>
         public static SpecificWeightUnit[] Units { get; } = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>().ToArray();
-
         /// <summary>
         ///     Get SpecificWeight in KilogramsForcePerCubicCentimeter.
         /// </summary>
-        public double KilogramsForcePerCubicCentimeter
-        {
-            get { return _newtonsPerCubicMeter*1.01971619222242E-07; }
-        }
-
+        public double KilogramsForcePerCubicCentimeter => As(SpecificWeightUnit.KilogramForcePerCubicCentimeter);
         /// <summary>
         ///     Get SpecificWeight in KilogramsForcePerCubicMeter.
         /// </summary>
-        public double KilogramsForcePerCubicMeter
-        {
-            get { return _newtonsPerCubicMeter*0.101971619222242; }
-        }
-
+        public double KilogramsForcePerCubicMeter => As(SpecificWeightUnit.KilogramForcePerCubicMeter);
         /// <summary>
         ///     Get SpecificWeight in KilogramsForcePerCubicMillimeter.
         /// </summary>
-        public double KilogramsForcePerCubicMillimeter
-        {
-            get { return _newtonsPerCubicMeter*1.01971619222242E-10; }
-        }
-
+        public double KilogramsForcePerCubicMillimeter => As(SpecificWeightUnit.KilogramForcePerCubicMillimeter);
         /// <summary>
         ///     Get SpecificWeight in KilonewtonsPerCubicCentimeter.
         /// </summary>
-        public double KilonewtonsPerCubicCentimeter
-        {
-            get { return (_newtonsPerCubicMeter*0.000001) / 1e3d; }
-        }
-
+        public double KilonewtonsPerCubicCentimeter => As(SpecificWeightUnit.KilonewtonPerCubicCentimeter);
         /// <summary>
         ///     Get SpecificWeight in KilonewtonsPerCubicMeter.
         /// </summary>
-        public double KilonewtonsPerCubicMeter
-        {
-            get { return (_newtonsPerCubicMeter) / 1e3d; }
-        }
-
+        public double KilonewtonsPerCubicMeter => As(SpecificWeightUnit.KilonewtonPerCubicMeter);
         /// <summary>
         ///     Get SpecificWeight in KilonewtonsPerCubicMillimeter.
         /// </summary>
-        public double KilonewtonsPerCubicMillimeter
-        {
-            get { return (_newtonsPerCubicMeter*0.000000001) / 1e3d; }
-        }
-
+        public double KilonewtonsPerCubicMillimeter => As(SpecificWeightUnit.KilonewtonPerCubicMillimeter);
         /// <summary>
         ///     Get SpecificWeight in KilopoundsForcePerCubicFoot.
         /// </summary>
-        public double KilopoundsForcePerCubicFoot
-        {
-            get { return (_newtonsPerCubicMeter*0.00636587980366089) / 1e3d; }
-        }
-
+        public double KilopoundsForcePerCubicFoot => As(SpecificWeightUnit.KilopoundForcePerCubicFoot);
         /// <summary>
         ///     Get SpecificWeight in KilopoundsForcePerCubicInch.
         /// </summary>
-        public double KilopoundsForcePerCubicInch
-        {
-            get { return (_newtonsPerCubicMeter*3.68395821971116E-06) / 1e3d; }
-        }
-
+        public double KilopoundsForcePerCubicInch => As(SpecificWeightUnit.KilopoundForcePerCubicInch);
         /// <summary>
         ///     Get SpecificWeight in NewtonsPerCubicCentimeter.
         /// </summary>
-        public double NewtonsPerCubicCentimeter
-        {
-            get { return _newtonsPerCubicMeter*0.000001; }
-        }
-
+        public double NewtonsPerCubicCentimeter => As(SpecificWeightUnit.NewtonPerCubicCentimeter);
         /// <summary>
         ///     Get SpecificWeight in NewtonsPerCubicMeter.
         /// </summary>
-        public double NewtonsPerCubicMeter
-        {
-            get { return _newtonsPerCubicMeter; }
-        }
-
+        public double NewtonsPerCubicMeter => As(SpecificWeightUnit.NewtonPerCubicMeter);
         /// <summary>
         ///     Get SpecificWeight in NewtonsPerCubicMillimeter.
         /// </summary>
-        public double NewtonsPerCubicMillimeter
-        {
-            get { return _newtonsPerCubicMeter*0.000000001; }
-        }
-
+        public double NewtonsPerCubicMillimeter => As(SpecificWeightUnit.NewtonPerCubicMillimeter);
         /// <summary>
         ///     Get SpecificWeight in PoundsForcePerCubicFoot.
         /// </summary>
-        public double PoundsForcePerCubicFoot
-        {
-            get { return _newtonsPerCubicMeter*0.00636587980366089; }
-        }
-
+        public double PoundsForcePerCubicFoot => As(SpecificWeightUnit.PoundForcePerCubicFoot);
         /// <summary>
         ///     Get SpecificWeight in PoundsForcePerCubicInch.
         /// </summary>
-        public double PoundsForcePerCubicInch
-        {
-            get { return _newtonsPerCubicMeter*3.68395821971116E-06; }
-        }
-
+        public double PoundsForcePerCubicInch => As(SpecificWeightUnit.PoundForcePerCubicInch);
         /// <summary>
         ///     Get SpecificWeight in TonnesForcePerCubicCentimeter.
         /// </summary>
-        public double TonnesForcePerCubicCentimeter
-        {
-            get { return _newtonsPerCubicMeter*1.01971619222242E-10; }
-        }
-
+        public double TonnesForcePerCubicCentimeter => As(SpecificWeightUnit.TonneForcePerCubicCentimeter);
         /// <summary>
         ///     Get SpecificWeight in TonnesForcePerCubicMeter.
         /// </summary>
-        public double TonnesForcePerCubicMeter
-        {
-            get { return _newtonsPerCubicMeter*0.000101971619222242; }
-        }
-
+        public double TonnesForcePerCubicMeter => As(SpecificWeightUnit.TonneForcePerCubicMeter);
         /// <summary>
         ///     Get SpecificWeight in TonnesForcePerCubicMillimeter.
         /// </summary>
-        public double TonnesForcePerCubicMillimeter
-        {
-            get { return _newtonsPerCubicMeter*1.01971619222242E-13; }
-        }
+        public double TonnesForcePerCubicMillimeter => As(SpecificWeightUnit.TonneForcePerCubicMillimeter);
 
         #endregion
 
         #region Static
 
-        public static SpecificWeight Zero
-        {
-            get { return new SpecificWeight(); }
-        }
+        public static SpecificWeight Zero => new SpecificWeight(0, BaseUnit);
 
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicCentimeter.
@@ -272,17 +239,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilogramsForcePerCubicCentimeter(double kilogramsforcepercubiccentimeter)
-        {
-            double value = (double) kilogramsforcepercubiccentimeter;
-            return new SpecificWeight(value*9806650.19960652);
-        }
 #else
         public static SpecificWeight FromKilogramsForcePerCubicCentimeter(QuantityValue kilogramsforcepercubiccentimeter)
+#endif
         {
             double value = (double) kilogramsforcepercubiccentimeter;
-            return new SpecificWeight((value*9806650.19960652));
+            return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicCentimeter);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicMeter.
@@ -290,17 +253,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilogramsForcePerCubicMeter(double kilogramsforcepercubicmeter)
-        {
-            double value = (double) kilogramsforcepercubicmeter;
-            return new SpecificWeight(value*9.80665019960652);
-        }
 #else
         public static SpecificWeight FromKilogramsForcePerCubicMeter(QuantityValue kilogramsforcepercubicmeter)
+#endif
         {
             double value = (double) kilogramsforcepercubicmeter;
-            return new SpecificWeight((value*9.80665019960652));
+            return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicMeter);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicMillimeter.
@@ -308,17 +267,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilogramsForcePerCubicMillimeter(double kilogramsforcepercubicmillimeter)
-        {
-            double value = (double) kilogramsforcepercubicmillimeter;
-            return new SpecificWeight(value*9806650199.60653);
-        }
 #else
         public static SpecificWeight FromKilogramsForcePerCubicMillimeter(QuantityValue kilogramsforcepercubicmillimeter)
+#endif
         {
             double value = (double) kilogramsforcepercubicmillimeter;
-            return new SpecificWeight((value*9806650199.60653));
+            return new SpecificWeight(value, SpecificWeightUnit.KilogramForcePerCubicMillimeter);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from KilonewtonsPerCubicCentimeter.
@@ -326,17 +281,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilonewtonsPerCubicCentimeter(double kilonewtonspercubiccentimeter)
-        {
-            double value = (double) kilonewtonspercubiccentimeter;
-            return new SpecificWeight((value*1000000) * 1e3d);
-        }
 #else
         public static SpecificWeight FromKilonewtonsPerCubicCentimeter(QuantityValue kilonewtonspercubiccentimeter)
+#endif
         {
             double value = (double) kilonewtonspercubiccentimeter;
-            return new SpecificWeight(((value*1000000) * 1e3d));
+            return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicCentimeter);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from KilonewtonsPerCubicMeter.
@@ -344,17 +295,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilonewtonsPerCubicMeter(double kilonewtonspercubicmeter)
-        {
-            double value = (double) kilonewtonspercubicmeter;
-            return new SpecificWeight((value) * 1e3d);
-        }
 #else
         public static SpecificWeight FromKilonewtonsPerCubicMeter(QuantityValue kilonewtonspercubicmeter)
+#endif
         {
             double value = (double) kilonewtonspercubicmeter;
-            return new SpecificWeight(((value) * 1e3d));
+            return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicMeter);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from KilonewtonsPerCubicMillimeter.
@@ -362,17 +309,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilonewtonsPerCubicMillimeter(double kilonewtonspercubicmillimeter)
-        {
-            double value = (double) kilonewtonspercubicmillimeter;
-            return new SpecificWeight((value*1000000000) * 1e3d);
-        }
 #else
         public static SpecificWeight FromKilonewtonsPerCubicMillimeter(QuantityValue kilonewtonspercubicmillimeter)
+#endif
         {
             double value = (double) kilonewtonspercubicmillimeter;
-            return new SpecificWeight(((value*1000000000) * 1e3d));
+            return new SpecificWeight(value, SpecificWeightUnit.KilonewtonPerCubicMillimeter);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from KilopoundsForcePerCubicFoot.
@@ -380,17 +323,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilopoundsForcePerCubicFoot(double kilopoundsforcepercubicfoot)
-        {
-            double value = (double) kilopoundsforcepercubicfoot;
-            return new SpecificWeight((value*157.087477433193) * 1e3d);
-        }
 #else
         public static SpecificWeight FromKilopoundsForcePerCubicFoot(QuantityValue kilopoundsforcepercubicfoot)
+#endif
         {
             double value = (double) kilopoundsforcepercubicfoot;
-            return new SpecificWeight(((value*157.087477433193) * 1e3d));
+            return new SpecificWeight(value, SpecificWeightUnit.KilopoundForcePerCubicFoot);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from KilopoundsForcePerCubicInch.
@@ -398,17 +337,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilopoundsForcePerCubicInch(double kilopoundsforcepercubicinch)
-        {
-            double value = (double) kilopoundsforcepercubicinch;
-            return new SpecificWeight((value*271447.161004558) * 1e3d);
-        }
 #else
         public static SpecificWeight FromKilopoundsForcePerCubicInch(QuantityValue kilopoundsforcepercubicinch)
+#endif
         {
             double value = (double) kilopoundsforcepercubicinch;
-            return new SpecificWeight(((value*271447.161004558) * 1e3d));
+            return new SpecificWeight(value, SpecificWeightUnit.KilopoundForcePerCubicInch);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from NewtonsPerCubicCentimeter.
@@ -416,17 +351,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromNewtonsPerCubicCentimeter(double newtonspercubiccentimeter)
-        {
-            double value = (double) newtonspercubiccentimeter;
-            return new SpecificWeight(value*1000000);
-        }
 #else
         public static SpecificWeight FromNewtonsPerCubicCentimeter(QuantityValue newtonspercubiccentimeter)
+#endif
         {
             double value = (double) newtonspercubiccentimeter;
-            return new SpecificWeight((value*1000000));
+            return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicCentimeter);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from NewtonsPerCubicMeter.
@@ -434,17 +365,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromNewtonsPerCubicMeter(double newtonspercubicmeter)
-        {
-            double value = (double) newtonspercubicmeter;
-            return new SpecificWeight(value);
-        }
 #else
         public static SpecificWeight FromNewtonsPerCubicMeter(QuantityValue newtonspercubicmeter)
+#endif
         {
             double value = (double) newtonspercubicmeter;
-            return new SpecificWeight((value));
+            return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicMeter);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from NewtonsPerCubicMillimeter.
@@ -452,17 +379,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromNewtonsPerCubicMillimeter(double newtonspercubicmillimeter)
-        {
-            double value = (double) newtonspercubicmillimeter;
-            return new SpecificWeight(value*1000000000);
-        }
 #else
         public static SpecificWeight FromNewtonsPerCubicMillimeter(QuantityValue newtonspercubicmillimeter)
+#endif
         {
             double value = (double) newtonspercubicmillimeter;
-            return new SpecificWeight((value*1000000000));
+            return new SpecificWeight(value, SpecificWeightUnit.NewtonPerCubicMillimeter);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from PoundsForcePerCubicFoot.
@@ -470,17 +393,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromPoundsForcePerCubicFoot(double poundsforcepercubicfoot)
-        {
-            double value = (double) poundsforcepercubicfoot;
-            return new SpecificWeight(value*157.087477433193);
-        }
 #else
         public static SpecificWeight FromPoundsForcePerCubicFoot(QuantityValue poundsforcepercubicfoot)
+#endif
         {
             double value = (double) poundsforcepercubicfoot;
-            return new SpecificWeight((value*157.087477433193));
+            return new SpecificWeight(value, SpecificWeightUnit.PoundForcePerCubicFoot);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from PoundsForcePerCubicInch.
@@ -488,17 +407,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromPoundsForcePerCubicInch(double poundsforcepercubicinch)
-        {
-            double value = (double) poundsforcepercubicinch;
-            return new SpecificWeight(value*271447.161004558);
-        }
 #else
         public static SpecificWeight FromPoundsForcePerCubicInch(QuantityValue poundsforcepercubicinch)
+#endif
         {
             double value = (double) poundsforcepercubicinch;
-            return new SpecificWeight((value*271447.161004558));
+            return new SpecificWeight(value, SpecificWeightUnit.PoundForcePerCubicInch);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from TonnesForcePerCubicCentimeter.
@@ -506,17 +421,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromTonnesForcePerCubicCentimeter(double tonnesforcepercubiccentimeter)
-        {
-            double value = (double) tonnesforcepercubiccentimeter;
-            return new SpecificWeight(value*9806650199.60653);
-        }
 #else
         public static SpecificWeight FromTonnesForcePerCubicCentimeter(QuantityValue tonnesforcepercubiccentimeter)
+#endif
         {
             double value = (double) tonnesforcepercubiccentimeter;
-            return new SpecificWeight((value*9806650199.60653));
+            return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicCentimeter);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from TonnesForcePerCubicMeter.
@@ -524,17 +435,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromTonnesForcePerCubicMeter(double tonnesforcepercubicmeter)
-        {
-            double value = (double) tonnesforcepercubicmeter;
-            return new SpecificWeight(value*9806.65019960653);
-        }
 #else
         public static SpecificWeight FromTonnesForcePerCubicMeter(QuantityValue tonnesforcepercubicmeter)
+#endif
         {
             double value = (double) tonnesforcepercubicmeter;
-            return new SpecificWeight((value*9806.65019960653));
+            return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicMeter);
         }
-#endif
 
         /// <summary>
         ///     Get SpecificWeight from TonnesForcePerCubicMillimeter.
@@ -542,17 +449,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromTonnesForcePerCubicMillimeter(double tonnesforcepercubicmillimeter)
-        {
-            double value = (double) tonnesforcepercubicmillimeter;
-            return new SpecificWeight(value*9806650199606.53);
-        }
 #else
         public static SpecificWeight FromTonnesForcePerCubicMillimeter(QuantityValue tonnesforcepercubicmillimeter)
+#endif
         {
             double value = (double) tonnesforcepercubicmillimeter;
-            return new SpecificWeight((value*9806650199606.53));
+            return new SpecificWeight(value, SpecificWeightUnit.TonneForcePerCubicMillimeter);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -812,44 +715,7 @@ namespace UnitsNet
         public static SpecificWeight From(QuantityValue value, SpecificWeightUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case SpecificWeightUnit.KilogramForcePerCubicCentimeter:
-                    return FromKilogramsForcePerCubicCentimeter(value);
-                case SpecificWeightUnit.KilogramForcePerCubicMeter:
-                    return FromKilogramsForcePerCubicMeter(value);
-                case SpecificWeightUnit.KilogramForcePerCubicMillimeter:
-                    return FromKilogramsForcePerCubicMillimeter(value);
-                case SpecificWeightUnit.KilonewtonPerCubicCentimeter:
-                    return FromKilonewtonsPerCubicCentimeter(value);
-                case SpecificWeightUnit.KilonewtonPerCubicMeter:
-                    return FromKilonewtonsPerCubicMeter(value);
-                case SpecificWeightUnit.KilonewtonPerCubicMillimeter:
-                    return FromKilonewtonsPerCubicMillimeter(value);
-                case SpecificWeightUnit.KilopoundForcePerCubicFoot:
-                    return FromKilopoundsForcePerCubicFoot(value);
-                case SpecificWeightUnit.KilopoundForcePerCubicInch:
-                    return FromKilopoundsForcePerCubicInch(value);
-                case SpecificWeightUnit.NewtonPerCubicCentimeter:
-                    return FromNewtonsPerCubicCentimeter(value);
-                case SpecificWeightUnit.NewtonPerCubicMeter:
-                    return FromNewtonsPerCubicMeter(value);
-                case SpecificWeightUnit.NewtonPerCubicMillimeter:
-                    return FromNewtonsPerCubicMillimeter(value);
-                case SpecificWeightUnit.PoundForcePerCubicFoot:
-                    return FromPoundsForcePerCubicFoot(value);
-                case SpecificWeightUnit.PoundForcePerCubicInch:
-                    return FromPoundsForcePerCubicInch(value);
-                case SpecificWeightUnit.TonneForcePerCubicCentimeter:
-                    return FromTonnesForcePerCubicCentimeter(value);
-                case SpecificWeightUnit.TonneForcePerCubicMeter:
-                    return FromTonnesForcePerCubicMeter(value);
-                case SpecificWeightUnit.TonneForcePerCubicMillimeter:
-                    return FromTonnesForcePerCubicMillimeter(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new SpecificWeight((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -866,44 +732,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case SpecificWeightUnit.KilogramForcePerCubicCentimeter:
-                    return FromKilogramsForcePerCubicCentimeter(value.Value);
-                case SpecificWeightUnit.KilogramForcePerCubicMeter:
-                    return FromKilogramsForcePerCubicMeter(value.Value);
-                case SpecificWeightUnit.KilogramForcePerCubicMillimeter:
-                    return FromKilogramsForcePerCubicMillimeter(value.Value);
-                case SpecificWeightUnit.KilonewtonPerCubicCentimeter:
-                    return FromKilonewtonsPerCubicCentimeter(value.Value);
-                case SpecificWeightUnit.KilonewtonPerCubicMeter:
-                    return FromKilonewtonsPerCubicMeter(value.Value);
-                case SpecificWeightUnit.KilonewtonPerCubicMillimeter:
-                    return FromKilonewtonsPerCubicMillimeter(value.Value);
-                case SpecificWeightUnit.KilopoundForcePerCubicFoot:
-                    return FromKilopoundsForcePerCubicFoot(value.Value);
-                case SpecificWeightUnit.KilopoundForcePerCubicInch:
-                    return FromKilopoundsForcePerCubicInch(value.Value);
-                case SpecificWeightUnit.NewtonPerCubicCentimeter:
-                    return FromNewtonsPerCubicCentimeter(value.Value);
-                case SpecificWeightUnit.NewtonPerCubicMeter:
-                    return FromNewtonsPerCubicMeter(value.Value);
-                case SpecificWeightUnit.NewtonPerCubicMillimeter:
-                    return FromNewtonsPerCubicMillimeter(value.Value);
-                case SpecificWeightUnit.PoundForcePerCubicFoot:
-                    return FromPoundsForcePerCubicFoot(value.Value);
-                case SpecificWeightUnit.PoundForcePerCubicInch:
-                    return FromPoundsForcePerCubicInch(value.Value);
-                case SpecificWeightUnit.TonneForcePerCubicCentimeter:
-                    return FromTonnesForcePerCubicCentimeter(value.Value);
-                case SpecificWeightUnit.TonneForcePerCubicMeter:
-                    return FromTonnesForcePerCubicMeter(value.Value);
-                case SpecificWeightUnit.TonneForcePerCubicMillimeter:
-                    return FromTonnesForcePerCubicMillimeter(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new SpecificWeight((double)value.Value, fromUnit);
         }
 #endif
 
@@ -922,12 +752,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(SpecificWeightUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          SpecificWeightUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -938,37 +785,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static SpecificWeight operator -(SpecificWeight right)
         {
-            return new SpecificWeight(-right._newtonsPerCubicMeter);
+            return new SpecificWeight(-right.Value, right.Unit);
         }
 
         public static SpecificWeight operator +(SpecificWeight left, SpecificWeight right)
         {
-            return new SpecificWeight(left._newtonsPerCubicMeter + right._newtonsPerCubicMeter);
+            return new SpecificWeight(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static SpecificWeight operator -(SpecificWeight left, SpecificWeight right)
         {
-            return new SpecificWeight(left._newtonsPerCubicMeter - right._newtonsPerCubicMeter);
+            return new SpecificWeight(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static SpecificWeight operator *(double left, SpecificWeight right)
         {
-            return new SpecificWeight(left*right._newtonsPerCubicMeter);
+            return new SpecificWeight(left * right.Value, right.Unit);
         }
 
         public static SpecificWeight operator *(SpecificWeight left, double right)
         {
-            return new SpecificWeight(left._newtonsPerCubicMeter*(double)right);
+            return new SpecificWeight(left.Value * right, left.Unit);
         }
 
         public static SpecificWeight operator /(SpecificWeight left, double right)
         {
-            return new SpecificWeight(left._newtonsPerCubicMeter/(double)right);
+            return new SpecificWeight(left.Value / right, left.Unit);
         }
 
         public static double operator /(SpecificWeight left, SpecificWeight right)
         {
-            return Convert.ToDouble(left._newtonsPerCubicMeter/right._newtonsPerCubicMeter);
+            return left.NewtonsPerCubicMeter / right.NewtonsPerCubicMeter;
         }
 #endif
 
@@ -991,43 +838,43 @@ namespace UnitsNet
 #endif
         int CompareTo(SpecificWeight other)
         {
-            return _newtonsPerCubicMeter.CompareTo(other._newtonsPerCubicMeter);
+            return AsBaseUnitNewtonsPerCubicMeter().CompareTo(other.AsBaseUnitNewtonsPerCubicMeter());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(SpecificWeight left, SpecificWeight right)
         {
-            return left._newtonsPerCubicMeter <= right._newtonsPerCubicMeter;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(SpecificWeight left, SpecificWeight right)
         {
-            return left._newtonsPerCubicMeter >= right._newtonsPerCubicMeter;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(SpecificWeight left, SpecificWeight right)
         {
-            return left._newtonsPerCubicMeter < right._newtonsPerCubicMeter;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(SpecificWeight left, SpecificWeight right)
         {
-            return left._newtonsPerCubicMeter > right._newtonsPerCubicMeter;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(SpecificWeight left, SpecificWeight right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._newtonsPerCubicMeter == right._newtonsPerCubicMeter;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(SpecificWeight left, SpecificWeight right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._newtonsPerCubicMeter != right._newtonsPerCubicMeter;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -1039,7 +886,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _newtonsPerCubicMeter.Equals(((SpecificWeight) obj)._newtonsPerCubicMeter);
+            return AsBaseUnitNewtonsPerCubicMeter().Equals(((SpecificWeight) obj).AsBaseUnitNewtonsPerCubicMeter());
         }
 
         /// <summary>
@@ -1052,12 +899,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(SpecificWeight other, SpecificWeight maxError)
         {
-            return Math.Abs(_newtonsPerCubicMeter - other._newtonsPerCubicMeter) <= maxError._newtonsPerCubicMeter;
+            return Math.Abs(AsBaseUnitNewtonsPerCubicMeter() - other.AsBaseUnitNewtonsPerCubicMeter()) <= maxError.AsBaseUnitNewtonsPerCubicMeter();
         }
 
         public override int GetHashCode()
         {
-            return _newtonsPerCubicMeter.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1067,44 +914,34 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(SpecificWeightUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitNewtonsPerCubicMeter();
+
             switch (unit)
             {
-                case SpecificWeightUnit.KilogramForcePerCubicCentimeter:
-                    return KilogramsForcePerCubicCentimeter;
-                case SpecificWeightUnit.KilogramForcePerCubicMeter:
-                    return KilogramsForcePerCubicMeter;
-                case SpecificWeightUnit.KilogramForcePerCubicMillimeter:
-                    return KilogramsForcePerCubicMillimeter;
-                case SpecificWeightUnit.KilonewtonPerCubicCentimeter:
-                    return KilonewtonsPerCubicCentimeter;
-                case SpecificWeightUnit.KilonewtonPerCubicMeter:
-                    return KilonewtonsPerCubicMeter;
-                case SpecificWeightUnit.KilonewtonPerCubicMillimeter:
-                    return KilonewtonsPerCubicMillimeter;
-                case SpecificWeightUnit.KilopoundForcePerCubicFoot:
-                    return KilopoundsForcePerCubicFoot;
-                case SpecificWeightUnit.KilopoundForcePerCubicInch:
-                    return KilopoundsForcePerCubicInch;
-                case SpecificWeightUnit.NewtonPerCubicCentimeter:
-                    return NewtonsPerCubicCentimeter;
-                case SpecificWeightUnit.NewtonPerCubicMeter:
-                    return NewtonsPerCubicMeter;
-                case SpecificWeightUnit.NewtonPerCubicMillimeter:
-                    return NewtonsPerCubicMillimeter;
-                case SpecificWeightUnit.PoundForcePerCubicFoot:
-                    return PoundsForcePerCubicFoot;
-                case SpecificWeightUnit.PoundForcePerCubicInch:
-                    return PoundsForcePerCubicInch;
-                case SpecificWeightUnit.TonneForcePerCubicCentimeter:
-                    return TonnesForcePerCubicCentimeter;
-                case SpecificWeightUnit.TonneForcePerCubicMeter:
-                    return TonnesForcePerCubicMeter;
-                case SpecificWeightUnit.TonneForcePerCubicMillimeter:
-                    return TonnesForcePerCubicMillimeter;
+                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return baseUnitValue*1.01971619222242E-07;
+                case SpecificWeightUnit.KilogramForcePerCubicMeter: return baseUnitValue*0.101971619222242;
+                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return baseUnitValue*1.01971619222242E-10;
+                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (baseUnitValue*0.000001) / 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMeter: return (baseUnitValue) / 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (baseUnitValue*0.000000001) / 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (baseUnitValue*0.00636587980366089) / 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (baseUnitValue*3.68395821971116E-06) / 1e3d;
+                case SpecificWeightUnit.NewtonPerCubicCentimeter: return baseUnitValue*0.000001;
+                case SpecificWeightUnit.NewtonPerCubicMeter: return baseUnitValue;
+                case SpecificWeightUnit.NewtonPerCubicMillimeter: return baseUnitValue*0.000000001;
+                case SpecificWeightUnit.PoundForcePerCubicFoot: return baseUnitValue*0.00636587980366089;
+                case SpecificWeightUnit.PoundForcePerCubicInch: return baseUnitValue*3.68395821971116E-06;
+                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return baseUnitValue*1.01971619222242E-10;
+                case SpecificWeightUnit.TonneForcePerCubicMeter: return baseUnitValue*0.000101971619222242;
+                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return baseUnitValue*1.01971619222242E-13;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -1146,7 +983,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -1165,17 +1006,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static SpecificWeight Parse(string str, [CanBeNull] Culture culture)
+        public static SpecificWeight Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<SpecificWeight, SpecificWeightUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<SpecificWeight, SpecificWeightUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -1201,16 +1049,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out SpecificWeight result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out SpecificWeight result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -1223,6 +1096,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1236,11 +1110,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static SpecificWeightUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -1249,6 +1126,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1261,18 +1140,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static SpecificWeightUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static SpecificWeightUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<SpecificWeightUnit>(str.Trim());
 
             if (unit == SpecificWeightUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized SpecificWeightUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -1281,6 +1160,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is NewtonPerCubicMeter
         /// </summary>
@@ -1292,7 +1172,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -1309,74 +1189,144 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(SpecificWeightUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          SpecificWeightUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(SpecificWeightUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            SpecificWeightUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(SpecificWeightUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            SpecificWeightUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of SpecificWeight
         /// </summary>
-        public static SpecificWeight MaxValue
-        {
-            get
-            {
-                return new SpecificWeight(double.MaxValue);
-            }
-        }
+        public static SpecificWeight MaxValue => new SpecificWeight(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SpecificWeight
         /// </summary>
-        public static SpecificWeight MinValue
+        public static SpecificWeight MinValue => new SpecificWeight(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitNewtonsPerCubicMeter()
         {
-            get
+			if (Unit == SpecificWeightUnit.NewtonPerCubicMeter) { return _value; }
+
+            switch (Unit)
             {
-                return new SpecificWeight(double.MinValue);
-            }
-        }
-    }
+                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return _value*9806650.19960652;
+                case SpecificWeightUnit.KilogramForcePerCubicMeter: return _value*9.80665019960652;
+                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return _value*9806650199.60653;
+                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (_value*1000000) * 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMeter: return (_value) * 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (_value*1000000000) * 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (_value*157.087477433193) * 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (_value*271447.161004558) * 1e3d;
+                case SpecificWeightUnit.NewtonPerCubicCentimeter: return _value*1000000;
+                case SpecificWeightUnit.NewtonPerCubicMeter: return _value;
+                case SpecificWeightUnit.NewtonPerCubicMillimeter: return _value*1000000000;
+                case SpecificWeightUnit.PoundForcePerCubicFoot: return _value*157.087477433193;
+                case SpecificWeightUnit.PoundForcePerCubicInch: return _value*271447.161004558;
+                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return _value*9806650199.60653;
+                case SpecificWeightUnit.TonneForcePerCubicMeter: return _value*9806.65019960653;
+                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return _value*9806650199606.53;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(SpecificWeightUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

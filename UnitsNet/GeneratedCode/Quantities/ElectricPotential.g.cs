@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of ElectricPotential.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _volts;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly ElectricPotentialUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public ElectricPotentialUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public ElectricPotential() : this(0)
+        public ElectricPotential()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public ElectricPotential(double volts)
         {
-            _volts = Convert.ToDouble(volts);
+            _value = Convert.ToDouble(volts);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          ElectricPotential(double numericValue, ElectricPotentialUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Volt.
+        /// </summary>
+        /// <param name="volts">Value assuming base unit Volt.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ElectricPotential(long volts)
-        {
-            _volts = Convert.ToDouble(volts);
-        }
+        ElectricPotential(long volts) : this(Convert.ToDouble(volts), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Volt.
+        /// </summary>
+        /// <param name="volts">Value assuming base unit Volt.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ElectricPotential(decimal volts)
-        {
-            _volts = Convert.ToDouble(volts);
-        }
+        ElectricPotential(decimal volts) : this(Convert.ToDouble(volts), BaseUnit) { }
 
         #region Properties
 
@@ -119,64 +156,38 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static ElectricPotentialUnit BaseUnit
-        {
-            get { return ElectricPotentialUnit.Volt; }
-        }
+        public static ElectricPotentialUnit BaseUnit => ElectricPotentialUnit.Volt;
 
         /// <summary>
         ///     All units of measurement for the ElectricPotential quantity.
         /// </summary>
         public static ElectricPotentialUnit[] Units { get; } = Enum.GetValues(typeof(ElectricPotentialUnit)).Cast<ElectricPotentialUnit>().ToArray();
-
         /// <summary>
         ///     Get ElectricPotential in Kilovolts.
         /// </summary>
-        public double Kilovolts
-        {
-            get { return (_volts) / 1e3d; }
-        }
-
+        public double Kilovolts => As(ElectricPotentialUnit.Kilovolt);
         /// <summary>
         ///     Get ElectricPotential in Megavolts.
         /// </summary>
-        public double Megavolts
-        {
-            get { return (_volts) / 1e6d; }
-        }
-
+        public double Megavolts => As(ElectricPotentialUnit.Megavolt);
         /// <summary>
         ///     Get ElectricPotential in Microvolts.
         /// </summary>
-        public double Microvolts
-        {
-            get { return (_volts) / 1e-6d; }
-        }
-
+        public double Microvolts => As(ElectricPotentialUnit.Microvolt);
         /// <summary>
         ///     Get ElectricPotential in Millivolts.
         /// </summary>
-        public double Millivolts
-        {
-            get { return (_volts) / 1e-3d; }
-        }
-
+        public double Millivolts => As(ElectricPotentialUnit.Millivolt);
         /// <summary>
         ///     Get ElectricPotential in Volts.
         /// </summary>
-        public double Volts
-        {
-            get { return _volts; }
-        }
+        public double Volts => As(ElectricPotentialUnit.Volt);
 
         #endregion
 
         #region Static
 
-        public static ElectricPotential Zero
-        {
-            get { return new ElectricPotential(); }
-        }
+        public static ElectricPotential Zero => new ElectricPotential(0, BaseUnit);
 
         /// <summary>
         ///     Get ElectricPotential from Kilovolts.
@@ -184,17 +195,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricPotential FromKilovolts(double kilovolts)
-        {
-            double value = (double) kilovolts;
-            return new ElectricPotential((value) * 1e3d);
-        }
 #else
         public static ElectricPotential FromKilovolts(QuantityValue kilovolts)
+#endif
         {
             double value = (double) kilovolts;
-            return new ElectricPotential(((value) * 1e3d));
+            return new ElectricPotential(value, ElectricPotentialUnit.Kilovolt);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricPotential from Megavolts.
@@ -202,17 +209,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricPotential FromMegavolts(double megavolts)
-        {
-            double value = (double) megavolts;
-            return new ElectricPotential((value) * 1e6d);
-        }
 #else
         public static ElectricPotential FromMegavolts(QuantityValue megavolts)
+#endif
         {
             double value = (double) megavolts;
-            return new ElectricPotential(((value) * 1e6d));
+            return new ElectricPotential(value, ElectricPotentialUnit.Megavolt);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricPotential from Microvolts.
@@ -220,17 +223,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricPotential FromMicrovolts(double microvolts)
-        {
-            double value = (double) microvolts;
-            return new ElectricPotential((value) * 1e-6d);
-        }
 #else
         public static ElectricPotential FromMicrovolts(QuantityValue microvolts)
+#endif
         {
             double value = (double) microvolts;
-            return new ElectricPotential(((value) * 1e-6d));
+            return new ElectricPotential(value, ElectricPotentialUnit.Microvolt);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricPotential from Millivolts.
@@ -238,17 +237,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricPotential FromMillivolts(double millivolts)
-        {
-            double value = (double) millivolts;
-            return new ElectricPotential((value) * 1e-3d);
-        }
 #else
         public static ElectricPotential FromMillivolts(QuantityValue millivolts)
+#endif
         {
             double value = (double) millivolts;
-            return new ElectricPotential(((value) * 1e-3d));
+            return new ElectricPotential(value, ElectricPotentialUnit.Millivolt);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricPotential from Volts.
@@ -256,17 +251,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricPotential FromVolts(double volts)
-        {
-            double value = (double) volts;
-            return new ElectricPotential(value);
-        }
 #else
         public static ElectricPotential FromVolts(QuantityValue volts)
+#endif
         {
             double value = (double) volts;
-            return new ElectricPotential((value));
+            return new ElectricPotential(value, ElectricPotentialUnit.Volt);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -361,22 +352,7 @@ namespace UnitsNet
         public static ElectricPotential From(QuantityValue value, ElectricPotentialUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case ElectricPotentialUnit.Kilovolt:
-                    return FromKilovolts(value);
-                case ElectricPotentialUnit.Megavolt:
-                    return FromMegavolts(value);
-                case ElectricPotentialUnit.Microvolt:
-                    return FromMicrovolts(value);
-                case ElectricPotentialUnit.Millivolt:
-                    return FromMillivolts(value);
-                case ElectricPotentialUnit.Volt:
-                    return FromVolts(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ElectricPotential((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -393,22 +369,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case ElectricPotentialUnit.Kilovolt:
-                    return FromKilovolts(value.Value);
-                case ElectricPotentialUnit.Megavolt:
-                    return FromMegavolts(value.Value);
-                case ElectricPotentialUnit.Microvolt:
-                    return FromMicrovolts(value.Value);
-                case ElectricPotentialUnit.Millivolt:
-                    return FromMillivolts(value.Value);
-                case ElectricPotentialUnit.Volt:
-                    return FromVolts(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ElectricPotential((double)value.Value, fromUnit);
         }
 #endif
 
@@ -427,12 +389,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ElectricPotentialUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          ElectricPotentialUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -443,37 +422,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ElectricPotential operator -(ElectricPotential right)
         {
-            return new ElectricPotential(-right._volts);
+            return new ElectricPotential(-right.Value, right.Unit);
         }
 
         public static ElectricPotential operator +(ElectricPotential left, ElectricPotential right)
         {
-            return new ElectricPotential(left._volts + right._volts);
+            return new ElectricPotential(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ElectricPotential operator -(ElectricPotential left, ElectricPotential right)
         {
-            return new ElectricPotential(left._volts - right._volts);
+            return new ElectricPotential(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ElectricPotential operator *(double left, ElectricPotential right)
         {
-            return new ElectricPotential(left*right._volts);
+            return new ElectricPotential(left * right.Value, right.Unit);
         }
 
         public static ElectricPotential operator *(ElectricPotential left, double right)
         {
-            return new ElectricPotential(left._volts*(double)right);
+            return new ElectricPotential(left.Value * right, left.Unit);
         }
 
         public static ElectricPotential operator /(ElectricPotential left, double right)
         {
-            return new ElectricPotential(left._volts/(double)right);
+            return new ElectricPotential(left.Value / right, left.Unit);
         }
 
         public static double operator /(ElectricPotential left, ElectricPotential right)
         {
-            return Convert.ToDouble(left._volts/right._volts);
+            return left.Volts / right.Volts;
         }
 #endif
 
@@ -496,43 +475,43 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricPotential other)
         {
-            return _volts.CompareTo(other._volts);
+            return AsBaseUnitVolts().CompareTo(other.AsBaseUnitVolts());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(ElectricPotential left, ElectricPotential right)
         {
-            return left._volts <= right._volts;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(ElectricPotential left, ElectricPotential right)
         {
-            return left._volts >= right._volts;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(ElectricPotential left, ElectricPotential right)
         {
-            return left._volts < right._volts;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(ElectricPotential left, ElectricPotential right)
         {
-            return left._volts > right._volts;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(ElectricPotential left, ElectricPotential right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._volts == right._volts;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(ElectricPotential left, ElectricPotential right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._volts != right._volts;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -544,7 +523,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _volts.Equals(((ElectricPotential) obj)._volts);
+            return AsBaseUnitVolts().Equals(((ElectricPotential) obj).AsBaseUnitVolts());
         }
 
         /// <summary>
@@ -557,12 +536,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ElectricPotential other, ElectricPotential maxError)
         {
-            return Math.Abs(_volts - other._volts) <= maxError._volts;
+            return Math.Abs(AsBaseUnitVolts() - other.AsBaseUnitVolts()) <= maxError.AsBaseUnitVolts();
         }
 
         public override int GetHashCode()
         {
-            return _volts.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -572,22 +551,23 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricPotentialUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitVolts();
+
             switch (unit)
             {
-                case ElectricPotentialUnit.Kilovolt:
-                    return Kilovolts;
-                case ElectricPotentialUnit.Megavolt:
-                    return Megavolts;
-                case ElectricPotentialUnit.Microvolt:
-                    return Microvolts;
-                case ElectricPotentialUnit.Millivolt:
-                    return Millivolts;
-                case ElectricPotentialUnit.Volt:
-                    return Volts;
+                case ElectricPotentialUnit.Kilovolt: return (baseUnitValue) / 1e3d;
+                case ElectricPotentialUnit.Megavolt: return (baseUnitValue) / 1e6d;
+                case ElectricPotentialUnit.Microvolt: return (baseUnitValue) / 1e-6d;
+                case ElectricPotentialUnit.Millivolt: return (baseUnitValue) / 1e-3d;
+                case ElectricPotentialUnit.Volt: return baseUnitValue;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -629,7 +609,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -648,17 +632,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricPotential Parse(string str, [CanBeNull] Culture culture)
+        public static ElectricPotential Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<ElectricPotential, ElectricPotentialUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<ElectricPotential, ElectricPotentialUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -684,16 +675,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ElectricPotential result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out ElectricPotential result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -706,6 +722,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -719,11 +736,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static ElectricPotentialUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -732,6 +752,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -744,18 +766,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static ElectricPotentialUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ElectricPotentialUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<ElectricPotentialUnit>(str.Trim());
 
             if (unit == ElectricPotentialUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ElectricPotentialUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -764,6 +786,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Volt
         /// </summary>
@@ -775,7 +798,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -792,74 +815,133 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(ElectricPotentialUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          ElectricPotentialUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricPotentialUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            ElectricPotentialUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricPotentialUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            ElectricPotentialUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of ElectricPotential
         /// </summary>
-        public static ElectricPotential MaxValue
-        {
-            get
-            {
-                return new ElectricPotential(double.MaxValue);
-            }
-        }
+        public static ElectricPotential MaxValue => new ElectricPotential(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricPotential
         /// </summary>
-        public static ElectricPotential MinValue
+        public static ElectricPotential MinValue => new ElectricPotential(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitVolts()
         {
-            get
+			if (Unit == ElectricPotentialUnit.Volt) { return _value; }
+
+            switch (Unit)
             {
-                return new ElectricPotential(double.MinValue);
-            }
-        }
-    }
+                case ElectricPotentialUnit.Kilovolt: return (_value) * 1e3d;
+                case ElectricPotentialUnit.Megavolt: return (_value) * 1e6d;
+                case ElectricPotentialUnit.Microvolt: return (_value) * 1e-6d;
+                case ElectricPotentialUnit.Millivolt: return (_value) * 1e-3d;
+                case ElectricPotentialUnit.Volt: return _value;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(ElectricPotentialUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of Energy.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _joules;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly EnergyUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public EnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public Energy() : this(0)
+        public Energy()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Energy(double joules)
         {
-            _joules = Convert.ToDouble(joules);
+            _value = Convert.ToDouble(joules);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          Energy(double numericValue, EnergyUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Joule.
+        /// </summary>
+        /// <param name="joules">Value assuming base unit Joule.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Energy(long joules)
-        {
-            _joules = Convert.ToDouble(joules);
-        }
+        Energy(long joules) : this(Convert.ToDouble(joules), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Joule.
+        /// </summary>
+        /// <param name="joules">Value assuming base unit Joule.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Energy(decimal joules)
-        {
-            _joules = Convert.ToDouble(joules);
-        }
+        Energy(decimal joules) : this(Convert.ToDouble(joules), BaseUnit) { }
 
         #region Properties
 
@@ -119,200 +156,106 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static EnergyUnit BaseUnit
-        {
-            get { return EnergyUnit.Joule; }
-        }
+        public static EnergyUnit BaseUnit => EnergyUnit.Joule;
 
         /// <summary>
         ///     All units of measurement for the Energy quantity.
         /// </summary>
         public static EnergyUnit[] Units { get; } = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>().ToArray();
-
         /// <summary>
         ///     Get Energy in BritishThermalUnits.
         /// </summary>
-        public double BritishThermalUnits
-        {
-            get { return _joules/1055.05585262; }
-        }
-
+        public double BritishThermalUnits => As(EnergyUnit.BritishThermalUnit);
         /// <summary>
         ///     Get Energy in Calories.
         /// </summary>
-        public double Calories
-        {
-            get { return _joules/4.184; }
-        }
-
+        public double Calories => As(EnergyUnit.Calorie);
         /// <summary>
         ///     Get Energy in DecathermsEc.
         /// </summary>
-        public double DecathermsEc
-        {
-            get { return (_joules/105505585.262) / 1e1d; }
-        }
-
+        public double DecathermsEc => As(EnergyUnit.DecathermEc);
         /// <summary>
         ///     Get Energy in DecathermsImperial.
         /// </summary>
-        public double DecathermsImperial
-        {
-            get { return (_joules/1.05505585257348e+14) / 1e1d; }
-        }
-
+        public double DecathermsImperial => As(EnergyUnit.DecathermImperial);
         /// <summary>
         ///     Get Energy in DecathermsUs.
         /// </summary>
-        public double DecathermsUs
-        {
-            get { return (_joules/1.054804e+8) / 1e1d; }
-        }
-
+        public double DecathermsUs => As(EnergyUnit.DecathermUs);
         /// <summary>
         ///     Get Energy in ElectronVolts.
         /// </summary>
-        public double ElectronVolts
-        {
-            get { return _joules/1.602176565e-19; }
-        }
-
+        public double ElectronVolts => As(EnergyUnit.ElectronVolt);
         /// <summary>
         ///     Get Energy in Ergs.
         /// </summary>
-        public double Ergs
-        {
-            get { return _joules/1e-7; }
-        }
-
+        public double Ergs => As(EnergyUnit.Erg);
         /// <summary>
         ///     Get Energy in FootPounds.
         /// </summary>
-        public double FootPounds
-        {
-            get { return _joules/1.355817948; }
-        }
-
+        public double FootPounds => As(EnergyUnit.FootPound);
         /// <summary>
         ///     Get Energy in GigabritishThermalUnits.
         /// </summary>
-        public double GigabritishThermalUnits
-        {
-            get { return (_joules/1055.05585262) / 1e9d; }
-        }
-
+        public double GigabritishThermalUnits => As(EnergyUnit.GigabritishThermalUnit);
         /// <summary>
         ///     Get Energy in GigawattHours.
         /// </summary>
-        public double GigawattHours
-        {
-            get { return (_joules/3600d) / 1e9d; }
-        }
-
+        public double GigawattHours => As(EnergyUnit.GigawattHour);
         /// <summary>
         ///     Get Energy in Joules.
         /// </summary>
-        public double Joules
-        {
-            get { return _joules; }
-        }
-
+        public double Joules => As(EnergyUnit.Joule);
         /// <summary>
         ///     Get Energy in KilobritishThermalUnits.
         /// </summary>
-        public double KilobritishThermalUnits
-        {
-            get { return (_joules/1055.05585262) / 1e3d; }
-        }
-
+        public double KilobritishThermalUnits => As(EnergyUnit.KilobritishThermalUnit);
         /// <summary>
         ///     Get Energy in Kilocalories.
         /// </summary>
-        public double Kilocalories
-        {
-            get { return (_joules/4.184) / 1e3d; }
-        }
-
+        public double Kilocalories => As(EnergyUnit.Kilocalorie);
         /// <summary>
         ///     Get Energy in Kilojoules.
         /// </summary>
-        public double Kilojoules
-        {
-            get { return (_joules) / 1e3d; }
-        }
-
+        public double Kilojoules => As(EnergyUnit.Kilojoule);
         /// <summary>
         ///     Get Energy in KilowattHours.
         /// </summary>
-        public double KilowattHours
-        {
-            get { return (_joules/3600d) / 1e3d; }
-        }
-
+        public double KilowattHours => As(EnergyUnit.KilowattHour);
         /// <summary>
         ///     Get Energy in MegabritishThermalUnits.
         /// </summary>
-        public double MegabritishThermalUnits
-        {
-            get { return (_joules/1055.05585262) / 1e6d; }
-        }
-
+        public double MegabritishThermalUnits => As(EnergyUnit.MegabritishThermalUnit);
         /// <summary>
         ///     Get Energy in Megajoules.
         /// </summary>
-        public double Megajoules
-        {
-            get { return (_joules) / 1e6d; }
-        }
-
+        public double Megajoules => As(EnergyUnit.Megajoule);
         /// <summary>
         ///     Get Energy in MegawattHours.
         /// </summary>
-        public double MegawattHours
-        {
-            get { return (_joules/3600d) / 1e6d; }
-        }
-
+        public double MegawattHours => As(EnergyUnit.MegawattHour);
         /// <summary>
         ///     Get Energy in ThermsEc.
         /// </summary>
-        public double ThermsEc
-        {
-            get { return _joules/105505585.262; }
-        }
-
+        public double ThermsEc => As(EnergyUnit.ThermEc);
         /// <summary>
         ///     Get Energy in ThermsImperial.
         /// </summary>
-        public double ThermsImperial
-        {
-            get { return _joules/1.05505585257348e+14; }
-        }
-
+        public double ThermsImperial => As(EnergyUnit.ThermImperial);
         /// <summary>
         ///     Get Energy in ThermsUs.
         /// </summary>
-        public double ThermsUs
-        {
-            get { return _joules/1.054804e+8; }
-        }
-
+        public double ThermsUs => As(EnergyUnit.ThermUs);
         /// <summary>
         ///     Get Energy in WattHours.
         /// </summary>
-        public double WattHours
-        {
-            get { return _joules/3600d; }
-        }
+        public double WattHours => As(EnergyUnit.WattHour);
 
         #endregion
 
         #region Static
 
-        public static Energy Zero
-        {
-            get { return new Energy(); }
-        }
+        public static Energy Zero => new Energy(0, BaseUnit);
 
         /// <summary>
         ///     Get Energy from BritishThermalUnits.
@@ -320,17 +263,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromBritishThermalUnits(double britishthermalunits)
-        {
-            double value = (double) britishthermalunits;
-            return new Energy(value*1055.05585262);
-        }
 #else
         public static Energy FromBritishThermalUnits(QuantityValue britishthermalunits)
+#endif
         {
             double value = (double) britishthermalunits;
-            return new Energy((value*1055.05585262));
+            return new Energy(value, EnergyUnit.BritishThermalUnit);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from Calories.
@@ -338,17 +277,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromCalories(double calories)
-        {
-            double value = (double) calories;
-            return new Energy(value*4.184);
-        }
 #else
         public static Energy FromCalories(QuantityValue calories)
+#endif
         {
             double value = (double) calories;
-            return new Energy((value*4.184));
+            return new Energy(value, EnergyUnit.Calorie);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from DecathermsEc.
@@ -356,17 +291,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromDecathermsEc(double decathermsec)
-        {
-            double value = (double) decathermsec;
-            return new Energy((value*105505585.262) * 1e1d);
-        }
 #else
         public static Energy FromDecathermsEc(QuantityValue decathermsec)
+#endif
         {
             double value = (double) decathermsec;
-            return new Energy(((value*105505585.262) * 1e1d));
+            return new Energy(value, EnergyUnit.DecathermEc);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from DecathermsImperial.
@@ -374,17 +305,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromDecathermsImperial(double decathermsimperial)
-        {
-            double value = (double) decathermsimperial;
-            return new Energy((value*1.05505585257348e+14) * 1e1d);
-        }
 #else
         public static Energy FromDecathermsImperial(QuantityValue decathermsimperial)
+#endif
         {
             double value = (double) decathermsimperial;
-            return new Energy(((value*1.05505585257348e+14) * 1e1d));
+            return new Energy(value, EnergyUnit.DecathermImperial);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from DecathermsUs.
@@ -392,17 +319,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromDecathermsUs(double decathermsus)
-        {
-            double value = (double) decathermsus;
-            return new Energy((value*1.054804e+8) * 1e1d);
-        }
 #else
         public static Energy FromDecathermsUs(QuantityValue decathermsus)
+#endif
         {
             double value = (double) decathermsus;
-            return new Energy(((value*1.054804e+8) * 1e1d));
+            return new Energy(value, EnergyUnit.DecathermUs);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from ElectronVolts.
@@ -410,17 +333,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromElectronVolts(double electronvolts)
-        {
-            double value = (double) electronvolts;
-            return new Energy(value*1.602176565e-19);
-        }
 #else
         public static Energy FromElectronVolts(QuantityValue electronvolts)
+#endif
         {
             double value = (double) electronvolts;
-            return new Energy((value*1.602176565e-19));
+            return new Energy(value, EnergyUnit.ElectronVolt);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from Ergs.
@@ -428,17 +347,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromErgs(double ergs)
-        {
-            double value = (double) ergs;
-            return new Energy(value*1e-7);
-        }
 #else
         public static Energy FromErgs(QuantityValue ergs)
+#endif
         {
             double value = (double) ergs;
-            return new Energy((value*1e-7));
+            return new Energy(value, EnergyUnit.Erg);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from FootPounds.
@@ -446,17 +361,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromFootPounds(double footpounds)
-        {
-            double value = (double) footpounds;
-            return new Energy(value*1.355817948);
-        }
 #else
         public static Energy FromFootPounds(QuantityValue footpounds)
+#endif
         {
             double value = (double) footpounds;
-            return new Energy((value*1.355817948));
+            return new Energy(value, EnergyUnit.FootPound);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from GigabritishThermalUnits.
@@ -464,17 +375,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromGigabritishThermalUnits(double gigabritishthermalunits)
-        {
-            double value = (double) gigabritishthermalunits;
-            return new Energy((value*1055.05585262) * 1e9d);
-        }
 #else
         public static Energy FromGigabritishThermalUnits(QuantityValue gigabritishthermalunits)
+#endif
         {
             double value = (double) gigabritishthermalunits;
-            return new Energy(((value*1055.05585262) * 1e9d));
+            return new Energy(value, EnergyUnit.GigabritishThermalUnit);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from GigawattHours.
@@ -482,17 +389,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromGigawattHours(double gigawatthours)
-        {
-            double value = (double) gigawatthours;
-            return new Energy((value*3600d) * 1e9d);
-        }
 #else
         public static Energy FromGigawattHours(QuantityValue gigawatthours)
+#endif
         {
             double value = (double) gigawatthours;
-            return new Energy(((value*3600d) * 1e9d));
+            return new Energy(value, EnergyUnit.GigawattHour);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from Joules.
@@ -500,17 +403,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromJoules(double joules)
-        {
-            double value = (double) joules;
-            return new Energy(value);
-        }
 #else
         public static Energy FromJoules(QuantityValue joules)
+#endif
         {
             double value = (double) joules;
-            return new Energy((value));
+            return new Energy(value, EnergyUnit.Joule);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from KilobritishThermalUnits.
@@ -518,17 +417,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromKilobritishThermalUnits(double kilobritishthermalunits)
-        {
-            double value = (double) kilobritishthermalunits;
-            return new Energy((value*1055.05585262) * 1e3d);
-        }
 #else
         public static Energy FromKilobritishThermalUnits(QuantityValue kilobritishthermalunits)
+#endif
         {
             double value = (double) kilobritishthermalunits;
-            return new Energy(((value*1055.05585262) * 1e3d));
+            return new Energy(value, EnergyUnit.KilobritishThermalUnit);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from Kilocalories.
@@ -536,17 +431,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromKilocalories(double kilocalories)
-        {
-            double value = (double) kilocalories;
-            return new Energy((value*4.184) * 1e3d);
-        }
 #else
         public static Energy FromKilocalories(QuantityValue kilocalories)
+#endif
         {
             double value = (double) kilocalories;
-            return new Energy(((value*4.184) * 1e3d));
+            return new Energy(value, EnergyUnit.Kilocalorie);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from Kilojoules.
@@ -554,17 +445,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromKilojoules(double kilojoules)
-        {
-            double value = (double) kilojoules;
-            return new Energy((value) * 1e3d);
-        }
 #else
         public static Energy FromKilojoules(QuantityValue kilojoules)
+#endif
         {
             double value = (double) kilojoules;
-            return new Energy(((value) * 1e3d));
+            return new Energy(value, EnergyUnit.Kilojoule);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from KilowattHours.
@@ -572,17 +459,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromKilowattHours(double kilowatthours)
-        {
-            double value = (double) kilowatthours;
-            return new Energy((value*3600d) * 1e3d);
-        }
 #else
         public static Energy FromKilowattHours(QuantityValue kilowatthours)
+#endif
         {
             double value = (double) kilowatthours;
-            return new Energy(((value*3600d) * 1e3d));
+            return new Energy(value, EnergyUnit.KilowattHour);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from MegabritishThermalUnits.
@@ -590,17 +473,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromMegabritishThermalUnits(double megabritishthermalunits)
-        {
-            double value = (double) megabritishthermalunits;
-            return new Energy((value*1055.05585262) * 1e6d);
-        }
 #else
         public static Energy FromMegabritishThermalUnits(QuantityValue megabritishthermalunits)
+#endif
         {
             double value = (double) megabritishthermalunits;
-            return new Energy(((value*1055.05585262) * 1e6d));
+            return new Energy(value, EnergyUnit.MegabritishThermalUnit);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from Megajoules.
@@ -608,17 +487,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromMegajoules(double megajoules)
-        {
-            double value = (double) megajoules;
-            return new Energy((value) * 1e6d);
-        }
 #else
         public static Energy FromMegajoules(QuantityValue megajoules)
+#endif
         {
             double value = (double) megajoules;
-            return new Energy(((value) * 1e6d));
+            return new Energy(value, EnergyUnit.Megajoule);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from MegawattHours.
@@ -626,17 +501,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromMegawattHours(double megawatthours)
-        {
-            double value = (double) megawatthours;
-            return new Energy((value*3600d) * 1e6d);
-        }
 #else
         public static Energy FromMegawattHours(QuantityValue megawatthours)
+#endif
         {
             double value = (double) megawatthours;
-            return new Energy(((value*3600d) * 1e6d));
+            return new Energy(value, EnergyUnit.MegawattHour);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from ThermsEc.
@@ -644,17 +515,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromThermsEc(double thermsec)
-        {
-            double value = (double) thermsec;
-            return new Energy(value*105505585.262);
-        }
 #else
         public static Energy FromThermsEc(QuantityValue thermsec)
+#endif
         {
             double value = (double) thermsec;
-            return new Energy((value*105505585.262));
+            return new Energy(value, EnergyUnit.ThermEc);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from ThermsImperial.
@@ -662,17 +529,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromThermsImperial(double thermsimperial)
-        {
-            double value = (double) thermsimperial;
-            return new Energy(value*1.05505585257348e+14);
-        }
 #else
         public static Energy FromThermsImperial(QuantityValue thermsimperial)
+#endif
         {
             double value = (double) thermsimperial;
-            return new Energy((value*1.05505585257348e+14));
+            return new Energy(value, EnergyUnit.ThermImperial);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from ThermsUs.
@@ -680,17 +543,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromThermsUs(double thermsus)
-        {
-            double value = (double) thermsus;
-            return new Energy(value*1.054804e+8);
-        }
 #else
         public static Energy FromThermsUs(QuantityValue thermsus)
+#endif
         {
             double value = (double) thermsus;
-            return new Energy((value*1.054804e+8));
+            return new Energy(value, EnergyUnit.ThermUs);
         }
-#endif
 
         /// <summary>
         ///     Get Energy from WattHours.
@@ -698,17 +557,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromWattHours(double watthours)
-        {
-            double value = (double) watthours;
-            return new Energy(value*3600d);
-        }
 #else
         public static Energy FromWattHours(QuantityValue watthours)
+#endif
         {
             double value = (double) watthours;
-            return new Energy((value*3600d));
+            return new Energy(value, EnergyUnit.WattHour);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -1058,56 +913,7 @@ namespace UnitsNet
         public static Energy From(QuantityValue value, EnergyUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case EnergyUnit.BritishThermalUnit:
-                    return FromBritishThermalUnits(value);
-                case EnergyUnit.Calorie:
-                    return FromCalories(value);
-                case EnergyUnit.DecathermEc:
-                    return FromDecathermsEc(value);
-                case EnergyUnit.DecathermImperial:
-                    return FromDecathermsImperial(value);
-                case EnergyUnit.DecathermUs:
-                    return FromDecathermsUs(value);
-                case EnergyUnit.ElectronVolt:
-                    return FromElectronVolts(value);
-                case EnergyUnit.Erg:
-                    return FromErgs(value);
-                case EnergyUnit.FootPound:
-                    return FromFootPounds(value);
-                case EnergyUnit.GigabritishThermalUnit:
-                    return FromGigabritishThermalUnits(value);
-                case EnergyUnit.GigawattHour:
-                    return FromGigawattHours(value);
-                case EnergyUnit.Joule:
-                    return FromJoules(value);
-                case EnergyUnit.KilobritishThermalUnit:
-                    return FromKilobritishThermalUnits(value);
-                case EnergyUnit.Kilocalorie:
-                    return FromKilocalories(value);
-                case EnergyUnit.Kilojoule:
-                    return FromKilojoules(value);
-                case EnergyUnit.KilowattHour:
-                    return FromKilowattHours(value);
-                case EnergyUnit.MegabritishThermalUnit:
-                    return FromMegabritishThermalUnits(value);
-                case EnergyUnit.Megajoule:
-                    return FromMegajoules(value);
-                case EnergyUnit.MegawattHour:
-                    return FromMegawattHours(value);
-                case EnergyUnit.ThermEc:
-                    return FromThermsEc(value);
-                case EnergyUnit.ThermImperial:
-                    return FromThermsImperial(value);
-                case EnergyUnit.ThermUs:
-                    return FromThermsUs(value);
-                case EnergyUnit.WattHour:
-                    return FromWattHours(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Energy((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -1124,56 +930,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case EnergyUnit.BritishThermalUnit:
-                    return FromBritishThermalUnits(value.Value);
-                case EnergyUnit.Calorie:
-                    return FromCalories(value.Value);
-                case EnergyUnit.DecathermEc:
-                    return FromDecathermsEc(value.Value);
-                case EnergyUnit.DecathermImperial:
-                    return FromDecathermsImperial(value.Value);
-                case EnergyUnit.DecathermUs:
-                    return FromDecathermsUs(value.Value);
-                case EnergyUnit.ElectronVolt:
-                    return FromElectronVolts(value.Value);
-                case EnergyUnit.Erg:
-                    return FromErgs(value.Value);
-                case EnergyUnit.FootPound:
-                    return FromFootPounds(value.Value);
-                case EnergyUnit.GigabritishThermalUnit:
-                    return FromGigabritishThermalUnits(value.Value);
-                case EnergyUnit.GigawattHour:
-                    return FromGigawattHours(value.Value);
-                case EnergyUnit.Joule:
-                    return FromJoules(value.Value);
-                case EnergyUnit.KilobritishThermalUnit:
-                    return FromKilobritishThermalUnits(value.Value);
-                case EnergyUnit.Kilocalorie:
-                    return FromKilocalories(value.Value);
-                case EnergyUnit.Kilojoule:
-                    return FromKilojoules(value.Value);
-                case EnergyUnit.KilowattHour:
-                    return FromKilowattHours(value.Value);
-                case EnergyUnit.MegabritishThermalUnit:
-                    return FromMegabritishThermalUnits(value.Value);
-                case EnergyUnit.Megajoule:
-                    return FromMegajoules(value.Value);
-                case EnergyUnit.MegawattHour:
-                    return FromMegawattHours(value.Value);
-                case EnergyUnit.ThermEc:
-                    return FromThermsEc(value.Value);
-                case EnergyUnit.ThermImperial:
-                    return FromThermsImperial(value.Value);
-                case EnergyUnit.ThermUs:
-                    return FromThermsUs(value.Value);
-                case EnergyUnit.WattHour:
-                    return FromWattHours(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Energy((double)value.Value, fromUnit);
         }
 #endif
 
@@ -1192,12 +950,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(EnergyUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          EnergyUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -1208,37 +983,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Energy operator -(Energy right)
         {
-            return new Energy(-right._joules);
+            return new Energy(-right.Value, right.Unit);
         }
 
         public static Energy operator +(Energy left, Energy right)
         {
-            return new Energy(left._joules + right._joules);
+            return new Energy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Energy operator -(Energy left, Energy right)
         {
-            return new Energy(left._joules - right._joules);
+            return new Energy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Energy operator *(double left, Energy right)
         {
-            return new Energy(left*right._joules);
+            return new Energy(left * right.Value, right.Unit);
         }
 
         public static Energy operator *(Energy left, double right)
         {
-            return new Energy(left._joules*(double)right);
+            return new Energy(left.Value * right, left.Unit);
         }
 
         public static Energy operator /(Energy left, double right)
         {
-            return new Energy(left._joules/(double)right);
+            return new Energy(left.Value / right, left.Unit);
         }
 
         public static double operator /(Energy left, Energy right)
         {
-            return Convert.ToDouble(left._joules/right._joules);
+            return left.Joules / right.Joules;
         }
 #endif
 
@@ -1261,43 +1036,43 @@ namespace UnitsNet
 #endif
         int CompareTo(Energy other)
         {
-            return _joules.CompareTo(other._joules);
+            return AsBaseUnitJoules().CompareTo(other.AsBaseUnitJoules());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(Energy left, Energy right)
         {
-            return left._joules <= right._joules;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(Energy left, Energy right)
         {
-            return left._joules >= right._joules;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(Energy left, Energy right)
         {
-            return left._joules < right._joules;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(Energy left, Energy right)
         {
-            return left._joules > right._joules;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(Energy left, Energy right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._joules == right._joules;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(Energy left, Energy right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._joules != right._joules;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -1309,7 +1084,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _joules.Equals(((Energy) obj)._joules);
+            return AsBaseUnitJoules().Equals(((Energy) obj).AsBaseUnitJoules());
         }
 
         /// <summary>
@@ -1322,12 +1097,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Energy other, Energy maxError)
         {
-            return Math.Abs(_joules - other._joules) <= maxError._joules;
+            return Math.Abs(AsBaseUnitJoules() - other.AsBaseUnitJoules()) <= maxError.AsBaseUnitJoules();
         }
 
         public override int GetHashCode()
         {
-            return _joules.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1337,56 +1112,40 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(EnergyUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitJoules();
+
             switch (unit)
             {
-                case EnergyUnit.BritishThermalUnit:
-                    return BritishThermalUnits;
-                case EnergyUnit.Calorie:
-                    return Calories;
-                case EnergyUnit.DecathermEc:
-                    return DecathermsEc;
-                case EnergyUnit.DecathermImperial:
-                    return DecathermsImperial;
-                case EnergyUnit.DecathermUs:
-                    return DecathermsUs;
-                case EnergyUnit.ElectronVolt:
-                    return ElectronVolts;
-                case EnergyUnit.Erg:
-                    return Ergs;
-                case EnergyUnit.FootPound:
-                    return FootPounds;
-                case EnergyUnit.GigabritishThermalUnit:
-                    return GigabritishThermalUnits;
-                case EnergyUnit.GigawattHour:
-                    return GigawattHours;
-                case EnergyUnit.Joule:
-                    return Joules;
-                case EnergyUnit.KilobritishThermalUnit:
-                    return KilobritishThermalUnits;
-                case EnergyUnit.Kilocalorie:
-                    return Kilocalories;
-                case EnergyUnit.Kilojoule:
-                    return Kilojoules;
-                case EnergyUnit.KilowattHour:
-                    return KilowattHours;
-                case EnergyUnit.MegabritishThermalUnit:
-                    return MegabritishThermalUnits;
-                case EnergyUnit.Megajoule:
-                    return Megajoules;
-                case EnergyUnit.MegawattHour:
-                    return MegawattHours;
-                case EnergyUnit.ThermEc:
-                    return ThermsEc;
-                case EnergyUnit.ThermImperial:
-                    return ThermsImperial;
-                case EnergyUnit.ThermUs:
-                    return ThermsUs;
-                case EnergyUnit.WattHour:
-                    return WattHours;
+                case EnergyUnit.BritishThermalUnit: return baseUnitValue/1055.05585262;
+                case EnergyUnit.Calorie: return baseUnitValue/4.184;
+                case EnergyUnit.DecathermEc: return (baseUnitValue/105505585.262) / 1e1d;
+                case EnergyUnit.DecathermImperial: return (baseUnitValue/1.05505585257348e+14) / 1e1d;
+                case EnergyUnit.DecathermUs: return (baseUnitValue/1.054804e+8) / 1e1d;
+                case EnergyUnit.ElectronVolt: return baseUnitValue/1.602176565e-19;
+                case EnergyUnit.Erg: return baseUnitValue/1e-7;
+                case EnergyUnit.FootPound: return baseUnitValue/1.355817948;
+                case EnergyUnit.GigabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e9d;
+                case EnergyUnit.GigawattHour: return (baseUnitValue/3600d) / 1e9d;
+                case EnergyUnit.Joule: return baseUnitValue;
+                case EnergyUnit.KilobritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e3d;
+                case EnergyUnit.Kilocalorie: return (baseUnitValue/4.184) / 1e3d;
+                case EnergyUnit.Kilojoule: return (baseUnitValue) / 1e3d;
+                case EnergyUnit.KilowattHour: return (baseUnitValue/3600d) / 1e3d;
+                case EnergyUnit.MegabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e6d;
+                case EnergyUnit.Megajoule: return (baseUnitValue) / 1e6d;
+                case EnergyUnit.MegawattHour: return (baseUnitValue/3600d) / 1e6d;
+                case EnergyUnit.ThermEc: return baseUnitValue/105505585.262;
+                case EnergyUnit.ThermImperial: return baseUnitValue/1.05505585257348e+14;
+                case EnergyUnit.ThermUs: return baseUnitValue/1.054804e+8;
+                case EnergyUnit.WattHour: return baseUnitValue/3600d;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -1428,7 +1187,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -1447,17 +1210,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Energy Parse(string str, [CanBeNull] Culture culture)
+        public static Energy Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<Energy, EnergyUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<Energy, EnergyUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -1483,16 +1253,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out Energy result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out Energy result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -1505,6 +1300,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1518,11 +1314,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static EnergyUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -1531,6 +1330,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1543,18 +1344,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static EnergyUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static EnergyUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<EnergyUnit>(str.Trim());
 
             if (unit == EnergyUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized EnergyUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -1563,6 +1364,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Joule
         /// </summary>
@@ -1574,7 +1376,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -1591,74 +1393,150 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(EnergyUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          EnergyUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(EnergyUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            EnergyUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(EnergyUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            EnergyUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of Energy
         /// </summary>
-        public static Energy MaxValue
-        {
-            get
-            {
-                return new Energy(double.MaxValue);
-            }
-        }
+        public static Energy MaxValue => new Energy(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Energy
         /// </summary>
-        public static Energy MinValue
+        public static Energy MinValue => new Energy(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitJoules()
         {
-            get
+			if (Unit == EnergyUnit.Joule) { return _value; }
+
+            switch (Unit)
             {
-                return new Energy(double.MinValue);
-            }
-        }
-    }
+                case EnergyUnit.BritishThermalUnit: return _value*1055.05585262;
+                case EnergyUnit.Calorie: return _value*4.184;
+                case EnergyUnit.DecathermEc: return (_value*105505585.262) * 1e1d;
+                case EnergyUnit.DecathermImperial: return (_value*1.05505585257348e+14) * 1e1d;
+                case EnergyUnit.DecathermUs: return (_value*1.054804e+8) * 1e1d;
+                case EnergyUnit.ElectronVolt: return _value*1.602176565e-19;
+                case EnergyUnit.Erg: return _value*1e-7;
+                case EnergyUnit.FootPound: return _value*1.355817948;
+                case EnergyUnit.GigabritishThermalUnit: return (_value*1055.05585262) * 1e9d;
+                case EnergyUnit.GigawattHour: return (_value*3600d) * 1e9d;
+                case EnergyUnit.Joule: return _value;
+                case EnergyUnit.KilobritishThermalUnit: return (_value*1055.05585262) * 1e3d;
+                case EnergyUnit.Kilocalorie: return (_value*4.184) * 1e3d;
+                case EnergyUnit.Kilojoule: return (_value) * 1e3d;
+                case EnergyUnit.KilowattHour: return (_value*3600d) * 1e3d;
+                case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
+                case EnergyUnit.Megajoule: return (_value) * 1e6d;
+                case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
+                case EnergyUnit.ThermEc: return _value*105505585.262;
+                case EnergyUnit.ThermImperial: return _value*1.05505585257348e+14;
+                case EnergyUnit.ThermUs: return _value*1.054804e+8;
+                case EnergyUnit.WattHour: return _value*3600d;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(EnergyUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

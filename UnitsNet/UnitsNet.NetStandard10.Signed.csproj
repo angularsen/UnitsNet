@@ -9,6 +9,7 @@
 
   <!-- Enable strong name signing -->
   <PropertyGroup>
+    <DefineConstants>SIGNED</DefineConstants>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(MSBuildProjectDirectory)\..\UnitsNet.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
