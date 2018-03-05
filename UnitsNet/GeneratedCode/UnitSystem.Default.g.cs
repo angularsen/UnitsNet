@@ -1661,6 +1661,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "kN/m"),
                             }),
+                        new CulturesForEnumValue((int) ForcePerLengthUnit.MeganewtonPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MN/m"),
+                            }),
                         new CulturesForEnumValue((int) ForcePerLengthUnit.MicronewtonPerMeter,
                             new[]
                             {

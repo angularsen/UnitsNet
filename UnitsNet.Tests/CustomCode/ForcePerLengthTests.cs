@@ -50,6 +50,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MillinewtonsPerMeterInOneNewtonPerMeter => 1E3;
         protected override double NanonewtonsPerMeterInOneNewtonPerMeter => 1E9;
         protected override double NewtonsPerMeterInOneNewtonPerMeter => 1;
+        protected override double MeganewtonsPerMeterInOneNewtonPerMeter => 1E-6;
 
         [Fact]
         public void ForcePerLengthDividedByLengthEqualsPressure()
