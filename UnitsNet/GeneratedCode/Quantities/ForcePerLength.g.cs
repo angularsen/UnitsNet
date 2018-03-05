@@ -162,6 +162,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get ForcePerLength in MeganewtonsPerMeter.
+        /// </summary>
+        public double MeganewtonsPerMeter
+        {
+            get { return (_newtonsPerMeter) / 1e6d; }
+        }
+
+        /// <summary>
         ///     Get ForcePerLength in MicronewtonsPerMeter.
         /// </summary>
         public double MicronewtonsPerMeter
@@ -271,6 +279,24 @@ namespace UnitsNet
         {
             double value = (double) kilonewtonspermeter;
             return new ForcePerLength(((value) * 1e3d));
+        }
+#endif
+
+        /// <summary>
+        ///     Get ForcePerLength from MeganewtonsPerMeter.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ForcePerLength FromMeganewtonsPerMeter(double meganewtonspermeter)
+        {
+            double value = (double) meganewtonspermeter;
+            return new ForcePerLength((value) * 1e6d);
+        }
+#else
+        public static ForcePerLength FromMeganewtonsPerMeter(QuantityValue meganewtonspermeter)
+        {
+            double value = (double) meganewtonspermeter;
+            return new ForcePerLength(((value) * 1e6d));
         }
 #endif
 
@@ -409,6 +435,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable ForcePerLength from nullable MeganewtonsPerMeter.
+        /// </summary>
+        public static ForcePerLength? FromMeganewtonsPerMeter(QuantityValue? meganewtonspermeter)
+        {
+            if (meganewtonspermeter.HasValue)
+            {
+                return FromMeganewtonsPerMeter(meganewtonspermeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable ForcePerLength from nullable MicronewtonsPerMeter.
         /// </summary>
         public static ForcePerLength? FromMicronewtonsPerMeter(QuantityValue? micronewtonspermeter)
@@ -494,6 +535,8 @@ namespace UnitsNet
                     return FromKilogramsForcePerMeter(value);
                 case ForcePerLengthUnit.KilonewtonPerMeter:
                     return FromKilonewtonsPerMeter(value);
+                case ForcePerLengthUnit.MeganewtonPerMeter:
+                    return FromMeganewtonsPerMeter(value);
                 case ForcePerLengthUnit.MicronewtonPerMeter:
                     return FromMicronewtonsPerMeter(value);
                 case ForcePerLengthUnit.MillinewtonPerMeter:
@@ -532,6 +575,8 @@ namespace UnitsNet
                     return FromKilogramsForcePerMeter(value.Value);
                 case ForcePerLengthUnit.KilonewtonPerMeter:
                     return FromKilonewtonsPerMeter(value.Value);
+                case ForcePerLengthUnit.MeganewtonPerMeter:
+                    return FromMeganewtonsPerMeter(value.Value);
                 case ForcePerLengthUnit.MicronewtonPerMeter:
                     return FromMicronewtonsPerMeter(value.Value);
                 case ForcePerLengthUnit.MillinewtonPerMeter:
@@ -721,6 +766,8 @@ namespace UnitsNet
                     return KilogramsForcePerMeter;
                 case ForcePerLengthUnit.KilonewtonPerMeter:
                     return KilonewtonsPerMeter;
+                case ForcePerLengthUnit.MeganewtonPerMeter:
+                    return MeganewtonsPerMeter;
                 case ForcePerLengthUnit.MicronewtonPerMeter:
                     return MicronewtonsPerMeter;
                 case ForcePerLengthUnit.MillinewtonPerMeter:

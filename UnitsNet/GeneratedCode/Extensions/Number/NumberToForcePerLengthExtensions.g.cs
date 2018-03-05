@@ -180,6 +180,40 @@ namespace UnitsNet.Extensions.NumberToForcePerLength
 
         #endregion
 
+        #region MeganewtonPerMeter
+
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double)"/>
+        public static ForcePerLength MeganewtonsPerMeter(this int value) => ForcePerLength.FromMeganewtonsPerMeter(value);
+
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double?)"/>
+        public static ForcePerLength? MeganewtonsPerMeter(this int? value) => ForcePerLength.FromMeganewtonsPerMeter(value);
+
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double)"/>
+        public static ForcePerLength MeganewtonsPerMeter(this long value) => ForcePerLength.FromMeganewtonsPerMeter(value);
+
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double?)"/>
+        public static ForcePerLength? MeganewtonsPerMeter(this long? value) => ForcePerLength.FromMeganewtonsPerMeter(value);
+
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double)"/>
+        public static ForcePerLength MeganewtonsPerMeter(this double value) => ForcePerLength.FromMeganewtonsPerMeter(value);
+
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double?)"/>
+        public static ForcePerLength? MeganewtonsPerMeter(this double? value) => ForcePerLength.FromMeganewtonsPerMeter(value);
+
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double)"/>
+        public static ForcePerLength MeganewtonsPerMeter(this float value) => ForcePerLength.FromMeganewtonsPerMeter(value);
+
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double?)"/>
+        public static ForcePerLength? MeganewtonsPerMeter(this float? value) => ForcePerLength.FromMeganewtonsPerMeter(value);
+
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double)"/>
+        public static ForcePerLength MeganewtonsPerMeter(this decimal value) => ForcePerLength.FromMeganewtonsPerMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double?)"/>
+        public static ForcePerLength? MeganewtonsPerMeter(this decimal? value) => ForcePerLength.FromMeganewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region MicronewtonPerMeter
 
         /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double)"/>

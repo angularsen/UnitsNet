@@ -56,6 +56,7 @@ namespace UnitsNet.Tests
         protected abstract double DecinewtonsPerMeterInOneNewtonPerMeter { get; }
         protected abstract double KilogramsForcePerMeterInOneNewtonPerMeter { get; }
         protected abstract double KilonewtonsPerMeterInOneNewtonPerMeter { get; }
+        protected abstract double MeganewtonsPerMeterInOneNewtonPerMeter { get; }
         protected abstract double MicronewtonsPerMeterInOneNewtonPerMeter { get; }
         protected abstract double MillinewtonsPerMeterInOneNewtonPerMeter { get; }
         protected abstract double NanonewtonsPerMeterInOneNewtonPerMeter { get; }
@@ -66,6 +67,7 @@ namespace UnitsNet.Tests
         protected virtual double DecinewtonsPerMeterTolerance { get { return 1e-5; } }
         protected virtual double KilogramsForcePerMeterTolerance { get { return 1e-5; } }
         protected virtual double KilonewtonsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonsPerMeterTolerance { get { return 1e-5; } }
         protected virtual double MicronewtonsPerMeterTolerance { get { return 1e-5; } }
         protected virtual double MillinewtonsPerMeterTolerance { get { return 1e-5; } }
         protected virtual double NanonewtonsPerMeterTolerance { get { return 1e-5; } }
@@ -80,6 +82,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DecinewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.DecinewtonsPerMeter, DecinewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(KilogramsForcePerMeterInOneNewtonPerMeter, newtonpermeter.KilogramsForcePerMeter, KilogramsForcePerMeterTolerance);
             AssertEx.EqualTolerance(KilonewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.KilonewtonsPerMeter, KilonewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(MeganewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.MeganewtonsPerMeter, MeganewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(MicronewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.MicronewtonsPerMeter, MicronewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(MillinewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.MillinewtonsPerMeter, MillinewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(NanonewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.NanonewtonsPerMeter, NanonewtonsPerMeterTolerance);
@@ -93,6 +96,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.DecinewtonPerMeter).DecinewtonsPerMeter, DecinewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.KilogramForcePerMeter).KilogramsForcePerMeter, KilogramsForcePerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.KilonewtonPerMeter).KilonewtonsPerMeter, KilonewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.MeganewtonPerMeter).MeganewtonsPerMeter, MeganewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.MicronewtonPerMeter).MicronewtonsPerMeter, MicronewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.MillinewtonPerMeter).MillinewtonsPerMeter, MillinewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.NanonewtonPerMeter).NanonewtonsPerMeter, NanonewtonsPerMeterTolerance);
@@ -107,6 +111,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DecinewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.DecinewtonPerMeter), DecinewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(KilogramsForcePerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.KilogramForcePerMeter), KilogramsForcePerMeterTolerance);
             AssertEx.EqualTolerance(KilonewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.KilonewtonPerMeter), KilonewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(MeganewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.MeganewtonPerMeter), MeganewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(MicronewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.MicronewtonPerMeter), MicronewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(MillinewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.MillinewtonPerMeter), MillinewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(NanonewtonsPerMeterInOneNewtonPerMeter, newtonpermeter.As(ForcePerLengthUnit.NanonewtonPerMeter), NanonewtonsPerMeterTolerance);
@@ -121,6 +126,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ForcePerLength.FromDecinewtonsPerMeter(newtonpermeter.DecinewtonsPerMeter).NewtonsPerMeter, DecinewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromKilogramsForcePerMeter(newtonpermeter.KilogramsForcePerMeter).NewtonsPerMeter, KilogramsForcePerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromKilonewtonsPerMeter(newtonpermeter.KilonewtonsPerMeter).NewtonsPerMeter, KilonewtonsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, ForcePerLength.FromMeganewtonsPerMeter(newtonpermeter.MeganewtonsPerMeter).NewtonsPerMeter, MeganewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromMicronewtonsPerMeter(newtonpermeter.MicronewtonsPerMeter).NewtonsPerMeter, MicronewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromMillinewtonsPerMeter(newtonpermeter.MillinewtonsPerMeter).NewtonsPerMeter, MillinewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.FromNanonewtonsPerMeter(newtonpermeter.NanonewtonsPerMeter).NewtonsPerMeter, NanonewtonsPerMeterTolerance);
