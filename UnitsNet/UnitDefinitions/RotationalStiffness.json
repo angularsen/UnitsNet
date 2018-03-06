@@ -1,7 +1,7 @@
 ﻿{
   "Name": "RotationalStiffness",
   "BaseUnit": "NewtonMeterPerRadian",
-  "XmlDoc": "The resistance offered by an elastic body to deformation by means of rotation.",
+  "XmlDoc": "https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness",
   "Units": [
     {
       "SingularName": "NewtonMeterPerRadian",
@@ -12,7 +12,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Nm/rad" ]
+          "Abbreviations": [ "N·m/rad", "Nm/rad" ]
         }
       ]
     }
