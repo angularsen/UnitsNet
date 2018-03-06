@@ -26,7 +26,7 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class Torque
+    public sealed partial class RotationalStiffness
 #else
     public partial struct RotationalStiffness
 #endif
