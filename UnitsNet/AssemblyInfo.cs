@@ -22,6 +22,3 @@
 using System;
 using System.Runtime.CompilerServices;
 [assembly: CLSCompliant(true)]
-#if WINDOWS_UWP
-[assembly: InternalsVisibleTo("UnitsNet.Tests.WindowsRuntimeComponent")]
-#endif
