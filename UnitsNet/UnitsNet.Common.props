@@ -37,7 +37,6 @@
   <ItemGroup>
     <Compile Remove="obj\**" />
     <Compile Remove="Properties\AssemblyInfo*.cs" />
-    <Compile Remove="AssemblyInfo*.cs" />
     <EmbeddedResource Remove="obj\**" />
     <None Remove="obj\**" />
   </ItemGroup>
