@@ -38,7 +38,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public static void AssemblyCopyrightShouldContainThisYear()
+        public static void AssemblyCopyrightShouldContain2013()
         {
             var assembly = typeof(Length).GetTypeInfo().Assembly;
 
