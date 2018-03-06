@@ -119,6 +119,7 @@ namespace UnitsNet
         ReactivePower,
         RotationalAcceleration,
         RotationalSpeed,
+        RotationalStiffness,
         SolidAngle,
         SpecificEnergy,
         SpecificEntropy,

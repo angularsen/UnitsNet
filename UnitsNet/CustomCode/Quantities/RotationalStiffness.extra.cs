@@ -26,31 +26,16 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class Torque
+    public sealed partial class RotationalStiffness
 #else
-    public partial struct Torque
+    public partial struct RotationalStiffness
 #endif
     {
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
-        public static Force operator /(Torque torque, Length length)
+        public static Torque operator *(RotationalStiffness rotationalStiffness, Angle angle)
         {
-            return Force.FromNewtons(torque.NewtonMeters / length.Meters);
-        }
-
-        public static Length operator /(Torque torque, Force force)
-        {
-            return Length.FromMeters(torque.NewtonMeters / force.Newtons);
-        }
-
-        public static RotationalStiffness operator /(Torque torque, Angle angle)
-        {
-            return RotationalStiffness.FromNewtonMetersPerRadian(torque.NewtonMeters / angle.Radians);
-        }
-
-        public static Angle operator /(Torque torque, RotationalStiffness rotationalStiffness)
-        {
-            return Angle.FromRadians(torque.NewtonMeters / rotationalStiffness.NewtonMetersPerRadian);
+            return Torque.FromNewtonMeters(rotationalStiffness.NewtonMetersPerRadian * angle.Radians);
         }
 #endif
     }
