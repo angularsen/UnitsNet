@@ -52,6 +52,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MetersOfHeadInOnePascal => 0.00010199773339984054;
 
+        protected override double MeganewtonsPerSquareMeterInOnePascal => 1E-6;
+
         protected override double NewtonsPerSquareCentimeterInOnePascal => 1E-4;
 
         protected override double NewtonsPerSquareMeterInOnePascal => 1;

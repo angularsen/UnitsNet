@@ -62,6 +62,7 @@ namespace UnitsNet.Units
         KilopoundForcePerSquareFoot,
         KilopoundForcePerSquareInch,
         Megabar,
+        MeganewtonPerSquareMeter,
         Megapascal,
         MeterOfHead,
         Micropascal,

@@ -2956,6 +2956,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "Mbar"),
                                 new AbbreviationsForCulture("ru-RU", "Mбар"),
                             }),
+                        new CulturesForEnumValue((int) PressureUnit.MeganewtonPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MN/m²"),
+                                new AbbreviationsForCulture("ru-RU", "Мн/м²"),
+                            }),
                         new CulturesForEnumValue((int) PressureUnit.Megapascal,
                             new[]
                             {

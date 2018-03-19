@@ -107,17 +107,17 @@
       "PluralName": "NewtonsPerSquareMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "N/m²" ],
-          "AbbreviationsWithPrefixes": [ "kN/m²" ]
+          "AbbreviationsWithPrefixes": [ "kN/m²", "MN/m²" ]
         },
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Н/м²" ],
-          "AbbreviationsWithPrefixes": [ "кН/м²" ]
+          "AbbreviationsWithPrefixes": [ "кН/м²", "Мн/м²" ]
         }
       ]
     },
