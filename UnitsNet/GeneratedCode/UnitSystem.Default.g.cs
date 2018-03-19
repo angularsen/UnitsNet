@@ -3263,17 +3263,17 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) RotationalStiffnessUnit.KilonewtonMeterPerRadian,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kNm/rad"),
+                                new AbbreviationsForCulture("en-US", "kN·m/rad"),
                             }),
                         new CulturesForEnumValue((int) RotationalStiffnessUnit.MeganewtonMeterPerRadian,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "MNm/rad"),
+                                new AbbreviationsForCulture("en-US", "MN·m/rad"),
                             }),
                         new CulturesForEnumValue((int) RotationalStiffnessUnit.NewtonMeterPerRadian,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "Nm/rad"),
+                                new AbbreviationsForCulture("en-US", "N·m/rad", "Nm/rad"),
                             }),
                     }),
                 new UnitLocalization(typeof (SolidAngleUnit),

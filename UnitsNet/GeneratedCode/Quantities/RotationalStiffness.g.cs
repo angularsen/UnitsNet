@@ -44,19 +44,12 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
     /// <summary>
-    ///     The resistance offered by an elastic body to deformation by means of rotation.
+    ///     https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of RotationalStiffness.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _newtonMetersPerRadian;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly RotationalStiffnessUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public RotationalStiffnessUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public RotationalStiffness() : this(0)
+        public RotationalStiffness()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public RotationalStiffness(double newtonmetersperradian)
         {
-            _newtonMetersPerRadian = Convert.ToDouble(newtonmetersperradian);
+            _value = Convert.ToDouble(newtonmetersperradian);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          RotationalStiffness(double numericValue, RotationalStiffnessUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit NewtonMeterPerRadian.
+        /// </summary>
+        /// <param name="newtonmetersperradian">Value assuming base unit NewtonMeterPerRadian.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        RotationalStiffness(long newtonmetersperradian)
-        {
-            _newtonMetersPerRadian = Convert.ToDouble(newtonmetersperradian);
-        }
+        RotationalStiffness(long newtonmetersperradian) : this(Convert.ToDouble(newtonmetersperradian), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit NewtonMeterPerRadian.
+        /// </summary>
+        /// <param name="newtonmetersperradian">Value assuming base unit NewtonMeterPerRadian.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        RotationalStiffness(decimal newtonmetersperradian)
-        {
-            _newtonMetersPerRadian = Convert.ToDouble(newtonmetersperradian);
-        }
+        RotationalStiffness(decimal newtonmetersperradian) : this(Convert.ToDouble(newtonmetersperradian), BaseUnit) { }
 
         #region Properties
 
@@ -119,48 +156,30 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static RotationalStiffnessUnit BaseUnit
-        {
-            get { return RotationalStiffnessUnit.NewtonMeterPerRadian; }
-        }
+        public static RotationalStiffnessUnit BaseUnit => RotationalStiffnessUnit.NewtonMeterPerRadian;
 
         /// <summary>
         ///     All units of measurement for the RotationalStiffness quantity.
         /// </summary>
         public static RotationalStiffnessUnit[] Units { get; } = Enum.GetValues(typeof(RotationalStiffnessUnit)).Cast<RotationalStiffnessUnit>().ToArray();
-
         /// <summary>
         ///     Get RotationalStiffness in KilonewtonMetersPerRadian.
         /// </summary>
-        public double KilonewtonMetersPerRadian
-        {
-            get { return (_newtonMetersPerRadian) / 1e3d; }
-        }
-
+        public double KilonewtonMetersPerRadian => As(RotationalStiffnessUnit.KilonewtonMeterPerRadian);
         /// <summary>
         ///     Get RotationalStiffness in MeganewtonMetersPerRadian.
         /// </summary>
-        public double MeganewtonMetersPerRadian
-        {
-            get { return (_newtonMetersPerRadian) / 1e6d; }
-        }
-
+        public double MeganewtonMetersPerRadian => As(RotationalStiffnessUnit.MeganewtonMeterPerRadian);
         /// <summary>
         ///     Get RotationalStiffness in NewtonMetersPerRadian.
         /// </summary>
-        public double NewtonMetersPerRadian
-        {
-            get { return _newtonMetersPerRadian; }
-        }
+        public double NewtonMetersPerRadian => As(RotationalStiffnessUnit.NewtonMeterPerRadian);
 
         #endregion
 
         #region Static
 
-        public static RotationalStiffness Zero
-        {
-            get { return new RotationalStiffness(); }
-        }
+        public static RotationalStiffness Zero => new RotationalStiffness(0, BaseUnit);
 
         /// <summary>
         ///     Get RotationalStiffness from KilonewtonMetersPerRadian.
@@ -168,17 +187,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalStiffness FromKilonewtonMetersPerRadian(double kilonewtonmetersperradian)
-        {
-            double value = (double) kilonewtonmetersperradian;
-            return new RotationalStiffness((value) * 1e3d);
-        }
 #else
         public static RotationalStiffness FromKilonewtonMetersPerRadian(QuantityValue kilonewtonmetersperradian)
+#endif
         {
             double value = (double) kilonewtonmetersperradian;
-            return new RotationalStiffness(((value) * 1e3d));
+            return new RotationalStiffness(value, RotationalStiffnessUnit.KilonewtonMeterPerRadian);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalStiffness from MeganewtonMetersPerRadian.
@@ -186,17 +201,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalStiffness FromMeganewtonMetersPerRadian(double meganewtonmetersperradian)
-        {
-            double value = (double) meganewtonmetersperradian;
-            return new RotationalStiffness((value) * 1e6d);
-        }
 #else
         public static RotationalStiffness FromMeganewtonMetersPerRadian(QuantityValue meganewtonmetersperradian)
+#endif
         {
             double value = (double) meganewtonmetersperradian;
-            return new RotationalStiffness(((value) * 1e6d));
+            return new RotationalStiffness(value, RotationalStiffnessUnit.MeganewtonMeterPerRadian);
         }
-#endif
 
         /// <summary>
         ///     Get RotationalStiffness from NewtonMetersPerRadian.
@@ -204,17 +215,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalStiffness FromNewtonMetersPerRadian(double newtonmetersperradian)
-        {
-            double value = (double) newtonmetersperradian;
-            return new RotationalStiffness(value);
-        }
 #else
         public static RotationalStiffness FromNewtonMetersPerRadian(QuantityValue newtonmetersperradian)
+#endif
         {
             double value = (double) newtonmetersperradian;
-            return new RotationalStiffness((value));
+            return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMeterPerRadian);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -279,18 +286,7 @@ namespace UnitsNet
         public static RotationalStiffness From(QuantityValue value, RotationalStiffnessUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case RotationalStiffnessUnit.KilonewtonMeterPerRadian:
-                    return FromKilonewtonMetersPerRadian(value);
-                case RotationalStiffnessUnit.MeganewtonMeterPerRadian:
-                    return FromMeganewtonMetersPerRadian(value);
-                case RotationalStiffnessUnit.NewtonMeterPerRadian:
-                    return FromNewtonMetersPerRadian(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new RotationalStiffness((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -307,18 +303,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case RotationalStiffnessUnit.KilonewtonMeterPerRadian:
-                    return FromKilonewtonMetersPerRadian(value.Value);
-                case RotationalStiffnessUnit.MeganewtonMeterPerRadian:
-                    return FromMeganewtonMetersPerRadian(value.Value);
-                case RotationalStiffnessUnit.NewtonMeterPerRadian:
-                    return FromNewtonMetersPerRadian(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new RotationalStiffness((double)value.Value, fromUnit);
         }
 #endif
 
@@ -337,12 +323,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(RotationalStiffnessUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          RotationalStiffnessUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -353,37 +356,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static RotationalStiffness operator -(RotationalStiffness right)
         {
-            return new RotationalStiffness(-right._newtonMetersPerRadian);
+            return new RotationalStiffness(-right.Value, right.Unit);
         }
 
         public static RotationalStiffness operator +(RotationalStiffness left, RotationalStiffness right)
         {
-            return new RotationalStiffness(left._newtonMetersPerRadian + right._newtonMetersPerRadian);
+            return new RotationalStiffness(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static RotationalStiffness operator -(RotationalStiffness left, RotationalStiffness right)
         {
-            return new RotationalStiffness(left._newtonMetersPerRadian - right._newtonMetersPerRadian);
+            return new RotationalStiffness(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static RotationalStiffness operator *(double left, RotationalStiffness right)
         {
-            return new RotationalStiffness(left*right._newtonMetersPerRadian);
+            return new RotationalStiffness(left * right.Value, right.Unit);
         }
 
         public static RotationalStiffness operator *(RotationalStiffness left, double right)
         {
-            return new RotationalStiffness(left._newtonMetersPerRadian*(double)right);
+            return new RotationalStiffness(left.Value * right, left.Unit);
         }
 
         public static RotationalStiffness operator /(RotationalStiffness left, double right)
         {
-            return new RotationalStiffness(left._newtonMetersPerRadian/(double)right);
+            return new RotationalStiffness(left.Value / right, left.Unit);
         }
 
         public static double operator /(RotationalStiffness left, RotationalStiffness right)
         {
-            return Convert.ToDouble(left._newtonMetersPerRadian/right._newtonMetersPerRadian);
+            return left.NewtonMetersPerRadian / right.NewtonMetersPerRadian;
         }
 #endif
 
@@ -406,43 +409,43 @@ namespace UnitsNet
 #endif
         int CompareTo(RotationalStiffness other)
         {
-            return _newtonMetersPerRadian.CompareTo(other._newtonMetersPerRadian);
+            return AsBaseUnitNewtonMetersPerRadian().CompareTo(other.AsBaseUnitNewtonMetersPerRadian());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(RotationalStiffness left, RotationalStiffness right)
         {
-            return left._newtonMetersPerRadian <= right._newtonMetersPerRadian;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(RotationalStiffness left, RotationalStiffness right)
         {
-            return left._newtonMetersPerRadian >= right._newtonMetersPerRadian;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(RotationalStiffness left, RotationalStiffness right)
         {
-            return left._newtonMetersPerRadian < right._newtonMetersPerRadian;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(RotationalStiffness left, RotationalStiffness right)
         {
-            return left._newtonMetersPerRadian > right._newtonMetersPerRadian;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(RotationalStiffness left, RotationalStiffness right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._newtonMetersPerRadian == right._newtonMetersPerRadian;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(RotationalStiffness left, RotationalStiffness right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._newtonMetersPerRadian != right._newtonMetersPerRadian;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -454,7 +457,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _newtonMetersPerRadian.Equals(((RotationalStiffness) obj)._newtonMetersPerRadian);
+            return AsBaseUnitNewtonMetersPerRadian().Equals(((RotationalStiffness) obj).AsBaseUnitNewtonMetersPerRadian());
         }
 
         /// <summary>
@@ -467,12 +470,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(RotationalStiffness other, RotationalStiffness maxError)
         {
-            return Math.Abs(_newtonMetersPerRadian - other._newtonMetersPerRadian) <= maxError._newtonMetersPerRadian;
+            return Math.Abs(AsBaseUnitNewtonMetersPerRadian() - other.AsBaseUnitNewtonMetersPerRadian()) <= maxError.AsBaseUnitNewtonMetersPerRadian();
         }
 
         public override int GetHashCode()
         {
-            return _newtonMetersPerRadian.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -482,18 +485,21 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(RotationalStiffnessUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitNewtonMetersPerRadian();
+
             switch (unit)
             {
-                case RotationalStiffnessUnit.KilonewtonMeterPerRadian:
-                    return KilonewtonMetersPerRadian;
-                case RotationalStiffnessUnit.MeganewtonMeterPerRadian:
-                    return MeganewtonMetersPerRadian;
-                case RotationalStiffnessUnit.NewtonMeterPerRadian:
-                    return NewtonMetersPerRadian;
+                case RotationalStiffnessUnit.KilonewtonMeterPerRadian: return (baseUnitValue) / 1e3d;
+                case RotationalStiffnessUnit.MeganewtonMeterPerRadian: return (baseUnitValue) / 1e6d;
+                case RotationalStiffnessUnit.NewtonMeterPerRadian: return baseUnitValue;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -535,7 +541,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -554,17 +564,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static RotationalStiffness Parse(string str, [CanBeNull] Culture culture)
+        public static RotationalStiffness Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<RotationalStiffness, RotationalStiffnessUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<RotationalStiffness, RotationalStiffnessUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -590,16 +607,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out RotationalStiffness result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out RotationalStiffness result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -612,6 +654,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -625,11 +668,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static RotationalStiffnessUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -638,6 +684,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -650,18 +698,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static RotationalStiffnessUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static RotationalStiffnessUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<RotationalStiffnessUnit>(str.Trim());
 
             if (unit == RotationalStiffnessUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized RotationalStiffnessUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -670,6 +718,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is NewtonMeterPerRadian
         /// </summary>
@@ -681,7 +730,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -698,74 +747,131 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(RotationalStiffnessUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          RotationalStiffnessUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(RotationalStiffnessUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            RotationalStiffnessUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(RotationalStiffnessUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            RotationalStiffnessUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of RotationalStiffness
         /// </summary>
-        public static RotationalStiffness MaxValue
-        {
-            get
-            {
-                return new RotationalStiffness(double.MaxValue);
-            }
-        }
+        public static RotationalStiffness MaxValue => new RotationalStiffness(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of RotationalStiffness
         /// </summary>
-        public static RotationalStiffness MinValue
+        public static RotationalStiffness MinValue => new RotationalStiffness(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitNewtonMetersPerRadian()
         {
-            get
+			if (Unit == RotationalStiffnessUnit.NewtonMeterPerRadian) { return _value; }
+
+            switch (Unit)
             {
-                return new RotationalStiffness(double.MinValue);
-            }
-        }
-    }
+                case RotationalStiffnessUnit.KilonewtonMeterPerRadian: return (_value) * 1e3d;
+                case RotationalStiffnessUnit.MeganewtonMeterPerRadian: return (_value) * 1e6d;
+                case RotationalStiffnessUnit.NewtonMeterPerRadian: return _value;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(RotationalStiffnessUnit unit) => Convert.ToDouble(As(unit));
+	}
 }
