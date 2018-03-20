@@ -3425,6 +3425,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "kipf/in³"),
                             }),
+                        new CulturesForEnumValue((int) SpecificWeightUnit.MeganewtonPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MN/m³"),
+                            }),
                         new CulturesForEnumValue((int) SpecificWeightUnit.NewtonPerCubicCentimeter,
                             new[]
                             {

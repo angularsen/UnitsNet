@@ -316,6 +316,40 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
 
         #endregion
 
+        #region MeganewtonPerCubicMeter
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double)"/>
+        public static SpecificWeight MeganewtonsPerCubicMeter(this int value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double?)"/>
+        public static SpecificWeight? MeganewtonsPerCubicMeter(this int? value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double)"/>
+        public static SpecificWeight MeganewtonsPerCubicMeter(this long value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double?)"/>
+        public static SpecificWeight? MeganewtonsPerCubicMeter(this long? value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double)"/>
+        public static SpecificWeight MeganewtonsPerCubicMeter(this double value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double?)"/>
+        public static SpecificWeight? MeganewtonsPerCubicMeter(this double? value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double)"/>
+        public static SpecificWeight MeganewtonsPerCubicMeter(this float value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double?)"/>
+        public static SpecificWeight? MeganewtonsPerCubicMeter(this float? value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double)"/>
+        public static SpecificWeight MeganewtonsPerCubicMeter(this decimal value) => SpecificWeight.FromMeganewtonsPerCubicMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double?)"/>
+        public static SpecificWeight? MeganewtonsPerCubicMeter(this decimal? value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region NewtonPerCubicCentimeter
 
         /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicCentimeter(double)"/>

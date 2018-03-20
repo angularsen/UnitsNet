@@ -35,7 +35,7 @@
       "PluralName": "NewtonsPerCubicMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Kilo" ],
+      "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
