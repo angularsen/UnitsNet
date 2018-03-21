@@ -50,6 +50,7 @@ namespace UnitsNet.Units
         KilonewtonPerCubicMillimeter,
         KilopoundForcePerCubicFoot,
         KilopoundForcePerCubicInch,
+        MeganewtonPerCubicMeter,
         NewtonPerCubicCentimeter,
         NewtonPerCubicMeter,
         NewtonPerCubicMillimeter,

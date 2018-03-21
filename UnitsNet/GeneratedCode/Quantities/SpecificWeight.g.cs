@@ -195,6 +195,10 @@ namespace UnitsNet
         /// </summary>
         public double KilopoundsForcePerCubicInch => As(SpecificWeightUnit.KilopoundForcePerCubicInch);
         /// <summary>
+        ///     Get SpecificWeight in MeganewtonsPerCubicMeter.
+        /// </summary>
+        public double MeganewtonsPerCubicMeter => As(SpecificWeightUnit.MeganewtonPerCubicMeter);
+        /// <summary>
         ///     Get SpecificWeight in NewtonsPerCubicCentimeter.
         /// </summary>
         public double NewtonsPerCubicCentimeter => As(SpecificWeightUnit.NewtonPerCubicCentimeter);
@@ -343,6 +347,20 @@ namespace UnitsNet
         {
             double value = (double) kilopoundsforcepercubicinch;
             return new SpecificWeight(value, SpecificWeightUnit.KilopoundForcePerCubicInch);
+        }
+
+        /// <summary>
+        ///     Get SpecificWeight from MeganewtonsPerCubicMeter.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificWeight FromMeganewtonsPerCubicMeter(double meganewtonspercubicmeter)
+#else
+        public static SpecificWeight FromMeganewtonsPerCubicMeter(QuantityValue meganewtonspercubicmeter)
+#endif
+        {
+            double value = (double) meganewtonspercubicmeter;
+            return new SpecificWeight(value, SpecificWeightUnit.MeganewtonPerCubicMeter);
         }
 
         /// <summary>
@@ -572,6 +590,21 @@ namespace UnitsNet
             if (kilopoundsforcepercubicinch.HasValue)
             {
                 return FromKilopoundsForcePerCubicInch(kilopoundsforcepercubicinch.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable MeganewtonsPerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromMeganewtonsPerCubicMeter(QuantityValue? meganewtonspercubicmeter)
+        {
+            if (meganewtonspercubicmeter.HasValue)
+            {
+                return FromMeganewtonsPerCubicMeter(meganewtonspercubicmeter.Value);
             }
             else
             {
@@ -934,6 +967,7 @@ namespace UnitsNet
                 case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (baseUnitValue*0.000000001) / 1e3d;
                 case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (baseUnitValue*0.00636587980366089) / 1e3d;
                 case SpecificWeightUnit.KilopoundForcePerCubicInch: return (baseUnitValue*3.68395821971116E-06) / 1e3d;
+                case SpecificWeightUnit.MeganewtonPerCubicMeter: return (baseUnitValue) / 1e6d;
                 case SpecificWeightUnit.NewtonPerCubicCentimeter: return baseUnitValue*0.000001;
                 case SpecificWeightUnit.NewtonPerCubicMeter: return baseUnitValue;
                 case SpecificWeightUnit.NewtonPerCubicMillimeter: return baseUnitValue*0.000000001;
@@ -1313,6 +1347,7 @@ namespace UnitsNet
                 case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (_value*1000000000) * 1e3d;
                 case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (_value*157.087477433193) * 1e3d;
                 case SpecificWeightUnit.KilopoundForcePerCubicInch: return (_value*271447.161004558) * 1e3d;
+                case SpecificWeightUnit.MeganewtonPerCubicMeter: return (_value) * 1e6d;
                 case SpecificWeightUnit.NewtonPerCubicCentimeter: return _value*1000000;
                 case SpecificWeightUnit.NewtonPerCubicMeter: return _value;
                 case SpecificWeightUnit.NewtonPerCubicMillimeter: return _value*1000000000;

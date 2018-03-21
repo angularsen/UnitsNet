@@ -54,5 +54,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double TonnesForcePerCubicMeterInOneNewtonPerCubicMeter => 1.02e-4;
 
         protected override double TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter => 1.02e-10;
+
+        protected override double MeganewtonsPerCubicMeterInOneNewtonPerCubicMeter => 1e-6;
     }
 }
