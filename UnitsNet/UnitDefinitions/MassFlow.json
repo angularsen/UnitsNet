@@ -53,8 +53,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb/h" ],
-          "AbbreviationsWithPrefixes": [ "Mlb/h" ]
+          "Abbreviations": [ "lb/h" ]
         }
       ]
     },
