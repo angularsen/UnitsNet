@@ -38,8 +38,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "BTU" ],
-          "AbbreviationsWithPrefixes": [ "kBTU", "mBTU", "mmBTU" ]
+          "Abbreviations": [ "BTU" ]
         }
       ]
     },

@@ -111,8 +111,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N/m²" ],
-          "AbbreviationsWithPrefixes": [ "kN/m²", "MN/m²" ]
+          "Abbreviations": [ "N/m²" ]
         },
         {
           "Culture": "ru-RU",
@@ -130,8 +129,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N/cm²" ],
-          "AbbreviationsWithPrefixes": [ "kN/cm²" ]
+          "Abbreviations": [ "N/cm²" ]
         },
         {
           "Culture": "ru-RU",
@@ -149,8 +147,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "N/mm²" ],
-          "AbbreviationsWithPrefixes": [ "kN/mm²" ]
+          "Abbreviations": [ "N/mm²" ]
         },
         {
           "Culture": "ru-RU",
