@@ -1272,7 +1272,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) EnergyUnit.GigabritishThermalUnit,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "mmBTU"),
+                                new AbbreviationsForCulture("en-US", "GBTU"),
                             }),
                         new CulturesForEnumValue((int) EnergyUnit.GigawattHour,
                             new[]
@@ -1309,7 +1309,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) EnergyUnit.MegabritishThermalUnit,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "mBTU"),
+                                new AbbreviationsForCulture("en-US", "MBTU"),
                             }),
                         new CulturesForEnumValue((int) EnergyUnit.Megajoule,
                             new[]
@@ -2231,7 +2231,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) MassUnit.Kilopound,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "KLbs"),
+                                new AbbreviationsForCulture("en-US", "klb"),
                                 new AbbreviationsForCulture("ru-RU", "kфунт"),
                             }),
                         new CulturesForEnumValue((int) MassUnit.Kilotonne,
@@ -2254,7 +2254,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) MassUnit.Megapound,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "MLbs"),
+                                new AbbreviationsForCulture("en-US", "Mlb"),
                                 new AbbreviationsForCulture("ru-RU", "Mфунт"),
                             }),
                         new CulturesForEnumValue((int) MassUnit.Megatonne,
