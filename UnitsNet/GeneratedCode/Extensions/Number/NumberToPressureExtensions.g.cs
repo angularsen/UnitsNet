@@ -724,6 +724,40 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         #endregion
 
+        #region MeganewtonPerSquareMeter
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)"/>
+        public static Pressure MeganewtonsPerSquareMeter(this int value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double?)"/>
+        public static Pressure? MeganewtonsPerSquareMeter(this int? value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)"/>
+        public static Pressure MeganewtonsPerSquareMeter(this long value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double?)"/>
+        public static Pressure? MeganewtonsPerSquareMeter(this long? value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)"/>
+        public static Pressure MeganewtonsPerSquareMeter(this double value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double?)"/>
+        public static Pressure? MeganewtonsPerSquareMeter(this double? value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)"/>
+        public static Pressure MeganewtonsPerSquareMeter(this float value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double?)"/>
+        public static Pressure? MeganewtonsPerSquareMeter(this float? value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)"/>
+        public static Pressure MeganewtonsPerSquareMeter(this decimal value) => Pressure.FromMeganewtonsPerSquareMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double?)"/>
+        public static Pressure? MeganewtonsPerSquareMeter(this decimal? value) => Pressure.FromMeganewtonsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Megapascal
 
         /// <inheritdoc cref="Pressure.FromMegapascals(double)"/>

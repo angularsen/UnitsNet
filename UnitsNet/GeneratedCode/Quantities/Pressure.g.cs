@@ -243,6 +243,10 @@ namespace UnitsNet
         /// </summary>
         public double Megabars => As(PressureUnit.Megabar);
         /// <summary>
+        ///     Get Pressure in MeganewtonsPerSquareMeter.
+        /// </summary>
+        public double MeganewtonsPerSquareMeter => As(PressureUnit.MeganewtonPerSquareMeter);
+        /// <summary>
         ///     Get Pressure in Megapascals.
         /// </summary>
         public double Megapascals => As(PressureUnit.Megapascal);
@@ -596,6 +600,20 @@ namespace UnitsNet
         {
             double value = (double) megabars;
             return new Pressure(value, PressureUnit.Megabar);
+        }
+
+        /// <summary>
+        ///     Get Pressure from MeganewtonsPerSquareMeter.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Pressure FromMeganewtonsPerSquareMeter(double meganewtonspersquaremeter)
+#else
+        public static Pressure FromMeganewtonsPerSquareMeter(QuantityValue meganewtonspersquaremeter)
+#endif
+        {
+            double value = (double) meganewtonspersquaremeter;
+            return new Pressure(value, PressureUnit.MeganewtonPerSquareMeter);
         }
 
         /// <summary>
@@ -1139,6 +1157,21 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Pressure from nullable MeganewtonsPerSquareMeter.
+        /// </summary>
+        public static Pressure? FromMeganewtonsPerSquareMeter(QuantityValue? meganewtonspersquaremeter)
+        {
+            if (meganewtonspersquaremeter.HasValue)
+            {
+                return FromMeganewtonsPerSquareMeter(meganewtonspersquaremeter.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Pressure from nullable Megapascals.
         /// </summary>
         public static Pressure? FromMegapascals(QuantityValue? megapascals)
@@ -1640,6 +1673,7 @@ namespace UnitsNet
                 case PressureUnit.KilopoundForcePerSquareFoot: return (baseUnitValue*0.020885432426709) / 1e3d;
                 case PressureUnit.KilopoundForcePerSquareInch: return (baseUnitValue*0.000145037737730209) / 1e3d;
                 case PressureUnit.Megabar: return (baseUnitValue/1e5) / 1e6d;
+                case PressureUnit.MeganewtonPerSquareMeter: return (baseUnitValue) / 1e6d;
                 case PressureUnit.Megapascal: return (baseUnitValue) / 1e6d;
                 case PressureUnit.MeterOfHead: return baseUnitValue*0.0001019977334;
                 case PressureUnit.Micropascal: return (baseUnitValue) / 1e-6d;
@@ -2040,6 +2074,7 @@ namespace UnitsNet
                 case PressureUnit.KilopoundForcePerSquareFoot: return (_value*47.8802631216372) * 1e3d;
                 case PressureUnit.KilopoundForcePerSquareInch: return (_value*6894.75729316836) * 1e3d;
                 case PressureUnit.Megabar: return (_value*1e5) * 1e6d;
+                case PressureUnit.MeganewtonPerSquareMeter: return (_value) * 1e6d;
                 case PressureUnit.Megapascal: return (_value) * 1e6d;
                 case PressureUnit.MeterOfHead: return _value*9804.139432;
                 case PressureUnit.Micropascal: return (_value) * 1e-6d;
