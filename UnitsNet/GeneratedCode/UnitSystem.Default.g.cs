@@ -3282,6 +3282,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "N·m/rad", "Nm/rad"),
                             }),
                     }),
+                new UnitLocalization(typeof (RotationalStiffnessPerLengthUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kN·m/rad/m"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MN·m/rad/m"),
+                            }),
+                        new CulturesForEnumValue((int) RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "N·m/rad/m", "Nm/rad/m"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (SolidAngleUnit),
                     new[]
                     {
