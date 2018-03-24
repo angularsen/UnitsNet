@@ -96,7 +96,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly $baseType _value;
+        private readonly $baseType _valueRenamed;
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -107,9 +107,9 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
 #if WINDOWS_UWP
-        public double Value => Convert.ToDouble(_value);
+        public double Value => Convert.ToDouble(_valueRenamed);
 #else
-        public $baseType Value => _value;
+        public $baseType Value => _valueRenamed;
 #endif
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         public $quantityName()
         {
-            _value = 0;
+            _valueRenamed = 0;
             _unit = BaseUnit;
         }
 #endif
@@ -129,7 +129,7 @@ namespace UnitsNet
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public $quantityName(double $baseUnitPluralNameLower)
         {
-            _value = $convertToBaseType($baseUnitPluralNameLower);
+            _valueRenamed = $convertToBaseType($baseUnitPluralNameLower);
             _unit = BaseUnit;
         }
 
@@ -146,7 +146,7 @@ namespace UnitsNet
 #endif
           $quantityName($baseType numericValue, $unitEnumName unit)
         {
-            _value = numericValue;
+            _valueRenamed = numericValue;
             _unit = unit;
          }
 
@@ -844,12 +844,12 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private $baseType AsBaseUnit$baseUnitPluralName()
         {
-			if (Unit == $unitEnumName.$baseUnitSingularName) { return _value; }
+			if (Unit == $unitEnumName.$baseUnitSingularName) { return _valueRenamed; }
 
             switch (Unit)
             {
 "@; foreach ($unit in $units) {
-		$func = $unit.FromUnitToBaseFunc.Replace("x", "_value");@"
+		$func = $unit.FromUnitToBaseFunc.Replace("x", "_valueRenamed");@"
                 case $unitEnumName.$($unit.SingularName): return $func;
 "@; }@"
                 default:

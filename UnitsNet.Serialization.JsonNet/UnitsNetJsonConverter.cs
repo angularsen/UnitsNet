@@ -252,7 +252,7 @@ namespace UnitsNet.Serialization.JsonNet
 #else
                     .GetFields(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly)
 #endif
-                    .SingleOrDefault(f => f.Name == fieldName);
+                    .SingleOrDefault(f => f.Name == fieldName || f.Name == "_valueRenamed"); //Added support for valueRenamed for testing purposes
             }
             catch (InvalidOperationException)
             {

@@ -56,7 +56,7 @@ namespace UnitsNet
                     "The base-10 logarithm of a number ≤ 0 is undefined. Voltage must be greater than 0 V.");
 
             // E(dBV) = 20*log10(value(V)/reference(V))
-            _value = 20 * Math.Log10(voltage.Volts / 1);
+            _valueRenamed = 20 * Math.Log10(voltage.Volts / 1);
             _unit = AmplitudeRatioUnit.DecibelVolt;
         }
 

@@ -65,7 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _value;
+        private readonly double _valueRenamed; //Renaming this should break latest (v1.3) serialization library in nuget.
 
         /// <summary>
         ///     The unit this quantity was constructed with.
@@ -78,7 +78,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         public double Value => Convert.ToDouble(_value);
 #else
-        public double Value => _value;
+        public double Value => _valueRenamed;
 #endif
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace UnitsNet
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Mass(double kilograms)
         {
-            _value = Convert.ToDouble(kilograms);
+            _valueRenamed = Convert.ToDouble(kilograms);
             _unit = BaseUnit;
         }
 
@@ -115,7 +115,7 @@ namespace UnitsNet
 #endif
           Mass(double numericValue, MassUnit unit)
         {
-            _value = numericValue;
+            _valueRenamed = numericValue;
             _unit = unit;
          }
 
@@ -1471,31 +1471,31 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitKilograms()
         {
-			if (Unit == MassUnit.Kilogram) { return _value; }
+			if (Unit == MassUnit.Kilogram) { return _valueRenamed; }
 
             switch (Unit)
             {
-                case MassUnit.Centigram: return (_value/1e3) * 1e-2d;
-                case MassUnit.Decagram: return (_value/1e3) * 1e1d;
-                case MassUnit.Decigram: return (_value/1e3) * 1e-1d;
-                case MassUnit.Gram: return _value/1e3;
-                case MassUnit.Hectogram: return (_value/1e3) * 1e2d;
-                case MassUnit.Kilogram: return (_value/1e3) * 1e3d;
-                case MassUnit.Kilopound: return (_value*0.45359237) * 1e3d;
-                case MassUnit.Kilotonne: return (_value*1e3) * 1e3d;
-                case MassUnit.LongHundredweight: return _value/0.01968413055222121;
-                case MassUnit.LongTon: return _value*1016.0469088;
-                case MassUnit.Megapound: return (_value*0.45359237) * 1e6d;
-                case MassUnit.Megatonne: return (_value*1e3) * 1e6d;
-                case MassUnit.Microgram: return (_value/1e3) * 1e-6d;
-                case MassUnit.Milligram: return (_value/1e3) * 1e-3d;
-                case MassUnit.Nanogram: return (_value/1e3) * 1e-9d;
-                case MassUnit.Ounce: return _value/35.2739619;
-                case MassUnit.Pound: return _value*0.45359237;
-                case MassUnit.ShortHundredweight: return _value/0.022046226218487758;
-                case MassUnit.ShortTon: return _value*907.18474;
-                case MassUnit.Stone: return _value/0.1574731728702698;
-                case MassUnit.Tonne: return _value*1e3;
+                case MassUnit.Centigram: return (_valueRenamed/1e3) * 1e-2d;
+                case MassUnit.Decagram: return (_valueRenamed/1e3) * 1e1d;
+                case MassUnit.Decigram: return (_valueRenamed/1e3) * 1e-1d;
+                case MassUnit.Gram: return _valueRenamed/1e3;
+                case MassUnit.Hectogram: return (_valueRenamed/1e3) * 1e2d;
+                case MassUnit.Kilogram: return (_valueRenamed/1e3) * 1e3d;
+                case MassUnit.Kilopound: return (_valueRenamed*0.45359237) * 1e3d;
+                case MassUnit.Kilotonne: return (_valueRenamed*1e3) * 1e3d;
+                case MassUnit.LongHundredweight: return _valueRenamed/0.01968413055222121;
+                case MassUnit.LongTon: return _valueRenamed*1016.0469088;
+                case MassUnit.Megapound: return (_valueRenamed*0.45359237) * 1e6d;
+                case MassUnit.Megatonne: return (_valueRenamed*1e3) * 1e6d;
+                case MassUnit.Microgram: return (_valueRenamed/1e3) * 1e-6d;
+                case MassUnit.Milligram: return (_valueRenamed/1e3) * 1e-3d;
+                case MassUnit.Nanogram: return (_valueRenamed/1e3) * 1e-9d;
+                case MassUnit.Ounce: return _valueRenamed/35.2739619;
+                case MassUnit.Pound: return _valueRenamed*0.45359237;
+                case MassUnit.ShortHundredweight: return _valueRenamed/0.022046226218487758;
+                case MassUnit.ShortTon: return _valueRenamed*907.18474;
+                case MassUnit.Stone: return _valueRenamed/0.1574731728702698;
+                case MassUnit.Tonne: return _valueRenamed*1e3;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
 			}
