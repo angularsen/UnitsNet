@@ -25,6 +25,9 @@
   <ItemGroup>
 		<!--When in Debug configuration, use the UnitsNet.Serialization.JsonNet project-->
     <ProjectReference Condition="'$(Configuration)'=='Debug'" Include="..\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj" />
+		
+		<!--When in Release configuration, use the UnitsNet project-->
+		<ProjectReference Condition="'$(Configuration)'=='Release'" Include="..\UnitsNet\UnitsNet.NetStandard10.csproj" />
   </ItemGroup>
 
 </Project>
