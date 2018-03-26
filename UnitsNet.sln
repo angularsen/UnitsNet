@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.Json
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Tests", "UnitsNet.Tests\UnitsNet.Tests.csproj", "{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.CompatibilityTests", "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.csproj", "{21F2FFAC-BF39-487F-9ADE-37100162F955}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,22 @@ Global
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|x64.Build.0 = Release|Any CPU
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|x86.ActiveCfg = Release|Any CPU
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|x86.Build.0 = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|ARM.Build.0 = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|x64.Build.0 = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|x86.Build.0 = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|ARM.ActiveCfg = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|ARM.Build.0 = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|x64.ActiveCfg = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|x64.Build.0 = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|x86.ActiveCfg = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
