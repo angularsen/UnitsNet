@@ -26,7 +26,8 @@
   </ItemGroup>
 	
 	<ItemGroup>
-		<!--Reference the UnitsNet project to test the UnitsNet.Serialization.JsonNet Nuget with-->
+		<!--Reference the UnitsNet project to test the UnitsNet.Serialization.JsonNet Nuget with
+        the latest UnitsNet code to catch backwards compatibility issues. -->
 		<ProjectReference Include="..\UnitsNet\UnitsNet.NetStandard10.csproj" />
 	</ItemGroup>
 </Project>
