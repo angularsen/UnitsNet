@@ -55,13 +55,13 @@ namespace UnitsNet
         /// </summary>
         private readonly decimal? _valueDecimal;
 
-        private QuantityValue(double val)
+        private QuantityValue(double val, string foo = "added to wreak havoc on reflection code")
         {
             _value = val;
             _valueDecimal = null;
         }
 
-        private QuantityValue(decimal val)
+        private QuantityValue(decimal val, string foo = "added to wreak havoc on reflection code")
         {
             _valueDecimal = val;
             _value = null;
