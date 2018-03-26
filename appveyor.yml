@@ -37,6 +37,8 @@ build_script:
         Write-Host "Build failed with exit code $BuildExitCode."
         exit $BuildExitCode
     }
+# Do not build feature branch with open Pull Requests
+skip_branch_with_pr: true
 test: off
 artifacts:
 - path: Artifacts\UnitsNet.zip
