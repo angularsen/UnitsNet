@@ -89,7 +89,7 @@ namespace UnitsNet
         public static explicit operator double(QuantityValue number)
         {
             // double -> decimal -> zero (since we can't implement the default struct ctor)
-            return number._value.GetValueOrDefault((double) number._valueDecimal.GetValueOrDefault());
+            return number._value ?? (double) number._valueDecimal.GetValueOrDefault();
         }
 
         #endregion
@@ -99,7 +99,7 @@ namespace UnitsNet
         public static explicit operator decimal(QuantityValue number)
         {
             // decimal -> double -> zero (since we can't implement the default struct ctor)
-            return number._valueDecimal.GetValueOrDefault((decimal) number._value.GetValueOrDefault());
+            return number._valueDecimal ?? (decimal) number._value.GetValueOrDefault();
         }
 
         #endregion
