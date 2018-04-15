@@ -80,6 +80,16 @@ namespace UnitsNet
         {
             return Area.FromSquareMeters(massFlow.KilogramsPerSecond / massFlux.KilogramsPerSecondPerSquareMeter);
         }
+
+        public static Density operator /(MassFlow massFlow, VolumeFlow volumeFlow)
+        {
+            return Density.FromKilogramsPerCubicMeter(massFlow.KilogramsPerSecond / volumeFlow.CubicMetersPerSecond);
+        }
+
+        public static VolumeFlow operator /(MassFlow massFlow, Density density)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(massFlow.KilogramsPerSecond / density.KilogramsPerCubicMeter);
+        }
 #endif
     }
 }

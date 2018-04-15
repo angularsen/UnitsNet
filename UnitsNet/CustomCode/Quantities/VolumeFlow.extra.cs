@@ -53,6 +53,16 @@ namespace UnitsNet
         {
             return Area.FromSquareMeters(volumeFlow.CubicMetersPerSecond / speed.MetersPerSecond);
         }
+
+        public static MassFlow operator *(VolumeFlow volumeFlow, Density density)
+        {
+            return MassFlow.FromKilogramsPerSecond(volumeFlow.CubicMetersPerSecond * density.KilogramsPerCubicMeter);
+        }
+
+        public static MassFlow operator *(Density density, VolumeFlow volumeFlow)
+        {
+            return MassFlow.FromKilogramsPerSecond(volumeFlow.CubicMetersPerSecond * density.KilogramsPerCubicMeter);
+        }
 #endif
     }
 }
