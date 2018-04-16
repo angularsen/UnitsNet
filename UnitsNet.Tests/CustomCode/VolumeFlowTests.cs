@@ -121,5 +121,19 @@ namespace UnitsNet.Tests.CustomCode
             Area area = VolumeFlow.FromCubicMetersPerSecond(40) / Speed.FromMetersPerSecond(20);
             Assert.Equal(Area.FromSquareMeters(2), area);
         }
+
+        [Fact]
+        public void VolumeFlowTimesDensityEqualsMassFlow()
+        {
+            MassFlow massFlow = VolumeFlow.FromCubicMetersPerSecond(2) * Density.FromKilogramsPerCubicMeter(3);
+            Assert.Equal(MassFlow.FromKilogramsPerSecond(6), massFlow);
+        }
+
+        [Fact]
+        public void DensityTimesVolumeFlowEqualsMassFlow()
+        {
+            MassFlow massFlow = Density.FromKilogramsPerCubicMeter(3) * VolumeFlow.FromCubicMetersPerSecond(7);
+            Assert.Equal(MassFlow.FromKilogramsPerSecond(21), massFlow);
+        }
     }
 }
