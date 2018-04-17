@@ -1,0 +1,117 @@
+﻿{
+  "Name": "HeatFlux",
+  "BaseUnit": "WattPerSquareMeter",
+  "XmlDoc": "Heat flux is the flow of energy per unit of area per unit of time",
+  "Units": [
+    {
+      "SingularName": "WattPerSquareMeter",
+      "PluralName": "WattsPerSquareMeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W/m²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattPerSquareInch",
+      "PluralName": "WattPerSquareInch",
+      "FromUnitToBaseFunc": "x*1.5500031e3",
+      "FromBaseToUnitFunc": "x/1.5500031e3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W/in²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "WattPerSquareFoot",
+      "PluralName": "WattPerSquareFoot",
+      "FromUnitToBaseFunc": "x*1.07639e1",
+      "FromBaseToUnitFunc": "x/1.07639e1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W/ft²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BtuPerSquareInchSecond",
+      "PluralName": "BtuPerSquareInchSecond",
+      "FromUnitToBaseFunc": "x*1.63533984e6",
+      "FromBaseToUnitFunc": "x/1.63533984e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "BTU/in²/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BtuPerSquareFootSecond",
+      "PluralName": "BtuPerSquareFootSecond",
+      "FromUnitToBaseFunc": "x*1.13565267e4",
+      "FromBaseToUnitFunc": "x/1.13565267e4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "BTU/ft²/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BtuPerSquareFootMinute",
+      "PluralName": "BtuPerSquareFootMinute",
+      "FromUnitToBaseFunc": "x*1.89275445e2",
+      "FromBaseToUnitFunc": "x/1.89275445e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "BTU/ft²/min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "BtuPerSquareFootHour",
+      "PluralName": "BtuPerSquareFootHour",
+      "FromUnitToBaseFunc": "x*3.15459075",
+      "FromBaseToUnitFunc": "x/3.15459075",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "BTU/ft²/hr" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CalPerSquareCentiMeterSecond",
+      "PluralName": "CalPerSquareCentiMeterSecond",
+      "FromUnitToBaseFunc": "x*4.1840e4",
+      "FromBaseToUnitFunc": "x/4.1840e4",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cal/cm²/s" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "KiloCalPerSquareMeterHour",
+      "PluralName": "KiloCalPerSquareMeterHour",
+      "FromUnitToBaseFunc": "x*1.16222222",
+      "FromBaseToUnitFunc": "x/1.16222222",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kcal/m²/hr" ]
+        }
+      ]
+    }
+  ]
+}

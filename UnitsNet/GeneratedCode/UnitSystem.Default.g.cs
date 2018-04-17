@@ -1731,6 +1731,90 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "THz"),
                             }),
                     }),
+                new UnitLocalization(typeof (HeatFluxUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerSquareFootHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "BTU/ft²/hr"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerSquareFootMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "BTU/ft²/min"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerSquareFootSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "BTU/ft²/s"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerSquareInchSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "BTU/in²/s"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.CalPerSquareCentiMeterSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cal/cm²/s"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.CentiwattPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cW/m²"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.DeciwattPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dW/m²"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.KilocalPerSquareCentiMeterSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kcal/cm²/s"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.KiloCalPerSquareMeterHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kcal/m²/hr"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.KilowattPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kW/m²"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.MicrowattPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µW/m²"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.MilliwattPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mW/m²"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.NanowattPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nW/m²"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.WattPerSquareFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/ft²"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.WattPerSquareInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/in²"),
+                            }),
+                        new CulturesForEnumValue((int) HeatFluxUnit.WattPerSquareMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/m²"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (IlluminanceUnit),
                     new[]
                     {
