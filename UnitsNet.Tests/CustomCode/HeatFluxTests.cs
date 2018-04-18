@@ -67,8 +67,22 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void PowerDividedByAreaEqualsHeatFlux()
         {
-           HeatFlux heatFlux = Power.FromWatts( 12 ) / Area.FromSquareMeters( 3 );
-           Assert.Equal( heatFlux, HeatFlux.FromWattsPerSquareMeter( 4 ) );
+           HeatFlux heatFlux = Power.FromWatts(12) / Area.FromSquareMeters(3);
+           Assert.Equal(heatFlux, HeatFlux.FromWattsPerSquareMeter(4));
+        }
+
+        [Fact]
+        public void HeatFluxTimesAreaEqualsPower()
+        {
+            Power power = HeatFlux.FromWattsPerSquareMeter(3) * Area.FromSquareMeters(4);
+            Assert.Equal(power, Power.FromWatts(12));
+        }
+
+        [Fact]
+        public void PowerDividedByHeatFluxEqualsArea()
+        {
+            Area area = Power.FromWatts(12) / HeatFlux.FromWattsPerSquareMeter(3);
+            Assert.Equal(area, Area.FromSquareMeters(4));
         }
     }
 }

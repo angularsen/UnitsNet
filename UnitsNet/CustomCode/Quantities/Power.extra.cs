@@ -91,6 +91,11 @@ namespace UnitsNet
         {
             return HeatFlux.FromWattsPerSquareMeter(power.Watts / area.SquareMeters);
         }
+
+        public static Area operator /(Power power, HeatFlux heatFlux)
+        {
+            return Area.FromSquareMeters( power.Watts / heatFlux.WattsPerSquareMeter );
+        }
 #endif
     }
 }
