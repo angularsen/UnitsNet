@@ -1734,30 +1734,30 @@ namespace UnitsNet
                 new UnitLocalization(typeof (HeatFluxUnit),
                     new[]
                     {
-                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerSquareFootHour,
+                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerHourSquareFoot,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "BTU/ft²/hr"),
+                                new AbbreviationsForCulture("en-US", "BTU/hr·ft²"),
                             }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerSquareFootMinute,
+                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerMinuteSquareFoot,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "BTU/ft²/min"),
+                                new AbbreviationsForCulture("en-US", "BTU/min·ft²"),
                             }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerSquareFootSecond,
+                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerSecondSquareFoot,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "BTU/ft²/s"),
+                                new AbbreviationsForCulture("en-US", "BTU/s·ft²"),
                             }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerSquareInchSecond,
+                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerSecondSquareInch,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "BTU/in²/s"),
+                                new AbbreviationsForCulture("en-US", "BTU/s·in²"),
                             }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.CalPerSquareCentiMeterSecond,
+                        new CulturesForEnumValue((int) HeatFluxUnit.CalPerSecondSquareCentimeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "cal/cm²/s"),
+                                new AbbreviationsForCulture("en-US", "cal/s·cm²"),
                             }),
                         new CulturesForEnumValue((int) HeatFluxUnit.CentiwattPerSquareMeter,
                             new[]
@@ -1769,15 +1769,15 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "dW/m²"),
                             }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.KilocalPerSquareCentiMeterSecond,
+                        new CulturesForEnumValue((int) HeatFluxUnit.KilocalPerHourSquareMeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kcal/cm²/s"),
+                                new AbbreviationsForCulture("en-US", "kcal/hr·m²"),
                             }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.KiloCalPerSquareMeterHour,
+                        new CulturesForEnumValue((int) HeatFluxUnit.KilocalPerSecondSquareCentimeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kcal/m²/hr"),
+                                new AbbreviationsForCulture("en-US", "kcal/s·cm²"),
                             }),
                         new CulturesForEnumValue((int) HeatFluxUnit.KilowattPerSquareMeter,
                             new[]

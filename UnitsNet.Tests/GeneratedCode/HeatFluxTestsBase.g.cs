@@ -52,15 +52,15 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class HeatFluxTestsBase
     {
-        protected abstract double BtuPerSquareFootHourInOneWattPerSquareMeter { get; }
-        protected abstract double BtuPerSquareFootMinuteInOneWattPerSquareMeter { get; }
-        protected abstract double BtuPerSquareFootSecondInOneWattPerSquareMeter { get; }
-        protected abstract double BtuPerSquareInchSecondInOneWattPerSquareMeter { get; }
-        protected abstract double CalPerSquareCentiMeterSecondInOneWattPerSquareMeter { get; }
+        protected abstract double BtuPerHourSquareFootInOneWattPerSquareMeter { get; }
+        protected abstract double BtuPerMinuteSquareFootInOneWattPerSquareMeter { get; }
+        protected abstract double BtuPerSecondSquareFootInOneWattPerSquareMeter { get; }
+        protected abstract double BtuPerSecondSquareInchInOneWattPerSquareMeter { get; }
+        protected abstract double CalPerSecondSquareCentimeterInOneWattPerSquareMeter { get; }
         protected abstract double CentiwattsPerSquareMeterInOneWattPerSquareMeter { get; }
         protected abstract double DeciwattsPerSquareMeterInOneWattPerSquareMeter { get; }
-        protected abstract double KilocalPerSquareCentiMeterSecondInOneWattPerSquareMeter { get; }
-        protected abstract double KiloCalPerSquareMeterHourInOneWattPerSquareMeter { get; }
+        protected abstract double KilocalPerHourSquareMeterInOneWattPerSquareMeter { get; }
+        protected abstract double KilocalPerSecondSquareCentimeterInOneWattPerSquareMeter { get; }
         protected abstract double KilowattsPerSquareMeterInOneWattPerSquareMeter { get; }
         protected abstract double MicrowattsPerSquareMeterInOneWattPerSquareMeter { get; }
         protected abstract double MilliwattsPerSquareMeterInOneWattPerSquareMeter { get; }
@@ -70,15 +70,15 @@ namespace UnitsNet.Tests
         protected abstract double WattsPerSquareMeterInOneWattPerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double BtuPerSquareFootHourTolerance { get { return 1e-5; } }
-        protected virtual double BtuPerSquareFootMinuteTolerance { get { return 1e-5; } }
-        protected virtual double BtuPerSquareFootSecondTolerance { get { return 1e-5; } }
-        protected virtual double BtuPerSquareInchSecondTolerance { get { return 1e-5; } }
-        protected virtual double CalPerSquareCentiMeterSecondTolerance { get { return 1e-5; } }
+        protected virtual double BtuPerHourSquareFootTolerance { get { return 1e-5; } }
+        protected virtual double BtuPerMinuteSquareFootTolerance { get { return 1e-5; } }
+        protected virtual double BtuPerSecondSquareFootTolerance { get { return 1e-5; } }
+        protected virtual double BtuPerSecondSquareInchTolerance { get { return 1e-5; } }
+        protected virtual double CalPerSecondSquareCentimeterTolerance { get { return 1e-5; } }
         protected virtual double CentiwattsPerSquareMeterTolerance { get { return 1e-5; } }
         protected virtual double DeciwattsPerSquareMeterTolerance { get { return 1e-5; } }
-        protected virtual double KilocalPerSquareCentiMeterSecondTolerance { get { return 1e-5; } }
-        protected virtual double KiloCalPerSquareMeterHourTolerance { get { return 1e-5; } }
+        protected virtual double KilocalPerHourSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double KilocalPerSecondSquareCentimeterTolerance { get { return 1e-5; } }
         protected virtual double KilowattsPerSquareMeterTolerance { get { return 1e-5; } }
         protected virtual double MicrowattsPerSquareMeterTolerance { get { return 1e-5; } }
         protected virtual double MilliwattsPerSquareMeterTolerance { get { return 1e-5; } }
@@ -92,15 +92,15 @@ namespace UnitsNet.Tests
         public void WattPerSquareMeterToHeatFluxUnits()
         {
             HeatFlux wattpersquaremeter = HeatFlux.FromWattsPerSquareMeter(1);
-            AssertEx.EqualTolerance(BtuPerSquareFootHourInOneWattPerSquareMeter, wattpersquaremeter.BtuPerSquareFootHour, BtuPerSquareFootHourTolerance);
-            AssertEx.EqualTolerance(BtuPerSquareFootMinuteInOneWattPerSquareMeter, wattpersquaremeter.BtuPerSquareFootMinute, BtuPerSquareFootMinuteTolerance);
-            AssertEx.EqualTolerance(BtuPerSquareFootSecondInOneWattPerSquareMeter, wattpersquaremeter.BtuPerSquareFootSecond, BtuPerSquareFootSecondTolerance);
-            AssertEx.EqualTolerance(BtuPerSquareInchSecondInOneWattPerSquareMeter, wattpersquaremeter.BtuPerSquareInchSecond, BtuPerSquareInchSecondTolerance);
-            AssertEx.EqualTolerance(CalPerSquareCentiMeterSecondInOneWattPerSquareMeter, wattpersquaremeter.CalPerSquareCentiMeterSecond, CalPerSquareCentiMeterSecondTolerance);
+            AssertEx.EqualTolerance(BtuPerHourSquareFootInOneWattPerSquareMeter, wattpersquaremeter.BtuPerHourSquareFoot, BtuPerHourSquareFootTolerance);
+            AssertEx.EqualTolerance(BtuPerMinuteSquareFootInOneWattPerSquareMeter, wattpersquaremeter.BtuPerMinuteSquareFoot, BtuPerMinuteSquareFootTolerance);
+            AssertEx.EqualTolerance(BtuPerSecondSquareFootInOneWattPerSquareMeter, wattpersquaremeter.BtuPerSecondSquareFoot, BtuPerSecondSquareFootTolerance);
+            AssertEx.EqualTolerance(BtuPerSecondSquareInchInOneWattPerSquareMeter, wattpersquaremeter.BtuPerSecondSquareInch, BtuPerSecondSquareInchTolerance);
+            AssertEx.EqualTolerance(CalPerSecondSquareCentimeterInOneWattPerSquareMeter, wattpersquaremeter.CalPerSecondSquareCentimeter, CalPerSecondSquareCentimeterTolerance);
             AssertEx.EqualTolerance(CentiwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.CentiwattsPerSquareMeter, CentiwattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(DeciwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.DeciwattsPerSquareMeter, DeciwattsPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(KilocalPerSquareCentiMeterSecondInOneWattPerSquareMeter, wattpersquaremeter.KilocalPerSquareCentiMeterSecond, KilocalPerSquareCentiMeterSecondTolerance);
-            AssertEx.EqualTolerance(KiloCalPerSquareMeterHourInOneWattPerSquareMeter, wattpersquaremeter.KiloCalPerSquareMeterHour, KiloCalPerSquareMeterHourTolerance);
+            AssertEx.EqualTolerance(KilocalPerHourSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.KilocalPerHourSquareMeter, KilocalPerHourSquareMeterTolerance);
+            AssertEx.EqualTolerance(KilocalPerSecondSquareCentimeterInOneWattPerSquareMeter, wattpersquaremeter.KilocalPerSecondSquareCentimeter, KilocalPerSecondSquareCentimeterTolerance);
             AssertEx.EqualTolerance(KilowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.KilowattsPerSquareMeter, KilowattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(MicrowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.MicrowattsPerSquareMeter, MicrowattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(MilliwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.MilliwattsPerSquareMeter, MilliwattsPerSquareMeterTolerance);
@@ -113,15 +113,15 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.BtuPerSquareFootHour).BtuPerSquareFootHour, BtuPerSquareFootHourTolerance);
-            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.BtuPerSquareFootMinute).BtuPerSquareFootMinute, BtuPerSquareFootMinuteTolerance);
-            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.BtuPerSquareFootSecond).BtuPerSquareFootSecond, BtuPerSquareFootSecondTolerance);
-            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.BtuPerSquareInchSecond).BtuPerSquareInchSecond, BtuPerSquareInchSecondTolerance);
-            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.CalPerSquareCentiMeterSecond).CalPerSquareCentiMeterSecond, CalPerSquareCentiMeterSecondTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.BtuPerHourSquareFoot).BtuPerHourSquareFoot, BtuPerHourSquareFootTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.BtuPerMinuteSquareFoot).BtuPerMinuteSquareFoot, BtuPerMinuteSquareFootTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.BtuPerSecondSquareFoot).BtuPerSecondSquareFoot, BtuPerSecondSquareFootTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.BtuPerSecondSquareInch).BtuPerSecondSquareInch, BtuPerSecondSquareInchTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.CalPerSecondSquareCentimeter).CalPerSecondSquareCentimeter, CalPerSecondSquareCentimeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.CentiwattPerSquareMeter).CentiwattsPerSquareMeter, CentiwattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.DeciwattPerSquareMeter).DeciwattsPerSquareMeter, DeciwattsPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.KilocalPerSquareCentiMeterSecond).KilocalPerSquareCentiMeterSecond, KilocalPerSquareCentiMeterSecondTolerance);
-            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.KiloCalPerSquareMeterHour).KiloCalPerSquareMeterHour, KiloCalPerSquareMeterHourTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.KilocalPerHourSquareMeter).KilocalPerHourSquareMeter, KilocalPerHourSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.KilocalPerSecondSquareCentimeter).KilocalPerSecondSquareCentimeter, KilocalPerSecondSquareCentimeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.KilowattPerSquareMeter).KilowattsPerSquareMeter, KilowattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.MicrowattPerSquareMeter).MicrowattsPerSquareMeter, MicrowattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.MilliwattPerSquareMeter).MilliwattsPerSquareMeter, MilliwattsPerSquareMeterTolerance);
@@ -135,15 +135,15 @@ namespace UnitsNet.Tests
         public void As()
         {
             var wattpersquaremeter = HeatFlux.FromWattsPerSquareMeter(1);
-            AssertEx.EqualTolerance(BtuPerSquareFootHourInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.BtuPerSquareFootHour), BtuPerSquareFootHourTolerance);
-            AssertEx.EqualTolerance(BtuPerSquareFootMinuteInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.BtuPerSquareFootMinute), BtuPerSquareFootMinuteTolerance);
-            AssertEx.EqualTolerance(BtuPerSquareFootSecondInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.BtuPerSquareFootSecond), BtuPerSquareFootSecondTolerance);
-            AssertEx.EqualTolerance(BtuPerSquareInchSecondInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.BtuPerSquareInchSecond), BtuPerSquareInchSecondTolerance);
-            AssertEx.EqualTolerance(CalPerSquareCentiMeterSecondInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.CalPerSquareCentiMeterSecond), CalPerSquareCentiMeterSecondTolerance);
+            AssertEx.EqualTolerance(BtuPerHourSquareFootInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.BtuPerHourSquareFoot), BtuPerHourSquareFootTolerance);
+            AssertEx.EqualTolerance(BtuPerMinuteSquareFootInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.BtuPerMinuteSquareFoot), BtuPerMinuteSquareFootTolerance);
+            AssertEx.EqualTolerance(BtuPerSecondSquareFootInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.BtuPerSecondSquareFoot), BtuPerSecondSquareFootTolerance);
+            AssertEx.EqualTolerance(BtuPerSecondSquareInchInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.BtuPerSecondSquareInch), BtuPerSecondSquareInchTolerance);
+            AssertEx.EqualTolerance(CalPerSecondSquareCentimeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.CalPerSecondSquareCentimeter), CalPerSecondSquareCentimeterTolerance);
             AssertEx.EqualTolerance(CentiwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.CentiwattPerSquareMeter), CentiwattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(DeciwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.DeciwattPerSquareMeter), DeciwattsPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(KilocalPerSquareCentiMeterSecondInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.KilocalPerSquareCentiMeterSecond), KilocalPerSquareCentiMeterSecondTolerance);
-            AssertEx.EqualTolerance(KiloCalPerSquareMeterHourInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.KiloCalPerSquareMeterHour), KiloCalPerSquareMeterHourTolerance);
+            AssertEx.EqualTolerance(KilocalPerHourSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.KilocalPerHourSquareMeter), KilocalPerHourSquareMeterTolerance);
+            AssertEx.EqualTolerance(KilocalPerSecondSquareCentimeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.KilocalPerSecondSquareCentimeter), KilocalPerSecondSquareCentimeterTolerance);
             AssertEx.EqualTolerance(KilowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.KilowattPerSquareMeter), KilowattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(MicrowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.MicrowattPerSquareMeter), MicrowattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(MilliwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.MilliwattPerSquareMeter), MilliwattsPerSquareMeterTolerance);
@@ -157,15 +157,15 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             HeatFlux wattpersquaremeter = HeatFlux.FromWattsPerSquareMeter(1);
-            AssertEx.EqualTolerance(1, HeatFlux.FromBtuPerSquareFootHour(wattpersquaremeter.BtuPerSquareFootHour).WattsPerSquareMeter, BtuPerSquareFootHourTolerance);
-            AssertEx.EqualTolerance(1, HeatFlux.FromBtuPerSquareFootMinute(wattpersquaremeter.BtuPerSquareFootMinute).WattsPerSquareMeter, BtuPerSquareFootMinuteTolerance);
-            AssertEx.EqualTolerance(1, HeatFlux.FromBtuPerSquareFootSecond(wattpersquaremeter.BtuPerSquareFootSecond).WattsPerSquareMeter, BtuPerSquareFootSecondTolerance);
-            AssertEx.EqualTolerance(1, HeatFlux.FromBtuPerSquareInchSecond(wattpersquaremeter.BtuPerSquareInchSecond).WattsPerSquareMeter, BtuPerSquareInchSecondTolerance);
-            AssertEx.EqualTolerance(1, HeatFlux.FromCalPerSquareCentiMeterSecond(wattpersquaremeter.CalPerSquareCentiMeterSecond).WattsPerSquareMeter, CalPerSquareCentiMeterSecondTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.FromBtuPerHourSquareFoot(wattpersquaremeter.BtuPerHourSquareFoot).WattsPerSquareMeter, BtuPerHourSquareFootTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.FromBtuPerMinuteSquareFoot(wattpersquaremeter.BtuPerMinuteSquareFoot).WattsPerSquareMeter, BtuPerMinuteSquareFootTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.FromBtuPerSecondSquareFoot(wattpersquaremeter.BtuPerSecondSquareFoot).WattsPerSquareMeter, BtuPerSecondSquareFootTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.FromBtuPerSecondSquareInch(wattpersquaremeter.BtuPerSecondSquareInch).WattsPerSquareMeter, BtuPerSecondSquareInchTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.FromCalPerSecondSquareCentimeter(wattpersquaremeter.CalPerSecondSquareCentimeter).WattsPerSquareMeter, CalPerSecondSquareCentimeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.FromCentiwattsPerSquareMeter(wattpersquaremeter.CentiwattsPerSquareMeter).WattsPerSquareMeter, CentiwattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.FromDeciwattsPerSquareMeter(wattpersquaremeter.DeciwattsPerSquareMeter).WattsPerSquareMeter, DeciwattsPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, HeatFlux.FromKilocalPerSquareCentiMeterSecond(wattpersquaremeter.KilocalPerSquareCentiMeterSecond).WattsPerSquareMeter, KilocalPerSquareCentiMeterSecondTolerance);
-            AssertEx.EqualTolerance(1, HeatFlux.FromKiloCalPerSquareMeterHour(wattpersquaremeter.KiloCalPerSquareMeterHour).WattsPerSquareMeter, KiloCalPerSquareMeterHourTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.FromKilocalPerHourSquareMeter(wattpersquaremeter.KilocalPerHourSquareMeter).WattsPerSquareMeter, KilocalPerHourSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.FromKilocalPerSecondSquareCentimeter(wattpersquaremeter.KilocalPerSecondSquareCentimeter).WattsPerSquareMeter, KilocalPerSecondSquareCentimeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.FromKilowattsPerSquareMeter(wattpersquaremeter.KilowattsPerSquareMeter).WattsPerSquareMeter, KilowattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.FromMicrowattsPerSquareMeter(wattpersquaremeter.MicrowattsPerSquareMeter).WattsPerSquareMeter, MicrowattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.FromMilliwattsPerSquareMeter(wattpersquaremeter.MilliwattsPerSquareMeter).WattsPerSquareMeter, MilliwattsPerSquareMeterTolerance);

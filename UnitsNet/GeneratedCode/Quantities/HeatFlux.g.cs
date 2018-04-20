@@ -163,25 +163,25 @@ namespace UnitsNet
         /// </summary>
         public static HeatFluxUnit[] Units { get; } = Enum.GetValues(typeof(HeatFluxUnit)).Cast<HeatFluxUnit>().ToArray();
         /// <summary>
-        ///     Get HeatFlux in BtuPerSquareFootHour.
+        ///     Get HeatFlux in BtuPerHourSquareFoot.
         /// </summary>
-        public double BtuPerSquareFootHour => As(HeatFluxUnit.BtuPerSquareFootHour);
+        public double BtuPerHourSquareFoot => As(HeatFluxUnit.BtuPerHourSquareFoot);
         /// <summary>
-        ///     Get HeatFlux in BtuPerSquareFootMinute.
+        ///     Get HeatFlux in BtuPerMinuteSquareFoot.
         /// </summary>
-        public double BtuPerSquareFootMinute => As(HeatFluxUnit.BtuPerSquareFootMinute);
+        public double BtuPerMinuteSquareFoot => As(HeatFluxUnit.BtuPerMinuteSquareFoot);
         /// <summary>
-        ///     Get HeatFlux in BtuPerSquareFootSecond.
+        ///     Get HeatFlux in BtuPerSecondSquareFoot.
         /// </summary>
-        public double BtuPerSquareFootSecond => As(HeatFluxUnit.BtuPerSquareFootSecond);
+        public double BtuPerSecondSquareFoot => As(HeatFluxUnit.BtuPerSecondSquareFoot);
         /// <summary>
-        ///     Get HeatFlux in BtuPerSquareInchSecond.
+        ///     Get HeatFlux in BtuPerSecondSquareInch.
         /// </summary>
-        public double BtuPerSquareInchSecond => As(HeatFluxUnit.BtuPerSquareInchSecond);
+        public double BtuPerSecondSquareInch => As(HeatFluxUnit.BtuPerSecondSquareInch);
         /// <summary>
-        ///     Get HeatFlux in CalPerSquareCentiMeterSecond.
+        ///     Get HeatFlux in CalPerSecondSquareCentimeter.
         /// </summary>
-        public double CalPerSquareCentiMeterSecond => As(HeatFluxUnit.CalPerSquareCentiMeterSecond);
+        public double CalPerSecondSquareCentimeter => As(HeatFluxUnit.CalPerSecondSquareCentimeter);
         /// <summary>
         ///     Get HeatFlux in CentiwattsPerSquareMeter.
         /// </summary>
@@ -191,13 +191,13 @@ namespace UnitsNet
         /// </summary>
         public double DeciwattsPerSquareMeter => As(HeatFluxUnit.DeciwattPerSquareMeter);
         /// <summary>
-        ///     Get HeatFlux in KilocalPerSquareCentiMeterSecond.
+        ///     Get HeatFlux in KilocalPerHourSquareMeter.
         /// </summary>
-        public double KilocalPerSquareCentiMeterSecond => As(HeatFluxUnit.KilocalPerSquareCentiMeterSecond);
+        public double KilocalPerHourSquareMeter => As(HeatFluxUnit.KilocalPerHourSquareMeter);
         /// <summary>
-        ///     Get HeatFlux in KiloCalPerSquareMeterHour.
+        ///     Get HeatFlux in KilocalPerSecondSquareCentimeter.
         /// </summary>
-        public double KiloCalPerSquareMeterHour => As(HeatFluxUnit.KiloCalPerSquareMeterHour);
+        public double KilocalPerSecondSquareCentimeter => As(HeatFluxUnit.KilocalPerSecondSquareCentimeter);
         /// <summary>
         ///     Get HeatFlux in KilowattsPerSquareMeter.
         /// </summary>
@@ -234,73 +234,73 @@ namespace UnitsNet
         public static HeatFlux Zero => new HeatFlux(0, BaseUnit);
 
         /// <summary>
-        ///     Get HeatFlux from BtuPerSquareFootHour.
+        ///     Get HeatFlux from BtuPerHourSquareFoot.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static HeatFlux FromBtuPerSquareFootHour(double btupersquarefoothour)
+        public static HeatFlux FromBtuPerHourSquareFoot(double btuperhoursquarefoot)
 #else
-        public static HeatFlux FromBtuPerSquareFootHour(QuantityValue btupersquarefoothour)
+        public static HeatFlux FromBtuPerHourSquareFoot(QuantityValue btuperhoursquarefoot)
 #endif
         {
-            double value = (double) btupersquarefoothour;
-            return new HeatFlux(value, HeatFluxUnit.BtuPerSquareFootHour);
+            double value = (double) btuperhoursquarefoot;
+            return new HeatFlux(value, HeatFluxUnit.BtuPerHourSquareFoot);
         }
 
         /// <summary>
-        ///     Get HeatFlux from BtuPerSquareFootMinute.
+        ///     Get HeatFlux from BtuPerMinuteSquareFoot.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static HeatFlux FromBtuPerSquareFootMinute(double btupersquarefootminute)
+        public static HeatFlux FromBtuPerMinuteSquareFoot(double btuperminutesquarefoot)
 #else
-        public static HeatFlux FromBtuPerSquareFootMinute(QuantityValue btupersquarefootminute)
+        public static HeatFlux FromBtuPerMinuteSquareFoot(QuantityValue btuperminutesquarefoot)
 #endif
         {
-            double value = (double) btupersquarefootminute;
-            return new HeatFlux(value, HeatFluxUnit.BtuPerSquareFootMinute);
+            double value = (double) btuperminutesquarefoot;
+            return new HeatFlux(value, HeatFluxUnit.BtuPerMinuteSquareFoot);
         }
 
         /// <summary>
-        ///     Get HeatFlux from BtuPerSquareFootSecond.
+        ///     Get HeatFlux from BtuPerSecondSquareFoot.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static HeatFlux FromBtuPerSquareFootSecond(double btupersquarefootsecond)
+        public static HeatFlux FromBtuPerSecondSquareFoot(double btupersecondsquarefoot)
 #else
-        public static HeatFlux FromBtuPerSquareFootSecond(QuantityValue btupersquarefootsecond)
+        public static HeatFlux FromBtuPerSecondSquareFoot(QuantityValue btupersecondsquarefoot)
 #endif
         {
-            double value = (double) btupersquarefootsecond;
-            return new HeatFlux(value, HeatFluxUnit.BtuPerSquareFootSecond);
+            double value = (double) btupersecondsquarefoot;
+            return new HeatFlux(value, HeatFluxUnit.BtuPerSecondSquareFoot);
         }
 
         /// <summary>
-        ///     Get HeatFlux from BtuPerSquareInchSecond.
+        ///     Get HeatFlux from BtuPerSecondSquareInch.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static HeatFlux FromBtuPerSquareInchSecond(double btupersquareinchsecond)
+        public static HeatFlux FromBtuPerSecondSquareInch(double btupersecondsquareinch)
 #else
-        public static HeatFlux FromBtuPerSquareInchSecond(QuantityValue btupersquareinchsecond)
+        public static HeatFlux FromBtuPerSecondSquareInch(QuantityValue btupersecondsquareinch)
 #endif
         {
-            double value = (double) btupersquareinchsecond;
-            return new HeatFlux(value, HeatFluxUnit.BtuPerSquareInchSecond);
+            double value = (double) btupersecondsquareinch;
+            return new HeatFlux(value, HeatFluxUnit.BtuPerSecondSquareInch);
         }
 
         /// <summary>
-        ///     Get HeatFlux from CalPerSquareCentiMeterSecond.
+        ///     Get HeatFlux from CalPerSecondSquareCentimeter.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static HeatFlux FromCalPerSquareCentiMeterSecond(double calpersquarecentimetersecond)
+        public static HeatFlux FromCalPerSecondSquareCentimeter(double calpersecondsquarecentimeter)
 #else
-        public static HeatFlux FromCalPerSquareCentiMeterSecond(QuantityValue calpersquarecentimetersecond)
+        public static HeatFlux FromCalPerSecondSquareCentimeter(QuantityValue calpersecondsquarecentimeter)
 #endif
         {
-            double value = (double) calpersquarecentimetersecond;
-            return new HeatFlux(value, HeatFluxUnit.CalPerSquareCentiMeterSecond);
+            double value = (double) calpersecondsquarecentimeter;
+            return new HeatFlux(value, HeatFluxUnit.CalPerSecondSquareCentimeter);
         }
 
         /// <summary>
@@ -332,31 +332,31 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get HeatFlux from KilocalPerSquareCentiMeterSecond.
+        ///     Get HeatFlux from KilocalPerHourSquareMeter.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static HeatFlux FromKilocalPerSquareCentiMeterSecond(double kilocalpersquarecentimetersecond)
+        public static HeatFlux FromKilocalPerHourSquareMeter(double kilocalperhoursquaremeter)
 #else
-        public static HeatFlux FromKilocalPerSquareCentiMeterSecond(QuantityValue kilocalpersquarecentimetersecond)
+        public static HeatFlux FromKilocalPerHourSquareMeter(QuantityValue kilocalperhoursquaremeter)
 #endif
         {
-            double value = (double) kilocalpersquarecentimetersecond;
-            return new HeatFlux(value, HeatFluxUnit.KilocalPerSquareCentiMeterSecond);
+            double value = (double) kilocalperhoursquaremeter;
+            return new HeatFlux(value, HeatFluxUnit.KilocalPerHourSquareMeter);
         }
 
         /// <summary>
-        ///     Get HeatFlux from KiloCalPerSquareMeterHour.
+        ///     Get HeatFlux from KilocalPerSecondSquareCentimeter.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static HeatFlux FromKiloCalPerSquareMeterHour(double kilocalpersquaremeterhour)
+        public static HeatFlux FromKilocalPerSecondSquareCentimeter(double kilocalpersecondsquarecentimeter)
 #else
-        public static HeatFlux FromKiloCalPerSquareMeterHour(QuantityValue kilocalpersquaremeterhour)
+        public static HeatFlux FromKilocalPerSecondSquareCentimeter(QuantityValue kilocalpersecondsquarecentimeter)
 #endif
         {
-            double value = (double) kilocalpersquaremeterhour;
-            return new HeatFlux(value, HeatFluxUnit.KiloCalPerSquareMeterHour);
+            double value = (double) kilocalpersecondsquarecentimeter;
+            return new HeatFlux(value, HeatFluxUnit.KilocalPerSecondSquareCentimeter);
         }
 
         /// <summary>
@@ -460,13 +460,13 @@ namespace UnitsNet
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable HeatFlux from nullable BtuPerSquareFootHour.
+        ///     Get nullable HeatFlux from nullable BtuPerHourSquareFoot.
         /// </summary>
-        public static HeatFlux? FromBtuPerSquareFootHour(QuantityValue? btupersquarefoothour)
+        public static HeatFlux? FromBtuPerHourSquareFoot(QuantityValue? btuperhoursquarefoot)
         {
-            if (btupersquarefoothour.HasValue)
+            if (btuperhoursquarefoot.HasValue)
             {
-                return FromBtuPerSquareFootHour(btupersquarefoothour.Value);
+                return FromBtuPerHourSquareFoot(btuperhoursquarefoot.Value);
             }
             else
             {
@@ -475,13 +475,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable HeatFlux from nullable BtuPerSquareFootMinute.
+        ///     Get nullable HeatFlux from nullable BtuPerMinuteSquareFoot.
         /// </summary>
-        public static HeatFlux? FromBtuPerSquareFootMinute(QuantityValue? btupersquarefootminute)
+        public static HeatFlux? FromBtuPerMinuteSquareFoot(QuantityValue? btuperminutesquarefoot)
         {
-            if (btupersquarefootminute.HasValue)
+            if (btuperminutesquarefoot.HasValue)
             {
-                return FromBtuPerSquareFootMinute(btupersquarefootminute.Value);
+                return FromBtuPerMinuteSquareFoot(btuperminutesquarefoot.Value);
             }
             else
             {
@@ -490,13 +490,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable HeatFlux from nullable BtuPerSquareFootSecond.
+        ///     Get nullable HeatFlux from nullable BtuPerSecondSquareFoot.
         /// </summary>
-        public static HeatFlux? FromBtuPerSquareFootSecond(QuantityValue? btupersquarefootsecond)
+        public static HeatFlux? FromBtuPerSecondSquareFoot(QuantityValue? btupersecondsquarefoot)
         {
-            if (btupersquarefootsecond.HasValue)
+            if (btupersecondsquarefoot.HasValue)
             {
-                return FromBtuPerSquareFootSecond(btupersquarefootsecond.Value);
+                return FromBtuPerSecondSquareFoot(btupersecondsquarefoot.Value);
             }
             else
             {
@@ -505,13 +505,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable HeatFlux from nullable BtuPerSquareInchSecond.
+        ///     Get nullable HeatFlux from nullable BtuPerSecondSquareInch.
         /// </summary>
-        public static HeatFlux? FromBtuPerSquareInchSecond(QuantityValue? btupersquareinchsecond)
+        public static HeatFlux? FromBtuPerSecondSquareInch(QuantityValue? btupersecondsquareinch)
         {
-            if (btupersquareinchsecond.HasValue)
+            if (btupersecondsquareinch.HasValue)
             {
-                return FromBtuPerSquareInchSecond(btupersquareinchsecond.Value);
+                return FromBtuPerSecondSquareInch(btupersecondsquareinch.Value);
             }
             else
             {
@@ -520,13 +520,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable HeatFlux from nullable CalPerSquareCentiMeterSecond.
+        ///     Get nullable HeatFlux from nullable CalPerSecondSquareCentimeter.
         /// </summary>
-        public static HeatFlux? FromCalPerSquareCentiMeterSecond(QuantityValue? calpersquarecentimetersecond)
+        public static HeatFlux? FromCalPerSecondSquareCentimeter(QuantityValue? calpersecondsquarecentimeter)
         {
-            if (calpersquarecentimetersecond.HasValue)
+            if (calpersecondsquarecentimeter.HasValue)
             {
-                return FromCalPerSquareCentiMeterSecond(calpersquarecentimetersecond.Value);
+                return FromCalPerSecondSquareCentimeter(calpersecondsquarecentimeter.Value);
             }
             else
             {
@@ -565,13 +565,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable HeatFlux from nullable KilocalPerSquareCentiMeterSecond.
+        ///     Get nullable HeatFlux from nullable KilocalPerHourSquareMeter.
         /// </summary>
-        public static HeatFlux? FromKilocalPerSquareCentiMeterSecond(QuantityValue? kilocalpersquarecentimetersecond)
+        public static HeatFlux? FromKilocalPerHourSquareMeter(QuantityValue? kilocalperhoursquaremeter)
         {
-            if (kilocalpersquarecentimetersecond.HasValue)
+            if (kilocalperhoursquaremeter.HasValue)
             {
-                return FromKilocalPerSquareCentiMeterSecond(kilocalpersquarecentimetersecond.Value);
+                return FromKilocalPerHourSquareMeter(kilocalperhoursquaremeter.Value);
             }
             else
             {
@@ -580,13 +580,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable HeatFlux from nullable KiloCalPerSquareMeterHour.
+        ///     Get nullable HeatFlux from nullable KilocalPerSecondSquareCentimeter.
         /// </summary>
-        public static HeatFlux? FromKiloCalPerSquareMeterHour(QuantityValue? kilocalpersquaremeterhour)
+        public static HeatFlux? FromKilocalPerSecondSquareCentimeter(QuantityValue? kilocalpersecondsquarecentimeter)
         {
-            if (kilocalpersquaremeterhour.HasValue)
+            if (kilocalpersecondsquarecentimeter.HasValue)
             {
-                return FromKiloCalPerSquareMeterHour(kilocalpersquaremeterhour.Value);
+                return FromKilocalPerSecondSquareCentimeter(kilocalpersecondsquarecentimeter.Value);
             }
             else
             {
@@ -926,15 +926,15 @@ namespace UnitsNet
 
             switch (unit)
             {
-                case HeatFluxUnit.BtuPerSquareFootHour: return baseUnitValue/3.15459075;
-                case HeatFluxUnit.BtuPerSquareFootMinute: return baseUnitValue/1.89275445e2;
-                case HeatFluxUnit.BtuPerSquareFootSecond: return baseUnitValue/1.13565267e4;
-                case HeatFluxUnit.BtuPerSquareInchSecond: return baseUnitValue/1.63533984e6;
-                case HeatFluxUnit.CalPerSquareCentiMeterSecond: return baseUnitValue/4.1840e4;
+                case HeatFluxUnit.BtuPerHourSquareFoot: return baseUnitValue/3.15459075;
+                case HeatFluxUnit.BtuPerMinuteSquareFoot: return baseUnitValue/1.89275445e2;
+                case HeatFluxUnit.BtuPerSecondSquareFoot: return baseUnitValue/1.13565267e4;
+                case HeatFluxUnit.BtuPerSecondSquareInch: return baseUnitValue/1.63533984e6;
+                case HeatFluxUnit.CalPerSecondSquareCentimeter: return baseUnitValue/4.1840e4;
                 case HeatFluxUnit.CentiwattPerSquareMeter: return (baseUnitValue) / 1e-2d;
                 case HeatFluxUnit.DeciwattPerSquareMeter: return (baseUnitValue) / 1e-1d;
-                case HeatFluxUnit.KilocalPerSquareCentiMeterSecond: return (baseUnitValue/4.1840e4) / 1e3d;
-                case HeatFluxUnit.KiloCalPerSquareMeterHour: return baseUnitValue/1.16222222;
+                case HeatFluxUnit.KilocalPerHourSquareMeter: return baseUnitValue/1.16222222;
+                case HeatFluxUnit.KilocalPerSecondSquareCentimeter: return (baseUnitValue/4.1840e4) / 1e3d;
                 case HeatFluxUnit.KilowattPerSquareMeter: return (baseUnitValue) / 1e3d;
                 case HeatFluxUnit.MicrowattPerSquareMeter: return (baseUnitValue) / 1e-6d;
                 case HeatFluxUnit.MilliwattPerSquareMeter: return (baseUnitValue) / 1e-3d;
@@ -1305,15 +1305,15 @@ namespace UnitsNet
 
             switch (Unit)
             {
-                case HeatFluxUnit.BtuPerSquareFootHour: return _value*3.15459075;
-                case HeatFluxUnit.BtuPerSquareFootMinute: return _value*1.89275445e2;
-                case HeatFluxUnit.BtuPerSquareFootSecond: return _value*1.13565267e4;
-                case HeatFluxUnit.BtuPerSquareInchSecond: return _value*1.63533984e6;
-                case HeatFluxUnit.CalPerSquareCentiMeterSecond: return _value*4.1840e4;
+                case HeatFluxUnit.BtuPerHourSquareFoot: return _value*3.15459075;
+                case HeatFluxUnit.BtuPerMinuteSquareFoot: return _value*1.89275445e2;
+                case HeatFluxUnit.BtuPerSecondSquareFoot: return _value*1.13565267e4;
+                case HeatFluxUnit.BtuPerSecondSquareInch: return _value*1.63533984e6;
+                case HeatFluxUnit.CalPerSecondSquareCentimeter: return _value*4.1840e4;
                 case HeatFluxUnit.CentiwattPerSquareMeter: return (_value) * 1e-2d;
                 case HeatFluxUnit.DeciwattPerSquareMeter: return (_value) * 1e-1d;
-                case HeatFluxUnit.KilocalPerSquareCentiMeterSecond: return (_value*4.1840e4) * 1e3d;
-                case HeatFluxUnit.KiloCalPerSquareMeterHour: return _value*1.16222222;
+                case HeatFluxUnit.KilocalPerHourSquareMeter: return _value*1.16222222;
+                case HeatFluxUnit.KilocalPerSecondSquareCentimeter: return (_value*4.1840e4) * 1e3d;
                 case HeatFluxUnit.KilowattPerSquareMeter: return (_value) * 1e3d;
                 case HeatFluxUnit.MicrowattPerSquareMeter: return (_value) * 1e-6d;
                 case HeatFluxUnit.MilliwattPerSquareMeter: return (_value) * 1e-3d;
