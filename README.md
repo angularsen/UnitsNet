@@ -124,10 +124,11 @@ string abbrevKg = Mass.GetAbbreviation(MassUnit.Kilogram); // "kg"
 ```
 
 ### <a name="example-app"></a>Example: Creating a dynamic unit converter app
+[Source code](https://github.com/angularsen/UnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>
+[Download](https://github.com/angularsen/UnitsNet/releases/tag/UnitConverterWpf%2F2018-02-04) (release 2018-02-04 for Windows)
 
 ![image](https://user-images.githubusercontent.com/787816/34920961-9b697004-f97b-11e7-9e9a-51ff7142969b.png)
 
-See [Samples/UnitConverter.Wpf](https://github.com/angularsen/UnitsNet/tree/master/Samples/UnitConverter.Wpf) for source code.
 
 This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Length` or `Mass`, then selects to convert from `Meter` to `Centimeter` and types in a value for how many meters.
 
