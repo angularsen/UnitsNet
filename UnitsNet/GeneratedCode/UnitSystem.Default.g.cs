@@ -1737,7 +1737,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) HeatFluxUnit.BtuPerHourSquareFoot,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "BTU/hr·ft²"),
+                                new AbbreviationsForCulture("en-US", "BTU/h·ft²"),
                             }),
                         new CulturesForEnumValue((int) HeatFluxUnit.BtuPerMinuteSquareFoot,
                             new[]
@@ -1754,7 +1754,7 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "BTU/s·in²"),
                             }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.CalPerSecondSquareCentimeter,
+                        new CulturesForEnumValue((int) HeatFluxUnit.CaloriePerSecondSquareCentimeter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "cal/s·cm²"),
@@ -1769,12 +1769,12 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "dW/m²"),
                             }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.KilocalPerHourSquareMeter,
+                        new CulturesForEnumValue((int) HeatFluxUnit.KilocaloriePerHourSquareMeter,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "kcal/hr·m²"),
+                                new AbbreviationsForCulture("en-US", "kcal/h·m²"),
                             }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.KilocalPerSecondSquareCentimeter,
+                        new CulturesForEnumValue((int) HeatFluxUnit.KilocaloriePerSecondSquareCentimeter,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kcal/s·cm²"),

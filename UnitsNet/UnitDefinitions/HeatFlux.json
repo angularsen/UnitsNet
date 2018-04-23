@@ -84,15 +84,15 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "BTU/hr·ft²" ]
+          "Abbreviations": [ "BTU/h·ft²" ]
         }
       ]
     },
     {
-      "SingularName": "CalPerSecondSquareCentimeter",
-      "PluralName": "CalPerSecondSquareCentimeter",
-      "FromUnitToBaseFunc": "x*4.1840e4",
-      "FromBaseToUnitFunc": "x/4.1840e4",
+      "SingularName": "CaloriePerSecondSquareCentimeter",
+      "PluralName": "CaloriePerSecondSquareCentimeter",
+      "FromUnitToBaseFunc": "x*4.1868e4",
+      "FromBaseToUnitFunc": "x/4.1868e4",
       "Prefixes": [ "Kilo" ],
       "Localization": [
         {
@@ -102,14 +102,14 @@
       ]
     },
     {
-      "SingularName": "KilocalPerHourSquareMeter",
-      "PluralName": "KilocalPerHourSquareMeter",
-      "FromUnitToBaseFunc": "x*1.16222222",
-      "FromBaseToUnitFunc": "x/1.16222222",
+      "SingularName": "KilocaloriePerHourSquareMeter",
+      "PluralName": "KilocaloriePerHourSquareMeter",
+      "FromUnitToBaseFunc": "x*1.163",
+      "FromBaseToUnitFunc": "x/1.163",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "kcal/hr·m²" ]
+          "Abbreviations": [ "kcal/h·m²" ]
         }
       ]
     }
