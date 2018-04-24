@@ -18,7 +18,7 @@
     },
     {
       "SingularName": "WattPerSquareInch",
-      "PluralName": "WattPerSquareInch",
+      "PluralName": "WattsPerSquareInch",
       "FromUnitToBaseFunc": "x*1.5500031e3",
       "FromBaseToUnitFunc": "x/1.5500031e3",
       "Localization": [
@@ -30,7 +30,7 @@
     },
     {
       "SingularName": "WattPerSquareFoot",
-      "PluralName": "WattPerSquareFoot",
+      "PluralName": "WattsPerSquareFoot",
       "FromUnitToBaseFunc": "x*1.07639e1",
       "FromBaseToUnitFunc": "x/1.07639e1",
       "Localization": [
@@ -42,7 +42,7 @@
     },
     {
       "SingularName": "BtuPerSecondSquareInch",
-      "PluralName": "BtuPerSecondSquareInch",
+      "PluralName": "BtusPerSecondSquareInch",
       "FromUnitToBaseFunc": "x*1.63533984e6",
       "FromBaseToUnitFunc": "x/1.63533984e6",
       "Localization": [
@@ -54,7 +54,7 @@
     },
     {
       "SingularName": "BtuPerSecondSquareFoot",
-      "PluralName": "BtuPerSecondSquareFoot",
+      "PluralName": "BtusPerSecondSquareFoot",
       "FromUnitToBaseFunc": "x*1.13565267e4",
       "FromBaseToUnitFunc": "x/1.13565267e4",
       "Localization": [
@@ -66,7 +66,7 @@
     },
     {
       "SingularName": "BtuPerMinuteSquareFoot",
-      "PluralName": "BtuPerMinuteSquareFoot",
+      "PluralName": "BtusPerMinuteSquareFoot",
       "FromUnitToBaseFunc": "x*1.89275445e2",
       "FromBaseToUnitFunc": "x/1.89275445e2",
       "Localization": [
@@ -78,7 +78,7 @@
     },
     {
       "SingularName": "BtuPerHourSquareFoot",
-      "PluralName": "BtuPerHourSquareFoot",
+      "PluralName": "BtusPerHourSquareFoot",
       "FromUnitToBaseFunc": "x*3.15459075",
       "FromBaseToUnitFunc": "x/3.15459075",
       "Localization": [
@@ -90,7 +90,7 @@
     },
     {
       "SingularName": "CaloriePerSecondSquareCentimeter",
-      "PluralName": "CaloriePerSecondSquareCentimeter",
+      "PluralName": "CaloriesPerSecondSquareCentimeter",
       "FromUnitToBaseFunc": "x*4.1868e4",
       "FromBaseToUnitFunc": "x/4.1868e4",
       "Prefixes": [ "Kilo" ],
@@ -103,7 +103,7 @@
     },
     {
       "SingularName": "KilocaloriePerHourSquareMeter",
-      "PluralName": "KilocaloriePerHourSquareMeter",
+      "PluralName": "KilocaloriesPerHourSquareMeter",
       "FromUnitToBaseFunc": "x*1.163",
       "FromBaseToUnitFunc": "x/1.163",
       "Localization": [
