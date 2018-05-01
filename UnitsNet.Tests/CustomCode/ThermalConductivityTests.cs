@@ -47,5 +47,6 @@ namespace UnitsNet.Tests.CustomCode
     public class ThermalConductivityTests : ThermalConductivityTestsBase
     {
         protected override double WattsPerMeterKelvinInOneWattPerMeterKelvin => 1;
+        protected override double BtusPerHourFootFahrenheitInOneWattPerMeterKelvin => 5.77789317e-1;
     }
 }

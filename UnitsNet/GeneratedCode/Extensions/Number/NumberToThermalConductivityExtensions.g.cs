@@ -44,6 +44,40 @@ namespace UnitsNet.Extensions.NumberToThermalConductivity
 {
     public static class NumberToThermalConductivityExtensions
     {
+        #region BtuPerHourFootFahrenheit
+
+        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(double)"/>
+        public static ThermalConductivity BtusPerHourFootFahrenheit(this int value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
+
+        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(double?)"/>
+        public static ThermalConductivity? BtusPerHourFootFahrenheit(this int? value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
+
+        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(double)"/>
+        public static ThermalConductivity BtusPerHourFootFahrenheit(this long value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
+
+        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(double?)"/>
+        public static ThermalConductivity? BtusPerHourFootFahrenheit(this long? value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
+
+        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(double)"/>
+        public static ThermalConductivity BtusPerHourFootFahrenheit(this double value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
+
+        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(double?)"/>
+        public static ThermalConductivity? BtusPerHourFootFahrenheit(this double? value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
+
+        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(double)"/>
+        public static ThermalConductivity BtusPerHourFootFahrenheit(this float value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
+
+        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(double?)"/>
+        public static ThermalConductivity? BtusPerHourFootFahrenheit(this float? value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
+
+        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(double)"/>
+        public static ThermalConductivity BtusPerHourFootFahrenheit(this decimal value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(double?)"/>
+        public static ThermalConductivity? BtusPerHourFootFahrenheit(this decimal? value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region WattPerMeterKelvin
 
         /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(double)"/>
