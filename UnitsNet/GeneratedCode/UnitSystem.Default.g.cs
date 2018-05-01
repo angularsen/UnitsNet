@@ -1815,6 +1815,20 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "W/m²"),
                             }),
                     }),
+                new UnitLocalization(typeof (HeatTransferCoefficientUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) HeatTransferCoefficientUnit.WattPerSquareMeterCelsius,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/m²·°C"),
+                            }),
+                        new CulturesForEnumValue((int) HeatTransferCoefficientUnit.WattPerSquareMeterKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/m²·K"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (IlluminanceUnit),
                     new[]
                     {
