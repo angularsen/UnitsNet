@@ -23,30 +23,30 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AccelerationTests : AccelerationTestsBase
     {
-        protected override double KilometerPerSecondSquaredInOneMeterPerSecondSquared => 1E-3;
+        protected override double KilometersPerSecondSquaredInOneMetersPerSecondSquared => 1E-3;
 
-        protected override double MeterPerSecondSquaredInOneMeterPerSecondSquared => 1;
+        protected override double MetersPerSecondSquaredInOneMetersPerSecondSquared => 1;
 
-        protected override double DecimeterPerSecondSquaredInOneMeterPerSecondSquared => 1E1;
+        protected override double DecimetersPerSecondSquaredInOneMetersPerSecondSquared => 1E1;
 
-        protected override double CentimeterPerSecondSquaredInOneMeterPerSecondSquared => 1E2;
+        protected override double CentimetersPerSecondSquaredInOneMetersPerSecondSquared => 1E2;
 
-        protected override double MillimeterPerSecondSquaredInOneMeterPerSecondSquared => 1E3;
+        protected override double MillimetersPerSecondSquaredInOneMetersPerSecondSquared => 1E3;
 
-        protected override double MicrometerPerSecondSquaredInOneMeterPerSecondSquared => 1E6;
+        protected override double MicrometersPerSecondSquaredInOneMetersPerSecondSquared => 1E6;
 
-        protected override double NanometerPerSecondSquaredInOneMeterPerSecondSquared => 1E9;
+        protected override double NanometersPerSecondSquaredInOneMetersPerSecondSquared => 1E9;
 
-        protected override double StandardGravityInOneMeterPerSecondSquared => 0.1019727;
+        protected override double StandardGravityInOneMetersPerSecondSquared => 0.1019727;
 
-        protected override double InchesPerSecondSquaredInOneMeterPerSecondSquared => 39.3700787;
+        protected override double InchesPerSecondSquaredInOneMetersPerSecondSquared => 39.3700787;
 
-        protected override double FeetPerSecondSquaredInOneMeterPerSecondSquared => 3.28084;
+        protected override double FeetPerSecondSquaredInOneMetersPerSecondSquared => 3.28084;
 
-        protected override double KnotsPerHourInOneMeterPerSecondSquared => 6.99784017278618E3;
+        protected override double KnotsPerHourInOneMetersPerSecondSquared => 6.99784017278618E3;
 
-        protected override double KnotsPerMinuteInOneMeterPerSecondSquared => 1.16630669546436E2;
+        protected override double KnotsPerMinuteInOneMetersPerSecondSquared => 1.16630669546436E2;
 
-        protected override double KnotsPerSecondInOneMeterPerSecondSquared => 1.94384449244060;
+        protected override double KnotsPerSecondInOneMetersPerSecondSquared => 1.94384449244060;
     }
 }

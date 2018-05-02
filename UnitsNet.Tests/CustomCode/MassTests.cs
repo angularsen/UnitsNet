@@ -73,7 +73,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void AccelerationTimesMassEqualsForce()
         {
-            Force force = Acceleration.FromMeterPerSecondSquared(3)*Mass.FromKilograms(18);
+            Force force = Acceleration.FromMetersPerSecondSquared(3)*Mass.FromKilograms(18);
             Assert.Equal(force, Force.FromNewtons(54));
         }
 
@@ -101,7 +101,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void MassTimesAccelerationEqualsForce()
         {
-            Force force = Mass.FromKilograms(18)*Acceleration.FromMeterPerSecondSquared(3);
+            Force force = Mass.FromKilograms(18)*Acceleration.FromMetersPerSecondSquared(3);
             Assert.Equal(force, Force.FromNewtons(54));
         }
     }
