@@ -254,7 +254,7 @@ namespace UnitsNet.Tests
         public void ShouldUseCorrectMicroSign()
         {
             // "\u00b5" = Micro sign
-            Assert.Equal(AccelerationUnit.MicroMetersPerSecondSquared, Acceleration.ParseUnit("\u00b5m/s²"));
+            Assert.Equal(AccelerationUnit.MicrometersPerSecondSquared, Acceleration.ParseUnit("\u00b5m/s²"));
             Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatio.ParseUnit("dB\u00b5V"));
             Assert.Equal(AngleUnit.Microdegree, Angle.ParseUnit("\u00b5°"));
             Assert.Equal(AngleUnit.Microradian, Angle.ParseUnit("\u00b5rad"));

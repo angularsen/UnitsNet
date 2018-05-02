@@ -42,18 +42,18 @@ namespace UnitsNet.Units
     public enum AccelerationUnit
     {
         Undefined = 0,
-        CentiMetersPerSecondSquared,
-        DeciMetersPerSecondSquared,
+        CentimetersPerSecondSquared,
+        DecimetersPerSecondSquared,
         FootPerSecondSquared,
         InchPerSecondSquared,
-        KiloMetersPerSecondSquared,
+        KilometersPerSecondSquared,
         KnotPerHour,
         KnotPerMinute,
         KnotPerSecond,
         MetersPerSecondSquared,
-        MicroMetersPerSecondSquared,
-        MilliMetersPerSecondSquared,
-        NanoMetersPerSecondSquared,
+        MicrometersPerSecondSquared,
+        MillimetersPerSecondSquared,
+        NanometersPerSecondSquared,
         StandardGravity,
     }
 }
