@@ -87,6 +87,7 @@ namespace UnitsNet
         ForcePerLength,
         Frequency,
         HeatFlux,
+        HeatTransferCoefficient,
         Illuminance,
         Information,
         Irradiance,
