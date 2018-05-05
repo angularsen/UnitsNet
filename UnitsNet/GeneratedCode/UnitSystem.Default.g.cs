@@ -3943,6 +3943,11 @@ namespace UnitsNet
                 new UnitLocalization(typeof (ThermalConductivityUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) ThermalConductivityUnit.BtuPerHourFootFahrenheit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "BTU/h·ft·°F"),
+                            }),
                         new CulturesForEnumValue((int) ThermalConductivityUnit.WattPerMeterKelvin,
                             new[]
                             {

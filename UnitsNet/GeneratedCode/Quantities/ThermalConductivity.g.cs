@@ -163,6 +163,10 @@ namespace UnitsNet
         /// </summary>
         public static ThermalConductivityUnit[] Units { get; } = Enum.GetValues(typeof(ThermalConductivityUnit)).Cast<ThermalConductivityUnit>().ToArray();
         /// <summary>
+        ///     Get ThermalConductivity in BtusPerHourFootFahrenheit.
+        /// </summary>
+        public double BtusPerHourFootFahrenheit => As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
+        /// <summary>
         ///     Get ThermalConductivity in WattsPerMeterKelvin.
         /// </summary>
         public double WattsPerMeterKelvin => As(ThermalConductivityUnit.WattPerMeterKelvin);
@@ -172,6 +176,20 @@ namespace UnitsNet
         #region Static
 
         public static ThermalConductivity Zero => new ThermalConductivity(0, BaseUnit);
+
+        /// <summary>
+        ///     Get ThermalConductivity from BtusPerHourFootFahrenheit.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ThermalConductivity FromBtusPerHourFootFahrenheit(double btusperhourfootfahrenheit)
+#else
+        public static ThermalConductivity FromBtusPerHourFootFahrenheit(QuantityValue btusperhourfootfahrenheit)
+#endif
+        {
+            double value = (double) btusperhourfootfahrenheit;
+            return new ThermalConductivity(value, ThermalConductivityUnit.BtuPerHourFootFahrenheit);
+        }
 
         /// <summary>
         ///     Get ThermalConductivity from WattsPerMeterKelvin.
@@ -189,6 +207,21 @@ namespace UnitsNet
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
+        /// <summary>
+        ///     Get nullable ThermalConductivity from nullable BtusPerHourFootFahrenheit.
+        /// </summary>
+        public static ThermalConductivity? FromBtusPerHourFootFahrenheit(QuantityValue? btusperhourfootfahrenheit)
+        {
+            if (btusperhourfootfahrenheit.HasValue)
+            {
+                return FromBtusPerHourFootFahrenheit(btusperhourfootfahrenheit.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         ///     Get nullable ThermalConductivity from nullable WattsPerMeterKelvin.
         /// </summary>
@@ -431,6 +464,7 @@ namespace UnitsNet
 
             switch (unit)
             {
+                case ThermalConductivityUnit.BtuPerHourFootFahrenheit: return baseUnitValue/1.73073467;
                 case ThermalConductivityUnit.WattPerMeterKelvin: return baseUnitValue;
 
                 default:
@@ -795,6 +829,7 @@ namespace UnitsNet
 
             switch (Unit)
             {
+                case ThermalConductivityUnit.BtuPerHourFootFahrenheit: return _value*1.73073467;
                 case ThermalConductivityUnit.WattPerMeterKelvin: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
