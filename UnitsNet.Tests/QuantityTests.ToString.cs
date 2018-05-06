@@ -25,6 +25,7 @@ using Xunit;
 
 namespace UnitsNet.Tests
 {
+    [Collection(nameof(UnitSystemFixture))]
     public partial class QuantityTests
     {
         public class ToString
