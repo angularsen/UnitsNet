@@ -444,7 +444,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void NegativeInfinityFormatting()
         {
-            Assert.Equal("-∞ m", Length.FromMeters(double.NegativeInfinity).ToString());
+            Assert.Equal("-Infinity m", Length.FromMeters(double.NegativeInfinity).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture));
         }
 
         [Fact]
@@ -476,7 +476,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void PositiveInfinityFormatting()
         {
-            Assert.Equal("∞ m", Length.FromMeters(double.PositiveInfinity).ToString());
+            Assert.Equal("Infinity m", Length.FromMeters(double.PositiveInfinity).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture));
         }
 
         /// <summary>
