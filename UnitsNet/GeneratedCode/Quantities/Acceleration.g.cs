@@ -121,9 +121,9 @@ namespace UnitsNet
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit MetersPerSecondSquared.
+        ///     Creates the quantity with the given value assuming the base unit MeterPerSecondSquared.
         /// </summary>
-        /// <param name="meterspersecondsquared">Value assuming base unit MetersPerSecondSquared.</param>
+        /// <param name="meterspersecondsquared">Value assuming base unit MeterPerSecondSquared.</param>
 #if WINDOWS_UWP
         private
 #else
@@ -135,9 +135,9 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
         /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit MetersPerSecondSquared.
+        ///     Creates the quantity with the given value assuming the base unit MeterPerSecondSquared.
         /// </summary>
-        /// <param name="meterspersecondsquared">Value assuming base unit MetersPerSecondSquared.</param>
+        /// <param name="meterspersecondsquared">Value assuming base unit MeterPerSecondSquared.</param>
 #if WINDOWS_UWP
         private
 #else
@@ -156,7 +156,7 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static AccelerationUnit BaseUnit => AccelerationUnit.MetersPerSecondSquared;
+        public static AccelerationUnit BaseUnit => AccelerationUnit.MeterPerSecondSquared;
 
         /// <summary>
         ///     All units of measurement for the Acceleration quantity.
@@ -165,11 +165,11 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration in CentimetersPerSecondSquared.
         /// </summary>
-        public double CentimetersPerSecondSquared => As(AccelerationUnit.CentimetersPerSecondSquared);
+        public double CentimetersPerSecondSquared => As(AccelerationUnit.CentimeterPerSecondSquared);
         /// <summary>
         ///     Get Acceleration in DecimetersPerSecondSquared.
         /// </summary>
-        public double DecimetersPerSecondSquared => As(AccelerationUnit.DecimetersPerSecondSquared);
+        public double DecimetersPerSecondSquared => As(AccelerationUnit.DecimeterPerSecondSquared);
         /// <summary>
         ///     Get Acceleration in FeetPerSecondSquared.
         /// </summary>
@@ -181,7 +181,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration in KilometersPerSecondSquared.
         /// </summary>
-        public double KilometersPerSecondSquared => As(AccelerationUnit.KilometersPerSecondSquared);
+        public double KilometersPerSecondSquared => As(AccelerationUnit.KilometerPerSecondSquared);
         /// <summary>
         ///     Get Acceleration in KnotsPerHour.
         /// </summary>
@@ -197,19 +197,19 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration in MetersPerSecondSquared.
         /// </summary>
-        public double MetersPerSecondSquared => As(AccelerationUnit.MetersPerSecondSquared);
+        public double MetersPerSecondSquared => As(AccelerationUnit.MeterPerSecondSquared);
         /// <summary>
         ///     Get Acceleration in MicrometersPerSecondSquared.
         /// </summary>
-        public double MicrometersPerSecondSquared => As(AccelerationUnit.MicrometersPerSecondSquared);
+        public double MicrometersPerSecondSquared => As(AccelerationUnit.MicrometerPerSecondSquared);
         /// <summary>
         ///     Get Acceleration in MillimetersPerSecondSquared.
         /// </summary>
-        public double MillimetersPerSecondSquared => As(AccelerationUnit.MillimetersPerSecondSquared);
+        public double MillimetersPerSecondSquared => As(AccelerationUnit.MillimeterPerSecondSquared);
         /// <summary>
         ///     Get Acceleration in NanometersPerSecondSquared.
         /// </summary>
-        public double NanometersPerSecondSquared => As(AccelerationUnit.NanometersPerSecondSquared);
+        public double NanometersPerSecondSquared => As(AccelerationUnit.NanometerPerSecondSquared);
         /// <summary>
         ///     Get Acceleration in StandardGravity.
         /// </summary>
@@ -232,7 +232,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) centimeterspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.CentimetersPerSecondSquared);
+            return new Acceleration(value, AccelerationUnit.CentimeterPerSecondSquared);
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) decimeterspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.DecimetersPerSecondSquared);
+            return new Acceleration(value, AccelerationUnit.DecimeterPerSecondSquared);
         }
 
         /// <summary>
@@ -288,7 +288,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) kilometerspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.KilometersPerSecondSquared);
+            return new Acceleration(value, AccelerationUnit.KilometerPerSecondSquared);
         }
 
         /// <summary>
@@ -344,7 +344,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) meterspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.MetersPerSecondSquared);
+            return new Acceleration(value, AccelerationUnit.MeterPerSecondSquared);
         }
 
         /// <summary>
@@ -358,7 +358,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) micrometerspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.MicrometersPerSecondSquared);
+            return new Acceleration(value, AccelerationUnit.MicrometerPerSecondSquared);
         }
 
         /// <summary>
@@ -372,7 +372,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) millimeterspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.MillimetersPerSecondSquared);
+            return new Acceleration(value, AccelerationUnit.MillimeterPerSecondSquared);
         }
 
         /// <summary>
@@ -386,7 +386,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) nanometerspersecondsquared;
-            return new Acceleration(value, AccelerationUnit.NanometersPerSecondSquared);
+            return new Acceleration(value, AccelerationUnit.NanometerPerSecondSquared);
         }
 
         /// <summary>
@@ -827,18 +827,18 @@ namespace UnitsNet
 
             switch (unit)
             {
-                case AccelerationUnit.CentimetersPerSecondSquared: return (baseUnitValue) / 1e-2d;
-                case AccelerationUnit.DecimetersPerSecondSquared: return (baseUnitValue) / 1e-1d;
+                case AccelerationUnit.CentimeterPerSecondSquared: return (baseUnitValue) / 1e-2d;
+                case AccelerationUnit.DecimeterPerSecondSquared: return (baseUnitValue) / 1e-1d;
                 case AccelerationUnit.FootPerSecondSquared: return baseUnitValue/0.304800;
                 case AccelerationUnit.InchPerSecondSquared: return baseUnitValue/0.0254;
-                case AccelerationUnit.KilometersPerSecondSquared: return (baseUnitValue) / 1e3d;
+                case AccelerationUnit.KilometerPerSecondSquared: return (baseUnitValue) / 1e3d;
                 case AccelerationUnit.KnotPerHour: return baseUnitValue/0.5144444444444*3600;
                 case AccelerationUnit.KnotPerMinute: return baseUnitValue/0.5144444444444*60;
                 case AccelerationUnit.KnotPerSecond: return baseUnitValue/0.5144444444444;
-                case AccelerationUnit.MetersPerSecondSquared: return baseUnitValue;
-                case AccelerationUnit.MicrometersPerSecondSquared: return (baseUnitValue) / 1e-6d;
-                case AccelerationUnit.MillimetersPerSecondSquared: return (baseUnitValue) / 1e-3d;
-                case AccelerationUnit.NanometersPerSecondSquared: return (baseUnitValue) / 1e-9d;
+                case AccelerationUnit.MeterPerSecondSquared: return baseUnitValue;
+                case AccelerationUnit.MicrometerPerSecondSquared: return (baseUnitValue) / 1e-6d;
+                case AccelerationUnit.MillimeterPerSecondSquared: return (baseUnitValue) / 1e-3d;
+                case AccelerationUnit.NanometerPerSecondSquared: return (baseUnitValue) / 1e-9d;
                 case AccelerationUnit.StandardGravity: return baseUnitValue/9.80665;
 
                 default:
@@ -1060,9 +1060,9 @@ namespace UnitsNet
 
         [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is MetersPerSecondSquared
+        ///     Set the default unit used by ToString(). Default is MeterPerSecondSquared
         /// </summary>
-        public static AccelerationUnit ToStringDefaultUnit { get; set; } = AccelerationUnit.MetersPerSecondSquared;
+        public static AccelerationUnit ToStringDefaultUnit { get; set; } = AccelerationUnit.MeterPerSecondSquared;
 
         /// <summary>
         ///     Get default string representation of value and unit.
@@ -1199,22 +1199,22 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitMetersPerSecondSquared()
         {
-			if (Unit == AccelerationUnit.MetersPerSecondSquared) { return _value; }
+			if (Unit == AccelerationUnit.MeterPerSecondSquared) { return _value; }
 
             switch (Unit)
             {
-                case AccelerationUnit.CentimetersPerSecondSquared: return (_value) * 1e-2d;
-                case AccelerationUnit.DecimetersPerSecondSquared: return (_value) * 1e-1d;
+                case AccelerationUnit.CentimeterPerSecondSquared: return (_value) * 1e-2d;
+                case AccelerationUnit.DecimeterPerSecondSquared: return (_value) * 1e-1d;
                 case AccelerationUnit.FootPerSecondSquared: return _value*0.304800;
                 case AccelerationUnit.InchPerSecondSquared: return _value*0.0254;
-                case AccelerationUnit.KilometersPerSecondSquared: return (_value) * 1e3d;
+                case AccelerationUnit.KilometerPerSecondSquared: return (_value) * 1e3d;
                 case AccelerationUnit.KnotPerHour: return _value*0.5144444444444/3600;
                 case AccelerationUnit.KnotPerMinute: return _value*0.5144444444444/60;
                 case AccelerationUnit.KnotPerSecond: return _value*0.5144444444444;
-                case AccelerationUnit.MetersPerSecondSquared: return _value;
-                case AccelerationUnit.MicrometersPerSecondSquared: return (_value) * 1e-6d;
-                case AccelerationUnit.MillimetersPerSecondSquared: return (_value) * 1e-3d;
-                case AccelerationUnit.NanometersPerSecondSquared: return (_value) * 1e-9d;
+                case AccelerationUnit.MeterPerSecondSquared: return _value;
+                case AccelerationUnit.MicrometerPerSecondSquared: return (_value) * 1e-6d;
+                case AccelerationUnit.MillimeterPerSecondSquared: return (_value) * 1e-3d;
+                case AccelerationUnit.NanometerPerSecondSquared: return (_value) * 1e-9d;
                 case AccelerationUnit.StandardGravity: return _value*9.80665;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);

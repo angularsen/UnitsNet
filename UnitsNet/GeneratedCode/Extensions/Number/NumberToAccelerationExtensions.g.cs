@@ -44,7 +44,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
 {
     public static class NumberToAccelerationExtensions
     {
-        #region CentimetersPerSecondSquared
+        #region CentimeterPerSecondSquared
 
         /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double)"/>
         public static Acceleration CentimetersPerSecondSquared(this int value) => Acceleration.FromCentimetersPerSecondSquared(value);
@@ -78,7 +78,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
 
         #endregion
 
-        #region DecimetersPerSecondSquared
+        #region DecimeterPerSecondSquared
 
         /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double)"/>
         public static Acceleration DecimetersPerSecondSquared(this int value) => Acceleration.FromDecimetersPerSecondSquared(value);
@@ -180,7 +180,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
 
         #endregion
 
-        #region KilometersPerSecondSquared
+        #region KilometerPerSecondSquared
 
         /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double)"/>
         public static Acceleration KilometersPerSecondSquared(this int value) => Acceleration.FromKilometersPerSecondSquared(value);
@@ -316,7 +316,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
 
         #endregion
 
-        #region MetersPerSecondSquared
+        #region MeterPerSecondSquared
 
         /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double)"/>
         public static Acceleration MetersPerSecondSquared(this int value) => Acceleration.FromMetersPerSecondSquared(value);
@@ -350,7 +350,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
 
         #endregion
 
-        #region MicrometersPerSecondSquared
+        #region MicrometerPerSecondSquared
 
         /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double)"/>
         public static Acceleration MicrometersPerSecondSquared(this int value) => Acceleration.FromMicrometersPerSecondSquared(value);
@@ -384,7 +384,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
 
         #endregion
 
-        #region MillimetersPerSecondSquared
+        #region MillimeterPerSecondSquared
 
         /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double)"/>
         public static Acceleration MillimetersPerSecondSquared(this int value) => Acceleration.FromMillimetersPerSecondSquared(value);
@@ -418,7 +418,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
 
         #endregion
 
-        #region NanometersPerSecondSquared
+        #region NanometerPerSecondSquared
 
         /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double)"/>
         public static Acceleration NanometersPerSecondSquared(this int value) => Acceleration.FromNanometersPerSecondSquared(value);
