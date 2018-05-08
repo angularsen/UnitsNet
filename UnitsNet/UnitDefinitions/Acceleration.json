@@ -5,7 +5,7 @@
   "Units": [
     {
       "SingularName": "MeterPerSecondSquared",
-      "PluralName": "MeterPerSecondSquared",
+      "PluralName": "MetersPerSecondSquared",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],

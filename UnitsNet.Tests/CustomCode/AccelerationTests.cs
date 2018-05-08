@@ -23,19 +23,19 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class AccelerationTests : AccelerationTestsBase
     {
-        protected override double KilometerPerSecondSquaredInOneMeterPerSecondSquared => 1E-3;
+        protected override double KilometersPerSecondSquaredInOneMeterPerSecondSquared => 1E-3;
 
-        protected override double MeterPerSecondSquaredInOneMeterPerSecondSquared => 1;
+        protected override double MetersPerSecondSquaredInOneMeterPerSecondSquared => 1;
 
-        protected override double DecimeterPerSecondSquaredInOneMeterPerSecondSquared => 1E1;
+        protected override double DecimetersPerSecondSquaredInOneMeterPerSecondSquared => 1E1;
 
-        protected override double CentimeterPerSecondSquaredInOneMeterPerSecondSquared => 1E2;
+        protected override double CentimetersPerSecondSquaredInOneMeterPerSecondSquared => 1E2;
 
-        protected override double MillimeterPerSecondSquaredInOneMeterPerSecondSquared => 1E3;
+        protected override double MillimetersPerSecondSquaredInOneMeterPerSecondSquared => 1E3;
 
-        protected override double MicrometerPerSecondSquaredInOneMeterPerSecondSquared => 1E6;
+        protected override double MicrometersPerSecondSquaredInOneMeterPerSecondSquared => 1E6;
 
-        protected override double NanometerPerSecondSquaredInOneMeterPerSecondSquared => 1E9;
+        protected override double NanometersPerSecondSquaredInOneMeterPerSecondSquared => 1E9;
 
         protected override double StandardGravityInOneMeterPerSecondSquared => 0.1019727;
 

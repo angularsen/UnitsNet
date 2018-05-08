@@ -46,69 +46,69 @@ namespace UnitsNet.Extensions.NumberToAcceleration
     {
         #region CentimeterPerSecondSquared
 
-        /// <inheritdoc cref="Acceleration.FromCentimeterPerSecondSquared(double)"/>
-        public static Acceleration CentimeterPerSecondSquared(this int value) => Acceleration.FromCentimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double)"/>
+        public static Acceleration CentimetersPerSecondSquared(this int value) => Acceleration.FromCentimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromCentimeterPerSecondSquared(double?)"/>
-        public static Acceleration? CentimeterPerSecondSquared(this int? value) => Acceleration.FromCentimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double?)"/>
+        public static Acceleration? CentimetersPerSecondSquared(this int? value) => Acceleration.FromCentimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromCentimeterPerSecondSquared(double)"/>
-        public static Acceleration CentimeterPerSecondSquared(this long value) => Acceleration.FromCentimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double)"/>
+        public static Acceleration CentimetersPerSecondSquared(this long value) => Acceleration.FromCentimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromCentimeterPerSecondSquared(double?)"/>
-        public static Acceleration? CentimeterPerSecondSquared(this long? value) => Acceleration.FromCentimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double?)"/>
+        public static Acceleration? CentimetersPerSecondSquared(this long? value) => Acceleration.FromCentimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromCentimeterPerSecondSquared(double)"/>
-        public static Acceleration CentimeterPerSecondSquared(this double value) => Acceleration.FromCentimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double)"/>
+        public static Acceleration CentimetersPerSecondSquared(this double value) => Acceleration.FromCentimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromCentimeterPerSecondSquared(double?)"/>
-        public static Acceleration? CentimeterPerSecondSquared(this double? value) => Acceleration.FromCentimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double?)"/>
+        public static Acceleration? CentimetersPerSecondSquared(this double? value) => Acceleration.FromCentimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromCentimeterPerSecondSquared(double)"/>
-        public static Acceleration CentimeterPerSecondSquared(this float value) => Acceleration.FromCentimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double)"/>
+        public static Acceleration CentimetersPerSecondSquared(this float value) => Acceleration.FromCentimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromCentimeterPerSecondSquared(double?)"/>
-        public static Acceleration? CentimeterPerSecondSquared(this float? value) => Acceleration.FromCentimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double?)"/>
+        public static Acceleration? CentimetersPerSecondSquared(this float? value) => Acceleration.FromCentimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromCentimeterPerSecondSquared(double)"/>
-        public static Acceleration CentimeterPerSecondSquared(this decimal value) => Acceleration.FromCentimeterPerSecondSquared(Convert.ToDouble(value));
+        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double)"/>
+        public static Acceleration CentimetersPerSecondSquared(this decimal value) => Acceleration.FromCentimetersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromCentimeterPerSecondSquared(double?)"/>
-        public static Acceleration? CentimeterPerSecondSquared(this decimal? value) => Acceleration.FromCentimeterPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(double?)"/>
+        public static Acceleration? CentimetersPerSecondSquared(this decimal? value) => Acceleration.FromCentimetersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecimeterPerSecondSquared
 
-        /// <inheritdoc cref="Acceleration.FromDecimeterPerSecondSquared(double)"/>
-        public static Acceleration DecimeterPerSecondSquared(this int value) => Acceleration.FromDecimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double)"/>
+        public static Acceleration DecimetersPerSecondSquared(this int value) => Acceleration.FromDecimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromDecimeterPerSecondSquared(double?)"/>
-        public static Acceleration? DecimeterPerSecondSquared(this int? value) => Acceleration.FromDecimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double?)"/>
+        public static Acceleration? DecimetersPerSecondSquared(this int? value) => Acceleration.FromDecimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromDecimeterPerSecondSquared(double)"/>
-        public static Acceleration DecimeterPerSecondSquared(this long value) => Acceleration.FromDecimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double)"/>
+        public static Acceleration DecimetersPerSecondSquared(this long value) => Acceleration.FromDecimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromDecimeterPerSecondSquared(double?)"/>
-        public static Acceleration? DecimeterPerSecondSquared(this long? value) => Acceleration.FromDecimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double?)"/>
+        public static Acceleration? DecimetersPerSecondSquared(this long? value) => Acceleration.FromDecimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromDecimeterPerSecondSquared(double)"/>
-        public static Acceleration DecimeterPerSecondSquared(this double value) => Acceleration.FromDecimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double)"/>
+        public static Acceleration DecimetersPerSecondSquared(this double value) => Acceleration.FromDecimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromDecimeterPerSecondSquared(double?)"/>
-        public static Acceleration? DecimeterPerSecondSquared(this double? value) => Acceleration.FromDecimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double?)"/>
+        public static Acceleration? DecimetersPerSecondSquared(this double? value) => Acceleration.FromDecimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromDecimeterPerSecondSquared(double)"/>
-        public static Acceleration DecimeterPerSecondSquared(this float value) => Acceleration.FromDecimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double)"/>
+        public static Acceleration DecimetersPerSecondSquared(this float value) => Acceleration.FromDecimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromDecimeterPerSecondSquared(double?)"/>
-        public static Acceleration? DecimeterPerSecondSquared(this float? value) => Acceleration.FromDecimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double?)"/>
+        public static Acceleration? DecimetersPerSecondSquared(this float? value) => Acceleration.FromDecimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromDecimeterPerSecondSquared(double)"/>
-        public static Acceleration DecimeterPerSecondSquared(this decimal value) => Acceleration.FromDecimeterPerSecondSquared(Convert.ToDouble(value));
+        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double)"/>
+        public static Acceleration DecimetersPerSecondSquared(this decimal value) => Acceleration.FromDecimetersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromDecimeterPerSecondSquared(double?)"/>
-        public static Acceleration? DecimeterPerSecondSquared(this decimal? value) => Acceleration.FromDecimeterPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(double?)"/>
+        public static Acceleration? DecimetersPerSecondSquared(this decimal? value) => Acceleration.FromDecimetersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -182,35 +182,35 @@ namespace UnitsNet.Extensions.NumberToAcceleration
 
         #region KilometerPerSecondSquared
 
-        /// <inheritdoc cref="Acceleration.FromKilometerPerSecondSquared(double)"/>
-        public static Acceleration KilometerPerSecondSquared(this int value) => Acceleration.FromKilometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double)"/>
+        public static Acceleration KilometersPerSecondSquared(this int value) => Acceleration.FromKilometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromKilometerPerSecondSquared(double?)"/>
-        public static Acceleration? KilometerPerSecondSquared(this int? value) => Acceleration.FromKilometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double?)"/>
+        public static Acceleration? KilometersPerSecondSquared(this int? value) => Acceleration.FromKilometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromKilometerPerSecondSquared(double)"/>
-        public static Acceleration KilometerPerSecondSquared(this long value) => Acceleration.FromKilometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double)"/>
+        public static Acceleration KilometersPerSecondSquared(this long value) => Acceleration.FromKilometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromKilometerPerSecondSquared(double?)"/>
-        public static Acceleration? KilometerPerSecondSquared(this long? value) => Acceleration.FromKilometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double?)"/>
+        public static Acceleration? KilometersPerSecondSquared(this long? value) => Acceleration.FromKilometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromKilometerPerSecondSquared(double)"/>
-        public static Acceleration KilometerPerSecondSquared(this double value) => Acceleration.FromKilometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double)"/>
+        public static Acceleration KilometersPerSecondSquared(this double value) => Acceleration.FromKilometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromKilometerPerSecondSquared(double?)"/>
-        public static Acceleration? KilometerPerSecondSquared(this double? value) => Acceleration.FromKilometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double?)"/>
+        public static Acceleration? KilometersPerSecondSquared(this double? value) => Acceleration.FromKilometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromKilometerPerSecondSquared(double)"/>
-        public static Acceleration KilometerPerSecondSquared(this float value) => Acceleration.FromKilometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double)"/>
+        public static Acceleration KilometersPerSecondSquared(this float value) => Acceleration.FromKilometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromKilometerPerSecondSquared(double?)"/>
-        public static Acceleration? KilometerPerSecondSquared(this float? value) => Acceleration.FromKilometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double?)"/>
+        public static Acceleration? KilometersPerSecondSquared(this float? value) => Acceleration.FromKilometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromKilometerPerSecondSquared(double)"/>
-        public static Acceleration KilometerPerSecondSquared(this decimal value) => Acceleration.FromKilometerPerSecondSquared(Convert.ToDouble(value));
+        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double)"/>
+        public static Acceleration KilometersPerSecondSquared(this decimal value) => Acceleration.FromKilometersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromKilometerPerSecondSquared(double?)"/>
-        public static Acceleration? KilometerPerSecondSquared(this decimal? value) => Acceleration.FromKilometerPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(double?)"/>
+        public static Acceleration? KilometersPerSecondSquared(this decimal? value) => Acceleration.FromKilometersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -318,137 +318,137 @@ namespace UnitsNet.Extensions.NumberToAcceleration
 
         #region MeterPerSecondSquared
 
-        /// <inheritdoc cref="Acceleration.FromMeterPerSecondSquared(double)"/>
-        public static Acceleration MeterPerSecondSquared(this int value) => Acceleration.FromMeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double)"/>
+        public static Acceleration MetersPerSecondSquared(this int value) => Acceleration.FromMetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMeterPerSecondSquared(double?)"/>
-        public static Acceleration? MeterPerSecondSquared(this int? value) => Acceleration.FromMeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double?)"/>
+        public static Acceleration? MetersPerSecondSquared(this int? value) => Acceleration.FromMetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMeterPerSecondSquared(double)"/>
-        public static Acceleration MeterPerSecondSquared(this long value) => Acceleration.FromMeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double)"/>
+        public static Acceleration MetersPerSecondSquared(this long value) => Acceleration.FromMetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMeterPerSecondSquared(double?)"/>
-        public static Acceleration? MeterPerSecondSquared(this long? value) => Acceleration.FromMeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double?)"/>
+        public static Acceleration? MetersPerSecondSquared(this long? value) => Acceleration.FromMetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMeterPerSecondSquared(double)"/>
-        public static Acceleration MeterPerSecondSquared(this double value) => Acceleration.FromMeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double)"/>
+        public static Acceleration MetersPerSecondSquared(this double value) => Acceleration.FromMetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMeterPerSecondSquared(double?)"/>
-        public static Acceleration? MeterPerSecondSquared(this double? value) => Acceleration.FromMeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double?)"/>
+        public static Acceleration? MetersPerSecondSquared(this double? value) => Acceleration.FromMetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMeterPerSecondSquared(double)"/>
-        public static Acceleration MeterPerSecondSquared(this float value) => Acceleration.FromMeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double)"/>
+        public static Acceleration MetersPerSecondSquared(this float value) => Acceleration.FromMetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMeterPerSecondSquared(double?)"/>
-        public static Acceleration? MeterPerSecondSquared(this float? value) => Acceleration.FromMeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double?)"/>
+        public static Acceleration? MetersPerSecondSquared(this float? value) => Acceleration.FromMetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMeterPerSecondSquared(double)"/>
-        public static Acceleration MeterPerSecondSquared(this decimal value) => Acceleration.FromMeterPerSecondSquared(Convert.ToDouble(value));
+        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double)"/>
+        public static Acceleration MetersPerSecondSquared(this decimal value) => Acceleration.FromMetersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromMeterPerSecondSquared(double?)"/>
-        public static Acceleration? MeterPerSecondSquared(this decimal? value) => Acceleration.FromMeterPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(double?)"/>
+        public static Acceleration? MetersPerSecondSquared(this decimal? value) => Acceleration.FromMetersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicrometerPerSecondSquared
 
-        /// <inheritdoc cref="Acceleration.FromMicrometerPerSecondSquared(double)"/>
-        public static Acceleration MicrometerPerSecondSquared(this int value) => Acceleration.FromMicrometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double)"/>
+        public static Acceleration MicrometersPerSecondSquared(this int value) => Acceleration.FromMicrometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMicrometerPerSecondSquared(double?)"/>
-        public static Acceleration? MicrometerPerSecondSquared(this int? value) => Acceleration.FromMicrometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double?)"/>
+        public static Acceleration? MicrometersPerSecondSquared(this int? value) => Acceleration.FromMicrometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMicrometerPerSecondSquared(double)"/>
-        public static Acceleration MicrometerPerSecondSquared(this long value) => Acceleration.FromMicrometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double)"/>
+        public static Acceleration MicrometersPerSecondSquared(this long value) => Acceleration.FromMicrometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMicrometerPerSecondSquared(double?)"/>
-        public static Acceleration? MicrometerPerSecondSquared(this long? value) => Acceleration.FromMicrometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double?)"/>
+        public static Acceleration? MicrometersPerSecondSquared(this long? value) => Acceleration.FromMicrometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMicrometerPerSecondSquared(double)"/>
-        public static Acceleration MicrometerPerSecondSquared(this double value) => Acceleration.FromMicrometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double)"/>
+        public static Acceleration MicrometersPerSecondSquared(this double value) => Acceleration.FromMicrometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMicrometerPerSecondSquared(double?)"/>
-        public static Acceleration? MicrometerPerSecondSquared(this double? value) => Acceleration.FromMicrometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double?)"/>
+        public static Acceleration? MicrometersPerSecondSquared(this double? value) => Acceleration.FromMicrometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMicrometerPerSecondSquared(double)"/>
-        public static Acceleration MicrometerPerSecondSquared(this float value) => Acceleration.FromMicrometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double)"/>
+        public static Acceleration MicrometersPerSecondSquared(this float value) => Acceleration.FromMicrometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMicrometerPerSecondSquared(double?)"/>
-        public static Acceleration? MicrometerPerSecondSquared(this float? value) => Acceleration.FromMicrometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double?)"/>
+        public static Acceleration? MicrometersPerSecondSquared(this float? value) => Acceleration.FromMicrometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMicrometerPerSecondSquared(double)"/>
-        public static Acceleration MicrometerPerSecondSquared(this decimal value) => Acceleration.FromMicrometerPerSecondSquared(Convert.ToDouble(value));
+        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double)"/>
+        public static Acceleration MicrometersPerSecondSquared(this decimal value) => Acceleration.FromMicrometersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromMicrometerPerSecondSquared(double?)"/>
-        public static Acceleration? MicrometerPerSecondSquared(this decimal? value) => Acceleration.FromMicrometerPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(double?)"/>
+        public static Acceleration? MicrometersPerSecondSquared(this decimal? value) => Acceleration.FromMicrometersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillimeterPerSecondSquared
 
-        /// <inheritdoc cref="Acceleration.FromMillimeterPerSecondSquared(double)"/>
-        public static Acceleration MillimeterPerSecondSquared(this int value) => Acceleration.FromMillimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double)"/>
+        public static Acceleration MillimetersPerSecondSquared(this int value) => Acceleration.FromMillimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMillimeterPerSecondSquared(double?)"/>
-        public static Acceleration? MillimeterPerSecondSquared(this int? value) => Acceleration.FromMillimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double?)"/>
+        public static Acceleration? MillimetersPerSecondSquared(this int? value) => Acceleration.FromMillimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMillimeterPerSecondSquared(double)"/>
-        public static Acceleration MillimeterPerSecondSquared(this long value) => Acceleration.FromMillimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double)"/>
+        public static Acceleration MillimetersPerSecondSquared(this long value) => Acceleration.FromMillimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMillimeterPerSecondSquared(double?)"/>
-        public static Acceleration? MillimeterPerSecondSquared(this long? value) => Acceleration.FromMillimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double?)"/>
+        public static Acceleration? MillimetersPerSecondSquared(this long? value) => Acceleration.FromMillimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMillimeterPerSecondSquared(double)"/>
-        public static Acceleration MillimeterPerSecondSquared(this double value) => Acceleration.FromMillimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double)"/>
+        public static Acceleration MillimetersPerSecondSquared(this double value) => Acceleration.FromMillimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMillimeterPerSecondSquared(double?)"/>
-        public static Acceleration? MillimeterPerSecondSquared(this double? value) => Acceleration.FromMillimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double?)"/>
+        public static Acceleration? MillimetersPerSecondSquared(this double? value) => Acceleration.FromMillimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMillimeterPerSecondSquared(double)"/>
-        public static Acceleration MillimeterPerSecondSquared(this float value) => Acceleration.FromMillimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double)"/>
+        public static Acceleration MillimetersPerSecondSquared(this float value) => Acceleration.FromMillimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMillimeterPerSecondSquared(double?)"/>
-        public static Acceleration? MillimeterPerSecondSquared(this float? value) => Acceleration.FromMillimeterPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double?)"/>
+        public static Acceleration? MillimetersPerSecondSquared(this float? value) => Acceleration.FromMillimetersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromMillimeterPerSecondSquared(double)"/>
-        public static Acceleration MillimeterPerSecondSquared(this decimal value) => Acceleration.FromMillimeterPerSecondSquared(Convert.ToDouble(value));
+        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double)"/>
+        public static Acceleration MillimetersPerSecondSquared(this decimal value) => Acceleration.FromMillimetersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromMillimeterPerSecondSquared(double?)"/>
-        public static Acceleration? MillimeterPerSecondSquared(this decimal? value) => Acceleration.FromMillimeterPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(double?)"/>
+        public static Acceleration? MillimetersPerSecondSquared(this decimal? value) => Acceleration.FromMillimetersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanometerPerSecondSquared
 
-        /// <inheritdoc cref="Acceleration.FromNanometerPerSecondSquared(double)"/>
-        public static Acceleration NanometerPerSecondSquared(this int value) => Acceleration.FromNanometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double)"/>
+        public static Acceleration NanometersPerSecondSquared(this int value) => Acceleration.FromNanometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromNanometerPerSecondSquared(double?)"/>
-        public static Acceleration? NanometerPerSecondSquared(this int? value) => Acceleration.FromNanometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double?)"/>
+        public static Acceleration? NanometersPerSecondSquared(this int? value) => Acceleration.FromNanometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromNanometerPerSecondSquared(double)"/>
-        public static Acceleration NanometerPerSecondSquared(this long value) => Acceleration.FromNanometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double)"/>
+        public static Acceleration NanometersPerSecondSquared(this long value) => Acceleration.FromNanometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromNanometerPerSecondSquared(double?)"/>
-        public static Acceleration? NanometerPerSecondSquared(this long? value) => Acceleration.FromNanometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double?)"/>
+        public static Acceleration? NanometersPerSecondSquared(this long? value) => Acceleration.FromNanometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromNanometerPerSecondSquared(double)"/>
-        public static Acceleration NanometerPerSecondSquared(this double value) => Acceleration.FromNanometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double)"/>
+        public static Acceleration NanometersPerSecondSquared(this double value) => Acceleration.FromNanometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromNanometerPerSecondSquared(double?)"/>
-        public static Acceleration? NanometerPerSecondSquared(this double? value) => Acceleration.FromNanometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double?)"/>
+        public static Acceleration? NanometersPerSecondSquared(this double? value) => Acceleration.FromNanometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromNanometerPerSecondSquared(double)"/>
-        public static Acceleration NanometerPerSecondSquared(this float value) => Acceleration.FromNanometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double)"/>
+        public static Acceleration NanometersPerSecondSquared(this float value) => Acceleration.FromNanometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromNanometerPerSecondSquared(double?)"/>
-        public static Acceleration? NanometerPerSecondSquared(this float? value) => Acceleration.FromNanometerPerSecondSquared(value);
+        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double?)"/>
+        public static Acceleration? NanometersPerSecondSquared(this float? value) => Acceleration.FromNanometersPerSecondSquared(value);
 
-        /// <inheritdoc cref="Acceleration.FromNanometerPerSecondSquared(double)"/>
-        public static Acceleration NanometerPerSecondSquared(this decimal value) => Acceleration.FromNanometerPerSecondSquared(Convert.ToDouble(value));
+        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double)"/>
+        public static Acceleration NanometersPerSecondSquared(this decimal value) => Acceleration.FromNanometersPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Acceleration.FromNanometerPerSecondSquared(double?)"/>
-        public static Acceleration? NanometerPerSecondSquared(this decimal? value) => Acceleration.FromNanometerPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(double?)"/>
+        public static Acceleration? NanometersPerSecondSquared(this decimal? value) => Acceleration.FromNanometersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

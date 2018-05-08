@@ -96,9 +96,9 @@ namespace UnitsNet
 #endif
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public Acceleration(double meterpersecondsquared)
+        public Acceleration(double meterspersecondsquared)
         {
-            _value = Convert.ToDouble(meterpersecondsquared);
+            _value = Convert.ToDouble(meterspersecondsquared);
             _unit = BaseUnit;
         }
 
@@ -123,28 +123,28 @@ namespace UnitsNet
         /// <summary>
         ///     Creates the quantity with the given value assuming the base unit MeterPerSecondSquared.
         /// </summary>
-        /// <param name="meterpersecondsquared">Value assuming base unit MeterPerSecondSquared.</param>
+        /// <param name="meterspersecondsquared">Value assuming base unit MeterPerSecondSquared.</param>
 #if WINDOWS_UWP
         private
 #else
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Acceleration(long meterpersecondsquared) : this(Convert.ToDouble(meterpersecondsquared), BaseUnit) { }
+        Acceleration(long meterspersecondsquared) : this(Convert.ToDouble(meterspersecondsquared), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
         /// <summary>
         ///     Creates the quantity with the given value assuming the base unit MeterPerSecondSquared.
         /// </summary>
-        /// <param name="meterpersecondsquared">Value assuming base unit MeterPerSecondSquared.</param>
+        /// <param name="meterspersecondsquared">Value assuming base unit MeterPerSecondSquared.</param>
 #if WINDOWS_UWP
         private
 #else
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Acceleration(decimal meterpersecondsquared) : this(Convert.ToDouble(meterpersecondsquared), BaseUnit) { }
+        Acceleration(decimal meterspersecondsquared) : this(Convert.ToDouble(meterspersecondsquared), BaseUnit) { }
 
         #region Properties
 
@@ -163,13 +163,13 @@ namespace UnitsNet
         /// </summary>
         public static AccelerationUnit[] Units { get; } = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().ToArray();
         /// <summary>
-        ///     Get Acceleration in CentimeterPerSecondSquared.
+        ///     Get Acceleration in CentimetersPerSecondSquared.
         /// </summary>
-        public double CentimeterPerSecondSquared => As(AccelerationUnit.CentimeterPerSecondSquared);
+        public double CentimetersPerSecondSquared => As(AccelerationUnit.CentimeterPerSecondSquared);
         /// <summary>
-        ///     Get Acceleration in DecimeterPerSecondSquared.
+        ///     Get Acceleration in DecimetersPerSecondSquared.
         /// </summary>
-        public double DecimeterPerSecondSquared => As(AccelerationUnit.DecimeterPerSecondSquared);
+        public double DecimetersPerSecondSquared => As(AccelerationUnit.DecimeterPerSecondSquared);
         /// <summary>
         ///     Get Acceleration in FeetPerSecondSquared.
         /// </summary>
@@ -179,9 +179,9 @@ namespace UnitsNet
         /// </summary>
         public double InchesPerSecondSquared => As(AccelerationUnit.InchPerSecondSquared);
         /// <summary>
-        ///     Get Acceleration in KilometerPerSecondSquared.
+        ///     Get Acceleration in KilometersPerSecondSquared.
         /// </summary>
-        public double KilometerPerSecondSquared => As(AccelerationUnit.KilometerPerSecondSquared);
+        public double KilometersPerSecondSquared => As(AccelerationUnit.KilometerPerSecondSquared);
         /// <summary>
         ///     Get Acceleration in KnotsPerHour.
         /// </summary>
@@ -195,21 +195,21 @@ namespace UnitsNet
         /// </summary>
         public double KnotsPerSecond => As(AccelerationUnit.KnotPerSecond);
         /// <summary>
-        ///     Get Acceleration in MeterPerSecondSquared.
+        ///     Get Acceleration in MetersPerSecondSquared.
         /// </summary>
-        public double MeterPerSecondSquared => As(AccelerationUnit.MeterPerSecondSquared);
+        public double MetersPerSecondSquared => As(AccelerationUnit.MeterPerSecondSquared);
         /// <summary>
-        ///     Get Acceleration in MicrometerPerSecondSquared.
+        ///     Get Acceleration in MicrometersPerSecondSquared.
         /// </summary>
-        public double MicrometerPerSecondSquared => As(AccelerationUnit.MicrometerPerSecondSquared);
+        public double MicrometersPerSecondSquared => As(AccelerationUnit.MicrometerPerSecondSquared);
         /// <summary>
-        ///     Get Acceleration in MillimeterPerSecondSquared.
+        ///     Get Acceleration in MillimetersPerSecondSquared.
         /// </summary>
-        public double MillimeterPerSecondSquared => As(AccelerationUnit.MillimeterPerSecondSquared);
+        public double MillimetersPerSecondSquared => As(AccelerationUnit.MillimeterPerSecondSquared);
         /// <summary>
-        ///     Get Acceleration in NanometerPerSecondSquared.
+        ///     Get Acceleration in NanometersPerSecondSquared.
         /// </summary>
-        public double NanometerPerSecondSquared => As(AccelerationUnit.NanometerPerSecondSquared);
+        public double NanometersPerSecondSquared => As(AccelerationUnit.NanometerPerSecondSquared);
         /// <summary>
         ///     Get Acceleration in StandardGravity.
         /// </summary>
@@ -222,30 +222,30 @@ namespace UnitsNet
         public static Acceleration Zero => new Acceleration(0, BaseUnit);
 
         /// <summary>
-        ///     Get Acceleration from CentimeterPerSecondSquared.
+        ///     Get Acceleration from CentimetersPerSecondSquared.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromCentimeterPerSecondSquared(double centimeterpersecondsquared)
+        public static Acceleration FromCentimetersPerSecondSquared(double centimeterspersecondsquared)
 #else
-        public static Acceleration FromCentimeterPerSecondSquared(QuantityValue centimeterpersecondsquared)
+        public static Acceleration FromCentimetersPerSecondSquared(QuantityValue centimeterspersecondsquared)
 #endif
         {
-            double value = (double) centimeterpersecondsquared;
+            double value = (double) centimeterspersecondsquared;
             return new Acceleration(value, AccelerationUnit.CentimeterPerSecondSquared);
         }
 
         /// <summary>
-        ///     Get Acceleration from DecimeterPerSecondSquared.
+        ///     Get Acceleration from DecimetersPerSecondSquared.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromDecimeterPerSecondSquared(double decimeterpersecondsquared)
+        public static Acceleration FromDecimetersPerSecondSquared(double decimeterspersecondsquared)
 #else
-        public static Acceleration FromDecimeterPerSecondSquared(QuantityValue decimeterpersecondsquared)
+        public static Acceleration FromDecimetersPerSecondSquared(QuantityValue decimeterspersecondsquared)
 #endif
         {
-            double value = (double) decimeterpersecondsquared;
+            double value = (double) decimeterspersecondsquared;
             return new Acceleration(value, AccelerationUnit.DecimeterPerSecondSquared);
         }
 
@@ -278,16 +278,16 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Acceleration from KilometerPerSecondSquared.
+        ///     Get Acceleration from KilometersPerSecondSquared.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromKilometerPerSecondSquared(double kilometerpersecondsquared)
+        public static Acceleration FromKilometersPerSecondSquared(double kilometerspersecondsquared)
 #else
-        public static Acceleration FromKilometerPerSecondSquared(QuantityValue kilometerpersecondsquared)
+        public static Acceleration FromKilometersPerSecondSquared(QuantityValue kilometerspersecondsquared)
 #endif
         {
-            double value = (double) kilometerpersecondsquared;
+            double value = (double) kilometerspersecondsquared;
             return new Acceleration(value, AccelerationUnit.KilometerPerSecondSquared);
         }
 
@@ -334,58 +334,58 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Acceleration from MeterPerSecondSquared.
+        ///     Get Acceleration from MetersPerSecondSquared.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromMeterPerSecondSquared(double meterpersecondsquared)
+        public static Acceleration FromMetersPerSecondSquared(double meterspersecondsquared)
 #else
-        public static Acceleration FromMeterPerSecondSquared(QuantityValue meterpersecondsquared)
+        public static Acceleration FromMetersPerSecondSquared(QuantityValue meterspersecondsquared)
 #endif
         {
-            double value = (double) meterpersecondsquared;
+            double value = (double) meterspersecondsquared;
             return new Acceleration(value, AccelerationUnit.MeterPerSecondSquared);
         }
 
         /// <summary>
-        ///     Get Acceleration from MicrometerPerSecondSquared.
+        ///     Get Acceleration from MicrometersPerSecondSquared.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromMicrometerPerSecondSquared(double micrometerpersecondsquared)
+        public static Acceleration FromMicrometersPerSecondSquared(double micrometerspersecondsquared)
 #else
-        public static Acceleration FromMicrometerPerSecondSquared(QuantityValue micrometerpersecondsquared)
+        public static Acceleration FromMicrometersPerSecondSquared(QuantityValue micrometerspersecondsquared)
 #endif
         {
-            double value = (double) micrometerpersecondsquared;
+            double value = (double) micrometerspersecondsquared;
             return new Acceleration(value, AccelerationUnit.MicrometerPerSecondSquared);
         }
 
         /// <summary>
-        ///     Get Acceleration from MillimeterPerSecondSquared.
+        ///     Get Acceleration from MillimetersPerSecondSquared.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromMillimeterPerSecondSquared(double millimeterpersecondsquared)
+        public static Acceleration FromMillimetersPerSecondSquared(double millimeterspersecondsquared)
 #else
-        public static Acceleration FromMillimeterPerSecondSquared(QuantityValue millimeterpersecondsquared)
+        public static Acceleration FromMillimetersPerSecondSquared(QuantityValue millimeterspersecondsquared)
 #endif
         {
-            double value = (double) millimeterpersecondsquared;
+            double value = (double) millimeterspersecondsquared;
             return new Acceleration(value, AccelerationUnit.MillimeterPerSecondSquared);
         }
 
         /// <summary>
-        ///     Get Acceleration from NanometerPerSecondSquared.
+        ///     Get Acceleration from NanometersPerSecondSquared.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromNanometerPerSecondSquared(double nanometerpersecondsquared)
+        public static Acceleration FromNanometersPerSecondSquared(double nanometerspersecondsquared)
 #else
-        public static Acceleration FromNanometerPerSecondSquared(QuantityValue nanometerpersecondsquared)
+        public static Acceleration FromNanometersPerSecondSquared(QuantityValue nanometerspersecondsquared)
 #endif
         {
-            double value = (double) nanometerpersecondsquared;
+            double value = (double) nanometerspersecondsquared;
             return new Acceleration(value, AccelerationUnit.NanometerPerSecondSquared);
         }
 
@@ -406,13 +406,13 @@ namespace UnitsNet
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable Acceleration from nullable CentimeterPerSecondSquared.
+        ///     Get nullable Acceleration from nullable CentimetersPerSecondSquared.
         /// </summary>
-        public static Acceleration? FromCentimeterPerSecondSquared(QuantityValue? centimeterpersecondsquared)
+        public static Acceleration? FromCentimetersPerSecondSquared(QuantityValue? centimeterspersecondsquared)
         {
-            if (centimeterpersecondsquared.HasValue)
+            if (centimeterspersecondsquared.HasValue)
             {
-                return FromCentimeterPerSecondSquared(centimeterpersecondsquared.Value);
+                return FromCentimetersPerSecondSquared(centimeterspersecondsquared.Value);
             }
             else
             {
@@ -421,13 +421,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable DecimeterPerSecondSquared.
+        ///     Get nullable Acceleration from nullable DecimetersPerSecondSquared.
         /// </summary>
-        public static Acceleration? FromDecimeterPerSecondSquared(QuantityValue? decimeterpersecondsquared)
+        public static Acceleration? FromDecimetersPerSecondSquared(QuantityValue? decimeterspersecondsquared)
         {
-            if (decimeterpersecondsquared.HasValue)
+            if (decimeterspersecondsquared.HasValue)
             {
-                return FromDecimeterPerSecondSquared(decimeterpersecondsquared.Value);
+                return FromDecimetersPerSecondSquared(decimeterspersecondsquared.Value);
             }
             else
             {
@@ -466,13 +466,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable KilometerPerSecondSquared.
+        ///     Get nullable Acceleration from nullable KilometersPerSecondSquared.
         /// </summary>
-        public static Acceleration? FromKilometerPerSecondSquared(QuantityValue? kilometerpersecondsquared)
+        public static Acceleration? FromKilometersPerSecondSquared(QuantityValue? kilometerspersecondsquared)
         {
-            if (kilometerpersecondsquared.HasValue)
+            if (kilometerspersecondsquared.HasValue)
             {
-                return FromKilometerPerSecondSquared(kilometerpersecondsquared.Value);
+                return FromKilometersPerSecondSquared(kilometerspersecondsquared.Value);
             }
             else
             {
@@ -526,13 +526,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable MeterPerSecondSquared.
+        ///     Get nullable Acceleration from nullable MetersPerSecondSquared.
         /// </summary>
-        public static Acceleration? FromMeterPerSecondSquared(QuantityValue? meterpersecondsquared)
+        public static Acceleration? FromMetersPerSecondSquared(QuantityValue? meterspersecondsquared)
         {
-            if (meterpersecondsquared.HasValue)
+            if (meterspersecondsquared.HasValue)
             {
-                return FromMeterPerSecondSquared(meterpersecondsquared.Value);
+                return FromMetersPerSecondSquared(meterspersecondsquared.Value);
             }
             else
             {
@@ -541,13 +541,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable MicrometerPerSecondSquared.
+        ///     Get nullable Acceleration from nullable MicrometersPerSecondSquared.
         /// </summary>
-        public static Acceleration? FromMicrometerPerSecondSquared(QuantityValue? micrometerpersecondsquared)
+        public static Acceleration? FromMicrometersPerSecondSquared(QuantityValue? micrometerspersecondsquared)
         {
-            if (micrometerpersecondsquared.HasValue)
+            if (micrometerspersecondsquared.HasValue)
             {
-                return FromMicrometerPerSecondSquared(micrometerpersecondsquared.Value);
+                return FromMicrometersPerSecondSquared(micrometerspersecondsquared.Value);
             }
             else
             {
@@ -556,13 +556,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable MillimeterPerSecondSquared.
+        ///     Get nullable Acceleration from nullable MillimetersPerSecondSquared.
         /// </summary>
-        public static Acceleration? FromMillimeterPerSecondSquared(QuantityValue? millimeterpersecondsquared)
+        public static Acceleration? FromMillimetersPerSecondSquared(QuantityValue? millimeterspersecondsquared)
         {
-            if (millimeterpersecondsquared.HasValue)
+            if (millimeterspersecondsquared.HasValue)
             {
-                return FromMillimeterPerSecondSquared(millimeterpersecondsquared.Value);
+                return FromMillimetersPerSecondSquared(millimeterspersecondsquared.Value);
             }
             else
             {
@@ -571,13 +571,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable NanometerPerSecondSquared.
+        ///     Get nullable Acceleration from nullable NanometersPerSecondSquared.
         /// </summary>
-        public static Acceleration? FromNanometerPerSecondSquared(QuantityValue? nanometerpersecondsquared)
+        public static Acceleration? FromNanometersPerSecondSquared(QuantityValue? nanometerspersecondsquared)
         {
-            if (nanometerpersecondsquared.HasValue)
+            if (nanometerspersecondsquared.HasValue)
             {
-                return FromNanometerPerSecondSquared(nanometerpersecondsquared.Value);
+                return FromNanometersPerSecondSquared(nanometerspersecondsquared.Value);
             }
             else
             {
@@ -716,7 +716,7 @@ namespace UnitsNet
 
         public static double operator /(Acceleration left, Acceleration right)
         {
-            return left.MeterPerSecondSquared / right.MeterPerSecondSquared;
+            return left.MetersPerSecondSquared / right.MetersPerSecondSquared;
         }
 #endif
 
@@ -739,7 +739,7 @@ namespace UnitsNet
 #endif
         int CompareTo(Acceleration other)
         {
-            return AsBaseUnitMeterPerSecondSquared().CompareTo(other.AsBaseUnitMeterPerSecondSquared());
+            return AsBaseUnitMetersPerSecondSquared().CompareTo(other.AsBaseUnitMetersPerSecondSquared());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -787,7 +787,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitMeterPerSecondSquared().Equals(((Acceleration) obj).AsBaseUnitMeterPerSecondSquared());
+            return AsBaseUnitMetersPerSecondSquared().Equals(((Acceleration) obj).AsBaseUnitMetersPerSecondSquared());
         }
 
         /// <summary>
@@ -800,7 +800,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Acceleration other, Acceleration maxError)
         {
-            return Math.Abs(AsBaseUnitMeterPerSecondSquared() - other.AsBaseUnitMeterPerSecondSquared()) <= maxError.AsBaseUnitMeterPerSecondSquared();
+            return Math.Abs(AsBaseUnitMetersPerSecondSquared() - other.AsBaseUnitMetersPerSecondSquared()) <= maxError.AsBaseUnitMetersPerSecondSquared();
         }
 
         public override int GetHashCode()
@@ -823,7 +823,7 @@ namespace UnitsNet
                 return (double)Value;
             }
 
-            double baseUnitValue = AsBaseUnitMeterPerSecondSquared();
+            double baseUnitValue = AsBaseUnitMetersPerSecondSquared();
 
             switch (unit)
             {
@@ -927,7 +927,7 @@ namespace UnitsNet
                     double parsedValue = double.Parse(value, formatProvider2);
                     AccelerationUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromMeterPerSecondSquared(x.MeterPerSecondSquared + y.MeterPerSecondSquared));
+                }, (x, y) => FromMetersPerSecondSquared(x.MetersPerSecondSquared + y.MetersPerSecondSquared));
         }
 
         /// <summary>
@@ -1197,7 +1197,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitMeterPerSecondSquared()
+        private double AsBaseUnitMetersPerSecondSquared()
         {
 			if (Unit == AccelerationUnit.MeterPerSecondSquared) { return _value; }
 

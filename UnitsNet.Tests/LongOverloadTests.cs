@@ -31,24 +31,24 @@ namespace UnitsNet.Tests
         public static void CreatingQuantityWithDoubleBackingFieldFromLongReturnsCorrectValue()
         {
             long oneMeterPerSecondSquared = 1;
-            Acceleration acceleration = Acceleration.FromMeterPerSecondSquared(oneMeterPerSecondSquared);
-            Assert.Equal(1.0, acceleration.MeterPerSecondSquared);
+            Acceleration acceleration = Acceleration.FromMetersPerSecondSquared(oneMeterPerSecondSquared);
+            Assert.Equal(1.0, acceleration.MetersPerSecondSquared);
         }
 
         [Fact]
         public static void CreatingQuantityWithDoubleBackingFieldFromNullableLongReturnsCorrectValue()
         {
             long? oneMeterPerSecondSquared = 1;
-            Acceleration? acceleration = Acceleration.FromMeterPerSecondSquared(oneMeterPerSecondSquared);
+            Acceleration? acceleration = Acceleration.FromMetersPerSecondSquared(oneMeterPerSecondSquared);
             Assert.NotNull(acceleration);
-            Assert.Equal(1.0, acceleration.Value.MeterPerSecondSquared);
+            Assert.Equal(1.0, acceleration.Value.MetersPerSecondSquared);
         }
 
         [Fact]
         public static void CreatingQuantityWithDoubleBackingFieldFromNullableLongReturnsNullWhenGivenNull()
         {
             long? nullLong = null;
-            Acceleration? acceleration = Acceleration.FromMeterPerSecondSquared(nullLong);
+            Acceleration? acceleration = Acceleration.FromMetersPerSecondSquared(nullLong);
             Assert.Null(acceleration);
         }
 
@@ -56,24 +56,24 @@ namespace UnitsNet.Tests
         public static void CreatingQuantityWithDoubleBackingFieldFromLongWithExtensionMethodReturnsCorrectValue()
         {
             long oneMeterPerSecondSquared = 1;
-            Acceleration acceleration = oneMeterPerSecondSquared.MeterPerSecondSquared();
-            Assert.Equal(1.0, acceleration.MeterPerSecondSquared);
+            Acceleration acceleration = oneMeterPerSecondSquared.MetersPerSecondSquared();
+            Assert.Equal(1.0, acceleration.MetersPerSecondSquared);
         }
 
         [Fact]
         public static void CreatingQuantityWithDoubleBackingFieldFromNullableLongWithExtensionMethodReturnsCorrectValue()
         {
             long? oneMeterPerSecondSquared = 1;
-            Acceleration? acceleration = oneMeterPerSecondSquared.MeterPerSecondSquared();
+            Acceleration? acceleration = oneMeterPerSecondSquared.MetersPerSecondSquared();
             Assert.NotNull(acceleration);
-            Assert.Equal(1.0, acceleration.Value.MeterPerSecondSquared);
+            Assert.Equal(1.0, acceleration.Value.MetersPerSecondSquared);
         }
 
         [Fact]
         public static void CreatingQuantityWithDoubleBackingFieldFromNullableLongWithExtensionMethodReturnsNullWhenGivenNull()
         {
             long? nullLong = null;
-            Acceleration? acceleration = nullLong.MeterPerSecondSquared();
+            Acceleration? acceleration = nullLong.MetersPerSecondSquared();
             Assert.Null(acceleration);
         }
 
