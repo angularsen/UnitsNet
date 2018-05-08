@@ -29,10 +29,7 @@ using System.Globalization;
 
 namespace UnitsNet.Tests
 {
-    // Avoid accessing static prop DefaultToString in parallel from multiple tests:
-    // UnitSystemTests.DefaultToStringFormatting()
-    // LengthTests.ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
-    [Collection("DefaultToString")]
+    [Collection(nameof(UnitSystemFixture))]
     public class UnitSystemTests
     {
         private readonly ITestOutputHelper _output;
@@ -412,21 +409,32 @@ namespace UnitsNet.Tests
         [Fact]
         public void GetDefaultAbbreviationFallsBackToUsEnglishCulture()
         {
-            // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
-            // CurrentUICulture affects localization, in this case the abbreviation.
-            // Zulu (South Africa)
-            var zuluCulture = new CultureInfo("zu-ZA");
-            UnitSystem zuluUnits = UnitSystem.GetCached(zuluCulture);
-            CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = zuluCulture;
+            CultureInfo oldCurrentCulture = CultureInfo.CurrentCulture;
+            CultureInfo oldCurrentUICulture = CultureInfo.CurrentUICulture;
 
-            UnitSystem usUnits = UnitSystem.GetCached(AmericanCultureName);
-            usUnits.MapUnitToAbbreviation(CustomUnit.Unit1, "US english abbreviation for Unit1");
+            try 
+            {
+                // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
+                // CurrentUICulture affects localization, in this case the abbreviation.
+                // Zulu (South Africa)
+                var zuluCulture = new CultureInfo("zu-ZA");
+                UnitSystem zuluUnits = UnitSystem.GetCached(zuluCulture);
+                CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = zuluCulture;
 
-            // Act
-            string abbreviation = zuluUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
+                UnitSystem usUnits = UnitSystem.GetCached(AmericanCultureName);
+                usUnits.MapUnitToAbbreviation(CustomUnit.Unit1, "US english abbreviation for Unit1");
 
-            // Assert
-            Assert.Equal("US english abbreviation for Unit1", abbreviation);
+                // Act
+                string abbreviation = zuluUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
+
+                // Assert
+                Assert.Equal("US english abbreviation for Unit1", abbreviation);
+            }
+            finally 
+            {
+                CultureInfo.CurrentCulture = oldCurrentCulture;
+                CultureInfo.CurrentUICulture = oldCurrentUICulture;
+            }
         }
 
         [Fact]
@@ -441,7 +449,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void NegativeInfinityFormatting()
         {
-            Assert.Equal("-∞ m", Length.FromMeters(double.NegativeInfinity).ToString());
+            Assert.Equal("-Infinity m", Length.FromMeters(double.NegativeInfinity).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture));
         }
 
         [Fact]
@@ -473,7 +481,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void PositiveInfinityFormatting()
         {
-            Assert.Equal("∞ m", Length.FromMeters(double.PositiveInfinity).ToString());
+            Assert.Equal("Infinity m", Length.FromMeters(double.PositiveInfinity).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture));
         }
 
         /// <summary>

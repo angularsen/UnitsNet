@@ -28,7 +28,7 @@ namespace UnitsNet.Tests.CustomCode
     // Avoid accessing static prop DefaultToString in parallel from multiple tests:
     // UnitSystemTests.DefaultToStringFormatting()
     // LengthTests.ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
-    [Collection("DefaultToString")] 
+    [Collection(nameof(UnitSystemFixture))]
     public class LengthTests : LengthTestsBase
     {
         protected override double CentimetersInOneMeter => 100;
