@@ -25,6 +25,9 @@ using UnitsNet.Units;
 
 namespace UnitsNet.Tests.CustomCode
 {
+    // Avoid accessing static prop DefaultToString in parallel from multiple tests:
+    // UnitSystemTests.DefaultToStringFormatting()
+    // LengthTests.ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
     [Collection(nameof(UnitSystemFixture))]
     public class LengthTests : LengthTestsBase
     {
