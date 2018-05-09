@@ -92,6 +92,8 @@ namespace UnitsNet.Tests
         protected abstract double UsGallonsInOneCubicMeter { get; }
         protected abstract double UsLegalCupsInOneCubicMeter { get; }
         protected abstract double UsOuncesInOneCubicMeter { get; }
+        protected abstract double UsPintsInOneCubicMeter { get; }
+        protected abstract double UsQuartsInOneCubicMeter { get; }
         protected abstract double UsTablespoonsInOneCubicMeter { get; }
         protected abstract double UsTeaspoonsInOneCubicMeter { get; }
 
@@ -136,6 +138,8 @@ namespace UnitsNet.Tests
         protected virtual double UsGallonsTolerance { get { return 1e-5; } }
         protected virtual double UsLegalCupsTolerance { get { return 1e-5; } }
         protected virtual double UsOuncesTolerance { get { return 1e-5; } }
+        protected virtual double UsPintsTolerance { get { return 1e-5; } }
+        protected virtual double UsQuartsTolerance { get { return 1e-5; } }
         protected virtual double UsTablespoonsTolerance { get { return 1e-5; } }
         protected virtual double UsTeaspoonsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
@@ -184,6 +188,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(UsGallonsInOneCubicMeter, cubicmeter.UsGallons, UsGallonsTolerance);
             AssertEx.EqualTolerance(UsLegalCupsInOneCubicMeter, cubicmeter.UsLegalCups, UsLegalCupsTolerance);
             AssertEx.EqualTolerance(UsOuncesInOneCubicMeter, cubicmeter.UsOunces, UsOuncesTolerance);
+            AssertEx.EqualTolerance(UsPintsInOneCubicMeter, cubicmeter.UsPints, UsPintsTolerance);
+            AssertEx.EqualTolerance(UsQuartsInOneCubicMeter, cubicmeter.UsQuarts, UsQuartsTolerance);
             AssertEx.EqualTolerance(UsTablespoonsInOneCubicMeter, cubicmeter.UsTablespoons, UsTablespoonsTolerance);
             AssertEx.EqualTolerance(UsTeaspoonsInOneCubicMeter, cubicmeter.UsTeaspoons, UsTeaspoonsTolerance);
         }
@@ -231,6 +237,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.UsGallon).UsGallons, UsGallonsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.UsLegalCup).UsLegalCups, UsLegalCupsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.UsOunce).UsOunces, UsOuncesTolerance);
+            AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.UsPint).UsPints, UsPintsTolerance);
+            AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.UsQuart).UsQuarts, UsQuartsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.UsTablespoon).UsTablespoons, UsTablespoonsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.UsTeaspoon).UsTeaspoons, UsTeaspoonsTolerance);
         }
@@ -279,6 +287,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(UsGallonsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsGallon), UsGallonsTolerance);
             AssertEx.EqualTolerance(UsLegalCupsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsLegalCup), UsLegalCupsTolerance);
             AssertEx.EqualTolerance(UsOuncesInOneCubicMeter, cubicmeter.As(VolumeUnit.UsOunce), UsOuncesTolerance);
+            AssertEx.EqualTolerance(UsPintsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsPint), UsPintsTolerance);
+            AssertEx.EqualTolerance(UsQuartsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsQuart), UsQuartsTolerance);
             AssertEx.EqualTolerance(UsTablespoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsTablespoon), UsTablespoonsTolerance);
             AssertEx.EqualTolerance(UsTeaspoonsInOneCubicMeter, cubicmeter.As(VolumeUnit.UsTeaspoon), UsTeaspoonsTolerance);
         }
@@ -327,6 +337,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Volume.FromUsGallons(cubicmeter.UsGallons).CubicMeters, UsGallonsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromUsLegalCups(cubicmeter.UsLegalCups).CubicMeters, UsLegalCupsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromUsOunces(cubicmeter.UsOunces).CubicMeters, UsOuncesTolerance);
+            AssertEx.EqualTolerance(1, Volume.FromUsPints(cubicmeter.UsPints).CubicMeters, UsPintsTolerance);
+            AssertEx.EqualTolerance(1, Volume.FromUsQuarts(cubicmeter.UsQuarts).CubicMeters, UsQuartsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromUsTablespoons(cubicmeter.UsTablespoons).CubicMeters, UsTablespoonsTolerance);
             AssertEx.EqualTolerance(1, Volume.FromUsTeaspoons(cubicmeter.UsTeaspoons).CubicMeters, UsTeaspoonsTolerance);
         }

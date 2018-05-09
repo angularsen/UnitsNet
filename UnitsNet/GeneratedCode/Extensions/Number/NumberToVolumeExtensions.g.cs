@@ -1404,6 +1404,74 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         #endregion
 
+        #region UsPint
+
+        /// <inheritdoc cref="Volume.FromUsPints(double)"/>
+        public static Volume UsPints(this int value) => Volume.FromUsPints(value);
+
+        /// <inheritdoc cref="Volume.FromUsPints(double?)"/>
+        public static Volume? UsPints(this int? value) => Volume.FromUsPints(value);
+
+        /// <inheritdoc cref="Volume.FromUsPints(double)"/>
+        public static Volume UsPints(this long value) => Volume.FromUsPints(value);
+
+        /// <inheritdoc cref="Volume.FromUsPints(double?)"/>
+        public static Volume? UsPints(this long? value) => Volume.FromUsPints(value);
+
+        /// <inheritdoc cref="Volume.FromUsPints(double)"/>
+        public static Volume UsPints(this double value) => Volume.FromUsPints(value);
+
+        /// <inheritdoc cref="Volume.FromUsPints(double?)"/>
+        public static Volume? UsPints(this double? value) => Volume.FromUsPints(value);
+
+        /// <inheritdoc cref="Volume.FromUsPints(double)"/>
+        public static Volume UsPints(this float value) => Volume.FromUsPints(value);
+
+        /// <inheritdoc cref="Volume.FromUsPints(double?)"/>
+        public static Volume? UsPints(this float? value) => Volume.FromUsPints(value);
+
+        /// <inheritdoc cref="Volume.FromUsPints(double)"/>
+        public static Volume UsPints(this decimal value) => Volume.FromUsPints(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromUsPints(double?)"/>
+        public static Volume? UsPints(this decimal? value) => Volume.FromUsPints(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region UsQuart
+
+        /// <inheritdoc cref="Volume.FromUsQuarts(double)"/>
+        public static Volume UsQuarts(this int value) => Volume.FromUsQuarts(value);
+
+        /// <inheritdoc cref="Volume.FromUsQuarts(double?)"/>
+        public static Volume? UsQuarts(this int? value) => Volume.FromUsQuarts(value);
+
+        /// <inheritdoc cref="Volume.FromUsQuarts(double)"/>
+        public static Volume UsQuarts(this long value) => Volume.FromUsQuarts(value);
+
+        /// <inheritdoc cref="Volume.FromUsQuarts(double?)"/>
+        public static Volume? UsQuarts(this long? value) => Volume.FromUsQuarts(value);
+
+        /// <inheritdoc cref="Volume.FromUsQuarts(double)"/>
+        public static Volume UsQuarts(this double value) => Volume.FromUsQuarts(value);
+
+        /// <inheritdoc cref="Volume.FromUsQuarts(double?)"/>
+        public static Volume? UsQuarts(this double? value) => Volume.FromUsQuarts(value);
+
+        /// <inheritdoc cref="Volume.FromUsQuarts(double)"/>
+        public static Volume UsQuarts(this float value) => Volume.FromUsQuarts(value);
+
+        /// <inheritdoc cref="Volume.FromUsQuarts(double?)"/>
+        public static Volume? UsQuarts(this float? value) => Volume.FromUsQuarts(value);
+
+        /// <inheritdoc cref="Volume.FromUsQuarts(double)"/>
+        public static Volume UsQuarts(this decimal value) => Volume.FromUsQuarts(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromUsQuarts(double?)"/>
+        public static Volume? UsQuarts(this decimal? value) => Volume.FromUsQuarts(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region UsTablespoon
 
         /// <inheritdoc cref="Volume.FromUsTablespoons(double)"/>

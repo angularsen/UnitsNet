@@ -4346,6 +4346,16 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "oz (U.S.)"),
                                 new AbbreviationsForCulture("ru-RU", "Американская унция"),
                             }),
+                        new CulturesForEnumValue((int) VolumeUnit.UsPint,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pt (U.S.)"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeUnit.UsQuart,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "qt (U.S.)"),
+                            }),
                         new CulturesForEnumValue((int) VolumeUnit.UsTablespoon,
                             new[]
                             {

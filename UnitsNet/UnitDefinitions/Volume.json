@@ -462,6 +462,30 @@
           "Abbreviations": [ "bl (imp.)" ]
         }
       ]
+    },
+    {
+    "SingularName": "UsQuart",
+      "PluralName": "UsQuarts",
+      "FromUnitToBaseFunc": "x*9.46352946e-4",
+      "FromBaseToUnitFunc": "x/9.46352946e-4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "qt (U.S.)" ]
+        }
+      ]
+    },
+    {
+    "SingularName": "UsPint",
+      "PluralName": "UsPints",
+      "FromUnitToBaseFunc": "x*4.73176473e-4",
+      "FromBaseToUnitFunc": "x/4.73176473e-4",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "pt (U.S.)" ]
+        }
+      ]
     }
   ]
 }
