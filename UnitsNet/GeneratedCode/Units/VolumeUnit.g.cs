@@ -84,6 +84,8 @@ namespace UnitsNet.Units
         UsGallon,
         UsLegalCup,
         UsOunce,
+        UsPint,
+        UsQuart,
         UsTablespoon,
         UsTeaspoon,
     }

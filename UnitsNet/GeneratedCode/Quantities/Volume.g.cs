@@ -325,6 +325,14 @@ namespace UnitsNet
         /// </summary>
         public double UsOunces => As(VolumeUnit.UsOunce);
         /// <summary>
+        ///     Get Volume in UsPints.
+        /// </summary>
+        public double UsPints => As(VolumeUnit.UsPint);
+        /// <summary>
+        ///     Get Volume in UsQuarts.
+        /// </summary>
+        public double UsQuarts => As(VolumeUnit.UsQuart);
+        /// <summary>
         ///     Get Volume in UsTablespoons.
         /// </summary>
         public double UsTablespoons => As(VolumeUnit.UsTablespoon);
@@ -897,6 +905,34 @@ namespace UnitsNet
         {
             double value = (double) usounces;
             return new Volume(value, VolumeUnit.UsOunce);
+        }
+
+        /// <summary>
+        ///     Get Volume from UsPints.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Volume FromUsPints(double uspints)
+#else
+        public static Volume FromUsPints(QuantityValue uspints)
+#endif
+        {
+            double value = (double) uspints;
+            return new Volume(value, VolumeUnit.UsPint);
+        }
+
+        /// <summary>
+        ///     Get Volume from UsQuarts.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Volume FromUsQuarts(double usquarts)
+#else
+        public static Volume FromUsQuarts(QuantityValue usquarts)
+#endif
+        {
+            double value = (double) usquarts;
+            return new Volume(value, VolumeUnit.UsQuart);
         }
 
         /// <summary>
@@ -1530,6 +1566,36 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Volume from nullable UsPints.
+        /// </summary>
+        public static Volume? FromUsPints(QuantityValue? uspints)
+        {
+            if (uspints.HasValue)
+            {
+                return FromUsPints(uspints.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Volume from nullable UsQuarts.
+        /// </summary>
+        public static Volume? FromUsQuarts(QuantityValue? usquarts)
+        {
+            if (usquarts.HasValue)
+            {
+                return FromUsQuarts(usquarts.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         ///     Get nullable Volume from nullable UsTablespoons.
         /// </summary>
         public static Volume? FromUsTablespoons(QuantityValue? ustablespoons)
@@ -1826,6 +1892,8 @@ namespace UnitsNet
                 case VolumeUnit.UsGallon: return baseUnitValue/0.00378541;
                 case VolumeUnit.UsLegalCup: return baseUnitValue/0.00024;
                 case VolumeUnit.UsOunce: return baseUnitValue/2.957352956253760505068307980135e-5;
+                case VolumeUnit.UsPint: return baseUnitValue/4.73176473e-4;
+                case VolumeUnit.UsQuart: return baseUnitValue/9.46352946e-4;
                 case VolumeUnit.UsTablespoon: return baseUnitValue/1.478676478125e-5;
                 case VolumeUnit.UsTeaspoon: return baseUnitValue/4.92892159375e-6;
 
@@ -2231,6 +2299,8 @@ namespace UnitsNet
                 case VolumeUnit.UsGallon: return _value*0.00378541;
                 case VolumeUnit.UsLegalCup: return _value*0.00024;
                 case VolumeUnit.UsOunce: return _value*2.957352956253760505068307980135e-5;
+                case VolumeUnit.UsPint: return _value*4.73176473e-4;
+                case VolumeUnit.UsQuart: return _value*9.46352946e-4;
                 case VolumeUnit.UsTablespoon: return _value*1.478676478125e-5;
                 case VolumeUnit.UsTeaspoon: return _value*4.92892159375e-6;
                 default:

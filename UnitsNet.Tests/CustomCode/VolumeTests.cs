@@ -106,6 +106,10 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double OilBarrelsInOneCubicMeter => 6.2898107704321051280928552764086;
 
+        protected override double UsPintsInOneCubicMeter => 2113.3764188652;
+
+        protected override double UsQuartsInOneCubicMeter => 1056.6882094326;
+
         [Fact]
         public void VolumeDividedByAreaEqualsLength()
         {
