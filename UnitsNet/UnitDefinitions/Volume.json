@@ -464,7 +464,7 @@
       ]
     },
     {
-    "SingularName": "UsQuart",
+      "SingularName": "UsQuart",
       "PluralName": "UsQuarts",
       "FromUnitToBaseFunc": "x*9.46352946e-4",
       "FromBaseToUnitFunc": "x/9.46352946e-4",
@@ -476,7 +476,7 @@
       ]
     },
     {
-    "SingularName": "UsPint",
+      "SingularName": "UsPint",
       "PluralName": "UsPints",
       "FromUnitToBaseFunc": "x*4.73176473e-4",
       "FromBaseToUnitFunc": "x/4.73176473e-4",
