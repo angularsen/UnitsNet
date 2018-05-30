@@ -51,7 +51,7 @@ namespace UnitsNet
 
         public static VolumeFlow operator /(Volume volume, TimeSpan timeSpan)
         {
-            return VolumeFlow.FromCubicMetersPerSecond(volume.CubicMeters / timeSpan.Seconds);
+            return VolumeFlow.FromCubicMetersPerSecond(volume.CubicMeters / timeSpan.TotalSeconds);
         }
 
         public static TimeSpan operator /(Volume volume, VolumeFlow volumeFlow)

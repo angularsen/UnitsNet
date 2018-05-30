@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -60,6 +60,7 @@ namespace UnitsNet.Tests
         protected abstract double KilonewtonsPerCubicMillimeterInOneNewtonPerCubicMeter { get; }
         protected abstract double KilopoundsForcePerCubicFootInOneNewtonPerCubicMeter { get; }
         protected abstract double KilopoundsForcePerCubicInchInOneNewtonPerCubicMeter { get; }
+        protected abstract double MeganewtonsPerCubicMeterInOneNewtonPerCubicMeter { get; }
         protected abstract double NewtonsPerCubicCentimeterInOneNewtonPerCubicMeter { get; }
         protected abstract double NewtonsPerCubicMeterInOneNewtonPerCubicMeter { get; }
         protected abstract double NewtonsPerCubicMillimeterInOneNewtonPerCubicMeter { get; }
@@ -78,6 +79,7 @@ namespace UnitsNet.Tests
         protected virtual double KilonewtonsPerCubicMillimeterTolerance { get { return 1e-5; } }
         protected virtual double KilopoundsForcePerCubicFootTolerance { get { return 1e-5; } }
         protected virtual double KilopoundsForcePerCubicInchTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonsPerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double NewtonsPerCubicCentimeterTolerance { get { return 1e-5; } }
         protected virtual double NewtonsPerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double NewtonsPerCubicMillimeterTolerance { get { return 1e-5; } }
@@ -100,6 +102,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilonewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.KilonewtonsPerCubicMillimeter, KilonewtonsPerCubicMillimeterTolerance);
             AssertEx.EqualTolerance(KilopoundsForcePerCubicFootInOneNewtonPerCubicMeter, newtonpercubicmeter.KilopoundsForcePerCubicFoot, KilopoundsForcePerCubicFootTolerance);
             AssertEx.EqualTolerance(KilopoundsForcePerCubicInchInOneNewtonPerCubicMeter, newtonpercubicmeter.KilopoundsForcePerCubicInch, KilopoundsForcePerCubicInchTolerance);
+            AssertEx.EqualTolerance(MeganewtonsPerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.MeganewtonsPerCubicMeter, MeganewtonsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.NewtonsPerCubicCentimeter, NewtonsPerCubicCentimeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.NewtonsPerCubicMillimeter, NewtonsPerCubicMillimeterTolerance);
@@ -121,6 +124,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.KilonewtonPerCubicMillimeter).KilonewtonsPerCubicMillimeter, KilonewtonsPerCubicMillimeterTolerance);
             AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.KilopoundForcePerCubicFoot).KilopoundsForcePerCubicFoot, KilopoundsForcePerCubicFootTolerance);
             AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.KilopoundForcePerCubicInch).KilopoundsForcePerCubicInch, KilopoundsForcePerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.MeganewtonPerCubicMeter).MeganewtonsPerCubicMeter, MeganewtonsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicCentimeter).NewtonsPerCubicCentimeter, NewtonsPerCubicCentimeterTolerance);
             AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicMeter).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, SpecificWeight.From(1, SpecificWeightUnit.NewtonPerCubicMillimeter).NewtonsPerCubicMillimeter, NewtonsPerCubicMillimeterTolerance);
@@ -143,6 +147,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilonewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilonewtonPerCubicMillimeter), KilonewtonsPerCubicMillimeterTolerance);
             AssertEx.EqualTolerance(KilopoundsForcePerCubicFootInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilopoundForcePerCubicFoot), KilopoundsForcePerCubicFootTolerance);
             AssertEx.EqualTolerance(KilopoundsForcePerCubicInchInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.KilopoundForcePerCubicInch), KilopoundsForcePerCubicInchTolerance);
+            AssertEx.EqualTolerance(MeganewtonsPerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.MeganewtonPerCubicMeter), MeganewtonsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerCubicCentimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.NewtonPerCubicCentimeter), NewtonsPerCubicCentimeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerCubicMeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.NewtonPerCubicMeter), NewtonsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerCubicMillimeterInOneNewtonPerCubicMeter, newtonpercubicmeter.As(SpecificWeightUnit.NewtonPerCubicMillimeter), NewtonsPerCubicMillimeterTolerance);
@@ -165,6 +170,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, SpecificWeight.FromKilonewtonsPerCubicMillimeter(newtonpercubicmeter.KilonewtonsPerCubicMillimeter).NewtonsPerCubicMeter, KilonewtonsPerCubicMillimeterTolerance);
             AssertEx.EqualTolerance(1, SpecificWeight.FromKilopoundsForcePerCubicFoot(newtonpercubicmeter.KilopoundsForcePerCubicFoot).NewtonsPerCubicMeter, KilopoundsForcePerCubicFootTolerance);
             AssertEx.EqualTolerance(1, SpecificWeight.FromKilopoundsForcePerCubicInch(newtonpercubicmeter.KilopoundsForcePerCubicInch).NewtonsPerCubicMeter, KilopoundsForcePerCubicInchTolerance);
+            AssertEx.EqualTolerance(1, SpecificWeight.FromMeganewtonsPerCubicMeter(newtonpercubicmeter.MeganewtonsPerCubicMeter).NewtonsPerCubicMeter, MeganewtonsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, SpecificWeight.FromNewtonsPerCubicCentimeter(newtonpercubicmeter.NewtonsPerCubicCentimeter).NewtonsPerCubicMeter, NewtonsPerCubicCentimeterTolerance);
             AssertEx.EqualTolerance(1, SpecificWeight.FromNewtonsPerCubicMeter(newtonpercubicmeter.NewtonsPerCubicMeter).NewtonsPerCubicMeter, NewtonsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, SpecificWeight.FromNewtonsPerCubicMillimeter(newtonpercubicmeter.NewtonsPerCubicMillimeter).NewtonsPerCubicMeter, NewtonsPerCubicMillimeterTolerance);

@@ -39,7 +39,7 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Acceleration operator /(Speed speed, TimeSpan timeSpan)
         {
-            return Acceleration.FromMeterPerSecondSquared(speed.MetersPerSecond / timeSpan.TotalSeconds);
+            return Acceleration.FromMetersPerSecondSquared(speed.MetersPerSecond / timeSpan.TotalSeconds);
         }
 
         public static Length operator *(Speed speed, TimeSpan timeSpan)
@@ -54,7 +54,7 @@ namespace UnitsNet
 
         public static Acceleration operator /(Speed speed, Duration duration)
         {
-            return Acceleration.FromMeterPerSecondSquared(speed.MetersPerSecond / duration.Seconds);
+            return Acceleration.FromMetersPerSecondSquared(speed.MetersPerSecond / duration.Seconds);
         }
 
         public static Length operator *(Speed speed, Duration duration)
@@ -80,6 +80,11 @@ namespace UnitsNet
         public static MassFlux operator *(Speed speed, Density density)
         {
             return MassFlux.FromKilogramsPerSecondPerSquareMeter(speed.MetersPerSecond * density.KilogramsPerCubicMeter);
+        }
+
+        public static VolumeFlow operator *(Speed speed, Area area)
+        {
+            return VolumeFlow.FromCubicMetersPerSecond(speed.MetersPerSecond * area.SquareMeters);
         }
 #endif
     }

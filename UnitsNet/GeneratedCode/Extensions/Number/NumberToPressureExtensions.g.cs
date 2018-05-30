@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -721,6 +721,40 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         /// <inheritdoc cref="Pressure.FromMegabars(double?)"/>
         public static Pressure? Megabars(this decimal? value) => Pressure.FromMegabars(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MeganewtonPerSquareMeter
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)"/>
+        public static Pressure MeganewtonsPerSquareMeter(this int value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double?)"/>
+        public static Pressure? MeganewtonsPerSquareMeter(this int? value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)"/>
+        public static Pressure MeganewtonsPerSquareMeter(this long value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double?)"/>
+        public static Pressure? MeganewtonsPerSquareMeter(this long? value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)"/>
+        public static Pressure MeganewtonsPerSquareMeter(this double value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double?)"/>
+        public static Pressure? MeganewtonsPerSquareMeter(this double? value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)"/>
+        public static Pressure MeganewtonsPerSquareMeter(this float value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double?)"/>
+        public static Pressure? MeganewtonsPerSquareMeter(this float? value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double)"/>
+        public static Pressure MeganewtonsPerSquareMeter(this decimal value) => Pressure.FromMeganewtonsPerSquareMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(double?)"/>
+        public static Pressure? MeganewtonsPerSquareMeter(this decimal? value) => Pressure.FromMeganewtonsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

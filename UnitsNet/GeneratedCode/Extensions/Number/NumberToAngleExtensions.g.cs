@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -483,6 +483,40 @@ namespace UnitsNet.Extensions.NumberToAngle
 
         /// <inheritdoc cref="Angle.FromRadians(double?)"/>
         public static Angle? Radians(this decimal? value) => Angle.FromRadians(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Revolution
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double)"/>
+        public static Angle Revolutions(this int value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double?)"/>
+        public static Angle? Revolutions(this int? value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double)"/>
+        public static Angle Revolutions(this long value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double?)"/>
+        public static Angle? Revolutions(this long? value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double)"/>
+        public static Angle Revolutions(this double value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double?)"/>
+        public static Angle? Revolutions(this double? value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double)"/>
+        public static Angle Revolutions(this float value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double?)"/>
+        public static Angle? Revolutions(this float? value) => Angle.FromRevolutions(value);
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double)"/>
+        public static Angle Revolutions(this decimal value) => Angle.FromRevolutions(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Angle.FromRevolutions(double?)"/>
+        public static Angle? Revolutions(this decimal? value) => Angle.FromRevolutions(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

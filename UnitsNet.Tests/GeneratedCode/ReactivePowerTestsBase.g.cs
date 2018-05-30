@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -52,11 +52,13 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ReactivePowerTestsBase
     {
+        protected abstract double GigavoltamperesReactiveInOneVoltampereReactive { get; }
         protected abstract double KilovoltamperesReactiveInOneVoltampereReactive { get; }
         protected abstract double MegavoltamperesReactiveInOneVoltampereReactive { get; }
         protected abstract double VoltamperesReactiveInOneVoltampereReactive { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double GigavoltamperesReactiveTolerance { get { return 1e-5; } }
         protected virtual double KilovoltamperesReactiveTolerance { get { return 1e-5; } }
         protected virtual double MegavoltamperesReactiveTolerance { get { return 1e-5; } }
         protected virtual double VoltamperesReactiveTolerance { get { return 1e-5; } }
@@ -66,6 +68,7 @@ namespace UnitsNet.Tests
         public void VoltampereReactiveToReactivePowerUnits()
         {
             ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            AssertEx.EqualTolerance(GigavoltamperesReactiveInOneVoltampereReactive, voltamperereactive.GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(KilovoltamperesReactiveInOneVoltampereReactive, voltamperereactive.KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(MegavoltamperesReactiveInOneVoltampereReactive, voltamperereactive.MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(VoltamperesReactiveInOneVoltampereReactive, voltamperereactive.VoltamperesReactive, VoltamperesReactiveTolerance);
@@ -74,6 +77,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void FromValueAndUnit()
         {
+            AssertEx.EqualTolerance(1, ReactivePower.From(1, ReactivePowerUnit.GigavoltampereReactive).GigavoltamperesReactive, GigavoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(1, ReactivePower.From(1, ReactivePowerUnit.KilovoltampereReactive).KilovoltamperesReactive, KilovoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(1, ReactivePower.From(1, ReactivePowerUnit.MegavoltampereReactive).MegavoltamperesReactive, MegavoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(1, ReactivePower.From(1, ReactivePowerUnit.VoltampereReactive).VoltamperesReactive, VoltamperesReactiveTolerance);
@@ -83,6 +87,7 @@ namespace UnitsNet.Tests
         public void As()
         {
             var voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            AssertEx.EqualTolerance(GigavoltamperesReactiveInOneVoltampereReactive, voltamperereactive.As(ReactivePowerUnit.GigavoltampereReactive), GigavoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(KilovoltamperesReactiveInOneVoltampereReactive, voltamperereactive.As(ReactivePowerUnit.KilovoltampereReactive), KilovoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(MegavoltamperesReactiveInOneVoltampereReactive, voltamperereactive.As(ReactivePowerUnit.MegavoltampereReactive), MegavoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(VoltamperesReactiveInOneVoltampereReactive, voltamperereactive.As(ReactivePowerUnit.VoltampereReactive), VoltamperesReactiveTolerance);
@@ -92,6 +97,7 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
+            AssertEx.EqualTolerance(1, ReactivePower.FromGigavoltamperesReactive(voltamperereactive.GigavoltamperesReactive).VoltamperesReactive, GigavoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(1, ReactivePower.FromKilovoltamperesReactive(voltamperereactive.KilovoltamperesReactive).VoltamperesReactive, KilovoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(1, ReactivePower.FromMegavoltamperesReactive(voltamperereactive.MegavoltamperesReactive).VoltamperesReactive, MegavoltamperesReactiveTolerance);
             AssertEx.EqualTolerance(1, ReactivePower.FromVoltamperesReactive(voltamperereactive.VoltamperesReactive).VoltamperesReactive, VoltamperesReactiveTolerance);

@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -55,7 +56,8 @@ namespace UnitsNet
                     "The base-10 logarithm of a number ≤ 0 is undefined. Voltage must be greater than 0 V.");
 
             // E(dBV) = 20*log10(value(V)/reference(V))
-            _decibelVolts = 20 * Math.Log10(voltage.Volts / 1);
+            _value = 20 * Math.Log10(voltage.Volts / 1);
+            _unit = AmplitudeRatioUnit.DecibelVolt;
         }
 
         /// <summary>
@@ -75,7 +77,7 @@ namespace UnitsNet
         public static ElectricPotential ToElectricPotential(AmplitudeRatio voltageRatio)
         {
             // E(V) = 1V * 10^(E(dBV)/20)
-            return ElectricPotential.FromVolts(Math.Pow(10, voltageRatio._decibelVolts / 20));
+            return ElectricPotential.FromVolts(Math.Pow(10, voltageRatio.DecibelVolts / 20));
         }
 
         /// <summary>

@@ -175,8 +175,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPS" ],
-          "AbbreviationsWithPrefixes": [ "nLPM", "μLPM", "mLPM", "cLPM", "dLPM", "kLPM" ]
+          "Abbreviations": [ "LPS" ]
         }
       ]
     },
@@ -189,8 +188,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPM" ],
-          "AbbreviationsWithPrefixes": [ "nLPM", "µLPM", "mLPM", "cLPM", "dLPM", "kLPM" ]
+          "Abbreviations": [ "LPM" ]
         }
       ]
     },

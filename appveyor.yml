@@ -1,15 +1,27 @@
 version: '{build}'
 image: Visual Studio 2017
+only_commits:
+  files:
+    - appveyor.yml
+    - '**/*.sln'
+    - '**/*.csproj'
+    - '**/*.props'
+    - '**/*.nuspec'
+    - '**/*.cs'
+    - '**/*.json'
+    - '**/*.ps1'
+    - '**/*.psm1'
+    - '**/*.bat'
 build_script:
 - ps: |
-    ##################################### 
+    #####################################
     # Build, test, pack and push nugets
     #####################################
 
     .\\build.bat
     $BuildExitCode = $LASTEXITCODE
 
-    ##################################### 
+    #####################################
     # Upload test results to AppVeyor
     #####################################
 
@@ -21,10 +33,12 @@ build_script:
         }
     }
 
-    if ($BuildExitCode -ne 0) { 
+    if ($BuildExitCode -ne 0) {
         Write-Host "Build failed with exit code $BuildExitCode."
         exit $BuildExitCode
     }
+# Do not build feature branch with open Pull Requests
+skip_branch_with_pr: true
 test: off
 artifacts:
 - path: Artifacts\UnitsNet.zip

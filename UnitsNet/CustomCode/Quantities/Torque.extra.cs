@@ -42,6 +42,16 @@ namespace UnitsNet
         {
             return Length.FromMeters(torque.NewtonMeters / force.Newtons);
         }
+
+        public static RotationalStiffness operator /(Torque torque, Angle angle)
+        {
+            return RotationalStiffness.FromNewtonMetersPerRadian(torque.NewtonMeters / angle.Radians);
+        }
+
+        public static Angle operator /(Torque torque, RotationalStiffness rotationalStiffness)
+        {
+            return Angle.FromRadians(torque.NewtonMeters / rotationalStiffness.NewtonMetersPerRadian);
+        }
 #endif
     }
 }

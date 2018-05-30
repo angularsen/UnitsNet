@@ -68,13 +68,13 @@ namespace UnitsNet.Tests.CustomCode
         public void ForceDividedByMassEqualsAcceleration()
         {
             Acceleration acceleration = Force.FromNewtons(27)/Mass.FromKilograms(9);
-            Assert.Equal(acceleration, Acceleration.FromMeterPerSecondSquared(3));
+            Assert.Equal(acceleration, Acceleration.FromMetersPerSecondSquared(3));
         }
     
         [Fact]
         public void ForceDividedByAccelerationEqualsMass()
         {
-          Mass acceleration = Force.FromNewtons(200)/Acceleration.FromMeterPerSecondSquared(50);
+          Mass acceleration = Force.FromNewtons(200)/Acceleration.FromMetersPerSecondSquared(50);
           Assert.Equal(acceleration, Mass.FromKilograms(4));
         }
 
@@ -94,7 +94,7 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void MassByAccelerationEqualsForce()
         {
-            Force force = Force.FromMassByAcceleration(Mass.FromKilograms(85), Acceleration.FromMeterPerSecondSquared(-4));
+            Force force = Force.FromMassByAcceleration(Mass.FromKilograms(85), Acceleration.FromMetersPerSecondSquared(-4));
             Assert.Equal(force, Force.FromNewtons(-340));
         }
 

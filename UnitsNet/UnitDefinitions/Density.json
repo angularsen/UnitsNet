@@ -161,6 +161,30 @@
           "Abbreviations": [ "g/ml" ]
         }
       ]
+    },
+    {
+      "SingularName": "PoundPerUSGallon",
+      "PluralName": "PoundsPerUSGallon",
+      "FromUnitToBaseFunc": "x*1.19826427e2",
+      "FromBaseToUnitFunc": "x/1.19826427e2",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppg (U.S.)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerImperialGallon",
+      "PluralName": "PoundsPerImperialGallon",
+      "FromUnitToBaseFunc": "x*9.9776398e1",
+      "FromBaseToUnitFunc": "x/9.9776398e1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ppg (imp.)" ]
+        }
+      ]
     }
   ]
 }

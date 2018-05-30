@@ -5,7 +5,7 @@
   "Units": [
     {
       "SingularName": "OhmMeter",
-      "PluralName": "OhmsMeter",
+      "PluralName": "OhmsMeters",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],

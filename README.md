@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k?svg=true)](https://ci.appveyor.com/project/angularsen/unitsnet) [![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
+[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k/branch/master?svg=true)](https://ci.appveyor.com/project/angularsen/unitsnet/history/branch/master) [![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 [![Flattr this git repo](https://button.flattr.com/flattr-badge-large.png)](https://flattr.com/submit/auto?fid=g37dpx&url=https://github.com/angularsen/UnitsNet/&title=Units.NET&language=en-US&tags=github&category=software)
 
 
@@ -123,11 +123,20 @@ RotationalSpeedUnit rpm2 == RotationalSpeed.ParseUnit("r/min");  // RotationalSp
 string abbrevKg = Mass.GetAbbreviation(MassUnit.Kilogram); // "kg"
 ```
 
-### <a name="example-app"></a>Example: Creating a unit converter app
+### <a name="example-app"></a>Example: Creating a dynamic unit converter app
+[Source code](https://github.com/angularsen/UnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>
+[Download](https://github.com/angularsen/UnitsNet/releases/tag/UnitConverterWpf%2F2018-02-04) (release 2018-02-04 for Windows)
 
-*TODO: Add actual sample app and link to it here with screenshot. See [#274](https://github.com/angularsen/UnitsNet/issues/274) for details.*
+![image](https://user-images.githubusercontent.com/787816/34920961-9b697004-f97b-11e7-9e9a-51ff7142969b.png)
+
 
 This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Length` or `Mass`, then selects to convert from `Meter` to `Centimeter` and types in a value for how many meters.
+
+NOTE: There are still some limitations in the library that requires reflection to enumerate units for quantity and getting the abbreviation for a unit, when we want to dynamically enumerate and convert between units.
+
+### <a name="example-app-hardcoded"></a>Example: Creating a unit converter app with hard coded quantities
+
+If you can live with hard coding what quantities to convert between, then the following code snippet shows you one way to go about it:
 
 ```C#
 // Get quantities for populating quantity UI selector
@@ -136,7 +145,12 @@ QuantityType[] quantityTypes = Enum.GetValues(typeof(QuantityType)).Cast<Quantit
 // If Length is selected, get length units for populating from/to UI selectors
 LengthUnit[] lengthUnits = Length.Units;
 
-// Perform conversion by using .ToString() on the selected units
+// Perform conversion using input value and selected from/to units
+double inputValue; // Obtain from textbox
+LengthUnit fromUnit, toUnit; // Obtain from ListBox selections
+double resultValue = Length.From(inputValue, fromUnit).As(toUnit);
+
+// Alternatively, you can also convert using string representations of units
 double centimeters = UnitConverter.ConvertByName(5, "Length", "Meter", "Centimeter"); // 500
 double centimeters2 = UnitConverter.ConvertByAbbreviation(5, "Length", "m", "cm"); // 500
 ```
@@ -233,3 +247,4 @@ http://www.nuget.org/packages/Microsoft.IoT.Devices (NuGet package)
 https://bitbucket.org/MartinEden/Crawlspace
 
 *- Martin Eden, project maintainer*
+

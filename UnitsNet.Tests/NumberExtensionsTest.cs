@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#if !WINDOWS_UWP
 using Xunit;
 using UnitsNet.Extensions.NumberToAngle;
 using UnitsNet.Extensions.NumberToForce;
@@ -40,4 +39,3 @@ namespace UnitsNet.Tests
         }
     }
 }
-#endif

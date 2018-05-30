@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NetStandard10", "UnitsNet\UnitsNet.NetStandard10.csproj", "{CBEAD842-07BC-4B08-9D9D-D6659813776F}"
 EndProject
@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.Json
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.NetStandard10.Signed", "UnitsNet\UnitsNet.NetStandard10.Signed.csproj", "{21C1AFDC-354E-4D97-947B-2DB63C529E6E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.Tests.NetCore", "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.NetCore.csproj", "{FFEEDF44-F32D-4D92-A75E-487CB0582EB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.Tests", "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj", "{FFEEDF44-F32D-4D92-A75E-487CB0582EB1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Tests.NetCore", "UnitsNet.Tests\UnitsNet.Tests.NetCore.csproj", "{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Tests", "UnitsNet.Tests\UnitsNet.Tests.csproj", "{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.CompatibilityTests", "UnitsNet.Serialization.JsonNet.CompatibilityTests\UnitsNet.Serialization.JsonNet.CompatibilityTests.csproj", "{21F2FFAC-BF39-487F-9ADE-37100162F955}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,22 @@ Global
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|x64.Build.0 = Release|Any CPU
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|x86.ActiveCfg = Release|Any CPU
 		{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}.Release|x86.Build.0 = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|ARM.Build.0 = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|x64.Build.0 = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Debug|x86.Build.0 = Debug|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|ARM.ActiveCfg = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|ARM.Build.0 = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|x64.ActiveCfg = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|x64.Build.0 = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|x86.ActiveCfg = Release|Any CPU
+		{21F2FFAC-BF39-487F-9ADE-37100162F955}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

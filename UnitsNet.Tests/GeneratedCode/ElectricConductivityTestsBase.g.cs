@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -52,176 +52,98 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class ElectricConductivityTestsBase
     {
-        protected abstract double KiloohmsPerCentimeterInOneOhmPerMeter { get; }
-        protected abstract double KiloohmsPerMeterInOneOhmPerMeter { get; }
-        protected abstract double MegaohmsPerCentimeterInOneOhmPerMeter { get; }
-        protected abstract double MegaohmsPerMeterInOneOhmPerMeter { get; }
-        protected abstract double MicroohmsPerCentimeterInOneOhmPerMeter { get; }
-        protected abstract double MicroohmsPerMeterInOneOhmPerMeter { get; }
-        protected abstract double MilliohmsPerCentimeterInOneOhmPerMeter { get; }
-        protected abstract double MilliohmsPerMeterInOneOhmPerMeter { get; }
-        protected abstract double NanoohmsPerCentimeterInOneOhmPerMeter { get; }
-        protected abstract double NanoohmsPerMeterInOneOhmPerMeter { get; }
-        protected abstract double OhmsPerCentimeterInOneOhmPerMeter { get; }
-        protected abstract double OhmsPerMeterInOneOhmPerMeter { get; }
-        protected abstract double PicoohmsPerCentimeterInOneOhmPerMeter { get; }
-        protected abstract double PicoohmsPerMeterInOneOhmPerMeter { get; }
+        protected abstract double SiemensPerMeterInOneSiemensPerMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double KiloohmsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double KiloohmsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double MegaohmsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double MegaohmsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double MicroohmsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double MicroohmsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double MilliohmsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double MilliohmsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double NanoohmsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double NanoohmsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double OhmsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double OhmsPerMeterTolerance { get { return 1e-5; } }
-        protected virtual double PicoohmsPerCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double PicoohmsPerMeterTolerance { get { return 1e-5; } }
+        protected virtual double SiemensPerMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void OhmPerMeterToElectricConductivityUnits()
+        public void SiemensPerMeterToElectricConductivityUnits()
         {
-            ElectricConductivity ohmpermeter = ElectricConductivity.FromOhmsPerMeter(1);
-            AssertEx.EqualTolerance(KiloohmsPerCentimeterInOneOhmPerMeter, ohmpermeter.KiloohmsPerCentimeter, KiloohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(KiloohmsPerMeterInOneOhmPerMeter, ohmpermeter.KiloohmsPerMeter, KiloohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(MegaohmsPerCentimeterInOneOhmPerMeter, ohmpermeter.MegaohmsPerCentimeter, MegaohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(MegaohmsPerMeterInOneOhmPerMeter, ohmpermeter.MegaohmsPerMeter, MegaohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(MicroohmsPerCentimeterInOneOhmPerMeter, ohmpermeter.MicroohmsPerCentimeter, MicroohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(MicroohmsPerMeterInOneOhmPerMeter, ohmpermeter.MicroohmsPerMeter, MicroohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(MilliohmsPerCentimeterInOneOhmPerMeter, ohmpermeter.MilliohmsPerCentimeter, MilliohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(MilliohmsPerMeterInOneOhmPerMeter, ohmpermeter.MilliohmsPerMeter, MilliohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(NanoohmsPerCentimeterInOneOhmPerMeter, ohmpermeter.NanoohmsPerCentimeter, NanoohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(NanoohmsPerMeterInOneOhmPerMeter, ohmpermeter.NanoohmsPerMeter, NanoohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(OhmsPerCentimeterInOneOhmPerMeter, ohmpermeter.OhmsPerCentimeter, OhmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(OhmsPerMeterInOneOhmPerMeter, ohmpermeter.OhmsPerMeter, OhmsPerMeterTolerance);
-            AssertEx.EqualTolerance(PicoohmsPerCentimeterInOneOhmPerMeter, ohmpermeter.PicoohmsPerCentimeter, PicoohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(PicoohmsPerMeterInOneOhmPerMeter, ohmpermeter.PicoohmsPerMeter, PicoohmsPerMeterTolerance);
+            ElectricConductivity siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+            AssertEx.EqualTolerance(SiemensPerMeterInOneSiemensPerMeter, siemenspermeter.SiemensPerMeter, SiemensPerMeterTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.KiloohmPerCentimeter).KiloohmsPerCentimeter, KiloohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.KiloohmPerMeter).KiloohmsPerMeter, KiloohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.MegaohmPerCentimeter).MegaohmsPerCentimeter, MegaohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.MegaohmPerMeter).MegaohmsPerMeter, MegaohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.MicroohmPerCentimeter).MicroohmsPerCentimeter, MicroohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.MicroohmPerMeter).MicroohmsPerMeter, MicroohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.MilliohmPerCentimeter).MilliohmsPerCentimeter, MilliohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.MilliohmPerMeter).MilliohmsPerMeter, MilliohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.NanoohmPerCentimeter).NanoohmsPerCentimeter, NanoohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.NanoohmPerMeter).NanoohmsPerMeter, NanoohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.OhmPerCentimeter).OhmsPerCentimeter, OhmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.OhmPerMeter).OhmsPerMeter, OhmsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.PicoohmPerCentimeter).PicoohmsPerCentimeter, PicoohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.PicoohmPerMeter).PicoohmsPerMeter, PicoohmsPerMeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricConductivity.From(1, ElectricConductivityUnit.SiemensPerMeter).SiemensPerMeter, SiemensPerMeterTolerance);
         }
 
         [Fact]
         public void As()
         {
-            var ohmpermeter = ElectricConductivity.FromOhmsPerMeter(1);
-            AssertEx.EqualTolerance(KiloohmsPerCentimeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.KiloohmPerCentimeter), KiloohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(KiloohmsPerMeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.KiloohmPerMeter), KiloohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(MegaohmsPerCentimeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.MegaohmPerCentimeter), MegaohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(MegaohmsPerMeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.MegaohmPerMeter), MegaohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(MicroohmsPerCentimeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.MicroohmPerCentimeter), MicroohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(MicroohmsPerMeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.MicroohmPerMeter), MicroohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(MilliohmsPerCentimeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.MilliohmPerCentimeter), MilliohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(MilliohmsPerMeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.MilliohmPerMeter), MilliohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(NanoohmsPerCentimeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.NanoohmPerCentimeter), NanoohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(NanoohmsPerMeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.NanoohmPerMeter), NanoohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(OhmsPerCentimeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.OhmPerCentimeter), OhmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(OhmsPerMeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.OhmPerMeter), OhmsPerMeterTolerance);
-            AssertEx.EqualTolerance(PicoohmsPerCentimeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.PicoohmPerCentimeter), PicoohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(PicoohmsPerMeterInOneOhmPerMeter, ohmpermeter.As(ElectricConductivityUnit.PicoohmPerMeter), PicoohmsPerMeterTolerance);
+            var siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+            AssertEx.EqualTolerance(SiemensPerMeterInOneSiemensPerMeter, siemenspermeter.As(ElectricConductivityUnit.SiemensPerMeter), SiemensPerMeterTolerance);
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricConductivity ohmpermeter = ElectricConductivity.FromOhmsPerMeter(1);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromKiloohmsPerCentimeter(ohmpermeter.KiloohmsPerCentimeter).OhmsPerMeter, KiloohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromKiloohmsPerMeter(ohmpermeter.KiloohmsPerMeter).OhmsPerMeter, KiloohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromMegaohmsPerCentimeter(ohmpermeter.MegaohmsPerCentimeter).OhmsPerMeter, MegaohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromMegaohmsPerMeter(ohmpermeter.MegaohmsPerMeter).OhmsPerMeter, MegaohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromMicroohmsPerCentimeter(ohmpermeter.MicroohmsPerCentimeter).OhmsPerMeter, MicroohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromMicroohmsPerMeter(ohmpermeter.MicroohmsPerMeter).OhmsPerMeter, MicroohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromMilliohmsPerCentimeter(ohmpermeter.MilliohmsPerCentimeter).OhmsPerMeter, MilliohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromMilliohmsPerMeter(ohmpermeter.MilliohmsPerMeter).OhmsPerMeter, MilliohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromNanoohmsPerCentimeter(ohmpermeter.NanoohmsPerCentimeter).OhmsPerMeter, NanoohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromNanoohmsPerMeter(ohmpermeter.NanoohmsPerMeter).OhmsPerMeter, NanoohmsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromOhmsPerCentimeter(ohmpermeter.OhmsPerCentimeter).OhmsPerMeter, OhmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromOhmsPerMeter(ohmpermeter.OhmsPerMeter).OhmsPerMeter, OhmsPerMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromPicoohmsPerCentimeter(ohmpermeter.PicoohmsPerCentimeter).OhmsPerMeter, PicoohmsPerCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricConductivity.FromPicoohmsPerMeter(ohmpermeter.PicoohmsPerMeter).OhmsPerMeter, PicoohmsPerMeterTolerance);
+            ElectricConductivity siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+            AssertEx.EqualTolerance(1, ElectricConductivity.FromSiemensPerMeter(siemenspermeter.SiemensPerMeter).SiemensPerMeter, SiemensPerMeterTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ElectricConductivity v = ElectricConductivity.FromOhmsPerMeter(1);
-            AssertEx.EqualTolerance(-1, -v.OhmsPerMeter, OhmsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (ElectricConductivity.FromOhmsPerMeter(3)-v).OhmsPerMeter, OhmsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (v + v).OhmsPerMeter, OhmsPerMeterTolerance);
-            AssertEx.EqualTolerance(10, (v*10).OhmsPerMeter, OhmsPerMeterTolerance);
-            AssertEx.EqualTolerance(10, (10*v).OhmsPerMeter, OhmsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, (ElectricConductivity.FromOhmsPerMeter(10)/5).OhmsPerMeter, OhmsPerMeterTolerance);
-            AssertEx.EqualTolerance(2, ElectricConductivity.FromOhmsPerMeter(10)/ElectricConductivity.FromOhmsPerMeter(5), OhmsPerMeterTolerance);
+            ElectricConductivity v = ElectricConductivity.FromSiemensPerMeter(1);
+            AssertEx.EqualTolerance(-1, -v.SiemensPerMeter, SiemensPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (ElectricConductivity.FromSiemensPerMeter(3)-v).SiemensPerMeter, SiemensPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (v + v).SiemensPerMeter, SiemensPerMeterTolerance);
+            AssertEx.EqualTolerance(10, (v*10).SiemensPerMeter, SiemensPerMeterTolerance);
+            AssertEx.EqualTolerance(10, (10*v).SiemensPerMeter, SiemensPerMeterTolerance);
+            AssertEx.EqualTolerance(2, (ElectricConductivity.FromSiemensPerMeter(10)/5).SiemensPerMeter, SiemensPerMeterTolerance);
+            AssertEx.EqualTolerance(2, ElectricConductivity.FromSiemensPerMeter(10)/ElectricConductivity.FromSiemensPerMeter(5), SiemensPerMeterTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ElectricConductivity oneOhmPerMeter = ElectricConductivity.FromOhmsPerMeter(1);
-            ElectricConductivity twoOhmsPerMeter = ElectricConductivity.FromOhmsPerMeter(2);
+            ElectricConductivity oneSiemensPerMeter = ElectricConductivity.FromSiemensPerMeter(1);
+            ElectricConductivity twoSiemensPerMeter = ElectricConductivity.FromSiemensPerMeter(2);
 
-            Assert.True(oneOhmPerMeter < twoOhmsPerMeter);
-            Assert.True(oneOhmPerMeter <= twoOhmsPerMeter);
-            Assert.True(twoOhmsPerMeter > oneOhmPerMeter);
-            Assert.True(twoOhmsPerMeter >= oneOhmPerMeter);
+            Assert.True(oneSiemensPerMeter < twoSiemensPerMeter);
+            Assert.True(oneSiemensPerMeter <= twoSiemensPerMeter);
+            Assert.True(twoSiemensPerMeter > oneSiemensPerMeter);
+            Assert.True(twoSiemensPerMeter >= oneSiemensPerMeter);
 
-            Assert.False(oneOhmPerMeter > twoOhmsPerMeter);
-            Assert.False(oneOhmPerMeter >= twoOhmsPerMeter);
-            Assert.False(twoOhmsPerMeter < oneOhmPerMeter);
-            Assert.False(twoOhmsPerMeter <= oneOhmPerMeter);
+            Assert.False(oneSiemensPerMeter > twoSiemensPerMeter);
+            Assert.False(oneSiemensPerMeter >= twoSiemensPerMeter);
+            Assert.False(twoSiemensPerMeter < oneSiemensPerMeter);
+            Assert.False(twoSiemensPerMeter <= oneSiemensPerMeter);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            ElectricConductivity ohmpermeter = ElectricConductivity.FromOhmsPerMeter(1);
-            Assert.Equal(0, ohmpermeter.CompareTo(ohmpermeter));
-            Assert.True(ohmpermeter.CompareTo(ElectricConductivity.Zero) > 0);
-            Assert.True(ElectricConductivity.Zero.CompareTo(ohmpermeter) < 0);
+            ElectricConductivity siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+            Assert.Equal(0, siemenspermeter.CompareTo(siemenspermeter));
+            Assert.True(siemenspermeter.CompareTo(ElectricConductivity.Zero) > 0);
+            Assert.True(ElectricConductivity.Zero.CompareTo(siemenspermeter) < 0);
         }
 
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ElectricConductivity ohmpermeter = ElectricConductivity.FromOhmsPerMeter(1);
-            Assert.Throws<ArgumentException>(() => ohmpermeter.CompareTo(new object()));
+            ElectricConductivity siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+            Assert.Throws<ArgumentException>(() => siemenspermeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ElectricConductivity ohmpermeter = ElectricConductivity.FromOhmsPerMeter(1);
-            Assert.Throws<ArgumentNullException>(() => ohmpermeter.CompareTo(null));
+            ElectricConductivity siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+            Assert.Throws<ArgumentNullException>(() => siemenspermeter.CompareTo(null));
         }
 
 
         [Fact]
         public void EqualityOperators()
         {
-            ElectricConductivity a = ElectricConductivity.FromOhmsPerMeter(1);
-            ElectricConductivity b = ElectricConductivity.FromOhmsPerMeter(2);
+            ElectricConductivity a = ElectricConductivity.FromSiemensPerMeter(1);
+            ElectricConductivity b = ElectricConductivity.FromSiemensPerMeter(2);
 
 // ReSharper disable EqualExpressionComparison
             Assert.True(a == a);
@@ -235,23 +157,23 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            ElectricConductivity v = ElectricConductivity.FromOhmsPerMeter(1);
-            Assert.True(v.Equals(ElectricConductivity.FromOhmsPerMeter(1), ElectricConductivity.FromOhmsPerMeter(OhmsPerMeterTolerance)));
-            Assert.False(v.Equals(ElectricConductivity.Zero, ElectricConductivity.FromOhmsPerMeter(OhmsPerMeterTolerance)));
+            ElectricConductivity v = ElectricConductivity.FromSiemensPerMeter(1);
+            Assert.True(v.Equals(ElectricConductivity.FromSiemensPerMeter(1), ElectricConductivity.FromSiemensPerMeter(SiemensPerMeterTolerance)));
+            Assert.False(v.Equals(ElectricConductivity.Zero, ElectricConductivity.FromSiemensPerMeter(SiemensPerMeterTolerance)));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ElectricConductivity ohmpermeter = ElectricConductivity.FromOhmsPerMeter(1);
-            Assert.False(ohmpermeter.Equals(new object()));
+            ElectricConductivity siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+            Assert.False(siemenspermeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ElectricConductivity ohmpermeter = ElectricConductivity.FromOhmsPerMeter(1);
-            Assert.False(ohmpermeter.Equals(null));
+            ElectricConductivity siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+            Assert.False(siemenspermeter.Equals(null));
         }
     }
 }

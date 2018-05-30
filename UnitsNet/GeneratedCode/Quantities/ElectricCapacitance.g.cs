@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of ElectricCapacitance.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _farads;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly ElectricCapacitanceUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public ElectricCapacitanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public ElectricCapacitance() : this(0)
+        public ElectricCapacitance()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public ElectricCapacitance(double farads)
         {
-            _farads = Convert.ToDouble(farads);
+            _value = Convert.ToDouble(farads);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          ElectricCapacitance(double numericValue, ElectricCapacitanceUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Farad.
+        /// </summary>
+        /// <param name="farads">Value assuming base unit Farad.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ElectricCapacitance(long farads)
-        {
-            _farads = Convert.ToDouble(farads);
-        }
+        ElectricCapacitance(long farads) : this(Convert.ToDouble(farads), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit Farad.
+        /// </summary>
+        /// <param name="farads">Value assuming base unit Farad.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ElectricCapacitance(decimal farads)
-        {
-            _farads = Convert.ToDouble(farads);
-        }
+        ElectricCapacitance(decimal farads) : this(Convert.ToDouble(farads), BaseUnit) { }
 
         #region Properties
 
@@ -119,80 +156,46 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static ElectricCapacitanceUnit BaseUnit
-        {
-            get { return ElectricCapacitanceUnit.Farad; }
-        }
+        public static ElectricCapacitanceUnit BaseUnit => ElectricCapacitanceUnit.Farad;
 
         /// <summary>
         ///     All units of measurement for the ElectricCapacitance quantity.
         /// </summary>
         public static ElectricCapacitanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCapacitanceUnit)).Cast<ElectricCapacitanceUnit>().ToArray();
-
         /// <summary>
         ///     Get ElectricCapacitance in Farads.
         /// </summary>
-        public double Farads
-        {
-            get { return _farads; }
-        }
-
+        public double Farads => As(ElectricCapacitanceUnit.Farad);
         /// <summary>
         ///     Get ElectricCapacitance in Kilofarads.
         /// </summary>
-        public double Kilofarads
-        {
-            get { return (_farads) / 1e3d; }
-        }
-
+        public double Kilofarads => As(ElectricCapacitanceUnit.Kilofarad);
         /// <summary>
         ///     Get ElectricCapacitance in Megafarads.
         /// </summary>
-        public double Megafarads
-        {
-            get { return (_farads) / 1e6d; }
-        }
-
+        public double Megafarads => As(ElectricCapacitanceUnit.Megafarad);
         /// <summary>
         ///     Get ElectricCapacitance in Microfarads.
         /// </summary>
-        public double Microfarads
-        {
-            get { return (_farads) / 1e-6d; }
-        }
-
+        public double Microfarads => As(ElectricCapacitanceUnit.Microfarad);
         /// <summary>
         ///     Get ElectricCapacitance in Millifarads.
         /// </summary>
-        public double Millifarads
-        {
-            get { return (_farads) / 1e-3d; }
-        }
-
+        public double Millifarads => As(ElectricCapacitanceUnit.Millifarad);
         /// <summary>
         ///     Get ElectricCapacitance in Nanofarads.
         /// </summary>
-        public double Nanofarads
-        {
-            get { return (_farads) / 1e-9d; }
-        }
-
+        public double Nanofarads => As(ElectricCapacitanceUnit.Nanofarad);
         /// <summary>
         ///     Get ElectricCapacitance in Picofarads.
         /// </summary>
-        public double Picofarads
-        {
-            get { return (_farads) / 1e-12d; }
-        }
+        public double Picofarads => As(ElectricCapacitanceUnit.Picofarad);
 
         #endregion
 
         #region Static
 
-        public static ElectricCapacitance Zero
-        {
-            get { return new ElectricCapacitance(); }
-        }
+        public static ElectricCapacitance Zero => new ElectricCapacitance(0, BaseUnit);
 
         /// <summary>
         ///     Get ElectricCapacitance from Farads.
@@ -200,17 +203,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCapacitance FromFarads(double farads)
-        {
-            double value = (double) farads;
-            return new ElectricCapacitance(value);
-        }
 #else
         public static ElectricCapacitance FromFarads(QuantityValue farads)
+#endif
         {
             double value = (double) farads;
-            return new ElectricCapacitance((value));
+            return new ElectricCapacitance(value, ElectricCapacitanceUnit.Farad);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricCapacitance from Kilofarads.
@@ -218,17 +217,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCapacitance FromKilofarads(double kilofarads)
-        {
-            double value = (double) kilofarads;
-            return new ElectricCapacitance((value) * 1e3d);
-        }
 #else
         public static ElectricCapacitance FromKilofarads(QuantityValue kilofarads)
+#endif
         {
             double value = (double) kilofarads;
-            return new ElectricCapacitance(((value) * 1e3d));
+            return new ElectricCapacitance(value, ElectricCapacitanceUnit.Kilofarad);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricCapacitance from Megafarads.
@@ -236,17 +231,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCapacitance FromMegafarads(double megafarads)
-        {
-            double value = (double) megafarads;
-            return new ElectricCapacitance((value) * 1e6d);
-        }
 #else
         public static ElectricCapacitance FromMegafarads(QuantityValue megafarads)
+#endif
         {
             double value = (double) megafarads;
-            return new ElectricCapacitance(((value) * 1e6d));
+            return new ElectricCapacitance(value, ElectricCapacitanceUnit.Megafarad);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricCapacitance from Microfarads.
@@ -254,17 +245,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCapacitance FromMicrofarads(double microfarads)
-        {
-            double value = (double) microfarads;
-            return new ElectricCapacitance((value) * 1e-6d);
-        }
 #else
         public static ElectricCapacitance FromMicrofarads(QuantityValue microfarads)
+#endif
         {
             double value = (double) microfarads;
-            return new ElectricCapacitance(((value) * 1e-6d));
+            return new ElectricCapacitance(value, ElectricCapacitanceUnit.Microfarad);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricCapacitance from Millifarads.
@@ -272,17 +259,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCapacitance FromMillifarads(double millifarads)
-        {
-            double value = (double) millifarads;
-            return new ElectricCapacitance((value) * 1e-3d);
-        }
 #else
         public static ElectricCapacitance FromMillifarads(QuantityValue millifarads)
+#endif
         {
             double value = (double) millifarads;
-            return new ElectricCapacitance(((value) * 1e-3d));
+            return new ElectricCapacitance(value, ElectricCapacitanceUnit.Millifarad);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricCapacitance from Nanofarads.
@@ -290,17 +273,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCapacitance FromNanofarads(double nanofarads)
-        {
-            double value = (double) nanofarads;
-            return new ElectricCapacitance((value) * 1e-9d);
-        }
 #else
         public static ElectricCapacitance FromNanofarads(QuantityValue nanofarads)
+#endif
         {
             double value = (double) nanofarads;
-            return new ElectricCapacitance(((value) * 1e-9d));
+            return new ElectricCapacitance(value, ElectricCapacitanceUnit.Nanofarad);
         }
-#endif
 
         /// <summary>
         ///     Get ElectricCapacitance from Picofarads.
@@ -308,17 +287,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCapacitance FromPicofarads(double picofarads)
-        {
-            double value = (double) picofarads;
-            return new ElectricCapacitance((value) * 1e-12d);
-        }
 #else
         public static ElectricCapacitance FromPicofarads(QuantityValue picofarads)
+#endif
         {
             double value = (double) picofarads;
-            return new ElectricCapacitance(((value) * 1e-12d));
+            return new ElectricCapacitance(value, ElectricCapacitanceUnit.Picofarad);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -443,26 +418,7 @@ namespace UnitsNet
         public static ElectricCapacitance From(QuantityValue value, ElectricCapacitanceUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case ElectricCapacitanceUnit.Farad:
-                    return FromFarads(value);
-                case ElectricCapacitanceUnit.Kilofarad:
-                    return FromKilofarads(value);
-                case ElectricCapacitanceUnit.Megafarad:
-                    return FromMegafarads(value);
-                case ElectricCapacitanceUnit.Microfarad:
-                    return FromMicrofarads(value);
-                case ElectricCapacitanceUnit.Millifarad:
-                    return FromMillifarads(value);
-                case ElectricCapacitanceUnit.Nanofarad:
-                    return FromNanofarads(value);
-                case ElectricCapacitanceUnit.Picofarad:
-                    return FromPicofarads(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ElectricCapacitance((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -479,26 +435,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case ElectricCapacitanceUnit.Farad:
-                    return FromFarads(value.Value);
-                case ElectricCapacitanceUnit.Kilofarad:
-                    return FromKilofarads(value.Value);
-                case ElectricCapacitanceUnit.Megafarad:
-                    return FromMegafarads(value.Value);
-                case ElectricCapacitanceUnit.Microfarad:
-                    return FromMicrofarads(value.Value);
-                case ElectricCapacitanceUnit.Millifarad:
-                    return FromMillifarads(value.Value);
-                case ElectricCapacitanceUnit.Nanofarad:
-                    return FromNanofarads(value.Value);
-                case ElectricCapacitanceUnit.Picofarad:
-                    return FromPicofarads(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ElectricCapacitance((double)value.Value, fromUnit);
         }
 #endif
 
@@ -517,12 +455,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ElectricCapacitanceUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          ElectricCapacitanceUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -533,37 +488,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ElectricCapacitance operator -(ElectricCapacitance right)
         {
-            return new ElectricCapacitance(-right._farads);
+            return new ElectricCapacitance(-right.Value, right.Unit);
         }
 
         public static ElectricCapacitance operator +(ElectricCapacitance left, ElectricCapacitance right)
         {
-            return new ElectricCapacitance(left._farads + right._farads);
+            return new ElectricCapacitance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ElectricCapacitance operator -(ElectricCapacitance left, ElectricCapacitance right)
         {
-            return new ElectricCapacitance(left._farads - right._farads);
+            return new ElectricCapacitance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ElectricCapacitance operator *(double left, ElectricCapacitance right)
         {
-            return new ElectricCapacitance(left*right._farads);
+            return new ElectricCapacitance(left * right.Value, right.Unit);
         }
 
         public static ElectricCapacitance operator *(ElectricCapacitance left, double right)
         {
-            return new ElectricCapacitance(left._farads*(double)right);
+            return new ElectricCapacitance(left.Value * right, left.Unit);
         }
 
         public static ElectricCapacitance operator /(ElectricCapacitance left, double right)
         {
-            return new ElectricCapacitance(left._farads/(double)right);
+            return new ElectricCapacitance(left.Value / right, left.Unit);
         }
 
         public static double operator /(ElectricCapacitance left, ElectricCapacitance right)
         {
-            return Convert.ToDouble(left._farads/right._farads);
+            return left.Farads / right.Farads;
         }
 #endif
 
@@ -586,43 +541,43 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricCapacitance other)
         {
-            return _farads.CompareTo(other._farads);
+            return AsBaseUnitFarads().CompareTo(other.AsBaseUnitFarads());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(ElectricCapacitance left, ElectricCapacitance right)
         {
-            return left._farads <= right._farads;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(ElectricCapacitance left, ElectricCapacitance right)
         {
-            return left._farads >= right._farads;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(ElectricCapacitance left, ElectricCapacitance right)
         {
-            return left._farads < right._farads;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(ElectricCapacitance left, ElectricCapacitance right)
         {
-            return left._farads > right._farads;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(ElectricCapacitance left, ElectricCapacitance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._farads == right._farads;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(ElectricCapacitance left, ElectricCapacitance right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._farads != right._farads;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -634,7 +589,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _farads.Equals(((ElectricCapacitance) obj)._farads);
+            return AsBaseUnitFarads().Equals(((ElectricCapacitance) obj).AsBaseUnitFarads());
         }
 
         /// <summary>
@@ -647,12 +602,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ElectricCapacitance other, ElectricCapacitance maxError)
         {
-            return Math.Abs(_farads - other._farads) <= maxError._farads;
+            return Math.Abs(AsBaseUnitFarads() - other.AsBaseUnitFarads()) <= maxError.AsBaseUnitFarads();
         }
 
         public override int GetHashCode()
         {
-            return _farads.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -662,26 +617,25 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricCapacitanceUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitFarads();
+
             switch (unit)
             {
-                case ElectricCapacitanceUnit.Farad:
-                    return Farads;
-                case ElectricCapacitanceUnit.Kilofarad:
-                    return Kilofarads;
-                case ElectricCapacitanceUnit.Megafarad:
-                    return Megafarads;
-                case ElectricCapacitanceUnit.Microfarad:
-                    return Microfarads;
-                case ElectricCapacitanceUnit.Millifarad:
-                    return Millifarads;
-                case ElectricCapacitanceUnit.Nanofarad:
-                    return Nanofarads;
-                case ElectricCapacitanceUnit.Picofarad:
-                    return Picofarads;
+                case ElectricCapacitanceUnit.Farad: return baseUnitValue;
+                case ElectricCapacitanceUnit.Kilofarad: return (baseUnitValue) / 1e3d;
+                case ElectricCapacitanceUnit.Megafarad: return (baseUnitValue) / 1e6d;
+                case ElectricCapacitanceUnit.Microfarad: return (baseUnitValue) / 1e-6d;
+                case ElectricCapacitanceUnit.Millifarad: return (baseUnitValue) / 1e-3d;
+                case ElectricCapacitanceUnit.Nanofarad: return (baseUnitValue) / 1e-9d;
+                case ElectricCapacitanceUnit.Picofarad: return (baseUnitValue) / 1e-12d;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -723,7 +677,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -742,17 +700,24 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricCapacitance Parse(string str, [CanBeNull] Culture culture)
+        public static ElectricCapacitance Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<ElectricCapacitance, ElectricCapacitanceUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<ElectricCapacitance, ElectricCapacitanceUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
@@ -778,16 +743,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ElectricCapacitance result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out ElectricCapacitance result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -800,6 +790,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -813,11 +804,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static ElectricCapacitanceUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -826,6 +820,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -838,18 +834,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static ElectricCapacitanceUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ElectricCapacitanceUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<ElectricCapacitanceUnit>(str.Trim());
 
             if (unit == ElectricCapacitanceUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ElectricCapacitanceUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -858,6 +854,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Farad
         /// </summary>
@@ -869,7 +866,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -886,74 +883,135 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(ElectricCapacitanceUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          ElectricCapacitanceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricCapacitanceUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            ElectricCapacitanceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricCapacitanceUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            ElectricCapacitanceUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of ElectricCapacitance
         /// </summary>
-        public static ElectricCapacitance MaxValue
-        {
-            get
-            {
-                return new ElectricCapacitance(double.MaxValue);
-            }
-        }
+        public static ElectricCapacitance MaxValue => new ElectricCapacitance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCapacitance
         /// </summary>
-        public static ElectricCapacitance MinValue
+        public static ElectricCapacitance MinValue => new ElectricCapacitance(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitFarads()
         {
-            get
+			if (Unit == ElectricCapacitanceUnit.Farad) { return _value; }
+
+            switch (Unit)
             {
-                return new ElectricCapacitance(double.MinValue);
-            }
-        }
-    }
+                case ElectricCapacitanceUnit.Farad: return _value;
+                case ElectricCapacitanceUnit.Kilofarad: return (_value) * 1e3d;
+                case ElectricCapacitanceUnit.Megafarad: return (_value) * 1e6d;
+                case ElectricCapacitanceUnit.Microfarad: return (_value) * 1e-6d;
+                case ElectricCapacitanceUnit.Millifarad: return (_value) * 1e-3d;
+                case ElectricCapacitanceUnit.Nanofarad: return (_value) * 1e-9d;
+                case ElectricCapacitanceUnit.Picofarad: return (_value) * 1e-12d;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(ElectricCapacitanceUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

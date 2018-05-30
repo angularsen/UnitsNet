@@ -1,54 +1,63 @@
-function Set-ProjectVersionAndCommit(
+function Get-NewProjectVersion(
+  [string]$projectPath,
+  [string]$paramSet,
+  [string]$setVersionParam,
+  [string]$bumpVersionParam) {
+  switch ($paramSet) {
+    "set" {
+      return $setVersionParam
+    }
+    "bump" {
+      return Get-BumpedProjectVersion $projectPath $bumpVersionParam
+    }
+    default {
+      throw "Parameter set not implemented: $paramSet"
+    }
+  }
+}
+
+function Invoke-CommitAndTagVersion(
   [string]$projectName,
   [string[]]$projectPaths,
-  [string]$paramSet,
-  [string]$setVersion,
-  [string]$bumpVersion) {
-
+  [string] $newSemVer) {
   try {
-    foreach ($path in $projectPaths) {
-      switch ($paramSet) {
-        "set" {
-          # Imported from module: set-version.psm1
-          Set-ProjectVersion $path $setVersion
-          $newSemVer = $setVersion
-        }
-        "bump" {
-          # Imported from module: set-version.psm1
-          $newSemVer = Set-BumpedProjectVersion $path $bumpVersion
-        }
-        default {
-          throw "Parameter set not implemented: $paramSet"
-        }
-      }
+    Write-Host -Foreground Green Resetting git index.
+    git reset
+
+    ForEach ($path in $projectPaths) {
+      $path = Resolve-Path $path
+      Write-Host -Foreground Green "Staging file: $path"
+      git add $path
     }
 
-    $gitAddProjects = [string]::Join(" ", $projectPaths)
-    git add $gitAddProjects
+    Write-Host -Foreground Green "Committing new versions: $projectName/$newSemVer"
     git commit -m "${projectName}: $newSemVer"
+    Write-Host -Foreground Green "Tagging version: $projectName/$newSemVer"
     git tag -a "$projectName/$newSemVer" -m "$projectName/$newSemVer" -m "TODO List changes here"
-
-    Write-Host "New tag: $newSemVer"
   }
   catch {
-    $ex = $Error[0]
-    $err = Resolve-Error
-    Write-Error "ERROR: Failed to update build parameters from .csproj file: `n---`n$err"
+    $err = $PSItem.Exception
+    Write-Error "ERROR: Failed to commit and tag version: `n---`n$err`n---`n$($PSItem.ScriptStackTrace)"
     exit 1
   }
 }
 
-function Set-ProjectVersion([string] $projectPath, [string] $setVersion) {
-  [xml]$projectXml = Get-Content -Path $projectPath
-
-  Write-Host "$projectPath -> $setVersion"
-
-  # Update <Version> property
-  $projectXml.Project.PropertyGroup.Version = $setVersion
-  $projectXml.Save($projectPath)
+function Set-ProjectVersion([string] $file, [string] $version) {
+  Write-Host "$file -> $version"
+  (Get-Content $file) -replace '<Version>.*?</Version>', "<Version>$version</Version>" | Set-Content $file
 }
 
-function Set-BumpedProjectVersion([string] $projectPath, [string] $bumpVersion) {
+function Set-AssemblyInfoVersion([string] $file, [string] $version) {
+  Write-Host "$file -> $version"
+  (Get-Content $file) -replace 'Assembly(File)?Version\(".*?"\)', "Assembly`$1Version(`"$version`")" | Set-Content $file
+}
+
+function Set-NuspecVersion([string] $file, [string] $version) {
+  Write-Host "$file -> $version"
+  (Get-Content $file) -replace '<version>.*?</version>', "<version>$version</version>" | Set-Content $file
+}
+
+function Get-BumpedProjectVersion([string] $projectPath, [string] $bumpVersion) {
   [xml]$projectXml = Get-Content -Path $projectPath
 
   $old = Get-ProjectVersionAndSuffix $projectXml
@@ -76,7 +85,6 @@ function Set-BumpedProjectVersion([string] $projectPath, [string] $bumpVersion) 
   }
 
   $newSemVer = $newVersion.ToString() + $newSuffix
-  Set-ProjectVersion $projectPath $newSemVer
   return $newSemVer
 }
 
@@ -112,7 +120,8 @@ function Get-ProjectVersionAndSuffix([xml] $projectXml) {
 
   # Split "1.2.3-alpha" into ["1.2.3", "alpha"]
   # Split "1.2.3" into ["1.2.3"]
-  $oldSemVer = $projectXml.Project.PropertyGroup.Version
+  $oldSemVer = $($projectXml.Project.PropertyGroup.Version)[0]
+
   $oldSemVerParts = $oldSemVer.Split('-')
   $oldVersion = $null
   if (-not [Version]::TryParse($oldSemVerParts[0], [ref] $oldVersion)) { throw "Unable to parse old version." }
@@ -141,4 +150,4 @@ function Resolve-Error ($ErrorRecord=$Error[0])
   }
 }
 
-export-modulemember -function Set-ProjectVersionAndCommit, Set-ProjectVersion, Set-BumpedProjectVersion
+export-modulemember -function Get-NewProjectVersion, Set-ProjectVersion, Set-AssemblyInfoVersion, Invoke-CommitAndTagVersion, Set-NuspecVersion

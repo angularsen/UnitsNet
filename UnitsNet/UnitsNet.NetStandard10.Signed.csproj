@@ -1,30 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="UnitsNet.Common.props" />
+
+  <!-- Override some NuGet package properties -->
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.0;net35;net40</TargetFrameworks>
     <PackageId>UnitsNet.Signed</PackageId>
     <Title>Units.NET (signed)</Title>
   </PropertyGroup>
+
+  <!-- Enable strong name signing -->
   <PropertyGroup>
-    <!-- Workaround for building with dotnet CLI
-         https://github.com/Microsoft/msbuild/issues/1333#issuecomment-296346352 -->
-    <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35'">C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
-  </PropertyGroup>
-  <PropertyGroup>
-    <!-- Enable strong name signing -->
+    <DefineConstants>SIGNED</DefineConstants>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(MSBuildProjectDirectory)\..\UnitsNet.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="JetBrains.Annotations" Version="10.4.0" PrivateAssets="All" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="obj\**" />
-    <Compile Remove="Properties\AssemblyInfo*.cs" />
-    <EmbeddedResource Remove="obj\**" />
-    <None Remove="obj\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="AssemblyInfo.cs" />
-  </ItemGroup>
+
 </Project>

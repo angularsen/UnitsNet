@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -44,6 +44,40 @@ namespace UnitsNet.Extensions.NumberToReactivePower
 {
     public static class NumberToReactivePowerExtensions
     {
+        #region GigavoltampereReactive
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double)"/>
+        public static ReactivePower GigavoltamperesReactive(this int value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double?)"/>
+        public static ReactivePower? GigavoltamperesReactive(this int? value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double)"/>
+        public static ReactivePower GigavoltamperesReactive(this long value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double?)"/>
+        public static ReactivePower? GigavoltamperesReactive(this long? value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double)"/>
+        public static ReactivePower GigavoltamperesReactive(this double value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double?)"/>
+        public static ReactivePower? GigavoltamperesReactive(this double? value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double)"/>
+        public static ReactivePower GigavoltamperesReactive(this float value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double?)"/>
+        public static ReactivePower? GigavoltamperesReactive(this float? value) => ReactivePower.FromGigavoltamperesReactive(value);
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double)"/>
+        public static ReactivePower GigavoltamperesReactive(this decimal value) => ReactivePower.FromGigavoltamperesReactive(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(double?)"/>
+        public static ReactivePower? GigavoltamperesReactive(this decimal? value) => ReactivePower.FromGigavoltamperesReactive(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region KilovoltampereReactive
 
         /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(double)"/>

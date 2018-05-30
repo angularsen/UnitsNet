@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -44,19 +44,12 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
 {
     /// <summary>
-    ///     Electrical conductivity is the measure of a material's ability to allow the transport of an electric charge.
+    ///     Electrical conductivity or specific conductance is the reciprocal of electrical resistivity, and measures a material's ability to conduct an electric current.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of ElectricConductivity.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _ohmsPerMeter;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly ElectricConductivityUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public ElectricConductivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public ElectricConductivity() : this(0)
+        public ElectricConductivity()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
-        public ElectricConductivity(double ohmspermeter)
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
+        public ElectricConductivity(double siemenspermeter)
         {
-            _ohmsPerMeter = Convert.ToDouble(ohmspermeter);
+            _value = Convert.ToDouble(siemenspermeter);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          ElectricConductivity(double numericValue, ElectricConductivityUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit SiemensPerMeter.
+        /// </summary>
+        /// <param name="siemenspermeter">Value assuming base unit SiemensPerMeter.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ElectricConductivity(long ohmspermeter)
-        {
-            _ohmsPerMeter = Convert.ToDouble(ohmspermeter);
-        }
+        ElectricConductivity(long siemenspermeter) : this(Convert.ToDouble(siemenspermeter), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit SiemensPerMeter.
+        /// </summary>
+        /// <param name="siemenspermeter">Value assuming base unit SiemensPerMeter.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ElectricConductivity(decimal ohmspermeter)
-        {
-            _ohmsPerMeter = Convert.ToDouble(ohmspermeter);
-        }
+        ElectricConductivity(decimal siemenspermeter) : this(Convert.ToDouble(siemenspermeter), BaseUnit) { }
 
         #region Properties
 
@@ -119,594 +156,47 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static ElectricConductivityUnit BaseUnit
-        {
-            get { return ElectricConductivityUnit.OhmPerMeter; }
-        }
+        public static ElectricConductivityUnit BaseUnit => ElectricConductivityUnit.SiemensPerMeter;
 
         /// <summary>
         ///     All units of measurement for the ElectricConductivity quantity.
         /// </summary>
         public static ElectricConductivityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricConductivityUnit)).Cast<ElectricConductivityUnit>().ToArray();
-
         /// <summary>
-        ///     Get ElectricConductivity in KiloohmsPerCentimeter.
+        ///     Get ElectricConductivity in SiemensPerMeter.
         /// </summary>
-        public double KiloohmsPerCentimeter
-        {
-            get { return (_ohmsPerMeter/100) / 1e3d; }
-        }
-
-        /// <summary>
-        ///     Get ElectricConductivity in KiloohmsPerMeter.
-        /// </summary>
-        public double KiloohmsPerMeter
-        {
-            get { return (_ohmsPerMeter) / 1e3d; }
-        }
-
-        /// <summary>
-        ///     Get ElectricConductivity in MegaohmsPerCentimeter.
-        /// </summary>
-        public double MegaohmsPerCentimeter
-        {
-            get { return (_ohmsPerMeter/100) / 1e6d; }
-        }
-
-        /// <summary>
-        ///     Get ElectricConductivity in MegaohmsPerMeter.
-        /// </summary>
-        public double MegaohmsPerMeter
-        {
-            get { return (_ohmsPerMeter) / 1e6d; }
-        }
-
-        /// <summary>
-        ///     Get ElectricConductivity in MicroohmsPerCentimeter.
-        /// </summary>
-        public double MicroohmsPerCentimeter
-        {
-            get { return (_ohmsPerMeter/100) / 1e-6d; }
-        }
-
-        /// <summary>
-        ///     Get ElectricConductivity in MicroohmsPerMeter.
-        /// </summary>
-        public double MicroohmsPerMeter
-        {
-            get { return (_ohmsPerMeter) / 1e-6d; }
-        }
-
-        /// <summary>
-        ///     Get ElectricConductivity in MilliohmsPerCentimeter.
-        /// </summary>
-        public double MilliohmsPerCentimeter
-        {
-            get { return (_ohmsPerMeter/100) / 1e-3d; }
-        }
-
-        /// <summary>
-        ///     Get ElectricConductivity in MilliohmsPerMeter.
-        /// </summary>
-        public double MilliohmsPerMeter
-        {
-            get { return (_ohmsPerMeter) / 1e-3d; }
-        }
-
-        /// <summary>
-        ///     Get ElectricConductivity in NanoohmsPerCentimeter.
-        /// </summary>
-        public double NanoohmsPerCentimeter
-        {
-            get { return (_ohmsPerMeter/100) / 1e-9d; }
-        }
-
-        /// <summary>
-        ///     Get ElectricConductivity in NanoohmsPerMeter.
-        /// </summary>
-        public double NanoohmsPerMeter
-        {
-            get { return (_ohmsPerMeter) / 1e-9d; }
-        }
-
-        /// <summary>
-        ///     Get ElectricConductivity in OhmsPerCentimeter.
-        /// </summary>
-        public double OhmsPerCentimeter
-        {
-            get { return _ohmsPerMeter/100; }
-        }
-
-        /// <summary>
-        ///     Get ElectricConductivity in OhmsPerMeter.
-        /// </summary>
-        public double OhmsPerMeter
-        {
-            get { return _ohmsPerMeter; }
-        }
-
-        /// <summary>
-        ///     Get ElectricConductivity in PicoohmsPerCentimeter.
-        /// </summary>
-        public double PicoohmsPerCentimeter
-        {
-            get { return (_ohmsPerMeter/100) / 1e-12d; }
-        }
-
-        /// <summary>
-        ///     Get ElectricConductivity in PicoohmsPerMeter.
-        /// </summary>
-        public double PicoohmsPerMeter
-        {
-            get { return (_ohmsPerMeter) / 1e-12d; }
-        }
+        public double SiemensPerMeter => As(ElectricConductivityUnit.SiemensPerMeter);
 
         #endregion
 
         #region Static
 
-        public static ElectricConductivity Zero
-        {
-            get { return new ElectricConductivity(); }
-        }
+        public static ElectricConductivity Zero => new ElectricConductivity(0, BaseUnit);
 
         /// <summary>
-        ///     Get ElectricConductivity from KiloohmsPerCentimeter.
+        ///     Get ElectricConductivity from SiemensPerMeter.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromKiloohmsPerCentimeter(double kiloohmspercentimeter)
-        {
-            double value = (double) kiloohmspercentimeter;
-            return new ElectricConductivity((value*100) * 1e3d);
-        }
+        public static ElectricConductivity FromSiemensPerMeter(double siemenspermeter)
 #else
-        public static ElectricConductivity FromKiloohmsPerCentimeter(QuantityValue kiloohmspercentimeter)
-        {
-            double value = (double) kiloohmspercentimeter;
-            return new ElectricConductivity(((value*100) * 1e3d));
-        }
+        public static ElectricConductivity FromSiemensPerMeter(QuantityValue siemenspermeter)
 #endif
-
-        /// <summary>
-        ///     Get ElectricConductivity from KiloohmsPerMeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromKiloohmsPerMeter(double kiloohmspermeter)
         {
-            double value = (double) kiloohmspermeter;
-            return new ElectricConductivity((value) * 1e3d);
+            double value = (double) siemenspermeter;
+            return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerMeter);
         }
-#else
-        public static ElectricConductivity FromKiloohmsPerMeter(QuantityValue kiloohmspermeter)
-        {
-            double value = (double) kiloohmspermeter;
-            return new ElectricConductivity(((value) * 1e3d));
-        }
-#endif
-
-        /// <summary>
-        ///     Get ElectricConductivity from MegaohmsPerCentimeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromMegaohmsPerCentimeter(double megaohmspercentimeter)
-        {
-            double value = (double) megaohmspercentimeter;
-            return new ElectricConductivity((value*100) * 1e6d);
-        }
-#else
-        public static ElectricConductivity FromMegaohmsPerCentimeter(QuantityValue megaohmspercentimeter)
-        {
-            double value = (double) megaohmspercentimeter;
-            return new ElectricConductivity(((value*100) * 1e6d));
-        }
-#endif
-
-        /// <summary>
-        ///     Get ElectricConductivity from MegaohmsPerMeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromMegaohmsPerMeter(double megaohmspermeter)
-        {
-            double value = (double) megaohmspermeter;
-            return new ElectricConductivity((value) * 1e6d);
-        }
-#else
-        public static ElectricConductivity FromMegaohmsPerMeter(QuantityValue megaohmspermeter)
-        {
-            double value = (double) megaohmspermeter;
-            return new ElectricConductivity(((value) * 1e6d));
-        }
-#endif
-
-        /// <summary>
-        ///     Get ElectricConductivity from MicroohmsPerCentimeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromMicroohmsPerCentimeter(double microohmspercentimeter)
-        {
-            double value = (double) microohmspercentimeter;
-            return new ElectricConductivity((value*100) * 1e-6d);
-        }
-#else
-        public static ElectricConductivity FromMicroohmsPerCentimeter(QuantityValue microohmspercentimeter)
-        {
-            double value = (double) microohmspercentimeter;
-            return new ElectricConductivity(((value*100) * 1e-6d));
-        }
-#endif
-
-        /// <summary>
-        ///     Get ElectricConductivity from MicroohmsPerMeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromMicroohmsPerMeter(double microohmspermeter)
-        {
-            double value = (double) microohmspermeter;
-            return new ElectricConductivity((value) * 1e-6d);
-        }
-#else
-        public static ElectricConductivity FromMicroohmsPerMeter(QuantityValue microohmspermeter)
-        {
-            double value = (double) microohmspermeter;
-            return new ElectricConductivity(((value) * 1e-6d));
-        }
-#endif
-
-        /// <summary>
-        ///     Get ElectricConductivity from MilliohmsPerCentimeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromMilliohmsPerCentimeter(double milliohmspercentimeter)
-        {
-            double value = (double) milliohmspercentimeter;
-            return new ElectricConductivity((value*100) * 1e-3d);
-        }
-#else
-        public static ElectricConductivity FromMilliohmsPerCentimeter(QuantityValue milliohmspercentimeter)
-        {
-            double value = (double) milliohmspercentimeter;
-            return new ElectricConductivity(((value*100) * 1e-3d));
-        }
-#endif
-
-        /// <summary>
-        ///     Get ElectricConductivity from MilliohmsPerMeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromMilliohmsPerMeter(double milliohmspermeter)
-        {
-            double value = (double) milliohmspermeter;
-            return new ElectricConductivity((value) * 1e-3d);
-        }
-#else
-        public static ElectricConductivity FromMilliohmsPerMeter(QuantityValue milliohmspermeter)
-        {
-            double value = (double) milliohmspermeter;
-            return new ElectricConductivity(((value) * 1e-3d));
-        }
-#endif
-
-        /// <summary>
-        ///     Get ElectricConductivity from NanoohmsPerCentimeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromNanoohmsPerCentimeter(double nanoohmspercentimeter)
-        {
-            double value = (double) nanoohmspercentimeter;
-            return new ElectricConductivity((value*100) * 1e-9d);
-        }
-#else
-        public static ElectricConductivity FromNanoohmsPerCentimeter(QuantityValue nanoohmspercentimeter)
-        {
-            double value = (double) nanoohmspercentimeter;
-            return new ElectricConductivity(((value*100) * 1e-9d));
-        }
-#endif
-
-        /// <summary>
-        ///     Get ElectricConductivity from NanoohmsPerMeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromNanoohmsPerMeter(double nanoohmspermeter)
-        {
-            double value = (double) nanoohmspermeter;
-            return new ElectricConductivity((value) * 1e-9d);
-        }
-#else
-        public static ElectricConductivity FromNanoohmsPerMeter(QuantityValue nanoohmspermeter)
-        {
-            double value = (double) nanoohmspermeter;
-            return new ElectricConductivity(((value) * 1e-9d));
-        }
-#endif
-
-        /// <summary>
-        ///     Get ElectricConductivity from OhmsPerCentimeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromOhmsPerCentimeter(double ohmspercentimeter)
-        {
-            double value = (double) ohmspercentimeter;
-            return new ElectricConductivity(value*100);
-        }
-#else
-        public static ElectricConductivity FromOhmsPerCentimeter(QuantityValue ohmspercentimeter)
-        {
-            double value = (double) ohmspercentimeter;
-            return new ElectricConductivity((value*100));
-        }
-#endif
-
-        /// <summary>
-        ///     Get ElectricConductivity from OhmsPerMeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromOhmsPerMeter(double ohmspermeter)
-        {
-            double value = (double) ohmspermeter;
-            return new ElectricConductivity(value);
-        }
-#else
-        public static ElectricConductivity FromOhmsPerMeter(QuantityValue ohmspermeter)
-        {
-            double value = (double) ohmspermeter;
-            return new ElectricConductivity((value));
-        }
-#endif
-
-        /// <summary>
-        ///     Get ElectricConductivity from PicoohmsPerCentimeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromPicoohmsPerCentimeter(double picoohmspercentimeter)
-        {
-            double value = (double) picoohmspercentimeter;
-            return new ElectricConductivity((value*100) * 1e-12d);
-        }
-#else
-        public static ElectricConductivity FromPicoohmsPerCentimeter(QuantityValue picoohmspercentimeter)
-        {
-            double value = (double) picoohmspercentimeter;
-            return new ElectricConductivity(((value*100) * 1e-12d));
-        }
-#endif
-
-        /// <summary>
-        ///     Get ElectricConductivity from PicoohmsPerMeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricConductivity FromPicoohmsPerMeter(double picoohmspermeter)
-        {
-            double value = (double) picoohmspermeter;
-            return new ElectricConductivity((value) * 1e-12d);
-        }
-#else
-        public static ElectricConductivity FromPicoohmsPerMeter(QuantityValue picoohmspermeter)
-        {
-            double value = (double) picoohmspermeter;
-            return new ElectricConductivity(((value) * 1e-12d));
-        }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable ElectricConductivity from nullable KiloohmsPerCentimeter.
+        ///     Get nullable ElectricConductivity from nullable SiemensPerMeter.
         /// </summary>
-        public static ElectricConductivity? FromKiloohmsPerCentimeter(QuantityValue? kiloohmspercentimeter)
+        public static ElectricConductivity? FromSiemensPerMeter(QuantityValue? siemenspermeter)
         {
-            if (kiloohmspercentimeter.HasValue)
+            if (siemenspermeter.HasValue)
             {
-                return FromKiloohmsPerCentimeter(kiloohmspercentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable KiloohmsPerMeter.
-        /// </summary>
-        public static ElectricConductivity? FromKiloohmsPerMeter(QuantityValue? kiloohmspermeter)
-        {
-            if (kiloohmspermeter.HasValue)
-            {
-                return FromKiloohmsPerMeter(kiloohmspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable MegaohmsPerCentimeter.
-        /// </summary>
-        public static ElectricConductivity? FromMegaohmsPerCentimeter(QuantityValue? megaohmspercentimeter)
-        {
-            if (megaohmspercentimeter.HasValue)
-            {
-                return FromMegaohmsPerCentimeter(megaohmspercentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable MegaohmsPerMeter.
-        /// </summary>
-        public static ElectricConductivity? FromMegaohmsPerMeter(QuantityValue? megaohmspermeter)
-        {
-            if (megaohmspermeter.HasValue)
-            {
-                return FromMegaohmsPerMeter(megaohmspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable MicroohmsPerCentimeter.
-        /// </summary>
-        public static ElectricConductivity? FromMicroohmsPerCentimeter(QuantityValue? microohmspercentimeter)
-        {
-            if (microohmspercentimeter.HasValue)
-            {
-                return FromMicroohmsPerCentimeter(microohmspercentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable MicroohmsPerMeter.
-        /// </summary>
-        public static ElectricConductivity? FromMicroohmsPerMeter(QuantityValue? microohmspermeter)
-        {
-            if (microohmspermeter.HasValue)
-            {
-                return FromMicroohmsPerMeter(microohmspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable MilliohmsPerCentimeter.
-        /// </summary>
-        public static ElectricConductivity? FromMilliohmsPerCentimeter(QuantityValue? milliohmspercentimeter)
-        {
-            if (milliohmspercentimeter.HasValue)
-            {
-                return FromMilliohmsPerCentimeter(milliohmspercentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable MilliohmsPerMeter.
-        /// </summary>
-        public static ElectricConductivity? FromMilliohmsPerMeter(QuantityValue? milliohmspermeter)
-        {
-            if (milliohmspermeter.HasValue)
-            {
-                return FromMilliohmsPerMeter(milliohmspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable NanoohmsPerCentimeter.
-        /// </summary>
-        public static ElectricConductivity? FromNanoohmsPerCentimeter(QuantityValue? nanoohmspercentimeter)
-        {
-            if (nanoohmspercentimeter.HasValue)
-            {
-                return FromNanoohmsPerCentimeter(nanoohmspercentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable NanoohmsPerMeter.
-        /// </summary>
-        public static ElectricConductivity? FromNanoohmsPerMeter(QuantityValue? nanoohmspermeter)
-        {
-            if (nanoohmspermeter.HasValue)
-            {
-                return FromNanoohmsPerMeter(nanoohmspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable OhmsPerCentimeter.
-        /// </summary>
-        public static ElectricConductivity? FromOhmsPerCentimeter(QuantityValue? ohmspercentimeter)
-        {
-            if (ohmspercentimeter.HasValue)
-            {
-                return FromOhmsPerCentimeter(ohmspercentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable OhmsPerMeter.
-        /// </summary>
-        public static ElectricConductivity? FromOhmsPerMeter(QuantityValue? ohmspermeter)
-        {
-            if (ohmspermeter.HasValue)
-            {
-                return FromOhmsPerMeter(ohmspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable PicoohmsPerCentimeter.
-        /// </summary>
-        public static ElectricConductivity? FromPicoohmsPerCentimeter(QuantityValue? picoohmspercentimeter)
-        {
-            if (picoohmspercentimeter.HasValue)
-            {
-                return FromPicoohmsPerCentimeter(picoohmspercentimeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable PicoohmsPerMeter.
-        /// </summary>
-        public static ElectricConductivity? FromPicoohmsPerMeter(QuantityValue? picoohmspermeter)
-        {
-            if (picoohmspermeter.HasValue)
-            {
-                return FromPicoohmsPerMeter(picoohmspermeter.Value);
+                return FromSiemensPerMeter(siemenspermeter.Value);
             }
             else
             {
@@ -730,40 +220,7 @@ namespace UnitsNet
         public static ElectricConductivity From(QuantityValue value, ElectricConductivityUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case ElectricConductivityUnit.KiloohmPerCentimeter:
-                    return FromKiloohmsPerCentimeter(value);
-                case ElectricConductivityUnit.KiloohmPerMeter:
-                    return FromKiloohmsPerMeter(value);
-                case ElectricConductivityUnit.MegaohmPerCentimeter:
-                    return FromMegaohmsPerCentimeter(value);
-                case ElectricConductivityUnit.MegaohmPerMeter:
-                    return FromMegaohmsPerMeter(value);
-                case ElectricConductivityUnit.MicroohmPerCentimeter:
-                    return FromMicroohmsPerCentimeter(value);
-                case ElectricConductivityUnit.MicroohmPerMeter:
-                    return FromMicroohmsPerMeter(value);
-                case ElectricConductivityUnit.MilliohmPerCentimeter:
-                    return FromMilliohmsPerCentimeter(value);
-                case ElectricConductivityUnit.MilliohmPerMeter:
-                    return FromMilliohmsPerMeter(value);
-                case ElectricConductivityUnit.NanoohmPerCentimeter:
-                    return FromNanoohmsPerCentimeter(value);
-                case ElectricConductivityUnit.NanoohmPerMeter:
-                    return FromNanoohmsPerMeter(value);
-                case ElectricConductivityUnit.OhmPerCentimeter:
-                    return FromOhmsPerCentimeter(value);
-                case ElectricConductivityUnit.OhmPerMeter:
-                    return FromOhmsPerMeter(value);
-                case ElectricConductivityUnit.PicoohmPerCentimeter:
-                    return FromPicoohmsPerCentimeter(value);
-                case ElectricConductivityUnit.PicoohmPerMeter:
-                    return FromPicoohmsPerMeter(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ElectricConductivity((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -780,40 +237,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case ElectricConductivityUnit.KiloohmPerCentimeter:
-                    return FromKiloohmsPerCentimeter(value.Value);
-                case ElectricConductivityUnit.KiloohmPerMeter:
-                    return FromKiloohmsPerMeter(value.Value);
-                case ElectricConductivityUnit.MegaohmPerCentimeter:
-                    return FromMegaohmsPerCentimeter(value.Value);
-                case ElectricConductivityUnit.MegaohmPerMeter:
-                    return FromMegaohmsPerMeter(value.Value);
-                case ElectricConductivityUnit.MicroohmPerCentimeter:
-                    return FromMicroohmsPerCentimeter(value.Value);
-                case ElectricConductivityUnit.MicroohmPerMeter:
-                    return FromMicroohmsPerMeter(value.Value);
-                case ElectricConductivityUnit.MilliohmPerCentimeter:
-                    return FromMilliohmsPerCentimeter(value.Value);
-                case ElectricConductivityUnit.MilliohmPerMeter:
-                    return FromMilliohmsPerMeter(value.Value);
-                case ElectricConductivityUnit.NanoohmPerCentimeter:
-                    return FromNanoohmsPerCentimeter(value.Value);
-                case ElectricConductivityUnit.NanoohmPerMeter:
-                    return FromNanoohmsPerMeter(value.Value);
-                case ElectricConductivityUnit.OhmPerCentimeter:
-                    return FromOhmsPerCentimeter(value.Value);
-                case ElectricConductivityUnit.OhmPerMeter:
-                    return FromOhmsPerMeter(value.Value);
-                case ElectricConductivityUnit.PicoohmPerCentimeter:
-                    return FromPicoohmsPerCentimeter(value.Value);
-                case ElectricConductivityUnit.PicoohmPerMeter:
-                    return FromPicoohmsPerMeter(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ElectricConductivity((double)value.Value, fromUnit);
         }
 #endif
 
@@ -832,12 +257,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ElectricConductivityUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          ElectricConductivityUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -848,37 +290,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ElectricConductivity operator -(ElectricConductivity right)
         {
-            return new ElectricConductivity(-right._ohmsPerMeter);
+            return new ElectricConductivity(-right.Value, right.Unit);
         }
 
         public static ElectricConductivity operator +(ElectricConductivity left, ElectricConductivity right)
         {
-            return new ElectricConductivity(left._ohmsPerMeter + right._ohmsPerMeter);
+            return new ElectricConductivity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ElectricConductivity operator -(ElectricConductivity left, ElectricConductivity right)
         {
-            return new ElectricConductivity(left._ohmsPerMeter - right._ohmsPerMeter);
+            return new ElectricConductivity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ElectricConductivity operator *(double left, ElectricConductivity right)
         {
-            return new ElectricConductivity(left*right._ohmsPerMeter);
+            return new ElectricConductivity(left * right.Value, right.Unit);
         }
 
         public static ElectricConductivity operator *(ElectricConductivity left, double right)
         {
-            return new ElectricConductivity(left._ohmsPerMeter*(double)right);
+            return new ElectricConductivity(left.Value * right, left.Unit);
         }
 
         public static ElectricConductivity operator /(ElectricConductivity left, double right)
         {
-            return new ElectricConductivity(left._ohmsPerMeter/(double)right);
+            return new ElectricConductivity(left.Value / right, left.Unit);
         }
 
         public static double operator /(ElectricConductivity left, ElectricConductivity right)
         {
-            return Convert.ToDouble(left._ohmsPerMeter/right._ohmsPerMeter);
+            return left.SiemensPerMeter / right.SiemensPerMeter;
         }
 #endif
 
@@ -901,43 +343,43 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricConductivity other)
         {
-            return _ohmsPerMeter.CompareTo(other._ohmsPerMeter);
+            return AsBaseUnitSiemensPerMeter().CompareTo(other.AsBaseUnitSiemensPerMeter());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(ElectricConductivity left, ElectricConductivity right)
         {
-            return left._ohmsPerMeter <= right._ohmsPerMeter;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(ElectricConductivity left, ElectricConductivity right)
         {
-            return left._ohmsPerMeter >= right._ohmsPerMeter;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(ElectricConductivity left, ElectricConductivity right)
         {
-            return left._ohmsPerMeter < right._ohmsPerMeter;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(ElectricConductivity left, ElectricConductivity right)
         {
-            return left._ohmsPerMeter > right._ohmsPerMeter;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(ElectricConductivity left, ElectricConductivity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohmsPerMeter == right._ohmsPerMeter;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(ElectricConductivity left, ElectricConductivity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohmsPerMeter != right._ohmsPerMeter;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -949,7 +391,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _ohmsPerMeter.Equals(((ElectricConductivity) obj)._ohmsPerMeter);
+            return AsBaseUnitSiemensPerMeter().Equals(((ElectricConductivity) obj).AsBaseUnitSiemensPerMeter());
         }
 
         /// <summary>
@@ -962,12 +404,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ElectricConductivity other, ElectricConductivity maxError)
         {
-            return Math.Abs(_ohmsPerMeter - other._ohmsPerMeter) <= maxError._ohmsPerMeter;
+            return Math.Abs(AsBaseUnitSiemensPerMeter() - other.AsBaseUnitSiemensPerMeter()) <= maxError.AsBaseUnitSiemensPerMeter();
         }
 
         public override int GetHashCode()
         {
-            return _ohmsPerMeter.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -977,40 +419,19 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricConductivityUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitSiemensPerMeter();
+
             switch (unit)
             {
-                case ElectricConductivityUnit.KiloohmPerCentimeter:
-                    return KiloohmsPerCentimeter;
-                case ElectricConductivityUnit.KiloohmPerMeter:
-                    return KiloohmsPerMeter;
-                case ElectricConductivityUnit.MegaohmPerCentimeter:
-                    return MegaohmsPerCentimeter;
-                case ElectricConductivityUnit.MegaohmPerMeter:
-                    return MegaohmsPerMeter;
-                case ElectricConductivityUnit.MicroohmPerCentimeter:
-                    return MicroohmsPerCentimeter;
-                case ElectricConductivityUnit.MicroohmPerMeter:
-                    return MicroohmsPerMeter;
-                case ElectricConductivityUnit.MilliohmPerCentimeter:
-                    return MilliohmsPerCentimeter;
-                case ElectricConductivityUnit.MilliohmPerMeter:
-                    return MilliohmsPerMeter;
-                case ElectricConductivityUnit.NanoohmPerCentimeter:
-                    return NanoohmsPerCentimeter;
-                case ElectricConductivityUnit.NanoohmPerMeter:
-                    return NanoohmsPerMeter;
-                case ElectricConductivityUnit.OhmPerCentimeter:
-                    return OhmsPerCentimeter;
-                case ElectricConductivityUnit.OhmPerMeter:
-                    return OhmsPerMeter;
-                case ElectricConductivityUnit.PicoohmPerCentimeter:
-                    return PicoohmsPerCentimeter;
-                case ElectricConductivityUnit.PicoohmPerMeter:
-                    return PicoohmsPerMeter;
+                case ElectricConductivityUnit.SiemensPerMeter: return baseUnitValue;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -1052,7 +473,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -1071,23 +496,30 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricConductivity Parse(string str, [CanBeNull] Culture culture)
+        public static ElectricConductivity Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<ElectricConductivity, ElectricConductivityUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<ElectricConductivity, ElectricConductivityUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     ElectricConductivityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromOhmsPerMeter(x.OhmsPerMeter + y.OhmsPerMeter));
+                }, (x, y) => FromSiemensPerMeter(x.SiemensPerMeter + y.SiemensPerMeter));
         }
 
         /// <summary>
@@ -1107,16 +539,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ElectricConductivity result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out ElectricConductivity result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -1129,6 +586,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1142,11 +600,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static ElectricConductivityUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -1155,6 +616,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1167,18 +630,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static ElectricConductivityUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ElectricConductivityUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<ElectricConductivityUnit>(str.Trim());
 
             if (unit == ElectricConductivityUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ElectricConductivityUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -1187,10 +650,11 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
-        ///     Set the default unit used by ToString(). Default is OhmPerMeter
+        ///     Set the default unit used by ToString(). Default is SiemensPerMeter
         /// </summary>
-        public static ElectricConductivityUnit ToStringDefaultUnit { get; set; } = ElectricConductivityUnit.OhmPerMeter;
+        public static ElectricConductivityUnit ToStringDefaultUnit { get; set; } = ElectricConductivityUnit.SiemensPerMeter;
 
         /// <summary>
         ///     Get default string representation of value and unit.
@@ -1198,7 +662,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -1215,74 +679,129 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(ElectricConductivityUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          ElectricConductivityUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricConductivityUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            ElectricConductivityUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricConductivityUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            ElectricConductivityUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of ElectricConductivity
         /// </summary>
-        public static ElectricConductivity MaxValue
-        {
-            get
-            {
-                return new ElectricConductivity(double.MaxValue);
-            }
-        }
+        public static ElectricConductivity MaxValue => new ElectricConductivity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricConductivity
         /// </summary>
-        public static ElectricConductivity MinValue
+        public static ElectricConductivity MinValue => new ElectricConductivity(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitSiemensPerMeter()
         {
-            get
+			if (Unit == ElectricConductivityUnit.SiemensPerMeter) { return _value; }
+
+            switch (Unit)
             {
-                return new ElectricConductivity(double.MinValue);
-            }
-        }
-    }
+                case ElectricConductivityUnit.SiemensPerMeter: return _value;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(ElectricConductivityUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

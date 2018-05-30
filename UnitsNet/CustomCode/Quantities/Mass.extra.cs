@@ -98,12 +98,12 @@ namespace UnitsNet
 
         public static Force operator *(Mass mass, Acceleration acceleration)
         {
-            return Force.FromNewtons(mass.Kilograms*acceleration.MeterPerSecondSquared);
+            return Force.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
         }
 
         public static Force operator *(Acceleration acceleration, Mass mass)
         {
-            return Force.FromNewtons(mass.Kilograms*acceleration.MeterPerSecondSquared);
+            return Force.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
         }
 #endif
     }

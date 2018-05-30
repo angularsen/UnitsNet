@@ -1,31 +1,18 @@
-﻿{
+{
   "Name": "ElectricConductivity",
-  "BaseUnit": "OhmPerMeter",
-  "XmlDoc": "Electrical conductivity is the measure of a material's ability to allow the transport of an electric charge.",
+  "BaseUnit": "SiemensPerMeter",
+  "XmlDoc": "Electrical conductivity or specific conductance is the reciprocal of electrical resistivity, and measures a material's ability to conduct an electric current.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity",
   "Units": [
     {
-      "SingularName": "OhmPerMeter",
-      "PluralName": "OhmsPerMeter",
+      "SingularName": "SiemensPerMeter",
+      "PluralName": "SiemensPerMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Ω/m" ]
-        }
-      ]
-    },
-    {
-      "SingularName": "OhmPerCentimeter",
-      "PluralName": "OhmsPerCentimeter",
-      "FromUnitToBaseFunc": "x*100",
-      "FromBaseToUnitFunc": "x/100",
-      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "Ω/cm" ]
+          "Abbreviations": [ "S/m" ]
         }
       ]
     }

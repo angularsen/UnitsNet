@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -58,10 +58,12 @@ namespace UnitsNet.Tests
         protected abstract double MillisecondsInOneSecond { get; }
         protected abstract double MinutesInOneSecond { get; }
         protected abstract double MonthsInOneSecond { get; }
+        protected abstract double Months30InOneSecond { get; }
         protected abstract double NanosecondsInOneSecond { get; }
         protected abstract double SecondsInOneSecond { get; }
         protected abstract double WeeksInOneSecond { get; }
         protected abstract double YearsInOneSecond { get; }
+        protected abstract double Years365InOneSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double DaysTolerance { get { return 1e-5; } }
@@ -70,10 +72,12 @@ namespace UnitsNet.Tests
         protected virtual double MillisecondsTolerance { get { return 1e-5; } }
         protected virtual double MinutesTolerance { get { return 1e-5; } }
         protected virtual double MonthsTolerance { get { return 1e-5; } }
+        protected virtual double Months30Tolerance { get { return 1e-5; } }
         protected virtual double NanosecondsTolerance { get { return 1e-5; } }
         protected virtual double SecondsTolerance { get { return 1e-5; } }
         protected virtual double WeeksTolerance { get { return 1e-5; } }
         protected virtual double YearsTolerance { get { return 1e-5; } }
+        protected virtual double Years365Tolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -86,10 +90,12 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MillisecondsInOneSecond, second.Milliseconds, MillisecondsTolerance);
             AssertEx.EqualTolerance(MinutesInOneSecond, second.Minutes, MinutesTolerance);
             AssertEx.EqualTolerance(MonthsInOneSecond, second.Months, MonthsTolerance);
+            AssertEx.EqualTolerance(Months30InOneSecond, second.Months30, Months30Tolerance);
             AssertEx.EqualTolerance(NanosecondsInOneSecond, second.Nanoseconds, NanosecondsTolerance);
             AssertEx.EqualTolerance(SecondsInOneSecond, second.Seconds, SecondsTolerance);
             AssertEx.EqualTolerance(WeeksInOneSecond, second.Weeks, WeeksTolerance);
             AssertEx.EqualTolerance(YearsInOneSecond, second.Years, YearsTolerance);
+            AssertEx.EqualTolerance(Years365InOneSecond, second.Years365, Years365Tolerance);
         }
 
         [Fact]
@@ -101,10 +107,12 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Millisecond).Milliseconds, MillisecondsTolerance);
             AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Minute).Minutes, MinutesTolerance);
             AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Month).Months, MonthsTolerance);
+            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Month30).Months30, Months30Tolerance);
             AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Nanosecond).Nanoseconds, NanosecondsTolerance);
             AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Second).Seconds, SecondsTolerance);
             AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Week).Weeks, WeeksTolerance);
             AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Year).Years, YearsTolerance);
+            AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Year365).Years365, Years365Tolerance);
         }
 
         [Fact]
@@ -117,10 +125,12 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MillisecondsInOneSecond, second.As(DurationUnit.Millisecond), MillisecondsTolerance);
             AssertEx.EqualTolerance(MinutesInOneSecond, second.As(DurationUnit.Minute), MinutesTolerance);
             AssertEx.EqualTolerance(MonthsInOneSecond, second.As(DurationUnit.Month), MonthsTolerance);
+            AssertEx.EqualTolerance(Months30InOneSecond, second.As(DurationUnit.Month30), Months30Tolerance);
             AssertEx.EqualTolerance(NanosecondsInOneSecond, second.As(DurationUnit.Nanosecond), NanosecondsTolerance);
             AssertEx.EqualTolerance(SecondsInOneSecond, second.As(DurationUnit.Second), SecondsTolerance);
             AssertEx.EqualTolerance(WeeksInOneSecond, second.As(DurationUnit.Week), WeeksTolerance);
             AssertEx.EqualTolerance(YearsInOneSecond, second.As(DurationUnit.Year), YearsTolerance);
+            AssertEx.EqualTolerance(Years365InOneSecond, second.As(DurationUnit.Year365), Years365Tolerance);
         }
 
         [Fact]
@@ -133,10 +143,12 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Duration.FromMilliseconds(second.Milliseconds).Seconds, MillisecondsTolerance);
             AssertEx.EqualTolerance(1, Duration.FromMinutes(second.Minutes).Seconds, MinutesTolerance);
             AssertEx.EqualTolerance(1, Duration.FromMonths(second.Months).Seconds, MonthsTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromMonths30(second.Months30).Seconds, Months30Tolerance);
             AssertEx.EqualTolerance(1, Duration.FromNanoseconds(second.Nanoseconds).Seconds, NanosecondsTolerance);
             AssertEx.EqualTolerance(1, Duration.FromSeconds(second.Seconds).Seconds, SecondsTolerance);
             AssertEx.EqualTolerance(1, Duration.FromWeeks(second.Weeks).Seconds, WeeksTolerance);
             AssertEx.EqualTolerance(1, Duration.FromYears(second.Years).Seconds, YearsTolerance);
+            AssertEx.EqualTolerance(1, Duration.FromYears365(second.Years365).Seconds, Years365Tolerance);
         }
 
         [Fact]

@@ -11,9 +11,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -46,33 +46,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricConductivityTests : ElectricConductivityTestsBase
     {
-        // TODO Override properties in base class here
-        protected override double KiloohmsPerCentimeterInOneOhmPerMeter => 1e-5;
-
-        protected override double KiloohmsPerMeterInOneOhmPerMeter => 1e-3;
-
-        protected override double MegaohmsPerCentimeterInOneOhmPerMeter => 1e-8;
-
-        protected override double MegaohmsPerMeterInOneOhmPerMeter => 1e-6;
-
-        protected override double MicroohmsPerCentimeterInOneOhmPerMeter => 1e4;
-
-        protected override double MicroohmsPerMeterInOneOhmPerMeter => 1e6;
-
-        protected override double MilliohmsPerCentimeterInOneOhmPerMeter => 1e1;
-
-        protected override double MilliohmsPerMeterInOneOhmPerMeter => 1e3;
-
-        protected override double NanoohmsPerCentimeterInOneOhmPerMeter => 1e7;
-
-        protected override double NanoohmsPerMeterInOneOhmPerMeter => 1e9;
-
-        protected override double OhmsPerCentimeterInOneOhmPerMeter => 1e-2;
-
-        protected override double OhmsPerMeterInOneOhmPerMeter => 1;
-
-        protected override double PicoohmsPerCentimeterInOneOhmPerMeter => 1e10;
-
-        protected override double PicoohmsPerMeterInOneOhmPerMeter => 1e12;
+        protected override double SiemensPerMeterInOneSiemensPerMeter => 1;
     }
 }

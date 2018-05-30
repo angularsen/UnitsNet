@@ -106,6 +106,10 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double OilBarrelsInOneCubicMeter => 6.2898107704321051280928552764086;
 
+        protected override double UsPintsInOneCubicMeter => 2113.3764188652;
+
+        protected override double UsQuartsInOneCubicMeter => 1056.6882094326;
+
         protected override double AcreFeetInOneCubicMeter => 0.000810714;
 
         protected override double KilolitersInOneCubicMeter => 1;
@@ -133,11 +137,13 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Equal(mass, Mass.FromKilograms(6));
         }
 
-        [Fact]
-        public void VolumeDividedByTimeSpanEqualsVolumeFlow()
+        [Theory]
+        [InlineData(20, 2, 10)]
+        [InlineData(20, 80, 0.25)]
+        public void VolumeDividedByTimeSpanEqualsVolumeFlow(double cubicMeters, double seconds, double expectedCubicMetersPerSecond)
         {
-            VolumeFlow volumeFlow = Volume.FromCubicMeters(20) / TimeSpan.FromSeconds(2);
-            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(10), volumeFlow);
+            VolumeFlow volumeFlow = Volume.FromCubicMeters(cubicMeters) / TimeSpan.FromSeconds(seconds);
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(expectedCubicMetersPerSecond), volumeFlow);
         }
 
         [Fact]

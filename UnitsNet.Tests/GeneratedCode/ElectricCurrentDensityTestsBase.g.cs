@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -53,21 +53,9 @@ namespace UnitsNet.Tests
     public abstract partial class ElectricCurrentDensityTestsBase
     {
         protected abstract double AmperesPerSquareMeterInOneAmperePerSquareMeter { get; }
-        protected abstract double KiloamperesPerSquareMeterInOneAmperePerSquareMeter { get; }
-        protected abstract double MegaamperesPerSquareMeterInOneAmperePerSquareMeter { get; }
-        protected abstract double MicroamperesPerSquareMeterInOneAmperePerSquareMeter { get; }
-        protected abstract double MilliamperesPerSquareMeterInOneAmperePerSquareMeter { get; }
-        protected abstract double NanoamperesPerSquareMeterInOneAmperePerSquareMeter { get; }
-        protected abstract double PicoamperesPerSquareMeterInOneAmperePerSquareMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double AmperesPerSquareMeterTolerance { get { return 1e-5; } }
-        protected virtual double KiloamperesPerSquareMeterTolerance { get { return 1e-5; } }
-        protected virtual double MegaamperesPerSquareMeterTolerance { get { return 1e-5; } }
-        protected virtual double MicroamperesPerSquareMeterTolerance { get { return 1e-5; } }
-        protected virtual double MilliamperesPerSquareMeterTolerance { get { return 1e-5; } }
-        protected virtual double NanoamperesPerSquareMeterTolerance { get { return 1e-5; } }
-        protected virtual double PicoamperesPerSquareMeterTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -75,24 +63,12 @@ namespace UnitsNet.Tests
         {
             ElectricCurrentDensity amperepersquaremeter = ElectricCurrentDensity.FromAmperesPerSquareMeter(1);
             AssertEx.EqualTolerance(AmperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.AmperesPerSquareMeter, AmperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(KiloamperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.KiloamperesPerSquareMeter, KiloamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(MegaamperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.MegaamperesPerSquareMeter, MegaamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(MicroamperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.MicroamperesPerSquareMeter, MicroamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(MilliamperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.MilliamperesPerSquareMeter, MilliamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(NanoamperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.NanoamperesPerSquareMeter, NanoamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(PicoamperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.PicoamperesPerSquareMeter, PicoamperesPerSquareMeterTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, ElectricCurrentDensity.From(1, ElectricCurrentDensityUnit.AmperePerSquareMeter).AmperesPerSquareMeter, AmperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricCurrentDensity.From(1, ElectricCurrentDensityUnit.KiloamperePerSquareMeter).KiloamperesPerSquareMeter, KiloamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricCurrentDensity.From(1, ElectricCurrentDensityUnit.MegaamperePerSquareMeter).MegaamperesPerSquareMeter, MegaamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricCurrentDensity.From(1, ElectricCurrentDensityUnit.MicroamperePerSquareMeter).MicroamperesPerSquareMeter, MicroamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricCurrentDensity.From(1, ElectricCurrentDensityUnit.MilliamperePerSquareMeter).MilliamperesPerSquareMeter, MilliamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricCurrentDensity.From(1, ElectricCurrentDensityUnit.NanoamperePerSquareMeter).NanoamperesPerSquareMeter, NanoamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricCurrentDensity.From(1, ElectricCurrentDensityUnit.PicoamperePerSquareMeter).PicoamperesPerSquareMeter, PicoamperesPerSquareMeterTolerance);
         }
 
         [Fact]
@@ -100,12 +76,6 @@ namespace UnitsNet.Tests
         {
             var amperepersquaremeter = ElectricCurrentDensity.FromAmperesPerSquareMeter(1);
             AssertEx.EqualTolerance(AmperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.As(ElectricCurrentDensityUnit.AmperePerSquareMeter), AmperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(KiloamperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.As(ElectricCurrentDensityUnit.KiloamperePerSquareMeter), KiloamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(MegaamperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.As(ElectricCurrentDensityUnit.MegaamperePerSquareMeter), MegaamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(MicroamperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.As(ElectricCurrentDensityUnit.MicroamperePerSquareMeter), MicroamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(MilliamperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.As(ElectricCurrentDensityUnit.MilliamperePerSquareMeter), MilliamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(NanoamperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.As(ElectricCurrentDensityUnit.NanoamperePerSquareMeter), NanoamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(PicoamperesPerSquareMeterInOneAmperePerSquareMeter, amperepersquaremeter.As(ElectricCurrentDensityUnit.PicoamperePerSquareMeter), PicoamperesPerSquareMeterTolerance);
         }
 
         [Fact]
@@ -113,12 +83,6 @@ namespace UnitsNet.Tests
         {
             ElectricCurrentDensity amperepersquaremeter = ElectricCurrentDensity.FromAmperesPerSquareMeter(1);
             AssertEx.EqualTolerance(1, ElectricCurrentDensity.FromAmperesPerSquareMeter(amperepersquaremeter.AmperesPerSquareMeter).AmperesPerSquareMeter, AmperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricCurrentDensity.FromKiloamperesPerSquareMeter(amperepersquaremeter.KiloamperesPerSquareMeter).AmperesPerSquareMeter, KiloamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricCurrentDensity.FromMegaamperesPerSquareMeter(amperepersquaremeter.MegaamperesPerSquareMeter).AmperesPerSquareMeter, MegaamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricCurrentDensity.FromMicroamperesPerSquareMeter(amperepersquaremeter.MicroamperesPerSquareMeter).AmperesPerSquareMeter, MicroamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricCurrentDensity.FromMilliamperesPerSquareMeter(amperepersquaremeter.MilliamperesPerSquareMeter).AmperesPerSquareMeter, MilliamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricCurrentDensity.FromNanoamperesPerSquareMeter(amperepersquaremeter.NanoamperesPerSquareMeter).AmperesPerSquareMeter, NanoamperesPerSquareMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricCurrentDensity.FromPicoamperesPerSquareMeter(amperepersquaremeter.PicoamperesPerSquareMeter).AmperesPerSquareMeter, PicoamperesPerSquareMeterTolerance);
         }
 
         [Fact]

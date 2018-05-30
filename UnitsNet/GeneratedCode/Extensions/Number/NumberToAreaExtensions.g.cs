@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -449,6 +449,40 @@ namespace UnitsNet.Extensions.NumberToArea
 
         /// <inheritdoc cref="Area.FromSquareYards(double?)"/>
         public static Area? SquareYards(this decimal? value) => Area.FromSquareYards(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region UsSurveySquareFoot
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double)"/>
+        public static Area UsSurveySquareFeet(this int value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double?)"/>
+        public static Area? UsSurveySquareFeet(this int? value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double)"/>
+        public static Area UsSurveySquareFeet(this long value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double?)"/>
+        public static Area? UsSurveySquareFeet(this long? value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double)"/>
+        public static Area UsSurveySquareFeet(this double value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double?)"/>
+        public static Area? UsSurveySquareFeet(this double? value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double)"/>
+        public static Area UsSurveySquareFeet(this float value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double?)"/>
+        public static Area? UsSurveySquareFeet(this float? value) => Area.FromUsSurveySquareFeet(value);
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double)"/>
+        public static Area UsSurveySquareFeet(this decimal value) => Area.FromUsSurveySquareFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(double?)"/>
+        public static Area? UsSurveySquareFeet(this decimal? value) => Area.FromUsSurveySquareFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

@@ -34,6 +34,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsPerHourInOneGramPerSecond => 3.6;
 
+        protected override double TonnesPerHourInOneGramPerSecond => 3.6E-3;
+
         protected override double KilogramsPerSecondInOneGramPerSecond => 1E-3;
 
         protected override double MegapoundsPerHourInOneGramPerSecond => 7.93664e-6;
@@ -139,6 +141,20 @@ namespace UnitsNet.Tests.CustomCode
         {
             Area area = MassFlow.FromKilogramsPerSecond(20) / MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
             Assert.Equal(10, area.SquareMeters);
+        }
+
+        [Fact]
+        public void MassFlowDividedByVolumeFlowEqualsDensity()
+        {
+            Density density = MassFlow.FromKilogramsPerSecond(12) / VolumeFlow.FromCubicMetersPerSecond(3);
+            Assert.Equal(4, density.KilogramsPerCubicMeter);
+        }
+
+        [Fact]
+        public void MassFlowDividedByDensityEqualsVolumeFlow()
+        {
+            VolumeFlow volumeFlow = MassFlow.FromKilogramsPerSecond(20) / Density.FromKilogramsPerCubicMeter(4);
+            Assert.Equal(5, volumeFlow.CubicMetersPerSecond);
         }
     }
 }

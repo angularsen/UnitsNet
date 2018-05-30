@@ -11,9 +11,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
-//     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
+//     Add CustomCode\UnitClasses\MyQuantity.extra.cs files to add code to generated unit classes.
+//     Add Extensions\MyQuantityExtensions.cs to decorate unit classes with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or unit classes.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -46,10 +46,12 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ApparentPowerTests : ApparentPowerTestsBase
     {
-        protected override double KilovoltamperesInOneVoltampere => 1e-3;
-
-        protected override double MegavoltamperesInOneVoltampere => 1e-6;
-
         protected override double VoltamperesInOneVoltampere => 1;
+
+        protected override double KilovoltamperesInOneVoltampere => 1E-3;
+
+        protected override double MegavoltamperesInOneVoltampere => 1E-6;
+
+        protected override double GigavoltamperesInOneVoltampere => 1E-9;
     }
 }

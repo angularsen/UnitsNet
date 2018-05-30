@@ -1,0 +1,19 @@
+{
+  "Name": "ElectricCurrentGradient",
+  "BaseUnit": "AmperePerSecond",
+  "XmlDoc": "In electromagnetism, the current gradient describes how the current changes in time.",
+  "Units": [
+    {
+      "SingularName": "AmperePerSecond",
+      "PluralName": "AmperesPerSecond",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "A/s" ]
+        }
+      ]
+    }
+  ]
+}

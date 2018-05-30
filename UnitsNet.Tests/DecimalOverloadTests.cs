@@ -31,24 +31,24 @@ namespace UnitsNet.Tests
         public static void CreatingQuantityWithDoubleBackingFieldFromDecimalReturnsCorrectValue()
         {
             decimal oneMeterPerSecondSquared = 1m;
-            Acceleration acceleration = Acceleration.FromMeterPerSecondSquared(oneMeterPerSecondSquared);
-            Assert.Equal(1.0, acceleration.MeterPerSecondSquared);
+            Acceleration acceleration = Acceleration.FromMetersPerSecondSquared(oneMeterPerSecondSquared);
+            Assert.Equal(1.0, acceleration.MetersPerSecondSquared);
         }
 
         [Fact]
         public static void CreatingQuantityWithDoubleBackingFieldFromNullableDecimalReturnsCorrectValue()
         {
             decimal? oneMeterPerSecondSquared = 1m;
-            Acceleration? acceleration = Acceleration.FromMeterPerSecondSquared(oneMeterPerSecondSquared);
+            Acceleration? acceleration = Acceleration.FromMetersPerSecondSquared(oneMeterPerSecondSquared);
             Assert.NotNull(acceleration);
-            Assert.Equal(1.0, acceleration.Value.MeterPerSecondSquared);
+            Assert.Equal(1.0, acceleration.Value.MetersPerSecondSquared);
         }
 
         [Fact]
         public static void CreatingQuantityWithDoubleBackingFieldFromNullableDecimalReturnsNullWhenGivenNull()
         {
             decimal? nullDecimal = null;
-            Acceleration? acceleration = Acceleration.FromMeterPerSecondSquared(nullDecimal);
+            Acceleration? acceleration = Acceleration.FromMetersPerSecondSquared(nullDecimal);
             Assert.Null(acceleration);
         }
 
@@ -56,24 +56,24 @@ namespace UnitsNet.Tests
         public static void CreatingQuantityWithDoubleBackingFieldFromDecimalWithExtensionMethodReturnsCorrectValue()
         {
             decimal oneMeterPerSecondSquared = 1m;
-            Acceleration acceleration = oneMeterPerSecondSquared.MeterPerSecondSquared();
-            Assert.Equal(1.0, acceleration.MeterPerSecondSquared);
+            Acceleration acceleration = oneMeterPerSecondSquared.MetersPerSecondSquared();
+            Assert.Equal(1.0, acceleration.MetersPerSecondSquared);
         }
 
         [Fact]
         public static void CreatingQuantityWithDoubleBackingFieldFromNullableDecimalWithExtensionMethodReturnsCorrectValue()
         {
             decimal? oneMeterPerSecondSquared = 1m;
-            Acceleration? acceleration = oneMeterPerSecondSquared.MeterPerSecondSquared();
+            Acceleration? acceleration = oneMeterPerSecondSquared.MetersPerSecondSquared();
             Assert.NotNull(acceleration);
-            Assert.Equal(1.0, acceleration.Value.MeterPerSecondSquared);
+            Assert.Equal(1.0, acceleration.Value.MetersPerSecondSquared);
         }
 
         [Fact]
         public static void CreatingQuantityWithDoubleBackingFieldFromNullableDecimalWithExtensionMethodReturnsNullWhenGivenNull()
         {
             decimal? nullDecimal = null;
-            Acceleration? acceleration = nullDecimal.MeterPerSecondSquared();
+            Acceleration? acceleration = nullDecimal.MetersPerSecondSquared();
             Assert.Null(acceleration);
         }
 

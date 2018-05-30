@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -53,150 +53,150 @@ namespace UnitsNet.Tests
     public abstract partial class ElectricResistivityTestsBase
     {
         protected abstract double KiloohmsCentimeterInOneOhmMeter { get; }
-        protected abstract double KiloohmsMeterInOneOhmMeter { get; }
+        protected abstract double KiloohmsMetersInOneOhmMeter { get; }
         protected abstract double MegaohmsCentimeterInOneOhmMeter { get; }
-        protected abstract double MegaohmsMeterInOneOhmMeter { get; }
+        protected abstract double MegaohmsMetersInOneOhmMeter { get; }
         protected abstract double MicroohmsCentimeterInOneOhmMeter { get; }
-        protected abstract double MicroohmsMeterInOneOhmMeter { get; }
+        protected abstract double MicroohmsMetersInOneOhmMeter { get; }
         protected abstract double MilliohmsCentimeterInOneOhmMeter { get; }
-        protected abstract double MilliohmsMeterInOneOhmMeter { get; }
+        protected abstract double MilliohmsMetersInOneOhmMeter { get; }
         protected abstract double NanoohmsCentimeterInOneOhmMeter { get; }
-        protected abstract double NanoohmsMeterInOneOhmMeter { get; }
+        protected abstract double NanoohmsMetersInOneOhmMeter { get; }
         protected abstract double OhmsCentimeterInOneOhmMeter { get; }
-        protected abstract double OhmsMeterInOneOhmMeter { get; }
+        protected abstract double OhmsMetersInOneOhmMeter { get; }
         protected abstract double PicoohmsCentimeterInOneOhmMeter { get; }
-        protected abstract double PicoohmsMeterInOneOhmMeter { get; }
+        protected abstract double PicoohmsMetersInOneOhmMeter { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double KiloohmsCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double KiloohmsMeterTolerance { get { return 1e-5; } }
+        protected virtual double KiloohmsMetersTolerance { get { return 1e-5; } }
         protected virtual double MegaohmsCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double MegaohmsMeterTolerance { get { return 1e-5; } }
+        protected virtual double MegaohmsMetersTolerance { get { return 1e-5; } }
         protected virtual double MicroohmsCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double MicroohmsMeterTolerance { get { return 1e-5; } }
+        protected virtual double MicroohmsMetersTolerance { get { return 1e-5; } }
         protected virtual double MilliohmsCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double MilliohmsMeterTolerance { get { return 1e-5; } }
+        protected virtual double MilliohmsMetersTolerance { get { return 1e-5; } }
         protected virtual double NanoohmsCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double NanoohmsMeterTolerance { get { return 1e-5; } }
+        protected virtual double NanoohmsMetersTolerance { get { return 1e-5; } }
         protected virtual double OhmsCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double OhmsMeterTolerance { get { return 1e-5; } }
+        protected virtual double OhmsMetersTolerance { get { return 1e-5; } }
         protected virtual double PicoohmsCentimeterTolerance { get { return 1e-5; } }
-        protected virtual double PicoohmsMeterTolerance { get { return 1e-5; } }
+        protected virtual double PicoohmsMetersTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
         public void OhmMeterToElectricResistivityUnits()
         {
-            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeter(1);
+            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeters(1);
             AssertEx.EqualTolerance(KiloohmsCentimeterInOneOhmMeter, ohmmeter.KiloohmsCentimeter, KiloohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(KiloohmsMeterInOneOhmMeter, ohmmeter.KiloohmsMeter, KiloohmsMeterTolerance);
+            AssertEx.EqualTolerance(KiloohmsMetersInOneOhmMeter, ohmmeter.KiloohmsMeters, KiloohmsMetersTolerance);
             AssertEx.EqualTolerance(MegaohmsCentimeterInOneOhmMeter, ohmmeter.MegaohmsCentimeter, MegaohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(MegaohmsMeterInOneOhmMeter, ohmmeter.MegaohmsMeter, MegaohmsMeterTolerance);
+            AssertEx.EqualTolerance(MegaohmsMetersInOneOhmMeter, ohmmeter.MegaohmsMeters, MegaohmsMetersTolerance);
             AssertEx.EqualTolerance(MicroohmsCentimeterInOneOhmMeter, ohmmeter.MicroohmsCentimeter, MicroohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(MicroohmsMeterInOneOhmMeter, ohmmeter.MicroohmsMeter, MicroohmsMeterTolerance);
+            AssertEx.EqualTolerance(MicroohmsMetersInOneOhmMeter, ohmmeter.MicroohmsMeters, MicroohmsMetersTolerance);
             AssertEx.EqualTolerance(MilliohmsCentimeterInOneOhmMeter, ohmmeter.MilliohmsCentimeter, MilliohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(MilliohmsMeterInOneOhmMeter, ohmmeter.MilliohmsMeter, MilliohmsMeterTolerance);
+            AssertEx.EqualTolerance(MilliohmsMetersInOneOhmMeter, ohmmeter.MilliohmsMeters, MilliohmsMetersTolerance);
             AssertEx.EqualTolerance(NanoohmsCentimeterInOneOhmMeter, ohmmeter.NanoohmsCentimeter, NanoohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(NanoohmsMeterInOneOhmMeter, ohmmeter.NanoohmsMeter, NanoohmsMeterTolerance);
+            AssertEx.EqualTolerance(NanoohmsMetersInOneOhmMeter, ohmmeter.NanoohmsMeters, NanoohmsMetersTolerance);
             AssertEx.EqualTolerance(OhmsCentimeterInOneOhmMeter, ohmmeter.OhmsCentimeter, OhmsCentimeterTolerance);
-            AssertEx.EqualTolerance(OhmsMeterInOneOhmMeter, ohmmeter.OhmsMeter, OhmsMeterTolerance);
+            AssertEx.EqualTolerance(OhmsMetersInOneOhmMeter, ohmmeter.OhmsMeters, OhmsMetersTolerance);
             AssertEx.EqualTolerance(PicoohmsCentimeterInOneOhmMeter, ohmmeter.PicoohmsCentimeter, PicoohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(PicoohmsMeterInOneOhmMeter, ohmmeter.PicoohmsMeter, PicoohmsMeterTolerance);
+            AssertEx.EqualTolerance(PicoohmsMetersInOneOhmMeter, ohmmeter.PicoohmsMeters, PicoohmsMetersTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.KiloohmCentimeter).KiloohmsCentimeter, KiloohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.KiloohmMeter).KiloohmsMeter, KiloohmsMeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.KiloohmMeter).KiloohmsMeters, KiloohmsMetersTolerance);
             AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.MegaohmCentimeter).MegaohmsCentimeter, MegaohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.MegaohmMeter).MegaohmsMeter, MegaohmsMeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.MegaohmMeter).MegaohmsMeters, MegaohmsMetersTolerance);
             AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.MicroohmCentimeter).MicroohmsCentimeter, MicroohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.MicroohmMeter).MicroohmsMeter, MicroohmsMeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.MicroohmMeter).MicroohmsMeters, MicroohmsMetersTolerance);
             AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.MilliohmCentimeter).MilliohmsCentimeter, MilliohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.MilliohmMeter).MilliohmsMeter, MilliohmsMeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.MilliohmMeter).MilliohmsMeters, MilliohmsMetersTolerance);
             AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.NanoohmCentimeter).NanoohmsCentimeter, NanoohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.NanoohmMeter).NanoohmsMeter, NanoohmsMeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.NanoohmMeter).NanoohmsMeters, NanoohmsMetersTolerance);
             AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.OhmCentimeter).OhmsCentimeter, OhmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.OhmMeter).OhmsMeter, OhmsMeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.OhmMeter).OhmsMeters, OhmsMetersTolerance);
             AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.PicoohmCentimeter).PicoohmsCentimeter, PicoohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.PicoohmMeter).PicoohmsMeter, PicoohmsMeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.PicoohmMeter).PicoohmsMeters, PicoohmsMetersTolerance);
         }
 
         [Fact]
         public void As()
         {
-            var ohmmeter = ElectricResistivity.FromOhmsMeter(1);
+            var ohmmeter = ElectricResistivity.FromOhmsMeters(1);
             AssertEx.EqualTolerance(KiloohmsCentimeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.KiloohmCentimeter), KiloohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(KiloohmsMeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.KiloohmMeter), KiloohmsMeterTolerance);
+            AssertEx.EqualTolerance(KiloohmsMetersInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.KiloohmMeter), KiloohmsMetersTolerance);
             AssertEx.EqualTolerance(MegaohmsCentimeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.MegaohmCentimeter), MegaohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(MegaohmsMeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.MegaohmMeter), MegaohmsMeterTolerance);
+            AssertEx.EqualTolerance(MegaohmsMetersInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.MegaohmMeter), MegaohmsMetersTolerance);
             AssertEx.EqualTolerance(MicroohmsCentimeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.MicroohmCentimeter), MicroohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(MicroohmsMeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.MicroohmMeter), MicroohmsMeterTolerance);
+            AssertEx.EqualTolerance(MicroohmsMetersInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.MicroohmMeter), MicroohmsMetersTolerance);
             AssertEx.EqualTolerance(MilliohmsCentimeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.MilliohmCentimeter), MilliohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(MilliohmsMeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.MilliohmMeter), MilliohmsMeterTolerance);
+            AssertEx.EqualTolerance(MilliohmsMetersInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.MilliohmMeter), MilliohmsMetersTolerance);
             AssertEx.EqualTolerance(NanoohmsCentimeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.NanoohmCentimeter), NanoohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(NanoohmsMeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.NanoohmMeter), NanoohmsMeterTolerance);
+            AssertEx.EqualTolerance(NanoohmsMetersInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.NanoohmMeter), NanoohmsMetersTolerance);
             AssertEx.EqualTolerance(OhmsCentimeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.OhmCentimeter), OhmsCentimeterTolerance);
-            AssertEx.EqualTolerance(OhmsMeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.OhmMeter), OhmsMeterTolerance);
+            AssertEx.EqualTolerance(OhmsMetersInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.OhmMeter), OhmsMetersTolerance);
             AssertEx.EqualTolerance(PicoohmsCentimeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.PicoohmCentimeter), PicoohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(PicoohmsMeterInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.PicoohmMeter), PicoohmsMeterTolerance);
+            AssertEx.EqualTolerance(PicoohmsMetersInOneOhmMeter, ohmmeter.As(ElectricResistivityUnit.PicoohmMeter), PicoohmsMetersTolerance);
         }
 
         [Fact]
         public void ConversionRoundTrip()
         {
-            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeter(1);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromKiloohmsCentimeter(ohmmeter.KiloohmsCentimeter).OhmsMeter, KiloohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromKiloohmsMeter(ohmmeter.KiloohmsMeter).OhmsMeter, KiloohmsMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromMegaohmsCentimeter(ohmmeter.MegaohmsCentimeter).OhmsMeter, MegaohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromMegaohmsMeter(ohmmeter.MegaohmsMeter).OhmsMeter, MegaohmsMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromMicroohmsCentimeter(ohmmeter.MicroohmsCentimeter).OhmsMeter, MicroohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromMicroohmsMeter(ohmmeter.MicroohmsMeter).OhmsMeter, MicroohmsMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromMilliohmsCentimeter(ohmmeter.MilliohmsCentimeter).OhmsMeter, MilliohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromMilliohmsMeter(ohmmeter.MilliohmsMeter).OhmsMeter, MilliohmsMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromNanoohmsCentimeter(ohmmeter.NanoohmsCentimeter).OhmsMeter, NanoohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromNanoohmsMeter(ohmmeter.NanoohmsMeter).OhmsMeter, NanoohmsMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromOhmsCentimeter(ohmmeter.OhmsCentimeter).OhmsMeter, OhmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromOhmsMeter(ohmmeter.OhmsMeter).OhmsMeter, OhmsMeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromPicoohmsCentimeter(ohmmeter.PicoohmsCentimeter).OhmsMeter, PicoohmsCentimeterTolerance);
-            AssertEx.EqualTolerance(1, ElectricResistivity.FromPicoohmsMeter(ohmmeter.PicoohmsMeter).OhmsMeter, PicoohmsMeterTolerance);
+            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeters(1);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromKiloohmsCentimeter(ohmmeter.KiloohmsCentimeter).OhmsMeters, KiloohmsCentimeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromKiloohmsMeters(ohmmeter.KiloohmsMeters).OhmsMeters, KiloohmsMetersTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromMegaohmsCentimeter(ohmmeter.MegaohmsCentimeter).OhmsMeters, MegaohmsCentimeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromMegaohmsMeters(ohmmeter.MegaohmsMeters).OhmsMeters, MegaohmsMetersTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromMicroohmsCentimeter(ohmmeter.MicroohmsCentimeter).OhmsMeters, MicroohmsCentimeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromMicroohmsMeters(ohmmeter.MicroohmsMeters).OhmsMeters, MicroohmsMetersTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromMilliohmsCentimeter(ohmmeter.MilliohmsCentimeter).OhmsMeters, MilliohmsCentimeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromMilliohmsMeters(ohmmeter.MilliohmsMeters).OhmsMeters, MilliohmsMetersTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromNanoohmsCentimeter(ohmmeter.NanoohmsCentimeter).OhmsMeters, NanoohmsCentimeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromNanoohmsMeters(ohmmeter.NanoohmsMeters).OhmsMeters, NanoohmsMetersTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromOhmsCentimeter(ohmmeter.OhmsCentimeter).OhmsMeters, OhmsCentimeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromOhmsMeters(ohmmeter.OhmsMeters).OhmsMeters, OhmsMetersTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromPicoohmsCentimeter(ohmmeter.PicoohmsCentimeter).OhmsMeters, PicoohmsCentimeterTolerance);
+            AssertEx.EqualTolerance(1, ElectricResistivity.FromPicoohmsMeters(ohmmeter.PicoohmsMeters).OhmsMeters, PicoohmsMetersTolerance);
         }
 
         [Fact]
         public void ArithmeticOperators()
         {
-            ElectricResistivity v = ElectricResistivity.FromOhmsMeter(1);
-            AssertEx.EqualTolerance(-1, -v.OhmsMeter, OhmsMeterTolerance);
-            AssertEx.EqualTolerance(2, (ElectricResistivity.FromOhmsMeter(3)-v).OhmsMeter, OhmsMeterTolerance);
-            AssertEx.EqualTolerance(2, (v + v).OhmsMeter, OhmsMeterTolerance);
-            AssertEx.EqualTolerance(10, (v*10).OhmsMeter, OhmsMeterTolerance);
-            AssertEx.EqualTolerance(10, (10*v).OhmsMeter, OhmsMeterTolerance);
-            AssertEx.EqualTolerance(2, (ElectricResistivity.FromOhmsMeter(10)/5).OhmsMeter, OhmsMeterTolerance);
-            AssertEx.EqualTolerance(2, ElectricResistivity.FromOhmsMeter(10)/ElectricResistivity.FromOhmsMeter(5), OhmsMeterTolerance);
+            ElectricResistivity v = ElectricResistivity.FromOhmsMeters(1);
+            AssertEx.EqualTolerance(-1, -v.OhmsMeters, OhmsMetersTolerance);
+            AssertEx.EqualTolerance(2, (ElectricResistivity.FromOhmsMeters(3)-v).OhmsMeters, OhmsMetersTolerance);
+            AssertEx.EqualTolerance(2, (v + v).OhmsMeters, OhmsMetersTolerance);
+            AssertEx.EqualTolerance(10, (v*10).OhmsMeters, OhmsMetersTolerance);
+            AssertEx.EqualTolerance(10, (10*v).OhmsMeters, OhmsMetersTolerance);
+            AssertEx.EqualTolerance(2, (ElectricResistivity.FromOhmsMeters(10)/5).OhmsMeters, OhmsMetersTolerance);
+            AssertEx.EqualTolerance(2, ElectricResistivity.FromOhmsMeters(10)/ElectricResistivity.FromOhmsMeters(5), OhmsMetersTolerance);
         }
 
         [Fact]
         public void ComparisonOperators()
         {
-            ElectricResistivity oneOhmMeter = ElectricResistivity.FromOhmsMeter(1);
-            ElectricResistivity twoOhmsMeter = ElectricResistivity.FromOhmsMeter(2);
+            ElectricResistivity oneOhmMeter = ElectricResistivity.FromOhmsMeters(1);
+            ElectricResistivity twoOhmsMeters = ElectricResistivity.FromOhmsMeters(2);
 
-            Assert.True(oneOhmMeter < twoOhmsMeter);
-            Assert.True(oneOhmMeter <= twoOhmsMeter);
-            Assert.True(twoOhmsMeter > oneOhmMeter);
-            Assert.True(twoOhmsMeter >= oneOhmMeter);
+            Assert.True(oneOhmMeter < twoOhmsMeters);
+            Assert.True(oneOhmMeter <= twoOhmsMeters);
+            Assert.True(twoOhmsMeters > oneOhmMeter);
+            Assert.True(twoOhmsMeters >= oneOhmMeter);
 
-            Assert.False(oneOhmMeter > twoOhmsMeter);
-            Assert.False(oneOhmMeter >= twoOhmsMeter);
-            Assert.False(twoOhmsMeter < oneOhmMeter);
-            Assert.False(twoOhmsMeter <= oneOhmMeter);
+            Assert.False(oneOhmMeter > twoOhmsMeters);
+            Assert.False(oneOhmMeter >= twoOhmsMeters);
+            Assert.False(twoOhmsMeters < oneOhmMeter);
+            Assert.False(twoOhmsMeters <= oneOhmMeter);
         }
 
         [Fact]
         public void CompareToIsImplemented()
         {
-            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeter(1);
+            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeters(1);
             Assert.Equal(0, ohmmeter.CompareTo(ohmmeter));
             Assert.True(ohmmeter.CompareTo(ElectricResistivity.Zero) > 0);
             Assert.True(ElectricResistivity.Zero.CompareTo(ohmmeter) < 0);
@@ -205,14 +205,14 @@ namespace UnitsNet.Tests
         [Fact]
         public void CompareToThrowsOnTypeMismatch()
         {
-            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeter(1);
+            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeters(1);
             Assert.Throws<ArgumentException>(() => ohmmeter.CompareTo(new object()));
         }
 
         [Fact]
         public void CompareToThrowsOnNull()
         {
-            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeter(1);
+            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeters(1);
             Assert.Throws<ArgumentNullException>(() => ohmmeter.CompareTo(null));
         }
 
@@ -220,8 +220,8 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualityOperators()
         {
-            ElectricResistivity a = ElectricResistivity.FromOhmsMeter(1);
-            ElectricResistivity b = ElectricResistivity.FromOhmsMeter(2);
+            ElectricResistivity a = ElectricResistivity.FromOhmsMeters(1);
+            ElectricResistivity b = ElectricResistivity.FromOhmsMeters(2);
 
 // ReSharper disable EqualExpressionComparison
             Assert.True(a == a);
@@ -235,22 +235,22 @@ namespace UnitsNet.Tests
         [Fact]
         public void EqualsIsImplemented()
         {
-            ElectricResistivity v = ElectricResistivity.FromOhmsMeter(1);
-            Assert.True(v.Equals(ElectricResistivity.FromOhmsMeter(1), ElectricResistivity.FromOhmsMeter(OhmsMeterTolerance)));
-            Assert.False(v.Equals(ElectricResistivity.Zero, ElectricResistivity.FromOhmsMeter(OhmsMeterTolerance)));
+            ElectricResistivity v = ElectricResistivity.FromOhmsMeters(1);
+            Assert.True(v.Equals(ElectricResistivity.FromOhmsMeters(1), ElectricResistivity.FromOhmsMeters(OhmsMetersTolerance)));
+            Assert.False(v.Equals(ElectricResistivity.Zero, ElectricResistivity.FromOhmsMeters(OhmsMetersTolerance)));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnTypeMismatch()
         {
-            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeter(1);
+            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeters(1);
             Assert.False(ohmmeter.Equals(new object()));
         }
 
         [Fact]
         public void EqualsReturnsFalseOnNull()
         {
-            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeter(1);
+            ElectricResistivity ohmmeter = ElectricResistivity.FromOhmsMeters(1);
             Assert.False(ohmmeter.Equals(null));
         }
     }

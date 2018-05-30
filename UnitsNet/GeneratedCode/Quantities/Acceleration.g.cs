@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of Acceleration.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _meterPerSecondSquared;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly AccelerationUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public AccelerationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public Acceleration() : this(0)
+        public Acceleration()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
-        public Acceleration(double meterpersecondsquared)
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
+        public Acceleration(double meterspersecondsquared)
         {
-            _meterPerSecondSquared = Convert.ToDouble(meterpersecondsquared);
+            _value = Convert.ToDouble(meterspersecondsquared);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          Acceleration(double numericValue, AccelerationUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit MeterPerSecondSquared.
+        /// </summary>
+        /// <param name="meterspersecondsquared">Value assuming base unit MeterPerSecondSquared.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Acceleration(long meterpersecondsquared)
-        {
-            _meterPerSecondSquared = Convert.ToDouble(meterpersecondsquared);
-        }
+        Acceleration(long meterspersecondsquared) : this(Convert.ToDouble(meterspersecondsquared), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit MeterPerSecondSquared.
+        /// </summary>
+        /// <param name="meterspersecondsquared">Value assuming base unit MeterPerSecondSquared.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        Acceleration(decimal meterpersecondsquared)
-        {
-            _meterPerSecondSquared = Convert.ToDouble(meterpersecondsquared);
-        }
+        Acceleration(decimal meterspersecondsquared) : this(Convert.ToDouble(meterspersecondsquared), BaseUnit) { }
 
         #region Properties
 
@@ -119,140 +156,98 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static AccelerationUnit BaseUnit
-        {
-            get { return AccelerationUnit.MeterPerSecondSquared; }
-        }
+        public static AccelerationUnit BaseUnit => AccelerationUnit.MeterPerSecondSquared;
 
         /// <summary>
         ///     All units of measurement for the Acceleration quantity.
         /// </summary>
         public static AccelerationUnit[] Units { get; } = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().ToArray();
-
         /// <summary>
-        ///     Get Acceleration in CentimeterPerSecondSquared.
+        ///     Get Acceleration in CentimetersPerSecondSquared.
         /// </summary>
-        public double CentimeterPerSecondSquared
-        {
-            get { return (_meterPerSecondSquared) / 1e-2d; }
-        }
-
+        public double CentimetersPerSecondSquared => As(AccelerationUnit.CentimeterPerSecondSquared);
         /// <summary>
-        ///     Get Acceleration in DecimeterPerSecondSquared.
+        ///     Get Acceleration in DecimetersPerSecondSquared.
         /// </summary>
-        public double DecimeterPerSecondSquared
-        {
-            get { return (_meterPerSecondSquared) / 1e-1d; }
-        }
-
+        public double DecimetersPerSecondSquared => As(AccelerationUnit.DecimeterPerSecondSquared);
         /// <summary>
         ///     Get Acceleration in FeetPerSecondSquared.
         /// </summary>
-        public double FeetPerSecondSquared
-        {
-            get { return _meterPerSecondSquared/0.304800; }
-        }
-
+        public double FeetPerSecondSquared => As(AccelerationUnit.FootPerSecondSquared);
         /// <summary>
         ///     Get Acceleration in InchesPerSecondSquared.
         /// </summary>
-        public double InchesPerSecondSquared
-        {
-            get { return _meterPerSecondSquared/0.0254; }
-        }
-
+        public double InchesPerSecondSquared => As(AccelerationUnit.InchPerSecondSquared);
         /// <summary>
-        ///     Get Acceleration in KilometerPerSecondSquared.
+        ///     Get Acceleration in KilometersPerSecondSquared.
         /// </summary>
-        public double KilometerPerSecondSquared
-        {
-            get { return (_meterPerSecondSquared) / 1e3d; }
-        }
-
+        public double KilometersPerSecondSquared => As(AccelerationUnit.KilometerPerSecondSquared);
         /// <summary>
-        ///     Get Acceleration in MeterPerSecondSquared.
+        ///     Get Acceleration in KnotsPerHour.
         /// </summary>
-        public double MeterPerSecondSquared
-        {
-            get { return _meterPerSecondSquared; }
-        }
-
+        public double KnotsPerHour => As(AccelerationUnit.KnotPerHour);
         /// <summary>
-        ///     Get Acceleration in MicrometerPerSecondSquared.
+        ///     Get Acceleration in KnotsPerMinute.
         /// </summary>
-        public double MicrometerPerSecondSquared
-        {
-            get { return (_meterPerSecondSquared) / 1e-6d; }
-        }
-
+        public double KnotsPerMinute => As(AccelerationUnit.KnotPerMinute);
         /// <summary>
-        ///     Get Acceleration in MillimeterPerSecondSquared.
+        ///     Get Acceleration in KnotsPerSecond.
         /// </summary>
-        public double MillimeterPerSecondSquared
-        {
-            get { return (_meterPerSecondSquared) / 1e-3d; }
-        }
-
+        public double KnotsPerSecond => As(AccelerationUnit.KnotPerSecond);
         /// <summary>
-        ///     Get Acceleration in NanometerPerSecondSquared.
+        ///     Get Acceleration in MetersPerSecondSquared.
         /// </summary>
-        public double NanometerPerSecondSquared
-        {
-            get { return (_meterPerSecondSquared) / 1e-9d; }
-        }
-
+        public double MetersPerSecondSquared => As(AccelerationUnit.MeterPerSecondSquared);
+        /// <summary>
+        ///     Get Acceleration in MicrometersPerSecondSquared.
+        /// </summary>
+        public double MicrometersPerSecondSquared => As(AccelerationUnit.MicrometerPerSecondSquared);
+        /// <summary>
+        ///     Get Acceleration in MillimetersPerSecondSquared.
+        /// </summary>
+        public double MillimetersPerSecondSquared => As(AccelerationUnit.MillimeterPerSecondSquared);
+        /// <summary>
+        ///     Get Acceleration in NanometersPerSecondSquared.
+        /// </summary>
+        public double NanometersPerSecondSquared => As(AccelerationUnit.NanometerPerSecondSquared);
         /// <summary>
         ///     Get Acceleration in StandardGravity.
         /// </summary>
-        public double StandardGravity
-        {
-            get { return _meterPerSecondSquared/9.80665; }
-        }
+        public double StandardGravity => As(AccelerationUnit.StandardGravity);
 
         #endregion
 
         #region Static
 
-        public static Acceleration Zero
-        {
-            get { return new Acceleration(); }
-        }
+        public static Acceleration Zero => new Acceleration(0, BaseUnit);
 
         /// <summary>
-        ///     Get Acceleration from CentimeterPerSecondSquared.
+        ///     Get Acceleration from CentimetersPerSecondSquared.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromCentimeterPerSecondSquared(double centimeterpersecondsquared)
-        {
-            double value = (double) centimeterpersecondsquared;
-            return new Acceleration((value) * 1e-2d);
-        }
+        public static Acceleration FromCentimetersPerSecondSquared(double centimeterspersecondsquared)
 #else
-        public static Acceleration FromCentimeterPerSecondSquared(QuantityValue centimeterpersecondsquared)
-        {
-            double value = (double) centimeterpersecondsquared;
-            return new Acceleration(((value) * 1e-2d));
-        }
+        public static Acceleration FromCentimetersPerSecondSquared(QuantityValue centimeterspersecondsquared)
 #endif
+        {
+            double value = (double) centimeterspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.CentimeterPerSecondSquared);
+        }
 
         /// <summary>
-        ///     Get Acceleration from DecimeterPerSecondSquared.
+        ///     Get Acceleration from DecimetersPerSecondSquared.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromDecimeterPerSecondSquared(double decimeterpersecondsquared)
-        {
-            double value = (double) decimeterpersecondsquared;
-            return new Acceleration((value) * 1e-1d);
-        }
+        public static Acceleration FromDecimetersPerSecondSquared(double decimeterspersecondsquared)
 #else
-        public static Acceleration FromDecimeterPerSecondSquared(QuantityValue decimeterpersecondsquared)
-        {
-            double value = (double) decimeterpersecondsquared;
-            return new Acceleration(((value) * 1e-1d));
-        }
+        public static Acceleration FromDecimetersPerSecondSquared(QuantityValue decimeterspersecondsquared)
 #endif
+        {
+            double value = (double) decimeterspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.DecimeterPerSecondSquared);
+        }
 
         /// <summary>
         ///     Get Acceleration from FeetPerSecondSquared.
@@ -260,17 +255,13 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromFeetPerSecondSquared(double feetpersecondsquared)
-        {
-            double value = (double) feetpersecondsquared;
-            return new Acceleration(value*0.304800);
-        }
 #else
         public static Acceleration FromFeetPerSecondSquared(QuantityValue feetpersecondsquared)
+#endif
         {
             double value = (double) feetpersecondsquared;
-            return new Acceleration((value*0.304800));
+            return new Acceleration(value, AccelerationUnit.FootPerSecondSquared);
         }
-#endif
 
         /// <summary>
         ///     Get Acceleration from InchesPerSecondSquared.
@@ -278,107 +269,125 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromInchesPerSecondSquared(double inchespersecondsquared)
-        {
-            double value = (double) inchespersecondsquared;
-            return new Acceleration(value*0.0254);
-        }
 #else
         public static Acceleration FromInchesPerSecondSquared(QuantityValue inchespersecondsquared)
+#endif
         {
             double value = (double) inchespersecondsquared;
-            return new Acceleration((value*0.0254));
+            return new Acceleration(value, AccelerationUnit.InchPerSecondSquared);
         }
-#endif
 
         /// <summary>
-        ///     Get Acceleration from KilometerPerSecondSquared.
+        ///     Get Acceleration from KilometersPerSecondSquared.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromKilometerPerSecondSquared(double kilometerpersecondsquared)
-        {
-            double value = (double) kilometerpersecondsquared;
-            return new Acceleration((value) * 1e3d);
-        }
+        public static Acceleration FromKilometersPerSecondSquared(double kilometerspersecondsquared)
 #else
-        public static Acceleration FromKilometerPerSecondSquared(QuantityValue kilometerpersecondsquared)
-        {
-            double value = (double) kilometerpersecondsquared;
-            return new Acceleration(((value) * 1e3d));
-        }
+        public static Acceleration FromKilometersPerSecondSquared(QuantityValue kilometerspersecondsquared)
 #endif
+        {
+            double value = (double) kilometerspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.KilometerPerSecondSquared);
+        }
 
         /// <summary>
-        ///     Get Acceleration from MeterPerSecondSquared.
+        ///     Get Acceleration from KnotsPerHour.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromMeterPerSecondSquared(double meterpersecondsquared)
-        {
-            double value = (double) meterpersecondsquared;
-            return new Acceleration(value);
-        }
+        public static Acceleration FromKnotsPerHour(double knotsperhour)
 #else
-        public static Acceleration FromMeterPerSecondSquared(QuantityValue meterpersecondsquared)
-        {
-            double value = (double) meterpersecondsquared;
-            return new Acceleration((value));
-        }
+        public static Acceleration FromKnotsPerHour(QuantityValue knotsperhour)
 #endif
+        {
+            double value = (double) knotsperhour;
+            return new Acceleration(value, AccelerationUnit.KnotPerHour);
+        }
 
         /// <summary>
-        ///     Get Acceleration from MicrometerPerSecondSquared.
+        ///     Get Acceleration from KnotsPerMinute.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromMicrometerPerSecondSquared(double micrometerpersecondsquared)
-        {
-            double value = (double) micrometerpersecondsquared;
-            return new Acceleration((value) * 1e-6d);
-        }
+        public static Acceleration FromKnotsPerMinute(double knotsperminute)
 #else
-        public static Acceleration FromMicrometerPerSecondSquared(QuantityValue micrometerpersecondsquared)
-        {
-            double value = (double) micrometerpersecondsquared;
-            return new Acceleration(((value) * 1e-6d));
-        }
+        public static Acceleration FromKnotsPerMinute(QuantityValue knotsperminute)
 #endif
+        {
+            double value = (double) knotsperminute;
+            return new Acceleration(value, AccelerationUnit.KnotPerMinute);
+        }
 
         /// <summary>
-        ///     Get Acceleration from MillimeterPerSecondSquared.
+        ///     Get Acceleration from KnotsPerSecond.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromMillimeterPerSecondSquared(double millimeterpersecondsquared)
-        {
-            double value = (double) millimeterpersecondsquared;
-            return new Acceleration((value) * 1e-3d);
-        }
+        public static Acceleration FromKnotsPerSecond(double knotspersecond)
 #else
-        public static Acceleration FromMillimeterPerSecondSquared(QuantityValue millimeterpersecondsquared)
-        {
-            double value = (double) millimeterpersecondsquared;
-            return new Acceleration(((value) * 1e-3d));
-        }
+        public static Acceleration FromKnotsPerSecond(QuantityValue knotspersecond)
 #endif
+        {
+            double value = (double) knotspersecond;
+            return new Acceleration(value, AccelerationUnit.KnotPerSecond);
+        }
 
         /// <summary>
-        ///     Get Acceleration from NanometerPerSecondSquared.
+        ///     Get Acceleration from MetersPerSecondSquared.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Acceleration FromNanometerPerSecondSquared(double nanometerpersecondsquared)
-        {
-            double value = (double) nanometerpersecondsquared;
-            return new Acceleration((value) * 1e-9d);
-        }
+        public static Acceleration FromMetersPerSecondSquared(double meterspersecondsquared)
 #else
-        public static Acceleration FromNanometerPerSecondSquared(QuantityValue nanometerpersecondsquared)
-        {
-            double value = (double) nanometerpersecondsquared;
-            return new Acceleration(((value) * 1e-9d));
-        }
+        public static Acceleration FromMetersPerSecondSquared(QuantityValue meterspersecondsquared)
 #endif
+        {
+            double value = (double) meterspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.MeterPerSecondSquared);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from MicrometersPerSecondSquared.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromMicrometersPerSecondSquared(double micrometerspersecondsquared)
+#else
+        public static Acceleration FromMicrometersPerSecondSquared(QuantityValue micrometerspersecondsquared)
+#endif
+        {
+            double value = (double) micrometerspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.MicrometerPerSecondSquared);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from MillimetersPerSecondSquared.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromMillimetersPerSecondSquared(double millimeterspersecondsquared)
+#else
+        public static Acceleration FromMillimetersPerSecondSquared(QuantityValue millimeterspersecondsquared)
+#endif
+        {
+            double value = (double) millimeterspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.MillimeterPerSecondSquared);
+        }
+
+        /// <summary>
+        ///     Get Acceleration from NanometersPerSecondSquared.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Acceleration FromNanometersPerSecondSquared(double nanometerspersecondsquared)
+#else
+        public static Acceleration FromNanometersPerSecondSquared(QuantityValue nanometerspersecondsquared)
+#endif
+        {
+            double value = (double) nanometerspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.NanometerPerSecondSquared);
+        }
 
         /// <summary>
         ///     Get Acceleration from StandardGravity.
@@ -386,28 +395,24 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromStandardGravity(double standardgravity)
-        {
-            double value = (double) standardgravity;
-            return new Acceleration(value*9.80665);
-        }
 #else
         public static Acceleration FromStandardGravity(QuantityValue standardgravity)
+#endif
         {
             double value = (double) standardgravity;
-            return new Acceleration((value*9.80665));
+            return new Acceleration(value, AccelerationUnit.StandardGravity);
         }
-#endif
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         /// <summary>
-        ///     Get nullable Acceleration from nullable CentimeterPerSecondSquared.
+        ///     Get nullable Acceleration from nullable CentimetersPerSecondSquared.
         /// </summary>
-        public static Acceleration? FromCentimeterPerSecondSquared(QuantityValue? centimeterpersecondsquared)
+        public static Acceleration? FromCentimetersPerSecondSquared(QuantityValue? centimeterspersecondsquared)
         {
-            if (centimeterpersecondsquared.HasValue)
+            if (centimeterspersecondsquared.HasValue)
             {
-                return FromCentimeterPerSecondSquared(centimeterpersecondsquared.Value);
+                return FromCentimetersPerSecondSquared(centimeterspersecondsquared.Value);
             }
             else
             {
@@ -416,13 +421,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable DecimeterPerSecondSquared.
+        ///     Get nullable Acceleration from nullable DecimetersPerSecondSquared.
         /// </summary>
-        public static Acceleration? FromDecimeterPerSecondSquared(QuantityValue? decimeterpersecondsquared)
+        public static Acceleration? FromDecimetersPerSecondSquared(QuantityValue? decimeterspersecondsquared)
         {
-            if (decimeterpersecondsquared.HasValue)
+            if (decimeterspersecondsquared.HasValue)
             {
-                return FromDecimeterPerSecondSquared(decimeterpersecondsquared.Value);
+                return FromDecimetersPerSecondSquared(decimeterspersecondsquared.Value);
             }
             else
             {
@@ -461,13 +466,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable KilometerPerSecondSquared.
+        ///     Get nullable Acceleration from nullable KilometersPerSecondSquared.
         /// </summary>
-        public static Acceleration? FromKilometerPerSecondSquared(QuantityValue? kilometerpersecondsquared)
+        public static Acceleration? FromKilometersPerSecondSquared(QuantityValue? kilometerspersecondsquared)
         {
-            if (kilometerpersecondsquared.HasValue)
+            if (kilometerspersecondsquared.HasValue)
             {
-                return FromKilometerPerSecondSquared(kilometerpersecondsquared.Value);
+                return FromKilometersPerSecondSquared(kilometerspersecondsquared.Value);
             }
             else
             {
@@ -476,13 +481,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable MeterPerSecondSquared.
+        ///     Get nullable Acceleration from nullable KnotsPerHour.
         /// </summary>
-        public static Acceleration? FromMeterPerSecondSquared(QuantityValue? meterpersecondsquared)
+        public static Acceleration? FromKnotsPerHour(QuantityValue? knotsperhour)
         {
-            if (meterpersecondsquared.HasValue)
+            if (knotsperhour.HasValue)
             {
-                return FromMeterPerSecondSquared(meterpersecondsquared.Value);
+                return FromKnotsPerHour(knotsperhour.Value);
             }
             else
             {
@@ -491,13 +496,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable MicrometerPerSecondSquared.
+        ///     Get nullable Acceleration from nullable KnotsPerMinute.
         /// </summary>
-        public static Acceleration? FromMicrometerPerSecondSquared(QuantityValue? micrometerpersecondsquared)
+        public static Acceleration? FromKnotsPerMinute(QuantityValue? knotsperminute)
         {
-            if (micrometerpersecondsquared.HasValue)
+            if (knotsperminute.HasValue)
             {
-                return FromMicrometerPerSecondSquared(micrometerpersecondsquared.Value);
+                return FromKnotsPerMinute(knotsperminute.Value);
             }
             else
             {
@@ -506,13 +511,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable MillimeterPerSecondSquared.
+        ///     Get nullable Acceleration from nullable KnotsPerSecond.
         /// </summary>
-        public static Acceleration? FromMillimeterPerSecondSquared(QuantityValue? millimeterpersecondsquared)
+        public static Acceleration? FromKnotsPerSecond(QuantityValue? knotspersecond)
         {
-            if (millimeterpersecondsquared.HasValue)
+            if (knotspersecond.HasValue)
             {
-                return FromMillimeterPerSecondSquared(millimeterpersecondsquared.Value);
+                return FromKnotsPerSecond(knotspersecond.Value);
             }
             else
             {
@@ -521,13 +526,58 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable NanometerPerSecondSquared.
+        ///     Get nullable Acceleration from nullable MetersPerSecondSquared.
         /// </summary>
-        public static Acceleration? FromNanometerPerSecondSquared(QuantityValue? nanometerpersecondsquared)
+        public static Acceleration? FromMetersPerSecondSquared(QuantityValue? meterspersecondsquared)
         {
-            if (nanometerpersecondsquared.HasValue)
+            if (meterspersecondsquared.HasValue)
             {
-                return FromNanometerPerSecondSquared(nanometerpersecondsquared.Value);
+                return FromMetersPerSecondSquared(meterspersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MicrometersPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMicrometersPerSecondSquared(QuantityValue? micrometerspersecondsquared)
+        {
+            if (micrometerspersecondsquared.HasValue)
+            {
+                return FromMicrometersPerSecondSquared(micrometerspersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MillimetersPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMillimetersPerSecondSquared(QuantityValue? millimeterspersecondsquared)
+        {
+            if (millimeterspersecondsquared.HasValue)
+            {
+                return FromMillimetersPerSecondSquared(millimeterspersecondsquared.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable NanometersPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromNanometersPerSecondSquared(QuantityValue? nanometerspersecondsquared)
+        {
+            if (nanometerspersecondsquared.HasValue)
+            {
+                return FromNanometersPerSecondSquared(nanometerspersecondsquared.Value);
             }
             else
             {
@@ -566,32 +616,7 @@ namespace UnitsNet
         public static Acceleration From(QuantityValue value, AccelerationUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case AccelerationUnit.CentimeterPerSecondSquared:
-                    return FromCentimeterPerSecondSquared(value);
-                case AccelerationUnit.DecimeterPerSecondSquared:
-                    return FromDecimeterPerSecondSquared(value);
-                case AccelerationUnit.FootPerSecondSquared:
-                    return FromFeetPerSecondSquared(value);
-                case AccelerationUnit.InchPerSecondSquared:
-                    return FromInchesPerSecondSquared(value);
-                case AccelerationUnit.KilometerPerSecondSquared:
-                    return FromKilometerPerSecondSquared(value);
-                case AccelerationUnit.MeterPerSecondSquared:
-                    return FromMeterPerSecondSquared(value);
-                case AccelerationUnit.MicrometerPerSecondSquared:
-                    return FromMicrometerPerSecondSquared(value);
-                case AccelerationUnit.MillimeterPerSecondSquared:
-                    return FromMillimeterPerSecondSquared(value);
-                case AccelerationUnit.NanometerPerSecondSquared:
-                    return FromNanometerPerSecondSquared(value);
-                case AccelerationUnit.StandardGravity:
-                    return FromStandardGravity(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Acceleration((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -608,32 +633,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case AccelerationUnit.CentimeterPerSecondSquared:
-                    return FromCentimeterPerSecondSquared(value.Value);
-                case AccelerationUnit.DecimeterPerSecondSquared:
-                    return FromDecimeterPerSecondSquared(value.Value);
-                case AccelerationUnit.FootPerSecondSquared:
-                    return FromFeetPerSecondSquared(value.Value);
-                case AccelerationUnit.InchPerSecondSquared:
-                    return FromInchesPerSecondSquared(value.Value);
-                case AccelerationUnit.KilometerPerSecondSquared:
-                    return FromKilometerPerSecondSquared(value.Value);
-                case AccelerationUnit.MeterPerSecondSquared:
-                    return FromMeterPerSecondSquared(value.Value);
-                case AccelerationUnit.MicrometerPerSecondSquared:
-                    return FromMicrometerPerSecondSquared(value.Value);
-                case AccelerationUnit.MillimeterPerSecondSquared:
-                    return FromMillimeterPerSecondSquared(value.Value);
-                case AccelerationUnit.NanometerPerSecondSquared:
-                    return FromNanometerPerSecondSquared(value.Value);
-                case AccelerationUnit.StandardGravity:
-                    return FromStandardGravity(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new Acceleration((double)value.Value, fromUnit);
         }
 #endif
 
@@ -652,12 +653,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(AccelerationUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          AccelerationUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -668,37 +686,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Acceleration operator -(Acceleration right)
         {
-            return new Acceleration(-right._meterPerSecondSquared);
+            return new Acceleration(-right.Value, right.Unit);
         }
 
         public static Acceleration operator +(Acceleration left, Acceleration right)
         {
-            return new Acceleration(left._meterPerSecondSquared + right._meterPerSecondSquared);
+            return new Acceleration(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Acceleration operator -(Acceleration left, Acceleration right)
         {
-            return new Acceleration(left._meterPerSecondSquared - right._meterPerSecondSquared);
+            return new Acceleration(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static Acceleration operator *(double left, Acceleration right)
         {
-            return new Acceleration(left*right._meterPerSecondSquared);
+            return new Acceleration(left * right.Value, right.Unit);
         }
 
         public static Acceleration operator *(Acceleration left, double right)
         {
-            return new Acceleration(left._meterPerSecondSquared*(double)right);
+            return new Acceleration(left.Value * right, left.Unit);
         }
 
         public static Acceleration operator /(Acceleration left, double right)
         {
-            return new Acceleration(left._meterPerSecondSquared/(double)right);
+            return new Acceleration(left.Value / right, left.Unit);
         }
 
         public static double operator /(Acceleration left, Acceleration right)
         {
-            return Convert.ToDouble(left._meterPerSecondSquared/right._meterPerSecondSquared);
+            return left.MetersPerSecondSquared / right.MetersPerSecondSquared;
         }
 #endif
 
@@ -721,43 +739,43 @@ namespace UnitsNet
 #endif
         int CompareTo(Acceleration other)
         {
-            return _meterPerSecondSquared.CompareTo(other._meterPerSecondSquared);
+            return AsBaseUnitMetersPerSecondSquared().CompareTo(other.AsBaseUnitMetersPerSecondSquared());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(Acceleration left, Acceleration right)
         {
-            return left._meterPerSecondSquared <= right._meterPerSecondSquared;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(Acceleration left, Acceleration right)
         {
-            return left._meterPerSecondSquared >= right._meterPerSecondSquared;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(Acceleration left, Acceleration right)
         {
-            return left._meterPerSecondSquared < right._meterPerSecondSquared;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(Acceleration left, Acceleration right)
         {
-            return left._meterPerSecondSquared > right._meterPerSecondSquared;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(Acceleration left, Acceleration right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._meterPerSecondSquared == right._meterPerSecondSquared;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(Acceleration left, Acceleration right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._meterPerSecondSquared != right._meterPerSecondSquared;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -769,7 +787,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _meterPerSecondSquared.Equals(((Acceleration) obj)._meterPerSecondSquared);
+            return AsBaseUnitMetersPerSecondSquared().Equals(((Acceleration) obj).AsBaseUnitMetersPerSecondSquared());
         }
 
         /// <summary>
@@ -782,12 +800,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Acceleration other, Acceleration maxError)
         {
-            return Math.Abs(_meterPerSecondSquared - other._meterPerSecondSquared) <= maxError._meterPerSecondSquared;
+            return Math.Abs(AsBaseUnitMetersPerSecondSquared() - other.AsBaseUnitMetersPerSecondSquared()) <= maxError.AsBaseUnitMetersPerSecondSquared();
         }
 
         public override int GetHashCode()
         {
-            return _meterPerSecondSquared.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -797,32 +815,31 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(AccelerationUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitMetersPerSecondSquared();
+
             switch (unit)
             {
-                case AccelerationUnit.CentimeterPerSecondSquared:
-                    return CentimeterPerSecondSquared;
-                case AccelerationUnit.DecimeterPerSecondSquared:
-                    return DecimeterPerSecondSquared;
-                case AccelerationUnit.FootPerSecondSquared:
-                    return FeetPerSecondSquared;
-                case AccelerationUnit.InchPerSecondSquared:
-                    return InchesPerSecondSquared;
-                case AccelerationUnit.KilometerPerSecondSquared:
-                    return KilometerPerSecondSquared;
-                case AccelerationUnit.MeterPerSecondSquared:
-                    return MeterPerSecondSquared;
-                case AccelerationUnit.MicrometerPerSecondSquared:
-                    return MicrometerPerSecondSquared;
-                case AccelerationUnit.MillimeterPerSecondSquared:
-                    return MillimeterPerSecondSquared;
-                case AccelerationUnit.NanometerPerSecondSquared:
-                    return NanometerPerSecondSquared;
-                case AccelerationUnit.StandardGravity:
-                    return StandardGravity;
+                case AccelerationUnit.CentimeterPerSecondSquared: return (baseUnitValue) / 1e-2d;
+                case AccelerationUnit.DecimeterPerSecondSquared: return (baseUnitValue) / 1e-1d;
+                case AccelerationUnit.FootPerSecondSquared: return baseUnitValue/0.304800;
+                case AccelerationUnit.InchPerSecondSquared: return baseUnitValue/0.0254;
+                case AccelerationUnit.KilometerPerSecondSquared: return (baseUnitValue) / 1e3d;
+                case AccelerationUnit.KnotPerHour: return baseUnitValue/0.5144444444444*3600;
+                case AccelerationUnit.KnotPerMinute: return baseUnitValue/0.5144444444444*60;
+                case AccelerationUnit.KnotPerSecond: return baseUnitValue/0.5144444444444;
+                case AccelerationUnit.MeterPerSecondSquared: return baseUnitValue;
+                case AccelerationUnit.MicrometerPerSecondSquared: return (baseUnitValue) / 1e-6d;
+                case AccelerationUnit.MillimeterPerSecondSquared: return (baseUnitValue) / 1e-3d;
+                case AccelerationUnit.NanometerPerSecondSquared: return (baseUnitValue) / 1e-9d;
+                case AccelerationUnit.StandardGravity: return baseUnitValue/9.80665;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -864,7 +881,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -883,23 +904,30 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static Acceleration Parse(string str, [CanBeNull] Culture culture)
+        public static Acceleration Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<Acceleration, AccelerationUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<Acceleration, AccelerationUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     AccelerationUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromMeterPerSecondSquared(x.MeterPerSecondSquared + y.MeterPerSecondSquared));
+                }, (x, y) => FromMetersPerSecondSquared(x.MetersPerSecondSquared + y.MetersPerSecondSquared));
         }
 
         /// <summary>
@@ -919,16 +947,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out Acceleration result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out Acceleration result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -941,6 +994,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -954,11 +1008,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static AccelerationUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -967,6 +1024,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -979,18 +1038,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static AccelerationUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static AccelerationUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<AccelerationUnit>(str.Trim());
 
             if (unit == AccelerationUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized AccelerationUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -999,6 +1058,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is MeterPerSecondSquared
         /// </summary>
@@ -1010,7 +1070,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -1027,74 +1087,141 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(AccelerationUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          AccelerationUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(AccelerationUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            AccelerationUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(AccelerationUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            AccelerationUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of Acceleration
         /// </summary>
-        public static Acceleration MaxValue
-        {
-            get
-            {
-                return new Acceleration(double.MaxValue);
-            }
-        }
+        public static Acceleration MaxValue => new Acceleration(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Acceleration
         /// </summary>
-        public static Acceleration MinValue
+        public static Acceleration MinValue => new Acceleration(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitMetersPerSecondSquared()
         {
-            get
+			if (Unit == AccelerationUnit.MeterPerSecondSquared) { return _value; }
+
+            switch (Unit)
             {
-                return new Acceleration(double.MinValue);
-            }
-        }
-    }
+                case AccelerationUnit.CentimeterPerSecondSquared: return (_value) * 1e-2d;
+                case AccelerationUnit.DecimeterPerSecondSquared: return (_value) * 1e-1d;
+                case AccelerationUnit.FootPerSecondSquared: return _value*0.304800;
+                case AccelerationUnit.InchPerSecondSquared: return _value*0.0254;
+                case AccelerationUnit.KilometerPerSecondSquared: return (_value) * 1e3d;
+                case AccelerationUnit.KnotPerHour: return _value*0.5144444444444/3600;
+                case AccelerationUnit.KnotPerMinute: return _value*0.5144444444444/60;
+                case AccelerationUnit.KnotPerSecond: return _value*0.5144444444444;
+                case AccelerationUnit.MeterPerSecondSquared: return _value;
+                case AccelerationUnit.MicrometerPerSecondSquared: return (_value) * 1e-6d;
+                case AccelerationUnit.MillimeterPerSecondSquared: return (_value) * 1e-3d;
+                case AccelerationUnit.NanometerPerSecondSquared: return (_value) * 1e-9d;
+                case AccelerationUnit.StandardGravity: return _value*9.80665;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(AccelerationUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

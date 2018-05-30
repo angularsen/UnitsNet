@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -1163,6 +1163,74 @@ namespace UnitsNet.Extensions.NumberToDensity
 
         /// <inheritdoc cref="Density.FromPoundsPerCubicInch(double?)"/>
         public static Density? PoundsPerCubicInch(this decimal? value) => Density.FromPoundsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region PoundPerImperialGallon
+
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double)"/>
+        public static Density PoundsPerImperialGallon(this int value) => Density.FromPoundsPerImperialGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double?)"/>
+        public static Density? PoundsPerImperialGallon(this int? value) => Density.FromPoundsPerImperialGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double)"/>
+        public static Density PoundsPerImperialGallon(this long value) => Density.FromPoundsPerImperialGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double?)"/>
+        public static Density? PoundsPerImperialGallon(this long? value) => Density.FromPoundsPerImperialGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double)"/>
+        public static Density PoundsPerImperialGallon(this double value) => Density.FromPoundsPerImperialGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double?)"/>
+        public static Density? PoundsPerImperialGallon(this double? value) => Density.FromPoundsPerImperialGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double)"/>
+        public static Density PoundsPerImperialGallon(this float value) => Density.FromPoundsPerImperialGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double?)"/>
+        public static Density? PoundsPerImperialGallon(this float? value) => Density.FromPoundsPerImperialGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double)"/>
+        public static Density PoundsPerImperialGallon(this decimal value) => Density.FromPoundsPerImperialGallon(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(double?)"/>
+        public static Density? PoundsPerImperialGallon(this decimal? value) => Density.FromPoundsPerImperialGallon(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region PoundPerUSGallon
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double)"/>
+        public static Density PoundsPerUSGallon(this int value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double?)"/>
+        public static Density? PoundsPerUSGallon(this int? value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double)"/>
+        public static Density PoundsPerUSGallon(this long value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double?)"/>
+        public static Density? PoundsPerUSGallon(this long? value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double)"/>
+        public static Density PoundsPerUSGallon(this double value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double?)"/>
+        public static Density? PoundsPerUSGallon(this double? value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double)"/>
+        public static Density PoundsPerUSGallon(this float value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double?)"/>
+        public static Density? PoundsPerUSGallon(this float? value) => Density.FromPoundsPerUSGallon(value);
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double)"/>
+        public static Density PoundsPerUSGallon(this decimal value) => Density.FromPoundsPerUSGallon(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(double?)"/>
+        public static Density? PoundsPerUSGallon(this decimal? value) => Density.FromPoundsPerUSGallon(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

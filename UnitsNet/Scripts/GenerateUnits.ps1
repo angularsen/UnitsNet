@@ -135,8 +135,8 @@ function Set-ConversionFunctions
         foreach ($u in $quantity.Units) {
 
             # Use decimal for internal calculations if base type is not double, such as for long or int.
-            if ($quantity.BaseType -ne "double") {
-                $u.FromUnitToBaseFunc = $u.FromUnitToBaseFunc -replace "m", "d"
+            if ($quantity.BaseType -eq "decimal") {
+                $u.FromUnitToBaseFunc = $u.FromUnitToBaseFunc -replace "d", "m"
                 $u.FromBaseToUnitFunc = $u.FromBaseToUnitFunc -replace "d", "m"
             }
 
@@ -274,8 +274,8 @@ $pad = 25
 $quantities = Get-ChildItem -Path $templatesDir -filter "*.json" `
     | %{(Get-Content $_.FullName -Encoding "UTF8" | Out-String)} `
     | ConvertFrom-Json `
-    | Add-PrefixUnits `
     | Set-DefaultValues `
+    | Add-PrefixUnits `
     | Set-ConversionFunctions `
     | Set-UnitsOrderedByName
 

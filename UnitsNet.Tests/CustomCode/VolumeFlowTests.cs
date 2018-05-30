@@ -11,9 +11,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -132,11 +132,13 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MegaukGallonsPerSecondInOneCubicMeterPerSecond => 219.969 * 1e-6;
 
-        [Fact]
-        public void VolumeFlowTimesTimeSpanEqualsVolume()
+        [Theory]
+        [InlineData(20, 2, 40)]
+        [InlineData(20, 62, 1240)]
+        public void VolumeFlowTimesTimeSpanEqualsVolume(double cubicMetersPerSecond, double seconds, double expectedCubicMeters)
         {
-            Volume volume = VolumeFlow.FromCubicMetersPerSecond(20) * TimeSpan.FromSeconds(2);
-            Assert.Equal(Volume.FromCubicMeters(40), volume);
+            Volume volume = VolumeFlow.FromCubicMetersPerSecond(cubicMetersPerSecond) * TimeSpan.FromSeconds(seconds);
+            Assert.Equal(Volume.FromCubicMeters(expectedCubicMeters), volume);
         }
 
         [Fact]
@@ -144,6 +146,34 @@ namespace UnitsNet.Tests.CustomCode
         {
             Volume volume = VolumeFlow.FromCubicMetersPerSecond(20) * Duration.FromSeconds(2);
             Assert.Equal(Volume.FromCubicMeters(40), volume);
+        }
+
+        [Fact]
+        public void VolumeFlowDividedByAreaEqualsSpeed()
+        {
+            Speed speed = VolumeFlow.FromCubicMetersPerSecond(40) / Area.FromSquareMeters(20);
+            Assert.Equal(Speed.FromMetersPerSecond(2), speed);
+        }
+
+        [Fact]
+        public void VolumeFlowDividedBySpeedEqualsArea()
+        {
+            Area area = VolumeFlow.FromCubicMetersPerSecond(40) / Speed.FromMetersPerSecond(20);
+            Assert.Equal(Area.FromSquareMeters(2), area);
+        }
+
+        [Fact]
+        public void VolumeFlowTimesDensityEqualsMassFlow()
+        {
+            MassFlow massFlow = VolumeFlow.FromCubicMetersPerSecond(2) * Density.FromKilogramsPerCubicMeter(3);
+            Assert.Equal(MassFlow.FromKilogramsPerSecond(6), massFlow);
+        }
+
+        [Fact]
+        public void DensityTimesVolumeFlowEqualsMassFlow()
+        {
+            MassFlow massFlow = Density.FromKilogramsPerCubicMeter(3) * VolumeFlow.FromCubicMetersPerSecond(7);
+            Assert.Equal(MassFlow.FromKilogramsPerSecond(21), massFlow);
         }
     }
 }

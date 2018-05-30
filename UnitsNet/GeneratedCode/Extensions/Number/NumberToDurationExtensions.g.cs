@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -248,6 +248,40 @@ namespace UnitsNet.Extensions.NumberToDuration
 
         #endregion
 
+        #region Month30
+
+        /// <inheritdoc cref="Duration.FromMonths30(double)"/>
+        public static Duration Months30(this int value) => Duration.FromMonths30(value);
+
+        /// <inheritdoc cref="Duration.FromMonths30(double?)"/>
+        public static Duration? Months30(this int? value) => Duration.FromMonths30(value);
+
+        /// <inheritdoc cref="Duration.FromMonths30(double)"/>
+        public static Duration Months30(this long value) => Duration.FromMonths30(value);
+
+        /// <inheritdoc cref="Duration.FromMonths30(double?)"/>
+        public static Duration? Months30(this long? value) => Duration.FromMonths30(value);
+
+        /// <inheritdoc cref="Duration.FromMonths30(double)"/>
+        public static Duration Months30(this double value) => Duration.FromMonths30(value);
+
+        /// <inheritdoc cref="Duration.FromMonths30(double?)"/>
+        public static Duration? Months30(this double? value) => Duration.FromMonths30(value);
+
+        /// <inheritdoc cref="Duration.FromMonths30(double)"/>
+        public static Duration Months30(this float value) => Duration.FromMonths30(value);
+
+        /// <inheritdoc cref="Duration.FromMonths30(double?)"/>
+        public static Duration? Months30(this float? value) => Duration.FromMonths30(value);
+
+        /// <inheritdoc cref="Duration.FromMonths30(double)"/>
+        public static Duration Months30(this decimal value) => Duration.FromMonths30(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Duration.FromMonths30(double?)"/>
+        public static Duration? Months30(this decimal? value) => Duration.FromMonths30(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Nanosecond
 
         /// <inheritdoc cref="Duration.FromNanoseconds(double)"/>
@@ -381,6 +415,40 @@ namespace UnitsNet.Extensions.NumberToDuration
 
         /// <inheritdoc cref="Duration.FromYears(double?)"/>
         public static Duration? Years(this decimal? value) => Duration.FromYears(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Year365
+
+        /// <inheritdoc cref="Duration.FromYears365(double)"/>
+        public static Duration Years365(this int value) => Duration.FromYears365(value);
+
+        /// <inheritdoc cref="Duration.FromYears365(double?)"/>
+        public static Duration? Years365(this int? value) => Duration.FromYears365(value);
+
+        /// <inheritdoc cref="Duration.FromYears365(double)"/>
+        public static Duration Years365(this long value) => Duration.FromYears365(value);
+
+        /// <inheritdoc cref="Duration.FromYears365(double?)"/>
+        public static Duration? Years365(this long? value) => Duration.FromYears365(value);
+
+        /// <inheritdoc cref="Duration.FromYears365(double)"/>
+        public static Duration Years365(this double value) => Duration.FromYears365(value);
+
+        /// <inheritdoc cref="Duration.FromYears365(double?)"/>
+        public static Duration? Years365(this double? value) => Duration.FromYears365(value);
+
+        /// <inheritdoc cref="Duration.FromYears365(double)"/>
+        public static Duration Years365(this float value) => Duration.FromYears365(value);
+
+        /// <inheritdoc cref="Duration.FromYears365(double?)"/>
+        public static Duration? Years365(this float? value) => Duration.FromYears365(value);
+
+        /// <inheritdoc cref="Duration.FromYears365(double)"/>
+        public static Duration Years365(this decimal value) => Duration.FromYears365(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Duration.FromYears365(double?)"/>
+        public static Duration? Years365(this decimal? value) => Duration.FromYears365(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

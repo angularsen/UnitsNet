@@ -1,0 +1,80 @@
+﻿<controls:MetroWindow
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    x:Class="UnitsNet.Samples.UnitConverter.Wpf.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wpf="clr-namespace:UnitsNet.Samples.UnitConverter.Wpf"
+    mc:Ignorable="d"
+    Title="UnitsNet - WPF unit converter sample app" Height="350" Width="525"
+    d:DataContext="{d:DesignInstance wpf:MainWindowDesignVm, IsDesignTimeCreatable=True}">
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Quantity" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Grid.RowSpan="2">
+            <ListBox 
+                 ItemsSource="{Binding Path=Quantities}" 
+                 SelectedItem="{Binding SelectedQuantity, Mode=TwoWay}"
+                 SelectionChanged="Selector_OnSelectionChanged" />
+        </GroupBox>
+
+        <GroupBox Header="From" Grid.Row="0" Grid.Column="1">
+            <Grid>
+                <ListBox 
+                 ItemsSource="{Binding Path=Units}" 
+                 DisplayMemberPath="Text"
+                 SelectedItem="{Binding SelectedFromUnit, Mode=TwoWay}" />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="To" Grid.Row="0" Grid.Column="3">
+            <Grid>
+                <ListBox 
+                 ItemsSource="{Binding Path=Units}" 
+                 DisplayMemberPath="Text"
+                 SelectedItem="{Binding SelectedToUnit, Mode=TwoWay}" />
+            </Grid>
+        </GroupBox>
+
+        
+        <WrapPanel Grid.Row="1" Grid.Column="0" Margin="10">
+            <!--Placeholder-->
+        </WrapPanel>
+
+        <GroupBox Header="{Binding FromHeader}" Grid.Row="1" Grid.Column="1">
+            <TextBox FontSize="16" FontWeight="DemiBold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                     Text="{Binding FromValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </GroupBox>
+
+        <Grid Grid.Row="1" Grid.Column="2">
+            <Button Content="⇄" Style="{StaticResource MetroCircleButtonStyle}"
+                    Width="50" Height="50"
+                    FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10"
+                    Command="{Binding SwapCommand}"/>
+        </Grid>
+
+        <GroupBox Header="{Binding ToHeader}" Grid.Row="1" Grid.Column="3">
+            <TextBox FontSize="16" FontWeight="DemiBold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                     Text="{Binding ToValue, Mode=OneWay}" IsReadOnly="true" />
+        </GroupBox>
+
+    </Grid>
+</controls:MetroWindow>
+
+
+
+
+
+
+

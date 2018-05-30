@@ -49015,7 +49015,7 @@ define('WinJS/Controls/AutoSuggestBox',[
             }
 
             function getKeyModifiers(ev) {
-                // Returns the same value as http://msdn.microsoft.com/en-us/library/windows/apps/xaml/windows.system.virtualkeymodifiers
+                // Returns the same value as https://msdn.microsoft.com/en-us/library/windows/apps/xaml/windows.system.virtualkeymodifiers
                 var VirtualKeys = {
                     ctrlKey: 1,
                     altKey: 2,
@@ -49449,7 +49449,7 @@ define('WinJS/Controls/SearchBox',[
                 },
 
                 _getKeyModifiers: function SearchBox_getKeyModifiers(ev) {
-                    // Returns the same value as http://msdn.microsoft.com/en-us/library/windows/apps/xaml/windows.system.virtualkeymodifiers
+                    // Returns the same value as https://msdn.microsoft.com/en-us/library/windows/apps/xaml/windows.system.virtualkeymodifiers
                     var VirtualKeys = {
                         ctrlKey: 1,
                         altKey: 2,

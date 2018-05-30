@@ -85,8 +85,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb" ],
-          "AbbreviationsWithPrefixes": [ "KLbs", "MLbs" ]
+          "Abbreviations": [ "lb" ]
         },
         {
           "Culture": "ru-RU",

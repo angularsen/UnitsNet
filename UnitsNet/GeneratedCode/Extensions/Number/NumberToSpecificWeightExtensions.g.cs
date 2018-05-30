@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -313,6 +313,40 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
 
         /// <inheritdoc cref="SpecificWeight.FromKilopoundsForcePerCubicInch(double?)"/>
         public static SpecificWeight? KilopoundsForcePerCubicInch(this decimal? value) => SpecificWeight.FromKilopoundsForcePerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region MeganewtonPerCubicMeter
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double)"/>
+        public static SpecificWeight MeganewtonsPerCubicMeter(this int value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double?)"/>
+        public static SpecificWeight? MeganewtonsPerCubicMeter(this int? value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double)"/>
+        public static SpecificWeight MeganewtonsPerCubicMeter(this long value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double?)"/>
+        public static SpecificWeight? MeganewtonsPerCubicMeter(this long? value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double)"/>
+        public static SpecificWeight MeganewtonsPerCubicMeter(this double value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double?)"/>
+        public static SpecificWeight? MeganewtonsPerCubicMeter(this double? value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double)"/>
+        public static SpecificWeight MeganewtonsPerCubicMeter(this float value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double?)"/>
+        public static SpecificWeight? MeganewtonsPerCubicMeter(this float? value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value);
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double)"/>
+        public static SpecificWeight MeganewtonsPerCubicMeter(this decimal value) => SpecificWeight.FromMeganewtonsPerCubicMeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(double?)"/>
+        public static SpecificWeight? MeganewtonsPerCubicMeter(this decimal? value) => SpecificWeight.FromMeganewtonsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

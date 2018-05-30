@@ -5,7 +5,7 @@
   "Units": [
     {
       "SingularName": "MeterPerSecondSquared",
-      "PluralName": "MeterPerSecondSquared",
+      "PluralName": "MetersPerSecondSquared",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],
@@ -37,6 +37,42 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "ft/s²" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "KnotPerSecond",
+      "PluralName": "KnotsPerSecond",
+      "FromUnitToBaseFunc": "x*0.5144444444444",
+      "FromBaseToUnitFunc": "x/0.5144444444444",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kn/s" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "KnotPerMinute",
+      "PluralName": "KnotsPerMinute",
+      "FromUnitToBaseFunc": "x*0.5144444444444/60",
+      "FromBaseToUnitFunc": "x/0.5144444444444*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kn/min" ]
+        }
+      ]
+    },
+	{
+      "SingularName": "KnotPerHour",
+      "PluralName": "KnotsPerHour",
+      "FromUnitToBaseFunc": "x*0.5144444444444/3600",
+      "FromBaseToUnitFunc": "x/0.5144444444444*3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kn/h" ]
         }
       ]
     },

@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
-//     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
+//     Add CustomCode\UnitClasses\MyQuantity.extra.cs files to add code to generated unit classes.
+//     Add Extensions\MyQuantityExtensions.cs to decorate unit classes with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or unit classes.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -50,6 +50,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double MillinewtonsPerMeterInOneNewtonPerMeter => 1E3;
         protected override double NanonewtonsPerMeterInOneNewtonPerMeter => 1E9;
         protected override double NewtonsPerMeterInOneNewtonPerMeter => 1;
+        protected override double MeganewtonsPerMeterInOneNewtonPerMeter => 1E-6;
 
         [Fact]
         public void ForcePerLengthDividedByLengthEqualsPressure()

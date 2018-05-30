@@ -36,12 +36,32 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Volume operator *(VolumeFlow volumeFlow, TimeSpan timeSpan)
         {
-            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * timeSpan.Seconds);
+            return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * timeSpan.TotalSeconds);
         }
 
         public static Volume operator *(VolumeFlow volumeFlow, Duration duration)
         {
             return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
+        }
+
+        public static Speed operator /(VolumeFlow volumeFlow, Area area)
+        {
+            return Speed.FromMetersPerSecond(volumeFlow.CubicMetersPerSecond / area.SquareMeters);
+        }
+
+        public static Area operator /(VolumeFlow volumeFlow, Speed speed)
+        {
+            return Area.FromSquareMeters(volumeFlow.CubicMetersPerSecond / speed.MetersPerSecond);
+        }
+
+        public static MassFlow operator *(VolumeFlow volumeFlow, Density density)
+        {
+            return MassFlow.FromKilogramsPerSecond(volumeFlow.CubicMetersPerSecond * density.KilogramsPerCubicMeter);
+        }
+
+        public static MassFlow operator *(Density density, VolumeFlow volumeFlow)
+        {
+            return MassFlow.FromKilogramsPerSecond(volumeFlow.CubicMetersPerSecond * density.KilogramsPerCubicMeter);
         }
 #endif
     }

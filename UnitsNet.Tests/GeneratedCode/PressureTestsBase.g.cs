@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -72,6 +72,7 @@ namespace UnitsNet.Tests
         protected abstract double KilopoundsForcePerSquareFootInOnePascal { get; }
         protected abstract double KilopoundsForcePerSquareInchInOnePascal { get; }
         protected abstract double MegabarsInOnePascal { get; }
+        protected abstract double MeganewtonsPerSquareMeterInOnePascal { get; }
         protected abstract double MegapascalsInOnePascal { get; }
         protected abstract double MetersOfHeadInOnePascal { get; }
         protected abstract double MicropascalsInOnePascal { get; }
@@ -111,6 +112,7 @@ namespace UnitsNet.Tests
         protected virtual double KilopoundsForcePerSquareFootTolerance { get { return 1e-5; } }
         protected virtual double KilopoundsForcePerSquareInchTolerance { get { return 1e-5; } }
         protected virtual double MegabarsTolerance { get { return 1e-5; } }
+        protected virtual double MeganewtonsPerSquareMeterTolerance { get { return 1e-5; } }
         protected virtual double MegapascalsTolerance { get { return 1e-5; } }
         protected virtual double MetersOfHeadTolerance { get { return 1e-5; } }
         protected virtual double MicropascalsTolerance { get { return 1e-5; } }
@@ -154,6 +156,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilopoundsForcePerSquareFootInOnePascal, pascal.KilopoundsForcePerSquareFoot, KilopoundsForcePerSquareFootTolerance);
             AssertEx.EqualTolerance(KilopoundsForcePerSquareInchInOnePascal, pascal.KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
             AssertEx.EqualTolerance(MegabarsInOnePascal, pascal.Megabars, MegabarsTolerance);
+            AssertEx.EqualTolerance(MeganewtonsPerSquareMeterInOnePascal, pascal.MeganewtonsPerSquareMeter, MeganewtonsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(MegapascalsInOnePascal, pascal.Megapascals, MegapascalsTolerance);
             AssertEx.EqualTolerance(MetersOfHeadInOnePascal, pascal.MetersOfHead, MetersOfHeadTolerance);
             AssertEx.EqualTolerance(MicropascalsInOnePascal, pascal.Micropascals, MicropascalsTolerance);
@@ -196,6 +199,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.KilopoundForcePerSquareFoot).KilopoundsForcePerSquareFoot, KilopoundsForcePerSquareFootTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.KilopoundForcePerSquareInch).KilopoundsForcePerSquareInch, KilopoundsForcePerSquareInchTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Megabar).Megabars, MegabarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.MeganewtonPerSquareMeter).MeganewtonsPerSquareMeter, MeganewtonsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Megapascal).Megapascals, MegapascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.MeterOfHead).MetersOfHead, MetersOfHeadTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Micropascal).Micropascals, MicropascalsTolerance);
@@ -239,6 +243,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilopoundsForcePerSquareFootInOnePascal, pascal.As(PressureUnit.KilopoundForcePerSquareFoot), KilopoundsForcePerSquareFootTolerance);
             AssertEx.EqualTolerance(KilopoundsForcePerSquareInchInOnePascal, pascal.As(PressureUnit.KilopoundForcePerSquareInch), KilopoundsForcePerSquareInchTolerance);
             AssertEx.EqualTolerance(MegabarsInOnePascal, pascal.As(PressureUnit.Megabar), MegabarsTolerance);
+            AssertEx.EqualTolerance(MeganewtonsPerSquareMeterInOnePascal, pascal.As(PressureUnit.MeganewtonPerSquareMeter), MeganewtonsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(MegapascalsInOnePascal, pascal.As(PressureUnit.Megapascal), MegapascalsTolerance);
             AssertEx.EqualTolerance(MetersOfHeadInOnePascal, pascal.As(PressureUnit.MeterOfHead), MetersOfHeadTolerance);
             AssertEx.EqualTolerance(MicropascalsInOnePascal, pascal.As(PressureUnit.Micropascal), MicropascalsTolerance);
@@ -282,6 +287,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.FromKilopoundsForcePerSquareFoot(pascal.KilopoundsForcePerSquareFoot).Pascals, KilopoundsForcePerSquareFootTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromKilopoundsForcePerSquareInch(pascal.KilopoundsForcePerSquareInch).Pascals, KilopoundsForcePerSquareInchTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromMegabars(pascal.Megabars).Pascals, MegabarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromMeganewtonsPerSquareMeter(pascal.MeganewtonsPerSquareMeter).Pascals, MeganewtonsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromMegapascals(pascal.Megapascals).Pascals, MegapascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromMetersOfHead(pascal.MetersOfHead).Pascals, MetersOfHeadTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromMicropascals(pascal.Micropascals).Pascals, MicropascalsTolerance);

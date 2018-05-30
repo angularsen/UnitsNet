@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -44,13 +44,6 @@ using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-// Windows Runtime Component does not support CultureInfo type, so use culture name string instead for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
-
 // ReSharper disable once CheckNamespace
 
 namespace UnitsNet
@@ -70,44 +63,88 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
-        ///     Base unit of ElectricResistivity.
+        ///     The numeric value this quantity was constructed with.
         /// </summary>
-        private readonly double _ohmsMeter;
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly ElectricResistivityUnit? _unit;
+
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+#if WINDOWS_UWP
+        public double Value => Convert.ToDouble(_value);
+#else
+        public double Value => _value;
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public ElectricResistivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         // Windows Runtime Component requires a default constructor
 #if WINDOWS_UWP
-        public ElectricResistivity() : this(0)
+        public ElectricResistivity()
         {
+            _value = 0;
+            _unit = BaseUnit;
         }
 #endif
 
-        public ElectricResistivity(double ohmsmeter)
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
+        public ElectricResistivity(double ohmsmeters)
         {
-            _ohmsMeter = Convert.ToDouble(ohmsmeter);
+            _value = Convert.ToDouble(ohmsmeters);
+            _unit = BaseUnit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
 #else
+        public 
+#endif
+          ElectricResistivity(double numericValue, ElectricResistivityUnit unit)
+        {
+            _value = numericValue;
+            _unit = unit;
+         }
+
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit OhmMeter.
+        /// </summary>
+        /// <param name="ohmsmeters">Value assuming base unit OhmMeter.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ElectricResistivity(long ohmsmeter)
-        {
-            _ohmsMeter = Convert.ToDouble(ohmsmeter);
-        }
+        ElectricResistivity(long ohmsmeters) : this(Convert.ToDouble(ohmsmeters), BaseUnit) { }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         // Windows Runtime Component does not support decimal type
+        /// <summary>
+        ///     Creates the quantity with the given value assuming the base unit OhmMeter.
+        /// </summary>
+        /// <param name="ohmsmeters">Value assuming base unit OhmMeter.</param>
 #if WINDOWS_UWP
         private
 #else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public
 #endif
-        ElectricResistivity(decimal ohmsmeter)
-        {
-            _ohmsMeter = Convert.ToDouble(ohmsmeter);
-        }
+        ElectricResistivity(decimal ohmsmeters) : this(Convert.ToDouble(ohmsmeters), BaseUnit) { }
 
         #region Properties
 
@@ -119,136 +156,74 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
-        public static ElectricResistivityUnit BaseUnit
-        {
-            get { return ElectricResistivityUnit.OhmMeter; }
-        }
+        public static ElectricResistivityUnit BaseUnit => ElectricResistivityUnit.OhmMeter;
 
         /// <summary>
         ///     All units of measurement for the ElectricResistivity quantity.
         /// </summary>
         public static ElectricResistivityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricResistivityUnit)).Cast<ElectricResistivityUnit>().ToArray();
-
         /// <summary>
         ///     Get ElectricResistivity in KiloohmsCentimeter.
         /// </summary>
-        public double KiloohmsCentimeter
-        {
-            get { return (_ohmsMeter*100) / 1e3d; }
-        }
-
+        public double KiloohmsCentimeter => As(ElectricResistivityUnit.KiloohmCentimeter);
         /// <summary>
-        ///     Get ElectricResistivity in KiloohmsMeter.
+        ///     Get ElectricResistivity in KiloohmsMeters.
         /// </summary>
-        public double KiloohmsMeter
-        {
-            get { return (_ohmsMeter) / 1e3d; }
-        }
-
+        public double KiloohmsMeters => As(ElectricResistivityUnit.KiloohmMeter);
         /// <summary>
         ///     Get ElectricResistivity in MegaohmsCentimeter.
         /// </summary>
-        public double MegaohmsCentimeter
-        {
-            get { return (_ohmsMeter*100) / 1e6d; }
-        }
-
+        public double MegaohmsCentimeter => As(ElectricResistivityUnit.MegaohmCentimeter);
         /// <summary>
-        ///     Get ElectricResistivity in MegaohmsMeter.
+        ///     Get ElectricResistivity in MegaohmsMeters.
         /// </summary>
-        public double MegaohmsMeter
-        {
-            get { return (_ohmsMeter) / 1e6d; }
-        }
-
+        public double MegaohmsMeters => As(ElectricResistivityUnit.MegaohmMeter);
         /// <summary>
         ///     Get ElectricResistivity in MicroohmsCentimeter.
         /// </summary>
-        public double MicroohmsCentimeter
-        {
-            get { return (_ohmsMeter*100) / 1e-6d; }
-        }
-
+        public double MicroohmsCentimeter => As(ElectricResistivityUnit.MicroohmCentimeter);
         /// <summary>
-        ///     Get ElectricResistivity in MicroohmsMeter.
+        ///     Get ElectricResistivity in MicroohmsMeters.
         /// </summary>
-        public double MicroohmsMeter
-        {
-            get { return (_ohmsMeter) / 1e-6d; }
-        }
-
+        public double MicroohmsMeters => As(ElectricResistivityUnit.MicroohmMeter);
         /// <summary>
         ///     Get ElectricResistivity in MilliohmsCentimeter.
         /// </summary>
-        public double MilliohmsCentimeter
-        {
-            get { return (_ohmsMeter*100) / 1e-3d; }
-        }
-
+        public double MilliohmsCentimeter => As(ElectricResistivityUnit.MilliohmCentimeter);
         /// <summary>
-        ///     Get ElectricResistivity in MilliohmsMeter.
+        ///     Get ElectricResistivity in MilliohmsMeters.
         /// </summary>
-        public double MilliohmsMeter
-        {
-            get { return (_ohmsMeter) / 1e-3d; }
-        }
-
+        public double MilliohmsMeters => As(ElectricResistivityUnit.MilliohmMeter);
         /// <summary>
         ///     Get ElectricResistivity in NanoohmsCentimeter.
         /// </summary>
-        public double NanoohmsCentimeter
-        {
-            get { return (_ohmsMeter*100) / 1e-9d; }
-        }
-
+        public double NanoohmsCentimeter => As(ElectricResistivityUnit.NanoohmCentimeter);
         /// <summary>
-        ///     Get ElectricResistivity in NanoohmsMeter.
+        ///     Get ElectricResistivity in NanoohmsMeters.
         /// </summary>
-        public double NanoohmsMeter
-        {
-            get { return (_ohmsMeter) / 1e-9d; }
-        }
-
+        public double NanoohmsMeters => As(ElectricResistivityUnit.NanoohmMeter);
         /// <summary>
         ///     Get ElectricResistivity in OhmsCentimeter.
         /// </summary>
-        public double OhmsCentimeter
-        {
-            get { return _ohmsMeter*100; }
-        }
-
+        public double OhmsCentimeter => As(ElectricResistivityUnit.OhmCentimeter);
         /// <summary>
-        ///     Get ElectricResistivity in OhmsMeter.
+        ///     Get ElectricResistivity in OhmsMeters.
         /// </summary>
-        public double OhmsMeter
-        {
-            get { return _ohmsMeter; }
-        }
-
+        public double OhmsMeters => As(ElectricResistivityUnit.OhmMeter);
         /// <summary>
         ///     Get ElectricResistivity in PicoohmsCentimeter.
         /// </summary>
-        public double PicoohmsCentimeter
-        {
-            get { return (_ohmsMeter*100) / 1e-12d; }
-        }
-
+        public double PicoohmsCentimeter => As(ElectricResistivityUnit.PicoohmCentimeter);
         /// <summary>
-        ///     Get ElectricResistivity in PicoohmsMeter.
+        ///     Get ElectricResistivity in PicoohmsMeters.
         /// </summary>
-        public double PicoohmsMeter
-        {
-            get { return (_ohmsMeter) / 1e-12d; }
-        }
+        public double PicoohmsMeters => As(ElectricResistivityUnit.PicoohmMeter);
 
         #endregion
 
         #region Static
 
-        public static ElectricResistivity Zero
-        {
-            get { return new ElectricResistivity(); }
-        }
+        public static ElectricResistivity Zero => new ElectricResistivity(0, BaseUnit);
 
         /// <summary>
         ///     Get ElectricResistivity from KiloohmsCentimeter.
@@ -256,35 +231,27 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistivity FromKiloohmsCentimeter(double kiloohmscentimeter)
-        {
-            double value = (double) kiloohmscentimeter;
-            return new ElectricResistivity((value/100) * 1e3d);
-        }
 #else
         public static ElectricResistivity FromKiloohmsCentimeter(QuantityValue kiloohmscentimeter)
+#endif
         {
             double value = (double) kiloohmscentimeter;
-            return new ElectricResistivity(((value/100) * 1e3d));
+            return new ElectricResistivity(value, ElectricResistivityUnit.KiloohmCentimeter);
         }
-#endif
 
         /// <summary>
-        ///     Get ElectricResistivity from KiloohmsMeter.
+        ///     Get ElectricResistivity from KiloohmsMeters.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricResistivity FromKiloohmsMeter(double kiloohmsmeter)
-        {
-            double value = (double) kiloohmsmeter;
-            return new ElectricResistivity((value) * 1e3d);
-        }
+        public static ElectricResistivity FromKiloohmsMeters(double kiloohmsmeters)
 #else
-        public static ElectricResistivity FromKiloohmsMeter(QuantityValue kiloohmsmeter)
-        {
-            double value = (double) kiloohmsmeter;
-            return new ElectricResistivity(((value) * 1e3d));
-        }
+        public static ElectricResistivity FromKiloohmsMeters(QuantityValue kiloohmsmeters)
 #endif
+        {
+            double value = (double) kiloohmsmeters;
+            return new ElectricResistivity(value, ElectricResistivityUnit.KiloohmMeter);
+        }
 
         /// <summary>
         ///     Get ElectricResistivity from MegaohmsCentimeter.
@@ -292,35 +259,27 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistivity FromMegaohmsCentimeter(double megaohmscentimeter)
-        {
-            double value = (double) megaohmscentimeter;
-            return new ElectricResistivity((value/100) * 1e6d);
-        }
 #else
         public static ElectricResistivity FromMegaohmsCentimeter(QuantityValue megaohmscentimeter)
+#endif
         {
             double value = (double) megaohmscentimeter;
-            return new ElectricResistivity(((value/100) * 1e6d));
+            return new ElectricResistivity(value, ElectricResistivityUnit.MegaohmCentimeter);
         }
-#endif
 
         /// <summary>
-        ///     Get ElectricResistivity from MegaohmsMeter.
+        ///     Get ElectricResistivity from MegaohmsMeters.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricResistivity FromMegaohmsMeter(double megaohmsmeter)
-        {
-            double value = (double) megaohmsmeter;
-            return new ElectricResistivity((value) * 1e6d);
-        }
+        public static ElectricResistivity FromMegaohmsMeters(double megaohmsmeters)
 #else
-        public static ElectricResistivity FromMegaohmsMeter(QuantityValue megaohmsmeter)
-        {
-            double value = (double) megaohmsmeter;
-            return new ElectricResistivity(((value) * 1e6d));
-        }
+        public static ElectricResistivity FromMegaohmsMeters(QuantityValue megaohmsmeters)
 #endif
+        {
+            double value = (double) megaohmsmeters;
+            return new ElectricResistivity(value, ElectricResistivityUnit.MegaohmMeter);
+        }
 
         /// <summary>
         ///     Get ElectricResistivity from MicroohmsCentimeter.
@@ -328,35 +287,27 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistivity FromMicroohmsCentimeter(double microohmscentimeter)
-        {
-            double value = (double) microohmscentimeter;
-            return new ElectricResistivity((value/100) * 1e-6d);
-        }
 #else
         public static ElectricResistivity FromMicroohmsCentimeter(QuantityValue microohmscentimeter)
+#endif
         {
             double value = (double) microohmscentimeter;
-            return new ElectricResistivity(((value/100) * 1e-6d));
+            return new ElectricResistivity(value, ElectricResistivityUnit.MicroohmCentimeter);
         }
-#endif
 
         /// <summary>
-        ///     Get ElectricResistivity from MicroohmsMeter.
+        ///     Get ElectricResistivity from MicroohmsMeters.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricResistivity FromMicroohmsMeter(double microohmsmeter)
-        {
-            double value = (double) microohmsmeter;
-            return new ElectricResistivity((value) * 1e-6d);
-        }
+        public static ElectricResistivity FromMicroohmsMeters(double microohmsmeters)
 #else
-        public static ElectricResistivity FromMicroohmsMeter(QuantityValue microohmsmeter)
-        {
-            double value = (double) microohmsmeter;
-            return new ElectricResistivity(((value) * 1e-6d));
-        }
+        public static ElectricResistivity FromMicroohmsMeters(QuantityValue microohmsmeters)
 #endif
+        {
+            double value = (double) microohmsmeters;
+            return new ElectricResistivity(value, ElectricResistivityUnit.MicroohmMeter);
+        }
 
         /// <summary>
         ///     Get ElectricResistivity from MilliohmsCentimeter.
@@ -364,35 +315,27 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistivity FromMilliohmsCentimeter(double milliohmscentimeter)
-        {
-            double value = (double) milliohmscentimeter;
-            return new ElectricResistivity((value/100) * 1e-3d);
-        }
 #else
         public static ElectricResistivity FromMilliohmsCentimeter(QuantityValue milliohmscentimeter)
+#endif
         {
             double value = (double) milliohmscentimeter;
-            return new ElectricResistivity(((value/100) * 1e-3d));
+            return new ElectricResistivity(value, ElectricResistivityUnit.MilliohmCentimeter);
         }
-#endif
 
         /// <summary>
-        ///     Get ElectricResistivity from MilliohmsMeter.
+        ///     Get ElectricResistivity from MilliohmsMeters.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricResistivity FromMilliohmsMeter(double milliohmsmeter)
-        {
-            double value = (double) milliohmsmeter;
-            return new ElectricResistivity((value) * 1e-3d);
-        }
+        public static ElectricResistivity FromMilliohmsMeters(double milliohmsmeters)
 #else
-        public static ElectricResistivity FromMilliohmsMeter(QuantityValue milliohmsmeter)
-        {
-            double value = (double) milliohmsmeter;
-            return new ElectricResistivity(((value) * 1e-3d));
-        }
+        public static ElectricResistivity FromMilliohmsMeters(QuantityValue milliohmsmeters)
 #endif
+        {
+            double value = (double) milliohmsmeters;
+            return new ElectricResistivity(value, ElectricResistivityUnit.MilliohmMeter);
+        }
 
         /// <summary>
         ///     Get ElectricResistivity from NanoohmsCentimeter.
@@ -400,35 +343,27 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistivity FromNanoohmsCentimeter(double nanoohmscentimeter)
-        {
-            double value = (double) nanoohmscentimeter;
-            return new ElectricResistivity((value/100) * 1e-9d);
-        }
 #else
         public static ElectricResistivity FromNanoohmsCentimeter(QuantityValue nanoohmscentimeter)
+#endif
         {
             double value = (double) nanoohmscentimeter;
-            return new ElectricResistivity(((value/100) * 1e-9d));
+            return new ElectricResistivity(value, ElectricResistivityUnit.NanoohmCentimeter);
         }
-#endif
 
         /// <summary>
-        ///     Get ElectricResistivity from NanoohmsMeter.
+        ///     Get ElectricResistivity from NanoohmsMeters.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricResistivity FromNanoohmsMeter(double nanoohmsmeter)
-        {
-            double value = (double) nanoohmsmeter;
-            return new ElectricResistivity((value) * 1e-9d);
-        }
+        public static ElectricResistivity FromNanoohmsMeters(double nanoohmsmeters)
 #else
-        public static ElectricResistivity FromNanoohmsMeter(QuantityValue nanoohmsmeter)
-        {
-            double value = (double) nanoohmsmeter;
-            return new ElectricResistivity(((value) * 1e-9d));
-        }
+        public static ElectricResistivity FromNanoohmsMeters(QuantityValue nanoohmsmeters)
 #endif
+        {
+            double value = (double) nanoohmsmeters;
+            return new ElectricResistivity(value, ElectricResistivityUnit.NanoohmMeter);
+        }
 
         /// <summary>
         ///     Get ElectricResistivity from OhmsCentimeter.
@@ -436,35 +371,27 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistivity FromOhmsCentimeter(double ohmscentimeter)
-        {
-            double value = (double) ohmscentimeter;
-            return new ElectricResistivity(value/100);
-        }
 #else
         public static ElectricResistivity FromOhmsCentimeter(QuantityValue ohmscentimeter)
+#endif
         {
             double value = (double) ohmscentimeter;
-            return new ElectricResistivity((value/100));
+            return new ElectricResistivity(value, ElectricResistivityUnit.OhmCentimeter);
         }
-#endif
 
         /// <summary>
-        ///     Get ElectricResistivity from OhmsMeter.
+        ///     Get ElectricResistivity from OhmsMeters.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricResistivity FromOhmsMeter(double ohmsmeter)
-        {
-            double value = (double) ohmsmeter;
-            return new ElectricResistivity(value);
-        }
+        public static ElectricResistivity FromOhmsMeters(double ohmsmeters)
 #else
-        public static ElectricResistivity FromOhmsMeter(QuantityValue ohmsmeter)
-        {
-            double value = (double) ohmsmeter;
-            return new ElectricResistivity((value));
-        }
+        public static ElectricResistivity FromOhmsMeters(QuantityValue ohmsmeters)
 #endif
+        {
+            double value = (double) ohmsmeters;
+            return new ElectricResistivity(value, ElectricResistivityUnit.OhmMeter);
+        }
 
         /// <summary>
         ///     Get ElectricResistivity from PicoohmsCentimeter.
@@ -472,35 +399,27 @@ namespace UnitsNet
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistivity FromPicoohmsCentimeter(double picoohmscentimeter)
-        {
-            double value = (double) picoohmscentimeter;
-            return new ElectricResistivity((value/100) * 1e-12d);
-        }
 #else
         public static ElectricResistivity FromPicoohmsCentimeter(QuantityValue picoohmscentimeter)
+#endif
         {
             double value = (double) picoohmscentimeter;
-            return new ElectricResistivity(((value/100) * 1e-12d));
+            return new ElectricResistivity(value, ElectricResistivityUnit.PicoohmCentimeter);
         }
-#endif
 
         /// <summary>
-        ///     Get ElectricResistivity from PicoohmsMeter.
+        ///     Get ElectricResistivity from PicoohmsMeters.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static ElectricResistivity FromPicoohmsMeter(double picoohmsmeter)
-        {
-            double value = (double) picoohmsmeter;
-            return new ElectricResistivity((value) * 1e-12d);
-        }
+        public static ElectricResistivity FromPicoohmsMeters(double picoohmsmeters)
 #else
-        public static ElectricResistivity FromPicoohmsMeter(QuantityValue picoohmsmeter)
-        {
-            double value = (double) picoohmsmeter;
-            return new ElectricResistivity(((value) * 1e-12d));
-        }
+        public static ElectricResistivity FromPicoohmsMeters(QuantityValue picoohmsmeters)
 #endif
+        {
+            double value = (double) picoohmsmeters;
+            return new ElectricResistivity(value, ElectricResistivityUnit.PicoohmMeter);
+        }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -520,13 +439,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistivity from nullable KiloohmsMeter.
+        ///     Get nullable ElectricResistivity from nullable KiloohmsMeters.
         /// </summary>
-        public static ElectricResistivity? FromKiloohmsMeter(QuantityValue? kiloohmsmeter)
+        public static ElectricResistivity? FromKiloohmsMeters(QuantityValue? kiloohmsmeters)
         {
-            if (kiloohmsmeter.HasValue)
+            if (kiloohmsmeters.HasValue)
             {
-                return FromKiloohmsMeter(kiloohmsmeter.Value);
+                return FromKiloohmsMeters(kiloohmsmeters.Value);
             }
             else
             {
@@ -550,13 +469,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistivity from nullable MegaohmsMeter.
+        ///     Get nullable ElectricResistivity from nullable MegaohmsMeters.
         /// </summary>
-        public static ElectricResistivity? FromMegaohmsMeter(QuantityValue? megaohmsmeter)
+        public static ElectricResistivity? FromMegaohmsMeters(QuantityValue? megaohmsmeters)
         {
-            if (megaohmsmeter.HasValue)
+            if (megaohmsmeters.HasValue)
             {
-                return FromMegaohmsMeter(megaohmsmeter.Value);
+                return FromMegaohmsMeters(megaohmsmeters.Value);
             }
             else
             {
@@ -580,13 +499,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistivity from nullable MicroohmsMeter.
+        ///     Get nullable ElectricResistivity from nullable MicroohmsMeters.
         /// </summary>
-        public static ElectricResistivity? FromMicroohmsMeter(QuantityValue? microohmsmeter)
+        public static ElectricResistivity? FromMicroohmsMeters(QuantityValue? microohmsmeters)
         {
-            if (microohmsmeter.HasValue)
+            if (microohmsmeters.HasValue)
             {
-                return FromMicroohmsMeter(microohmsmeter.Value);
+                return FromMicroohmsMeters(microohmsmeters.Value);
             }
             else
             {
@@ -610,13 +529,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistivity from nullable MilliohmsMeter.
+        ///     Get nullable ElectricResistivity from nullable MilliohmsMeters.
         /// </summary>
-        public static ElectricResistivity? FromMilliohmsMeter(QuantityValue? milliohmsmeter)
+        public static ElectricResistivity? FromMilliohmsMeters(QuantityValue? milliohmsmeters)
         {
-            if (milliohmsmeter.HasValue)
+            if (milliohmsmeters.HasValue)
             {
-                return FromMilliohmsMeter(milliohmsmeter.Value);
+                return FromMilliohmsMeters(milliohmsmeters.Value);
             }
             else
             {
@@ -640,13 +559,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistivity from nullable NanoohmsMeter.
+        ///     Get nullable ElectricResistivity from nullable NanoohmsMeters.
         /// </summary>
-        public static ElectricResistivity? FromNanoohmsMeter(QuantityValue? nanoohmsmeter)
+        public static ElectricResistivity? FromNanoohmsMeters(QuantityValue? nanoohmsmeters)
         {
-            if (nanoohmsmeter.HasValue)
+            if (nanoohmsmeters.HasValue)
             {
-                return FromNanoohmsMeter(nanoohmsmeter.Value);
+                return FromNanoohmsMeters(nanoohmsmeters.Value);
             }
             else
             {
@@ -670,13 +589,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistivity from nullable OhmsMeter.
+        ///     Get nullable ElectricResistivity from nullable OhmsMeters.
         /// </summary>
-        public static ElectricResistivity? FromOhmsMeter(QuantityValue? ohmsmeter)
+        public static ElectricResistivity? FromOhmsMeters(QuantityValue? ohmsmeters)
         {
-            if (ohmsmeter.HasValue)
+            if (ohmsmeters.HasValue)
             {
-                return FromOhmsMeter(ohmsmeter.Value);
+                return FromOhmsMeters(ohmsmeters.Value);
             }
             else
             {
@@ -700,13 +619,13 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable ElectricResistivity from nullable PicoohmsMeter.
+        ///     Get nullable ElectricResistivity from nullable PicoohmsMeters.
         /// </summary>
-        public static ElectricResistivity? FromPicoohmsMeter(QuantityValue? picoohmsmeter)
+        public static ElectricResistivity? FromPicoohmsMeters(QuantityValue? picoohmsmeters)
         {
-            if (picoohmsmeter.HasValue)
+            if (picoohmsmeters.HasValue)
             {
-                return FromPicoohmsMeter(picoohmsmeter.Value);
+                return FromPicoohmsMeters(picoohmsmeters.Value);
             }
             else
             {
@@ -730,40 +649,7 @@ namespace UnitsNet
         public static ElectricResistivity From(QuantityValue value, ElectricResistivityUnit fromUnit)
 #endif
         {
-            switch (fromUnit)
-            {
-                case ElectricResistivityUnit.KiloohmCentimeter:
-                    return FromKiloohmsCentimeter(value);
-                case ElectricResistivityUnit.KiloohmMeter:
-                    return FromKiloohmsMeter(value);
-                case ElectricResistivityUnit.MegaohmCentimeter:
-                    return FromMegaohmsCentimeter(value);
-                case ElectricResistivityUnit.MegaohmMeter:
-                    return FromMegaohmsMeter(value);
-                case ElectricResistivityUnit.MicroohmCentimeter:
-                    return FromMicroohmsCentimeter(value);
-                case ElectricResistivityUnit.MicroohmMeter:
-                    return FromMicroohmsMeter(value);
-                case ElectricResistivityUnit.MilliohmCentimeter:
-                    return FromMilliohmsCentimeter(value);
-                case ElectricResistivityUnit.MilliohmMeter:
-                    return FromMilliohmsMeter(value);
-                case ElectricResistivityUnit.NanoohmCentimeter:
-                    return FromNanoohmsCentimeter(value);
-                case ElectricResistivityUnit.NanoohmMeter:
-                    return FromNanoohmsMeter(value);
-                case ElectricResistivityUnit.OhmCentimeter:
-                    return FromOhmsCentimeter(value);
-                case ElectricResistivityUnit.OhmMeter:
-                    return FromOhmsMeter(value);
-                case ElectricResistivityUnit.PicoohmCentimeter:
-                    return FromPicoohmsCentimeter(value);
-                case ElectricResistivityUnit.PicoohmMeter:
-                    return FromPicoohmsMeter(value);
-
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ElectricResistivity((double)value, fromUnit);
         }
 
         // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -780,40 +666,8 @@ namespace UnitsNet
             {
                 return null;
             }
-            switch (fromUnit)
-            {
-                case ElectricResistivityUnit.KiloohmCentimeter:
-                    return FromKiloohmsCentimeter(value.Value);
-                case ElectricResistivityUnit.KiloohmMeter:
-                    return FromKiloohmsMeter(value.Value);
-                case ElectricResistivityUnit.MegaohmCentimeter:
-                    return FromMegaohmsCentimeter(value.Value);
-                case ElectricResistivityUnit.MegaohmMeter:
-                    return FromMegaohmsMeter(value.Value);
-                case ElectricResistivityUnit.MicroohmCentimeter:
-                    return FromMicroohmsCentimeter(value.Value);
-                case ElectricResistivityUnit.MicroohmMeter:
-                    return FromMicroohmsMeter(value.Value);
-                case ElectricResistivityUnit.MilliohmCentimeter:
-                    return FromMilliohmsCentimeter(value.Value);
-                case ElectricResistivityUnit.MilliohmMeter:
-                    return FromMilliohmsMeter(value.Value);
-                case ElectricResistivityUnit.NanoohmCentimeter:
-                    return FromNanoohmsCentimeter(value.Value);
-                case ElectricResistivityUnit.NanoohmMeter:
-                    return FromNanoohmsMeter(value.Value);
-                case ElectricResistivityUnit.OhmCentimeter:
-                    return FromOhmsCentimeter(value.Value);
-                case ElectricResistivityUnit.OhmMeter:
-                    return FromOhmsMeter(value.Value);
-                case ElectricResistivityUnit.PicoohmCentimeter:
-                    return FromPicoohmsCentimeter(value.Value);
-                case ElectricResistivityUnit.PicoohmMeter:
-                    return FromPicoohmsMeter(value.Value);
 
-                default:
-                    throw new NotImplementedException("fromUnit: " + fromUnit);
-            }
+            return new ElectricResistivity((double)value.Value, fromUnit);
         }
 #endif
 
@@ -832,12 +686,29 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="culture">Culture to use for localization. Defaults to Thread.CurrentUICulture.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
-        public static string GetAbbreviation(ElectricResistivityUnit unit, [CanBeNull] Culture culture)
+        public static string GetAbbreviation(
+          ElectricResistivityUnit unit,
+#if WINDOWS_UWP
+          [CanBeNull] string cultureName)
+#else
+          [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return UnitSystem.GetCached(culture).GetDefaultAbbreviation(unit);
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -848,37 +719,37 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static ElectricResistivity operator -(ElectricResistivity right)
         {
-            return new ElectricResistivity(-right._ohmsMeter);
+            return new ElectricResistivity(-right.Value, right.Unit);
         }
 
         public static ElectricResistivity operator +(ElectricResistivity left, ElectricResistivity right)
         {
-            return new ElectricResistivity(left._ohmsMeter + right._ohmsMeter);
+            return new ElectricResistivity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ElectricResistivity operator -(ElectricResistivity left, ElectricResistivity right)
         {
-            return new ElectricResistivity(left._ohmsMeter - right._ohmsMeter);
+            return new ElectricResistivity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
         }
 
         public static ElectricResistivity operator *(double left, ElectricResistivity right)
         {
-            return new ElectricResistivity(left*right._ohmsMeter);
+            return new ElectricResistivity(left * right.Value, right.Unit);
         }
 
         public static ElectricResistivity operator *(ElectricResistivity left, double right)
         {
-            return new ElectricResistivity(left._ohmsMeter*(double)right);
+            return new ElectricResistivity(left.Value * right, left.Unit);
         }
 
         public static ElectricResistivity operator /(ElectricResistivity left, double right)
         {
-            return new ElectricResistivity(left._ohmsMeter/(double)right);
+            return new ElectricResistivity(left.Value / right, left.Unit);
         }
 
         public static double operator /(ElectricResistivity left, ElectricResistivity right)
         {
-            return Convert.ToDouble(left._ohmsMeter/right._ohmsMeter);
+            return left.OhmsMeters / right.OhmsMeters;
         }
 #endif
 
@@ -901,43 +772,43 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricResistivity other)
         {
-            return _ohmsMeter.CompareTo(other._ohmsMeter);
+            return AsBaseUnitOhmsMeters().CompareTo(other.AsBaseUnitOhmsMeters());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static bool operator <=(ElectricResistivity left, ElectricResistivity right)
         {
-            return left._ohmsMeter <= right._ohmsMeter;
+            return left.Value <= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >=(ElectricResistivity left, ElectricResistivity right)
         {
-            return left._ohmsMeter >= right._ohmsMeter;
+            return left.Value >= right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator <(ElectricResistivity left, ElectricResistivity right)
         {
-            return left._ohmsMeter < right._ohmsMeter;
+            return left.Value < right.AsBaseNumericType(left.Unit);
         }
 
         public static bool operator >(ElectricResistivity left, ElectricResistivity right)
         {
-            return left._ohmsMeter > right._ohmsMeter;
+            return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator ==(ElectricResistivity left, ElectricResistivity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohmsMeter == right._ohmsMeter;
+            return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
         public static bool operator !=(ElectricResistivity left, ElectricResistivity right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left._ohmsMeter != right._ohmsMeter;
+            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 #endif
 
@@ -949,7 +820,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return _ohmsMeter.Equals(((ElectricResistivity) obj)._ohmsMeter);
+            return AsBaseUnitOhmsMeters().Equals(((ElectricResistivity) obj).AsBaseUnitOhmsMeters());
         }
 
         /// <summary>
@@ -962,12 +833,12 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ElectricResistivity other, ElectricResistivity maxError)
         {
-            return Math.Abs(_ohmsMeter - other._ohmsMeter) <= maxError._ohmsMeter;
+            return Math.Abs(AsBaseUnitOhmsMeters() - other.AsBaseUnitOhmsMeters()) <= maxError.AsBaseUnitOhmsMeters();
         }
 
         public override int GetHashCode()
         {
-            return _ohmsMeter.GetHashCode();
+			return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -977,40 +848,32 @@ namespace UnitsNet
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
-        /// <returns>Value in new unit if successful, exception otherwise.</returns>
-        /// <exception cref="NotImplementedException">If conversion was not successful.</exception>
+        /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricResistivityUnit unit)
         {
+            if (Unit == unit)
+            {
+                return (double)Value;
+            }
+
+            double baseUnitValue = AsBaseUnitOhmsMeters();
+
             switch (unit)
             {
-                case ElectricResistivityUnit.KiloohmCentimeter:
-                    return KiloohmsCentimeter;
-                case ElectricResistivityUnit.KiloohmMeter:
-                    return KiloohmsMeter;
-                case ElectricResistivityUnit.MegaohmCentimeter:
-                    return MegaohmsCentimeter;
-                case ElectricResistivityUnit.MegaohmMeter:
-                    return MegaohmsMeter;
-                case ElectricResistivityUnit.MicroohmCentimeter:
-                    return MicroohmsCentimeter;
-                case ElectricResistivityUnit.MicroohmMeter:
-                    return MicroohmsMeter;
-                case ElectricResistivityUnit.MilliohmCentimeter:
-                    return MilliohmsCentimeter;
-                case ElectricResistivityUnit.MilliohmMeter:
-                    return MilliohmsMeter;
-                case ElectricResistivityUnit.NanoohmCentimeter:
-                    return NanoohmsCentimeter;
-                case ElectricResistivityUnit.NanoohmMeter:
-                    return NanoohmsMeter;
-                case ElectricResistivityUnit.OhmCentimeter:
-                    return OhmsCentimeter;
-                case ElectricResistivityUnit.OhmMeter:
-                    return OhmsMeter;
-                case ElectricResistivityUnit.PicoohmCentimeter:
-                    return PicoohmsCentimeter;
-                case ElectricResistivityUnit.PicoohmMeter:
-                    return PicoohmsMeter;
+                case ElectricResistivityUnit.KiloohmCentimeter: return (baseUnitValue*100) / 1e3d;
+                case ElectricResistivityUnit.KiloohmMeter: return (baseUnitValue) / 1e3d;
+                case ElectricResistivityUnit.MegaohmCentimeter: return (baseUnitValue*100) / 1e6d;
+                case ElectricResistivityUnit.MegaohmMeter: return (baseUnitValue) / 1e6d;
+                case ElectricResistivityUnit.MicroohmCentimeter: return (baseUnitValue*100) / 1e-6d;
+                case ElectricResistivityUnit.MicroohmMeter: return (baseUnitValue) / 1e-6d;
+                case ElectricResistivityUnit.MilliohmCentimeter: return (baseUnitValue*100) / 1e-3d;
+                case ElectricResistivityUnit.MilliohmMeter: return (baseUnitValue) / 1e-3d;
+                case ElectricResistivityUnit.NanoohmCentimeter: return (baseUnitValue*100) / 1e-9d;
+                case ElectricResistivityUnit.NanoohmMeter: return (baseUnitValue) / 1e-9d;
+                case ElectricResistivityUnit.OhmCentimeter: return baseUnitValue*100;
+                case ElectricResistivityUnit.OhmMeter: return baseUnitValue;
+                case ElectricResistivityUnit.PicoohmCentimeter: return (baseUnitValue*100) / 1e-12d;
+                case ElectricResistivityUnit.PicoohmMeter: return (baseUnitValue) / 1e-12d;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -1052,7 +915,11 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -1071,23 +938,30 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        public static ElectricResistivity Parse(string str, [CanBeNull] Culture culture)
+        public static ElectricResistivity Parse(
+            string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
             if (str == null) throw new ArgumentNullException("str");
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
-            return QuantityParser.Parse<ElectricResistivity, ElectricResistivityUnit>(str, formatProvider,
+
+            return QuantityParser.Parse<ElectricResistivity, ElectricResistivityUnit>(str, provider,
                 delegate(string value, string unit, IFormatProvider formatProvider2)
                 {
                     double parsedValue = double.Parse(value, formatProvider2);
                     ElectricResistivityUnit parsedUnit = ParseUnit(unit, formatProvider2);
                     return From(parsedValue, parsedUnit);
-                }, (x, y) => FromOhmsMeter(x.OhmsMeter + y.OhmsMeter));
+                }, (x, y) => FromOhmsMeters(x.OhmsMeters + y.OhmsMeters));
         }
 
         /// <summary>
@@ -1107,16 +981,41 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="culture">Format to use when parsing number and unit. If it is null, it defaults to <see cref="NumberFormatInfo.CurrentInfo"/> for parsing the number and <see cref="CultureInfo.CurrentUICulture"/> for parsing the unit abbreviation by culture/language.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] Culture culture, out ElectricResistivity result)
+        public static bool TryParse(
+            [CanBeNull] string str,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+          out ElectricResistivity result)
         {
+#if WINDOWS_UWP
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+#else
+            provider = provider ?? UnitSystem.DefaultCulture;
+#endif
             try
             {
-                result = Parse(str, culture);
+
+                result = Parse(
+                  str,
+#if WINDOWS_UWP
+                  cultureName);
+#else
+                  provider);
+#endif
+
                 return true;
             }
             catch
@@ -1129,6 +1028,7 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1142,11 +1042,14 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
         public static ElectricResistivityUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
@@ -1155,6 +1058,8 @@ namespace UnitsNet
         /// <summary>
         ///     Parse a unit string.
         /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1167,18 +1072,18 @@ namespace UnitsNet
 #else
         public
 #endif
-        static ElectricResistivityUnit ParseUnit(string str, IFormatProvider formatProvider = null)
+        static ElectricResistivityUnit ParseUnit(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException("str");
 
-            var unitSystem = UnitSystem.GetCached(formatProvider);
+            var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<ElectricResistivityUnit>(str.Trim());
 
             if (unit == ElectricResistivityUnit.Undefined)
             {
                 var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized ElectricResistivityUnit.");
                 newEx.Data["input"] = str;
-                newEx.Data["formatprovider"] = formatProvider?.ToString() ?? "(null)";
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
                 throw newEx;
             }
 
@@ -1187,6 +1092,7 @@ namespace UnitsNet
 
         #endregion
 
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is OhmMeter
         /// </summary>
@@ -1198,7 +1104,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(ToStringDefaultUnit);
+            return ToString(Unit);
         }
 
         /// <summary>
@@ -1215,74 +1121,142 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <returns>String representation.</returns>
-        public string ToString(ElectricResistivityUnit unit, [CanBeNull] Culture culture)
+        public string ToString(
+          ElectricResistivityUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName)
+#else
+            [CanBeNull] IFormatProvider provider)
+#endif
         {
-            return ToString(unit, culture, 2);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricResistivityUnit unit, [CanBeNull] Culture culture, int significantDigitsAfterRadix)
+        public string ToString(
+            ElectricResistivityUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            int significantDigitsAfterRadix)
         {
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, culture, format);
+            return ToString(
+              unit,
+#if WINDOWS_UWP
+              cultureName,
+#else
+              provider,
+#endif
+              format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="culture">Culture to use for localization and number formatting.</param>
+#if WINDOWS_UWP
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+#else
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+#endif
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
-        public string ToString(ElectricResistivityUnit unit, [CanBeNull] Culture culture, [NotNull] string format,
+        public string ToString(
+            ElectricResistivityUnit unit,
+#if WINDOWS_UWP
+            [CanBeNull] string cultureName,
+#else
+            [CanBeNull] IFormatProvider provider,
+#endif
+            [NotNull] string format,
             [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-        // Windows Runtime Component does not support CultureInfo type, so use culture name string for public methods instead: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if WINDOWS_UWP
-            IFormatProvider formatProvider = culture == null ? null : new CultureInfo(culture);
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 #else
-            IFormatProvider formatProvider = culture;
+            provider = provider ?? UnitSystem.DefaultCulture;
 #endif
+
             double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, formatProvider, args);
-            return string.Format(formatProvider, format, formatArgs);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
         /// Represents the largest possible value of ElectricResistivity
         /// </summary>
-        public static ElectricResistivity MaxValue
-        {
-            get
-            {
-                return new ElectricResistivity(double.MaxValue);
-            }
-        }
+        public static ElectricResistivity MaxValue => new ElectricResistivity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricResistivity
         /// </summary>
-        public static ElectricResistivity MinValue
+        public static ElectricResistivity MinValue => new ElectricResistivity(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnitOhmsMeters()
         {
-            get
+			if (Unit == ElectricResistivityUnit.OhmMeter) { return _value; }
+
+            switch (Unit)
             {
-                return new ElectricResistivity(double.MinValue);
-            }
-        }
-    }
+                case ElectricResistivityUnit.KiloohmCentimeter: return (_value/100) * 1e3d;
+                case ElectricResistivityUnit.KiloohmMeter: return (_value) * 1e3d;
+                case ElectricResistivityUnit.MegaohmCentimeter: return (_value/100) * 1e6d;
+                case ElectricResistivityUnit.MegaohmMeter: return (_value) * 1e6d;
+                case ElectricResistivityUnit.MicroohmCentimeter: return (_value/100) * 1e-6d;
+                case ElectricResistivityUnit.MicroohmMeter: return (_value) * 1e-6d;
+                case ElectricResistivityUnit.MilliohmCentimeter: return (_value/100) * 1e-3d;
+                case ElectricResistivityUnit.MilliohmMeter: return (_value) * 1e-3d;
+                case ElectricResistivityUnit.NanoohmCentimeter: return (_value/100) * 1e-9d;
+                case ElectricResistivityUnit.NanoohmMeter: return (_value) * 1e-9d;
+                case ElectricResistivityUnit.OhmCentimeter: return _value/100;
+                case ElectricResistivityUnit.OhmMeter: return _value;
+                case ElectricResistivityUnit.PicoohmCentimeter: return (_value/100) * 1e-12d;
+                case ElectricResistivityUnit.PicoohmMeter: return (_value) * 1e-12d;
+                default:
+                    throw new NotImplementedException("Unit not implemented: " + Unit);
+			}
+		}
+
+		/// <summary>Convenience method for working with internal numeric type.</summary>
+        private double AsBaseNumericType(ElectricResistivityUnit unit) => Convert.ToDouble(As(unit));
+	}
 }

@@ -49,7 +49,7 @@ namespace UnitsNet.Tests.CustomCode
         // TODO Override properties in base class here
         protected override double KilowattsPerSquareCentimeterInOneWattPerSquareMeter => 1e-7;
 
-        protected override double KilowattsPerSquareMeterInOneWattPerSquareMeter => 0.001;
+        protected override double KilowattsPerSquareMeterInOneWattPerSquareMeter => 1e-3;
 
         protected override double MegawattsPerSquareCentimeterInOneWattPerSquareMeter => 1e-10;
 

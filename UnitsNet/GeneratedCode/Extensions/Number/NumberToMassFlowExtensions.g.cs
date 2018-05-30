@@ -8,9 +8,9 @@
 //
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\Quantities\MyUnit.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyUnitExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -925,6 +925,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         /// <inheritdoc cref="MassFlow.FromTonnesPerDay(double?)"/>
         public static MassFlow? TonnesPerDay(this decimal? value) => MassFlow.FromTonnesPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region TonnePerHour
+
+        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double)"/>
+        public static MassFlow TonnesPerHour(this int value) => MassFlow.FromTonnesPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double?)"/>
+        public static MassFlow? TonnesPerHour(this int? value) => MassFlow.FromTonnesPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double)"/>
+        public static MassFlow TonnesPerHour(this long value) => MassFlow.FromTonnesPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double?)"/>
+        public static MassFlow? TonnesPerHour(this long? value) => MassFlow.FromTonnesPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double)"/>
+        public static MassFlow TonnesPerHour(this double value) => MassFlow.FromTonnesPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double?)"/>
+        public static MassFlow? TonnesPerHour(this double? value) => MassFlow.FromTonnesPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double)"/>
+        public static MassFlow TonnesPerHour(this float value) => MassFlow.FromTonnesPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double?)"/>
+        public static MassFlow? TonnesPerHour(this float? value) => MassFlow.FromTonnesPerHour(value);
+
+        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double)"/>
+        public static MassFlow TonnesPerHour(this decimal value) => MassFlow.FromTonnesPerHour(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(double?)"/>
+        public static MassFlow? TonnesPerHour(this decimal? value) => MassFlow.FromTonnesPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

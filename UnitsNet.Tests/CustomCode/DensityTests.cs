@@ -27,9 +27,14 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class DensityTests : DensityTestsBase
     {
+        protected override double MilligramsPerCubicMeterInOneKilogramPerCubicMeter => 1e6;
+
         protected override double GramsPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-3;
+
         protected override double GramsPerCubicMeterInOneKilogramPerCubicMeter => 1e3;
+
         protected override double GramsPerCubicMillimeterInOneKilogramPerCubicMeter => 1e-6;
+
         protected override double KilogramsPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-6;
 
         protected override double KilogramsPerCubicMeterInOneKilogramPerCubicMeter => 1;
@@ -43,6 +48,9 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PoundsPerCubicFootInOneKilogramPerCubicMeter => 6.242796e-2;
 
         protected override double PoundsPerCubicInchInOneKilogramPerCubicMeter => 3.61272923e-5;
+
+        protected override double PoundsPerUSGallonInOneKilogramPerCubicMeter => 8.3454045e-3;
+        protected override double PoundsPerImperialGallonInOneKilogramPerCubicMeter => 1.002241e-2;
 
         protected override double TonnesPerCubicCentimeterInOneKilogramPerCubicMeter => 1e-9;
 
@@ -70,9 +78,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double GramsPerMilliliterInOneKilogramPerCubicMeter => 1e-3;
 
-        protected override double MicrogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e5; 
+        protected override double MicrogramsPerDeciLiterInOneKilogramPerCubicMeter => 1e5;
 
-        protected override double MicrogramsPerLiterInOneKilogramPerCubicMeter => 1e6; 
+        protected override double MicrogramsPerLiterInOneKilogramPerCubicMeter => 1e6;
 
         protected override double MicrogramsPerMilliliterInOneKilogramPerCubicMeter => 1e3;
 
