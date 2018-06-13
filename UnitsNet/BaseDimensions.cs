@@ -47,5 +47,63 @@ namespace UnitsNet
             Amount = amount;
             LuminousIntensity = luminousIntensity;
         }
+
+        public override bool Equals( object obj )
+        {
+            return obj is BaseDimensions && this == (BaseDimensions)obj;
+        }
+
+        public override int GetHashCode()
+        {
+            int hash = 17;
+            hash = hash * 23 + Length;
+            hash = hash * 23 + Mass;
+            hash = hash * 23 + Time;
+            hash = hash * 23 + Current;
+            hash = hash * 23 + Temperature;
+            hash = hash * 23 + Amount;
+            hash = hash * 23 + LuminousIntensity;
+            return hash;
+        }
+
+        public static bool operator ==(BaseDimensions left, BaseDimensions right)
+        {
+            return left.Length == right.Length &&
+                left.Mass == right.Mass &&
+                left.Time == right.Time &&
+                left.Current == right.Current &&
+                left.Temperature == right.Temperature &&
+                left.Amount == right.Amount &&
+                left.LuminousIntensity == right.LuminousIntensity;
+        }
+
+        public static bool operator !=(BaseDimensions left, BaseDimensions right)
+        {
+            return !( left == right );
+        }
+
+        public static BaseDimensions operator *(BaseDimensions left, BaseDimensions right)
+        {
+            return new BaseDimensions(
+                left.Length + right.Length,
+                left.Mass + right.Mass,
+                left.Time + right.Time,
+                left.Current + right.Current,
+                left.Temperature + right.Temperature,
+                left.Amount + right.Amount,
+                left.LuminousIntensity + right.LuminousIntensity );
+        }
+
+        public static BaseDimensions operator /(BaseDimensions left, BaseDimensions right)
+        {
+            return new BaseDimensions(
+                left.Length - right.Length,
+                left.Mass - right.Mass,
+                left.Time - right.Time,
+                left.Current - right.Current,
+                left.Temperature - right.Temperature,
+                left.Amount - right.Amount,
+                left.LuminousIntensity - right.LuminousIntensity );
+        }
     }
 }
