@@ -2,6 +2,9 @@
   "Name": "Duration",
   "BaseUnit": "Second",
   "XmlDoc": "Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.",
+  "BaseDimensions": {
+    "T": 1
+  },
   "Units": [
     {
       "ObsoleteText": "Use Year365 instead, which makes it clear that this is an approximate unit based on 365 days per year. The duration of a year varies due to corrections such as leap years, since a Gregorian solar calendar has 365.2425 days.",

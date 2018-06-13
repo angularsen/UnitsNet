@@ -3,6 +3,12 @@
   "BaseUnit": "WattPerMeterKelvin",
   "XmlDoc": "Thermal conductivity is the property of a material to conduct heat.",
   "XmlDocRemarks": "https://en.wikipedia.org/wiki/Thermal_Conductivity",
+  "BaseDimensions": {
+    "L": 1,
+    "M": 1,
+    "T": -3,
+    "Θ": -1
+  },
   "Units": [
     {
       "SingularName": "WattPerMeterKelvin",
