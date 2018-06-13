@@ -65,5 +65,19 @@ namespace UnitsNet.Tests.CustomCode
             Pressure pressure = SpecificWeight.FromNewtonsPerCubicMeter(10) * Length.FromMeters(2);
             Assert.Equal(Pressure.FromPascals(20), pressure);
         }
+
+        [Fact]
+        public void SpecificWeightDividedByDensityEqualsAcceleration()
+        {
+            Acceleration acceleration = SpecificWeight.FromNewtonsPerCubicMeter(40) / Density.FromKilogramsPerCubicMeter(4);
+            Assert.Equal(Acceleration.FromMetersPerSecondSquared(10), acceleration);
+        }
+
+        [Fact]
+        public void SpecificWeightDividedByAccelerationEqualsDensity()
+        {
+            Density density = SpecificWeight.FromNewtonsPerCubicMeter(20) / Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(Density.FromKilogramsPerCubicMeter(10), density);
+        }
     }
 }
