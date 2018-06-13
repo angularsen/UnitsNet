@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using Xunit;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificWeightTests : SpecificWeightTestsBase
@@ -56,5 +58,12 @@ namespace UnitsNet.Tests.CustomCode
         protected override double TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter => 1.02e-10;
 
         protected override double MeganewtonsPerCubicMeterInOneNewtonPerCubicMeter => 1e-6;
+
+        [Fact]
+        public void SpecificWeightTimesLengthEqualsPressure()
+        {
+            Pressure pressure = SpecificWeight.FromNewtonsPerCubicMeter(10) * Length.FromMeters(2);
+            Assert.Equal(Pressure.FromPascals(20), pressure);
+        }
     }
 }

@@ -114,5 +114,12 @@ namespace UnitsNet.Tests.CustomCode
             Force force = Pressure.FromPascals(20)*Area.FromSquareMeters(3);
             Assert.Equal(force, Force.FromNewtons(60));
         }
+
+        [Fact]
+        public void PressureDividedBySpecificWeightEqualsLength()
+        {
+            Length length = Pressure.FromPascals(20) / SpecificWeight.FromNewtonsPerCubicMeter(2);
+            Assert.Equal(Length.FromMeters(10), length);
+        }
     }
 }

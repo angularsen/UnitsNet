@@ -121,6 +121,13 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
+        public void LengthTimesSpecificWeightEqualsPressure()
+        {
+            Pressure pressure = Length.FromMeters(2) * SpecificWeight.FromNewtonsPerCubicMeter(10);
+            Assert.Equal(Pressure.FromPascals(20), pressure);
+        }
+
+        [Fact]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnitWhichIsMeter()
         {
             LengthUnit oldUnit = Length.ToStringDefaultUnit;

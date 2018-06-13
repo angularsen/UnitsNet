@@ -111,6 +111,11 @@ namespace UnitsNet
         {
             return KinematicViscosity.FromSquareMetersPerSecond(length.Meters*speed.MetersPerSecond);
         }
+
+        public static Pressure operator *(Length length, SpecificWeight specificWeight)
+        {
+            return new Pressure(length.Meters * specificWeight.NewtonsPerCubicMeter, PressureUnit.Pascal);
+        }
 #endif
     }
 
