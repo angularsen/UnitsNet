@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static IrradiationUnit BaseUnit => IrradiationUnit.JoulePerSquareMeter;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the Irradiation quantity.
         /// </summary>

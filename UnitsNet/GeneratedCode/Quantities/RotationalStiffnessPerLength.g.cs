@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static RotationalStiffnessPerLengthUnit BaseUnit => RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the RotationalStiffnessPerLength quantity.
         /// </summary>

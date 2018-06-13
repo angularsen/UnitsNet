@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static ForceUnit BaseUnit => ForceUnit.Newton;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the Force quantity.
         /// </summary>

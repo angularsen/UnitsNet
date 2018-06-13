@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static PermeabilityUnit BaseUnit => PermeabilityUnit.HenryPerMeter;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the Permeability quantity.
         /// </summary>

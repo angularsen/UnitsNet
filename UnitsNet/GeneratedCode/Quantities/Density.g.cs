@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static DensityUnit BaseUnit => DensityUnit.KilogramPerCubicMeter;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the Density quantity.
         /// </summary>

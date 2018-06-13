@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static AccelerationUnit BaseUnit => AccelerationUnit.MeterPerSecondSquared;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the Acceleration quantity.
         /// </summary>

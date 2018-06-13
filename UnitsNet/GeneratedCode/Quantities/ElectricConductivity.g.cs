@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static ElectricConductivityUnit BaseUnit => ElectricConductivityUnit.SiemensPerMeter;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the ElectricConductivity quantity.
         /// </summary>

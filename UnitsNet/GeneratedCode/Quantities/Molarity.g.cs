@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static MolarityUnit BaseUnit => MolarityUnit.MolesPerCubicMeter;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
+
         /// <summary>
         ///     All units of measurement for the Molarity quantity.
         /// </summary>

@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static RotationalAccelerationUnit BaseUnit => RotationalAccelerationUnit.RadianPerSecondSquared;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the RotationalAcceleration quantity.
         /// </summary>

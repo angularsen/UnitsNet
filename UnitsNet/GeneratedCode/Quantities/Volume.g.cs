@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static VolumeUnit BaseUnit => VolumeUnit.CubicMeter;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the Volume quantity.
         /// </summary>

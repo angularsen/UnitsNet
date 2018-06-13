@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static AreaMomentOfInertiaUnit BaseUnit => AreaMomentOfInertiaUnit.MeterToTheFourth;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the AreaMomentOfInertia quantity.
         /// </summary>

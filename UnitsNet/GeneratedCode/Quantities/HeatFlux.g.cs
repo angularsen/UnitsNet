@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static HeatFluxUnit BaseUnit => HeatFluxUnit.WattPerSquareMeter;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the HeatFlux quantity.
         /// </summary>

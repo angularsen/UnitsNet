@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static VolumeFlowUnit BaseUnit => VolumeFlowUnit.CubicMeterPerSecond;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the VolumeFlow quantity.
         /// </summary>

@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static EnergyUnit BaseUnit => EnergyUnit.Joule;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the Energy quantity.
         /// </summary>

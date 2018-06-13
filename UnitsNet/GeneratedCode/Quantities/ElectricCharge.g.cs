@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static ElectricChargeUnit BaseUnit => ElectricChargeUnit.Coulomb;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, 1, 1, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the ElectricCharge quantity.
         /// </summary>

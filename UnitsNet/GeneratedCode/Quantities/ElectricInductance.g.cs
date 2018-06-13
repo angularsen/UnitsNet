@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static ElectricInductanceUnit BaseUnit => ElectricInductanceUnit.Henry;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -2, -2, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the ElectricInductance quantity.
         /// </summary>

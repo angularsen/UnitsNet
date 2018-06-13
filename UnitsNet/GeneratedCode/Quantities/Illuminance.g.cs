@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static IlluminanceUnit BaseUnit => IlluminanceUnit.Lux;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
+
         /// <summary>
         ///     All units of measurement for the Illuminance quantity.
         /// </summary>

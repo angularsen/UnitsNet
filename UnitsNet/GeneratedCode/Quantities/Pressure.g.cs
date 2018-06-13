@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static PressureUnit BaseUnit => PressureUnit.Pascal;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the Pressure quantity.
         /// </summary>

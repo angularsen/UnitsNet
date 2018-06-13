@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static MagneticFieldUnit BaseUnit => MagneticFieldUnit.Tesla;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the MagneticField quantity.
         /// </summary>

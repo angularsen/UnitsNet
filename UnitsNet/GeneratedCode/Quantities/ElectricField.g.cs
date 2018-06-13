@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static ElectricFieldUnit BaseUnit => ElectricFieldUnit.VoltPerMeter;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(1, 1, -3, -1, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the ElectricField quantity.
         /// </summary>

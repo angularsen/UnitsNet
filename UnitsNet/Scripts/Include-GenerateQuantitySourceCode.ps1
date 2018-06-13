@@ -9,6 +9,15 @@
     $baseUnitPluralNameLower = $baseUnitPluralName.ToLowerInvariant()
     $unitEnumName = "$quantityName" + "Unit"
 
+    # Base dimensions
+    $baseDimensionLength = if($quantity.BaseDimensions.L){$quantity.BaseDimensions.L} else{0};
+    $baseDimensionMass = if($quantity.BaseDimensions.M){$quantity.BaseDimensions.M} else{0};
+    $baseDimensionTime = if($quantity.BaseDimensions.T){$quantity.BaseDimensions.T} else{0};
+    $baseDimensionElectricCurrent = if($quantity.BaseDimensions.I){$quantity.BaseDimensions.I} else{0};
+    $baseDimensionTemperature = if($quantity.BaseDimensions.Θ){$quantity.BaseDimensions.Θ} else{0};
+    $baseDimensionAmountOfSubstance = if($quantity.BaseDimensions.N){$quantity.BaseDimensions.N} else{0};
+    $baseDimensionLuminousIntensity = if($quantity.BaseDimensions.J){$quantity.BaseDimensions.J} else{0};
+
     $convertToBaseType = switch ($baseType) {
       "long" { "Convert.ToInt64"; break }
       "double" { "Convert.ToDouble"; break }
@@ -189,6 +198,18 @@ namespace UnitsNet
         /// </summary>
         public static $unitEnumName BaseUnit => $unitEnumName.$baseUnitSingularName;
 
+"@; 
+        if($quantity.BaseDimensions)
+        {
+@"
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions($baseDimensionLength, $baseDimensionMass, $baseDimensionTime, $baseDimensionElectricCurrent, $baseDimensionTemperature, $baseDimensionAmountOfSubstance, $baseDimensionLuminousIntensity);
+
+"@; 
+        }
+@"
         /// <summary>
         ///     All units of measurement for the $quantityName quantity.
         /// </summary>

@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static LuminousIntensityUnit BaseUnit => LuminousIntensityUnit.Candela;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
+
         /// <summary>
         ///     All units of measurement for the LuminousIntensity quantity.
         /// </summary>

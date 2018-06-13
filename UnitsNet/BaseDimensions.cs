@@ -23,6 +23,9 @@ using System;
 
 namespace UnitsNet
 {
+    /// <summary>
+    ///     Represents the base dimensions of a quantity.
+    /// </summary>
     public struct BaseDimensions
     {
         public readonly int
@@ -34,7 +37,7 @@ namespace UnitsNet
             Amount,             // N
             LuminousIntensity;  // J
 
-        public BaseDimensions( int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity )
+        public BaseDimensions(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
         {
             Length = length;
             Mass = mass;

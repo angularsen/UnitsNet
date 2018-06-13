@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static TorqueUnit BaseUnit => TorqueUnit.NewtonMeter;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the Torque quantity.
         /// </summary>

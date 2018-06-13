@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static DurationUnit BaseUnit => DurationUnit.Second;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the Duration quantity.
         /// </summary>

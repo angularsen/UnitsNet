@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static PermittivityUnit BaseUnit => PermittivityUnit.FaradPerMeter;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the Permittivity quantity.
         /// </summary>

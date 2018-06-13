@@ -158,6 +158,11 @@ namespace UnitsNet
         /// </summary>
         public static ElectricConductanceUnit BaseUnit => ElectricConductanceUnit.Siemens;
 
+          /// <summary>
+          ///     The <see cref="BaseDimensions" /> of this quantity.
+          /// </summary>
+          public static BaseDimensions BaseDimensions => new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
+
         /// <summary>
         ///     All units of measurement for the ElectricConductance quantity.
         /// </summary>
