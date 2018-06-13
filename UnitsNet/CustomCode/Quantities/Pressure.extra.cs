@@ -47,6 +47,11 @@ namespace UnitsNet
         {
             return new Length(pressure.Pascals / specificWeight.NewtonsPerCubicMeter, UnitsNet.Units.LengthUnit.Meter);
         }
+
+        public static SpecificWeight operator /(Pressure pressure, Length length)
+        {
+            return new SpecificWeight(pressure.Pascals / length.Meters, UnitsNet.Units.SpecificWeightUnit.NewtonPerCubicMeter);
+        }
 #endif
     }
 }

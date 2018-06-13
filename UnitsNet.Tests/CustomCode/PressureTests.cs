@@ -121,5 +121,12 @@ namespace UnitsNet.Tests.CustomCode
             Length length = Pressure.FromPascals(20) / SpecificWeight.FromNewtonsPerCubicMeter(2);
             Assert.Equal(Length.FromMeters(10), length);
         }
+
+        [Fact]
+        public void PressureDividedByLengthEqualsSpecificWeight()
+        {
+            SpecificWeight specificWeight = Pressure.FromPascals(20) / Length.FromMeters(2);
+            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(10), specificWeight);
+        }
     }
 }
