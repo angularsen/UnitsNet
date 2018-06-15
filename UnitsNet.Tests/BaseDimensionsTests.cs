@@ -301,5 +301,11 @@ namespace UnitsNet.Tests
             BaseDimensions calculatedDimensions = mass * acceleration;
             Assert.True(calculatedDimensions == Force.BaseDimensions);
         }
+
+        [Fact]
+        public void CheckToStringUsingMolarEntropy()
+        {
+            Assert.Equal(MolarEntropy.BaseDimensions.ToString(), "[Length]^2[Mass][Time]^-2[Temperature][Amount]");
+        }
     }
 }

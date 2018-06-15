@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Text;
 
 namespace UnitsNet
 {
@@ -91,7 +92,7 @@ namespace UnitsNet
                 left.Current + right.Current,
                 left.Temperature + right.Temperature,
                 left.Amount + right.Amount,
-                left.LuminousIntensity + right.LuminousIntensity );
+                left.LuminousIntensity + right.LuminousIntensity);
         }
 
         public static BaseDimensions operator /(BaseDimensions left, BaseDimensions right)
@@ -103,7 +104,35 @@ namespace UnitsNet
                 left.Current - right.Current,
                 left.Temperature - right.Temperature,
                 left.Amount - right.Amount,
-                left.LuminousIntensity - right.LuminousIntensity );
+                left.LuminousIntensity - right.LuminousIntensity);
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+
+            AppendDimensionString(sb, "Length", Length);
+            AppendDimensionString(sb, "Mass", Mass);
+            AppendDimensionString(sb, "Time", Time);
+            AppendDimensionString(sb, "Current", Current);
+            AppendDimensionString(sb, "Temperature", Temperature);
+            AppendDimensionString(sb, "Amount", Amount);
+            AppendDimensionString(sb, "LuminousIntensity", LuminousIntensity);
+
+            return sb.ToString();
+        }
+
+        private static void AppendDimensionString( StringBuilder sb, string name, int value )
+        {
+            var absoluteValue = Math.Abs( value );
+
+            if( absoluteValue > 0 )
+            {
+                sb.AppendFormat( "[{0}]", name );
+
+                if( absoluteValue > 1 )
+                    sb.AppendFormat( "^{0}", value );
+            }
         }
     }
 }
