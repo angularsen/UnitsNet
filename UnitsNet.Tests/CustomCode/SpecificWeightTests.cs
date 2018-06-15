@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using Xunit;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificWeightTests : SpecificWeightTestsBase
@@ -56,5 +58,26 @@ namespace UnitsNet.Tests.CustomCode
         protected override double TonnesForcePerCubicMillimeterInOneNewtonPerCubicMeter => 1.02e-10;
 
         protected override double MeganewtonsPerCubicMeterInOneNewtonPerCubicMeter => 1e-6;
+
+        [Fact]
+        public void SpecificWeightTimesLengthEqualsPressure()
+        {
+            Pressure pressure = SpecificWeight.FromNewtonsPerCubicMeter(10) * Length.FromMeters(2);
+            Assert.Equal(Pressure.FromPascals(20), pressure);
+        }
+
+        [Fact]
+        public void SpecificWeightDividedByDensityEqualsAcceleration()
+        {
+            Acceleration acceleration = SpecificWeight.FromNewtonsPerCubicMeter(40) / Density.FromKilogramsPerCubicMeter(4);
+            Assert.Equal(Acceleration.FromMetersPerSecondSquared(10), acceleration);
+        }
+
+        [Fact]
+        public void SpecificWeightDividedByAccelerationEqualsDensity()
+        {
+            Density density = SpecificWeight.FromNewtonsPerCubicMeter(20) / Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(Density.FromKilogramsPerCubicMeter(10), density);
+        }
     }
 }

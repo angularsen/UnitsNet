@@ -19,38 +19,22 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
 namespace UnitsNet
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class Pressure
+    public sealed partial class Acceleration
 #else
-    public partial struct Pressure
+    public partial struct Acceleration
 #endif
     {
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
-        public static Force operator *(Pressure pressure, Area area)
+        public static SpecificWeight operator *(Acceleration acceleration, Density density)
         {
-            return Force.FromNewtons(pressure.Pascals * area.SquareMeters);
-        }
-
-        public static Force operator *(Area area, Pressure pressure)
-        {
-            return Force.FromNewtons(pressure.Pascals * area.SquareMeters);
-        }
-
-        public static Length operator /(Pressure pressure, SpecificWeight specificWeight)
-        {
-            return new Length(pressure.Pascals / specificWeight.NewtonsPerCubicMeter, UnitsNet.Units.LengthUnit.Meter);
-        }
-
-        public static SpecificWeight operator /(Pressure pressure, Length length)
-        {
-            return new SpecificWeight(pressure.Pascals / length.Meters, UnitsNet.Units.SpecificWeightUnit.NewtonPerCubicMeter);
+            return new SpecificWeight(acceleration.MetersPerSecondSquared * density.KilogramsPerCubicMeter, UnitsNet.Units.SpecificWeightUnit.NewtonPerCubicMeter);
         }
 #endif
     }

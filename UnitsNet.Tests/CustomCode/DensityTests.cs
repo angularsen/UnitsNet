@@ -148,5 +148,12 @@ namespace UnitsNet.Tests.CustomCode
             MassFlux massFlux = Density.FromKilogramsPerCubicMeter(20) * Speed.FromMetersPerSecond(2);
             Assert.Equal(massFlux, MassFlux.FromKilogramsPerSecondPerSquareMeter(40));
         }
+
+        [Fact]
+        public void DensityTimesAccelerationEqualsSpecificWeight()
+        {
+            SpecificWeight specificWeight = Density.FromKilogramsPerCubicMeter(10) * Acceleration.FromMetersPerSecondSquared(2);
+            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(20), specificWeight);
+        }
     }
 }

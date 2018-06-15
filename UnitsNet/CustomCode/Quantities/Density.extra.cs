@@ -66,6 +66,11 @@ namespace UnitsNet
         {
             return MassFlux.FromKilogramsPerSecondPerSquareMeter(density.KilogramsPerCubicMeter * speed.MetersPerSecond);
         }
+
+        public static SpecificWeight operator *(Density density, Acceleration acceleration)
+        {
+            return new SpecificWeight(density.KilogramsPerCubicMeter * acceleration.MetersPerSecondSquared, UnitsNet.Units.SpecificWeightUnit.NewtonPerCubicMeter);
+        }
 #endif
     }
 }
