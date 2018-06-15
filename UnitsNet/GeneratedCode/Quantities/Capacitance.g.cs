@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static CapacitanceUnit BaseUnit => CapacitanceUnit.Farad;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the Capacitance quantity.
@@ -177,6 +177,11 @@ namespace UnitsNet
         #region Static
 
         public static Capacitance Zero => new Capacitance(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Capacitance quantity)
+        {
+            return Capacitance.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Capacitance from Farads.
@@ -796,17 +801,22 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitFarads()
         {
-			if (Unit == CapacitanceUnit.Farad) { return _value; }
+            if (Unit == CapacitanceUnit.Farad) { return _value; }
 
             switch (Unit)
             {
                 case CapacitanceUnit.Farad: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(CapacitanceUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Capacitance.BaseDimensions;
+    }
 }

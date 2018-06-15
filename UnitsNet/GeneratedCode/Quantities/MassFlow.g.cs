@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static MassFlowUnit BaseUnit => MassFlowUnit.GramPerSecond;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(0, 1, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the MassFlow quantity.
@@ -233,6 +233,11 @@ namespace UnitsNet
         #region Static
 
         public static MassFlow Zero => new MassFlow(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(MassFlow quantity)
+        {
+            return MassFlow.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get MassFlow from CentigramsPerSecond.
@@ -1272,7 +1277,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitGramsPerSecond()
         {
-			if (Unit == MassFlowUnit.GramPerSecond) { return _value; }
+            if (Unit == MassFlowUnit.GramPerSecond) { return _value; }
 
             switch (Unit)
             {
@@ -1293,10 +1298,15 @@ namespace UnitsNet
                 case MassFlowUnit.TonnePerHour: return 1000*_value/3.6;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(MassFlowUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => MassFlow.BaseDimensions;
+    }
 }

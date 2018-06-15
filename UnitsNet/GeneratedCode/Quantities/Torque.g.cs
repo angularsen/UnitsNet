@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static TorqueUnit BaseUnit => TorqueUnit.NewtonMeter;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the Torque quantity.
@@ -257,6 +257,11 @@ namespace UnitsNet
         #region Static
 
         public static Torque Zero => new Torque(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Torque quantity)
+        {
+            return Torque.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Torque from KilogramForceCentimeters.
@@ -1476,7 +1481,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitNewtonMeters()
         {
-			if (Unit == TorqueUnit.NewtonMeter) { return _value; }
+            if (Unit == TorqueUnit.NewtonMeter) { return _value; }
 
             switch (Unit)
             {
@@ -1503,10 +1508,15 @@ namespace UnitsNet
                 case TorqueUnit.TonneForceMillimeter: return _value*9.80665019960652;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(TorqueUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Torque.BaseDimensions;
+    }
 }

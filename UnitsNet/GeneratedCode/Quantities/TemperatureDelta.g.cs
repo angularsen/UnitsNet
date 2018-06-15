@@ -1309,7 +1309,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitKelvins()
         {
-			if (Unit == TemperatureDeltaUnit.Kelvin) { return _value; }
+            if (Unit == TemperatureDeltaUnit.Kelvin) { return _value; }
 
             switch (Unit)
             {
@@ -1331,10 +1331,11 @@ namespace UnitsNet
                 case TemperatureDeltaUnit.KelvinDelta: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(TemperatureDeltaUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+    }
 }

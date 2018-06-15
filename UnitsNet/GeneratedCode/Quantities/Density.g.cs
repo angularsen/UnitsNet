@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static DensityUnit BaseUnit => DensityUnit.KilogramPerCubicMeter;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the Density quantity.
@@ -325,6 +325,11 @@ namespace UnitsNet
         #region Static
 
         public static Density Zero => new Density(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Density quantity)
+        {
+            return Density.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Density from CentigramsPerDeciLiter.
@@ -2054,7 +2059,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitKilogramsPerCubicMeter()
         {
-			if (Unit == DensityUnit.KilogramPerCubicMeter) { return _value; }
+            if (Unit == DensityUnit.KilogramPerCubicMeter) { return _value; }
 
             switch (Unit)
             {
@@ -2098,10 +2103,15 @@ namespace UnitsNet
                 case DensityUnit.TonnePerCubicMillimeter: return _value/1e-12;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(DensityUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Density.BaseDimensions;
+    }
 }

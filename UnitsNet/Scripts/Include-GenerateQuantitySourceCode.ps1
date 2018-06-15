@@ -199,16 +199,16 @@ namespace UnitsNet
         public static $unitEnumName BaseUnit => $unitEnumName.$baseUnitSingularName;
 
 "@; 
-        if($quantity.BaseDimensions)
-        {
+    if($quantity.BaseDimensions)
+    {
 @"
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions($baseDimensionLength, $baseDimensionMass, $baseDimensionTime, $baseDimensionElectricCurrent, $baseDimensionTemperature, $baseDimensionAmountOfSubstance, $baseDimensionLuminousIntensity);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions($baseDimensionLength, $baseDimensionMass, $baseDimensionTime, $baseDimensionElectricCurrent, $baseDimensionTemperature, $baseDimensionAmountOfSubstance, $baseDimensionLuminousIntensity);
 
 "@; 
-        }
+    }
 @"
         /// <summary>
         ///     All units of measurement for the $quantityName quantity.
@@ -235,7 +235,19 @@ namespace UnitsNet
 
         public static $quantityName Zero => new $quantityName(0, BaseUnit);
 
-"@; foreach ($unit in $units) {
+"@; 
+    if($quantity.BaseDimensions)
+    {
+@"
+        public static implicit operator BaseDimensions($quantityName quantity)
+        {
+            return $quantityName.BaseDimensions;
+        }
+
+"@;
+    }
+
+    foreach ($unit in $units) {
         $valueParamName = $unit.PluralName.ToLowerInvariant();@"
         /// <summary>
         ///     Get $quantityName from $($unit.PluralName).
@@ -865,7 +877,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private $baseType AsBaseUnit$baseUnitPluralName()
         {
-			if (Unit == $unitEnumName.$baseUnitSingularName) { return _value; }
+            if (Unit == $unitEnumName.$baseUnitSingularName) { return _value; }
 
             switch (Unit)
             {
@@ -875,12 +887,24 @@ namespace UnitsNet
 "@; }@"
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private $baseType AsBaseNumericType($unitEnumName unit) => $convertToBaseType(As(unit));
-	}
+
+"@;
+if($quantity.BaseDimensions)
+{
+@"
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => $quantityName.BaseDimensions;
+"@;
+}
+@"
+    }
 }
 "@;
 }

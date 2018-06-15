@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static KinematicViscosityUnit BaseUnit => KinematicViscosityUnit.SquareMeterPerSecond;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 0, -1, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(2, 0, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the KinematicViscosity quantity.
@@ -205,6 +205,11 @@ namespace UnitsNet
         #region Static
 
         public static KinematicViscosity Zero => new KinematicViscosity(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(KinematicViscosity quantity)
+        {
+            return KinematicViscosity.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get KinematicViscosity from Centistokes.
@@ -1034,7 +1039,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitSquareMetersPerSecond()
         {
-			if (Unit == KinematicViscosityUnit.SquareMeterPerSecond) { return _value; }
+            if (Unit == KinematicViscosityUnit.SquareMeterPerSecond) { return _value; }
 
             switch (Unit)
             {
@@ -1048,10 +1053,15 @@ namespace UnitsNet
                 case KinematicViscosityUnit.Stokes: return _value/1e4;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(KinematicViscosityUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => KinematicViscosity.BaseDimensions;
+    }
 }

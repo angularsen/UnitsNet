@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static ApparentEnergyUnit BaseUnit => ApparentEnergyUnit.VoltampereHour;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the ApparentEnergy quantity.
@@ -185,6 +185,11 @@ namespace UnitsNet
         #region Static
 
         public static ApparentEnergy Zero => new ApparentEnergy(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(ApparentEnergy quantity)
+        {
+            return ApparentEnergy.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get ApparentEnergy from KilovoltampereHours.
@@ -864,7 +869,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitVoltampereHours()
         {
-			if (Unit == ApparentEnergyUnit.VoltampereHour) { return _value; }
+            if (Unit == ApparentEnergyUnit.VoltampereHour) { return _value; }
 
             switch (Unit)
             {
@@ -873,10 +878,15 @@ namespace UnitsNet
                 case ApparentEnergyUnit.VoltampereHour: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ApparentEnergyUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ApparentEnergy.BaseDimensions;
+    }
 }

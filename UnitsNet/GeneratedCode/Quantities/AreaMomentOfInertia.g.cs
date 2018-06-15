@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static AreaMomentOfInertiaUnit BaseUnit => AreaMomentOfInertiaUnit.MeterToTheFourth;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the AreaMomentOfInertia quantity.
@@ -197,6 +197,11 @@ namespace UnitsNet
         #region Static
 
         public static AreaMomentOfInertia Zero => new AreaMomentOfInertia(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(AreaMomentOfInertia quantity)
+        {
+            return AreaMomentOfInertia.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get AreaMomentOfInertia from CentimetersToTheFourth.
@@ -966,7 +971,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitMetersToTheFourth()
         {
-			if (Unit == AreaMomentOfInertiaUnit.MeterToTheFourth) { return _value; }
+            if (Unit == AreaMomentOfInertiaUnit.MeterToTheFourth) { return _value; }
 
             switch (Unit)
             {
@@ -978,10 +983,15 @@ namespace UnitsNet
                 case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return _value/1e12;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(AreaMomentOfInertiaUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => AreaMomentOfInertia.BaseDimensions;
+    }
 }

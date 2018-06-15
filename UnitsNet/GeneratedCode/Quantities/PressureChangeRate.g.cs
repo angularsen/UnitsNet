@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static PressureChangeRateUnit BaseUnit => PressureChangeRateUnit.PascalPerSecond;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the PressureChangeRate quantity.
@@ -189,6 +189,11 @@ namespace UnitsNet
         #region Static
 
         public static PressureChangeRate Zero => new PressureChangeRate(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(PressureChangeRate quantity)
+        {
+            return PressureChangeRate.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get PressureChangeRate from AtmospheresPerSecond.
@@ -898,7 +903,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitPascalsPerSecond()
         {
-			if (Unit == PressureChangeRateUnit.PascalPerSecond) { return _value; }
+            if (Unit == PressureChangeRateUnit.PascalPerSecond) { return _value; }
 
             switch (Unit)
             {
@@ -908,10 +913,15 @@ namespace UnitsNet
                 case PressureChangeRateUnit.PascalPerSecond: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(PressureChangeRateUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => PressureChangeRate.BaseDimensions;
+    }
 }

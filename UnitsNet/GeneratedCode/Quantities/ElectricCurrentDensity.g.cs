@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static ElectricCurrentDensityUnit BaseUnit => ElectricCurrentDensityUnit.AmperePerSquareMeter;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the ElectricCurrentDensity quantity.
@@ -177,6 +177,11 @@ namespace UnitsNet
         #region Static
 
         public static ElectricCurrentDensity Zero => new ElectricCurrentDensity(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(ElectricCurrentDensity quantity)
+        {
+            return ElectricCurrentDensity.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get ElectricCurrentDensity from AmperesPerSquareMeter.
@@ -796,17 +801,22 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitAmperesPerSquareMeter()
         {
-			if (Unit == ElectricCurrentDensityUnit.AmperePerSquareMeter) { return _value; }
+            if (Unit == ElectricCurrentDensityUnit.AmperePerSquareMeter) { return _value; }
 
             switch (Unit)
             {
                 case ElectricCurrentDensityUnit.AmperePerSquareMeter: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ElectricCurrentDensityUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ElectricCurrentDensity.BaseDimensions;
+    }
 }

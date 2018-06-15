@@ -254,5 +254,52 @@ namespace UnitsNet.Tests
             Assert.True(result.Amount == 0);
             Assert.True(result.LuminousIntensity == 1);
         }
+
+        [Fact]
+        public void CheckBaseDimensionDivisionWithSpeedEqualsDistanceDividedByTimeOnStaticProperty()
+        {
+            var calculatedDimensions = Length.BaseDimensions / Duration.BaseDimensions;
+            Assert.True(calculatedDimensions == Speed.BaseDimensions);
+        }
+
+        [Fact]
+        public void CheckBaseDimensionDivisionWithSpeedEqualsDistanceDividedByTimeOnInstanceProperty()
+        {
+            var length = Length.FromKilometers(100);
+            var duration = Duration.FromHours(1);
+
+            var calculatedDimensions = length.Dimensions / duration.Dimensions;
+            Assert.True(calculatedDimensions == Speed.BaseDimensions);
+        }
+
+        [Fact]
+        public void CheckBaseDimensionDivisionWithSpeedEqualsDistanceDividedByTimeByImplicitOverload()
+        {
+            var length = Length.FromKilometers(100);
+            var duration = Duration.FromHours(1);
+
+            BaseDimensions calculatedDimensions = length / duration;
+            Assert.True(calculatedDimensions == Speed.BaseDimensions);
+        }
+
+        [Fact]
+        public void CheckBaseDimensionMultiplicationWithForceEqualsMassTimesAccelerationOnInstanceProperty()
+        {
+            var mass = Mass.FromPounds(205);
+            var acceleration = Acceleration.FromMetersPerSecondSquared(9.8);
+
+            var calculatedDimensions = mass.Dimensions * acceleration.Dimensions;
+            Assert.True(calculatedDimensions == Force.BaseDimensions);
+        }
+
+        [Fact]
+        public void CheckBaseDimensionMultiplicationWithForceEqualsMassTimesAccelerationByImplicitOverload()
+        {
+            var mass = Mass.FromPounds(205);
+            var acceleration = Acceleration.FromMetersPerSecondSquared(9.8);
+
+            BaseDimensions calculatedDimensions = mass * acceleration;
+            Assert.True(calculatedDimensions == Force.BaseDimensions);
+        }
     }
 }

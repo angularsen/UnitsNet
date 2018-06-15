@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static MassMomentOfInertiaUnit BaseUnit => MassMomentOfInertiaUnit.KilogramSquareMeter;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the MassMomentOfInertia quantity.
@@ -277,6 +277,11 @@ namespace UnitsNet
         #region Static
 
         public static MassMomentOfInertia Zero => new MassMomentOfInertia(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(MassMomentOfInertia quantity)
+        {
+            return MassMomentOfInertia.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get MassMomentOfInertia from GramSquareCentimeters.
@@ -1646,7 +1651,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitKilogramSquareMeters()
         {
-			if (Unit == MassMomentOfInertiaUnit.KilogramSquareMeter) { return _value; }
+            if (Unit == MassMomentOfInertiaUnit.KilogramSquareMeter) { return _value; }
 
             switch (Unit)
             {
@@ -1678,10 +1683,15 @@ namespace UnitsNet
                 case MassMomentOfInertiaUnit.TonneSquareMilimeter: return _value/1e3;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(MassMomentOfInertiaUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => MassMomentOfInertia.BaseDimensions;
+    }
 }

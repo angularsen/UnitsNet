@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static MassUnit BaseUnit => MassUnit.Kilogram;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the Mass quantity.
@@ -257,6 +257,11 @@ namespace UnitsNet
         #region Static
 
         public static Mass Zero => new Mass(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Mass quantity)
+        {
+            return Mass.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Mass from Centigrams.
@@ -1476,7 +1481,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitKilograms()
         {
-			if (Unit == MassUnit.Kilogram) { return _value; }
+            if (Unit == MassUnit.Kilogram) { return _value; }
 
             switch (Unit)
             {
@@ -1503,10 +1508,15 @@ namespace UnitsNet
                 case MassUnit.Tonne: return _value*1e3;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(MassUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Mass.BaseDimensions;
+    }
 }

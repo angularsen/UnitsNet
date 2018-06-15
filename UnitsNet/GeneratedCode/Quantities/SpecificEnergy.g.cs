@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static SpecificEnergyUnit BaseUnit => SpecificEnergyUnit.JoulePerKilogram;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the SpecificEnergy quantity.
@@ -205,6 +205,11 @@ namespace UnitsNet
         #region Static
 
         public static SpecificEnergy Zero => new SpecificEnergy(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(SpecificEnergy quantity)
+        {
+            return SpecificEnergy.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get SpecificEnergy from CaloriesPerGram.
@@ -1034,7 +1039,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitJoulesPerKilogram()
         {
-			if (Unit == SpecificEnergyUnit.JoulePerKilogram) { return _value; }
+            if (Unit == SpecificEnergyUnit.JoulePerKilogram) { return _value; }
 
             switch (Unit)
             {
@@ -1048,10 +1053,15 @@ namespace UnitsNet
                 case SpecificEnergyUnit.WattHourPerKilogram: return _value*3.6e3;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(SpecificEnergyUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => SpecificEnergy.BaseDimensions;
+    }
 }

@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static ElectricResistanceUnit BaseUnit => ElectricResistanceUnit.Ohm;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the ElectricResistance quantity.
@@ -189,6 +189,11 @@ namespace UnitsNet
         #region Static
 
         public static ElectricResistance Zero => new ElectricResistance(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(ElectricResistance quantity)
+        {
+            return ElectricResistance.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get ElectricResistance from Kiloohms.
@@ -898,7 +903,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitOhms()
         {
-			if (Unit == ElectricResistanceUnit.Ohm) { return _value; }
+            if (Unit == ElectricResistanceUnit.Ohm) { return _value; }
 
             switch (Unit)
             {
@@ -908,10 +913,15 @@ namespace UnitsNet
                 case ElectricResistanceUnit.Ohm: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ElectricResistanceUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ElectricResistance.BaseDimensions;
+    }
 }

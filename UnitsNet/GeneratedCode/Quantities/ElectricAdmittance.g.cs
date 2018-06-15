@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static ElectricAdmittanceUnit BaseUnit => ElectricAdmittanceUnit.Siemens;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the ElectricAdmittance quantity.
@@ -189,6 +189,11 @@ namespace UnitsNet
         #region Static
 
         public static ElectricAdmittance Zero => new ElectricAdmittance(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(ElectricAdmittance quantity)
+        {
+            return ElectricAdmittance.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get ElectricAdmittance from Microsiemens.
@@ -898,7 +903,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitSiemens()
         {
-			if (Unit == ElectricAdmittanceUnit.Siemens) { return _value; }
+            if (Unit == ElectricAdmittanceUnit.Siemens) { return _value; }
 
             switch (Unit)
             {
@@ -908,10 +913,15 @@ namespace UnitsNet
                 case ElectricAdmittanceUnit.Siemens: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ElectricAdmittanceUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ElectricAdmittance.BaseDimensions;
+    }
 }

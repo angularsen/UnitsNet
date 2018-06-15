@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static MagneticFluxUnit BaseUnit => MagneticFluxUnit.Weber;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the MagneticFlux quantity.
@@ -177,6 +177,11 @@ namespace UnitsNet
         #region Static
 
         public static MagneticFlux Zero => new MagneticFlux(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(MagneticFlux quantity)
+        {
+            return MagneticFlux.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get MagneticFlux from Webers.
@@ -796,17 +801,22 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitWebers()
         {
-			if (Unit == MagneticFluxUnit.Weber) { return _value; }
+            if (Unit == MagneticFluxUnit.Weber) { return _value; }
 
             switch (Unit)
             {
                 case MagneticFluxUnit.Weber: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(MagneticFluxUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => MagneticFlux.BaseDimensions;
+    }
 }

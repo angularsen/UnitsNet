@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static ApparentPowerUnit BaseUnit => ApparentPowerUnit.Voltampere;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the ApparentPower quantity.
@@ -189,6 +189,11 @@ namespace UnitsNet
         #region Static
 
         public static ApparentPower Zero => new ApparentPower(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(ApparentPower quantity)
+        {
+            return ApparentPower.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get ApparentPower from Gigavoltamperes.
@@ -898,7 +903,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitVoltamperes()
         {
-			if (Unit == ApparentPowerUnit.Voltampere) { return _value; }
+            if (Unit == ApparentPowerUnit.Voltampere) { return _value; }
 
             switch (Unit)
             {
@@ -908,10 +913,15 @@ namespace UnitsNet
                 case ApparentPowerUnit.Voltampere: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ApparentPowerUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ApparentPower.BaseDimensions;
+    }
 }

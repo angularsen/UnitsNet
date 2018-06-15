@@ -1233,7 +1233,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitDegrees()
         {
-			if (Unit == AngleUnit.Degree) { return _value; }
+            if (Unit == AngleUnit.Degree) { return _value; }
 
             switch (Unit)
             {
@@ -1253,10 +1253,11 @@ namespace UnitsNet
                 case AngleUnit.Revolution: return _value*360;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(AngleUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+    }
 }

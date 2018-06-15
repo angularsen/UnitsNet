@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static SpecificVolumeUnit BaseUnit => SpecificVolumeUnit.CubicMeterPerKilogram;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the SpecificVolume quantity.
@@ -177,6 +177,11 @@ namespace UnitsNet
         #region Static
 
         public static SpecificVolume Zero => new SpecificVolume(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(SpecificVolume quantity)
+        {
+            return SpecificVolume.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get SpecificVolume from CubicMetersPerKilogram.
@@ -796,17 +801,22 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitCubicMetersPerKilogram()
         {
-			if (Unit == SpecificVolumeUnit.CubicMeterPerKilogram) { return _value; }
+            if (Unit == SpecificVolumeUnit.CubicMeterPerKilogram) { return _value; }
 
             switch (Unit)
             {
                 case SpecificVolumeUnit.CubicMeterPerKilogram: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(SpecificVolumeUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => SpecificVolume.BaseDimensions;
+    }
 }

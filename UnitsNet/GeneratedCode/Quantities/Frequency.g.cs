@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static FrequencyUnit BaseUnit => FrequencyUnit.Hertz;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the Frequency quantity.
@@ -205,6 +205,11 @@ namespace UnitsNet
         #region Static
 
         public static Frequency Zero => new Frequency(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Frequency quantity)
+        {
+            return Frequency.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Frequency from CyclesPerHour.
@@ -1034,7 +1039,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitHertz()
         {
-			if (Unit == FrequencyUnit.Hertz) { return _value; }
+            if (Unit == FrequencyUnit.Hertz) { return _value; }
 
             switch (Unit)
             {
@@ -1048,10 +1053,15 @@ namespace UnitsNet
                 case FrequencyUnit.Terahertz: return (_value) * 1e12d;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(FrequencyUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Frequency.BaseDimensions;
+    }
 }

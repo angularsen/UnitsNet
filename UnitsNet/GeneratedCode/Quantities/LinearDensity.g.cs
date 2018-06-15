@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static LinearDensityUnit BaseUnit => LinearDensityUnit.KilogramPerMeter;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the LinearDensity quantity.
@@ -185,6 +185,11 @@ namespace UnitsNet
         #region Static
 
         public static LinearDensity Zero => new LinearDensity(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(LinearDensity quantity)
+        {
+            return LinearDensity.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get LinearDensity from GramsPerMeter.
@@ -864,7 +869,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitKilogramsPerMeter()
         {
-			if (Unit == LinearDensityUnit.KilogramPerMeter) { return _value; }
+            if (Unit == LinearDensityUnit.KilogramPerMeter) { return _value; }
 
             switch (Unit)
             {
@@ -873,10 +878,15 @@ namespace UnitsNet
                 case LinearDensityUnit.PoundPerFoot: return _value*1.48816394;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(LinearDensityUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => LinearDensity.BaseDimensions;
+    }
 }

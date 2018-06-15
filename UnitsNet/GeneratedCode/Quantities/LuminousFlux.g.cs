@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static LuminousFluxUnit BaseUnit => LuminousFluxUnit.Lumen;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
 
         /// <summary>
         ///     All units of measurement for the LuminousFlux quantity.
@@ -177,6 +177,11 @@ namespace UnitsNet
         #region Static
 
         public static LuminousFlux Zero => new LuminousFlux(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(LuminousFlux quantity)
+        {
+            return LuminousFlux.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get LuminousFlux from Lumens.
@@ -796,17 +801,22 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitLumens()
         {
-			if (Unit == LuminousFluxUnit.Lumen) { return _value; }
+            if (Unit == LuminousFluxUnit.Lumen) { return _value; }
 
             switch (Unit)
             {
                 case LuminousFluxUnit.Lumen: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(LuminousFluxUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => LuminousFlux.BaseDimensions;
+    }
 }

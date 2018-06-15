@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static RotationalStiffnessUnit BaseUnit => RotationalStiffnessUnit.NewtonMeterPerRadian;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the RotationalStiffness quantity.
@@ -185,6 +185,11 @@ namespace UnitsNet
         #region Static
 
         public static RotationalStiffness Zero => new RotationalStiffness(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(RotationalStiffness quantity)
+        {
+            return RotationalStiffness.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get RotationalStiffness from KilonewtonMetersPerRadian.
@@ -864,7 +869,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitNewtonMetersPerRadian()
         {
-			if (Unit == RotationalStiffnessUnit.NewtonMeterPerRadian) { return _value; }
+            if (Unit == RotationalStiffnessUnit.NewtonMeterPerRadian) { return _value; }
 
             switch (Unit)
             {
@@ -873,10 +878,15 @@ namespace UnitsNet
                 case RotationalStiffnessUnit.NewtonMeterPerRadian: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(RotationalStiffnessUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => RotationalStiffness.BaseDimensions;
+    }
 }

@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static AccelerationUnit BaseUnit => AccelerationUnit.MeterPerSecondSquared;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the Acceleration quantity.
@@ -225,6 +225,11 @@ namespace UnitsNet
         #region Static
 
         public static Acceleration Zero => new Acceleration(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Acceleration quantity)
+        {
+            return Acceleration.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Acceleration from CentimetersPerSecondSquared.
@@ -1204,7 +1209,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitMetersPerSecondSquared()
         {
-			if (Unit == AccelerationUnit.MeterPerSecondSquared) { return _value; }
+            if (Unit == AccelerationUnit.MeterPerSecondSquared) { return _value; }
 
             switch (Unit)
             {
@@ -1223,10 +1228,15 @@ namespace UnitsNet
                 case AccelerationUnit.StandardGravity: return _value*9.80665;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(AccelerationUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Acceleration.BaseDimensions;
+    }
 }

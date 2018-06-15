@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static ElectricCurrentGradientUnit BaseUnit => ElectricCurrentGradientUnit.AmperePerSecond;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the ElectricCurrentGradient quantity.
@@ -177,6 +177,11 @@ namespace UnitsNet
         #region Static
 
         public static ElectricCurrentGradient Zero => new ElectricCurrentGradient(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(ElectricCurrentGradient quantity)
+        {
+            return ElectricCurrentGradient.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get ElectricCurrentGradient from AmperesPerSecond.
@@ -796,17 +801,22 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitAmperesPerSecond()
         {
-			if (Unit == ElectricCurrentGradientUnit.AmperePerSecond) { return _value; }
+            if (Unit == ElectricCurrentGradientUnit.AmperePerSecond) { return _value; }
 
             switch (Unit)
             {
                 case ElectricCurrentGradientUnit.AmperePerSecond: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ElectricCurrentGradientUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ElectricCurrentGradient.BaseDimensions;
+    }
 }

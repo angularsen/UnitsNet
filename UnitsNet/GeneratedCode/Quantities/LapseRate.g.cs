@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static LapseRateUnit BaseUnit => LapseRateUnit.DegreeCelsiusPerKilometer;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the LapseRate quantity.
@@ -177,6 +177,11 @@ namespace UnitsNet
         #region Static
 
         public static LapseRate Zero => new LapseRate(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(LapseRate quantity)
+        {
+            return LapseRate.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get LapseRate from DegreesCelciusPerKilometer.
@@ -796,17 +801,22 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitDegreesCelciusPerKilometer()
         {
-			if (Unit == LapseRateUnit.DegreeCelsiusPerKilometer) { return _value; }
+            if (Unit == LapseRateUnit.DegreeCelsiusPerKilometer) { return _value; }
 
             switch (Unit)
             {
                 case LapseRateUnit.DegreeCelsiusPerKilometer: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(LapseRateUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => LapseRate.BaseDimensions;
+    }
 }

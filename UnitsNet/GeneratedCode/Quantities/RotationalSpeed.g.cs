@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static RotationalSpeedUnit BaseUnit => RotationalSpeedUnit.RadianPerSecond;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the RotationalSpeed quantity.
@@ -225,6 +225,11 @@ namespace UnitsNet
         #region Static
 
         public static RotationalSpeed Zero => new RotationalSpeed(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(RotationalSpeed quantity)
+        {
+            return RotationalSpeed.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get RotationalSpeed from CentiradiansPerSecond.
@@ -1204,7 +1209,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitRadiansPerSecond()
         {
-			if (Unit == RotationalSpeedUnit.RadianPerSecond) { return _value; }
+            if (Unit == RotationalSpeedUnit.RadianPerSecond) { return _value; }
 
             switch (Unit)
             {
@@ -1223,10 +1228,15 @@ namespace UnitsNet
                 case RotationalSpeedUnit.RevolutionPerSecond: return _value*6.2831853072;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(RotationalSpeedUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => RotationalSpeed.BaseDimensions;
+    }
 }

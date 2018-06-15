@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static MolarityUnit BaseUnit => MolarityUnit.MolesPerCubicMeter;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
 
         /// <summary>
         ///     All units of measurement for the Molarity quantity.
@@ -205,6 +205,11 @@ namespace UnitsNet
         #region Static
 
         public static Molarity Zero => new Molarity(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Molarity quantity)
+        {
+            return Molarity.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Molarity from CentimolesPerLiter.
@@ -1034,7 +1039,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitMolesPerCubicMeter()
         {
-			if (Unit == MolarityUnit.MolesPerCubicMeter) { return _value; }
+            if (Unit == MolarityUnit.MolesPerCubicMeter) { return _value; }
 
             switch (Unit)
             {
@@ -1048,10 +1053,15 @@ namespace UnitsNet
                 case MolarityUnit.PicomolesPerLiter: return (_value/1e-3) * 1e-12d;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(MolarityUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Molarity.BaseDimensions;
+    }
 }

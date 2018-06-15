@@ -1638,7 +1638,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private decimal AsBaseUnitBits()
         {
-			if (Unit == InformationUnit.Bit) { return _value; }
+            if (Unit == InformationUnit.Bit) { return _value; }
 
             switch (Unit)
             {
@@ -1670,10 +1670,11 @@ namespace UnitsNet
                 case InformationUnit.Terabyte: return Convert.ToDecimal((_value*8m) * 1e12m);
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private decimal AsBaseNumericType(InformationUnit unit) => Convert.ToDecimal(As(unit));
-	}
+
+    }
 }

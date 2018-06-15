@@ -833,7 +833,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitDecibelWatts()
         {
-			if (Unit == PowerRatioUnit.DecibelWatt) { return _value; }
+            if (Unit == PowerRatioUnit.DecibelWatt) { return _value; }
 
             switch (Unit)
             {
@@ -841,10 +841,11 @@ namespace UnitsNet
                 case PowerRatioUnit.DecibelWatt: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(PowerRatioUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+    }
 }

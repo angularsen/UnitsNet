@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static TemperatureChangeRateUnit BaseUnit => TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the TemperatureChangeRate quantity.
@@ -213,6 +213,11 @@ namespace UnitsNet
         #region Static
 
         public static TemperatureChangeRate Zero => new TemperatureChangeRate(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(TemperatureChangeRate quantity)
+        {
+            return TemperatureChangeRate.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get TemperatureChangeRate from CentidegreesCelsiusPerSecond.
@@ -1102,7 +1107,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitDegreesCelsiusPerSecond()
         {
-			if (Unit == TemperatureChangeRateUnit.DegreeCelsiusPerSecond) { return _value; }
+            if (Unit == TemperatureChangeRateUnit.DegreeCelsiusPerSecond) { return _value; }
 
             switch (Unit)
             {
@@ -1118,10 +1123,15 @@ namespace UnitsNet
                 case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond: return (_value) * 1e-9d;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(TemperatureChangeRateUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => TemperatureChangeRate.BaseDimensions;
+    }
 }

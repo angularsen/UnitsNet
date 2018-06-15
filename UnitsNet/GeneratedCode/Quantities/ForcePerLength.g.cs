@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static ForcePerLengthUnit BaseUnit => ForcePerLengthUnit.NewtonPerMeter;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the ForcePerLength quantity.
@@ -209,6 +209,11 @@ namespace UnitsNet
         #region Static
 
         public static ForcePerLength Zero => new ForcePerLength(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(ForcePerLength quantity)
+        {
+            return ForcePerLength.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get ForcePerLength from CentinewtonsPerMeter.
@@ -1068,7 +1073,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitNewtonsPerMeter()
         {
-			if (Unit == ForcePerLengthUnit.NewtonPerMeter) { return _value; }
+            if (Unit == ForcePerLengthUnit.NewtonPerMeter) { return _value; }
 
             switch (Unit)
             {
@@ -1083,10 +1088,15 @@ namespace UnitsNet
                 case ForcePerLengthUnit.NewtonPerMeter: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ForcePerLengthUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ForcePerLength.BaseDimensions;
+    }
 }

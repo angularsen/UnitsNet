@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static LuminousIntensityUnit BaseUnit => LuminousIntensityUnit.Candela;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
 
         /// <summary>
         ///     All units of measurement for the LuminousIntensity quantity.
@@ -177,6 +177,11 @@ namespace UnitsNet
         #region Static
 
         public static LuminousIntensity Zero => new LuminousIntensity(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(LuminousIntensity quantity)
+        {
+            return LuminousIntensity.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get LuminousIntensity from Candela.
@@ -796,17 +801,22 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitCandela()
         {
-			if (Unit == LuminousIntensityUnit.Candela) { return _value; }
+            if (Unit == LuminousIntensityUnit.Candela) { return _value; }
 
             switch (Unit)
             {
                 case LuminousIntensityUnit.Candela: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(LuminousIntensityUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => LuminousIntensity.BaseDimensions;
+    }
 }

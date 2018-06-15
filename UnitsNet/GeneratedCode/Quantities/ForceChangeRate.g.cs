@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static ForceChangeRateUnit BaseUnit => ForceChangeRateUnit.NewtonPerSecond;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the ForceChangeRate quantity.
@@ -217,6 +217,11 @@ namespace UnitsNet
         #region Static
 
         public static ForceChangeRate Zero => new ForceChangeRate(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(ForceChangeRate quantity)
+        {
+            return ForceChangeRate.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get ForceChangeRate from CentinewtonsPerSecond.
@@ -1136,7 +1141,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitNewtonsPerSecond()
         {
-			if (Unit == ForceChangeRateUnit.NewtonPerSecond) { return _value; }
+            if (Unit == ForceChangeRateUnit.NewtonPerSecond) { return _value; }
 
             switch (Unit)
             {
@@ -1153,10 +1158,15 @@ namespace UnitsNet
                 case ForceChangeRateUnit.NewtonPerSecond: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ForceChangeRateUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ForceChangeRate.BaseDimensions;
+    }
 }

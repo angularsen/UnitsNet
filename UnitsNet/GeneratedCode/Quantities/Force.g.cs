@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static ForceUnit BaseUnit => ForceUnit.Newton;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the Force quantity.
@@ -213,6 +213,11 @@ namespace UnitsNet
         #region Static
 
         public static Force Zero => new Force(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Force quantity)
+        {
+            return Force.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Force from Decanewtons.
@@ -1102,7 +1107,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitNewtons()
         {
-			if (Unit == ForceUnit.Newton) { return _value; }
+            if (Unit == ForceUnit.Newton) { return _value; }
 
             switch (Unit)
             {
@@ -1118,10 +1123,15 @@ namespace UnitsNet
                 case ForceUnit.TonneForce: return _value*9.80665002864*1000;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ForceUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Force.BaseDimensions;
+    }
 }

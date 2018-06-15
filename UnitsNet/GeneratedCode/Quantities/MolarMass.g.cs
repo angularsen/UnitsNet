@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static MolarMassUnit BaseUnit => MolarMassUnit.KilogramPerMole;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
 
         /// <summary>
         ///     All units of measurement for the MolarMass quantity.
@@ -221,6 +221,11 @@ namespace UnitsNet
         #region Static
 
         public static MolarMass Zero => new MolarMass(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(MolarMass quantity)
+        {
+            return MolarMass.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get MolarMass from CentigramsPerMole.
@@ -1170,7 +1175,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitKilogramsPerMole()
         {
-			if (Unit == MolarMassUnit.KilogramPerMole) { return _value; }
+            if (Unit == MolarMassUnit.KilogramPerMole) { return _value; }
 
             switch (Unit)
             {
@@ -1188,10 +1193,15 @@ namespace UnitsNet
                 case MolarMassUnit.PoundPerMole: return _value*0.45359237;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(MolarMassUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => MolarMass.BaseDimensions;
+    }
 }

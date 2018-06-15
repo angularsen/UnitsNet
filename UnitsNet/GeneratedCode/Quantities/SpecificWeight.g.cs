@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static SpecificWeightUnit BaseUnit => SpecificWeightUnit.NewtonPerCubicMeter;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(-2, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the SpecificWeight quantity.
@@ -241,6 +241,11 @@ namespace UnitsNet
         #region Static
 
         public static SpecificWeight Zero => new SpecificWeight(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(SpecificWeight quantity)
+        {
+            return SpecificWeight.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicCentimeter.
@@ -1340,7 +1345,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitNewtonsPerCubicMeter()
         {
-			if (Unit == SpecificWeightUnit.NewtonPerCubicMeter) { return _value; }
+            if (Unit == SpecificWeightUnit.NewtonPerCubicMeter) { return _value; }
 
             switch (Unit)
             {
@@ -1363,10 +1368,15 @@ namespace UnitsNet
                 case SpecificWeightUnit.TonneForcePerCubicMillimeter: return _value*9806650199606.53;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(SpecificWeightUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => SpecificWeight.BaseDimensions;
+    }
 }

@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static RotationalAccelerationUnit BaseUnit => RotationalAccelerationUnit.RadianPerSecondSquared;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the RotationalAcceleration quantity.
@@ -185,6 +185,11 @@ namespace UnitsNet
         #region Static
 
         public static RotationalAcceleration Zero => new RotationalAcceleration(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(RotationalAcceleration quantity)
+        {
+            return RotationalAcceleration.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get RotationalAcceleration from DegreesPerSecondSquared.
@@ -864,7 +869,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitRadiansPerSecondSquared()
         {
-			if (Unit == RotationalAccelerationUnit.RadianPerSecondSquared) { return _value; }
+            if (Unit == RotationalAccelerationUnit.RadianPerSecondSquared) { return _value; }
 
             switch (Unit)
             {
@@ -873,10 +878,15 @@ namespace UnitsNet
                 case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return ((2*Math.PI)/60)*_value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(RotationalAccelerationUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => RotationalAcceleration.BaseDimensions;
+    }
 }

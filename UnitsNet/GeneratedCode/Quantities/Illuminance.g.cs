@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static IlluminanceUnit BaseUnit => IlluminanceUnit.Lux;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
 
         /// <summary>
         ///     All units of measurement for the Illuminance quantity.
@@ -189,6 +189,11 @@ namespace UnitsNet
         #region Static
 
         public static Illuminance Zero => new Illuminance(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Illuminance quantity)
+        {
+            return Illuminance.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Illuminance from Kilolux.
@@ -898,7 +903,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitLux()
         {
-			if (Unit == IlluminanceUnit.Lux) { return _value; }
+            if (Unit == IlluminanceUnit.Lux) { return _value; }
 
             switch (Unit)
             {
@@ -908,10 +913,15 @@ namespace UnitsNet
                 case IlluminanceUnit.Millilux: return (_value) * 1e-3d;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(IlluminanceUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Illuminance.BaseDimensions;
+    }
 }

@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static LengthUnit BaseUnit => LengthUnit.Meter;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the Length quantity.
@@ -261,6 +261,11 @@ namespace UnitsNet
         #region Static
 
         public static Length Zero => new Length(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Length quantity)
+        {
+            return Length.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Length from Centimeters.
@@ -1510,7 +1515,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitMeters()
         {
-			if (Unit == LengthUnit.Meter) { return _value; }
+            if (Unit == LengthUnit.Meter) { return _value; }
 
             switch (Unit)
             {
@@ -1538,10 +1543,15 @@ namespace UnitsNet
                 case LengthUnit.Yard: return _value*0.9144;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(LengthUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Length.BaseDimensions;
+    }
 }

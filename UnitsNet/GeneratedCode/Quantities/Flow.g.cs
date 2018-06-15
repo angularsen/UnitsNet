@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static FlowUnit BaseUnit => FlowUnit.CubicMeterPerSecond;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the Flow quantity.
@@ -287,6 +287,11 @@ namespace UnitsNet
         #region Static
 
         public static Flow Zero => new Flow(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Flow quantity)
+        {
+            return Flow.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Flow from CentilitersPerMinute.
@@ -1596,7 +1601,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitCubicMetersPerSecond()
         {
-			if (Unit == FlowUnit.CubicMeterPerSecond) { return _value; }
+            if (Unit == FlowUnit.CubicMeterPerSecond) { return _value; }
 
             switch (Unit)
             {
@@ -1626,10 +1631,15 @@ namespace UnitsNet
                 case FlowUnit.UsGallonsPerSecond: return _value/264.1720523581484;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(FlowUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Flow.BaseDimensions;
+    }
 }

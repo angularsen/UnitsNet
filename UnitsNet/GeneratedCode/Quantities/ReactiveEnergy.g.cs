@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static ReactiveEnergyUnit BaseUnit => ReactiveEnergyUnit.VoltampereReactiveHour;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the ReactiveEnergy quantity.
@@ -185,6 +185,11 @@ namespace UnitsNet
         #region Static
 
         public static ReactiveEnergy Zero => new ReactiveEnergy(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(ReactiveEnergy quantity)
+        {
+            return ReactiveEnergy.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get ReactiveEnergy from KilovoltampereReactiveHours.
@@ -864,7 +869,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitVoltampereReactiveHours()
         {
-			if (Unit == ReactiveEnergyUnit.VoltampereReactiveHour) { return _value; }
+            if (Unit == ReactiveEnergyUnit.VoltampereReactiveHour) { return _value; }
 
             switch (Unit)
             {
@@ -873,10 +878,15 @@ namespace UnitsNet
                 case ReactiveEnergyUnit.VoltampereReactiveHour: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ReactiveEnergyUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ReactiveEnergy.BaseDimensions;
+    }
 }

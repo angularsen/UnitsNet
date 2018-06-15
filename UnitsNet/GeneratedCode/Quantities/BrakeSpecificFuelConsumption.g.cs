@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static BrakeSpecificFuelConsumptionUnit BaseUnit => BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the BrakeSpecificFuelConsumption quantity.
@@ -185,6 +185,11 @@ namespace UnitsNet
         #region Static
 
         public static BrakeSpecificFuelConsumption Zero => new BrakeSpecificFuelConsumption(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(BrakeSpecificFuelConsumption quantity)
+        {
+            return BrakeSpecificFuelConsumption.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get BrakeSpecificFuelConsumption from GramsPerKiloWattHour.
@@ -864,7 +869,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitKilogramsPerJoule()
         {
-			if (Unit == BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) { return _value; }
+            if (Unit == BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) { return _value; }
 
             switch (Unit)
             {
@@ -873,10 +878,15 @@ namespace UnitsNet
                 case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return _value*1.689659410672e-7;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(BrakeSpecificFuelConsumptionUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => BrakeSpecificFuelConsumption.BaseDimensions;
+    }
 }

@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static ThermalConductivityUnit BaseUnit => ThermalConductivityUnit.WattPerMeterKelvin;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(1, 1, -3, 0, -1, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(1, 1, -3, 0, -1, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the ThermalConductivity quantity.
@@ -181,6 +181,11 @@ namespace UnitsNet
         #region Static
 
         public static ThermalConductivity Zero => new ThermalConductivity(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(ThermalConductivity quantity)
+        {
+            return ThermalConductivity.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get ThermalConductivity from BtusPerHourFootFahrenheit.
@@ -830,7 +835,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitWattsPerMeterKelvin()
         {
-			if (Unit == ThermalConductivityUnit.WattPerMeterKelvin) { return _value; }
+            if (Unit == ThermalConductivityUnit.WattPerMeterKelvin) { return _value; }
 
             switch (Unit)
             {
@@ -838,10 +843,15 @@ namespace UnitsNet
                 case ThermalConductivityUnit.WattPerMeterKelvin: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ThermalConductivityUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ThermalConductivity.BaseDimensions;
+    }
 }

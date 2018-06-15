@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static PowerUnit BaseUnit => PowerUnit.Watt;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the Power quantity.
@@ -253,6 +253,11 @@ namespace UnitsNet
         #region Static
 
         public static Power Zero => new Power(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Power quantity)
+        {
+            return Power.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Power from BoilerHorsepower.
@@ -1439,7 +1444,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private decimal AsBaseUnitWatts()
         {
-			if (Unit == PowerUnit.Watt) { return _value; }
+            if (Unit == PowerUnit.Watt) { return _value; }
 
             switch (Unit)
             {
@@ -1465,10 +1470,15 @@ namespace UnitsNet
                 case PowerUnit.Watt: return Convert.ToDecimal(_value);
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private decimal AsBaseNumericType(PowerUnit unit) => Convert.ToDecimal(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Power.BaseDimensions;
+    }
 }

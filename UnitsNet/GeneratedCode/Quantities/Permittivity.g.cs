@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static PermittivityUnit BaseUnit => PermittivityUnit.FaradPerMeter;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the Permittivity quantity.
@@ -177,6 +177,11 @@ namespace UnitsNet
         #region Static
 
         public static Permittivity Zero => new Permittivity(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Permittivity quantity)
+        {
+            return Permittivity.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Permittivity from FaradsPerMeter.
@@ -796,17 +801,22 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitFaradsPerMeter()
         {
-			if (Unit == PermittivityUnit.FaradPerMeter) { return _value; }
+            if (Unit == PermittivityUnit.FaradPerMeter) { return _value; }
 
             switch (Unit)
             {
                 case PermittivityUnit.FaradPerMeter: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(PermittivityUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Permittivity.BaseDimensions;
+    }
 }

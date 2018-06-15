@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static EnergyUnit BaseUnit => EnergyUnit.Joule;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the Energy quantity.
@@ -261,6 +261,11 @@ namespace UnitsNet
         #region Static
 
         public static Energy Zero => new Energy(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Energy quantity)
+        {
+            return Energy.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Energy from BritishThermalUnits.
@@ -1510,7 +1515,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitJoules()
         {
-			if (Unit == EnergyUnit.Joule) { return _value; }
+            if (Unit == EnergyUnit.Joule) { return _value; }
 
             switch (Unit)
             {
@@ -1538,10 +1543,15 @@ namespace UnitsNet
                 case EnergyUnit.WattHour: return _value*3600d;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(EnergyUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Energy.BaseDimensions;
+    }
 }

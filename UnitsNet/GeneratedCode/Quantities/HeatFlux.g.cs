@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static HeatFluxUnit BaseUnit => HeatFluxUnit.WattPerSquareMeter;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the HeatFlux quantity.
@@ -237,6 +237,11 @@ namespace UnitsNet
         #region Static
 
         public static HeatFlux Zero => new HeatFlux(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(HeatFlux quantity)
+        {
+            return HeatFlux.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get HeatFlux from BtusPerHourSquareFoot.
@@ -1306,7 +1311,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitWattsPerSquareMeter()
         {
-			if (Unit == HeatFluxUnit.WattPerSquareMeter) { return _value; }
+            if (Unit == HeatFluxUnit.WattPerSquareMeter) { return _value; }
 
             switch (Unit)
             {
@@ -1328,10 +1333,15 @@ namespace UnitsNet
                 case HeatFluxUnit.WattPerSquareMeter: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(HeatFluxUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => HeatFlux.BaseDimensions;
+    }
 }

@@ -791,17 +791,18 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitSteradians()
         {
-			if (Unit == SolidAngleUnit.Steradian) { return _value; }
+            if (Unit == SolidAngleUnit.Steradian) { return _value; }
 
             switch (Unit)
             {
                 case SolidAngleUnit.Steradian: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(SolidAngleUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+    }
 }

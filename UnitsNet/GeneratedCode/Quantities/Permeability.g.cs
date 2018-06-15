@@ -158,10 +158,10 @@ namespace UnitsNet
         /// </summary>
         public static PermeabilityUnit BaseUnit => PermeabilityUnit.HenryPerMeter;
 
-          /// <summary>
-          ///     The <see cref="BaseDimensions" /> of this quantity.
-          /// </summary>
-          public static BaseDimensions BaseDimensions => new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions => new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the Permeability quantity.
@@ -177,6 +177,11 @@ namespace UnitsNet
         #region Static
 
         public static Permeability Zero => new Permeability(0, BaseUnit);
+
+        public static implicit operator BaseDimensions(Permeability quantity)
+        {
+            return Permeability.BaseDimensions;
+        }
 
         /// <summary>
         ///     Get Permeability from HenriesPerMeter.
@@ -796,17 +801,22 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitHenriesPerMeter()
         {
-			if (Unit == PermeabilityUnit.HenryPerMeter) { return _value; }
+            if (Unit == PermeabilityUnit.HenryPerMeter) { return _value; }
 
             switch (Unit)
             {
                 case PermeabilityUnit.HenryPerMeter: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(PermeabilityUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Permeability.BaseDimensions;
+    }
 }

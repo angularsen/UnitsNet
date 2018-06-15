@@ -833,7 +833,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitDecibels()
         {
-			if (Unit == LevelUnit.Decibel) { return _value; }
+            if (Unit == LevelUnit.Decibel) { return _value; }
 
             switch (Unit)
             {
@@ -841,10 +841,11 @@ namespace UnitsNet
                 case LevelUnit.Neper: return (1/0.115129254)*_value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(LevelUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+    }
 }
