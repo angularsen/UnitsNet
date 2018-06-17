@@ -3,6 +3,7 @@
 
   <!-- Unsigned project references, will also generate the corresponding nuget dependencies -->
   <ItemGroup>
-    <ProjectReference Include="..\UnitsNet\UnitsNet.NetStandard10.csproj" />
+    <ProjectReference Include="..\UnitsNet\UnitsNet.csproj" />
   </ItemGroup>
+
 </Project>

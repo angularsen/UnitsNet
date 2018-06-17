@@ -17,6 +17,6 @@
 
   <!-- Signed project references, will also generate the corresponding nuget dependencies -->
   <ItemGroup>
-    <ProjectReference Include="..\UnitsNet\UnitsNet.NetStandard10.Signed.csproj" />
+    <ProjectReference Include="..\UnitsNet\UnitsNet.Signed.csproj" />
   </ItemGroup>
 </Project>
