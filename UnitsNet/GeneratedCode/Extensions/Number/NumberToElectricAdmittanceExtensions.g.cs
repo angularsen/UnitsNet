@@ -17,17 +17,17 @@
 
 // Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,136 +46,136 @@ namespace UnitsNet.Extensions.NumberToElectricAdmittance
     {
         #region Microsiemens
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Microsiemens(this int value) => ElectricAdmittance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Microsiemens(this int? value) => ElectricAdmittance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Microsiemens(this long value) => ElectricAdmittance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Microsiemens(this long? value) => ElectricAdmittance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Microsiemens(this double value) => ElectricAdmittance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Microsiemens(this double? value) => ElectricAdmittance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Microsiemens(this float value) => ElectricAdmittance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Microsiemens(this float? value) => ElectricAdmittance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Microsiemens(this decimal value) => ElectricAdmittance.FromMicrosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Microsiemens(this decimal? value) => ElectricAdmittance.FromMicrosiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Millisiemens
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Millisiemens(this int value) => ElectricAdmittance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Millisiemens(this int? value) => ElectricAdmittance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Millisiemens(this long value) => ElectricAdmittance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Millisiemens(this long? value) => ElectricAdmittance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Millisiemens(this double value) => ElectricAdmittance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Millisiemens(this double? value) => ElectricAdmittance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Millisiemens(this float value) => ElectricAdmittance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Millisiemens(this float? value) => ElectricAdmittance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Millisiemens(this decimal value) => ElectricAdmittance.FromMillisiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Millisiemens(this decimal? value) => ElectricAdmittance.FromMillisiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Nanosiemens
 
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Nanosiemens(this int value) => ElectricAdmittance.FromNanosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Nanosiemens(this int? value) => ElectricAdmittance.FromNanosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Nanosiemens(this long value) => ElectricAdmittance.FromNanosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Nanosiemens(this long? value) => ElectricAdmittance.FromNanosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Nanosiemens(this double value) => ElectricAdmittance.FromNanosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Nanosiemens(this double? value) => ElectricAdmittance.FromNanosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Nanosiemens(this float value) => ElectricAdmittance.FromNanosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Nanosiemens(this float? value) => ElectricAdmittance.FromNanosiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Nanosiemens(this decimal value) => ElectricAdmittance.FromNanosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Nanosiemens(this decimal? value) => ElectricAdmittance.FromNanosiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Siemens
 
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Siemens(this int value) => ElectricAdmittance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Siemens(this int? value) => ElectricAdmittance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Siemens(this long value) => ElectricAdmittance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Siemens(this long? value) => ElectricAdmittance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Siemens(this double value) => ElectricAdmittance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Siemens(this double? value) => ElectricAdmittance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Siemens(this float value) => ElectricAdmittance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Siemens(this float? value) => ElectricAdmittance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance Siemens(this decimal value) => ElectricAdmittance.FromSiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(double?)"/>
+        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricAdmittance? Siemens(this decimal? value) => ElectricAdmittance.FromSiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

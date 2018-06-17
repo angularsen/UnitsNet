@@ -17,17 +17,17 @@
 
 // Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,272 +46,272 @@ namespace UnitsNet.Extensions.NumberToMolarity
     {
         #region CentimolesPerLiter
 
-        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity CentimolesPerLiter(this int value) => Molarity.FromCentimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? CentimolesPerLiter(this int? value) => Molarity.FromCentimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity CentimolesPerLiter(this long value) => Molarity.FromCentimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? CentimolesPerLiter(this long? value) => Molarity.FromCentimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity CentimolesPerLiter(this double value) => Molarity.FromCentimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? CentimolesPerLiter(this double? value) => Molarity.FromCentimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity CentimolesPerLiter(this float value) => Molarity.FromCentimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? CentimolesPerLiter(this float? value) => Molarity.FromCentimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity CentimolesPerLiter(this decimal value) => Molarity.FromCentimolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? CentimolesPerLiter(this decimal? value) => Molarity.FromCentimolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecimolesPerLiter
 
-        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity DecimolesPerLiter(this int value) => Molarity.FromDecimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? DecimolesPerLiter(this int? value) => Molarity.FromDecimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity DecimolesPerLiter(this long value) => Molarity.FromDecimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? DecimolesPerLiter(this long? value) => Molarity.FromDecimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity DecimolesPerLiter(this double value) => Molarity.FromDecimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? DecimolesPerLiter(this double? value) => Molarity.FromDecimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity DecimolesPerLiter(this float value) => Molarity.FromDecimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? DecimolesPerLiter(this float? value) => Molarity.FromDecimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity DecimolesPerLiter(this decimal value) => Molarity.FromDecimolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? DecimolesPerLiter(this decimal? value) => Molarity.FromDecimolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicromolesPerLiter
 
-        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MicromolesPerLiter(this int value) => Molarity.FromMicromolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MicromolesPerLiter(this int? value) => Molarity.FromMicromolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MicromolesPerLiter(this long value) => Molarity.FromMicromolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MicromolesPerLiter(this long? value) => Molarity.FromMicromolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MicromolesPerLiter(this double value) => Molarity.FromMicromolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MicromolesPerLiter(this double? value) => Molarity.FromMicromolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MicromolesPerLiter(this float value) => Molarity.FromMicromolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MicromolesPerLiter(this float? value) => Molarity.FromMicromolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MicromolesPerLiter(this decimal value) => Molarity.FromMicromolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MicromolesPerLiter(this decimal? value) => Molarity.FromMicromolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillimolesPerLiter
 
-        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MillimolesPerLiter(this int value) => Molarity.FromMillimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MillimolesPerLiter(this int? value) => Molarity.FromMillimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MillimolesPerLiter(this long value) => Molarity.FromMillimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MillimolesPerLiter(this long? value) => Molarity.FromMillimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MillimolesPerLiter(this double value) => Molarity.FromMillimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MillimolesPerLiter(this double? value) => Molarity.FromMillimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MillimolesPerLiter(this float value) => Molarity.FromMillimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MillimolesPerLiter(this float? value) => Molarity.FromMillimolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MillimolesPerLiter(this decimal value) => Molarity.FromMillimolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MillimolesPerLiter(this decimal? value) => Molarity.FromMillimolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MolesPerCubicMeter
 
-        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Molarity MolesPerCubicMeter(this int value) => Molarity.FromMolesPerCubicMeter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Molarity? MolesPerCubicMeter(this int? value) => Molarity.FromMolesPerCubicMeter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Molarity MolesPerCubicMeter(this long value) => Molarity.FromMolesPerCubicMeter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Molarity? MolesPerCubicMeter(this long? value) => Molarity.FromMolesPerCubicMeter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Molarity MolesPerCubicMeter(this double value) => Molarity.FromMolesPerCubicMeter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Molarity? MolesPerCubicMeter(this double? value) => Molarity.FromMolesPerCubicMeter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Molarity MolesPerCubicMeter(this float value) => Molarity.FromMolesPerCubicMeter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Molarity? MolesPerCubicMeter(this float? value) => Molarity.FromMolesPerCubicMeter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Molarity MolesPerCubicMeter(this decimal value) => Molarity.FromMolesPerCubicMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Molarity? MolesPerCubicMeter(this decimal? value) => Molarity.FromMolesPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MolesPerLiter
 
-        /// <inheritdoc cref="Molarity.FromMolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MolesPerLiter(this int value) => Molarity.FromMolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MolesPerLiter(this int? value) => Molarity.FromMolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MolesPerLiter(this long value) => Molarity.FromMolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MolesPerLiter(this long? value) => Molarity.FromMolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MolesPerLiter(this double value) => Molarity.FromMolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MolesPerLiter(this double? value) => Molarity.FromMolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MolesPerLiter(this float value) => Molarity.FromMolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MolesPerLiter(this float? value) => Molarity.FromMolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromMolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MolesPerLiter(this decimal value) => Molarity.FromMolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromMolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromMolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? MolesPerLiter(this decimal? value) => Molarity.FromMolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanomolesPerLiter
 
-        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity NanomolesPerLiter(this int value) => Molarity.FromNanomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? NanomolesPerLiter(this int? value) => Molarity.FromNanomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity NanomolesPerLiter(this long value) => Molarity.FromNanomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? NanomolesPerLiter(this long? value) => Molarity.FromNanomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity NanomolesPerLiter(this double value) => Molarity.FromNanomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? NanomolesPerLiter(this double? value) => Molarity.FromNanomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity NanomolesPerLiter(this float value) => Molarity.FromNanomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? NanomolesPerLiter(this float? value) => Molarity.FromNanomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity NanomolesPerLiter(this decimal value) => Molarity.FromNanomolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? NanomolesPerLiter(this decimal? value) => Molarity.FromNanomolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PicomolesPerLiter
 
-        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity PicomolesPerLiter(this int value) => Molarity.FromPicomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? PicomolesPerLiter(this int? value) => Molarity.FromPicomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity PicomolesPerLiter(this long value) => Molarity.FromPicomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? PicomolesPerLiter(this long? value) => Molarity.FromPicomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity PicomolesPerLiter(this double value) => Molarity.FromPicomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? PicomolesPerLiter(this double? value) => Molarity.FromPicomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity PicomolesPerLiter(this float value) => Molarity.FromPicomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? PicomolesPerLiter(this float? value) => Molarity.FromPicomolesPerLiter(value);
 
-        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double)"/>
+        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity PicomolesPerLiter(this decimal value) => Molarity.FromPicomolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(double?)"/>
+        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity? PicomolesPerLiter(this decimal? value) => Molarity.FromPicomolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

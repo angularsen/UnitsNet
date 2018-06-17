@@ -1,5 +1,4 @@
-﻿using System;
-using UnitsNet.Units;
+﻿using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet

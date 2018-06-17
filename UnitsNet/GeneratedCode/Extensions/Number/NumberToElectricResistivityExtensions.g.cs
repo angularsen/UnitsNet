@@ -17,17 +17,17 @@
 
 // Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,136 +46,136 @@ namespace UnitsNet.Extensions.NumberToElectricResistivity
     {
         #region MicroohmMeter
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity MicroohmMeters(this int value) => ElectricResistivity.FromMicroohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? MicroohmMeters(this int? value) => ElectricResistivity.FromMicroohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity MicroohmMeters(this long value) => ElectricResistivity.FromMicroohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? MicroohmMeters(this long? value) => ElectricResistivity.FromMicroohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity MicroohmMeters(this double value) => ElectricResistivity.FromMicroohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? MicroohmMeters(this double? value) => ElectricResistivity.FromMicroohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity MicroohmMeters(this float value) => ElectricResistivity.FromMicroohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? MicroohmMeters(this float? value) => ElectricResistivity.FromMicroohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity MicroohmMeters(this decimal value) => ElectricResistivity.FromMicroohmMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? MicroohmMeters(this decimal? value) => ElectricResistivity.FromMicroohmMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MilliohmMeter
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity MilliohmMeters(this int value) => ElectricResistivity.FromMilliohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? MilliohmMeters(this int? value) => ElectricResistivity.FromMilliohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity MilliohmMeters(this long value) => ElectricResistivity.FromMilliohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? MilliohmMeters(this long? value) => ElectricResistivity.FromMilliohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity MilliohmMeters(this double value) => ElectricResistivity.FromMilliohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? MilliohmMeters(this double? value) => ElectricResistivity.FromMilliohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity MilliohmMeters(this float value) => ElectricResistivity.FromMilliohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? MilliohmMeters(this float? value) => ElectricResistivity.FromMilliohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity MilliohmMeters(this decimal value) => ElectricResistivity.FromMilliohmMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? MilliohmMeters(this decimal? value) => ElectricResistivity.FromMilliohmMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanoohmMeter
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity NanoohmMeters(this int value) => ElectricResistivity.FromNanoohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? NanoohmMeters(this int? value) => ElectricResistivity.FromNanoohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity NanoohmMeters(this long value) => ElectricResistivity.FromNanoohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? NanoohmMeters(this long? value) => ElectricResistivity.FromNanoohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity NanoohmMeters(this double value) => ElectricResistivity.FromNanoohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? NanoohmMeters(this double? value) => ElectricResistivity.FromNanoohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity NanoohmMeters(this float value) => ElectricResistivity.FromNanoohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? NanoohmMeters(this float? value) => ElectricResistivity.FromNanoohmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity NanoohmMeters(this decimal value) => ElectricResistivity.FromNanoohmMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? NanoohmMeters(this decimal? value) => ElectricResistivity.FromNanoohmMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region OhmMeter
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity OhmMeters(this int value) => ElectricResistivity.FromOhmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? OhmMeters(this int? value) => ElectricResistivity.FromOhmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity OhmMeters(this long value) => ElectricResistivity.FromOhmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? OhmMeters(this long? value) => ElectricResistivity.FromOhmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity OhmMeters(this double value) => ElectricResistivity.FromOhmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? OhmMeters(this double? value) => ElectricResistivity.FromOhmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity OhmMeters(this float value) => ElectricResistivity.FromOhmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? OhmMeters(this float? value) => ElectricResistivity.FromOhmMeters(value);
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(double)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity OhmMeters(this decimal value) => ElectricResistivity.FromOhmMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(double?)"/>
+        /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(UnitsNet.QuantityValue)" />
         public static ElectricResistivity? OhmMeters(this decimal? value) => ElectricResistivity.FromOhmMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

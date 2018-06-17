@@ -17,17 +17,17 @@
 
 // Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,34 +46,34 @@ namespace UnitsNet.Extensions.NumberToCapacitance
     {
         #region Farad
 
-        /// <inheritdoc cref="Capacitance.FromFarads(double)"/>
+        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
         public static Capacitance Farads(this int value) => Capacitance.FromFarads(value);
 
-        /// <inheritdoc cref="Capacitance.FromFarads(double?)"/>
+        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
         public static Capacitance? Farads(this int? value) => Capacitance.FromFarads(value);
 
-        /// <inheritdoc cref="Capacitance.FromFarads(double)"/>
+        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
         public static Capacitance Farads(this long value) => Capacitance.FromFarads(value);
 
-        /// <inheritdoc cref="Capacitance.FromFarads(double?)"/>
+        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
         public static Capacitance? Farads(this long? value) => Capacitance.FromFarads(value);
 
-        /// <inheritdoc cref="Capacitance.FromFarads(double)"/>
+        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
         public static Capacitance Farads(this double value) => Capacitance.FromFarads(value);
 
-        /// <inheritdoc cref="Capacitance.FromFarads(double?)"/>
+        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
         public static Capacitance? Farads(this double? value) => Capacitance.FromFarads(value);
 
-        /// <inheritdoc cref="Capacitance.FromFarads(double)"/>
+        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
         public static Capacitance Farads(this float value) => Capacitance.FromFarads(value);
 
-        /// <inheritdoc cref="Capacitance.FromFarads(double?)"/>
+        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
         public static Capacitance? Farads(this float? value) => Capacitance.FromFarads(value);
 
-        /// <inheritdoc cref="Capacitance.FromFarads(double)"/>
+        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
         public static Capacitance Farads(this decimal value) => Capacitance.FromFarads(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Capacitance.FromFarads(double?)"/>
+        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
         public static Capacitance? Farads(this decimal? value) => Capacitance.FromFarads(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
