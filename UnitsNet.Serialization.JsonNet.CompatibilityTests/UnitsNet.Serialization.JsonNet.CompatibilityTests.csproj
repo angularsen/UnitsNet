@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp1.1</TargetFrameworks>
     <RootNamespace>UnitsNet.Serialization.JsonNet.CompatibilityTests</RootNamespace>
-    <OutputPath>..\Artifacts\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

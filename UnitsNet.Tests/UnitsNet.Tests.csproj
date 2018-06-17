@@ -4,7 +4,6 @@
     <TargetFrameworks>netcoreapp1.1</TargetFrameworks>
     <RootNamespace>UnitsNet.Tests</RootNamespace>
     <NoWarn>CS1701;CS1702;CS1705;CS0618</NoWarn>
-    <OutputPath>..\Artifacts\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
