@@ -12,7 +12,6 @@
     <DefineConstants>SIGNED</DefineConstants>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(MSBuildProjectDirectory)\..\UnitsNet.snk</AssemblyOriginatorKeyFile>
-    <AssemblyName>UnitsNet.Signed</AssemblyName>
   </PropertyGroup>
 
 </Project>

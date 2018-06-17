@@ -21,7 +21,6 @@
   <!-- Assembly and msbuild properties -->
   <PropertyGroup>
     <TargetFrameworks>netstandard1.0;net35;net40</TargetFrameworks>
-    <AssemblyName>UnitsNet</AssemblyName>
     <RootNamespace>UnitsNet</RootNamespace>
     <!-- Workaround for building with dotnet CLI and targeting .NET 3.5: https://github.com/Microsoft/msbuild/issues/1333#issuecomment-296346352 -->
     <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35'">C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
@@ -33,11 +32,12 @@
     <PackageReference Include="JetBrains.Annotations" Version="10.4.0" PrivateAssets="All" />
   </ItemGroup>
 
-  <!-- Exclude certain files from default inclusion pattern -->
+  <!-- Exclude obj folder from default inclusion pattern -->
   <ItemGroup>
     <Compile Remove="obj\**" />
     <Compile Remove="Properties\AssemblyInfo*.cs" />
     <EmbeddedResource Remove="obj\**" />
     <None Remove="obj\**" />
   </ItemGroup>
+
 </Project>

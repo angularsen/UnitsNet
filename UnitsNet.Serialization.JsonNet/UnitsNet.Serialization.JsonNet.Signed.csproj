@@ -12,7 +12,6 @@
     <DefineConstants>SIGNED</DefineConstants>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(MSBuildProjectDirectory)\..\UnitsNet.snk</AssemblyOriginatorKeyFile>
-    <AssemblyName>UnitsNet.Serialization.JsonNet.Signed</AssemblyName>
   </PropertyGroup>
 
   <!-- Signed project references, will also generate the corresponding nuget dependencies -->
