@@ -1,6 +1,8 @@
 <Project>
   <!-- This file will be implicitly linked by all projects in folder -folders -->
   <PropertyGroup>
+    <!-- Avoid sharing obj folder with multiple .csproj files in same folder -->
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)obj/$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <OutputPath>$(MSBuildThisFileDirectory)Artifacts/$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
 
