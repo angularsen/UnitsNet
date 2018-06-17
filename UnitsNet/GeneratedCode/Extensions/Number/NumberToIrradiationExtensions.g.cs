@@ -17,17 +17,17 @@
 
 // Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,102 +46,102 @@ namespace UnitsNet.Extensions.NumberToIrradiation
     {
         #region JoulePerSquareMeter
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation JoulesPerSquareMeter(this int value) => Irradiation.FromJoulesPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? JoulesPerSquareMeter(this int? value) => Irradiation.FromJoulesPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation JoulesPerSquareMeter(this long value) => Irradiation.FromJoulesPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? JoulesPerSquareMeter(this long? value) => Irradiation.FromJoulesPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation JoulesPerSquareMeter(this double value) => Irradiation.FromJoulesPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? JoulesPerSquareMeter(this double? value) => Irradiation.FromJoulesPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation JoulesPerSquareMeter(this float value) => Irradiation.FromJoulesPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? JoulesPerSquareMeter(this float? value) => Irradiation.FromJoulesPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation JoulesPerSquareMeter(this decimal value) => Irradiation.FromJoulesPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromJoulesPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? JoulesPerSquareMeter(this decimal? value) => Irradiation.FromJoulesPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilowattHourPerSquareMeter
 
-        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation KilowattHoursPerSquareMeter(this int value) => Irradiation.FromKilowattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? KilowattHoursPerSquareMeter(this int? value) => Irradiation.FromKilowattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation KilowattHoursPerSquareMeter(this long value) => Irradiation.FromKilowattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? KilowattHoursPerSquareMeter(this long? value) => Irradiation.FromKilowattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation KilowattHoursPerSquareMeter(this double value) => Irradiation.FromKilowattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? KilowattHoursPerSquareMeter(this double? value) => Irradiation.FromKilowattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation KilowattHoursPerSquareMeter(this float value) => Irradiation.FromKilowattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? KilowattHoursPerSquareMeter(this float? value) => Irradiation.FromKilowattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation KilowattHoursPerSquareMeter(this decimal value) => Irradiation.FromKilowattHoursPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromKilowattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? KilowattHoursPerSquareMeter(this decimal? value) => Irradiation.FromKilowattHoursPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region WattHourPerSquareMeter
 
-        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation WattHoursPerSquareMeter(this int value) => Irradiation.FromWattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? WattHoursPerSquareMeter(this int? value) => Irradiation.FromWattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation WattHoursPerSquareMeter(this long value) => Irradiation.FromWattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? WattHoursPerSquareMeter(this long? value) => Irradiation.FromWattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation WattHoursPerSquareMeter(this double value) => Irradiation.FromWattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? WattHoursPerSquareMeter(this double? value) => Irradiation.FromWattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation WattHoursPerSquareMeter(this float value) => Irradiation.FromWattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? WattHoursPerSquareMeter(this float? value) => Irradiation.FromWattHoursPerSquareMeter(value);
 
-        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(double)"/>
+        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation WattHoursPerSquareMeter(this decimal value) => Irradiation.FromWattHoursPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(double?)"/>
+        /// <inheritdoc cref="Irradiation.FromWattHoursPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiation? WattHoursPerSquareMeter(this decimal? value) => Irradiation.FromWattHoursPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

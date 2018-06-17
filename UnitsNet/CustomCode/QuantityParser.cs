@@ -27,6 +27,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 
+// ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
     internal delegate TQuantity ParseUnit<out TQuantity>(string value, string unit, IFormatProvider formatProvider = null);

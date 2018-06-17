@@ -17,17 +17,17 @@
 
 // Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,102 +46,102 @@ namespace UnitsNet.Extensions.NumberToRotationalStiffness
     {
         #region KilonewtonMeterPerRadian
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness KilonewtonMetersPerRadian(this int value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? KilonewtonMetersPerRadian(this int? value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness KilonewtonMetersPerRadian(this long value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? KilonewtonMetersPerRadian(this long? value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness KilonewtonMetersPerRadian(this double value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? KilonewtonMetersPerRadian(this double? value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness KilonewtonMetersPerRadian(this float value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? KilonewtonMetersPerRadian(this float? value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness KilonewtonMetersPerRadian(this decimal value) => RotationalStiffness.FromKilonewtonMetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? KilonewtonMetersPerRadian(this decimal? value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MeganewtonMeterPerRadian
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness MeganewtonMetersPerRadian(this int value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? MeganewtonMetersPerRadian(this int? value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness MeganewtonMetersPerRadian(this long value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? MeganewtonMetersPerRadian(this long? value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness MeganewtonMetersPerRadian(this double value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? MeganewtonMetersPerRadian(this double? value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness MeganewtonMetersPerRadian(this float value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? MeganewtonMetersPerRadian(this float? value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness MeganewtonMetersPerRadian(this decimal value) => RotationalStiffness.FromMeganewtonMetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? MeganewtonMetersPerRadian(this decimal? value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NewtonMeterPerRadian
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness NewtonMetersPerRadian(this int value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? NewtonMetersPerRadian(this int? value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness NewtonMetersPerRadian(this long value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? NewtonMetersPerRadian(this long? value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness NewtonMetersPerRadian(this double value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? NewtonMetersPerRadian(this double? value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness NewtonMetersPerRadian(this float value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? NewtonMetersPerRadian(this float? value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(double)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness NewtonMetersPerRadian(this decimal value) => RotationalStiffness.FromNewtonMetersPerRadian(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(double?)"/>
+        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
         public static RotationalStiffness? NewtonMetersPerRadian(this decimal? value) => RotationalStiffness.FromNewtonMetersPerRadian(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

@@ -17,17 +17,17 @@
 
 // Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,102 +46,102 @@ namespace UnitsNet.Extensions.NumberToMolarEnergy
     {
         #region JoulePerMole
 
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy JoulesPerMole(this int value) => MolarEnergy.FromJoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? JoulesPerMole(this int? value) => MolarEnergy.FromJoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy JoulesPerMole(this long value) => MolarEnergy.FromJoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? JoulesPerMole(this long? value) => MolarEnergy.FromJoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy JoulesPerMole(this double value) => MolarEnergy.FromJoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? JoulesPerMole(this double? value) => MolarEnergy.FromJoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy JoulesPerMole(this float value) => MolarEnergy.FromJoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? JoulesPerMole(this float? value) => MolarEnergy.FromJoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy JoulesPerMole(this decimal value) => MolarEnergy.FromJoulesPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? JoulesPerMole(this decimal? value) => MolarEnergy.FromJoulesPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilojoulePerMole
 
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy KilojoulesPerMole(this int value) => MolarEnergy.FromKilojoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? KilojoulesPerMole(this int? value) => MolarEnergy.FromKilojoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy KilojoulesPerMole(this long value) => MolarEnergy.FromKilojoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? KilojoulesPerMole(this long? value) => MolarEnergy.FromKilojoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy KilojoulesPerMole(this double value) => MolarEnergy.FromKilojoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? KilojoulesPerMole(this double? value) => MolarEnergy.FromKilojoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy KilojoulesPerMole(this float value) => MolarEnergy.FromKilojoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? KilojoulesPerMole(this float? value) => MolarEnergy.FromKilojoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy KilojoulesPerMole(this decimal value) => MolarEnergy.FromKilojoulesPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? KilojoulesPerMole(this decimal? value) => MolarEnergy.FromKilojoulesPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegajoulePerMole
 
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy MegajoulesPerMole(this int value) => MolarEnergy.FromMegajoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? MegajoulesPerMole(this int? value) => MolarEnergy.FromMegajoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy MegajoulesPerMole(this long value) => MolarEnergy.FromMegajoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? MegajoulesPerMole(this long? value) => MolarEnergy.FromMegajoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy MegajoulesPerMole(this double value) => MolarEnergy.FromMegajoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? MegajoulesPerMole(this double? value) => MolarEnergy.FromMegajoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy MegajoulesPerMole(this float value) => MolarEnergy.FromMegajoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? MegajoulesPerMole(this float? value) => MolarEnergy.FromMegajoulesPerMole(value);
 
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double)"/>
+        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy MegajoulesPerMole(this decimal value) => MolarEnergy.FromMegajoulesPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(double?)"/>
+        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
         public static MolarEnergy? MegajoulesPerMole(this decimal? value) => MolarEnergy.FromMegajoulesPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

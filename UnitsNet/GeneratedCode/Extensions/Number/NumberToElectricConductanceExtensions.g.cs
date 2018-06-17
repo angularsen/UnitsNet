@@ -17,17 +17,17 @@
 
 // Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,102 +46,102 @@ namespace UnitsNet.Extensions.NumberToElectricConductance
     {
         #region Microsiemens
 
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Microsiemens(this int value) => ElectricConductance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Microsiemens(this int? value) => ElectricConductance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Microsiemens(this long value) => ElectricConductance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Microsiemens(this long? value) => ElectricConductance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Microsiemens(this double value) => ElectricConductance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Microsiemens(this double? value) => ElectricConductance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Microsiemens(this float value) => ElectricConductance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Microsiemens(this float? value) => ElectricConductance.FromMicrosiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Microsiemens(this decimal value) => ElectricConductance.FromMicrosiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Microsiemens(this decimal? value) => ElectricConductance.FromMicrosiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Millisiemens
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Millisiemens(this int value) => ElectricConductance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Millisiemens(this int? value) => ElectricConductance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Millisiemens(this long value) => ElectricConductance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Millisiemens(this long? value) => ElectricConductance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Millisiemens(this double value) => ElectricConductance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Millisiemens(this double? value) => ElectricConductance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Millisiemens(this float value) => ElectricConductance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Millisiemens(this float? value) => ElectricConductance.FromMillisiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Millisiemens(this decimal value) => ElectricConductance.FromMillisiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Millisiemens(this decimal? value) => ElectricConductance.FromMillisiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Siemens
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Siemens(this int value) => ElectricConductance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Siemens(this int? value) => ElectricConductance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Siemens(this long value) => ElectricConductance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Siemens(this long? value) => ElectricConductance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Siemens(this double value) => ElectricConductance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Siemens(this double? value) => ElectricConductance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Siemens(this float value) => ElectricConductance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Siemens(this float? value) => ElectricConductance.FromSiemens(value);
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(double)"/>
+        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Siemens(this decimal value) => ElectricConductance.FromSiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(double?)"/>
+        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance? Siemens(this decimal? value) => ElectricConductance.FromSiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
