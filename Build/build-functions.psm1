@@ -9,15 +9,6 @@ if ($msbuild) {
   $msbuild = join-path $msbuild 'MSBuild\15.0\Bin\MSBuild.exe'
 }
 
-function Start-NugetRestore {
-  write-host -foreground blue "Restore nugets...`n"
-  dotnet restore "$root\UnitsNet.sln"
-
-  # This project type is not supported by dotnet CLI yet
-  & $nuget restore "$root\UnitsNet.WindowsRuntimeComponent.sln"
-  write-host -foreground blue "Restore nugets...END`n"
-}
-
 function Remove-ArtifactsDir {
   write-host -foreground blue "Clean up...`n"
   rm $artifactsDir -Recurse -ErrorAction Ignore
@@ -47,7 +38,9 @@ function Start-Build([boolean] $skipUWP = $false) {
   else
   {
     # dontnet CLI does not support WindowsRuntimeComponent project type yet
+    # msbuild does not auto-restore nugets for this project type
     write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using MSBuild15 instead"
+    & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release /t:restore
     & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release
     if ($lastexitcode -ne 0) { exit 1 }
   }
