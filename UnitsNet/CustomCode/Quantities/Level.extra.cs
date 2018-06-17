@@ -22,6 +22,7 @@
 using System;
 using UnitsNet.Units;
 
+// ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
