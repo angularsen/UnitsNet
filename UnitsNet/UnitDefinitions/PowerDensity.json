@@ -1,0 +1,19 @@
+﻿{
+  "Name": "PowerDensity",
+  "BaseUnit": "WattPerCubicMeter",
+  "XmlDoc": "The amount of power in a volume.",
+  "Units": [
+    {
+      "SingularName": "WattPerCubicMeter",
+      "PluralName": "WattsPerCubicMeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "W/m³" ]
+        }
+      ]
+    }
+  ]
+}

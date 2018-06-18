@@ -2921,6 +2921,15 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "W"),
                             }),
                     }),
+                new UnitLocalization(typeof (PowerDensityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PowerDensityUnit.WattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/m³"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (PowerRatioUnit),
                     new[]
                     {
