@@ -158,17 +158,14 @@ namespace UnitsNet
         /// </summary>
         public static IlluminanceUnit BaseUnit => IlluminanceUnit.Lux;
 
-        private static BaseDimensions _baseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get
-            {
-                return _baseDimensions;
-            }
+            get{ return _baseDimensions; }
         }
 
         /// <summary>

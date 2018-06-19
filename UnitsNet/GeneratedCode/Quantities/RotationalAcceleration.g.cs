@@ -158,17 +158,14 @@ namespace UnitsNet
         /// </summary>
         public static RotationalAccelerationUnit BaseUnit => RotationalAccelerationUnit.RadianPerSecondSquared;
 
-        private static BaseDimensions _baseDimensions = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get
-            {
-                return _baseDimensions;
-            }
+            get{ return _baseDimensions; }
         }
 
         /// <summary>

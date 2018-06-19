@@ -202,17 +202,14 @@ namespace UnitsNet
     if($quantity.BaseDimensions)
     {
 @"
-        private static BaseDimensions _baseDimensions = new BaseDimensions($baseDimensionLength, $baseDimensionMass, $baseDimensionTime, $baseDimensionElectricCurrent, $baseDimensionTemperature, $baseDimensionAmountOfSubstance, $baseDimensionLuminousIntensity);
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions($baseDimensionLength, $baseDimensionMass, $baseDimensionTime, $baseDimensionElectricCurrent, $baseDimensionTemperature, $baseDimensionAmountOfSubstance, $baseDimensionLuminousIntensity);
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get
-            {
-                return _baseDimensions;
-            }
+            get{ return _baseDimensions; }
         }
 
 "@; 

@@ -158,17 +158,14 @@ namespace UnitsNet
         /// </summary>
         public static ElectricAdmittanceUnit BaseUnit => ElectricAdmittanceUnit.Siemens;
 
-        private static BaseDimensions _baseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get
-            {
-                return _baseDimensions;
-            }
+            get{ return _baseDimensions; }
         }
 
         /// <summary>

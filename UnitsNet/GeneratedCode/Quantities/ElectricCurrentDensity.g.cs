@@ -158,17 +158,14 @@ namespace UnitsNet
         /// </summary>
         public static ElectricCurrentDensityUnit BaseUnit => ElectricCurrentDensityUnit.AmperePerSquareMeter;
 
-        private static BaseDimensions _baseDimensions = new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get
-            {
-                return _baseDimensions;
-            }
+            get{ return _baseDimensions; }
         }
 
         /// <summary>
