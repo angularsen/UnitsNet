@@ -226,11 +226,6 @@ namespace UnitsNet
 
         public static Area Zero => new Area(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Area quantity)
-        {
-            return Area.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Area from Acres.
         /// </summary>

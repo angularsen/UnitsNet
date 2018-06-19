@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static ElectricCharge Zero => new ElectricCharge(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ElectricCharge quantity)
-        {
-            return ElectricCharge.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ElectricCharge from Coulombs.
         /// </summary>

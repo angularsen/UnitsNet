@@ -226,11 +226,6 @@ namespace UnitsNet
 
         public static RotationalSpeed Zero => new RotationalSpeed(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(RotationalSpeed quantity)
-        {
-            return RotationalSpeed.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get RotationalSpeed from CentiradiansPerSecond.
         /// </summary>

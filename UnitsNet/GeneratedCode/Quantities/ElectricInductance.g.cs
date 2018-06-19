@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static ElectricInductance Zero => new ElectricInductance(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ElectricInductance quantity)
-        {
-            return ElectricInductance.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ElectricInductance from Henries.
         /// </summary>

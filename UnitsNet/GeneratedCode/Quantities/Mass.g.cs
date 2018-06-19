@@ -258,11 +258,6 @@ namespace UnitsNet
 
         public static Mass Zero => new Mass(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Mass quantity)
-        {
-            return Mass.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Mass from Centigrams.
         /// </summary>

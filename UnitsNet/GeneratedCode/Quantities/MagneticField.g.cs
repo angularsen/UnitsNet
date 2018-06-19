@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static MagneticField Zero => new MagneticField(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(MagneticField quantity)
-        {
-            return MagneticField.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get MagneticField from Teslas.
         /// </summary>

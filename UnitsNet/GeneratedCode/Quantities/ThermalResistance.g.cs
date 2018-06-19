@@ -194,11 +194,6 @@ namespace UnitsNet
 
         public static ThermalResistance Zero => new ThermalResistance(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ThermalResistance quantity)
-        {
-            return ThermalResistance.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ThermalResistance from HourSquareFeetDegreesFahrenheitPerBtu.
         /// </summary>

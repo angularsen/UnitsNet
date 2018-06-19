@@ -238,11 +238,6 @@ namespace UnitsNet
 
         public static HeatFlux Zero => new HeatFlux(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(HeatFlux quantity)
-        {
-            return HeatFlux.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get HeatFlux from BtusPerHourSquareFoot.
         /// </summary>

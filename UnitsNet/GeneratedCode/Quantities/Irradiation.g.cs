@@ -186,11 +186,6 @@ namespace UnitsNet
 
         public static Irradiation Zero => new Irradiation(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Irradiation quantity)
-        {
-            return Irradiation.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Irradiation from JoulesPerSquareMeter.
         /// </summary>

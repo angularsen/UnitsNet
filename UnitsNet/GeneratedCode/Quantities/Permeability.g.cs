@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static Permeability Zero => new Permeability(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Permeability quantity)
-        {
-            return Permeability.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Permeability from HenriesPerMeter.
         /// </summary>

@@ -186,11 +186,6 @@ namespace UnitsNet
 
         public static MolarEnergy Zero => new MolarEnergy(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(MolarEnergy quantity)
-        {
-            return MolarEnergy.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get MolarEnergy from JoulesPerMole.
         /// </summary>

@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static Capacitance Zero => new Capacitance(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Capacitance quantity)
-        {
-            return Capacitance.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Capacitance from Farads.
         /// </summary>

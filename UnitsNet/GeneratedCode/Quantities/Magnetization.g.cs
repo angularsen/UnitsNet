@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static Magnetization Zero => new Magnetization(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Magnetization quantity)
-        {
-            return Magnetization.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Magnetization from AmperesPerMeter.
         /// </summary>

@@ -206,11 +206,6 @@ namespace UnitsNet
 
         public static Temperature Zero => new Temperature(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Temperature quantity)
-        {
-            return Temperature.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Temperature from DegreesCelsius.
         /// </summary>

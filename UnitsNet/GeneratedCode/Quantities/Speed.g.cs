@@ -302,11 +302,6 @@ namespace UnitsNet
 
         public static Speed Zero => new Speed(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Speed quantity)
-        {
-            return Speed.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Speed from CentimetersPerHour.
         /// </summary>

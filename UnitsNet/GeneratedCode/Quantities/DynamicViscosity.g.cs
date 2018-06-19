@@ -198,11 +198,6 @@ namespace UnitsNet
 
         public static DynamicViscosity Zero => new DynamicViscosity(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(DynamicViscosity quantity)
-        {
-            return DynamicViscosity.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get DynamicViscosity from Centipoise.
         /// </summary>

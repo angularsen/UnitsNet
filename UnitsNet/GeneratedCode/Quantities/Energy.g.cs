@@ -262,11 +262,6 @@ namespace UnitsNet
 
         public static Energy Zero => new Energy(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Energy quantity)
-        {
-            return Energy.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Energy from BritishThermalUnits.
         /// </summary>

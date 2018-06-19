@@ -206,11 +206,6 @@ namespace UnitsNet
 
         public static SpecificEnergy Zero => new SpecificEnergy(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(SpecificEnergy quantity)
-        {
-            return SpecificEnergy.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get SpecificEnergy from CaloriesPerGram.
         /// </summary>

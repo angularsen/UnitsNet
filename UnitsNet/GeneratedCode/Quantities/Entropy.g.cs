@@ -202,11 +202,6 @@ namespace UnitsNet
 
         public static Entropy Zero => new Entropy(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Entropy quantity)
-        {
-            return Entropy.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Entropy from CaloriesPerKelvin.
         /// </summary>

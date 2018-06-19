@@ -288,11 +288,6 @@ namespace UnitsNet
 
         public static Flow Zero => new Flow(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Flow quantity)
-        {
-            return Flow.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Flow from CentilitersPerMinute.
         /// </summary>

@@ -206,11 +206,6 @@ namespace UnitsNet
 
         public static Frequency Zero => new Frequency(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Frequency quantity)
-        {
-            return Frequency.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Frequency from CyclesPerHour.
         /// </summary>

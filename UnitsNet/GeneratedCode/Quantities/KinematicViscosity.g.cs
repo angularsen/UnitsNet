@@ -206,11 +206,6 @@ namespace UnitsNet
 
         public static KinematicViscosity Zero => new KinematicViscosity(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(KinematicViscosity quantity)
-        {
-            return KinematicViscosity.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get KinematicViscosity from Centistokes.
         /// </summary>

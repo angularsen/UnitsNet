@@ -182,11 +182,6 @@ namespace UnitsNet
 
         public static HeatTransferCoefficient Zero => new HeatTransferCoefficient(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(HeatTransferCoefficient quantity)
-        {
-            return HeatTransferCoefficient.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get HeatTransferCoefficient from WattsPerSquareMeterCelsius.
         /// </summary>

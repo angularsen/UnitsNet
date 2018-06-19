@@ -224,11 +224,6 @@ namespace UnitsNet
 
         public static Duration Zero => new Duration(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Duration quantity)
-        {
-            return Duration.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Duration from Days.
         /// </summary>

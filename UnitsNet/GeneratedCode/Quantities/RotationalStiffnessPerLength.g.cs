@@ -186,11 +186,6 @@ namespace UnitsNet
 
         public static RotationalStiffnessPerLength Zero => new RotationalStiffnessPerLength(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(RotationalStiffnessPerLength quantity)
-        {
-            return RotationalStiffnessPerLength.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get RotationalStiffnessPerLength from KilonewtonMetersPerRadianPerMeter.
         /// </summary>

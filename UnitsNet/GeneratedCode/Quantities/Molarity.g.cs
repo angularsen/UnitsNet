@@ -206,11 +206,6 @@ namespace UnitsNet
 
         public static Molarity Zero => new Molarity(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Molarity quantity)
-        {
-            return Molarity.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Molarity from CentimolesPerLiter.
         /// </summary>

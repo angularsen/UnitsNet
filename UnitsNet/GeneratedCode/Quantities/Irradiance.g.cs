@@ -182,11 +182,6 @@ namespace UnitsNet
 
         public static Irradiance Zero => new Irradiance(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Irradiance quantity)
-        {
-            return Irradiance.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Irradiance from KilowattsPerSquareMeter.
         /// </summary>

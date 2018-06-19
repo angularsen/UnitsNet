@@ -226,11 +226,6 @@ namespace UnitsNet
 
         public static Acceleration Zero => new Acceleration(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Acceleration quantity)
-        {
-            return Acceleration.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Acceleration from CentimetersPerSecondSquared.
         /// </summary>

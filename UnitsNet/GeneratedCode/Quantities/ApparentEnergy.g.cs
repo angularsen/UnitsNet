@@ -186,11 +186,6 @@ namespace UnitsNet
 
         public static ApparentEnergy Zero => new ApparentEnergy(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ApparentEnergy quantity)
-        {
-            return ApparentEnergy.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ApparentEnergy from KilovoltampereHours.
         /// </summary>

@@ -210,11 +210,6 @@ namespace UnitsNet
 
         public static ForcePerLength Zero => new ForcePerLength(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ForcePerLength quantity)
-        {
-            return ForcePerLength.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ForcePerLength from CentinewtonsPerMeter.
         /// </summary>

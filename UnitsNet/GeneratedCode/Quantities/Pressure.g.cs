@@ -327,11 +327,6 @@ namespace UnitsNet
 
         public static Pressure Zero => new Pressure(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Pressure quantity)
-        {
-            return Pressure.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Pressure from Atmospheres.
         /// </summary>

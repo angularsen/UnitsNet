@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static LuminousIntensity Zero => new LuminousIntensity(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(LuminousIntensity quantity)
-        {
-            return LuminousIntensity.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get LuminousIntensity from Candela.
         /// </summary>

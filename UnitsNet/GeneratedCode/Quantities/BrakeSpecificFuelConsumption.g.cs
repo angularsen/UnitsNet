@@ -186,11 +186,6 @@ namespace UnitsNet
 
         public static BrakeSpecificFuelConsumption Zero => new BrakeSpecificFuelConsumption(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(BrakeSpecificFuelConsumption quantity)
-        {
-            return BrakeSpecificFuelConsumption.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get BrakeSpecificFuelConsumption from GramsPerKiloWattHour.
         /// </summary>

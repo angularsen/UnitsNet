@@ -198,11 +198,6 @@ namespace UnitsNet
 
         public static AreaMomentOfInertia Zero => new AreaMomentOfInertia(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(AreaMomentOfInertia quantity)
-        {
-            return AreaMomentOfInertia.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get AreaMomentOfInertia from CentimetersToTheFourth.
         /// </summary>

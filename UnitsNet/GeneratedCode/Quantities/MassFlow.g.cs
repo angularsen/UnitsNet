@@ -234,11 +234,6 @@ namespace UnitsNet
 
         public static MassFlow Zero => new MassFlow(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(MassFlow quantity)
-        {
-            return MassFlow.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get MassFlow from CentigramsPerSecond.
         /// </summary>

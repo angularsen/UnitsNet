@@ -194,11 +194,6 @@ namespace UnitsNet
 
         public static ElectricPotential Zero => new ElectricPotential(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ElectricPotential quantity)
-        {
-            return ElectricPotential.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ElectricPotential from Kilovolts.
         /// </summary>

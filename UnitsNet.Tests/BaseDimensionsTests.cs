@@ -273,16 +273,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void CheckBaseDimensionDivisionWithSpeedEqualsDistanceDividedByTimeByImplicitOverload()
-        {
-            var length = Length.FromKilometers(100);
-            var duration = Duration.FromHours(1);
-
-            BaseDimensions calculatedDimensions = length / duration;
-            Assert.True(calculatedDimensions == Speed.BaseDimensions);
-        }
-
-        [Fact]
         public void CheckBaseDimensionMultiplicationWithForceEqualsMassTimesAccelerationOnInstanceProperty()
         {
             var mass = Mass.FromPounds(205);
@@ -293,19 +283,9 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void CheckBaseDimensionMultiplicationWithForceEqualsMassTimesAccelerationByImplicitOverload()
-        {
-            var mass = Mass.FromPounds(205);
-            var acceleration = Acceleration.FromMetersPerSecondSquared(9.8);
-
-            BaseDimensions calculatedDimensions = mass * acceleration;
-            Assert.True(calculatedDimensions == Force.BaseDimensions);
-        }
-
-        [Fact]
         public void CheckToStringUsingMolarEntropy()
         {
-            Assert.Equal(MolarEntropy.BaseDimensions.ToString(), "[Length]^2[Mass][Time]^-2[Temperature][Amount]");
+            Assert.Equal("[Length]^2[Mass][Time]^-2[Temperature][Amount]", MolarEntropy.BaseDimensions.ToString());
         }
     }
 }

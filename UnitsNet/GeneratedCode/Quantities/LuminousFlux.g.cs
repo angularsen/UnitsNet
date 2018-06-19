@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static LuminousFlux Zero => new LuminousFlux(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(LuminousFlux quantity)
-        {
-            return LuminousFlux.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get LuminousFlux from Lumens.
         /// </summary>

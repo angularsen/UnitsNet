@@ -270,11 +270,6 @@ namespace UnitsNet
 
         public static VolumeFlow Zero => new VolumeFlow(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(VolumeFlow quantity)
-        {
-            return VolumeFlow.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get VolumeFlow from CentilitersPerMinute.
         /// </summary>

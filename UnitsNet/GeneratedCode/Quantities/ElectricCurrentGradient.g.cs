@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static ElectricCurrentGradient Zero => new ElectricCurrentGradient(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ElectricCurrentGradient quantity)
-        {
-            return ElectricCurrentGradient.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ElectricCurrentGradient from AmperesPerSecond.
         /// </summary>

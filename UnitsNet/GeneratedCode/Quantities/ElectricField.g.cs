@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static ElectricField Zero => new ElectricField(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ElectricField quantity)
-        {
-            return ElectricField.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ElectricField from VoltsPerMeter.
         /// </summary>

@@ -206,11 +206,6 @@ namespace UnitsNet
 
         public static SpecificEntropy Zero => new SpecificEntropy(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(SpecificEntropy quantity)
-        {
-            return SpecificEntropy.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get SpecificEntropy from CaloriesPerGramKelvin.
         /// </summary>

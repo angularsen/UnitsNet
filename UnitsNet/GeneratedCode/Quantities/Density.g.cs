@@ -326,11 +326,6 @@ namespace UnitsNet
 
         public static Density Zero => new Density(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Density quantity)
-        {
-            return Density.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Density from CentigramsPerDeciLiter.
         /// </summary>

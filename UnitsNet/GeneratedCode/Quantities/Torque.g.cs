@@ -258,11 +258,6 @@ namespace UnitsNet
 
         public static Torque Zero => new Torque(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Torque quantity)
-        {
-            return Torque.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Torque from KilogramForceCentimeters.
         /// </summary>

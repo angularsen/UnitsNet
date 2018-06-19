@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static ElectricCurrentDensity Zero => new ElectricCurrentDensity(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ElectricCurrentDensity quantity)
-        {
-            return ElectricCurrentDensity.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ElectricCurrentDensity from AmperesPerSquareMeter.
         /// </summary>

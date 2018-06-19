@@ -214,11 +214,6 @@ namespace UnitsNet
 
         public static TemperatureChangeRate Zero => new TemperatureChangeRate(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(TemperatureChangeRate quantity)
-        {
-            return TemperatureChangeRate.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get TemperatureChangeRate from CentidegreesCelsiusPerSecond.
         /// </summary>

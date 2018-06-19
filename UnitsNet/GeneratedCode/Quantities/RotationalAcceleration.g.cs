@@ -186,11 +186,6 @@ namespace UnitsNet
 
         public static RotationalAcceleration Zero => new RotationalAcceleration(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(RotationalAcceleration quantity)
-        {
-            return RotationalAcceleration.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get RotationalAcceleration from DegreesPerSecondSquared.
         /// </summary>

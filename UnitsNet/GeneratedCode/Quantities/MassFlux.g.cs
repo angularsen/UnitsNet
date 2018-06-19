@@ -182,11 +182,6 @@ namespace UnitsNet
 
         public static MassFlux Zero => new MassFlux(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(MassFlux quantity)
-        {
-            return MassFlux.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get MassFlux from GramsPerSecondPerSquareMeter.
         /// </summary>

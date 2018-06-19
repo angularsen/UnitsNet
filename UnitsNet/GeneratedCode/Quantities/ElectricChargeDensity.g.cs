@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static ElectricChargeDensity Zero => new ElectricChargeDensity(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ElectricChargeDensity quantity)
-        {
-            return ElectricChargeDensity.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ElectricChargeDensity from CoulombsPerCubicMeter.
         /// </summary>

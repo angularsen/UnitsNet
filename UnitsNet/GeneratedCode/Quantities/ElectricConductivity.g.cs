@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static ElectricConductivity Zero => new ElectricConductivity(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ElectricConductivity quantity)
-        {
-            return ElectricConductivity.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ElectricConductivity from SiemensPerMeter.
         /// </summary>

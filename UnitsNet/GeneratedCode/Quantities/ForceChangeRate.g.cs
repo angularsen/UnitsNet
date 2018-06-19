@@ -218,11 +218,6 @@ namespace UnitsNet
 
         public static ForceChangeRate Zero => new ForceChangeRate(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ForceChangeRate quantity)
-        {
-            return ForceChangeRate.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ForceChangeRate from CentinewtonsPerSecond.
         /// </summary>

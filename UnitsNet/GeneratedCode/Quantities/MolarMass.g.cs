@@ -222,11 +222,6 @@ namespace UnitsNet
 
         public static MolarMass Zero => new MolarMass(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(MolarMass quantity)
-        {
-            return MolarMass.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get MolarMass from CentigramsPerMole.
         /// </summary>

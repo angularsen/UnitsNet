@@ -190,11 +190,6 @@ namespace UnitsNet
 
         public static ApparentPower Zero => new ApparentPower(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ApparentPower quantity)
-        {
-            return ApparentPower.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ApparentPower from Gigavoltamperes.
         /// </summary>

@@ -190,11 +190,6 @@ namespace UnitsNet
 
         public static Illuminance Zero => new Illuminance(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Illuminance quantity)
-        {
-            return Illuminance.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Illuminance from Kilolux.
         /// </summary>

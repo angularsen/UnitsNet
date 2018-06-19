@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static LapseRate Zero => new LapseRate(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(LapseRate quantity)
-        {
-            return LapseRate.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get LapseRate from DegreesCelciusPerKilometer.
         /// </summary>

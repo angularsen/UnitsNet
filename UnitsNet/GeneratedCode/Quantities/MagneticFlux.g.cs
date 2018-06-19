@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static MagneticFlux Zero => new MagneticFlux(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(MagneticFlux quantity)
-        {
-            return MagneticFlux.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get MagneticFlux from Webers.
         /// </summary>

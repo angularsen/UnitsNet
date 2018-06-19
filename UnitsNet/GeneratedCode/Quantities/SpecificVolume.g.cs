@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static SpecificVolume Zero => new SpecificVolume(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(SpecificVolume quantity)
-        {
-            return SpecificVolume.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get SpecificVolume from CubicMetersPerKilogram.
         /// </summary>

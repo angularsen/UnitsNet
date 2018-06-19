@@ -262,11 +262,6 @@ namespace UnitsNet
 
         public static Length Zero => new Length(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Length quantity)
-        {
-            return Length.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Length from Centimeters.
         /// </summary>

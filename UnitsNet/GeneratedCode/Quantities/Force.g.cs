@@ -214,11 +214,6 @@ namespace UnitsNet
 
         public static Force Zero => new Force(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Force quantity)
-        {
-            return Force.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Force from Decanewtons.
         /// </summary>

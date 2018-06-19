@@ -242,11 +242,6 @@ namespace UnitsNet
 
         public static SpecificWeight Zero => new SpecificWeight(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(SpecificWeight quantity)
-        {
-            return SpecificWeight.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicCentimeter.
         /// </summary>

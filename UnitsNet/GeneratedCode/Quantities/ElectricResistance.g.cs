@@ -190,11 +190,6 @@ namespace UnitsNet
 
         public static ElectricResistance Zero => new ElectricResistance(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ElectricResistance quantity)
-        {
-            return ElectricResistance.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ElectricResistance from Kiloohms.
         /// </summary>

@@ -190,11 +190,6 @@ namespace UnitsNet
 
         public static PressureChangeRate Zero => new PressureChangeRate(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(PressureChangeRate quantity)
-        {
-            return PressureChangeRate.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get PressureChangeRate from AtmospheresPerSecond.
         /// </summary>

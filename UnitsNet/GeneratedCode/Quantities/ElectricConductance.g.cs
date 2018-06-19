@@ -186,11 +186,6 @@ namespace UnitsNet
 
         public static ElectricConductance Zero => new ElectricConductance(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ElectricConductance quantity)
-        {
-            return ElectricConductance.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ElectricConductance from Microsiemens.
         /// </summary>

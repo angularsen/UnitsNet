@@ -235,19 +235,7 @@ namespace UnitsNet
 
         public static $quantityName Zero => new $quantityName(0, BaseUnit);
 
-"@; 
-    if($quantity.BaseDimensions)
-    {
-@"
-        public static implicit operator BaseDimensions($quantityName quantity)
-        {
-            return $quantityName.BaseDimensions;
-        }
-
-"@;
-    }
-
-    foreach ($unit in $units) {
+"@; foreach ($unit in $units) {
         $valueParamName = $unit.PluralName.ToLowerInvariant();@"
         /// <summary>
         ///     Get $quantityName from $($unit.PluralName).

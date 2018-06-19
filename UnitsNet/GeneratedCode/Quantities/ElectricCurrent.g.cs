@@ -202,11 +202,6 @@ namespace UnitsNet
 
         public static ElectricCurrent Zero => new ElectricCurrent(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ElectricCurrent quantity)
-        {
-            return ElectricCurrent.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ElectricCurrent from Amperes.
         /// </summary>

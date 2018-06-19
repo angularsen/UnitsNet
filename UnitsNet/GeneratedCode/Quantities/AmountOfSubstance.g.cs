@@ -230,11 +230,6 @@ namespace UnitsNet
 
         public static AmountOfSubstance Zero => new AmountOfSubstance(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(AmountOfSubstance quantity)
-        {
-            return AmountOfSubstance.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get AmountOfSubstance from Centimoles.
         /// </summary>

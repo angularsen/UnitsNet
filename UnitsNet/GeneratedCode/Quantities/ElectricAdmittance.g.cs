@@ -190,11 +190,6 @@ namespace UnitsNet
 
         public static ElectricAdmittance Zero => new ElectricAdmittance(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ElectricAdmittance quantity)
-        {
-            return ElectricAdmittance.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ElectricAdmittance from Microsiemens.
         /// </summary>

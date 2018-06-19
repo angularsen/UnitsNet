@@ -278,11 +278,6 @@ namespace UnitsNet
 
         public static MassMomentOfInertia Zero => new MassMomentOfInertia(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(MassMomentOfInertia quantity)
-        {
-            return MassMomentOfInertia.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get MassMomentOfInertia from GramSquareCentimeters.
         /// </summary>

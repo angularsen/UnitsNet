@@ -186,11 +186,6 @@ namespace UnitsNet
 
         public static ReactiveEnergy Zero => new ReactiveEnergy(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ReactiveEnergy quantity)
-        {
-            return ReactiveEnergy.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ReactiveEnergy from KilovoltampereReactiveHours.
         /// </summary>

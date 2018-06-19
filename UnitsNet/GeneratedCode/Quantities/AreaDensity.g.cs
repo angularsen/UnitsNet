@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static AreaDensity Zero => new AreaDensity(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(AreaDensity quantity)
-        {
-            return AreaDensity.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get AreaDensity from KilogramsPerSquareMeter.
         /// </summary>

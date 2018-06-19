@@ -254,11 +254,6 @@ namespace UnitsNet
 
         public static Power Zero => new Power(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Power quantity)
-        {
-            return Power.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Power from BoilerHorsepower.
         /// </summary>

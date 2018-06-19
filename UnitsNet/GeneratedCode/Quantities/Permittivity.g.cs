@@ -178,11 +178,6 @@ namespace UnitsNet
 
         public static Permittivity Zero => new Permittivity(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Permittivity quantity)
-        {
-            return Permittivity.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Permittivity from FaradsPerMeter.
         /// </summary>

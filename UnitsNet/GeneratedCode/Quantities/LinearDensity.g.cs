@@ -186,11 +186,6 @@ namespace UnitsNet
 
         public static LinearDensity Zero => new LinearDensity(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(LinearDensity quantity)
-        {
-            return LinearDensity.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get LinearDensity from GramsPerMeter.
         /// </summary>

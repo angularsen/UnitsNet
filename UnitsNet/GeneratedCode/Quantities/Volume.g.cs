@@ -352,11 +352,6 @@ namespace UnitsNet
 
         public static Volume Zero => new Volume(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(Volume quantity)
-        {
-            return Volume.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get Volume from AuTablespoons.
         /// </summary>

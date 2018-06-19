@@ -182,11 +182,6 @@ namespace UnitsNet
 
         public static ThermalConductivity Zero => new ThermalConductivity(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ThermalConductivity quantity)
-        {
-            return ThermalConductivity.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ThermalConductivity from BtusPerHourFootFahrenheit.
         /// </summary>

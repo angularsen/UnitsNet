@@ -186,11 +186,6 @@ namespace UnitsNet
 
         public static MolarEntropy Zero => new MolarEntropy(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(MolarEntropy quantity)
-        {
-            return MolarEntropy.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get MolarEntropy from JoulesPerMoleKelvin.
         /// </summary>

@@ -190,11 +190,6 @@ namespace UnitsNet
 
         public static ReactivePower Zero => new ReactivePower(0, BaseUnit);
 
-        public static implicit operator BaseDimensions(ReactivePower quantity)
-        {
-            return ReactivePower.BaseDimensions;
-        }
-
         /// <summary>
         ///     Get ReactivePower from GigavoltamperesReactive.
         /// </summary>
