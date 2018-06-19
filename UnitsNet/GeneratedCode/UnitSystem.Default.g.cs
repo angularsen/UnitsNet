@@ -2921,6 +2921,230 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "W"),
                             }),
                     }),
+                new UnitLocalization(typeof (PowerDensityUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) PowerDensityUnit.DecawattPerCubicFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "daW/ft³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.DecawattPerCubicInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "daW/in³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.DecawattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "daW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.DecawattPerLiter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "daW/l"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.DeciwattPerCubicFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dW/ft³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.DeciwattPerCubicInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dW/in³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.DeciwattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.DeciwattPerLiter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dW/l"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.GigawattPerCubicFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GW/ft³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.GigawattPerCubicInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GW/in³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.GigawattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.GigawattPerLiter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GW/l"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.KilowattPerCubicFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kW/ft³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.KilowattPerCubicInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kW/in³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.KilowattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.KilowattPerLiter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kW/l"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MegawattPerCubicFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MW/ft³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MegawattPerCubicInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MW/in³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MegawattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MegawattPerLiter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MW/l"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MicrowattPerCubicFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µW/ft³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MicrowattPerCubicInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µW/in³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MicrowattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MicrowattPerLiter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µW/l"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MilliwattPerCubicFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mW/ft³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MilliwattPerCubicInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mW/in³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MilliwattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MilliwattPerLiter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mW/l"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.NanowattPerCubicFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nW/ft³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.NanowattPerCubicInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nW/in³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.NanowattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.NanowattPerLiter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nW/l"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.PicowattPerCubicFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pW/ft³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.PicowattPerCubicInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pW/in³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.PicowattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.PicowattPerLiter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pW/l"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.TerawattPerCubicFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "TW/ft³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.TerawattPerCubicInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "TW/in³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.TerawattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "TW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.TerawattPerLiter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "TW/l"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.WattPerCubicFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/ft³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.WattPerCubicInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/in³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.WattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.WattPerLiter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "W/l"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (PowerRatioUnit),
                     new[]
                     {
