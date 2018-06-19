@@ -113,6 +113,7 @@ namespace UnitsNet
         Permeability,
         Permittivity,
         Power,
+        PowerDensity,
         PowerRatio,
         Pressure,
         PressureChangeRate,
