@@ -29,24 +29,15 @@ namespace UnitsNet
     /// </summary>
     public sealed class BaseDimensions
     {
-        private readonly int
-            _length,             // L
-            _mass,               // M
-            _time,               // T
-            _current,            // I
-            _temperature,        // Θ
-            _amount,             // N
-            _luminousIntensity;  // J
-
         public BaseDimensions(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
         {
-            _length = length;
-            _mass = mass;
-            _time = time;
-            _current = current;
-            _temperature = temperature;
-            _amount = amount;
-            _luminousIntensity = luminousIntensity;
+            Length = length;
+            Mass = mass;
+            Time = time;
+            Current = current;
+            Temperature = temperature;
+            Amount = amount;
+            LuminousIntensity = luminousIntensity;
         }
 
         public override bool Equals(object obj)
@@ -152,18 +143,39 @@ namespace UnitsNet
             }
         }
 
-        public int Length { get { return _length; } }
+        /// <summary>
+        /// Gets the length dimensions (L).
+        /// </summary>
+        public int Length { get; }
 
-        public int Mass{ get{ return _mass; } }
+        /// <summary>
+        /// Gets the mass dimensions (M).
+        /// </summary>
+        public int Mass{ get; }
 
-        public int Time{ get{ return _time; } }
+        /// <summary>
+        /// Gets the time dimensions (T).
+        /// </summary>
+        public int Time{ get; }
 
-        public int Current{ get{ return _current; } }
+        /// <summary>
+        /// Gets the electric current dimensions (I).
+        /// </summary>
+        public int Current{ get; }
 
-        public int Temperature{ get{ return _temperature; } }
+        /// <summary>
+        /// Gets the temperature dimensions (Θ).
+        /// </summary>
+        public int Temperature{ get; }
 
-        public int Amount{ get{ return _amount; } }
+        /// <summary>
+        /// Gets the amount of substance dimensions (N).
+        /// </summary>
+        public int Amount{ get; }
 
-        public int LuminousIntensity{ get{ return _luminousIntensity; } }
+        /// <summary>
+        /// Gets the luminous intensity dimensions (J).
+        /// </summary>
+        public int LuminousIntensity{ get; }
     }
 }
