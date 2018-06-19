@@ -271,6 +271,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void CheckBaseDimensionMultiplicationWithForceEqualsMassTimesAccelerationOnStaticProperty()
+        {
+            var calculatedDimensions = Mass.BaseDimensions.Multiply(Acceleration.BaseDimensions);
+            Assert.True(calculatedDimensions == Force.BaseDimensions);
+        }
+
+        [Fact]
         public void CheckBaseDimensionMultiplicationWithForceEqualsMassTimesAccelerationOnInstanceProperty()
         {
             var mass = Mass.FromPounds(205);
@@ -544,6 +551,13 @@ namespace UnitsNet.Tests
 
             var calculatedDimensions = length.Dimensions / duration.Dimensions;
             Assert.True(calculatedDimensions == Speed.BaseDimensions);
+        }
+
+        [Fact]
+        public void CheckBaseDimensionMultiplicationWithForceEqualsMassTimesAccelerationOnStaticPropertyWithOperatorOverloads()
+        {
+            var calculatedDimensions = Mass.BaseDimensions * Acceleration.BaseDimensions;
+            Assert.True(calculatedDimensions == Force.BaseDimensions);
         }
 
         [Fact]
