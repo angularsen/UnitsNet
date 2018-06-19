@@ -158,10 +158,18 @@ namespace UnitsNet
         /// </summary>
         public static ForceChangeRateUnit BaseUnit => ForceChangeRateUnit.NewtonPerSecond;
 
+        private static BaseDimensions _baseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions
+        {
+            get
+            {
+                return _baseDimensions;
+            }
+        }
 
         /// <summary>
         ///     All units of measurement for the ForceChangeRate quantity.

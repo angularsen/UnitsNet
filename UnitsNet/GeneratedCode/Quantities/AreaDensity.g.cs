@@ -158,10 +158,18 @@ namespace UnitsNet
         /// </summary>
         public static AreaDensityUnit BaseUnit => AreaDensityUnit.KilogramPerSquareMeter;
 
+        private static BaseDimensions _baseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
+        public static BaseDimensions BaseDimensions
+        {
+            get
+            {
+                return _baseDimensions;
+            }
+        }
 
         /// <summary>
         ///     All units of measurement for the AreaDensity quantity.
