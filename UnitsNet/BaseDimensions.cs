@@ -27,7 +27,7 @@ namespace UnitsNet
     /// <summary>
     ///     Represents the base dimensions of a quantity.
     /// </summary>
-    public sealed class BaseDimensions : IEquatable<BaseDimensions>
+    public sealed class BaseDimensions
     {
         private readonly int
             _length,             // L
@@ -51,18 +51,18 @@ namespace UnitsNet
 
         public override bool Equals(object obj)
         {
-            return obj is BaseDimensions && Equals((BaseDimensions)obj);
-        }
+            if(obj is null || !(obj is BaseDimensions))
+                return false;
 
-        public bool Equals(BaseDimensions other)
-        {
-            return Length == other.Length &&
-                Mass == other.Mass &&
-                Time == other.Time &&
-                Current == other.Current &&
-                Temperature == other.Temperature &&
-                Amount == other.Amount &&
-                LuminousIntensity == other.LuminousIntensity;
+            var baseDimensionsObj = (BaseDimensions)obj;
+
+            return Length == baseDimensionsObj.Length &&
+                Mass == baseDimensionsObj.Mass &&
+                Time == baseDimensionsObj.Time &&
+                Current == baseDimensionsObj.Current &&
+                Temperature == baseDimensionsObj.Temperature &&
+                Amount == baseDimensionsObj.Amount &&
+                LuminousIntensity == baseDimensionsObj.LuminousIntensity;
         }
 
         public override int GetHashCode()
