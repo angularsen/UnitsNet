@@ -27,7 +27,7 @@ namespace UnitsNet
     /// <summary>
     ///     Represents the base dimensions of a quantity.
     /// </summary>
-    public struct BaseDimensions
+    public struct BaseDimensions : IEquatable<BaseDimensions>
     {
         public readonly int
             Length,             // L
@@ -49,9 +49,20 @@ namespace UnitsNet
             LuminousIntensity = luminousIntensity;
         }
 
-        public override bool Equals( object obj )
+        public override bool Equals(object obj)
         {
-            return obj is BaseDimensions && this == (BaseDimensions)obj;
+            return obj is BaseDimensions && Equals((BaseDimensions)obj);
+        }
+
+        public bool Equals(BaseDimensions other)
+        {
+            return Length == other.Length &&
+                Mass == other.Mass &&
+                Time == other.Time &&
+                Current == other.Current &&
+                Temperature == other.Temperature &&
+                Amount == other.Amount &&
+                LuminousIntensity == other.LuminousIntensity;
         }
 
         public override int GetHashCode()
@@ -67,17 +78,36 @@ namespace UnitsNet
             return hash;
         }
 
-        public static bool operator ==(BaseDimensions left, BaseDimensions right)
+        public BaseDimensions Multiply(BaseDimensions right)
         {
-            return left.Length == right.Length &&
-                left.Mass == right.Mass &&
-                left.Time == right.Time &&
-                left.Current == right.Current &&
-                left.Temperature == right.Temperature &&
-                left.Amount == right.Amount &&
-                left.LuminousIntensity == right.LuminousIntensity;
+            return new BaseDimensions(
+                Length + right.Length,
+                Mass + right.Mass,
+                Time + right.Time,
+                Current + right.Current,
+                Temperature + right.Temperature,
+                Amount + right.Amount,
+                LuminousIntensity + right.LuminousIntensity);
         }
 
+        public BaseDimensions Divide(BaseDimensions right)
+        {
+            return new BaseDimensions(
+                Length - right.Length,
+                Mass - right.Mass,
+                Time - right.Time,
+                Current - right.Current,
+                Temperature - right.Temperature,
+                Amount - right.Amount,
+                LuminousIntensity - right.LuminousIntensity);
+        }
+
+#if !WINDOWS_UWP
+        public static bool operator ==(BaseDimensions left, BaseDimensions right)
+        {
+            return left.Equals(right);
+        }
+    
         public static bool operator !=(BaseDimensions left, BaseDimensions right)
         {
             return !( left == right );
@@ -85,27 +115,14 @@ namespace UnitsNet
 
         public static BaseDimensions operator *(BaseDimensions left, BaseDimensions right)
         {
-            return new BaseDimensions(
-                left.Length + right.Length,
-                left.Mass + right.Mass,
-                left.Time + right.Time,
-                left.Current + right.Current,
-                left.Temperature + right.Temperature,
-                left.Amount + right.Amount,
-                left.LuminousIntensity + right.LuminousIntensity);
+            return left.Multiply(right);
         }
 
         public static BaseDimensions operator /(BaseDimensions left, BaseDimensions right)
         {
-            return new BaseDimensions(
-                left.Length - right.Length,
-                left.Mass - right.Mass,
-                left.Time - right.Time,
-                left.Current - right.Current,
-                left.Temperature - right.Temperature,
-                left.Amount - right.Amount,
-                left.LuminousIntensity - right.LuminousIntensity);
+            return left.Divide(right);
         }
+#endif
 
         public override string ToString()
         {
