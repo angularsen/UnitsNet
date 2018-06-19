@@ -10,13 +10,14 @@
     $unitEnumName = "$quantityName" + "Unit"
 
     # Base dimensions
-    $baseDimensionLength = if($quantity.BaseDimensions.L){$quantity.BaseDimensions.L} else{0};
-    $baseDimensionMass = if($quantity.BaseDimensions.M){$quantity.BaseDimensions.M} else{0};
-    $baseDimensionTime = if($quantity.BaseDimensions.T){$quantity.BaseDimensions.T} else{0};
-    $baseDimensionElectricCurrent = if($quantity.BaseDimensions.I){$quantity.BaseDimensions.I} else{0};
-    $baseDimensionTemperature = if($quantity.BaseDimensions.Θ){$quantity.BaseDimensions.Θ} else{0};
-    $baseDimensionAmountOfSubstance = if($quantity.BaseDimensions.N){$quantity.BaseDimensions.N} else{0};
-    $baseDimensionLuminousIntensity = if($quantity.BaseDimensions.J){$quantity.BaseDimensions.J} else{0};
+    $baseDimensions = $quantity.BaseDimensions;
+    $baseDimensionLength = if($baseDimensions.L){$baseDimensions.L} else{0};
+    $baseDimensionMass = if($baseDimensions.M){$baseDimensions.M} else{0};
+    $baseDimensionTime = if($baseDimensions.T){$baseDimensions.T} else{0};
+    $baseDimensionElectricCurrent = if($baseDimensions.I){$baseDimensions.I} else{0};
+    $baseDimensionTemperature = if($baseDimensions.Θ){$baseDimensions.Θ} else{0};
+    $baseDimensionAmountOfSubstance = if($baseDimensions.N){$baseDimensions.N} else{0};
+    $baseDimensionLuminousIntensity = if($baseDimensions.J){$baseDimensions.J} else{0};
 
     $convertToBaseType = switch ($baseType) {
       "long" { "Convert.ToInt64"; break }
@@ -199,7 +200,7 @@ namespace UnitsNet
         public static $unitEnumName BaseUnit => $unitEnumName.$baseUnitSingularName;
 
 "@; 
-    if($quantity.BaseDimensions)
+    if($baseDimensions)
     {
 @"
         private static readonly BaseDimensions _baseDimensions = new BaseDimensions($baseDimensionLength, $baseDimensionMass, $baseDimensionTime, $baseDimensionElectricCurrent, $baseDimensionTemperature, $baseDimensionAmountOfSubstance, $baseDimensionLuminousIntensity);
@@ -887,7 +888,7 @@ namespace UnitsNet
         private $baseType AsBaseNumericType($unitEnumName unit) => $convertToBaseType(As(unit));
 
 "@;
-if($quantity.BaseDimensions)
+if($baseDimensions)
 {
 @"
         /// <summary>
