@@ -47,5 +47,15 @@ namespace UnitsNet.Tests.CustomCode
     public class PowerDensityTests : PowerDensityTestsBase
     {
         protected override double WattsPerCubicMeterInOneWattPerCubicMeter => 1;
+        protected override double PicowattsPerCubicMeterInOneWattPerCubicMeter => 1e12;
+        protected override double NanowattsPerCubicMeterInOneWattPerCubicMeter => 1e9;
+        protected override double MicrowattsPerCubicMeterInOneWattPerCubicMeter => 1e6;
+        protected override double MilliwattsPerCubicMeterInOneWattPerCubicMeter => 1e3;
+        protected override double DeciwattsPerCubicMeterInOneWattPerCubicMeter => 1e1;
+        protected override double DecawattsPerCubicMeterInOneWattPerCubicMeter => 1e-1;
+        protected override double KilowattsPerCubicMeterInOneWattPerCubicMeter => 1e-3;
+        protected override double MegawattsPerCubicMeterInOneWattPerCubicMeter => 1e-6;
+        protected override double GigawattsPerCubicMeterInOneWattPerCubicMeter => 1e-9;
+        protected override double TerawattsPerCubicMeterInOneWattPerCubicMeter => 1e-12;
     }
 }

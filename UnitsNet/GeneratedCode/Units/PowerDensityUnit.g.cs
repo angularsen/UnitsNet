@@ -42,6 +42,16 @@ namespace UnitsNet.Units
     public enum PowerDensityUnit
     {
         Undefined = 0,
+        DecawattPerCubicMeter,
+        DeciwattPerCubicMeter,
+        GigawattPerCubicMeter,
+        KilowattPerCubicMeter,
+        MegawattPerCubicMeter,
+        MicrowattPerCubicMeter,
+        MilliwattPerCubicMeter,
+        NanowattPerCubicMeter,
+        PicowattPerCubicMeter,
+        TerawattPerCubicMeter,
         WattPerCubicMeter,
     }
 }

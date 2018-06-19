@@ -8,6 +8,7 @@
       "PluralName": "WattsPerCubicMeter",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Deci", "Deca", "Kilo", "Mega", "Giga", "Tera" ],
       "Localization": [
         {
           "Culture": "en-US",

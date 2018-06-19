@@ -2924,6 +2924,56 @@ namespace UnitsNet
                 new UnitLocalization(typeof (PowerDensityUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) PowerDensityUnit.DecawattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "daW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.DeciwattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.GigawattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.KilowattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MegawattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "MW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MicrowattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.MilliwattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.NanowattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.PicowattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pW/m³"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.TerawattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "TW/m³"),
+                            }),
                         new CulturesForEnumValue((int) PowerDensityUnit.WattPerCubicMeter,
                             new[]
                             {
