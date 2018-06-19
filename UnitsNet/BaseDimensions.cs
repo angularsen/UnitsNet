@@ -29,24 +29,24 @@ namespace UnitsNet
     /// </summary>
     public sealed class BaseDimensions : IEquatable<BaseDimensions>
     {
-        public readonly int
-            Length,             // L
-            Mass,               // M
-            Time,               // T
-            Current,            // I
-            Temperature,        // Θ
-            Amount,             // N
-            LuminousIntensity;  // J
+        private readonly int
+            _length,             // L
+            _mass,               // M
+            _time,               // T
+            _current,            // I
+            _temperature,        // Θ
+            _amount,             // N
+            _luminousIntensity;  // J
 
         public BaseDimensions(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
         {
-            Length = length;
-            Mass = mass;
-            Time = time;
-            Current = current;
-            Temperature = temperature;
-            Amount = amount;
-            LuminousIntensity = luminousIntensity;
+            _length = length;
+            _mass = mass;
+            _time = time;
+            _current = current;
+            _temperature = temperature;
+            _amount = amount;
+            _luminousIntensity = luminousIntensity;
         }
 
         public override bool Equals(object obj)
@@ -151,5 +151,19 @@ namespace UnitsNet
                     sb.AppendFormat( "^{0}", value );
             }
         }
+
+        public int Length { get { return _length; } }
+
+        public int Mass{ get{ return _mass; } }
+
+        public int Time{ get{ return _time; } }
+
+        public int Current{ get{ return _current; } }
+
+        public int Temperature{ get{ return _temperature; } }
+
+        public int Amount{ get{ return _amount; } }
+
+        public int LuminousIntensity{ get{ return _luminousIntensity; } }
     }
 }
