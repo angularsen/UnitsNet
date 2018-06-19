@@ -27,7 +27,7 @@ namespace UnitsNet
     /// <summary>
     ///     Represents the base dimensions of a quantity.
     /// </summary>
-    public struct BaseDimensions : IEquatable<BaseDimensions>
+    public sealed class BaseDimensions : IEquatable<BaseDimensions>
     {
         public readonly int
             Length,             // L
