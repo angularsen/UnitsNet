@@ -158,7 +158,7 @@ namespace UnitsNet
         /// </summary>
         public static ReactivePowerUnit BaseUnit => ReactivePowerUnit.VoltampereReactive;
 
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
