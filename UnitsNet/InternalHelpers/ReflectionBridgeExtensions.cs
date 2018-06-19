@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using System.Reflection;
 
 #if SIGNED
-[assembly: InternalsVisibleTo("UnitsNet.Serialization.JsonNet, PublicKey=002400000480000094000000060200000024000052534131000400000100010089abdcb0025f7d1c4c766686dd852b978ca5bb9fd80bba9d3539e8399b01170ae0ea10c0c3baa301b1d13090d5aff770532de00c88b67c4b24669fde7f9d87218f1c6c073a09016cbb2f87119b94227c2301f4e2a096043e30f7c47c872bbd8e0b80d924952e6b36990f13f847e83e9efb107ec2121fe39d7edaaa4e235af8c4")]
+[assembly: InternalsVisibleTo("UnitsNet.Serialization.JsonNet.Signed, PublicKey=002400000480000094000000060200000024000052534131000400000100010089abdcb0025f7d1c4c766686dd852b978ca5bb9fd80bba9d3539e8399b01170ae0ea10c0c3baa301b1d13090d5aff770532de00c88b67c4b24669fde7f9d87218f1c6c073a09016cbb2f87119b94227c2301f4e2a096043e30f7c47c872bbd8e0b80d924952e6b36990f13f847e83e9efb107ec2121fe39d7edaaa4e235af8c4")]
 #else
 [assembly: InternalsVisibleTo("UnitsNet.Serialization.JsonNet")]
 #endif

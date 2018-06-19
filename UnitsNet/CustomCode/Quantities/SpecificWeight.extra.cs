@@ -19,43 +19,32 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class Area
+    public sealed partial class SpecificWeight
 #else
-    public partial struct Area
+    public partial struct SpecificWeight
 #endif
     {
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
-        public static Length operator /(Area area, Length length)
+        public static Pressure operator *(SpecificWeight specificWeight, Length length)
         {
-            return Length.FromMeters(area.SquareMeters / length.Meters);
+            return new Pressure(specificWeight.NewtonsPerCubicMeter * length.Meters, UnitsNet.Units.PressureUnit.Pascal);
         }
 
-        public static MassFlow operator *(Area area, MassFlux massFlux)
+        public static Acceleration operator /(SpecificWeight specificWeight, Density density)
         {
-            return MassFlow.FromGramsPerSecond(area.SquareMeters * massFlux.GramsPerSecondPerSquareMeter);
+            return new Acceleration(specificWeight.NewtonsPerCubicMeter / density.KilogramsPerCubicMeter, UnitsNet.Units.AccelerationUnit.MeterPerSecondSquared);
         }
 
-        public static VolumeFlow operator *(Area area, Speed speed)
+        public static Density operator /(SpecificWeight specific, Acceleration acceleration)
         {
-            return VolumeFlow.FromCubicMetersPerSecond(area.SquareMeters * speed.MetersPerSecond);
-        }
-
-        public static Area FromCircleDiameter(Length diameter)
-        {
-            return System.Math.PI * diameter * diameter / 4;
-        }
-
-        public static Area FromCircleRadius(Length radius)
-        {
-            return System.Math.PI * radius * radius;
+            return new Density(specific.NewtonsPerCubicMeter / acceleration.MetersPerSecondSquared, UnitsNet.Units.DensityUnit.KilogramPerCubicMeter);
         }
 #endif
     }

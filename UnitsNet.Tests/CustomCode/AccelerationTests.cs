@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using Xunit;
+
 namespace UnitsNet.Tests.CustomCode
 {
     public class AccelerationTests : AccelerationTestsBase
@@ -48,5 +50,12 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KnotsPerMinuteInOneMeterPerSecondSquared => 1.16630669546436E2;
 
         protected override double KnotsPerSecondInOneMeterPerSecondSquared => 1.94384449244060;
+
+        [Fact]
+        public void AccelerationTimesDensityEqualsSpecificWeight()
+        {
+            SpecificWeight specificWeight = Acceleration.FromMetersPerSecondSquared(10) * Density.FromKilogramsPerCubicMeter(2);
+            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(20), specificWeight);
+        }
     }
 }

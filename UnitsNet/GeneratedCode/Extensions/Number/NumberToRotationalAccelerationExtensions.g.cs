@@ -17,17 +17,17 @@
 
 // Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,102 +46,102 @@ namespace UnitsNet.Extensions.NumberToRotationalAcceleration
     {
         #region DegreePerSecondSquared
 
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration DegreesPerSecondSquared(this int value) => RotationalAcceleration.FromDegreesPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? DegreesPerSecondSquared(this int? value) => RotationalAcceleration.FromDegreesPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration DegreesPerSecondSquared(this long value) => RotationalAcceleration.FromDegreesPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? DegreesPerSecondSquared(this long? value) => RotationalAcceleration.FromDegreesPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration DegreesPerSecondSquared(this double value) => RotationalAcceleration.FromDegreesPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? DegreesPerSecondSquared(this double? value) => RotationalAcceleration.FromDegreesPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration DegreesPerSecondSquared(this float value) => RotationalAcceleration.FromDegreesPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? DegreesPerSecondSquared(this float? value) => RotationalAcceleration.FromDegreesPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration DegreesPerSecondSquared(this decimal value) => RotationalAcceleration.FromDegreesPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromDegreesPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? DegreesPerSecondSquared(this decimal? value) => RotationalAcceleration.FromDegreesPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region RadianPerSecondSquared
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration RadiansPerSecondSquared(this int value) => RotationalAcceleration.FromRadiansPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? RadiansPerSecondSquared(this int? value) => RotationalAcceleration.FromRadiansPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration RadiansPerSecondSquared(this long value) => RotationalAcceleration.FromRadiansPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? RadiansPerSecondSquared(this long? value) => RotationalAcceleration.FromRadiansPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration RadiansPerSecondSquared(this double value) => RotationalAcceleration.FromRadiansPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? RadiansPerSecondSquared(this double? value) => RotationalAcceleration.FromRadiansPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration RadiansPerSecondSquared(this float value) => RotationalAcceleration.FromRadiansPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? RadiansPerSecondSquared(this float? value) => RotationalAcceleration.FromRadiansPerSecondSquared(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration RadiansPerSecondSquared(this decimal value) => RotationalAcceleration.FromRadiansPerSecondSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRadiansPerSecondSquared(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? RadiansPerSecondSquared(this decimal? value) => RotationalAcceleration.FromRadiansPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region RevolutionPerMinutePerSecond
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration RevolutionsPerMinutePerSecond(this int value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? RevolutionsPerMinutePerSecond(this int? value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration RevolutionsPerMinutePerSecond(this long value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? RevolutionsPerMinutePerSecond(this long? value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration RevolutionsPerMinutePerSecond(this double value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? RevolutionsPerMinutePerSecond(this double? value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration RevolutionsPerMinutePerSecond(this float value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? RevolutionsPerMinutePerSecond(this float? value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value);
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration RevolutionsPerMinutePerSecond(this decimal value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(double?)"/>
+        /// <inheritdoc cref="RotationalAcceleration.FromRevolutionsPerMinutePerSecond(UnitsNet.QuantityValue)" />
         public static RotationalAcceleration? RevolutionsPerMinutePerSecond(this decimal? value) => RotationalAcceleration.FromRevolutionsPerMinutePerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

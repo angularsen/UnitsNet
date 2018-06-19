@@ -17,17 +17,17 @@
 
 // Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,34 +46,34 @@ namespace UnitsNet.Extensions.NumberToElectricCharge
     {
         #region Coulomb
 
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(double)"/>
+        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
         public static ElectricCharge Coulombs(this int value) => ElectricCharge.FromCoulombs(value);
 
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(double?)"/>
+        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
         public static ElectricCharge? Coulombs(this int? value) => ElectricCharge.FromCoulombs(value);
 
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(double)"/>
+        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
         public static ElectricCharge Coulombs(this long value) => ElectricCharge.FromCoulombs(value);
 
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(double?)"/>
+        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
         public static ElectricCharge? Coulombs(this long? value) => ElectricCharge.FromCoulombs(value);
 
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(double)"/>
+        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
         public static ElectricCharge Coulombs(this double value) => ElectricCharge.FromCoulombs(value);
 
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(double?)"/>
+        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
         public static ElectricCharge? Coulombs(this double? value) => ElectricCharge.FromCoulombs(value);
 
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(double)"/>
+        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
         public static ElectricCharge Coulombs(this float value) => ElectricCharge.FromCoulombs(value);
 
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(double?)"/>
+        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
         public static ElectricCharge? Coulombs(this float? value) => ElectricCharge.FromCoulombs(value);
 
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(double)"/>
+        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
         public static ElectricCharge Coulombs(this decimal value) => ElectricCharge.FromCoulombs(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(double?)"/>
+        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
         public static ElectricCharge? Coulombs(this decimal? value) => ElectricCharge.FromCoulombs(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

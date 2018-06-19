@@ -29,6 +29,7 @@ using Culture=System.String;
 using Culture=System.IFormatProvider;
 #endif
 
+// ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
@@ -110,6 +111,11 @@ namespace UnitsNet
         public static KinematicViscosity operator *(Length length, Speed speed)
         {
             return KinematicViscosity.FromSquareMetersPerSecond(length.Meters*speed.MetersPerSecond);
+        }
+
+        public static Pressure operator *(Length length, SpecificWeight specificWeight)
+        {
+            return new Pressure(length.Meters * specificWeight.NewtonsPerCubicMeter, PressureUnit.Pascal);
         }
 #endif
     }

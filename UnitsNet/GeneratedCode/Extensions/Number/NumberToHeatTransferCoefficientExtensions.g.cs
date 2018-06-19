@@ -17,17 +17,17 @@
 
 // Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,68 +46,68 @@ namespace UnitsNet.Extensions.NumberToHeatTransferCoefficient
     {
         #region WattPerSquareMeterCelsius
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient WattsPerSquareMeterCelsius(this int value) => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double?)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient? WattsPerSquareMeterCelsius(this int? value) => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient WattsPerSquareMeterCelsius(this long value) => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double?)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient? WattsPerSquareMeterCelsius(this long? value) => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient WattsPerSquareMeterCelsius(this double value) => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double?)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient? WattsPerSquareMeterCelsius(this double? value) => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient WattsPerSquareMeterCelsius(this float value) => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double?)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient? WattsPerSquareMeterCelsius(this float? value) => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient WattsPerSquareMeterCelsius(this decimal value) => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(double?)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient? WattsPerSquareMeterCelsius(this decimal? value) => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region WattPerSquareMeterKelvin
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient WattsPerSquareMeterKelvin(this int value) => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double?)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient? WattsPerSquareMeterKelvin(this int? value) => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient WattsPerSquareMeterKelvin(this long value) => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double?)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient? WattsPerSquareMeterKelvin(this long? value) => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient WattsPerSquareMeterKelvin(this double value) => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double?)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient? WattsPerSquareMeterKelvin(this double? value) => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient WattsPerSquareMeterKelvin(this float value) => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double?)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient? WattsPerSquareMeterKelvin(this float? value) => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value);
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient WattsPerSquareMeterKelvin(this decimal value) => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double?)"/>
+        /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(UnitsNet.QuantityValue)" />
         public static HeatTransferCoefficient? WattsPerSquareMeterKelvin(this decimal? value) => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

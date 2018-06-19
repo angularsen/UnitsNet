@@ -17,17 +17,17 @@
 
 // Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,306 +46,306 @@ namespace UnitsNet.Extensions.NumberToForcePerLength
     {
         #region CentinewtonPerMeter
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength CentinewtonsPerMeter(this int value) => ForcePerLength.FromCentinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? CentinewtonsPerMeter(this int? value) => ForcePerLength.FromCentinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength CentinewtonsPerMeter(this long value) => ForcePerLength.FromCentinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? CentinewtonsPerMeter(this long? value) => ForcePerLength.FromCentinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength CentinewtonsPerMeter(this double value) => ForcePerLength.FromCentinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? CentinewtonsPerMeter(this double? value) => ForcePerLength.FromCentinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength CentinewtonsPerMeter(this float value) => ForcePerLength.FromCentinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? CentinewtonsPerMeter(this float? value) => ForcePerLength.FromCentinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength CentinewtonsPerMeter(this decimal value) => ForcePerLength.FromCentinewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? CentinewtonsPerMeter(this decimal? value) => ForcePerLength.FromCentinewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecinewtonPerMeter
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength DecinewtonsPerMeter(this int value) => ForcePerLength.FromDecinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? DecinewtonsPerMeter(this int? value) => ForcePerLength.FromDecinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength DecinewtonsPerMeter(this long value) => ForcePerLength.FromDecinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? DecinewtonsPerMeter(this long? value) => ForcePerLength.FromDecinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength DecinewtonsPerMeter(this double value) => ForcePerLength.FromDecinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? DecinewtonsPerMeter(this double? value) => ForcePerLength.FromDecinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength DecinewtonsPerMeter(this float value) => ForcePerLength.FromDecinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? DecinewtonsPerMeter(this float? value) => ForcePerLength.FromDecinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength DecinewtonsPerMeter(this decimal value) => ForcePerLength.FromDecinewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? DecinewtonsPerMeter(this decimal? value) => ForcePerLength.FromDecinewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramForcePerMeter
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength KilogramsForcePerMeter(this int value) => ForcePerLength.FromKilogramsForcePerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? KilogramsForcePerMeter(this int? value) => ForcePerLength.FromKilogramsForcePerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength KilogramsForcePerMeter(this long value) => ForcePerLength.FromKilogramsForcePerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? KilogramsForcePerMeter(this long? value) => ForcePerLength.FromKilogramsForcePerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength KilogramsForcePerMeter(this double value) => ForcePerLength.FromKilogramsForcePerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? KilogramsForcePerMeter(this double? value) => ForcePerLength.FromKilogramsForcePerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength KilogramsForcePerMeter(this float value) => ForcePerLength.FromKilogramsForcePerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? KilogramsForcePerMeter(this float? value) => ForcePerLength.FromKilogramsForcePerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength KilogramsForcePerMeter(this decimal value) => ForcePerLength.FromKilogramsForcePerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? KilogramsForcePerMeter(this decimal? value) => ForcePerLength.FromKilogramsForcePerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilonewtonPerMeter
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength KilonewtonsPerMeter(this int value) => ForcePerLength.FromKilonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? KilonewtonsPerMeter(this int? value) => ForcePerLength.FromKilonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength KilonewtonsPerMeter(this long value) => ForcePerLength.FromKilonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? KilonewtonsPerMeter(this long? value) => ForcePerLength.FromKilonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength KilonewtonsPerMeter(this double value) => ForcePerLength.FromKilonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? KilonewtonsPerMeter(this double? value) => ForcePerLength.FromKilonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength KilonewtonsPerMeter(this float value) => ForcePerLength.FromKilonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? KilonewtonsPerMeter(this float? value) => ForcePerLength.FromKilonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength KilonewtonsPerMeter(this decimal value) => ForcePerLength.FromKilonewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? KilonewtonsPerMeter(this decimal? value) => ForcePerLength.FromKilonewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MeganewtonPerMeter
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MeganewtonsPerMeter(this int value) => ForcePerLength.FromMeganewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MeganewtonsPerMeter(this int? value) => ForcePerLength.FromMeganewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MeganewtonsPerMeter(this long value) => ForcePerLength.FromMeganewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MeganewtonsPerMeter(this long? value) => ForcePerLength.FromMeganewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MeganewtonsPerMeter(this double value) => ForcePerLength.FromMeganewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MeganewtonsPerMeter(this double? value) => ForcePerLength.FromMeganewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MeganewtonsPerMeter(this float value) => ForcePerLength.FromMeganewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MeganewtonsPerMeter(this float? value) => ForcePerLength.FromMeganewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MeganewtonsPerMeter(this decimal value) => ForcePerLength.FromMeganewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MeganewtonsPerMeter(this decimal? value) => ForcePerLength.FromMeganewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicronewtonPerMeter
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MicronewtonsPerMeter(this int value) => ForcePerLength.FromMicronewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MicronewtonsPerMeter(this int? value) => ForcePerLength.FromMicronewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MicronewtonsPerMeter(this long value) => ForcePerLength.FromMicronewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MicronewtonsPerMeter(this long? value) => ForcePerLength.FromMicronewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MicronewtonsPerMeter(this double value) => ForcePerLength.FromMicronewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MicronewtonsPerMeter(this double? value) => ForcePerLength.FromMicronewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MicronewtonsPerMeter(this float value) => ForcePerLength.FromMicronewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MicronewtonsPerMeter(this float? value) => ForcePerLength.FromMicronewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MicronewtonsPerMeter(this decimal value) => ForcePerLength.FromMicronewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MicronewtonsPerMeter(this decimal? value) => ForcePerLength.FromMicronewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillinewtonPerMeter
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MillinewtonsPerMeter(this int value) => ForcePerLength.FromMillinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MillinewtonsPerMeter(this int? value) => ForcePerLength.FromMillinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MillinewtonsPerMeter(this long value) => ForcePerLength.FromMillinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MillinewtonsPerMeter(this long? value) => ForcePerLength.FromMillinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MillinewtonsPerMeter(this double value) => ForcePerLength.FromMillinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MillinewtonsPerMeter(this double? value) => ForcePerLength.FromMillinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MillinewtonsPerMeter(this float value) => ForcePerLength.FromMillinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MillinewtonsPerMeter(this float? value) => ForcePerLength.FromMillinewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength MillinewtonsPerMeter(this decimal value) => ForcePerLength.FromMillinewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? MillinewtonsPerMeter(this decimal? value) => ForcePerLength.FromMillinewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanonewtonPerMeter
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength NanonewtonsPerMeter(this int value) => ForcePerLength.FromNanonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? NanonewtonsPerMeter(this int? value) => ForcePerLength.FromNanonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength NanonewtonsPerMeter(this long value) => ForcePerLength.FromNanonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? NanonewtonsPerMeter(this long? value) => ForcePerLength.FromNanonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength NanonewtonsPerMeter(this double value) => ForcePerLength.FromNanonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? NanonewtonsPerMeter(this double? value) => ForcePerLength.FromNanonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength NanonewtonsPerMeter(this float value) => ForcePerLength.FromNanonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? NanonewtonsPerMeter(this float? value) => ForcePerLength.FromNanonewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength NanonewtonsPerMeter(this decimal value) => ForcePerLength.FromNanonewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? NanonewtonsPerMeter(this decimal? value) => ForcePerLength.FromNanonewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NewtonPerMeter
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength NewtonsPerMeter(this int value) => ForcePerLength.FromNewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? NewtonsPerMeter(this int? value) => ForcePerLength.FromNewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength NewtonsPerMeter(this long value) => ForcePerLength.FromNewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? NewtonsPerMeter(this long? value) => ForcePerLength.FromNewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength NewtonsPerMeter(this double value) => ForcePerLength.FromNewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? NewtonsPerMeter(this double? value) => ForcePerLength.FromNewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength NewtonsPerMeter(this float value) => ForcePerLength.FromNewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? NewtonsPerMeter(this float? value) => ForcePerLength.FromNewtonsPerMeter(value);
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(double)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength NewtonsPerMeter(this decimal value) => ForcePerLength.FromNewtonsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(double?)"/>
+        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
         public static ForcePerLength? NewtonsPerMeter(this decimal? value) => ForcePerLength.FromNewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

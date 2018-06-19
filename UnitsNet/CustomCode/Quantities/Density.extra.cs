@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+// ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
@@ -65,6 +66,11 @@ namespace UnitsNet
         public static MassFlux operator *(Density density, Speed speed)
         {
             return MassFlux.FromKilogramsPerSecondPerSquareMeter(density.KilogramsPerCubicMeter * speed.MetersPerSecond);
+        }
+
+        public static SpecificWeight operator *(Density density, Acceleration acceleration)
+        {
+            return new SpecificWeight(density.KilogramsPerCubicMeter * acceleration.MetersPerSecondSquared, UnitsNet.Units.SpecificWeightUnit.NewtonPerCubicMeter);
         }
 #endif
     }

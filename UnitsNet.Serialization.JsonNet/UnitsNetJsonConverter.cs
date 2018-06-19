@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,6 +26,7 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnitsNet.InternalHelpers;
+using UnitsNet.Units;
 
 namespace UnitsNet.Serialization.JsonNet
 {
@@ -130,7 +131,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             // Ex: Mass.From(55, MassUnit.Gram)
             // TODO: there is a possible loss of precision if base value requires higher precision than double can represent.
-            // Example: Serializing Information.FromExabytes(100) then deserializing to Information 
+            // Example: Serializing Information.FromExabytes(100) then deserializing to Information
             // will likely return a very different result. Not sure how we can handle this?
             return notNullableFromMethod.Invoke(null, new[] {quantityValue, unitValue});
         }
@@ -196,7 +197,7 @@ namespace UnitsNet.Serialization.JsonNet
                     TypeNameHandling = serializer.TypeNameHandling,
                 };
                 JToken t = JToken.FromObject(obj, localSerializer);
-                
+
                 t.WriteTo(writer);
                 return;
             }

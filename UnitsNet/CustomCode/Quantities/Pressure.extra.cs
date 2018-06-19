@@ -19,7 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
+// ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
@@ -41,6 +41,16 @@ namespace UnitsNet
         public static Force operator *(Area area, Pressure pressure)
         {
             return Force.FromNewtons(pressure.Pascals * area.SquareMeters);
+        }
+
+        public static Length operator /(Pressure pressure, SpecificWeight specificWeight)
+        {
+            return new Length(pressure.Pascals / specificWeight.NewtonsPerCubicMeter, UnitsNet.Units.LengthUnit.Meter);
+        }
+
+        public static SpecificWeight operator /(Pressure pressure, Length length)
+        {
+            return new SpecificWeight(pressure.Pascals / length.Meters, UnitsNet.Units.SpecificWeightUnit.NewtonPerCubicMeter);
         }
 #endif
     }
