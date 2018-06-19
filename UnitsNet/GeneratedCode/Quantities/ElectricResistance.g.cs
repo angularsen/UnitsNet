@@ -161,7 +161,7 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        public static BaseDimensions BaseDimensions => new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
+        public static BaseDimensions BaseDimensions = new BaseDimensions(2, 1, -3, -2, 0, 0, 0);
 
         /// <summary>
         ///     All units of measurement for the ElectricResistance quantity.
