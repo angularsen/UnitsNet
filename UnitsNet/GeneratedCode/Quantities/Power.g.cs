@@ -1035,10 +1035,10 @@ namespace UnitsNet
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0");
 
-            double baseValue = (double)AsBaseUnitWatts();
-            double otherBaseValue = (double)other.AsBaseUnitWatts();
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
 
-            return UnitsNet.Comparison.Equals(baseValue, otherBaseValue, tolerance, comparisonType);
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
