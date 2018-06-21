@@ -756,7 +756,7 @@ namespace UnitsNet
                 case ForceUnit.Newton: return baseUnitValue;
                 case ForceUnit.Poundal: return baseUnitValue/0.13825502798973041652092282466083;
                 case ForceUnit.PoundForce: return baseUnitValue/4.4482216152605095551842641431421;
-                case ForceUnit.TonneForce: return baseUnitValue/9.80665002864/1000;
+                case ForceUnit.TonneForce: return baseUnitValue/9.80665002864e3;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -1129,7 +1129,7 @@ namespace UnitsNet
                 case ForceUnit.Newton: return _value;
                 case ForceUnit.Poundal: return _value*0.13825502798973041652092282466083;
                 case ForceUnit.PoundForce: return _value*4.4482216152605095551842641431421;
-                case ForceUnit.TonneForce: return _value*9.80665002864*1000;
+                case ForceUnit.TonneForce: return _value*9.80665002864e3;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
 			}

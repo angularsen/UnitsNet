@@ -1880,7 +1880,7 @@ namespace UnitsNet
                 case VolumeUnit.CubicKilometer: return baseUnitValue/1e9;
                 case VolumeUnit.CubicMeter: return baseUnitValue;
                 case VolumeUnit.CubicMicrometer: return baseUnitValue*1e18;
-                case VolumeUnit.CubicMile: return baseUnitValue/(4.16818183*1e9);
+                case VolumeUnit.CubicMile: return baseUnitValue/4.16818182544058e9;
                 case VolumeUnit.CubicMillimeter: return baseUnitValue*1e9;
                 case VolumeUnit.CubicYard: return baseUnitValue/0.764554858;
                 case VolumeUnit.Deciliter: return (baseUnitValue*1e3) / 1e-1d;
@@ -2287,7 +2287,7 @@ namespace UnitsNet
                 case VolumeUnit.CubicKilometer: return _value*1e9;
                 case VolumeUnit.CubicMeter: return _value;
                 case VolumeUnit.CubicMicrometer: return _value/1e18;
-                case VolumeUnit.CubicMile: return _value*4.16818183*1e9;
+                case VolumeUnit.CubicMile: return _value*4.16818182544058e9;
                 case VolumeUnit.CubicMillimeter: return _value/1e9;
                 case VolumeUnit.CubicYard: return _value*0.764554858;
                 case VolumeUnit.Deciliter: return (_value/1e3) * 1e-1d;

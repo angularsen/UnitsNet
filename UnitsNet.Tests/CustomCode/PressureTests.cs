@@ -30,11 +30,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double BarsInOnePascal => 1E-5;
 
-        protected override double KilogramsForcePerSquareCentimeterInOnePascal => 0.101971621e-5;
+        protected override double KilogramsForcePerSquareCentimeterInOnePascal => 1.019716212977928e-5;
 
         protected override double KilogramsForcePerSquareMeterInOnePascal => 0.101971621;
 
-        protected override double KilogramsForcePerSquareMillimeterInOnePascal => 0.101971621e-7;
+        protected override double KilogramsForcePerSquareMillimeterInOnePascal => 1.019716212977928e-7;
 
         protected override double KilonewtonsPerSquareCentimeterInOnePascal => 1e-7;
 
@@ -44,9 +44,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilopascalsInOnePascal => 1e-3;
 
-        protected override double KilopoundsForcePerSquareFootInOnePascal => 2.089e-5;
+        protected override double KilopoundsForcePerSquareFootInOnePascal => 2.088543423315013e-5;
 
-        protected override double KilopoundsForcePerSquareInchInOnePascal => 1.45e-7;
+        protected override double KilopoundsForcePerSquareInchInOnePascal => 1.450377377302092e-7;
 
         protected override double MegapascalsInOnePascal => 1E-6;
 
@@ -64,17 +64,17 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsForcePerSquareFootInOnePascal => 0.0208854342;
 
-        protected override double PoundsForcePerSquareInchInOnePascal => 0.000145037737730209;
+        protected override double PoundsForcePerSquareInchInOnePascal => 1.450377377302092e-4;
 
-        protected override double PsiInOnePascal => 1.450377*1E-4;
+        protected override double PsiInOnePascal => 1.450377377302092e-4;
 
         protected override double TechnicalAtmospheresInOnePascal => 1.0197*1E-5;
 
-        protected override double TonnesForcePerSquareCentimeterInOnePascal => 1e-8;
+        protected override double TonnesForcePerSquareCentimeterInOnePascal => 1.019716212977928e-8;
 
-        protected override double TonnesForcePerSquareMeterInOnePascal => 1e-4;
+        protected override double TonnesForcePerSquareMeterInOnePascal => 1.019716212977928e-4;
 
-        protected override double TonnesForcePerSquareMillimeterInOnePascal => 1e-10;
+        protected override double TonnesForcePerSquareMillimeterInOnePascal => 1.019716212977928e-10;
 
         protected override double TorrsInOnePascal => 7.5006*1E-3;
 

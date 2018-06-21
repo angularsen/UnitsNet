@@ -121,8 +121,8 @@
     {
       "SingularName": "CubicMile",
       "PluralName": "CubicMiles",
-      "FromUnitToBaseFunc": "x*4.16818183*1e9",
-      "FromBaseToUnitFunc": "x/(4.16818183*1e9)",
+      "FromUnitToBaseFunc": "x*4.16818182544058e9",
+      "FromBaseToUnitFunc": "x/4.16818182544058e9",
       "Localization": [
         {
           "Culture": "en-US",

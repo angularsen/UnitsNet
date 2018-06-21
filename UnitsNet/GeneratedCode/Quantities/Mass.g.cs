@@ -1119,7 +1119,7 @@ namespace UnitsNet
                 case MassUnit.Kilopound: return (baseUnitValue/0.45359237) / 1e3d;
                 case MassUnit.Kilotonne: return (baseUnitValue/1e3) / 1e3d;
                 case MassUnit.LongHundredweight: return baseUnitValue*0.01968413055222121;
-                case MassUnit.LongTon: return baseUnitValue/1016.0469088;
+                case MassUnit.LongTon: return baseUnitValue/1.0160469088e3;
                 case MassUnit.Megapound: return (baseUnitValue/0.45359237) / 1e6d;
                 case MassUnit.Megatonne: return (baseUnitValue/1e3) / 1e6d;
                 case MassUnit.Microgram: return (baseUnitValue*1e3) / 1e-6d;
@@ -1128,7 +1128,7 @@ namespace UnitsNet
                 case MassUnit.Ounce: return baseUnitValue*35.2739619;
                 case MassUnit.Pound: return baseUnitValue/0.45359237;
                 case MassUnit.ShortHundredweight: return baseUnitValue*0.022046226218487758;
-                case MassUnit.ShortTon: return baseUnitValue/907.18474;
+                case MassUnit.ShortTon: return baseUnitValue/9.0718474e2;
                 case MassUnit.Stone: return baseUnitValue*0.1574731728702698;
                 case MassUnit.Tonne: return baseUnitValue/1e3;
 
@@ -1503,7 +1503,7 @@ namespace UnitsNet
                 case MassUnit.Kilopound: return (_value*0.45359237) * 1e3d;
                 case MassUnit.Kilotonne: return (_value*1e3) * 1e3d;
                 case MassUnit.LongHundredweight: return _value/0.01968413055222121;
-                case MassUnit.LongTon: return _value*1016.0469088;
+                case MassUnit.LongTon: return _value*1.0160469088e3;
                 case MassUnit.Megapound: return (_value*0.45359237) * 1e6d;
                 case MassUnit.Megatonne: return (_value*1e3) * 1e6d;
                 case MassUnit.Microgram: return (_value/1e3) * 1e-6d;
@@ -1512,7 +1512,7 @@ namespace UnitsNet
                 case MassUnit.Ounce: return _value/35.2739619;
                 case MassUnit.Pound: return _value*0.45359237;
                 case MassUnit.ShortHundredweight: return _value/0.022046226218487758;
-                case MassUnit.ShortTon: return _value*907.18474;
+                case MassUnit.ShortTon: return _value*9.0718474e2;
                 case MassUnit.Stone: return _value/0.1574731728702698;
                 case MassUnit.Tonne: return _value*1e3;
                 default:

@@ -1145,9 +1145,9 @@ namespace UnitsNet
             {
                 case EnergyUnit.BritishThermalUnit: return baseUnitValue/1055.05585262;
                 case EnergyUnit.Calorie: return baseUnitValue/4.184;
-                case EnergyUnit.DecathermEc: return (baseUnitValue/105505585.262) / 1e1d;
-                case EnergyUnit.DecathermImperial: return (baseUnitValue/1.05505585257348e+14) / 1e1d;
-                case EnergyUnit.DecathermUs: return (baseUnitValue/1.054804e+8) / 1e1d;
+                case EnergyUnit.DecathermEc: return (baseUnitValue/1.05505585262e8) / 1e1d;
+                case EnergyUnit.DecathermImperial: return (baseUnitValue/1.05967e8) / 1e1d;
+                case EnergyUnit.DecathermUs: return (baseUnitValue/1.054804e8) / 1e1d;
                 case EnergyUnit.ElectronVolt: return baseUnitValue/1.602176565e-19;
                 case EnergyUnit.Erg: return baseUnitValue/1e-7;
                 case EnergyUnit.FootPound: return baseUnitValue/1.355817948;
@@ -1161,9 +1161,9 @@ namespace UnitsNet
                 case EnergyUnit.MegabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e6d;
                 case EnergyUnit.Megajoule: return (baseUnitValue) / 1e6d;
                 case EnergyUnit.MegawattHour: return (baseUnitValue/3600d) / 1e6d;
-                case EnergyUnit.ThermEc: return baseUnitValue/105505585.262;
-                case EnergyUnit.ThermImperial: return baseUnitValue/1.05505585257348e+14;
-                case EnergyUnit.ThermUs: return baseUnitValue/1.054804e+8;
+                case EnergyUnit.ThermEc: return baseUnitValue/1.05505585262e8;
+                case EnergyUnit.ThermImperial: return baseUnitValue/1.05967e8;
+                case EnergyUnit.ThermUs: return baseUnitValue/1.054804e8;
                 case EnergyUnit.WattHour: return baseUnitValue/3600d;
 
                 default:
@@ -1530,9 +1530,9 @@ namespace UnitsNet
             {
                 case EnergyUnit.BritishThermalUnit: return _value*1055.05585262;
                 case EnergyUnit.Calorie: return _value*4.184;
-                case EnergyUnit.DecathermEc: return (_value*105505585.262) * 1e1d;
-                case EnergyUnit.DecathermImperial: return (_value*1.05505585257348e+14) * 1e1d;
-                case EnergyUnit.DecathermUs: return (_value*1.054804e+8) * 1e1d;
+                case EnergyUnit.DecathermEc: return (_value*1.05505585262e8) * 1e1d;
+                case EnergyUnit.DecathermImperial: return (_value*1.05967e8) * 1e1d;
+                case EnergyUnit.DecathermUs: return (_value*1.054804e8) * 1e1d;
                 case EnergyUnit.ElectronVolt: return _value*1.602176565e-19;
                 case EnergyUnit.Erg: return _value*1e-7;
                 case EnergyUnit.FootPound: return _value*1.355817948;
@@ -1546,9 +1546,9 @@ namespace UnitsNet
                 case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
                 case EnergyUnit.Megajoule: return (_value) * 1e6d;
                 case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
-                case EnergyUnit.ThermEc: return _value*105505585.262;
-                case EnergyUnit.ThermImperial: return _value*1.05505585257348e+14;
-                case EnergyUnit.ThermUs: return _value*1.054804e+8;
+                case EnergyUnit.ThermEc: return _value*1.05505585262e8;
+                case EnergyUnit.ThermImperial: return _value*1.05967e8;
+                case EnergyUnit.ThermUs: return _value*1.054804e8;
                 case EnergyUnit.WattHour: return _value*3600d;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
