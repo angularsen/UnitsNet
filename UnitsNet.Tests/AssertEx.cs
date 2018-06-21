@@ -15,9 +15,9 @@ namespace UnitsNet.Tests
                 bool areEqual = UnitsNet.Comparison.EqualsRelative(expected, actual, tolerance);
 
                 double difference = Math.Abs(expected - actual);
-                double percentDifference = (difference / actual) * 100.0d;
+                double relativeDifference = difference / expected;
 
-                Assert.True( areEqual, $"Values are not equal within relative tolerance: {tolerance * 100.0d}%\nExpected: {expected}\nActual: {actual}\nDiff: {percentDifference}%" );
+                Assert.True( areEqual, $"Values are not equal within relative tolerance: {tolerance:P4}\nExpected: {expected}\nActual: {actual}\nDiff: {relativeDifference:P4}" );
             }
             else if( comparisonType == ComparisonType.Absolute )
             {
