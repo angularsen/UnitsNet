@@ -221,7 +221,7 @@ namespace UnitsNet
         /// </summary>
         public static $unitEnumName[] Units { get; } = Enum.GetValues(typeof($unitEnumName)).Cast<$unitEnumName>().ToArray();
 "@; 
-	foreach ($unit in $units) {
+    foreach ($unit in $units) {
         $propertyName = $unit.PluralName;
         $obsoleteAttribute = GetObsoleteAttribute($unit);
         if ($obsoleteAttribute)
@@ -486,7 +486,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -509,7 +509,7 @@ namespace UnitsNet
             switch (unit)
             {
 "@; foreach ($unit in $units) {
-		$func = $unit.FromBaseToUnitFunc.Replace("x", "baseUnitValue");@"
+        $func = $unit.FromBaseToUnitFunc.Replace("x", "baseUnitValue");@"
                 case $unitEnumName.$($unit.SingularName): return $func;
 "@; }@"
 
@@ -876,7 +876,7 @@ namespace UnitsNet
             switch (Unit)
             {
 "@; foreach ($unit in $units) {
-		$func = $unit.FromUnitToBaseFunc.Replace("x", "_value");@"
+        $func = $unit.FromUnitToBaseFunc.Replace("x", "_value");@"
                 case $unitEnumName.$($unit.SingularName): return $func;
 "@; }@"
                 default:

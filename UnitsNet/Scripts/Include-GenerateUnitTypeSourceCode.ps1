@@ -59,7 +59,7 @@ namespace UnitsNet.Units
         if ($unit.XmlDocRemarks) {@"
         /// <remarks>$($unit.XmlDocRemarks)</remarks>
 "@;     }
-		if ($obsoleteAttribute) {@"
+        if ($obsoleteAttribute) {@"
         $($obsoleteAttribute)
 "@;     }@"
         $($unit.SingularName),
