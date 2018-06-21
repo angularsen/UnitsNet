@@ -31,11 +31,11 @@ namespace UnitsNet
         ///     Absolute tolerance is when the absolute difference between the two values is not greater than the tolerance value.
         /// </summary>
         /// <param name="referenceValue">The first value. If using relative tolerance, it is the value which the relative tolerance will be calculated against.</param>
-        /// <param name="value">The value to compare to.</param>
+        /// <param name="otherValue">The value to compare to.</param>
         /// <param name="tolerance">The absolute or relative tolerance value.</param>
         /// <param name="comparisonType">Whether to use tolerance as an absolute or relative tolerance.</param>
         /// <returns></returns>
-        public static bool Equals(double referenceValue, double value, double tolerance, ComparisonType comparisonType)
+        public static bool Equals(double referenceValue, double otherValue, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0");
@@ -43,9 +43,9 @@ namespace UnitsNet
             switch(comparisonType)
             {
                 case ComparisonType.Relative:
-                    return EqualsRelative(referenceValue, value, tolerance);
+                    return EqualsRelative(referenceValue, otherValue, tolerance);
                 case ComparisonType.Absolute:
-                    return EqualsAbsolute(referenceValue, value, tolerance);
+                    return EqualsAbsolute(referenceValue, otherValue, tolerance);
                 default:
                     throw new InvalidOperationException("The given ComparisonType is not supported.");
             }
@@ -56,16 +56,16 @@ namespace UnitsNet
         ///     Relative tolerance is when the difference between the two values is not greater than referenceValue * tolerance.
         /// </summary>
         /// <param name="referenceValue">The reference value which the tolerance will be calculated against.</param>
-        /// <param name="value">The value to compare to.</param>
+        /// <param name="otherValue">The value to compare to.</param>
         /// <param name="tolerance"></param>
         /// <returns>True if the two values are equal within the given relative tolerance, otherwise false.</returns>
-        public static bool EqualsRelative(double referenceValue, double value, double tolerance)
+        public static bool EqualsRelative(double referenceValue, double otherValue, double tolerance)
         {
             if(tolerance < 0)
                 throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0");
 
             double maxVariation = Math.Abs(referenceValue * tolerance);
-            return Math.Abs(referenceValue - value) <= maxVariation;
+            return Math.Abs(referenceValue - otherValue) <= maxVariation;
         }
 
         /// <summary>
