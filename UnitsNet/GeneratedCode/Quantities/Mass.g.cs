@@ -1065,7 +1065,7 @@ namespace UnitsNet
         /// <param name="tolerance">The comparison tolerance.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
         /// <returns>True if the difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
-        public bool Equals(Mass other, double tolerance = 0.00001, ComparisonType comparisonType = ComparisonType.Relative)
+        public bool Equals(Mass other, double tolerance, ComparisonType comparisonType)
         {
             double baseValue = (double)AsBaseUnitKilograms();
             double otherBaseValue = (double)other.AsBaseUnitKilograms();

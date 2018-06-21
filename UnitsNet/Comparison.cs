@@ -23,9 +23,9 @@ using System;
 
 namespace UnitsNet
 {
-    public class Comparison
+    public sealed class Comparison
     {
-        public static bool Equals( double value1, double value2, double tolerance = 0.00001, ComparisonType comparisonType = ComparisonType.Relative)
+        public static bool Equals( double value1, double value2, double tolerance, ComparisonType comparisonType)
         {
             if(comparisonType == ComparisonType.Relative)
                 return EqualsRelative(value1, value2, tolerance);
@@ -35,13 +35,13 @@ namespace UnitsNet
                 throw new InvalidOperationException("The ComparisonType is unsupported.");
         }
 
-        public static bool EqualsRelative( double value1, double value2, double tolerance = 0.00001)
+        public static bool EqualsRelative( double value1, double value2, double tolerance)
         {
             double maxVariation = Math.Abs( value1 * tolerance );
             return Math.Abs( value1 - value2 ) <= maxVariation;
         }
 
-        public static bool EqualsAbsolute( double value1, double value2, double tolerance = 0.00001)
+        public static bool EqualsAbsolute( double value1, double value2, double tolerance)
         {
             return Math.Abs( value1 - value2 ) <= tolerance;
         }
