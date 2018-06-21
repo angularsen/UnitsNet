@@ -628,7 +628,8 @@ namespace UnitsNet
         /// <summary>
         ///     Compare equality to another SpecificEnergy within the given absolute or relative tolerance.
         ///     Relative tolerance is when the difference between the two quantities is not greater than the scale of the values compared to the tolerance.
-        ///     Absolute tolerance is when the difference between the two quantities is not greater than exactly the tolerance.
+        ///     If using relative tolerance, this quantity's value will be what the relative tolerance will be calculated against.
+        ///     Absolute tolerance is when the difference between the two quantities is not greater than exactly the tolerance value.
         ///     Note that it is advised against specifying zero difference, due to the nature
         ///     of floating point operations and using System.Double internally.
         /// </summary>
@@ -638,6 +639,9 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(SpecificEnergy other, double tolerance, ComparisonType comparisonType)
         {
+            if(tolerance <= 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than 0");
+
             double baseValue = (double)AsBaseUnitJoulesPerKilogram();
             double otherBaseValue = (double)other.AsBaseUnitJoulesPerKilogram();
 
