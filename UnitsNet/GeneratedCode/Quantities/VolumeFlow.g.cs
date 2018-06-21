@@ -1167,8 +1167,8 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(VolumeFlow other, double tolerance, ComparisonType comparisonType)
         {
-            if(tolerance <= 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than 0");
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0");
 
             double baseValue = (double)AsBaseUnitCubicMetersPerSecond();
             double otherBaseValue = (double)other.AsBaseUnitCubicMetersPerSecond();
