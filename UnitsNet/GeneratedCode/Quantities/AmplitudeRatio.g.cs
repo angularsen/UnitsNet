@@ -516,7 +516,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -901,7 +901,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitDecibelVolts()
         {
-			if (Unit == AmplitudeRatioUnit.DecibelVolt) { return _value; }
+            if (Unit == AmplitudeRatioUnit.DecibelVolt) { return _value; }
 
             switch (Unit)
             {
@@ -911,10 +911,11 @@ namespace UnitsNet
                 case AmplitudeRatioUnit.DecibelVolt: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(AmplitudeRatioUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+    }
 }

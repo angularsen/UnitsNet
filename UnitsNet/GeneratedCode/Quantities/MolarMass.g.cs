@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static MolarMassUnit BaseUnit => MolarMassUnit.KilogramPerMole;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the MolarMass quantity.
         /// </summary>
@@ -772,7 +782,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1165,7 +1175,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitKilogramsPerMole()
         {
-			if (Unit == MolarMassUnit.KilogramPerMole) { return _value; }
+            if (Unit == MolarMassUnit.KilogramPerMole) { return _value; }
 
             switch (Unit)
             {
@@ -1183,10 +1193,15 @@ namespace UnitsNet
                 case MolarMassUnit.PoundPerMole: return _value*0.45359237;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(MolarMassUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => MolarMass.BaseDimensions;
+    }
 }

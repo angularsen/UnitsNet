@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static DensityUnit BaseUnit => DensityUnit.KilogramPerCubicMeter;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the Density quantity.
         /// </summary>
@@ -1630,7 +1640,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -2049,7 +2059,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitKilogramsPerCubicMeter()
         {
-			if (Unit == DensityUnit.KilogramPerCubicMeter) { return _value; }
+            if (Unit == DensityUnit.KilogramPerCubicMeter) { return _value; }
 
             switch (Unit)
             {
@@ -2093,10 +2103,15 @@ namespace UnitsNet
                 case DensityUnit.TonnePerCubicMillimeter: return _value/1e-12;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(DensityUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Density.BaseDimensions;
+    }
 }

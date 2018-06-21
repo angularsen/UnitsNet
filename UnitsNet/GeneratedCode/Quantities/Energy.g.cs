@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static EnergyUnit BaseUnit => EnergyUnit.Joule;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the Energy quantity.
         /// </summary>
@@ -1102,7 +1112,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1505,7 +1515,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitJoules()
         {
-			if (Unit == EnergyUnit.Joule) { return _value; }
+            if (Unit == EnergyUnit.Joule) { return _value; }
 
             switch (Unit)
             {
@@ -1533,10 +1543,15 @@ namespace UnitsNet
                 case EnergyUnit.WattHour: return _value*3600d;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(EnergyUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Energy.BaseDimensions;
+    }
 }

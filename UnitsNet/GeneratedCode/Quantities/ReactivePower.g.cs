@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static ReactivePowerUnit BaseUnit => ReactivePowerUnit.VoltampereReactive;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the ReactivePower quantity.
         /// </summary>
@@ -508,7 +518,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -893,7 +903,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitVoltamperesReactive()
         {
-			if (Unit == ReactivePowerUnit.VoltampereReactive) { return _value; }
+            if (Unit == ReactivePowerUnit.VoltampereReactive) { return _value; }
 
             switch (Unit)
             {
@@ -903,10 +913,15 @@ namespace UnitsNet
                 case ReactivePowerUnit.VoltampereReactive: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ReactivePowerUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ReactivePower.BaseDimensions;
+    }
 }

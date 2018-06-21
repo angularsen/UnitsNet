@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static IrradiationUnit BaseUnit => IrradiationUnit.JoulePerSquareMeter;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the Irradiation quantity.
         /// </summary>
@@ -475,7 +485,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -859,7 +869,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitJoulesPerSquareMeter()
         {
-			if (Unit == IrradiationUnit.JoulePerSquareMeter) { return _value; }
+            if (Unit == IrradiationUnit.JoulePerSquareMeter) { return _value; }
 
             switch (Unit)
             {
@@ -868,10 +878,15 @@ namespace UnitsNet
                 case IrradiationUnit.WattHourPerSquareMeter: return _value*3600d;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(IrradiationUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Irradiation.BaseDimensions;
+    }
 }

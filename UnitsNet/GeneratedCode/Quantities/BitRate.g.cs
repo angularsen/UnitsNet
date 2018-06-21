@@ -1231,7 +1231,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1638,7 +1638,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private decimal AsBaseUnitBitsPerSecond()
         {
-			if (Unit == BitRateUnit.BitPerSecond) { return _value; }
+            if (Unit == BitRateUnit.BitPerSecond) { return _value; }
 
             switch (Unit)
             {
@@ -1670,10 +1670,11 @@ namespace UnitsNet
                 case BitRateUnit.TerabytePerSecond: return Convert.ToDecimal((_value*8m) * 1e12m);
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private decimal AsBaseNumericType(BitRateUnit unit) => Convert.ToDecimal(As(unit));
-	}
+
+    }
 }

@@ -8,7 +8,7 @@
       "PluralName": "InternationalUnits",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ ],
+      "Prefixes": [],
       "Localization": [
         {
           "Culture": "en-US",

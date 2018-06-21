@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static MolarityUnit BaseUnit => MolarityUnit.MolesPerCubicMeter;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the Molarity quantity.
         /// </summary>
@@ -640,7 +650,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1029,7 +1039,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitMolesPerCubicMeter()
         {
-			if (Unit == MolarityUnit.MolesPerCubicMeter) { return _value; }
+            if (Unit == MolarityUnit.MolesPerCubicMeter) { return _value; }
 
             switch (Unit)
             {
@@ -1043,10 +1053,15 @@ namespace UnitsNet
                 case MolarityUnit.PicomolesPerLiter: return (_value/1e-3) * 1e-12d;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(MolarityUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Molarity.BaseDimensions;
+    }
 }

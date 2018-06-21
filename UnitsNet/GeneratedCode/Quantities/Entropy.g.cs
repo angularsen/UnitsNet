@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static EntropyUnit BaseUnit => EntropyUnit.JoulePerKelvin;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(2, 1, -2, 0, -1, 0, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the Entropy quantity.
         /// </summary>
@@ -607,7 +617,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -995,7 +1005,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitJoulesPerKelvin()
         {
-			if (Unit == EntropyUnit.JoulePerKelvin) { return _value; }
+            if (Unit == EntropyUnit.JoulePerKelvin) { return _value; }
 
             switch (Unit)
             {
@@ -1008,10 +1018,15 @@ namespace UnitsNet
                 case EntropyUnit.MegajoulePerKelvin: return (_value) * 1e6d;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(EntropyUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Entropy.BaseDimensions;
+    }
 }

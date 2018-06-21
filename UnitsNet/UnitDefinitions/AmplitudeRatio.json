@@ -42,11 +42,11 @@
       ]
     },
     {
-    "SingularName": "DecibelUnloaded",
-    "PluralName": "DecibelsUnloaded",
-    "FromUnitToBaseFunc": "x - 2.218487499",
-    "FromBaseToUnitFunc": "x + 2.218487499",
-    "Localization": [
+      "SingularName": "DecibelUnloaded",
+      "PluralName": "DecibelsUnloaded",
+      "FromUnitToBaseFunc": "x - 2.218487499",
+      "FromBaseToUnitFunc": "x + 2.218487499",
+      "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "dBu" ]

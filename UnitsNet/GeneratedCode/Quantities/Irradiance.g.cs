@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static IrradianceUnit BaseUnit => IrradianceUnit.WattPerSquareMeter;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the Irradiance quantity.
         /// </summary>
@@ -442,7 +452,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -825,7 +835,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitWattsPerSquareMeter()
         {
-			if (Unit == IrradianceUnit.WattPerSquareMeter) { return _value; }
+            if (Unit == IrradianceUnit.WattPerSquareMeter) { return _value; }
 
             switch (Unit)
             {
@@ -833,10 +843,15 @@ namespace UnitsNet
                 case IrradianceUnit.WattPerSquareMeter: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(IrradianceUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Irradiance.BaseDimensions;
+    }
 }

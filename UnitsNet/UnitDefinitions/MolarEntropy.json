@@ -2,6 +2,13 @@
   "Name": "MolarEntropy",
   "BaseUnit": "JoulePerMoleKelvin",
   "XmlDoc": "Molar entropy is amount of energy required to increase temperature of 1 mole substance by 1 Kelvin.",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -2,
+    "Θ": -1,
+    "N": -1
+  },
   "Units": [
     {
       "SingularName": "JoulePerMoleKelvin",

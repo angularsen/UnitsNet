@@ -87,10 +87,10 @@ function GenerateQuantityType($quantities, $outDir)
 
 function GenerateNumberExtensions($quantity, $numberExtensionsDir)
 {
-	$outDir = "$numberExtensionsDir"
+    $outDir = "$numberExtensionsDir"
     $fileName = "NumberTo$($quantity.Name)Extensions.g.cs"
     $outFilePath = "$outDir/$fileName"
-	EnsureDirExists $outDir
+    EnsureDirExists $outDir
     Write-Host -NoNewline "NumberExtensions"
 
     GenerateNumberExtensionsSourceCode $quantity | Out-File -Encoding "UTF8" -Force $outFilePath | Out-Null
@@ -222,7 +222,7 @@ function Add-PrefixUnits {
 
                 # Append prefix unit
                 $prefixUnits += $prefixUnit
-				$prefixIndex++;
+                $prefixIndex++;
             } # foreach prefixes
         } # foreach units
 

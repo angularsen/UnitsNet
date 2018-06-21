@@ -574,7 +574,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -961,7 +961,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitDecimalFractions()
         {
-			if (Unit == RatioUnit.DecimalFraction) { return _value; }
+            if (Unit == RatioUnit.DecimalFraction) { return _value; }
 
             switch (Unit)
             {
@@ -973,10 +973,11 @@ namespace UnitsNet
                 case RatioUnit.Percent: return _value/1e2;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(RatioUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+    }
 }

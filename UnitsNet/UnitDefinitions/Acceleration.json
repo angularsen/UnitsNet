@@ -2,6 +2,10 @@
   "Name": "Acceleration",
   "BaseUnit": "MeterPerSecondSquared",
   "XmlDoc": "Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.",
+  "BaseDimensions": {
+    "L": 1,
+    "T": -2
+  },
   "Units": [
     {
       "SingularName": "MeterPerSecondSquared",
@@ -40,7 +44,7 @@
         }
       ]
     },
-	{
+    {
       "SingularName": "KnotPerSecond",
       "PluralName": "KnotsPerSecond",
       "FromUnitToBaseFunc": "x*0.5144444444444",
@@ -52,7 +56,7 @@
         }
       ]
     },
-	{
+    {
       "SingularName": "KnotPerMinute",
       "PluralName": "KnotsPerMinute",
       "FromUnitToBaseFunc": "x*0.5144444444444/60",
@@ -64,7 +68,7 @@
         }
       ]
     },
-	{
+    {
       "SingularName": "KnotPerHour",
       "PluralName": "KnotsPerHour",
       "FromUnitToBaseFunc": "x*0.5144444444444/3600",

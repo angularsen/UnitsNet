@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static AmountOfSubstanceUnit BaseUnit => AmountOfSubstanceUnit.Mole;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the AmountOfSubstance quantity.
         /// </summary>
@@ -838,7 +848,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1233,7 +1243,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitMoles()
         {
-			if (Unit == AmountOfSubstanceUnit.Mole) { return _value; }
+            if (Unit == AmountOfSubstanceUnit.Mole) { return _value; }
 
             switch (Unit)
             {
@@ -1253,10 +1263,15 @@ namespace UnitsNet
                 case AmountOfSubstanceUnit.PoundMole: return _value*453.59237;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(AmountOfSubstanceUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => AmountOfSubstance.BaseDimensions;
+    }
 }

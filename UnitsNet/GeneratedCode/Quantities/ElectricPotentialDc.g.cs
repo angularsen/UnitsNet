@@ -541,7 +541,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -927,7 +927,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitVoltsDc()
         {
-			if (Unit == ElectricPotentialDcUnit.VoltDc) { return _value; }
+            if (Unit == ElectricPotentialDcUnit.VoltDc) { return _value; }
 
             switch (Unit)
             {
@@ -938,10 +938,11 @@ namespace UnitsNet
                 case ElectricPotentialDcUnit.VoltDc: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ElectricPotentialDcUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+    }
 }

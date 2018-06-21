@@ -2,6 +2,9 @@
   "Name": "AreaMomentOfInertia",
   "BaseUnit": "MeterToTheFourth",
   "XmlDoc": "A geometric property of an area that reflects how its points are distributed with regard to an axis.",
+  "BaseDimensions": {
+    "L": 4
+  },
   "Units": [
     {
       "SingularName": "MeterToTheFourth",

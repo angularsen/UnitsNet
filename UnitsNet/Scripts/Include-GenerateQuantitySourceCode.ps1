@@ -9,6 +9,16 @@
     $baseUnitPluralNameLower = $baseUnitPluralName.ToLowerInvariant()
     $unitEnumName = "$quantityName" + "Unit"
 
+    # Base dimensions
+    $baseDimensions = $quantity.BaseDimensions;
+    $baseDimensionLength = if($baseDimensions.L){$baseDimensions.L} else{0};
+    $baseDimensionMass = if($baseDimensions.M){$baseDimensions.M} else{0};
+    $baseDimensionTime = if($baseDimensions.T){$baseDimensions.T} else{0};
+    $baseDimensionElectricCurrent = if($baseDimensions.I){$baseDimensions.I} else{0};
+    $baseDimensionTemperature = if($baseDimensions.Θ){$baseDimensions.Θ} else{0};
+    $baseDimensionAmountOfSubstance = if($baseDimensions.N){$baseDimensions.N} else{0};
+    $baseDimensionLuminousIntensity = if($baseDimensions.J){$baseDimensions.J} else{0};
+
     $convertToBaseType = switch ($baseType) {
       "long" { "Convert.ToInt64"; break }
       "double" { "Convert.ToDouble"; break }
@@ -189,12 +199,29 @@ namespace UnitsNet
         /// </summary>
         public static $unitEnumName BaseUnit => $unitEnumName.$baseUnitSingularName;
 
+"@; 
+    if($baseDimensions)
+    {
+@"
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions($baseDimensionLength, $baseDimensionMass, $baseDimensionTime, $baseDimensionElectricCurrent, $baseDimensionTemperature, $baseDimensionAmountOfSubstance, $baseDimensionLuminousIntensity);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
+"@; 
+    }
+@"
         /// <summary>
         ///     All units of measurement for the $quantityName quantity.
         /// </summary>
         public static $unitEnumName[] Units { get; } = Enum.GetValues(typeof($unitEnumName)).Cast<$unitEnumName>().ToArray();
 "@; 
-	foreach ($unit in $units) {
+    foreach ($unit in $units) {
         $propertyName = $unit.PluralName;
         $obsoleteAttribute = GetObsoleteAttribute($unit);
         if ($obsoleteAttribute)
@@ -459,7 +486,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -482,7 +509,7 @@ namespace UnitsNet
             switch (unit)
             {
 "@; foreach ($unit in $units) {
-		$func = $unit.FromBaseToUnitFunc.Replace("x", "baseUnitValue");@"
+        $func = $unit.FromBaseToUnitFunc.Replace("x", "baseUnitValue");@"
                 case $unitEnumName.$($unit.SingularName): return $func;
 "@; }@"
 
@@ -844,22 +871,34 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private $baseType AsBaseUnit$baseUnitPluralName()
         {
-			if (Unit == $unitEnumName.$baseUnitSingularName) { return _value; }
+            if (Unit == $unitEnumName.$baseUnitSingularName) { return _value; }
 
             switch (Unit)
             {
 "@; foreach ($unit in $units) {
-		$func = $unit.FromUnitToBaseFunc.Replace("x", "_value");@"
+        $func = $unit.FromUnitToBaseFunc.Replace("x", "_value");@"
                 case $unitEnumName.$($unit.SingularName): return $func;
 "@; }@"
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private $baseType AsBaseNumericType($unitEnumName unit) => $convertToBaseType(As(unit));
-	}
+
+"@;
+if($baseDimensions)
+{
+@"
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => $quantityName.BaseDimensions;
+"@;
+}
+@"
+    }
 }
 "@;
 }

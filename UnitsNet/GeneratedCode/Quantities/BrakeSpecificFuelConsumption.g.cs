@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static BrakeSpecificFuelConsumptionUnit BaseUnit => BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the BrakeSpecificFuelConsumption quantity.
         /// </summary>
@@ -475,7 +485,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -859,7 +869,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitKilogramsPerJoule()
         {
-			if (Unit == BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) { return _value; }
+            if (Unit == BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) { return _value; }
 
             switch (Unit)
             {
@@ -868,10 +878,15 @@ namespace UnitsNet
                 case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return _value*1.689659410672e-7;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(BrakeSpecificFuelConsumptionUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => BrakeSpecificFuelConsumption.BaseDimensions;
+    }
 }

@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static DynamicViscosityUnit BaseUnit => DynamicViscosityUnit.NewtonSecondPerMeterSquared;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(-1, 1, -1, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the DynamicViscosity quantity.
         /// </summary>
@@ -574,7 +584,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -961,7 +971,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitNewtonSecondsPerMeterSquared()
         {
-			if (Unit == DynamicViscosityUnit.NewtonSecondPerMeterSquared) { return _value; }
+            if (Unit == DynamicViscosityUnit.NewtonSecondPerMeterSquared) { return _value; }
 
             switch (Unit)
             {
@@ -973,10 +983,15 @@ namespace UnitsNet
                 case DynamicViscosityUnit.Poise: return _value/10;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(DynamicViscosityUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => DynamicViscosity.BaseDimensions;
+    }
 }

@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static MagneticFieldUnit BaseUnit => MagneticFieldUnit.Tesla;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the MagneticField quantity.
         /// </summary>
@@ -409,7 +419,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -791,17 +801,22 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitTeslas()
         {
-			if (Unit == MagneticFieldUnit.Tesla) { return _value; }
+            if (Unit == MagneticFieldUnit.Tesla) { return _value; }
 
             switch (Unit)
             {
                 case MagneticFieldUnit.Tesla: return _value;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(MagneticFieldUnit unit) => Convert.ToDouble(As(unit));
-	}
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => MagneticField.BaseDimensions;
+    }
 }
