@@ -195,10 +195,6 @@ namespace UnitsNet
         /// </summary>
         public double DeciwattsPerLiter => As(PowerDensityUnit.DeciwattPerLiter);
         /// <summary>
-        ///     Get PowerDensity in FemtowattsPerCubicMeter.
-        /// </summary>
-        public double FemtowattsPerCubicMeter => As(PowerDensityUnit.FemtowattPerCubicMeter);
-        /// <summary>
         ///     Get PowerDensity in GigawattsPerCubicFoot.
         /// </summary>
         public double GigawattsPerCubicFoot => As(PowerDensityUnit.GigawattPerCubicFoot);
@@ -294,10 +290,6 @@ namespace UnitsNet
         ///     Get PowerDensity in NanowattsPerLiter.
         /// </summary>
         public double NanowattsPerLiter => As(PowerDensityUnit.NanowattPerLiter);
-        /// <summary>
-        ///     Get PowerDensity in PetawattsPerCubicMeter.
-        /// </summary>
-        public double PetawattsPerCubicMeter => As(PowerDensityUnit.PetawattPerCubicMeter);
         /// <summary>
         ///     Get PowerDensity in PicowattsPerCubicFoot.
         /// </summary>
@@ -463,20 +455,6 @@ namespace UnitsNet
         {
             double value = (double) deciwattsperliter;
             return new PowerDensity(value, PowerDensityUnit.DeciwattPerLiter);
-        }
-
-        /// <summary>
-        ///     Get PowerDensity from FemtowattsPerCubicMeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static PowerDensity FromFemtowattsPerCubicMeter(double femtowattspercubicmeter)
-#else
-        public static PowerDensity FromFemtowattsPerCubicMeter(QuantityValue femtowattspercubicmeter)
-#endif
-        {
-            double value = (double) femtowattspercubicmeter;
-            return new PowerDensity(value, PowerDensityUnit.FemtowattPerCubicMeter);
         }
 
         /// <summary>
@@ -816,20 +794,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get PowerDensity from PetawattsPerCubicMeter.
-        /// </summary>
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static PowerDensity FromPetawattsPerCubicMeter(double petawattspercubicmeter)
-#else
-        public static PowerDensity FromPetawattsPerCubicMeter(QuantityValue petawattspercubicmeter)
-#endif
-        {
-            double value = (double) petawattspercubicmeter;
-            return new PowerDensity(value, PowerDensityUnit.PetawattPerCubicMeter);
-        }
-
-        /// <summary>
         ///     Get PowerDensity from PicowattsPerCubicFoot.
         /// </summary>
 #if WINDOWS_UWP
@@ -1112,21 +1076,6 @@ namespace UnitsNet
             if (deciwattsperliter.HasValue)
             {
                 return FromDeciwattsPerLiter(deciwattsperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable PowerDensity from nullable FemtowattsPerCubicMeter.
-        /// </summary>
-        public static PowerDensity? FromFemtowattsPerCubicMeter(QuantityValue? femtowattspercubicmeter)
-        {
-            if (femtowattspercubicmeter.HasValue)
-            {
-                return FromFemtowattsPerCubicMeter(femtowattspercubicmeter.Value);
             }
             else
             {
@@ -1487,21 +1436,6 @@ namespace UnitsNet
             if (nanowattsperliter.HasValue)
             {
                 return FromNanowattsPerLiter(nanowattsperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable PowerDensity from nullable PetawattsPerCubicMeter.
-        /// </summary>
-        public static PowerDensity? FromPetawattsPerCubicMeter(QuantityValue? petawattspercubicmeter)
-        {
-            if (petawattspercubicmeter.HasValue)
-            {
-                return FromPetawattsPerCubicMeter(petawattspercubicmeter.Value);
             }
             else
             {
@@ -1943,7 +1877,6 @@ namespace UnitsNet
                 case PowerDensityUnit.DeciwattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e-1d;
                 case PowerDensityUnit.DeciwattPerCubicMeter: return (baseUnitValue) / 1e-1d;
                 case PowerDensityUnit.DeciwattPerLiter: return (baseUnitValue/1.0e3) / 1e-1d;
-                case PowerDensityUnit.FemtowattPerCubicMeter: return (baseUnitValue) / 1e-15d;
                 case PowerDensityUnit.GigawattPerCubicFoot: return (baseUnitValue/3.531466672148859e1) / 1e9d;
                 case PowerDensityUnit.GigawattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e9d;
                 case PowerDensityUnit.GigawattPerCubicMeter: return (baseUnitValue) / 1e9d;
@@ -1968,7 +1901,6 @@ namespace UnitsNet
                 case PowerDensityUnit.NanowattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e-9d;
                 case PowerDensityUnit.NanowattPerCubicMeter: return (baseUnitValue) / 1e-9d;
                 case PowerDensityUnit.NanowattPerLiter: return (baseUnitValue/1.0e3) / 1e-9d;
-                case PowerDensityUnit.PetawattPerCubicMeter: return (baseUnitValue) / 1e15d;
                 case PowerDensityUnit.PicowattPerCubicFoot: return (baseUnitValue/3.531466672148859e1) / 1e-12d;
                 case PowerDensityUnit.PicowattPerCubicInch: return (baseUnitValue/6.102374409473228e4) / 1e-12d;
                 case PowerDensityUnit.PicowattPerCubicMeter: return (baseUnitValue) / 1e-12d;
@@ -2352,7 +2284,6 @@ namespace UnitsNet
                 case PowerDensityUnit.DeciwattPerCubicInch: return (_value*6.102374409473228e4) * 1e-1d;
                 case PowerDensityUnit.DeciwattPerCubicMeter: return (_value) * 1e-1d;
                 case PowerDensityUnit.DeciwattPerLiter: return (_value*1.0e3) * 1e-1d;
-                case PowerDensityUnit.FemtowattPerCubicMeter: return (_value) * 1e-15d;
                 case PowerDensityUnit.GigawattPerCubicFoot: return (_value*3.531466672148859e1) * 1e9d;
                 case PowerDensityUnit.GigawattPerCubicInch: return (_value*6.102374409473228e4) * 1e9d;
                 case PowerDensityUnit.GigawattPerCubicMeter: return (_value) * 1e9d;
@@ -2377,7 +2308,6 @@ namespace UnitsNet
                 case PowerDensityUnit.NanowattPerCubicInch: return (_value*6.102374409473228e4) * 1e-9d;
                 case PowerDensityUnit.NanowattPerCubicMeter: return (_value) * 1e-9d;
                 case PowerDensityUnit.NanowattPerLiter: return (_value*1.0e3) * 1e-9d;
-                case PowerDensityUnit.PetawattPerCubicMeter: return (_value) * 1e15d;
                 case PowerDensityUnit.PicowattPerCubicFoot: return (_value*3.531466672148859e1) * 1e-12d;
                 case PowerDensityUnit.PicowattPerCubicInch: return (_value*6.102374409473228e4) * 1e-12d;
                 case PowerDensityUnit.PicowattPerCubicMeter: return (_value) * 1e-12d;

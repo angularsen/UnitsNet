@@ -60,7 +60,6 @@ namespace UnitsNet.Tests
         protected abstract double DeciwattsPerCubicInchInOneWattPerCubicMeter { get; }
         protected abstract double DeciwattsPerCubicMeterInOneWattPerCubicMeter { get; }
         protected abstract double DeciwattsPerLiterInOneWattPerCubicMeter { get; }
-        protected abstract double FemtowattsPerCubicMeterInOneWattPerCubicMeter { get; }
         protected abstract double GigawattsPerCubicFootInOneWattPerCubicMeter { get; }
         protected abstract double GigawattsPerCubicInchInOneWattPerCubicMeter { get; }
         protected abstract double GigawattsPerCubicMeterInOneWattPerCubicMeter { get; }
@@ -85,7 +84,6 @@ namespace UnitsNet.Tests
         protected abstract double NanowattsPerCubicInchInOneWattPerCubicMeter { get; }
         protected abstract double NanowattsPerCubicMeterInOneWattPerCubicMeter { get; }
         protected abstract double NanowattsPerLiterInOneWattPerCubicMeter { get; }
-        protected abstract double PetawattsPerCubicMeterInOneWattPerCubicMeter { get; }
         protected abstract double PicowattsPerCubicFootInOneWattPerCubicMeter { get; }
         protected abstract double PicowattsPerCubicInchInOneWattPerCubicMeter { get; }
         protected abstract double PicowattsPerCubicMeterInOneWattPerCubicMeter { get; }
@@ -108,7 +106,6 @@ namespace UnitsNet.Tests
         protected virtual double DeciwattsPerCubicInchTolerance { get { return 1e-5; } }
         protected virtual double DeciwattsPerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double DeciwattsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double FemtowattsPerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double GigawattsPerCubicFootTolerance { get { return 1e-5; } }
         protected virtual double GigawattsPerCubicInchTolerance { get { return 1e-5; } }
         protected virtual double GigawattsPerCubicMeterTolerance { get { return 1e-5; } }
@@ -133,7 +130,6 @@ namespace UnitsNet.Tests
         protected virtual double NanowattsPerCubicInchTolerance { get { return 1e-5; } }
         protected virtual double NanowattsPerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double NanowattsPerLiterTolerance { get { return 1e-5; } }
-        protected virtual double PetawattsPerCubicMeterTolerance { get { return 1e-5; } }
         protected virtual double PicowattsPerCubicFootTolerance { get { return 1e-5; } }
         protected virtual double PicowattsPerCubicInchTolerance { get { return 1e-5; } }
         protected virtual double PicowattsPerCubicMeterTolerance { get { return 1e-5; } }
@@ -160,7 +156,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DeciwattsPerCubicInchInOneWattPerCubicMeter, wattpercubicmeter.DeciwattsPerCubicInch, DeciwattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(DeciwattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.DeciwattsPerCubicMeter, DeciwattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(DeciwattsPerLiterInOneWattPerCubicMeter, wattpercubicmeter.DeciwattsPerLiter, DeciwattsPerLiterTolerance);
-            AssertEx.EqualTolerance(FemtowattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.FemtowattsPerCubicMeter, FemtowattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(GigawattsPerCubicFootInOneWattPerCubicMeter, wattpercubicmeter.GigawattsPerCubicFoot, GigawattsPerCubicFootTolerance);
             AssertEx.EqualTolerance(GigawattsPerCubicInchInOneWattPerCubicMeter, wattpercubicmeter.GigawattsPerCubicInch, GigawattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(GigawattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.GigawattsPerCubicMeter, GigawattsPerCubicMeterTolerance);
@@ -185,7 +180,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NanowattsPerCubicInchInOneWattPerCubicMeter, wattpercubicmeter.NanowattsPerCubicInch, NanowattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(NanowattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.NanowattsPerCubicMeter, NanowattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(NanowattsPerLiterInOneWattPerCubicMeter, wattpercubicmeter.NanowattsPerLiter, NanowattsPerLiterTolerance);
-            AssertEx.EqualTolerance(PetawattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.PetawattsPerCubicMeter, PetawattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(PicowattsPerCubicFootInOneWattPerCubicMeter, wattpercubicmeter.PicowattsPerCubicFoot, PicowattsPerCubicFootTolerance);
             AssertEx.EqualTolerance(PicowattsPerCubicInchInOneWattPerCubicMeter, wattpercubicmeter.PicowattsPerCubicInch, PicowattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(PicowattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.PicowattsPerCubicMeter, PicowattsPerCubicMeterTolerance);
@@ -211,7 +205,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.DeciwattPerCubicInch).DeciwattsPerCubicInch, DeciwattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.DeciwattPerCubicMeter).DeciwattsPerCubicMeter, DeciwattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.DeciwattPerLiter).DeciwattsPerLiter, DeciwattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.FemtowattPerCubicMeter).FemtowattsPerCubicMeter, FemtowattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.GigawattPerCubicFoot).GigawattsPerCubicFoot, GigawattsPerCubicFootTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.GigawattPerCubicInch).GigawattsPerCubicInch, GigawattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.GigawattPerCubicMeter).GigawattsPerCubicMeter, GigawattsPerCubicMeterTolerance);
@@ -236,7 +229,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.NanowattPerCubicInch).NanowattsPerCubicInch, NanowattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.NanowattPerCubicMeter).NanowattsPerCubicMeter, NanowattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.NanowattPerLiter).NanowattsPerLiter, NanowattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.PetawattPerCubicMeter).PetawattsPerCubicMeter, PetawattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.PicowattPerCubicFoot).PicowattsPerCubicFoot, PicowattsPerCubicFootTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.PicowattPerCubicInch).PicowattsPerCubicInch, PicowattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.PicowattPerCubicMeter).PicowattsPerCubicMeter, PicowattsPerCubicMeterTolerance);
@@ -263,7 +255,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DeciwattsPerCubicInchInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.DeciwattPerCubicInch), DeciwattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(DeciwattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.DeciwattPerCubicMeter), DeciwattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(DeciwattsPerLiterInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.DeciwattPerLiter), DeciwattsPerLiterTolerance);
-            AssertEx.EqualTolerance(FemtowattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.FemtowattPerCubicMeter), FemtowattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(GigawattsPerCubicFootInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.GigawattPerCubicFoot), GigawattsPerCubicFootTolerance);
             AssertEx.EqualTolerance(GigawattsPerCubicInchInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.GigawattPerCubicInch), GigawattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(GigawattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.GigawattPerCubicMeter), GigawattsPerCubicMeterTolerance);
@@ -288,7 +279,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NanowattsPerCubicInchInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.NanowattPerCubicInch), NanowattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(NanowattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.NanowattPerCubicMeter), NanowattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(NanowattsPerLiterInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.NanowattPerLiter), NanowattsPerLiterTolerance);
-            AssertEx.EqualTolerance(PetawattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.PetawattPerCubicMeter), PetawattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(PicowattsPerCubicFootInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.PicowattPerCubicFoot), PicowattsPerCubicFootTolerance);
             AssertEx.EqualTolerance(PicowattsPerCubicInchInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.PicowattPerCubicInch), PicowattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(PicowattsPerCubicMeterInOneWattPerCubicMeter, wattpercubicmeter.As(PowerDensityUnit.PicowattPerCubicMeter), PicowattsPerCubicMeterTolerance);
@@ -315,7 +305,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, PowerDensity.FromDeciwattsPerCubicInch(wattpercubicmeter.DeciwattsPerCubicInch).WattsPerCubicMeter, DeciwattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.FromDeciwattsPerCubicMeter(wattpercubicmeter.DeciwattsPerCubicMeter).WattsPerCubicMeter, DeciwattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.FromDeciwattsPerLiter(wattpercubicmeter.DeciwattsPerLiter).WattsPerCubicMeter, DeciwattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromFemtowattsPerCubicMeter(wattpercubicmeter.FemtowattsPerCubicMeter).WattsPerCubicMeter, FemtowattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.FromGigawattsPerCubicFoot(wattpercubicmeter.GigawattsPerCubicFoot).WattsPerCubicMeter, GigawattsPerCubicFootTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.FromGigawattsPerCubicInch(wattpercubicmeter.GigawattsPerCubicInch).WattsPerCubicMeter, GigawattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.FromGigawattsPerCubicMeter(wattpercubicmeter.GigawattsPerCubicMeter).WattsPerCubicMeter, GigawattsPerCubicMeterTolerance);
@@ -340,7 +329,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, PowerDensity.FromNanowattsPerCubicInch(wattpercubicmeter.NanowattsPerCubicInch).WattsPerCubicMeter, NanowattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.FromNanowattsPerCubicMeter(wattpercubicmeter.NanowattsPerCubicMeter).WattsPerCubicMeter, NanowattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.FromNanowattsPerLiter(wattpercubicmeter.NanowattsPerLiter).WattsPerCubicMeter, NanowattsPerLiterTolerance);
-            AssertEx.EqualTolerance(1, PowerDensity.FromPetawattsPerCubicMeter(wattpercubicmeter.PetawattsPerCubicMeter).WattsPerCubicMeter, PetawattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.FromPicowattsPerCubicFoot(wattpercubicmeter.PicowattsPerCubicFoot).WattsPerCubicMeter, PicowattsPerCubicFootTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.FromPicowattsPerCubicInch(wattpercubicmeter.PicowattsPerCubicInch).WattsPerCubicMeter, PicowattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.FromPicowattsPerCubicMeter(wattpercubicmeter.PicowattsPerCubicMeter).WattsPerCubicMeter, PicowattsPerCubicMeterTolerance);
