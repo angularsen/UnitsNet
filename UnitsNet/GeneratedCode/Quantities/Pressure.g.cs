@@ -1617,6 +1617,25 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Compare equality to another Pressure within the given absolute or relative tolerance.
+        ///     Relative tolerance is when the difference between the two quantities is not greater than the scale of the values compared to the tolerance.
+        ///     Absolute tolerance is when the difference between the two quantities is not greater than exactly the tolerance.
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        /// </summary>
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The comparison tolerance.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(Pressure other, double tolerance = 0.00001, ComparisonType comparisonType = ComparisonType.Relative)
+        {
+            double baseValue = (double)AsBaseUnitPascals();
+            double otherBaseValue = (double)other.AsBaseUnitPascals();
+
+            return UnitsNet.Comparison.Equals(baseValue, otherBaseValue, tolerance, comparisonType);
+        }
+
+        /// <summary>
         ///     Compare equality to another Pressure by specifying a max allowed difference.
         ///     Note that it is advised against specifying zero difference, due to the nature
         ///     of floating point operations and using System.Double internally.
@@ -1631,7 +1650,7 @@ namespace UnitsNet
 
         public override int GetHashCode()
         {
-			return new { Value, Unit }.GetHashCode();
+            return new { Value, Unit }.GetHashCode();
         }
 
         #endregion

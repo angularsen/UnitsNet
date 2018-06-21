@@ -2964,6 +2964,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "dW/l"),
                             }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.FemtowattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "fW/m³"),
+                            }),
                         new CulturesForEnumValue((int) PowerDensityUnit.GigawattPerCubicFoot,
                             new[]
                             {
@@ -3083,6 +3088,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "nW/l"),
+                            }),
+                        new CulturesForEnumValue((int) PowerDensityUnit.PetawattPerCubicMeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "PW/m³"),
                             }),
                         new CulturesForEnumValue((int) PowerDensityUnit.PicowattPerCubicFoot,
                             new[]
