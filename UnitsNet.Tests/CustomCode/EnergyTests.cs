@@ -24,7 +24,7 @@ namespace UnitsNet.Tests.CustomCode
     public class EnergyTests : EnergyTestsBase
     {
         // TODO Override properties in base class here
-        protected override double ThermsImperialInOneJoule => 9.4369e-9;
+        protected override double ThermsImperialInOneJoule => 9.478171203551087813109937767482e-9;
 
         protected override double JoulesInOneJoule => 1;
 
@@ -42,7 +42,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DecathermsEcInOneJoule => 9.478171203133172e-10;
 
-        protected override double DecathermsImperialInOneJoule => 9.4369e-10;
+        protected override double DecathermsImperialInOneJoule => 9.478171203551087813109937767482e-10;
 
         protected override double DecathermsUsInOneJoule => 9.480434279733486e-10;
 
