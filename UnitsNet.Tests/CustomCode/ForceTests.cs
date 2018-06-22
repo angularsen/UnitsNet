@@ -43,7 +43,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double TonnesForceInOneNewton => 1.019716212977928e-4;
 
-        [ Fact]
+        [Fact]
         public void ForceDividedByAreaEqualsPressure()
         {
             Pressure pressure = Force.FromNewtons(90)/Area.FromSquareMeters(9);

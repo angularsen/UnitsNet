@@ -54,7 +54,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double RevolutionsInOneDegree => 2.777777777777777e-3;
 
-        [ Fact]
+        [Fact]
         public void AngleDividedByDurationEqualsRotationalSpeed()
         {
             RotationalSpeed rotationalSpeed = Angle.FromRadians(10) / Duration.FromSeconds(5);
