@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class Molarity
+    public sealed partial class Molarity : IQuantity
 #else
-    public partial struct Molarity : IComparable, IComparable<Molarity>
+    public partial struct Molarity : IQuantity, IComparable, IComparable<Molarity>
 #endif
     {
         /// <summary>
@@ -76,6 +76,11 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MolarityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static Molarity()
+        {
+            BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Molarity(double molespercubicmeter)
@@ -140,14 +145,12 @@ namespace UnitsNet
         /// </summary>
         public static MolarityUnit BaseUnit => MolarityUnit.MolesPerCubicMeter;
 
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get{ return _baseDimensions; }
+            get;
         }
 
         /// <summary>
@@ -882,6 +885,11 @@ namespace UnitsNet
         /// Represents the smallest possible value of Molarity
         /// </summary>
         public static Molarity MinValue => new Molarity(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Molarity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

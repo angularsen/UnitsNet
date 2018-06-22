@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class TemperatureChangeRate
+    public sealed partial class TemperatureChangeRate : IQuantity
 #else
-    public partial struct TemperatureChangeRate : IComparable, IComparable<TemperatureChangeRate>
+    public partial struct TemperatureChangeRate : IQuantity, IComparable, IComparable<TemperatureChangeRate>
 #endif
     {
         /// <summary>
@@ -76,6 +76,11 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public TemperatureChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static TemperatureChangeRate()
+        {
+            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public TemperatureChangeRate(double degreescelsiuspersecond)
@@ -140,14 +145,12 @@ namespace UnitsNet
         /// </summary>
         public static TemperatureChangeRateUnit BaseUnit => TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
 
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get{ return _baseDimensions; }
+            get;
         }
 
         /// <summary>
@@ -922,6 +925,11 @@ namespace UnitsNet
         /// Represents the smallest possible value of TemperatureChangeRate
         /// </summary>
         public static TemperatureChangeRate MinValue => new TemperatureChangeRate(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => TemperatureChangeRate.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

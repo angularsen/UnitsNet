@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class Frequency
+    public sealed partial class Frequency : IQuantity
 #else
-    public partial struct Frequency : IComparable, IComparable<Frequency>
+    public partial struct Frequency : IQuantity, IComparable, IComparable<Frequency>
 #endif
     {
         /// <summary>
@@ -76,6 +76,11 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public FrequencyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static Frequency()
+        {
+            BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Frequency(double hertz)
@@ -140,14 +145,12 @@ namespace UnitsNet
         /// </summary>
         public static FrequencyUnit BaseUnit => FrequencyUnit.Hertz;
 
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get{ return _baseDimensions; }
+            get;
         }
 
         /// <summary>
@@ -882,6 +885,11 @@ namespace UnitsNet
         /// Represents the smallest possible value of Frequency
         /// </summary>
         public static Frequency MinValue => new Frequency(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Frequency.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

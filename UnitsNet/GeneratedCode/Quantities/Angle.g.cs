@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class Angle
+    public sealed partial class Angle : IQuantity
 #else
-    public partial struct Angle : IComparable, IComparable<Angle>
+    public partial struct Angle : IQuantity, IComparable, IComparable<Angle>
 #endif
     {
         /// <summary>
@@ -76,6 +76,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public AngleUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static Angle()
+        {
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Angle(double degrees)
@@ -139,6 +143,14 @@ namespace UnitsNet
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
         public static AngleUnit BaseUnit => AngleUnit.Degree;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get;
+        }
 
         /// <summary>
         ///     All units of measurement for the Angle quantity.
@@ -993,5 +1005,14 @@ namespace UnitsNet
         /// </summary>
         public static Angle MinValue => new Angle(double.MinValue, BaseUnit);
 
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Angle.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Angle.BaseDimensions;
     }
 }

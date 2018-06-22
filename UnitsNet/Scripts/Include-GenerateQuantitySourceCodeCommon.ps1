@@ -98,9 +98,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class $quantityName
+    public sealed partial class $quantityName : IQuantity
 #else
-    public partial struct $quantityName : IComparable, IComparable<$quantityName>
+    public partial struct $quantityName : IQuantity, IComparable, IComparable<$quantityName>
 #endif
     {
         /// <summary>
@@ -117,6 +117,18 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public $unitEnumName Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static $quantityName()
+        {
+"@;
+    if($baseDimensions)
+    {
+@"
+            BaseDimensions = new BaseDimensions($baseDimensionLength, $baseDimensionMass, $baseDimensionTime, $baseDimensionElectricCurrent, $baseDimensionTemperature, $baseDimensionAmountOfSubstance, $baseDimensionLuminousIntensity);
+"@; 
+    }
+@"
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public $quantityName(double $baseUnitPluralNameLower)
@@ -181,23 +193,14 @@ namespace UnitsNet
         /// </summary>
         public static $unitEnumName BaseUnit => $unitEnumName.$baseUnitSingularName;
 
-"@; 
-    if($baseDimensions)
-    {
-@"
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions($baseDimensionLength, $baseDimensionMass, $baseDimensionTime, $baseDimensionElectricCurrent, $baseDimensionTemperature, $baseDimensionAmountOfSubstance, $baseDimensionLuminousIntensity);
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get{ return _baseDimensions; }
+            get;
         }
 
-"@; 
-    }
-@"
         /// <summary>
         ///     All units of measurement for the $quantityName quantity.
         /// </summary>
@@ -809,17 +812,15 @@ namespace UnitsNet
         /// </summary>
         public static $quantityName MinValue => new $quantityName($baseType.MinValue, BaseUnit);
 
-"@;
-if($baseDimensions)
-{
-@"
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => $quantityName.QuantityType;
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public BaseDimensions Dimensions => $quantityName.BaseDimensions;
-"@;
-}
-@"
     }
 }
 "@;

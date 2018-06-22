@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class TemperatureDelta
+    public sealed partial class TemperatureDelta : IQuantity
 #else
-    public partial struct TemperatureDelta : IComparable, IComparable<TemperatureDelta>
+    public partial struct TemperatureDelta : IQuantity, IComparable, IComparable<TemperatureDelta>
 #endif
     {
         /// <summary>
@@ -76,6 +76,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public TemperatureDeltaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static TemperatureDelta()
+        {
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public TemperatureDelta(double kelvins)
@@ -139,6 +143,14 @@ namespace UnitsNet
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
         public static TemperatureDeltaUnit BaseUnit => TemperatureDeltaUnit.Kelvin;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get;
+        }
 
         /// <summary>
         ///     All units of measurement for the TemperatureDelta quantity.
@@ -1041,5 +1053,14 @@ namespace UnitsNet
         /// </summary>
         public static TemperatureDelta MinValue => new TemperatureDelta(double.MinValue, BaseUnit);
 
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => TemperatureDelta.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => TemperatureDelta.BaseDimensions;
     }
 }

@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class ReactiveEnergy
+    public sealed partial class ReactiveEnergy : IQuantity
 #else
-    public partial struct ReactiveEnergy : IComparable, IComparable<ReactiveEnergy>
+    public partial struct ReactiveEnergy : IQuantity, IComparable, IComparable<ReactiveEnergy>
 #endif
     {
         /// <summary>
@@ -76,6 +76,11 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ReactiveEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static ReactiveEnergy()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public ReactiveEnergy(double voltamperereactivehours)
@@ -140,14 +145,12 @@ namespace UnitsNet
         /// </summary>
         public static ReactiveEnergyUnit BaseUnit => ReactiveEnergyUnit.VoltampereReactiveHour;
 
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get{ return _baseDimensions; }
+            get;
         }
 
         /// <summary>
@@ -782,6 +785,11 @@ namespace UnitsNet
         /// Represents the smallest possible value of ReactiveEnergy
         /// </summary>
         public static ReactiveEnergy MinValue => new ReactiveEnergy(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ReactiveEnergy.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

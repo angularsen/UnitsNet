@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class ApparentPower
+    public sealed partial class ApparentPower : IQuantity
 #else
-    public partial struct ApparentPower : IComparable, IComparable<ApparentPower>
+    public partial struct ApparentPower : IQuantity, IComparable, IComparable<ApparentPower>
 #endif
     {
         /// <summary>
@@ -76,6 +76,11 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ApparentPowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static ApparentPower()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public ApparentPower(double voltamperes)
@@ -140,14 +145,12 @@ namespace UnitsNet
         /// </summary>
         public static ApparentPowerUnit BaseUnit => ApparentPowerUnit.Voltampere;
 
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get{ return _baseDimensions; }
+            get;
         }
 
         /// <summary>
@@ -802,6 +805,11 @@ namespace UnitsNet
         /// Represents the smallest possible value of ApparentPower
         /// </summary>
         public static ApparentPower MinValue => new ApparentPower(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ApparentPower.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
