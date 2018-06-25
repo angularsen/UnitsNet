@@ -52,7 +52,7 @@ $root = Resolve-Path "$PSScriptRoot\.."
 $paramSet = $PsCmdlet.ParameterSetName
 $commonPropsFile = "$root\UnitsNet\UnitsNet.Common.props"
 $winrtAssemblyInfoFile = "$root\UnitsNet\Properties\AssemblyInfo.WindowsRuntimeComponent.cs"
-$winrtNuspecFile = "$root\UnitsNet\UnitsNet.WindowsRuntimeComponent.nuspec"
+$winrtNuspecFile = "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec"
 $versionFiles = @($commonPropsFile, $winrtAssemblyInfoFile, $winrtNuspecFile)
 $projectName = "UnitsNet"
 

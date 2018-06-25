@@ -89,8 +89,8 @@ function Start-PackNugets {
     dotnet pack --configuration Release -o $nugetOutDir "$root\$projectPath"
     if ($lastexitcode -ne 0) { exit 1 }
   }
-  write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using NuGex.exe instead"
-  & $nuget pack "$root\UnitsNet\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir" -Symbols
+  write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using nuget.exe instead"
+  & $nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir" -Symbols
 
   write-host -foreground blue "Pack nugets...END`n"
 }
