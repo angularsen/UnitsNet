@@ -86,15 +86,6 @@ namespace UnitsNet
         /// </summary>
         public ThermalResistanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        // Windows Runtime Component requires a default constructor
-#if WINDOWS_UWP
-        public ThermalResistance()
-        {
-            _value = 0;
-            _unit = BaseUnit;
-        }
-#endif
-
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public ThermalResistance(double squaremeterkelvinsperkilowatt)
         {

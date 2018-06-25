@@ -17,6 +17,13 @@ function GenerateQuantity($quantity, $outDir)
         exit 1
     }
     Write-Host -NoNewline "quantity(OK) "
+
+    $outFileName = "$outDir/../../../UnitsNet.WindowsRuntimeComponent/GeneratedCode/Quantities/$($quantity.Name).WindowsRuntimeComponent.g.cs"
+    GenerateQuantitySourceCodeWindowsRuntimeComponent $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    if (!$?) {
+        exit 1
+    }
+    Write-Host -NoNewline "quantity WRC(OK) "
 }
 
 function GenerateUnitTestBaseClass($quantity, $outDir)
@@ -249,6 +256,7 @@ function Add-InheritedUnits($quantity, $quantities) {
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantityTypeSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantitySourceCode.ps1"
+. "$PSScriptRoot/Include-GenerateQuantitySourceCodeWindowsRuntimeComponent.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTypeSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestBaseClassSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestPlaceholderSourceCode.ps1"
