@@ -487,11 +487,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals($quantityName other, $quantityName maxError)
         {
-            var thisInBaseUnits = AsBaseUnit$baseUnitPluralName();
-            var otherInBaseUnits = other.AsBaseUnit$baseUnitPluralName();
-            var maxErrorInBaseUnits = maxError.AsBaseUnit$baseUnitPluralName();
-
-            return UnitsNet.Comparison.EqualsAbsolute(thisInBaseUnits, otherInBaseUnits, maxErrorInBaseUnits);
+            return Math.Abs(AsBaseUnit$baseUnitPluralName() - other.AsBaseUnit$baseUnitPluralName()) <= maxError.AsBaseUnit$baseUnitPluralName();
         }
 
         public override int GetHashCode()
