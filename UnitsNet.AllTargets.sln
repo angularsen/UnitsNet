@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.Json
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Tests", "UnitsNet.Tests\UnitsNet.Tests.csproj", "{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.WindowsRuntimeComponent", "UnitsNet\UnitsNet.WindowsRuntimeComponent.csproj", "{2DA428CA-BFE1-43FA-86D2-7CB42289D596}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitsNet.WindowsRuntimeComponent", "UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.csproj", "{2DA428CA-BFE1-43FA-86D2-7CB42289D596}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
