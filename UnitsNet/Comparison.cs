@@ -23,7 +23,7 @@ using System;
 
 namespace UnitsNet
 {
-    public sealed class Comparison
+    public static class Comparison
     {
         /// <summary>
         ///     Checks if two values are equal with a given relative or absolute tolerance.
