@@ -26,14 +26,23 @@ namespace UnitsNet
     public static class Comparison
     {
         /// <summary>
+        ///     <para>
         ///     Checks if two values are equal with a given relative or absolute tolerance.
-        ///     Relative tolerance is when the difference between the two values is not greater than referenceValue * tolerance.
-        ///     Absolute tolerance is when the absolute difference between the two values is not greater than the tolerance value.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between <paramref name="referenceValue"/> and
+        ///     <paramref name="otherValue"/> as a percentage of <paramref name="referenceValue"/>. For example, a relative tolerance
+        ///     of 0.01 means the difference must be within +/- 1% of <paramref name="referenceValue"/> to be considered equal.
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between <paramref name="referenceValue"/> and
+        ///     <paramref name="otherValue"/> as a fixed number.
+        ///     </para>
         /// </summary>
-        /// <param name="referenceValue">The first value. If using relative tolerance, it is the value which the relative tolerance will be calculated against.</param>
+        /// <param name="referenceValue">The reference value. If using relative tolerance, it is the value which the relative tolerance will be calculated against.</param>
         /// <param name="otherValue">The value to compare to.</param>
-        /// <param name="tolerance">The absolute or relative tolerance value.</param>
-        /// <param name="comparisonType">Whether to use tolerance as an absolute or relative tolerance.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than 0.</param>
+        /// <param name="comparisonType">Whether the tolerance is absolute or relative.</param>
         /// <returns></returns>
         public static bool Equals(double referenceValue, double otherValue, double tolerance, ComparisonType comparisonType)
         {
@@ -52,12 +61,14 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Checks if two values are equal with a given relative tolerance. The relative tolerance is calculated against the referenceValue parameter.
-        ///     Relative tolerance is when the difference between the two values is not greater than referenceValue * tolerance.
+        ///     Checks if two values are equal with a given relative tolerance.
+        ///     Relative tolerance is defined as the maximum allowable difference between <paramref name="referenceValue"/> and
+        ///     <paramref name="otherValue"/> as a percentage of <paramref name="referenceValue"/>. For example, a relative tolerance
+        ///     of 0.01 means the difference must be within +/- 1% of <paramref name="referenceValue"/> to be considered equal.
         /// </summary>
         /// <param name="referenceValue">The reference value which the tolerance will be calculated against.</param>
         /// <param name="otherValue">The value to compare to.</param>
-        /// <param name="tolerance"></param>
+        /// <param name="tolerance">The relative tolerance. Must be greater than 0.</param>
         /// <returns>True if the two values are equal within the given relative tolerance, otherwise false.</returns>
         public static bool EqualsRelative(double referenceValue, double otherValue, double tolerance)
         {
@@ -70,7 +81,8 @@ namespace UnitsNet
 
         /// <summary>
         ///     Checks if two values are equal with a given absolute tolerance.
-        ///     Absolute tolerance is when the absolute difference between the two values is not greater than the tolerance value.
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between <paramref name="referenceValue"/> and
+        ///     <paramref name="otherValue"/> as a fixed number.
         /// </summary>
         /// <param name="value1">The first value.</param>
         /// <param name="value2">The second value.</param>
