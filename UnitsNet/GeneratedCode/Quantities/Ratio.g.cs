@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Ratio(double numericValue, RatioUnit unit)
+        Ratio(double numericValue, RatioUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -508,7 +508,7 @@ namespace UnitsNet
 #endif
         int CompareTo(Ratio other)
         {
-            return AsBaseUnitDecimalFractions().CompareTo(other.AsBaseUnitDecimalFractions());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -556,7 +556,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitDecimalFractions().Equals(((Ratio) obj).AsBaseUnitDecimalFractions());
+            return AsBaseUnit().Equals(((Ratio) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -569,7 +569,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Ratio other, Ratio maxError)
         {
-            return Math.Abs(AsBaseUnitDecimalFractions() - other.AsBaseUnitDecimalFractions()) <= maxError.AsBaseUnitDecimalFractions();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -587,14 +587,41 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(RatioUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case RatioUnit.DecimalFraction: return _value;
+                case RatioUnit.PartPerBillion: return _value/1e9;
+                case RatioUnit.PartPerMillion: return _value/1e6;
+                case RatioUnit.PartPerThousand: return _value/1e3;
+                case RatioUnit.PartPerTrillion: return _value/1e12;
+                case RatioUnit.Percent: return _value/1e2;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitDecimalFractions();
+        private double AsBaseNumericType(RatioUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case RatioUnit.DecimalFraction: return baseUnitValue;
                 case RatioUnit.PartPerBillion: return baseUnitValue*1e9;
@@ -602,9 +629,8 @@ namespace UnitsNet
                 case RatioUnit.PartPerThousand: return baseUnitValue*1e3;
                 case RatioUnit.PartPerTrillion: return baseUnitValue*1e12;
                 case RatioUnit.Percent: return baseUnitValue*1e2;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -953,31 +979,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Ratio
         /// </summary>
         public static Ratio MinValue => new Ratio(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitDecimalFractions()
-        {
-            if (Unit == RatioUnit.DecimalFraction) { return _value; }
-
-            switch (Unit)
-            {
-                case RatioUnit.DecimalFraction: return _value;
-                case RatioUnit.PartPerBillion: return _value/1e9;
-                case RatioUnit.PartPerMillion: return _value/1e6;
-                case RatioUnit.PartPerThousand: return _value/1e3;
-                case RatioUnit.PartPerTrillion: return _value/1e12;
-                case RatioUnit.Percent: return _value/1e2;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(RatioUnit unit) => Convert.ToDouble(As(unit));
 
     }
 }

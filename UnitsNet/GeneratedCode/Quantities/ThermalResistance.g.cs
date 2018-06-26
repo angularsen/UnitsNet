@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          ThermalResistance(double numericValue, ThermalResistanceUnit unit)
+        ThermalResistance(double numericValue, ThermalResistanceUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -485,7 +485,7 @@ namespace UnitsNet
 #endif
         int CompareTo(ThermalResistance other)
         {
-            return AsBaseUnitSquareMeterKelvinsPerKilowatt().CompareTo(other.AsBaseUnitSquareMeterKelvinsPerKilowatt());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -533,7 +533,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitSquareMeterKelvinsPerKilowatt().Equals(((ThermalResistance) obj).AsBaseUnitSquareMeterKelvinsPerKilowatt());
+            return AsBaseUnit().Equals(((ThermalResistance) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -546,7 +546,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ThermalResistance other, ThermalResistance maxError)
         {
-            return Math.Abs(AsBaseUnitSquareMeterKelvinsPerKilowatt() - other.AsBaseUnitSquareMeterKelvinsPerKilowatt()) <= maxError.AsBaseUnitSquareMeterKelvinsPerKilowatt();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -564,23 +564,48 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ThermalResistanceUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu: return _value*176.1121482159839;
+                case ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie: return _value*0.0859779507590433;
+                case ThermalResistanceUnit.SquareCentimeterKelvinPerWatt: return _value*0.0999964777570357;
+                case ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt: return _value*1000.088056074108;
+                case ThermalResistanceUnit.SquareMeterKelvinPerKilowatt: return _value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitSquareMeterKelvinsPerKilowatt();
+        private double AsBaseNumericType(ThermalResistanceUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu: return baseUnitValue/176.1121482159839;
                 case ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie: return baseUnitValue/0.0859779507590433;
                 case ThermalResistanceUnit.SquareCentimeterKelvinPerWatt: return baseUnitValue/0.0999964777570357;
                 case ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt: return baseUnitValue/1000.088056074108;
                 case ThermalResistanceUnit.SquareMeterKelvinPerKilowatt: return baseUnitValue;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -929,30 +954,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of ThermalResistance
         /// </summary>
         public static ThermalResistance MinValue => new ThermalResistance(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitSquareMeterKelvinsPerKilowatt()
-        {
-            if (Unit == ThermalResistanceUnit.SquareMeterKelvinPerKilowatt) { return _value; }
-
-            switch (Unit)
-            {
-                case ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu: return _value*176.1121482159839;
-                case ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie: return _value*0.0859779507590433;
-                case ThermalResistanceUnit.SquareCentimeterKelvinPerWatt: return _value*0.0999964777570357;
-                case ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt: return _value*1000.088056074108;
-                case ThermalResistanceUnit.SquareMeterKelvinPerKilowatt: return _value;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(ThermalResistanceUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

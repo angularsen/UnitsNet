@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          MolarMass(double numericValue, MolarMassUnit unit)
+        MolarMass(double numericValue, MolarMassUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -716,7 +716,7 @@ namespace UnitsNet
 #endif
         int CompareTo(MolarMass other)
         {
-            return AsBaseUnitKilogramsPerMole().CompareTo(other.AsBaseUnitKilogramsPerMole());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -764,7 +764,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitKilogramsPerMole().Equals(((MolarMass) obj).AsBaseUnitKilogramsPerMole());
+            return AsBaseUnit().Equals(((MolarMass) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -777,7 +777,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(MolarMass other, MolarMass maxError)
         {
-            return Math.Abs(AsBaseUnitKilogramsPerMole() - other.AsBaseUnitKilogramsPerMole()) <= maxError.AsBaseUnitKilogramsPerMole();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -795,14 +795,47 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(MolarMassUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case MolarMassUnit.CentigramPerMole: return (_value/1e3) * 1e-2d;
+                case MolarMassUnit.DecagramPerMole: return (_value/1e3) * 1e1d;
+                case MolarMassUnit.DecigramPerMole: return (_value/1e3) * 1e-1d;
+                case MolarMassUnit.GramPerMole: return _value/1e3;
+                case MolarMassUnit.HectogramPerMole: return (_value/1e3) * 1e2d;
+                case MolarMassUnit.KilogramPerMole: return (_value/1e3) * 1e3d;
+                case MolarMassUnit.KilopoundPerMole: return (_value*0.45359237) * 1e3d;
+                case MolarMassUnit.MegapoundPerMole: return (_value*0.45359237) * 1e6d;
+                case MolarMassUnit.MicrogramPerMole: return (_value/1e3) * 1e-6d;
+                case MolarMassUnit.MilligramPerMole: return (_value/1e3) * 1e-3d;
+                case MolarMassUnit.NanogramPerMole: return (_value/1e3) * 1e-9d;
+                case MolarMassUnit.PoundPerMole: return _value*0.45359237;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitKilogramsPerMole();
+        private double AsBaseNumericType(MolarMassUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case MolarMassUnit.CentigramPerMole: return (baseUnitValue*1e3) / 1e-2d;
                 case MolarMassUnit.DecagramPerMole: return (baseUnitValue*1e3) / 1e1d;
@@ -816,9 +849,8 @@ namespace UnitsNet
                 case MolarMassUnit.MilligramPerMole: return (baseUnitValue*1e3) / 1e-3d;
                 case MolarMassUnit.NanogramPerMole: return (baseUnitValue*1e3) / 1e-9d;
                 case MolarMassUnit.PoundPerMole: return baseUnitValue/0.45359237;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1167,37 +1199,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of MolarMass
         /// </summary>
         public static MolarMass MinValue => new MolarMass(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitKilogramsPerMole()
-        {
-            if (Unit == MolarMassUnit.KilogramPerMole) { return _value; }
-
-            switch (Unit)
-            {
-                case MolarMassUnit.CentigramPerMole: return (_value/1e3) * 1e-2d;
-                case MolarMassUnit.DecagramPerMole: return (_value/1e3) * 1e1d;
-                case MolarMassUnit.DecigramPerMole: return (_value/1e3) * 1e-1d;
-                case MolarMassUnit.GramPerMole: return _value/1e3;
-                case MolarMassUnit.HectogramPerMole: return (_value/1e3) * 1e2d;
-                case MolarMassUnit.KilogramPerMole: return (_value/1e3) * 1e3d;
-                case MolarMassUnit.KilopoundPerMole: return (_value*0.45359237) * 1e3d;
-                case MolarMassUnit.MegapoundPerMole: return (_value*0.45359237) * 1e6d;
-                case MolarMassUnit.MicrogramPerMole: return (_value/1e3) * 1e-6d;
-                case MolarMassUnit.MilligramPerMole: return (_value/1e3) * 1e-3d;
-                case MolarMassUnit.NanogramPerMole: return (_value/1e3) * 1e-9d;
-                case MolarMassUnit.PoundPerMole: return _value*0.45359237;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(MolarMassUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

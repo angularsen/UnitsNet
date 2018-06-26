@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          SpecificWeight(double numericValue, SpecificWeightUnit unit)
+        SpecificWeight(double numericValue, SpecificWeightUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -881,7 +881,7 @@ namespace UnitsNet
 #endif
         int CompareTo(SpecificWeight other)
         {
-            return AsBaseUnitNewtonsPerCubicMeter().CompareTo(other.AsBaseUnitNewtonsPerCubicMeter());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -929,7 +929,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitNewtonsPerCubicMeter().Equals(((SpecificWeight) obj).AsBaseUnitNewtonsPerCubicMeter());
+            return AsBaseUnit().Equals(((SpecificWeight) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -942,7 +942,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(SpecificWeight other, SpecificWeight maxError)
         {
-            return Math.Abs(AsBaseUnitNewtonsPerCubicMeter() - other.AsBaseUnitNewtonsPerCubicMeter()) <= maxError.AsBaseUnitNewtonsPerCubicMeter();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -960,14 +960,52 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(SpecificWeightUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return _value*9806650.19960652;
+                case SpecificWeightUnit.KilogramForcePerCubicMeter: return _value*9.80665019960652;
+                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return _value*9806650199.60653;
+                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (_value*1000000) * 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMeter: return (_value) * 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (_value*1000000000) * 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (_value*157.087477433193) * 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (_value*271447.161004558) * 1e3d;
+                case SpecificWeightUnit.MeganewtonPerCubicMeter: return (_value) * 1e6d;
+                case SpecificWeightUnit.NewtonPerCubicCentimeter: return _value*1000000;
+                case SpecificWeightUnit.NewtonPerCubicMeter: return _value;
+                case SpecificWeightUnit.NewtonPerCubicMillimeter: return _value*1000000000;
+                case SpecificWeightUnit.PoundForcePerCubicFoot: return _value*157.087477433193;
+                case SpecificWeightUnit.PoundForcePerCubicInch: return _value*271447.161004558;
+                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return _value*9806650199.60653;
+                case SpecificWeightUnit.TonneForcePerCubicMeter: return _value*9806.65019960653;
+                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return _value*9806650199606.53;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitNewtonsPerCubicMeter();
+        private double AsBaseNumericType(SpecificWeightUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return baseUnitValue*1.01971619222242E-07;
                 case SpecificWeightUnit.KilogramForcePerCubicMeter: return baseUnitValue*0.101971619222242;
@@ -986,9 +1024,8 @@ namespace UnitsNet
                 case SpecificWeightUnit.TonneForcePerCubicCentimeter: return baseUnitValue*1.01971619222242E-10;
                 case SpecificWeightUnit.TonneForcePerCubicMeter: return baseUnitValue*0.000101971619222242;
                 case SpecificWeightUnit.TonneForcePerCubicMillimeter: return baseUnitValue*1.01971619222242E-13;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1337,42 +1374,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of SpecificWeight
         /// </summary>
         public static SpecificWeight MinValue => new SpecificWeight(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitNewtonsPerCubicMeter()
-        {
-            if (Unit == SpecificWeightUnit.NewtonPerCubicMeter) { return _value; }
-
-            switch (Unit)
-            {
-                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return _value*9806650.19960652;
-                case SpecificWeightUnit.KilogramForcePerCubicMeter: return _value*9.80665019960652;
-                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return _value*9806650199.60653;
-                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (_value*1000000) * 1e3d;
-                case SpecificWeightUnit.KilonewtonPerCubicMeter: return (_value) * 1e3d;
-                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (_value*1000000000) * 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (_value*157.087477433193) * 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (_value*271447.161004558) * 1e3d;
-                case SpecificWeightUnit.MeganewtonPerCubicMeter: return (_value) * 1e6d;
-                case SpecificWeightUnit.NewtonPerCubicCentimeter: return _value*1000000;
-                case SpecificWeightUnit.NewtonPerCubicMeter: return _value;
-                case SpecificWeightUnit.NewtonPerCubicMillimeter: return _value*1000000000;
-                case SpecificWeightUnit.PoundForcePerCubicFoot: return _value*157.087477433193;
-                case SpecificWeightUnit.PoundForcePerCubicInch: return _value*271447.161004558;
-                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return _value*9806650199.60653;
-                case SpecificWeightUnit.TonneForcePerCubicMeter: return _value*9806.65019960653;
-                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return _value*9806650199606.53;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(SpecificWeightUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

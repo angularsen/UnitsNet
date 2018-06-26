@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          RotationalSpeed(double numericValue, RotationalSpeedUnit unit)
+        RotationalSpeed(double numericValue, RotationalSpeedUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -749,7 +749,7 @@ namespace UnitsNet
 #endif
         int CompareTo(RotationalSpeed other)
         {
-            return AsBaseUnitRadiansPerSecond().CompareTo(other.AsBaseUnitRadiansPerSecond());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -797,7 +797,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitRadiansPerSecond().Equals(((RotationalSpeed) obj).AsBaseUnitRadiansPerSecond());
+            return AsBaseUnit().Equals(((RotationalSpeed) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -810,7 +810,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(RotationalSpeed other, RotationalSpeed maxError)
         {
-            return Math.Abs(AsBaseUnitRadiansPerSecond() - other.AsBaseUnitRadiansPerSecond()) <= maxError.AsBaseUnitRadiansPerSecond();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -828,14 +828,48 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(RotationalSpeedUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case RotationalSpeedUnit.CentiradianPerSecond: return (_value) * 1e-2d;
+                case RotationalSpeedUnit.DeciradianPerSecond: return (_value) * 1e-1d;
+                case RotationalSpeedUnit.DegreePerMinute: return (Math.PI/(180*60))*_value;
+                case RotationalSpeedUnit.DegreePerSecond: return (Math.PI/180)*_value;
+                case RotationalSpeedUnit.MicrodegreePerSecond: return ((Math.PI/180)*_value) * 1e-6d;
+                case RotationalSpeedUnit.MicroradianPerSecond: return (_value) * 1e-6d;
+                case RotationalSpeedUnit.MillidegreePerSecond: return ((Math.PI/180)*_value) * 1e-3d;
+                case RotationalSpeedUnit.MilliradianPerSecond: return (_value) * 1e-3d;
+                case RotationalSpeedUnit.NanodegreePerSecond: return ((Math.PI/180)*_value) * 1e-9d;
+                case RotationalSpeedUnit.NanoradianPerSecond: return (_value) * 1e-9d;
+                case RotationalSpeedUnit.RadianPerSecond: return _value;
+                case RotationalSpeedUnit.RevolutionPerMinute: return (_value*6.2831853072)/60;
+                case RotationalSpeedUnit.RevolutionPerSecond: return _value*6.2831853072;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitRadiansPerSecond();
+        private double AsBaseNumericType(RotationalSpeedUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case RotationalSpeedUnit.CentiradianPerSecond: return (baseUnitValue) / 1e-2d;
                 case RotationalSpeedUnit.DeciradianPerSecond: return (baseUnitValue) / 1e-1d;
@@ -850,9 +884,8 @@ namespace UnitsNet
                 case RotationalSpeedUnit.RadianPerSecond: return baseUnitValue;
                 case RotationalSpeedUnit.RevolutionPerMinute: return (baseUnitValue/6.2831853072)*60;
                 case RotationalSpeedUnit.RevolutionPerSecond: return baseUnitValue/6.2831853072;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1201,38 +1234,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of RotationalSpeed
         /// </summary>
         public static RotationalSpeed MinValue => new RotationalSpeed(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitRadiansPerSecond()
-        {
-            if (Unit == RotationalSpeedUnit.RadianPerSecond) { return _value; }
-
-            switch (Unit)
-            {
-                case RotationalSpeedUnit.CentiradianPerSecond: return (_value) * 1e-2d;
-                case RotationalSpeedUnit.DeciradianPerSecond: return (_value) * 1e-1d;
-                case RotationalSpeedUnit.DegreePerMinute: return (Math.PI/(180*60))*_value;
-                case RotationalSpeedUnit.DegreePerSecond: return (Math.PI/180)*_value;
-                case RotationalSpeedUnit.MicrodegreePerSecond: return ((Math.PI/180)*_value) * 1e-6d;
-                case RotationalSpeedUnit.MicroradianPerSecond: return (_value) * 1e-6d;
-                case RotationalSpeedUnit.MillidegreePerSecond: return ((Math.PI/180)*_value) * 1e-3d;
-                case RotationalSpeedUnit.MilliradianPerSecond: return (_value) * 1e-3d;
-                case RotationalSpeedUnit.NanodegreePerSecond: return ((Math.PI/180)*_value) * 1e-9d;
-                case RotationalSpeedUnit.NanoradianPerSecond: return (_value) * 1e-9d;
-                case RotationalSpeedUnit.RadianPerSecond: return _value;
-                case RotationalSpeedUnit.RevolutionPerMinute: return (_value*6.2831853072)/60;
-                case RotationalSpeedUnit.RevolutionPerSecond: return _value*6.2831853072;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(RotationalSpeedUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

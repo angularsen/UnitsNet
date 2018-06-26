@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          MolarEntropy(double numericValue, MolarEntropyUnit unit)
+        MolarEntropy(double numericValue, MolarEntropyUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -419,7 +419,7 @@ namespace UnitsNet
 #endif
         int CompareTo(MolarEntropy other)
         {
-            return AsBaseUnitJoulesPerMoleKelvin().CompareTo(other.AsBaseUnitJoulesPerMoleKelvin());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -467,7 +467,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitJoulesPerMoleKelvin().Equals(((MolarEntropy) obj).AsBaseUnitJoulesPerMoleKelvin());
+            return AsBaseUnit().Equals(((MolarEntropy) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -480,7 +480,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(MolarEntropy other, MolarEntropy maxError)
         {
-            return Math.Abs(AsBaseUnitJoulesPerMoleKelvin() - other.AsBaseUnitJoulesPerMoleKelvin()) <= maxError.AsBaseUnitJoulesPerMoleKelvin();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -498,21 +498,44 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(MolarEntropyUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case MolarEntropyUnit.JoulePerMoleKelvin: return _value;
+                case MolarEntropyUnit.KilojoulePerMoleKelvin: return (_value) * 1e3d;
+                case MolarEntropyUnit.MegajoulePerMoleKelvin: return (_value) * 1e6d;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitJoulesPerMoleKelvin();
+        private double AsBaseNumericType(MolarEntropyUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case MolarEntropyUnit.JoulePerMoleKelvin: return baseUnitValue;
                 case MolarEntropyUnit.KilojoulePerMoleKelvin: return (baseUnitValue) / 1e3d;
                 case MolarEntropyUnit.MegajoulePerMoleKelvin: return (baseUnitValue) / 1e6d;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -861,28 +884,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of MolarEntropy
         /// </summary>
         public static MolarEntropy MinValue => new MolarEntropy(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitJoulesPerMoleKelvin()
-        {
-            if (Unit == MolarEntropyUnit.JoulePerMoleKelvin) { return _value; }
-
-            switch (Unit)
-            {
-                case MolarEntropyUnit.JoulePerMoleKelvin: return _value;
-                case MolarEntropyUnit.KilojoulePerMoleKelvin: return (_value) * 1e3d;
-                case MolarEntropyUnit.MegajoulePerMoleKelvin: return (_value) * 1e6d;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(MolarEntropyUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

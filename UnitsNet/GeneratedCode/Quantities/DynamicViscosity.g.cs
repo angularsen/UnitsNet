@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          DynamicViscosity(double numericValue, DynamicViscosityUnit unit)
+        DynamicViscosity(double numericValue, DynamicViscosityUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -518,7 +518,7 @@ namespace UnitsNet
 #endif
         int CompareTo(DynamicViscosity other)
         {
-            return AsBaseUnitNewtonSecondsPerMeterSquared().CompareTo(other.AsBaseUnitNewtonSecondsPerMeterSquared());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -566,7 +566,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitNewtonSecondsPerMeterSquared().Equals(((DynamicViscosity) obj).AsBaseUnitNewtonSecondsPerMeterSquared());
+            return AsBaseUnit().Equals(((DynamicViscosity) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -579,7 +579,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(DynamicViscosity other, DynamicViscosity maxError)
         {
-            return Math.Abs(AsBaseUnitNewtonSecondsPerMeterSquared() - other.AsBaseUnitNewtonSecondsPerMeterSquared()) <= maxError.AsBaseUnitNewtonSecondsPerMeterSquared();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -597,14 +597,41 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(DynamicViscosityUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case DynamicViscosityUnit.Centipoise: return (_value/10) * 1e-2d;
+                case DynamicViscosityUnit.MicropascalSecond: return (_value) * 1e-6d;
+                case DynamicViscosityUnit.MillipascalSecond: return (_value) * 1e-3d;
+                case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return _value;
+                case DynamicViscosityUnit.PascalSecond: return _value;
+                case DynamicViscosityUnit.Poise: return _value/10;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitNewtonSecondsPerMeterSquared();
+        private double AsBaseNumericType(DynamicViscosityUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case DynamicViscosityUnit.Centipoise: return (baseUnitValue*10) / 1e-2d;
                 case DynamicViscosityUnit.MicropascalSecond: return (baseUnitValue) / 1e-6d;
@@ -612,9 +639,8 @@ namespace UnitsNet
                 case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return baseUnitValue;
                 case DynamicViscosityUnit.PascalSecond: return baseUnitValue;
                 case DynamicViscosityUnit.Poise: return baseUnitValue*10;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -963,31 +989,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of DynamicViscosity
         /// </summary>
         public static DynamicViscosity MinValue => new DynamicViscosity(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitNewtonSecondsPerMeterSquared()
-        {
-            if (Unit == DynamicViscosityUnit.NewtonSecondPerMeterSquared) { return _value; }
-
-            switch (Unit)
-            {
-                case DynamicViscosityUnit.Centipoise: return (_value/10) * 1e-2d;
-                case DynamicViscosityUnit.MicropascalSecond: return (_value) * 1e-6d;
-                case DynamicViscosityUnit.MillipascalSecond: return (_value) * 1e-3d;
-                case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return _value;
-                case DynamicViscosityUnit.PascalSecond: return _value;
-                case DynamicViscosityUnit.Poise: return _value/10;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(DynamicViscosityUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

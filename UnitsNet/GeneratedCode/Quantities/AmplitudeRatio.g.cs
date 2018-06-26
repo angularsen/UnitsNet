@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          AmplitudeRatio(double numericValue, AmplitudeRatioUnit unit)
+        AmplitudeRatio(double numericValue, AmplitudeRatioUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -450,7 +450,7 @@ namespace UnitsNet
 #endif
         int CompareTo(AmplitudeRatio other)
         {
-            return AsBaseUnitDecibelVolts().CompareTo(other.AsBaseUnitDecibelVolts());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -498,7 +498,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitDecibelVolts().Equals(((AmplitudeRatio) obj).AsBaseUnitDecibelVolts());
+            return AsBaseUnit().Equals(((AmplitudeRatio) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -511,7 +511,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(AmplitudeRatio other, AmplitudeRatio maxError)
         {
-            return Math.Abs(AsBaseUnitDecibelVolts() - other.AsBaseUnitDecibelVolts()) <= maxError.AsBaseUnitDecibelVolts();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -529,22 +529,46 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(AmplitudeRatioUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case AmplitudeRatioUnit.DecibelMicrovolt: return _value - 120;
+                case AmplitudeRatioUnit.DecibelMillivolt: return _value - 60;
+                case AmplitudeRatioUnit.DecibelUnloaded: return _value - 2.218487499;
+                case AmplitudeRatioUnit.DecibelVolt: return _value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitDecibelVolts();
+        private double AsBaseNumericType(AmplitudeRatioUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case AmplitudeRatioUnit.DecibelMicrovolt: return baseUnitValue + 120;
                 case AmplitudeRatioUnit.DecibelMillivolt: return baseUnitValue + 60;
                 case AmplitudeRatioUnit.DecibelUnloaded: return baseUnitValue + 2.218487499;
                 case AmplitudeRatioUnit.DecibelVolt: return baseUnitValue;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -893,29 +917,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of AmplitudeRatio
         /// </summary>
         public static AmplitudeRatio MinValue => new AmplitudeRatio(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitDecibelVolts()
-        {
-            if (Unit == AmplitudeRatioUnit.DecibelVolt) { return _value; }
-
-            switch (Unit)
-            {
-                case AmplitudeRatioUnit.DecibelMicrovolt: return _value - 120;
-                case AmplitudeRatioUnit.DecibelMillivolt: return _value - 60;
-                case AmplitudeRatioUnit.DecibelUnloaded: return _value - 2.218487499;
-                case AmplitudeRatioUnit.DecibelVolt: return _value;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(AmplitudeRatioUnit unit) => Convert.ToDouble(As(unit));
 
     }
 }

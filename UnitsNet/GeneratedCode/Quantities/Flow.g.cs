@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Flow(double numericValue, FlowUnit unit)
+        Flow(double numericValue, FlowUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1130,7 +1130,7 @@ namespace UnitsNet
 #endif
         int CompareTo(Flow other)
         {
-            return AsBaseUnitCubicMetersPerSecond().CompareTo(other.AsBaseUnitCubicMetersPerSecond());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -1178,7 +1178,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitCubicMetersPerSecond().Equals(((Flow) obj).AsBaseUnitCubicMetersPerSecond());
+            return AsBaseUnit().Equals(((Flow) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -1191,7 +1191,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Flow other, Flow maxError)
         {
-            return Math.Abs(AsBaseUnitCubicMetersPerSecond() - other.AsBaseUnitCubicMetersPerSecond()) <= maxError.AsBaseUnitCubicMetersPerSecond();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -1209,14 +1209,59 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(FlowUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case FlowUnit.CentilitersPerMinute: return (_value/60000.00000) * 1e-2d;
+                case FlowUnit.CubicDecimeterPerMinute: return _value/60000.00000;
+                case FlowUnit.CubicFootPerHour: return _value*7.8657907199999087346816086183876e-6;
+                case FlowUnit.CubicFootPerMinute: return _value/2118.88000326;
+                case FlowUnit.CubicFootPerSecond: return _value/35.314666721;
+                case FlowUnit.CubicMeterPerHour: return _value/3600;
+                case FlowUnit.CubicMeterPerMinute: return _value/60;
+                case FlowUnit.CubicMeterPerSecond: return _value;
+                case FlowUnit.CubicYardPerHour: return _value*2.1237634944E-4;
+                case FlowUnit.CubicYardPerMinute: return _value*0.0127425809664;
+                case FlowUnit.CubicYardPerSecond: return _value*0.764554857984;
+                case FlowUnit.DecilitersPerMinute: return (_value/60000.00000) * 1e-1d;
+                case FlowUnit.KilolitersPerMinute: return (_value/60000.00000) * 1e3d;
+                case FlowUnit.LitersPerHour: return _value/3600000.000;
+                case FlowUnit.LitersPerMinute: return _value/60000.00000;
+                case FlowUnit.LitersPerSecond: return _value/1000;
+                case FlowUnit.MicrolitersPerMinute: return (_value/60000.00000) * 1e-6d;
+                case FlowUnit.MillilitersPerMinute: return (_value/60000.00000) * 1e-3d;
+                case FlowUnit.MillionUsGallonsPerDay: return _value/22.824465227;
+                case FlowUnit.NanolitersPerMinute: return (_value/60000.00000) * 1e-9d;
+                case FlowUnit.OilBarrelsPerDay: return _value*1.8401307283333333333333333333333e-6;
+                case FlowUnit.UsGallonsPerHour: return _value/951019.38848933424;
+                case FlowUnit.UsGallonsPerMinute: return _value/15850.323141489;
+                case FlowUnit.UsGallonsPerSecond: return _value/264.1720523581484;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitCubicMetersPerSecond();
+        private double AsBaseNumericType(FlowUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case FlowUnit.CentilitersPerMinute: return (baseUnitValue*60000.00000) / 1e-2d;
                 case FlowUnit.CubicDecimeterPerMinute: return baseUnitValue*60000.00000;
@@ -1242,9 +1287,8 @@ namespace UnitsNet
                 case FlowUnit.UsGallonsPerHour: return baseUnitValue*951019.38848933424;
                 case FlowUnit.UsGallonsPerMinute: return baseUnitValue*15850.323141489;
                 case FlowUnit.UsGallonsPerSecond: return baseUnitValue*264.1720523581484;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1593,49 +1637,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Flow
         /// </summary>
         public static Flow MinValue => new Flow(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitCubicMetersPerSecond()
-        {
-            if (Unit == FlowUnit.CubicMeterPerSecond) { return _value; }
-
-            switch (Unit)
-            {
-                case FlowUnit.CentilitersPerMinute: return (_value/60000.00000) * 1e-2d;
-                case FlowUnit.CubicDecimeterPerMinute: return _value/60000.00000;
-                case FlowUnit.CubicFootPerHour: return _value*7.8657907199999087346816086183876e-6;
-                case FlowUnit.CubicFootPerMinute: return _value/2118.88000326;
-                case FlowUnit.CubicFootPerSecond: return _value/35.314666721;
-                case FlowUnit.CubicMeterPerHour: return _value/3600;
-                case FlowUnit.CubicMeterPerMinute: return _value/60;
-                case FlowUnit.CubicMeterPerSecond: return _value;
-                case FlowUnit.CubicYardPerHour: return _value*2.1237634944E-4;
-                case FlowUnit.CubicYardPerMinute: return _value*0.0127425809664;
-                case FlowUnit.CubicYardPerSecond: return _value*0.764554857984;
-                case FlowUnit.DecilitersPerMinute: return (_value/60000.00000) * 1e-1d;
-                case FlowUnit.KilolitersPerMinute: return (_value/60000.00000) * 1e3d;
-                case FlowUnit.LitersPerHour: return _value/3600000.000;
-                case FlowUnit.LitersPerMinute: return _value/60000.00000;
-                case FlowUnit.LitersPerSecond: return _value/1000;
-                case FlowUnit.MicrolitersPerMinute: return (_value/60000.00000) * 1e-6d;
-                case FlowUnit.MillilitersPerMinute: return (_value/60000.00000) * 1e-3d;
-                case FlowUnit.MillionUsGallonsPerDay: return _value/22.824465227;
-                case FlowUnit.NanolitersPerMinute: return (_value/60000.00000) * 1e-9d;
-                case FlowUnit.OilBarrelsPerDay: return _value*1.8401307283333333333333333333333e-6;
-                case FlowUnit.UsGallonsPerHour: return _value/951019.38848933424;
-                case FlowUnit.UsGallonsPerMinute: return _value/15850.323141489;
-                case FlowUnit.UsGallonsPerSecond: return _value/264.1720523581484;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(FlowUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

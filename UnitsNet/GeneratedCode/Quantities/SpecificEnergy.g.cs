@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          SpecificEnergy(double numericValue, SpecificEnergyUnit unit)
+        SpecificEnergy(double numericValue, SpecificEnergyUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -584,7 +584,7 @@ namespace UnitsNet
 #endif
         int CompareTo(SpecificEnergy other)
         {
-            return AsBaseUnitJoulesPerKilogram().CompareTo(other.AsBaseUnitJoulesPerKilogram());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -632,7 +632,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitJoulesPerKilogram().Equals(((SpecificEnergy) obj).AsBaseUnitJoulesPerKilogram());
+            return AsBaseUnit().Equals(((SpecificEnergy) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -645,7 +645,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(SpecificEnergy other, SpecificEnergy maxError)
         {
-            return Math.Abs(AsBaseUnitJoulesPerKilogram() - other.AsBaseUnitJoulesPerKilogram()) <= maxError.AsBaseUnitJoulesPerKilogram();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -663,14 +663,43 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(SpecificEnergyUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case SpecificEnergyUnit.CaloriePerGram: return _value*4.184e3;
+                case SpecificEnergyUnit.JoulePerKilogram: return _value;
+                case SpecificEnergyUnit.KilocaloriePerGram: return (_value*4.184e3) * 1e3d;
+                case SpecificEnergyUnit.KilojoulePerKilogram: return (_value) * 1e3d;
+                case SpecificEnergyUnit.KilowattHourPerKilogram: return (_value*3.6e3) * 1e3d;
+                case SpecificEnergyUnit.MegajoulePerKilogram: return (_value) * 1e6d;
+                case SpecificEnergyUnit.MegawattHourPerKilogram: return (_value*3.6e3) * 1e6d;
+                case SpecificEnergyUnit.WattHourPerKilogram: return _value*3.6e3;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitJoulesPerKilogram();
+        private double AsBaseNumericType(SpecificEnergyUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case SpecificEnergyUnit.CaloriePerGram: return baseUnitValue/4.184e3;
                 case SpecificEnergyUnit.JoulePerKilogram: return baseUnitValue;
@@ -680,9 +709,8 @@ namespace UnitsNet
                 case SpecificEnergyUnit.MegajoulePerKilogram: return (baseUnitValue) / 1e6d;
                 case SpecificEnergyUnit.MegawattHourPerKilogram: return (baseUnitValue/3.6e3) / 1e6d;
                 case SpecificEnergyUnit.WattHourPerKilogram: return baseUnitValue/3.6e3;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1031,33 +1059,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of SpecificEnergy
         /// </summary>
         public static SpecificEnergy MinValue => new SpecificEnergy(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitJoulesPerKilogram()
-        {
-            if (Unit == SpecificEnergyUnit.JoulePerKilogram) { return _value; }
-
-            switch (Unit)
-            {
-                case SpecificEnergyUnit.CaloriePerGram: return _value*4.184e3;
-                case SpecificEnergyUnit.JoulePerKilogram: return _value;
-                case SpecificEnergyUnit.KilocaloriePerGram: return (_value*4.184e3) * 1e3d;
-                case SpecificEnergyUnit.KilojoulePerKilogram: return (_value) * 1e3d;
-                case SpecificEnergyUnit.KilowattHourPerKilogram: return (_value*3.6e3) * 1e3d;
-                case SpecificEnergyUnit.MegajoulePerKilogram: return (_value) * 1e6d;
-                case SpecificEnergyUnit.MegawattHourPerKilogram: return (_value*3.6e3) * 1e6d;
-                case SpecificEnergyUnit.WattHourPerKilogram: return _value*3.6e3;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(SpecificEnergyUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

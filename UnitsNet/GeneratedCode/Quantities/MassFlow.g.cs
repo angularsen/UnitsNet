@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          MassFlow(double numericValue, MassFlowUnit unit)
+        MassFlow(double numericValue, MassFlowUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -815,7 +815,7 @@ namespace UnitsNet
 #endif
         int CompareTo(MassFlow other)
         {
-            return AsBaseUnitGramsPerSecond().CompareTo(other.AsBaseUnitGramsPerSecond());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -863,7 +863,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitGramsPerSecond().Equals(((MassFlow) obj).AsBaseUnitGramsPerSecond());
+            return AsBaseUnit().Equals(((MassFlow) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -876,7 +876,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(MassFlow other, MassFlow maxError)
         {
-            return Math.Abs(AsBaseUnitGramsPerSecond() - other.AsBaseUnitGramsPerSecond()) <= maxError.AsBaseUnitGramsPerSecond();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -894,14 +894,50 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(MassFlowUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case MassFlowUnit.CentigramPerSecond: return (_value) * 1e-2d;
+                case MassFlowUnit.DecagramPerSecond: return (_value) * 1e1d;
+                case MassFlowUnit.DecigramPerSecond: return (_value) * 1e-1d;
+                case MassFlowUnit.GramPerSecond: return _value;
+                case MassFlowUnit.HectogramPerSecond: return (_value) * 1e2d;
+                case MassFlowUnit.KilogramPerHour: return _value/3.6;
+                case MassFlowUnit.KilogramPerSecond: return (_value) * 1e3d;
+                case MassFlowUnit.MegapoundPerHour: return (_value/7.93664) * 1e6d;
+                case MassFlowUnit.MicrogramPerSecond: return (_value) * 1e-6d;
+                case MassFlowUnit.MilligramPerSecond: return (_value) * 1e-3d;
+                case MassFlowUnit.NanogramPerSecond: return (_value) * 1e-9d;
+                case MassFlowUnit.PoundPerHour: return _value/7.93664;
+                case MassFlowUnit.ShortTonPerHour: return _value*251.9957611;
+                case MassFlowUnit.TonnePerDay: return _value/0.0864000;
+                case MassFlowUnit.TonnePerHour: return 1000*_value/3.6;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitGramsPerSecond();
+        private double AsBaseNumericType(MassFlowUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case MassFlowUnit.CentigramPerSecond: return (baseUnitValue) / 1e-2d;
                 case MassFlowUnit.DecagramPerSecond: return (baseUnitValue) / 1e1d;
@@ -918,9 +954,8 @@ namespace UnitsNet
                 case MassFlowUnit.ShortTonPerHour: return baseUnitValue/251.9957611;
                 case MassFlowUnit.TonnePerDay: return baseUnitValue*0.0864000;
                 case MassFlowUnit.TonnePerHour: return baseUnitValue*3.6/1000;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1269,40 +1304,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of MassFlow
         /// </summary>
         public static MassFlow MinValue => new MassFlow(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitGramsPerSecond()
-        {
-            if (Unit == MassFlowUnit.GramPerSecond) { return _value; }
-
-            switch (Unit)
-            {
-                case MassFlowUnit.CentigramPerSecond: return (_value) * 1e-2d;
-                case MassFlowUnit.DecagramPerSecond: return (_value) * 1e1d;
-                case MassFlowUnit.DecigramPerSecond: return (_value) * 1e-1d;
-                case MassFlowUnit.GramPerSecond: return _value;
-                case MassFlowUnit.HectogramPerSecond: return (_value) * 1e2d;
-                case MassFlowUnit.KilogramPerHour: return _value/3.6;
-                case MassFlowUnit.KilogramPerSecond: return (_value) * 1e3d;
-                case MassFlowUnit.MegapoundPerHour: return (_value/7.93664) * 1e6d;
-                case MassFlowUnit.MicrogramPerSecond: return (_value) * 1e-6d;
-                case MassFlowUnit.MilligramPerSecond: return (_value) * 1e-3d;
-                case MassFlowUnit.NanogramPerSecond: return (_value) * 1e-9d;
-                case MassFlowUnit.PoundPerHour: return _value/7.93664;
-                case MassFlowUnit.ShortTonPerHour: return _value*251.9957611;
-                case MassFlowUnit.TonnePerDay: return _value/0.0864000;
-                case MassFlowUnit.TonnePerHour: return 1000*_value/3.6;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(MassFlowUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

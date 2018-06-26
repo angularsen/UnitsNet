@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Mass(double numericValue, MassUnit unit)
+        Mass(double numericValue, MassUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1013,7 +1013,7 @@ namespace UnitsNet
 #endif
         int CompareTo(Mass other)
         {
-            return AsBaseUnitKilograms().CompareTo(other.AsBaseUnitKilograms());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -1061,7 +1061,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitKilograms().Equals(((Mass) obj).AsBaseUnitKilograms());
+            return AsBaseUnit().Equals(((Mass) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -1074,7 +1074,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Mass other, Mass maxError)
         {
-            return Math.Abs(AsBaseUnitKilograms() - other.AsBaseUnitKilograms()) <= maxError.AsBaseUnitKilograms();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -1092,14 +1092,56 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(MassUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case MassUnit.Centigram: return (_value/1e3) * 1e-2d;
+                case MassUnit.Decagram: return (_value/1e3) * 1e1d;
+                case MassUnit.Decigram: return (_value/1e3) * 1e-1d;
+                case MassUnit.Gram: return _value/1e3;
+                case MassUnit.Hectogram: return (_value/1e3) * 1e2d;
+                case MassUnit.Kilogram: return (_value/1e3) * 1e3d;
+                case MassUnit.Kilopound: return (_value*0.45359237) * 1e3d;
+                case MassUnit.Kilotonne: return (_value*1e3) * 1e3d;
+                case MassUnit.LongHundredweight: return _value/0.01968413055222121;
+                case MassUnit.LongTon: return _value*1016.0469088;
+                case MassUnit.Megapound: return (_value*0.45359237) * 1e6d;
+                case MassUnit.Megatonne: return (_value*1e3) * 1e6d;
+                case MassUnit.Microgram: return (_value/1e3) * 1e-6d;
+                case MassUnit.Milligram: return (_value/1e3) * 1e-3d;
+                case MassUnit.Nanogram: return (_value/1e3) * 1e-9d;
+                case MassUnit.Ounce: return _value/35.2739619;
+                case MassUnit.Pound: return _value*0.45359237;
+                case MassUnit.ShortHundredweight: return _value/0.022046226218487758;
+                case MassUnit.ShortTon: return _value*907.18474;
+                case MassUnit.Stone: return _value/0.1574731728702698;
+                case MassUnit.Tonne: return _value*1e3;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitKilograms();
+        private double AsBaseNumericType(MassUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case MassUnit.Centigram: return (baseUnitValue*1e3) / 1e-2d;
                 case MassUnit.Decagram: return (baseUnitValue*1e3) / 1e1d;
@@ -1122,9 +1164,8 @@ namespace UnitsNet
                 case MassUnit.ShortTon: return baseUnitValue/907.18474;
                 case MassUnit.Stone: return baseUnitValue*0.1574731728702698;
                 case MassUnit.Tonne: return baseUnitValue/1e3;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1473,46 +1514,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Mass
         /// </summary>
         public static Mass MinValue => new Mass(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitKilograms()
-        {
-            if (Unit == MassUnit.Kilogram) { return _value; }
-
-            switch (Unit)
-            {
-                case MassUnit.Centigram: return (_value/1e3) * 1e-2d;
-                case MassUnit.Decagram: return (_value/1e3) * 1e1d;
-                case MassUnit.Decigram: return (_value/1e3) * 1e-1d;
-                case MassUnit.Gram: return _value/1e3;
-                case MassUnit.Hectogram: return (_value/1e3) * 1e2d;
-                case MassUnit.Kilogram: return (_value/1e3) * 1e3d;
-                case MassUnit.Kilopound: return (_value*0.45359237) * 1e3d;
-                case MassUnit.Kilotonne: return (_value*1e3) * 1e3d;
-                case MassUnit.LongHundredweight: return _value/0.01968413055222121;
-                case MassUnit.LongTon: return _value*1016.0469088;
-                case MassUnit.Megapound: return (_value*0.45359237) * 1e6d;
-                case MassUnit.Megatonne: return (_value*1e3) * 1e6d;
-                case MassUnit.Microgram: return (_value/1e3) * 1e-6d;
-                case MassUnit.Milligram: return (_value/1e3) * 1e-3d;
-                case MassUnit.Nanogram: return (_value/1e3) * 1e-9d;
-                case MassUnit.Ounce: return _value/35.2739619;
-                case MassUnit.Pound: return _value*0.45359237;
-                case MassUnit.ShortHundredweight: return _value/0.022046226218487758;
-                case MassUnit.ShortTon: return _value*907.18474;
-                case MassUnit.Stone: return _value/0.1574731728702698;
-                case MassUnit.Tonne: return _value*1e3;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(MassUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

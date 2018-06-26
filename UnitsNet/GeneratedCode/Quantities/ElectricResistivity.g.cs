@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          ElectricResistivity(double numericValue, ElectricResistivityUnit unit)
+        ElectricResistivity(double numericValue, ElectricResistivityUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -452,7 +452,7 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricResistivity other)
         {
-            return AsBaseUnitOhmMeters().CompareTo(other.AsBaseUnitOhmMeters());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -500,7 +500,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitOhmMeters().Equals(((ElectricResistivity) obj).AsBaseUnitOhmMeters());
+            return AsBaseUnit().Equals(((ElectricResistivity) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -513,7 +513,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ElectricResistivity other, ElectricResistivity maxError)
         {
-            return Math.Abs(AsBaseUnitOhmMeters() - other.AsBaseUnitOhmMeters()) <= maxError.AsBaseUnitOhmMeters();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -531,22 +531,46 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricResistivityUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case ElectricResistivityUnit.MicroohmMeter: return (_value) * 1e-6d;
+                case ElectricResistivityUnit.MilliohmMeter: return (_value) * 1e-3d;
+                case ElectricResistivityUnit.NanoohmMeter: return (_value) * 1e-9d;
+                case ElectricResistivityUnit.OhmMeter: return _value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitOhmMeters();
+        private double AsBaseNumericType(ElectricResistivityUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case ElectricResistivityUnit.MicroohmMeter: return (baseUnitValue) / 1e-6d;
                 case ElectricResistivityUnit.MilliohmMeter: return (baseUnitValue) / 1e-3d;
                 case ElectricResistivityUnit.NanoohmMeter: return (baseUnitValue) / 1e-9d;
                 case ElectricResistivityUnit.OhmMeter: return baseUnitValue;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -895,29 +919,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of ElectricResistivity
         /// </summary>
         public static ElectricResistivity MinValue => new ElectricResistivity(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitOhmMeters()
-        {
-            if (Unit == ElectricResistivityUnit.OhmMeter) { return _value; }
-
-            switch (Unit)
-            {
-                case ElectricResistivityUnit.MicroohmMeter: return (_value) * 1e-6d;
-                case ElectricResistivityUnit.MilliohmMeter: return (_value) * 1e-3d;
-                case ElectricResistivityUnit.NanoohmMeter: return (_value) * 1e-9d;
-                case ElectricResistivityUnit.OhmMeter: return _value;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(ElectricResistivityUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

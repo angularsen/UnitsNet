@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          ElectricAdmittance(double numericValue, ElectricAdmittanceUnit unit)
+        ElectricAdmittance(double numericValue, ElectricAdmittanceUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -452,7 +452,7 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricAdmittance other)
         {
-            return AsBaseUnitSiemens().CompareTo(other.AsBaseUnitSiemens());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -500,7 +500,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitSiemens().Equals(((ElectricAdmittance) obj).AsBaseUnitSiemens());
+            return AsBaseUnit().Equals(((ElectricAdmittance) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -513,7 +513,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ElectricAdmittance other, ElectricAdmittance maxError)
         {
-            return Math.Abs(AsBaseUnitSiemens() - other.AsBaseUnitSiemens()) <= maxError.AsBaseUnitSiemens();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -531,22 +531,46 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricAdmittanceUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case ElectricAdmittanceUnit.Microsiemens: return (_value) * 1e-6d;
+                case ElectricAdmittanceUnit.Millisiemens: return (_value) * 1e-3d;
+                case ElectricAdmittanceUnit.Nanosiemens: return (_value) * 1e-9d;
+                case ElectricAdmittanceUnit.Siemens: return _value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitSiemens();
+        private double AsBaseNumericType(ElectricAdmittanceUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case ElectricAdmittanceUnit.Microsiemens: return (baseUnitValue) / 1e-6d;
                 case ElectricAdmittanceUnit.Millisiemens: return (baseUnitValue) / 1e-3d;
                 case ElectricAdmittanceUnit.Nanosiemens: return (baseUnitValue) / 1e-9d;
                 case ElectricAdmittanceUnit.Siemens: return baseUnitValue;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -895,29 +919,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of ElectricAdmittance
         /// </summary>
         public static ElectricAdmittance MinValue => new ElectricAdmittance(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitSiemens()
-        {
-            if (Unit == ElectricAdmittanceUnit.Siemens) { return _value; }
-
-            switch (Unit)
-            {
-                case ElectricAdmittanceUnit.Microsiemens: return (_value) * 1e-6d;
-                case ElectricAdmittanceUnit.Millisiemens: return (_value) * 1e-3d;
-                case ElectricAdmittanceUnit.Nanosiemens: return (_value) * 1e-9d;
-                case ElectricAdmittanceUnit.Siemens: return _value;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(ElectricAdmittanceUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

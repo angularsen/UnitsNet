@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          BrakeSpecificFuelConsumption(double numericValue, BrakeSpecificFuelConsumptionUnit unit)
+        BrakeSpecificFuelConsumption(double numericValue, BrakeSpecificFuelConsumptionUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -419,7 +419,7 @@ namespace UnitsNet
 #endif
         int CompareTo(BrakeSpecificFuelConsumption other)
         {
-            return AsBaseUnitKilogramsPerJoule().CompareTo(other.AsBaseUnitKilogramsPerJoule());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -467,7 +467,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitKilogramsPerJoule().Equals(((BrakeSpecificFuelConsumption) obj).AsBaseUnitKilogramsPerJoule());
+            return AsBaseUnit().Equals(((BrakeSpecificFuelConsumption) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -480,7 +480,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(BrakeSpecificFuelConsumption other, BrakeSpecificFuelConsumption maxError)
         {
-            return Math.Abs(AsBaseUnitKilogramsPerJoule() - other.AsBaseUnitKilogramsPerJoule()) <= maxError.AsBaseUnitKilogramsPerJoule();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -498,21 +498,44 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(BrakeSpecificFuelConsumptionUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return _value/3.6e9;
+                case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule: return _value;
+                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return _value*1.689659410672e-7;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitKilogramsPerJoule();
+        private double AsBaseNumericType(BrakeSpecificFuelConsumptionUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return baseUnitValue*3.6e9;
                 case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule: return baseUnitValue;
                 case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return baseUnitValue/1.689659410672e-7;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -861,28 +884,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of BrakeSpecificFuelConsumption
         /// </summary>
         public static BrakeSpecificFuelConsumption MinValue => new BrakeSpecificFuelConsumption(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitKilogramsPerJoule()
-        {
-            if (Unit == BrakeSpecificFuelConsumptionUnit.KilogramPerJoule) { return _value; }
-
-            switch (Unit)
-            {
-                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return _value/3.6e9;
-                case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule: return _value;
-                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return _value*1.689659410672e-7;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(BrakeSpecificFuelConsumptionUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

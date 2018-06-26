@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          ForceChangeRate(double numericValue, ForceChangeRateUnit unit)
+        ForceChangeRate(double numericValue, ForceChangeRateUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -683,7 +683,7 @@ namespace UnitsNet
 #endif
         int CompareTo(ForceChangeRate other)
         {
-            return AsBaseUnitNewtonsPerSecond().CompareTo(other.AsBaseUnitNewtonsPerSecond());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -731,7 +731,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitNewtonsPerSecond().Equals(((ForceChangeRate) obj).AsBaseUnitNewtonsPerSecond());
+            return AsBaseUnit().Equals(((ForceChangeRate) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -744,7 +744,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(ForceChangeRate other, ForceChangeRate maxError)
         {
-            return Math.Abs(AsBaseUnitNewtonsPerSecond() - other.AsBaseUnitNewtonsPerSecond()) <= maxError.AsBaseUnitNewtonsPerSecond();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -762,14 +762,46 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ForceChangeRateUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case ForceChangeRateUnit.CentinewtonPerSecond: return (_value) * 1e-2d;
+                case ForceChangeRateUnit.DecanewtonPerMinute: return (_value/60) * 1e1d;
+                case ForceChangeRateUnit.DecanewtonPerSecond: return (_value) * 1e1d;
+                case ForceChangeRateUnit.DecinewtonPerSecond: return (_value) * 1e-1d;
+                case ForceChangeRateUnit.KilonewtonPerMinute: return (_value/60) * 1e3d;
+                case ForceChangeRateUnit.KilonewtonPerSecond: return (_value) * 1e3d;
+                case ForceChangeRateUnit.MicronewtonPerSecond: return (_value) * 1e-6d;
+                case ForceChangeRateUnit.MillinewtonPerSecond: return (_value) * 1e-3d;
+                case ForceChangeRateUnit.NanonewtonPerSecond: return (_value) * 1e-9d;
+                case ForceChangeRateUnit.NewtonPerMinute: return _value/60;
+                case ForceChangeRateUnit.NewtonPerSecond: return _value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitNewtonsPerSecond();
+        private double AsBaseNumericType(ForceChangeRateUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case ForceChangeRateUnit.CentinewtonPerSecond: return (baseUnitValue) / 1e-2d;
                 case ForceChangeRateUnit.DecanewtonPerMinute: return (baseUnitValue*60) / 1e1d;
@@ -782,9 +814,8 @@ namespace UnitsNet
                 case ForceChangeRateUnit.NanonewtonPerSecond: return (baseUnitValue) / 1e-9d;
                 case ForceChangeRateUnit.NewtonPerMinute: return baseUnitValue*60;
                 case ForceChangeRateUnit.NewtonPerSecond: return baseUnitValue;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1133,36 +1164,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of ForceChangeRate
         /// </summary>
         public static ForceChangeRate MinValue => new ForceChangeRate(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitNewtonsPerSecond()
-        {
-            if (Unit == ForceChangeRateUnit.NewtonPerSecond) { return _value; }
-
-            switch (Unit)
-            {
-                case ForceChangeRateUnit.CentinewtonPerSecond: return (_value) * 1e-2d;
-                case ForceChangeRateUnit.DecanewtonPerMinute: return (_value/60) * 1e1d;
-                case ForceChangeRateUnit.DecanewtonPerSecond: return (_value) * 1e1d;
-                case ForceChangeRateUnit.DecinewtonPerSecond: return (_value) * 1e-1d;
-                case ForceChangeRateUnit.KilonewtonPerMinute: return (_value/60) * 1e3d;
-                case ForceChangeRateUnit.KilonewtonPerSecond: return (_value) * 1e3d;
-                case ForceChangeRateUnit.MicronewtonPerSecond: return (_value) * 1e-6d;
-                case ForceChangeRateUnit.MillinewtonPerSecond: return (_value) * 1e-3d;
-                case ForceChangeRateUnit.NanonewtonPerSecond: return (_value) * 1e-9d;
-                case ForceChangeRateUnit.NewtonPerMinute: return _value/60;
-                case ForceChangeRateUnit.NewtonPerSecond: return _value;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(ForceChangeRateUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

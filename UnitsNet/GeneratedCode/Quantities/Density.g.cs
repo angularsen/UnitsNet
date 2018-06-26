@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Density(double numericValue, DensityUnit unit)
+        Density(double numericValue, DensityUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1574,7 +1574,7 @@ namespace UnitsNet
 #endif
         int CompareTo(Density other)
         {
-            return AsBaseUnitKilogramsPerCubicMeter().CompareTo(other.AsBaseUnitKilogramsPerCubicMeter());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -1622,7 +1622,7 @@ namespace UnitsNet
                 return false;
             }
 
-            return AsBaseUnitKilogramsPerCubicMeter().Equals(((Density) obj).AsBaseUnitKilogramsPerCubicMeter());
+            return AsBaseUnit().Equals(((Density) obj).AsBaseUnit());
         }
 
         /// <summary>
@@ -1635,7 +1635,7 @@ namespace UnitsNet
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
         public bool Equals(Density other, Density maxError)
         {
-            return Math.Abs(AsBaseUnitKilogramsPerCubicMeter() - other.AsBaseUnitKilogramsPerCubicMeter()) <= maxError.AsBaseUnitKilogramsPerCubicMeter();
+            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
         }
 
         public override int GetHashCode()
@@ -1653,14 +1653,73 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(DensityUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case DensityUnit.CentigramPerDeciliter: return (_value/1e-1) * 1e-2d;
+                case DensityUnit.CentigramPerLiter: return (_value/1) * 1e-2d;
+                case DensityUnit.CentigramPerMilliliter: return (_value/1e-3) * 1e-2d;
+                case DensityUnit.DecigramPerDeciliter: return (_value/1e-1) * 1e-1d;
+                case DensityUnit.DecigramPerLiter: return (_value/1) * 1e-1d;
+                case DensityUnit.DecigramPerMilliliter: return (_value/1e-3) * 1e-1d;
+                case DensityUnit.GramPerCubicCentimeter: return _value/1e-3;
+                case DensityUnit.GramPerCubicMeter: return _value/1e3;
+                case DensityUnit.GramPerCubicMillimeter: return _value/1e-6;
+                case DensityUnit.GramPerDeciliter: return _value/1e-1;
+                case DensityUnit.GramPerLiter: return _value/1;
+                case DensityUnit.GramPerMilliliter: return _value/1e-3;
+                case DensityUnit.KilogramPerCubicCentimeter: return (_value/1e-3) * 1e3d;
+                case DensityUnit.KilogramPerCubicMeter: return (_value/1e3) * 1e3d;
+                case DensityUnit.KilogramPerCubicMillimeter: return (_value/1e-6) * 1e3d;
+                case DensityUnit.KilopoundPerCubicFoot: return (_value/0.062427961) * 1e3d;
+                case DensityUnit.KilopoundPerCubicInch: return (_value/3.6127298147753e-5) * 1e3d;
+                case DensityUnit.MicrogramPerDeciliter: return (_value/1e-1) * 1e-6d;
+                case DensityUnit.MicrogramPerLiter: return (_value/1) * 1e-6d;
+                case DensityUnit.MicrogramPerMilliliter: return (_value/1e-3) * 1e-6d;
+                case DensityUnit.MilligramPerCubicMeter: return (_value/1e3) * 1e-3d;
+                case DensityUnit.MilligramPerDeciliter: return (_value/1e-1) * 1e-3d;
+                case DensityUnit.MilligramPerLiter: return (_value/1) * 1e-3d;
+                case DensityUnit.MilligramPerMilliliter: return (_value/1e-3) * 1e-3d;
+                case DensityUnit.NanogramPerDeciliter: return (_value/1e-1) * 1e-9d;
+                case DensityUnit.NanogramPerLiter: return (_value/1) * 1e-9d;
+                case DensityUnit.NanogramPerMilliliter: return (_value/1e-3) * 1e-9d;
+                case DensityUnit.PicogramPerDeciliter: return (_value/1e-1) * 1e-12d;
+                case DensityUnit.PicogramPerLiter: return (_value/1) * 1e-12d;
+                case DensityUnit.PicogramPerMilliliter: return (_value/1e-3) * 1e-12d;
+                case DensityUnit.PoundPerCubicFoot: return _value/0.062427961;
+                case DensityUnit.PoundPerCubicInch: return _value/3.6127298147753e-5;
+                case DensityUnit.PoundPerImperialGallon: return _value*9.9776398e1;
+                case DensityUnit.PoundPerUSGallon: return _value*1.19826427e2;
+                case DensityUnit.SlugPerCubicFoot: return _value*515.378818;
+                case DensityUnit.TonnePerCubicCentimeter: return _value/1e-9;
+                case DensityUnit.TonnePerCubicMeter: return _value/0.001;
+                case DensityUnit.TonnePerCubicMillimeter: return _value/1e-12;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitKilogramsPerCubicMeter();
+        private double AsBaseNumericType(DensityUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case DensityUnit.CentigramPerDeciliter: return (baseUnitValue*1e-1) / 1e-2d;
                 case DensityUnit.CentigramPerLiter: return (baseUnitValue*1) / 1e-2d;
@@ -1700,9 +1759,8 @@ namespace UnitsNet
                 case DensityUnit.TonnePerCubicCentimeter: return baseUnitValue*1e-9;
                 case DensityUnit.TonnePerCubicMeter: return baseUnitValue*0.001;
                 case DensityUnit.TonnePerCubicMillimeter: return baseUnitValue*1e-12;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -2051,63 +2109,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Density
         /// </summary>
         public static Density MinValue => new Density(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitKilogramsPerCubicMeter()
-        {
-            if (Unit == DensityUnit.KilogramPerCubicMeter) { return _value; }
-
-            switch (Unit)
-            {
-                case DensityUnit.CentigramPerDeciliter: return (_value/1e-1) * 1e-2d;
-                case DensityUnit.CentigramPerLiter: return (_value/1) * 1e-2d;
-                case DensityUnit.CentigramPerMilliliter: return (_value/1e-3) * 1e-2d;
-                case DensityUnit.DecigramPerDeciliter: return (_value/1e-1) * 1e-1d;
-                case DensityUnit.DecigramPerLiter: return (_value/1) * 1e-1d;
-                case DensityUnit.DecigramPerMilliliter: return (_value/1e-3) * 1e-1d;
-                case DensityUnit.GramPerCubicCentimeter: return _value/1e-3;
-                case DensityUnit.GramPerCubicMeter: return _value/1e3;
-                case DensityUnit.GramPerCubicMillimeter: return _value/1e-6;
-                case DensityUnit.GramPerDeciliter: return _value/1e-1;
-                case DensityUnit.GramPerLiter: return _value/1;
-                case DensityUnit.GramPerMilliliter: return _value/1e-3;
-                case DensityUnit.KilogramPerCubicCentimeter: return (_value/1e-3) * 1e3d;
-                case DensityUnit.KilogramPerCubicMeter: return (_value/1e3) * 1e3d;
-                case DensityUnit.KilogramPerCubicMillimeter: return (_value/1e-6) * 1e3d;
-                case DensityUnit.KilopoundPerCubicFoot: return (_value/0.062427961) * 1e3d;
-                case DensityUnit.KilopoundPerCubicInch: return (_value/3.6127298147753e-5) * 1e3d;
-                case DensityUnit.MicrogramPerDeciliter: return (_value/1e-1) * 1e-6d;
-                case DensityUnit.MicrogramPerLiter: return (_value/1) * 1e-6d;
-                case DensityUnit.MicrogramPerMilliliter: return (_value/1e-3) * 1e-6d;
-                case DensityUnit.MilligramPerCubicMeter: return (_value/1e3) * 1e-3d;
-                case DensityUnit.MilligramPerDeciliter: return (_value/1e-1) * 1e-3d;
-                case DensityUnit.MilligramPerLiter: return (_value/1) * 1e-3d;
-                case DensityUnit.MilligramPerMilliliter: return (_value/1e-3) * 1e-3d;
-                case DensityUnit.NanogramPerDeciliter: return (_value/1e-1) * 1e-9d;
-                case DensityUnit.NanogramPerLiter: return (_value/1) * 1e-9d;
-                case DensityUnit.NanogramPerMilliliter: return (_value/1e-3) * 1e-9d;
-                case DensityUnit.PicogramPerDeciliter: return (_value/1e-1) * 1e-12d;
-                case DensityUnit.PicogramPerLiter: return (_value/1) * 1e-12d;
-                case DensityUnit.PicogramPerMilliliter: return (_value/1e-3) * 1e-12d;
-                case DensityUnit.PoundPerCubicFoot: return _value/0.062427961;
-                case DensityUnit.PoundPerCubicInch: return _value/3.6127298147753e-5;
-                case DensityUnit.PoundPerImperialGallon: return _value*9.9776398e1;
-                case DensityUnit.PoundPerUSGallon: return _value*1.19826427e2;
-                case DensityUnit.SlugPerCubicFoot: return _value*515.378818;
-                case DensityUnit.TonnePerCubicCentimeter: return _value/1e-9;
-                case DensityUnit.TonnePerCubicMeter: return _value/0.001;
-                case DensityUnit.TonnePerCubicMillimeter: return _value/1e-12;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(DensityUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
