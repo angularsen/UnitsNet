@@ -45,8 +45,8 @@
     {
       "SingularName": "ShortTon",
       "PluralName": "ShortTons",
-      "FromUnitToBaseFunc": "x*907.18474",
-      "FromBaseToUnitFunc": "x/907.18474",
+      "FromUnitToBaseFunc": "x*9.0718474e2",
+      "FromBaseToUnitFunc": "x/9.0718474e2",
       "XmlDocSummary": "The short ton is a unit of mass equal to 2,000 pounds (907.18474 kg), that is most commonly used in the United States – known there simply as the ton.",
       "XmlDocRemarks": "http://en.wikipedia.org/wiki/Short_ton",
       "Localization": [
@@ -63,8 +63,8 @@
     {
       "SingularName": "LongTon",
       "PluralName": "LongTons",
-      "FromUnitToBaseFunc": "x*1016.0469088",
-      "FromBaseToUnitFunc": "x/1016.0469088",
+      "FromUnitToBaseFunc": "x*1.0160469088e3",
+      "FromBaseToUnitFunc": "x/1.0160469088e3",
       "XmlDocSummary": "Long ton (weight ton or Imperial ton) is a unit of mass equal to 2,240 pounds (1,016 kg) and is the name for the unit called the \"ton\" in the avoirdupois or Imperial system of measurements that was used in the United Kingdom and several other Commonwealth countries before metrication.",
       "XmlDocRemarks": "http://en.wikipedia.org/wiki/Long_ton",
       "Localization": [

@@ -42,11 +42,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilotonnesInOneKilogram => 1E-6;
 
-        protected override double LongTonsInOneKilogram => 0.000984207;
+        protected override double LongTonsInOneKilogram => 9.842065276110606e-4;
 
         protected override double MegapoundsInOneKilogram => 2.2046226218487757e-6;
 
-        protected override double MegatonnesInOneKilogram => 1E-6;
+        protected override double MegatonnesInOneKilogram => 1E-9;
 
         protected override double MicrogramsInOneKilogram => 1E9;
 
@@ -60,7 +60,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsInOneKilogram => 2.2046226218487757d;
 
-        protected override double ShortTonsInOneKilogram => 0.00110231;
+        protected override double ShortTonsInOneKilogram => 1.102311310924388e-3;
 
         protected override double StoneInOneKilogram => 0.1574731728702698;
 

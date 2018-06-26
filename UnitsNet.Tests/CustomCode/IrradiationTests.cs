@@ -48,8 +48,8 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double JoulesPerSquareMeterInOneJoulePerSquareMeter => 1;
 
-        protected override double WattHoursPerSquareMeterInOneJoulePerSquareMeter => 2.78E-04;
+        protected override double WattHoursPerSquareMeterInOneJoulePerSquareMeter => 2.777777777777778e-4;
 
-        protected override double KilowattHoursPerSquareMeterInOneJoulePerSquareMeter => 2.78E-07;
+        protected override double KilowattHoursPerSquareMeterInOneJoulePerSquareMeter => 2.777777777777778e-7;
     }
 }

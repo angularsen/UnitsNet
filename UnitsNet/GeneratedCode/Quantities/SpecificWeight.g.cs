@@ -906,14 +906,14 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator ==(SpecificWeight left, SpecificWeight right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator !=(SpecificWeight left, SpecificWeight right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -921,15 +921,65 @@ namespace UnitsNet
         }
 #endif
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)
         {
-            if (obj == null || GetType() != obj.GetType())
-            {
+            if(obj is null || !(obj is SpecificWeight))
                 return false;
-            }
 
-            return AsBaseUnitNewtonsPerCubicMeter().Equals(((SpecificWeight) obj).AsBaseUnitNewtonsPerCubicMeter());
+            var objQuantity = (SpecificWeight)obj;
+            return _value.Equals(objQuantity.AsBaseNumericType(this.Unit));
+        }
+
+        /// <summary>
+        ///     <para>
+        ///     Compare equality to another SpecificWeight within the given absolute or relative tolerance.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
+        ///     this quantity's value to be considered equal.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        ///     </para>
+        /// </summary>
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(SpecificWeight other, double tolerance, ComparisonType comparisonType)
+        {
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
+
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -940,9 +990,10 @@ namespace UnitsNet
         /// <param name="other">Other quantity to compare to.</param>
         /// <param name="maxError">Max error allowed.</param>
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        [Obsolete("Please use the Equals(SpecificWeight, double, ComparisonType) overload. This method will be removed in a future version.")]
         public bool Equals(SpecificWeight other, SpecificWeight maxError)
         {
-            return Math.Abs(AsBaseUnitNewtonsPerCubicMeter() - other.AsBaseUnitNewtonsPerCubicMeter()) <= maxError.AsBaseUnitNewtonsPerCubicMeter();
+            return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         public override int GetHashCode()
@@ -969,23 +1020,23 @@ namespace UnitsNet
 
             switch (unit)
             {
-                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return baseUnitValue*1.01971619222242E-07;
-                case SpecificWeightUnit.KilogramForcePerCubicMeter: return baseUnitValue*0.101971619222242;
-                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return baseUnitValue*1.01971619222242E-10;
+                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return baseUnitValue/9.80665e6;
+                case SpecificWeightUnit.KilogramForcePerCubicMeter: return baseUnitValue/9.80665;
+                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return baseUnitValue/9.80665e9;
                 case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (baseUnitValue*0.000001) / 1e3d;
                 case SpecificWeightUnit.KilonewtonPerCubicMeter: return (baseUnitValue) / 1e3d;
                 case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (baseUnitValue*0.000000001) / 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (baseUnitValue*0.00636587980366089) / 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (baseUnitValue*3.68395821971116E-06) / 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (baseUnitValue/1.570874638462462e2) / 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (baseUnitValue/2.714471375263134e5) / 1e3d;
                 case SpecificWeightUnit.MeganewtonPerCubicMeter: return (baseUnitValue) / 1e6d;
                 case SpecificWeightUnit.NewtonPerCubicCentimeter: return baseUnitValue*0.000001;
                 case SpecificWeightUnit.NewtonPerCubicMeter: return baseUnitValue;
                 case SpecificWeightUnit.NewtonPerCubicMillimeter: return baseUnitValue*0.000000001;
-                case SpecificWeightUnit.PoundForcePerCubicFoot: return baseUnitValue*0.00636587980366089;
-                case SpecificWeightUnit.PoundForcePerCubicInch: return baseUnitValue*3.68395821971116E-06;
-                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return baseUnitValue*1.01971619222242E-10;
-                case SpecificWeightUnit.TonneForcePerCubicMeter: return baseUnitValue*0.000101971619222242;
-                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return baseUnitValue*1.01971619222242E-13;
+                case SpecificWeightUnit.PoundForcePerCubicFoot: return baseUnitValue/1.570874638462462e2;
+                case SpecificWeightUnit.PoundForcePerCubicInch: return baseUnitValue/2.714471375263134e5;
+                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return baseUnitValue/9.80665e9;
+                case SpecificWeightUnit.TonneForcePerCubicMeter: return baseUnitValue/9.80665e3;
+                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return baseUnitValue/9.80665e12;
 
                 default:
                     throw new NotImplementedException("unit: " + unit);
@@ -1349,23 +1400,23 @@ namespace UnitsNet
 
             switch (Unit)
             {
-                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return _value*9806650.19960652;
-                case SpecificWeightUnit.KilogramForcePerCubicMeter: return _value*9.80665019960652;
-                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return _value*9806650199.60653;
+                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return _value*9.80665e6;
+                case SpecificWeightUnit.KilogramForcePerCubicMeter: return _value*9.80665;
+                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return _value*9.80665e9;
                 case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (_value*1000000) * 1e3d;
                 case SpecificWeightUnit.KilonewtonPerCubicMeter: return (_value) * 1e3d;
                 case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (_value*1000000000) * 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (_value*157.087477433193) * 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (_value*271447.161004558) * 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (_value*1.570874638462462e2) * 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (_value*2.714471375263134e5) * 1e3d;
                 case SpecificWeightUnit.MeganewtonPerCubicMeter: return (_value) * 1e6d;
                 case SpecificWeightUnit.NewtonPerCubicCentimeter: return _value*1000000;
                 case SpecificWeightUnit.NewtonPerCubicMeter: return _value;
                 case SpecificWeightUnit.NewtonPerCubicMillimeter: return _value*1000000000;
-                case SpecificWeightUnit.PoundForcePerCubicFoot: return _value*157.087477433193;
-                case SpecificWeightUnit.PoundForcePerCubicInch: return _value*271447.161004558;
-                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return _value*9806650199.60653;
-                case SpecificWeightUnit.TonneForcePerCubicMeter: return _value*9806.65019960653;
-                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return _value*9806650199606.53;
+                case SpecificWeightUnit.PoundForcePerCubicFoot: return _value*1.570874638462462e2;
+                case SpecificWeightUnit.PoundForcePerCubicInch: return _value*2.714471375263134e5;
+                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return _value*9.80665e9;
+                case SpecificWeightUnit.TonneForcePerCubicMeter: return _value*9.80665e3;
+                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return _value*9.80665e12;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
             }

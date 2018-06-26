@@ -28,7 +28,7 @@ namespace UnitsNet.Tests
     [Collection(nameof(UnitSystemFixture))]
     public partial class QuantityTests
     {
-        public class ToString
+        public class ToStringTests
         {
             [Fact]
             public void CreatedByDefaultCtor_ReturnsValueInBaseUnit()

@@ -1038,14 +1038,14 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator ==(Mass left, Mass right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator !=(Mass left, Mass right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -1053,15 +1053,65 @@ namespace UnitsNet
         }
 #endif
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)
         {
-            if (obj == null || GetType() != obj.GetType())
-            {
+            if(obj is null || !(obj is Mass))
                 return false;
-            }
 
-            return AsBaseUnitKilograms().Equals(((Mass) obj).AsBaseUnitKilograms());
+            var objQuantity = (Mass)obj;
+            return _value.Equals(objQuantity.AsBaseNumericType(this.Unit));
+        }
+
+        /// <summary>
+        ///     <para>
+        ///     Compare equality to another Mass within the given absolute or relative tolerance.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
+        ///     this quantity's value to be considered equal.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        ///     </para>
+        /// </summary>
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(Mass other, double tolerance, ComparisonType comparisonType)
+        {
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
+
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -1072,9 +1122,10 @@ namespace UnitsNet
         /// <param name="other">Other quantity to compare to.</param>
         /// <param name="maxError">Max error allowed.</param>
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        [Obsolete("Please use the Equals(Mass, double, ComparisonType) overload. This method will be removed in a future version.")]
         public bool Equals(Mass other, Mass maxError)
         {
-            return Math.Abs(AsBaseUnitKilograms() - other.AsBaseUnitKilograms()) <= maxError.AsBaseUnitKilograms();
+            return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         public override int GetHashCode()
@@ -1110,7 +1161,7 @@ namespace UnitsNet
                 case MassUnit.Kilopound: return (baseUnitValue/0.45359237) / 1e3d;
                 case MassUnit.Kilotonne: return (baseUnitValue/1e3) / 1e3d;
                 case MassUnit.LongHundredweight: return baseUnitValue*0.01968413055222121;
-                case MassUnit.LongTon: return baseUnitValue/1016.0469088;
+                case MassUnit.LongTon: return baseUnitValue/1.0160469088e3;
                 case MassUnit.Megapound: return (baseUnitValue/0.45359237) / 1e6d;
                 case MassUnit.Megatonne: return (baseUnitValue/1e3) / 1e6d;
                 case MassUnit.Microgram: return (baseUnitValue*1e3) / 1e-6d;
@@ -1119,7 +1170,7 @@ namespace UnitsNet
                 case MassUnit.Ounce: return baseUnitValue*35.2739619;
                 case MassUnit.Pound: return baseUnitValue/0.45359237;
                 case MassUnit.ShortHundredweight: return baseUnitValue*0.022046226218487758;
-                case MassUnit.ShortTon: return baseUnitValue/907.18474;
+                case MassUnit.ShortTon: return baseUnitValue/9.0718474e2;
                 case MassUnit.Stone: return baseUnitValue*0.1574731728702698;
                 case MassUnit.Tonne: return baseUnitValue/1e3;
 
@@ -1494,7 +1545,7 @@ namespace UnitsNet
                 case MassUnit.Kilopound: return (_value*0.45359237) * 1e3d;
                 case MassUnit.Kilotonne: return (_value*1e3) * 1e3d;
                 case MassUnit.LongHundredweight: return _value/0.01968413055222121;
-                case MassUnit.LongTon: return _value*1016.0469088;
+                case MassUnit.LongTon: return _value*1.0160469088e3;
                 case MassUnit.Megapound: return (_value*0.45359237) * 1e6d;
                 case MassUnit.Megatonne: return (_value*1e3) * 1e6d;
                 case MassUnit.Microgram: return (_value/1e3) * 1e-6d;
@@ -1503,7 +1554,7 @@ namespace UnitsNet
                 case MassUnit.Ounce: return _value/35.2739619;
                 case MassUnit.Pound: return _value*0.45359237;
                 case MassUnit.ShortHundredweight: return _value/0.022046226218487758;
-                case MassUnit.ShortTon: return _value*907.18474;
+                case MassUnit.ShortTon: return _value*9.0718474e2;
                 case MassUnit.Stone: return _value/0.1574731728702698;
                 case MassUnit.Tonne: return _value*1e3;
                 default:
