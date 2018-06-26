@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static AccelerationUnit BaseUnit => AccelerationUnit.MeterPerSecondSquared;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the Acceleration quantity.
         /// </summary>
@@ -1274,5 +1284,10 @@ namespace UnitsNet
 
         /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(AccelerationUnit unit) => Convert.ToDouble(As(unit));
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Acceleration.BaseDimensions;
     }
 }

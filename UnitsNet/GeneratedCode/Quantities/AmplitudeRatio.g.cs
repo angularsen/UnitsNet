@@ -967,5 +967,6 @@ namespace UnitsNet
 
         /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(AmplitudeRatioUnit unit) => Convert.ToDouble(As(unit));
+
     }
 }

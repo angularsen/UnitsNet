@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static BrakeSpecificFuelConsumptionUnit BaseUnit => BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the BrakeSpecificFuelConsumption quantity.
         /// </summary>
@@ -924,5 +934,10 @@ namespace UnitsNet
 
         /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(BrakeSpecificFuelConsumptionUnit unit) => Convert.ToDouble(As(unit));
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => BrakeSpecificFuelConsumption.BaseDimensions;
     }
 }

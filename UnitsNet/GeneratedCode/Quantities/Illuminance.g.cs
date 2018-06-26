@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static IlluminanceUnit BaseUnit => IlluminanceUnit.Lux;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the Illuminance quantity.
         /// </summary>
@@ -959,5 +969,10 @@ namespace UnitsNet
 
         /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(IlluminanceUnit unit) => Convert.ToDouble(As(unit));
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Illuminance.BaseDimensions;
     }
 }

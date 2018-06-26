@@ -1029,5 +1029,6 @@ namespace UnitsNet
 
         /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(RatioUnit unit) => Convert.ToDouble(As(unit));
+
     }
 }

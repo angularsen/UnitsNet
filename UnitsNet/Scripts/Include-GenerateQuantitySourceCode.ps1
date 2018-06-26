@@ -9,6 +9,16 @@
     $baseUnitPluralNameLower = $baseUnitPluralName.ToLowerInvariant()
     $unitEnumName = "$quantityName" + "Unit"
 
+    # Base dimensions
+    $baseDimensions = $quantity.BaseDimensions;
+    $baseDimensionLength = if($baseDimensions.L){$baseDimensions.L} else{0};
+    $baseDimensionMass = if($baseDimensions.M){$baseDimensions.M} else{0};
+    $baseDimensionTime = if($baseDimensions.T){$baseDimensions.T} else{0};
+    $baseDimensionElectricCurrent = if($baseDimensions.I){$baseDimensions.I} else{0};
+    $baseDimensionTemperature = if($baseDimensions.Θ){$baseDimensions.Θ} else{0};
+    $baseDimensionAmountOfSubstance = if($baseDimensions.N){$baseDimensions.N} else{0};
+    $baseDimensionLuminousIntensity = if($baseDimensions.J){$baseDimensions.J} else{0};
+
     $convertToBaseType = switch ($baseType) {
       "long" { "Convert.ToInt64"; break }
       "double" { "Convert.ToDouble"; break }
@@ -189,6 +199,23 @@ namespace UnitsNet
         /// </summary>
         public static $unitEnumName BaseUnit => $unitEnumName.$baseUnitSingularName;
 
+"@; 
+    if($baseDimensions)
+    {
+@"
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions($baseDimensionLength, $baseDimensionMass, $baseDimensionTime, $baseDimensionElectricCurrent, $baseDimensionTemperature, $baseDimensionAmountOfSubstance, $baseDimensionLuminousIntensity);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
+"@; 
+    }
+@"
         /// <summary>
         ///     All units of measurement for the $quantityName quantity.
         /// </summary>
@@ -910,6 +937,18 @@ namespace UnitsNet
 
         /// <summary>Convenience method for working with internal numeric type.</summary>
         private $baseType AsBaseNumericType($unitEnumName unit) => $convertToBaseType(As(unit));
+
+"@;
+if($baseDimensions)
+{
+@"
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => $quantityName.BaseDimensions;
+"@;
+}
+@"
     }
 }
 "@;

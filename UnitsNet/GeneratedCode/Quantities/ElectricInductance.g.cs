@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static ElectricInductanceUnit BaseUnit => ElectricInductanceUnit.Henry;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(2, 1, -2, -2, 0, 0, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the ElectricInductance quantity.
         /// </summary>
@@ -854,5 +864,10 @@ namespace UnitsNet
 
         /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ElectricInductanceUnit unit) => Convert.ToDouble(As(unit));
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => ElectricInductance.BaseDimensions;
     }
 }

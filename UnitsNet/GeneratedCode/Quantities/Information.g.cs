@@ -1726,5 +1726,6 @@ namespace UnitsNet
 
         /// <summary>Convenience method for working with internal numeric type.</summary>
         private decimal AsBaseNumericType(InformationUnit unit) => Convert.ToDecimal(As(unit));
+
     }
 }

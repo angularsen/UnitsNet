@@ -1,8 +1,13 @@
-{
+﻿{
   "Name": "Power",
   "BaseUnit": "Watt",
   "BaseType": "decimal",
   "XmlDoc": "In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -3
+  },
   "Units": [
     {
       "SingularName": "Watt",

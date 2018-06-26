@@ -158,6 +158,16 @@ namespace UnitsNet
         /// </summary>
         public static VolumeFlowUnit BaseUnit => VolumeFlowUnit.CubicMeterPerSecond;
 
+        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get{ return _baseDimensions; }
+        }
+
         /// <summary>
         ///     All units of measurement for the VolumeFlow quantity.
         /// </summary>
@@ -1659,5 +1669,10 @@ namespace UnitsNet
 
         /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(VolumeFlowUnit unit) => Convert.ToDouble(As(unit));
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => VolumeFlow.BaseDimensions;
     }
 }

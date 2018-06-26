@@ -1387,5 +1387,6 @@ namespace UnitsNet
 
         /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(TemperatureDeltaUnit unit) => Convert.ToDouble(As(unit));
+
     }
 }

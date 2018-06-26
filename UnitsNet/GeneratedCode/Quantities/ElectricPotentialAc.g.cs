@@ -994,5 +994,6 @@ namespace UnitsNet
 
         /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(ElectricPotentialAcUnit unit) => Convert.ToDouble(As(unit));
+
     }
 }
