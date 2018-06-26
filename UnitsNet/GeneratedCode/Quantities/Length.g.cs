@@ -1093,7 +1093,7 @@ namespace UnitsNet
                 return false;
 
             var objQuantity = (Length)obj;
-            return this.Value.Equals(objQuantity.AsBaseNumericType(this.Unit));
+            return _value.Equals(objQuantity.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
@@ -1158,7 +1158,7 @@ namespace UnitsNet
         [Obsolete("Please use the Equals(Length, double, ComparisonType) overload. This method will be removed in a future version.")]
         public bool Equals(Length other, Length maxError)
         {
-            return Math.Abs(this.Value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
+            return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         public override int GetHashCode()

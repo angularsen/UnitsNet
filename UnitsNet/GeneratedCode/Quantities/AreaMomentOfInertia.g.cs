@@ -565,7 +565,7 @@ namespace UnitsNet
                 return false;
 
             var objQuantity = (AreaMomentOfInertia)obj;
-            return this.Value.Equals(objQuantity.AsBaseNumericType(this.Unit));
+            return _value.Equals(objQuantity.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
@@ -630,7 +630,7 @@ namespace UnitsNet
         [Obsolete("Please use the Equals(AreaMomentOfInertia, double, ComparisonType) overload. This method will be removed in a future version.")]
         public bool Equals(AreaMomentOfInertia other, AreaMomentOfInertia maxError)
         {
-            return Math.Abs(this.Value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
+            return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         public override int GetHashCode()
