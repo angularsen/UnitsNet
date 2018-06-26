@@ -35,7 +35,7 @@
 
     $obsoleteEqualityIfDouble = ''
     if ($quantity.BaseType -eq "double") {
-      $obsoleteEqualityIfDouble = '[Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]' + "`n        "
+      $obsoleteEqualityIfDouble = '[Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]' + "`r`n        "
     }
 
 @"
@@ -410,8 +410,8 @@ namespace UnitsNet
 
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException("obj");
-            if(!(obj is $quantityName)) throw new ArgumentException("Expected type $quantityName.", "obj");
+            if(obj is null) throw new ArgumentNullException(nameof(obj));
+            if(!(obj is $quantityName)) throw new ArgumentException("Expected type $quantityName.", nameof(obj));
 
             return CompareTo(($quantityName)obj);
         }
@@ -585,7 +585,7 @@ namespace UnitsNet
             [CanBeNull] IFormatProvider provider)
 #endif
         {
-            if (str == null) throw new ArgumentNullException("str");
+            if (str == null) throw new ArgumentNullException(nameof(str));
 
 #if WINDOWS_UWP
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -713,7 +713,7 @@ namespace UnitsNet
 #endif
         static $unitEnumName ParseUnit(string str, IFormatProvider provider = null)
         {
-            if (str == null) throw new ArgumentNullException("str");
+            if (str == null) throw new ArgumentNullException(nameof(str));
 
             var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<$unitEnumName>(str.Trim());

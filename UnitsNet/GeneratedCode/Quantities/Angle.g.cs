@@ -759,8 +759,8 @@ namespace UnitsNet
 
         public int CompareTo(object obj)
         {
-            if(obj is null) throw new ArgumentNullException("obj");
-            if(!(obj is Angle)) throw new ArgumentException("Expected type Angle.", "obj");
+            if(obj is null) throw new ArgumentNullException(nameof(obj));
+            if(!(obj is Angle)) throw new ArgumentException("Expected type Angle.", nameof(obj));
 
             return CompareTo((Angle)obj);
         }
@@ -947,7 +947,7 @@ namespace UnitsNet
             [CanBeNull] IFormatProvider provider)
 #endif
         {
-            if (str == null) throw new ArgumentNullException("str");
+            if (str == null) throw new ArgumentNullException(nameof(str));
 
 #if WINDOWS_UWP
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -1075,7 +1075,7 @@ namespace UnitsNet
 #endif
         static AngleUnit ParseUnit(string str, IFormatProvider provider = null)
         {
-            if (str == null) throw new ArgumentNullException("str");
+            if (str == null) throw new ArgumentNullException(nameof(str));
 
             var unitSystem = UnitSystem.GetCached(provider);
             var unit = unitSystem.Parse<AngleUnit>(str.Trim());
