@@ -103,8 +103,8 @@
     {
       "SingularName": "ThermEc",
       "PluralName": "ThermsEc",
-      "FromUnitToBaseFunc": "x*105505585.262",
-      "FromBaseToUnitFunc": "x/105505585.262",
+      "FromUnitToBaseFunc": "x*1.05505585262e8",
+      "FromBaseToUnitFunc": "x/1.05505585262e8",
       "Prefixes": [ "Deca" ],
       "Localization": [
         {
@@ -122,8 +122,8 @@
     {
       "SingularName": "ThermUs",
       "PluralName": "ThermsUs",
-      "FromUnitToBaseFunc": "x*1.054804e+8",
-      "FromBaseToUnitFunc": "x/1.054804e+8",
+      "FromUnitToBaseFunc": "x*1.054804e8",
+      "FromBaseToUnitFunc": "x/1.054804e8",
       "Prefixes": [ "Deca" ],
       "Localization": [
         {
@@ -141,8 +141,8 @@
     {
       "SingularName": "ThermImperial",
       "PluralName": "ThermsImperial",
-      "FromUnitToBaseFunc": "x*1.05505585257348e+14",
-      "FromBaseToUnitFunc": "x/1.05505585257348e+14",
+      "FromUnitToBaseFunc": "x*1.05505585257348e8",
+      "FromBaseToUnitFunc": "x/1.05505585257348e8",
       "Prefixes": [ "Deca" ],
       "Localization": [
         {

@@ -41,7 +41,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsForceInOneNewton => 0.22481;
 
-        protected override double TonnesForceInOneNewton => 1.02e-4;
+        protected override double TonnesForceInOneNewton => 1.019716212977928e-4;
 
         [Fact]
         public void ForceDividedByAreaEqualsPressure()

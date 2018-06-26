@@ -52,7 +52,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ArcsecondsInOneDegree => 3600.0;
 
-        protected override double RevolutionsInOneDegree => 2.77E-3;
+        protected override double RevolutionsInOneDegree => 2.777777777777777e-3;
 
         [Fact]
         public void AngleDividedByDurationEqualsRotationalSpeed()

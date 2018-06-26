@@ -1600,14 +1600,14 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator ==(Pressure left, Pressure right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator !=(Pressure left, Pressure right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -1615,15 +1615,65 @@ namespace UnitsNet
         }
 #endif
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)
         {
-            if (obj == null || GetType() != obj.GetType())
-            {
+            if(obj is null || !(obj is Pressure))
                 return false;
-            }
 
-            return AsBaseUnit().Equals(((Pressure) obj).AsBaseUnit());
+            var objQuantity = (Pressure)obj;
+            return _value.Equals(objQuantity.AsBaseNumericType(this.Unit));
+        }
+
+        /// <summary>
+        ///     <para>
+        ///     Compare equality to another Pressure within the given absolute or relative tolerance.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
+        ///     this quantity's value to be considered equal.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        ///     </para>
+        /// </summary>
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(Pressure other, double tolerance, ComparisonType comparisonType)
+        {
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
+
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -1634,9 +1684,10 @@ namespace UnitsNet
         /// <param name="other">Other quantity to compare to.</param>
         /// <param name="maxError">Max error allowed.</param>
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        [Obsolete("Please use the Equals(Pressure, double, ComparisonType) overload. This method will be removed in a future version.")]
         public bool Equals(Pressure other, Pressure maxError)
         {
-            return Math.Abs(AsBaseUnit() - other.AsBaseUnit()) <= maxError.AsBaseUnit();
+            return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         public override int GetHashCode()
@@ -1680,15 +1731,15 @@ namespace UnitsNet
                 case PressureUnit.Hectopascal: return (_value) * 1e2d;
                 case PressureUnit.InchOfMercury: return _value/2.95299830714159e-4;
                 case PressureUnit.Kilobar: return (_value*1e5) * 1e3d;
-                case PressureUnit.KilogramForcePerSquareCentimeter: return _value*9.80665*1e4;
+                case PressureUnit.KilogramForcePerSquareCentimeter: return _value*9.80665e4;
                 case PressureUnit.KilogramForcePerSquareMeter: return _value*9.80665019960652;
-                case PressureUnit.KilogramForcePerSquareMillimeter: return _value*9806650.19960652;
+                case PressureUnit.KilogramForcePerSquareMillimeter: return _value*9.80665e6;
                 case PressureUnit.KilonewtonPerSquareCentimeter: return (_value*1e4) * 1e3d;
                 case PressureUnit.KilonewtonPerSquareMeter: return (_value) * 1e3d;
                 case PressureUnit.KilonewtonPerSquareMillimeter: return (_value*1e6) * 1e3d;
                 case PressureUnit.Kilopascal: return (_value) * 1e3d;
-                case PressureUnit.KilopoundForcePerSquareFoot: return (_value*47.8802631216372) * 1e3d;
-                case PressureUnit.KilopoundForcePerSquareInch: return (_value*6894.75729316836) * 1e3d;
+                case PressureUnit.KilopoundForcePerSquareFoot: return (_value*4.788025898033584e1) * 1e3d;
+                case PressureUnit.KilopoundForcePerSquareInch: return (_value*6.894757293168361e3) * 1e3d;
                 case PressureUnit.Megabar: return (_value*1e5) * 1e6d;
                 case PressureUnit.MeganewtonPerSquareMeter: return (_value) * 1e6d;
                 case PressureUnit.Megapascal: return (_value) * 1e6d;
@@ -1700,13 +1751,13 @@ namespace UnitsNet
                 case PressureUnit.NewtonPerSquareMeter: return _value;
                 case PressureUnit.NewtonPerSquareMillimeter: return _value*1e6;
                 case PressureUnit.Pascal: return _value;
-                case PressureUnit.PoundForcePerSquareFoot: return _value*47.8802631216372;
-                case PressureUnit.PoundForcePerSquareInch: return _value*6894.75729316836;
-                case PressureUnit.Psi: return _value*6.89464975179*1e3;
+                case PressureUnit.PoundForcePerSquareFoot: return _value*4.788025898033584e1;
+                case PressureUnit.PoundForcePerSquareInch: return _value*6.894757293168361e3;
+                case PressureUnit.Psi: return _value*6.894757293168361e3;
                 case PressureUnit.TechnicalAtmosphere: return _value*9.80680592331*1e4;
-                case PressureUnit.TonneForcePerSquareCentimeter: return _value*98066501.9960652;
-                case PressureUnit.TonneForcePerSquareMeter: return _value*9806.65019960653;
-                case PressureUnit.TonneForcePerSquareMillimeter: return _value*9806650199.60653;
+                case PressureUnit.TonneForcePerSquareCentimeter: return _value*9.80665e7;
+                case PressureUnit.TonneForcePerSquareMeter: return _value*9.80665e3;
+                case PressureUnit.TonneForcePerSquareMillimeter: return _value*9.80665e9;
                 case PressureUnit.Torr: return _value*1.3332266752*1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -1732,15 +1783,15 @@ namespace UnitsNet
                 case PressureUnit.Hectopascal: return (baseUnitValue) / 1e2d;
                 case PressureUnit.InchOfMercury: return baseUnitValue*2.95299830714159e-4;
                 case PressureUnit.Kilobar: return (baseUnitValue/1e5) / 1e3d;
-                case PressureUnit.KilogramForcePerSquareCentimeter: return baseUnitValue/(9.80665*1e4);
+                case PressureUnit.KilogramForcePerSquareCentimeter: return baseUnitValue/9.80665e4;
                 case PressureUnit.KilogramForcePerSquareMeter: return baseUnitValue*0.101971619222242;
-                case PressureUnit.KilogramForcePerSquareMillimeter: return baseUnitValue*1.01971619222242E-07;
+                case PressureUnit.KilogramForcePerSquareMillimeter: return baseUnitValue/9.80665e6;
                 case PressureUnit.KilonewtonPerSquareCentimeter: return (baseUnitValue/1e4) / 1e3d;
                 case PressureUnit.KilonewtonPerSquareMeter: return (baseUnitValue) / 1e3d;
                 case PressureUnit.KilonewtonPerSquareMillimeter: return (baseUnitValue/1e6) / 1e3d;
                 case PressureUnit.Kilopascal: return (baseUnitValue) / 1e3d;
-                case PressureUnit.KilopoundForcePerSquareFoot: return (baseUnitValue*0.020885432426709) / 1e3d;
-                case PressureUnit.KilopoundForcePerSquareInch: return (baseUnitValue*0.000145037737730209) / 1e3d;
+                case PressureUnit.KilopoundForcePerSquareFoot: return (baseUnitValue/4.788025898033584e1) / 1e3d;
+                case PressureUnit.KilopoundForcePerSquareInch: return (baseUnitValue/6.894757293168361e3) / 1e3d;
                 case PressureUnit.Megabar: return (baseUnitValue/1e5) / 1e6d;
                 case PressureUnit.MeganewtonPerSquareMeter: return (baseUnitValue) / 1e6d;
                 case PressureUnit.Megapascal: return (baseUnitValue) / 1e6d;
@@ -1752,13 +1803,13 @@ namespace UnitsNet
                 case PressureUnit.NewtonPerSquareMeter: return baseUnitValue;
                 case PressureUnit.NewtonPerSquareMillimeter: return baseUnitValue/1e6;
                 case PressureUnit.Pascal: return baseUnitValue;
-                case PressureUnit.PoundForcePerSquareFoot: return baseUnitValue*0.020885432426709;
-                case PressureUnit.PoundForcePerSquareInch: return baseUnitValue*0.000145037737730209;
-                case PressureUnit.Psi: return baseUnitValue/(6.89464975179*1e3);
+                case PressureUnit.PoundForcePerSquareFoot: return baseUnitValue/4.788025898033584e1;
+                case PressureUnit.PoundForcePerSquareInch: return baseUnitValue/6.894757293168361e3;
+                case PressureUnit.Psi: return baseUnitValue/6.894757293168361e3;
                 case PressureUnit.TechnicalAtmosphere: return baseUnitValue/(9.80680592331*1e4);
-                case PressureUnit.TonneForcePerSquareCentimeter: return baseUnitValue*1.01971619222242E-08;
-                case PressureUnit.TonneForcePerSquareMeter: return baseUnitValue*0.000101971619222242;
-                case PressureUnit.TonneForcePerSquareMillimeter: return baseUnitValue*1.01971619222242E-10;
+                case PressureUnit.TonneForcePerSquareCentimeter: return baseUnitValue/9.80665e7;
+                case PressureUnit.TonneForcePerSquareMeter: return baseUnitValue/9.80665e3;
+                case PressureUnit.TonneForcePerSquareMillimeter: return baseUnitValue/9.80665e9;
                 case PressureUnit.Torr: return baseUnitValue/(1.3332266752*1e2);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

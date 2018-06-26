@@ -55,8 +55,8 @@
     {
       "SingularName": "PoundForceInch",
       "PluralName": "PoundForceInches",
-      "FromUnitToBaseFunc": "x*0.1129848388",
-      "FromBaseToUnitFunc": "x*8.85074502580075",
+      "FromUnitToBaseFunc": "x*1.129848290276167e-1",
+      "FromBaseToUnitFunc": "x/1.129848290276167e-1",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
@@ -69,8 +69,8 @@
     {
       "SingularName": "PoundForceFoot",
       "PluralName": "PoundForceFeet",
-      "FromUnitToBaseFunc": "x*1.3558180656",
-      "FromBaseToUnitFunc": "x*0.737562085483396",
+      "FromUnitToBaseFunc": "x*1.3558179483314",
+      "FromBaseToUnitFunc": "x/1.3558179483314",
       "Prefixes": [ "Kilo", "Mega" ],
       "Localization": [
         {
