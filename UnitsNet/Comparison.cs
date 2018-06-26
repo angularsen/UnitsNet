@@ -31,17 +31,29 @@ namespace UnitsNet
         ///     </para>
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between <paramref name="referenceValue"/> and
-        ///     <paramref name="otherValue"/> as a percentage of <paramref name="referenceValue"/>. For example, a relative tolerance
-        ///     of 0.01 means the difference must be within +/- 1% of <paramref name="referenceValue"/> to be considered equal.
+        ///     <paramref name="otherValue"/> as a percentage of <paramref name="referenceValue"/>. A relative tolerance of 0.01 means the
+        ///     absolute difference of <paramref name="referenceValue"/> and <paramref name="otherValue"/> must be within +/- 1%.
+        ///     <example>
+        ///     In this example, the two values will be equal if the value of b is within +/- 1% of a.
+        ///     <code>
+        ///     Equals(a, b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
         ///     </para>
         ///     <para>
         ///     Absolute tolerance is defined as the maximum allowable absolute difference between <paramref name="referenceValue"/> and
         ///     <paramref name="otherValue"/> as a fixed number.
+        ///     <example>
+        ///     In this example, the two values will be equal if abs(<paramref name="referenceValue"/> - <paramref name="otherValue"/>) <= 0.01
+        ///     <code>
+        ///     Equals(a, b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
         ///     </para>
         /// </summary>
         /// <param name="referenceValue">The reference value. If using relative tolerance, it is the value which the relative tolerance will be calculated against.</param>
         /// <param name="otherValue">The value to compare to.</param>
-        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than 0.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">Whether the tolerance is absolute or relative.</param>
         /// <returns></returns>
         public static bool Equals(double referenceValue, double otherValue, double tolerance, ComparisonType comparisonType)
@@ -62,13 +74,21 @@ namespace UnitsNet
 
         /// <summary>
         ///     Checks if two values are equal with a given relative tolerance.
-        ///     Relative tolerance is defined as the maximum allowable difference between <paramref name="referenceValue"/> and
-        ///     <paramref name="otherValue"/> as a percentage of <paramref name="referenceValue"/>. For example, a relative tolerance
-        ///     of 0.01 means the difference must be within +/- 1% of <paramref name="referenceValue"/> to be considered equal.
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between <paramref name="referenceValue"/> and
+        ///     <paramref name="otherValue"/> as a percentage of <paramref name="referenceValue"/>. A relative tolerance of 0.01 means the
+        ///     absolute difference of <paramref name="referenceValue"/> and <paramref name="otherValue"/> must be within +/- 1%.
+        ///     <example>
+        ///     In this example, the two values will be equal if the value of b is within +/- 1% of a.
+        ///     <code>
+        ///     EqualsRelative(a, b, 0.01);
+        ///     </code>
+        ///     </example>
+        ///     </para>
         /// </summary>
         /// <param name="referenceValue">The reference value which the tolerance will be calculated against.</param>
         /// <param name="otherValue">The value to compare to.</param>
-        /// <param name="tolerance">The relative tolerance. Must be greater than 0.</param>
+        /// <param name="tolerance">The relative tolerance. Must be greater than or equal to 0.</param>
         /// <returns>True if the two values are equal within the given relative tolerance, otherwise false.</returns>
         public static bool EqualsRelative(double referenceValue, double otherValue, double tolerance)
         {
@@ -81,12 +101,20 @@ namespace UnitsNet
 
         /// <summary>
         ///     Checks if two values are equal with a given absolute tolerance.
+        ///     <para>
         ///     Absolute tolerance is defined as the maximum allowable absolute difference between <paramref name="referenceValue"/> and
         ///     <paramref name="otherValue"/> as a fixed number.
+        ///     <example>
+        ///     In this example, the two values will be equal if abs(<paramref name="referenceValue"/> - <paramref name="otherValue"/>) <= 0.01
+        ///     <code>
+        ///     Equals(a, b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
         /// </summary>
         /// <param name="value1">The first value.</param>
         /// <param name="value2">The second value.</param>
-        /// <param name="tolerance">The absolute tolerance. This is the maxinum allowable absolute difference between the two values. Must be greater than 0.</param>
+        /// <param name="tolerance">The absolute tolerance. Must be greater than or equal to 0.</param>
         /// <returns>True if the two values are equal within the given absolute tolerance, otherwise false.</returns>
         public static bool EqualsAbsolute(double value1, double value2, double tolerance)
         {

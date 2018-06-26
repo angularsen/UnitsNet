@@ -500,7 +500,7 @@ namespace UnitsNet
         ///     <para>
         ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
         ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
-        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the difference must be within +/- 1% of
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
         ///     this quantity's value to be considered equal.
         ///     <example>
         ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
@@ -530,13 +530,13 @@ namespace UnitsNet
         ///     </para>
         /// </summary>
         /// <param name="other">The other quantity to compare to.</param>
-        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than 0.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
         /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
-        /// <returns>True if the difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
         public bool Equals(ElectricAdmittance other, double tolerance, ComparisonType comparisonType)
         {
             if(tolerance < 0)
-                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0");
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
 
             double thisValue = (double)this.Value;
             double otherValueInThisUnits = other.As(this.Unit);
