@@ -472,9 +472,10 @@ namespace UnitsNet
 
         public int CompareTo(object obj)
         {
-            if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is ElectricPotential)) throw new ArgumentException("Expected type ElectricPotential.", "obj");
-            return CompareTo((ElectricPotential) obj);
+            if(obj is null) throw new ArgumentNullException("obj");
+            if(!(obj is ElectricPotential)) throw new ArgumentException("Expected type ElectricPotential.", "obj");
+
+            return CompareTo((ElectricPotential)obj);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -485,7 +486,7 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricPotential other)
         {
-            return AsBaseUnitVolts().CompareTo(other.AsBaseUnitVolts());
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx

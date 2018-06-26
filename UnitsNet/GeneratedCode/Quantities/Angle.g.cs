@@ -759,9 +759,10 @@ namespace UnitsNet
 
         public int CompareTo(object obj)
         {
-            if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is Angle)) throw new ArgumentException("Expected type Angle.", "obj");
-            return CompareTo((Angle) obj);
+            if(obj is null) throw new ArgumentNullException("obj");
+            if(!(obj is Angle)) throw new ArgumentException("Expected type Angle.", "obj");
+
+            return CompareTo((Angle)obj);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -772,7 +773,7 @@ namespace UnitsNet
 #endif
         int CompareTo(Angle other)
         {
-            return AsBaseUnitDegrees().CompareTo(other.AsBaseUnitDegrees());
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx

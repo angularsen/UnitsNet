@@ -406,9 +406,10 @@ namespace UnitsNet
 
         public int CompareTo(object obj)
         {
-            if (obj == null) throw new ArgumentNullException("obj");
-            if (!(obj is LinearDensity)) throw new ArgumentException("Expected type LinearDensity.", "obj");
-            return CompareTo((LinearDensity) obj);
+            if(obj is null) throw new ArgumentNullException("obj");
+            if(!(obj is LinearDensity)) throw new ArgumentException("Expected type LinearDensity.", "obj");
+
+            return CompareTo((LinearDensity)obj);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -419,7 +420,7 @@ namespace UnitsNet
 #endif
         int CompareTo(LinearDensity other)
         {
-            return AsBaseUnitKilogramsPerMeter().CompareTo(other.AsBaseUnitKilogramsPerMeter());
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
