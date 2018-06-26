@@ -2387,7 +2387,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) MassUnit.Pound,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "lb"),
+                                new AbbreviationsForCulture("en-US", "lb", "lbs", "lbm"),
                                 new AbbreviationsForCulture("ru-RU", "фунт"),
                             }),
                         new CulturesForEnumValue((int) MassUnit.ShortHundredweight,

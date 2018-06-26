@@ -88,7 +88,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lb" ]
+          "Abbreviations": [ "lb", "lbs", "lbm" ]
         },
         {
           "Culture": "ru-RU",
