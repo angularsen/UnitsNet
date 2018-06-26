@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Power(decimal numericValue, PowerUnit unit)
+        Power(decimal numericValue, PowerUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1089,6 +1089,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public Power AsQuantity(PowerUnit unit)
+        {
+            return new Power(_value, Unit);
         }
 
         #endregion

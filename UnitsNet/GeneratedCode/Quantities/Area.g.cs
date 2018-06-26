@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Area(double numericValue, AreaUnit unit)
+        Area(double numericValue, AreaUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -854,6 +854,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public Area AsQuantity(AreaUnit unit)
+        {
+            return new Area(_value, Unit);
         }
 
         #endregion

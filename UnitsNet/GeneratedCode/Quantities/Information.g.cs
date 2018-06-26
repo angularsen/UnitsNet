@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Information(decimal numericValue, InformationUnit unit)
+        Information(decimal numericValue, InformationUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1283,6 +1283,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public Information AsQuantity(InformationUnit unit)
+        {
+            return new Information(_value, Unit);
         }
 
         #endregion

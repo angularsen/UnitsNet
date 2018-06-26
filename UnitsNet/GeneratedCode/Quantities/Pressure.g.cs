@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Pressure(double numericValue, PressureUnit unit)
+        Pressure(double numericValue, PressureUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1705,6 +1705,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public Pressure AsQuantity(PressureUnit unit)
+        {
+            return new Pressure(_value, Unit);
         }
 
         #endregion

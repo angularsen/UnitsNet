@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Duration(double numericValue, DurationUnit unit)
+        Duration(double numericValue, DurationUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -822,6 +822,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public Duration AsQuantity(DurationUnit unit)
+        {
+            return new Duration(_value, Unit);
         }
 
         #endregion

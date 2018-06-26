@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          PowerRatio(double numericValue, PowerRatioUnit unit)
+        PowerRatio(double numericValue, PowerRatioUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -478,6 +478,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public PowerRatio AsQuantity(PowerRatioUnit unit)
+        {
+            return new PowerRatio(_value, Unit);
         }
 
         #endregion

@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Density(double numericValue, DensityUnit unit)
+        Density(double numericValue, DensityUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1704,6 +1704,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public Density AsQuantity(DensityUnit unit)
+        {
+            return new Density(_value, Unit);
         }
 
         #endregion

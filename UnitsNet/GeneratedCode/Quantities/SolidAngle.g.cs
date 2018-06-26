@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          SolidAngle(double numericValue, SolidAngleUnit unit)
+        SolidAngle(double numericValue, SolidAngleUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -436,6 +436,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public SolidAngle AsQuantity(SolidAngleUnit unit)
+        {
+            return new SolidAngle(_value, Unit);
         }
 
         #endregion

@@ -154,11 +154,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          $quantityName($baseType numericValue, $unitEnumName unit)
+        $quantityName($baseType numericValue, $unitEnumName unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -516,6 +516,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public $quantityName AsQuantity($unitEnumName unit)
+        {
+            return new $quantityName(_value, Unit);
         }
 
         #endregion

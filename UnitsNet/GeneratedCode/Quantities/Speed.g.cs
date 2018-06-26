@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Speed(double numericValue, SpeedUnit unit)
+        Speed(double numericValue, SpeedUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1500,6 +1500,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public Speed AsQuantity(SpeedUnit unit)
+        {
+            return new Speed(_value, Unit);
         }
 
         #endregion

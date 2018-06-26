@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Torque(double numericValue, TorqueUnit unit)
+        Torque(double numericValue, TorqueUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1126,6 +1126,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public Torque AsQuantity(TorqueUnit unit)
+        {
+            return new Torque(_value, Unit);
         }
 
         #endregion

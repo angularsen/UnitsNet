@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          ElectricAdmittance(double numericValue, ElectricAdmittanceUnit unit)
+        ElectricAdmittance(double numericValue, ElectricAdmittanceUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -548,6 +548,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public ElectricAdmittance AsQuantity(ElectricAdmittanceUnit unit)
+        {
+            return new ElectricAdmittance(_value, Unit);
         }
 
         #endregion

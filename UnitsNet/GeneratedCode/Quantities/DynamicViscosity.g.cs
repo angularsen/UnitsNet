@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          DynamicViscosity(double numericValue, DynamicViscosityUnit unit)
+        DynamicViscosity(double numericValue, DynamicViscosityUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -616,6 +616,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public DynamicViscosity AsQuantity(DynamicViscosityUnit unit)
+        {
+            return new DynamicViscosity(_value, Unit);
         }
 
         #endregion

@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Level(double numericValue, LevelUnit unit)
+        Level(double numericValue, LevelUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -478,6 +478,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public Level AsQuantity(LevelUnit unit)
+        {
+            return new Level(_value, Unit);
         }
 
         #endregion

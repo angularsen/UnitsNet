@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          LuminousFlux(double numericValue, LuminousFluxUnit unit)
+        LuminousFlux(double numericValue, LuminousFluxUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -446,6 +446,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public LuminousFlux AsQuantity(LuminousFluxUnit unit)
+        {
+            return new LuminousFlux(_value, Unit);
         }
 
         #endregion
