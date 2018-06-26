@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Volume(double numericValue, VolumeUnit unit)
+        Volume(double numericValue, VolumeUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1905,14 +1905,79 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(VolumeUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case VolumeUnit.AuTablespoon: return _value*2e-5;
+                case VolumeUnit.Centiliter: return (_value/1e3) * 1e-2d;
+                case VolumeUnit.CubicCentimeter: return _value/1e6;
+                case VolumeUnit.CubicDecimeter: return _value/1e3;
+                case VolumeUnit.CubicFoot: return _value*0.0283168;
+                case VolumeUnit.CubicInch: return _value*1.6387*1e-5;
+                case VolumeUnit.CubicKilometer: return _value*1e9;
+                case VolumeUnit.CubicMeter: return _value;
+                case VolumeUnit.CubicMicrometer: return _value/1e18;
+                case VolumeUnit.CubicMile: return _value*4.16818182544058e9;
+                case VolumeUnit.CubicMillimeter: return _value/1e9;
+                case VolumeUnit.CubicYard: return _value*0.764554858;
+                case VolumeUnit.Deciliter: return (_value/1e3) * 1e-1d;
+                case VolumeUnit.HectocubicFoot: return (_value*0.0283168) * 1e2d;
+                case VolumeUnit.HectocubicMeter: return (_value) * 1e2d;
+                case VolumeUnit.Hectoliter: return (_value/1e3) * 1e2d;
+                case VolumeUnit.ImperialBeerBarrel: return _value*0.16365924;
+                case VolumeUnit.ImperialGallon: return _value*0.00454609000000181429905810072407;
+                case VolumeUnit.ImperialOunce: return _value*2.8413062499962901241875439064617e-5;
+                case VolumeUnit.KilocubicFoot: return (_value*0.0283168) * 1e3d;
+                case VolumeUnit.KilocubicMeter: return (_value) * 1e3d;
+                case VolumeUnit.KiloimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e3d;
+                case VolumeUnit.KilousGallon: return (_value*0.00378541) * 1e3d;
+                case VolumeUnit.Liter: return _value/1e3;
+                case VolumeUnit.MegacubicFoot: return (_value*0.0283168) * 1e6d;
+                case VolumeUnit.MegaimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e6d;
+                case VolumeUnit.MegausGallon: return (_value*0.00378541) * 1e6d;
+                case VolumeUnit.MetricCup: return _value*0.00025;
+                case VolumeUnit.MetricTeaspoon: return _value*0.5e-5;
+                case VolumeUnit.Microliter: return (_value/1e3) * 1e-6d;
+                case VolumeUnit.Milliliter: return (_value/1e3) * 1e-3d;
+                case VolumeUnit.OilBarrel: return _value*0.158987294928;
+                case VolumeUnit.Tablespoon: return _value*1.478676478125e-5;
+                case VolumeUnit.Teaspoon: return _value*4.92892159375e-6;
+                case VolumeUnit.UkTablespoon: return _value*1.5e-5;
+                case VolumeUnit.UsBeerBarrel: return _value*0.1173477658;
+                case VolumeUnit.UsCustomaryCup: return _value*0.0002365882365;
+                case VolumeUnit.UsGallon: return _value*0.00378541;
+                case VolumeUnit.UsLegalCup: return _value*0.00024;
+                case VolumeUnit.UsOunce: return _value*2.957352956253760505068307980135e-5;
+                case VolumeUnit.UsPint: return _value*4.73176473e-4;
+                case VolumeUnit.UsQuart: return _value*9.46352946e-4;
+                case VolumeUnit.UsTablespoon: return _value*1.478676478125e-5;
+                case VolumeUnit.UsTeaspoon: return _value*4.92892159375e-6;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitCubicMeters();
+        private double AsBaseNumericType(VolumeUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case VolumeUnit.AuTablespoon: return baseUnitValue/2e-5;
                 case VolumeUnit.Centiliter: return (baseUnitValue*1e3) / 1e-2d;
@@ -1958,9 +2023,8 @@ namespace UnitsNet
                 case VolumeUnit.UsQuart: return baseUnitValue/9.46352946e-4;
                 case VolumeUnit.UsTablespoon: return baseUnitValue/1.478676478125e-5;
                 case VolumeUnit.UsTeaspoon: return baseUnitValue/4.92892159375e-6;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -2309,69 +2373,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Volume
         /// </summary>
         public static Volume MinValue => new Volume(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitCubicMeters()
-        {
-            if (Unit == VolumeUnit.CubicMeter) { return _value; }
-
-            switch (Unit)
-            {
-                case VolumeUnit.AuTablespoon: return _value*2e-5;
-                case VolumeUnit.Centiliter: return (_value/1e3) * 1e-2d;
-                case VolumeUnit.CubicCentimeter: return _value/1e6;
-                case VolumeUnit.CubicDecimeter: return _value/1e3;
-                case VolumeUnit.CubicFoot: return _value*0.0283168;
-                case VolumeUnit.CubicInch: return _value*1.6387*1e-5;
-                case VolumeUnit.CubicKilometer: return _value*1e9;
-                case VolumeUnit.CubicMeter: return _value;
-                case VolumeUnit.CubicMicrometer: return _value/1e18;
-                case VolumeUnit.CubicMile: return _value*4.16818182544058e9;
-                case VolumeUnit.CubicMillimeter: return _value/1e9;
-                case VolumeUnit.CubicYard: return _value*0.764554858;
-                case VolumeUnit.Deciliter: return (_value/1e3) * 1e-1d;
-                case VolumeUnit.HectocubicFoot: return (_value*0.0283168) * 1e2d;
-                case VolumeUnit.HectocubicMeter: return (_value) * 1e2d;
-                case VolumeUnit.Hectoliter: return (_value/1e3) * 1e2d;
-                case VolumeUnit.ImperialBeerBarrel: return _value*0.16365924;
-                case VolumeUnit.ImperialGallon: return _value*0.00454609000000181429905810072407;
-                case VolumeUnit.ImperialOunce: return _value*2.8413062499962901241875439064617e-5;
-                case VolumeUnit.KilocubicFoot: return (_value*0.0283168) * 1e3d;
-                case VolumeUnit.KilocubicMeter: return (_value) * 1e3d;
-                case VolumeUnit.KiloimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e3d;
-                case VolumeUnit.KilousGallon: return (_value*0.00378541) * 1e3d;
-                case VolumeUnit.Liter: return _value/1e3;
-                case VolumeUnit.MegacubicFoot: return (_value*0.0283168) * 1e6d;
-                case VolumeUnit.MegaimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e6d;
-                case VolumeUnit.MegausGallon: return (_value*0.00378541) * 1e6d;
-                case VolumeUnit.MetricCup: return _value*0.00025;
-                case VolumeUnit.MetricTeaspoon: return _value*0.5e-5;
-                case VolumeUnit.Microliter: return (_value/1e3) * 1e-6d;
-                case VolumeUnit.Milliliter: return (_value/1e3) * 1e-3d;
-                case VolumeUnit.OilBarrel: return _value*0.158987294928;
-                case VolumeUnit.Tablespoon: return _value*1.478676478125e-5;
-                case VolumeUnit.Teaspoon: return _value*4.92892159375e-6;
-                case VolumeUnit.UkTablespoon: return _value*1.5e-5;
-                case VolumeUnit.UsBeerBarrel: return _value*0.1173477658;
-                case VolumeUnit.UsCustomaryCup: return _value*0.0002365882365;
-                case VolumeUnit.UsGallon: return _value*0.00378541;
-                case VolumeUnit.UsLegalCup: return _value*0.00024;
-                case VolumeUnit.UsOunce: return _value*2.957352956253760505068307980135e-5;
-                case VolumeUnit.UsPint: return _value*4.73176473e-4;
-                case VolumeUnit.UsQuart: return _value*9.46352946e-4;
-                case VolumeUnit.UsTablespoon: return _value*1.478676478125e-5;
-                case VolumeUnit.UsTeaspoon: return _value*4.92892159375e-6;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(VolumeUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

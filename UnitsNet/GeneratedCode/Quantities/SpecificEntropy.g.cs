@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          SpecificEntropy(double numericValue, SpecificEntropyUnit unit)
+        SpecificEntropy(double numericValue, SpecificEntropyUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -715,14 +715,43 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(SpecificEntropyUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case SpecificEntropyUnit.CaloriePerGramKelvin: return _value*4.184e3;
+                case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return _value;
+                case SpecificEntropyUnit.JoulePerKilogramKelvin: return _value;
+                case SpecificEntropyUnit.KilocaloriePerGramKelvin: return (_value*4.184e3) * 1e3d;
+                case SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius: return (_value) * 1e3d;
+                case SpecificEntropyUnit.KilojoulePerKilogramKelvin: return (_value) * 1e3d;
+                case SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius: return (_value) * 1e6d;
+                case SpecificEntropyUnit.MegajoulePerKilogramKelvin: return (_value) * 1e6d;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitJoulesPerKilogramKelvin();
+        private double AsBaseNumericType(SpecificEntropyUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case SpecificEntropyUnit.CaloriePerGramKelvin: return baseUnitValue/4.184e3;
                 case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return baseUnitValue;
@@ -732,9 +761,8 @@ namespace UnitsNet
                 case SpecificEntropyUnit.KilojoulePerKilogramKelvin: return (baseUnitValue) / 1e3d;
                 case SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius: return (baseUnitValue) / 1e6d;
                 case SpecificEntropyUnit.MegajoulePerKilogramKelvin: return (baseUnitValue) / 1e6d;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1083,33 +1111,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of SpecificEntropy
         /// </summary>
         public static SpecificEntropy MinValue => new SpecificEntropy(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitJoulesPerKilogramKelvin()
-        {
-            if (Unit == SpecificEntropyUnit.JoulePerKilogramKelvin) { return _value; }
-
-            switch (Unit)
-            {
-                case SpecificEntropyUnit.CaloriePerGramKelvin: return _value*4.184e3;
-                case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return _value;
-                case SpecificEntropyUnit.JoulePerKilogramKelvin: return _value;
-                case SpecificEntropyUnit.KilocaloriePerGramKelvin: return (_value*4.184e3) * 1e3d;
-                case SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius: return (_value) * 1e3d;
-                case SpecificEntropyUnit.KilojoulePerKilogramKelvin: return (_value) * 1e3d;
-                case SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius: return (_value) * 1e6d;
-                case SpecificEntropyUnit.MegajoulePerKilogramKelvin: return (_value) * 1e6d;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(SpecificEntropyUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

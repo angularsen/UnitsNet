@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          MassMomentOfInertia(double numericValue, MassMomentOfInertiaUnit unit)
+        MassMomentOfInertia(double numericValue, MassMomentOfInertiaUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1309,14 +1309,61 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(MassMomentOfInertiaUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case MassMomentOfInertiaUnit.GramSquareCentimeter: return _value/1e7;
+                case MassMomentOfInertiaUnit.GramSquareDecimeter: return _value/1e5;
+                case MassMomentOfInertiaUnit.GramSquareMeter: return _value/1e3;
+                case MassMomentOfInertiaUnit.GramSquareMillimeter: return _value/1e9;
+                case MassMomentOfInertiaUnit.KilogramSquareCentimeter: return (_value/1e7) * 1e3d;
+                case MassMomentOfInertiaUnit.KilogramSquareDecimeter: return (_value/1e5) * 1e3d;
+                case MassMomentOfInertiaUnit.KilogramSquareMeter: return (_value/1e3) * 1e3d;
+                case MassMomentOfInertiaUnit.KilogramSquareMillimeter: return (_value/1e9) * 1e3d;
+                case MassMomentOfInertiaUnit.KilotonneSquareCentimeter: return (_value/1e1) * 1e3d;
+                case MassMomentOfInertiaUnit.KilotonneSquareDecimeter: return (_value/1e-1) * 1e3d;
+                case MassMomentOfInertiaUnit.KilotonneSquareMeter: return (_value/1e-3) * 1e3d;
+                case MassMomentOfInertiaUnit.KilotonneSquareMilimeter: return (_value/1e3) * 1e3d;
+                case MassMomentOfInertiaUnit.MegatonneSquareCentimeter: return (_value/1e1) * 1e6d;
+                case MassMomentOfInertiaUnit.MegatonneSquareDecimeter: return (_value/1e-1) * 1e6d;
+                case MassMomentOfInertiaUnit.MegatonneSquareMeter: return (_value/1e-3) * 1e6d;
+                case MassMomentOfInertiaUnit.MegatonneSquareMilimeter: return (_value/1e3) * 1e6d;
+                case MassMomentOfInertiaUnit.MilligramSquareCentimeter: return (_value/1e7) * 1e-3d;
+                case MassMomentOfInertiaUnit.MilligramSquareDecimeter: return (_value/1e5) * 1e-3d;
+                case MassMomentOfInertiaUnit.MilligramSquareMeter: return (_value/1e3) * 1e-3d;
+                case MassMomentOfInertiaUnit.MilligramSquareMillimeter: return (_value/1e9) * 1e-3d;
+                case MassMomentOfInertiaUnit.PoundSquareFoot: return _value*4.21401101e-2;
+                case MassMomentOfInertiaUnit.PoundSquareInch: return _value*2.9263965e-4;
+                case MassMomentOfInertiaUnit.TonneSquareCentimeter: return _value/1e1;
+                case MassMomentOfInertiaUnit.TonneSquareDecimeter: return _value/1e-1;
+                case MassMomentOfInertiaUnit.TonneSquareMeter: return _value/1e-3;
+                case MassMomentOfInertiaUnit.TonneSquareMilimeter: return _value/1e3;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitKilogramSquareMeters();
+        private double AsBaseNumericType(MassMomentOfInertiaUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case MassMomentOfInertiaUnit.GramSquareCentimeter: return baseUnitValue*1e7;
                 case MassMomentOfInertiaUnit.GramSquareDecimeter: return baseUnitValue*1e5;
@@ -1344,9 +1391,8 @@ namespace UnitsNet
                 case MassMomentOfInertiaUnit.TonneSquareDecimeter: return baseUnitValue*1e-1;
                 case MassMomentOfInertiaUnit.TonneSquareMeter: return baseUnitValue*1e-3;
                 case MassMomentOfInertiaUnit.TonneSquareMilimeter: return baseUnitValue*1e3;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1695,51 +1741,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of MassMomentOfInertia
         /// </summary>
         public static MassMomentOfInertia MinValue => new MassMomentOfInertia(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitKilogramSquareMeters()
-        {
-            if (Unit == MassMomentOfInertiaUnit.KilogramSquareMeter) { return _value; }
-
-            switch (Unit)
-            {
-                case MassMomentOfInertiaUnit.GramSquareCentimeter: return _value/1e7;
-                case MassMomentOfInertiaUnit.GramSquareDecimeter: return _value/1e5;
-                case MassMomentOfInertiaUnit.GramSquareMeter: return _value/1e3;
-                case MassMomentOfInertiaUnit.GramSquareMillimeter: return _value/1e9;
-                case MassMomentOfInertiaUnit.KilogramSquareCentimeter: return (_value/1e7) * 1e3d;
-                case MassMomentOfInertiaUnit.KilogramSquareDecimeter: return (_value/1e5) * 1e3d;
-                case MassMomentOfInertiaUnit.KilogramSquareMeter: return (_value/1e3) * 1e3d;
-                case MassMomentOfInertiaUnit.KilogramSquareMillimeter: return (_value/1e9) * 1e3d;
-                case MassMomentOfInertiaUnit.KilotonneSquareCentimeter: return (_value/1e1) * 1e3d;
-                case MassMomentOfInertiaUnit.KilotonneSquareDecimeter: return (_value/1e-1) * 1e3d;
-                case MassMomentOfInertiaUnit.KilotonneSquareMeter: return (_value/1e-3) * 1e3d;
-                case MassMomentOfInertiaUnit.KilotonneSquareMilimeter: return (_value/1e3) * 1e3d;
-                case MassMomentOfInertiaUnit.MegatonneSquareCentimeter: return (_value/1e1) * 1e6d;
-                case MassMomentOfInertiaUnit.MegatonneSquareDecimeter: return (_value/1e-1) * 1e6d;
-                case MassMomentOfInertiaUnit.MegatonneSquareMeter: return (_value/1e-3) * 1e6d;
-                case MassMomentOfInertiaUnit.MegatonneSquareMilimeter: return (_value/1e3) * 1e6d;
-                case MassMomentOfInertiaUnit.MilligramSquareCentimeter: return (_value/1e7) * 1e-3d;
-                case MassMomentOfInertiaUnit.MilligramSquareDecimeter: return (_value/1e5) * 1e-3d;
-                case MassMomentOfInertiaUnit.MilligramSquareMeter: return (_value/1e3) * 1e-3d;
-                case MassMomentOfInertiaUnit.MilligramSquareMillimeter: return (_value/1e9) * 1e-3d;
-                case MassMomentOfInertiaUnit.PoundSquareFoot: return _value*4.21401101e-2;
-                case MassMomentOfInertiaUnit.PoundSquareInch: return _value*2.9263965e-4;
-                case MassMomentOfInertiaUnit.TonneSquareCentimeter: return _value/1e1;
-                case MassMomentOfInertiaUnit.TonneSquareDecimeter: return _value/1e-1;
-                case MassMomentOfInertiaUnit.TonneSquareMeter: return _value/1e-3;
-                case MassMomentOfInertiaUnit.TonneSquareMilimeter: return _value/1e3;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(MassMomentOfInertiaUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

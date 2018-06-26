@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Speed(double numericValue, SpeedUnit unit)
+        Speed(double numericValue, SpeedUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1507,14 +1507,67 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(SpeedUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case SpeedUnit.CentimeterPerHour: return (_value/3600) * 1e-2d;
+                case SpeedUnit.CentimeterPerMinute: return (_value/60) * 1e-2d;
+                case SpeedUnit.CentimeterPerSecond: return (_value) * 1e-2d;
+                case SpeedUnit.DecimeterPerMinute: return (_value/60) * 1e-1d;
+                case SpeedUnit.DecimeterPerSecond: return (_value) * 1e-1d;
+                case SpeedUnit.FootPerHour: return _value*0.3048/3600;
+                case SpeedUnit.FootPerMinute: return _value*0.3048/60;
+                case SpeedUnit.FootPerSecond: return _value*0.3048;
+                case SpeedUnit.InchPerHour: return (_value/3600)*2.54e-2;
+                case SpeedUnit.InchPerMinute: return (_value/60)*2.54e-2;
+                case SpeedUnit.InchPerSecond: return _value*2.54e-2;
+                case SpeedUnit.KilometerPerHour: return (_value/3600) * 1e3d;
+                case SpeedUnit.KilometerPerMinute: return (_value/60) * 1e3d;
+                case SpeedUnit.KilometerPerSecond: return (_value) * 1e3d;
+                case SpeedUnit.Knot: return _value*0.514444;
+                case SpeedUnit.MeterPerHour: return _value/3600;
+                case SpeedUnit.MeterPerMinute: return _value/60;
+                case SpeedUnit.MeterPerSecond: return _value;
+                case SpeedUnit.MicrometerPerMinute: return (_value/60) * 1e-6d;
+                case SpeedUnit.MicrometerPerSecond: return (_value) * 1e-6d;
+                case SpeedUnit.MilePerHour: return _value*0.44704;
+                case SpeedUnit.MillimeterPerHour: return (_value/3600) * 1e-3d;
+                case SpeedUnit.MillimeterPerMinute: return (_value/60) * 1e-3d;
+                case SpeedUnit.MillimeterPerSecond: return (_value) * 1e-3d;
+                case SpeedUnit.NanometerPerMinute: return (_value/60) * 1e-9d;
+                case SpeedUnit.NanometerPerSecond: return (_value) * 1e-9d;
+                case SpeedUnit.UsSurveyFootPerHour: return (_value*1200/3937)/3600;
+                case SpeedUnit.UsSurveyFootPerMinute: return (_value*1200/3937)/60;
+                case SpeedUnit.UsSurveyFootPerSecond: return _value*1200/3937;
+                case SpeedUnit.YardPerHour: return _value*0.9144/3600;
+                case SpeedUnit.YardPerMinute: return _value*0.9144/60;
+                case SpeedUnit.YardPerSecond: return _value*0.9144;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitMetersPerSecond();
+        private double AsBaseNumericType(SpeedUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case SpeedUnit.CentimeterPerHour: return (baseUnitValue*3600) / 1e-2d;
                 case SpeedUnit.CentimeterPerMinute: return (baseUnitValue*60) / 1e-2d;
@@ -1548,9 +1601,8 @@ namespace UnitsNet
                 case SpeedUnit.YardPerHour: return baseUnitValue/0.9144*3600;
                 case SpeedUnit.YardPerMinute: return baseUnitValue/0.9144*60;
                 case SpeedUnit.YardPerSecond: return baseUnitValue/0.9144;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1899,57 +1951,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Speed
         /// </summary>
         public static Speed MinValue => new Speed(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitMetersPerSecond()
-        {
-            if (Unit == SpeedUnit.MeterPerSecond) { return _value; }
-
-            switch (Unit)
-            {
-                case SpeedUnit.CentimeterPerHour: return (_value/3600) * 1e-2d;
-                case SpeedUnit.CentimeterPerMinute: return (_value/60) * 1e-2d;
-                case SpeedUnit.CentimeterPerSecond: return (_value) * 1e-2d;
-                case SpeedUnit.DecimeterPerMinute: return (_value/60) * 1e-1d;
-                case SpeedUnit.DecimeterPerSecond: return (_value) * 1e-1d;
-                case SpeedUnit.FootPerHour: return _value*0.3048/3600;
-                case SpeedUnit.FootPerMinute: return _value*0.3048/60;
-                case SpeedUnit.FootPerSecond: return _value*0.3048;
-                case SpeedUnit.InchPerHour: return (_value/3600)*2.54e-2;
-                case SpeedUnit.InchPerMinute: return (_value/60)*2.54e-2;
-                case SpeedUnit.InchPerSecond: return _value*2.54e-2;
-                case SpeedUnit.KilometerPerHour: return (_value/3600) * 1e3d;
-                case SpeedUnit.KilometerPerMinute: return (_value/60) * 1e3d;
-                case SpeedUnit.KilometerPerSecond: return (_value) * 1e3d;
-                case SpeedUnit.Knot: return _value*0.514444;
-                case SpeedUnit.MeterPerHour: return _value/3600;
-                case SpeedUnit.MeterPerMinute: return _value/60;
-                case SpeedUnit.MeterPerSecond: return _value;
-                case SpeedUnit.MicrometerPerMinute: return (_value/60) * 1e-6d;
-                case SpeedUnit.MicrometerPerSecond: return (_value) * 1e-6d;
-                case SpeedUnit.MilePerHour: return _value*0.44704;
-                case SpeedUnit.MillimeterPerHour: return (_value/3600) * 1e-3d;
-                case SpeedUnit.MillimeterPerMinute: return (_value/60) * 1e-3d;
-                case SpeedUnit.MillimeterPerSecond: return (_value) * 1e-3d;
-                case SpeedUnit.NanometerPerMinute: return (_value/60) * 1e-9d;
-                case SpeedUnit.NanometerPerSecond: return (_value) * 1e-9d;
-                case SpeedUnit.UsSurveyFootPerHour: return (_value*1200/3937)/3600;
-                case SpeedUnit.UsSurveyFootPerMinute: return (_value*1200/3937)/60;
-                case SpeedUnit.UsSurveyFootPerSecond: return _value*1200/3937;
-                case SpeedUnit.YardPerHour: return _value*0.9144/3600;
-                case SpeedUnit.YardPerMinute: return _value*0.9144/60;
-                case SpeedUnit.YardPerSecond: return _value*0.9144;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(SpeedUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

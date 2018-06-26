@@ -141,15 +141,8 @@ function Set-ConversionFunctions
             }
 
             # Convert to/from double for other base types
-            if ($quantity.BaseType -eq "decimal") {
-                $u.FromUnitToBaseFunc = "Convert.ToDecimal($($u.FromUnitToBaseFunc))"
-                $u.FromBaseToUnitFunc = "Convert.ToDouble($($u.FromBaseToUnitFunc))"
-            } else {
-                if ($quantity.BaseType -eq "long") {
-                  $u.FromUnitToBaseFunc = "Convert.ToInt64($($u.FromUnitToBaseFunc))"
-                  $u.FromBaseToUnitFunc = "Convert.ToDouble($($u.FromBaseToUnitFunc))"
-                }
-            }
+            $u.FromUnitToBaseFunc = "$($u.FromUnitToBaseFunc)"
+            $u.FromBaseToUnitFunc = "$($u.FromBaseToUnitFunc)"
         }
         return $quantity
     }

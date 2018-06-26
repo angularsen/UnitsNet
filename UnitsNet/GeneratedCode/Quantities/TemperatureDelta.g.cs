@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          TemperatureDelta(double numericValue, TemperatureDeltaUnit unit)
+        TemperatureDelta(double numericValue, TemperatureDeltaUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -977,14 +977,51 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(TemperatureDeltaUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case TemperatureDeltaUnit.DegreeCelsius: return _value;
+                case TemperatureDeltaUnit.DegreeCelsiusDelta: return _value;
+                case TemperatureDeltaUnit.DegreeDelisle: return _value*-2/3;
+                case TemperatureDeltaUnit.DegreeDelisleDelta: return _value*-2/3;
+                case TemperatureDeltaUnit.DegreeFahrenheit: return _value*5/9;
+                case TemperatureDeltaUnit.DegreeFahrenheitDelta: return _value*5/9;
+                case TemperatureDeltaUnit.DegreeNewton: return _value*100/33;
+                case TemperatureDeltaUnit.DegreeNewtonDelta: return _value*100/33;
+                case TemperatureDeltaUnit.DegreeRankine: return _value*5/9;
+                case TemperatureDeltaUnit.DegreeRankineDelta: return _value*5/9;
+                case TemperatureDeltaUnit.DegreeReaumur: return _value*5/4;
+                case TemperatureDeltaUnit.DegreeReaumurDelta: return _value*5/4;
+                case TemperatureDeltaUnit.DegreeRoemer: return _value*40/21;
+                case TemperatureDeltaUnit.DegreeRoemerDelta: return _value*40/21;
+                case TemperatureDeltaUnit.Kelvin: return _value;
+                case TemperatureDeltaUnit.KelvinDelta: return _value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitKelvins();
+        private double AsBaseNumericType(TemperatureDeltaUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case TemperatureDeltaUnit.DegreeCelsius: return baseUnitValue;
                 case TemperatureDeltaUnit.DegreeCelsiusDelta: return baseUnitValue;
@@ -1002,9 +1039,8 @@ namespace UnitsNet
                 case TemperatureDeltaUnit.DegreeRoemerDelta: return baseUnitValue*21/40;
                 case TemperatureDeltaUnit.Kelvin: return baseUnitValue;
                 case TemperatureDeltaUnit.KelvinDelta: return baseUnitValue;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1353,41 +1389,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of TemperatureDelta
         /// </summary>
         public static TemperatureDelta MinValue => new TemperatureDelta(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitKelvins()
-        {
-            if (Unit == TemperatureDeltaUnit.Kelvin) { return _value; }
-
-            switch (Unit)
-            {
-                case TemperatureDeltaUnit.DegreeCelsius: return _value;
-                case TemperatureDeltaUnit.DegreeCelsiusDelta: return _value;
-                case TemperatureDeltaUnit.DegreeDelisle: return _value*-2/3;
-                case TemperatureDeltaUnit.DegreeDelisleDelta: return _value*-2/3;
-                case TemperatureDeltaUnit.DegreeFahrenheit: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeFahrenheitDelta: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeNewton: return _value*100/33;
-                case TemperatureDeltaUnit.DegreeNewtonDelta: return _value*100/33;
-                case TemperatureDeltaUnit.DegreeRankine: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeRankineDelta: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeReaumur: return _value*5/4;
-                case TemperatureDeltaUnit.DegreeReaumurDelta: return _value*5/4;
-                case TemperatureDeltaUnit.DegreeRoemer: return _value*40/21;
-                case TemperatureDeltaUnit.DegreeRoemerDelta: return _value*40/21;
-                case TemperatureDeltaUnit.Kelvin: return _value;
-                case TemperatureDeltaUnit.KelvinDelta: return _value;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(TemperatureDeltaUnit unit) => Convert.ToDouble(As(unit));
 
     }
 }

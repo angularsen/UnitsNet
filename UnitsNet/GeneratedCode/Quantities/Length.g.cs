@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Length(double numericValue, LengthUnit unit)
+        Length(double numericValue, LengthUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1177,14 +1177,57 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(LengthUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case LengthUnit.Centimeter: return (_value) * 1e-2d;
+                case LengthUnit.Decimeter: return (_value) * 1e-1d;
+                case LengthUnit.DtpPica: return _value/236.220472441;
+                case LengthUnit.DtpPoint: return (_value/72)*2.54e-2;
+                case LengthUnit.Fathom: return _value*1.8288;
+                case LengthUnit.Foot: return _value*0.3048;
+                case LengthUnit.Inch: return _value*2.54e-2;
+                case LengthUnit.Kilometer: return (_value) * 1e3d;
+                case LengthUnit.Meter: return _value;
+                case LengthUnit.Microinch: return _value*2.54e-8;
+                case LengthUnit.Micrometer: return (_value) * 1e-6d;
+                case LengthUnit.Mil: return _value*2.54e-5;
+                case LengthUnit.Mile: return _value*1609.34;
+                case LengthUnit.Millimeter: return (_value) * 1e-3d;
+                case LengthUnit.Nanometer: return (_value) * 1e-9d;
+                case LengthUnit.NauticalMile: return _value*1852;
+                case LengthUnit.PrinterPica: return _value/237.106301584;
+                case LengthUnit.PrinterPoint: return (_value/72.27)*2.54e-2;
+                case LengthUnit.Shackle: return _value*27.432;
+                case LengthUnit.Twip: return _value/56692.913385826;
+                case LengthUnit.UsSurveyFoot: return _value*1200/3937;
+                case LengthUnit.Yard: return _value*0.9144;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitMeters();
+        private double AsBaseNumericType(LengthUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case LengthUnit.Centimeter: return (baseUnitValue) / 1e-2d;
                 case LengthUnit.Decimeter: return (baseUnitValue) / 1e-1d;
@@ -1208,9 +1251,8 @@ namespace UnitsNet
                 case LengthUnit.Twip: return baseUnitValue*56692.913385826;
                 case LengthUnit.UsSurveyFoot: return baseUnitValue*3937/1200;
                 case LengthUnit.Yard: return baseUnitValue/0.9144;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1559,47 +1601,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Length
         /// </summary>
         public static Length MinValue => new Length(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitMeters()
-        {
-            if (Unit == LengthUnit.Meter) { return _value; }
-
-            switch (Unit)
-            {
-                case LengthUnit.Centimeter: return (_value) * 1e-2d;
-                case LengthUnit.Decimeter: return (_value) * 1e-1d;
-                case LengthUnit.DtpPica: return _value/236.220472441;
-                case LengthUnit.DtpPoint: return (_value/72)*2.54e-2;
-                case LengthUnit.Fathom: return _value*1.8288;
-                case LengthUnit.Foot: return _value*0.3048;
-                case LengthUnit.Inch: return _value*2.54e-2;
-                case LengthUnit.Kilometer: return (_value) * 1e3d;
-                case LengthUnit.Meter: return _value;
-                case LengthUnit.Microinch: return _value*2.54e-8;
-                case LengthUnit.Micrometer: return (_value) * 1e-6d;
-                case LengthUnit.Mil: return _value*2.54e-5;
-                case LengthUnit.Mile: return _value*1609.34;
-                case LengthUnit.Millimeter: return (_value) * 1e-3d;
-                case LengthUnit.Nanometer: return (_value) * 1e-9d;
-                case LengthUnit.NauticalMile: return _value*1852;
-                case LengthUnit.PrinterPica: return _value/237.106301584;
-                case LengthUnit.PrinterPoint: return (_value/72.27)*2.54e-2;
-                case LengthUnit.Shackle: return _value*27.432;
-                case LengthUnit.Twip: return _value/56692.913385826;
-                case LengthUnit.UsSurveyFoot: return _value*1200/3937;
-                case LengthUnit.Yard: return _value*0.9144;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(LengthUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          PressureChangeRate(double numericValue, PressureChangeRateUnit unit)
+        PressureChangeRate(double numericValue, PressureChangeRateUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -583,22 +583,46 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(PressureChangeRateUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case PressureChangeRateUnit.AtmospherePerSecond: return _value * 1.01325*1e5;
+                case PressureChangeRateUnit.KilopascalPerSecond: return (_value) * 1e3d;
+                case PressureChangeRateUnit.MegapascalPerSecond: return (_value) * 1e6d;
+                case PressureChangeRateUnit.PascalPerSecond: return _value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitPascalsPerSecond();
+        private double AsBaseNumericType(PressureChangeRateUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case PressureChangeRateUnit.AtmospherePerSecond: return baseUnitValue / (1.01325*1e5);
                 case PressureChangeRateUnit.KilopascalPerSecond: return (baseUnitValue) / 1e3d;
                 case PressureChangeRateUnit.MegapascalPerSecond: return (baseUnitValue) / 1e6d;
                 case PressureChangeRateUnit.PascalPerSecond: return baseUnitValue;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -947,29 +971,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of PressureChangeRate
         /// </summary>
         public static PressureChangeRate MinValue => new PressureChangeRate(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitPascalsPerSecond()
-        {
-            if (Unit == PressureChangeRateUnit.PascalPerSecond) { return _value; }
-
-            switch (Unit)
-            {
-                case PressureChangeRateUnit.AtmospherePerSecond: return _value * 1.01325*1e5;
-                case PressureChangeRateUnit.KilopascalPerSecond: return (_value) * 1e3d;
-                case PressureChangeRateUnit.MegapascalPerSecond: return (_value) * 1e6d;
-                case PressureChangeRateUnit.PascalPerSecond: return _value;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(PressureChangeRateUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

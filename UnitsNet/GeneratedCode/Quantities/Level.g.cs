@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Level(double numericValue, LevelUnit unit)
+        Level(double numericValue, LevelUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -515,20 +515,42 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(LevelUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case LevelUnit.Decibel: return _value;
+                case LevelUnit.Neper: return (1/0.115129254)*_value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitDecibels();
+        private double AsBaseNumericType(LevelUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case LevelUnit.Decibel: return baseUnitValue;
                 case LevelUnit.Neper: return 0.115129254*baseUnitValue;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -877,27 +899,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Level
         /// </summary>
         public static Level MinValue => new Level(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitDecibels()
-        {
-            if (Unit == LevelUnit.Decibel) { return _value; }
-
-            switch (Unit)
-            {
-                case LevelUnit.Decibel: return _value;
-                case LevelUnit.Neper: return (1/0.115129254)*_value;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(LevelUnit unit) => Convert.ToDouble(As(unit));
 
     }
 }

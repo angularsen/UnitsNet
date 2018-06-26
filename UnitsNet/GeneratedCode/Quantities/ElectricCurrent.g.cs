@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          ElectricCurrent(double numericValue, ElectricCurrentUnit unit)
+        ElectricCurrent(double numericValue, ElectricCurrentUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -682,14 +682,42 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ElectricCurrentUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case ElectricCurrentUnit.Ampere: return _value;
+                case ElectricCurrentUnit.Kiloampere: return (_value) * 1e3d;
+                case ElectricCurrentUnit.Megaampere: return (_value) * 1e6d;
+                case ElectricCurrentUnit.Microampere: return (_value) * 1e-6d;
+                case ElectricCurrentUnit.Milliampere: return (_value) * 1e-3d;
+                case ElectricCurrentUnit.Nanoampere: return (_value) * 1e-9d;
+                case ElectricCurrentUnit.Picoampere: return (_value) * 1e-12d;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitAmperes();
+        private double AsBaseNumericType(ElectricCurrentUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case ElectricCurrentUnit.Ampere: return baseUnitValue;
                 case ElectricCurrentUnit.Kiloampere: return (baseUnitValue) / 1e3d;
@@ -698,9 +726,8 @@ namespace UnitsNet
                 case ElectricCurrentUnit.Milliampere: return (baseUnitValue) / 1e-3d;
                 case ElectricCurrentUnit.Nanoampere: return (baseUnitValue) / 1e-9d;
                 case ElectricCurrentUnit.Picoampere: return (baseUnitValue) / 1e-12d;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1049,32 +1076,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of ElectricCurrent
         /// </summary>
         public static ElectricCurrent MinValue => new ElectricCurrent(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitAmperes()
-        {
-            if (Unit == ElectricCurrentUnit.Ampere) { return _value; }
-
-            switch (Unit)
-            {
-                case ElectricCurrentUnit.Ampere: return _value;
-                case ElectricCurrentUnit.Kiloampere: return (_value) * 1e3d;
-                case ElectricCurrentUnit.Megaampere: return (_value) * 1e6d;
-                case ElectricCurrentUnit.Microampere: return (_value) * 1e-6d;
-                case ElectricCurrentUnit.Milliampere: return (_value) * 1e-3d;
-                case ElectricCurrentUnit.Nanoampere: return (_value) * 1e-9d;
-                case ElectricCurrentUnit.Picoampere: return (_value) * 1e-12d;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(ElectricCurrentUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

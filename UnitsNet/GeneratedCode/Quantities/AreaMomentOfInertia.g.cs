@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          AreaMomentOfInertia(double numericValue, AreaMomentOfInertiaUnit unit)
+        AreaMomentOfInertia(double numericValue, AreaMomentOfInertiaUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -649,14 +649,41 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(AreaMomentOfInertiaUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return _value/1e8;
+                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return _value/1e4;
+                case AreaMomentOfInertiaUnit.FootToTheFourth: return _value*Math.Pow(0.3048, 4);
+                case AreaMomentOfInertiaUnit.InchToTheFourth: return _value*Math.Pow(2.54e-2, 4);
+                case AreaMomentOfInertiaUnit.MeterToTheFourth: return _value;
+                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return _value/1e12;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitMetersToTheFourth();
+        private double AsBaseNumericType(AreaMomentOfInertiaUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return baseUnitValue*1e8;
                 case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return baseUnitValue*1e4;
@@ -664,9 +691,8 @@ namespace UnitsNet
                 case AreaMomentOfInertiaUnit.InchToTheFourth: return baseUnitValue/Math.Pow(2.54e-2, 4);
                 case AreaMomentOfInertiaUnit.MeterToTheFourth: return baseUnitValue;
                 case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return baseUnitValue*1e12;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1015,31 +1041,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of AreaMomentOfInertia
         /// </summary>
         public static AreaMomentOfInertia MinValue => new AreaMomentOfInertia(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitMetersToTheFourth()
-        {
-            if (Unit == AreaMomentOfInertiaUnit.MeterToTheFourth) { return _value; }
-
-            switch (Unit)
-            {
-                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return _value/1e8;
-                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return _value/1e4;
-                case AreaMomentOfInertiaUnit.FootToTheFourth: return _value*Math.Pow(0.3048, 4);
-                case AreaMomentOfInertiaUnit.InchToTheFourth: return _value*Math.Pow(2.54e-2, 4);
-                case AreaMomentOfInertiaUnit.MeterToTheFourth: return _value;
-                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return _value/1e12;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(AreaMomentOfInertiaUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Molarity(double numericValue, MolarityUnit unit)
+        Molarity(double numericValue, MolarityUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -715,14 +715,43 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(MolarityUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case MolarityUnit.CentimolesPerLiter: return (_value/1e-3) * 1e-2d;
+                case MolarityUnit.DecimolesPerLiter: return (_value/1e-3) * 1e-1d;
+                case MolarityUnit.MicromolesPerLiter: return (_value/1e-3) * 1e-6d;
+                case MolarityUnit.MillimolesPerLiter: return (_value/1e-3) * 1e-3d;
+                case MolarityUnit.MolesPerCubicMeter: return _value;
+                case MolarityUnit.MolesPerLiter: return _value/1e-3;
+                case MolarityUnit.NanomolesPerLiter: return (_value/1e-3) * 1e-9d;
+                case MolarityUnit.PicomolesPerLiter: return (_value/1e-3) * 1e-12d;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitMolesPerCubicMeter();
+        private double AsBaseNumericType(MolarityUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case MolarityUnit.CentimolesPerLiter: return (baseUnitValue*1e-3) / 1e-2d;
                 case MolarityUnit.DecimolesPerLiter: return (baseUnitValue*1e-3) / 1e-1d;
@@ -732,9 +761,8 @@ namespace UnitsNet
                 case MolarityUnit.MolesPerLiter: return baseUnitValue*1e-3;
                 case MolarityUnit.NanomolesPerLiter: return (baseUnitValue*1e-3) / 1e-9d;
                 case MolarityUnit.PicomolesPerLiter: return (baseUnitValue*1e-3) / 1e-12d;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1083,33 +1111,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Molarity
         /// </summary>
         public static Molarity MinValue => new Molarity(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitMolesPerCubicMeter()
-        {
-            if (Unit == MolarityUnit.MolesPerCubicMeter) { return _value; }
-
-            switch (Unit)
-            {
-                case MolarityUnit.CentimolesPerLiter: return (_value/1e-3) * 1e-2d;
-                case MolarityUnit.DecimolesPerLiter: return (_value/1e-3) * 1e-1d;
-                case MolarityUnit.MicromolesPerLiter: return (_value/1e-3) * 1e-6d;
-                case MolarityUnit.MillimolesPerLiter: return (_value/1e-3) * 1e-3d;
-                case MolarityUnit.MolesPerCubicMeter: return _value;
-                case MolarityUnit.MolesPerLiter: return _value/1e-3;
-                case MolarityUnit.NanomolesPerLiter: return (_value/1e-3) * 1e-9d;
-                case MolarityUnit.PicomolesPerLiter: return (_value/1e-3) * 1e-12d;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(MolarityUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

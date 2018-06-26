@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Energy(double numericValue, EnergyUnit unit)
+        Energy(double numericValue, EnergyUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1177,14 +1177,57 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(EnergyUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case EnergyUnit.BritishThermalUnit: return _value*1055.05585262;
+                case EnergyUnit.Calorie: return _value*4.184;
+                case EnergyUnit.DecathermEc: return (_value*1.05505585262e8) * 1e1d;
+                case EnergyUnit.DecathermImperial: return (_value*1.05505585257348e8) * 1e1d;
+                case EnergyUnit.DecathermUs: return (_value*1.054804e8) * 1e1d;
+                case EnergyUnit.ElectronVolt: return _value*1.602176565e-19;
+                case EnergyUnit.Erg: return _value*1e-7;
+                case EnergyUnit.FootPound: return _value*1.355817948;
+                case EnergyUnit.GigabritishThermalUnit: return (_value*1055.05585262) * 1e9d;
+                case EnergyUnit.GigawattHour: return (_value*3600d) * 1e9d;
+                case EnergyUnit.Joule: return _value;
+                case EnergyUnit.KilobritishThermalUnit: return (_value*1055.05585262) * 1e3d;
+                case EnergyUnit.Kilocalorie: return (_value*4.184) * 1e3d;
+                case EnergyUnit.Kilojoule: return (_value) * 1e3d;
+                case EnergyUnit.KilowattHour: return (_value*3600d) * 1e3d;
+                case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
+                case EnergyUnit.Megajoule: return (_value) * 1e6d;
+                case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
+                case EnergyUnit.ThermEc: return _value*1.05505585262e8;
+                case EnergyUnit.ThermImperial: return _value*1.05505585257348e8;
+                case EnergyUnit.ThermUs: return _value*1.054804e8;
+                case EnergyUnit.WattHour: return _value*3600d;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitJoules();
+        private double AsBaseNumericType(EnergyUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case EnergyUnit.BritishThermalUnit: return baseUnitValue/1055.05585262;
                 case EnergyUnit.Calorie: return baseUnitValue/4.184;
@@ -1208,9 +1251,8 @@ namespace UnitsNet
                 case EnergyUnit.ThermImperial: return baseUnitValue/1.05505585257348e8;
                 case EnergyUnit.ThermUs: return baseUnitValue/1.054804e8;
                 case EnergyUnit.WattHour: return baseUnitValue/3600d;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1559,47 +1601,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Energy
         /// </summary>
         public static Energy MinValue => new Energy(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitJoules()
-        {
-            if (Unit == EnergyUnit.Joule) { return _value; }
-
-            switch (Unit)
-            {
-                case EnergyUnit.BritishThermalUnit: return _value*1055.05585262;
-                case EnergyUnit.Calorie: return _value*4.184;
-                case EnergyUnit.DecathermEc: return (_value*1.05505585262e8) * 1e1d;
-                case EnergyUnit.DecathermImperial: return (_value*1.05505585257348e8) * 1e1d;
-                case EnergyUnit.DecathermUs: return (_value*1.054804e8) * 1e1d;
-                case EnergyUnit.ElectronVolt: return _value*1.602176565e-19;
-                case EnergyUnit.Erg: return _value*1e-7;
-                case EnergyUnit.FootPound: return _value*1.355817948;
-                case EnergyUnit.GigabritishThermalUnit: return (_value*1055.05585262) * 1e9d;
-                case EnergyUnit.GigawattHour: return (_value*3600d) * 1e9d;
-                case EnergyUnit.Joule: return _value;
-                case EnergyUnit.KilobritishThermalUnit: return (_value*1055.05585262) * 1e3d;
-                case EnergyUnit.Kilocalorie: return (_value*4.184) * 1e3d;
-                case EnergyUnit.Kilojoule: return (_value) * 1e3d;
-                case EnergyUnit.KilowattHour: return (_value*3600d) * 1e3d;
-                case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
-                case EnergyUnit.Megajoule: return (_value) * 1e6d;
-                case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
-                case EnergyUnit.ThermEc: return _value*1.05505585262e8;
-                case EnergyUnit.ThermImperial: return _value*1.05505585257348e8;
-                case EnergyUnit.ThermUs: return _value*1.054804e8;
-                case EnergyUnit.WattHour: return _value*3600d;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(EnergyUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

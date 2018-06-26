@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Temperature(double numericValue, TemperatureUnit unit)
+        Temperature(double numericValue, TemperatureUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -673,14 +673,43 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(TemperatureUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case TemperatureUnit.DegreeCelsius: return _value + 273.15;
+                case TemperatureUnit.DegreeDelisle: return _value*-2/3 + 373.15;
+                case TemperatureUnit.DegreeFahrenheit: return _value*5/9 + 459.67*5/9;
+                case TemperatureUnit.DegreeNewton: return _value*100/33 + 273.15;
+                case TemperatureUnit.DegreeRankine: return _value*5/9;
+                case TemperatureUnit.DegreeReaumur: return _value*5/4 + 273.15;
+                case TemperatureUnit.DegreeRoemer: return _value*40/21 + 273.15 - 7.5*40d/21;
+                case TemperatureUnit.Kelvin: return _value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitKelvins();
+        private double AsBaseNumericType(TemperatureUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case TemperatureUnit.DegreeCelsius: return baseUnitValue - 273.15;
                 case TemperatureUnit.DegreeDelisle: return (baseUnitValue - 373.15)*-3/2;
@@ -690,9 +719,8 @@ namespace UnitsNet
                 case TemperatureUnit.DegreeReaumur: return (baseUnitValue - 273.15)*4/5;
                 case TemperatureUnit.DegreeRoemer: return (baseUnitValue - (273.15 - 7.5*40d/21))*21/40;
                 case TemperatureUnit.Kelvin: return baseUnitValue;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1041,33 +1069,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Temperature
         /// </summary>
         public static Temperature MinValue => new Temperature(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitKelvins()
-        {
-            if (Unit == TemperatureUnit.Kelvin) { return _value; }
-
-            switch (Unit)
-            {
-                case TemperatureUnit.DegreeCelsius: return _value + 273.15;
-                case TemperatureUnit.DegreeDelisle: return _value*-2/3 + 373.15;
-                case TemperatureUnit.DegreeFahrenheit: return _value*5/9 + 459.67*5/9;
-                case TemperatureUnit.DegreeNewton: return _value*100/33 + 273.15;
-                case TemperatureUnit.DegreeRankine: return _value*5/9;
-                case TemperatureUnit.DegreeReaumur: return _value*5/4 + 273.15;
-                case TemperatureUnit.DegreeRoemer: return _value*40/21 + 273.15 - 7.5*40d/21;
-                case TemperatureUnit.Kelvin: return _value;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(TemperatureUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

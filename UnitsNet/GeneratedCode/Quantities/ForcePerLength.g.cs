@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          ForcePerLength(double numericValue, ForcePerLengthUnit unit)
+        ForcePerLength(double numericValue, ForcePerLengthUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -748,14 +748,44 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ForcePerLengthUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case ForcePerLengthUnit.CentinewtonPerMeter: return (_value) * 1e-2d;
+                case ForcePerLengthUnit.DecinewtonPerMeter: return (_value) * 1e-1d;
+                case ForcePerLengthUnit.KilogramForcePerMeter: return _value*9.80665002864;
+                case ForcePerLengthUnit.KilonewtonPerMeter: return (_value) * 1e3d;
+                case ForcePerLengthUnit.MeganewtonPerMeter: return (_value) * 1e6d;
+                case ForcePerLengthUnit.MicronewtonPerMeter: return (_value) * 1e-6d;
+                case ForcePerLengthUnit.MillinewtonPerMeter: return (_value) * 1e-3d;
+                case ForcePerLengthUnit.NanonewtonPerMeter: return (_value) * 1e-9d;
+                case ForcePerLengthUnit.NewtonPerMeter: return _value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitNewtonsPerMeter();
+        private double AsBaseNumericType(ForcePerLengthUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case ForcePerLengthUnit.CentinewtonPerMeter: return (baseUnitValue) / 1e-2d;
                 case ForcePerLengthUnit.DecinewtonPerMeter: return (baseUnitValue) / 1e-1d;
@@ -766,9 +796,8 @@ namespace UnitsNet
                 case ForcePerLengthUnit.MillinewtonPerMeter: return (baseUnitValue) / 1e-3d;
                 case ForcePerLengthUnit.NanonewtonPerMeter: return (baseUnitValue) / 1e-9d;
                 case ForcePerLengthUnit.NewtonPerMeter: return baseUnitValue;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1117,34 +1146,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of ForcePerLength
         /// </summary>
         public static ForcePerLength MinValue => new ForcePerLength(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitNewtonsPerMeter()
-        {
-            if (Unit == ForcePerLengthUnit.NewtonPerMeter) { return _value; }
-
-            switch (Unit)
-            {
-                case ForcePerLengthUnit.CentinewtonPerMeter: return (_value) * 1e-2d;
-                case ForcePerLengthUnit.DecinewtonPerMeter: return (_value) * 1e-1d;
-                case ForcePerLengthUnit.KilogramForcePerMeter: return _value*9.80665002864;
-                case ForcePerLengthUnit.KilonewtonPerMeter: return (_value) * 1e3d;
-                case ForcePerLengthUnit.MeganewtonPerMeter: return (_value) * 1e6d;
-                case ForcePerLengthUnit.MicronewtonPerMeter: return (_value) * 1e-6d;
-                case ForcePerLengthUnit.MillinewtonPerMeter: return (_value) * 1e-3d;
-                case ForcePerLengthUnit.NanonewtonPerMeter: return (_value) * 1e-9d;
-                case ForcePerLengthUnit.NewtonPerMeter: return _value;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(ForcePerLengthUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

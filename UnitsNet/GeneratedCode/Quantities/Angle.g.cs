@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Angle(double numericValue, AngleUnit unit)
+        Angle(double numericValue, AngleUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -903,14 +903,49 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(AngleUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case AngleUnit.Arcminute: return _value/60;
+                case AngleUnit.Arcsecond: return _value/3600;
+                case AngleUnit.Centiradian: return (_value*180/Math.PI) * 1e-2d;
+                case AngleUnit.Deciradian: return (_value*180/Math.PI) * 1e-1d;
+                case AngleUnit.Degree: return _value;
+                case AngleUnit.Gradian: return _value*0.9;
+                case AngleUnit.Microdegree: return (_value) * 1e-6d;
+                case AngleUnit.Microradian: return (_value*180/Math.PI) * 1e-6d;
+                case AngleUnit.Millidegree: return (_value) * 1e-3d;
+                case AngleUnit.Milliradian: return (_value*180/Math.PI) * 1e-3d;
+                case AngleUnit.Nanodegree: return (_value) * 1e-9d;
+                case AngleUnit.Nanoradian: return (_value*180/Math.PI) * 1e-9d;
+                case AngleUnit.Radian: return _value*180/Math.PI;
+                case AngleUnit.Revolution: return _value*360;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitDegrees();
+        private double AsBaseNumericType(AngleUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case AngleUnit.Arcminute: return baseUnitValue*60;
                 case AngleUnit.Arcsecond: return baseUnitValue*3600;
@@ -926,9 +961,8 @@ namespace UnitsNet
                 case AngleUnit.Nanoradian: return (baseUnitValue/180*Math.PI) / 1e-9d;
                 case AngleUnit.Radian: return baseUnitValue/180*Math.PI;
                 case AngleUnit.Revolution: return baseUnitValue/360;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1277,39 +1311,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Angle
         /// </summary>
         public static Angle MinValue => new Angle(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitDegrees()
-        {
-            if (Unit == AngleUnit.Degree) { return _value; }
-
-            switch (Unit)
-            {
-                case AngleUnit.Arcminute: return _value/60;
-                case AngleUnit.Arcsecond: return _value/3600;
-                case AngleUnit.Centiradian: return (_value*180/Math.PI) * 1e-2d;
-                case AngleUnit.Deciradian: return (_value*180/Math.PI) * 1e-1d;
-                case AngleUnit.Degree: return _value;
-                case AngleUnit.Gradian: return _value*0.9;
-                case AngleUnit.Microdegree: return (_value) * 1e-6d;
-                case AngleUnit.Microradian: return (_value*180/Math.PI) * 1e-6d;
-                case AngleUnit.Millidegree: return (_value) * 1e-3d;
-                case AngleUnit.Milliradian: return (_value*180/Math.PI) * 1e-3d;
-                case AngleUnit.Nanodegree: return (_value) * 1e-9d;
-                case AngleUnit.Nanoradian: return (_value*180/Math.PI) * 1e-9d;
-                case AngleUnit.Radian: return _value*180/Math.PI;
-                case AngleUnit.Revolution: return _value*360;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(AngleUnit unit) => Convert.ToDouble(As(unit));
 
     }
 }

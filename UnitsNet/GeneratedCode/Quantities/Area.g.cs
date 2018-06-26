@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Area(double numericValue, AreaUnit unit)
+        Area(double numericValue, AreaUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -880,14 +880,48 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(AreaUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case AreaUnit.Acre: return _value*4046.85642;
+                case AreaUnit.Hectare: return _value*1e4;
+                case AreaUnit.SquareCentimeter: return _value*1e-4;
+                case AreaUnit.SquareDecimeter: return _value*1e-2;
+                case AreaUnit.SquareFoot: return _value*0.092903;
+                case AreaUnit.SquareInch: return _value*0.00064516;
+                case AreaUnit.SquareKilometer: return _value*1e6;
+                case AreaUnit.SquareMeter: return _value;
+                case AreaUnit.SquareMicrometer: return _value*1e-12;
+                case AreaUnit.SquareMile: return _value*2.59e6;
+                case AreaUnit.SquareMillimeter: return _value*1e-6;
+                case AreaUnit.SquareYard: return _value*0.836127;
+                case AreaUnit.UsSurveySquareFoot: return _value*0.09290341161;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitSquareMeters();
+        private double AsBaseNumericType(AreaUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case AreaUnit.Acre: return baseUnitValue/4046.85642;
                 case AreaUnit.Hectare: return baseUnitValue/1e4;
@@ -902,9 +936,8 @@ namespace UnitsNet
                 case AreaUnit.SquareMillimeter: return baseUnitValue/1e-6;
                 case AreaUnit.SquareYard: return baseUnitValue/0.836127;
                 case AreaUnit.UsSurveySquareFoot: return baseUnitValue/0.09290341161;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1253,38 +1286,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Area
         /// </summary>
         public static Area MinValue => new Area(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitSquareMeters()
-        {
-            if (Unit == AreaUnit.SquareMeter) { return _value; }
-
-            switch (Unit)
-            {
-                case AreaUnit.Acre: return _value*4046.85642;
-                case AreaUnit.Hectare: return _value*1e4;
-                case AreaUnit.SquareCentimeter: return _value*1e-4;
-                case AreaUnit.SquareDecimeter: return _value*1e-2;
-                case AreaUnit.SquareFoot: return _value*0.092903;
-                case AreaUnit.SquareInch: return _value*0.00064516;
-                case AreaUnit.SquareKilometer: return _value*1e6;
-                case AreaUnit.SquareMeter: return _value;
-                case AreaUnit.SquareMicrometer: return _value*1e-12;
-                case AreaUnit.SquareMile: return _value*2.59e6;
-                case AreaUnit.SquareMillimeter: return _value*1e-6;
-                case AreaUnit.SquareYard: return _value*0.836127;
-                case AreaUnit.UsSurveySquareFoot: return _value*0.09290341161;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(AreaUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

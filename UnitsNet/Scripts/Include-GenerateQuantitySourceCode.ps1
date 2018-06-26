@@ -154,11 +154,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          $quantityName($baseType numericValue, $unitEnumName unit)
+        $quantityName($baseType numericValue, $unitEnumName unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -551,22 +551,46 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As($unitEnumName unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private $baseType AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+"@; foreach ($unit in $units) {
+        $func = $unit.FromUnitToBaseFunc.Replace("x", "_value");@"
+                case $unitEnumName.$($unit.SingularName): return $func;
+"@; }@"
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            $baseType baseUnitValue = AsBaseUnit$($baseUnitPluralName)();
+        private $baseType AsBaseNumericType($unitEnumName unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
 "@; foreach ($unit in $units) {
         $func = $unit.FromBaseToUnitFunc.Replace("x", "baseUnitValue");@"
                 case $unitEnumName.$($unit.SingularName): return $func;
 "@; }@"
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -915,29 +939,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of $quantityName
         /// </summary>
         public static $quantityName MinValue => new $quantityName($baseType.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private $baseType AsBaseUnit$baseUnitPluralName()
-        {
-            if (Unit == $unitEnumName.$baseUnitSingularName) { return _value; }
-
-            switch (Unit)
-            {
-"@; foreach ($unit in $units) {
-        $func = $unit.FromUnitToBaseFunc.Replace("x", "_value");@"
-                case $unitEnumName.$($unit.SingularName): return $func;
-"@; }@"
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private $baseType AsBaseNumericType($unitEnumName unit) => $convertToBaseType(As(unit));
 
 "@;
 if($baseDimensions)

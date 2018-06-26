@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Information(decimal numericValue, InformationUnit unit)
+        Information(decimal numericValue, InformationUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1296,44 +1296,90 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(InformationUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private decimal AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
-            }
-
-            decimal baseUnitValue = AsBaseUnitBits();
-
-            switch (unit)
-            {
-                case InformationUnit.Bit: return Convert.ToDouble(baseUnitValue);
-                case InformationUnit.Byte: return Convert.ToDouble(baseUnitValue/8m);
-                case InformationUnit.Exabit: return Convert.ToDouble((baseUnitValue) / 1e18m);
-                case InformationUnit.Exabyte: return Convert.ToDouble((baseUnitValue/8m) / 1e18m);
-                case InformationUnit.Exbibit: return Convert.ToDouble((baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024));
-                case InformationUnit.Exbibyte: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024));
-                case InformationUnit.Gibibit: return Convert.ToDouble((baseUnitValue) / (1024m * 1024 * 1024));
-                case InformationUnit.Gibibyte: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024 * 1024));
-                case InformationUnit.Gigabit: return Convert.ToDouble((baseUnitValue) / 1e9m);
-                case InformationUnit.Gigabyte: return Convert.ToDouble((baseUnitValue/8m) / 1e9m);
-                case InformationUnit.Kibibit: return Convert.ToDouble((baseUnitValue) / 1024m);
-                case InformationUnit.Kibibyte: return Convert.ToDouble((baseUnitValue/8m) / 1024m);
-                case InformationUnit.Kilobit: return Convert.ToDouble((baseUnitValue) / 1e3m);
-                case InformationUnit.Kilobyte: return Convert.ToDouble((baseUnitValue/8m) / 1e3m);
-                case InformationUnit.Mebibit: return Convert.ToDouble((baseUnitValue) / (1024m * 1024));
-                case InformationUnit.Mebibyte: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024));
-                case InformationUnit.Megabit: return Convert.ToDouble((baseUnitValue) / 1e6m);
-                case InformationUnit.Megabyte: return Convert.ToDouble((baseUnitValue/8m) / 1e6m);
-                case InformationUnit.Pebibit: return Convert.ToDouble((baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024));
-                case InformationUnit.Pebibyte: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024));
-                case InformationUnit.Petabit: return Convert.ToDouble((baseUnitValue) / 1e15m);
-                case InformationUnit.Petabyte: return Convert.ToDouble((baseUnitValue/8m) / 1e15m);
-                case InformationUnit.Tebibit: return Convert.ToDouble((baseUnitValue) / (1024m * 1024 * 1024 * 1024));
-                case InformationUnit.Tebibyte: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024));
-                case InformationUnit.Terabit: return Convert.ToDouble((baseUnitValue) / 1e12m);
-                case InformationUnit.Terabyte: return Convert.ToDouble((baseUnitValue/8m) / 1e12m);
-
+                case InformationUnit.Bit: return _value;
+                case InformationUnit.Byte: return _value*8m;
+                case InformationUnit.Exabit: return (_value) * 1e18m;
+                case InformationUnit.Exabyte: return (_value*8m) * 1e18m;
+                case InformationUnit.Exbibit: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case InformationUnit.Exbibyte: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case InformationUnit.Gibibit: return (_value) * (1024m * 1024 * 1024);
+                case InformationUnit.Gibibyte: return (_value*8m) * (1024m * 1024 * 1024);
+                case InformationUnit.Gigabit: return (_value) * 1e9m;
+                case InformationUnit.Gigabyte: return (_value*8m) * 1e9m;
+                case InformationUnit.Kibibit: return (_value) * 1024m;
+                case InformationUnit.Kibibyte: return (_value*8m) * 1024m;
+                case InformationUnit.Kilobit: return (_value) * 1e3m;
+                case InformationUnit.Kilobyte: return (_value*8m) * 1e3m;
+                case InformationUnit.Mebibit: return (_value) * (1024m * 1024);
+                case InformationUnit.Mebibyte: return (_value*8m) * (1024m * 1024);
+                case InformationUnit.Megabit: return (_value) * 1e6m;
+                case InformationUnit.Megabyte: return (_value*8m) * 1e6m;
+                case InformationUnit.Pebibit: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024);
+                case InformationUnit.Pebibyte: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024);
+                case InformationUnit.Petabit: return (_value) * 1e15m;
+                case InformationUnit.Petabyte: return (_value*8m) * 1e15m;
+                case InformationUnit.Tebibit: return (_value) * (1024m * 1024 * 1024 * 1024);
+                case InformationUnit.Tebibyte: return (_value*8m) * (1024m * 1024 * 1024 * 1024);
+                case InformationUnit.Terabit: return (_value) * 1e12m;
+                case InformationUnit.Terabyte: return (_value*8m) * 1e12m;
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
+            }
+        }
+
+        private decimal AsBaseNumericType(InformationUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
+
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
+            {
+                case InformationUnit.Bit: return baseUnitValue;
+                case InformationUnit.Byte: return baseUnitValue/8m;
+                case InformationUnit.Exabit: return (baseUnitValue) / 1e18m;
+                case InformationUnit.Exabyte: return (baseUnitValue/8m) / 1e18m;
+                case InformationUnit.Exbibit: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case InformationUnit.Exbibyte: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case InformationUnit.Gibibit: return (baseUnitValue) / (1024m * 1024 * 1024);
+                case InformationUnit.Gibibyte: return (baseUnitValue/8m) / (1024m * 1024 * 1024);
+                case InformationUnit.Gigabit: return (baseUnitValue) / 1e9m;
+                case InformationUnit.Gigabyte: return (baseUnitValue/8m) / 1e9m;
+                case InformationUnit.Kibibit: return (baseUnitValue) / 1024m;
+                case InformationUnit.Kibibyte: return (baseUnitValue/8m) / 1024m;
+                case InformationUnit.Kilobit: return (baseUnitValue) / 1e3m;
+                case InformationUnit.Kilobyte: return (baseUnitValue/8m) / 1e3m;
+                case InformationUnit.Mebibit: return (baseUnitValue) / (1024m * 1024);
+                case InformationUnit.Mebibyte: return (baseUnitValue/8m) / (1024m * 1024);
+                case InformationUnit.Megabit: return (baseUnitValue) / 1e6m;
+                case InformationUnit.Megabyte: return (baseUnitValue/8m) / 1e6m;
+                case InformationUnit.Pebibit: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024);
+                case InformationUnit.Pebibyte: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024);
+                case InformationUnit.Petabit: return (baseUnitValue) / 1e15m;
+                case InformationUnit.Petabyte: return (baseUnitValue/8m) / 1e15m;
+                case InformationUnit.Tebibit: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024);
+                case InformationUnit.Tebibyte: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024);
+                case InformationUnit.Terabit: return (baseUnitValue) / 1e12m;
+                case InformationUnit.Terabyte: return (baseUnitValue/8m) / 1e12m;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1682,51 +1728,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Information
         /// </summary>
         public static Information MinValue => new Information(decimal.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private decimal AsBaseUnitBits()
-        {
-            if (Unit == InformationUnit.Bit) { return _value; }
-
-            switch (Unit)
-            {
-                case InformationUnit.Bit: return Convert.ToDecimal(_value);
-                case InformationUnit.Byte: return Convert.ToDecimal(_value*8m);
-                case InformationUnit.Exabit: return Convert.ToDecimal((_value) * 1e18m);
-                case InformationUnit.Exabyte: return Convert.ToDecimal((_value*8m) * 1e18m);
-                case InformationUnit.Exbibit: return Convert.ToDecimal((_value) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024));
-                case InformationUnit.Exbibyte: return Convert.ToDecimal((_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024));
-                case InformationUnit.Gibibit: return Convert.ToDecimal((_value) * (1024m * 1024 * 1024));
-                case InformationUnit.Gibibyte: return Convert.ToDecimal((_value*8m) * (1024m * 1024 * 1024));
-                case InformationUnit.Gigabit: return Convert.ToDecimal((_value) * 1e9m);
-                case InformationUnit.Gigabyte: return Convert.ToDecimal((_value*8m) * 1e9m);
-                case InformationUnit.Kibibit: return Convert.ToDecimal((_value) * 1024m);
-                case InformationUnit.Kibibyte: return Convert.ToDecimal((_value*8m) * 1024m);
-                case InformationUnit.Kilobit: return Convert.ToDecimal((_value) * 1e3m);
-                case InformationUnit.Kilobyte: return Convert.ToDecimal((_value*8m) * 1e3m);
-                case InformationUnit.Mebibit: return Convert.ToDecimal((_value) * (1024m * 1024));
-                case InformationUnit.Mebibyte: return Convert.ToDecimal((_value*8m) * (1024m * 1024));
-                case InformationUnit.Megabit: return Convert.ToDecimal((_value) * 1e6m);
-                case InformationUnit.Megabyte: return Convert.ToDecimal((_value*8m) * 1e6m);
-                case InformationUnit.Pebibit: return Convert.ToDecimal((_value) * (1024m * 1024 * 1024 * 1024 * 1024));
-                case InformationUnit.Pebibyte: return Convert.ToDecimal((_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024));
-                case InformationUnit.Petabit: return Convert.ToDecimal((_value) * 1e15m);
-                case InformationUnit.Petabyte: return Convert.ToDecimal((_value*8m) * 1e15m);
-                case InformationUnit.Tebibit: return Convert.ToDecimal((_value) * (1024m * 1024 * 1024 * 1024));
-                case InformationUnit.Tebibyte: return Convert.ToDecimal((_value*8m) * (1024m * 1024 * 1024 * 1024));
-                case InformationUnit.Terabit: return Convert.ToDecimal((_value) * 1e12m);
-                case InformationUnit.Terabyte: return Convert.ToDecimal((_value*8m) * 1e12m);
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private decimal AsBaseNumericType(InformationUnit unit) => Convert.ToDecimal(As(unit));
 
     }
 }

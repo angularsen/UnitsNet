@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          BitRate(decimal numericValue, BitRateUnit unit)
+        BitRate(decimal numericValue, BitRateUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1296,44 +1296,90 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(BitRateUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private decimal AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
-            }
-
-            decimal baseUnitValue = AsBaseUnitBitsPerSecond();
-
-            switch (unit)
-            {
-                case BitRateUnit.BitPerSecond: return Convert.ToDouble(baseUnitValue);
-                case BitRateUnit.BytePerSecond: return Convert.ToDouble(baseUnitValue/8m);
-                case BitRateUnit.ExabitPerSecond: return Convert.ToDouble((baseUnitValue) / 1e18m);
-                case BitRateUnit.ExabytePerSecond: return Convert.ToDouble((baseUnitValue/8m) / 1e18m);
-                case BitRateUnit.ExbibitPerSecond: return Convert.ToDouble((baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024));
-                case BitRateUnit.ExbibytePerSecond: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024));
-                case BitRateUnit.GibibitPerSecond: return Convert.ToDouble((baseUnitValue) / (1024m * 1024 * 1024));
-                case BitRateUnit.GibibytePerSecond: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024 * 1024));
-                case BitRateUnit.GigabitPerSecond: return Convert.ToDouble((baseUnitValue) / 1e9m);
-                case BitRateUnit.GigabytePerSecond: return Convert.ToDouble((baseUnitValue/8m) / 1e9m);
-                case BitRateUnit.KibibitPerSecond: return Convert.ToDouble((baseUnitValue) / 1024m);
-                case BitRateUnit.KibibytePerSecond: return Convert.ToDouble((baseUnitValue/8m) / 1024m);
-                case BitRateUnit.KilobitPerSecond: return Convert.ToDouble((baseUnitValue) / 1e3m);
-                case BitRateUnit.KilobytePerSecond: return Convert.ToDouble((baseUnitValue/8m) / 1e3m);
-                case BitRateUnit.MebibitPerSecond: return Convert.ToDouble((baseUnitValue) / (1024m * 1024));
-                case BitRateUnit.MebibytePerSecond: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024));
-                case BitRateUnit.MegabitPerSecond: return Convert.ToDouble((baseUnitValue) / 1e6m);
-                case BitRateUnit.MegabytePerSecond: return Convert.ToDouble((baseUnitValue/8m) / 1e6m);
-                case BitRateUnit.PebibitPerSecond: return Convert.ToDouble((baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024));
-                case BitRateUnit.PebibytePerSecond: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024));
-                case BitRateUnit.PetabitPerSecond: return Convert.ToDouble((baseUnitValue) / 1e15m);
-                case BitRateUnit.PetabytePerSecond: return Convert.ToDouble((baseUnitValue/8m) / 1e15m);
-                case BitRateUnit.TebibitPerSecond: return Convert.ToDouble((baseUnitValue) / (1024m * 1024 * 1024 * 1024));
-                case BitRateUnit.TebibytePerSecond: return Convert.ToDouble((baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024));
-                case BitRateUnit.TerabitPerSecond: return Convert.ToDouble((baseUnitValue) / 1e12m);
-                case BitRateUnit.TerabytePerSecond: return Convert.ToDouble((baseUnitValue/8m) / 1e12m);
-
+                case BitRateUnit.BitPerSecond: return _value;
+                case BitRateUnit.BytePerSecond: return _value*8m;
+                case BitRateUnit.ExabitPerSecond: return (_value) * 1e18m;
+                case BitRateUnit.ExabytePerSecond: return (_value*8m) * 1e18m;
+                case BitRateUnit.ExbibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.ExbibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.GibibitPerSecond: return (_value) * (1024m * 1024 * 1024);
+                case BitRateUnit.GibibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024);
+                case BitRateUnit.GigabitPerSecond: return (_value) * 1e9m;
+                case BitRateUnit.GigabytePerSecond: return (_value*8m) * 1e9m;
+                case BitRateUnit.KibibitPerSecond: return (_value) * 1024m;
+                case BitRateUnit.KibibytePerSecond: return (_value*8m) * 1024m;
+                case BitRateUnit.KilobitPerSecond: return (_value) * 1e3m;
+                case BitRateUnit.KilobytePerSecond: return (_value*8m) * 1e3m;
+                case BitRateUnit.MebibitPerSecond: return (_value) * (1024m * 1024);
+                case BitRateUnit.MebibytePerSecond: return (_value*8m) * (1024m * 1024);
+                case BitRateUnit.MegabitPerSecond: return (_value) * 1e6m;
+                case BitRateUnit.MegabytePerSecond: return (_value*8m) * 1e6m;
+                case BitRateUnit.PebibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.PebibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.PetabitPerSecond: return (_value) * 1e15m;
+                case BitRateUnit.PetabytePerSecond: return (_value*8m) * 1e15m;
+                case BitRateUnit.TebibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024);
+                case BitRateUnit.TebibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024);
+                case BitRateUnit.TerabitPerSecond: return (_value) * 1e12m;
+                case BitRateUnit.TerabytePerSecond: return (_value*8m) * 1e12m;
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
+            }
+        }
+
+        private decimal AsBaseNumericType(BitRateUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
+
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
+            {
+                case BitRateUnit.BitPerSecond: return baseUnitValue;
+                case BitRateUnit.BytePerSecond: return baseUnitValue/8m;
+                case BitRateUnit.ExabitPerSecond: return (baseUnitValue) / 1e18m;
+                case BitRateUnit.ExabytePerSecond: return (baseUnitValue/8m) / 1e18m;
+                case BitRateUnit.ExbibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.ExbibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.GibibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024);
+                case BitRateUnit.GibibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024);
+                case BitRateUnit.GigabitPerSecond: return (baseUnitValue) / 1e9m;
+                case BitRateUnit.GigabytePerSecond: return (baseUnitValue/8m) / 1e9m;
+                case BitRateUnit.KibibitPerSecond: return (baseUnitValue) / 1024m;
+                case BitRateUnit.KibibytePerSecond: return (baseUnitValue/8m) / 1024m;
+                case BitRateUnit.KilobitPerSecond: return (baseUnitValue) / 1e3m;
+                case BitRateUnit.KilobytePerSecond: return (baseUnitValue/8m) / 1e3m;
+                case BitRateUnit.MebibitPerSecond: return (baseUnitValue) / (1024m * 1024);
+                case BitRateUnit.MebibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024);
+                case BitRateUnit.MegabitPerSecond: return (baseUnitValue) / 1e6m;
+                case BitRateUnit.MegabytePerSecond: return (baseUnitValue/8m) / 1e6m;
+                case BitRateUnit.PebibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.PebibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.PetabitPerSecond: return (baseUnitValue) / 1e15m;
+                case BitRateUnit.PetabytePerSecond: return (baseUnitValue/8m) / 1e15m;
+                case BitRateUnit.TebibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024);
+                case BitRateUnit.TebibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024);
+                case BitRateUnit.TerabitPerSecond: return (baseUnitValue) / 1e12m;
+                case BitRateUnit.TerabytePerSecond: return (baseUnitValue/8m) / 1e12m;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1682,51 +1728,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of BitRate
         /// </summary>
         public static BitRate MinValue => new BitRate(decimal.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private decimal AsBaseUnitBitsPerSecond()
-        {
-            if (Unit == BitRateUnit.BitPerSecond) { return _value; }
-
-            switch (Unit)
-            {
-                case BitRateUnit.BitPerSecond: return Convert.ToDecimal(_value);
-                case BitRateUnit.BytePerSecond: return Convert.ToDecimal(_value*8m);
-                case BitRateUnit.ExabitPerSecond: return Convert.ToDecimal((_value) * 1e18m);
-                case BitRateUnit.ExabytePerSecond: return Convert.ToDecimal((_value*8m) * 1e18m);
-                case BitRateUnit.ExbibitPerSecond: return Convert.ToDecimal((_value) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024));
-                case BitRateUnit.ExbibytePerSecond: return Convert.ToDecimal((_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024));
-                case BitRateUnit.GibibitPerSecond: return Convert.ToDecimal((_value) * (1024m * 1024 * 1024));
-                case BitRateUnit.GibibytePerSecond: return Convert.ToDecimal((_value*8m) * (1024m * 1024 * 1024));
-                case BitRateUnit.GigabitPerSecond: return Convert.ToDecimal((_value) * 1e9m);
-                case BitRateUnit.GigabytePerSecond: return Convert.ToDecimal((_value*8m) * 1e9m);
-                case BitRateUnit.KibibitPerSecond: return Convert.ToDecimal((_value) * 1024m);
-                case BitRateUnit.KibibytePerSecond: return Convert.ToDecimal((_value*8m) * 1024m);
-                case BitRateUnit.KilobitPerSecond: return Convert.ToDecimal((_value) * 1e3m);
-                case BitRateUnit.KilobytePerSecond: return Convert.ToDecimal((_value*8m) * 1e3m);
-                case BitRateUnit.MebibitPerSecond: return Convert.ToDecimal((_value) * (1024m * 1024));
-                case BitRateUnit.MebibytePerSecond: return Convert.ToDecimal((_value*8m) * (1024m * 1024));
-                case BitRateUnit.MegabitPerSecond: return Convert.ToDecimal((_value) * 1e6m);
-                case BitRateUnit.MegabytePerSecond: return Convert.ToDecimal((_value*8m) * 1e6m);
-                case BitRateUnit.PebibitPerSecond: return Convert.ToDecimal((_value) * (1024m * 1024 * 1024 * 1024 * 1024));
-                case BitRateUnit.PebibytePerSecond: return Convert.ToDecimal((_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024));
-                case BitRateUnit.PetabitPerSecond: return Convert.ToDecimal((_value) * 1e15m);
-                case BitRateUnit.PetabytePerSecond: return Convert.ToDecimal((_value*8m) * 1e15m);
-                case BitRateUnit.TebibitPerSecond: return Convert.ToDecimal((_value) * (1024m * 1024 * 1024 * 1024));
-                case BitRateUnit.TebibytePerSecond: return Convert.ToDecimal((_value*8m) * (1024m * 1024 * 1024 * 1024));
-                case BitRateUnit.TerabitPerSecond: return Convert.ToDecimal((_value) * 1e12m);
-                case BitRateUnit.TerabytePerSecond: return Convert.ToDecimal((_value*8m) * 1e12m);
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private decimal AsBaseNumericType(BitRateUnit unit) => Convert.ToDecimal(As(unit));
 
     }
 }
