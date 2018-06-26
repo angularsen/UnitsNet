@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          ApparentPower(double numericValue, ApparentPowerUnit unit)
+        ApparentPower(double numericValue, ApparentPowerUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -452,7 +452,7 @@ namespace UnitsNet
 #endif
         int CompareTo(ApparentPower other)
         {
-            return AsBaseUnitVoltamperes().CompareTo(other.AsBaseUnitVoltamperes());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -582,22 +582,46 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(ApparentPowerUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case ApparentPowerUnit.Gigavoltampere: return (_value) * 1e9d;
+                case ApparentPowerUnit.Kilovoltampere: return (_value) * 1e3d;
+                case ApparentPowerUnit.Megavoltampere: return (_value) * 1e6d;
+                case ApparentPowerUnit.Voltampere: return _value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitVoltamperes();
+        private double AsBaseNumericType(ApparentPowerUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case ApparentPowerUnit.Gigavoltampere: return (baseUnitValue) / 1e9d;
                 case ApparentPowerUnit.Kilovoltampere: return (baseUnitValue) / 1e3d;
                 case ApparentPowerUnit.Megavoltampere: return (baseUnitValue) / 1e6d;
                 case ApparentPowerUnit.Voltampere: return baseUnitValue;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -946,29 +970,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of ApparentPower
         /// </summary>
         public static ApparentPower MinValue => new ApparentPower(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitVoltamperes()
-        {
-            if (Unit == ApparentPowerUnit.Voltampere) { return _value; }
-
-            switch (Unit)
-            {
-                case ApparentPowerUnit.Gigavoltampere: return (_value) * 1e9d;
-                case ApparentPowerUnit.Kilovoltampere: return (_value) * 1e3d;
-                case ApparentPowerUnit.Megavoltampere: return (_value) * 1e6d;
-                case ApparentPowerUnit.Voltampere: return _value;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(ApparentPowerUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

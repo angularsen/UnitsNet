@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Duration(double numericValue, DurationUnit unit)
+        Duration(double numericValue, DurationUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -718,7 +718,7 @@ namespace UnitsNet
 #endif
         int CompareTo(Duration other)
         {
-            return AsBaseUnitSeconds().CompareTo(other.AsBaseUnitSeconds());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -848,14 +848,47 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(DurationUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case DurationUnit.Day: return _value*24*3600;
+                case DurationUnit.Hour: return _value*3600;
+                case DurationUnit.Microsecond: return (_value) * 1e-6d;
+                case DurationUnit.Millisecond: return (_value) * 1e-3d;
+                case DurationUnit.Minute: return _value*60;
+                case DurationUnit.Month: return _value*30*24*3600;
+                case DurationUnit.Month30: return _value*30*24*3600;
+                case DurationUnit.Nanosecond: return (_value) * 1e-9d;
+                case DurationUnit.Second: return _value;
+                case DurationUnit.Week: return _value*7*24*3600;
+                case DurationUnit.Year: return _value*365*24*3600;
+                case DurationUnit.Year365: return _value*365*24*3600;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitSeconds();
+        private double AsBaseNumericType(DurationUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case DurationUnit.Day: return baseUnitValue/(24*3600);
                 case DurationUnit.Hour: return baseUnitValue/3600;
@@ -869,9 +902,8 @@ namespace UnitsNet
                 case DurationUnit.Week: return baseUnitValue/(7*24*3600);
                 case DurationUnit.Year: return baseUnitValue/(365*24*3600);
                 case DurationUnit.Year365: return baseUnitValue/(365*24*3600);
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1220,37 +1252,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Duration
         /// </summary>
         public static Duration MinValue => new Duration(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitSeconds()
-        {
-            if (Unit == DurationUnit.Second) { return _value; }
-
-            switch (Unit)
-            {
-                case DurationUnit.Day: return _value*24*3600;
-                case DurationUnit.Hour: return _value*3600;
-                case DurationUnit.Microsecond: return (_value) * 1e-6d;
-                case DurationUnit.Millisecond: return (_value) * 1e-3d;
-                case DurationUnit.Minute: return _value*60;
-                case DurationUnit.Month: return _value*30*24*3600;
-                case DurationUnit.Month30: return _value*30*24*3600;
-                case DurationUnit.Nanosecond: return (_value) * 1e-9d;
-                case DurationUnit.Second: return _value;
-                case DurationUnit.Week: return _value*7*24*3600;
-                case DurationUnit.Year: return _value*365*24*3600;
-                case DurationUnit.Year365: return _value*365*24*3600;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(DurationUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

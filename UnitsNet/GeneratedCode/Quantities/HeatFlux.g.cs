@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          HeatFlux(double numericValue, HeatFluxUnit unit)
+        HeatFlux(double numericValue, HeatFluxUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -848,7 +848,7 @@ namespace UnitsNet
 #endif
         int CompareTo(HeatFlux other)
         {
-            return AsBaseUnitWattsPerSquareMeter().CompareTo(other.AsBaseUnitWattsPerSquareMeter());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -978,14 +978,51 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(HeatFluxUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case HeatFluxUnit.BtuPerHourSquareFoot: return _value*3.15459075;
+                case HeatFluxUnit.BtuPerMinuteSquareFoot: return _value*1.89275445e2;
+                case HeatFluxUnit.BtuPerSecondSquareFoot: return _value*1.13565267e4;
+                case HeatFluxUnit.BtuPerSecondSquareInch: return _value*1.63533984e6;
+                case HeatFluxUnit.CaloriePerSecondSquareCentimeter: return _value*4.1868e4;
+                case HeatFluxUnit.CentiwattPerSquareMeter: return (_value) * 1e-2d;
+                case HeatFluxUnit.DeciwattPerSquareMeter: return (_value) * 1e-1d;
+                case HeatFluxUnit.KilocaloriePerHourSquareMeter: return _value*1.163;
+                case HeatFluxUnit.KilocaloriePerSecondSquareCentimeter: return (_value*4.1868e4) * 1e3d;
+                case HeatFluxUnit.KilowattPerSquareMeter: return (_value) * 1e3d;
+                case HeatFluxUnit.MicrowattPerSquareMeter: return (_value) * 1e-6d;
+                case HeatFluxUnit.MilliwattPerSquareMeter: return (_value) * 1e-3d;
+                case HeatFluxUnit.NanowattPerSquareMeter: return (_value) * 1e-9d;
+                case HeatFluxUnit.WattPerSquareFoot: return _value*1.07639e1;
+                case HeatFluxUnit.WattPerSquareInch: return _value*1.5500031e3;
+                case HeatFluxUnit.WattPerSquareMeter: return _value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitWattsPerSquareMeter();
+        private double AsBaseNumericType(HeatFluxUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case HeatFluxUnit.BtuPerHourSquareFoot: return baseUnitValue/3.15459075;
                 case HeatFluxUnit.BtuPerMinuteSquareFoot: return baseUnitValue/1.89275445e2;
@@ -1003,9 +1040,8 @@ namespace UnitsNet
                 case HeatFluxUnit.WattPerSquareFoot: return baseUnitValue/1.07639e1;
                 case HeatFluxUnit.WattPerSquareInch: return baseUnitValue/1.5500031e3;
                 case HeatFluxUnit.WattPerSquareMeter: return baseUnitValue;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1354,41 +1390,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of HeatFlux
         /// </summary>
         public static HeatFlux MinValue => new HeatFlux(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitWattsPerSquareMeter()
-        {
-            if (Unit == HeatFluxUnit.WattPerSquareMeter) { return _value; }
-
-            switch (Unit)
-            {
-                case HeatFluxUnit.BtuPerHourSquareFoot: return _value*3.15459075;
-                case HeatFluxUnit.BtuPerMinuteSquareFoot: return _value*1.89275445e2;
-                case HeatFluxUnit.BtuPerSecondSquareFoot: return _value*1.13565267e4;
-                case HeatFluxUnit.BtuPerSecondSquareInch: return _value*1.63533984e6;
-                case HeatFluxUnit.CaloriePerSecondSquareCentimeter: return _value*4.1868e4;
-                case HeatFluxUnit.CentiwattPerSquareMeter: return (_value) * 1e-2d;
-                case HeatFluxUnit.DeciwattPerSquareMeter: return (_value) * 1e-1d;
-                case HeatFluxUnit.KilocaloriePerHourSquareMeter: return _value*1.163;
-                case HeatFluxUnit.KilocaloriePerSecondSquareCentimeter: return (_value*4.1868e4) * 1e3d;
-                case HeatFluxUnit.KilowattPerSquareMeter: return (_value) * 1e3d;
-                case HeatFluxUnit.MicrowattPerSquareMeter: return (_value) * 1e-6d;
-                case HeatFluxUnit.MilliwattPerSquareMeter: return (_value) * 1e-3d;
-                case HeatFluxUnit.NanowattPerSquareMeter: return (_value) * 1e-9d;
-                case HeatFluxUnit.WattPerSquareFoot: return _value*1.07639e1;
-                case HeatFluxUnit.WattPerSquareInch: return _value*1.5500031e3;
-                case HeatFluxUnit.WattPerSquareMeter: return _value;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(HeatFluxUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

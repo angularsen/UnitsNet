@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          AmountOfSubstance(double numericValue, AmountOfSubstanceUnit unit)
+        AmountOfSubstance(double numericValue, AmountOfSubstanceUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -782,7 +782,7 @@ namespace UnitsNet
 #endif
         int CompareTo(AmountOfSubstance other)
         {
-            return AsBaseUnitMoles().CompareTo(other.AsBaseUnitMoles());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -912,14 +912,49 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(AmountOfSubstanceUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case AmountOfSubstanceUnit.Centimole: return (_value) * 1e-2d;
+                case AmountOfSubstanceUnit.CentipoundMole: return (_value*453.59237) * 1e-2d;
+                case AmountOfSubstanceUnit.Decimole: return (_value) * 1e-1d;
+                case AmountOfSubstanceUnit.DecipoundMole: return (_value*453.59237) * 1e-1d;
+                case AmountOfSubstanceUnit.Kilomole: return (_value) * 1e3d;
+                case AmountOfSubstanceUnit.KilopoundMole: return (_value*453.59237) * 1e3d;
+                case AmountOfSubstanceUnit.Micromole: return (_value) * 1e-6d;
+                case AmountOfSubstanceUnit.MicropoundMole: return (_value*453.59237) * 1e-6d;
+                case AmountOfSubstanceUnit.Millimole: return (_value) * 1e-3d;
+                case AmountOfSubstanceUnit.MillipoundMole: return (_value*453.59237) * 1e-3d;
+                case AmountOfSubstanceUnit.Mole: return _value;
+                case AmountOfSubstanceUnit.Nanomole: return (_value) * 1e-9d;
+                case AmountOfSubstanceUnit.NanopoundMole: return (_value*453.59237) * 1e-9d;
+                case AmountOfSubstanceUnit.PoundMole: return _value*453.59237;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitMoles();
+        private double AsBaseNumericType(AmountOfSubstanceUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case AmountOfSubstanceUnit.Centimole: return (baseUnitValue) / 1e-2d;
                 case AmountOfSubstanceUnit.CentipoundMole: return (baseUnitValue/453.59237) / 1e-2d;
@@ -935,9 +970,8 @@ namespace UnitsNet
                 case AmountOfSubstanceUnit.Nanomole: return (baseUnitValue) / 1e-9d;
                 case AmountOfSubstanceUnit.NanopoundMole: return (baseUnitValue/453.59237) / 1e-9d;
                 case AmountOfSubstanceUnit.PoundMole: return baseUnitValue/453.59237;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1286,39 +1320,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of AmountOfSubstance
         /// </summary>
         public static AmountOfSubstance MinValue => new AmountOfSubstance(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitMoles()
-        {
-            if (Unit == AmountOfSubstanceUnit.Mole) { return _value; }
-
-            switch (Unit)
-            {
-                case AmountOfSubstanceUnit.Centimole: return (_value) * 1e-2d;
-                case AmountOfSubstanceUnit.CentipoundMole: return (_value*453.59237) * 1e-2d;
-                case AmountOfSubstanceUnit.Decimole: return (_value) * 1e-1d;
-                case AmountOfSubstanceUnit.DecipoundMole: return (_value*453.59237) * 1e-1d;
-                case AmountOfSubstanceUnit.Kilomole: return (_value) * 1e3d;
-                case AmountOfSubstanceUnit.KilopoundMole: return (_value*453.59237) * 1e3d;
-                case AmountOfSubstanceUnit.Micromole: return (_value) * 1e-6d;
-                case AmountOfSubstanceUnit.MicropoundMole: return (_value*453.59237) * 1e-6d;
-                case AmountOfSubstanceUnit.Millimole: return (_value) * 1e-3d;
-                case AmountOfSubstanceUnit.MillipoundMole: return (_value*453.59237) * 1e-3d;
-                case AmountOfSubstanceUnit.Mole: return _value;
-                case AmountOfSubstanceUnit.Nanomole: return (_value) * 1e-9d;
-                case AmountOfSubstanceUnit.NanopoundMole: return (_value*453.59237) * 1e-9d;
-                case AmountOfSubstanceUnit.PoundMole: return _value*453.59237;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(AmountOfSubstanceUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

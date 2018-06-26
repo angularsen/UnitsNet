@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Entropy(double numericValue, EntropyUnit unit)
+        Entropy(double numericValue, EntropyUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -551,7 +551,7 @@ namespace UnitsNet
 #endif
         int CompareTo(Entropy other)
         {
-            return AsBaseUnitJoulesPerKelvin().CompareTo(other.AsBaseUnitJoulesPerKelvin());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -681,14 +681,42 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(EntropyUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case EntropyUnit.CaloriePerKelvin: return _value*4.184;
+                case EntropyUnit.JoulePerDegreeCelsius: return _value;
+                case EntropyUnit.JoulePerKelvin: return _value;
+                case EntropyUnit.KilocaloriePerKelvin: return (_value*4.184) * 1e3d;
+                case EntropyUnit.KilojoulePerDegreeCelsius: return (_value) * 1e3d;
+                case EntropyUnit.KilojoulePerKelvin: return (_value) * 1e3d;
+                case EntropyUnit.MegajoulePerKelvin: return (_value) * 1e6d;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitJoulesPerKelvin();
+        private double AsBaseNumericType(EntropyUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case EntropyUnit.CaloriePerKelvin: return baseUnitValue/4.184;
                 case EntropyUnit.JoulePerDegreeCelsius: return baseUnitValue;
@@ -697,9 +725,8 @@ namespace UnitsNet
                 case EntropyUnit.KilojoulePerDegreeCelsius: return (baseUnitValue) / 1e3d;
                 case EntropyUnit.KilojoulePerKelvin: return (baseUnitValue) / 1e3d;
                 case EntropyUnit.MegajoulePerKelvin: return (baseUnitValue) / 1e6d;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -1048,32 +1075,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Entropy
         /// </summary>
         public static Entropy MinValue => new Entropy(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitJoulesPerKelvin()
-        {
-            if (Unit == EntropyUnit.JoulePerKelvin) { return _value; }
-
-            switch (Unit)
-            {
-                case EntropyUnit.CaloriePerKelvin: return _value*4.184;
-                case EntropyUnit.JoulePerDegreeCelsius: return _value;
-                case EntropyUnit.JoulePerKelvin: return _value;
-                case EntropyUnit.KilocaloriePerKelvin: return (_value*4.184) * 1e3d;
-                case EntropyUnit.KilojoulePerDegreeCelsius: return (_value) * 1e3d;
-                case EntropyUnit.KilojoulePerKelvin: return (_value) * 1e3d;
-                case EntropyUnit.MegajoulePerKelvin: return (_value) * 1e6d;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(EntropyUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

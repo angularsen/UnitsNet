@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Magnetization(double numericValue, MagnetizationUnit unit)
+        Magnetization(double numericValue, MagnetizationUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -353,7 +353,7 @@ namespace UnitsNet
 #endif
         int CompareTo(Magnetization other)
         {
-            return AsBaseUnitAmperesPerMeter().CompareTo(other.AsBaseUnitAmperesPerMeter());
+            return AsBaseUnit().CompareTo(other.AsBaseUnit());
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -483,19 +483,40 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         public double As(MagnetizationUnit unit)
         {
-            if (Unit == unit)
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                return (double)Value;
+                case MagnetizationUnit.AmperePerMeter: return _value;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            double baseUnitValue = AsBaseUnitAmperesPerMeter();
+        private double AsBaseNumericType(MagnetizationUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
 
-            switch (unit)
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
             {
                 case MagnetizationUnit.AmperePerMeter: return baseUnitValue;
-
                 default:
-                    throw new NotImplementedException("unit: " + unit);
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
         }
 
@@ -844,26 +865,6 @@ namespace UnitsNet
         /// Represents the smallest possible value of Magnetization
         /// </summary>
         public static Magnetization MinValue => new Magnetization(double.MinValue, BaseUnit);
-
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnitAmperesPerMeter()
-        {
-            if (Unit == MagnetizationUnit.AmperePerMeter) { return _value; }
-
-            switch (Unit)
-            {
-                case MagnetizationUnit.AmperePerMeter: return _value;
-                default:
-                    throw new NotImplementedException("Unit not implemented: " + Unit);
-            }
-        }
-
-        /// <summary>Convenience method for working with internal numeric type.</summary>
-        private double AsBaseNumericType(MagnetizationUnit unit) => Convert.ToDouble(As(unit));
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
