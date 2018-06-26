@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
+
+            var degreecelsiusperkilometerQuantity = degreecelsiusperkilometer.AsQuantity(LapseRateUnit.DegreeCelsiusPerKilometer);
+            AssertEx.EqualTolerance(DegreesCelciusPerKilometerInOneDegreeCelsiusPerKilometer, (double)degreecelsiusperkilometerQuantity.Value, DegreesCelciusPerKilometerTolerance);
+            Assert.Equal(LapseRateUnit.DegreeCelsiusPerKilometer, degreecelsiusperkilometerQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             LapseRate degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);

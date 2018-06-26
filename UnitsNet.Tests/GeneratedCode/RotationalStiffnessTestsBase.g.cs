@@ -89,6 +89,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var newtonmeterperradian = RotationalStiffness.FromNewtonMetersPerRadian(1);
+
+            var kilonewtonmeterperradianQuantity = newtonmeterperradian.AsQuantity(RotationalStiffnessUnit.KilonewtonMeterPerRadian);
+            AssertEx.EqualTolerance(KilonewtonMetersPerRadianInOneNewtonMeterPerRadian, (double)kilonewtonmeterperradianQuantity.Value, KilonewtonMetersPerRadianTolerance);
+            Assert.Equal(RotationalStiffnessUnit.KilonewtonMeterPerRadian, kilonewtonmeterperradianQuantity.Unit);
+
+            var meganewtonmeterperradianQuantity = newtonmeterperradian.AsQuantity(RotationalStiffnessUnit.MeganewtonMeterPerRadian);
+            AssertEx.EqualTolerance(MeganewtonMetersPerRadianInOneNewtonMeterPerRadian, (double)meganewtonmeterperradianQuantity.Value, MeganewtonMetersPerRadianTolerance);
+            Assert.Equal(RotationalStiffnessUnit.MeganewtonMeterPerRadian, meganewtonmeterperradianQuantity.Unit);
+
+            var newtonmeterperradianQuantity = newtonmeterperradian.AsQuantity(RotationalStiffnessUnit.NewtonMeterPerRadian);
+            AssertEx.EqualTolerance(NewtonMetersPerRadianInOneNewtonMeterPerRadian, (double)newtonmeterperradianQuantity.Value, NewtonMetersPerRadianTolerance);
+            Assert.Equal(RotationalStiffnessUnit.NewtonMeterPerRadian, newtonmeterperradianQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             RotationalStiffness newtonmeterperradian = RotationalStiffness.FromNewtonMetersPerRadian(1);

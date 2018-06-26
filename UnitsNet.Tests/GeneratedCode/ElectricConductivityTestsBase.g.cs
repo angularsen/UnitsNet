@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
+
+            var siemenspermeterQuantity = siemenspermeter.AsQuantity(ElectricConductivityUnit.SiemensPerMeter);
+            AssertEx.EqualTolerance(SiemensPerMeterInOneSiemensPerMeter, (double)siemenspermeterQuantity.Value, SiemensPerMeterTolerance);
+            Assert.Equal(ElectricConductivityUnit.SiemensPerMeter, siemenspermeterQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             ElectricConductivity siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);

@@ -89,6 +89,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var joulepermole = MolarEnergy.FromJoulesPerMole(1);
+
+            var joulepermoleQuantity = joulepermole.AsQuantity(MolarEnergyUnit.JoulePerMole);
+            AssertEx.EqualTolerance(JoulesPerMoleInOneJoulePerMole, (double)joulepermoleQuantity.Value, JoulesPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.JoulePerMole, joulepermoleQuantity.Unit);
+
+            var kilojoulepermoleQuantity = joulepermole.AsQuantity(MolarEnergyUnit.KilojoulePerMole);
+            AssertEx.EqualTolerance(KilojoulesPerMoleInOneJoulePerMole, (double)kilojoulepermoleQuantity.Value, KilojoulesPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.KilojoulePerMole, kilojoulepermoleQuantity.Unit);
+
+            var megajoulepermoleQuantity = joulepermole.AsQuantity(MolarEnergyUnit.MegajoulePerMole);
+            AssertEx.EqualTolerance(MegajoulesPerMoleInOneJoulePerMole, (double)megajoulepermoleQuantity.Value, MegajoulesPerMoleTolerance);
+            Assert.Equal(MolarEnergyUnit.MegajoulePerMole, megajoulepermoleQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             MolarEnergy joulepermole = MolarEnergy.FromJoulesPerMole(1);

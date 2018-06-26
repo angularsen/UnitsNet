@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var henrypermeter = Permeability.FromHenriesPerMeter(1);
+
+            var henrypermeterQuantity = henrypermeter.AsQuantity(PermeabilityUnit.HenryPerMeter);
+            AssertEx.EqualTolerance(HenriesPerMeterInOneHenryPerMeter, (double)henrypermeterQuantity.Value, HenriesPerMeterTolerance);
+            Assert.Equal(PermeabilityUnit.HenryPerMeter, henrypermeterQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);

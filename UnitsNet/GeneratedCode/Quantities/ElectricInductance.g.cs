@@ -491,6 +491,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ElectricInductance to another ElectricInductance with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricInductance with the specified unit.</returns>
+        public ElectricInductance AsQuantity(ElectricInductanceUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new ElectricInductance(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

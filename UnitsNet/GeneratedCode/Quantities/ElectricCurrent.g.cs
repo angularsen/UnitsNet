@@ -689,6 +689,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ElectricCurrent to another ElectricCurrent with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricCurrent with the specified unit.</returns>
+        public ElectricCurrent AsQuantity(ElectricCurrentUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new ElectricCurrent(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

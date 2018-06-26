@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var amperepersecond = ElectricCurrentGradient.FromAmperesPerSecond(1);
+
+            var amperepersecondQuantity = amperepersecond.AsQuantity(ElectricCurrentGradientUnit.AmperePerSecond);
+            AssertEx.EqualTolerance(AmperesPerSecondInOneAmperePerSecond, (double)amperepersecondQuantity.Value, AmperesPerSecondTolerance);
+            Assert.Equal(ElectricCurrentGradientUnit.AmperePerSecond, amperepersecondQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             ElectricCurrentGradient amperepersecond = ElectricCurrentGradient.FromAmperesPerSecond(1);

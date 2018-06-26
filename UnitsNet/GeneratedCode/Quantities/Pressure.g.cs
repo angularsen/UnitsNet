@@ -1713,6 +1713,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Pressure to another Pressure with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Pressure with the specified unit.</returns>
+        public Pressure AsQuantity(PressureUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Pressure(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

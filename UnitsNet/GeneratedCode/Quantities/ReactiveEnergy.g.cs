@@ -557,6 +557,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ReactiveEnergy to another ReactiveEnergy with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ReactiveEnergy with the specified unit.</returns>
+        public ReactiveEnergy AsQuantity(ReactiveEnergyUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new ReactiveEnergy(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

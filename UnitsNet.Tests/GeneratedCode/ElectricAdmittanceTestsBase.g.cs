@@ -94,6 +94,28 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var siemens = ElectricAdmittance.FromSiemens(1);
+
+            var microsiemensQuantity = siemens.AsQuantity(ElectricAdmittanceUnit.Microsiemens);
+            AssertEx.EqualTolerance(MicrosiemensInOneSiemens, (double)microsiemensQuantity.Value, MicrosiemensTolerance);
+            Assert.Equal(ElectricAdmittanceUnit.Microsiemens, microsiemensQuantity.Unit);
+
+            var millisiemensQuantity = siemens.AsQuantity(ElectricAdmittanceUnit.Millisiemens);
+            AssertEx.EqualTolerance(MillisiemensInOneSiemens, (double)millisiemensQuantity.Value, MillisiemensTolerance);
+            Assert.Equal(ElectricAdmittanceUnit.Millisiemens, millisiemensQuantity.Unit);
+
+            var nanosiemensQuantity = siemens.AsQuantity(ElectricAdmittanceUnit.Nanosiemens);
+            AssertEx.EqualTolerance(NanosiemensInOneSiemens, (double)nanosiemensQuantity.Value, NanosiemensTolerance);
+            Assert.Equal(ElectricAdmittanceUnit.Nanosiemens, nanosiemensQuantity.Unit);
+
+            var siemensQuantity = siemens.AsQuantity(ElectricAdmittanceUnit.Siemens);
+            AssertEx.EqualTolerance(SiemensInOneSiemens, (double)siemensQuantity.Value, SiemensTolerance);
+            Assert.Equal(ElectricAdmittanceUnit.Siemens, siemensQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             ElectricAdmittance siemens = ElectricAdmittance.FromSiemens(1);

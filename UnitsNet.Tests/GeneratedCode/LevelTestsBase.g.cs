@@ -84,6 +84,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var decibel = Level.FromDecibels(1);
+
+            var decibelQuantity = decibel.AsQuantity(LevelUnit.Decibel);
+            AssertEx.EqualTolerance(DecibelsInOneDecibel, (double)decibelQuantity.Value, DecibelsTolerance);
+            Assert.Equal(LevelUnit.Decibel, decibelQuantity.Unit);
+
+            var neperQuantity = decibel.AsQuantity(LevelUnit.Neper);
+            AssertEx.EqualTolerance(NepersInOneDecibel, (double)neperQuantity.Value, NepersTolerance);
+            Assert.Equal(LevelUnit.Neper, neperQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Level decibel = Level.FromDecibels(1);

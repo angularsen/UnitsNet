@@ -144,6 +144,68 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var degree = Angle.FromDegrees(1);
+
+            var arcminuteQuantity = degree.AsQuantity(AngleUnit.Arcminute);
+            AssertEx.EqualTolerance(ArcminutesInOneDegree, (double)arcminuteQuantity.Value, ArcminutesTolerance);
+            Assert.Equal(AngleUnit.Arcminute, arcminuteQuantity.Unit);
+
+            var arcsecondQuantity = degree.AsQuantity(AngleUnit.Arcsecond);
+            AssertEx.EqualTolerance(ArcsecondsInOneDegree, (double)arcsecondQuantity.Value, ArcsecondsTolerance);
+            Assert.Equal(AngleUnit.Arcsecond, arcsecondQuantity.Unit);
+
+            var centiradianQuantity = degree.AsQuantity(AngleUnit.Centiradian);
+            AssertEx.EqualTolerance(CentiradiansInOneDegree, (double)centiradianQuantity.Value, CentiradiansTolerance);
+            Assert.Equal(AngleUnit.Centiradian, centiradianQuantity.Unit);
+
+            var deciradianQuantity = degree.AsQuantity(AngleUnit.Deciradian);
+            AssertEx.EqualTolerance(DeciradiansInOneDegree, (double)deciradianQuantity.Value, DeciradiansTolerance);
+            Assert.Equal(AngleUnit.Deciradian, deciradianQuantity.Unit);
+
+            var degreeQuantity = degree.AsQuantity(AngleUnit.Degree);
+            AssertEx.EqualTolerance(DegreesInOneDegree, (double)degreeQuantity.Value, DegreesTolerance);
+            Assert.Equal(AngleUnit.Degree, degreeQuantity.Unit);
+
+            var gradianQuantity = degree.AsQuantity(AngleUnit.Gradian);
+            AssertEx.EqualTolerance(GradiansInOneDegree, (double)gradianQuantity.Value, GradiansTolerance);
+            Assert.Equal(AngleUnit.Gradian, gradianQuantity.Unit);
+
+            var microdegreeQuantity = degree.AsQuantity(AngleUnit.Microdegree);
+            AssertEx.EqualTolerance(MicrodegreesInOneDegree, (double)microdegreeQuantity.Value, MicrodegreesTolerance);
+            Assert.Equal(AngleUnit.Microdegree, microdegreeQuantity.Unit);
+
+            var microradianQuantity = degree.AsQuantity(AngleUnit.Microradian);
+            AssertEx.EqualTolerance(MicroradiansInOneDegree, (double)microradianQuantity.Value, MicroradiansTolerance);
+            Assert.Equal(AngleUnit.Microradian, microradianQuantity.Unit);
+
+            var millidegreeQuantity = degree.AsQuantity(AngleUnit.Millidegree);
+            AssertEx.EqualTolerance(MillidegreesInOneDegree, (double)millidegreeQuantity.Value, MillidegreesTolerance);
+            Assert.Equal(AngleUnit.Millidegree, millidegreeQuantity.Unit);
+
+            var milliradianQuantity = degree.AsQuantity(AngleUnit.Milliradian);
+            AssertEx.EqualTolerance(MilliradiansInOneDegree, (double)milliradianQuantity.Value, MilliradiansTolerance);
+            Assert.Equal(AngleUnit.Milliradian, milliradianQuantity.Unit);
+
+            var nanodegreeQuantity = degree.AsQuantity(AngleUnit.Nanodegree);
+            AssertEx.EqualTolerance(NanodegreesInOneDegree, (double)nanodegreeQuantity.Value, NanodegreesTolerance);
+            Assert.Equal(AngleUnit.Nanodegree, nanodegreeQuantity.Unit);
+
+            var nanoradianQuantity = degree.AsQuantity(AngleUnit.Nanoradian);
+            AssertEx.EqualTolerance(NanoradiansInOneDegree, (double)nanoradianQuantity.Value, NanoradiansTolerance);
+            Assert.Equal(AngleUnit.Nanoradian, nanoradianQuantity.Unit);
+
+            var radianQuantity = degree.AsQuantity(AngleUnit.Radian);
+            AssertEx.EqualTolerance(RadiansInOneDegree, (double)radianQuantity.Value, RadiansTolerance);
+            Assert.Equal(AngleUnit.Radian, radianQuantity.Unit);
+
+            var revolutionQuantity = degree.AsQuantity(AngleUnit.Revolution);
+            AssertEx.EqualTolerance(RevolutionsInOneDegree, (double)revolutionQuantity.Value, RevolutionsTolerance);
+            Assert.Equal(AngleUnit.Revolution, revolutionQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Angle degree = Angle.FromDegrees(1);

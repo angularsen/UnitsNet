@@ -1303,6 +1303,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this BitRate to another BitRate with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A BitRate with the specified unit.</returns>
+        public BitRate AsQuantity(BitRateUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new BitRate(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

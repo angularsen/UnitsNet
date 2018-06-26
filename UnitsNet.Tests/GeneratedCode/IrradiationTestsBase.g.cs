@@ -89,6 +89,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);
+
+            var joulepersquaremeterQuantity = joulepersquaremeter.AsQuantity(IrradiationUnit.JoulePerSquareMeter);
+            AssertEx.EqualTolerance(JoulesPerSquareMeterInOneJoulePerSquareMeter, (double)joulepersquaremeterQuantity.Value, JoulesPerSquareMeterTolerance);
+            Assert.Equal(IrradiationUnit.JoulePerSquareMeter, joulepersquaremeterQuantity.Unit);
+
+            var kilowatthourpersquaremeterQuantity = joulepersquaremeter.AsQuantity(IrradiationUnit.KilowattHourPerSquareMeter);
+            AssertEx.EqualTolerance(KilowattHoursPerSquareMeterInOneJoulePerSquareMeter, (double)kilowatthourpersquaremeterQuantity.Value, KilowattHoursPerSquareMeterTolerance);
+            Assert.Equal(IrradiationUnit.KilowattHourPerSquareMeter, kilowatthourpersquaremeterQuantity.Unit);
+
+            var watthourpersquaremeterQuantity = joulepersquaremeter.AsQuantity(IrradiationUnit.WattHourPerSquareMeter);
+            AssertEx.EqualTolerance(WattHoursPerSquareMeterInOneJoulePerSquareMeter, (double)watthourpersquaremeterQuantity.Value, WattHoursPerSquareMeterTolerance);
+            Assert.Equal(IrradiationUnit.WattHourPerSquareMeter, watthourpersquaremeterQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Irradiation joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);

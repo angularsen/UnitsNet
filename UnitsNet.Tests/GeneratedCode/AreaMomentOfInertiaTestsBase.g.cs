@@ -104,6 +104,36 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
+
+            var centimetertothefourthQuantity = metertothefourth.AsQuantity(AreaMomentOfInertiaUnit.CentimeterToTheFourth);
+            AssertEx.EqualTolerance(CentimetersToTheFourthInOneMeterToTheFourth, (double)centimetertothefourthQuantity.Value, CentimetersToTheFourthTolerance);
+            Assert.Equal(AreaMomentOfInertiaUnit.CentimeterToTheFourth, centimetertothefourthQuantity.Unit);
+
+            var decimetertothefourthQuantity = metertothefourth.AsQuantity(AreaMomentOfInertiaUnit.DecimeterToTheFourth);
+            AssertEx.EqualTolerance(DecimetersToTheFourthInOneMeterToTheFourth, (double)decimetertothefourthQuantity.Value, DecimetersToTheFourthTolerance);
+            Assert.Equal(AreaMomentOfInertiaUnit.DecimeterToTheFourth, decimetertothefourthQuantity.Unit);
+
+            var foottothefourthQuantity = metertothefourth.AsQuantity(AreaMomentOfInertiaUnit.FootToTheFourth);
+            AssertEx.EqualTolerance(FeetToTheFourthInOneMeterToTheFourth, (double)foottothefourthQuantity.Value, FeetToTheFourthTolerance);
+            Assert.Equal(AreaMomentOfInertiaUnit.FootToTheFourth, foottothefourthQuantity.Unit);
+
+            var inchtothefourthQuantity = metertothefourth.AsQuantity(AreaMomentOfInertiaUnit.InchToTheFourth);
+            AssertEx.EqualTolerance(InchesToTheFourthInOneMeterToTheFourth, (double)inchtothefourthQuantity.Value, InchesToTheFourthTolerance);
+            Assert.Equal(AreaMomentOfInertiaUnit.InchToTheFourth, inchtothefourthQuantity.Unit);
+
+            var metertothefourthQuantity = metertothefourth.AsQuantity(AreaMomentOfInertiaUnit.MeterToTheFourth);
+            AssertEx.EqualTolerance(MetersToTheFourthInOneMeterToTheFourth, (double)metertothefourthQuantity.Value, MetersToTheFourthTolerance);
+            Assert.Equal(AreaMomentOfInertiaUnit.MeterToTheFourth, metertothefourthQuantity.Unit);
+
+            var millimetertothefourthQuantity = metertothefourth.AsQuantity(AreaMomentOfInertiaUnit.MillimeterToTheFourth);
+            AssertEx.EqualTolerance(MillimetersToTheFourthInOneMeterToTheFourth, (double)millimetertothefourthQuantity.Value, MillimetersToTheFourthTolerance);
+            Assert.Equal(AreaMomentOfInertiaUnit.MillimeterToTheFourth, millimetertothefourthQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);

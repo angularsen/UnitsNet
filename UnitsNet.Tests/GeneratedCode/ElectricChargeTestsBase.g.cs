@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var coulomb = ElectricCharge.FromCoulombs(1);
+
+            var coulombQuantity = coulomb.AsQuantity(ElectricChargeUnit.Coulomb);
+            AssertEx.EqualTolerance(CoulombsInOneCoulomb, (double)coulombQuantity.Value, CoulombsTolerance);
+            Assert.Equal(ElectricChargeUnit.Coulomb, coulombQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             ElectricCharge coulomb = ElectricCharge.FromCoulombs(1);

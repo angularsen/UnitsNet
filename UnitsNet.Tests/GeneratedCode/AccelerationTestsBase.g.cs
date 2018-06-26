@@ -139,6 +139,64 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var meterpersecondsquared = Acceleration.FromMetersPerSecondSquared(1);
+
+            var centimeterpersecondsquaredQuantity = meterpersecondsquared.AsQuantity(AccelerationUnit.CentimeterPerSecondSquared);
+            AssertEx.EqualTolerance(CentimetersPerSecondSquaredInOneMeterPerSecondSquared, (double)centimeterpersecondsquaredQuantity.Value, CentimetersPerSecondSquaredTolerance);
+            Assert.Equal(AccelerationUnit.CentimeterPerSecondSquared, centimeterpersecondsquaredQuantity.Unit);
+
+            var decimeterpersecondsquaredQuantity = meterpersecondsquared.AsQuantity(AccelerationUnit.DecimeterPerSecondSquared);
+            AssertEx.EqualTolerance(DecimetersPerSecondSquaredInOneMeterPerSecondSquared, (double)decimeterpersecondsquaredQuantity.Value, DecimetersPerSecondSquaredTolerance);
+            Assert.Equal(AccelerationUnit.DecimeterPerSecondSquared, decimeterpersecondsquaredQuantity.Unit);
+
+            var footpersecondsquaredQuantity = meterpersecondsquared.AsQuantity(AccelerationUnit.FootPerSecondSquared);
+            AssertEx.EqualTolerance(FeetPerSecondSquaredInOneMeterPerSecondSquared, (double)footpersecondsquaredQuantity.Value, FeetPerSecondSquaredTolerance);
+            Assert.Equal(AccelerationUnit.FootPerSecondSquared, footpersecondsquaredQuantity.Unit);
+
+            var inchpersecondsquaredQuantity = meterpersecondsquared.AsQuantity(AccelerationUnit.InchPerSecondSquared);
+            AssertEx.EqualTolerance(InchesPerSecondSquaredInOneMeterPerSecondSquared, (double)inchpersecondsquaredQuantity.Value, InchesPerSecondSquaredTolerance);
+            Assert.Equal(AccelerationUnit.InchPerSecondSquared, inchpersecondsquaredQuantity.Unit);
+
+            var kilometerpersecondsquaredQuantity = meterpersecondsquared.AsQuantity(AccelerationUnit.KilometerPerSecondSquared);
+            AssertEx.EqualTolerance(KilometersPerSecondSquaredInOneMeterPerSecondSquared, (double)kilometerpersecondsquaredQuantity.Value, KilometersPerSecondSquaredTolerance);
+            Assert.Equal(AccelerationUnit.KilometerPerSecondSquared, kilometerpersecondsquaredQuantity.Unit);
+
+            var knotperhourQuantity = meterpersecondsquared.AsQuantity(AccelerationUnit.KnotPerHour);
+            AssertEx.EqualTolerance(KnotsPerHourInOneMeterPerSecondSquared, (double)knotperhourQuantity.Value, KnotsPerHourTolerance);
+            Assert.Equal(AccelerationUnit.KnotPerHour, knotperhourQuantity.Unit);
+
+            var knotperminuteQuantity = meterpersecondsquared.AsQuantity(AccelerationUnit.KnotPerMinute);
+            AssertEx.EqualTolerance(KnotsPerMinuteInOneMeterPerSecondSquared, (double)knotperminuteQuantity.Value, KnotsPerMinuteTolerance);
+            Assert.Equal(AccelerationUnit.KnotPerMinute, knotperminuteQuantity.Unit);
+
+            var knotpersecondQuantity = meterpersecondsquared.AsQuantity(AccelerationUnit.KnotPerSecond);
+            AssertEx.EqualTolerance(KnotsPerSecondInOneMeterPerSecondSquared, (double)knotpersecondQuantity.Value, KnotsPerSecondTolerance);
+            Assert.Equal(AccelerationUnit.KnotPerSecond, knotpersecondQuantity.Unit);
+
+            var meterpersecondsquaredQuantity = meterpersecondsquared.AsQuantity(AccelerationUnit.MeterPerSecondSquared);
+            AssertEx.EqualTolerance(MetersPerSecondSquaredInOneMeterPerSecondSquared, (double)meterpersecondsquaredQuantity.Value, MetersPerSecondSquaredTolerance);
+            Assert.Equal(AccelerationUnit.MeterPerSecondSquared, meterpersecondsquaredQuantity.Unit);
+
+            var micrometerpersecondsquaredQuantity = meterpersecondsquared.AsQuantity(AccelerationUnit.MicrometerPerSecondSquared);
+            AssertEx.EqualTolerance(MicrometersPerSecondSquaredInOneMeterPerSecondSquared, (double)micrometerpersecondsquaredQuantity.Value, MicrometersPerSecondSquaredTolerance);
+            Assert.Equal(AccelerationUnit.MicrometerPerSecondSquared, micrometerpersecondsquaredQuantity.Unit);
+
+            var millimeterpersecondsquaredQuantity = meterpersecondsquared.AsQuantity(AccelerationUnit.MillimeterPerSecondSquared);
+            AssertEx.EqualTolerance(MillimetersPerSecondSquaredInOneMeterPerSecondSquared, (double)millimeterpersecondsquaredQuantity.Value, MillimetersPerSecondSquaredTolerance);
+            Assert.Equal(AccelerationUnit.MillimeterPerSecondSquared, millimeterpersecondsquaredQuantity.Unit);
+
+            var nanometerpersecondsquaredQuantity = meterpersecondsquared.AsQuantity(AccelerationUnit.NanometerPerSecondSquared);
+            AssertEx.EqualTolerance(NanometersPerSecondSquaredInOneMeterPerSecondSquared, (double)nanometerpersecondsquaredQuantity.Value, NanometersPerSecondSquaredTolerance);
+            Assert.Equal(AccelerationUnit.NanometerPerSecondSquared, nanometerpersecondsquaredQuantity.Unit);
+
+            var standardgravityQuantity = meterpersecondsquared.AsQuantity(AccelerationUnit.StandardGravity);
+            AssertEx.EqualTolerance(StandardGravityInOneMeterPerSecondSquared, (double)standardgravityQuantity.Value, StandardGravityTolerance);
+            Assert.Equal(AccelerationUnit.StandardGravity, standardgravityQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Acceleration meterpersecondsquared = Acceleration.FromMetersPerSecondSquared(1);

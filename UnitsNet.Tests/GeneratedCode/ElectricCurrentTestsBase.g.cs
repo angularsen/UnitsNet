@@ -109,6 +109,40 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var ampere = ElectricCurrent.FromAmperes(1);
+
+            var ampereQuantity = ampere.AsQuantity(ElectricCurrentUnit.Ampere);
+            AssertEx.EqualTolerance(AmperesInOneAmpere, (double)ampereQuantity.Value, AmperesTolerance);
+            Assert.Equal(ElectricCurrentUnit.Ampere, ampereQuantity.Unit);
+
+            var kiloampereQuantity = ampere.AsQuantity(ElectricCurrentUnit.Kiloampere);
+            AssertEx.EqualTolerance(KiloamperesInOneAmpere, (double)kiloampereQuantity.Value, KiloamperesTolerance);
+            Assert.Equal(ElectricCurrentUnit.Kiloampere, kiloampereQuantity.Unit);
+
+            var megaampereQuantity = ampere.AsQuantity(ElectricCurrentUnit.Megaampere);
+            AssertEx.EqualTolerance(MegaamperesInOneAmpere, (double)megaampereQuantity.Value, MegaamperesTolerance);
+            Assert.Equal(ElectricCurrentUnit.Megaampere, megaampereQuantity.Unit);
+
+            var microampereQuantity = ampere.AsQuantity(ElectricCurrentUnit.Microampere);
+            AssertEx.EqualTolerance(MicroamperesInOneAmpere, (double)microampereQuantity.Value, MicroamperesTolerance);
+            Assert.Equal(ElectricCurrentUnit.Microampere, microampereQuantity.Unit);
+
+            var milliampereQuantity = ampere.AsQuantity(ElectricCurrentUnit.Milliampere);
+            AssertEx.EqualTolerance(MilliamperesInOneAmpere, (double)milliampereQuantity.Value, MilliamperesTolerance);
+            Assert.Equal(ElectricCurrentUnit.Milliampere, milliampereQuantity.Unit);
+
+            var nanoampereQuantity = ampere.AsQuantity(ElectricCurrentUnit.Nanoampere);
+            AssertEx.EqualTolerance(NanoamperesInOneAmpere, (double)nanoampereQuantity.Value, NanoamperesTolerance);
+            Assert.Equal(ElectricCurrentUnit.Nanoampere, nanoampereQuantity.Unit);
+
+            var picoampereQuantity = ampere.AsQuantity(ElectricCurrentUnit.Picoampere);
+            AssertEx.EqualTolerance(PicoamperesInOneAmpere, (double)picoampereQuantity.Value, PicoamperesTolerance);
+            Assert.Equal(ElectricCurrentUnit.Picoampere, picoampereQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             ElectricCurrent ampere = ElectricCurrent.FromAmperes(1);

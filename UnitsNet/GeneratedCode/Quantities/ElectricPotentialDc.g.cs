@@ -613,6 +613,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ElectricPotentialDc to another ElectricPotentialDc with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricPotentialDc with the specified unit.</returns>
+        public ElectricPotentialDc AsQuantity(ElectricPotentialDcUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new ElectricPotentialDc(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

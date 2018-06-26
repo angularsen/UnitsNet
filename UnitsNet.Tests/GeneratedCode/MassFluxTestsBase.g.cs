@@ -84,6 +84,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var kilogrampersecondpersquaremeter = MassFlux.FromKilogramsPerSecondPerSquareMeter(1);
+
+            var grampersecondpersquaremeterQuantity = kilogrampersecondpersquaremeter.AsQuantity(MassFluxUnit.GramPerSecondPerSquareMeter);
+            AssertEx.EqualTolerance(GramsPerSecondPerSquareMeterInOneKilogramPerSecondPerSquareMeter, (double)grampersecondpersquaremeterQuantity.Value, GramsPerSecondPerSquareMeterTolerance);
+            Assert.Equal(MassFluxUnit.GramPerSecondPerSquareMeter, grampersecondpersquaremeterQuantity.Unit);
+
+            var kilogrampersecondpersquaremeterQuantity = kilogrampersecondpersquaremeter.AsQuantity(MassFluxUnit.KilogramPerSecondPerSquareMeter);
+            AssertEx.EqualTolerance(KilogramsPerSecondPerSquareMeterInOneKilogramPerSecondPerSquareMeter, (double)kilogrampersecondpersquaremeterQuantity.Value, KilogramsPerSecondPerSquareMeterTolerance);
+            Assert.Equal(MassFluxUnit.KilogramPerSecondPerSquareMeter, kilogrampersecondpersquaremeterQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             MassFlux kilogrampersecondpersquaremeter = MassFlux.FromKilogramsPerSecondPerSquareMeter(1);

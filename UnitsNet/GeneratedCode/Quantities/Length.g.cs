@@ -1184,6 +1184,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Length to another Length with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Length with the specified unit.</returns>
+        public Length AsQuantity(LengthUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Length(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

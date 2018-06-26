@@ -557,6 +557,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this BrakeSpecificFuelConsumption to another BrakeSpecificFuelConsumption with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A BrakeSpecificFuelConsumption with the specified unit.</returns>
+        public BrakeSpecificFuelConsumption AsQuantity(BrakeSpecificFuelConsumptionUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new BrakeSpecificFuelConsumption(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

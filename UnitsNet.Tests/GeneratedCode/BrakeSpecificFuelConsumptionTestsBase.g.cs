@@ -89,6 +89,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var kilogramperjoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
+
+            var gramperkilowatthourQuantity = kilogramperjoule.AsQuantity(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
+            AssertEx.EqualTolerance(GramsPerKiloWattHourInOneKilogramPerJoule, (double)gramperkilowatthourQuantity.Value, GramsPerKiloWattHourTolerance);
+            Assert.Equal(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, gramperkilowatthourQuantity.Unit);
+
+            var kilogramperjouleQuantity = kilogramperjoule.AsQuantity(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
+            AssertEx.EqualTolerance(KilogramsPerJouleInOneKilogramPerJoule, (double)kilogramperjouleQuantity.Value, KilogramsPerJouleTolerance);
+            Assert.Equal(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, kilogramperjouleQuantity.Unit);
+
+            var poundpermechanicalhorsepowerhourQuantity = kilogramperjoule.AsQuantity(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour);
+            AssertEx.EqualTolerance(PoundsPerMechanicalHorsepowerHourInOneKilogramPerJoule, (double)poundpermechanicalhorsepowerhourQuantity.Value, PoundsPerMechanicalHorsepowerHourTolerance);
+            Assert.Equal(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, poundpermechanicalhorsepowerhourQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             BrakeSpecificFuelConsumption kilogramperjoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);

@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var internationalunit = VitaminA.FromInternationalUnits(1);
+
+            var internationalunitQuantity = internationalunit.AsQuantity(VitaminAUnit.InternationalUnit);
+            AssertEx.EqualTolerance(InternationalUnitsInOneInternationalUnit, (double)internationalunitQuantity.Value, InternationalUnitsTolerance);
+            Assert.Equal(VitaminAUnit.InternationalUnit, internationalunitQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             VitaminA internationalunit = VitaminA.FromInternationalUnits(1);

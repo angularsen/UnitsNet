@@ -84,6 +84,20 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
+
+            var wattpersquaremetercelsiusQuantity = wattpersquaremeterkelvin.AsQuantity(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius);
+            AssertEx.EqualTolerance(WattsPerSquareMeterCelsiusInOneWattPerSquareMeterKelvin, (double)wattpersquaremetercelsiusQuantity.Value, WattsPerSquareMeterCelsiusTolerance);
+            Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, wattpersquaremetercelsiusQuantity.Unit);
+
+            var wattpersquaremeterkelvinQuantity = wattpersquaremeterkelvin.AsQuantity(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin);
+            AssertEx.EqualTolerance(WattsPerSquareMeterKelvinInOneWattPerSquareMeterKelvin, (double)wattpersquaremeterkelvinQuantity.Value, WattsPerSquareMeterKelvinTolerance);
+            Assert.Equal(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, wattpersquaremeterkelvinQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             HeatTransferCoefficient wattpersquaremeterkelvin = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);

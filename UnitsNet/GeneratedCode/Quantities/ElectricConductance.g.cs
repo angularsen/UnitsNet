@@ -557,6 +557,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ElectricConductance to another ElectricConductance with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricConductance with the specified unit.</returns>
+        public ElectricConductance AsQuantity(ElectricConductanceUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new ElectricConductance(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

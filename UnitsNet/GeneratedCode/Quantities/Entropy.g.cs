@@ -689,6 +689,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Entropy to another Entropy with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Entropy with the specified unit.</returns>
+        public Entropy AsQuantity(EntropyUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Entropy(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

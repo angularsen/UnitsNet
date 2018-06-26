@@ -722,6 +722,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this SpecificEnergy to another SpecificEnergy with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A SpecificEnergy with the specified unit.</returns>
+        public SpecificEnergy AsQuantity(SpecificEnergyUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new SpecificEnergy(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

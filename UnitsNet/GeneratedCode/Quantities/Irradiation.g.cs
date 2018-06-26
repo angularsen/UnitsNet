@@ -557,6 +557,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Irradiation to another Irradiation with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Irradiation with the specified unit.</returns>
+        public Irradiation AsQuantity(IrradiationUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Irradiation(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

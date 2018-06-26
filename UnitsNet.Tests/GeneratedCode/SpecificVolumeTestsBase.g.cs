@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
+
+            var cubicmeterperkilogramQuantity = cubicmeterperkilogram.AsQuantity(SpecificVolumeUnit.CubicMeterPerKilogram);
+            AssertEx.EqualTolerance(CubicMetersPerKilogramInOneCubicMeterPerKilogram, (double)cubicmeterperkilogramQuantity.Value, CubicMetersPerKilogramTolerance);
+            Assert.Equal(SpecificVolumeUnit.CubicMeterPerKilogram, cubicmeterperkilogramQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);

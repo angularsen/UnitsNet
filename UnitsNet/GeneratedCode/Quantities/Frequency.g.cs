@@ -722,6 +722,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Frequency to another Frequency with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Frequency with the specified unit.</returns>
+        public Frequency AsQuantity(FrequencyUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Frequency(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

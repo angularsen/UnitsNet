@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var faradpermeter = Permittivity.FromFaradsPerMeter(1);
+
+            var faradpermeterQuantity = faradpermeter.AsQuantity(PermittivityUnit.FaradPerMeter);
+            AssertEx.EqualTolerance(FaradsPerMeterInOneFaradPerMeter, (double)faradpermeterQuantity.Value, FaradsPerMeterTolerance);
+            Assert.Equal(PermittivityUnit.FaradPerMeter, faradpermeterQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Permittivity faradpermeter = Permittivity.FromFaradsPerMeter(1);

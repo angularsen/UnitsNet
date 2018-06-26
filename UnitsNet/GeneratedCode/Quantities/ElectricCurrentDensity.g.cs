@@ -491,6 +491,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ElectricCurrentDensity to another ElectricCurrentDensity with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricCurrentDensity with the specified unit.</returns>
+        public ElectricCurrentDensity AsQuantity(ElectricCurrentDensityUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new ElectricCurrentDensity(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

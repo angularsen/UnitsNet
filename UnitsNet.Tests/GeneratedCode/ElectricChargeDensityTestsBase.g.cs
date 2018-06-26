@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
+
+            var coulombpercubicmeterQuantity = coulombpercubicmeter.AsQuantity(ElectricChargeDensityUnit.CoulombPerCubicMeter);
+            AssertEx.EqualTolerance(CoulombsPerCubicMeterInOneCoulombPerCubicMeter, (double)coulombpercubicmeterQuantity.Value, CoulombsPerCubicMeterTolerance);
+            Assert.Equal(ElectricChargeDensityUnit.CoulombPerCubicMeter, coulombpercubicmeterQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             ElectricChargeDensity coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);

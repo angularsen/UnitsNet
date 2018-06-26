@@ -99,6 +99,32 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var squaremeterkelvinperkilowatt = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
+
+            var hoursquarefeetdegreefahrenheitperbtuQuantity = squaremeterkelvinperkilowatt.AsQuantity(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
+            AssertEx.EqualTolerance(HourSquareFeetDegreesFahrenheitPerBtuInOneSquareMeterKelvinPerKilowatt, (double)hoursquarefeetdegreefahrenheitperbtuQuantity.Value, HourSquareFeetDegreesFahrenheitPerBtuTolerance);
+            Assert.Equal(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, hoursquarefeetdegreefahrenheitperbtuQuantity.Unit);
+
+            var squarecentimeterhourdegreecelsiusperkilocalorieQuantity = squaremeterkelvinperkilowatt.AsQuantity(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
+            AssertEx.EqualTolerance(SquareCentimeterHourDegreesCelsiusPerKilocalorieInOneSquareMeterKelvinPerKilowatt, (double)squarecentimeterhourdegreecelsiusperkilocalorieQuantity.Value, SquareCentimeterHourDegreesCelsiusPerKilocalorieTolerance);
+            Assert.Equal(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, squarecentimeterhourdegreecelsiusperkilocalorieQuantity.Unit);
+
+            var squarecentimeterkelvinperwattQuantity = squaremeterkelvinperkilowatt.AsQuantity(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt);
+            AssertEx.EqualTolerance(SquareCentimeterKelvinsPerWattInOneSquareMeterKelvinPerKilowatt, (double)squarecentimeterkelvinperwattQuantity.Value, SquareCentimeterKelvinsPerWattTolerance);
+            Assert.Equal(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, squarecentimeterkelvinperwattQuantity.Unit);
+
+            var squaremeterdegreecelsiusperwattQuantity = squaremeterkelvinperkilowatt.AsQuantity(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt);
+            AssertEx.EqualTolerance(SquareMeterDegreesCelsiusPerWattInOneSquareMeterKelvinPerKilowatt, (double)squaremeterdegreecelsiusperwattQuantity.Value, SquareMeterDegreesCelsiusPerWattTolerance);
+            Assert.Equal(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, squaremeterdegreecelsiusperwattQuantity.Unit);
+
+            var squaremeterkelvinperkilowattQuantity = squaremeterkelvinperkilowatt.AsQuantity(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
+            AssertEx.EqualTolerance(SquareMeterKelvinsPerKilowattInOneSquareMeterKelvinPerKilowatt, (double)squaremeterkelvinperkilowattQuantity.Value, SquareMeterKelvinsPerKilowattTolerance);
+            Assert.Equal(ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, squaremeterkelvinperkilowattQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             ThermalResistance squaremeterkelvinperkilowatt = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);

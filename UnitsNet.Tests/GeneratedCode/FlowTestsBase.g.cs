@@ -194,6 +194,108 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var cubicmeterpersecond = Flow.FromCubicMetersPerSecond(1);
+
+            var centilitersperminuteQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.CentilitersPerMinute);
+            AssertEx.EqualTolerance(CentilitersPerMinuteInOneCubicMeterPerSecond, (double)centilitersperminuteQuantity.Value, CentilitersPerMinuteTolerance);
+            Assert.Equal(FlowUnit.CentilitersPerMinute, centilitersperminuteQuantity.Unit);
+
+            var cubicdecimeterperminuteQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.CubicDecimeterPerMinute);
+            AssertEx.EqualTolerance(CubicDecimetersPerMinuteInOneCubicMeterPerSecond, (double)cubicdecimeterperminuteQuantity.Value, CubicDecimetersPerMinuteTolerance);
+            Assert.Equal(FlowUnit.CubicDecimeterPerMinute, cubicdecimeterperminuteQuantity.Unit);
+
+            var cubicfootperhourQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.CubicFootPerHour);
+            AssertEx.EqualTolerance(CubicFeetPerHourInOneCubicMeterPerSecond, (double)cubicfootperhourQuantity.Value, CubicFeetPerHourTolerance);
+            Assert.Equal(FlowUnit.CubicFootPerHour, cubicfootperhourQuantity.Unit);
+
+            var cubicfootperminuteQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.CubicFootPerMinute);
+            AssertEx.EqualTolerance(CubicFeetPerMinuteInOneCubicMeterPerSecond, (double)cubicfootperminuteQuantity.Value, CubicFeetPerMinuteTolerance);
+            Assert.Equal(FlowUnit.CubicFootPerMinute, cubicfootperminuteQuantity.Unit);
+
+            var cubicfootpersecondQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.CubicFootPerSecond);
+            AssertEx.EqualTolerance(CubicFeetPerSecondInOneCubicMeterPerSecond, (double)cubicfootpersecondQuantity.Value, CubicFeetPerSecondTolerance);
+            Assert.Equal(FlowUnit.CubicFootPerSecond, cubicfootpersecondQuantity.Unit);
+
+            var cubicmeterperhourQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.CubicMeterPerHour);
+            AssertEx.EqualTolerance(CubicMetersPerHourInOneCubicMeterPerSecond, (double)cubicmeterperhourQuantity.Value, CubicMetersPerHourTolerance);
+            Assert.Equal(FlowUnit.CubicMeterPerHour, cubicmeterperhourQuantity.Unit);
+
+            var cubicmeterperminuteQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.CubicMeterPerMinute);
+            AssertEx.EqualTolerance(CubicMetersPerMinuteInOneCubicMeterPerSecond, (double)cubicmeterperminuteQuantity.Value, CubicMetersPerMinuteTolerance);
+            Assert.Equal(FlowUnit.CubicMeterPerMinute, cubicmeterperminuteQuantity.Unit);
+
+            var cubicmeterpersecondQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.CubicMeterPerSecond);
+            AssertEx.EqualTolerance(CubicMetersPerSecondInOneCubicMeterPerSecond, (double)cubicmeterpersecondQuantity.Value, CubicMetersPerSecondTolerance);
+            Assert.Equal(FlowUnit.CubicMeterPerSecond, cubicmeterpersecondQuantity.Unit);
+
+            var cubicyardperhourQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.CubicYardPerHour);
+            AssertEx.EqualTolerance(CubicYardsPerHourInOneCubicMeterPerSecond, (double)cubicyardperhourQuantity.Value, CubicYardsPerHourTolerance);
+            Assert.Equal(FlowUnit.CubicYardPerHour, cubicyardperhourQuantity.Unit);
+
+            var cubicyardperminuteQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.CubicYardPerMinute);
+            AssertEx.EqualTolerance(CubicYardsPerMinuteInOneCubicMeterPerSecond, (double)cubicyardperminuteQuantity.Value, CubicYardsPerMinuteTolerance);
+            Assert.Equal(FlowUnit.CubicYardPerMinute, cubicyardperminuteQuantity.Unit);
+
+            var cubicyardpersecondQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.CubicYardPerSecond);
+            AssertEx.EqualTolerance(CubicYardsPerSecondInOneCubicMeterPerSecond, (double)cubicyardpersecondQuantity.Value, CubicYardsPerSecondTolerance);
+            Assert.Equal(FlowUnit.CubicYardPerSecond, cubicyardpersecondQuantity.Unit);
+
+            var decilitersperminuteQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.DecilitersPerMinute);
+            AssertEx.EqualTolerance(DecilitersPerMinuteInOneCubicMeterPerSecond, (double)decilitersperminuteQuantity.Value, DecilitersPerMinuteTolerance);
+            Assert.Equal(FlowUnit.DecilitersPerMinute, decilitersperminuteQuantity.Unit);
+
+            var kilolitersperminuteQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.KilolitersPerMinute);
+            AssertEx.EqualTolerance(KilolitersPerMinuteInOneCubicMeterPerSecond, (double)kilolitersperminuteQuantity.Value, KilolitersPerMinuteTolerance);
+            Assert.Equal(FlowUnit.KilolitersPerMinute, kilolitersperminuteQuantity.Unit);
+
+            var litersperhourQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.LitersPerHour);
+            AssertEx.EqualTolerance(LitersPerHourInOneCubicMeterPerSecond, (double)litersperhourQuantity.Value, LitersPerHourTolerance);
+            Assert.Equal(FlowUnit.LitersPerHour, litersperhourQuantity.Unit);
+
+            var litersperminuteQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.LitersPerMinute);
+            AssertEx.EqualTolerance(LitersPerMinuteInOneCubicMeterPerSecond, (double)litersperminuteQuantity.Value, LitersPerMinuteTolerance);
+            Assert.Equal(FlowUnit.LitersPerMinute, litersperminuteQuantity.Unit);
+
+            var literspersecondQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.LitersPerSecond);
+            AssertEx.EqualTolerance(LitersPerSecondInOneCubicMeterPerSecond, (double)literspersecondQuantity.Value, LitersPerSecondTolerance);
+            Assert.Equal(FlowUnit.LitersPerSecond, literspersecondQuantity.Unit);
+
+            var microlitersperminuteQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.MicrolitersPerMinute);
+            AssertEx.EqualTolerance(MicrolitersPerMinuteInOneCubicMeterPerSecond, (double)microlitersperminuteQuantity.Value, MicrolitersPerMinuteTolerance);
+            Assert.Equal(FlowUnit.MicrolitersPerMinute, microlitersperminuteQuantity.Unit);
+
+            var millilitersperminuteQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.MillilitersPerMinute);
+            AssertEx.EqualTolerance(MillilitersPerMinuteInOneCubicMeterPerSecond, (double)millilitersperminuteQuantity.Value, MillilitersPerMinuteTolerance);
+            Assert.Equal(FlowUnit.MillilitersPerMinute, millilitersperminuteQuantity.Unit);
+
+            var millionusgallonsperdayQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.MillionUsGallonsPerDay);
+            AssertEx.EqualTolerance(MillionUsGallonsPerDayInOneCubicMeterPerSecond, (double)millionusgallonsperdayQuantity.Value, MillionUsGallonsPerDayTolerance);
+            Assert.Equal(FlowUnit.MillionUsGallonsPerDay, millionusgallonsperdayQuantity.Unit);
+
+            var nanolitersperminuteQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.NanolitersPerMinute);
+            AssertEx.EqualTolerance(NanolitersPerMinuteInOneCubicMeterPerSecond, (double)nanolitersperminuteQuantity.Value, NanolitersPerMinuteTolerance);
+            Assert.Equal(FlowUnit.NanolitersPerMinute, nanolitersperminuteQuantity.Unit);
+
+            var oilbarrelsperdayQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.OilBarrelsPerDay);
+            AssertEx.EqualTolerance(OilBarrelsPerDayInOneCubicMeterPerSecond, (double)oilbarrelsperdayQuantity.Value, OilBarrelsPerDayTolerance);
+            Assert.Equal(FlowUnit.OilBarrelsPerDay, oilbarrelsperdayQuantity.Unit);
+
+            var usgallonsperhourQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.UsGallonsPerHour);
+            AssertEx.EqualTolerance(UsGallonsPerHourInOneCubicMeterPerSecond, (double)usgallonsperhourQuantity.Value, UsGallonsPerHourTolerance);
+            Assert.Equal(FlowUnit.UsGallonsPerHour, usgallonsperhourQuantity.Unit);
+
+            var usgallonsperminuteQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.UsGallonsPerMinute);
+            AssertEx.EqualTolerance(UsGallonsPerMinuteInOneCubicMeterPerSecond, (double)usgallonsperminuteQuantity.Value, UsGallonsPerMinuteTolerance);
+            Assert.Equal(FlowUnit.UsGallonsPerMinute, usgallonsperminuteQuantity.Unit);
+
+            var usgallonspersecondQuantity = cubicmeterpersecond.AsQuantity(FlowUnit.UsGallonsPerSecond);
+            AssertEx.EqualTolerance(UsGallonsPerSecondInOneCubicMeterPerSecond, (double)usgallonspersecondQuantity.Value, UsGallonsPerSecondTolerance);
+            Assert.Equal(FlowUnit.UsGallonsPerSecond, usgallonspersecondQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Flow cubicmeterpersecond = Flow.FromCubicMetersPerSecond(1);

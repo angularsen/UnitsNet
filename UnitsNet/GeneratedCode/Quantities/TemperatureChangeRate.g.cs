@@ -788,6 +788,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this TemperatureChangeRate to another TemperatureChangeRate with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A TemperatureChangeRate with the specified unit.</returns>
+        public TemperatureChangeRate AsQuantity(TemperatureChangeRateUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new TemperatureChangeRate(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

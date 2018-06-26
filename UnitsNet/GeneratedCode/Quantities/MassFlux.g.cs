@@ -524,6 +524,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this MassFlux to another MassFlux with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A MassFlux with the specified unit.</returns>
+        public MassFlux AsQuantity(MassFluxUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new MassFlux(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

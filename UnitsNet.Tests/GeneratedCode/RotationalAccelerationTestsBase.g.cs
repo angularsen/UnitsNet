@@ -89,6 +89,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void AsQuantity()
+        {
+            var radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
+
+            var degreepersecondsquaredQuantity = radianpersecondsquared.AsQuantity(RotationalAccelerationUnit.DegreePerSecondSquared);
+            AssertEx.EqualTolerance(DegreesPerSecondSquaredInOneRadianPerSecondSquared, (double)degreepersecondsquaredQuantity.Value, DegreesPerSecondSquaredTolerance);
+            Assert.Equal(RotationalAccelerationUnit.DegreePerSecondSquared, degreepersecondsquaredQuantity.Unit);
+
+            var radianpersecondsquaredQuantity = radianpersecondsquared.AsQuantity(RotationalAccelerationUnit.RadianPerSecondSquared);
+            AssertEx.EqualTolerance(RadiansPerSecondSquaredInOneRadianPerSecondSquared, (double)radianpersecondsquaredQuantity.Value, RadiansPerSecondSquaredTolerance);
+            Assert.Equal(RotationalAccelerationUnit.RadianPerSecondSquared, radianpersecondsquaredQuantity.Unit);
+
+            var revolutionperminutepersecondQuantity = radianpersecondsquared.AsQuantity(RotationalAccelerationUnit.RevolutionPerMinutePerSecond);
+            AssertEx.EqualTolerance(RevolutionsPerMinutePerSecondInOneRadianPerSecondSquared, (double)revolutionperminutepersecondQuantity.Value, RevolutionsPerMinutePerSecondTolerance);
+            Assert.Equal(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, revolutionperminutepersecondQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             RotationalAcceleration radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);

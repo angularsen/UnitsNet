@@ -910,6 +910,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Angle to another Angle with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Angle with the specified unit.</returns>
+        public Angle AsQuantity(AngleUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Angle(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
