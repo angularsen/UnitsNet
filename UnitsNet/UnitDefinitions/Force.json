@@ -43,8 +43,8 @@
     {
       "SingularName": "TonneForce",
       "PluralName": "TonnesForce",
-      "FromUnitToBaseFunc": "x*9.80665002864*1000",
-      "FromBaseToUnitFunc": "x/9.80665002864/1000",
+      "FromUnitToBaseFunc": "x*9.80665002864e3",
+      "FromBaseToUnitFunc": "x/9.80665002864e3",
       "Localization": [
         {
           "Culture": "en-US",

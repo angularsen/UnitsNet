@@ -43,13 +43,13 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilonewtonMillimetersInOneNewtonMeter => 1;
 
-        protected override double MegapoundForceFeetInOneNewtonMeter => 7.376e-7;
+        protected override double MegapoundForceFeetInOneNewtonMeter => 7.375621492772654e-7;
 
-        protected override double KilopoundForceFeetInOneNewtonMeter => 7.376e-4;
+        protected override double KilopoundForceFeetInOneNewtonMeter => 7.375621492772654e-4;
 
-        protected override double MegapoundForceInchesInOneNewtonMeter => 8.8516E-6;
+        protected override double MegapoundForceInchesInOneNewtonMeter => 8.850745791327184e-6;
 
-        protected override double KilopoundForceInchesInOneNewtonMeter => 8.8516E-3;
+        protected override double KilopoundForceInchesInOneNewtonMeter => 8.850745791327184e-3;
 
         protected override double NewtonCentimetersInOneNewtonMeter => 100;
 

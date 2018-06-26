@@ -1039,14 +1039,14 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator ==(Torque left, Torque right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator !=(Torque left, Torque right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -1054,15 +1054,65 @@ namespace UnitsNet
         }
 #endif
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)
         {
-            if (obj == null || GetType() != obj.GetType())
-            {
+            if(obj is null || !(obj is Torque))
                 return false;
-            }
 
-            return AsBaseUnitNewtonMeters().Equals(((Torque) obj).AsBaseUnitNewtonMeters());
+            var objQuantity = (Torque)obj;
+            return _value.Equals(objQuantity.AsBaseNumericType(this.Unit));
+        }
+
+        /// <summary>
+        ///     <para>
+        ///     Compare equality to another Torque within the given absolute or relative tolerance.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
+        ///     this quantity's value to be considered equal.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        ///     </para>
+        /// </summary>
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(Torque other, double tolerance, ComparisonType comparisonType)
+        {
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
+
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
@@ -1073,9 +1123,10 @@ namespace UnitsNet
         /// <param name="other">Other quantity to compare to.</param>
         /// <param name="maxError">Max error allowed.</param>
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        [Obsolete("Please use the Equals(Torque, double, ComparisonType) overload. This method will be removed in a future version.")]
         public bool Equals(Torque other, Torque maxError)
         {
-            return Math.Abs(AsBaseUnitNewtonMeters() - other.AsBaseUnitNewtonMeters()) <= maxError.AsBaseUnitNewtonMeters();
+            return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         public override int GetHashCode()
@@ -1108,18 +1159,18 @@ namespace UnitsNet
                 case TorqueUnit.KilonewtonCentimeter: return (baseUnitValue*100) / 1e3d;
                 case TorqueUnit.KilonewtonMeter: return (baseUnitValue) / 1e3d;
                 case TorqueUnit.KilonewtonMillimeter: return (baseUnitValue*1000) / 1e3d;
-                case TorqueUnit.KilopoundForceFoot: return (baseUnitValue*0.737562085483396) / 1e3d;
-                case TorqueUnit.KilopoundForceInch: return (baseUnitValue*8.85074502580075) / 1e3d;
+                case TorqueUnit.KilopoundForceFoot: return (baseUnitValue/1.3558179483314) / 1e3d;
+                case TorqueUnit.KilopoundForceInch: return (baseUnitValue/1.129848290276167e-1) / 1e3d;
                 case TorqueUnit.MeganewtonCentimeter: return (baseUnitValue*100) / 1e6d;
                 case TorqueUnit.MeganewtonMeter: return (baseUnitValue) / 1e6d;
                 case TorqueUnit.MeganewtonMillimeter: return (baseUnitValue*1000) / 1e6d;
-                case TorqueUnit.MegapoundForceFoot: return (baseUnitValue*0.737562085483396) / 1e6d;
-                case TorqueUnit.MegapoundForceInch: return (baseUnitValue*8.85074502580075) / 1e6d;
+                case TorqueUnit.MegapoundForceFoot: return (baseUnitValue/1.3558179483314) / 1e6d;
+                case TorqueUnit.MegapoundForceInch: return (baseUnitValue/1.129848290276167e-1) / 1e6d;
                 case TorqueUnit.NewtonCentimeter: return baseUnitValue*100;
                 case TorqueUnit.NewtonMeter: return baseUnitValue;
                 case TorqueUnit.NewtonMillimeter: return baseUnitValue*1000;
-                case TorqueUnit.PoundForceFoot: return baseUnitValue*0.737562085483396;
-                case TorqueUnit.PoundForceInch: return baseUnitValue*8.85074502580075;
+                case TorqueUnit.PoundForceFoot: return baseUnitValue/1.3558179483314;
+                case TorqueUnit.PoundForceInch: return baseUnitValue/1.129848290276167e-1;
                 case TorqueUnit.TonneForceCentimeter: return baseUnitValue*0.0101971619222242;
                 case TorqueUnit.TonneForceMeter: return baseUnitValue*0.000101971619222242;
                 case TorqueUnit.TonneForceMillimeter: return baseUnitValue*0.101971619222242;
@@ -1492,18 +1543,18 @@ namespace UnitsNet
                 case TorqueUnit.KilonewtonCentimeter: return (_value*0.01) * 1e3d;
                 case TorqueUnit.KilonewtonMeter: return (_value) * 1e3d;
                 case TorqueUnit.KilonewtonMillimeter: return (_value*0.001) * 1e3d;
-                case TorqueUnit.KilopoundForceFoot: return (_value*1.3558180656) * 1e3d;
-                case TorqueUnit.KilopoundForceInch: return (_value*0.1129848388) * 1e3d;
+                case TorqueUnit.KilopoundForceFoot: return (_value*1.3558179483314) * 1e3d;
+                case TorqueUnit.KilopoundForceInch: return (_value*1.129848290276167e-1) * 1e3d;
                 case TorqueUnit.MeganewtonCentimeter: return (_value*0.01) * 1e6d;
                 case TorqueUnit.MeganewtonMeter: return (_value) * 1e6d;
                 case TorqueUnit.MeganewtonMillimeter: return (_value*0.001) * 1e6d;
-                case TorqueUnit.MegapoundForceFoot: return (_value*1.3558180656) * 1e6d;
-                case TorqueUnit.MegapoundForceInch: return (_value*0.1129848388) * 1e6d;
+                case TorqueUnit.MegapoundForceFoot: return (_value*1.3558179483314) * 1e6d;
+                case TorqueUnit.MegapoundForceInch: return (_value*1.129848290276167e-1) * 1e6d;
                 case TorqueUnit.NewtonCentimeter: return _value*0.01;
                 case TorqueUnit.NewtonMeter: return _value;
                 case TorqueUnit.NewtonMillimeter: return _value*0.001;
-                case TorqueUnit.PoundForceFoot: return _value*1.3558180656;
-                case TorqueUnit.PoundForceInch: return _value*0.1129848388;
+                case TorqueUnit.PoundForceFoot: return _value*1.3558179483314;
+                case TorqueUnit.PoundForceInch: return _value*1.129848290276167e-1;
                 case TorqueUnit.TonneForceCentimeter: return _value*98.0665019960652;
                 case TorqueUnit.TonneForceMeter: return _value*9806.65019960653;
                 case TorqueUnit.TonneForceMillimeter: return _value*9.80665019960652;

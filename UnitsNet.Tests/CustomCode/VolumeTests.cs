@@ -40,7 +40,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CubicMetersInOneCubicMeter => 1;
 
-        protected override double CubicMilesInOneCubicMeter => 3.86102*1E-7;
+        protected override double CubicMilesInOneCubicMeter => 2.399127585789277e-10;
 
         protected override double CubicMillimetersInOneCubicMeter => 1E9;
 
