@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Magnetization(double numericValue, MagnetizationUnit unit)
+        Magnetization(double numericValue, MagnetizationUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -446,6 +446,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public Magnetization AsQuantity(MagnetizationUnit unit)
+        {
+            return new Magnetization(_value, Unit);
         }
 
         #endregion

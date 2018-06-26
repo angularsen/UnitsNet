@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          AreaMomentOfInertia(double numericValue, AreaMomentOfInertiaUnit unit)
+        AreaMomentOfInertia(double numericValue, AreaMomentOfInertiaUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -616,6 +616,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public AreaMomentOfInertia AsQuantity(AreaMomentOfInertiaUnit unit)
+        {
+            return new AreaMomentOfInertia(_value, Unit);
         }
 
         #endregion

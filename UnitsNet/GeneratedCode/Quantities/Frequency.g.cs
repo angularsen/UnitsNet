@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          Frequency(double numericValue, FrequencyUnit unit)
+        Frequency(double numericValue, FrequencyUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -684,6 +684,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public Frequency AsQuantity(FrequencyUnit unit)
+        {
+            return new Frequency(_value, Unit);
         }
 
         #endregion

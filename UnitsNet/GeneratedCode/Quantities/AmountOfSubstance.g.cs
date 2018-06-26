@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          AmountOfSubstance(double numericValue, AmountOfSubstanceUnit unit)
+        AmountOfSubstance(double numericValue, AmountOfSubstanceUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -888,6 +888,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public AmountOfSubstance AsQuantity(AmountOfSubstanceUnit unit)
+        {
+            return new AmountOfSubstance(_value, Unit);
         }
 
         #endregion

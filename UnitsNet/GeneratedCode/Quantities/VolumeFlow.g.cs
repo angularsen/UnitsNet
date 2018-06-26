@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          VolumeFlow(double numericValue, VolumeFlowUnit unit)
+        VolumeFlow(double numericValue, VolumeFlowUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -1228,6 +1228,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public VolumeFlow AsQuantity(VolumeFlowUnit unit)
+        {
+            return new VolumeFlow(_value, Unit);
         }
 
         #endregion

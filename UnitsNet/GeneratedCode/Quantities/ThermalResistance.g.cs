@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          ThermalResistance(double numericValue, ThermalResistanceUnit unit)
+        ThermalResistance(double numericValue, ThermalResistanceUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -582,6 +582,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public ThermalResistance AsQuantity(ThermalResistanceUnit unit)
+        {
+            return new ThermalResistance(_value, Unit);
         }
 
         #endregion

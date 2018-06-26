@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          MassFlux(double numericValue, MassFluxUnit unit)
+        MassFlux(double numericValue, MassFluxUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -480,6 +480,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public MassFlux AsQuantity(MassFluxUnit unit)
+        {
+            return new MassFlux(_value, Unit);
         }
 
         #endregion

@@ -113,11 +113,11 @@ namespace UnitsNet
 #else
         public 
 #endif
-          ApparentEnergy(double numericValue, ApparentEnergyUnit unit)
+        ApparentEnergy(double numericValue, ApparentEnergyUnit unit)
         {
             _value = numericValue;
             _unit = unit;
-         }
+        }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
@@ -514,6 +514,11 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException("unit: " + unit);
             }
+        }
+
+        public ApparentEnergy AsQuantity(ApparentEnergyUnit unit)
+        {
+            return new ApparentEnergy(_value, Unit);
         }
 
         #endregion
