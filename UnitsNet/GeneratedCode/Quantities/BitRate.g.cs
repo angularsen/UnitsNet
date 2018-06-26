@@ -1208,12 +1208,11 @@ namespace UnitsNet
 
         public override bool Equals(object obj)
         {
-            if (obj == null || GetType() != obj.GetType())
-            {
+            if(obj is null || !(obj is BitRate))
                 return false;
-            }
 
-            return AsBaseUnitBitsPerSecond().Equals(((BitRate) obj).AsBaseUnitBitsPerSecond());
+            var objQuantity = (BitRate)obj;
+            return this.Value.Equals(objQuantity.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
@@ -1275,9 +1274,10 @@ namespace UnitsNet
         /// <param name="other">Other quantity to compare to.</param>
         /// <param name="maxError">Max error allowed.</param>
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        [Obsolete("Please use the Equals(BitRate, double, ComparisonType) overload. This method will be removed in a future version.")]
         public bool Equals(BitRate other, BitRate maxError)
         {
-            return Math.Abs(AsBaseUnitBitsPerSecond() - other.AsBaseUnitBitsPerSecond()) <= maxError.AsBaseUnitBitsPerSecond();
+            return Math.Abs(this.Value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         public override int GetHashCode()
@@ -1689,7 +1689,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private decimal AsBaseUnitBitsPerSecond()
         {
-			if (Unit == BitRateUnit.BitPerSecond) { return _value; }
+            if (Unit == BitRateUnit.BitPerSecond) { return _value; }
 
             switch (Unit)
             {
@@ -1721,10 +1721,10 @@ namespace UnitsNet
                 case BitRateUnit.TerabytePerSecond: return Convert.ToDecimal((_value*8m) * 1e12m);
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private decimal AsBaseNumericType(BitRateUnit unit) => Convert.ToDecimal(As(unit));
-	}
+    }
 }

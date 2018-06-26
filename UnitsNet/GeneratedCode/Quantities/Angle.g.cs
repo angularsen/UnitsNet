@@ -797,14 +797,14 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator ==(Angle left, Angle right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator !=(Angle left, Angle right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -812,15 +812,14 @@ namespace UnitsNet
         }
 #endif
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)
         {
-            if (obj == null || GetType() != obj.GetType())
-            {
+            if(obj is null || !(obj is Angle))
                 return false;
-            }
 
-            return AsBaseUnitDegrees().Equals(((Angle) obj).AsBaseUnitDegrees());
+            var objQuantity = (Angle)obj;
+            return this.Value.Equals(objQuantity.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
@@ -882,9 +881,10 @@ namespace UnitsNet
         /// <param name="other">Other quantity to compare to.</param>
         /// <param name="maxError">Max error allowed.</param>
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        [Obsolete("Please use the Equals(Angle, double, ComparisonType) overload. This method will be removed in a future version.")]
         public bool Equals(Angle other, Angle maxError)
         {
-            return Math.Abs(AsBaseUnitDegrees() - other.AsBaseUnitDegrees()) <= maxError.AsBaseUnitDegrees();
+            return Math.Abs(this.Value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         public override int GetHashCode()
@@ -1284,7 +1284,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private double AsBaseUnitDegrees()
         {
-			if (Unit == AngleUnit.Degree) { return _value; }
+            if (Unit == AngleUnit.Degree) { return _value; }
 
             switch (Unit)
             {
@@ -1304,10 +1304,10 @@ namespace UnitsNet
                 case AngleUnit.Revolution: return _value*360;
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private double AsBaseNumericType(AngleUnit unit) => Convert.ToDouble(As(unit));
-	}
+    }
 }

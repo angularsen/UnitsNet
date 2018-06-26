@@ -1010,12 +1010,11 @@ namespace UnitsNet
 
         public override bool Equals(object obj)
         {
-            if (obj == null || GetType() != obj.GetType())
-            {
+            if(obj is null || !(obj is Power))
                 return false;
-            }
 
-            return AsBaseUnitWatts().Equals(((Power) obj).AsBaseUnitWatts());
+            var objQuantity = (Power)obj;
+            return this.Value.Equals(objQuantity.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
@@ -1077,9 +1076,10 @@ namespace UnitsNet
         /// <param name="other">Other quantity to compare to.</param>
         /// <param name="maxError">Max error allowed.</param>
         /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        [Obsolete("Please use the Equals(Power, double, ComparisonType) overload. This method will be removed in a future version.")]
         public bool Equals(Power other, Power maxError)
         {
-            return Math.Abs(AsBaseUnitWatts() - other.AsBaseUnitWatts()) <= maxError.AsBaseUnitWatts();
+            return Math.Abs(this.Value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         public override int GetHashCode()
@@ -1485,7 +1485,7 @@ namespace UnitsNet
         /// <returns>The value in the base unit representation.</returns>
         private decimal AsBaseUnitWatts()
         {
-			if (Unit == PowerUnit.Watt) { return _value; }
+            if (Unit == PowerUnit.Watt) { return _value; }
 
             switch (Unit)
             {
@@ -1511,10 +1511,10 @@ namespace UnitsNet
                 case PowerUnit.Watt: return Convert.ToDecimal(_value);
                 default:
                     throw new NotImplementedException("Unit not implemented: " + Unit);
-			}
-		}
+            }
+        }
 
-		/// <summary>Convenience method for working with internal numeric type.</summary>
+        /// <summary>Convenience method for working with internal numeric type.</summary>
         private decimal AsBaseNumericType(PowerUnit unit) => Convert.ToDecimal(As(unit));
-	}
+    }
 }
