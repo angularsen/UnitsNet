@@ -73,15 +73,6 @@ namespace UnitsNet
         private readonly MolarityUnit? _unit;
 
         /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-#if WINDOWS_UWP
-        public double Value => Convert.ToDouble(_value);
-#else
-        public double Value => _value;
-#endif
-
-        /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MolarityUnit Unit => _unit.GetValueOrDefault(BaseUnit);

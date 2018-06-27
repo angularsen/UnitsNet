@@ -58,6 +58,11 @@ namespace UnitsNet
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
     public sealed partial class ElectricConductivity
     {
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+        public double Value => Convert.ToDouble(_value);
+
         // Windows Runtime Component requires a default constructor
         public ElectricConductivity()
         {

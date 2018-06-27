@@ -12,11 +12,18 @@ function ToCamelCase($str)
 function GenerateQuantity($quantity, $outDir)
 {
     $outFileName = "$outDir/$($quantity.Name).g.cs"
-    GenerateQuantitySourceCode $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    GenerateQuantitySourceCodeCommon $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) {
         exit 1
     }
-    Write-Host -NoNewline "quantity(OK) "
+    Write-Host -NoNewline "quantity common(OK) "
+
+    $outFileName = "$outDir/NetFramework/$($quantity.Name).NetFramework.g.cs"
+    GenerateQuantitySourceCodeNetFramework $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    if (!$?) {
+        exit 1
+    }
+    Write-Host -NoNewline "quantity .NET(OK) "
 
     $outFileName = "$outDir/../../../UnitsNet.WindowsRuntimeComponent/GeneratedCode/Quantities/$($quantity.Name).WindowsRuntimeComponent.g.cs"
     GenerateQuantitySourceCodeWindowsRuntimeComponent $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
@@ -255,7 +262,8 @@ function Add-InheritedUnits($quantity, $quantities) {
 . "$PSScriptRoot/Include-GenerateNumberExtensionsSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantityTypeSourceCode.ps1"
-. "$PSScriptRoot/Include-GenerateQuantitySourceCode.ps1"
+. "$PSScriptRoot/Include-GenerateQuantitySourceCodeCommon.ps1"
+. "$PSScriptRoot/Include-GenerateQuantitySourceCodeNetFramework.ps1"
 . "$PSScriptRoot/Include-GenerateQuantitySourceCodeWindowsRuntimeComponent.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTypeSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestBaseClassSourceCode.ps1"

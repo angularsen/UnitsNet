@@ -100,7 +100,7 @@
     <None Include="UnitsNet.WindowsRuntimeComponent.nuspec" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\UnitsNet\**\*.cs;" Exclude="**\AssemblyInfo.cs;**\obj\**">
+    <Compile Include="..\UnitsNet\**\*.cs;" Exclude="**\AssemblyInfo.cs;**\NetFramework\*;**\obj\**">
       <Link>UnitsNet\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Compile>
     <None Include="..\UnitsNet\Scripts\**\*.*">

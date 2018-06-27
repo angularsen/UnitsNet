@@ -73,15 +73,6 @@ namespace UnitsNet
         private readonly PowerUnit? _unit;
 
         /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-#if WINDOWS_UWP
-        public double Value => Convert.ToDouble(_value);
-#else
-        public decimal Value => _value;
-#endif
-
-        /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public PowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);

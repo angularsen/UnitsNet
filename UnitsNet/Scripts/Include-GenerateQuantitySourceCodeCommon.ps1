@@ -1,4 +1,4 @@
-﻿function GenerateQuantitySourceCode($quantity)
+﻿function GenerateQuantitySourceCodeCommon($quantity)
 {
     $quantityName = $quantity.Name;
     $units = $quantity.Units;
@@ -112,15 +112,6 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with.
         /// </summary>
         private readonly $($unitEnumName)? _unit;
-
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-#if WINDOWS_UWP
-        public double Value => Convert.ToDouble(_value);
-#else
-        public $baseType Value => _value;
-#endif
 
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
