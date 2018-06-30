@@ -73,27 +73,9 @@ namespace UnitsNet
         private readonly MolarEnergyUnit? _unit;
 
         /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-#if WINDOWS_UWP
-        public double Value => Convert.ToDouble(_value);
-#else
-        public double Value => _value;
-#endif
-
-        /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MolarEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
-
-        // Windows Runtime Component requires a default constructor
-#if WINDOWS_UWP
-        public MolarEnergy()
-        {
-            _value = 0;
-            _unit = BaseUnit;
-        }
-#endif
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public MolarEnergy(double joulespermole)
