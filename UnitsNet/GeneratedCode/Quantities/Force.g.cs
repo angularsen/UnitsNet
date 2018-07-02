@@ -774,7 +774,7 @@ namespace UnitsNet
         ///     Converts this Force to another Force with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Force with the specified unit.</returns>
-        public Force AsQuantity(ForceUnit unit)
+        public Force ToUnit(ForceUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Force(convertedValue, unit);

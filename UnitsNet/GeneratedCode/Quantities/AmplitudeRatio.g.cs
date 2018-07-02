@@ -574,7 +574,7 @@ namespace UnitsNet
         ///     Converts this AmplitudeRatio to another AmplitudeRatio with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A AmplitudeRatio with the specified unit.</returns>
-        public AmplitudeRatio AsQuantity(AmplitudeRatioUnit unit)
+        public AmplitudeRatio ToUnit(AmplitudeRatioUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new AmplitudeRatio(convertedValue, unit);

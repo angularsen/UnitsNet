@@ -1898,7 +1898,7 @@ namespace UnitsNet
         ///     Converts this Volume to another Volume with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Volume with the specified unit.</returns>
-        public Volume AsQuantity(VolumeUnit unit)
+        public Volume ToUnit(VolumeUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Volume(convertedValue, unit);

@@ -599,7 +599,7 @@ namespace UnitsNet
         ///     Converts this ElectricPotentialDc to another ElectricPotentialDc with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ElectricPotentialDc with the specified unit.</returns>
-        public ElectricPotentialDc AsQuantity(ElectricPotentialDcUnit unit)
+        public ElectricPotentialDc ToUnit(ElectricPotentialDcUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricPotentialDc(convertedValue, unit);

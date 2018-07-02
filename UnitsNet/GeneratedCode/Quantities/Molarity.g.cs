@@ -708,7 +708,7 @@ namespace UnitsNet
         ///     Converts this Molarity to another Molarity with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Molarity with the specified unit.</returns>
-        public Molarity AsQuantity(MolarityUnit unit)
+        public Molarity ToUnit(MolarityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Molarity(convertedValue, unit);

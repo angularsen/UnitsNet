@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this ElectricCharge to another ElectricCharge with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ElectricCharge with the specified unit.</returns>
-        public ElectricCharge AsQuantity(ElectricChargeUnit unit)
+        public ElectricCharge ToUnit(ElectricChargeUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricCharge(convertedValue, unit);

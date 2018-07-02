@@ -1137,7 +1137,7 @@ namespace UnitsNet
         ///     Converts this Torque to another Torque with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Torque with the specified unit.</returns>
-        public Torque AsQuantity(TorqueUnit unit)
+        public Torque ToUnit(TorqueUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Torque(convertedValue, unit);

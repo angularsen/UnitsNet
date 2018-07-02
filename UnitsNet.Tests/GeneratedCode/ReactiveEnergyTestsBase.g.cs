@@ -89,19 +89,19 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var voltamperereactivehour = ReactiveEnergy.FromVoltampereReactiveHours(1);
 
-            var kilovoltamperereactivehourQuantity = voltamperereactivehour.AsQuantity(ReactiveEnergyUnit.KilovoltampereReactiveHour);
+            var kilovoltamperereactivehourQuantity = voltamperereactivehour.ToUnit(ReactiveEnergyUnit.KilovoltampereReactiveHour);
             AssertEx.EqualTolerance(KilovoltampereReactiveHoursInOneVoltampereReactiveHour, (double)kilovoltamperereactivehourQuantity.Value, KilovoltampereReactiveHoursTolerance);
             Assert.Equal(ReactiveEnergyUnit.KilovoltampereReactiveHour, kilovoltamperereactivehourQuantity.Unit);
 
-            var megavoltamperereactivehourQuantity = voltamperereactivehour.AsQuantity(ReactiveEnergyUnit.MegavoltampereReactiveHour);
+            var megavoltamperereactivehourQuantity = voltamperereactivehour.ToUnit(ReactiveEnergyUnit.MegavoltampereReactiveHour);
             AssertEx.EqualTolerance(MegavoltampereReactiveHoursInOneVoltampereReactiveHour, (double)megavoltamperereactivehourQuantity.Value, MegavoltampereReactiveHoursTolerance);
             Assert.Equal(ReactiveEnergyUnit.MegavoltampereReactiveHour, megavoltamperereactivehourQuantity.Unit);
 
-            var voltamperereactivehourQuantity = voltamperereactivehour.AsQuantity(ReactiveEnergyUnit.VoltampereReactiveHour);
+            var voltamperereactivehourQuantity = voltamperereactivehour.ToUnit(ReactiveEnergyUnit.VoltampereReactiveHour);
             AssertEx.EqualTolerance(VoltampereReactiveHoursInOneVoltampereReactiveHour, (double)voltamperereactivehourQuantity.Value, VoltampereReactiveHoursTolerance);
             Assert.Equal(ReactiveEnergyUnit.VoltampereReactiveHour, voltamperereactivehourQuantity.Unit);
         }

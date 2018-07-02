@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this MagneticField to another MagneticField with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A MagneticField with the specified unit.</returns>
-        public MagneticField AsQuantity(MagneticFieldUnit unit)
+        public MagneticField ToUnit(MagneticFieldUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new MagneticField(convertedValue, unit);

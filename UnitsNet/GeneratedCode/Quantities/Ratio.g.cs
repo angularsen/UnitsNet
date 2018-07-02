@@ -632,7 +632,7 @@ namespace UnitsNet
         ///     Converts this Ratio to another Ratio with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Ratio with the specified unit.</returns>
-        public Ratio AsQuantity(RatioUnit unit)
+        public Ratio ToUnit(RatioUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Ratio(convertedValue, unit);

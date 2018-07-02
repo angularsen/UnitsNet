@@ -576,7 +576,7 @@ namespace UnitsNet
         ///     Converts this ApparentPower to another ApparentPower with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ApparentPower with the specified unit.</returns>
-        public ApparentPower AsQuantity(ApparentPowerUnit unit)
+        public ApparentPower ToUnit(ApparentPowerUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ApparentPower(convertedValue, unit);

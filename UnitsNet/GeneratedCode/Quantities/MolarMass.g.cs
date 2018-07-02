@@ -840,7 +840,7 @@ namespace UnitsNet
         ///     Converts this MolarMass to another MolarMass with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A MolarMass with the specified unit.</returns>
-        public MolarMass AsQuantity(MolarMassUnit unit)
+        public MolarMass ToUnit(MolarMassUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new MolarMass(convertedValue, unit);

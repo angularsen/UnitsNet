@@ -79,11 +79,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var kilogrampersquaremeter = AreaDensity.FromKilogramsPerSquareMeter(1);
 
-            var kilogrampersquaremeterQuantity = kilogrampersquaremeter.AsQuantity(AreaDensityUnit.KilogramPerSquareMeter);
+            var kilogrampersquaremeterQuantity = kilogrampersquaremeter.ToUnit(AreaDensityUnit.KilogramPerSquareMeter);
             AssertEx.EqualTolerance(KilogramsPerSquareMeterInOneKilogramPerSquareMeter, (double)kilogrampersquaremeterQuantity.Value, KilogramsPerSquareMeterTolerance);
             Assert.Equal(AreaDensityUnit.KilogramPerSquareMeter, kilogrampersquaremeterQuantity.Unit);
         }

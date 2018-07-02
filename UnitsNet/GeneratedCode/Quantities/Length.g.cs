@@ -1170,7 +1170,7 @@ namespace UnitsNet
         ///     Converts this Length to another Length with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Length with the specified unit.</returns>
-        public Length AsQuantity(LengthUnit unit)
+        public Length ToUnit(LengthUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Length(convertedValue, unit);

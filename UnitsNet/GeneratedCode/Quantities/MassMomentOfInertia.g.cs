@@ -1302,7 +1302,7 @@ namespace UnitsNet
         ///     Converts this MassMomentOfInertia to another MassMomentOfInertia with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A MassMomentOfInertia with the specified unit.</returns>
-        public MassMomentOfInertia AsQuantity(MassMomentOfInertiaUnit unit)
+        public MassMomentOfInertia ToUnit(MassMomentOfInertiaUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new MassMomentOfInertia(convertedValue, unit);

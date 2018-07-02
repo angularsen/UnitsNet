@@ -708,7 +708,7 @@ namespace UnitsNet
         ///     Converts this Frequency to another Frequency with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Frequency with the specified unit.</returns>
-        public Frequency AsQuantity(FrequencyUnit unit)
+        public Frequency ToUnit(FrequencyUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Frequency(convertedValue, unit);

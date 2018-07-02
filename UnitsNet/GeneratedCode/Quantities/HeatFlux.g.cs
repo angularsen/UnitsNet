@@ -972,7 +972,7 @@ namespace UnitsNet
         ///     Converts this HeatFlux to another HeatFlux with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A HeatFlux with the specified unit.</returns>
-        public HeatFlux AsQuantity(HeatFluxUnit unit)
+        public HeatFlux ToUnit(HeatFluxUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new HeatFlux(convertedValue, unit);

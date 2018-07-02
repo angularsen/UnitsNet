@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this LuminousFlux to another LuminousFlux with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A LuminousFlux with the specified unit.</returns>
-        public LuminousFlux AsQuantity(LuminousFluxUnit unit)
+        public LuminousFlux ToUnit(LuminousFluxUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new LuminousFlux(convertedValue, unit);

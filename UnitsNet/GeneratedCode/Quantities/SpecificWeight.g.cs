@@ -1005,7 +1005,7 @@ namespace UnitsNet
         ///     Converts this SpecificWeight to another SpecificWeight with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A SpecificWeight with the specified unit.</returns>
-        public SpecificWeight AsQuantity(SpecificWeightUnit unit)
+        public SpecificWeight ToUnit(SpecificWeightUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new SpecificWeight(convertedValue, unit);

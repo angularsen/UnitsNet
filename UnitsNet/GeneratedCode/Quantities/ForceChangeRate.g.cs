@@ -807,7 +807,7 @@ namespace UnitsNet
         ///     Converts this ForceChangeRate to another ForceChangeRate with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ForceChangeRate with the specified unit.</returns>
-        public ForceChangeRate AsQuantity(ForceChangeRateUnit unit)
+        public ForceChangeRate ToUnit(ForceChangeRateUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ForceChangeRate(convertedValue, unit);

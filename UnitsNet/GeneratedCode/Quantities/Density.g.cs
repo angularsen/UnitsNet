@@ -1698,7 +1698,7 @@ namespace UnitsNet
         ///     Converts this Density to another Density with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Density with the specified unit.</returns>
-        public Density AsQuantity(DensityUnit unit)
+        public Density ToUnit(DensityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Density(convertedValue, unit);

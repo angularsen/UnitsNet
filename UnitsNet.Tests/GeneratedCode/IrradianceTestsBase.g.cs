@@ -84,15 +84,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
 
-            var kilowattpersquaremeterQuantity = wattpersquaremeter.AsQuantity(IrradianceUnit.KilowattPerSquareMeter);
+            var kilowattpersquaremeterQuantity = wattpersquaremeter.ToUnit(IrradianceUnit.KilowattPerSquareMeter);
             AssertEx.EqualTolerance(KilowattsPerSquareMeterInOneWattPerSquareMeter, (double)kilowattpersquaremeterQuantity.Value, KilowattsPerSquareMeterTolerance);
             Assert.Equal(IrradianceUnit.KilowattPerSquareMeter, kilowattpersquaremeterQuantity.Unit);
 
-            var wattpersquaremeterQuantity = wattpersquaremeter.AsQuantity(IrradianceUnit.WattPerSquareMeter);
+            var wattpersquaremeterQuantity = wattpersquaremeter.ToUnit(IrradianceUnit.WattPerSquareMeter);
             AssertEx.EqualTolerance(WattsPerSquareMeterInOneWattPerSquareMeter, (double)wattpersquaremeterQuantity.Value, WattsPerSquareMeterTolerance);
             Assert.Equal(IrradianceUnit.WattPerSquareMeter, wattpersquaremeterQuantity.Unit);
         }

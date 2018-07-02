@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this ElectricInductance to another ElectricInductance with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ElectricInductance with the specified unit.</returns>
-        public ElectricInductance AsQuantity(ElectricInductanceUnit unit)
+        public ElectricInductance ToUnit(ElectricInductanceUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricInductance(convertedValue, unit);

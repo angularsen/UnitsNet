@@ -906,7 +906,7 @@ namespace UnitsNet
         ///     Converts this AmountOfSubstance to another AmountOfSubstance with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A AmountOfSubstance with the specified unit.</returns>
-        public AmountOfSubstance AsQuantity(AmountOfSubstanceUnit unit)
+        public AmountOfSubstance ToUnit(AmountOfSubstanceUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new AmountOfSubstance(convertedValue, unit);

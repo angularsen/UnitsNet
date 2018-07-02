@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this Capacitance to another Capacitance with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Capacitance with the specified unit.</returns>
-        public Capacitance AsQuantity(CapacitanceUnit unit)
+        public Capacitance ToUnit(CapacitanceUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Capacitance(convertedValue, unit);

@@ -104,31 +104,31 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var decimalfraction = Ratio.FromDecimalFractions(1);
 
-            var decimalfractionQuantity = decimalfraction.AsQuantity(RatioUnit.DecimalFraction);
+            var decimalfractionQuantity = decimalfraction.ToUnit(RatioUnit.DecimalFraction);
             AssertEx.EqualTolerance(DecimalFractionsInOneDecimalFraction, (double)decimalfractionQuantity.Value, DecimalFractionsTolerance);
             Assert.Equal(RatioUnit.DecimalFraction, decimalfractionQuantity.Unit);
 
-            var partperbillionQuantity = decimalfraction.AsQuantity(RatioUnit.PartPerBillion);
+            var partperbillionQuantity = decimalfraction.ToUnit(RatioUnit.PartPerBillion);
             AssertEx.EqualTolerance(PartsPerBillionInOneDecimalFraction, (double)partperbillionQuantity.Value, PartsPerBillionTolerance);
             Assert.Equal(RatioUnit.PartPerBillion, partperbillionQuantity.Unit);
 
-            var partpermillionQuantity = decimalfraction.AsQuantity(RatioUnit.PartPerMillion);
+            var partpermillionQuantity = decimalfraction.ToUnit(RatioUnit.PartPerMillion);
             AssertEx.EqualTolerance(PartsPerMillionInOneDecimalFraction, (double)partpermillionQuantity.Value, PartsPerMillionTolerance);
             Assert.Equal(RatioUnit.PartPerMillion, partpermillionQuantity.Unit);
 
-            var partperthousandQuantity = decimalfraction.AsQuantity(RatioUnit.PartPerThousand);
+            var partperthousandQuantity = decimalfraction.ToUnit(RatioUnit.PartPerThousand);
             AssertEx.EqualTolerance(PartsPerThousandInOneDecimalFraction, (double)partperthousandQuantity.Value, PartsPerThousandTolerance);
             Assert.Equal(RatioUnit.PartPerThousand, partperthousandQuantity.Unit);
 
-            var partpertrillionQuantity = decimalfraction.AsQuantity(RatioUnit.PartPerTrillion);
+            var partpertrillionQuantity = decimalfraction.ToUnit(RatioUnit.PartPerTrillion);
             AssertEx.EqualTolerance(PartsPerTrillionInOneDecimalFraction, (double)partpertrillionQuantity.Value, PartsPerTrillionTolerance);
             Assert.Equal(RatioUnit.PartPerTrillion, partpertrillionQuantity.Unit);
 
-            var percentQuantity = decimalfraction.AsQuantity(RatioUnit.Percent);
+            var percentQuantity = decimalfraction.ToUnit(RatioUnit.Percent);
             AssertEx.EqualTolerance(PercentInOneDecimalFraction, (double)percentQuantity.Value, PercentTolerance);
             Assert.Equal(RatioUnit.Percent, percentQuantity.Unit);
         }

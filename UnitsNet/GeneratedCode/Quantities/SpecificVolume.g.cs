@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this SpecificVolume to another SpecificVolume with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A SpecificVolume with the specified unit.</returns>
-        public SpecificVolume AsQuantity(SpecificVolumeUnit unit)
+        public SpecificVolume ToUnit(SpecificVolumeUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new SpecificVolume(convertedValue, unit);

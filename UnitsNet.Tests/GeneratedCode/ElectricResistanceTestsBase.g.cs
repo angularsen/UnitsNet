@@ -94,23 +94,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var ohm = ElectricResistance.FromOhms(1);
 
-            var kiloohmQuantity = ohm.AsQuantity(ElectricResistanceUnit.Kiloohm);
+            var kiloohmQuantity = ohm.ToUnit(ElectricResistanceUnit.Kiloohm);
             AssertEx.EqualTolerance(KiloohmsInOneOhm, (double)kiloohmQuantity.Value, KiloohmsTolerance);
             Assert.Equal(ElectricResistanceUnit.Kiloohm, kiloohmQuantity.Unit);
 
-            var megaohmQuantity = ohm.AsQuantity(ElectricResistanceUnit.Megaohm);
+            var megaohmQuantity = ohm.ToUnit(ElectricResistanceUnit.Megaohm);
             AssertEx.EqualTolerance(MegaohmsInOneOhm, (double)megaohmQuantity.Value, MegaohmsTolerance);
             Assert.Equal(ElectricResistanceUnit.Megaohm, megaohmQuantity.Unit);
 
-            var milliohmQuantity = ohm.AsQuantity(ElectricResistanceUnit.Milliohm);
+            var milliohmQuantity = ohm.ToUnit(ElectricResistanceUnit.Milliohm);
             AssertEx.EqualTolerance(MilliohmsInOneOhm, (double)milliohmQuantity.Value, MilliohmsTolerance);
             Assert.Equal(ElectricResistanceUnit.Milliohm, milliohmQuantity.Unit);
 
-            var ohmQuantity = ohm.AsQuantity(ElectricResistanceUnit.Ohm);
+            var ohmQuantity = ohm.ToUnit(ElectricResistanceUnit.Ohm);
             AssertEx.EqualTolerance(OhmsInOneOhm, (double)ohmQuantity.Value, OhmsTolerance);
             Assert.Equal(ElectricResistanceUnit.Ohm, ohmQuantity.Unit);
         }

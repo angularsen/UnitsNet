@@ -100,7 +100,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var $baseUnitVariableName = $quantityName.From$baseUnitPluralName(1);
 "@; foreach ($unit in $units)
@@ -108,7 +108,7 @@ namespace UnitsNet.Tests
         $asQuantityVariableName = "$($unit.SingularName.ToLowerInvariant())Quantity";
 @"
 
-            var $asQuantityVariableName = $baseUnitVariableName.AsQuantity($($quantityName)Unit.$($unit.SingularName));
+            var $asQuantityVariableName = $baseUnitVariableName.ToUnit($($quantityName)Unit.$($unit.SingularName));
             AssertEx.EqualTolerance($($unit.PluralName)InOne$($baseUnit.SingularName), (double)$asQuantityVariableName.Value, $($unit.PluralName)Tolerance);
             Assert.Equal($($quantityName)Unit.$($unit.SingularName), $asQuantityVariableName.Unit);
 "@; }@"

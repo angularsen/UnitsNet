@@ -543,7 +543,7 @@ namespace UnitsNet
         ///     Converts this Irradiation to another Irradiation with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Irradiation with the specified unit.</returns>
-        public Irradiation AsQuantity(IrradiationUnit unit)
+        public Irradiation ToUnit(IrradiationUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Irradiation(convertedValue, unit);

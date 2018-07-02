@@ -510,7 +510,7 @@ namespace UnitsNet
         ///     Converts this HeatTransferCoefficient to another HeatTransferCoefficient with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A HeatTransferCoefficient with the specified unit.</returns>
-        public HeatTransferCoefficient AsQuantity(HeatTransferCoefficientUnit unit)
+        public HeatTransferCoefficient ToUnit(HeatTransferCoefficientUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new HeatTransferCoefficient(convertedValue, unit);

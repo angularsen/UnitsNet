@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this ElectricCurrentGradient to another ElectricCurrentGradient with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ElectricCurrentGradient with the specified unit.</returns>
-        public ElectricCurrentGradient AsQuantity(ElectricCurrentGradientUnit unit)
+        public ElectricCurrentGradient ToUnit(ElectricCurrentGradientUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricCurrentGradient(convertedValue, unit);

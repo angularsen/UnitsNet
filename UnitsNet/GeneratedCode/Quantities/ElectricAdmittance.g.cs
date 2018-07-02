@@ -576,7 +576,7 @@ namespace UnitsNet
         ///     Converts this ElectricAdmittance to another ElectricAdmittance with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ElectricAdmittance with the specified unit.</returns>
-        public ElectricAdmittance AsQuantity(ElectricAdmittanceUnit unit)
+        public ElectricAdmittance ToUnit(ElectricAdmittanceUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricAdmittance(convertedValue, unit);

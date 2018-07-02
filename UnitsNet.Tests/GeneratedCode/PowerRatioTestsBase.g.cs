@@ -84,15 +84,15 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var decibelwatt = PowerRatio.FromDecibelWatts(1);
 
-            var decibelmilliwattQuantity = decibelwatt.AsQuantity(PowerRatioUnit.DecibelMilliwatt);
+            var decibelmilliwattQuantity = decibelwatt.ToUnit(PowerRatioUnit.DecibelMilliwatt);
             AssertEx.EqualTolerance(DecibelMilliwattsInOneDecibelWatt, (double)decibelmilliwattQuantity.Value, DecibelMilliwattsTolerance);
             Assert.Equal(PowerRatioUnit.DecibelMilliwatt, decibelmilliwattQuantity.Unit);
 
-            var decibelwattQuantity = decibelwatt.AsQuantity(PowerRatioUnit.DecibelWatt);
+            var decibelwattQuantity = decibelwatt.ToUnit(PowerRatioUnit.DecibelWatt);
             AssertEx.EqualTolerance(DecibelWattsInOneDecibelWatt, (double)decibelwattQuantity.Value, DecibelWattsTolerance);
             Assert.Equal(PowerRatioUnit.DecibelWatt, decibelwattQuantity.Unit);
         }

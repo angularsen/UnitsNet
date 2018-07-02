@@ -139,59 +139,59 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var squaremeter = Area.FromSquareMeters(1);
 
-            var acreQuantity = squaremeter.AsQuantity(AreaUnit.Acre);
+            var acreQuantity = squaremeter.ToUnit(AreaUnit.Acre);
             AssertEx.EqualTolerance(AcresInOneSquareMeter, (double)acreQuantity.Value, AcresTolerance);
             Assert.Equal(AreaUnit.Acre, acreQuantity.Unit);
 
-            var hectareQuantity = squaremeter.AsQuantity(AreaUnit.Hectare);
+            var hectareQuantity = squaremeter.ToUnit(AreaUnit.Hectare);
             AssertEx.EqualTolerance(HectaresInOneSquareMeter, (double)hectareQuantity.Value, HectaresTolerance);
             Assert.Equal(AreaUnit.Hectare, hectareQuantity.Unit);
 
-            var squarecentimeterQuantity = squaremeter.AsQuantity(AreaUnit.SquareCentimeter);
+            var squarecentimeterQuantity = squaremeter.ToUnit(AreaUnit.SquareCentimeter);
             AssertEx.EqualTolerance(SquareCentimetersInOneSquareMeter, (double)squarecentimeterQuantity.Value, SquareCentimetersTolerance);
             Assert.Equal(AreaUnit.SquareCentimeter, squarecentimeterQuantity.Unit);
 
-            var squaredecimeterQuantity = squaremeter.AsQuantity(AreaUnit.SquareDecimeter);
+            var squaredecimeterQuantity = squaremeter.ToUnit(AreaUnit.SquareDecimeter);
             AssertEx.EqualTolerance(SquareDecimetersInOneSquareMeter, (double)squaredecimeterQuantity.Value, SquareDecimetersTolerance);
             Assert.Equal(AreaUnit.SquareDecimeter, squaredecimeterQuantity.Unit);
 
-            var squarefootQuantity = squaremeter.AsQuantity(AreaUnit.SquareFoot);
+            var squarefootQuantity = squaremeter.ToUnit(AreaUnit.SquareFoot);
             AssertEx.EqualTolerance(SquareFeetInOneSquareMeter, (double)squarefootQuantity.Value, SquareFeetTolerance);
             Assert.Equal(AreaUnit.SquareFoot, squarefootQuantity.Unit);
 
-            var squareinchQuantity = squaremeter.AsQuantity(AreaUnit.SquareInch);
+            var squareinchQuantity = squaremeter.ToUnit(AreaUnit.SquareInch);
             AssertEx.EqualTolerance(SquareInchesInOneSquareMeter, (double)squareinchQuantity.Value, SquareInchesTolerance);
             Assert.Equal(AreaUnit.SquareInch, squareinchQuantity.Unit);
 
-            var squarekilometerQuantity = squaremeter.AsQuantity(AreaUnit.SquareKilometer);
+            var squarekilometerQuantity = squaremeter.ToUnit(AreaUnit.SquareKilometer);
             AssertEx.EqualTolerance(SquareKilometersInOneSquareMeter, (double)squarekilometerQuantity.Value, SquareKilometersTolerance);
             Assert.Equal(AreaUnit.SquareKilometer, squarekilometerQuantity.Unit);
 
-            var squaremeterQuantity = squaremeter.AsQuantity(AreaUnit.SquareMeter);
+            var squaremeterQuantity = squaremeter.ToUnit(AreaUnit.SquareMeter);
             AssertEx.EqualTolerance(SquareMetersInOneSquareMeter, (double)squaremeterQuantity.Value, SquareMetersTolerance);
             Assert.Equal(AreaUnit.SquareMeter, squaremeterQuantity.Unit);
 
-            var squaremicrometerQuantity = squaremeter.AsQuantity(AreaUnit.SquareMicrometer);
+            var squaremicrometerQuantity = squaremeter.ToUnit(AreaUnit.SquareMicrometer);
             AssertEx.EqualTolerance(SquareMicrometersInOneSquareMeter, (double)squaremicrometerQuantity.Value, SquareMicrometersTolerance);
             Assert.Equal(AreaUnit.SquareMicrometer, squaremicrometerQuantity.Unit);
 
-            var squaremileQuantity = squaremeter.AsQuantity(AreaUnit.SquareMile);
+            var squaremileQuantity = squaremeter.ToUnit(AreaUnit.SquareMile);
             AssertEx.EqualTolerance(SquareMilesInOneSquareMeter, (double)squaremileQuantity.Value, SquareMilesTolerance);
             Assert.Equal(AreaUnit.SquareMile, squaremileQuantity.Unit);
 
-            var squaremillimeterQuantity = squaremeter.AsQuantity(AreaUnit.SquareMillimeter);
+            var squaremillimeterQuantity = squaremeter.ToUnit(AreaUnit.SquareMillimeter);
             AssertEx.EqualTolerance(SquareMillimetersInOneSquareMeter, (double)squaremillimeterQuantity.Value, SquareMillimetersTolerance);
             Assert.Equal(AreaUnit.SquareMillimeter, squaremillimeterQuantity.Unit);
 
-            var squareyardQuantity = squaremeter.AsQuantity(AreaUnit.SquareYard);
+            var squareyardQuantity = squaremeter.ToUnit(AreaUnit.SquareYard);
             AssertEx.EqualTolerance(SquareYardsInOneSquareMeter, (double)squareyardQuantity.Value, SquareYardsTolerance);
             Assert.Equal(AreaUnit.SquareYard, squareyardQuantity.Unit);
 
-            var ussurveysquarefootQuantity = squaremeter.AsQuantity(AreaUnit.UsSurveySquareFoot);
+            var ussurveysquarefootQuantity = squaremeter.ToUnit(AreaUnit.UsSurveySquareFoot);
             AssertEx.EqualTolerance(UsSurveySquareFeetInOneSquareMeter, (double)ussurveysquarefootQuantity.Value, UsSurveySquareFeetTolerance);
             Assert.Equal(AreaUnit.UsSurveySquareFoot, ussurveysquarefootQuantity.Unit);
         }

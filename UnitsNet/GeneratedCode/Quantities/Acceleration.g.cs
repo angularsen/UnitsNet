@@ -873,7 +873,7 @@ namespace UnitsNet
         ///     Converts this Acceleration to another Acceleration with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Acceleration with the specified unit.</returns>
-        public Acceleration AsQuantity(AccelerationUnit unit)
+        public Acceleration ToUnit(AccelerationUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Acceleration(convertedValue, unit);

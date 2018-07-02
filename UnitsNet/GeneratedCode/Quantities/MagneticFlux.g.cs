@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this MagneticFlux to another MagneticFlux with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A MagneticFlux with the specified unit.</returns>
-        public MagneticFlux AsQuantity(MagneticFluxUnit unit)
+        public MagneticFlux ToUnit(MagneticFluxUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new MagneticFlux(convertedValue, unit);

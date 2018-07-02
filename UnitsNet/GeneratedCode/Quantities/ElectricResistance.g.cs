@@ -576,7 +576,7 @@ namespace UnitsNet
         ///     Converts this ElectricResistance to another ElectricResistance with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ElectricResistance with the specified unit.</returns>
-        public ElectricResistance AsQuantity(ElectricResistanceUnit unit)
+        public ElectricResistance ToUnit(ElectricResistanceUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricResistance(convertedValue, unit);

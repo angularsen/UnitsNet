@@ -609,7 +609,7 @@ namespace UnitsNet
         ///     Converts this ElectricPotential to another ElectricPotential with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ElectricPotential with the specified unit.</returns>
-        public ElectricPotential AsQuantity(ElectricPotentialUnit unit)
+        public ElectricPotential ToUnit(ElectricPotentialUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricPotential(convertedValue, unit);

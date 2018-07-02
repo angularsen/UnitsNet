@@ -609,7 +609,7 @@ namespace UnitsNet
         ///     Converts this ThermalResistance to another ThermalResistance with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ThermalResistance with the specified unit.</returns>
-        public ThermalResistance AsQuantity(ThermalResistanceUnit unit)
+        public ThermalResistance ToUnit(ThermalResistanceUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ThermalResistance(convertedValue, unit);

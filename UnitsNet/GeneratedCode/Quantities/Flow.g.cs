@@ -1254,7 +1254,7 @@ namespace UnitsNet
         ///     Converts this Flow to another Flow with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Flow with the specified unit.</returns>
-        public Flow AsQuantity(FlowUnit unit)
+        public Flow ToUnit(FlowUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Flow(convertedValue, unit);

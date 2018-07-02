@@ -873,7 +873,7 @@ namespace UnitsNet
         ///     Converts this Area to another Area with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Area with the specified unit.</returns>
-        public Area AsQuantity(AreaUnit unit)
+        public Area ToUnit(AreaUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Area(convertedValue, unit);

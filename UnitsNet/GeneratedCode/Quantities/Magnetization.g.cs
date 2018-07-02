@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this Magnetization to another Magnetization with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Magnetization with the specified unit.</returns>
-        public Magnetization AsQuantity(MagnetizationUnit unit)
+        public Magnetization ToUnit(MagnetizationUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Magnetization(convertedValue, unit);

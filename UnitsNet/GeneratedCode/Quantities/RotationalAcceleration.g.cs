@@ -543,7 +543,7 @@ namespace UnitsNet
         ///     Converts this RotationalAcceleration to another RotationalAcceleration with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A RotationalAcceleration with the specified unit.</returns>
-        public RotationalAcceleration AsQuantity(RotationalAccelerationUnit unit)
+        public RotationalAcceleration ToUnit(RotationalAccelerationUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new RotationalAcceleration(convertedValue, unit);

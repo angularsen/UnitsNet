@@ -79,11 +79,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var candela = LuminousIntensity.FromCandela(1);
 
-            var candelaQuantity = candela.AsQuantity(LuminousIntensityUnit.Candela);
+            var candelaQuantity = candela.ToUnit(LuminousIntensityUnit.Candela);
             AssertEx.EqualTolerance(CandelaInOneCandela, (double)candelaQuantity.Value, CandelaTolerance);
             Assert.Equal(LuminousIntensityUnit.Candela, candelaQuantity.Unit);
         }

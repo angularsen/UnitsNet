@@ -467,7 +467,7 @@ namespace UnitsNet
         ///     Converts this SolidAngle to another SolidAngle with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A SolidAngle with the specified unit.</returns>
-        public SolidAngle AsQuantity(SolidAngleUnit unit)
+        public SolidAngle ToUnit(SolidAngleUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new SolidAngle(convertedValue, unit);

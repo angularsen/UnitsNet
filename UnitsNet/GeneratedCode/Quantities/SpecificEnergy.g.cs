@@ -708,7 +708,7 @@ namespace UnitsNet
         ///     Converts this SpecificEnergy to another SpecificEnergy with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A SpecificEnergy with the specified unit.</returns>
-        public SpecificEnergy AsQuantity(SpecificEnergyUnit unit)
+        public SpecificEnergy ToUnit(SpecificEnergyUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new SpecificEnergy(convertedValue, unit);

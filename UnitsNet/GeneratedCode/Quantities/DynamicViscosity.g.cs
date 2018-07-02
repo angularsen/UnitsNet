@@ -642,7 +642,7 @@ namespace UnitsNet
         ///     Converts this DynamicViscosity to another DynamicViscosity with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A DynamicViscosity with the specified unit.</returns>
-        public DynamicViscosity AsQuantity(DynamicViscosityUnit unit)
+        public DynamicViscosity ToUnit(DynamicViscosityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new DynamicViscosity(convertedValue, unit);

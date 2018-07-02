@@ -79,11 +79,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var henry = ElectricInductance.FromHenries(1);
 
-            var henryQuantity = henry.AsQuantity(ElectricInductanceUnit.Henry);
+            var henryQuantity = henry.ToUnit(ElectricInductanceUnit.Henry);
             AssertEx.EqualTolerance(HenriesInOneHenry, (double)henryQuantity.Value, HenriesTolerance);
             Assert.Equal(ElectricInductanceUnit.Henry, henryQuantity.Unit);
         }

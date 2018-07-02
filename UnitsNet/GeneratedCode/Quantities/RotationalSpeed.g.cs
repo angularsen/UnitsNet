@@ -873,7 +873,7 @@ namespace UnitsNet
         ///     Converts this RotationalSpeed to another RotationalSpeed with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A RotationalSpeed with the specified unit.</returns>
-        public RotationalSpeed AsQuantity(RotationalSpeedUnit unit)
+        public RotationalSpeed ToUnit(RotationalSpeedUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new RotationalSpeed(convertedValue, unit);

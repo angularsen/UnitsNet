@@ -642,7 +642,7 @@ namespace UnitsNet
         ///     Converts this AreaMomentOfInertia to another AreaMomentOfInertia with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A AreaMomentOfInertia with the specified unit.</returns>
-        public AreaMomentOfInertia AsQuantity(AreaMomentOfInertiaUnit unit)
+        public AreaMomentOfInertia ToUnit(AreaMomentOfInertiaUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new AreaMomentOfInertia(convertedValue, unit);

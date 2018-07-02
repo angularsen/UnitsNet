@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this ElectricCurrentDensity to another ElectricCurrentDensity with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ElectricCurrentDensity with the specified unit.</returns>
-        public ElectricCurrentDensity AsQuantity(ElectricCurrentDensityUnit unit)
+        public ElectricCurrentDensity ToUnit(ElectricCurrentDensityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricCurrentDensity(convertedValue, unit);

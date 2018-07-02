@@ -543,7 +543,7 @@ namespace UnitsNet
         ///     Converts this MolarEntropy to another MolarEntropy with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A MolarEntropy with the specified unit.</returns>
-        public MolarEntropy AsQuantity(MolarEntropyUnit unit)
+        public MolarEntropy ToUnit(MolarEntropyUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new MolarEntropy(convertedValue, unit);

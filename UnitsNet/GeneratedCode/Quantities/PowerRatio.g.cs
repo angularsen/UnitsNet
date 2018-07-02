@@ -508,7 +508,7 @@ namespace UnitsNet
         ///     Converts this PowerRatio to another PowerRatio with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A PowerRatio with the specified unit.</returns>
-        public PowerRatio AsQuantity(PowerRatioUnit unit)
+        public PowerRatio ToUnit(PowerRatioUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new PowerRatio(convertedValue, unit);

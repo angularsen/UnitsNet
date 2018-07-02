@@ -1236,7 +1236,7 @@ namespace UnitsNet
         ///     Converts this VolumeFlow to another VolumeFlow with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A VolumeFlow with the specified unit.</returns>
-        public VolumeFlow AsQuantity(VolumeFlowUnit unit)
+        public VolumeFlow ToUnit(VolumeFlowUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new VolumeFlow(convertedValue, unit);

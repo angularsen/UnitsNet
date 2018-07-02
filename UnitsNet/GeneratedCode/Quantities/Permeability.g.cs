@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this Permeability to another Permeability with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Permeability with the specified unit.</returns>
-        public Permeability AsQuantity(PermeabilityUnit unit)
+        public Permeability ToUnit(PermeabilityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Permeability(convertedValue, unit);

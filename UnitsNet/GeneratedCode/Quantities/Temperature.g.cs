@@ -666,7 +666,7 @@ namespace UnitsNet
         ///     Converts this Temperature to another Temperature with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Temperature with the specified unit.</returns>
-        public Temperature AsQuantity(TemperatureUnit unit)
+        public Temperature ToUnit(TemperatureUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Temperature(convertedValue, unit);

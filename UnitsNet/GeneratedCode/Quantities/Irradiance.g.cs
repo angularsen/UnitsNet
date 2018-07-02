@@ -510,7 +510,7 @@ namespace UnitsNet
         ///     Converts this Irradiance to another Irradiance with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Irradiance with the specified unit.</returns>
-        public Irradiance AsQuantity(IrradianceUnit unit)
+        public Irradiance ToUnit(IrradianceUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Irradiance(convertedValue, unit);

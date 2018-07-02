@@ -543,7 +543,7 @@ namespace UnitsNet
         ///     Converts this ApparentEnergy to another ApparentEnergy with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ApparentEnergy with the specified unit.</returns>
-        public ApparentEnergy AsQuantity(ApparentEnergyUnit unit)
+        public ApparentEnergy ToUnit(ApparentEnergyUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ApparentEnergy(convertedValue, unit);

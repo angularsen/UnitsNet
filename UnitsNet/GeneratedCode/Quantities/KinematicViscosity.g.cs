@@ -708,7 +708,7 @@ namespace UnitsNet
         ///     Converts this KinematicViscosity to another KinematicViscosity with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A KinematicViscosity with the specified unit.</returns>
-        public KinematicViscosity AsQuantity(KinematicViscosityUnit unit)
+        public KinematicViscosity ToUnit(KinematicViscosityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new KinematicViscosity(convertedValue, unit);

@@ -1896,7 +1896,7 @@ namespace UnitsNet
         ///     Converts this PowerDensity to another PowerDensity with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A PowerDensity with the specified unit.</returns>
-        public PowerDensity AsQuantity(PowerDensityUnit unit)
+        public PowerDensity ToUnit(PowerDensityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new PowerDensity(convertedValue, unit);

@@ -842,7 +842,7 @@ namespace UnitsNet
         ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Duration with the specified unit.</returns>
-        public Duration AsQuantity(DurationUnit unit)
+        public Duration ToUnit(DurationUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Duration(convertedValue, unit);

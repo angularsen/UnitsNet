@@ -1500,7 +1500,7 @@ namespace UnitsNet
         ///     Converts this Speed to another Speed with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Speed with the specified unit.</returns>
-        public Speed AsQuantity(SpeedUnit unit)
+        public Speed ToUnit(SpeedUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Speed(convertedValue, unit);

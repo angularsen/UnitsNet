@@ -544,7 +544,7 @@ namespace UnitsNet
         ///     Converts this $quantityName to another $quantityName with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A $quantityName with the specified unit.</returns>
-        public $quantityName AsQuantity($unitEnumName unit)
+        public $quantityName ToUnit($unitEnumName unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new $quantityName(convertedValue, unit);

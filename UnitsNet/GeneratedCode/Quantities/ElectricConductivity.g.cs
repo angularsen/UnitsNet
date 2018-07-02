@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this ElectricConductivity to another ElectricConductivity with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ElectricConductivity with the specified unit.</returns>
-        public ElectricConductivity AsQuantity(ElectricConductivityUnit unit)
+        public ElectricConductivity ToUnit(ElectricConductivityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricConductivity(convertedValue, unit);

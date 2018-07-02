@@ -576,7 +576,7 @@ namespace UnitsNet
         ///     Converts this PressureChangeRate to another PressureChangeRate with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A PressureChangeRate with the specified unit.</returns>
-        public PressureChangeRate AsQuantity(PressureChangeRateUnit unit)
+        public PressureChangeRate ToUnit(PressureChangeRateUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new PressureChangeRate(convertedValue, unit);

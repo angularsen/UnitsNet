@@ -508,7 +508,7 @@ namespace UnitsNet
         ///     Converts this Level to another Level with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Level with the specified unit.</returns>
-        public Level AsQuantity(LevelUnit unit)
+        public Level ToUnit(LevelUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Level(convertedValue, unit);

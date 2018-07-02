@@ -94,23 +94,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var ohmmeter = ElectricResistivity.FromOhmMeters(1);
 
-            var microohmmeterQuantity = ohmmeter.AsQuantity(ElectricResistivityUnit.MicroohmMeter);
+            var microohmmeterQuantity = ohmmeter.ToUnit(ElectricResistivityUnit.MicroohmMeter);
             AssertEx.EqualTolerance(MicroohmMetersInOneOhmMeter, (double)microohmmeterQuantity.Value, MicroohmMetersTolerance);
             Assert.Equal(ElectricResistivityUnit.MicroohmMeter, microohmmeterQuantity.Unit);
 
-            var milliohmmeterQuantity = ohmmeter.AsQuantity(ElectricResistivityUnit.MilliohmMeter);
+            var milliohmmeterQuantity = ohmmeter.ToUnit(ElectricResistivityUnit.MilliohmMeter);
             AssertEx.EqualTolerance(MilliohmMetersInOneOhmMeter, (double)milliohmmeterQuantity.Value, MilliohmMetersTolerance);
             Assert.Equal(ElectricResistivityUnit.MilliohmMeter, milliohmmeterQuantity.Unit);
 
-            var nanoohmmeterQuantity = ohmmeter.AsQuantity(ElectricResistivityUnit.NanoohmMeter);
+            var nanoohmmeterQuantity = ohmmeter.ToUnit(ElectricResistivityUnit.NanoohmMeter);
             AssertEx.EqualTolerance(NanoohmMetersInOneOhmMeter, (double)nanoohmmeterQuantity.Value, NanoohmMetersTolerance);
             Assert.Equal(ElectricResistivityUnit.NanoohmMeter, nanoohmmeterQuantity.Unit);
 
-            var ohmmeterQuantity = ohmmeter.AsQuantity(ElectricResistivityUnit.OhmMeter);
+            var ohmmeterQuantity = ohmmeter.ToUnit(ElectricResistivityUnit.OhmMeter);
             AssertEx.EqualTolerance(OhmMetersInOneOhmMeter, (double)ohmmeterQuantity.Value, OhmMetersTolerance);
             Assert.Equal(ElectricResistivityUnit.OhmMeter, ohmmeterQuantity.Unit);
         }

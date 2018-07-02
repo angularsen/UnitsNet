@@ -543,7 +543,7 @@ namespace UnitsNet
         ///     Converts this RotationalStiffnessPerLength to another RotationalStiffnessPerLength with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A RotationalStiffnessPerLength with the specified unit.</returns>
-        public RotationalStiffnessPerLength AsQuantity(RotationalStiffnessPerLengthUnit unit)
+        public RotationalStiffnessPerLength ToUnit(RotationalStiffnessPerLengthUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new RotationalStiffnessPerLength(convertedValue, unit);

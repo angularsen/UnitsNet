@@ -79,11 +79,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var internationalunit = VitaminA.FromInternationalUnits(1);
 
-            var internationalunitQuantity = internationalunit.AsQuantity(VitaminAUnit.InternationalUnit);
+            var internationalunitQuantity = internationalunit.ToUnit(VitaminAUnit.InternationalUnit);
             AssertEx.EqualTolerance(InternationalUnitsInOneInternationalUnit, (double)internationalunitQuantity.Value, InternationalUnitsTolerance);
             Assert.Equal(VitaminAUnit.InternationalUnit, internationalunitQuantity.Unit);
         }

@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this LuminousIntensity to another LuminousIntensity with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A LuminousIntensity with the specified unit.</returns>
-        public LuminousIntensity AsQuantity(LuminousIntensityUnit unit)
+        public LuminousIntensity ToUnit(LuminousIntensityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new LuminousIntensity(convertedValue, unit);

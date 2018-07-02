@@ -94,23 +94,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var voltampere = ApparentPower.FromVoltamperes(1);
 
-            var gigavoltampereQuantity = voltampere.AsQuantity(ApparentPowerUnit.Gigavoltampere);
+            var gigavoltampereQuantity = voltampere.ToUnit(ApparentPowerUnit.Gigavoltampere);
             AssertEx.EqualTolerance(GigavoltamperesInOneVoltampere, (double)gigavoltampereQuantity.Value, GigavoltamperesTolerance);
             Assert.Equal(ApparentPowerUnit.Gigavoltampere, gigavoltampereQuantity.Unit);
 
-            var kilovoltampereQuantity = voltampere.AsQuantity(ApparentPowerUnit.Kilovoltampere);
+            var kilovoltampereQuantity = voltampere.ToUnit(ApparentPowerUnit.Kilovoltampere);
             AssertEx.EqualTolerance(KilovoltamperesInOneVoltampere, (double)kilovoltampereQuantity.Value, KilovoltamperesTolerance);
             Assert.Equal(ApparentPowerUnit.Kilovoltampere, kilovoltampereQuantity.Unit);
 
-            var megavoltampereQuantity = voltampere.AsQuantity(ApparentPowerUnit.Megavoltampere);
+            var megavoltampereQuantity = voltampere.ToUnit(ApparentPowerUnit.Megavoltampere);
             AssertEx.EqualTolerance(MegavoltamperesInOneVoltampere, (double)megavoltampereQuantity.Value, MegavoltamperesTolerance);
             Assert.Equal(ApparentPowerUnit.Megavoltampere, megavoltampereQuantity.Unit);
 
-            var voltampereQuantity = voltampere.AsQuantity(ApparentPowerUnit.Voltampere);
+            var voltampereQuantity = voltampere.ToUnit(ApparentPowerUnit.Voltampere);
             AssertEx.EqualTolerance(VoltamperesInOneVoltampere, (double)voltampereQuantity.Value, VoltamperesTolerance);
             Assert.Equal(ApparentPowerUnit.Voltampere, voltampereQuantity.Unit);
         }

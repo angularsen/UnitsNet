@@ -204,111 +204,111 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var bit = Information.FromBits(1);
 
-            var bitQuantity = bit.AsQuantity(InformationUnit.Bit);
+            var bitQuantity = bit.ToUnit(InformationUnit.Bit);
             AssertEx.EqualTolerance(BitsInOneBit, (double)bitQuantity.Value, BitsTolerance);
             Assert.Equal(InformationUnit.Bit, bitQuantity.Unit);
 
-            var byteQuantity = bit.AsQuantity(InformationUnit.Byte);
+            var byteQuantity = bit.ToUnit(InformationUnit.Byte);
             AssertEx.EqualTolerance(BytesInOneBit, (double)byteQuantity.Value, BytesTolerance);
             Assert.Equal(InformationUnit.Byte, byteQuantity.Unit);
 
-            var exabitQuantity = bit.AsQuantity(InformationUnit.Exabit);
+            var exabitQuantity = bit.ToUnit(InformationUnit.Exabit);
             AssertEx.EqualTolerance(ExabitsInOneBit, (double)exabitQuantity.Value, ExabitsTolerance);
             Assert.Equal(InformationUnit.Exabit, exabitQuantity.Unit);
 
-            var exabyteQuantity = bit.AsQuantity(InformationUnit.Exabyte);
+            var exabyteQuantity = bit.ToUnit(InformationUnit.Exabyte);
             AssertEx.EqualTolerance(ExabytesInOneBit, (double)exabyteQuantity.Value, ExabytesTolerance);
             Assert.Equal(InformationUnit.Exabyte, exabyteQuantity.Unit);
 
-            var exbibitQuantity = bit.AsQuantity(InformationUnit.Exbibit);
+            var exbibitQuantity = bit.ToUnit(InformationUnit.Exbibit);
             AssertEx.EqualTolerance(ExbibitsInOneBit, (double)exbibitQuantity.Value, ExbibitsTolerance);
             Assert.Equal(InformationUnit.Exbibit, exbibitQuantity.Unit);
 
-            var exbibyteQuantity = bit.AsQuantity(InformationUnit.Exbibyte);
+            var exbibyteQuantity = bit.ToUnit(InformationUnit.Exbibyte);
             AssertEx.EqualTolerance(ExbibytesInOneBit, (double)exbibyteQuantity.Value, ExbibytesTolerance);
             Assert.Equal(InformationUnit.Exbibyte, exbibyteQuantity.Unit);
 
-            var gibibitQuantity = bit.AsQuantity(InformationUnit.Gibibit);
+            var gibibitQuantity = bit.ToUnit(InformationUnit.Gibibit);
             AssertEx.EqualTolerance(GibibitsInOneBit, (double)gibibitQuantity.Value, GibibitsTolerance);
             Assert.Equal(InformationUnit.Gibibit, gibibitQuantity.Unit);
 
-            var gibibyteQuantity = bit.AsQuantity(InformationUnit.Gibibyte);
+            var gibibyteQuantity = bit.ToUnit(InformationUnit.Gibibyte);
             AssertEx.EqualTolerance(GibibytesInOneBit, (double)gibibyteQuantity.Value, GibibytesTolerance);
             Assert.Equal(InformationUnit.Gibibyte, gibibyteQuantity.Unit);
 
-            var gigabitQuantity = bit.AsQuantity(InformationUnit.Gigabit);
+            var gigabitQuantity = bit.ToUnit(InformationUnit.Gigabit);
             AssertEx.EqualTolerance(GigabitsInOneBit, (double)gigabitQuantity.Value, GigabitsTolerance);
             Assert.Equal(InformationUnit.Gigabit, gigabitQuantity.Unit);
 
-            var gigabyteQuantity = bit.AsQuantity(InformationUnit.Gigabyte);
+            var gigabyteQuantity = bit.ToUnit(InformationUnit.Gigabyte);
             AssertEx.EqualTolerance(GigabytesInOneBit, (double)gigabyteQuantity.Value, GigabytesTolerance);
             Assert.Equal(InformationUnit.Gigabyte, gigabyteQuantity.Unit);
 
-            var kibibitQuantity = bit.AsQuantity(InformationUnit.Kibibit);
+            var kibibitQuantity = bit.ToUnit(InformationUnit.Kibibit);
             AssertEx.EqualTolerance(KibibitsInOneBit, (double)kibibitQuantity.Value, KibibitsTolerance);
             Assert.Equal(InformationUnit.Kibibit, kibibitQuantity.Unit);
 
-            var kibibyteQuantity = bit.AsQuantity(InformationUnit.Kibibyte);
+            var kibibyteQuantity = bit.ToUnit(InformationUnit.Kibibyte);
             AssertEx.EqualTolerance(KibibytesInOneBit, (double)kibibyteQuantity.Value, KibibytesTolerance);
             Assert.Equal(InformationUnit.Kibibyte, kibibyteQuantity.Unit);
 
-            var kilobitQuantity = bit.AsQuantity(InformationUnit.Kilobit);
+            var kilobitQuantity = bit.ToUnit(InformationUnit.Kilobit);
             AssertEx.EqualTolerance(KilobitsInOneBit, (double)kilobitQuantity.Value, KilobitsTolerance);
             Assert.Equal(InformationUnit.Kilobit, kilobitQuantity.Unit);
 
-            var kilobyteQuantity = bit.AsQuantity(InformationUnit.Kilobyte);
+            var kilobyteQuantity = bit.ToUnit(InformationUnit.Kilobyte);
             AssertEx.EqualTolerance(KilobytesInOneBit, (double)kilobyteQuantity.Value, KilobytesTolerance);
             Assert.Equal(InformationUnit.Kilobyte, kilobyteQuantity.Unit);
 
-            var mebibitQuantity = bit.AsQuantity(InformationUnit.Mebibit);
+            var mebibitQuantity = bit.ToUnit(InformationUnit.Mebibit);
             AssertEx.EqualTolerance(MebibitsInOneBit, (double)mebibitQuantity.Value, MebibitsTolerance);
             Assert.Equal(InformationUnit.Mebibit, mebibitQuantity.Unit);
 
-            var mebibyteQuantity = bit.AsQuantity(InformationUnit.Mebibyte);
+            var mebibyteQuantity = bit.ToUnit(InformationUnit.Mebibyte);
             AssertEx.EqualTolerance(MebibytesInOneBit, (double)mebibyteQuantity.Value, MebibytesTolerance);
             Assert.Equal(InformationUnit.Mebibyte, mebibyteQuantity.Unit);
 
-            var megabitQuantity = bit.AsQuantity(InformationUnit.Megabit);
+            var megabitQuantity = bit.ToUnit(InformationUnit.Megabit);
             AssertEx.EqualTolerance(MegabitsInOneBit, (double)megabitQuantity.Value, MegabitsTolerance);
             Assert.Equal(InformationUnit.Megabit, megabitQuantity.Unit);
 
-            var megabyteQuantity = bit.AsQuantity(InformationUnit.Megabyte);
+            var megabyteQuantity = bit.ToUnit(InformationUnit.Megabyte);
             AssertEx.EqualTolerance(MegabytesInOneBit, (double)megabyteQuantity.Value, MegabytesTolerance);
             Assert.Equal(InformationUnit.Megabyte, megabyteQuantity.Unit);
 
-            var pebibitQuantity = bit.AsQuantity(InformationUnit.Pebibit);
+            var pebibitQuantity = bit.ToUnit(InformationUnit.Pebibit);
             AssertEx.EqualTolerance(PebibitsInOneBit, (double)pebibitQuantity.Value, PebibitsTolerance);
             Assert.Equal(InformationUnit.Pebibit, pebibitQuantity.Unit);
 
-            var pebibyteQuantity = bit.AsQuantity(InformationUnit.Pebibyte);
+            var pebibyteQuantity = bit.ToUnit(InformationUnit.Pebibyte);
             AssertEx.EqualTolerance(PebibytesInOneBit, (double)pebibyteQuantity.Value, PebibytesTolerance);
             Assert.Equal(InformationUnit.Pebibyte, pebibyteQuantity.Unit);
 
-            var petabitQuantity = bit.AsQuantity(InformationUnit.Petabit);
+            var petabitQuantity = bit.ToUnit(InformationUnit.Petabit);
             AssertEx.EqualTolerance(PetabitsInOneBit, (double)petabitQuantity.Value, PetabitsTolerance);
             Assert.Equal(InformationUnit.Petabit, petabitQuantity.Unit);
 
-            var petabyteQuantity = bit.AsQuantity(InformationUnit.Petabyte);
+            var petabyteQuantity = bit.ToUnit(InformationUnit.Petabyte);
             AssertEx.EqualTolerance(PetabytesInOneBit, (double)petabyteQuantity.Value, PetabytesTolerance);
             Assert.Equal(InformationUnit.Petabyte, petabyteQuantity.Unit);
 
-            var tebibitQuantity = bit.AsQuantity(InformationUnit.Tebibit);
+            var tebibitQuantity = bit.ToUnit(InformationUnit.Tebibit);
             AssertEx.EqualTolerance(TebibitsInOneBit, (double)tebibitQuantity.Value, TebibitsTolerance);
             Assert.Equal(InformationUnit.Tebibit, tebibitQuantity.Unit);
 
-            var tebibyteQuantity = bit.AsQuantity(InformationUnit.Tebibyte);
+            var tebibyteQuantity = bit.ToUnit(InformationUnit.Tebibyte);
             AssertEx.EqualTolerance(TebibytesInOneBit, (double)tebibyteQuantity.Value, TebibytesTolerance);
             Assert.Equal(InformationUnit.Tebibyte, tebibyteQuantity.Unit);
 
-            var terabitQuantity = bit.AsQuantity(InformationUnit.Terabit);
+            var terabitQuantity = bit.ToUnit(InformationUnit.Terabit);
             AssertEx.EqualTolerance(TerabitsInOneBit, (double)terabitQuantity.Value, TerabitsTolerance);
             Assert.Equal(InformationUnit.Terabit, terabitQuantity.Unit);
 
-            var terabyteQuantity = bit.AsQuantity(InformationUnit.Terabyte);
+            var terabyteQuantity = bit.ToUnit(InformationUnit.Terabyte);
             AssertEx.EqualTolerance(TerabytesInOneBit, (double)terabyteQuantity.Value, TerabytesTolerance);
             Assert.Equal(InformationUnit.Terabyte, terabyteQuantity.Unit);
         }

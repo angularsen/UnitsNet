@@ -1289,7 +1289,7 @@ namespace UnitsNet
         ///     Converts this Information to another Information with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Information with the specified unit.</returns>
-        public Information AsQuantity(InformationUnit unit)
+        public Information ToUnit(InformationUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Information(convertedValue, unit);

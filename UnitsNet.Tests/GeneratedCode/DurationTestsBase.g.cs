@@ -134,55 +134,55 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var second = Duration.FromSeconds(1);
 
-            var dayQuantity = second.AsQuantity(DurationUnit.Day);
+            var dayQuantity = second.ToUnit(DurationUnit.Day);
             AssertEx.EqualTolerance(DaysInOneSecond, (double)dayQuantity.Value, DaysTolerance);
             Assert.Equal(DurationUnit.Day, dayQuantity.Unit);
 
-            var hourQuantity = second.AsQuantity(DurationUnit.Hour);
+            var hourQuantity = second.ToUnit(DurationUnit.Hour);
             AssertEx.EqualTolerance(HoursInOneSecond, (double)hourQuantity.Value, HoursTolerance);
             Assert.Equal(DurationUnit.Hour, hourQuantity.Unit);
 
-            var microsecondQuantity = second.AsQuantity(DurationUnit.Microsecond);
+            var microsecondQuantity = second.ToUnit(DurationUnit.Microsecond);
             AssertEx.EqualTolerance(MicrosecondsInOneSecond, (double)microsecondQuantity.Value, MicrosecondsTolerance);
             Assert.Equal(DurationUnit.Microsecond, microsecondQuantity.Unit);
 
-            var millisecondQuantity = second.AsQuantity(DurationUnit.Millisecond);
+            var millisecondQuantity = second.ToUnit(DurationUnit.Millisecond);
             AssertEx.EqualTolerance(MillisecondsInOneSecond, (double)millisecondQuantity.Value, MillisecondsTolerance);
             Assert.Equal(DurationUnit.Millisecond, millisecondQuantity.Unit);
 
-            var minuteQuantity = second.AsQuantity(DurationUnit.Minute);
+            var minuteQuantity = second.ToUnit(DurationUnit.Minute);
             AssertEx.EqualTolerance(MinutesInOneSecond, (double)minuteQuantity.Value, MinutesTolerance);
             Assert.Equal(DurationUnit.Minute, minuteQuantity.Unit);
 
-            var monthQuantity = second.AsQuantity(DurationUnit.Month);
+            var monthQuantity = second.ToUnit(DurationUnit.Month);
             AssertEx.EqualTolerance(MonthsInOneSecond, (double)monthQuantity.Value, MonthsTolerance);
             Assert.Equal(DurationUnit.Month, monthQuantity.Unit);
 
-            var month30Quantity = second.AsQuantity(DurationUnit.Month30);
+            var month30Quantity = second.ToUnit(DurationUnit.Month30);
             AssertEx.EqualTolerance(Months30InOneSecond, (double)month30Quantity.Value, Months30Tolerance);
             Assert.Equal(DurationUnit.Month30, month30Quantity.Unit);
 
-            var nanosecondQuantity = second.AsQuantity(DurationUnit.Nanosecond);
+            var nanosecondQuantity = second.ToUnit(DurationUnit.Nanosecond);
             AssertEx.EqualTolerance(NanosecondsInOneSecond, (double)nanosecondQuantity.Value, NanosecondsTolerance);
             Assert.Equal(DurationUnit.Nanosecond, nanosecondQuantity.Unit);
 
-            var secondQuantity = second.AsQuantity(DurationUnit.Second);
+            var secondQuantity = second.ToUnit(DurationUnit.Second);
             AssertEx.EqualTolerance(SecondsInOneSecond, (double)secondQuantity.Value, SecondsTolerance);
             Assert.Equal(DurationUnit.Second, secondQuantity.Unit);
 
-            var weekQuantity = second.AsQuantity(DurationUnit.Week);
+            var weekQuantity = second.ToUnit(DurationUnit.Week);
             AssertEx.EqualTolerance(WeeksInOneSecond, (double)weekQuantity.Value, WeeksTolerance);
             Assert.Equal(DurationUnit.Week, weekQuantity.Unit);
 
-            var yearQuantity = second.AsQuantity(DurationUnit.Year);
+            var yearQuantity = second.ToUnit(DurationUnit.Year);
             AssertEx.EqualTolerance(YearsInOneSecond, (double)yearQuantity.Value, YearsTolerance);
             Assert.Equal(DurationUnit.Year, yearQuantity.Unit);
 
-            var year365Quantity = second.AsQuantity(DurationUnit.Year365);
+            var year365Quantity = second.ToUnit(DurationUnit.Year365);
             AssertEx.EqualTolerance(Years365InOneSecond, (double)year365Quantity.Value, Years365Tolerance);
             Assert.Equal(DurationUnit.Year365, year365Quantity.Unit);
         }

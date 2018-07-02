@@ -94,23 +94,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
 
-            var decibelmicrovoltQuantity = decibelvolt.AsQuantity(AmplitudeRatioUnit.DecibelMicrovolt);
+            var decibelmicrovoltQuantity = decibelvolt.ToUnit(AmplitudeRatioUnit.DecibelMicrovolt);
             AssertEx.EqualTolerance(DecibelMicrovoltsInOneDecibelVolt, (double)decibelmicrovoltQuantity.Value, DecibelMicrovoltsTolerance);
             Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, decibelmicrovoltQuantity.Unit);
 
-            var decibelmillivoltQuantity = decibelvolt.AsQuantity(AmplitudeRatioUnit.DecibelMillivolt);
+            var decibelmillivoltQuantity = decibelvolt.ToUnit(AmplitudeRatioUnit.DecibelMillivolt);
             AssertEx.EqualTolerance(DecibelMillivoltsInOneDecibelVolt, (double)decibelmillivoltQuantity.Value, DecibelMillivoltsTolerance);
             Assert.Equal(AmplitudeRatioUnit.DecibelMillivolt, decibelmillivoltQuantity.Unit);
 
-            var decibelunloadedQuantity = decibelvolt.AsQuantity(AmplitudeRatioUnit.DecibelUnloaded);
+            var decibelunloadedQuantity = decibelvolt.ToUnit(AmplitudeRatioUnit.DecibelUnloaded);
             AssertEx.EqualTolerance(DecibelsUnloadedInOneDecibelVolt, (double)decibelunloadedQuantity.Value, DecibelsUnloadedTolerance);
             Assert.Equal(AmplitudeRatioUnit.DecibelUnloaded, decibelunloadedQuantity.Unit);
 
-            var decibelvoltQuantity = decibelvolt.AsQuantity(AmplitudeRatioUnit.DecibelVolt);
+            var decibelvoltQuantity = decibelvolt.ToUnit(AmplitudeRatioUnit.DecibelVolt);
             AssertEx.EqualTolerance(DecibelVoltsInOneDecibelVolt, (double)decibelvoltQuantity.Value, DecibelVoltsTolerance);
             Assert.Equal(AmplitudeRatioUnit.DecibelVolt, decibelvoltQuantity.Unit);
         }

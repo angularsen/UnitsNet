@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this LapseRate to another LapseRate with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A LapseRate with the specified unit.</returns>
-        public LapseRate AsQuantity(LapseRateUnit unit)
+        public LapseRate ToUnit(LapseRateUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new LapseRate(convertedValue, unit);

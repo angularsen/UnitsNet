@@ -99,27 +99,27 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var voltdc = ElectricPotentialDc.FromVoltsDc(1);
 
-            var kilovoltdcQuantity = voltdc.AsQuantity(ElectricPotentialDcUnit.KilovoltDc);
+            var kilovoltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.KilovoltDc);
             AssertEx.EqualTolerance(KilovoltsDcInOneVoltDc, (double)kilovoltdcQuantity.Value, KilovoltsDcTolerance);
             Assert.Equal(ElectricPotentialDcUnit.KilovoltDc, kilovoltdcQuantity.Unit);
 
-            var megavoltdcQuantity = voltdc.AsQuantity(ElectricPotentialDcUnit.MegavoltDc);
+            var megavoltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.MegavoltDc);
             AssertEx.EqualTolerance(MegavoltsDcInOneVoltDc, (double)megavoltdcQuantity.Value, MegavoltsDcTolerance);
             Assert.Equal(ElectricPotentialDcUnit.MegavoltDc, megavoltdcQuantity.Unit);
 
-            var microvoltdcQuantity = voltdc.AsQuantity(ElectricPotentialDcUnit.MicrovoltDc);
+            var microvoltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.MicrovoltDc);
             AssertEx.EqualTolerance(MicrovoltsDcInOneVoltDc, (double)microvoltdcQuantity.Value, MicrovoltsDcTolerance);
             Assert.Equal(ElectricPotentialDcUnit.MicrovoltDc, microvoltdcQuantity.Unit);
 
-            var millivoltdcQuantity = voltdc.AsQuantity(ElectricPotentialDcUnit.MillivoltDc);
+            var millivoltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.MillivoltDc);
             AssertEx.EqualTolerance(MillivoltsDcInOneVoltDc, (double)millivoltdcQuantity.Value, MillivoltsDcTolerance);
             Assert.Equal(ElectricPotentialDcUnit.MillivoltDc, millivoltdcQuantity.Unit);
 
-            var voltdcQuantity = voltdc.AsQuantity(ElectricPotentialDcUnit.VoltDc);
+            var voltdcQuantity = voltdc.ToUnit(ElectricPotentialDcUnit.VoltDc);
             AssertEx.EqualTolerance(VoltsDcInOneVoltDc, (double)voltdcQuantity.Value, VoltsDcTolerance);
             Assert.Equal(ElectricPotentialDcUnit.VoltDc, voltdcQuantity.Unit);
         }

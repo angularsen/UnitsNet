@@ -79,11 +79,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var coulomb = ElectricCharge.FromCoulombs(1);
 
-            var coulombQuantity = coulomb.AsQuantity(ElectricChargeUnit.Coulomb);
+            var coulombQuantity = coulomb.ToUnit(ElectricChargeUnit.Coulomb);
             AssertEx.EqualTolerance(CoulombsInOneCoulomb, (double)coulombQuantity.Value, CoulombsTolerance);
             Assert.Equal(ElectricChargeUnit.Coulomb, coulombQuantity.Unit);
         }

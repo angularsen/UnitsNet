@@ -94,23 +94,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var lux = Illuminance.FromLux(1);
 
-            var kiloluxQuantity = lux.AsQuantity(IlluminanceUnit.Kilolux);
+            var kiloluxQuantity = lux.ToUnit(IlluminanceUnit.Kilolux);
             AssertEx.EqualTolerance(KiloluxInOneLux, (double)kiloluxQuantity.Value, KiloluxTolerance);
             Assert.Equal(IlluminanceUnit.Kilolux, kiloluxQuantity.Unit);
 
-            var luxQuantity = lux.AsQuantity(IlluminanceUnit.Lux);
+            var luxQuantity = lux.ToUnit(IlluminanceUnit.Lux);
             AssertEx.EqualTolerance(LuxInOneLux, (double)luxQuantity.Value, LuxTolerance);
             Assert.Equal(IlluminanceUnit.Lux, luxQuantity.Unit);
 
-            var megaluxQuantity = lux.AsQuantity(IlluminanceUnit.Megalux);
+            var megaluxQuantity = lux.ToUnit(IlluminanceUnit.Megalux);
             AssertEx.EqualTolerance(MegaluxInOneLux, (double)megaluxQuantity.Value, MegaluxTolerance);
             Assert.Equal(IlluminanceUnit.Megalux, megaluxQuantity.Unit);
 
-            var milliluxQuantity = lux.AsQuantity(IlluminanceUnit.Millilux);
+            var milliluxQuantity = lux.ToUnit(IlluminanceUnit.Millilux);
             AssertEx.EqualTolerance(MilliluxInOneLux, (double)milliluxQuantity.Value, MilliluxTolerance);
             Assert.Equal(IlluminanceUnit.Millilux, milliluxQuantity.Unit);
         }

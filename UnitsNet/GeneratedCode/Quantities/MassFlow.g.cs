@@ -939,7 +939,7 @@ namespace UnitsNet
         ///     Converts this MassFlow to another MassFlow with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A MassFlow with the specified unit.</returns>
-        public MassFlow AsQuantity(MassFlowUnit unit)
+        public MassFlow ToUnit(MassFlowUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new MassFlow(convertedValue, unit);

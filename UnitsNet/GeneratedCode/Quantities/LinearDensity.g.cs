@@ -543,7 +543,7 @@ namespace UnitsNet
         ///     Converts this LinearDensity to another LinearDensity with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A LinearDensity with the specified unit.</returns>
-        public LinearDensity AsQuantity(LinearDensityUnit unit)
+        public LinearDensity ToUnit(LinearDensityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new LinearDensity(convertedValue, unit);

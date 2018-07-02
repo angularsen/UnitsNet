@@ -708,7 +708,7 @@ namespace UnitsNet
         ///     Converts this SpecificEntropy to another SpecificEntropy with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A SpecificEntropy with the specified unit.</returns>
-        public SpecificEntropy AsQuantity(SpecificEntropyUnit unit)
+        public SpecificEntropy ToUnit(SpecificEntropyUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new SpecificEntropy(convertedValue, unit);

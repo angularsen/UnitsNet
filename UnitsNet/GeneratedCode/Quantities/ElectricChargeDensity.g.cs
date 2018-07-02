@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this ElectricChargeDensity to another ElectricChargeDensity with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A ElectricChargeDensity with the specified unit.</returns>
-        public ElectricChargeDensity AsQuantity(ElectricChargeDensityUnit unit)
+        public ElectricChargeDensity ToUnit(ElectricChargeDensityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricChargeDensity(convertedValue, unit);

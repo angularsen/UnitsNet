@@ -79,11 +79,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var weber = MagneticFlux.FromWebers(1);
 
-            var weberQuantity = weber.AsQuantity(MagneticFluxUnit.Weber);
+            var weberQuantity = weber.ToUnit(MagneticFluxUnit.Weber);
             AssertEx.EqualTolerance(WebersInOneWeber, (double)weberQuantity.Value, WebersTolerance);
             Assert.Equal(MagneticFluxUnit.Weber, weberQuantity.Unit);
         }

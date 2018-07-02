@@ -576,7 +576,7 @@ namespace UnitsNet
         ///     Converts this Illuminance to another Illuminance with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Illuminance with the specified unit.</returns>
-        public Illuminance AsQuantity(IlluminanceUnit unit)
+        public Illuminance ToUnit(IlluminanceUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Illuminance(convertedValue, unit);

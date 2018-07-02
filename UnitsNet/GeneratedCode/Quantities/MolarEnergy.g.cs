@@ -543,7 +543,7 @@ namespace UnitsNet
         ///     Converts this MolarEnergy to another MolarEnergy with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A MolarEnergy with the specified unit.</returns>
-        public MolarEnergy AsQuantity(MolarEnergyUnit unit)
+        public MolarEnergy ToUnit(MolarEnergyUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new MolarEnergy(convertedValue, unit);

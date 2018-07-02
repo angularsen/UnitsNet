@@ -1170,7 +1170,7 @@ namespace UnitsNet
         ///     Converts this Energy to another Energy with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Energy with the specified unit.</returns>
-        public Energy AsQuantity(EnergyUnit unit)
+        public Energy ToUnit(EnergyUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Energy(convertedValue, unit);

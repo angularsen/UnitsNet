@@ -477,7 +477,7 @@ namespace UnitsNet
         ///     Converts this Permittivity to another Permittivity with the unit representation <paramref name="unit" />.
         /// </summary>
         /// <returns>A Permittivity with the specified unit.</returns>
-        public Permittivity AsQuantity(PermittivityUnit unit)
+        public Permittivity ToUnit(PermittivityUnit unit)
         {
             var convertedValue = AsBaseNumericType(unit);
             return new Permittivity(convertedValue, unit);

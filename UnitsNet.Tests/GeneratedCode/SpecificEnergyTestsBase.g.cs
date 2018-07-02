@@ -114,39 +114,39 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AsQuantity()
+        public void ToUnit()
         {
             var jouleperkilogram = SpecificEnergy.FromJoulesPerKilogram(1);
 
-            var caloriepergramQuantity = jouleperkilogram.AsQuantity(SpecificEnergyUnit.CaloriePerGram);
+            var caloriepergramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.CaloriePerGram);
             AssertEx.EqualTolerance(CaloriesPerGramInOneJoulePerKilogram, (double)caloriepergramQuantity.Value, CaloriesPerGramTolerance);
             Assert.Equal(SpecificEnergyUnit.CaloriePerGram, caloriepergramQuantity.Unit);
 
-            var jouleperkilogramQuantity = jouleperkilogram.AsQuantity(SpecificEnergyUnit.JoulePerKilogram);
+            var jouleperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.JoulePerKilogram);
             AssertEx.EqualTolerance(JoulesPerKilogramInOneJoulePerKilogram, (double)jouleperkilogramQuantity.Value, JoulesPerKilogramTolerance);
             Assert.Equal(SpecificEnergyUnit.JoulePerKilogram, jouleperkilogramQuantity.Unit);
 
-            var kilocaloriepergramQuantity = jouleperkilogram.AsQuantity(SpecificEnergyUnit.KilocaloriePerGram);
+            var kilocaloriepergramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.KilocaloriePerGram);
             AssertEx.EqualTolerance(KilocaloriesPerGramInOneJoulePerKilogram, (double)kilocaloriepergramQuantity.Value, KilocaloriesPerGramTolerance);
             Assert.Equal(SpecificEnergyUnit.KilocaloriePerGram, kilocaloriepergramQuantity.Unit);
 
-            var kilojouleperkilogramQuantity = jouleperkilogram.AsQuantity(SpecificEnergyUnit.KilojoulePerKilogram);
+            var kilojouleperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
             AssertEx.EqualTolerance(KilojoulesPerKilogramInOneJoulePerKilogram, (double)kilojouleperkilogramQuantity.Value, KilojoulesPerKilogramTolerance);
             Assert.Equal(SpecificEnergyUnit.KilojoulePerKilogram, kilojouleperkilogramQuantity.Unit);
 
-            var kilowatthourperkilogramQuantity = jouleperkilogram.AsQuantity(SpecificEnergyUnit.KilowattHourPerKilogram);
+            var kilowatthourperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.KilowattHourPerKilogram);
             AssertEx.EqualTolerance(KilowattHoursPerKilogramInOneJoulePerKilogram, (double)kilowatthourperkilogramQuantity.Value, KilowattHoursPerKilogramTolerance);
             Assert.Equal(SpecificEnergyUnit.KilowattHourPerKilogram, kilowatthourperkilogramQuantity.Unit);
 
-            var megajouleperkilogramQuantity = jouleperkilogram.AsQuantity(SpecificEnergyUnit.MegajoulePerKilogram);
+            var megajouleperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.MegajoulePerKilogram);
             AssertEx.EqualTolerance(MegajoulesPerKilogramInOneJoulePerKilogram, (double)megajouleperkilogramQuantity.Value, MegajoulesPerKilogramTolerance);
             Assert.Equal(SpecificEnergyUnit.MegajoulePerKilogram, megajouleperkilogramQuantity.Unit);
 
-            var megawatthourperkilogramQuantity = jouleperkilogram.AsQuantity(SpecificEnergyUnit.MegawattHourPerKilogram);
+            var megawatthourperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.MegawattHourPerKilogram);
             AssertEx.EqualTolerance(MegawattHoursPerKilogramInOneJoulePerKilogram, (double)megawatthourperkilogramQuantity.Value, MegawattHoursPerKilogramTolerance);
             Assert.Equal(SpecificEnergyUnit.MegawattHourPerKilogram, megawatthourperkilogramQuantity.Unit);
 
-            var watthourperkilogramQuantity = jouleperkilogram.AsQuantity(SpecificEnergyUnit.WattHourPerKilogram);
+            var watthourperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.WattHourPerKilogram);
             AssertEx.EqualTolerance(WattHoursPerKilogramInOneJoulePerKilogram, (double)watthourperkilogramQuantity.Value, WattHoursPerKilogramTolerance);
             Assert.Equal(SpecificEnergyUnit.WattHourPerKilogram, watthourperkilogramQuantity.Unit);
         }
