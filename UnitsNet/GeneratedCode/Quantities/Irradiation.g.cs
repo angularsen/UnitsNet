@@ -215,54 +215,6 @@ namespace UnitsNet
             return new Irradiation(value, IrradiationUnit.WattHourPerSquareMeter);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable Irradiation from nullable JoulesPerSquareMeter.
-        /// </summary>
-        public static Irradiation? FromJoulesPerSquareMeter(QuantityValue? joulespersquaremeter)
-        {
-            if (joulespersquaremeter.HasValue)
-            {
-                return FromJoulesPerSquareMeter(joulespersquaremeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Irradiation from nullable KilowattHoursPerSquareMeter.
-        /// </summary>
-        public static Irradiation? FromKilowattHoursPerSquareMeter(QuantityValue? kilowatthourspersquaremeter)
-        {
-            if (kilowatthourspersquaremeter.HasValue)
-            {
-                return FromKilowattHoursPerSquareMeter(kilowatthourspersquaremeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Irradiation from nullable WattHoursPerSquareMeter.
-        /// </summary>
-        public static Irradiation? FromWattHoursPerSquareMeter(QuantityValue? watthourspersquaremeter)
-        {
-            if (watthourspersquaremeter.HasValue)
-            {
-                return FromWattHoursPerSquareMeter(watthourspersquaremeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="IrradiationUnit" /> to <see cref="Irradiation" />.
@@ -280,25 +232,6 @@ namespace UnitsNet
         {
             return new Irradiation((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="IrradiationUnit" /> to <see cref="Irradiation" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Irradiation unit value.</returns>
-        public static Irradiation? From(QuantityValue? value, IrradiationUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new Irradiation((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -342,48 +275,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static Irradiation operator -(Irradiation right)
-        {
-            return new Irradiation(-right.Value, right.Unit);
-        }
-
-        public static Irradiation operator +(Irradiation left, Irradiation right)
-        {
-            return new Irradiation(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Irradiation operator -(Irradiation left, Irradiation right)
-        {
-            return new Irradiation(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Irradiation operator *(double left, Irradiation right)
-        {
-            return new Irradiation(left * right.Value, right.Unit);
-        }
-
-        public static Irradiation operator *(Irradiation left, double right)
-        {
-            return new Irradiation(left.Value * right, left.Unit);
-        }
-
-        public static Irradiation operator /(Irradiation left, double right)
-        {
-            return new Irradiation(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(Irradiation left, Irradiation right)
-        {
-            return left.JoulesPerSquareMeter / right.JoulesPerSquareMeter;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -404,43 +295,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(Irradiation left, Irradiation right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(Irradiation left, Irradiation right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(Irradiation left, Irradiation right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(Irradiation left, Irradiation right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(Irradiation left, Irradiation right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(Irradiation left, Irradiation right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

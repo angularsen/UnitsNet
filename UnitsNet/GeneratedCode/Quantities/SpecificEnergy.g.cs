@@ -305,129 +305,6 @@ namespace UnitsNet
             return new SpecificEnergy(value, SpecificEnergyUnit.WattHourPerKilogram);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable CaloriesPerGram.
-        /// </summary>
-        public static SpecificEnergy? FromCaloriesPerGram(QuantityValue? caloriespergram)
-        {
-            if (caloriespergram.HasValue)
-            {
-                return FromCaloriesPerGram(caloriespergram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable JoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromJoulesPerKilogram(QuantityValue? joulesperkilogram)
-        {
-            if (joulesperkilogram.HasValue)
-            {
-                return FromJoulesPerKilogram(joulesperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable KilocaloriesPerGram.
-        /// </summary>
-        public static SpecificEnergy? FromKilocaloriesPerGram(QuantityValue? kilocaloriespergram)
-        {
-            if (kilocaloriespergram.HasValue)
-            {
-                return FromKilocaloriesPerGram(kilocaloriespergram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable KilojoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromKilojoulesPerKilogram(QuantityValue? kilojoulesperkilogram)
-        {
-            if (kilojoulesperkilogram.HasValue)
-            {
-                return FromKilojoulesPerKilogram(kilojoulesperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable KilowattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromKilowattHoursPerKilogram(QuantityValue? kilowatthoursperkilogram)
-        {
-            if (kilowatthoursperkilogram.HasValue)
-            {
-                return FromKilowattHoursPerKilogram(kilowatthoursperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable MegajoulesPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromMegajoulesPerKilogram(QuantityValue? megajoulesperkilogram)
-        {
-            if (megajoulesperkilogram.HasValue)
-            {
-                return FromMegajoulesPerKilogram(megajoulesperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable MegawattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromMegawattHoursPerKilogram(QuantityValue? megawatthoursperkilogram)
-        {
-            if (megawatthoursperkilogram.HasValue)
-            {
-                return FromMegawattHoursPerKilogram(megawatthoursperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEnergy from nullable WattHoursPerKilogram.
-        /// </summary>
-        public static SpecificEnergy? FromWattHoursPerKilogram(QuantityValue? watthoursperkilogram)
-        {
-            if (watthoursperkilogram.HasValue)
-            {
-                return FromWattHoursPerKilogram(watthoursperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificEnergyUnit" /> to <see cref="SpecificEnergy" />.
@@ -445,25 +322,6 @@ namespace UnitsNet
         {
             return new SpecificEnergy((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="SpecificEnergyUnit" /> to <see cref="SpecificEnergy" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>SpecificEnergy unit value.</returns>
-        public static SpecificEnergy? From(QuantityValue? value, SpecificEnergyUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new SpecificEnergy((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -507,48 +365,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static SpecificEnergy operator -(SpecificEnergy right)
-        {
-            return new SpecificEnergy(-right.Value, right.Unit);
-        }
-
-        public static SpecificEnergy operator +(SpecificEnergy left, SpecificEnergy right)
-        {
-            return new SpecificEnergy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static SpecificEnergy operator -(SpecificEnergy left, SpecificEnergy right)
-        {
-            return new SpecificEnergy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static SpecificEnergy operator *(double left, SpecificEnergy right)
-        {
-            return new SpecificEnergy(left * right.Value, right.Unit);
-        }
-
-        public static SpecificEnergy operator *(SpecificEnergy left, double right)
-        {
-            return new SpecificEnergy(left.Value * right, left.Unit);
-        }
-
-        public static SpecificEnergy operator /(SpecificEnergy left, double right)
-        {
-            return new SpecificEnergy(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(SpecificEnergy left, SpecificEnergy right)
-        {
-            return left.JoulesPerKilogram / right.JoulesPerKilogram;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -569,43 +385,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(SpecificEnergy left, SpecificEnergy right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(SpecificEnergy left, SpecificEnergy right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(SpecificEnergy left, SpecificEnergy right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(SpecificEnergy left, SpecificEnergy right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(SpecificEnergy left, SpecificEnergy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(SpecificEnergy left, SpecificEnergy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

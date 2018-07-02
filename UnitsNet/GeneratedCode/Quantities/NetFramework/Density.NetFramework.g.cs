@@ -59,5 +59,398 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Density from nullable CentigramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromCentigramsPerDeciLiter(QuantityValue? centigramsperdeciliter)
+        {
+            return centigramsperdeciliter.HasValue ? FromCentigramsPerDeciLiter(centigramsperdeciliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable CentigramsPerLiter.
+        /// </summary>
+        public static Density? FromCentigramsPerLiter(QuantityValue? centigramsperliter)
+        {
+            return centigramsperliter.HasValue ? FromCentigramsPerLiter(centigramsperliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable CentigramsPerMilliliter.
+        /// </summary>
+        public static Density? FromCentigramsPerMilliliter(QuantityValue? centigramspermilliliter)
+        {
+            return centigramspermilliliter.HasValue ? FromCentigramsPerMilliliter(centigramspermilliliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable DecigramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromDecigramsPerDeciLiter(QuantityValue? decigramsperdeciliter)
+        {
+            return decigramsperdeciliter.HasValue ? FromDecigramsPerDeciLiter(decigramsperdeciliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable DecigramsPerLiter.
+        /// </summary>
+        public static Density? FromDecigramsPerLiter(QuantityValue? decigramsperliter)
+        {
+            return decigramsperliter.HasValue ? FromDecigramsPerLiter(decigramsperliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable DecigramsPerMilliliter.
+        /// </summary>
+        public static Density? FromDecigramsPerMilliliter(QuantityValue? decigramspermilliliter)
+        {
+            return decigramspermilliliter.HasValue ? FromDecigramsPerMilliliter(decigramspermilliliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable GramsPerCubicCentimeter.
+        /// </summary>
+        public static Density? FromGramsPerCubicCentimeter(QuantityValue? gramspercubiccentimeter)
+        {
+            return gramspercubiccentimeter.HasValue ? FromGramsPerCubicCentimeter(gramspercubiccentimeter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable GramsPerCubicMeter.
+        /// </summary>
+        public static Density? FromGramsPerCubicMeter(QuantityValue? gramspercubicmeter)
+        {
+            return gramspercubicmeter.HasValue ? FromGramsPerCubicMeter(gramspercubicmeter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable GramsPerCubicMillimeter.
+        /// </summary>
+        public static Density? FromGramsPerCubicMillimeter(QuantityValue? gramspercubicmillimeter)
+        {
+            return gramspercubicmillimeter.HasValue ? FromGramsPerCubicMillimeter(gramspercubicmillimeter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable GramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromGramsPerDeciLiter(QuantityValue? gramsperdeciliter)
+        {
+            return gramsperdeciliter.HasValue ? FromGramsPerDeciLiter(gramsperdeciliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable GramsPerLiter.
+        /// </summary>
+        public static Density? FromGramsPerLiter(QuantityValue? gramsperliter)
+        {
+            return gramsperliter.HasValue ? FromGramsPerLiter(gramsperliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable GramsPerMilliliter.
+        /// </summary>
+        public static Density? FromGramsPerMilliliter(QuantityValue? gramspermilliliter)
+        {
+            return gramspermilliliter.HasValue ? FromGramsPerMilliliter(gramspermilliliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable KilogramsPerCubicCentimeter.
+        /// </summary>
+        public static Density? FromKilogramsPerCubicCentimeter(QuantityValue? kilogramspercubiccentimeter)
+        {
+            return kilogramspercubiccentimeter.HasValue ? FromKilogramsPerCubicCentimeter(kilogramspercubiccentimeter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable KilogramsPerCubicMeter.
+        /// </summary>
+        public static Density? FromKilogramsPerCubicMeter(QuantityValue? kilogramspercubicmeter)
+        {
+            return kilogramspercubicmeter.HasValue ? FromKilogramsPerCubicMeter(kilogramspercubicmeter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable KilogramsPerCubicMillimeter.
+        /// </summary>
+        public static Density? FromKilogramsPerCubicMillimeter(QuantityValue? kilogramspercubicmillimeter)
+        {
+            return kilogramspercubicmillimeter.HasValue ? FromKilogramsPerCubicMillimeter(kilogramspercubicmillimeter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable KilopoundsPerCubicFoot.
+        /// </summary>
+        public static Density? FromKilopoundsPerCubicFoot(QuantityValue? kilopoundspercubicfoot)
+        {
+            return kilopoundspercubicfoot.HasValue ? FromKilopoundsPerCubicFoot(kilopoundspercubicfoot.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable KilopoundsPerCubicInch.
+        /// </summary>
+        public static Density? FromKilopoundsPerCubicInch(QuantityValue? kilopoundspercubicinch)
+        {
+            return kilopoundspercubicinch.HasValue ? FromKilopoundsPerCubicInch(kilopoundspercubicinch.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable MicrogramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromMicrogramsPerDeciLiter(QuantityValue? microgramsperdeciliter)
+        {
+            return microgramsperdeciliter.HasValue ? FromMicrogramsPerDeciLiter(microgramsperdeciliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable MicrogramsPerLiter.
+        /// </summary>
+        public static Density? FromMicrogramsPerLiter(QuantityValue? microgramsperliter)
+        {
+            return microgramsperliter.HasValue ? FromMicrogramsPerLiter(microgramsperliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable MicrogramsPerMilliliter.
+        /// </summary>
+        public static Density? FromMicrogramsPerMilliliter(QuantityValue? microgramspermilliliter)
+        {
+            return microgramspermilliliter.HasValue ? FromMicrogramsPerMilliliter(microgramspermilliliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable MilligramsPerCubicMeter.
+        /// </summary>
+        public static Density? FromMilligramsPerCubicMeter(QuantityValue? milligramspercubicmeter)
+        {
+            return milligramspercubicmeter.HasValue ? FromMilligramsPerCubicMeter(milligramspercubicmeter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable MilligramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromMilligramsPerDeciLiter(QuantityValue? milligramsperdeciliter)
+        {
+            return milligramsperdeciliter.HasValue ? FromMilligramsPerDeciLiter(milligramsperdeciliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable MilligramsPerLiter.
+        /// </summary>
+        public static Density? FromMilligramsPerLiter(QuantityValue? milligramsperliter)
+        {
+            return milligramsperliter.HasValue ? FromMilligramsPerLiter(milligramsperliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable MilligramsPerMilliliter.
+        /// </summary>
+        public static Density? FromMilligramsPerMilliliter(QuantityValue? milligramspermilliliter)
+        {
+            return milligramspermilliliter.HasValue ? FromMilligramsPerMilliliter(milligramspermilliliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable NanogramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromNanogramsPerDeciLiter(QuantityValue? nanogramsperdeciliter)
+        {
+            return nanogramsperdeciliter.HasValue ? FromNanogramsPerDeciLiter(nanogramsperdeciliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable NanogramsPerLiter.
+        /// </summary>
+        public static Density? FromNanogramsPerLiter(QuantityValue? nanogramsperliter)
+        {
+            return nanogramsperliter.HasValue ? FromNanogramsPerLiter(nanogramsperliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable NanogramsPerMilliliter.
+        /// </summary>
+        public static Density? FromNanogramsPerMilliliter(QuantityValue? nanogramspermilliliter)
+        {
+            return nanogramspermilliliter.HasValue ? FromNanogramsPerMilliliter(nanogramspermilliliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PicogramsPerDeciLiter.
+        /// </summary>
+        public static Density? FromPicogramsPerDeciLiter(QuantityValue? picogramsperdeciliter)
+        {
+            return picogramsperdeciliter.HasValue ? FromPicogramsPerDeciLiter(picogramsperdeciliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PicogramsPerLiter.
+        /// </summary>
+        public static Density? FromPicogramsPerLiter(QuantityValue? picogramsperliter)
+        {
+            return picogramsperliter.HasValue ? FromPicogramsPerLiter(picogramsperliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PicogramsPerMilliliter.
+        /// </summary>
+        public static Density? FromPicogramsPerMilliliter(QuantityValue? picogramspermilliliter)
+        {
+            return picogramspermilliliter.HasValue ? FromPicogramsPerMilliliter(picogramspermilliliter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PoundsPerCubicFoot.
+        /// </summary>
+        public static Density? FromPoundsPerCubicFoot(QuantityValue? poundspercubicfoot)
+        {
+            return poundspercubicfoot.HasValue ? FromPoundsPerCubicFoot(poundspercubicfoot.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PoundsPerCubicInch.
+        /// </summary>
+        public static Density? FromPoundsPerCubicInch(QuantityValue? poundspercubicinch)
+        {
+            return poundspercubicinch.HasValue ? FromPoundsPerCubicInch(poundspercubicinch.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PoundsPerImperialGallon.
+        /// </summary>
+        public static Density? FromPoundsPerImperialGallon(QuantityValue? poundsperimperialgallon)
+        {
+            return poundsperimperialgallon.HasValue ? FromPoundsPerImperialGallon(poundsperimperialgallon.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable PoundsPerUSGallon.
+        /// </summary>
+        public static Density? FromPoundsPerUSGallon(QuantityValue? poundsperusgallon)
+        {
+            return poundsperusgallon.HasValue ? FromPoundsPerUSGallon(poundsperusgallon.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable SlugsPerCubicFoot.
+        /// </summary>
+        public static Density? FromSlugsPerCubicFoot(QuantityValue? slugspercubicfoot)
+        {
+            return slugspercubicfoot.HasValue ? FromSlugsPerCubicFoot(slugspercubicfoot.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable TonnesPerCubicCentimeter.
+        /// </summary>
+        public static Density? FromTonnesPerCubicCentimeter(QuantityValue? tonnespercubiccentimeter)
+        {
+            return tonnespercubiccentimeter.HasValue ? FromTonnesPerCubicCentimeter(tonnespercubiccentimeter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable TonnesPerCubicMeter.
+        /// </summary>
+        public static Density? FromTonnesPerCubicMeter(QuantityValue? tonnespercubicmeter)
+        {
+            return tonnespercubicmeter.HasValue ? FromTonnesPerCubicMeter(tonnespercubicmeter.Value) : default(Density?);
+        }
+
+        /// <summary>
+        ///     Get nullable Density from nullable TonnesPerCubicMillimeter.
+        /// </summary>
+        public static Density? FromTonnesPerCubicMillimeter(QuantityValue? tonnespercubicmillimeter)
+        {
+            return tonnespercubicmillimeter.HasValue ? FromTonnesPerCubicMillimeter(tonnespercubicmillimeter.Value) : default(Density?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="DensityUnit" /> to <see cref="Density" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Density unit value.</returns>
+        public static Density? From(QuantityValue? value, DensityUnit fromUnit)
+        {
+            return value.HasValue ? new Density((double)value.Value, fromUnit) : default(Density?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Density operator -(Density right)
+        {
+            return new Density(-right.Value, right.Unit);
+        }
+
+        public static Density operator +(Density left, Density right)
+        {
+            return new Density(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Density operator -(Density left, Density right)
+        {
+            return new Density(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Density operator *(double left, Density right)
+        {
+            return new Density(left * right.Value, right.Unit);
+        }
+
+        public static Density operator *(Density left, double right)
+        {
+            return new Density(left.Value * right, left.Unit);
+        }
+
+        public static Density operator /(Density left, double right)
+        {
+            return new Density(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Density left, Density right)
+        {
+            return left.KilogramsPerCubicMeter / right.KilogramsPerCubicMeter;
+        }
+
+        #endregion
+
+        public static bool operator <=(Density left, Density right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Density left, Density right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Density left, Density right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Density left, Density right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(Density left, Density right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(Density left, Density right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

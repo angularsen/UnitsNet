@@ -59,5 +59,126 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable PressureChangeRate from nullable AtmospheresPerSecond.
+        /// </summary>
+        public static PressureChangeRate? FromAtmospheresPerSecond(QuantityValue? atmospherespersecond)
+        {
+            return atmospherespersecond.HasValue ? FromAtmospheresPerSecond(atmospherespersecond.Value) : default(PressureChangeRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable PressureChangeRate from nullable KilopascalsPerSecond.
+        /// </summary>
+        public static PressureChangeRate? FromKilopascalsPerSecond(QuantityValue? kilopascalspersecond)
+        {
+            return kilopascalspersecond.HasValue ? FromKilopascalsPerSecond(kilopascalspersecond.Value) : default(PressureChangeRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable PressureChangeRate from nullable MegapascalsPerSecond.
+        /// </summary>
+        public static PressureChangeRate? FromMegapascalsPerSecond(QuantityValue? megapascalspersecond)
+        {
+            return megapascalspersecond.HasValue ? FromMegapascalsPerSecond(megapascalspersecond.Value) : default(PressureChangeRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable PressureChangeRate from nullable PascalsPerSecond.
+        /// </summary>
+        public static PressureChangeRate? FromPascalsPerSecond(QuantityValue? pascalspersecond)
+        {
+            return pascalspersecond.HasValue ? FromPascalsPerSecond(pascalspersecond.Value) : default(PressureChangeRate?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="PressureChangeRateUnit" /> to <see cref="PressureChangeRate" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>PressureChangeRate unit value.</returns>
+        public static PressureChangeRate? From(QuantityValue? value, PressureChangeRateUnit fromUnit)
+        {
+            return value.HasValue ? new PressureChangeRate((double)value.Value, fromUnit) : default(PressureChangeRate?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static PressureChangeRate operator -(PressureChangeRate right)
+        {
+            return new PressureChangeRate(-right.Value, right.Unit);
+        }
+
+        public static PressureChangeRate operator +(PressureChangeRate left, PressureChangeRate right)
+        {
+            return new PressureChangeRate(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static PressureChangeRate operator -(PressureChangeRate left, PressureChangeRate right)
+        {
+            return new PressureChangeRate(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static PressureChangeRate operator *(double left, PressureChangeRate right)
+        {
+            return new PressureChangeRate(left * right.Value, right.Unit);
+        }
+
+        public static PressureChangeRate operator *(PressureChangeRate left, double right)
+        {
+            return new PressureChangeRate(left.Value * right, left.Unit);
+        }
+
+        public static PressureChangeRate operator /(PressureChangeRate left, double right)
+        {
+            return new PressureChangeRate(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(PressureChangeRate left, PressureChangeRate right)
+        {
+            return left.PascalsPerSecond / right.PascalsPerSecond;
+        }
+
+        #endregion
+
+        public static bool operator <=(PressureChangeRate left, PressureChangeRate right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(PressureChangeRate left, PressureChangeRate right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(PressureChangeRate left, PressureChangeRate right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(PressureChangeRate left, PressureChangeRate right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(PressureChangeRate left, PressureChangeRate right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(PressureChangeRate left, PressureChangeRate right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

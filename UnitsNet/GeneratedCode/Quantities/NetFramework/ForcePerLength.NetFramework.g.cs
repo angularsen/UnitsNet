@@ -59,5 +59,166 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable ForcePerLength from nullable CentinewtonsPerMeter.
+        /// </summary>
+        public static ForcePerLength? FromCentinewtonsPerMeter(QuantityValue? centinewtonspermeter)
+        {
+            return centinewtonspermeter.HasValue ? FromCentinewtonsPerMeter(centinewtonspermeter.Value) : default(ForcePerLength?);
+        }
+
+        /// <summary>
+        ///     Get nullable ForcePerLength from nullable DecinewtonsPerMeter.
+        /// </summary>
+        public static ForcePerLength? FromDecinewtonsPerMeter(QuantityValue? decinewtonspermeter)
+        {
+            return decinewtonspermeter.HasValue ? FromDecinewtonsPerMeter(decinewtonspermeter.Value) : default(ForcePerLength?);
+        }
+
+        /// <summary>
+        ///     Get nullable ForcePerLength from nullable KilogramsForcePerMeter.
+        /// </summary>
+        public static ForcePerLength? FromKilogramsForcePerMeter(QuantityValue? kilogramsforcepermeter)
+        {
+            return kilogramsforcepermeter.HasValue ? FromKilogramsForcePerMeter(kilogramsforcepermeter.Value) : default(ForcePerLength?);
+        }
+
+        /// <summary>
+        ///     Get nullable ForcePerLength from nullable KilonewtonsPerMeter.
+        /// </summary>
+        public static ForcePerLength? FromKilonewtonsPerMeter(QuantityValue? kilonewtonspermeter)
+        {
+            return kilonewtonspermeter.HasValue ? FromKilonewtonsPerMeter(kilonewtonspermeter.Value) : default(ForcePerLength?);
+        }
+
+        /// <summary>
+        ///     Get nullable ForcePerLength from nullable MeganewtonsPerMeter.
+        /// </summary>
+        public static ForcePerLength? FromMeganewtonsPerMeter(QuantityValue? meganewtonspermeter)
+        {
+            return meganewtonspermeter.HasValue ? FromMeganewtonsPerMeter(meganewtonspermeter.Value) : default(ForcePerLength?);
+        }
+
+        /// <summary>
+        ///     Get nullable ForcePerLength from nullable MicronewtonsPerMeter.
+        /// </summary>
+        public static ForcePerLength? FromMicronewtonsPerMeter(QuantityValue? micronewtonspermeter)
+        {
+            return micronewtonspermeter.HasValue ? FromMicronewtonsPerMeter(micronewtonspermeter.Value) : default(ForcePerLength?);
+        }
+
+        /// <summary>
+        ///     Get nullable ForcePerLength from nullable MillinewtonsPerMeter.
+        /// </summary>
+        public static ForcePerLength? FromMillinewtonsPerMeter(QuantityValue? millinewtonspermeter)
+        {
+            return millinewtonspermeter.HasValue ? FromMillinewtonsPerMeter(millinewtonspermeter.Value) : default(ForcePerLength?);
+        }
+
+        /// <summary>
+        ///     Get nullable ForcePerLength from nullable NanonewtonsPerMeter.
+        /// </summary>
+        public static ForcePerLength? FromNanonewtonsPerMeter(QuantityValue? nanonewtonspermeter)
+        {
+            return nanonewtonspermeter.HasValue ? FromNanonewtonsPerMeter(nanonewtonspermeter.Value) : default(ForcePerLength?);
+        }
+
+        /// <summary>
+        ///     Get nullable ForcePerLength from nullable NewtonsPerMeter.
+        /// </summary>
+        public static ForcePerLength? FromNewtonsPerMeter(QuantityValue? newtonspermeter)
+        {
+            return newtonspermeter.HasValue ? FromNewtonsPerMeter(newtonspermeter.Value) : default(ForcePerLength?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ForcePerLengthUnit" /> to <see cref="ForcePerLength" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ForcePerLength unit value.</returns>
+        public static ForcePerLength? From(QuantityValue? value, ForcePerLengthUnit fromUnit)
+        {
+            return value.HasValue ? new ForcePerLength((double)value.Value, fromUnit) : default(ForcePerLength?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ForcePerLength operator -(ForcePerLength right)
+        {
+            return new ForcePerLength(-right.Value, right.Unit);
+        }
+
+        public static ForcePerLength operator +(ForcePerLength left, ForcePerLength right)
+        {
+            return new ForcePerLength(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ForcePerLength operator -(ForcePerLength left, ForcePerLength right)
+        {
+            return new ForcePerLength(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ForcePerLength operator *(double left, ForcePerLength right)
+        {
+            return new ForcePerLength(left * right.Value, right.Unit);
+        }
+
+        public static ForcePerLength operator *(ForcePerLength left, double right)
+        {
+            return new ForcePerLength(left.Value * right, left.Unit);
+        }
+
+        public static ForcePerLength operator /(ForcePerLength left, double right)
+        {
+            return new ForcePerLength(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(ForcePerLength left, ForcePerLength right)
+        {
+            return left.NewtonsPerMeter / right.NewtonsPerMeter;
+        }
+
+        #endregion
+
+        public static bool operator <=(ForcePerLength left, ForcePerLength right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(ForcePerLength left, ForcePerLength right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(ForcePerLength left, ForcePerLength right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(ForcePerLength left, ForcePerLength right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(ForcePerLength left, ForcePerLength right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ForcePerLength left, ForcePerLength right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

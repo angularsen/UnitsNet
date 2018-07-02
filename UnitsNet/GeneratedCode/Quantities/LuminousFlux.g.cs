@@ -179,24 +179,6 @@ namespace UnitsNet
             return new LuminousFlux(value, LuminousFluxUnit.Lumen);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable LuminousFlux from nullable Lumens.
-        /// </summary>
-        public static LuminousFlux? FromLumens(QuantityValue? lumens)
-        {
-            if (lumens.HasValue)
-            {
-                return FromLumens(lumens.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LuminousFluxUnit" /> to <see cref="LuminousFlux" />.
@@ -214,25 +196,6 @@ namespace UnitsNet
         {
             return new LuminousFlux((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="LuminousFluxUnit" /> to <see cref="LuminousFlux" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>LuminousFlux unit value.</returns>
-        public static LuminousFlux? From(QuantityValue? value, LuminousFluxUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new LuminousFlux((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -276,48 +239,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static LuminousFlux operator -(LuminousFlux right)
-        {
-            return new LuminousFlux(-right.Value, right.Unit);
-        }
-
-        public static LuminousFlux operator +(LuminousFlux left, LuminousFlux right)
-        {
-            return new LuminousFlux(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static LuminousFlux operator -(LuminousFlux left, LuminousFlux right)
-        {
-            return new LuminousFlux(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static LuminousFlux operator *(double left, LuminousFlux right)
-        {
-            return new LuminousFlux(left * right.Value, right.Unit);
-        }
-
-        public static LuminousFlux operator *(LuminousFlux left, double right)
-        {
-            return new LuminousFlux(left.Value * right, left.Unit);
-        }
-
-        public static LuminousFlux operator /(LuminousFlux left, double right)
-        {
-            return new LuminousFlux(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(LuminousFlux left, LuminousFlux right)
-        {
-            return left.Lumens / right.Lumens;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -338,43 +259,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(LuminousFlux left, LuminousFlux right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(LuminousFlux left, LuminousFlux right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(LuminousFlux left, LuminousFlux right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(LuminousFlux left, LuminousFlux right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(LuminousFlux left, LuminousFlux right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(LuminousFlux left, LuminousFlux right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

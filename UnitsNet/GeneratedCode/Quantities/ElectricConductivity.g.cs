@@ -179,24 +179,6 @@ namespace UnitsNet
             return new ElectricConductivity(value, ElectricConductivityUnit.SiemensPerMeter);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ElectricConductivity from nullable SiemensPerMeter.
-        /// </summary>
-        public static ElectricConductivity? FromSiemensPerMeter(QuantityValue? siemenspermeter)
-        {
-            if (siemenspermeter.HasValue)
-            {
-                return FromSiemensPerMeter(siemenspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricConductivityUnit" /> to <see cref="ElectricConductivity" />.
@@ -214,25 +196,6 @@ namespace UnitsNet
         {
             return new ElectricConductivity((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricConductivityUnit" /> to <see cref="ElectricConductivity" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricConductivity unit value.</returns>
-        public static ElectricConductivity? From(QuantityValue? value, ElectricConductivityUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ElectricConductivity((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -276,48 +239,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ElectricConductivity operator -(ElectricConductivity right)
-        {
-            return new ElectricConductivity(-right.Value, right.Unit);
-        }
-
-        public static ElectricConductivity operator +(ElectricConductivity left, ElectricConductivity right)
-        {
-            return new ElectricConductivity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricConductivity operator -(ElectricConductivity left, ElectricConductivity right)
-        {
-            return new ElectricConductivity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricConductivity operator *(double left, ElectricConductivity right)
-        {
-            return new ElectricConductivity(left * right.Value, right.Unit);
-        }
-
-        public static ElectricConductivity operator *(ElectricConductivity left, double right)
-        {
-            return new ElectricConductivity(left.Value * right, left.Unit);
-        }
-
-        public static ElectricConductivity operator /(ElectricConductivity left, double right)
-        {
-            return new ElectricConductivity(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ElectricConductivity left, ElectricConductivity right)
-        {
-            return left.SiemensPerMeter / right.SiemensPerMeter;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -338,43 +259,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ElectricConductivity left, ElectricConductivity right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ElectricConductivity left, ElectricConductivity right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ElectricConductivity left, ElectricConductivity right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ElectricConductivity left, ElectricConductivity right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ElectricConductivity left, ElectricConductivity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ElectricConductivity left, ElectricConductivity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

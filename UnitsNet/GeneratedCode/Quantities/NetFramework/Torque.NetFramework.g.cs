@@ -59,5 +59,262 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilogramForceCentimeters.
+        /// </summary>
+        public static Torque? FromKilogramForceCentimeters(QuantityValue? kilogramforcecentimeters)
+        {
+            return kilogramforcecentimeters.HasValue ? FromKilogramForceCentimeters(kilogramforcecentimeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilogramForceMeters.
+        /// </summary>
+        public static Torque? FromKilogramForceMeters(QuantityValue? kilogramforcemeters)
+        {
+            return kilogramforcemeters.HasValue ? FromKilogramForceMeters(kilogramforcemeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilogramForceMillimeters.
+        /// </summary>
+        public static Torque? FromKilogramForceMillimeters(QuantityValue? kilogramforcemillimeters)
+        {
+            return kilogramforcemillimeters.HasValue ? FromKilogramForceMillimeters(kilogramforcemillimeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilonewtonCentimeters.
+        /// </summary>
+        public static Torque? FromKilonewtonCentimeters(QuantityValue? kilonewtoncentimeters)
+        {
+            return kilonewtoncentimeters.HasValue ? FromKilonewtonCentimeters(kilonewtoncentimeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilonewtonMeters.
+        /// </summary>
+        public static Torque? FromKilonewtonMeters(QuantityValue? kilonewtonmeters)
+        {
+            return kilonewtonmeters.HasValue ? FromKilonewtonMeters(kilonewtonmeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilonewtonMillimeters.
+        /// </summary>
+        public static Torque? FromKilonewtonMillimeters(QuantityValue? kilonewtonmillimeters)
+        {
+            return kilonewtonmillimeters.HasValue ? FromKilonewtonMillimeters(kilonewtonmillimeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilopoundForceFeet.
+        /// </summary>
+        public static Torque? FromKilopoundForceFeet(QuantityValue? kilopoundforcefeet)
+        {
+            return kilopoundforcefeet.HasValue ? FromKilopoundForceFeet(kilopoundforcefeet.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable KilopoundForceInches.
+        /// </summary>
+        public static Torque? FromKilopoundForceInches(QuantityValue? kilopoundforceinches)
+        {
+            return kilopoundforceinches.HasValue ? FromKilopoundForceInches(kilopoundforceinches.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable MeganewtonCentimeters.
+        /// </summary>
+        public static Torque? FromMeganewtonCentimeters(QuantityValue? meganewtoncentimeters)
+        {
+            return meganewtoncentimeters.HasValue ? FromMeganewtonCentimeters(meganewtoncentimeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable MeganewtonMeters.
+        /// </summary>
+        public static Torque? FromMeganewtonMeters(QuantityValue? meganewtonmeters)
+        {
+            return meganewtonmeters.HasValue ? FromMeganewtonMeters(meganewtonmeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable MeganewtonMillimeters.
+        /// </summary>
+        public static Torque? FromMeganewtonMillimeters(QuantityValue? meganewtonmillimeters)
+        {
+            return meganewtonmillimeters.HasValue ? FromMeganewtonMillimeters(meganewtonmillimeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable MegapoundForceFeet.
+        /// </summary>
+        public static Torque? FromMegapoundForceFeet(QuantityValue? megapoundforcefeet)
+        {
+            return megapoundforcefeet.HasValue ? FromMegapoundForceFeet(megapoundforcefeet.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable MegapoundForceInches.
+        /// </summary>
+        public static Torque? FromMegapoundForceInches(QuantityValue? megapoundforceinches)
+        {
+            return megapoundforceinches.HasValue ? FromMegapoundForceInches(megapoundforceinches.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable NewtonCentimeters.
+        /// </summary>
+        public static Torque? FromNewtonCentimeters(QuantityValue? newtoncentimeters)
+        {
+            return newtoncentimeters.HasValue ? FromNewtonCentimeters(newtoncentimeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable NewtonMeters.
+        /// </summary>
+        public static Torque? FromNewtonMeters(QuantityValue? newtonmeters)
+        {
+            return newtonmeters.HasValue ? FromNewtonMeters(newtonmeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable NewtonMillimeters.
+        /// </summary>
+        public static Torque? FromNewtonMillimeters(QuantityValue? newtonmillimeters)
+        {
+            return newtonmillimeters.HasValue ? FromNewtonMillimeters(newtonmillimeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable PoundForceFeet.
+        /// </summary>
+        public static Torque? FromPoundForceFeet(QuantityValue? poundforcefeet)
+        {
+            return poundforcefeet.HasValue ? FromPoundForceFeet(poundforcefeet.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable PoundForceInches.
+        /// </summary>
+        public static Torque? FromPoundForceInches(QuantityValue? poundforceinches)
+        {
+            return poundforceinches.HasValue ? FromPoundForceInches(poundforceinches.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable TonneForceCentimeters.
+        /// </summary>
+        public static Torque? FromTonneForceCentimeters(QuantityValue? tonneforcecentimeters)
+        {
+            return tonneforcecentimeters.HasValue ? FromTonneForceCentimeters(tonneforcecentimeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable TonneForceMeters.
+        /// </summary>
+        public static Torque? FromTonneForceMeters(QuantityValue? tonneforcemeters)
+        {
+            return tonneforcemeters.HasValue ? FromTonneForceMeters(tonneforcemeters.Value) : default(Torque?);
+        }
+
+        /// <summary>
+        ///     Get nullable Torque from nullable TonneForceMillimeters.
+        /// </summary>
+        public static Torque? FromTonneForceMillimeters(QuantityValue? tonneforcemillimeters)
+        {
+            return tonneforcemillimeters.HasValue ? FromTonneForceMillimeters(tonneforcemillimeters.Value) : default(Torque?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="TorqueUnit" /> to <see cref="Torque" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Torque unit value.</returns>
+        public static Torque? From(QuantityValue? value, TorqueUnit fromUnit)
+        {
+            return value.HasValue ? new Torque((double)value.Value, fromUnit) : default(Torque?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Torque operator -(Torque right)
+        {
+            return new Torque(-right.Value, right.Unit);
+        }
+
+        public static Torque operator +(Torque left, Torque right)
+        {
+            return new Torque(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Torque operator -(Torque left, Torque right)
+        {
+            return new Torque(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Torque operator *(double left, Torque right)
+        {
+            return new Torque(left * right.Value, right.Unit);
+        }
+
+        public static Torque operator *(Torque left, double right)
+        {
+            return new Torque(left.Value * right, left.Unit);
+        }
+
+        public static Torque operator /(Torque left, double right)
+        {
+            return new Torque(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Torque left, Torque right)
+        {
+            return left.NewtonMeters / right.NewtonMeters;
+        }
+
+        #endregion
+
+        public static bool operator <=(Torque left, Torque right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Torque left, Torque right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Torque left, Torque right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Torque left, Torque right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(Torque left, Torque right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(Torque left, Torque right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

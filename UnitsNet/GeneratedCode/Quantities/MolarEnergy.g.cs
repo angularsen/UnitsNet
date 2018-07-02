@@ -215,54 +215,6 @@ namespace UnitsNet
             return new MolarEnergy(value, MolarEnergyUnit.MegajoulePerMole);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable MolarEnergy from nullable JoulesPerMole.
-        /// </summary>
-        public static MolarEnergy? FromJoulesPerMole(QuantityValue? joulespermole)
-        {
-            if (joulespermole.HasValue)
-            {
-                return FromJoulesPerMole(joulespermole.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEnergy from nullable KilojoulesPerMole.
-        /// </summary>
-        public static MolarEnergy? FromKilojoulesPerMole(QuantityValue? kilojoulespermole)
-        {
-            if (kilojoulespermole.HasValue)
-            {
-                return FromKilojoulesPerMole(kilojoulespermole.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEnergy from nullable MegajoulesPerMole.
-        /// </summary>
-        public static MolarEnergy? FromMegajoulesPerMole(QuantityValue? megajoulespermole)
-        {
-            if (megajoulespermole.HasValue)
-            {
-                return FromMegajoulesPerMole(megajoulespermole.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarEnergyUnit" /> to <see cref="MolarEnergy" />.
@@ -280,25 +232,6 @@ namespace UnitsNet
         {
             return new MolarEnergy((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MolarEnergyUnit" /> to <see cref="MolarEnergy" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MolarEnergy unit value.</returns>
-        public static MolarEnergy? From(QuantityValue? value, MolarEnergyUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new MolarEnergy((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -342,48 +275,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static MolarEnergy operator -(MolarEnergy right)
-        {
-            return new MolarEnergy(-right.Value, right.Unit);
-        }
-
-        public static MolarEnergy operator +(MolarEnergy left, MolarEnergy right)
-        {
-            return new MolarEnergy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static MolarEnergy operator -(MolarEnergy left, MolarEnergy right)
-        {
-            return new MolarEnergy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static MolarEnergy operator *(double left, MolarEnergy right)
-        {
-            return new MolarEnergy(left * right.Value, right.Unit);
-        }
-
-        public static MolarEnergy operator *(MolarEnergy left, double right)
-        {
-            return new MolarEnergy(left.Value * right, left.Unit);
-        }
-
-        public static MolarEnergy operator /(MolarEnergy left, double right)
-        {
-            return new MolarEnergy(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(MolarEnergy left, MolarEnergy right)
-        {
-            return left.JoulesPerMole / right.JoulesPerMole;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -404,43 +295,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(MolarEnergy left, MolarEnergy right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(MolarEnergy left, MolarEnergy right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(MolarEnergy left, MolarEnergy right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(MolarEnergy left, MolarEnergy right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(MolarEnergy left, MolarEnergy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(MolarEnergy left, MolarEnergy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

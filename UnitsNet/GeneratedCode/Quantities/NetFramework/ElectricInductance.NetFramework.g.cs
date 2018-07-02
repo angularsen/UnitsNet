@@ -59,5 +59,102 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable ElectricInductance from nullable Henries.
+        /// </summary>
+        public static ElectricInductance? FromHenries(QuantityValue? henries)
+        {
+            return henries.HasValue ? FromHenries(henries.Value) : default(ElectricInductance?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricInductanceUnit" /> to <see cref="ElectricInductance" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricInductance unit value.</returns>
+        public static ElectricInductance? From(QuantityValue? value, ElectricInductanceUnit fromUnit)
+        {
+            return value.HasValue ? new ElectricInductance((double)value.Value, fromUnit) : default(ElectricInductance?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ElectricInductance operator -(ElectricInductance right)
+        {
+            return new ElectricInductance(-right.Value, right.Unit);
+        }
+
+        public static ElectricInductance operator +(ElectricInductance left, ElectricInductance right)
+        {
+            return new ElectricInductance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricInductance operator -(ElectricInductance left, ElectricInductance right)
+        {
+            return new ElectricInductance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricInductance operator *(double left, ElectricInductance right)
+        {
+            return new ElectricInductance(left * right.Value, right.Unit);
+        }
+
+        public static ElectricInductance operator *(ElectricInductance left, double right)
+        {
+            return new ElectricInductance(left.Value * right, left.Unit);
+        }
+
+        public static ElectricInductance operator /(ElectricInductance left, double right)
+        {
+            return new ElectricInductance(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(ElectricInductance left, ElectricInductance right)
+        {
+            return left.Henries / right.Henries;
+        }
+
+        #endregion
+
+        public static bool operator <=(ElectricInductance left, ElectricInductance right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(ElectricInductance left, ElectricInductance right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(ElectricInductance left, ElectricInductance right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(ElectricInductance left, ElectricInductance right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(ElectricInductance left, ElectricInductance right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ElectricInductance left, ElectricInductance right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

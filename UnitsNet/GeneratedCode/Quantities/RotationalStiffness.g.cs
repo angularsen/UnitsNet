@@ -215,54 +215,6 @@ namespace UnitsNet
             return new RotationalStiffness(value, RotationalStiffnessUnit.NewtonMeterPerRadian);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable RotationalStiffness from nullable KilonewtonMetersPerRadian.
-        /// </summary>
-        public static RotationalStiffness? FromKilonewtonMetersPerRadian(QuantityValue? kilonewtonmetersperradian)
-        {
-            if (kilonewtonmetersperradian.HasValue)
-            {
-                return FromKilonewtonMetersPerRadian(kilonewtonmetersperradian.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable RotationalStiffness from nullable MeganewtonMetersPerRadian.
-        /// </summary>
-        public static RotationalStiffness? FromMeganewtonMetersPerRadian(QuantityValue? meganewtonmetersperradian)
-        {
-            if (meganewtonmetersperradian.HasValue)
-            {
-                return FromMeganewtonMetersPerRadian(meganewtonmetersperradian.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable RotationalStiffness from nullable NewtonMetersPerRadian.
-        /// </summary>
-        public static RotationalStiffness? FromNewtonMetersPerRadian(QuantityValue? newtonmetersperradian)
-        {
-            if (newtonmetersperradian.HasValue)
-            {
-                return FromNewtonMetersPerRadian(newtonmetersperradian.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RotationalStiffnessUnit" /> to <see cref="RotationalStiffness" />.
@@ -280,25 +232,6 @@ namespace UnitsNet
         {
             return new RotationalStiffness((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="RotationalStiffnessUnit" /> to <see cref="RotationalStiffness" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>RotationalStiffness unit value.</returns>
-        public static RotationalStiffness? From(QuantityValue? value, RotationalStiffnessUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new RotationalStiffness((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -342,48 +275,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static RotationalStiffness operator -(RotationalStiffness right)
-        {
-            return new RotationalStiffness(-right.Value, right.Unit);
-        }
-
-        public static RotationalStiffness operator +(RotationalStiffness left, RotationalStiffness right)
-        {
-            return new RotationalStiffness(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static RotationalStiffness operator -(RotationalStiffness left, RotationalStiffness right)
-        {
-            return new RotationalStiffness(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static RotationalStiffness operator *(double left, RotationalStiffness right)
-        {
-            return new RotationalStiffness(left * right.Value, right.Unit);
-        }
-
-        public static RotationalStiffness operator *(RotationalStiffness left, double right)
-        {
-            return new RotationalStiffness(left.Value * right, left.Unit);
-        }
-
-        public static RotationalStiffness operator /(RotationalStiffness left, double right)
-        {
-            return new RotationalStiffness(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(RotationalStiffness left, RotationalStiffness right)
-        {
-            return left.NewtonMetersPerRadian / right.NewtonMetersPerRadian;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -404,43 +295,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(RotationalStiffness left, RotationalStiffness right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(RotationalStiffness left, RotationalStiffness right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(RotationalStiffness left, RotationalStiffness right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(RotationalStiffness left, RotationalStiffness right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(RotationalStiffness left, RotationalStiffness right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(RotationalStiffness left, RotationalStiffness right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

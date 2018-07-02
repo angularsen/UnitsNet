@@ -215,54 +215,6 @@ namespace UnitsNet
             return new ElectricConductance(value, ElectricConductanceUnit.Siemens);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ElectricConductance from nullable Microsiemens.
-        /// </summary>
-        public static ElectricConductance? FromMicrosiemens(QuantityValue? microsiemens)
-        {
-            if (microsiemens.HasValue)
-            {
-                return FromMicrosiemens(microsiemens.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductance from nullable Millisiemens.
-        /// </summary>
-        public static ElectricConductance? FromMillisiemens(QuantityValue? millisiemens)
-        {
-            if (millisiemens.HasValue)
-            {
-                return FromMillisiemens(millisiemens.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricConductance from nullable Siemens.
-        /// </summary>
-        public static ElectricConductance? FromSiemens(QuantityValue? siemens)
-        {
-            if (siemens.HasValue)
-            {
-                return FromSiemens(siemens.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricConductanceUnit" /> to <see cref="ElectricConductance" />.
@@ -280,25 +232,6 @@ namespace UnitsNet
         {
             return new ElectricConductance((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricConductanceUnit" /> to <see cref="ElectricConductance" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricConductance unit value.</returns>
-        public static ElectricConductance? From(QuantityValue? value, ElectricConductanceUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ElectricConductance((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -342,48 +275,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ElectricConductance operator -(ElectricConductance right)
-        {
-            return new ElectricConductance(-right.Value, right.Unit);
-        }
-
-        public static ElectricConductance operator +(ElectricConductance left, ElectricConductance right)
-        {
-            return new ElectricConductance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricConductance operator -(ElectricConductance left, ElectricConductance right)
-        {
-            return new ElectricConductance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricConductance operator *(double left, ElectricConductance right)
-        {
-            return new ElectricConductance(left * right.Value, right.Unit);
-        }
-
-        public static ElectricConductance operator *(ElectricConductance left, double right)
-        {
-            return new ElectricConductance(left.Value * right, left.Unit);
-        }
-
-        public static ElectricConductance operator /(ElectricConductance left, double right)
-        {
-            return new ElectricConductance(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ElectricConductance left, ElectricConductance right)
-        {
-            return left.Siemens / right.Siemens;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -404,43 +295,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ElectricConductance left, ElectricConductance right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ElectricConductance left, ElectricConductance right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ElectricConductance left, ElectricConductance right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ElectricConductance left, ElectricConductance right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ElectricConductance left, ElectricConductance right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ElectricConductance left, ElectricConductance right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

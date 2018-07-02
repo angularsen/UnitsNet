@@ -179,24 +179,6 @@ namespace UnitsNet
             return new Permeability(value, PermeabilityUnit.HenryPerMeter);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable Permeability from nullable HenriesPerMeter.
-        /// </summary>
-        public static Permeability? FromHenriesPerMeter(QuantityValue? henriespermeter)
-        {
-            if (henriespermeter.HasValue)
-            {
-                return FromHenriesPerMeter(henriespermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PermeabilityUnit" /> to <see cref="Permeability" />.
@@ -214,25 +196,6 @@ namespace UnitsNet
         {
             return new Permeability((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="PermeabilityUnit" /> to <see cref="Permeability" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Permeability unit value.</returns>
-        public static Permeability? From(QuantityValue? value, PermeabilityUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new Permeability((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -276,48 +239,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static Permeability operator -(Permeability right)
-        {
-            return new Permeability(-right.Value, right.Unit);
-        }
-
-        public static Permeability operator +(Permeability left, Permeability right)
-        {
-            return new Permeability(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Permeability operator -(Permeability left, Permeability right)
-        {
-            return new Permeability(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Permeability operator *(double left, Permeability right)
-        {
-            return new Permeability(left * right.Value, right.Unit);
-        }
-
-        public static Permeability operator *(Permeability left, double right)
-        {
-            return new Permeability(left.Value * right, left.Unit);
-        }
-
-        public static Permeability operator /(Permeability left, double right)
-        {
-            return new Permeability(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(Permeability left, Permeability right)
-        {
-            return left.HenriesPerMeter / right.HenriesPerMeter;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -338,43 +259,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(Permeability left, Permeability right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(Permeability left, Permeability right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(Permeability left, Permeability right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(Permeability left, Permeability right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(Permeability left, Permeability right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(Permeability left, Permeability right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

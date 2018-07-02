@@ -179,24 +179,6 @@ namespace UnitsNet
             return new Capacitance(value, CapacitanceUnit.Farad);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable Capacitance from nullable Farads.
-        /// </summary>
-        public static Capacitance? FromFarads(QuantityValue? farads)
-        {
-            if (farads.HasValue)
-            {
-                return FromFarads(farads.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="CapacitanceUnit" /> to <see cref="Capacitance" />.
@@ -214,25 +196,6 @@ namespace UnitsNet
         {
             return new Capacitance((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="CapacitanceUnit" /> to <see cref="Capacitance" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Capacitance unit value.</returns>
-        public static Capacitance? From(QuantityValue? value, CapacitanceUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new Capacitance((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -276,48 +239,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static Capacitance operator -(Capacitance right)
-        {
-            return new Capacitance(-right.Value, right.Unit);
-        }
-
-        public static Capacitance operator +(Capacitance left, Capacitance right)
-        {
-            return new Capacitance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Capacitance operator -(Capacitance left, Capacitance right)
-        {
-            return new Capacitance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Capacitance operator *(double left, Capacitance right)
-        {
-            return new Capacitance(left * right.Value, right.Unit);
-        }
-
-        public static Capacitance operator *(Capacitance left, double right)
-        {
-            return new Capacitance(left.Value * right, left.Unit);
-        }
-
-        public static Capacitance operator /(Capacitance left, double right)
-        {
-            return new Capacitance(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(Capacitance left, Capacitance right)
-        {
-            return left.Farads / right.Farads;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -338,43 +259,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(Capacitance left, Capacitance right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(Capacitance left, Capacitance right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(Capacitance left, Capacitance right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(Capacitance left, Capacitance right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(Capacitance left, Capacitance right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(Capacitance left, Capacitance right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

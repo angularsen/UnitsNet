@@ -59,5 +59,118 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable PowerRatio from nullable DecibelMilliwatts.
+        /// </summary>
+        public static PowerRatio? FromDecibelMilliwatts(QuantityValue? decibelmilliwatts)
+        {
+            return decibelmilliwatts.HasValue ? FromDecibelMilliwatts(decibelmilliwatts.Value) : default(PowerRatio?);
+        }
+
+        /// <summary>
+        ///     Get nullable PowerRatio from nullable DecibelWatts.
+        /// </summary>
+        public static PowerRatio? FromDecibelWatts(QuantityValue? decibelwatts)
+        {
+            return decibelwatts.HasValue ? FromDecibelWatts(decibelwatts.Value) : default(PowerRatio?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="PowerRatioUnit" /> to <see cref="PowerRatio" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>PowerRatio unit value.</returns>
+        public static PowerRatio? From(QuantityValue? value, PowerRatioUnit fromUnit)
+        {
+            return value.HasValue ? new PowerRatio((double)value.Value, fromUnit) : default(PowerRatio?);
+        }
+
+        #endregion
+
+        #region Logarithmic Arithmetic Operators
+
+        public static PowerRatio operator -(PowerRatio right)
+        {
+            return new PowerRatio(-right.Value, right.Unit);
+        }
+
+        public static PowerRatio operator +(PowerRatio left, PowerRatio right)
+        {
+            // Logarithmic addition
+            // Formula: 10*log10(10^(x/10) + 10^(y/10))
+            return new PowerRatio(10*Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.AsBaseNumericType(left.Unit)/10)), left.Unit);
+        }
+
+        public static PowerRatio operator -(PowerRatio left, PowerRatio right)
+        {
+            // Logarithmic subtraction
+            // Formula: 10*log10(10^(x/10) - 10^(y/10))
+            return new PowerRatio(10*Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.AsBaseNumericType(left.Unit)/10)), left.Unit);
+        }
+
+        public static PowerRatio operator *(double left, PowerRatio right)
+        {
+            // Logarithmic multiplication = addition
+            return new PowerRatio(left + right.Value, right.Unit);
+        }
+
+        public static PowerRatio operator *(PowerRatio left, double right)
+        {
+            // Logarithmic multiplication = addition
+            return new PowerRatio(left.Value + (double)right, left.Unit);
+        }
+
+        public static PowerRatio operator /(PowerRatio left, double right)
+        {
+            // Logarithmic division = subtraction
+            return new PowerRatio(left.Value - (double)right, left.Unit);
+        }
+
+        public static double operator /(PowerRatio left, PowerRatio right)
+        {
+            // Logarithmic division = subtraction
+            return Convert.ToDouble(left.Value - right.AsBaseNumericType(left.Unit));
+        }
+
+        #endregion
+
+        public static bool operator <=(PowerRatio left, PowerRatio right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(PowerRatio left, PowerRatio right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(PowerRatio left, PowerRatio right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(PowerRatio left, PowerRatio right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(PowerRatio left, PowerRatio right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(PowerRatio left, PowerRatio right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

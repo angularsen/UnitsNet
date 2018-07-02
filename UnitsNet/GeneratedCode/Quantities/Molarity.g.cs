@@ -305,129 +305,6 @@ namespace UnitsNet
             return new Molarity(value, MolarityUnit.PicomolesPerLiter);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable Molarity from nullable CentimolesPerLiter.
-        /// </summary>
-        public static Molarity? FromCentimolesPerLiter(QuantityValue? centimolesperliter)
-        {
-            if (centimolesperliter.HasValue)
-            {
-                return FromCentimolesPerLiter(centimolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable DecimolesPerLiter.
-        /// </summary>
-        public static Molarity? FromDecimolesPerLiter(QuantityValue? decimolesperliter)
-        {
-            if (decimolesperliter.HasValue)
-            {
-                return FromDecimolesPerLiter(decimolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable MicromolesPerLiter.
-        /// </summary>
-        public static Molarity? FromMicromolesPerLiter(QuantityValue? micromolesperliter)
-        {
-            if (micromolesperliter.HasValue)
-            {
-                return FromMicromolesPerLiter(micromolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable MillimolesPerLiter.
-        /// </summary>
-        public static Molarity? FromMillimolesPerLiter(QuantityValue? millimolesperliter)
-        {
-            if (millimolesperliter.HasValue)
-            {
-                return FromMillimolesPerLiter(millimolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable MolesPerCubicMeter.
-        /// </summary>
-        public static Molarity? FromMolesPerCubicMeter(QuantityValue? molespercubicmeter)
-        {
-            if (molespercubicmeter.HasValue)
-            {
-                return FromMolesPerCubicMeter(molespercubicmeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable MolesPerLiter.
-        /// </summary>
-        public static Molarity? FromMolesPerLiter(QuantityValue? molesperliter)
-        {
-            if (molesperliter.HasValue)
-            {
-                return FromMolesPerLiter(molesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable NanomolesPerLiter.
-        /// </summary>
-        public static Molarity? FromNanomolesPerLiter(QuantityValue? nanomolesperliter)
-        {
-            if (nanomolesperliter.HasValue)
-            {
-                return FromNanomolesPerLiter(nanomolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Molarity from nullable PicomolesPerLiter.
-        /// </summary>
-        public static Molarity? FromPicomolesPerLiter(QuantityValue? picomolesperliter)
-        {
-            if (picomolesperliter.HasValue)
-            {
-                return FromPicomolesPerLiter(picomolesperliter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarityUnit" /> to <see cref="Molarity" />.
@@ -445,25 +322,6 @@ namespace UnitsNet
         {
             return new Molarity((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MolarityUnit" /> to <see cref="Molarity" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Molarity unit value.</returns>
-        public static Molarity? From(QuantityValue? value, MolarityUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new Molarity((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -507,48 +365,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static Molarity operator -(Molarity right)
-        {
-            return new Molarity(-right.Value, right.Unit);
-        }
-
-        public static Molarity operator +(Molarity left, Molarity right)
-        {
-            return new Molarity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Molarity operator -(Molarity left, Molarity right)
-        {
-            return new Molarity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Molarity operator *(double left, Molarity right)
-        {
-            return new Molarity(left * right.Value, right.Unit);
-        }
-
-        public static Molarity operator *(Molarity left, double right)
-        {
-            return new Molarity(left.Value * right, left.Unit);
-        }
-
-        public static Molarity operator /(Molarity left, double right)
-        {
-            return new Molarity(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(Molarity left, Molarity right)
-        {
-            return left.MolesPerCubicMeter / right.MolesPerCubicMeter;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -569,43 +385,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(Molarity left, Molarity right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(Molarity left, Molarity right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(Molarity left, Molarity right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(Molarity left, Molarity right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(Molarity left, Molarity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(Molarity left, Molarity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

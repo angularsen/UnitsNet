@@ -187,39 +187,6 @@ namespace UnitsNet
             return new Level(value, LevelUnit.Neper);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable Level from nullable Decibels.
-        /// </summary>
-        public static Level? FromDecibels(QuantityValue? decibels)
-        {
-            if (decibels.HasValue)
-            {
-                return FromDecibels(decibels.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Level from nullable Nepers.
-        /// </summary>
-        public static Level? FromNepers(QuantityValue? nepers)
-        {
-            if (nepers.HasValue)
-            {
-                return FromNepers(nepers.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LevelUnit" /> to <see cref="Level" />.
@@ -237,25 +204,6 @@ namespace UnitsNet
         {
             return new Level((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="LevelUnit" /> to <see cref="Level" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Level unit value.</returns>
-        public static Level? From(QuantityValue? value, LevelUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new Level((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -299,56 +247,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Logarithmic Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static Level operator -(Level right)
-        {
-            return new Level(-right.Value, right.Unit);
-        }
-
-        public static Level operator +(Level left, Level right)
-        {
-            // Logarithmic addition
-            // Formula: 10*log10(10^(x/10) + 10^(y/10))
-            return new Level(10*Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.AsBaseNumericType(left.Unit)/10)), left.Unit);
-        }
-
-        public static Level operator -(Level left, Level right)
-        {
-            // Logarithmic subtraction
-            // Formula: 10*log10(10^(x/10) - 10^(y/10))
-            return new Level(10*Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.AsBaseNumericType(left.Unit)/10)), left.Unit);
-        }
-
-        public static Level operator *(double left, Level right)
-        {
-            // Logarithmic multiplication = addition
-            return new Level(left + right.Value, right.Unit);
-        }
-
-        public static Level operator *(Level left, double right)
-        {
-            // Logarithmic multiplication = addition
-            return new Level(left.Value + (double)right, left.Unit);
-        }
-
-        public static Level operator /(Level left, double right)
-        {
-            // Logarithmic division = subtraction
-            return new Level(left.Value - (double)right, left.Unit);
-        }
-
-        public static double operator /(Level left, Level right)
-        {
-            // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.AsBaseNumericType(left.Unit));
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -369,43 +267,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(Level left, Level right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(Level left, Level right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(Level left, Level right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(Level left, Level right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(Level left, Level right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(Level left, Level right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

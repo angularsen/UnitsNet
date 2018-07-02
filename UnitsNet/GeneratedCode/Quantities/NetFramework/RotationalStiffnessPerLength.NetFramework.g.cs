@@ -59,5 +59,118 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable RotationalStiffnessPerLength from nullable KilonewtonMetersPerRadianPerMeter.
+        /// </summary>
+        public static RotationalStiffnessPerLength? FromKilonewtonMetersPerRadianPerMeter(QuantityValue? kilonewtonmetersperradianpermeter)
+        {
+            return kilonewtonmetersperradianpermeter.HasValue ? FromKilonewtonMetersPerRadianPerMeter(kilonewtonmetersperradianpermeter.Value) : default(RotationalStiffnessPerLength?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalStiffnessPerLength from nullable MeganewtonMetersPerRadianPerMeter.
+        /// </summary>
+        public static RotationalStiffnessPerLength? FromMeganewtonMetersPerRadianPerMeter(QuantityValue? meganewtonmetersperradianpermeter)
+        {
+            return meganewtonmetersperradianpermeter.HasValue ? FromMeganewtonMetersPerRadianPerMeter(meganewtonmetersperradianpermeter.Value) : default(RotationalStiffnessPerLength?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalStiffnessPerLength from nullable NewtonMetersPerRadianPerMeter.
+        /// </summary>
+        public static RotationalStiffnessPerLength? FromNewtonMetersPerRadianPerMeter(QuantityValue? newtonmetersperradianpermeter)
+        {
+            return newtonmetersperradianpermeter.HasValue ? FromNewtonMetersPerRadianPerMeter(newtonmetersperradianpermeter.Value) : default(RotationalStiffnessPerLength?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="RotationalStiffnessPerLengthUnit" /> to <see cref="RotationalStiffnessPerLength" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>RotationalStiffnessPerLength unit value.</returns>
+        public static RotationalStiffnessPerLength? From(QuantityValue? value, RotationalStiffnessPerLengthUnit fromUnit)
+        {
+            return value.HasValue ? new RotationalStiffnessPerLength((double)value.Value, fromUnit) : default(RotationalStiffnessPerLength?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static RotationalStiffnessPerLength operator -(RotationalStiffnessPerLength right)
+        {
+            return new RotationalStiffnessPerLength(-right.Value, right.Unit);
+        }
+
+        public static RotationalStiffnessPerLength operator +(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)
+        {
+            return new RotationalStiffnessPerLength(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static RotationalStiffnessPerLength operator -(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)
+        {
+            return new RotationalStiffnessPerLength(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static RotationalStiffnessPerLength operator *(double left, RotationalStiffnessPerLength right)
+        {
+            return new RotationalStiffnessPerLength(left * right.Value, right.Unit);
+        }
+
+        public static RotationalStiffnessPerLength operator *(RotationalStiffnessPerLength left, double right)
+        {
+            return new RotationalStiffnessPerLength(left.Value * right, left.Unit);
+        }
+
+        public static RotationalStiffnessPerLength operator /(RotationalStiffnessPerLength left, double right)
+        {
+            return new RotationalStiffnessPerLength(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)
+        {
+            return left.NewtonMetersPerRadianPerMeter / right.NewtonMetersPerRadianPerMeter;
+        }
+
+        #endregion
+
+        public static bool operator <=(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

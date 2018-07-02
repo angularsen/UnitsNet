@@ -59,5 +59,252 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public decimal Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Power from nullable BoilerHorsepower.
+        /// </summary>
+        public static Power? FromBoilerHorsepower(QuantityValue? boilerhorsepower)
+        {
+            return boilerhorsepower.HasValue ? FromBoilerHorsepower(boilerhorsepower.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable BritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power? FromBritishThermalUnitsPerHour(QuantityValue? britishthermalunitsperhour)
+        {
+            return britishthermalunitsperhour.HasValue ? FromBritishThermalUnitsPerHour(britishthermalunitsperhour.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Decawatts.
+        /// </summary>
+        public static Power? FromDecawatts(QuantityValue? decawatts)
+        {
+            return decawatts.HasValue ? FromDecawatts(decawatts.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Deciwatts.
+        /// </summary>
+        public static Power? FromDeciwatts(QuantityValue? deciwatts)
+        {
+            return deciwatts.HasValue ? FromDeciwatts(deciwatts.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable ElectricalHorsepower.
+        /// </summary>
+        public static Power? FromElectricalHorsepower(QuantityValue? electricalhorsepower)
+        {
+            return electricalhorsepower.HasValue ? FromElectricalHorsepower(electricalhorsepower.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Femtowatts.
+        /// </summary>
+        public static Power? FromFemtowatts(QuantityValue? femtowatts)
+        {
+            return femtowatts.HasValue ? FromFemtowatts(femtowatts.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Gigawatts.
+        /// </summary>
+        public static Power? FromGigawatts(QuantityValue? gigawatts)
+        {
+            return gigawatts.HasValue ? FromGigawatts(gigawatts.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable HydraulicHorsepower.
+        /// </summary>
+        public static Power? FromHydraulicHorsepower(QuantityValue? hydraulichorsepower)
+        {
+            return hydraulichorsepower.HasValue ? FromHydraulicHorsepower(hydraulichorsepower.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable KilobritishThermalUnitsPerHour.
+        /// </summary>
+        public static Power? FromKilobritishThermalUnitsPerHour(QuantityValue? kilobritishthermalunitsperhour)
+        {
+            return kilobritishthermalunitsperhour.HasValue ? FromKilobritishThermalUnitsPerHour(kilobritishthermalunitsperhour.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Kilowatts.
+        /// </summary>
+        public static Power? FromKilowatts(QuantityValue? kilowatts)
+        {
+            return kilowatts.HasValue ? FromKilowatts(kilowatts.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable MechanicalHorsepower.
+        /// </summary>
+        public static Power? FromMechanicalHorsepower(QuantityValue? mechanicalhorsepower)
+        {
+            return mechanicalhorsepower.HasValue ? FromMechanicalHorsepower(mechanicalhorsepower.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Megawatts.
+        /// </summary>
+        public static Power? FromMegawatts(QuantityValue? megawatts)
+        {
+            return megawatts.HasValue ? FromMegawatts(megawatts.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable MetricHorsepower.
+        /// </summary>
+        public static Power? FromMetricHorsepower(QuantityValue? metrichorsepower)
+        {
+            return metrichorsepower.HasValue ? FromMetricHorsepower(metrichorsepower.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Microwatts.
+        /// </summary>
+        public static Power? FromMicrowatts(QuantityValue? microwatts)
+        {
+            return microwatts.HasValue ? FromMicrowatts(microwatts.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Milliwatts.
+        /// </summary>
+        public static Power? FromMilliwatts(QuantityValue? milliwatts)
+        {
+            return milliwatts.HasValue ? FromMilliwatts(milliwatts.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Nanowatts.
+        /// </summary>
+        public static Power? FromNanowatts(QuantityValue? nanowatts)
+        {
+            return nanowatts.HasValue ? FromNanowatts(nanowatts.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Petawatts.
+        /// </summary>
+        public static Power? FromPetawatts(QuantityValue? petawatts)
+        {
+            return petawatts.HasValue ? FromPetawatts(petawatts.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Picowatts.
+        /// </summary>
+        public static Power? FromPicowatts(QuantityValue? picowatts)
+        {
+            return picowatts.HasValue ? FromPicowatts(picowatts.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Terawatts.
+        /// </summary>
+        public static Power? FromTerawatts(QuantityValue? terawatts)
+        {
+            return terawatts.HasValue ? FromTerawatts(terawatts.Value) : default(Power?);
+        }
+
+        /// <summary>
+        ///     Get nullable Power from nullable Watts.
+        /// </summary>
+        public static Power? FromWatts(QuantityValue? watts)
+        {
+            return watts.HasValue ? FromWatts(watts.Value) : default(Power?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="PowerUnit" /> to <see cref="Power" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Power unit value.</returns>
+        public static Power? From(QuantityValue? value, PowerUnit fromUnit)
+        {
+            return value.HasValue ? new Power((decimal)value.Value, fromUnit) : default(Power?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Power operator -(Power right)
+        {
+            return new Power(-right.Value, right.Unit);
+        }
+
+        public static Power operator +(Power left, Power right)
+        {
+            return new Power(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Power operator -(Power left, Power right)
+        {
+            return new Power(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Power operator *(decimal left, Power right)
+        {
+            return new Power(left * right.Value, right.Unit);
+        }
+
+        public static Power operator *(Power left, decimal right)
+        {
+            return new Power(left.Value * right, left.Unit);
+        }
+
+        public static Power operator /(Power left, decimal right)
+        {
+            return new Power(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Power left, Power right)
+        {
+            return left.Watts / right.Watts;
+        }
+
+        #endregion
+
+        public static bool operator <=(Power left, Power right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Power left, Power right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Power left, Power right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Power left, Power right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator ==(Power left, Power right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator !=(Power left, Power right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

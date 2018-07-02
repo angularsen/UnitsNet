@@ -259,99 +259,6 @@ namespace UnitsNet
             return new Ratio(value, RatioUnit.Percent);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable Ratio from nullable DecimalFractions.
-        /// </summary>
-        public static Ratio? FromDecimalFractions(QuantityValue? decimalfractions)
-        {
-            if (decimalfractions.HasValue)
-            {
-                return FromDecimalFractions(decimalfractions.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable PartsPerBillion.
-        /// </summary>
-        public static Ratio? FromPartsPerBillion(QuantityValue? partsperbillion)
-        {
-            if (partsperbillion.HasValue)
-            {
-                return FromPartsPerBillion(partsperbillion.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable PartsPerMillion.
-        /// </summary>
-        public static Ratio? FromPartsPerMillion(QuantityValue? partspermillion)
-        {
-            if (partspermillion.HasValue)
-            {
-                return FromPartsPerMillion(partspermillion.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable PartsPerThousand.
-        /// </summary>
-        public static Ratio? FromPartsPerThousand(QuantityValue? partsperthousand)
-        {
-            if (partsperthousand.HasValue)
-            {
-                return FromPartsPerThousand(partsperthousand.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable PartsPerTrillion.
-        /// </summary>
-        public static Ratio? FromPartsPerTrillion(QuantityValue? partspertrillion)
-        {
-            if (partspertrillion.HasValue)
-            {
-                return FromPartsPerTrillion(partspertrillion.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Ratio from nullable Percent.
-        /// </summary>
-        public static Ratio? FromPercent(QuantityValue? percent)
-        {
-            if (percent.HasValue)
-            {
-                return FromPercent(percent.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RatioUnit" /> to <see cref="Ratio" />.
@@ -369,25 +276,6 @@ namespace UnitsNet
         {
             return new Ratio((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="RatioUnit" /> to <see cref="Ratio" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Ratio unit value.</returns>
-        public static Ratio? From(QuantityValue? value, RatioUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new Ratio((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -431,48 +319,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static Ratio operator -(Ratio right)
-        {
-            return new Ratio(-right.Value, right.Unit);
-        }
-
-        public static Ratio operator +(Ratio left, Ratio right)
-        {
-            return new Ratio(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Ratio operator -(Ratio left, Ratio right)
-        {
-            return new Ratio(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Ratio operator *(double left, Ratio right)
-        {
-            return new Ratio(left * right.Value, right.Unit);
-        }
-
-        public static Ratio operator *(Ratio left, double right)
-        {
-            return new Ratio(left.Value * right, left.Unit);
-        }
-
-        public static Ratio operator /(Ratio left, double right)
-        {
-            return new Ratio(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(Ratio left, Ratio right)
-        {
-            return left.DecimalFractions / right.DecimalFractions;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -493,43 +339,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(Ratio left, Ratio right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(Ratio left, Ratio right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(Ratio left, Ratio right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(Ratio left, Ratio right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(Ratio left, Ratio right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(Ratio left, Ratio right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

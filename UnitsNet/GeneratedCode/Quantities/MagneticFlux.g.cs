@@ -179,24 +179,6 @@ namespace UnitsNet
             return new MagneticFlux(value, MagneticFluxUnit.Weber);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable MagneticFlux from nullable Webers.
-        /// </summary>
-        public static MagneticFlux? FromWebers(QuantityValue? webers)
-        {
-            if (webers.HasValue)
-            {
-                return FromWebers(webers.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MagneticFluxUnit" /> to <see cref="MagneticFlux" />.
@@ -214,25 +196,6 @@ namespace UnitsNet
         {
             return new MagneticFlux((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MagneticFluxUnit" /> to <see cref="MagneticFlux" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MagneticFlux unit value.</returns>
-        public static MagneticFlux? From(QuantityValue? value, MagneticFluxUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new MagneticFlux((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -276,48 +239,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static MagneticFlux operator -(MagneticFlux right)
-        {
-            return new MagneticFlux(-right.Value, right.Unit);
-        }
-
-        public static MagneticFlux operator +(MagneticFlux left, MagneticFlux right)
-        {
-            return new MagneticFlux(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static MagneticFlux operator -(MagneticFlux left, MagneticFlux right)
-        {
-            return new MagneticFlux(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static MagneticFlux operator *(double left, MagneticFlux right)
-        {
-            return new MagneticFlux(left * right.Value, right.Unit);
-        }
-
-        public static MagneticFlux operator *(MagneticFlux left, double right)
-        {
-            return new MagneticFlux(left.Value * right, left.Unit);
-        }
-
-        public static MagneticFlux operator /(MagneticFlux left, double right)
-        {
-            return new MagneticFlux(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(MagneticFlux left, MagneticFlux right)
-        {
-            return left.Webers / right.Webers;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -338,43 +259,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(MagneticFlux left, MagneticFlux right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(MagneticFlux left, MagneticFlux right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(MagneticFlux left, MagneticFlux right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(MagneticFlux left, MagneticFlux right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(MagneticFlux left, MagneticFlux right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(MagneticFlux left, MagneticFlux right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

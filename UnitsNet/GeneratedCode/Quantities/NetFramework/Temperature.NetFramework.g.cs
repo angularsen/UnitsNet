@@ -59,5 +59,119 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesCelsius.
+        /// </summary>
+        public static Temperature? FromDegreesCelsius(QuantityValue? degreescelsius)
+        {
+            return degreescelsius.HasValue ? FromDegreesCelsius(degreescelsius.Value) : default(Temperature?);
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesDelisle.
+        /// </summary>
+        public static Temperature? FromDegreesDelisle(QuantityValue? degreesdelisle)
+        {
+            return degreesdelisle.HasValue ? FromDegreesDelisle(degreesdelisle.Value) : default(Temperature?);
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesFahrenheit.
+        /// </summary>
+        public static Temperature? FromDegreesFahrenheit(QuantityValue? degreesfahrenheit)
+        {
+            return degreesfahrenheit.HasValue ? FromDegreesFahrenheit(degreesfahrenheit.Value) : default(Temperature?);
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesNewton.
+        /// </summary>
+        public static Temperature? FromDegreesNewton(QuantityValue? degreesnewton)
+        {
+            return degreesnewton.HasValue ? FromDegreesNewton(degreesnewton.Value) : default(Temperature?);
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesRankine.
+        /// </summary>
+        public static Temperature? FromDegreesRankine(QuantityValue? degreesrankine)
+        {
+            return degreesrankine.HasValue ? FromDegreesRankine(degreesrankine.Value) : default(Temperature?);
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesReaumur.
+        /// </summary>
+        public static Temperature? FromDegreesReaumur(QuantityValue? degreesreaumur)
+        {
+            return degreesreaumur.HasValue ? FromDegreesReaumur(degreesreaumur.Value) : default(Temperature?);
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable DegreesRoemer.
+        /// </summary>
+        public static Temperature? FromDegreesRoemer(QuantityValue? degreesroemer)
+        {
+            return degreesroemer.HasValue ? FromDegreesRoemer(degreesroemer.Value) : default(Temperature?);
+        }
+
+        /// <summary>
+        ///     Get nullable Temperature from nullable Kelvins.
+        /// </summary>
+        public static Temperature? FromKelvins(QuantityValue? kelvins)
+        {
+            return kelvins.HasValue ? FromKelvins(kelvins.Value) : default(Temperature?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="TemperatureUnit" /> to <see cref="Temperature" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Temperature unit value.</returns>
+        public static Temperature? From(QuantityValue? value, TemperatureUnit fromUnit)
+        {
+            return value.HasValue ? new Temperature((double)value.Value, fromUnit) : default(Temperature?);
+        }
+
+        #endregion
+
+        public static bool operator <=(Temperature left, Temperature right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Temperature left, Temperature right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Temperature left, Temperature right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Temperature left, Temperature right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(Temperature left, Temperature right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(Temperature left, Temperature right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

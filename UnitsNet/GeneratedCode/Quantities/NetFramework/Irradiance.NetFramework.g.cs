@@ -59,5 +59,110 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Irradiance from nullable KilowattsPerSquareMeter.
+        /// </summary>
+        public static Irradiance? FromKilowattsPerSquareMeter(QuantityValue? kilowattspersquaremeter)
+        {
+            return kilowattspersquaremeter.HasValue ? FromKilowattsPerSquareMeter(kilowattspersquaremeter.Value) : default(Irradiance?);
+        }
+
+        /// <summary>
+        ///     Get nullable Irradiance from nullable WattsPerSquareMeter.
+        /// </summary>
+        public static Irradiance? FromWattsPerSquareMeter(QuantityValue? wattspersquaremeter)
+        {
+            return wattspersquaremeter.HasValue ? FromWattsPerSquareMeter(wattspersquaremeter.Value) : default(Irradiance?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="IrradianceUnit" /> to <see cref="Irradiance" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Irradiance unit value.</returns>
+        public static Irradiance? From(QuantityValue? value, IrradianceUnit fromUnit)
+        {
+            return value.HasValue ? new Irradiance((double)value.Value, fromUnit) : default(Irradiance?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Irradiance operator -(Irradiance right)
+        {
+            return new Irradiance(-right.Value, right.Unit);
+        }
+
+        public static Irradiance operator +(Irradiance left, Irradiance right)
+        {
+            return new Irradiance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Irradiance operator -(Irradiance left, Irradiance right)
+        {
+            return new Irradiance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Irradiance operator *(double left, Irradiance right)
+        {
+            return new Irradiance(left * right.Value, right.Unit);
+        }
+
+        public static Irradiance operator *(Irradiance left, double right)
+        {
+            return new Irradiance(left.Value * right, left.Unit);
+        }
+
+        public static Irradiance operator /(Irradiance left, double right)
+        {
+            return new Irradiance(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Irradiance left, Irradiance right)
+        {
+            return left.WattsPerSquareMeter / right.WattsPerSquareMeter;
+        }
+
+        #endregion
+
+        public static bool operator <=(Irradiance left, Irradiance right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Irradiance left, Irradiance right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Irradiance left, Irradiance right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Irradiance left, Irradiance right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(Irradiance left, Irradiance right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(Irradiance left, Irradiance right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

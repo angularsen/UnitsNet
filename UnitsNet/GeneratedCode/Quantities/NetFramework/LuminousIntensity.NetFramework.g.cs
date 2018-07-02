@@ -59,5 +59,102 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable LuminousIntensity from nullable Candela.
+        /// </summary>
+        public static LuminousIntensity? FromCandela(QuantityValue? candela)
+        {
+            return candela.HasValue ? FromCandela(candela.Value) : default(LuminousIntensity?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="LuminousIntensityUnit" /> to <see cref="LuminousIntensity" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>LuminousIntensity unit value.</returns>
+        public static LuminousIntensity? From(QuantityValue? value, LuminousIntensityUnit fromUnit)
+        {
+            return value.HasValue ? new LuminousIntensity((double)value.Value, fromUnit) : default(LuminousIntensity?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static LuminousIntensity operator -(LuminousIntensity right)
+        {
+            return new LuminousIntensity(-right.Value, right.Unit);
+        }
+
+        public static LuminousIntensity operator +(LuminousIntensity left, LuminousIntensity right)
+        {
+            return new LuminousIntensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static LuminousIntensity operator -(LuminousIntensity left, LuminousIntensity right)
+        {
+            return new LuminousIntensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static LuminousIntensity operator *(double left, LuminousIntensity right)
+        {
+            return new LuminousIntensity(left * right.Value, right.Unit);
+        }
+
+        public static LuminousIntensity operator *(LuminousIntensity left, double right)
+        {
+            return new LuminousIntensity(left.Value * right, left.Unit);
+        }
+
+        public static LuminousIntensity operator /(LuminousIntensity left, double right)
+        {
+            return new LuminousIntensity(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(LuminousIntensity left, LuminousIntensity right)
+        {
+            return left.Candela / right.Candela;
+        }
+
+        #endregion
+
+        public static bool operator <=(LuminousIntensity left, LuminousIntensity right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(LuminousIntensity left, LuminousIntensity right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(LuminousIntensity left, LuminousIntensity right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(LuminousIntensity left, LuminousIntensity right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(LuminousIntensity left, LuminousIntensity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(LuminousIntensity left, LuminousIntensity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

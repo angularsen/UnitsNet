@@ -59,5 +59,102 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable ElectricCharge from nullable Coulombs.
+        /// </summary>
+        public static ElectricCharge? FromCoulombs(QuantityValue? coulombs)
+        {
+            return coulombs.HasValue ? FromCoulombs(coulombs.Value) : default(ElectricCharge?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricChargeUnit" /> to <see cref="ElectricCharge" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricCharge unit value.</returns>
+        public static ElectricCharge? From(QuantityValue? value, ElectricChargeUnit fromUnit)
+        {
+            return value.HasValue ? new ElectricCharge((double)value.Value, fromUnit) : default(ElectricCharge?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ElectricCharge operator -(ElectricCharge right)
+        {
+            return new ElectricCharge(-right.Value, right.Unit);
+        }
+
+        public static ElectricCharge operator +(ElectricCharge left, ElectricCharge right)
+        {
+            return new ElectricCharge(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricCharge operator -(ElectricCharge left, ElectricCharge right)
+        {
+            return new ElectricCharge(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricCharge operator *(double left, ElectricCharge right)
+        {
+            return new ElectricCharge(left * right.Value, right.Unit);
+        }
+
+        public static ElectricCharge operator *(ElectricCharge left, double right)
+        {
+            return new ElectricCharge(left.Value * right, left.Unit);
+        }
+
+        public static ElectricCharge operator /(ElectricCharge left, double right)
+        {
+            return new ElectricCharge(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(ElectricCharge left, ElectricCharge right)
+        {
+            return left.Coulombs / right.Coulombs;
+        }
+
+        #endregion
+
+        public static bool operator <=(ElectricCharge left, ElectricCharge right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(ElectricCharge left, ElectricCharge right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(ElectricCharge left, ElectricCharge right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(ElectricCharge left, ElectricCharge right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(ElectricCharge left, ElectricCharge right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ElectricCharge left, ElectricCharge right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

@@ -59,5 +59,300 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public decimal Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable BitsPerSecond.
+        /// </summary>
+        public static BitRate? FromBitsPerSecond(QuantityValue? bitspersecond)
+        {
+            return bitspersecond.HasValue ? FromBitsPerSecond(bitspersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable BytesPerSecond.
+        /// </summary>
+        public static BitRate? FromBytesPerSecond(QuantityValue? bytespersecond)
+        {
+            return bytespersecond.HasValue ? FromBytesPerSecond(bytespersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable ExabitsPerSecond.
+        /// </summary>
+        public static BitRate? FromExabitsPerSecond(QuantityValue? exabitspersecond)
+        {
+            return exabitspersecond.HasValue ? FromExabitsPerSecond(exabitspersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable ExabytesPerSecond.
+        /// </summary>
+        public static BitRate? FromExabytesPerSecond(QuantityValue? exabytespersecond)
+        {
+            return exabytespersecond.HasValue ? FromExabytesPerSecond(exabytespersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable ExbibitsPerSecond.
+        /// </summary>
+        public static BitRate? FromExbibitsPerSecond(QuantityValue? exbibitspersecond)
+        {
+            return exbibitspersecond.HasValue ? FromExbibitsPerSecond(exbibitspersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable ExbibytesPerSecond.
+        /// </summary>
+        public static BitRate? FromExbibytesPerSecond(QuantityValue? exbibytespersecond)
+        {
+            return exbibytespersecond.HasValue ? FromExbibytesPerSecond(exbibytespersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable GibibitsPerSecond.
+        /// </summary>
+        public static BitRate? FromGibibitsPerSecond(QuantityValue? gibibitspersecond)
+        {
+            return gibibitspersecond.HasValue ? FromGibibitsPerSecond(gibibitspersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable GibibytesPerSecond.
+        /// </summary>
+        public static BitRate? FromGibibytesPerSecond(QuantityValue? gibibytespersecond)
+        {
+            return gibibytespersecond.HasValue ? FromGibibytesPerSecond(gibibytespersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable GigabitsPerSecond.
+        /// </summary>
+        public static BitRate? FromGigabitsPerSecond(QuantityValue? gigabitspersecond)
+        {
+            return gigabitspersecond.HasValue ? FromGigabitsPerSecond(gigabitspersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable GigabytesPerSecond.
+        /// </summary>
+        public static BitRate? FromGigabytesPerSecond(QuantityValue? gigabytespersecond)
+        {
+            return gigabytespersecond.HasValue ? FromGigabytesPerSecond(gigabytespersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable KibibitsPerSecond.
+        /// </summary>
+        public static BitRate? FromKibibitsPerSecond(QuantityValue? kibibitspersecond)
+        {
+            return kibibitspersecond.HasValue ? FromKibibitsPerSecond(kibibitspersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable KibibytesPerSecond.
+        /// </summary>
+        public static BitRate? FromKibibytesPerSecond(QuantityValue? kibibytespersecond)
+        {
+            return kibibytespersecond.HasValue ? FromKibibytesPerSecond(kibibytespersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable KilobitsPerSecond.
+        /// </summary>
+        public static BitRate? FromKilobitsPerSecond(QuantityValue? kilobitspersecond)
+        {
+            return kilobitspersecond.HasValue ? FromKilobitsPerSecond(kilobitspersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable KilobytesPerSecond.
+        /// </summary>
+        public static BitRate? FromKilobytesPerSecond(QuantityValue? kilobytespersecond)
+        {
+            return kilobytespersecond.HasValue ? FromKilobytesPerSecond(kilobytespersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable MebibitsPerSecond.
+        /// </summary>
+        public static BitRate? FromMebibitsPerSecond(QuantityValue? mebibitspersecond)
+        {
+            return mebibitspersecond.HasValue ? FromMebibitsPerSecond(mebibitspersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable MebibytesPerSecond.
+        /// </summary>
+        public static BitRate? FromMebibytesPerSecond(QuantityValue? mebibytespersecond)
+        {
+            return mebibytespersecond.HasValue ? FromMebibytesPerSecond(mebibytespersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable MegabitsPerSecond.
+        /// </summary>
+        public static BitRate? FromMegabitsPerSecond(QuantityValue? megabitspersecond)
+        {
+            return megabitspersecond.HasValue ? FromMegabitsPerSecond(megabitspersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable MegabytesPerSecond.
+        /// </summary>
+        public static BitRate? FromMegabytesPerSecond(QuantityValue? megabytespersecond)
+        {
+            return megabytespersecond.HasValue ? FromMegabytesPerSecond(megabytespersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable PebibitsPerSecond.
+        /// </summary>
+        public static BitRate? FromPebibitsPerSecond(QuantityValue? pebibitspersecond)
+        {
+            return pebibitspersecond.HasValue ? FromPebibitsPerSecond(pebibitspersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable PebibytesPerSecond.
+        /// </summary>
+        public static BitRate? FromPebibytesPerSecond(QuantityValue? pebibytespersecond)
+        {
+            return pebibytespersecond.HasValue ? FromPebibytesPerSecond(pebibytespersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable PetabitsPerSecond.
+        /// </summary>
+        public static BitRate? FromPetabitsPerSecond(QuantityValue? petabitspersecond)
+        {
+            return petabitspersecond.HasValue ? FromPetabitsPerSecond(petabitspersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable PetabytesPerSecond.
+        /// </summary>
+        public static BitRate? FromPetabytesPerSecond(QuantityValue? petabytespersecond)
+        {
+            return petabytespersecond.HasValue ? FromPetabytesPerSecond(petabytespersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable TebibitsPerSecond.
+        /// </summary>
+        public static BitRate? FromTebibitsPerSecond(QuantityValue? tebibitspersecond)
+        {
+            return tebibitspersecond.HasValue ? FromTebibitsPerSecond(tebibitspersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable TebibytesPerSecond.
+        /// </summary>
+        public static BitRate? FromTebibytesPerSecond(QuantityValue? tebibytespersecond)
+        {
+            return tebibytespersecond.HasValue ? FromTebibytesPerSecond(tebibytespersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable TerabitsPerSecond.
+        /// </summary>
+        public static BitRate? FromTerabitsPerSecond(QuantityValue? terabitspersecond)
+        {
+            return terabitspersecond.HasValue ? FromTerabitsPerSecond(terabitspersecond.Value) : default(BitRate?);
+        }
+
+        /// <summary>
+        ///     Get nullable BitRate from nullable TerabytesPerSecond.
+        /// </summary>
+        public static BitRate? FromTerabytesPerSecond(QuantityValue? terabytespersecond)
+        {
+            return terabytespersecond.HasValue ? FromTerabytesPerSecond(terabytespersecond.Value) : default(BitRate?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="BitRateUnit" /> to <see cref="BitRate" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>BitRate unit value.</returns>
+        public static BitRate? From(QuantityValue? value, BitRateUnit fromUnit)
+        {
+            return value.HasValue ? new BitRate((decimal)value.Value, fromUnit) : default(BitRate?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static BitRate operator -(BitRate right)
+        {
+            return new BitRate(-right.Value, right.Unit);
+        }
+
+        public static BitRate operator +(BitRate left, BitRate right)
+        {
+            return new BitRate(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static BitRate operator -(BitRate left, BitRate right)
+        {
+            return new BitRate(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static BitRate operator *(decimal left, BitRate right)
+        {
+            return new BitRate(left * right.Value, right.Unit);
+        }
+
+        public static BitRate operator *(BitRate left, decimal right)
+        {
+            return new BitRate(left.Value * right, left.Unit);
+        }
+
+        public static BitRate operator /(BitRate left, decimal right)
+        {
+            return new BitRate(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(BitRate left, BitRate right)
+        {
+            return left.BitsPerSecond / right.BitsPerSecond;
+        }
+
+        #endregion
+
+        public static bool operator <=(BitRate left, BitRate right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(BitRate left, BitRate right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(BitRate left, BitRate right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(BitRate left, BitRate right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator ==(BitRate left, BitRate right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator !=(BitRate left, BitRate right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

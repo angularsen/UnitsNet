@@ -59,5 +59,158 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Molarity from nullable CentimolesPerLiter.
+        /// </summary>
+        public static Molarity? FromCentimolesPerLiter(QuantityValue? centimolesperliter)
+        {
+            return centimolesperliter.HasValue ? FromCentimolesPerLiter(centimolesperliter.Value) : default(Molarity?);
+        }
+
+        /// <summary>
+        ///     Get nullable Molarity from nullable DecimolesPerLiter.
+        /// </summary>
+        public static Molarity? FromDecimolesPerLiter(QuantityValue? decimolesperliter)
+        {
+            return decimolesperliter.HasValue ? FromDecimolesPerLiter(decimolesperliter.Value) : default(Molarity?);
+        }
+
+        /// <summary>
+        ///     Get nullable Molarity from nullable MicromolesPerLiter.
+        /// </summary>
+        public static Molarity? FromMicromolesPerLiter(QuantityValue? micromolesperliter)
+        {
+            return micromolesperliter.HasValue ? FromMicromolesPerLiter(micromolesperliter.Value) : default(Molarity?);
+        }
+
+        /// <summary>
+        ///     Get nullable Molarity from nullable MillimolesPerLiter.
+        /// </summary>
+        public static Molarity? FromMillimolesPerLiter(QuantityValue? millimolesperliter)
+        {
+            return millimolesperliter.HasValue ? FromMillimolesPerLiter(millimolesperliter.Value) : default(Molarity?);
+        }
+
+        /// <summary>
+        ///     Get nullable Molarity from nullable MolesPerCubicMeter.
+        /// </summary>
+        public static Molarity? FromMolesPerCubicMeter(QuantityValue? molespercubicmeter)
+        {
+            return molespercubicmeter.HasValue ? FromMolesPerCubicMeter(molespercubicmeter.Value) : default(Molarity?);
+        }
+
+        /// <summary>
+        ///     Get nullable Molarity from nullable MolesPerLiter.
+        /// </summary>
+        public static Molarity? FromMolesPerLiter(QuantityValue? molesperliter)
+        {
+            return molesperliter.HasValue ? FromMolesPerLiter(molesperliter.Value) : default(Molarity?);
+        }
+
+        /// <summary>
+        ///     Get nullable Molarity from nullable NanomolesPerLiter.
+        /// </summary>
+        public static Molarity? FromNanomolesPerLiter(QuantityValue? nanomolesperliter)
+        {
+            return nanomolesperliter.HasValue ? FromNanomolesPerLiter(nanomolesperliter.Value) : default(Molarity?);
+        }
+
+        /// <summary>
+        ///     Get nullable Molarity from nullable PicomolesPerLiter.
+        /// </summary>
+        public static Molarity? FromPicomolesPerLiter(QuantityValue? picomolesperliter)
+        {
+            return picomolesperliter.HasValue ? FromPicomolesPerLiter(picomolesperliter.Value) : default(Molarity?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="MolarityUnit" /> to <see cref="Molarity" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Molarity unit value.</returns>
+        public static Molarity? From(QuantityValue? value, MolarityUnit fromUnit)
+        {
+            return value.HasValue ? new Molarity((double)value.Value, fromUnit) : default(Molarity?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Molarity operator -(Molarity right)
+        {
+            return new Molarity(-right.Value, right.Unit);
+        }
+
+        public static Molarity operator +(Molarity left, Molarity right)
+        {
+            return new Molarity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Molarity operator -(Molarity left, Molarity right)
+        {
+            return new Molarity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Molarity operator *(double left, Molarity right)
+        {
+            return new Molarity(left * right.Value, right.Unit);
+        }
+
+        public static Molarity operator *(Molarity left, double right)
+        {
+            return new Molarity(left.Value * right, left.Unit);
+        }
+
+        public static Molarity operator /(Molarity left, double right)
+        {
+            return new Molarity(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Molarity left, Molarity right)
+        {
+            return left.MolesPerCubicMeter / right.MolesPerCubicMeter;
+        }
+
+        #endregion
+
+        public static bool operator <=(Molarity left, Molarity right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Molarity left, Molarity right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Molarity left, Molarity right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Molarity left, Molarity right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(Molarity left, Molarity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(Molarity left, Molarity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

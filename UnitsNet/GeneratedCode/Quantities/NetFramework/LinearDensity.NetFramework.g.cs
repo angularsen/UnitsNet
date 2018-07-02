@@ -59,5 +59,118 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable LinearDensity from nullable GramsPerMeter.
+        /// </summary>
+        public static LinearDensity? FromGramsPerMeter(QuantityValue? gramspermeter)
+        {
+            return gramspermeter.HasValue ? FromGramsPerMeter(gramspermeter.Value) : default(LinearDensity?);
+        }
+
+        /// <summary>
+        ///     Get nullable LinearDensity from nullable KilogramsPerMeter.
+        /// </summary>
+        public static LinearDensity? FromKilogramsPerMeter(QuantityValue? kilogramspermeter)
+        {
+            return kilogramspermeter.HasValue ? FromKilogramsPerMeter(kilogramspermeter.Value) : default(LinearDensity?);
+        }
+
+        /// <summary>
+        ///     Get nullable LinearDensity from nullable PoundsPerFoot.
+        /// </summary>
+        public static LinearDensity? FromPoundsPerFoot(QuantityValue? poundsperfoot)
+        {
+            return poundsperfoot.HasValue ? FromPoundsPerFoot(poundsperfoot.Value) : default(LinearDensity?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="LinearDensityUnit" /> to <see cref="LinearDensity" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>LinearDensity unit value.</returns>
+        public static LinearDensity? From(QuantityValue? value, LinearDensityUnit fromUnit)
+        {
+            return value.HasValue ? new LinearDensity((double)value.Value, fromUnit) : default(LinearDensity?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static LinearDensity operator -(LinearDensity right)
+        {
+            return new LinearDensity(-right.Value, right.Unit);
+        }
+
+        public static LinearDensity operator +(LinearDensity left, LinearDensity right)
+        {
+            return new LinearDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static LinearDensity operator -(LinearDensity left, LinearDensity right)
+        {
+            return new LinearDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static LinearDensity operator *(double left, LinearDensity right)
+        {
+            return new LinearDensity(left * right.Value, right.Unit);
+        }
+
+        public static LinearDensity operator *(LinearDensity left, double right)
+        {
+            return new LinearDensity(left.Value * right, left.Unit);
+        }
+
+        public static LinearDensity operator /(LinearDensity left, double right)
+        {
+            return new LinearDensity(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(LinearDensity left, LinearDensity right)
+        {
+            return left.KilogramsPerMeter / right.KilogramsPerMeter;
+        }
+
+        #endregion
+
+        public static bool operator <=(LinearDensity left, LinearDensity right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(LinearDensity left, LinearDensity right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(LinearDensity left, LinearDensity right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(LinearDensity left, LinearDensity right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(LinearDensity left, LinearDensity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(LinearDensity left, LinearDensity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

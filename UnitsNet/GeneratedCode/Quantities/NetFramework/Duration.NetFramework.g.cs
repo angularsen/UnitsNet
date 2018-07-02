@@ -59,5 +59,190 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Days.
+        /// </summary>
+        public static Duration? FromDays(QuantityValue? days)
+        {
+            return days.HasValue ? FromDays(days.Value) : default(Duration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Hours.
+        /// </summary>
+        public static Duration? FromHours(QuantityValue? hours)
+        {
+            return hours.HasValue ? FromHours(hours.Value) : default(Duration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Microseconds.
+        /// </summary>
+        public static Duration? FromMicroseconds(QuantityValue? microseconds)
+        {
+            return microseconds.HasValue ? FromMicroseconds(microseconds.Value) : default(Duration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Milliseconds.
+        /// </summary>
+        public static Duration? FromMilliseconds(QuantityValue? milliseconds)
+        {
+            return milliseconds.HasValue ? FromMilliseconds(milliseconds.Value) : default(Duration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Minutes.
+        /// </summary>
+        public static Duration? FromMinutes(QuantityValue? minutes)
+        {
+            return minutes.HasValue ? FromMinutes(minutes.Value) : default(Duration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Months.
+        /// </summary>
+        public static Duration? FromMonths(QuantityValue? months)
+        {
+            return months.HasValue ? FromMonths(months.Value) : default(Duration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Months30.
+        /// </summary>
+        public static Duration? FromMonths30(QuantityValue? months30)
+        {
+            return months30.HasValue ? FromMonths30(months30.Value) : default(Duration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Nanoseconds.
+        /// </summary>
+        public static Duration? FromNanoseconds(QuantityValue? nanoseconds)
+        {
+            return nanoseconds.HasValue ? FromNanoseconds(nanoseconds.Value) : default(Duration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Seconds.
+        /// </summary>
+        public static Duration? FromSeconds(QuantityValue? seconds)
+        {
+            return seconds.HasValue ? FromSeconds(seconds.Value) : default(Duration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Weeks.
+        /// </summary>
+        public static Duration? FromWeeks(QuantityValue? weeks)
+        {
+            return weeks.HasValue ? FromWeeks(weeks.Value) : default(Duration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Years.
+        /// </summary>
+        public static Duration? FromYears(QuantityValue? years)
+        {
+            return years.HasValue ? FromYears(years.Value) : default(Duration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Duration from nullable Years365.
+        /// </summary>
+        public static Duration? FromYears365(QuantityValue? years365)
+        {
+            return years365.HasValue ? FromYears365(years365.Value) : default(Duration?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="DurationUnit" /> to <see cref="Duration" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Duration unit value.</returns>
+        public static Duration? From(QuantityValue? value, DurationUnit fromUnit)
+        {
+            return value.HasValue ? new Duration((double)value.Value, fromUnit) : default(Duration?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Duration operator -(Duration right)
+        {
+            return new Duration(-right.Value, right.Unit);
+        }
+
+        public static Duration operator +(Duration left, Duration right)
+        {
+            return new Duration(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Duration operator -(Duration left, Duration right)
+        {
+            return new Duration(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Duration operator *(double left, Duration right)
+        {
+            return new Duration(left * right.Value, right.Unit);
+        }
+
+        public static Duration operator *(Duration left, double right)
+        {
+            return new Duration(left.Value * right, left.Unit);
+        }
+
+        public static Duration operator /(Duration left, double right)
+        {
+            return new Duration(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Duration left, Duration right)
+        {
+            return left.Seconds / right.Seconds;
+        }
+
+        #endregion
+
+        public static bool operator <=(Duration left, Duration right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Duration left, Duration right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Duration left, Duration right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Duration left, Duration right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(Duration left, Duration right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(Duration left, Duration right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

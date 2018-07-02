@@ -59,5 +59,118 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable ElectricConductance from nullable Microsiemens.
+        /// </summary>
+        public static ElectricConductance? FromMicrosiemens(QuantityValue? microsiemens)
+        {
+            return microsiemens.HasValue ? FromMicrosiemens(microsiemens.Value) : default(ElectricConductance?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricConductance from nullable Millisiemens.
+        /// </summary>
+        public static ElectricConductance? FromMillisiemens(QuantityValue? millisiemens)
+        {
+            return millisiemens.HasValue ? FromMillisiemens(millisiemens.Value) : default(ElectricConductance?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricConductance from nullable Siemens.
+        /// </summary>
+        public static ElectricConductance? FromSiemens(QuantityValue? siemens)
+        {
+            return siemens.HasValue ? FromSiemens(siemens.Value) : default(ElectricConductance?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricConductanceUnit" /> to <see cref="ElectricConductance" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricConductance unit value.</returns>
+        public static ElectricConductance? From(QuantityValue? value, ElectricConductanceUnit fromUnit)
+        {
+            return value.HasValue ? new ElectricConductance((double)value.Value, fromUnit) : default(ElectricConductance?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ElectricConductance operator -(ElectricConductance right)
+        {
+            return new ElectricConductance(-right.Value, right.Unit);
+        }
+
+        public static ElectricConductance operator +(ElectricConductance left, ElectricConductance right)
+        {
+            return new ElectricConductance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricConductance operator -(ElectricConductance left, ElectricConductance right)
+        {
+            return new ElectricConductance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricConductance operator *(double left, ElectricConductance right)
+        {
+            return new ElectricConductance(left * right.Value, right.Unit);
+        }
+
+        public static ElectricConductance operator *(ElectricConductance left, double right)
+        {
+            return new ElectricConductance(left.Value * right, left.Unit);
+        }
+
+        public static ElectricConductance operator /(ElectricConductance left, double right)
+        {
+            return new ElectricConductance(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(ElectricConductance left, ElectricConductance right)
+        {
+            return left.Siemens / right.Siemens;
+        }
+
+        #endregion
+
+        public static bool operator <=(ElectricConductance left, ElectricConductance right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(ElectricConductance left, ElectricConductance right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(ElectricConductance left, ElectricConductance right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(ElectricConductance left, ElectricConductance right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(ElectricConductance left, ElectricConductance right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ElectricConductance left, ElectricConductance right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

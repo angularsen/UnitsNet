@@ -169,24 +169,6 @@ namespace UnitsNet
             return new SolidAngle(value, SolidAngleUnit.Steradian);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable SolidAngle from nullable Steradians.
-        /// </summary>
-        public static SolidAngle? FromSteradians(QuantityValue? steradians)
-        {
-            if (steradians.HasValue)
-            {
-                return FromSteradians(steradians.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SolidAngleUnit" /> to <see cref="SolidAngle" />.
@@ -204,25 +186,6 @@ namespace UnitsNet
         {
             return new SolidAngle((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="SolidAngleUnit" /> to <see cref="SolidAngle" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>SolidAngle unit value.</returns>
-        public static SolidAngle? From(QuantityValue? value, SolidAngleUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new SolidAngle((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -266,48 +229,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static SolidAngle operator -(SolidAngle right)
-        {
-            return new SolidAngle(-right.Value, right.Unit);
-        }
-
-        public static SolidAngle operator +(SolidAngle left, SolidAngle right)
-        {
-            return new SolidAngle(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static SolidAngle operator -(SolidAngle left, SolidAngle right)
-        {
-            return new SolidAngle(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static SolidAngle operator *(double left, SolidAngle right)
-        {
-            return new SolidAngle(left * right.Value, right.Unit);
-        }
-
-        public static SolidAngle operator *(SolidAngle left, double right)
-        {
-            return new SolidAngle(left.Value * right, left.Unit);
-        }
-
-        public static SolidAngle operator /(SolidAngle left, double right)
-        {
-            return new SolidAngle(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(SolidAngle left, SolidAngle right)
-        {
-            return left.Steradians / right.Steradians;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -328,43 +249,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(SolidAngle left, SolidAngle right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(SolidAngle left, SolidAngle right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(SolidAngle left, SolidAngle right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(SolidAngle left, SolidAngle right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(SolidAngle left, SolidAngle right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(SolidAngle left, SolidAngle right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

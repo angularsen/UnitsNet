@@ -59,5 +59,102 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable MagneticFlux from nullable Webers.
+        /// </summary>
+        public static MagneticFlux? FromWebers(QuantityValue? webers)
+        {
+            return webers.HasValue ? FromWebers(webers.Value) : default(MagneticFlux?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="MagneticFluxUnit" /> to <see cref="MagneticFlux" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>MagneticFlux unit value.</returns>
+        public static MagneticFlux? From(QuantityValue? value, MagneticFluxUnit fromUnit)
+        {
+            return value.HasValue ? new MagneticFlux((double)value.Value, fromUnit) : default(MagneticFlux?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static MagneticFlux operator -(MagneticFlux right)
+        {
+            return new MagneticFlux(-right.Value, right.Unit);
+        }
+
+        public static MagneticFlux operator +(MagneticFlux left, MagneticFlux right)
+        {
+            return new MagneticFlux(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MagneticFlux operator -(MagneticFlux left, MagneticFlux right)
+        {
+            return new MagneticFlux(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MagneticFlux operator *(double left, MagneticFlux right)
+        {
+            return new MagneticFlux(left * right.Value, right.Unit);
+        }
+
+        public static MagneticFlux operator *(MagneticFlux left, double right)
+        {
+            return new MagneticFlux(left.Value * right, left.Unit);
+        }
+
+        public static MagneticFlux operator /(MagneticFlux left, double right)
+        {
+            return new MagneticFlux(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(MagneticFlux left, MagneticFlux right)
+        {
+            return left.Webers / right.Webers;
+        }
+
+        #endregion
+
+        public static bool operator <=(MagneticFlux left, MagneticFlux right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(MagneticFlux left, MagneticFlux right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(MagneticFlux left, MagneticFlux right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(MagneticFlux left, MagneticFlux right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(MagneticFlux left, MagneticFlux right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(MagneticFlux left, MagneticFlux right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

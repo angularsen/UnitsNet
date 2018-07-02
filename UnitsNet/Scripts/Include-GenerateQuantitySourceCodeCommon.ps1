@@ -240,27 +240,6 @@ namespace UnitsNet
         }
 
 "@; }@"
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-"@; foreach ($unit in $units) {
-    $valueParamName = $unit.PluralName.ToLowerInvariant();@"
-        /// <summary>
-        ///     Get nullable $quantityName from nullable $($unit.PluralName).
-        /// </summary>
-        public static $($quantityName)? From$($unit.PluralName)($($quantityValueType)? $valueParamName)
-        {
-            if ($($valueParamName).HasValue)
-            {
-                return From$($unit.PluralName)($($valueParamName).Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-"@; }@"
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="$unitEnumName" /> to <see cref="$quantityName" />.
@@ -278,25 +257,6 @@ namespace UnitsNet
         {
             return new $quantityName(($baseType)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="$unitEnumName" /> to <see cref="$quantityName" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>$quantityName unit value.</returns>
-        public static $($quantityName)? From($($quantityValueType)? value, $unitEnumName fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new $quantityName(($baseType)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -339,54 +299,6 @@ namespace UnitsNet
         }
 
         #endregion
-"@; if ($quantity.Logarithmic -eq $true) {
-        # Call another script function to generate logarithm-specific arithmetic operator code.
-        GenerateLogarithmicArithmeticOperators -quantityName $quantityName -baseUnitFieldName $baseUnitFieldName -baseType $baseType -scalingFactor $quantity.LogarithmicScalingFactor
-    }
-    elseif ($quantity.GenerateArithmetic -eq $true) {@"
-
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static $quantityName operator -($quantityName right)
-        {
-            return new $quantityName(-right.Value, right.Unit);
-        }
-
-        public static $quantityName operator +($quantityName left, $quantityName right)
-        {
-            return new $quantityName(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static $quantityName operator -($quantityName left, $quantityName right)
-        {
-            return new $quantityName(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static $quantityName operator *($baseType left, $quantityName right)
-        {
-            return new $quantityName(left * right.Value, right.Unit);
-        }
-
-        public static $quantityName operator *($quantityName left, $baseType right)
-        {
-            return new $quantityName(left.Value * right, left.Unit);
-        }
-
-        public static $quantityName operator /($quantityName left, $baseType right)
-        {
-            return new $quantityName(left.Value / right, left.Unit);
-        }
-
-        public static double operator /($quantityName left, $quantityName right)
-        {
-            return left.$baseUnitPluralName / right.$baseUnitPluralName;
-        }
-#endif
-
-        #endregion
-"@; }@"
 
         #region Equality / IComparable
 
@@ -408,41 +320,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=($quantityName left, $quantityName right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=($quantityName left, $quantityName right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <($quantityName left, $quantityName right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >($quantityName left, $quantityName right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        $($obsoleteEqualityIfDouble)public static bool operator ==($quantityName left, $quantityName right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        $($obsoleteEqualityIfDouble)public static bool operator !=($quantityName left, $quantityName right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         $($obsoleteEqualityIfDouble)public override bool Equals(object obj)
         {

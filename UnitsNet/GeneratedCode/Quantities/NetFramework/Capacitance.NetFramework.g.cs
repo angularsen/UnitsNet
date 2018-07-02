@@ -59,5 +59,102 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Capacitance from nullable Farads.
+        /// </summary>
+        public static Capacitance? FromFarads(QuantityValue? farads)
+        {
+            return farads.HasValue ? FromFarads(farads.Value) : default(Capacitance?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="CapacitanceUnit" /> to <see cref="Capacitance" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Capacitance unit value.</returns>
+        public static Capacitance? From(QuantityValue? value, CapacitanceUnit fromUnit)
+        {
+            return value.HasValue ? new Capacitance((double)value.Value, fromUnit) : default(Capacitance?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Capacitance operator -(Capacitance right)
+        {
+            return new Capacitance(-right.Value, right.Unit);
+        }
+
+        public static Capacitance operator +(Capacitance left, Capacitance right)
+        {
+            return new Capacitance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Capacitance operator -(Capacitance left, Capacitance right)
+        {
+            return new Capacitance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Capacitance operator *(double left, Capacitance right)
+        {
+            return new Capacitance(left * right.Value, right.Unit);
+        }
+
+        public static Capacitance operator *(Capacitance left, double right)
+        {
+            return new Capacitance(left.Value * right, left.Unit);
+        }
+
+        public static Capacitance operator /(Capacitance left, double right)
+        {
+            return new Capacitance(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Capacitance left, Capacitance right)
+        {
+            return left.Farads / right.Farads;
+        }
+
+        #endregion
+
+        public static bool operator <=(Capacitance left, Capacitance right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Capacitance left, Capacitance right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Capacitance left, Capacitance right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Capacitance left, Capacitance right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(Capacitance left, Capacitance right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(Capacitance left, Capacitance right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

@@ -179,24 +179,6 @@ namespace UnitsNet
             return new ElectricCurrentGradient(value, ElectricCurrentGradientUnit.AmperePerSecond);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ElectricCurrentGradient from nullable AmperesPerSecond.
-        /// </summary>
-        public static ElectricCurrentGradient? FromAmperesPerSecond(QuantityValue? amperespersecond)
-        {
-            if (amperespersecond.HasValue)
-            {
-                return FromAmperesPerSecond(amperespersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentGradientUnit" /> to <see cref="ElectricCurrentGradient" />.
@@ -214,25 +196,6 @@ namespace UnitsNet
         {
             return new ElectricCurrentGradient((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentGradientUnit" /> to <see cref="ElectricCurrentGradient" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricCurrentGradient unit value.</returns>
-        public static ElectricCurrentGradient? From(QuantityValue? value, ElectricCurrentGradientUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ElectricCurrentGradient((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -276,48 +239,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ElectricCurrentGradient operator -(ElectricCurrentGradient right)
-        {
-            return new ElectricCurrentGradient(-right.Value, right.Unit);
-        }
-
-        public static ElectricCurrentGradient operator +(ElectricCurrentGradient left, ElectricCurrentGradient right)
-        {
-            return new ElectricCurrentGradient(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricCurrentGradient operator -(ElectricCurrentGradient left, ElectricCurrentGradient right)
-        {
-            return new ElectricCurrentGradient(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricCurrentGradient operator *(double left, ElectricCurrentGradient right)
-        {
-            return new ElectricCurrentGradient(left * right.Value, right.Unit);
-        }
-
-        public static ElectricCurrentGradient operator *(ElectricCurrentGradient left, double right)
-        {
-            return new ElectricCurrentGradient(left.Value * right, left.Unit);
-        }
-
-        public static ElectricCurrentGradient operator /(ElectricCurrentGradient left, double right)
-        {
-            return new ElectricCurrentGradient(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ElectricCurrentGradient left, ElectricCurrentGradient right)
-        {
-            return left.AmperesPerSecond / right.AmperesPerSecond;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -338,43 +259,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ElectricCurrentGradient left, ElectricCurrentGradient right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ElectricCurrentGradient left, ElectricCurrentGradient right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ElectricCurrentGradient left, ElectricCurrentGradient right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ElectricCurrentGradient left, ElectricCurrentGradient right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ElectricCurrentGradient left, ElectricCurrentGradient right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ElectricCurrentGradient left, ElectricCurrentGradient right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

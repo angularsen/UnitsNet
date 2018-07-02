@@ -323,144 +323,6 @@ namespace UnitsNet
             return new ForcePerLength(value, ForcePerLengthUnit.NewtonPerMeter);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable CentinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromCentinewtonsPerMeter(QuantityValue? centinewtonspermeter)
-        {
-            if (centinewtonspermeter.HasValue)
-            {
-                return FromCentinewtonsPerMeter(centinewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable DecinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromDecinewtonsPerMeter(QuantityValue? decinewtonspermeter)
-        {
-            if (decinewtonspermeter.HasValue)
-            {
-                return FromDecinewtonsPerMeter(decinewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable KilogramsForcePerMeter.
-        /// </summary>
-        public static ForcePerLength? FromKilogramsForcePerMeter(QuantityValue? kilogramsforcepermeter)
-        {
-            if (kilogramsforcepermeter.HasValue)
-            {
-                return FromKilogramsForcePerMeter(kilogramsforcepermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable KilonewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromKilonewtonsPerMeter(QuantityValue? kilonewtonspermeter)
-        {
-            if (kilonewtonspermeter.HasValue)
-            {
-                return FromKilonewtonsPerMeter(kilonewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable MeganewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromMeganewtonsPerMeter(QuantityValue? meganewtonspermeter)
-        {
-            if (meganewtonspermeter.HasValue)
-            {
-                return FromMeganewtonsPerMeter(meganewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable MicronewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromMicronewtonsPerMeter(QuantityValue? micronewtonspermeter)
-        {
-            if (micronewtonspermeter.HasValue)
-            {
-                return FromMicronewtonsPerMeter(micronewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable MillinewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromMillinewtonsPerMeter(QuantityValue? millinewtonspermeter)
-        {
-            if (millinewtonspermeter.HasValue)
-            {
-                return FromMillinewtonsPerMeter(millinewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable NanonewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromNanonewtonsPerMeter(QuantityValue? nanonewtonspermeter)
-        {
-            if (nanonewtonspermeter.HasValue)
-            {
-                return FromNanonewtonsPerMeter(nanonewtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ForcePerLength from nullable NewtonsPerMeter.
-        /// </summary>
-        public static ForcePerLength? FromNewtonsPerMeter(QuantityValue? newtonspermeter)
-        {
-            if (newtonspermeter.HasValue)
-            {
-                return FromNewtonsPerMeter(newtonspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ForcePerLengthUnit" /> to <see cref="ForcePerLength" />.
@@ -478,25 +340,6 @@ namespace UnitsNet
         {
             return new ForcePerLength((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ForcePerLengthUnit" /> to <see cref="ForcePerLength" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ForcePerLength unit value.</returns>
-        public static ForcePerLength? From(QuantityValue? value, ForcePerLengthUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ForcePerLength((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -540,48 +383,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ForcePerLength operator -(ForcePerLength right)
-        {
-            return new ForcePerLength(-right.Value, right.Unit);
-        }
-
-        public static ForcePerLength operator +(ForcePerLength left, ForcePerLength right)
-        {
-            return new ForcePerLength(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ForcePerLength operator -(ForcePerLength left, ForcePerLength right)
-        {
-            return new ForcePerLength(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ForcePerLength operator *(double left, ForcePerLength right)
-        {
-            return new ForcePerLength(left * right.Value, right.Unit);
-        }
-
-        public static ForcePerLength operator *(ForcePerLength left, double right)
-        {
-            return new ForcePerLength(left.Value * right, left.Unit);
-        }
-
-        public static ForcePerLength operator /(ForcePerLength left, double right)
-        {
-            return new ForcePerLength(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ForcePerLength left, ForcePerLength right)
-        {
-            return left.NewtonsPerMeter / right.NewtonsPerMeter;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -602,43 +403,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ForcePerLength left, ForcePerLength right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ForcePerLength left, ForcePerLength right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ForcePerLength left, ForcePerLength right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ForcePerLength left, ForcePerLength right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ForcePerLength left, ForcePerLength right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ForcePerLength left, ForcePerLength right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

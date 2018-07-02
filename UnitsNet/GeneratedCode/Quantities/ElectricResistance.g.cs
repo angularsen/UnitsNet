@@ -233,69 +233,6 @@ namespace UnitsNet
             return new ElectricResistance(value, ElectricResistanceUnit.Ohm);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ElectricResistance from nullable Kiloohms.
-        /// </summary>
-        public static ElectricResistance? FromKiloohms(QuantityValue? kiloohms)
-        {
-            if (kiloohms.HasValue)
-            {
-                return FromKiloohms(kiloohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from nullable Megaohms.
-        /// </summary>
-        public static ElectricResistance? FromMegaohms(QuantityValue? megaohms)
-        {
-            if (megaohms.HasValue)
-            {
-                return FromMegaohms(megaohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from nullable Milliohms.
-        /// </summary>
-        public static ElectricResistance? FromMilliohms(QuantityValue? milliohms)
-        {
-            if (milliohms.HasValue)
-            {
-                return FromMilliohms(milliohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistance from nullable Ohms.
-        /// </summary>
-        public static ElectricResistance? FromOhms(QuantityValue? ohms)
-        {
-            if (ohms.HasValue)
-            {
-                return FromOhms(ohms.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
@@ -313,25 +250,6 @@ namespace UnitsNet
         {
             return new ElectricResistance((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricResistance unit value.</returns>
-        public static ElectricResistance? From(QuantityValue? value, ElectricResistanceUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ElectricResistance((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -375,48 +293,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ElectricResistance operator -(ElectricResistance right)
-        {
-            return new ElectricResistance(-right.Value, right.Unit);
-        }
-
-        public static ElectricResistance operator +(ElectricResistance left, ElectricResistance right)
-        {
-            return new ElectricResistance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricResistance operator -(ElectricResistance left, ElectricResistance right)
-        {
-            return new ElectricResistance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricResistance operator *(double left, ElectricResistance right)
-        {
-            return new ElectricResistance(left * right.Value, right.Unit);
-        }
-
-        public static ElectricResistance operator *(ElectricResistance left, double right)
-        {
-            return new ElectricResistance(left.Value * right, left.Unit);
-        }
-
-        public static ElectricResistance operator /(ElectricResistance left, double right)
-        {
-            return new ElectricResistance(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ElectricResistance left, ElectricResistance right)
-        {
-            return left.Ohms / right.Ohms;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -437,43 +313,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ElectricResistance left, ElectricResistance right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ElectricResistance left, ElectricResistance right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ElectricResistance left, ElectricResistance right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ElectricResistance left, ElectricResistance right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ElectricResistance left, ElectricResistance right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ElectricResistance left, ElectricResistance right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

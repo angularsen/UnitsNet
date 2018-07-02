@@ -197,39 +197,6 @@ namespace UnitsNet
             return new MassFlux(value, MassFluxUnit.KilogramPerSecondPerSquareMeter);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable MassFlux from nullable GramsPerSecondPerSquareMeter.
-        /// </summary>
-        public static MassFlux? FromGramsPerSecondPerSquareMeter(QuantityValue? gramspersecondpersquaremeter)
-        {
-            if (gramspersecondpersquaremeter.HasValue)
-            {
-                return FromGramsPerSecondPerSquareMeter(gramspersecondpersquaremeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MassFlux from nullable KilogramsPerSecondPerSquareMeter.
-        /// </summary>
-        public static MassFlux? FromKilogramsPerSecondPerSquareMeter(QuantityValue? kilogramspersecondpersquaremeter)
-        {
-            if (kilogramspersecondpersquaremeter.HasValue)
-            {
-                return FromKilogramsPerSecondPerSquareMeter(kilogramspersecondpersquaremeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassFluxUnit" /> to <see cref="MassFlux" />.
@@ -247,25 +214,6 @@ namespace UnitsNet
         {
             return new MassFlux((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MassFluxUnit" /> to <see cref="MassFlux" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MassFlux unit value.</returns>
-        public static MassFlux? From(QuantityValue? value, MassFluxUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new MassFlux((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -309,48 +257,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static MassFlux operator -(MassFlux right)
-        {
-            return new MassFlux(-right.Value, right.Unit);
-        }
-
-        public static MassFlux operator +(MassFlux left, MassFlux right)
-        {
-            return new MassFlux(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static MassFlux operator -(MassFlux left, MassFlux right)
-        {
-            return new MassFlux(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static MassFlux operator *(double left, MassFlux right)
-        {
-            return new MassFlux(left * right.Value, right.Unit);
-        }
-
-        public static MassFlux operator *(MassFlux left, double right)
-        {
-            return new MassFlux(left.Value * right, left.Unit);
-        }
-
-        public static MassFlux operator /(MassFlux left, double right)
-        {
-            return new MassFlux(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(MassFlux left, MassFlux right)
-        {
-            return left.KilogramsPerSecondPerSquareMeter / right.KilogramsPerSecondPerSquareMeter;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -371,43 +277,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(MassFlux left, MassFlux right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(MassFlux left, MassFlux right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(MassFlux left, MassFlux right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(MassFlux left, MassFlux right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(MassFlux left, MassFlux right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(MassFlux left, MassFlux right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

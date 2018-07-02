@@ -59,5 +59,300 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public decimal Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Information from nullable Bits.
+        /// </summary>
+        public static Information? FromBits(QuantityValue? bits)
+        {
+            return bits.HasValue ? FromBits(bits.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Bytes.
+        /// </summary>
+        public static Information? FromBytes(QuantityValue? bytes)
+        {
+            return bytes.HasValue ? FromBytes(bytes.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Exabits.
+        /// </summary>
+        public static Information? FromExabits(QuantityValue? exabits)
+        {
+            return exabits.HasValue ? FromExabits(exabits.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Exabytes.
+        /// </summary>
+        public static Information? FromExabytes(QuantityValue? exabytes)
+        {
+            return exabytes.HasValue ? FromExabytes(exabytes.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Exbibits.
+        /// </summary>
+        public static Information? FromExbibits(QuantityValue? exbibits)
+        {
+            return exbibits.HasValue ? FromExbibits(exbibits.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Exbibytes.
+        /// </summary>
+        public static Information? FromExbibytes(QuantityValue? exbibytes)
+        {
+            return exbibytes.HasValue ? FromExbibytes(exbibytes.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Gibibits.
+        /// </summary>
+        public static Information? FromGibibits(QuantityValue? gibibits)
+        {
+            return gibibits.HasValue ? FromGibibits(gibibits.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Gibibytes.
+        /// </summary>
+        public static Information? FromGibibytes(QuantityValue? gibibytes)
+        {
+            return gibibytes.HasValue ? FromGibibytes(gibibytes.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Gigabits.
+        /// </summary>
+        public static Information? FromGigabits(QuantityValue? gigabits)
+        {
+            return gigabits.HasValue ? FromGigabits(gigabits.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Gigabytes.
+        /// </summary>
+        public static Information? FromGigabytes(QuantityValue? gigabytes)
+        {
+            return gigabytes.HasValue ? FromGigabytes(gigabytes.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Kibibits.
+        /// </summary>
+        public static Information? FromKibibits(QuantityValue? kibibits)
+        {
+            return kibibits.HasValue ? FromKibibits(kibibits.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Kibibytes.
+        /// </summary>
+        public static Information? FromKibibytes(QuantityValue? kibibytes)
+        {
+            return kibibytes.HasValue ? FromKibibytes(kibibytes.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Kilobits.
+        /// </summary>
+        public static Information? FromKilobits(QuantityValue? kilobits)
+        {
+            return kilobits.HasValue ? FromKilobits(kilobits.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Kilobytes.
+        /// </summary>
+        public static Information? FromKilobytes(QuantityValue? kilobytes)
+        {
+            return kilobytes.HasValue ? FromKilobytes(kilobytes.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Mebibits.
+        /// </summary>
+        public static Information? FromMebibits(QuantityValue? mebibits)
+        {
+            return mebibits.HasValue ? FromMebibits(mebibits.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Mebibytes.
+        /// </summary>
+        public static Information? FromMebibytes(QuantityValue? mebibytes)
+        {
+            return mebibytes.HasValue ? FromMebibytes(mebibytes.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Megabits.
+        /// </summary>
+        public static Information? FromMegabits(QuantityValue? megabits)
+        {
+            return megabits.HasValue ? FromMegabits(megabits.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Megabytes.
+        /// </summary>
+        public static Information? FromMegabytes(QuantityValue? megabytes)
+        {
+            return megabytes.HasValue ? FromMegabytes(megabytes.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Pebibits.
+        /// </summary>
+        public static Information? FromPebibits(QuantityValue? pebibits)
+        {
+            return pebibits.HasValue ? FromPebibits(pebibits.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Pebibytes.
+        /// </summary>
+        public static Information? FromPebibytes(QuantityValue? pebibytes)
+        {
+            return pebibytes.HasValue ? FromPebibytes(pebibytes.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Petabits.
+        /// </summary>
+        public static Information? FromPetabits(QuantityValue? petabits)
+        {
+            return petabits.HasValue ? FromPetabits(petabits.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Petabytes.
+        /// </summary>
+        public static Information? FromPetabytes(QuantityValue? petabytes)
+        {
+            return petabytes.HasValue ? FromPetabytes(petabytes.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Tebibits.
+        /// </summary>
+        public static Information? FromTebibits(QuantityValue? tebibits)
+        {
+            return tebibits.HasValue ? FromTebibits(tebibits.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Tebibytes.
+        /// </summary>
+        public static Information? FromTebibytes(QuantityValue? tebibytes)
+        {
+            return tebibytes.HasValue ? FromTebibytes(tebibytes.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Terabits.
+        /// </summary>
+        public static Information? FromTerabits(QuantityValue? terabits)
+        {
+            return terabits.HasValue ? FromTerabits(terabits.Value) : default(Information?);
+        }
+
+        /// <summary>
+        ///     Get nullable Information from nullable Terabytes.
+        /// </summary>
+        public static Information? FromTerabytes(QuantityValue? terabytes)
+        {
+            return terabytes.HasValue ? FromTerabytes(terabytes.Value) : default(Information?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="InformationUnit" /> to <see cref="Information" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Information unit value.</returns>
+        public static Information? From(QuantityValue? value, InformationUnit fromUnit)
+        {
+            return value.HasValue ? new Information((decimal)value.Value, fromUnit) : default(Information?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Information operator -(Information right)
+        {
+            return new Information(-right.Value, right.Unit);
+        }
+
+        public static Information operator +(Information left, Information right)
+        {
+            return new Information(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Information operator -(Information left, Information right)
+        {
+            return new Information(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Information operator *(decimal left, Information right)
+        {
+            return new Information(left * right.Value, right.Unit);
+        }
+
+        public static Information operator *(Information left, decimal right)
+        {
+            return new Information(left.Value * right, left.Unit);
+        }
+
+        public static Information operator /(Information left, decimal right)
+        {
+            return new Information(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Information left, Information right)
+        {
+            return left.Bits / right.Bits;
+        }
+
+        #endregion
+
+        public static bool operator <=(Information left, Information right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Information left, Information right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Information left, Information right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Information left, Information right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator ==(Information left, Information right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator !=(Information left, Information right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

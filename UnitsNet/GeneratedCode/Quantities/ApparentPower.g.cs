@@ -233,69 +233,6 @@ namespace UnitsNet
             return new ApparentPower(value, ApparentPowerUnit.Voltampere);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ApparentPower from nullable Gigavoltamperes.
-        /// </summary>
-        public static ApparentPower? FromGigavoltamperes(QuantityValue? gigavoltamperes)
-        {
-            if (gigavoltamperes.HasValue)
-            {
-                return FromGigavoltamperes(gigavoltamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ApparentPower from nullable Kilovoltamperes.
-        /// </summary>
-        public static ApparentPower? FromKilovoltamperes(QuantityValue? kilovoltamperes)
-        {
-            if (kilovoltamperes.HasValue)
-            {
-                return FromKilovoltamperes(kilovoltamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ApparentPower from nullable Megavoltamperes.
-        /// </summary>
-        public static ApparentPower? FromMegavoltamperes(QuantityValue? megavoltamperes)
-        {
-            if (megavoltamperes.HasValue)
-            {
-                return FromMegavoltamperes(megavoltamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ApparentPower from nullable Voltamperes.
-        /// </summary>
-        public static ApparentPower? FromVoltamperes(QuantityValue? voltamperes)
-        {
-            if (voltamperes.HasValue)
-            {
-                return FromVoltamperes(voltamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ApparentPowerUnit" /> to <see cref="ApparentPower" />.
@@ -313,25 +250,6 @@ namespace UnitsNet
         {
             return new ApparentPower((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ApparentPowerUnit" /> to <see cref="ApparentPower" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ApparentPower unit value.</returns>
-        public static ApparentPower? From(QuantityValue? value, ApparentPowerUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ApparentPower((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -375,48 +293,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ApparentPower operator -(ApparentPower right)
-        {
-            return new ApparentPower(-right.Value, right.Unit);
-        }
-
-        public static ApparentPower operator +(ApparentPower left, ApparentPower right)
-        {
-            return new ApparentPower(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ApparentPower operator -(ApparentPower left, ApparentPower right)
-        {
-            return new ApparentPower(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ApparentPower operator *(double left, ApparentPower right)
-        {
-            return new ApparentPower(left * right.Value, right.Unit);
-        }
-
-        public static ApparentPower operator *(ApparentPower left, double right)
-        {
-            return new ApparentPower(left.Value * right, left.Unit);
-        }
-
-        public static ApparentPower operator /(ApparentPower left, double right)
-        {
-            return new ApparentPower(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ApparentPower left, ApparentPower right)
-        {
-            return left.Voltamperes / right.Voltamperes;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -437,43 +313,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ApparentPower left, ApparentPower right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ApparentPower left, ApparentPower right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ApparentPower left, ApparentPower right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ApparentPower left, ApparentPower right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ApparentPower left, ApparentPower right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ApparentPower left, ApparentPower right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

@@ -215,54 +215,6 @@ namespace UnitsNet
             return new ReactiveEnergy(value, ReactiveEnergyUnit.VoltampereReactiveHour);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ReactiveEnergy from nullable KilovoltampereReactiveHours.
-        /// </summary>
-        public static ReactiveEnergy? FromKilovoltampereReactiveHours(QuantityValue? kilovoltamperereactivehours)
-        {
-            if (kilovoltamperereactivehours.HasValue)
-            {
-                return FromKilovoltampereReactiveHours(kilovoltamperereactivehours.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ReactiveEnergy from nullable MegavoltampereReactiveHours.
-        /// </summary>
-        public static ReactiveEnergy? FromMegavoltampereReactiveHours(QuantityValue? megavoltamperereactivehours)
-        {
-            if (megavoltamperereactivehours.HasValue)
-            {
-                return FromMegavoltampereReactiveHours(megavoltamperereactivehours.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ReactiveEnergy from nullable VoltampereReactiveHours.
-        /// </summary>
-        public static ReactiveEnergy? FromVoltampereReactiveHours(QuantityValue? voltamperereactivehours)
-        {
-            if (voltamperereactivehours.HasValue)
-            {
-                return FromVoltampereReactiveHours(voltamperereactivehours.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ReactiveEnergyUnit" /> to <see cref="ReactiveEnergy" />.
@@ -280,25 +232,6 @@ namespace UnitsNet
         {
             return new ReactiveEnergy((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ReactiveEnergyUnit" /> to <see cref="ReactiveEnergy" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ReactiveEnergy unit value.</returns>
-        public static ReactiveEnergy? From(QuantityValue? value, ReactiveEnergyUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ReactiveEnergy((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -342,48 +275,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ReactiveEnergy operator -(ReactiveEnergy right)
-        {
-            return new ReactiveEnergy(-right.Value, right.Unit);
-        }
-
-        public static ReactiveEnergy operator +(ReactiveEnergy left, ReactiveEnergy right)
-        {
-            return new ReactiveEnergy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ReactiveEnergy operator -(ReactiveEnergy left, ReactiveEnergy right)
-        {
-            return new ReactiveEnergy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ReactiveEnergy operator *(double left, ReactiveEnergy right)
-        {
-            return new ReactiveEnergy(left * right.Value, right.Unit);
-        }
-
-        public static ReactiveEnergy operator *(ReactiveEnergy left, double right)
-        {
-            return new ReactiveEnergy(left.Value * right, left.Unit);
-        }
-
-        public static ReactiveEnergy operator /(ReactiveEnergy left, double right)
-        {
-            return new ReactiveEnergy(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ReactiveEnergy left, ReactiveEnergy right)
-        {
-            return left.VoltampereReactiveHours / right.VoltampereReactiveHours;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -404,43 +295,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ReactiveEnergy left, ReactiveEnergy right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ReactiveEnergy left, ReactiveEnergy right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ReactiveEnergy left, ReactiveEnergy right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ReactiveEnergy left, ReactiveEnergy right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ReactiveEnergy left, ReactiveEnergy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ReactiveEnergy left, ReactiveEnergy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

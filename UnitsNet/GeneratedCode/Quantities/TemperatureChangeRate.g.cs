@@ -341,159 +341,6 @@ namespace UnitsNet
             return new TemperatureChangeRate(value, TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable CentidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromCentidegreesCelsiusPerSecond(QuantityValue? centidegreescelsiuspersecond)
-        {
-            if (centidegreescelsiuspersecond.HasValue)
-            {
-                return FromCentidegreesCelsiusPerSecond(centidegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable DecadegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromDecadegreesCelsiusPerSecond(QuantityValue? decadegreescelsiuspersecond)
-        {
-            if (decadegreescelsiuspersecond.HasValue)
-            {
-                return FromDecadegreesCelsiusPerSecond(decadegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable DecidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromDecidegreesCelsiusPerSecond(QuantityValue? decidegreescelsiuspersecond)
-        {
-            if (decidegreescelsiuspersecond.HasValue)
-            {
-                return FromDecidegreesCelsiusPerSecond(decidegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerMinute.
-        /// </summary>
-        public static TemperatureChangeRate? FromDegreesCelsiusPerMinute(QuantityValue? degreescelsiusperminute)
-        {
-            if (degreescelsiusperminute.HasValue)
-            {
-                return FromDegreesCelsiusPerMinute(degreescelsiusperminute.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromDegreesCelsiusPerSecond(QuantityValue? degreescelsiuspersecond)
-        {
-            if (degreescelsiuspersecond.HasValue)
-            {
-                return FromDegreesCelsiusPerSecond(degreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable HectodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromHectodegreesCelsiusPerSecond(QuantityValue? hectodegreescelsiuspersecond)
-        {
-            if (hectodegreescelsiuspersecond.HasValue)
-            {
-                return FromHectodegreesCelsiusPerSecond(hectodegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable KilodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromKilodegreesCelsiusPerSecond(QuantityValue? kilodegreescelsiuspersecond)
-        {
-            if (kilodegreescelsiuspersecond.HasValue)
-            {
-                return FromKilodegreesCelsiusPerSecond(kilodegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable MicrodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromMicrodegreesCelsiusPerSecond(QuantityValue? microdegreescelsiuspersecond)
-        {
-            if (microdegreescelsiuspersecond.HasValue)
-            {
-                return FromMicrodegreesCelsiusPerSecond(microdegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable MillidegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromMillidegreesCelsiusPerSecond(QuantityValue? millidegreescelsiuspersecond)
-        {
-            if (millidegreescelsiuspersecond.HasValue)
-            {
-                return FromMillidegreesCelsiusPerSecond(millidegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureChangeRate from nullable NanodegreesCelsiusPerSecond.
-        /// </summary>
-        public static TemperatureChangeRate? FromNanodegreesCelsiusPerSecond(QuantityValue? nanodegreescelsiuspersecond)
-        {
-            if (nanodegreescelsiuspersecond.HasValue)
-            {
-                return FromNanodegreesCelsiusPerSecond(nanodegreescelsiuspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureChangeRateUnit" /> to <see cref="TemperatureChangeRate" />.
@@ -511,25 +358,6 @@ namespace UnitsNet
         {
             return new TemperatureChangeRate((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="TemperatureChangeRateUnit" /> to <see cref="TemperatureChangeRate" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>TemperatureChangeRate unit value.</returns>
-        public static TemperatureChangeRate? From(QuantityValue? value, TemperatureChangeRateUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new TemperatureChangeRate((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -573,48 +401,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static TemperatureChangeRate operator -(TemperatureChangeRate right)
-        {
-            return new TemperatureChangeRate(-right.Value, right.Unit);
-        }
-
-        public static TemperatureChangeRate operator +(TemperatureChangeRate left, TemperatureChangeRate right)
-        {
-            return new TemperatureChangeRate(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static TemperatureChangeRate operator -(TemperatureChangeRate left, TemperatureChangeRate right)
-        {
-            return new TemperatureChangeRate(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static TemperatureChangeRate operator *(double left, TemperatureChangeRate right)
-        {
-            return new TemperatureChangeRate(left * right.Value, right.Unit);
-        }
-
-        public static TemperatureChangeRate operator *(TemperatureChangeRate left, double right)
-        {
-            return new TemperatureChangeRate(left.Value * right, left.Unit);
-        }
-
-        public static TemperatureChangeRate operator /(TemperatureChangeRate left, double right)
-        {
-            return new TemperatureChangeRate(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(TemperatureChangeRate left, TemperatureChangeRate right)
-        {
-            return left.DegreesCelsiusPerSecond / right.DegreesCelsiusPerSecond;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -635,43 +421,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(TemperatureChangeRate left, TemperatureChangeRate right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(TemperatureChangeRate left, TemperatureChangeRate right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(TemperatureChangeRate left, TemperatureChangeRate right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(TemperatureChangeRate left, TemperatureChangeRate right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(TemperatureChangeRate left, TemperatureChangeRate right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(TemperatureChangeRate left, TemperatureChangeRate right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

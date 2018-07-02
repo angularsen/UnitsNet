@@ -59,5 +59,110 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable HeatTransferCoefficient from nullable WattsPerSquareMeterCelsius.
+        /// </summary>
+        public static HeatTransferCoefficient? FromWattsPerSquareMeterCelsius(QuantityValue? wattspersquaremetercelsius)
+        {
+            return wattspersquaremetercelsius.HasValue ? FromWattsPerSquareMeterCelsius(wattspersquaremetercelsius.Value) : default(HeatTransferCoefficient?);
+        }
+
+        /// <summary>
+        ///     Get nullable HeatTransferCoefficient from nullable WattsPerSquareMeterKelvin.
+        /// </summary>
+        public static HeatTransferCoefficient? FromWattsPerSquareMeterKelvin(QuantityValue? wattspersquaremeterkelvin)
+        {
+            return wattspersquaremeterkelvin.HasValue ? FromWattsPerSquareMeterKelvin(wattspersquaremeterkelvin.Value) : default(HeatTransferCoefficient?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="HeatTransferCoefficientUnit" /> to <see cref="HeatTransferCoefficient" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>HeatTransferCoefficient unit value.</returns>
+        public static HeatTransferCoefficient? From(QuantityValue? value, HeatTransferCoefficientUnit fromUnit)
+        {
+            return value.HasValue ? new HeatTransferCoefficient((double)value.Value, fromUnit) : default(HeatTransferCoefficient?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static HeatTransferCoefficient operator -(HeatTransferCoefficient right)
+        {
+            return new HeatTransferCoefficient(-right.Value, right.Unit);
+        }
+
+        public static HeatTransferCoefficient operator +(HeatTransferCoefficient left, HeatTransferCoefficient right)
+        {
+            return new HeatTransferCoefficient(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static HeatTransferCoefficient operator -(HeatTransferCoefficient left, HeatTransferCoefficient right)
+        {
+            return new HeatTransferCoefficient(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static HeatTransferCoefficient operator *(double left, HeatTransferCoefficient right)
+        {
+            return new HeatTransferCoefficient(left * right.Value, right.Unit);
+        }
+
+        public static HeatTransferCoefficient operator *(HeatTransferCoefficient left, double right)
+        {
+            return new HeatTransferCoefficient(left.Value * right, left.Unit);
+        }
+
+        public static HeatTransferCoefficient operator /(HeatTransferCoefficient left, double right)
+        {
+            return new HeatTransferCoefficient(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(HeatTransferCoefficient left, HeatTransferCoefficient right)
+        {
+            return left.WattsPerSquareMeterKelvin / right.WattsPerSquareMeterKelvin;
+        }
+
+        #endregion
+
+        public static bool operator <=(HeatTransferCoefficient left, HeatTransferCoefficient right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(HeatTransferCoefficient left, HeatTransferCoefficient right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(HeatTransferCoefficient left, HeatTransferCoefficient right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(HeatTransferCoefficient left, HeatTransferCoefficient right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(HeatTransferCoefficient left, HeatTransferCoefficient right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(HeatTransferCoefficient left, HeatTransferCoefficient right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

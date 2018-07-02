@@ -59,5 +59,118 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable ReactiveEnergy from nullable KilovoltampereReactiveHours.
+        /// </summary>
+        public static ReactiveEnergy? FromKilovoltampereReactiveHours(QuantityValue? kilovoltamperereactivehours)
+        {
+            return kilovoltamperereactivehours.HasValue ? FromKilovoltampereReactiveHours(kilovoltamperereactivehours.Value) : default(ReactiveEnergy?);
+        }
+
+        /// <summary>
+        ///     Get nullable ReactiveEnergy from nullable MegavoltampereReactiveHours.
+        /// </summary>
+        public static ReactiveEnergy? FromMegavoltampereReactiveHours(QuantityValue? megavoltamperereactivehours)
+        {
+            return megavoltamperereactivehours.HasValue ? FromMegavoltampereReactiveHours(megavoltamperereactivehours.Value) : default(ReactiveEnergy?);
+        }
+
+        /// <summary>
+        ///     Get nullable ReactiveEnergy from nullable VoltampereReactiveHours.
+        /// </summary>
+        public static ReactiveEnergy? FromVoltampereReactiveHours(QuantityValue? voltamperereactivehours)
+        {
+            return voltamperereactivehours.HasValue ? FromVoltampereReactiveHours(voltamperereactivehours.Value) : default(ReactiveEnergy?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ReactiveEnergyUnit" /> to <see cref="ReactiveEnergy" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ReactiveEnergy unit value.</returns>
+        public static ReactiveEnergy? From(QuantityValue? value, ReactiveEnergyUnit fromUnit)
+        {
+            return value.HasValue ? new ReactiveEnergy((double)value.Value, fromUnit) : default(ReactiveEnergy?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ReactiveEnergy operator -(ReactiveEnergy right)
+        {
+            return new ReactiveEnergy(-right.Value, right.Unit);
+        }
+
+        public static ReactiveEnergy operator +(ReactiveEnergy left, ReactiveEnergy right)
+        {
+            return new ReactiveEnergy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ReactiveEnergy operator -(ReactiveEnergy left, ReactiveEnergy right)
+        {
+            return new ReactiveEnergy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ReactiveEnergy operator *(double left, ReactiveEnergy right)
+        {
+            return new ReactiveEnergy(left * right.Value, right.Unit);
+        }
+
+        public static ReactiveEnergy operator *(ReactiveEnergy left, double right)
+        {
+            return new ReactiveEnergy(left.Value * right, left.Unit);
+        }
+
+        public static ReactiveEnergy operator /(ReactiveEnergy left, double right)
+        {
+            return new ReactiveEnergy(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(ReactiveEnergy left, ReactiveEnergy right)
+        {
+            return left.VoltampereReactiveHours / right.VoltampereReactiveHours;
+        }
+
+        #endregion
+
+        public static bool operator <=(ReactiveEnergy left, ReactiveEnergy right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(ReactiveEnergy left, ReactiveEnergy right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(ReactiveEnergy left, ReactiveEnergy right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(ReactiveEnergy left, ReactiveEnergy right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(ReactiveEnergy left, ReactiveEnergy right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ReactiveEnergy left, ReactiveEnergy right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

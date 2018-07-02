@@ -59,5 +59,134 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable AmplitudeRatio from nullable DecibelMicrovolts.
+        /// </summary>
+        public static AmplitudeRatio? FromDecibelMicrovolts(QuantityValue? decibelmicrovolts)
+        {
+            return decibelmicrovolts.HasValue ? FromDecibelMicrovolts(decibelmicrovolts.Value) : default(AmplitudeRatio?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmplitudeRatio from nullable DecibelMillivolts.
+        /// </summary>
+        public static AmplitudeRatio? FromDecibelMillivolts(QuantityValue? decibelmillivolts)
+        {
+            return decibelmillivolts.HasValue ? FromDecibelMillivolts(decibelmillivolts.Value) : default(AmplitudeRatio?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmplitudeRatio from nullable DecibelsUnloaded.
+        /// </summary>
+        public static AmplitudeRatio? FromDecibelsUnloaded(QuantityValue? decibelsunloaded)
+        {
+            return decibelsunloaded.HasValue ? FromDecibelsUnloaded(decibelsunloaded.Value) : default(AmplitudeRatio?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmplitudeRatio from nullable DecibelVolts.
+        /// </summary>
+        public static AmplitudeRatio? FromDecibelVolts(QuantityValue? decibelvolts)
+        {
+            return decibelvolts.HasValue ? FromDecibelVolts(decibelvolts.Value) : default(AmplitudeRatio?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="AmplitudeRatioUnit" /> to <see cref="AmplitudeRatio" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>AmplitudeRatio unit value.</returns>
+        public static AmplitudeRatio? From(QuantityValue? value, AmplitudeRatioUnit fromUnit)
+        {
+            return value.HasValue ? new AmplitudeRatio((double)value.Value, fromUnit) : default(AmplitudeRatio?);
+        }
+
+        #endregion
+
+        #region Logarithmic Arithmetic Operators
+
+        public static AmplitudeRatio operator -(AmplitudeRatio right)
+        {
+            return new AmplitudeRatio(-right.Value, right.Unit);
+        }
+
+        public static AmplitudeRatio operator +(AmplitudeRatio left, AmplitudeRatio right)
+        {
+            // Logarithmic addition
+            // Formula: 20*log10(10^(x/20) + 10^(y/20))
+            return new AmplitudeRatio(20*Math.Log10(Math.Pow(10, left.Value/20) + Math.Pow(10, right.AsBaseNumericType(left.Unit)/20)), left.Unit);
+        }
+
+        public static AmplitudeRatio operator -(AmplitudeRatio left, AmplitudeRatio right)
+        {
+            // Logarithmic subtraction
+            // Formula: 20*log10(10^(x/20) - 10^(y/20))
+            return new AmplitudeRatio(20*Math.Log10(Math.Pow(10, left.Value/20) - Math.Pow(10, right.AsBaseNumericType(left.Unit)/20)), left.Unit);
+        }
+
+        public static AmplitudeRatio operator *(double left, AmplitudeRatio right)
+        {
+            // Logarithmic multiplication = addition
+            return new AmplitudeRatio(left + right.Value, right.Unit);
+        }
+
+        public static AmplitudeRatio operator *(AmplitudeRatio left, double right)
+        {
+            // Logarithmic multiplication = addition
+            return new AmplitudeRatio(left.Value + (double)right, left.Unit);
+        }
+
+        public static AmplitudeRatio operator /(AmplitudeRatio left, double right)
+        {
+            // Logarithmic division = subtraction
+            return new AmplitudeRatio(left.Value - (double)right, left.Unit);
+        }
+
+        public static double operator /(AmplitudeRatio left, AmplitudeRatio right)
+        {
+            // Logarithmic division = subtraction
+            return Convert.ToDouble(left.Value - right.AsBaseNumericType(left.Unit));
+        }
+
+        #endregion
+
+        public static bool operator <=(AmplitudeRatio left, AmplitudeRatio right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(AmplitudeRatio left, AmplitudeRatio right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(AmplitudeRatio left, AmplitudeRatio right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(AmplitudeRatio left, AmplitudeRatio right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(AmplitudeRatio left, AmplitudeRatio right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(AmplitudeRatio left, AmplitudeRatio right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

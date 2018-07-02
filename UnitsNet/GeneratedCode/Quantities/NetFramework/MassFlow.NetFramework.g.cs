@@ -59,5 +59,214 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable CentigramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromCentigramsPerSecond(QuantityValue? centigramspersecond)
+        {
+            return centigramspersecond.HasValue ? FromCentigramsPerSecond(centigramspersecond.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable DecagramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromDecagramsPerSecond(QuantityValue? decagramspersecond)
+        {
+            return decagramspersecond.HasValue ? FromDecagramsPerSecond(decagramspersecond.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable DecigramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromDecigramsPerSecond(QuantityValue? decigramspersecond)
+        {
+            return decigramspersecond.HasValue ? FromDecigramsPerSecond(decigramspersecond.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable GramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromGramsPerSecond(QuantityValue? gramspersecond)
+        {
+            return gramspersecond.HasValue ? FromGramsPerSecond(gramspersecond.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable HectogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromHectogramsPerSecond(QuantityValue? hectogramspersecond)
+        {
+            return hectogramspersecond.HasValue ? FromHectogramsPerSecond(hectogramspersecond.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable KilogramsPerHour.
+        /// </summary>
+        public static MassFlow? FromKilogramsPerHour(QuantityValue? kilogramsperhour)
+        {
+            return kilogramsperhour.HasValue ? FromKilogramsPerHour(kilogramsperhour.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable KilogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromKilogramsPerSecond(QuantityValue? kilogramspersecond)
+        {
+            return kilogramspersecond.HasValue ? FromKilogramsPerSecond(kilogramspersecond.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable MegapoundsPerHour.
+        /// </summary>
+        public static MassFlow? FromMegapoundsPerHour(QuantityValue? megapoundsperhour)
+        {
+            return megapoundsperhour.HasValue ? FromMegapoundsPerHour(megapoundsperhour.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable MicrogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromMicrogramsPerSecond(QuantityValue? microgramspersecond)
+        {
+            return microgramspersecond.HasValue ? FromMicrogramsPerSecond(microgramspersecond.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable MilligramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromMilligramsPerSecond(QuantityValue? milligramspersecond)
+        {
+            return milligramspersecond.HasValue ? FromMilligramsPerSecond(milligramspersecond.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable NanogramsPerSecond.
+        /// </summary>
+        public static MassFlow? FromNanogramsPerSecond(QuantityValue? nanogramspersecond)
+        {
+            return nanogramspersecond.HasValue ? FromNanogramsPerSecond(nanogramspersecond.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable PoundsPerHour.
+        /// </summary>
+        public static MassFlow? FromPoundsPerHour(QuantityValue? poundsperhour)
+        {
+            return poundsperhour.HasValue ? FromPoundsPerHour(poundsperhour.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable ShortTonsPerHour.
+        /// </summary>
+        public static MassFlow? FromShortTonsPerHour(QuantityValue? shorttonsperhour)
+        {
+            return shorttonsperhour.HasValue ? FromShortTonsPerHour(shorttonsperhour.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable TonnesPerDay.
+        /// </summary>
+        public static MassFlow? FromTonnesPerDay(QuantityValue? tonnesperday)
+        {
+            return tonnesperday.HasValue ? FromTonnesPerDay(tonnesperday.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable TonnesPerHour.
+        /// </summary>
+        public static MassFlow? FromTonnesPerHour(QuantityValue? tonnesperhour)
+        {
+            return tonnesperhour.HasValue ? FromTonnesPerHour(tonnesperhour.Value) : default(MassFlow?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="MassFlowUnit" /> to <see cref="MassFlow" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>MassFlow unit value.</returns>
+        public static MassFlow? From(QuantityValue? value, MassFlowUnit fromUnit)
+        {
+            return value.HasValue ? new MassFlow((double)value.Value, fromUnit) : default(MassFlow?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static MassFlow operator -(MassFlow right)
+        {
+            return new MassFlow(-right.Value, right.Unit);
+        }
+
+        public static MassFlow operator +(MassFlow left, MassFlow right)
+        {
+            return new MassFlow(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MassFlow operator -(MassFlow left, MassFlow right)
+        {
+            return new MassFlow(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MassFlow operator *(double left, MassFlow right)
+        {
+            return new MassFlow(left * right.Value, right.Unit);
+        }
+
+        public static MassFlow operator *(MassFlow left, double right)
+        {
+            return new MassFlow(left.Value * right, left.Unit);
+        }
+
+        public static MassFlow operator /(MassFlow left, double right)
+        {
+            return new MassFlow(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(MassFlow left, MassFlow right)
+        {
+            return left.GramsPerSecond / right.GramsPerSecond;
+        }
+
+        #endregion
+
+        public static bool operator <=(MassFlow left, MassFlow right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(MassFlow left, MassFlow right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(MassFlow left, MassFlow right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(MassFlow left, MassFlow right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(MassFlow left, MassFlow right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(MassFlow left, MassFlow right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

@@ -59,5 +59,102 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable ElectricField from nullable VoltsPerMeter.
+        /// </summary>
+        public static ElectricField? FromVoltsPerMeter(QuantityValue? voltspermeter)
+        {
+            return voltspermeter.HasValue ? FromVoltsPerMeter(voltspermeter.Value) : default(ElectricField?);
+        }
+
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricFieldUnit" /> to <see cref="ElectricField" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricField unit value.</returns>
+        public static ElectricField? From(QuantityValue? value, ElectricFieldUnit fromUnit)
+        {
+            return value.HasValue ? new ElectricField((double)value.Value, fromUnit) : default(ElectricField?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ElectricField operator -(ElectricField right)
+        {
+            return new ElectricField(-right.Value, right.Unit);
+        }
+
+        public static ElectricField operator +(ElectricField left, ElectricField right)
+        {
+            return new ElectricField(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricField operator -(ElectricField left, ElectricField right)
+        {
+            return new ElectricField(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricField operator *(double left, ElectricField right)
+        {
+            return new ElectricField(left * right.Value, right.Unit);
+        }
+
+        public static ElectricField operator *(ElectricField left, double right)
+        {
+            return new ElectricField(left.Value * right, left.Unit);
+        }
+
+        public static ElectricField operator /(ElectricField left, double right)
+        {
+            return new ElectricField(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(ElectricField left, ElectricField right)
+        {
+            return left.VoltsPerMeter / right.VoltsPerMeter;
+        }
+
+        #endregion
+
+        public static bool operator <=(ElectricField left, ElectricField right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(ElectricField left, ElectricField right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(ElectricField left, ElectricField right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(ElectricField left, ElectricField right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(ElectricField left, ElectricField right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ElectricField left, ElectricField right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }
