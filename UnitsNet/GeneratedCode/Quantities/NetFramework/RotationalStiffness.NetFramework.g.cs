@@ -86,7 +86,6 @@ namespace UnitsNet
             return newtonmetersperradian.HasValue ? FromNewtonMetersPerRadian(newtonmetersperradian.Value) : default(RotationalStiffness?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RotationalStiffnessUnit" /> to <see cref="RotationalStiffness" />.
         /// </summary>

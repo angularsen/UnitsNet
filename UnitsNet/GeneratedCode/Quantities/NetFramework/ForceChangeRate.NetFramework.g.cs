@@ -150,7 +150,6 @@ namespace UnitsNet
             return newtonspersecond.HasValue ? FromNewtonsPerSecond(newtonspersecond.Value) : default(ForceChangeRate?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ForceChangeRateUnit" /> to <see cref="ForceChangeRate" />.
         /// </summary>

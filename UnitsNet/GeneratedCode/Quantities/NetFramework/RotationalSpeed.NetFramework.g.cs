@@ -166,7 +166,6 @@ namespace UnitsNet
             return revolutionspersecond.HasValue ? FromRevolutionsPerSecond(revolutionspersecond.Value) : default(RotationalSpeed?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RotationalSpeedUnit" /> to <see cref="RotationalSpeed" />.
         /// </summary>

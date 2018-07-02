@@ -166,7 +166,6 @@ namespace UnitsNet
             return standardgravity.HasValue ? FromStandardGravity(standardgravity.Value) : default(Acceleration?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AccelerationUnit" /> to <see cref="Acceleration" />.
         /// </summary>

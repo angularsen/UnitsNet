@@ -134,7 +134,6 @@ namespace UnitsNet
             return newtonspermeter.HasValue ? FromNewtonsPerMeter(newtonspermeter.Value) : default(ForcePerLength?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ForcePerLengthUnit" /> to <see cref="ForcePerLength" />.
         /// </summary>

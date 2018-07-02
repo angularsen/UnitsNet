@@ -94,7 +94,6 @@ namespace UnitsNet
             return decibelvolts.HasValue ? FromDecibelVolts(decibelvolts.Value) : default(AmplitudeRatio?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AmplitudeRatioUnit" /> to <see cref="AmplitudeRatio" />.
         /// </summary>

@@ -174,7 +174,6 @@ namespace UnitsNet
             return revolutions.HasValue ? FromRevolutions(revolutions.Value) : default(Angle?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AngleUnit" /> to <see cref="Angle" />.
         /// </summary>

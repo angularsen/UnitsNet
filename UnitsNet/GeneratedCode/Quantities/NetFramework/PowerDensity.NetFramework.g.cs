@@ -414,7 +414,6 @@ namespace UnitsNet
             return wattsperliter.HasValue ? FromWattsPerLiter(wattsperliter.Value) : default(PowerDensity?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PowerDensityUnit" /> to <see cref="PowerDensity" />.
         /// </summary>

@@ -78,7 +78,6 @@ namespace UnitsNet
             return decibelwatts.HasValue ? FromDecibelWatts(decibelwatts.Value) : default(PowerRatio?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PowerRatioUnit" /> to <see cref="PowerRatio" />.
         /// </summary>

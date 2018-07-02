@@ -70,7 +70,6 @@ namespace UnitsNet
             return siemenspermeter.HasValue ? FromSiemensPerMeter(siemenspermeter.Value) : default(ElectricConductivity?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricConductivityUnit" /> to <see cref="ElectricConductivity" />.
         /// </summary>

@@ -414,7 +414,6 @@ namespace UnitsNet
             return usteaspoons.HasValue ? FromUsTeaspoons(usteaspoons.Value) : default(Volume?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VolumeUnit" /> to <see cref="Volume" />.
         /// </summary>

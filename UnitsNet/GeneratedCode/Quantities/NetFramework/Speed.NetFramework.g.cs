@@ -318,7 +318,6 @@ namespace UnitsNet
             return yardspersecond.HasValue ? FromYardsPerSecond(yardspersecond.Value) : default(Speed?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpeedUnit" /> to <see cref="Speed" />.
         /// </summary>

@@ -94,7 +94,6 @@ namespace UnitsNet
             return voltamperes.HasValue ? FromVoltamperes(voltamperes.Value) : default(ApparentPower?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ApparentPowerUnit" /> to <see cref="ApparentPower" />.
         /// </summary>

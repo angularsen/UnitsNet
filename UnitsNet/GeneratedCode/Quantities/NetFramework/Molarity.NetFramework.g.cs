@@ -126,7 +126,6 @@ namespace UnitsNet
             return picomolesperliter.HasValue ? FromPicomolesPerLiter(picomolesperliter.Value) : default(Molarity?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarityUnit" /> to <see cref="Molarity" />.
         /// </summary>

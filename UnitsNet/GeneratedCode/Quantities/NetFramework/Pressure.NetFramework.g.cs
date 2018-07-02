@@ -366,7 +366,6 @@ namespace UnitsNet
             return torrs.HasValue ? FromTorrs(torrs.Value) : default(Pressure?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PressureUnit" /> to <see cref="Pressure" />.
         /// </summary>

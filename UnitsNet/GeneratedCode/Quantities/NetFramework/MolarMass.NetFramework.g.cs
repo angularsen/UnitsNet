@@ -158,7 +158,6 @@ namespace UnitsNet
             return poundspermole.HasValue ? FromPoundsPerMole(poundspermole.Value) : default(MolarMass?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarMassUnit" /> to <see cref="MolarMass" />.
         /// </summary>

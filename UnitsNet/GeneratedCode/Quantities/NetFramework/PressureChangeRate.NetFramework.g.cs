@@ -94,7 +94,6 @@ namespace UnitsNet
             return pascalspersecond.HasValue ? FromPascalsPerSecond(pascalspersecond.Value) : default(PressureChangeRate?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PressureChangeRateUnit" /> to <see cref="PressureChangeRate" />.
         /// </summary>

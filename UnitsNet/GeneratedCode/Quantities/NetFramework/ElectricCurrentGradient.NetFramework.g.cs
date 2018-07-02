@@ -70,7 +70,6 @@ namespace UnitsNet
             return amperespersecond.HasValue ? FromAmperesPerSecond(amperespersecond.Value) : default(ElectricCurrentGradient?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentGradientUnit" /> to <see cref="ElectricCurrentGradient" />.
         /// </summary>

@@ -166,7 +166,6 @@ namespace UnitsNet
             return ussurveysquarefeet.HasValue ? FromUsSurveySquareFeet(ussurveysquarefeet.Value) : default(Area?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AreaUnit" /> to <see cref="Area" />.
         /// </summary>

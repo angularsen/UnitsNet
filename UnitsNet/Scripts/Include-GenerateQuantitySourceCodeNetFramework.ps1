@@ -114,7 +114,6 @@ namespace UnitsNet
         }
 
 "@; }@"
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="$unitEnumName" /> to <see cref="$quantityName" />.
         /// </summary>

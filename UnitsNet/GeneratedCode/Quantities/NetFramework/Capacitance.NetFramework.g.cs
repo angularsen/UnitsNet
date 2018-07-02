@@ -70,7 +70,6 @@ namespace UnitsNet
             return farads.HasValue ? FromFarads(farads.Value) : default(Capacitance?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="CapacitanceUnit" /> to <see cref="Capacitance" />.
         /// </summary>

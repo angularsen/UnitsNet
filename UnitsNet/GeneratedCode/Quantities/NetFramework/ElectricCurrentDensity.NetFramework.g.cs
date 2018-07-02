@@ -70,7 +70,6 @@ namespace UnitsNet
             return amperespersquaremeter.HasValue ? FromAmperesPerSquareMeter(amperespersquaremeter.Value) : default(ElectricCurrentDensity?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentDensityUnit" /> to <see cref="ElectricCurrentDensity" />.
         /// </summary>

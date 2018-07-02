@@ -70,7 +70,6 @@ namespace UnitsNet
             return henriespermeter.HasValue ? FromHenriesPerMeter(henriespermeter.Value) : default(Permeability?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PermeabilityUnit" /> to <see cref="Permeability" />.
         /// </summary>

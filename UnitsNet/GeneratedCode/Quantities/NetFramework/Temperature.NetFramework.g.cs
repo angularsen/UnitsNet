@@ -126,7 +126,6 @@ namespace UnitsNet
             return kelvins.HasValue ? FromKelvins(kelvins.Value) : default(Temperature?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureUnit" /> to <see cref="Temperature" />.
         /// </summary>

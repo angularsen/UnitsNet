@@ -126,7 +126,6 @@ namespace UnitsNet
             return megajoulesperkilogramkelvin.HasValue ? FromMegajoulesPerKilogramKelvin(megajoulesperkilogramkelvin.Value) : default(SpecificEntropy?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificEntropyUnit" /> to <see cref="SpecificEntropy" />.
         /// </summary>

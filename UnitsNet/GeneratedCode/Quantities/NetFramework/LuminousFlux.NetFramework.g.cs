@@ -70,7 +70,6 @@ namespace UnitsNet
             return lumens.HasValue ? FromLumens(lumens.Value) : default(LuminousFlux?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LuminousFluxUnit" /> to <see cref="LuminousFlux" />.
         /// </summary>

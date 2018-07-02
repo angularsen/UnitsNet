@@ -78,7 +78,6 @@ namespace UnitsNet
             return nepers.HasValue ? FromNepers(nepers.Value) : default(Level?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LevelUnit" /> to <see cref="Level" />.
         /// </summary>

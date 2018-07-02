@@ -70,7 +70,6 @@ namespace UnitsNet
             return coulombspercubicmeter.HasValue ? FromCoulombsPerCubicMeter(coulombspercubicmeter.Value) : default(ElectricChargeDensity?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricChargeDensityUnit" /> to <see cref="ElectricChargeDensity" />.
         /// </summary>

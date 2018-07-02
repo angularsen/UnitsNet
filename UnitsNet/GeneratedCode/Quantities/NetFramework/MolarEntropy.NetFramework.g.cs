@@ -86,7 +86,6 @@ namespace UnitsNet
             return megajoulespermolekelvin.HasValue ? FromMegajoulesPerMoleKelvin(megajoulespermolekelvin.Value) : default(MolarEntropy?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarEntropyUnit" /> to <see cref="MolarEntropy" />.
         /// </summary>

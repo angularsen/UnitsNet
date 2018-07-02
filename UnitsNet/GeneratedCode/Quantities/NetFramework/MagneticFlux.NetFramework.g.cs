@@ -70,7 +70,6 @@ namespace UnitsNet
             return webers.HasValue ? FromWebers(webers.Value) : default(MagneticFlux?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MagneticFluxUnit" /> to <see cref="MagneticFlux" />.
         /// </summary>

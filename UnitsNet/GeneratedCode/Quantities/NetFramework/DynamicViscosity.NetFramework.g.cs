@@ -110,7 +110,6 @@ namespace UnitsNet
             return poise.HasValue ? FromPoise(poise.Value) : default(DynamicViscosity?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="DynamicViscosityUnit" /> to <see cref="DynamicViscosity" />.
         /// </summary>

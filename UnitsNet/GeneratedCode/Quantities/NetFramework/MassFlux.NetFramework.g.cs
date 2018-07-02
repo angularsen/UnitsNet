@@ -78,7 +78,6 @@ namespace UnitsNet
             return kilogramspersecondpersquaremeter.HasValue ? FromKilogramsPerSecondPerSquareMeter(kilogramspersecondpersquaremeter.Value) : default(MassFlux?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassFluxUnit" /> to <see cref="MassFlux" />.
         /// </summary>

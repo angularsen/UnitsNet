@@ -110,7 +110,6 @@ namespace UnitsNet
             return percent.HasValue ? FromPercent(percent.Value) : default(Ratio?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="RatioUnit" /> to <see cref="Ratio" />.
         /// </summary>

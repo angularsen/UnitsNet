@@ -174,7 +174,6 @@ namespace UnitsNet
             return poundmoles.HasValue ? FromPoundMoles(poundmoles.Value) : default(AmountOfSubstance?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AmountOfSubstanceUnit" /> to <see cref="AmountOfSubstance" />.
         /// </summary>

@@ -270,7 +270,6 @@ namespace UnitsNet
             return terabytespersecond.HasValue ? FromTerabytesPerSecond(terabytespersecond.Value) : default(BitRate?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="BitRateUnit" /> to <see cref="BitRate" />.
         /// </summary>

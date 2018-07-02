@@ -86,7 +86,6 @@ namespace UnitsNet
             return voltamperehours.HasValue ? FromVoltampereHours(voltamperehours.Value) : default(ApparentEnergy?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ApparentEnergyUnit" /> to <see cref="ApparentEnergy" />.
         /// </summary>

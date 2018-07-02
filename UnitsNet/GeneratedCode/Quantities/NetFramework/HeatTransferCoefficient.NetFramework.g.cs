@@ -78,7 +78,6 @@ namespace UnitsNet
             return wattspersquaremeterkelvin.HasValue ? FromWattsPerSquareMeterKelvin(wattspersquaremeterkelvin.Value) : default(HeatTransferCoefficient?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="HeatTransferCoefficientUnit" /> to <see cref="HeatTransferCoefficient" />.
         /// </summary>

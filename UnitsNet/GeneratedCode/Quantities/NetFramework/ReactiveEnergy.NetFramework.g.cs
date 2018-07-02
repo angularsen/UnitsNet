@@ -86,7 +86,6 @@ namespace UnitsNet
             return voltamperereactivehours.HasValue ? FromVoltampereReactiveHours(voltamperereactivehours.Value) : default(ReactiveEnergy?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ReactiveEnergyUnit" /> to <see cref="ReactiveEnergy" />.
         /// </summary>

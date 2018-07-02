@@ -70,7 +70,6 @@ namespace UnitsNet
             return degreescelciusperkilometer.HasValue ? FromDegreesCelciusPerKilometer(degreescelciusperkilometer.Value) : default(LapseRate?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LapseRateUnit" /> to <see cref="LapseRate" />.
         /// </summary>

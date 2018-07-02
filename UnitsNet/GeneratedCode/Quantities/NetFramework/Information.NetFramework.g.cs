@@ -270,7 +270,6 @@ namespace UnitsNet
             return terabytes.HasValue ? FromTerabytes(terabytes.Value) : default(Information?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="InformationUnit" /> to <see cref="Information" />.
         /// </summary>

@@ -102,7 +102,6 @@ namespace UnitsNet
             return squaremeterkelvinsperkilowatt.HasValue ? FromSquareMeterKelvinsPerKilowatt(squaremeterkelvinsperkilowatt.Value) : default(ThermalResistance?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ThermalResistanceUnit" /> to <see cref="ThermalResistance" />.
         /// </summary>

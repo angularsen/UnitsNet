@@ -198,7 +198,6 @@ namespace UnitsNet
             return tonnesforcepercubicmillimeter.HasValue ? FromTonnesForcePerCubicMillimeter(tonnesforcepercubicmillimeter.Value) : default(SpecificWeight?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificWeightUnit" /> to <see cref="SpecificWeight" />.
         /// </summary>

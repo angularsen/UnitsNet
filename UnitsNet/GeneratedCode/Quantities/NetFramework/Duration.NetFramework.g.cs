@@ -158,7 +158,6 @@ namespace UnitsNet
             return years365.HasValue ? FromYears365(years365.Value) : default(Duration?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="DurationUnit" /> to <see cref="Duration" />.
         /// </summary>

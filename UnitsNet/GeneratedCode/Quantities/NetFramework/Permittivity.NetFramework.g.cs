@@ -70,7 +70,6 @@ namespace UnitsNet
             return faradspermeter.HasValue ? FromFaradsPerMeter(faradspermeter.Value) : default(Permittivity?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PermittivityUnit" /> to <see cref="Permittivity" />.
         /// </summary>

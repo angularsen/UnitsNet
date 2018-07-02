@@ -230,7 +230,6 @@ namespace UnitsNet
             return tonnes.HasValue ? FromTonnes(tonnes.Value) : default(Mass?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassUnit" /> to <see cref="Mass" />.
         /// </summary>

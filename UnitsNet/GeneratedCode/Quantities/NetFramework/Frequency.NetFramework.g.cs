@@ -126,7 +126,6 @@ namespace UnitsNet
             return terahertz.HasValue ? FromTerahertz(terahertz.Value) : default(Frequency?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="FrequencyUnit" /> to <see cref="Frequency" />.
         /// </summary>

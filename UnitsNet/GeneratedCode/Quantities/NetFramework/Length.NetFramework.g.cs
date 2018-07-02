@@ -238,7 +238,6 @@ namespace UnitsNet
             return yards.HasValue ? FromYards(yards.Value) : default(Length?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LengthUnit" /> to <see cref="Length" />.
         /// </summary>

@@ -70,7 +70,6 @@ namespace UnitsNet
             return internationalunits.HasValue ? FromInternationalUnits(internationalunits.Value) : default(VitaminA?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VitaminAUnit" /> to <see cref="VitaminA" />.
         /// </summary>

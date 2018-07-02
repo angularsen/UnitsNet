@@ -94,7 +94,6 @@ namespace UnitsNet
             return siemens.HasValue ? FromSiemens(siemens.Value) : default(ElectricAdmittance?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricAdmittanceUnit" /> to <see cref="ElectricAdmittance" />.
         /// </summary>

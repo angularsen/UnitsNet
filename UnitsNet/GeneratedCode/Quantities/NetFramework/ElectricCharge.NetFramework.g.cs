@@ -70,7 +70,6 @@ namespace UnitsNet
             return coulombs.HasValue ? FromCoulombs(coulombs.Value) : default(ElectricCharge?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricChargeUnit" /> to <see cref="ElectricCharge" />.
         /// </summary>

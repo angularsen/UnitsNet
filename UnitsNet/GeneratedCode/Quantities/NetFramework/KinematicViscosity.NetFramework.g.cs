@@ -126,7 +126,6 @@ namespace UnitsNet
             return stokes.HasValue ? FromStokes(stokes.Value) : default(KinematicViscosity?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="KinematicViscosityUnit" /> to <see cref="KinematicViscosity" />.
         /// </summary>

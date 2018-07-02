@@ -118,7 +118,6 @@ namespace UnitsNet
             return picoamperes.HasValue ? FromPicoamperes(picoamperes.Value) : default(ElectricCurrent?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentUnit" /> to <see cref="ElectricCurrent" />.
         /// </summary>

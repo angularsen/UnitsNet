@@ -190,7 +190,6 @@ namespace UnitsNet
             return kelvinsdelta.HasValue ? FromKelvinsDelta(kelvinsdelta.Value) : default(TemperatureDelta?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureDeltaUnit" /> to <see cref="TemperatureDelta" />.
         /// </summary>

@@ -86,7 +86,6 @@ namespace UnitsNet
             return poundsperfoot.HasValue ? FromPoundsPerFoot(poundsperfoot.Value) : default(LinearDensity?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LinearDensityUnit" /> to <see cref="LinearDensity" />.
         /// </summary>

@@ -238,7 +238,6 @@ namespace UnitsNet
             return watthours.HasValue ? FromWattHours(watthours.Value) : default(Energy?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="EnergyUnit" /> to <see cref="Energy" />.
         /// </summary>

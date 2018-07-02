@@ -78,7 +78,6 @@ namespace UnitsNet
             return wattspermeterkelvin.HasValue ? FromWattsPerMeterKelvin(wattspermeterkelvin.Value) : default(ThermalConductivity?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ThermalConductivityUnit" /> to <see cref="ThermalConductivity" />.
         /// </summary>

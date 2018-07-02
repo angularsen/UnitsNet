@@ -366,7 +366,6 @@ namespace UnitsNet
             return tonnespercubicmillimeter.HasValue ? FromTonnesPerCubicMillimeter(tonnespercubicmillimeter.Value) : default(Density?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="DensityUnit" /> to <see cref="Density" />.
         /// </summary>

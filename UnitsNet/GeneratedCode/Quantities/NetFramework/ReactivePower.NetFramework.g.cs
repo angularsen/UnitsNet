@@ -94,7 +94,6 @@ namespace UnitsNet
             return voltamperesreactive.HasValue ? FromVoltamperesReactive(voltamperesreactive.Value) : default(ReactivePower?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ReactivePowerUnit" /> to <see cref="ReactivePower" />.
         /// </summary>

@@ -70,7 +70,6 @@ namespace UnitsNet
             return voltspermeter.HasValue ? FromVoltsPerMeter(voltspermeter.Value) : default(ElectricField?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricFieldUnit" /> to <see cref="ElectricField" />.
         /// </summary>

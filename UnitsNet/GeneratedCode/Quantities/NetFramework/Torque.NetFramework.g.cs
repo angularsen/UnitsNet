@@ -230,7 +230,6 @@ namespace UnitsNet
             return tonneforcemillimeters.HasValue ? FromTonneForceMillimeters(tonneforcemillimeters.Value) : default(Torque?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TorqueUnit" /> to <see cref="Torque" />.
         /// </summary>

@@ -70,7 +70,6 @@ namespace UnitsNet
             return candela.HasValue ? FromCandela(candela.Value) : default(LuminousIntensity?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LuminousIntensityUnit" /> to <see cref="LuminousIntensity" />.
         /// </summary>

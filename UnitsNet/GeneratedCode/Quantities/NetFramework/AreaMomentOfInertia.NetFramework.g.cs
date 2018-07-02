@@ -110,7 +110,6 @@ namespace UnitsNet
             return millimeterstothefourth.HasValue ? FromMillimetersToTheFourth(millimeterstothefourth.Value) : default(AreaMomentOfInertia?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AreaMomentOfInertiaUnit" /> to <see cref="AreaMomentOfInertia" />.
         /// </summary>

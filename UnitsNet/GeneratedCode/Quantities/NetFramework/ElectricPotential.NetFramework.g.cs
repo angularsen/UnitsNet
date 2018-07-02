@@ -102,7 +102,6 @@ namespace UnitsNet
             return volts.HasValue ? FromVolts(volts.Value) : default(ElectricPotential?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialUnit" /> to <see cref="ElectricPotential" />.
         /// </summary>

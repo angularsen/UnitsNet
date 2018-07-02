@@ -70,7 +70,6 @@ namespace UnitsNet
             return teslas.HasValue ? FromTeslas(teslas.Value) : default(MagneticField?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MagneticFieldUnit" /> to <see cref="MagneticField" />.
         /// </summary>

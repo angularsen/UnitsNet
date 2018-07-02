@@ -70,7 +70,6 @@ namespace UnitsNet
             return amperespermeter.HasValue ? FromAmperesPerMeter(amperespermeter.Value) : default(Magnetization?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MagnetizationUnit" /> to <see cref="Magnetization" />.
         /// </summary>

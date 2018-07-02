@@ -142,7 +142,6 @@ namespace UnitsNet
             return tonnesforce.HasValue ? FromTonnesForce(tonnesforce.Value) : default(Force?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ForceUnit" /> to <see cref="Force" />.
         /// </summary>

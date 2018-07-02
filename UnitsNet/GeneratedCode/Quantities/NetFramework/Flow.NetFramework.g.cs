@@ -254,7 +254,6 @@ namespace UnitsNet
             return usgallonspersecond.HasValue ? FromUsGallonsPerSecond(usgallonspersecond.Value) : default(Flow?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="FlowUnit" /> to <see cref="Flow" />.
         /// </summary>

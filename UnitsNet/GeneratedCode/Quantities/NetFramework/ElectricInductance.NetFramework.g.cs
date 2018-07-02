@@ -70,7 +70,6 @@ namespace UnitsNet
             return henries.HasValue ? FromHenries(henries.Value) : default(ElectricInductance?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricInductanceUnit" /> to <see cref="ElectricInductance" />.
         /// </summary>

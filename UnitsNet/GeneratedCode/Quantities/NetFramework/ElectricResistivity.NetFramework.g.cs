@@ -94,7 +94,6 @@ namespace UnitsNet
             return ohmmeters.HasValue ? FromOhmMeters(ohmmeters.Value) : default(ElectricResistivity?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricResistivityUnit" /> to <see cref="ElectricResistivity" />.
         /// </summary>

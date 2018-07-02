@@ -94,7 +94,6 @@ namespace UnitsNet
             return millilux.HasValue ? FromMillilux(millilux.Value) : default(Illuminance?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="IlluminanceUnit" /> to <see cref="Illuminance" />.
         /// </summary>

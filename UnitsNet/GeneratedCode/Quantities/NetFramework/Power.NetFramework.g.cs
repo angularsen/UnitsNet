@@ -222,7 +222,6 @@ namespace UnitsNet
             return watts.HasValue ? FromWatts(watts.Value) : default(Power?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PowerUnit" /> to <see cref="Power" />.
         /// </summary>

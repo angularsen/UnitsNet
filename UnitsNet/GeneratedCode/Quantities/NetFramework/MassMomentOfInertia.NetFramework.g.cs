@@ -270,7 +270,6 @@ namespace UnitsNet
             return tonnesquaremilimeters.HasValue ? FromTonneSquareMilimeters(tonnesquaremilimeters.Value) : default(MassMomentOfInertia?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassMomentOfInertiaUnit" /> to <see cref="MassMomentOfInertia" />.
         /// </summary>

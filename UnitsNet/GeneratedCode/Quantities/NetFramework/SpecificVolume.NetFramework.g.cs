@@ -70,7 +70,6 @@ namespace UnitsNet
             return cubicmetersperkilogram.HasValue ? FromCubicMetersPerKilogram(cubicmetersperkilogram.Value) : default(SpecificVolume?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificVolumeUnit" /> to <see cref="SpecificVolume" />.
         /// </summary>

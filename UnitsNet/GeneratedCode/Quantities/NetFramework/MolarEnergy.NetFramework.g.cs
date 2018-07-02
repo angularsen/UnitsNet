@@ -86,7 +86,6 @@ namespace UnitsNet
             return megajoulespermole.HasValue ? FromMegajoulesPerMole(megajoulespermole.Value) : default(MolarEnergy?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarEnergyUnit" /> to <see cref="MolarEnergy" />.
         /// </summary>

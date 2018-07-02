@@ -86,7 +86,6 @@ namespace UnitsNet
             return poundspermechanicalhorsepowerhour.HasValue ? FromPoundsPerMechanicalHorsepowerHour(poundspermechanicalhorsepowerhour.Value) : default(BrakeSpecificFuelConsumption?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="BrakeSpecificFuelConsumptionUnit" /> to <see cref="BrakeSpecificFuelConsumption" />.
         /// </summary>

@@ -142,7 +142,6 @@ namespace UnitsNet
             return nanodegreescelsiuspersecond.HasValue ? FromNanodegreesCelsiusPerSecond(nanodegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="TemperatureChangeRateUnit" /> to <see cref="TemperatureChangeRate" />.
         /// </summary>

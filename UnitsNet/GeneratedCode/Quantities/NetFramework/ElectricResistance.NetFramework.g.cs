@@ -94,7 +94,6 @@ namespace UnitsNet
             return ohms.HasValue ? FromOhms(ohms.Value) : default(ElectricResistance?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricResistanceUnit" /> to <see cref="ElectricResistance" />.
         /// </summary>

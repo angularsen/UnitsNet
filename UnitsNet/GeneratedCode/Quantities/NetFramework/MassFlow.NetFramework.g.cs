@@ -182,7 +182,6 @@ namespace UnitsNet
             return tonnesperhour.HasValue ? FromTonnesPerHour(tonnesperhour.Value) : default(MassFlow?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MassFlowUnit" /> to <see cref="MassFlow" />.
         /// </summary>

@@ -126,7 +126,6 @@ namespace UnitsNet
             return watthoursperkilogram.HasValue ? FromWattHoursPerKilogram(watthoursperkilogram.Value) : default(SpecificEnergy?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificEnergyUnit" /> to <see cref="SpecificEnergy" />.
         /// </summary>

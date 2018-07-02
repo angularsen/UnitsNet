@@ -86,7 +86,6 @@ namespace UnitsNet
             return watthourspersquaremeter.HasValue ? FromWattHoursPerSquareMeter(watthourspersquaremeter.Value) : default(Irradiation?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="IrradiationUnit" /> to <see cref="Irradiation" />.
         /// </summary>

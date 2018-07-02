@@ -190,7 +190,6 @@ namespace UnitsNet
             return wattspersquaremeter.HasValue ? FromWattsPerSquareMeter(wattspersquaremeter.Value) : default(HeatFlux?);
         }
 
-
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="HeatFluxUnit" /> to <see cref="HeatFlux" />.
         /// </summary>
