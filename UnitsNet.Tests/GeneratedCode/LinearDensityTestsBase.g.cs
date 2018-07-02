@@ -89,6 +89,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
+
+            var grampermeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.GramPerMeter);
+            AssertEx.EqualTolerance(GramsPerMeterInOneKilogramPerMeter, (double)grampermeterQuantity.Value, GramsPerMeterTolerance);
+            Assert.Equal(LinearDensityUnit.GramPerMeter, grampermeterQuantity.Unit);
+
+            var kilogrampermeterQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.KilogramPerMeter);
+            AssertEx.EqualTolerance(KilogramsPerMeterInOneKilogramPerMeter, (double)kilogrampermeterQuantity.Value, KilogramsPerMeterTolerance);
+            Assert.Equal(LinearDensityUnit.KilogramPerMeter, kilogrampermeterQuantity.Unit);
+
+            var poundperfootQuantity = kilogrampermeter.ToUnit(LinearDensityUnit.PoundPerFoot);
+            AssertEx.EqualTolerance(PoundsPerFootInOneKilogramPerMeter, (double)poundperfootQuantity.Value, PoundsPerFootTolerance);
+            Assert.Equal(LinearDensityUnit.PoundPerFoot, poundperfootQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             LinearDensity kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);

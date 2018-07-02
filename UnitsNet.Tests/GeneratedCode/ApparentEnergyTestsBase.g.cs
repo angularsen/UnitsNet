@@ -89,6 +89,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var voltamperehour = ApparentEnergy.FromVoltampereHours(1);
+
+            var kilovoltamperehourQuantity = voltamperehour.ToUnit(ApparentEnergyUnit.KilovoltampereHour);
+            AssertEx.EqualTolerance(KilovoltampereHoursInOneVoltampereHour, (double)kilovoltamperehourQuantity.Value, KilovoltampereHoursTolerance);
+            Assert.Equal(ApparentEnergyUnit.KilovoltampereHour, kilovoltamperehourQuantity.Unit);
+
+            var megavoltamperehourQuantity = voltamperehour.ToUnit(ApparentEnergyUnit.MegavoltampereHour);
+            AssertEx.EqualTolerance(MegavoltampereHoursInOneVoltampereHour, (double)megavoltamperehourQuantity.Value, MegavoltampereHoursTolerance);
+            Assert.Equal(ApparentEnergyUnit.MegavoltampereHour, megavoltamperehourQuantity.Unit);
+
+            var voltamperehourQuantity = voltamperehour.ToUnit(ApparentEnergyUnit.VoltampereHour);
+            AssertEx.EqualTolerance(VoltampereHoursInOneVoltampereHour, (double)voltamperehourQuantity.Value, VoltampereHoursTolerance);
+            Assert.Equal(ApparentEnergyUnit.VoltampereHour, voltamperehourQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             ApparentEnergy voltamperehour = ApparentEnergy.FromVoltampereHours(1);

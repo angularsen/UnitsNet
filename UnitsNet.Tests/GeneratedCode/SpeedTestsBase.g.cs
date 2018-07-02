@@ -234,6 +234,140 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var meterpersecond = Speed.FromMetersPerSecond(1);
+
+            var centimeterperhourQuantity = meterpersecond.ToUnit(SpeedUnit.CentimeterPerHour);
+            AssertEx.EqualTolerance(CentimetersPerHourInOneMeterPerSecond, (double)centimeterperhourQuantity.Value, CentimetersPerHourTolerance);
+            Assert.Equal(SpeedUnit.CentimeterPerHour, centimeterperhourQuantity.Unit);
+
+            var centimeterperminuteQuantity = meterpersecond.ToUnit(SpeedUnit.CentimeterPerMinute);
+            AssertEx.EqualTolerance(CentimetersPerMinutesInOneMeterPerSecond, (double)centimeterperminuteQuantity.Value, CentimetersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.CentimeterPerMinute, centimeterperminuteQuantity.Unit);
+
+            var centimeterpersecondQuantity = meterpersecond.ToUnit(SpeedUnit.CentimeterPerSecond);
+            AssertEx.EqualTolerance(CentimetersPerSecondInOneMeterPerSecond, (double)centimeterpersecondQuantity.Value, CentimetersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.CentimeterPerSecond, centimeterpersecondQuantity.Unit);
+
+            var decimeterperminuteQuantity = meterpersecond.ToUnit(SpeedUnit.DecimeterPerMinute);
+            AssertEx.EqualTolerance(DecimetersPerMinutesInOneMeterPerSecond, (double)decimeterperminuteQuantity.Value, DecimetersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.DecimeterPerMinute, decimeterperminuteQuantity.Unit);
+
+            var decimeterpersecondQuantity = meterpersecond.ToUnit(SpeedUnit.DecimeterPerSecond);
+            AssertEx.EqualTolerance(DecimetersPerSecondInOneMeterPerSecond, (double)decimeterpersecondQuantity.Value, DecimetersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.DecimeterPerSecond, decimeterpersecondQuantity.Unit);
+
+            var footperhourQuantity = meterpersecond.ToUnit(SpeedUnit.FootPerHour);
+            AssertEx.EqualTolerance(FeetPerHourInOneMeterPerSecond, (double)footperhourQuantity.Value, FeetPerHourTolerance);
+            Assert.Equal(SpeedUnit.FootPerHour, footperhourQuantity.Unit);
+
+            var footperminuteQuantity = meterpersecond.ToUnit(SpeedUnit.FootPerMinute);
+            AssertEx.EqualTolerance(FeetPerMinuteInOneMeterPerSecond, (double)footperminuteQuantity.Value, FeetPerMinuteTolerance);
+            Assert.Equal(SpeedUnit.FootPerMinute, footperminuteQuantity.Unit);
+
+            var footpersecondQuantity = meterpersecond.ToUnit(SpeedUnit.FootPerSecond);
+            AssertEx.EqualTolerance(FeetPerSecondInOneMeterPerSecond, (double)footpersecondQuantity.Value, FeetPerSecondTolerance);
+            Assert.Equal(SpeedUnit.FootPerSecond, footpersecondQuantity.Unit);
+
+            var inchperhourQuantity = meterpersecond.ToUnit(SpeedUnit.InchPerHour);
+            AssertEx.EqualTolerance(InchesPerHourInOneMeterPerSecond, (double)inchperhourQuantity.Value, InchesPerHourTolerance);
+            Assert.Equal(SpeedUnit.InchPerHour, inchperhourQuantity.Unit);
+
+            var inchperminuteQuantity = meterpersecond.ToUnit(SpeedUnit.InchPerMinute);
+            AssertEx.EqualTolerance(InchesPerMinuteInOneMeterPerSecond, (double)inchperminuteQuantity.Value, InchesPerMinuteTolerance);
+            Assert.Equal(SpeedUnit.InchPerMinute, inchperminuteQuantity.Unit);
+
+            var inchpersecondQuantity = meterpersecond.ToUnit(SpeedUnit.InchPerSecond);
+            AssertEx.EqualTolerance(InchesPerSecondInOneMeterPerSecond, (double)inchpersecondQuantity.Value, InchesPerSecondTolerance);
+            Assert.Equal(SpeedUnit.InchPerSecond, inchpersecondQuantity.Unit);
+
+            var kilometerperhourQuantity = meterpersecond.ToUnit(SpeedUnit.KilometerPerHour);
+            AssertEx.EqualTolerance(KilometersPerHourInOneMeterPerSecond, (double)kilometerperhourQuantity.Value, KilometersPerHourTolerance);
+            Assert.Equal(SpeedUnit.KilometerPerHour, kilometerperhourQuantity.Unit);
+
+            var kilometerperminuteQuantity = meterpersecond.ToUnit(SpeedUnit.KilometerPerMinute);
+            AssertEx.EqualTolerance(KilometersPerMinutesInOneMeterPerSecond, (double)kilometerperminuteQuantity.Value, KilometersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.KilometerPerMinute, kilometerperminuteQuantity.Unit);
+
+            var kilometerpersecondQuantity = meterpersecond.ToUnit(SpeedUnit.KilometerPerSecond);
+            AssertEx.EqualTolerance(KilometersPerSecondInOneMeterPerSecond, (double)kilometerpersecondQuantity.Value, KilometersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.KilometerPerSecond, kilometerpersecondQuantity.Unit);
+
+            var knotQuantity = meterpersecond.ToUnit(SpeedUnit.Knot);
+            AssertEx.EqualTolerance(KnotsInOneMeterPerSecond, (double)knotQuantity.Value, KnotsTolerance);
+            Assert.Equal(SpeedUnit.Knot, knotQuantity.Unit);
+
+            var meterperhourQuantity = meterpersecond.ToUnit(SpeedUnit.MeterPerHour);
+            AssertEx.EqualTolerance(MetersPerHourInOneMeterPerSecond, (double)meterperhourQuantity.Value, MetersPerHourTolerance);
+            Assert.Equal(SpeedUnit.MeterPerHour, meterperhourQuantity.Unit);
+
+            var meterperminuteQuantity = meterpersecond.ToUnit(SpeedUnit.MeterPerMinute);
+            AssertEx.EqualTolerance(MetersPerMinutesInOneMeterPerSecond, (double)meterperminuteQuantity.Value, MetersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.MeterPerMinute, meterperminuteQuantity.Unit);
+
+            var meterpersecondQuantity = meterpersecond.ToUnit(SpeedUnit.MeterPerSecond);
+            AssertEx.EqualTolerance(MetersPerSecondInOneMeterPerSecond, (double)meterpersecondQuantity.Value, MetersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.MeterPerSecond, meterpersecondQuantity.Unit);
+
+            var micrometerperminuteQuantity = meterpersecond.ToUnit(SpeedUnit.MicrometerPerMinute);
+            AssertEx.EqualTolerance(MicrometersPerMinutesInOneMeterPerSecond, (double)micrometerperminuteQuantity.Value, MicrometersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.MicrometerPerMinute, micrometerperminuteQuantity.Unit);
+
+            var micrometerpersecondQuantity = meterpersecond.ToUnit(SpeedUnit.MicrometerPerSecond);
+            AssertEx.EqualTolerance(MicrometersPerSecondInOneMeterPerSecond, (double)micrometerpersecondQuantity.Value, MicrometersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.MicrometerPerSecond, micrometerpersecondQuantity.Unit);
+
+            var mileperhourQuantity = meterpersecond.ToUnit(SpeedUnit.MilePerHour);
+            AssertEx.EqualTolerance(MilesPerHourInOneMeterPerSecond, (double)mileperhourQuantity.Value, MilesPerHourTolerance);
+            Assert.Equal(SpeedUnit.MilePerHour, mileperhourQuantity.Unit);
+
+            var millimeterperhourQuantity = meterpersecond.ToUnit(SpeedUnit.MillimeterPerHour);
+            AssertEx.EqualTolerance(MillimetersPerHourInOneMeterPerSecond, (double)millimeterperhourQuantity.Value, MillimetersPerHourTolerance);
+            Assert.Equal(SpeedUnit.MillimeterPerHour, millimeterperhourQuantity.Unit);
+
+            var millimeterperminuteQuantity = meterpersecond.ToUnit(SpeedUnit.MillimeterPerMinute);
+            AssertEx.EqualTolerance(MillimetersPerMinutesInOneMeterPerSecond, (double)millimeterperminuteQuantity.Value, MillimetersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.MillimeterPerMinute, millimeterperminuteQuantity.Unit);
+
+            var millimeterpersecondQuantity = meterpersecond.ToUnit(SpeedUnit.MillimeterPerSecond);
+            AssertEx.EqualTolerance(MillimetersPerSecondInOneMeterPerSecond, (double)millimeterpersecondQuantity.Value, MillimetersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.MillimeterPerSecond, millimeterpersecondQuantity.Unit);
+
+            var nanometerperminuteQuantity = meterpersecond.ToUnit(SpeedUnit.NanometerPerMinute);
+            AssertEx.EqualTolerance(NanometersPerMinutesInOneMeterPerSecond, (double)nanometerperminuteQuantity.Value, NanometersPerMinutesTolerance);
+            Assert.Equal(SpeedUnit.NanometerPerMinute, nanometerperminuteQuantity.Unit);
+
+            var nanometerpersecondQuantity = meterpersecond.ToUnit(SpeedUnit.NanometerPerSecond);
+            AssertEx.EqualTolerance(NanometersPerSecondInOneMeterPerSecond, (double)nanometerpersecondQuantity.Value, NanometersPerSecondTolerance);
+            Assert.Equal(SpeedUnit.NanometerPerSecond, nanometerpersecondQuantity.Unit);
+
+            var ussurveyfootperhourQuantity = meterpersecond.ToUnit(SpeedUnit.UsSurveyFootPerHour);
+            AssertEx.EqualTolerance(UsSurveyFeetPerHourInOneMeterPerSecond, (double)ussurveyfootperhourQuantity.Value, UsSurveyFeetPerHourTolerance);
+            Assert.Equal(SpeedUnit.UsSurveyFootPerHour, ussurveyfootperhourQuantity.Unit);
+
+            var ussurveyfootperminuteQuantity = meterpersecond.ToUnit(SpeedUnit.UsSurveyFootPerMinute);
+            AssertEx.EqualTolerance(UsSurveyFeetPerMinuteInOneMeterPerSecond, (double)ussurveyfootperminuteQuantity.Value, UsSurveyFeetPerMinuteTolerance);
+            Assert.Equal(SpeedUnit.UsSurveyFootPerMinute, ussurveyfootperminuteQuantity.Unit);
+
+            var ussurveyfootpersecondQuantity = meterpersecond.ToUnit(SpeedUnit.UsSurveyFootPerSecond);
+            AssertEx.EqualTolerance(UsSurveyFeetPerSecondInOneMeterPerSecond, (double)ussurveyfootpersecondQuantity.Value, UsSurveyFeetPerSecondTolerance);
+            Assert.Equal(SpeedUnit.UsSurveyFootPerSecond, ussurveyfootpersecondQuantity.Unit);
+
+            var yardperhourQuantity = meterpersecond.ToUnit(SpeedUnit.YardPerHour);
+            AssertEx.EqualTolerance(YardsPerHourInOneMeterPerSecond, (double)yardperhourQuantity.Value, YardsPerHourTolerance);
+            Assert.Equal(SpeedUnit.YardPerHour, yardperhourQuantity.Unit);
+
+            var yardperminuteQuantity = meterpersecond.ToUnit(SpeedUnit.YardPerMinute);
+            AssertEx.EqualTolerance(YardsPerMinuteInOneMeterPerSecond, (double)yardperminuteQuantity.Value, YardsPerMinuteTolerance);
+            Assert.Equal(SpeedUnit.YardPerMinute, yardperminuteQuantity.Unit);
+
+            var yardpersecondQuantity = meterpersecond.ToUnit(SpeedUnit.YardPerSecond);
+            AssertEx.EqualTolerance(YardsPerSecondInOneMeterPerSecond, (double)yardpersecondQuantity.Value, YardsPerSecondTolerance);
+            Assert.Equal(SpeedUnit.YardPerSecond, yardpersecondQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Speed meterpersecond = Speed.FromMetersPerSecond(1);

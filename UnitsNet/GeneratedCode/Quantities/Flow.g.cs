@@ -1251,6 +1251,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Flow to another Flow with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Flow with the specified unit.</returns>
+        public Flow ToUnit(FlowUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Flow(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

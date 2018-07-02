@@ -540,6 +540,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this RotationalStiffness to another RotationalStiffness with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A RotationalStiffness with the specified unit.</returns>
+        public RotationalStiffness ToUnit(RotationalStiffnessUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new RotationalStiffness(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

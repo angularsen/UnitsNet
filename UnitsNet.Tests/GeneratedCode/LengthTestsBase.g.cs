@@ -184,6 +184,100 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var meter = Length.FromMeters(1);
+
+            var centimeterQuantity = meter.ToUnit(LengthUnit.Centimeter);
+            AssertEx.EqualTolerance(CentimetersInOneMeter, (double)centimeterQuantity.Value, CentimetersTolerance);
+            Assert.Equal(LengthUnit.Centimeter, centimeterQuantity.Unit);
+
+            var decimeterQuantity = meter.ToUnit(LengthUnit.Decimeter);
+            AssertEx.EqualTolerance(DecimetersInOneMeter, (double)decimeterQuantity.Value, DecimetersTolerance);
+            Assert.Equal(LengthUnit.Decimeter, decimeterQuantity.Unit);
+
+            var dtppicaQuantity = meter.ToUnit(LengthUnit.DtpPica);
+            AssertEx.EqualTolerance(DtpPicasInOneMeter, (double)dtppicaQuantity.Value, DtpPicasTolerance);
+            Assert.Equal(LengthUnit.DtpPica, dtppicaQuantity.Unit);
+
+            var dtppointQuantity = meter.ToUnit(LengthUnit.DtpPoint);
+            AssertEx.EqualTolerance(DtpPointsInOneMeter, (double)dtppointQuantity.Value, DtpPointsTolerance);
+            Assert.Equal(LengthUnit.DtpPoint, dtppointQuantity.Unit);
+
+            var fathomQuantity = meter.ToUnit(LengthUnit.Fathom);
+            AssertEx.EqualTolerance(FathomsInOneMeter, (double)fathomQuantity.Value, FathomsTolerance);
+            Assert.Equal(LengthUnit.Fathom, fathomQuantity.Unit);
+
+            var footQuantity = meter.ToUnit(LengthUnit.Foot);
+            AssertEx.EqualTolerance(FeetInOneMeter, (double)footQuantity.Value, FeetTolerance);
+            Assert.Equal(LengthUnit.Foot, footQuantity.Unit);
+
+            var inchQuantity = meter.ToUnit(LengthUnit.Inch);
+            AssertEx.EqualTolerance(InchesInOneMeter, (double)inchQuantity.Value, InchesTolerance);
+            Assert.Equal(LengthUnit.Inch, inchQuantity.Unit);
+
+            var kilometerQuantity = meter.ToUnit(LengthUnit.Kilometer);
+            AssertEx.EqualTolerance(KilometersInOneMeter, (double)kilometerQuantity.Value, KilometersTolerance);
+            Assert.Equal(LengthUnit.Kilometer, kilometerQuantity.Unit);
+
+            var meterQuantity = meter.ToUnit(LengthUnit.Meter);
+            AssertEx.EqualTolerance(MetersInOneMeter, (double)meterQuantity.Value, MetersTolerance);
+            Assert.Equal(LengthUnit.Meter, meterQuantity.Unit);
+
+            var microinchQuantity = meter.ToUnit(LengthUnit.Microinch);
+            AssertEx.EqualTolerance(MicroinchesInOneMeter, (double)microinchQuantity.Value, MicroinchesTolerance);
+            Assert.Equal(LengthUnit.Microinch, microinchQuantity.Unit);
+
+            var micrometerQuantity = meter.ToUnit(LengthUnit.Micrometer);
+            AssertEx.EqualTolerance(MicrometersInOneMeter, (double)micrometerQuantity.Value, MicrometersTolerance);
+            Assert.Equal(LengthUnit.Micrometer, micrometerQuantity.Unit);
+
+            var milQuantity = meter.ToUnit(LengthUnit.Mil);
+            AssertEx.EqualTolerance(MilsInOneMeter, (double)milQuantity.Value, MilsTolerance);
+            Assert.Equal(LengthUnit.Mil, milQuantity.Unit);
+
+            var mileQuantity = meter.ToUnit(LengthUnit.Mile);
+            AssertEx.EqualTolerance(MilesInOneMeter, (double)mileQuantity.Value, MilesTolerance);
+            Assert.Equal(LengthUnit.Mile, mileQuantity.Unit);
+
+            var millimeterQuantity = meter.ToUnit(LengthUnit.Millimeter);
+            AssertEx.EqualTolerance(MillimetersInOneMeter, (double)millimeterQuantity.Value, MillimetersTolerance);
+            Assert.Equal(LengthUnit.Millimeter, millimeterQuantity.Unit);
+
+            var nanometerQuantity = meter.ToUnit(LengthUnit.Nanometer);
+            AssertEx.EqualTolerance(NanometersInOneMeter, (double)nanometerQuantity.Value, NanometersTolerance);
+            Assert.Equal(LengthUnit.Nanometer, nanometerQuantity.Unit);
+
+            var nauticalmileQuantity = meter.ToUnit(LengthUnit.NauticalMile);
+            AssertEx.EqualTolerance(NauticalMilesInOneMeter, (double)nauticalmileQuantity.Value, NauticalMilesTolerance);
+            Assert.Equal(LengthUnit.NauticalMile, nauticalmileQuantity.Unit);
+
+            var printerpicaQuantity = meter.ToUnit(LengthUnit.PrinterPica);
+            AssertEx.EqualTolerance(PrinterPicasInOneMeter, (double)printerpicaQuantity.Value, PrinterPicasTolerance);
+            Assert.Equal(LengthUnit.PrinterPica, printerpicaQuantity.Unit);
+
+            var printerpointQuantity = meter.ToUnit(LengthUnit.PrinterPoint);
+            AssertEx.EqualTolerance(PrinterPointsInOneMeter, (double)printerpointQuantity.Value, PrinterPointsTolerance);
+            Assert.Equal(LengthUnit.PrinterPoint, printerpointQuantity.Unit);
+
+            var shackleQuantity = meter.ToUnit(LengthUnit.Shackle);
+            AssertEx.EqualTolerance(ShacklesInOneMeter, (double)shackleQuantity.Value, ShacklesTolerance);
+            Assert.Equal(LengthUnit.Shackle, shackleQuantity.Unit);
+
+            var twipQuantity = meter.ToUnit(LengthUnit.Twip);
+            AssertEx.EqualTolerance(TwipsInOneMeter, (double)twipQuantity.Value, TwipsTolerance);
+            Assert.Equal(LengthUnit.Twip, twipQuantity.Unit);
+
+            var ussurveyfootQuantity = meter.ToUnit(LengthUnit.UsSurveyFoot);
+            AssertEx.EqualTolerance(UsSurveyFeetInOneMeter, (double)ussurveyfootQuantity.Value, UsSurveyFeetTolerance);
+            Assert.Equal(LengthUnit.UsSurveyFoot, ussurveyfootQuantity.Unit);
+
+            var yardQuantity = meter.ToUnit(LengthUnit.Yard);
+            AssertEx.EqualTolerance(YardsInOneMeter, (double)yardQuantity.Value, YardsTolerance);
+            Assert.Equal(LengthUnit.Yard, yardQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Length meter = Length.FromMeters(1);

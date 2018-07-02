@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var tesla = MagneticField.FromTeslas(1);
+
+            var teslaQuantity = tesla.ToUnit(MagneticFieldUnit.Tesla);
+            AssertEx.EqualTolerance(TeslasInOneTesla, (double)teslaQuantity.Value, TeslasTolerance);
+            Assert.Equal(MagneticFieldUnit.Tesla, teslaQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             MagneticField tesla = MagneticField.FromTeslas(1);

@@ -540,6 +540,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this MolarEntropy to another MolarEntropy with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A MolarEntropy with the specified unit.</returns>
+        public MolarEntropy ToUnit(MolarEntropyUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new MolarEntropy(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

@@ -474,6 +474,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this AreaDensity to another AreaDensity with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A AreaDensity with the specified unit.</returns>
+        public AreaDensity ToUnit(AreaDensityUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new AreaDensity(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

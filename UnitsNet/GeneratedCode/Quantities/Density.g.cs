@@ -1695,6 +1695,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Density to another Density with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Density with the specified unit.</returns>
+        public Density ToUnit(DensityUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Density(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

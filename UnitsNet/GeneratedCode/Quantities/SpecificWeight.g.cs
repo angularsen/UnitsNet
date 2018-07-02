@@ -1002,6 +1002,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this SpecificWeight to another SpecificWeight with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A SpecificWeight with the specified unit.</returns>
+        public SpecificWeight ToUnit(SpecificWeightUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new SpecificWeight(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

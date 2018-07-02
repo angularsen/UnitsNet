@@ -179,6 +179,96 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var kilogram = Mass.FromKilograms(1);
+
+            var centigramQuantity = kilogram.ToUnit(MassUnit.Centigram);
+            AssertEx.EqualTolerance(CentigramsInOneKilogram, (double)centigramQuantity.Value, CentigramsTolerance);
+            Assert.Equal(MassUnit.Centigram, centigramQuantity.Unit);
+
+            var decagramQuantity = kilogram.ToUnit(MassUnit.Decagram);
+            AssertEx.EqualTolerance(DecagramsInOneKilogram, (double)decagramQuantity.Value, DecagramsTolerance);
+            Assert.Equal(MassUnit.Decagram, decagramQuantity.Unit);
+
+            var decigramQuantity = kilogram.ToUnit(MassUnit.Decigram);
+            AssertEx.EqualTolerance(DecigramsInOneKilogram, (double)decigramQuantity.Value, DecigramsTolerance);
+            Assert.Equal(MassUnit.Decigram, decigramQuantity.Unit);
+
+            var gramQuantity = kilogram.ToUnit(MassUnit.Gram);
+            AssertEx.EqualTolerance(GramsInOneKilogram, (double)gramQuantity.Value, GramsTolerance);
+            Assert.Equal(MassUnit.Gram, gramQuantity.Unit);
+
+            var hectogramQuantity = kilogram.ToUnit(MassUnit.Hectogram);
+            AssertEx.EqualTolerance(HectogramsInOneKilogram, (double)hectogramQuantity.Value, HectogramsTolerance);
+            Assert.Equal(MassUnit.Hectogram, hectogramQuantity.Unit);
+
+            var kilogramQuantity = kilogram.ToUnit(MassUnit.Kilogram);
+            AssertEx.EqualTolerance(KilogramsInOneKilogram, (double)kilogramQuantity.Value, KilogramsTolerance);
+            Assert.Equal(MassUnit.Kilogram, kilogramQuantity.Unit);
+
+            var kilopoundQuantity = kilogram.ToUnit(MassUnit.Kilopound);
+            AssertEx.EqualTolerance(KilopoundsInOneKilogram, (double)kilopoundQuantity.Value, KilopoundsTolerance);
+            Assert.Equal(MassUnit.Kilopound, kilopoundQuantity.Unit);
+
+            var kilotonneQuantity = kilogram.ToUnit(MassUnit.Kilotonne);
+            AssertEx.EqualTolerance(KilotonnesInOneKilogram, (double)kilotonneQuantity.Value, KilotonnesTolerance);
+            Assert.Equal(MassUnit.Kilotonne, kilotonneQuantity.Unit);
+
+            var longhundredweightQuantity = kilogram.ToUnit(MassUnit.LongHundredweight);
+            AssertEx.EqualTolerance(LongHundredweightInOneKilogram, (double)longhundredweightQuantity.Value, LongHundredweightTolerance);
+            Assert.Equal(MassUnit.LongHundredweight, longhundredweightQuantity.Unit);
+
+            var longtonQuantity = kilogram.ToUnit(MassUnit.LongTon);
+            AssertEx.EqualTolerance(LongTonsInOneKilogram, (double)longtonQuantity.Value, LongTonsTolerance);
+            Assert.Equal(MassUnit.LongTon, longtonQuantity.Unit);
+
+            var megapoundQuantity = kilogram.ToUnit(MassUnit.Megapound);
+            AssertEx.EqualTolerance(MegapoundsInOneKilogram, (double)megapoundQuantity.Value, MegapoundsTolerance);
+            Assert.Equal(MassUnit.Megapound, megapoundQuantity.Unit);
+
+            var megatonneQuantity = kilogram.ToUnit(MassUnit.Megatonne);
+            AssertEx.EqualTolerance(MegatonnesInOneKilogram, (double)megatonneQuantity.Value, MegatonnesTolerance);
+            Assert.Equal(MassUnit.Megatonne, megatonneQuantity.Unit);
+
+            var microgramQuantity = kilogram.ToUnit(MassUnit.Microgram);
+            AssertEx.EqualTolerance(MicrogramsInOneKilogram, (double)microgramQuantity.Value, MicrogramsTolerance);
+            Assert.Equal(MassUnit.Microgram, microgramQuantity.Unit);
+
+            var milligramQuantity = kilogram.ToUnit(MassUnit.Milligram);
+            AssertEx.EqualTolerance(MilligramsInOneKilogram, (double)milligramQuantity.Value, MilligramsTolerance);
+            Assert.Equal(MassUnit.Milligram, milligramQuantity.Unit);
+
+            var nanogramQuantity = kilogram.ToUnit(MassUnit.Nanogram);
+            AssertEx.EqualTolerance(NanogramsInOneKilogram, (double)nanogramQuantity.Value, NanogramsTolerance);
+            Assert.Equal(MassUnit.Nanogram, nanogramQuantity.Unit);
+
+            var ounceQuantity = kilogram.ToUnit(MassUnit.Ounce);
+            AssertEx.EqualTolerance(OuncesInOneKilogram, (double)ounceQuantity.Value, OuncesTolerance);
+            Assert.Equal(MassUnit.Ounce, ounceQuantity.Unit);
+
+            var poundQuantity = kilogram.ToUnit(MassUnit.Pound);
+            AssertEx.EqualTolerance(PoundsInOneKilogram, (double)poundQuantity.Value, PoundsTolerance);
+            Assert.Equal(MassUnit.Pound, poundQuantity.Unit);
+
+            var shorthundredweightQuantity = kilogram.ToUnit(MassUnit.ShortHundredweight);
+            AssertEx.EqualTolerance(ShortHundredweightInOneKilogram, (double)shorthundredweightQuantity.Value, ShortHundredweightTolerance);
+            Assert.Equal(MassUnit.ShortHundredweight, shorthundredweightQuantity.Unit);
+
+            var shorttonQuantity = kilogram.ToUnit(MassUnit.ShortTon);
+            AssertEx.EqualTolerance(ShortTonsInOneKilogram, (double)shorttonQuantity.Value, ShortTonsTolerance);
+            Assert.Equal(MassUnit.ShortTon, shorttonQuantity.Unit);
+
+            var stoneQuantity = kilogram.ToUnit(MassUnit.Stone);
+            AssertEx.EqualTolerance(StoneInOneKilogram, (double)stoneQuantity.Value, StoneTolerance);
+            Assert.Equal(MassUnit.Stone, stoneQuantity.Unit);
+
+            var tonneQuantity = kilogram.ToUnit(MassUnit.Tonne);
+            AssertEx.EqualTolerance(TonnesInOneKilogram, (double)tonneQuantity.Value, TonnesTolerance);
+            Assert.Equal(MassUnit.Tonne, tonneQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Mass kilogram = Mass.FromKilograms(1);

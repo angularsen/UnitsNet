@@ -738,6 +738,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ForcePerLength to another ForcePerLength with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ForcePerLength with the specified unit.</returns>
+        public ForcePerLength ToUnit(ForcePerLengthUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new ForcePerLength(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

@@ -540,6 +540,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ApparentEnergy to another ApparentEnergy with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ApparentEnergy with the specified unit.</returns>
+        public ApparentEnergy ToUnit(ApparentEnergyUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new ApparentEnergy(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

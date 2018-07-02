@@ -1098,6 +1098,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Power to another Power with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Power with the specified unit.</returns>
+        public Power ToUnit(PowerUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Power(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

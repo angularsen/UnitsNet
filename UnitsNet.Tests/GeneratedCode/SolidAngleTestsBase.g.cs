@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var steradian = SolidAngle.FromSteradians(1);
+
+            var steradianQuantity = steradian.ToUnit(SolidAngleUnit.Steradian);
+            AssertEx.EqualTolerance(SteradiansInOneSteradian, (double)steradianQuantity.Value, SteradiansTolerance);
+            Assert.Equal(SolidAngleUnit.Steradian, steradianQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             SolidAngle steradian = SolidAngle.FromSteradians(1);

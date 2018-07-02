@@ -596,6 +596,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ElectricPotentialAc to another ElectricPotentialAc with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricPotentialAc with the specified unit.</returns>
+        public ElectricPotentialAc ToUnit(ElectricPotentialAcUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new ElectricPotentialAc(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

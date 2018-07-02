@@ -474,6 +474,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ElectricField to another ElectricField with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ElectricField with the specified unit.</returns>
+        public ElectricField ToUnit(ElectricFieldUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new ElectricField(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

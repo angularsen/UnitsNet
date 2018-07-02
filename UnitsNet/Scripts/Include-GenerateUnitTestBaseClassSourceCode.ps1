@@ -1,4 +1,4 @@
-function GenerateUnitTestBaseClassSourceCode($quantity)
+﻿function GenerateUnitTestBaseClassSourceCode($quantity)
 {
     $quantityName = $quantity.Name;
     $baseType = $quantity.BaseType;
@@ -96,6 +96,21 @@ namespace UnitsNet.Tests
             var $baseUnitVariableName = $quantityName.From$baseUnitPluralName(1);
 "@; foreach ($unit in $units) {@"
             AssertEx.EqualTolerance($($unit.PluralName)InOne$($baseUnit.SingularName), $baseUnitVariableName.As($($quantityName)Unit.$($unit.SingularName)), $($unit.PluralName)Tolerance);
+"@; }@"
+        }
+
+        [Fact]
+        public void ToUnit()
+        {
+            var $baseUnitVariableName = $quantityName.From$baseUnitPluralName(1);
+"@; foreach ($unit in $units)
+{
+        $asQuantityVariableName = "$($unit.SingularName.ToLowerInvariant())Quantity";
+@"
+
+            var $asQuantityVariableName = $baseUnitVariableName.ToUnit($($quantityName)Unit.$($unit.SingularName));
+            AssertEx.EqualTolerance($($unit.PluralName)InOne$($baseUnit.SingularName), (double)$asQuantityVariableName.Value, $($unit.PluralName)Tolerance);
+            Assert.Equal($($quantityName)Unit.$($unit.SingularName), $asQuantityVariableName.Unit);
 "@; }@"
         }
 

@@ -114,6 +114,44 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var jouleperkilogram = SpecificEnergy.FromJoulesPerKilogram(1);
+
+            var caloriepergramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.CaloriePerGram);
+            AssertEx.EqualTolerance(CaloriesPerGramInOneJoulePerKilogram, (double)caloriepergramQuantity.Value, CaloriesPerGramTolerance);
+            Assert.Equal(SpecificEnergyUnit.CaloriePerGram, caloriepergramQuantity.Unit);
+
+            var jouleperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.JoulePerKilogram);
+            AssertEx.EqualTolerance(JoulesPerKilogramInOneJoulePerKilogram, (double)jouleperkilogramQuantity.Value, JoulesPerKilogramTolerance);
+            Assert.Equal(SpecificEnergyUnit.JoulePerKilogram, jouleperkilogramQuantity.Unit);
+
+            var kilocaloriepergramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.KilocaloriePerGram);
+            AssertEx.EqualTolerance(KilocaloriesPerGramInOneJoulePerKilogram, (double)kilocaloriepergramQuantity.Value, KilocaloriesPerGramTolerance);
+            Assert.Equal(SpecificEnergyUnit.KilocaloriePerGram, kilocaloriepergramQuantity.Unit);
+
+            var kilojouleperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.KilojoulePerKilogram);
+            AssertEx.EqualTolerance(KilojoulesPerKilogramInOneJoulePerKilogram, (double)kilojouleperkilogramQuantity.Value, KilojoulesPerKilogramTolerance);
+            Assert.Equal(SpecificEnergyUnit.KilojoulePerKilogram, kilojouleperkilogramQuantity.Unit);
+
+            var kilowatthourperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.KilowattHourPerKilogram);
+            AssertEx.EqualTolerance(KilowattHoursPerKilogramInOneJoulePerKilogram, (double)kilowatthourperkilogramQuantity.Value, KilowattHoursPerKilogramTolerance);
+            Assert.Equal(SpecificEnergyUnit.KilowattHourPerKilogram, kilowatthourperkilogramQuantity.Unit);
+
+            var megajouleperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.MegajoulePerKilogram);
+            AssertEx.EqualTolerance(MegajoulesPerKilogramInOneJoulePerKilogram, (double)megajouleperkilogramQuantity.Value, MegajoulesPerKilogramTolerance);
+            Assert.Equal(SpecificEnergyUnit.MegajoulePerKilogram, megajouleperkilogramQuantity.Unit);
+
+            var megawatthourperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.MegawattHourPerKilogram);
+            AssertEx.EqualTolerance(MegawattHoursPerKilogramInOneJoulePerKilogram, (double)megawatthourperkilogramQuantity.Value, MegawattHoursPerKilogramTolerance);
+            Assert.Equal(SpecificEnergyUnit.MegawattHourPerKilogram, megawatthourperkilogramQuantity.Unit);
+
+            var watthourperkilogramQuantity = jouleperkilogram.ToUnit(SpecificEnergyUnit.WattHourPerKilogram);
+            AssertEx.EqualTolerance(WattHoursPerKilogramInOneJoulePerKilogram, (double)watthourperkilogramQuantity.Value, WattHoursPerKilogramTolerance);
+            Assert.Equal(SpecificEnergyUnit.WattHourPerKilogram, watthourperkilogramQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             SpecificEnergy jouleperkilogram = SpecificEnergy.FromJoulesPerKilogram(1);

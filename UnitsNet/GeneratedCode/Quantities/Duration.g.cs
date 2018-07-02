@@ -839,6 +839,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Duration with the specified unit.</returns>
+        public Duration ToUnit(DurationUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Duration(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

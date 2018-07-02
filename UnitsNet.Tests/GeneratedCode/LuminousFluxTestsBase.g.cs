@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var lumen = LuminousFlux.FromLumens(1);
+
+            var lumenQuantity = lumen.ToUnit(LuminousFluxUnit.Lumen);
+            AssertEx.EqualTolerance(LumensInOneLumen, (double)lumenQuantity.Value, LumensTolerance);
+            Assert.Equal(LuminousFluxUnit.Lumen, lumenQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             LuminousFlux lumen = LuminousFlux.FromLumens(1);

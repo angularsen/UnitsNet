@@ -967,6 +967,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this TemperatureDelta to another TemperatureDelta with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A TemperatureDelta with the specified unit.</returns>
+        public TemperatureDelta ToUnit(TemperatureDeltaUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new TemperatureDelta(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var farad = Capacitance.FromFarads(1);
+
+            var faradQuantity = farad.ToUnit(CapacitanceUnit.Farad);
+            AssertEx.EqualTolerance(FaradsInOneFarad, (double)faradQuantity.Value, FaradsTolerance);
+            Assert.Equal(CapacitanceUnit.Farad, faradQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Capacitance farad = Capacitance.FromFarads(1);

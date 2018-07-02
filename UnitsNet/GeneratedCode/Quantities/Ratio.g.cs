@@ -629,6 +629,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Ratio to another Ratio with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Ratio with the specified unit.</returns>
+        public Ratio ToUnit(RatioUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Ratio(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

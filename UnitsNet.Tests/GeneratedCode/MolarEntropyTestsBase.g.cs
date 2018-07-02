@@ -89,6 +89,24 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var joulepermolekelvin = MolarEntropy.FromJoulesPerMoleKelvin(1);
+
+            var joulepermolekelvinQuantity = joulepermolekelvin.ToUnit(MolarEntropyUnit.JoulePerMoleKelvin);
+            AssertEx.EqualTolerance(JoulesPerMoleKelvinInOneJoulePerMoleKelvin, (double)joulepermolekelvinQuantity.Value, JoulesPerMoleKelvinTolerance);
+            Assert.Equal(MolarEntropyUnit.JoulePerMoleKelvin, joulepermolekelvinQuantity.Unit);
+
+            var kilojoulepermolekelvinQuantity = joulepermolekelvin.ToUnit(MolarEntropyUnit.KilojoulePerMoleKelvin);
+            AssertEx.EqualTolerance(KilojoulesPerMoleKelvinInOneJoulePerMoleKelvin, (double)kilojoulepermolekelvinQuantity.Value, KilojoulesPerMoleKelvinTolerance);
+            Assert.Equal(MolarEntropyUnit.KilojoulePerMoleKelvin, kilojoulepermolekelvinQuantity.Unit);
+
+            var megajoulepermolekelvinQuantity = joulepermolekelvin.ToUnit(MolarEntropyUnit.MegajoulePerMoleKelvin);
+            AssertEx.EqualTolerance(MegajoulesPerMoleKelvinInOneJoulePerMoleKelvin, (double)megajoulepermolekelvinQuantity.Value, MegajoulesPerMoleKelvinTolerance);
+            Assert.Equal(MolarEntropyUnit.MegajoulePerMoleKelvin, megajoulepermolekelvinQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             MolarEntropy joulepermolekelvin = MolarEntropy.FromJoulesPerMoleKelvin(1);

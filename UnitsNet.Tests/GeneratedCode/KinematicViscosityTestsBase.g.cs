@@ -114,6 +114,44 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var squaremeterpersecond = KinematicViscosity.FromSquareMetersPerSecond(1);
+
+            var centistokesQuantity = squaremeterpersecond.ToUnit(KinematicViscosityUnit.Centistokes);
+            AssertEx.EqualTolerance(CentistokesInOneSquareMeterPerSecond, (double)centistokesQuantity.Value, CentistokesTolerance);
+            Assert.Equal(KinematicViscosityUnit.Centistokes, centistokesQuantity.Unit);
+
+            var decistokesQuantity = squaremeterpersecond.ToUnit(KinematicViscosityUnit.Decistokes);
+            AssertEx.EqualTolerance(DecistokesInOneSquareMeterPerSecond, (double)decistokesQuantity.Value, DecistokesTolerance);
+            Assert.Equal(KinematicViscosityUnit.Decistokes, decistokesQuantity.Unit);
+
+            var kilostokesQuantity = squaremeterpersecond.ToUnit(KinematicViscosityUnit.Kilostokes);
+            AssertEx.EqualTolerance(KilostokesInOneSquareMeterPerSecond, (double)kilostokesQuantity.Value, KilostokesTolerance);
+            Assert.Equal(KinematicViscosityUnit.Kilostokes, kilostokesQuantity.Unit);
+
+            var microstokesQuantity = squaremeterpersecond.ToUnit(KinematicViscosityUnit.Microstokes);
+            AssertEx.EqualTolerance(MicrostokesInOneSquareMeterPerSecond, (double)microstokesQuantity.Value, MicrostokesTolerance);
+            Assert.Equal(KinematicViscosityUnit.Microstokes, microstokesQuantity.Unit);
+
+            var millistokesQuantity = squaremeterpersecond.ToUnit(KinematicViscosityUnit.Millistokes);
+            AssertEx.EqualTolerance(MillistokesInOneSquareMeterPerSecond, (double)millistokesQuantity.Value, MillistokesTolerance);
+            Assert.Equal(KinematicViscosityUnit.Millistokes, millistokesQuantity.Unit);
+
+            var nanostokesQuantity = squaremeterpersecond.ToUnit(KinematicViscosityUnit.Nanostokes);
+            AssertEx.EqualTolerance(NanostokesInOneSquareMeterPerSecond, (double)nanostokesQuantity.Value, NanostokesTolerance);
+            Assert.Equal(KinematicViscosityUnit.Nanostokes, nanostokesQuantity.Unit);
+
+            var squaremeterpersecondQuantity = squaremeterpersecond.ToUnit(KinematicViscosityUnit.SquareMeterPerSecond);
+            AssertEx.EqualTolerance(SquareMetersPerSecondInOneSquareMeterPerSecond, (double)squaremeterpersecondQuantity.Value, SquareMetersPerSecondTolerance);
+            Assert.Equal(KinematicViscosityUnit.SquareMeterPerSecond, squaremeterpersecondQuantity.Unit);
+
+            var stokesQuantity = squaremeterpersecond.ToUnit(KinematicViscosityUnit.Stokes);
+            AssertEx.EqualTolerance(StokesInOneSquareMeterPerSecond, (double)stokesQuantity.Value, StokesTolerance);
+            Assert.Equal(KinematicViscosityUnit.Stokes, stokesQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             KinematicViscosity squaremeterpersecond = KinematicViscosity.FromSquareMetersPerSecond(1);

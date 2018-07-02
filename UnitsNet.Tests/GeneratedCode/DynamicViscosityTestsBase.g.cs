@@ -104,6 +104,36 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
+
+            var centipoiseQuantity = newtonsecondpermetersquared.ToUnit(DynamicViscosityUnit.Centipoise);
+            AssertEx.EqualTolerance(CentipoiseInOneNewtonSecondPerMeterSquared, (double)centipoiseQuantity.Value, CentipoiseTolerance);
+            Assert.Equal(DynamicViscosityUnit.Centipoise, centipoiseQuantity.Unit);
+
+            var micropascalsecondQuantity = newtonsecondpermetersquared.ToUnit(DynamicViscosityUnit.MicropascalSecond);
+            AssertEx.EqualTolerance(MicropascalSecondsInOneNewtonSecondPerMeterSquared, (double)micropascalsecondQuantity.Value, MicropascalSecondsTolerance);
+            Assert.Equal(DynamicViscosityUnit.MicropascalSecond, micropascalsecondQuantity.Unit);
+
+            var millipascalsecondQuantity = newtonsecondpermetersquared.ToUnit(DynamicViscosityUnit.MillipascalSecond);
+            AssertEx.EqualTolerance(MillipascalSecondsInOneNewtonSecondPerMeterSquared, (double)millipascalsecondQuantity.Value, MillipascalSecondsTolerance);
+            Assert.Equal(DynamicViscosityUnit.MillipascalSecond, millipascalsecondQuantity.Unit);
+
+            var newtonsecondpermetersquaredQuantity = newtonsecondpermetersquared.ToUnit(DynamicViscosityUnit.NewtonSecondPerMeterSquared);
+            AssertEx.EqualTolerance(NewtonSecondsPerMeterSquaredInOneNewtonSecondPerMeterSquared, (double)newtonsecondpermetersquaredQuantity.Value, NewtonSecondsPerMeterSquaredTolerance);
+            Assert.Equal(DynamicViscosityUnit.NewtonSecondPerMeterSquared, newtonsecondpermetersquaredQuantity.Unit);
+
+            var pascalsecondQuantity = newtonsecondpermetersquared.ToUnit(DynamicViscosityUnit.PascalSecond);
+            AssertEx.EqualTolerance(PascalSecondsInOneNewtonSecondPerMeterSquared, (double)pascalsecondQuantity.Value, PascalSecondsTolerance);
+            Assert.Equal(DynamicViscosityUnit.PascalSecond, pascalsecondQuantity.Unit);
+
+            var poiseQuantity = newtonsecondpermetersquared.ToUnit(DynamicViscosityUnit.Poise);
+            AssertEx.EqualTolerance(PoiseInOneNewtonSecondPerMeterSquared, (double)poiseQuantity.Value, PoiseTolerance);
+            Assert.Equal(DynamicViscosityUnit.Poise, poiseQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             DynamicViscosity newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);

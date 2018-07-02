@@ -573,6 +573,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ReactivePower to another ReactivePower with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ReactivePower with the specified unit.</returns>
+        public ReactivePower ToUnit(ReactivePowerUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new ReactivePower(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

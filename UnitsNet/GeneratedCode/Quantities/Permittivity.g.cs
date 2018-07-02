@@ -474,6 +474,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this Permittivity to another Permittivity with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Permittivity with the specified unit.</returns>
+        public Permittivity ToUnit(PermittivityUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Permittivity(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

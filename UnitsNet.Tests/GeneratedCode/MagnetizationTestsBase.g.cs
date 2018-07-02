@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var amperepermeter = Magnetization.FromAmperesPerMeter(1);
+
+            var amperepermeterQuantity = amperepermeter.ToUnit(MagnetizationUnit.AmperePerMeter);
+            AssertEx.EqualTolerance(AmperesPerMeterInOneAmperePerMeter, (double)amperepermeterQuantity.Value, AmperesPerMeterTolerance);
+            Assert.Equal(MagnetizationUnit.AmperePerMeter, amperepermeterQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Magnetization amperepermeter = Magnetization.FromAmperesPerMeter(1);

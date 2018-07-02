@@ -79,6 +79,16 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var voltpermeter = ElectricField.FromVoltsPerMeter(1);
+
+            var voltpermeterQuantity = voltpermeter.ToUnit(ElectricFieldUnit.VoltPerMeter);
+            AssertEx.EqualTolerance(VoltsPerMeterInOneVoltPerMeter, (double)voltpermeterQuantity.Value, VoltsPerMeterTolerance);
+            Assert.Equal(ElectricFieldUnit.VoltPerMeter, voltpermeterQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             ElectricField voltpermeter = ElectricField.FromVoltsPerMeter(1);

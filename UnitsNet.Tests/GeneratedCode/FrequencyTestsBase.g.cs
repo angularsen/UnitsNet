@@ -114,6 +114,44 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var hertz = Frequency.FromHertz(1);
+
+            var cycleperhourQuantity = hertz.ToUnit(FrequencyUnit.CyclePerHour);
+            AssertEx.EqualTolerance(CyclesPerHourInOneHertz, (double)cycleperhourQuantity.Value, CyclesPerHourTolerance);
+            Assert.Equal(FrequencyUnit.CyclePerHour, cycleperhourQuantity.Unit);
+
+            var cycleperminuteQuantity = hertz.ToUnit(FrequencyUnit.CyclePerMinute);
+            AssertEx.EqualTolerance(CyclesPerMinuteInOneHertz, (double)cycleperminuteQuantity.Value, CyclesPerMinuteTolerance);
+            Assert.Equal(FrequencyUnit.CyclePerMinute, cycleperminuteQuantity.Unit);
+
+            var gigahertzQuantity = hertz.ToUnit(FrequencyUnit.Gigahertz);
+            AssertEx.EqualTolerance(GigahertzInOneHertz, (double)gigahertzQuantity.Value, GigahertzTolerance);
+            Assert.Equal(FrequencyUnit.Gigahertz, gigahertzQuantity.Unit);
+
+            var hertzQuantity = hertz.ToUnit(FrequencyUnit.Hertz);
+            AssertEx.EqualTolerance(HertzInOneHertz, (double)hertzQuantity.Value, HertzTolerance);
+            Assert.Equal(FrequencyUnit.Hertz, hertzQuantity.Unit);
+
+            var kilohertzQuantity = hertz.ToUnit(FrequencyUnit.Kilohertz);
+            AssertEx.EqualTolerance(KilohertzInOneHertz, (double)kilohertzQuantity.Value, KilohertzTolerance);
+            Assert.Equal(FrequencyUnit.Kilohertz, kilohertzQuantity.Unit);
+
+            var megahertzQuantity = hertz.ToUnit(FrequencyUnit.Megahertz);
+            AssertEx.EqualTolerance(MegahertzInOneHertz, (double)megahertzQuantity.Value, MegahertzTolerance);
+            Assert.Equal(FrequencyUnit.Megahertz, megahertzQuantity.Unit);
+
+            var radianpersecondQuantity = hertz.ToUnit(FrequencyUnit.RadianPerSecond);
+            AssertEx.EqualTolerance(RadiansPerSecondInOneHertz, (double)radianpersecondQuantity.Value, RadiansPerSecondTolerance);
+            Assert.Equal(FrequencyUnit.RadianPerSecond, radianpersecondQuantity.Unit);
+
+            var terahertzQuantity = hertz.ToUnit(FrequencyUnit.Terahertz);
+            AssertEx.EqualTolerance(TerahertzInOneHertz, (double)terahertzQuantity.Value, TerahertzTolerance);
+            Assert.Equal(FrequencyUnit.Terahertz, terahertzQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Frequency hertz = Frequency.FromHertz(1);

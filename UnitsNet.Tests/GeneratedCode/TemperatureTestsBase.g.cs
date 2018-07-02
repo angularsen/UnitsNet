@@ -114,6 +114,44 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void ToUnit()
+        {
+            var kelvin = Temperature.FromKelvins(1);
+
+            var degreecelsiusQuantity = kelvin.ToUnit(TemperatureUnit.DegreeCelsius);
+            AssertEx.EqualTolerance(DegreesCelsiusInOneKelvin, (double)degreecelsiusQuantity.Value, DegreesCelsiusTolerance);
+            Assert.Equal(TemperatureUnit.DegreeCelsius, degreecelsiusQuantity.Unit);
+
+            var degreedelisleQuantity = kelvin.ToUnit(TemperatureUnit.DegreeDelisle);
+            AssertEx.EqualTolerance(DegreesDelisleInOneKelvin, (double)degreedelisleQuantity.Value, DegreesDelisleTolerance);
+            Assert.Equal(TemperatureUnit.DegreeDelisle, degreedelisleQuantity.Unit);
+
+            var degreefahrenheitQuantity = kelvin.ToUnit(TemperatureUnit.DegreeFahrenheit);
+            AssertEx.EqualTolerance(DegreesFahrenheitInOneKelvin, (double)degreefahrenheitQuantity.Value, DegreesFahrenheitTolerance);
+            Assert.Equal(TemperatureUnit.DegreeFahrenheit, degreefahrenheitQuantity.Unit);
+
+            var degreenewtonQuantity = kelvin.ToUnit(TemperatureUnit.DegreeNewton);
+            AssertEx.EqualTolerance(DegreesNewtonInOneKelvin, (double)degreenewtonQuantity.Value, DegreesNewtonTolerance);
+            Assert.Equal(TemperatureUnit.DegreeNewton, degreenewtonQuantity.Unit);
+
+            var degreerankineQuantity = kelvin.ToUnit(TemperatureUnit.DegreeRankine);
+            AssertEx.EqualTolerance(DegreesRankineInOneKelvin, (double)degreerankineQuantity.Value, DegreesRankineTolerance);
+            Assert.Equal(TemperatureUnit.DegreeRankine, degreerankineQuantity.Unit);
+
+            var degreereaumurQuantity = kelvin.ToUnit(TemperatureUnit.DegreeReaumur);
+            AssertEx.EqualTolerance(DegreesReaumurInOneKelvin, (double)degreereaumurQuantity.Value, DegreesReaumurTolerance);
+            Assert.Equal(TemperatureUnit.DegreeReaumur, degreereaumurQuantity.Unit);
+
+            var degreeroemerQuantity = kelvin.ToUnit(TemperatureUnit.DegreeRoemer);
+            AssertEx.EqualTolerance(DegreesRoemerInOneKelvin, (double)degreeroemerQuantity.Value, DegreesRoemerTolerance);
+            Assert.Equal(TemperatureUnit.DegreeRoemer, degreeroemerQuantity.Unit);
+
+            var kelvinQuantity = kelvin.ToUnit(TemperatureUnit.Kelvin);
+            AssertEx.EqualTolerance(KelvinsInOneKelvin, (double)kelvinQuantity.Value, KelvinsTolerance);
+            Assert.Equal(TemperatureUnit.Kelvin, kelvinQuantity.Unit);
+        }
+
+        [Fact]
         public void ConversionRoundTrip()
         {
             Temperature kelvin = Temperature.FromKelvins(1);

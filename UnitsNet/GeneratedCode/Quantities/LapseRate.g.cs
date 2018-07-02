@@ -474,6 +474,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this LapseRate to another LapseRate with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A LapseRate with the specified unit.</returns>
+        public LapseRate ToUnit(LapseRateUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new LapseRate(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>

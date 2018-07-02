@@ -507,6 +507,16 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Converts this ThermalConductivity to another ThermalConductivity with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A ThermalConductivity with the specified unit.</returns>
+        public ThermalConductivity ToUnit(ThermalConductivityUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new ThermalConductivity(convertedValue, unit);
+        }
+
+        /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
