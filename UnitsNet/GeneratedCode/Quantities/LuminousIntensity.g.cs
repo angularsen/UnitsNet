@@ -179,24 +179,6 @@ namespace UnitsNet
             return new LuminousIntensity(value, LuminousIntensityUnit.Candela);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable LuminousIntensity from nullable Candela.
-        /// </summary>
-        public static LuminousIntensity? FromCandela(QuantityValue? candela)
-        {
-            if (candela.HasValue)
-            {
-                return FromCandela(candela.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="LuminousIntensityUnit" /> to <see cref="LuminousIntensity" />.
@@ -214,25 +196,6 @@ namespace UnitsNet
         {
             return new LuminousIntensity((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="LuminousIntensityUnit" /> to <see cref="LuminousIntensity" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>LuminousIntensity unit value.</returns>
-        public static LuminousIntensity? From(QuantityValue? value, LuminousIntensityUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new LuminousIntensity((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -276,48 +239,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static LuminousIntensity operator -(LuminousIntensity right)
-        {
-            return new LuminousIntensity(-right.Value, right.Unit);
-        }
-
-        public static LuminousIntensity operator +(LuminousIntensity left, LuminousIntensity right)
-        {
-            return new LuminousIntensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static LuminousIntensity operator -(LuminousIntensity left, LuminousIntensity right)
-        {
-            return new LuminousIntensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static LuminousIntensity operator *(double left, LuminousIntensity right)
-        {
-            return new LuminousIntensity(left * right.Value, right.Unit);
-        }
-
-        public static LuminousIntensity operator *(LuminousIntensity left, double right)
-        {
-            return new LuminousIntensity(left.Value * right, left.Unit);
-        }
-
-        public static LuminousIntensity operator /(LuminousIntensity left, double right)
-        {
-            return new LuminousIntensity(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(LuminousIntensity left, LuminousIntensity right)
-        {
-            return left.Candela / right.Candela;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -338,43 +259,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(LuminousIntensity left, LuminousIntensity right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(LuminousIntensity left, LuminousIntensity right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(LuminousIntensity left, LuminousIntensity right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(LuminousIntensity left, LuminousIntensity right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(LuminousIntensity left, LuminousIntensity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(LuminousIntensity left, LuminousIntensity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

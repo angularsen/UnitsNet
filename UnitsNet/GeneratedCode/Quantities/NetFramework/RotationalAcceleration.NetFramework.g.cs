@@ -59,5 +59,117 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable RotationalAcceleration from nullable DegreesPerSecondSquared.
+        /// </summary>
+        public static RotationalAcceleration? FromDegreesPerSecondSquared(QuantityValue? degreespersecondsquared)
+        {
+            return degreespersecondsquared.HasValue ? FromDegreesPerSecondSquared(degreespersecondsquared.Value) : default(RotationalAcceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalAcceleration from nullable RadiansPerSecondSquared.
+        /// </summary>
+        public static RotationalAcceleration? FromRadiansPerSecondSquared(QuantityValue? radianspersecondsquared)
+        {
+            return radianspersecondsquared.HasValue ? FromRadiansPerSecondSquared(radianspersecondsquared.Value) : default(RotationalAcceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalAcceleration from nullable RevolutionsPerMinutePerSecond.
+        /// </summary>
+        public static RotationalAcceleration? FromRevolutionsPerMinutePerSecond(QuantityValue? revolutionsperminutepersecond)
+        {
+            return revolutionsperminutepersecond.HasValue ? FromRevolutionsPerMinutePerSecond(revolutionsperminutepersecond.Value) : default(RotationalAcceleration?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="RotationalAccelerationUnit" /> to <see cref="RotationalAcceleration" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>RotationalAcceleration unit value.</returns>
+        public static RotationalAcceleration? From(QuantityValue? value, RotationalAccelerationUnit fromUnit)
+        {
+            return value.HasValue ? new RotationalAcceleration((double)value.Value, fromUnit) : default(RotationalAcceleration?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static RotationalAcceleration operator -(RotationalAcceleration right)
+        {
+            return new RotationalAcceleration(-right.Value, right.Unit);
+        }
+
+        public static RotationalAcceleration operator +(RotationalAcceleration left, RotationalAcceleration right)
+        {
+            return new RotationalAcceleration(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static RotationalAcceleration operator -(RotationalAcceleration left, RotationalAcceleration right)
+        {
+            return new RotationalAcceleration(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static RotationalAcceleration operator *(double left, RotationalAcceleration right)
+        {
+            return new RotationalAcceleration(left * right.Value, right.Unit);
+        }
+
+        public static RotationalAcceleration operator *(RotationalAcceleration left, double right)
+        {
+            return new RotationalAcceleration(left.Value * right, left.Unit);
+        }
+
+        public static RotationalAcceleration operator /(RotationalAcceleration left, double right)
+        {
+            return new RotationalAcceleration(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(RotationalAcceleration left, RotationalAcceleration right)
+        {
+            return left.RadiansPerSecondSquared / right.RadiansPerSecondSquared;
+        }
+
+        #endregion
+
+        public static bool operator <=(RotationalAcceleration left, RotationalAcceleration right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(RotationalAcceleration left, RotationalAcceleration right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(RotationalAcceleration left, RotationalAcceleration right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(RotationalAcceleration left, RotationalAcceleration right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(RotationalAcceleration left, RotationalAcceleration right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(RotationalAcceleration left, RotationalAcceleration right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

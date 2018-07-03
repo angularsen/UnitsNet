@@ -179,24 +179,6 @@ namespace UnitsNet
             return new SpecificVolume(value, SpecificVolumeUnit.CubicMeterPerKilogram);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable SpecificVolume from nullable CubicMetersPerKilogram.
-        /// </summary>
-        public static SpecificVolume? FromCubicMetersPerKilogram(QuantityValue? cubicmetersperkilogram)
-        {
-            if (cubicmetersperkilogram.HasValue)
-            {
-                return FromCubicMetersPerKilogram(cubicmetersperkilogram.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificVolumeUnit" /> to <see cref="SpecificVolume" />.
@@ -214,25 +196,6 @@ namespace UnitsNet
         {
             return new SpecificVolume((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="SpecificVolumeUnit" /> to <see cref="SpecificVolume" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>SpecificVolume unit value.</returns>
-        public static SpecificVolume? From(QuantityValue? value, SpecificVolumeUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new SpecificVolume((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -276,48 +239,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static SpecificVolume operator -(SpecificVolume right)
-        {
-            return new SpecificVolume(-right.Value, right.Unit);
-        }
-
-        public static SpecificVolume operator +(SpecificVolume left, SpecificVolume right)
-        {
-            return new SpecificVolume(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static SpecificVolume operator -(SpecificVolume left, SpecificVolume right)
-        {
-            return new SpecificVolume(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static SpecificVolume operator *(double left, SpecificVolume right)
-        {
-            return new SpecificVolume(left * right.Value, right.Unit);
-        }
-
-        public static SpecificVolume operator *(SpecificVolume left, double right)
-        {
-            return new SpecificVolume(left.Value * right, left.Unit);
-        }
-
-        public static SpecificVolume operator /(SpecificVolume left, double right)
-        {
-            return new SpecificVolume(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(SpecificVolume left, SpecificVolume right)
-        {
-            return left.CubicMetersPerKilogram / right.CubicMetersPerKilogram;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -338,43 +259,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(SpecificVolume left, SpecificVolume right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(SpecificVolume left, SpecificVolume right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(SpecificVolume left, SpecificVolume right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(SpecificVolume left, SpecificVolume right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(SpecificVolume left, SpecificVolume right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(SpecificVolume left, SpecificVolume right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

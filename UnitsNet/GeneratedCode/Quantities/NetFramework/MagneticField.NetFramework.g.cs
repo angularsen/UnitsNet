@@ -59,5 +59,101 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable MagneticField from nullable Teslas.
+        /// </summary>
+        public static MagneticField? FromTeslas(QuantityValue? teslas)
+        {
+            return teslas.HasValue ? FromTeslas(teslas.Value) : default(MagneticField?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="MagneticFieldUnit" /> to <see cref="MagneticField" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>MagneticField unit value.</returns>
+        public static MagneticField? From(QuantityValue? value, MagneticFieldUnit fromUnit)
+        {
+            return value.HasValue ? new MagneticField((double)value.Value, fromUnit) : default(MagneticField?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static MagneticField operator -(MagneticField right)
+        {
+            return new MagneticField(-right.Value, right.Unit);
+        }
+
+        public static MagneticField operator +(MagneticField left, MagneticField right)
+        {
+            return new MagneticField(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MagneticField operator -(MagneticField left, MagneticField right)
+        {
+            return new MagneticField(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MagneticField operator *(double left, MagneticField right)
+        {
+            return new MagneticField(left * right.Value, right.Unit);
+        }
+
+        public static MagneticField operator *(MagneticField left, double right)
+        {
+            return new MagneticField(left.Value * right, left.Unit);
+        }
+
+        public static MagneticField operator /(MagneticField left, double right)
+        {
+            return new MagneticField(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(MagneticField left, MagneticField right)
+        {
+            return left.Teslas / right.Teslas;
+        }
+
+        #endregion
+
+        public static bool operator <=(MagneticField left, MagneticField right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(MagneticField left, MagneticField right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(MagneticField left, MagneticField right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(MagneticField left, MagneticField right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(MagneticField left, MagneticField right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(MagneticField left, MagneticField right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

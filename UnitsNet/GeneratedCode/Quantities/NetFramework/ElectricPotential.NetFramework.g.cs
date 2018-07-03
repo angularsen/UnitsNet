@@ -59,5 +59,133 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable ElectricPotential from nullable Kilovolts.
+        /// </summary>
+        public static ElectricPotential? FromKilovolts(QuantityValue? kilovolts)
+        {
+            return kilovolts.HasValue ? FromKilovolts(kilovolts.Value) : default(ElectricPotential?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotential from nullable Megavolts.
+        /// </summary>
+        public static ElectricPotential? FromMegavolts(QuantityValue? megavolts)
+        {
+            return megavolts.HasValue ? FromMegavolts(megavolts.Value) : default(ElectricPotential?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotential from nullable Microvolts.
+        /// </summary>
+        public static ElectricPotential? FromMicrovolts(QuantityValue? microvolts)
+        {
+            return microvolts.HasValue ? FromMicrovolts(microvolts.Value) : default(ElectricPotential?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotential from nullable Millivolts.
+        /// </summary>
+        public static ElectricPotential? FromMillivolts(QuantityValue? millivolts)
+        {
+            return millivolts.HasValue ? FromMillivolts(millivolts.Value) : default(ElectricPotential?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricPotential from nullable Volts.
+        /// </summary>
+        public static ElectricPotential? FromVolts(QuantityValue? volts)
+        {
+            return volts.HasValue ? FromVolts(volts.Value) : default(ElectricPotential?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialUnit" /> to <see cref="ElectricPotential" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricPotential unit value.</returns>
+        public static ElectricPotential? From(QuantityValue? value, ElectricPotentialUnit fromUnit)
+        {
+            return value.HasValue ? new ElectricPotential((double)value.Value, fromUnit) : default(ElectricPotential?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ElectricPotential operator -(ElectricPotential right)
+        {
+            return new ElectricPotential(-right.Value, right.Unit);
+        }
+
+        public static ElectricPotential operator +(ElectricPotential left, ElectricPotential right)
+        {
+            return new ElectricPotential(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricPotential operator -(ElectricPotential left, ElectricPotential right)
+        {
+            return new ElectricPotential(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricPotential operator *(double left, ElectricPotential right)
+        {
+            return new ElectricPotential(left * right.Value, right.Unit);
+        }
+
+        public static ElectricPotential operator *(ElectricPotential left, double right)
+        {
+            return new ElectricPotential(left.Value * right, left.Unit);
+        }
+
+        public static ElectricPotential operator /(ElectricPotential left, double right)
+        {
+            return new ElectricPotential(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(ElectricPotential left, ElectricPotential right)
+        {
+            return left.Volts / right.Volts;
+        }
+
+        #endregion
+
+        public static bool operator <=(ElectricPotential left, ElectricPotential right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(ElectricPotential left, ElectricPotential right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(ElectricPotential left, ElectricPotential right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(ElectricPotential left, ElectricPotential right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(ElectricPotential left, ElectricPotential right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ElectricPotential left, ElectricPotential right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

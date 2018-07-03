@@ -59,5 +59,197 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Area from nullable Acres.
+        /// </summary>
+        public static Area? FromAcres(QuantityValue? acres)
+        {
+            return acres.HasValue ? FromAcres(acres.Value) : default(Area?);
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable Hectares.
+        /// </summary>
+        public static Area? FromHectares(QuantityValue? hectares)
+        {
+            return hectares.HasValue ? FromHectares(hectares.Value) : default(Area?);
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareCentimeters.
+        /// </summary>
+        public static Area? FromSquareCentimeters(QuantityValue? squarecentimeters)
+        {
+            return squarecentimeters.HasValue ? FromSquareCentimeters(squarecentimeters.Value) : default(Area?);
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareDecimeters.
+        /// </summary>
+        public static Area? FromSquareDecimeters(QuantityValue? squaredecimeters)
+        {
+            return squaredecimeters.HasValue ? FromSquareDecimeters(squaredecimeters.Value) : default(Area?);
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareFeet.
+        /// </summary>
+        public static Area? FromSquareFeet(QuantityValue? squarefeet)
+        {
+            return squarefeet.HasValue ? FromSquareFeet(squarefeet.Value) : default(Area?);
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareInches.
+        /// </summary>
+        public static Area? FromSquareInches(QuantityValue? squareinches)
+        {
+            return squareinches.HasValue ? FromSquareInches(squareinches.Value) : default(Area?);
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareKilometers.
+        /// </summary>
+        public static Area? FromSquareKilometers(QuantityValue? squarekilometers)
+        {
+            return squarekilometers.HasValue ? FromSquareKilometers(squarekilometers.Value) : default(Area?);
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareMeters.
+        /// </summary>
+        public static Area? FromSquareMeters(QuantityValue? squaremeters)
+        {
+            return squaremeters.HasValue ? FromSquareMeters(squaremeters.Value) : default(Area?);
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareMicrometers.
+        /// </summary>
+        public static Area? FromSquareMicrometers(QuantityValue? squaremicrometers)
+        {
+            return squaremicrometers.HasValue ? FromSquareMicrometers(squaremicrometers.Value) : default(Area?);
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareMiles.
+        /// </summary>
+        public static Area? FromSquareMiles(QuantityValue? squaremiles)
+        {
+            return squaremiles.HasValue ? FromSquareMiles(squaremiles.Value) : default(Area?);
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareMillimeters.
+        /// </summary>
+        public static Area? FromSquareMillimeters(QuantityValue? squaremillimeters)
+        {
+            return squaremillimeters.HasValue ? FromSquareMillimeters(squaremillimeters.Value) : default(Area?);
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable SquareYards.
+        /// </summary>
+        public static Area? FromSquareYards(QuantityValue? squareyards)
+        {
+            return squareyards.HasValue ? FromSquareYards(squareyards.Value) : default(Area?);
+        }
+
+        /// <summary>
+        ///     Get nullable Area from nullable UsSurveySquareFeet.
+        /// </summary>
+        public static Area? FromUsSurveySquareFeet(QuantityValue? ussurveysquarefeet)
+        {
+            return ussurveysquarefeet.HasValue ? FromUsSurveySquareFeet(ussurveysquarefeet.Value) : default(Area?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="AreaUnit" /> to <see cref="Area" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Area unit value.</returns>
+        public static Area? From(QuantityValue? value, AreaUnit fromUnit)
+        {
+            return value.HasValue ? new Area((double)value.Value, fromUnit) : default(Area?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Area operator -(Area right)
+        {
+            return new Area(-right.Value, right.Unit);
+        }
+
+        public static Area operator +(Area left, Area right)
+        {
+            return new Area(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Area operator -(Area left, Area right)
+        {
+            return new Area(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Area operator *(double left, Area right)
+        {
+            return new Area(left * right.Value, right.Unit);
+        }
+
+        public static Area operator *(Area left, double right)
+        {
+            return new Area(left.Value * right, left.Unit);
+        }
+
+        public static Area operator /(Area left, double right)
+        {
+            return new Area(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Area left, Area right)
+        {
+            return left.SquareMeters / right.SquareMeters;
+        }
+
+        #endregion
+
+        public static bool operator <=(Area left, Area right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Area left, Area right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Area left, Area right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Area left, Area right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(Area left, Area right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(Area left, Area right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

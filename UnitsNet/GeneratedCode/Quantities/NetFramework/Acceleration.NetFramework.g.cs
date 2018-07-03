@@ -59,5 +59,197 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable CentimetersPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromCentimetersPerSecondSquared(QuantityValue? centimeterspersecondsquared)
+        {
+            return centimeterspersecondsquared.HasValue ? FromCentimetersPerSecondSquared(centimeterspersecondsquared.Value) : default(Acceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable DecimetersPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromDecimetersPerSecondSquared(QuantityValue? decimeterspersecondsquared)
+        {
+            return decimeterspersecondsquared.HasValue ? FromDecimetersPerSecondSquared(decimeterspersecondsquared.Value) : default(Acceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable FeetPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromFeetPerSecondSquared(QuantityValue? feetpersecondsquared)
+        {
+            return feetpersecondsquared.HasValue ? FromFeetPerSecondSquared(feetpersecondsquared.Value) : default(Acceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable InchesPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromInchesPerSecondSquared(QuantityValue? inchespersecondsquared)
+        {
+            return inchespersecondsquared.HasValue ? FromInchesPerSecondSquared(inchespersecondsquared.Value) : default(Acceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable KilometersPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromKilometersPerSecondSquared(QuantityValue? kilometerspersecondsquared)
+        {
+            return kilometerspersecondsquared.HasValue ? FromKilometersPerSecondSquared(kilometerspersecondsquared.Value) : default(Acceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable KnotsPerHour.
+        /// </summary>
+        public static Acceleration? FromKnotsPerHour(QuantityValue? knotsperhour)
+        {
+            return knotsperhour.HasValue ? FromKnotsPerHour(knotsperhour.Value) : default(Acceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable KnotsPerMinute.
+        /// </summary>
+        public static Acceleration? FromKnotsPerMinute(QuantityValue? knotsperminute)
+        {
+            return knotsperminute.HasValue ? FromKnotsPerMinute(knotsperminute.Value) : default(Acceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable KnotsPerSecond.
+        /// </summary>
+        public static Acceleration? FromKnotsPerSecond(QuantityValue? knotspersecond)
+        {
+            return knotspersecond.HasValue ? FromKnotsPerSecond(knotspersecond.Value) : default(Acceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MetersPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMetersPerSecondSquared(QuantityValue? meterspersecondsquared)
+        {
+            return meterspersecondsquared.HasValue ? FromMetersPerSecondSquared(meterspersecondsquared.Value) : default(Acceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MicrometersPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMicrometersPerSecondSquared(QuantityValue? micrometerspersecondsquared)
+        {
+            return micrometerspersecondsquared.HasValue ? FromMicrometersPerSecondSquared(micrometerspersecondsquared.Value) : default(Acceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable MillimetersPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromMillimetersPerSecondSquared(QuantityValue? millimeterspersecondsquared)
+        {
+            return millimeterspersecondsquared.HasValue ? FromMillimetersPerSecondSquared(millimeterspersecondsquared.Value) : default(Acceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable NanometersPerSecondSquared.
+        /// </summary>
+        public static Acceleration? FromNanometersPerSecondSquared(QuantityValue? nanometerspersecondsquared)
+        {
+            return nanometerspersecondsquared.HasValue ? FromNanometersPerSecondSquared(nanometerspersecondsquared.Value) : default(Acceleration?);
+        }
+
+        /// <summary>
+        ///     Get nullable Acceleration from nullable StandardGravity.
+        /// </summary>
+        public static Acceleration? FromStandardGravity(QuantityValue? standardgravity)
+        {
+            return standardgravity.HasValue ? FromStandardGravity(standardgravity.Value) : default(Acceleration?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="AccelerationUnit" /> to <see cref="Acceleration" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Acceleration unit value.</returns>
+        public static Acceleration? From(QuantityValue? value, AccelerationUnit fromUnit)
+        {
+            return value.HasValue ? new Acceleration((double)value.Value, fromUnit) : default(Acceleration?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Acceleration operator -(Acceleration right)
+        {
+            return new Acceleration(-right.Value, right.Unit);
+        }
+
+        public static Acceleration operator +(Acceleration left, Acceleration right)
+        {
+            return new Acceleration(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Acceleration operator -(Acceleration left, Acceleration right)
+        {
+            return new Acceleration(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Acceleration operator *(double left, Acceleration right)
+        {
+            return new Acceleration(left * right.Value, right.Unit);
+        }
+
+        public static Acceleration operator *(Acceleration left, double right)
+        {
+            return new Acceleration(left.Value * right, left.Unit);
+        }
+
+        public static Acceleration operator /(Acceleration left, double right)
+        {
+            return new Acceleration(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Acceleration left, Acceleration right)
+        {
+            return left.MetersPerSecondSquared / right.MetersPerSecondSquared;
+        }
+
+        #endregion
+
+        public static bool operator <=(Acceleration left, Acceleration right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Acceleration left, Acceleration right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Acceleration left, Acceleration right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Acceleration left, Acceleration right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(Acceleration left, Acceleration right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(Acceleration left, Acceleration right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

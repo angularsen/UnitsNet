@@ -59,5 +59,301 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable GramSquareCentimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromGramSquareCentimeters(QuantityValue? gramsquarecentimeters)
+        {
+            return gramsquarecentimeters.HasValue ? FromGramSquareCentimeters(gramsquarecentimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable GramSquareDecimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromGramSquareDecimeters(QuantityValue? gramsquaredecimeters)
+        {
+            return gramsquaredecimeters.HasValue ? FromGramSquareDecimeters(gramsquaredecimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable GramSquareMeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromGramSquareMeters(QuantityValue? gramsquaremeters)
+        {
+            return gramsquaremeters.HasValue ? FromGramSquareMeters(gramsquaremeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable GramSquareMillimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromGramSquareMillimeters(QuantityValue? gramsquaremillimeters)
+        {
+            return gramsquaremillimeters.HasValue ? FromGramSquareMillimeters(gramsquaremillimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable KilogramSquareCentimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromKilogramSquareCentimeters(QuantityValue? kilogramsquarecentimeters)
+        {
+            return kilogramsquarecentimeters.HasValue ? FromKilogramSquareCentimeters(kilogramsquarecentimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable KilogramSquareDecimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromKilogramSquareDecimeters(QuantityValue? kilogramsquaredecimeters)
+        {
+            return kilogramsquaredecimeters.HasValue ? FromKilogramSquareDecimeters(kilogramsquaredecimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable KilogramSquareMeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromKilogramSquareMeters(QuantityValue? kilogramsquaremeters)
+        {
+            return kilogramsquaremeters.HasValue ? FromKilogramSquareMeters(kilogramsquaremeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable KilogramSquareMillimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromKilogramSquareMillimeters(QuantityValue? kilogramsquaremillimeters)
+        {
+            return kilogramsquaremillimeters.HasValue ? FromKilogramSquareMillimeters(kilogramsquaremillimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareCentimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromKilotonneSquareCentimeters(QuantityValue? kilotonnesquarecentimeters)
+        {
+            return kilotonnesquarecentimeters.HasValue ? FromKilotonneSquareCentimeters(kilotonnesquarecentimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareDecimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromKilotonneSquareDecimeters(QuantityValue? kilotonnesquaredecimeters)
+        {
+            return kilotonnesquaredecimeters.HasValue ? FromKilotonneSquareDecimeters(kilotonnesquaredecimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareMeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromKilotonneSquareMeters(QuantityValue? kilotonnesquaremeters)
+        {
+            return kilotonnesquaremeters.HasValue ? FromKilotonneSquareMeters(kilotonnesquaremeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareMilimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromKilotonneSquareMilimeters(QuantityValue? kilotonnesquaremilimeters)
+        {
+            return kilotonnesquaremilimeters.HasValue ? FromKilotonneSquareMilimeters(kilotonnesquaremilimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareCentimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromMegatonneSquareCentimeters(QuantityValue? megatonnesquarecentimeters)
+        {
+            return megatonnesquarecentimeters.HasValue ? FromMegatonneSquareCentimeters(megatonnesquarecentimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareDecimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromMegatonneSquareDecimeters(QuantityValue? megatonnesquaredecimeters)
+        {
+            return megatonnesquaredecimeters.HasValue ? FromMegatonneSquareDecimeters(megatonnesquaredecimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareMeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromMegatonneSquareMeters(QuantityValue? megatonnesquaremeters)
+        {
+            return megatonnesquaremeters.HasValue ? FromMegatonneSquareMeters(megatonnesquaremeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareMilimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromMegatonneSquareMilimeters(QuantityValue? megatonnesquaremilimeters)
+        {
+            return megatonnesquaremilimeters.HasValue ? FromMegatonneSquareMilimeters(megatonnesquaremilimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable MilligramSquareCentimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromMilligramSquareCentimeters(QuantityValue? milligramsquarecentimeters)
+        {
+            return milligramsquarecentimeters.HasValue ? FromMilligramSquareCentimeters(milligramsquarecentimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable MilligramSquareDecimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromMilligramSquareDecimeters(QuantityValue? milligramsquaredecimeters)
+        {
+            return milligramsquaredecimeters.HasValue ? FromMilligramSquareDecimeters(milligramsquaredecimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable MilligramSquareMeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromMilligramSquareMeters(QuantityValue? milligramsquaremeters)
+        {
+            return milligramsquaremeters.HasValue ? FromMilligramSquareMeters(milligramsquaremeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable MilligramSquareMillimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromMilligramSquareMillimeters(QuantityValue? milligramsquaremillimeters)
+        {
+            return milligramsquaremillimeters.HasValue ? FromMilligramSquareMillimeters(milligramsquaremillimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable PoundSquareFeet.
+        /// </summary>
+        public static MassMomentOfInertia? FromPoundSquareFeet(QuantityValue? poundsquarefeet)
+        {
+            return poundsquarefeet.HasValue ? FromPoundSquareFeet(poundsquarefeet.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable PoundSquareInches.
+        /// </summary>
+        public static MassMomentOfInertia? FromPoundSquareInches(QuantityValue? poundsquareinches)
+        {
+            return poundsquareinches.HasValue ? FromPoundSquareInches(poundsquareinches.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable TonneSquareCentimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromTonneSquareCentimeters(QuantityValue? tonnesquarecentimeters)
+        {
+            return tonnesquarecentimeters.HasValue ? FromTonneSquareCentimeters(tonnesquarecentimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable TonneSquareDecimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromTonneSquareDecimeters(QuantityValue? tonnesquaredecimeters)
+        {
+            return tonnesquaredecimeters.HasValue ? FromTonneSquareDecimeters(tonnesquaredecimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable TonneSquareMeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromTonneSquareMeters(QuantityValue? tonnesquaremeters)
+        {
+            return tonnesquaremeters.HasValue ? FromTonneSquareMeters(tonnesquaremeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable TonneSquareMilimeters.
+        /// </summary>
+        public static MassMomentOfInertia? FromTonneSquareMilimeters(QuantityValue? tonnesquaremilimeters)
+        {
+            return tonnesquaremilimeters.HasValue ? FromTonneSquareMilimeters(tonnesquaremilimeters.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="MassMomentOfInertiaUnit" /> to <see cref="MassMomentOfInertia" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>MassMomentOfInertia unit value.</returns>
+        public static MassMomentOfInertia? From(QuantityValue? value, MassMomentOfInertiaUnit fromUnit)
+        {
+            return value.HasValue ? new MassMomentOfInertia((double)value.Value, fromUnit) : default(MassMomentOfInertia?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static MassMomentOfInertia operator -(MassMomentOfInertia right)
+        {
+            return new MassMomentOfInertia(-right.Value, right.Unit);
+        }
+
+        public static MassMomentOfInertia operator +(MassMomentOfInertia left, MassMomentOfInertia right)
+        {
+            return new MassMomentOfInertia(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MassMomentOfInertia operator -(MassMomentOfInertia left, MassMomentOfInertia right)
+        {
+            return new MassMomentOfInertia(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MassMomentOfInertia operator *(double left, MassMomentOfInertia right)
+        {
+            return new MassMomentOfInertia(left * right.Value, right.Unit);
+        }
+
+        public static MassMomentOfInertia operator *(MassMomentOfInertia left, double right)
+        {
+            return new MassMomentOfInertia(left.Value * right, left.Unit);
+        }
+
+        public static MassMomentOfInertia operator /(MassMomentOfInertia left, double right)
+        {
+            return new MassMomentOfInertia(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(MassMomentOfInertia left, MassMomentOfInertia right)
+        {
+            return left.KilogramSquareMeters / right.KilogramSquareMeters;
+        }
+
+        #endregion
+
+        public static bool operator <=(MassMomentOfInertia left, MassMomentOfInertia right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(MassMomentOfInertia left, MassMomentOfInertia right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(MassMomentOfInertia left, MassMomentOfInertia right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(MassMomentOfInertia left, MassMomentOfInertia right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(MassMomentOfInertia left, MassMomentOfInertia right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(MassMomentOfInertia left, MassMomentOfInertia right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

@@ -187,39 +187,6 @@ namespace UnitsNet
             return new PowerRatio(value, PowerRatioUnit.DecibelWatt);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable PowerRatio from nullable DecibelMilliwatts.
-        /// </summary>
-        public static PowerRatio? FromDecibelMilliwatts(QuantityValue? decibelmilliwatts)
-        {
-            if (decibelmilliwatts.HasValue)
-            {
-                return FromDecibelMilliwatts(decibelmilliwatts.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable PowerRatio from nullable DecibelWatts.
-        /// </summary>
-        public static PowerRatio? FromDecibelWatts(QuantityValue? decibelwatts)
-        {
-            if (decibelwatts.HasValue)
-            {
-                return FromDecibelWatts(decibelwatts.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PowerRatioUnit" /> to <see cref="PowerRatio" />.
@@ -237,25 +204,6 @@ namespace UnitsNet
         {
             return new PowerRatio((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="PowerRatioUnit" /> to <see cref="PowerRatio" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>PowerRatio unit value.</returns>
-        public static PowerRatio? From(QuantityValue? value, PowerRatioUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new PowerRatio((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -299,56 +247,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Logarithmic Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static PowerRatio operator -(PowerRatio right)
-        {
-            return new PowerRatio(-right.Value, right.Unit);
-        }
-
-        public static PowerRatio operator +(PowerRatio left, PowerRatio right)
-        {
-            // Logarithmic addition
-            // Formula: 10*log10(10^(x/10) + 10^(y/10))
-            return new PowerRatio(10*Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.AsBaseNumericType(left.Unit)/10)), left.Unit);
-        }
-
-        public static PowerRatio operator -(PowerRatio left, PowerRatio right)
-        {
-            // Logarithmic subtraction
-            // Formula: 10*log10(10^(x/10) - 10^(y/10))
-            return new PowerRatio(10*Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.AsBaseNumericType(left.Unit)/10)), left.Unit);
-        }
-
-        public static PowerRatio operator *(double left, PowerRatio right)
-        {
-            // Logarithmic multiplication = addition
-            return new PowerRatio(left + right.Value, right.Unit);
-        }
-
-        public static PowerRatio operator *(PowerRatio left, double right)
-        {
-            // Logarithmic multiplication = addition
-            return new PowerRatio(left.Value + (double)right, left.Unit);
-        }
-
-        public static PowerRatio operator /(PowerRatio left, double right)
-        {
-            // Logarithmic division = subtraction
-            return new PowerRatio(left.Value - (double)right, left.Unit);
-        }
-
-        public static double operator /(PowerRatio left, PowerRatio right)
-        {
-            // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.AsBaseNumericType(left.Unit));
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -369,43 +267,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(PowerRatio left, PowerRatio right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(PowerRatio left, PowerRatio right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(PowerRatio left, PowerRatio right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(PowerRatio left, PowerRatio right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(PowerRatio left, PowerRatio right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(PowerRatio left, PowerRatio right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

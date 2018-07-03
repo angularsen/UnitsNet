@@ -59,5 +59,101 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable AreaDensity from nullable KilogramsPerSquareMeter.
+        /// </summary>
+        public static AreaDensity? FromKilogramsPerSquareMeter(QuantityValue? kilogramspersquaremeter)
+        {
+            return kilogramspersquaremeter.HasValue ? FromKilogramsPerSquareMeter(kilogramspersquaremeter.Value) : default(AreaDensity?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="AreaDensityUnit" /> to <see cref="AreaDensity" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>AreaDensity unit value.</returns>
+        public static AreaDensity? From(QuantityValue? value, AreaDensityUnit fromUnit)
+        {
+            return value.HasValue ? new AreaDensity((double)value.Value, fromUnit) : default(AreaDensity?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static AreaDensity operator -(AreaDensity right)
+        {
+            return new AreaDensity(-right.Value, right.Unit);
+        }
+
+        public static AreaDensity operator +(AreaDensity left, AreaDensity right)
+        {
+            return new AreaDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static AreaDensity operator -(AreaDensity left, AreaDensity right)
+        {
+            return new AreaDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static AreaDensity operator *(double left, AreaDensity right)
+        {
+            return new AreaDensity(left * right.Value, right.Unit);
+        }
+
+        public static AreaDensity operator *(AreaDensity left, double right)
+        {
+            return new AreaDensity(left.Value * right, left.Unit);
+        }
+
+        public static AreaDensity operator /(AreaDensity left, double right)
+        {
+            return new AreaDensity(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(AreaDensity left, AreaDensity right)
+        {
+            return left.KilogramsPerSquareMeter / right.KilogramsPerSquareMeter;
+        }
+
+        #endregion
+
+        public static bool operator <=(AreaDensity left, AreaDensity right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(AreaDensity left, AreaDensity right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(AreaDensity left, AreaDensity right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(AreaDensity left, AreaDensity right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(AreaDensity left, AreaDensity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(AreaDensity left, AreaDensity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

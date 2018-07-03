@@ -179,24 +179,6 @@ namespace UnitsNet
             return new ElectricField(value, ElectricFieldUnit.VoltPerMeter);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ElectricField from nullable VoltsPerMeter.
-        /// </summary>
-        public static ElectricField? FromVoltsPerMeter(QuantityValue? voltspermeter)
-        {
-            if (voltspermeter.HasValue)
-            {
-                return FromVoltsPerMeter(voltspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricFieldUnit" /> to <see cref="ElectricField" />.
@@ -214,25 +196,6 @@ namespace UnitsNet
         {
             return new ElectricField((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricFieldUnit" /> to <see cref="ElectricField" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricField unit value.</returns>
-        public static ElectricField? From(QuantityValue? value, ElectricFieldUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ElectricField((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -276,48 +239,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ElectricField operator -(ElectricField right)
-        {
-            return new ElectricField(-right.Value, right.Unit);
-        }
-
-        public static ElectricField operator +(ElectricField left, ElectricField right)
-        {
-            return new ElectricField(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricField operator -(ElectricField left, ElectricField right)
-        {
-            return new ElectricField(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricField operator *(double left, ElectricField right)
-        {
-            return new ElectricField(left * right.Value, right.Unit);
-        }
-
-        public static ElectricField operator *(ElectricField left, double right)
-        {
-            return new ElectricField(left.Value * right, left.Unit);
-        }
-
-        public static ElectricField operator /(ElectricField left, double right)
-        {
-            return new ElectricField(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ElectricField left, ElectricField right)
-        {
-            return left.VoltsPerMeter / right.VoltsPerMeter;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -338,43 +259,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ElectricField left, ElectricField right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ElectricField left, ElectricField right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ElectricField left, ElectricField right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ElectricField left, ElectricField right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ElectricField left, ElectricField right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ElectricField left, ElectricField right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

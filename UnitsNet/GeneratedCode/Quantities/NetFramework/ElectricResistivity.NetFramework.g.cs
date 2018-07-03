@@ -59,5 +59,125 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable ElectricResistivity from nullable MicroohmMeters.
+        /// </summary>
+        public static ElectricResistivity? FromMicroohmMeters(QuantityValue? microohmmeters)
+        {
+            return microohmmeters.HasValue ? FromMicroohmMeters(microohmmeters.Value) : default(ElectricResistivity?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricResistivity from nullable MilliohmMeters.
+        /// </summary>
+        public static ElectricResistivity? FromMilliohmMeters(QuantityValue? milliohmmeters)
+        {
+            return milliohmmeters.HasValue ? FromMilliohmMeters(milliohmmeters.Value) : default(ElectricResistivity?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricResistivity from nullable NanoohmMeters.
+        /// </summary>
+        public static ElectricResistivity? FromNanoohmMeters(QuantityValue? nanoohmmeters)
+        {
+            return nanoohmmeters.HasValue ? FromNanoohmMeters(nanoohmmeters.Value) : default(ElectricResistivity?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricResistivity from nullable OhmMeters.
+        /// </summary>
+        public static ElectricResistivity? FromOhmMeters(QuantityValue? ohmmeters)
+        {
+            return ohmmeters.HasValue ? FromOhmMeters(ohmmeters.Value) : default(ElectricResistivity?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricResistivityUnit" /> to <see cref="ElectricResistivity" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricResistivity unit value.</returns>
+        public static ElectricResistivity? From(QuantityValue? value, ElectricResistivityUnit fromUnit)
+        {
+            return value.HasValue ? new ElectricResistivity((double)value.Value, fromUnit) : default(ElectricResistivity?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ElectricResistivity operator -(ElectricResistivity right)
+        {
+            return new ElectricResistivity(-right.Value, right.Unit);
+        }
+
+        public static ElectricResistivity operator +(ElectricResistivity left, ElectricResistivity right)
+        {
+            return new ElectricResistivity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricResistivity operator -(ElectricResistivity left, ElectricResistivity right)
+        {
+            return new ElectricResistivity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricResistivity operator *(double left, ElectricResistivity right)
+        {
+            return new ElectricResistivity(left * right.Value, right.Unit);
+        }
+
+        public static ElectricResistivity operator *(ElectricResistivity left, double right)
+        {
+            return new ElectricResistivity(left.Value * right, left.Unit);
+        }
+
+        public static ElectricResistivity operator /(ElectricResistivity left, double right)
+        {
+            return new ElectricResistivity(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(ElectricResistivity left, ElectricResistivity right)
+        {
+            return left.OhmMeters / right.OhmMeters;
+        }
+
+        #endregion
+
+        public static bool operator <=(ElectricResistivity left, ElectricResistivity right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(ElectricResistivity left, ElectricResistivity right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(ElectricResistivity left, ElectricResistivity right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(ElectricResistivity left, ElectricResistivity right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(ElectricResistivity left, ElectricResistivity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ElectricResistivity left, ElectricResistivity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

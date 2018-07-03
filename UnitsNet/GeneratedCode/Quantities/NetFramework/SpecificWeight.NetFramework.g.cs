@@ -59,5 +59,229 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicCentimeter.
+        /// </summary>
+        public static SpecificWeight? FromKilogramsForcePerCubicCentimeter(QuantityValue? kilogramsforcepercubiccentimeter)
+        {
+            return kilogramsforcepercubiccentimeter.HasValue ? FromKilogramsForcePerCubicCentimeter(kilogramsforcepercubiccentimeter.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromKilogramsForcePerCubicMeter(QuantityValue? kilogramsforcepercubicmeter)
+        {
+            return kilogramsforcepercubicmeter.HasValue ? FromKilogramsForcePerCubicMeter(kilogramsforcepercubicmeter.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMillimeter.
+        /// </summary>
+        public static SpecificWeight? FromKilogramsForcePerCubicMillimeter(QuantityValue? kilogramsforcepercubicmillimeter)
+        {
+            return kilogramsforcepercubicmillimeter.HasValue ? FromKilogramsForcePerCubicMillimeter(kilogramsforcepercubicmillimeter.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicCentimeter.
+        /// </summary>
+        public static SpecificWeight? FromKilonewtonsPerCubicCentimeter(QuantityValue? kilonewtonspercubiccentimeter)
+        {
+            return kilonewtonspercubiccentimeter.HasValue ? FromKilonewtonsPerCubicCentimeter(kilonewtonspercubiccentimeter.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromKilonewtonsPerCubicMeter(QuantityValue? kilonewtonspercubicmeter)
+        {
+            return kilonewtonspercubicmeter.HasValue ? FromKilonewtonsPerCubicMeter(kilonewtonspercubicmeter.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMillimeter.
+        /// </summary>
+        public static SpecificWeight? FromKilonewtonsPerCubicMillimeter(QuantityValue? kilonewtonspercubicmillimeter)
+        {
+            return kilonewtonspercubicmillimeter.HasValue ? FromKilonewtonsPerCubicMillimeter(kilonewtonspercubicmillimeter.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicFoot.
+        /// </summary>
+        public static SpecificWeight? FromKilopoundsForcePerCubicFoot(QuantityValue? kilopoundsforcepercubicfoot)
+        {
+            return kilopoundsforcepercubicfoot.HasValue ? FromKilopoundsForcePerCubicFoot(kilopoundsforcepercubicfoot.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicInch.
+        /// </summary>
+        public static SpecificWeight? FromKilopoundsForcePerCubicInch(QuantityValue? kilopoundsforcepercubicinch)
+        {
+            return kilopoundsforcepercubicinch.HasValue ? FromKilopoundsForcePerCubicInch(kilopoundsforcepercubicinch.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable MeganewtonsPerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromMeganewtonsPerCubicMeter(QuantityValue? meganewtonspercubicmeter)
+        {
+            return meganewtonspercubicmeter.HasValue ? FromMeganewtonsPerCubicMeter(meganewtonspercubicmeter.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicCentimeter.
+        /// </summary>
+        public static SpecificWeight? FromNewtonsPerCubicCentimeter(QuantityValue? newtonspercubiccentimeter)
+        {
+            return newtonspercubiccentimeter.HasValue ? FromNewtonsPerCubicCentimeter(newtonspercubiccentimeter.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromNewtonsPerCubicMeter(QuantityValue? newtonspercubicmeter)
+        {
+            return newtonspercubicmeter.HasValue ? FromNewtonsPerCubicMeter(newtonspercubicmeter.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMillimeter.
+        /// </summary>
+        public static SpecificWeight? FromNewtonsPerCubicMillimeter(QuantityValue? newtonspercubicmillimeter)
+        {
+            return newtonspercubicmillimeter.HasValue ? FromNewtonsPerCubicMillimeter(newtonspercubicmillimeter.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicFoot.
+        /// </summary>
+        public static SpecificWeight? FromPoundsForcePerCubicFoot(QuantityValue? poundsforcepercubicfoot)
+        {
+            return poundsforcepercubicfoot.HasValue ? FromPoundsForcePerCubicFoot(poundsforcepercubicfoot.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicInch.
+        /// </summary>
+        public static SpecificWeight? FromPoundsForcePerCubicInch(QuantityValue? poundsforcepercubicinch)
+        {
+            return poundsforcepercubicinch.HasValue ? FromPoundsForcePerCubicInch(poundsforcepercubicinch.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicCentimeter.
+        /// </summary>
+        public static SpecificWeight? FromTonnesForcePerCubicCentimeter(QuantityValue? tonnesforcepercubiccentimeter)
+        {
+            return tonnesforcepercubiccentimeter.HasValue ? FromTonnesForcePerCubicCentimeter(tonnesforcepercubiccentimeter.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMeter.
+        /// </summary>
+        public static SpecificWeight? FromTonnesForcePerCubicMeter(QuantityValue? tonnesforcepercubicmeter)
+        {
+            return tonnesforcepercubicmeter.HasValue ? FromTonnesForcePerCubicMeter(tonnesforcepercubicmeter.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMillimeter.
+        /// </summary>
+        public static SpecificWeight? FromTonnesForcePerCubicMillimeter(QuantityValue? tonnesforcepercubicmillimeter)
+        {
+            return tonnesforcepercubicmillimeter.HasValue ? FromTonnesForcePerCubicMillimeter(tonnesforcepercubicmillimeter.Value) : default(SpecificWeight?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="SpecificWeightUnit" /> to <see cref="SpecificWeight" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>SpecificWeight unit value.</returns>
+        public static SpecificWeight? From(QuantityValue? value, SpecificWeightUnit fromUnit)
+        {
+            return value.HasValue ? new SpecificWeight((double)value.Value, fromUnit) : default(SpecificWeight?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static SpecificWeight operator -(SpecificWeight right)
+        {
+            return new SpecificWeight(-right.Value, right.Unit);
+        }
+
+        public static SpecificWeight operator +(SpecificWeight left, SpecificWeight right)
+        {
+            return new SpecificWeight(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static SpecificWeight operator -(SpecificWeight left, SpecificWeight right)
+        {
+            return new SpecificWeight(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static SpecificWeight operator *(double left, SpecificWeight right)
+        {
+            return new SpecificWeight(left * right.Value, right.Unit);
+        }
+
+        public static SpecificWeight operator *(SpecificWeight left, double right)
+        {
+            return new SpecificWeight(left.Value * right, left.Unit);
+        }
+
+        public static SpecificWeight operator /(SpecificWeight left, double right)
+        {
+            return new SpecificWeight(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(SpecificWeight left, SpecificWeight right)
+        {
+            return left.NewtonsPerCubicMeter / right.NewtonsPerCubicMeter;
+        }
+
+        #endregion
+
+        public static bool operator <=(SpecificWeight left, SpecificWeight right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(SpecificWeight left, SpecificWeight right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(SpecificWeight left, SpecificWeight right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(SpecificWeight left, SpecificWeight right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(SpecificWeight left, SpecificWeight right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(SpecificWeight left, SpecificWeight right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

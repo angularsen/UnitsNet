@@ -59,5 +59,101 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable ElectricChargeDensity from nullable CoulombsPerCubicMeter.
+        /// </summary>
+        public static ElectricChargeDensity? FromCoulombsPerCubicMeter(QuantityValue? coulombspercubicmeter)
+        {
+            return coulombspercubicmeter.HasValue ? FromCoulombsPerCubicMeter(coulombspercubicmeter.Value) : default(ElectricChargeDensity?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricChargeDensityUnit" /> to <see cref="ElectricChargeDensity" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricChargeDensity unit value.</returns>
+        public static ElectricChargeDensity? From(QuantityValue? value, ElectricChargeDensityUnit fromUnit)
+        {
+            return value.HasValue ? new ElectricChargeDensity((double)value.Value, fromUnit) : default(ElectricChargeDensity?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ElectricChargeDensity operator -(ElectricChargeDensity right)
+        {
+            return new ElectricChargeDensity(-right.Value, right.Unit);
+        }
+
+        public static ElectricChargeDensity operator +(ElectricChargeDensity left, ElectricChargeDensity right)
+        {
+            return new ElectricChargeDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricChargeDensity operator -(ElectricChargeDensity left, ElectricChargeDensity right)
+        {
+            return new ElectricChargeDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricChargeDensity operator *(double left, ElectricChargeDensity right)
+        {
+            return new ElectricChargeDensity(left * right.Value, right.Unit);
+        }
+
+        public static ElectricChargeDensity operator *(ElectricChargeDensity left, double right)
+        {
+            return new ElectricChargeDensity(left.Value * right, left.Unit);
+        }
+
+        public static ElectricChargeDensity operator /(ElectricChargeDensity left, double right)
+        {
+            return new ElectricChargeDensity(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(ElectricChargeDensity left, ElectricChargeDensity right)
+        {
+            return left.CoulombsPerCubicMeter / right.CoulombsPerCubicMeter;
+        }
+
+        #endregion
+
+        public static bool operator <=(ElectricChargeDensity left, ElectricChargeDensity right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(ElectricChargeDensity left, ElectricChargeDensity right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(ElectricChargeDensity left, ElectricChargeDensity right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(ElectricChargeDensity left, ElectricChargeDensity right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(ElectricChargeDensity left, ElectricChargeDensity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ElectricChargeDensity left, ElectricChargeDensity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

@@ -59,5 +59,101 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable SpecificVolume from nullable CubicMetersPerKilogram.
+        /// </summary>
+        public static SpecificVolume? FromCubicMetersPerKilogram(QuantityValue? cubicmetersperkilogram)
+        {
+            return cubicmetersperkilogram.HasValue ? FromCubicMetersPerKilogram(cubicmetersperkilogram.Value) : default(SpecificVolume?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="SpecificVolumeUnit" /> to <see cref="SpecificVolume" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>SpecificVolume unit value.</returns>
+        public static SpecificVolume? From(QuantityValue? value, SpecificVolumeUnit fromUnit)
+        {
+            return value.HasValue ? new SpecificVolume((double)value.Value, fromUnit) : default(SpecificVolume?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static SpecificVolume operator -(SpecificVolume right)
+        {
+            return new SpecificVolume(-right.Value, right.Unit);
+        }
+
+        public static SpecificVolume operator +(SpecificVolume left, SpecificVolume right)
+        {
+            return new SpecificVolume(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static SpecificVolume operator -(SpecificVolume left, SpecificVolume right)
+        {
+            return new SpecificVolume(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static SpecificVolume operator *(double left, SpecificVolume right)
+        {
+            return new SpecificVolume(left * right.Value, right.Unit);
+        }
+
+        public static SpecificVolume operator *(SpecificVolume left, double right)
+        {
+            return new SpecificVolume(left.Value * right, left.Unit);
+        }
+
+        public static SpecificVolume operator /(SpecificVolume left, double right)
+        {
+            return new SpecificVolume(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(SpecificVolume left, SpecificVolume right)
+        {
+            return left.CubicMetersPerKilogram / right.CubicMetersPerKilogram;
+        }
+
+        #endregion
+
+        public static bool operator <=(SpecificVolume left, SpecificVolume right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(SpecificVolume left, SpecificVolume right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(SpecificVolume left, SpecificVolume right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(SpecificVolume left, SpecificVolume right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(SpecificVolume left, SpecificVolume right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(SpecificVolume left, SpecificVolume right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

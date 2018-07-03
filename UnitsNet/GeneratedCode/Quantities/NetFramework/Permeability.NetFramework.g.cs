@@ -59,5 +59,101 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Permeability from nullable HenriesPerMeter.
+        /// </summary>
+        public static Permeability? FromHenriesPerMeter(QuantityValue? henriespermeter)
+        {
+            return henriespermeter.HasValue ? FromHenriesPerMeter(henriespermeter.Value) : default(Permeability?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="PermeabilityUnit" /> to <see cref="Permeability" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Permeability unit value.</returns>
+        public static Permeability? From(QuantityValue? value, PermeabilityUnit fromUnit)
+        {
+            return value.HasValue ? new Permeability((double)value.Value, fromUnit) : default(Permeability?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Permeability operator -(Permeability right)
+        {
+            return new Permeability(-right.Value, right.Unit);
+        }
+
+        public static Permeability operator +(Permeability left, Permeability right)
+        {
+            return new Permeability(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Permeability operator -(Permeability left, Permeability right)
+        {
+            return new Permeability(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Permeability operator *(double left, Permeability right)
+        {
+            return new Permeability(left * right.Value, right.Unit);
+        }
+
+        public static Permeability operator *(Permeability left, double right)
+        {
+            return new Permeability(left.Value * right, left.Unit);
+        }
+
+        public static Permeability operator /(Permeability left, double right)
+        {
+            return new Permeability(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Permeability left, Permeability right)
+        {
+            return left.HenriesPerMeter / right.HenriesPerMeter;
+        }
+
+        #endregion
+
+        public static bool operator <=(Permeability left, Permeability right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Permeability left, Permeability right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Permeability left, Permeability right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Permeability left, Permeability right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(Permeability left, Permeability right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(Permeability left, Permeability right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

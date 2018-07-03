@@ -169,24 +169,6 @@ namespace UnitsNet
             return new VitaminA(value, VitaminAUnit.InternationalUnit);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable VitaminA from nullable InternationalUnits.
-        /// </summary>
-        public static VitaminA? FromInternationalUnits(QuantityValue? internationalunits)
-        {
-            if (internationalunits.HasValue)
-            {
-                return FromInternationalUnits(internationalunits.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VitaminAUnit" /> to <see cref="VitaminA" />.
@@ -204,25 +186,6 @@ namespace UnitsNet
         {
             return new VitaminA((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="VitaminAUnit" /> to <see cref="VitaminA" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>VitaminA unit value.</returns>
-        public static VitaminA? From(QuantityValue? value, VitaminAUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new VitaminA((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -266,48 +229,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static VitaminA operator -(VitaminA right)
-        {
-            return new VitaminA(-right.Value, right.Unit);
-        }
-
-        public static VitaminA operator +(VitaminA left, VitaminA right)
-        {
-            return new VitaminA(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static VitaminA operator -(VitaminA left, VitaminA right)
-        {
-            return new VitaminA(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static VitaminA operator *(double left, VitaminA right)
-        {
-            return new VitaminA(left * right.Value, right.Unit);
-        }
-
-        public static VitaminA operator *(VitaminA left, double right)
-        {
-            return new VitaminA(left.Value * right, left.Unit);
-        }
-
-        public static VitaminA operator /(VitaminA left, double right)
-        {
-            return new VitaminA(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(VitaminA left, VitaminA right)
-        {
-            return left.InternationalUnits / right.InternationalUnits;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -328,43 +249,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(VitaminA left, VitaminA right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(VitaminA left, VitaminA right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(VitaminA left, VitaminA right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(VitaminA left, VitaminA right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(VitaminA left, VitaminA right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(VitaminA left, VitaminA right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

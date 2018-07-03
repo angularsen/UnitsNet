@@ -251,84 +251,6 @@ namespace UnitsNet
             return new ThermalResistance(value, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ThermalResistance from nullable HourSquareFeetDegreesFahrenheitPerBtu.
-        /// </summary>
-        public static ThermalResistance? FromHourSquareFeetDegreesFahrenheitPerBtu(QuantityValue? hoursquarefeetdegreesfahrenheitperbtu)
-        {
-            if (hoursquarefeetdegreesfahrenheitperbtu.HasValue)
-            {
-                return FromHourSquareFeetDegreesFahrenheitPerBtu(hoursquarefeetdegreesfahrenheitperbtu.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ThermalResistance from nullable SquareCentimeterHourDegreesCelsiusPerKilocalorie.
-        /// </summary>
-        public static ThermalResistance? FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(QuantityValue? squarecentimeterhourdegreescelsiusperkilocalorie)
-        {
-            if (squarecentimeterhourdegreescelsiusperkilocalorie.HasValue)
-            {
-                return FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(squarecentimeterhourdegreescelsiusperkilocalorie.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ThermalResistance from nullable SquareCentimeterKelvinsPerWatt.
-        /// </summary>
-        public static ThermalResistance? FromSquareCentimeterKelvinsPerWatt(QuantityValue? squarecentimeterkelvinsperwatt)
-        {
-            if (squarecentimeterkelvinsperwatt.HasValue)
-            {
-                return FromSquareCentimeterKelvinsPerWatt(squarecentimeterkelvinsperwatt.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ThermalResistance from nullable SquareMeterDegreesCelsiusPerWatt.
-        /// </summary>
-        public static ThermalResistance? FromSquareMeterDegreesCelsiusPerWatt(QuantityValue? squaremeterdegreescelsiusperwatt)
-        {
-            if (squaremeterdegreescelsiusperwatt.HasValue)
-            {
-                return FromSquareMeterDegreesCelsiusPerWatt(squaremeterdegreescelsiusperwatt.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ThermalResistance from nullable SquareMeterKelvinsPerKilowatt.
-        /// </summary>
-        public static ThermalResistance? FromSquareMeterKelvinsPerKilowatt(QuantityValue? squaremeterkelvinsperkilowatt)
-        {
-            if (squaremeterkelvinsperkilowatt.HasValue)
-            {
-                return FromSquareMeterKelvinsPerKilowatt(squaremeterkelvinsperkilowatt.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ThermalResistanceUnit" /> to <see cref="ThermalResistance" />.
@@ -346,25 +268,6 @@ namespace UnitsNet
         {
             return new ThermalResistance((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ThermalResistanceUnit" /> to <see cref="ThermalResistance" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ThermalResistance unit value.</returns>
-        public static ThermalResistance? From(QuantityValue? value, ThermalResistanceUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ThermalResistance((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -408,48 +311,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ThermalResistance operator -(ThermalResistance right)
-        {
-            return new ThermalResistance(-right.Value, right.Unit);
-        }
-
-        public static ThermalResistance operator +(ThermalResistance left, ThermalResistance right)
-        {
-            return new ThermalResistance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ThermalResistance operator -(ThermalResistance left, ThermalResistance right)
-        {
-            return new ThermalResistance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ThermalResistance operator *(double left, ThermalResistance right)
-        {
-            return new ThermalResistance(left * right.Value, right.Unit);
-        }
-
-        public static ThermalResistance operator *(ThermalResistance left, double right)
-        {
-            return new ThermalResistance(left.Value * right, left.Unit);
-        }
-
-        public static ThermalResistance operator /(ThermalResistance left, double right)
-        {
-            return new ThermalResistance(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ThermalResistance left, ThermalResistance right)
-        {
-            return left.SquareMeterKelvinsPerKilowatt / right.SquareMeterKelvinsPerKilowatt;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -470,43 +331,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ThermalResistance left, ThermalResistance right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ThermalResistance left, ThermalResistance right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ThermalResistance left, ThermalResistance right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ThermalResistance left, ThermalResistance right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ThermalResistance left, ThermalResistance right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ThermalResistance left, ThermalResistance right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

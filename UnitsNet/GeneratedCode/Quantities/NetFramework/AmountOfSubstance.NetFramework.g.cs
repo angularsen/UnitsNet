@@ -59,5 +59,205 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable Centimoles.
+        /// </summary>
+        public static AmountOfSubstance? FromCentimoles(QuantityValue? centimoles)
+        {
+            return centimoles.HasValue ? FromCentimoles(centimoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable CentipoundMoles.
+        /// </summary>
+        public static AmountOfSubstance? FromCentipoundMoles(QuantityValue? centipoundmoles)
+        {
+            return centipoundmoles.HasValue ? FromCentipoundMoles(centipoundmoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable Decimoles.
+        /// </summary>
+        public static AmountOfSubstance? FromDecimoles(QuantityValue? decimoles)
+        {
+            return decimoles.HasValue ? FromDecimoles(decimoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable DecipoundMoles.
+        /// </summary>
+        public static AmountOfSubstance? FromDecipoundMoles(QuantityValue? decipoundmoles)
+        {
+            return decipoundmoles.HasValue ? FromDecipoundMoles(decipoundmoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable Kilomoles.
+        /// </summary>
+        public static AmountOfSubstance? FromKilomoles(QuantityValue? kilomoles)
+        {
+            return kilomoles.HasValue ? FromKilomoles(kilomoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable KilopoundMoles.
+        /// </summary>
+        public static AmountOfSubstance? FromKilopoundMoles(QuantityValue? kilopoundmoles)
+        {
+            return kilopoundmoles.HasValue ? FromKilopoundMoles(kilopoundmoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable Micromoles.
+        /// </summary>
+        public static AmountOfSubstance? FromMicromoles(QuantityValue? micromoles)
+        {
+            return micromoles.HasValue ? FromMicromoles(micromoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable MicropoundMoles.
+        /// </summary>
+        public static AmountOfSubstance? FromMicropoundMoles(QuantityValue? micropoundmoles)
+        {
+            return micropoundmoles.HasValue ? FromMicropoundMoles(micropoundmoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable Millimoles.
+        /// </summary>
+        public static AmountOfSubstance? FromMillimoles(QuantityValue? millimoles)
+        {
+            return millimoles.HasValue ? FromMillimoles(millimoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable MillipoundMoles.
+        /// </summary>
+        public static AmountOfSubstance? FromMillipoundMoles(QuantityValue? millipoundmoles)
+        {
+            return millipoundmoles.HasValue ? FromMillipoundMoles(millipoundmoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable Moles.
+        /// </summary>
+        public static AmountOfSubstance? FromMoles(QuantityValue? moles)
+        {
+            return moles.HasValue ? FromMoles(moles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable Nanomoles.
+        /// </summary>
+        public static AmountOfSubstance? FromNanomoles(QuantityValue? nanomoles)
+        {
+            return nanomoles.HasValue ? FromNanomoles(nanomoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable NanopoundMoles.
+        /// </summary>
+        public static AmountOfSubstance? FromNanopoundMoles(QuantityValue? nanopoundmoles)
+        {
+            return nanopoundmoles.HasValue ? FromNanopoundMoles(nanopoundmoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable PoundMoles.
+        /// </summary>
+        public static AmountOfSubstance? FromPoundMoles(QuantityValue? poundmoles)
+        {
+            return poundmoles.HasValue ? FromPoundMoles(poundmoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="AmountOfSubstanceUnit" /> to <see cref="AmountOfSubstance" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>AmountOfSubstance unit value.</returns>
+        public static AmountOfSubstance? From(QuantityValue? value, AmountOfSubstanceUnit fromUnit)
+        {
+            return value.HasValue ? new AmountOfSubstance((double)value.Value, fromUnit) : default(AmountOfSubstance?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static AmountOfSubstance operator -(AmountOfSubstance right)
+        {
+            return new AmountOfSubstance(-right.Value, right.Unit);
+        }
+
+        public static AmountOfSubstance operator +(AmountOfSubstance left, AmountOfSubstance right)
+        {
+            return new AmountOfSubstance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static AmountOfSubstance operator -(AmountOfSubstance left, AmountOfSubstance right)
+        {
+            return new AmountOfSubstance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static AmountOfSubstance operator *(double left, AmountOfSubstance right)
+        {
+            return new AmountOfSubstance(left * right.Value, right.Unit);
+        }
+
+        public static AmountOfSubstance operator *(AmountOfSubstance left, double right)
+        {
+            return new AmountOfSubstance(left.Value * right, left.Unit);
+        }
+
+        public static AmountOfSubstance operator /(AmountOfSubstance left, double right)
+        {
+            return new AmountOfSubstance(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(AmountOfSubstance left, AmountOfSubstance right)
+        {
+            return left.Moles / right.Moles;
+        }
+
+        #endregion
+
+        public static bool operator <=(AmountOfSubstance left, AmountOfSubstance right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(AmountOfSubstance left, AmountOfSubstance right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(AmountOfSubstance left, AmountOfSubstance right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(AmountOfSubstance left, AmountOfSubstance right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(AmountOfSubstance left, AmountOfSubstance right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(AmountOfSubstance left, AmountOfSubstance right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

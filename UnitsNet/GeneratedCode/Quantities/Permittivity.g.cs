@@ -179,24 +179,6 @@ namespace UnitsNet
             return new Permittivity(value, PermittivityUnit.FaradPerMeter);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable Permittivity from nullable FaradsPerMeter.
-        /// </summary>
-        public static Permittivity? FromFaradsPerMeter(QuantityValue? faradspermeter)
-        {
-            if (faradspermeter.HasValue)
-            {
-                return FromFaradsPerMeter(faradspermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PermittivityUnit" /> to <see cref="Permittivity" />.
@@ -214,25 +196,6 @@ namespace UnitsNet
         {
             return new Permittivity((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="PermittivityUnit" /> to <see cref="Permittivity" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Permittivity unit value.</returns>
-        public static Permittivity? From(QuantityValue? value, PermittivityUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new Permittivity((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -276,48 +239,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static Permittivity operator -(Permittivity right)
-        {
-            return new Permittivity(-right.Value, right.Unit);
-        }
-
-        public static Permittivity operator +(Permittivity left, Permittivity right)
-        {
-            return new Permittivity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Permittivity operator -(Permittivity left, Permittivity right)
-        {
-            return new Permittivity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Permittivity operator *(double left, Permittivity right)
-        {
-            return new Permittivity(left * right.Value, right.Unit);
-        }
-
-        public static Permittivity operator *(Permittivity left, double right)
-        {
-            return new Permittivity(left.Value * right, left.Unit);
-        }
-
-        public static Permittivity operator /(Permittivity left, double right)
-        {
-            return new Permittivity(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(Permittivity left, Permittivity right)
-        {
-            return left.FaradsPerMeter / right.FaradsPerMeter;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -338,43 +259,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(Permittivity left, Permittivity right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(Permittivity left, Permittivity right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(Permittivity left, Permittivity right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(Permittivity left, Permittivity right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(Permittivity left, Permittivity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(Permittivity left, Permittivity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

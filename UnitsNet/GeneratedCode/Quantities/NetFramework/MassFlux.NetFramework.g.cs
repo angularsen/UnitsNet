@@ -59,5 +59,109 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable MassFlux from nullable GramsPerSecondPerSquareMeter.
+        /// </summary>
+        public static MassFlux? FromGramsPerSecondPerSquareMeter(QuantityValue? gramspersecondpersquaremeter)
+        {
+            return gramspersecondpersquaremeter.HasValue ? FromGramsPerSecondPerSquareMeter(gramspersecondpersquaremeter.Value) : default(MassFlux?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlux from nullable KilogramsPerSecondPerSquareMeter.
+        /// </summary>
+        public static MassFlux? FromKilogramsPerSecondPerSquareMeter(QuantityValue? kilogramspersecondpersquaremeter)
+        {
+            return kilogramspersecondpersquaremeter.HasValue ? FromKilogramsPerSecondPerSquareMeter(kilogramspersecondpersquaremeter.Value) : default(MassFlux?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="MassFluxUnit" /> to <see cref="MassFlux" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>MassFlux unit value.</returns>
+        public static MassFlux? From(QuantityValue? value, MassFluxUnit fromUnit)
+        {
+            return value.HasValue ? new MassFlux((double)value.Value, fromUnit) : default(MassFlux?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static MassFlux operator -(MassFlux right)
+        {
+            return new MassFlux(-right.Value, right.Unit);
+        }
+
+        public static MassFlux operator +(MassFlux left, MassFlux right)
+        {
+            return new MassFlux(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MassFlux operator -(MassFlux left, MassFlux right)
+        {
+            return new MassFlux(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MassFlux operator *(double left, MassFlux right)
+        {
+            return new MassFlux(left * right.Value, right.Unit);
+        }
+
+        public static MassFlux operator *(MassFlux left, double right)
+        {
+            return new MassFlux(left.Value * right, left.Unit);
+        }
+
+        public static MassFlux operator /(MassFlux left, double right)
+        {
+            return new MassFlux(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(MassFlux left, MassFlux right)
+        {
+            return left.KilogramsPerSecondPerSquareMeter / right.KilogramsPerSecondPerSquareMeter;
+        }
+
+        #endregion
+
+        public static bool operator <=(MassFlux left, MassFlux right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(MassFlux left, MassFlux right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(MassFlux left, MassFlux right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(MassFlux left, MassFlux right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(MassFlux left, MassFlux right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(MassFlux left, MassFlux right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

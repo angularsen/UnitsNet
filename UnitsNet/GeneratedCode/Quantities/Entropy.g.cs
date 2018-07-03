@@ -287,114 +287,6 @@ namespace UnitsNet
             return new Entropy(value, EntropyUnit.MegajoulePerKelvin);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable Entropy from nullable CaloriesPerKelvin.
-        /// </summary>
-        public static Entropy? FromCaloriesPerKelvin(QuantityValue? caloriesperkelvin)
-        {
-            if (caloriesperkelvin.HasValue)
-            {
-                return FromCaloriesPerKelvin(caloriesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable JoulesPerDegreeCelsius.
-        /// </summary>
-        public static Entropy? FromJoulesPerDegreeCelsius(QuantityValue? joulesperdegreecelsius)
-        {
-            if (joulesperdegreecelsius.HasValue)
-            {
-                return FromJoulesPerDegreeCelsius(joulesperdegreecelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable JoulesPerKelvin.
-        /// </summary>
-        public static Entropy? FromJoulesPerKelvin(QuantityValue? joulesperkelvin)
-        {
-            if (joulesperkelvin.HasValue)
-            {
-                return FromJoulesPerKelvin(joulesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable KilocaloriesPerKelvin.
-        /// </summary>
-        public static Entropy? FromKilocaloriesPerKelvin(QuantityValue? kilocaloriesperkelvin)
-        {
-            if (kilocaloriesperkelvin.HasValue)
-            {
-                return FromKilocaloriesPerKelvin(kilocaloriesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable KilojoulesPerDegreeCelsius.
-        /// </summary>
-        public static Entropy? FromKilojoulesPerDegreeCelsius(QuantityValue? kilojoulesperdegreecelsius)
-        {
-            if (kilojoulesperdegreecelsius.HasValue)
-            {
-                return FromKilojoulesPerDegreeCelsius(kilojoulesperdegreecelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable KilojoulesPerKelvin.
-        /// </summary>
-        public static Entropy? FromKilojoulesPerKelvin(QuantityValue? kilojoulesperkelvin)
-        {
-            if (kilojoulesperkelvin.HasValue)
-            {
-                return FromKilojoulesPerKelvin(kilojoulesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable MegajoulesPerKelvin.
-        /// </summary>
-        public static Entropy? FromMegajoulesPerKelvin(QuantityValue? megajoulesperkelvin)
-        {
-            if (megajoulesperkelvin.HasValue)
-            {
-                return FromMegajoulesPerKelvin(megajoulesperkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="EntropyUnit" /> to <see cref="Entropy" />.
@@ -412,25 +304,6 @@ namespace UnitsNet
         {
             return new Entropy((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="EntropyUnit" /> to <see cref="Entropy" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Entropy unit value.</returns>
-        public static Entropy? From(QuantityValue? value, EntropyUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new Entropy((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -474,48 +347,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static Entropy operator -(Entropy right)
-        {
-            return new Entropy(-right.Value, right.Unit);
-        }
-
-        public static Entropy operator +(Entropy left, Entropy right)
-        {
-            return new Entropy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Entropy operator -(Entropy left, Entropy right)
-        {
-            return new Entropy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Entropy operator *(double left, Entropy right)
-        {
-            return new Entropy(left * right.Value, right.Unit);
-        }
-
-        public static Entropy operator *(Entropy left, double right)
-        {
-            return new Entropy(left.Value * right, left.Unit);
-        }
-
-        public static Entropy operator /(Entropy left, double right)
-        {
-            return new Entropy(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(Entropy left, Entropy right)
-        {
-            return left.JoulesPerKelvin / right.JoulesPerKelvin;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -536,43 +367,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(Entropy left, Entropy right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(Entropy left, Entropy right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(Entropy left, Entropy right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(Entropy left, Entropy right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(Entropy left, Entropy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(Entropy left, Entropy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

@@ -215,54 +215,6 @@ namespace UnitsNet
             return new MolarEntropy(value, MolarEntropyUnit.MegajoulePerMoleKelvin);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable MolarEntropy from nullable JoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy? FromJoulesPerMoleKelvin(QuantityValue? joulespermolekelvin)
-        {
-            if (joulespermolekelvin.HasValue)
-            {
-                return FromJoulesPerMoleKelvin(joulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from nullable KilojoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy? FromKilojoulesPerMoleKelvin(QuantityValue? kilojoulespermolekelvin)
-        {
-            if (kilojoulespermolekelvin.HasValue)
-            {
-                return FromKilojoulesPerMoleKelvin(kilojoulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable MolarEntropy from nullable MegajoulesPerMoleKelvin.
-        /// </summary>
-        public static MolarEntropy? FromMegajoulesPerMoleKelvin(QuantityValue? megajoulespermolekelvin)
-        {
-            if (megajoulespermolekelvin.HasValue)
-            {
-                return FromMegajoulesPerMoleKelvin(megajoulespermolekelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MolarEntropyUnit" /> to <see cref="MolarEntropy" />.
@@ -280,25 +232,6 @@ namespace UnitsNet
         {
             return new MolarEntropy((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MolarEntropyUnit" /> to <see cref="MolarEntropy" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>MolarEntropy unit value.</returns>
-        public static MolarEntropy? From(QuantityValue? value, MolarEntropyUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new MolarEntropy((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -342,48 +275,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static MolarEntropy operator -(MolarEntropy right)
-        {
-            return new MolarEntropy(-right.Value, right.Unit);
-        }
-
-        public static MolarEntropy operator +(MolarEntropy left, MolarEntropy right)
-        {
-            return new MolarEntropy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static MolarEntropy operator -(MolarEntropy left, MolarEntropy right)
-        {
-            return new MolarEntropy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static MolarEntropy operator *(double left, MolarEntropy right)
-        {
-            return new MolarEntropy(left * right.Value, right.Unit);
-        }
-
-        public static MolarEntropy operator *(MolarEntropy left, double right)
-        {
-            return new MolarEntropy(left.Value * right, left.Unit);
-        }
-
-        public static MolarEntropy operator /(MolarEntropy left, double right)
-        {
-            return new MolarEntropy(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(MolarEntropy left, MolarEntropy right)
-        {
-            return left.JoulesPerMoleKelvin / right.JoulesPerMoleKelvin;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -404,43 +295,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(MolarEntropy left, MolarEntropy right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(MolarEntropy left, MolarEntropy right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(MolarEntropy left, MolarEntropy right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(MolarEntropy left, MolarEntropy right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(MolarEntropy left, MolarEntropy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(MolarEntropy left, MolarEntropy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

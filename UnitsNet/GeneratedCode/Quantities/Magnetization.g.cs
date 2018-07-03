@@ -179,24 +179,6 @@ namespace UnitsNet
             return new Magnetization(value, MagnetizationUnit.AmperePerMeter);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable Magnetization from nullable AmperesPerMeter.
-        /// </summary>
-        public static Magnetization? FromAmperesPerMeter(QuantityValue? amperespermeter)
-        {
-            if (amperespermeter.HasValue)
-            {
-                return FromAmperesPerMeter(amperespermeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="MagnetizationUnit" /> to <see cref="Magnetization" />.
@@ -214,25 +196,6 @@ namespace UnitsNet
         {
             return new Magnetization((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MagnetizationUnit" /> to <see cref="Magnetization" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Magnetization unit value.</returns>
-        public static Magnetization? From(QuantityValue? value, MagnetizationUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new Magnetization((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -276,48 +239,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static Magnetization operator -(Magnetization right)
-        {
-            return new Magnetization(-right.Value, right.Unit);
-        }
-
-        public static Magnetization operator +(Magnetization left, Magnetization right)
-        {
-            return new Magnetization(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Magnetization operator -(Magnetization left, Magnetization right)
-        {
-            return new Magnetization(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static Magnetization operator *(double left, Magnetization right)
-        {
-            return new Magnetization(left * right.Value, right.Unit);
-        }
-
-        public static Magnetization operator *(Magnetization left, double right)
-        {
-            return new Magnetization(left.Value * right, left.Unit);
-        }
-
-        public static Magnetization operator /(Magnetization left, double right)
-        {
-            return new Magnetization(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(Magnetization left, Magnetization right)
-        {
-            return left.AmperesPerMeter / right.AmperesPerMeter;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -338,43 +259,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(Magnetization left, Magnetization right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(Magnetization left, Magnetization right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(Magnetization left, Magnetization right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(Magnetization left, Magnetization right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(Magnetization left, Magnetization right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(Magnetization left, Magnetization right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

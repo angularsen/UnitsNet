@@ -59,5 +59,197 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable CentiradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromCentiradiansPerSecond(QuantityValue? centiradianspersecond)
+        {
+            return centiradianspersecond.HasValue ? FromCentiradiansPerSecond(centiradianspersecond.Value) : default(RotationalSpeed?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable DeciradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromDeciradiansPerSecond(QuantityValue? deciradianspersecond)
+        {
+            return deciradianspersecond.HasValue ? FromDeciradiansPerSecond(deciradianspersecond.Value) : default(RotationalSpeed?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable DegreesPerMinute.
+        /// </summary>
+        public static RotationalSpeed? FromDegreesPerMinute(QuantityValue? degreesperminute)
+        {
+            return degreesperminute.HasValue ? FromDegreesPerMinute(degreesperminute.Value) : default(RotationalSpeed?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable DegreesPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromDegreesPerSecond(QuantityValue? degreespersecond)
+        {
+            return degreespersecond.HasValue ? FromDegreesPerSecond(degreespersecond.Value) : default(RotationalSpeed?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable MicrodegreesPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromMicrodegreesPerSecond(QuantityValue? microdegreespersecond)
+        {
+            return microdegreespersecond.HasValue ? FromMicrodegreesPerSecond(microdegreespersecond.Value) : default(RotationalSpeed?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable MicroradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromMicroradiansPerSecond(QuantityValue? microradianspersecond)
+        {
+            return microradianspersecond.HasValue ? FromMicroradiansPerSecond(microradianspersecond.Value) : default(RotationalSpeed?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable MillidegreesPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromMillidegreesPerSecond(QuantityValue? millidegreespersecond)
+        {
+            return millidegreespersecond.HasValue ? FromMillidegreesPerSecond(millidegreespersecond.Value) : default(RotationalSpeed?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable MilliradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromMilliradiansPerSecond(QuantityValue? milliradianspersecond)
+        {
+            return milliradianspersecond.HasValue ? FromMilliradiansPerSecond(milliradianspersecond.Value) : default(RotationalSpeed?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable NanodegreesPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromNanodegreesPerSecond(QuantityValue? nanodegreespersecond)
+        {
+            return nanodegreespersecond.HasValue ? FromNanodegreesPerSecond(nanodegreespersecond.Value) : default(RotationalSpeed?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable NanoradiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromNanoradiansPerSecond(QuantityValue? nanoradianspersecond)
+        {
+            return nanoradianspersecond.HasValue ? FromNanoradiansPerSecond(nanoradianspersecond.Value) : default(RotationalSpeed?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable RadiansPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromRadiansPerSecond(QuantityValue? radianspersecond)
+        {
+            return radianspersecond.HasValue ? FromRadiansPerSecond(radianspersecond.Value) : default(RotationalSpeed?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable RevolutionsPerMinute.
+        /// </summary>
+        public static RotationalSpeed? FromRevolutionsPerMinute(QuantityValue? revolutionsperminute)
+        {
+            return revolutionsperminute.HasValue ? FromRevolutionsPerMinute(revolutionsperminute.Value) : default(RotationalSpeed?);
+        }
+
+        /// <summary>
+        ///     Get nullable RotationalSpeed from nullable RevolutionsPerSecond.
+        /// </summary>
+        public static RotationalSpeed? FromRevolutionsPerSecond(QuantityValue? revolutionspersecond)
+        {
+            return revolutionspersecond.HasValue ? FromRevolutionsPerSecond(revolutionspersecond.Value) : default(RotationalSpeed?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="RotationalSpeedUnit" /> to <see cref="RotationalSpeed" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>RotationalSpeed unit value.</returns>
+        public static RotationalSpeed? From(QuantityValue? value, RotationalSpeedUnit fromUnit)
+        {
+            return value.HasValue ? new RotationalSpeed((double)value.Value, fromUnit) : default(RotationalSpeed?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static RotationalSpeed operator -(RotationalSpeed right)
+        {
+            return new RotationalSpeed(-right.Value, right.Unit);
+        }
+
+        public static RotationalSpeed operator +(RotationalSpeed left, RotationalSpeed right)
+        {
+            return new RotationalSpeed(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static RotationalSpeed operator -(RotationalSpeed left, RotationalSpeed right)
+        {
+            return new RotationalSpeed(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static RotationalSpeed operator *(double left, RotationalSpeed right)
+        {
+            return new RotationalSpeed(left * right.Value, right.Unit);
+        }
+
+        public static RotationalSpeed operator *(RotationalSpeed left, double right)
+        {
+            return new RotationalSpeed(left.Value * right, left.Unit);
+        }
+
+        public static RotationalSpeed operator /(RotationalSpeed left, double right)
+        {
+            return new RotationalSpeed(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(RotationalSpeed left, RotationalSpeed right)
+        {
+            return left.RadiansPerSecond / right.RadiansPerSecond;
+        }
+
+        #endregion
+
+        public static bool operator <=(RotationalSpeed left, RotationalSpeed right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(RotationalSpeed left, RotationalSpeed right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(RotationalSpeed left, RotationalSpeed right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(RotationalSpeed left, RotationalSpeed right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(RotationalSpeed left, RotationalSpeed right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(RotationalSpeed left, RotationalSpeed right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

@@ -269,99 +269,6 @@ namespace UnitsNet
             return new AreaMomentOfInertia(value, AreaMomentOfInertiaUnit.MillimeterToTheFourth);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable AreaMomentOfInertia from nullable CentimetersToTheFourth.
-        /// </summary>
-        public static AreaMomentOfInertia? FromCentimetersToTheFourth(QuantityValue? centimeterstothefourth)
-        {
-            if (centimeterstothefourth.HasValue)
-            {
-                return FromCentimetersToTheFourth(centimeterstothefourth.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AreaMomentOfInertia from nullable DecimetersToTheFourth.
-        /// </summary>
-        public static AreaMomentOfInertia? FromDecimetersToTheFourth(QuantityValue? decimeterstothefourth)
-        {
-            if (decimeterstothefourth.HasValue)
-            {
-                return FromDecimetersToTheFourth(decimeterstothefourth.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AreaMomentOfInertia from nullable FeetToTheFourth.
-        /// </summary>
-        public static AreaMomentOfInertia? FromFeetToTheFourth(QuantityValue? feettothefourth)
-        {
-            if (feettothefourth.HasValue)
-            {
-                return FromFeetToTheFourth(feettothefourth.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AreaMomentOfInertia from nullable InchesToTheFourth.
-        /// </summary>
-        public static AreaMomentOfInertia? FromInchesToTheFourth(QuantityValue? inchestothefourth)
-        {
-            if (inchestothefourth.HasValue)
-            {
-                return FromInchesToTheFourth(inchestothefourth.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AreaMomentOfInertia from nullable MetersToTheFourth.
-        /// </summary>
-        public static AreaMomentOfInertia? FromMetersToTheFourth(QuantityValue? meterstothefourth)
-        {
-            if (meterstothefourth.HasValue)
-            {
-                return FromMetersToTheFourth(meterstothefourth.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AreaMomentOfInertia from nullable MillimetersToTheFourth.
-        /// </summary>
-        public static AreaMomentOfInertia? FromMillimetersToTheFourth(QuantityValue? millimeterstothefourth)
-        {
-            if (millimeterstothefourth.HasValue)
-            {
-                return FromMillimetersToTheFourth(millimeterstothefourth.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AreaMomentOfInertiaUnit" /> to <see cref="AreaMomentOfInertia" />.
@@ -379,25 +286,6 @@ namespace UnitsNet
         {
             return new AreaMomentOfInertia((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="AreaMomentOfInertiaUnit" /> to <see cref="AreaMomentOfInertia" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>AreaMomentOfInertia unit value.</returns>
-        public static AreaMomentOfInertia? From(QuantityValue? value, AreaMomentOfInertiaUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new AreaMomentOfInertia((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -441,48 +329,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static AreaMomentOfInertia operator -(AreaMomentOfInertia right)
-        {
-            return new AreaMomentOfInertia(-right.Value, right.Unit);
-        }
-
-        public static AreaMomentOfInertia operator +(AreaMomentOfInertia left, AreaMomentOfInertia right)
-        {
-            return new AreaMomentOfInertia(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static AreaMomentOfInertia operator -(AreaMomentOfInertia left, AreaMomentOfInertia right)
-        {
-            return new AreaMomentOfInertia(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static AreaMomentOfInertia operator *(double left, AreaMomentOfInertia right)
-        {
-            return new AreaMomentOfInertia(left * right.Value, right.Unit);
-        }
-
-        public static AreaMomentOfInertia operator *(AreaMomentOfInertia left, double right)
-        {
-            return new AreaMomentOfInertia(left.Value * right, left.Unit);
-        }
-
-        public static AreaMomentOfInertia operator /(AreaMomentOfInertia left, double right)
-        {
-            return new AreaMomentOfInertia(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(AreaMomentOfInertia left, AreaMomentOfInertia right)
-        {
-            return left.MetersToTheFourth / right.MetersToTheFourth;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -503,43 +349,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(AreaMomentOfInertia left, AreaMomentOfInertia right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(AreaMomentOfInertia left, AreaMomentOfInertia right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(AreaMomentOfInertia left, AreaMomentOfInertia right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(AreaMomentOfInertia left, AreaMomentOfInertia right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(AreaMomentOfInertia left, AreaMomentOfInertia right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(AreaMomentOfInertia left, AreaMomentOfInertia right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

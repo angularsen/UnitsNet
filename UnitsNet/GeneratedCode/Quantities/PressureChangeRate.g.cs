@@ -233,69 +233,6 @@ namespace UnitsNet
             return new PressureChangeRate(value, PressureChangeRateUnit.PascalPerSecond);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable PressureChangeRate from nullable AtmospheresPerSecond.
-        /// </summary>
-        public static PressureChangeRate? FromAtmospheresPerSecond(QuantityValue? atmospherespersecond)
-        {
-            if (atmospherespersecond.HasValue)
-            {
-                return FromAtmospheresPerSecond(atmospherespersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable PressureChangeRate from nullable KilopascalsPerSecond.
-        /// </summary>
-        public static PressureChangeRate? FromKilopascalsPerSecond(QuantityValue? kilopascalspersecond)
-        {
-            if (kilopascalspersecond.HasValue)
-            {
-                return FromKilopascalsPerSecond(kilopascalspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable PressureChangeRate from nullable MegapascalsPerSecond.
-        /// </summary>
-        public static PressureChangeRate? FromMegapascalsPerSecond(QuantityValue? megapascalspersecond)
-        {
-            if (megapascalspersecond.HasValue)
-            {
-                return FromMegapascalsPerSecond(megapascalspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable PressureChangeRate from nullable PascalsPerSecond.
-        /// </summary>
-        public static PressureChangeRate? FromPascalsPerSecond(QuantityValue? pascalspersecond)
-        {
-            if (pascalspersecond.HasValue)
-            {
-                return FromPascalsPerSecond(pascalspersecond.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="PressureChangeRateUnit" /> to <see cref="PressureChangeRate" />.
@@ -313,25 +250,6 @@ namespace UnitsNet
         {
             return new PressureChangeRate((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="PressureChangeRateUnit" /> to <see cref="PressureChangeRate" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>PressureChangeRate unit value.</returns>
-        public static PressureChangeRate? From(QuantityValue? value, PressureChangeRateUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new PressureChangeRate((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -375,48 +293,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static PressureChangeRate operator -(PressureChangeRate right)
-        {
-            return new PressureChangeRate(-right.Value, right.Unit);
-        }
-
-        public static PressureChangeRate operator +(PressureChangeRate left, PressureChangeRate right)
-        {
-            return new PressureChangeRate(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static PressureChangeRate operator -(PressureChangeRate left, PressureChangeRate right)
-        {
-            return new PressureChangeRate(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static PressureChangeRate operator *(double left, PressureChangeRate right)
-        {
-            return new PressureChangeRate(left * right.Value, right.Unit);
-        }
-
-        public static PressureChangeRate operator *(PressureChangeRate left, double right)
-        {
-            return new PressureChangeRate(left.Value * right, left.Unit);
-        }
-
-        public static PressureChangeRate operator /(PressureChangeRate left, double right)
-        {
-            return new PressureChangeRate(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(PressureChangeRate left, PressureChangeRate right)
-        {
-            return left.PascalsPerSecond / right.PascalsPerSecond;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -437,43 +313,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(PressureChangeRate left, PressureChangeRate right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(PressureChangeRate left, PressureChangeRate right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(PressureChangeRate left, PressureChangeRate right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(PressureChangeRate left, PressureChangeRate right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(PressureChangeRate left, PressureChangeRate right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(PressureChangeRate left, PressureChangeRate right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

@@ -59,5 +59,117 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable MolarEnergy from nullable JoulesPerMole.
+        /// </summary>
+        public static MolarEnergy? FromJoulesPerMole(QuantityValue? joulespermole)
+        {
+            return joulespermole.HasValue ? FromJoulesPerMole(joulespermole.Value) : default(MolarEnergy?);
+        }
+
+        /// <summary>
+        ///     Get nullable MolarEnergy from nullable KilojoulesPerMole.
+        /// </summary>
+        public static MolarEnergy? FromKilojoulesPerMole(QuantityValue? kilojoulespermole)
+        {
+            return kilojoulespermole.HasValue ? FromKilojoulesPerMole(kilojoulespermole.Value) : default(MolarEnergy?);
+        }
+
+        /// <summary>
+        ///     Get nullable MolarEnergy from nullable MegajoulesPerMole.
+        /// </summary>
+        public static MolarEnergy? FromMegajoulesPerMole(QuantityValue? megajoulespermole)
+        {
+            return megajoulespermole.HasValue ? FromMegajoulesPerMole(megajoulespermole.Value) : default(MolarEnergy?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="MolarEnergyUnit" /> to <see cref="MolarEnergy" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>MolarEnergy unit value.</returns>
+        public static MolarEnergy? From(QuantityValue? value, MolarEnergyUnit fromUnit)
+        {
+            return value.HasValue ? new MolarEnergy((double)value.Value, fromUnit) : default(MolarEnergy?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static MolarEnergy operator -(MolarEnergy right)
+        {
+            return new MolarEnergy(-right.Value, right.Unit);
+        }
+
+        public static MolarEnergy operator +(MolarEnergy left, MolarEnergy right)
+        {
+            return new MolarEnergy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MolarEnergy operator -(MolarEnergy left, MolarEnergy right)
+        {
+            return new MolarEnergy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MolarEnergy operator *(double left, MolarEnergy right)
+        {
+            return new MolarEnergy(left * right.Value, right.Unit);
+        }
+
+        public static MolarEnergy operator *(MolarEnergy left, double right)
+        {
+            return new MolarEnergy(left.Value * right, left.Unit);
+        }
+
+        public static MolarEnergy operator /(MolarEnergy left, double right)
+        {
+            return new MolarEnergy(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(MolarEnergy left, MolarEnergy right)
+        {
+            return left.JoulesPerMole / right.JoulesPerMole;
+        }
+
+        #endregion
+
+        public static bool operator <=(MolarEnergy left, MolarEnergy right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(MolarEnergy left, MolarEnergy right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(MolarEnergy left, MolarEnergy right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(MolarEnergy left, MolarEnergy right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(MolarEnergy left, MolarEnergy right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(MolarEnergy left, MolarEnergy right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

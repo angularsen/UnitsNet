@@ -233,69 +233,6 @@ namespace UnitsNet
             return new ElectricAdmittance(value, ElectricAdmittanceUnit.Siemens);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ElectricAdmittance from nullable Microsiemens.
-        /// </summary>
-        public static ElectricAdmittance? FromMicrosiemens(QuantityValue? microsiemens)
-        {
-            if (microsiemens.HasValue)
-            {
-                return FromMicrosiemens(microsiemens.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricAdmittance from nullable Millisiemens.
-        /// </summary>
-        public static ElectricAdmittance? FromMillisiemens(QuantityValue? millisiemens)
-        {
-            if (millisiemens.HasValue)
-            {
-                return FromMillisiemens(millisiemens.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricAdmittance from nullable Nanosiemens.
-        /// </summary>
-        public static ElectricAdmittance? FromNanosiemens(QuantityValue? nanosiemens)
-        {
-            if (nanosiemens.HasValue)
-            {
-                return FromNanosiemens(nanosiemens.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricAdmittance from nullable Siemens.
-        /// </summary>
-        public static ElectricAdmittance? FromSiemens(QuantityValue? siemens)
-        {
-            if (siemens.HasValue)
-            {
-                return FromSiemens(siemens.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricAdmittanceUnit" /> to <see cref="ElectricAdmittance" />.
@@ -313,25 +250,6 @@ namespace UnitsNet
         {
             return new ElectricAdmittance((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricAdmittanceUnit" /> to <see cref="ElectricAdmittance" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricAdmittance unit value.</returns>
-        public static ElectricAdmittance? From(QuantityValue? value, ElectricAdmittanceUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ElectricAdmittance((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -375,48 +293,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ElectricAdmittance operator -(ElectricAdmittance right)
-        {
-            return new ElectricAdmittance(-right.Value, right.Unit);
-        }
-
-        public static ElectricAdmittance operator +(ElectricAdmittance left, ElectricAdmittance right)
-        {
-            return new ElectricAdmittance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricAdmittance operator -(ElectricAdmittance left, ElectricAdmittance right)
-        {
-            return new ElectricAdmittance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricAdmittance operator *(double left, ElectricAdmittance right)
-        {
-            return new ElectricAdmittance(left * right.Value, right.Unit);
-        }
-
-        public static ElectricAdmittance operator *(ElectricAdmittance left, double right)
-        {
-            return new ElectricAdmittance(left.Value * right, left.Unit);
-        }
-
-        public static ElectricAdmittance operator /(ElectricAdmittance left, double right)
-        {
-            return new ElectricAdmittance(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ElectricAdmittance left, ElectricAdmittance right)
-        {
-            return left.Siemens / right.Siemens;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -437,43 +313,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ElectricAdmittance left, ElectricAdmittance right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ElectricAdmittance left, ElectricAdmittance right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ElectricAdmittance left, ElectricAdmittance right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ElectricAdmittance left, ElectricAdmittance right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ElectricAdmittance left, ElectricAdmittance right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ElectricAdmittance left, ElectricAdmittance right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

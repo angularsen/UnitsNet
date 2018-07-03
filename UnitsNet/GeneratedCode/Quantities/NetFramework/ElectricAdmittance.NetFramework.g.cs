@@ -59,5 +59,125 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable ElectricAdmittance from nullable Microsiemens.
+        /// </summary>
+        public static ElectricAdmittance? FromMicrosiemens(QuantityValue? microsiemens)
+        {
+            return microsiemens.HasValue ? FromMicrosiemens(microsiemens.Value) : default(ElectricAdmittance?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricAdmittance from nullable Millisiemens.
+        /// </summary>
+        public static ElectricAdmittance? FromMillisiemens(QuantityValue? millisiemens)
+        {
+            return millisiemens.HasValue ? FromMillisiemens(millisiemens.Value) : default(ElectricAdmittance?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricAdmittance from nullable Nanosiemens.
+        /// </summary>
+        public static ElectricAdmittance? FromNanosiemens(QuantityValue? nanosiemens)
+        {
+            return nanosiemens.HasValue ? FromNanosiemens(nanosiemens.Value) : default(ElectricAdmittance?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricAdmittance from nullable Siemens.
+        /// </summary>
+        public static ElectricAdmittance? FromSiemens(QuantityValue? siemens)
+        {
+            return siemens.HasValue ? FromSiemens(siemens.Value) : default(ElectricAdmittance?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricAdmittanceUnit" /> to <see cref="ElectricAdmittance" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricAdmittance unit value.</returns>
+        public static ElectricAdmittance? From(QuantityValue? value, ElectricAdmittanceUnit fromUnit)
+        {
+            return value.HasValue ? new ElectricAdmittance((double)value.Value, fromUnit) : default(ElectricAdmittance?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ElectricAdmittance operator -(ElectricAdmittance right)
+        {
+            return new ElectricAdmittance(-right.Value, right.Unit);
+        }
+
+        public static ElectricAdmittance operator +(ElectricAdmittance left, ElectricAdmittance right)
+        {
+            return new ElectricAdmittance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricAdmittance operator -(ElectricAdmittance left, ElectricAdmittance right)
+        {
+            return new ElectricAdmittance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricAdmittance operator *(double left, ElectricAdmittance right)
+        {
+            return new ElectricAdmittance(left * right.Value, right.Unit);
+        }
+
+        public static ElectricAdmittance operator *(ElectricAdmittance left, double right)
+        {
+            return new ElectricAdmittance(left.Value * right, left.Unit);
+        }
+
+        public static ElectricAdmittance operator /(ElectricAdmittance left, double right)
+        {
+            return new ElectricAdmittance(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(ElectricAdmittance left, ElectricAdmittance right)
+        {
+            return left.Siemens / right.Siemens;
+        }
+
+        #endregion
+
+        public static bool operator <=(ElectricAdmittance left, ElectricAdmittance right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(ElectricAdmittance left, ElectricAdmittance right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(ElectricAdmittance left, ElectricAdmittance right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(ElectricAdmittance left, ElectricAdmittance right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(ElectricAdmittance left, ElectricAdmittance right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ElectricAdmittance left, ElectricAdmittance right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

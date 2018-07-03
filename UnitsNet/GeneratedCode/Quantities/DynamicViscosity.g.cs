@@ -269,99 +269,6 @@ namespace UnitsNet
             return new DynamicViscosity(value, DynamicViscosityUnit.Poise);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable DynamicViscosity from nullable Centipoise.
-        /// </summary>
-        public static DynamicViscosity? FromCentipoise(QuantityValue? centipoise)
-        {
-            if (centipoise.HasValue)
-            {
-                return FromCentipoise(centipoise.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable DynamicViscosity from nullable MicropascalSeconds.
-        /// </summary>
-        public static DynamicViscosity? FromMicropascalSeconds(QuantityValue? micropascalseconds)
-        {
-            if (micropascalseconds.HasValue)
-            {
-                return FromMicropascalSeconds(micropascalseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable DynamicViscosity from nullable MillipascalSeconds.
-        /// </summary>
-        public static DynamicViscosity? FromMillipascalSeconds(QuantityValue? millipascalseconds)
-        {
-            if (millipascalseconds.HasValue)
-            {
-                return FromMillipascalSeconds(millipascalseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable DynamicViscosity from nullable NewtonSecondsPerMeterSquared.
-        /// </summary>
-        public static DynamicViscosity? FromNewtonSecondsPerMeterSquared(QuantityValue? newtonsecondspermetersquared)
-        {
-            if (newtonsecondspermetersquared.HasValue)
-            {
-                return FromNewtonSecondsPerMeterSquared(newtonsecondspermetersquared.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable DynamicViscosity from nullable PascalSeconds.
-        /// </summary>
-        public static DynamicViscosity? FromPascalSeconds(QuantityValue? pascalseconds)
-        {
-            if (pascalseconds.HasValue)
-            {
-                return FromPascalSeconds(pascalseconds.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable DynamicViscosity from nullable Poise.
-        /// </summary>
-        public static DynamicViscosity? FromPoise(QuantityValue? poise)
-        {
-            if (poise.HasValue)
-            {
-                return FromPoise(poise.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="DynamicViscosityUnit" /> to <see cref="DynamicViscosity" />.
@@ -379,25 +286,6 @@ namespace UnitsNet
         {
             return new DynamicViscosity((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="DynamicViscosityUnit" /> to <see cref="DynamicViscosity" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>DynamicViscosity unit value.</returns>
-        public static DynamicViscosity? From(QuantityValue? value, DynamicViscosityUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new DynamicViscosity((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -441,48 +329,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static DynamicViscosity operator -(DynamicViscosity right)
-        {
-            return new DynamicViscosity(-right.Value, right.Unit);
-        }
-
-        public static DynamicViscosity operator +(DynamicViscosity left, DynamicViscosity right)
-        {
-            return new DynamicViscosity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static DynamicViscosity operator -(DynamicViscosity left, DynamicViscosity right)
-        {
-            return new DynamicViscosity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static DynamicViscosity operator *(double left, DynamicViscosity right)
-        {
-            return new DynamicViscosity(left * right.Value, right.Unit);
-        }
-
-        public static DynamicViscosity operator *(DynamicViscosity left, double right)
-        {
-            return new DynamicViscosity(left.Value * right, left.Unit);
-        }
-
-        public static DynamicViscosity operator /(DynamicViscosity left, double right)
-        {
-            return new DynamicViscosity(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(DynamicViscosity left, DynamicViscosity right)
-        {
-            return left.NewtonSecondsPerMeterSquared / right.NewtonSecondsPerMeterSquared;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -503,43 +349,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(DynamicViscosity left, DynamicViscosity right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(DynamicViscosity left, DynamicViscosity right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(DynamicViscosity left, DynamicViscosity right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(DynamicViscosity left, DynamicViscosity right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(DynamicViscosity left, DynamicViscosity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(DynamicViscosity left, DynamicViscosity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

@@ -241,84 +241,6 @@ namespace UnitsNet
             return new ElectricPotentialAc(value, ElectricPotentialAcUnit.VoltAc);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ElectricPotentialAc from nullable KilovoltsAc.
-        /// </summary>
-        public static ElectricPotentialAc? FromKilovoltsAc(QuantityValue? kilovoltsac)
-        {
-            if (kilovoltsac.HasValue)
-            {
-                return FromKilovoltsAc(kilovoltsac.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialAc from nullable MegavoltsAc.
-        /// </summary>
-        public static ElectricPotentialAc? FromMegavoltsAc(QuantityValue? megavoltsac)
-        {
-            if (megavoltsac.HasValue)
-            {
-                return FromMegavoltsAc(megavoltsac.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialAc from nullable MicrovoltsAc.
-        /// </summary>
-        public static ElectricPotentialAc? FromMicrovoltsAc(QuantityValue? microvoltsac)
-        {
-            if (microvoltsac.HasValue)
-            {
-                return FromMicrovoltsAc(microvoltsac.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialAc from nullable MillivoltsAc.
-        /// </summary>
-        public static ElectricPotentialAc? FromMillivoltsAc(QuantityValue? millivoltsac)
-        {
-            if (millivoltsac.HasValue)
-            {
-                return FromMillivoltsAc(millivoltsac.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricPotentialAc from nullable VoltsAc.
-        /// </summary>
-        public static ElectricPotentialAc? FromVoltsAc(QuantityValue? voltsac)
-        {
-            if (voltsac.HasValue)
-            {
-                return FromVoltsAc(voltsac.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialAcUnit" /> to <see cref="ElectricPotentialAc" />.
@@ -336,25 +258,6 @@ namespace UnitsNet
         {
             return new ElectricPotentialAc((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricPotentialAcUnit" /> to <see cref="ElectricPotentialAc" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricPotentialAc unit value.</returns>
-        public static ElectricPotentialAc? From(QuantityValue? value, ElectricPotentialAcUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ElectricPotentialAc((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -398,48 +301,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ElectricPotentialAc operator -(ElectricPotentialAc right)
-        {
-            return new ElectricPotentialAc(-right.Value, right.Unit);
-        }
-
-        public static ElectricPotentialAc operator +(ElectricPotentialAc left, ElectricPotentialAc right)
-        {
-            return new ElectricPotentialAc(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricPotentialAc operator -(ElectricPotentialAc left, ElectricPotentialAc right)
-        {
-            return new ElectricPotentialAc(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricPotentialAc operator *(double left, ElectricPotentialAc right)
-        {
-            return new ElectricPotentialAc(left * right.Value, right.Unit);
-        }
-
-        public static ElectricPotentialAc operator *(ElectricPotentialAc left, double right)
-        {
-            return new ElectricPotentialAc(left.Value * right, left.Unit);
-        }
-
-        public static ElectricPotentialAc operator /(ElectricPotentialAc left, double right)
-        {
-            return new ElectricPotentialAc(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ElectricPotentialAc left, ElectricPotentialAc right)
-        {
-            return left.VoltsAc / right.VoltsAc;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -460,43 +321,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ElectricPotentialAc left, ElectricPotentialAc right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ElectricPotentialAc left, ElectricPotentialAc right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ElectricPotentialAc left, ElectricPotentialAc right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ElectricPotentialAc left, ElectricPotentialAc right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ElectricPotentialAc left, ElectricPotentialAc right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ElectricPotentialAc left, ElectricPotentialAc right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

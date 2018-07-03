@@ -179,24 +179,6 @@ namespace UnitsNet
             return new ElectricCurrentDensity(value, ElectricCurrentDensityUnit.AmperePerSquareMeter);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ElectricCurrentDensity from nullable AmperesPerSquareMeter.
-        /// </summary>
-        public static ElectricCurrentDensity? FromAmperesPerSquareMeter(QuantityValue? amperespersquaremeter)
-        {
-            if (amperespersquaremeter.HasValue)
-            {
-                return FromAmperesPerSquareMeter(amperespersquaremeter.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentDensityUnit" /> to <see cref="ElectricCurrentDensity" />.
@@ -214,25 +196,6 @@ namespace UnitsNet
         {
             return new ElectricCurrentDensity((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentDensityUnit" /> to <see cref="ElectricCurrentDensity" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricCurrentDensity unit value.</returns>
-        public static ElectricCurrentDensity? From(QuantityValue? value, ElectricCurrentDensityUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ElectricCurrentDensity((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -276,48 +239,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ElectricCurrentDensity operator -(ElectricCurrentDensity right)
-        {
-            return new ElectricCurrentDensity(-right.Value, right.Unit);
-        }
-
-        public static ElectricCurrentDensity operator +(ElectricCurrentDensity left, ElectricCurrentDensity right)
-        {
-            return new ElectricCurrentDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricCurrentDensity operator -(ElectricCurrentDensity left, ElectricCurrentDensity right)
-        {
-            return new ElectricCurrentDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricCurrentDensity operator *(double left, ElectricCurrentDensity right)
-        {
-            return new ElectricCurrentDensity(left * right.Value, right.Unit);
-        }
-
-        public static ElectricCurrentDensity operator *(ElectricCurrentDensity left, double right)
-        {
-            return new ElectricCurrentDensity(left.Value * right, left.Unit);
-        }
-
-        public static ElectricCurrentDensity operator /(ElectricCurrentDensity left, double right)
-        {
-            return new ElectricCurrentDensity(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ElectricCurrentDensity left, ElectricCurrentDensity right)
-        {
-            return left.AmperesPerSquareMeter / right.AmperesPerSquareMeter;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -338,43 +259,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ElectricCurrentDensity left, ElectricCurrentDensity right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ElectricCurrentDensity left, ElectricCurrentDensity right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ElectricCurrentDensity left, ElectricCurrentDensity right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ElectricCurrentDensity left, ElectricCurrentDensity right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ElectricCurrentDensity left, ElectricCurrentDensity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ElectricCurrentDensity left, ElectricCurrentDensity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

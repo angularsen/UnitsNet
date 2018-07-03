@@ -59,5 +59,149 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Amperes.
+        /// </summary>
+        public static ElectricCurrent? FromAmperes(QuantityValue? amperes)
+        {
+            return amperes.HasValue ? FromAmperes(amperes.Value) : default(ElectricCurrent?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Kiloamperes.
+        /// </summary>
+        public static ElectricCurrent? FromKiloamperes(QuantityValue? kiloamperes)
+        {
+            return kiloamperes.HasValue ? FromKiloamperes(kiloamperes.Value) : default(ElectricCurrent?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Megaamperes.
+        /// </summary>
+        public static ElectricCurrent? FromMegaamperes(QuantityValue? megaamperes)
+        {
+            return megaamperes.HasValue ? FromMegaamperes(megaamperes.Value) : default(ElectricCurrent?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Microamperes.
+        /// </summary>
+        public static ElectricCurrent? FromMicroamperes(QuantityValue? microamperes)
+        {
+            return microamperes.HasValue ? FromMicroamperes(microamperes.Value) : default(ElectricCurrent?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Milliamperes.
+        /// </summary>
+        public static ElectricCurrent? FromMilliamperes(QuantityValue? milliamperes)
+        {
+            return milliamperes.HasValue ? FromMilliamperes(milliamperes.Value) : default(ElectricCurrent?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Nanoamperes.
+        /// </summary>
+        public static ElectricCurrent? FromNanoamperes(QuantityValue? nanoamperes)
+        {
+            return nanoamperes.HasValue ? FromNanoamperes(nanoamperes.Value) : default(ElectricCurrent?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Picoamperes.
+        /// </summary>
+        public static ElectricCurrent? FromPicoamperes(QuantityValue? picoamperes)
+        {
+            return picoamperes.HasValue ? FromPicoamperes(picoamperes.Value) : default(ElectricCurrent?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentUnit" /> to <see cref="ElectricCurrent" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricCurrent unit value.</returns>
+        public static ElectricCurrent? From(QuantityValue? value, ElectricCurrentUnit fromUnit)
+        {
+            return value.HasValue ? new ElectricCurrent((double)value.Value, fromUnit) : default(ElectricCurrent?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ElectricCurrent operator -(ElectricCurrent right)
+        {
+            return new ElectricCurrent(-right.Value, right.Unit);
+        }
+
+        public static ElectricCurrent operator +(ElectricCurrent left, ElectricCurrent right)
+        {
+            return new ElectricCurrent(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricCurrent operator -(ElectricCurrent left, ElectricCurrent right)
+        {
+            return new ElectricCurrent(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricCurrent operator *(double left, ElectricCurrent right)
+        {
+            return new ElectricCurrent(left * right.Value, right.Unit);
+        }
+
+        public static ElectricCurrent operator *(ElectricCurrent left, double right)
+        {
+            return new ElectricCurrent(left.Value * right, left.Unit);
+        }
+
+        public static ElectricCurrent operator /(ElectricCurrent left, double right)
+        {
+            return new ElectricCurrent(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(ElectricCurrent left, ElectricCurrent right)
+        {
+            return left.Amperes / right.Amperes;
+        }
+
+        #endregion
+
+        public static bool operator <=(ElectricCurrent left, ElectricCurrent right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(ElectricCurrent left, ElectricCurrent right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(ElectricCurrent left, ElectricCurrent right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(ElectricCurrent left, ElectricCurrent right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(ElectricCurrent left, ElectricCurrent right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ElectricCurrent left, ElectricCurrent right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

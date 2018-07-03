@@ -59,5 +59,125 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable ReactivePower from nullable GigavoltamperesReactive.
+        /// </summary>
+        public static ReactivePower? FromGigavoltamperesReactive(QuantityValue? gigavoltamperesreactive)
+        {
+            return gigavoltamperesreactive.HasValue ? FromGigavoltamperesReactive(gigavoltamperesreactive.Value) : default(ReactivePower?);
+        }
+
+        /// <summary>
+        ///     Get nullable ReactivePower from nullable KilovoltamperesReactive.
+        /// </summary>
+        public static ReactivePower? FromKilovoltamperesReactive(QuantityValue? kilovoltamperesreactive)
+        {
+            return kilovoltamperesreactive.HasValue ? FromKilovoltamperesReactive(kilovoltamperesreactive.Value) : default(ReactivePower?);
+        }
+
+        /// <summary>
+        ///     Get nullable ReactivePower from nullable MegavoltamperesReactive.
+        /// </summary>
+        public static ReactivePower? FromMegavoltamperesReactive(QuantityValue? megavoltamperesreactive)
+        {
+            return megavoltamperesreactive.HasValue ? FromMegavoltamperesReactive(megavoltamperesreactive.Value) : default(ReactivePower?);
+        }
+
+        /// <summary>
+        ///     Get nullable ReactivePower from nullable VoltamperesReactive.
+        /// </summary>
+        public static ReactivePower? FromVoltamperesReactive(QuantityValue? voltamperesreactive)
+        {
+            return voltamperesreactive.HasValue ? FromVoltamperesReactive(voltamperesreactive.Value) : default(ReactivePower?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ReactivePowerUnit" /> to <see cref="ReactivePower" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ReactivePower unit value.</returns>
+        public static ReactivePower? From(QuantityValue? value, ReactivePowerUnit fromUnit)
+        {
+            return value.HasValue ? new ReactivePower((double)value.Value, fromUnit) : default(ReactivePower?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ReactivePower operator -(ReactivePower right)
+        {
+            return new ReactivePower(-right.Value, right.Unit);
+        }
+
+        public static ReactivePower operator +(ReactivePower left, ReactivePower right)
+        {
+            return new ReactivePower(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ReactivePower operator -(ReactivePower left, ReactivePower right)
+        {
+            return new ReactivePower(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ReactivePower operator *(double left, ReactivePower right)
+        {
+            return new ReactivePower(left * right.Value, right.Unit);
+        }
+
+        public static ReactivePower operator *(ReactivePower left, double right)
+        {
+            return new ReactivePower(left.Value * right, left.Unit);
+        }
+
+        public static ReactivePower operator /(ReactivePower left, double right)
+        {
+            return new ReactivePower(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(ReactivePower left, ReactivePower right)
+        {
+            return left.VoltamperesReactive / right.VoltamperesReactive;
+        }
+
+        #endregion
+
+        public static bool operator <=(ReactivePower left, ReactivePower right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(ReactivePower left, ReactivePower right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(ReactivePower left, ReactivePower right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(ReactivePower left, ReactivePower right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(ReactivePower left, ReactivePower right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ReactivePower left, ReactivePower right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

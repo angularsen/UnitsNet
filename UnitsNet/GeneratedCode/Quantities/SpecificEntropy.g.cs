@@ -305,129 +305,6 @@ namespace UnitsNet
             return new SpecificEntropy(value, SpecificEntropyUnit.MegajoulePerKilogramKelvin);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable SpecificEntropy from nullable CaloriesPerGramKelvin.
-        /// </summary>
-        public static SpecificEntropy? FromCaloriesPerGramKelvin(QuantityValue? caloriespergramkelvin)
-        {
-            if (caloriespergramkelvin.HasValue)
-            {
-                return FromCaloriesPerGramKelvin(caloriespergramkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEntropy from nullable JoulesPerKilogramDegreeCelsius.
-        /// </summary>
-        public static SpecificEntropy? FromJoulesPerKilogramDegreeCelsius(QuantityValue? joulesperkilogramdegreecelsius)
-        {
-            if (joulesperkilogramdegreecelsius.HasValue)
-            {
-                return FromJoulesPerKilogramDegreeCelsius(joulesperkilogramdegreecelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEntropy from nullable JoulesPerKilogramKelvin.
-        /// </summary>
-        public static SpecificEntropy? FromJoulesPerKilogramKelvin(QuantityValue? joulesperkilogramkelvin)
-        {
-            if (joulesperkilogramkelvin.HasValue)
-            {
-                return FromJoulesPerKilogramKelvin(joulesperkilogramkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEntropy from nullable KilocaloriesPerGramKelvin.
-        /// </summary>
-        public static SpecificEntropy? FromKilocaloriesPerGramKelvin(QuantityValue? kilocaloriespergramkelvin)
-        {
-            if (kilocaloriespergramkelvin.HasValue)
-            {
-                return FromKilocaloriesPerGramKelvin(kilocaloriespergramkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEntropy from nullable KilojoulesPerKilogramDegreeCelsius.
-        /// </summary>
-        public static SpecificEntropy? FromKilojoulesPerKilogramDegreeCelsius(QuantityValue? kilojoulesperkilogramdegreecelsius)
-        {
-            if (kilojoulesperkilogramdegreecelsius.HasValue)
-            {
-                return FromKilojoulesPerKilogramDegreeCelsius(kilojoulesperkilogramdegreecelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEntropy from nullable KilojoulesPerKilogramKelvin.
-        /// </summary>
-        public static SpecificEntropy? FromKilojoulesPerKilogramKelvin(QuantityValue? kilojoulesperkilogramkelvin)
-        {
-            if (kilojoulesperkilogramkelvin.HasValue)
-            {
-                return FromKilojoulesPerKilogramKelvin(kilojoulesperkilogramkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEntropy from nullable MegajoulesPerKilogramDegreeCelsius.
-        /// </summary>
-        public static SpecificEntropy? FromMegajoulesPerKilogramDegreeCelsius(QuantityValue? megajoulesperkilogramdegreecelsius)
-        {
-            if (megajoulesperkilogramdegreecelsius.HasValue)
-            {
-                return FromMegajoulesPerKilogramDegreeCelsius(megajoulesperkilogramdegreecelsius.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificEntropy from nullable MegajoulesPerKilogramKelvin.
-        /// </summary>
-        public static SpecificEntropy? FromMegajoulesPerKilogramKelvin(QuantityValue? megajoulesperkilogramkelvin)
-        {
-            if (megajoulesperkilogramkelvin.HasValue)
-            {
-                return FromMegajoulesPerKilogramKelvin(megajoulesperkilogramkelvin.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="SpecificEntropyUnit" /> to <see cref="SpecificEntropy" />.
@@ -445,25 +322,6 @@ namespace UnitsNet
         {
             return new SpecificEntropy((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="SpecificEntropyUnit" /> to <see cref="SpecificEntropy" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>SpecificEntropy unit value.</returns>
-        public static SpecificEntropy? From(QuantityValue? value, SpecificEntropyUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new SpecificEntropy((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -507,48 +365,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static SpecificEntropy operator -(SpecificEntropy right)
-        {
-            return new SpecificEntropy(-right.Value, right.Unit);
-        }
-
-        public static SpecificEntropy operator +(SpecificEntropy left, SpecificEntropy right)
-        {
-            return new SpecificEntropy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static SpecificEntropy operator -(SpecificEntropy left, SpecificEntropy right)
-        {
-            return new SpecificEntropy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static SpecificEntropy operator *(double left, SpecificEntropy right)
-        {
-            return new SpecificEntropy(left * right.Value, right.Unit);
-        }
-
-        public static SpecificEntropy operator *(SpecificEntropy left, double right)
-        {
-            return new SpecificEntropy(left.Value * right, left.Unit);
-        }
-
-        public static SpecificEntropy operator /(SpecificEntropy left, double right)
-        {
-            return new SpecificEntropy(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(SpecificEntropy left, SpecificEntropy right)
-        {
-            return left.JoulesPerKilogramKelvin / right.JoulesPerKilogramKelvin;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -569,43 +385,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(SpecificEntropy left, SpecificEntropy right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(SpecificEntropy left, SpecificEntropy right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(SpecificEntropy left, SpecificEntropy right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(SpecificEntropy left, SpecificEntropy right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(SpecificEntropy left, SpecificEntropy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(SpecificEntropy left, SpecificEntropy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

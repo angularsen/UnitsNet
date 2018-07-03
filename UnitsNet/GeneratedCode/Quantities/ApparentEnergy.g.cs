@@ -215,54 +215,6 @@ namespace UnitsNet
             return new ApparentEnergy(value, ApparentEnergyUnit.VoltampereHour);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ApparentEnergy from nullable KilovoltampereHours.
-        /// </summary>
-        public static ApparentEnergy? FromKilovoltampereHours(QuantityValue? kilovoltamperehours)
-        {
-            if (kilovoltamperehours.HasValue)
-            {
-                return FromKilovoltampereHours(kilovoltamperehours.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ApparentEnergy from nullable MegavoltampereHours.
-        /// </summary>
-        public static ApparentEnergy? FromMegavoltampereHours(QuantityValue? megavoltamperehours)
-        {
-            if (megavoltamperehours.HasValue)
-            {
-                return FromMegavoltampereHours(megavoltamperehours.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ApparentEnergy from nullable VoltampereHours.
-        /// </summary>
-        public static ApparentEnergy? FromVoltampereHours(QuantityValue? voltamperehours)
-        {
-            if (voltamperehours.HasValue)
-            {
-                return FromVoltampereHours(voltamperehours.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ApparentEnergyUnit" /> to <see cref="ApparentEnergy" />.
@@ -280,25 +232,6 @@ namespace UnitsNet
         {
             return new ApparentEnergy((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ApparentEnergyUnit" /> to <see cref="ApparentEnergy" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ApparentEnergy unit value.</returns>
-        public static ApparentEnergy? From(QuantityValue? value, ApparentEnergyUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ApparentEnergy((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -342,48 +275,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ApparentEnergy operator -(ApparentEnergy right)
-        {
-            return new ApparentEnergy(-right.Value, right.Unit);
-        }
-
-        public static ApparentEnergy operator +(ApparentEnergy left, ApparentEnergy right)
-        {
-            return new ApparentEnergy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ApparentEnergy operator -(ApparentEnergy left, ApparentEnergy right)
-        {
-            return new ApparentEnergy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ApparentEnergy operator *(double left, ApparentEnergy right)
-        {
-            return new ApparentEnergy(left * right.Value, right.Unit);
-        }
-
-        public static ApparentEnergy operator *(ApparentEnergy left, double right)
-        {
-            return new ApparentEnergy(left.Value * right, left.Unit);
-        }
-
-        public static ApparentEnergy operator /(ApparentEnergy left, double right)
-        {
-            return new ApparentEnergy(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ApparentEnergy left, ApparentEnergy right)
-        {
-            return left.VoltampereHours / right.VoltampereHours;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -404,43 +295,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ApparentEnergy left, ApparentEnergy right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ApparentEnergy left, ApparentEnergy right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ApparentEnergy left, ApparentEnergy right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ApparentEnergy left, ApparentEnergy right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ApparentEnergy left, ApparentEnergy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ApparentEnergy left, ApparentEnergy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

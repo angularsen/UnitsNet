@@ -287,114 +287,6 @@ namespace UnitsNet
             return new ElectricCurrent(value, ElectricCurrentUnit.Picoampere);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Amperes.
-        /// </summary>
-        public static ElectricCurrent? FromAmperes(QuantityValue? amperes)
-        {
-            if (amperes.HasValue)
-            {
-                return FromAmperes(amperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Kiloamperes.
-        /// </summary>
-        public static ElectricCurrent? FromKiloamperes(QuantityValue? kiloamperes)
-        {
-            if (kiloamperes.HasValue)
-            {
-                return FromKiloamperes(kiloamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Megaamperes.
-        /// </summary>
-        public static ElectricCurrent? FromMegaamperes(QuantityValue? megaamperes)
-        {
-            if (megaamperes.HasValue)
-            {
-                return FromMegaamperes(megaamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Microamperes.
-        /// </summary>
-        public static ElectricCurrent? FromMicroamperes(QuantityValue? microamperes)
-        {
-            if (microamperes.HasValue)
-            {
-                return FromMicroamperes(microamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Milliamperes.
-        /// </summary>
-        public static ElectricCurrent? FromMilliamperes(QuantityValue? milliamperes)
-        {
-            if (milliamperes.HasValue)
-            {
-                return FromMilliamperes(milliamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Nanoamperes.
-        /// </summary>
-        public static ElectricCurrent? FromNanoamperes(QuantityValue? nanoamperes)
-        {
-            if (nanoamperes.HasValue)
-            {
-                return FromNanoamperes(nanoamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricCurrent from nullable Picoamperes.
-        /// </summary>
-        public static ElectricCurrent? FromPicoamperes(QuantityValue? picoamperes)
-        {
-            if (picoamperes.HasValue)
-            {
-                return FromPicoamperes(picoamperes.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentUnit" /> to <see cref="ElectricCurrent" />.
@@ -412,25 +304,6 @@ namespace UnitsNet
         {
             return new ElectricCurrent((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricCurrentUnit" /> to <see cref="ElectricCurrent" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricCurrent unit value.</returns>
-        public static ElectricCurrent? From(QuantityValue? value, ElectricCurrentUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new ElectricCurrent((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -474,48 +347,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static ElectricCurrent operator -(ElectricCurrent right)
-        {
-            return new ElectricCurrent(-right.Value, right.Unit);
-        }
-
-        public static ElectricCurrent operator +(ElectricCurrent left, ElectricCurrent right)
-        {
-            return new ElectricCurrent(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricCurrent operator -(ElectricCurrent left, ElectricCurrent right)
-        {
-            return new ElectricCurrent(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
-        }
-
-        public static ElectricCurrent operator *(double left, ElectricCurrent right)
-        {
-            return new ElectricCurrent(left * right.Value, right.Unit);
-        }
-
-        public static ElectricCurrent operator *(ElectricCurrent left, double right)
-        {
-            return new ElectricCurrent(left.Value * right, left.Unit);
-        }
-
-        public static ElectricCurrent operator /(ElectricCurrent left, double right)
-        {
-            return new ElectricCurrent(left.Value / right, left.Unit);
-        }
-
-        public static double operator /(ElectricCurrent left, ElectricCurrent right)
-        {
-            return left.Amperes / right.Amperes;
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -536,43 +367,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(ElectricCurrent left, ElectricCurrent right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(ElectricCurrent left, ElectricCurrent right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(ElectricCurrent left, ElectricCurrent right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(ElectricCurrent left, ElectricCurrent right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(ElectricCurrent left, ElectricCurrent right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(ElectricCurrent left, ElectricCurrent right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

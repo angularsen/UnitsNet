@@ -59,5 +59,269 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Length from nullable Centimeters.
+        /// </summary>
+        public static Length? FromCentimeters(QuantityValue? centimeters)
+        {
+            return centimeters.HasValue ? FromCentimeters(centimeters.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Decimeters.
+        /// </summary>
+        public static Length? FromDecimeters(QuantityValue? decimeters)
+        {
+            return decimeters.HasValue ? FromDecimeters(decimeters.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable DtpPicas.
+        /// </summary>
+        public static Length? FromDtpPicas(QuantityValue? dtppicas)
+        {
+            return dtppicas.HasValue ? FromDtpPicas(dtppicas.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable DtpPoints.
+        /// </summary>
+        public static Length? FromDtpPoints(QuantityValue? dtppoints)
+        {
+            return dtppoints.HasValue ? FromDtpPoints(dtppoints.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Fathoms.
+        /// </summary>
+        public static Length? FromFathoms(QuantityValue? fathoms)
+        {
+            return fathoms.HasValue ? FromFathoms(fathoms.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Feet.
+        /// </summary>
+        public static Length? FromFeet(QuantityValue? feet)
+        {
+            return feet.HasValue ? FromFeet(feet.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Inches.
+        /// </summary>
+        public static Length? FromInches(QuantityValue? inches)
+        {
+            return inches.HasValue ? FromInches(inches.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Kilometers.
+        /// </summary>
+        public static Length? FromKilometers(QuantityValue? kilometers)
+        {
+            return kilometers.HasValue ? FromKilometers(kilometers.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Meters.
+        /// </summary>
+        public static Length? FromMeters(QuantityValue? meters)
+        {
+            return meters.HasValue ? FromMeters(meters.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Microinches.
+        /// </summary>
+        public static Length? FromMicroinches(QuantityValue? microinches)
+        {
+            return microinches.HasValue ? FromMicroinches(microinches.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Micrometers.
+        /// </summary>
+        public static Length? FromMicrometers(QuantityValue? micrometers)
+        {
+            return micrometers.HasValue ? FromMicrometers(micrometers.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Mils.
+        /// </summary>
+        public static Length? FromMils(QuantityValue? mils)
+        {
+            return mils.HasValue ? FromMils(mils.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Miles.
+        /// </summary>
+        public static Length? FromMiles(QuantityValue? miles)
+        {
+            return miles.HasValue ? FromMiles(miles.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Millimeters.
+        /// </summary>
+        public static Length? FromMillimeters(QuantityValue? millimeters)
+        {
+            return millimeters.HasValue ? FromMillimeters(millimeters.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Nanometers.
+        /// </summary>
+        public static Length? FromNanometers(QuantityValue? nanometers)
+        {
+            return nanometers.HasValue ? FromNanometers(nanometers.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable NauticalMiles.
+        /// </summary>
+        public static Length? FromNauticalMiles(QuantityValue? nauticalmiles)
+        {
+            return nauticalmiles.HasValue ? FromNauticalMiles(nauticalmiles.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable PrinterPicas.
+        /// </summary>
+        public static Length? FromPrinterPicas(QuantityValue? printerpicas)
+        {
+            return printerpicas.HasValue ? FromPrinterPicas(printerpicas.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable PrinterPoints.
+        /// </summary>
+        public static Length? FromPrinterPoints(QuantityValue? printerpoints)
+        {
+            return printerpoints.HasValue ? FromPrinterPoints(printerpoints.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Shackles.
+        /// </summary>
+        public static Length? FromShackles(QuantityValue? shackles)
+        {
+            return shackles.HasValue ? FromShackles(shackles.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Twips.
+        /// </summary>
+        public static Length? FromTwips(QuantityValue? twips)
+        {
+            return twips.HasValue ? FromTwips(twips.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable UsSurveyFeet.
+        /// </summary>
+        public static Length? FromUsSurveyFeet(QuantityValue? ussurveyfeet)
+        {
+            return ussurveyfeet.HasValue ? FromUsSurveyFeet(ussurveyfeet.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Get nullable Length from nullable Yards.
+        /// </summary>
+        public static Length? FromYards(QuantityValue? yards)
+        {
+            return yards.HasValue ? FromYards(yards.Value) : default(Length?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="LengthUnit" /> to <see cref="Length" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Length unit value.</returns>
+        public static Length? From(QuantityValue? value, LengthUnit fromUnit)
+        {
+            return value.HasValue ? new Length((double)value.Value, fromUnit) : default(Length?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Length operator -(Length right)
+        {
+            return new Length(-right.Value, right.Unit);
+        }
+
+        public static Length operator +(Length left, Length right)
+        {
+            return new Length(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Length operator -(Length left, Length right)
+        {
+            return new Length(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Length operator *(double left, Length right)
+        {
+            return new Length(left * right.Value, right.Unit);
+        }
+
+        public static Length operator *(Length left, double right)
+        {
+            return new Length(left.Value * right, left.Unit);
+        }
+
+        public static Length operator /(Length left, double right)
+        {
+            return new Length(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Length left, Length right)
+        {
+            return left.Meters / right.Meters;
+        }
+
+        #endregion
+
+        public static bool operator <=(Length left, Length right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Length left, Length right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Length left, Length right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Length left, Length right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(Length left, Length right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(Length left, Length right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
 Generates the C# source code for logarithmic arithmetic operators.
 
@@ -24,8 +24,6 @@ function GenerateLogarithmicArithmeticOperators([string]$quantityName, [string]$
 
         #region Logarithmic Arithmetic Operators
 
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
         public static $quantityName operator -($quantityName right)
         {
             return new $quantityName(-right.Value, right.Unit);
@@ -68,7 +66,6 @@ function GenerateLogarithmicArithmeticOperators([string]$quantityName, [string]$
             // Logarithmic division = subtraction
             return Convert.ToDouble(left.Value - right.AsBaseNumericType(left.Unit));
         }
-#endif
 
         #endregion
 "@;

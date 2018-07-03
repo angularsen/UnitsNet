@@ -59,5 +59,157 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable SpecificEntropy from nullable CaloriesPerGramKelvin.
+        /// </summary>
+        public static SpecificEntropy? FromCaloriesPerGramKelvin(QuantityValue? caloriespergramkelvin)
+        {
+            return caloriespergramkelvin.HasValue ? FromCaloriesPerGramKelvin(caloriespergramkelvin.Value) : default(SpecificEntropy?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEntropy from nullable JoulesPerKilogramDegreeCelsius.
+        /// </summary>
+        public static SpecificEntropy? FromJoulesPerKilogramDegreeCelsius(QuantityValue? joulesperkilogramdegreecelsius)
+        {
+            return joulesperkilogramdegreecelsius.HasValue ? FromJoulesPerKilogramDegreeCelsius(joulesperkilogramdegreecelsius.Value) : default(SpecificEntropy?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEntropy from nullable JoulesPerKilogramKelvin.
+        /// </summary>
+        public static SpecificEntropy? FromJoulesPerKilogramKelvin(QuantityValue? joulesperkilogramkelvin)
+        {
+            return joulesperkilogramkelvin.HasValue ? FromJoulesPerKilogramKelvin(joulesperkilogramkelvin.Value) : default(SpecificEntropy?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEntropy from nullable KilocaloriesPerGramKelvin.
+        /// </summary>
+        public static SpecificEntropy? FromKilocaloriesPerGramKelvin(QuantityValue? kilocaloriespergramkelvin)
+        {
+            return kilocaloriespergramkelvin.HasValue ? FromKilocaloriesPerGramKelvin(kilocaloriespergramkelvin.Value) : default(SpecificEntropy?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEntropy from nullable KilojoulesPerKilogramDegreeCelsius.
+        /// </summary>
+        public static SpecificEntropy? FromKilojoulesPerKilogramDegreeCelsius(QuantityValue? kilojoulesperkilogramdegreecelsius)
+        {
+            return kilojoulesperkilogramdegreecelsius.HasValue ? FromKilojoulesPerKilogramDegreeCelsius(kilojoulesperkilogramdegreecelsius.Value) : default(SpecificEntropy?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEntropy from nullable KilojoulesPerKilogramKelvin.
+        /// </summary>
+        public static SpecificEntropy? FromKilojoulesPerKilogramKelvin(QuantityValue? kilojoulesperkilogramkelvin)
+        {
+            return kilojoulesperkilogramkelvin.HasValue ? FromKilojoulesPerKilogramKelvin(kilojoulesperkilogramkelvin.Value) : default(SpecificEntropy?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEntropy from nullable MegajoulesPerKilogramDegreeCelsius.
+        /// </summary>
+        public static SpecificEntropy? FromMegajoulesPerKilogramDegreeCelsius(QuantityValue? megajoulesperkilogramdegreecelsius)
+        {
+            return megajoulesperkilogramdegreecelsius.HasValue ? FromMegajoulesPerKilogramDegreeCelsius(megajoulesperkilogramdegreecelsius.Value) : default(SpecificEntropy?);
+        }
+
+        /// <summary>
+        ///     Get nullable SpecificEntropy from nullable MegajoulesPerKilogramKelvin.
+        /// </summary>
+        public static SpecificEntropy? FromMegajoulesPerKilogramKelvin(QuantityValue? megajoulesperkilogramkelvin)
+        {
+            return megajoulesperkilogramkelvin.HasValue ? FromMegajoulesPerKilogramKelvin(megajoulesperkilogramkelvin.Value) : default(SpecificEntropy?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="SpecificEntropyUnit" /> to <see cref="SpecificEntropy" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>SpecificEntropy unit value.</returns>
+        public static SpecificEntropy? From(QuantityValue? value, SpecificEntropyUnit fromUnit)
+        {
+            return value.HasValue ? new SpecificEntropy((double)value.Value, fromUnit) : default(SpecificEntropy?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static SpecificEntropy operator -(SpecificEntropy right)
+        {
+            return new SpecificEntropy(-right.Value, right.Unit);
+        }
+
+        public static SpecificEntropy operator +(SpecificEntropy left, SpecificEntropy right)
+        {
+            return new SpecificEntropy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static SpecificEntropy operator -(SpecificEntropy left, SpecificEntropy right)
+        {
+            return new SpecificEntropy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static SpecificEntropy operator *(double left, SpecificEntropy right)
+        {
+            return new SpecificEntropy(left * right.Value, right.Unit);
+        }
+
+        public static SpecificEntropy operator *(SpecificEntropy left, double right)
+        {
+            return new SpecificEntropy(left.Value * right, left.Unit);
+        }
+
+        public static SpecificEntropy operator /(SpecificEntropy left, double right)
+        {
+            return new SpecificEntropy(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(SpecificEntropy left, SpecificEntropy right)
+        {
+            return left.JoulesPerKilogramKelvin / right.JoulesPerKilogramKelvin;
+        }
+
+        #endregion
+
+        public static bool operator <=(SpecificEntropy left, SpecificEntropy right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(SpecificEntropy left, SpecificEntropy right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(SpecificEntropy left, SpecificEntropy right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(SpecificEntropy left, SpecificEntropy right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(SpecificEntropy left, SpecificEntropy right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(SpecificEntropy left, SpecificEntropy right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

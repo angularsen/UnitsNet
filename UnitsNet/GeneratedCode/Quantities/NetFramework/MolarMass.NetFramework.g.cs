@@ -59,5 +59,189 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable MolarMass from nullable CentigramsPerMole.
+        /// </summary>
+        public static MolarMass? FromCentigramsPerMole(QuantityValue? centigramspermole)
+        {
+            return centigramspermole.HasValue ? FromCentigramsPerMole(centigramspermole.Value) : default(MolarMass?);
+        }
+
+        /// <summary>
+        ///     Get nullable MolarMass from nullable DecagramsPerMole.
+        /// </summary>
+        public static MolarMass? FromDecagramsPerMole(QuantityValue? decagramspermole)
+        {
+            return decagramspermole.HasValue ? FromDecagramsPerMole(decagramspermole.Value) : default(MolarMass?);
+        }
+
+        /// <summary>
+        ///     Get nullable MolarMass from nullable DecigramsPerMole.
+        /// </summary>
+        public static MolarMass? FromDecigramsPerMole(QuantityValue? decigramspermole)
+        {
+            return decigramspermole.HasValue ? FromDecigramsPerMole(decigramspermole.Value) : default(MolarMass?);
+        }
+
+        /// <summary>
+        ///     Get nullable MolarMass from nullable GramsPerMole.
+        /// </summary>
+        public static MolarMass? FromGramsPerMole(QuantityValue? gramspermole)
+        {
+            return gramspermole.HasValue ? FromGramsPerMole(gramspermole.Value) : default(MolarMass?);
+        }
+
+        /// <summary>
+        ///     Get nullable MolarMass from nullable HectogramsPerMole.
+        /// </summary>
+        public static MolarMass? FromHectogramsPerMole(QuantityValue? hectogramspermole)
+        {
+            return hectogramspermole.HasValue ? FromHectogramsPerMole(hectogramspermole.Value) : default(MolarMass?);
+        }
+
+        /// <summary>
+        ///     Get nullable MolarMass from nullable KilogramsPerMole.
+        /// </summary>
+        public static MolarMass? FromKilogramsPerMole(QuantityValue? kilogramspermole)
+        {
+            return kilogramspermole.HasValue ? FromKilogramsPerMole(kilogramspermole.Value) : default(MolarMass?);
+        }
+
+        /// <summary>
+        ///     Get nullable MolarMass from nullable KilopoundsPerMole.
+        /// </summary>
+        public static MolarMass? FromKilopoundsPerMole(QuantityValue? kilopoundspermole)
+        {
+            return kilopoundspermole.HasValue ? FromKilopoundsPerMole(kilopoundspermole.Value) : default(MolarMass?);
+        }
+
+        /// <summary>
+        ///     Get nullable MolarMass from nullable MegapoundsPerMole.
+        /// </summary>
+        public static MolarMass? FromMegapoundsPerMole(QuantityValue? megapoundspermole)
+        {
+            return megapoundspermole.HasValue ? FromMegapoundsPerMole(megapoundspermole.Value) : default(MolarMass?);
+        }
+
+        /// <summary>
+        ///     Get nullable MolarMass from nullable MicrogramsPerMole.
+        /// </summary>
+        public static MolarMass? FromMicrogramsPerMole(QuantityValue? microgramspermole)
+        {
+            return microgramspermole.HasValue ? FromMicrogramsPerMole(microgramspermole.Value) : default(MolarMass?);
+        }
+
+        /// <summary>
+        ///     Get nullable MolarMass from nullable MilligramsPerMole.
+        /// </summary>
+        public static MolarMass? FromMilligramsPerMole(QuantityValue? milligramspermole)
+        {
+            return milligramspermole.HasValue ? FromMilligramsPerMole(milligramspermole.Value) : default(MolarMass?);
+        }
+
+        /// <summary>
+        ///     Get nullable MolarMass from nullable NanogramsPerMole.
+        /// </summary>
+        public static MolarMass? FromNanogramsPerMole(QuantityValue? nanogramspermole)
+        {
+            return nanogramspermole.HasValue ? FromNanogramsPerMole(nanogramspermole.Value) : default(MolarMass?);
+        }
+
+        /// <summary>
+        ///     Get nullable MolarMass from nullable PoundsPerMole.
+        /// </summary>
+        public static MolarMass? FromPoundsPerMole(QuantityValue? poundspermole)
+        {
+            return poundspermole.HasValue ? FromPoundsPerMole(poundspermole.Value) : default(MolarMass?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="MolarMassUnit" /> to <see cref="MolarMass" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>MolarMass unit value.</returns>
+        public static MolarMass? From(QuantityValue? value, MolarMassUnit fromUnit)
+        {
+            return value.HasValue ? new MolarMass((double)value.Value, fromUnit) : default(MolarMass?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static MolarMass operator -(MolarMass right)
+        {
+            return new MolarMass(-right.Value, right.Unit);
+        }
+
+        public static MolarMass operator +(MolarMass left, MolarMass right)
+        {
+            return new MolarMass(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MolarMass operator -(MolarMass left, MolarMass right)
+        {
+            return new MolarMass(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static MolarMass operator *(double left, MolarMass right)
+        {
+            return new MolarMass(left * right.Value, right.Unit);
+        }
+
+        public static MolarMass operator *(MolarMass left, double right)
+        {
+            return new MolarMass(left.Value * right, left.Unit);
+        }
+
+        public static MolarMass operator /(MolarMass left, double right)
+        {
+            return new MolarMass(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(MolarMass left, MolarMass right)
+        {
+            return left.KilogramsPerMole / right.KilogramsPerMole;
+        }
+
+        #endregion
+
+        public static bool operator <=(MolarMass left, MolarMass right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(MolarMass left, MolarMass right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(MolarMass left, MolarMass right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(MolarMass left, MolarMass right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(MolarMass left, MolarMass right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(MolarMass left, MolarMass right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

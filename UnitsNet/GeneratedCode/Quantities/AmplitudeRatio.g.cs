@@ -223,69 +223,6 @@ namespace UnitsNet
             return new AmplitudeRatio(value, AmplitudeRatioUnit.DecibelVolt);
         }
 
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Get nullable AmplitudeRatio from nullable DecibelMicrovolts.
-        /// </summary>
-        public static AmplitudeRatio? FromDecibelMicrovolts(QuantityValue? decibelmicrovolts)
-        {
-            if (decibelmicrovolts.HasValue)
-            {
-                return FromDecibelMicrovolts(decibelmicrovolts.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmplitudeRatio from nullable DecibelMillivolts.
-        /// </summary>
-        public static AmplitudeRatio? FromDecibelMillivolts(QuantityValue? decibelmillivolts)
-        {
-            if (decibelmillivolts.HasValue)
-            {
-                return FromDecibelMillivolts(decibelmillivolts.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmplitudeRatio from nullable DecibelsUnloaded.
-        /// </summary>
-        public static AmplitudeRatio? FromDecibelsUnloaded(QuantityValue? decibelsunloaded)
-        {
-            if (decibelsunloaded.HasValue)
-            {
-                return FromDecibelsUnloaded(decibelsunloaded.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        ///     Get nullable AmplitudeRatio from nullable DecibelVolts.
-        /// </summary>
-        public static AmplitudeRatio? FromDecibelVolts(QuantityValue? decibelvolts)
-        {
-            if (decibelvolts.HasValue)
-            {
-                return FromDecibelVolts(decibelvolts.Value);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-#endif
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="AmplitudeRatioUnit" /> to <see cref="AmplitudeRatio" />.
@@ -303,25 +240,6 @@ namespace UnitsNet
         {
             return new AmplitudeRatio((double)value, fromUnit);
         }
-
-        // Windows Runtime Component does not support nullable types (double?): https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="AmplitudeRatioUnit" /> to <see cref="AmplitudeRatio" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>AmplitudeRatio unit value.</returns>
-        public static AmplitudeRatio? From(QuantityValue? value, AmplitudeRatioUnit fromUnit)
-        {
-            if (!value.HasValue)
-            {
-                return null;
-            }
-
-            return new AmplitudeRatio((double)value.Value, fromUnit);
-        }
-#endif
 
         /// <summary>
         ///     Get unit abbreviation string.
@@ -365,56 +283,6 @@ namespace UnitsNet
 
         #endregion
 
-        #region Logarithmic Arithmetic Operators
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static AmplitudeRatio operator -(AmplitudeRatio right)
-        {
-            return new AmplitudeRatio(-right.Value, right.Unit);
-        }
-
-        public static AmplitudeRatio operator +(AmplitudeRatio left, AmplitudeRatio right)
-        {
-            // Logarithmic addition
-            // Formula: 20*log10(10^(x/20) + 10^(y/20))
-            return new AmplitudeRatio(20*Math.Log10(Math.Pow(10, left.Value/20) + Math.Pow(10, right.AsBaseNumericType(left.Unit)/20)), left.Unit);
-        }
-
-        public static AmplitudeRatio operator -(AmplitudeRatio left, AmplitudeRatio right)
-        {
-            // Logarithmic subtraction
-            // Formula: 20*log10(10^(x/20) - 10^(y/20))
-            return new AmplitudeRatio(20*Math.Log10(Math.Pow(10, left.Value/20) - Math.Pow(10, right.AsBaseNumericType(left.Unit)/20)), left.Unit);
-        }
-
-        public static AmplitudeRatio operator *(double left, AmplitudeRatio right)
-        {
-            // Logarithmic multiplication = addition
-            return new AmplitudeRatio(left + right.Value, right.Unit);
-        }
-
-        public static AmplitudeRatio operator *(AmplitudeRatio left, double right)
-        {
-            // Logarithmic multiplication = addition
-            return new AmplitudeRatio(left.Value + (double)right, left.Unit);
-        }
-
-        public static AmplitudeRatio operator /(AmplitudeRatio left, double right)
-        {
-            // Logarithmic division = subtraction
-            return new AmplitudeRatio(left.Value - (double)right, left.Unit);
-        }
-
-        public static double operator /(AmplitudeRatio left, AmplitudeRatio right)
-        {
-            // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.AsBaseNumericType(left.Unit));
-        }
-#endif
-
-        #endregion
-
         #region Equality / IComparable
 
         public int CompareTo(object obj)
@@ -435,43 +303,6 @@ namespace UnitsNet
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static bool operator <=(AmplitudeRatio left, AmplitudeRatio right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(AmplitudeRatio left, AmplitudeRatio right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(AmplitudeRatio left, AmplitudeRatio right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(AmplitudeRatio left, AmplitudeRatio right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(AmplitudeRatio left, AmplitudeRatio right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(AmplitudeRatio left, AmplitudeRatio right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
-        }
-#endif
 
         [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)

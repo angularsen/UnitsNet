@@ -59,5 +59,285 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CentilitersPerMinute.
+        /// </summary>
+        public static Flow? FromCentilitersPerMinute(QuantityValue? centilitersperminute)
+        {
+            return centilitersperminute.HasValue ? FromCentilitersPerMinute(centilitersperminute.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicDecimetersPerMinute.
+        /// </summary>
+        public static Flow? FromCubicDecimetersPerMinute(QuantityValue? cubicdecimetersperminute)
+        {
+            return cubicdecimetersperminute.HasValue ? FromCubicDecimetersPerMinute(cubicdecimetersperminute.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicFeetPerHour.
+        /// </summary>
+        public static Flow? FromCubicFeetPerHour(QuantityValue? cubicfeetperhour)
+        {
+            return cubicfeetperhour.HasValue ? FromCubicFeetPerHour(cubicfeetperhour.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicFeetPerMinute.
+        /// </summary>
+        public static Flow? FromCubicFeetPerMinute(QuantityValue? cubicfeetperminute)
+        {
+            return cubicfeetperminute.HasValue ? FromCubicFeetPerMinute(cubicfeetperminute.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicFeetPerSecond.
+        /// </summary>
+        public static Flow? FromCubicFeetPerSecond(QuantityValue? cubicfeetpersecond)
+        {
+            return cubicfeetpersecond.HasValue ? FromCubicFeetPerSecond(cubicfeetpersecond.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicMetersPerHour.
+        /// </summary>
+        public static Flow? FromCubicMetersPerHour(QuantityValue? cubicmetersperhour)
+        {
+            return cubicmetersperhour.HasValue ? FromCubicMetersPerHour(cubicmetersperhour.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicMetersPerMinute.
+        /// </summary>
+        public static Flow? FromCubicMetersPerMinute(QuantityValue? cubicmetersperminute)
+        {
+            return cubicmetersperminute.HasValue ? FromCubicMetersPerMinute(cubicmetersperminute.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicMetersPerSecond.
+        /// </summary>
+        public static Flow? FromCubicMetersPerSecond(QuantityValue? cubicmeterspersecond)
+        {
+            return cubicmeterspersecond.HasValue ? FromCubicMetersPerSecond(cubicmeterspersecond.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicYardsPerHour.
+        /// </summary>
+        public static Flow? FromCubicYardsPerHour(QuantityValue? cubicyardsperhour)
+        {
+            return cubicyardsperhour.HasValue ? FromCubicYardsPerHour(cubicyardsperhour.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicYardsPerMinute.
+        /// </summary>
+        public static Flow? FromCubicYardsPerMinute(QuantityValue? cubicyardsperminute)
+        {
+            return cubicyardsperminute.HasValue ? FromCubicYardsPerMinute(cubicyardsperminute.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable CubicYardsPerSecond.
+        /// </summary>
+        public static Flow? FromCubicYardsPerSecond(QuantityValue? cubicyardspersecond)
+        {
+            return cubicyardspersecond.HasValue ? FromCubicYardsPerSecond(cubicyardspersecond.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable DecilitersPerMinute.
+        /// </summary>
+        public static Flow? FromDecilitersPerMinute(QuantityValue? decilitersperminute)
+        {
+            return decilitersperminute.HasValue ? FromDecilitersPerMinute(decilitersperminute.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable KilolitersPerMinute.
+        /// </summary>
+        public static Flow? FromKilolitersPerMinute(QuantityValue? kilolitersperminute)
+        {
+            return kilolitersperminute.HasValue ? FromKilolitersPerMinute(kilolitersperminute.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable LitersPerHour.
+        /// </summary>
+        public static Flow? FromLitersPerHour(QuantityValue? litersperhour)
+        {
+            return litersperhour.HasValue ? FromLitersPerHour(litersperhour.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable LitersPerMinute.
+        /// </summary>
+        public static Flow? FromLitersPerMinute(QuantityValue? litersperminute)
+        {
+            return litersperminute.HasValue ? FromLitersPerMinute(litersperminute.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable LitersPerSecond.
+        /// </summary>
+        public static Flow? FromLitersPerSecond(QuantityValue? literspersecond)
+        {
+            return literspersecond.HasValue ? FromLitersPerSecond(literspersecond.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable MicrolitersPerMinute.
+        /// </summary>
+        public static Flow? FromMicrolitersPerMinute(QuantityValue? microlitersperminute)
+        {
+            return microlitersperminute.HasValue ? FromMicrolitersPerMinute(microlitersperminute.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable MillilitersPerMinute.
+        /// </summary>
+        public static Flow? FromMillilitersPerMinute(QuantityValue? millilitersperminute)
+        {
+            return millilitersperminute.HasValue ? FromMillilitersPerMinute(millilitersperminute.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable MillionUsGallonsPerDay.
+        /// </summary>
+        public static Flow? FromMillionUsGallonsPerDay(QuantityValue? millionusgallonsperday)
+        {
+            return millionusgallonsperday.HasValue ? FromMillionUsGallonsPerDay(millionusgallonsperday.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable NanolitersPerMinute.
+        /// </summary>
+        public static Flow? FromNanolitersPerMinute(QuantityValue? nanolitersperminute)
+        {
+            return nanolitersperminute.HasValue ? FromNanolitersPerMinute(nanolitersperminute.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable OilBarrelsPerDay.
+        /// </summary>
+        public static Flow? FromOilBarrelsPerDay(QuantityValue? oilbarrelsperday)
+        {
+            return oilbarrelsperday.HasValue ? FromOilBarrelsPerDay(oilbarrelsperday.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable UsGallonsPerHour.
+        /// </summary>
+        public static Flow? FromUsGallonsPerHour(QuantityValue? usgallonsperhour)
+        {
+            return usgallonsperhour.HasValue ? FromUsGallonsPerHour(usgallonsperhour.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable UsGallonsPerMinute.
+        /// </summary>
+        public static Flow? FromUsGallonsPerMinute(QuantityValue? usgallonsperminute)
+        {
+            return usgallonsperminute.HasValue ? FromUsGallonsPerMinute(usgallonsperminute.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Get nullable Flow from nullable UsGallonsPerSecond.
+        /// </summary>
+        public static Flow? FromUsGallonsPerSecond(QuantityValue? usgallonspersecond)
+        {
+            return usgallonspersecond.HasValue ? FromUsGallonsPerSecond(usgallonspersecond.Value) : default(Flow?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="FlowUnit" /> to <see cref="Flow" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Flow unit value.</returns>
+        public static Flow? From(QuantityValue? value, FlowUnit fromUnit)
+        {
+            return value.HasValue ? new Flow((double)value.Value, fromUnit) : default(Flow?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Flow operator -(Flow right)
+        {
+            return new Flow(-right.Value, right.Unit);
+        }
+
+        public static Flow operator +(Flow left, Flow right)
+        {
+            return new Flow(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Flow operator -(Flow left, Flow right)
+        {
+            return new Flow(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Flow operator *(double left, Flow right)
+        {
+            return new Flow(left * right.Value, right.Unit);
+        }
+
+        public static Flow operator *(Flow left, double right)
+        {
+            return new Flow(left.Value * right, left.Unit);
+        }
+
+        public static Flow operator /(Flow left, double right)
+        {
+            return new Flow(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Flow left, Flow right)
+        {
+            return left.CubicMetersPerSecond / right.CubicMetersPerSecond;
+        }
+
+        #endregion
+
+        public static bool operator <=(Flow left, Flow right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Flow left, Flow right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Flow left, Flow right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Flow left, Flow right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(Flow left, Flow right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(Flow left, Flow right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

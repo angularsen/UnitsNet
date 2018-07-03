@@ -59,5 +59,349 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable Speed from nullable CentimetersPerHour.
+        /// </summary>
+        public static Speed? FromCentimetersPerHour(QuantityValue? centimetersperhour)
+        {
+            return centimetersperhour.HasValue ? FromCentimetersPerHour(centimetersperhour.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable CentimetersPerMinutes.
+        /// </summary>
+        public static Speed? FromCentimetersPerMinutes(QuantityValue? centimetersperminutes)
+        {
+            return centimetersperminutes.HasValue ? FromCentimetersPerMinutes(centimetersperminutes.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable CentimetersPerSecond.
+        /// </summary>
+        public static Speed? FromCentimetersPerSecond(QuantityValue? centimeterspersecond)
+        {
+            return centimeterspersecond.HasValue ? FromCentimetersPerSecond(centimeterspersecond.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable DecimetersPerMinutes.
+        /// </summary>
+        public static Speed? FromDecimetersPerMinutes(QuantityValue? decimetersperminutes)
+        {
+            return decimetersperminutes.HasValue ? FromDecimetersPerMinutes(decimetersperminutes.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable DecimetersPerSecond.
+        /// </summary>
+        public static Speed? FromDecimetersPerSecond(QuantityValue? decimeterspersecond)
+        {
+            return decimeterspersecond.HasValue ? FromDecimetersPerSecond(decimeterspersecond.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable FeetPerHour.
+        /// </summary>
+        public static Speed? FromFeetPerHour(QuantityValue? feetperhour)
+        {
+            return feetperhour.HasValue ? FromFeetPerHour(feetperhour.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable FeetPerMinute.
+        /// </summary>
+        public static Speed? FromFeetPerMinute(QuantityValue? feetperminute)
+        {
+            return feetperminute.HasValue ? FromFeetPerMinute(feetperminute.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable FeetPerSecond.
+        /// </summary>
+        public static Speed? FromFeetPerSecond(QuantityValue? feetpersecond)
+        {
+            return feetpersecond.HasValue ? FromFeetPerSecond(feetpersecond.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable InchesPerHour.
+        /// </summary>
+        public static Speed? FromInchesPerHour(QuantityValue? inchesperhour)
+        {
+            return inchesperhour.HasValue ? FromInchesPerHour(inchesperhour.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable InchesPerMinute.
+        /// </summary>
+        public static Speed? FromInchesPerMinute(QuantityValue? inchesperminute)
+        {
+            return inchesperminute.HasValue ? FromInchesPerMinute(inchesperminute.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable InchesPerSecond.
+        /// </summary>
+        public static Speed? FromInchesPerSecond(QuantityValue? inchespersecond)
+        {
+            return inchespersecond.HasValue ? FromInchesPerSecond(inchespersecond.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable KilometersPerHour.
+        /// </summary>
+        public static Speed? FromKilometersPerHour(QuantityValue? kilometersperhour)
+        {
+            return kilometersperhour.HasValue ? FromKilometersPerHour(kilometersperhour.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable KilometersPerMinutes.
+        /// </summary>
+        public static Speed? FromKilometersPerMinutes(QuantityValue? kilometersperminutes)
+        {
+            return kilometersperminutes.HasValue ? FromKilometersPerMinutes(kilometersperminutes.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable KilometersPerSecond.
+        /// </summary>
+        public static Speed? FromKilometersPerSecond(QuantityValue? kilometerspersecond)
+        {
+            return kilometerspersecond.HasValue ? FromKilometersPerSecond(kilometerspersecond.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable Knots.
+        /// </summary>
+        public static Speed? FromKnots(QuantityValue? knots)
+        {
+            return knots.HasValue ? FromKnots(knots.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MetersPerHour.
+        /// </summary>
+        public static Speed? FromMetersPerHour(QuantityValue? metersperhour)
+        {
+            return metersperhour.HasValue ? FromMetersPerHour(metersperhour.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MetersPerMinutes.
+        /// </summary>
+        public static Speed? FromMetersPerMinutes(QuantityValue? metersperminutes)
+        {
+            return metersperminutes.HasValue ? FromMetersPerMinutes(metersperminutes.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MetersPerSecond.
+        /// </summary>
+        public static Speed? FromMetersPerSecond(QuantityValue? meterspersecond)
+        {
+            return meterspersecond.HasValue ? FromMetersPerSecond(meterspersecond.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MicrometersPerMinutes.
+        /// </summary>
+        public static Speed? FromMicrometersPerMinutes(QuantityValue? micrometersperminutes)
+        {
+            return micrometersperminutes.HasValue ? FromMicrometersPerMinutes(micrometersperminutes.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MicrometersPerSecond.
+        /// </summary>
+        public static Speed? FromMicrometersPerSecond(QuantityValue? micrometerspersecond)
+        {
+            return micrometerspersecond.HasValue ? FromMicrometersPerSecond(micrometerspersecond.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MilesPerHour.
+        /// </summary>
+        public static Speed? FromMilesPerHour(QuantityValue? milesperhour)
+        {
+            return milesperhour.HasValue ? FromMilesPerHour(milesperhour.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MillimetersPerHour.
+        /// </summary>
+        public static Speed? FromMillimetersPerHour(QuantityValue? millimetersperhour)
+        {
+            return millimetersperhour.HasValue ? FromMillimetersPerHour(millimetersperhour.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MillimetersPerMinutes.
+        /// </summary>
+        public static Speed? FromMillimetersPerMinutes(QuantityValue? millimetersperminutes)
+        {
+            return millimetersperminutes.HasValue ? FromMillimetersPerMinutes(millimetersperminutes.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable MillimetersPerSecond.
+        /// </summary>
+        public static Speed? FromMillimetersPerSecond(QuantityValue? millimeterspersecond)
+        {
+            return millimeterspersecond.HasValue ? FromMillimetersPerSecond(millimeterspersecond.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable NanometersPerMinutes.
+        /// </summary>
+        public static Speed? FromNanometersPerMinutes(QuantityValue? nanometersperminutes)
+        {
+            return nanometersperminutes.HasValue ? FromNanometersPerMinutes(nanometersperminutes.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable NanometersPerSecond.
+        /// </summary>
+        public static Speed? FromNanometersPerSecond(QuantityValue? nanometerspersecond)
+        {
+            return nanometerspersecond.HasValue ? FromNanometersPerSecond(nanometerspersecond.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable UsSurveyFeetPerHour.
+        /// </summary>
+        public static Speed? FromUsSurveyFeetPerHour(QuantityValue? ussurveyfeetperhour)
+        {
+            return ussurveyfeetperhour.HasValue ? FromUsSurveyFeetPerHour(ussurveyfeetperhour.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable UsSurveyFeetPerMinute.
+        /// </summary>
+        public static Speed? FromUsSurveyFeetPerMinute(QuantityValue? ussurveyfeetperminute)
+        {
+            return ussurveyfeetperminute.HasValue ? FromUsSurveyFeetPerMinute(ussurveyfeetperminute.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable UsSurveyFeetPerSecond.
+        /// </summary>
+        public static Speed? FromUsSurveyFeetPerSecond(QuantityValue? ussurveyfeetpersecond)
+        {
+            return ussurveyfeetpersecond.HasValue ? FromUsSurveyFeetPerSecond(ussurveyfeetpersecond.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable YardsPerHour.
+        /// </summary>
+        public static Speed? FromYardsPerHour(QuantityValue? yardsperhour)
+        {
+            return yardsperhour.HasValue ? FromYardsPerHour(yardsperhour.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable YardsPerMinute.
+        /// </summary>
+        public static Speed? FromYardsPerMinute(QuantityValue? yardsperminute)
+        {
+            return yardsperminute.HasValue ? FromYardsPerMinute(yardsperminute.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Get nullable Speed from nullable YardsPerSecond.
+        /// </summary>
+        public static Speed? FromYardsPerSecond(QuantityValue? yardspersecond)
+        {
+            return yardspersecond.HasValue ? FromYardsPerSecond(yardspersecond.Value) : default(Speed?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="SpeedUnit" /> to <see cref="Speed" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>Speed unit value.</returns>
+        public static Speed? From(QuantityValue? value, SpeedUnit fromUnit)
+        {
+            return value.HasValue ? new Speed((double)value.Value, fromUnit) : default(Speed?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static Speed operator -(Speed right)
+        {
+            return new Speed(-right.Value, right.Unit);
+        }
+
+        public static Speed operator +(Speed left, Speed right)
+        {
+            return new Speed(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Speed operator -(Speed left, Speed right)
+        {
+            return new Speed(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Speed operator *(double left, Speed right)
+        {
+            return new Speed(left * right.Value, right.Unit);
+        }
+
+        public static Speed operator *(Speed left, double right)
+        {
+            return new Speed(left.Value * right, left.Unit);
+        }
+
+        public static Speed operator /(Speed left, double right)
+        {
+            return new Speed(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Speed left, Speed right)
+        {
+            return left.MetersPerSecond / right.MetersPerSecond;
+        }
+
+        #endregion
+
+        public static bool operator <=(Speed left, Speed right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(Speed left, Speed right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(Speed left, Speed right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(Speed left, Speed right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(Speed left, Speed right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(Speed left, Speed right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

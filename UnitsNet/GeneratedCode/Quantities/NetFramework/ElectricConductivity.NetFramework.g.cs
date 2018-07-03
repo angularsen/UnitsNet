@@ -59,5 +59,101 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable ElectricConductivity from nullable SiemensPerMeter.
+        /// </summary>
+        public static ElectricConductivity? FromSiemensPerMeter(QuantityValue? siemenspermeter)
+        {
+            return siemenspermeter.HasValue ? FromSiemensPerMeter(siemenspermeter.Value) : default(ElectricConductivity?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="ElectricConductivityUnit" /> to <see cref="ElectricConductivity" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>ElectricConductivity unit value.</returns>
+        public static ElectricConductivity? From(QuantityValue? value, ElectricConductivityUnit fromUnit)
+        {
+            return value.HasValue ? new ElectricConductivity((double)value.Value, fromUnit) : default(ElectricConductivity?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static ElectricConductivity operator -(ElectricConductivity right)
+        {
+            return new ElectricConductivity(-right.Value, right.Unit);
+        }
+
+        public static ElectricConductivity operator +(ElectricConductivity left, ElectricConductivity right)
+        {
+            return new ElectricConductivity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricConductivity operator -(ElectricConductivity left, ElectricConductivity right)
+        {
+            return new ElectricConductivity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static ElectricConductivity operator *(double left, ElectricConductivity right)
+        {
+            return new ElectricConductivity(left * right.Value, right.Unit);
+        }
+
+        public static ElectricConductivity operator *(ElectricConductivity left, double right)
+        {
+            return new ElectricConductivity(left.Value * right, left.Unit);
+        }
+
+        public static ElectricConductivity operator /(ElectricConductivity left, double right)
+        {
+            return new ElectricConductivity(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(ElectricConductivity left, ElectricConductivity right)
+        {
+            return left.SiemensPerMeter / right.SiemensPerMeter;
+        }
+
+        #endregion
+
+        public static bool operator <=(ElectricConductivity left, ElectricConductivity right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(ElectricConductivity left, ElectricConductivity right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(ElectricConductivity left, ElectricConductivity right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(ElectricConductivity left, ElectricConductivity right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(ElectricConductivity left, ElectricConductivity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(ElectricConductivity left, ElectricConductivity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }

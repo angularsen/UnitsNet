@@ -59,5 +59,157 @@ namespace UnitsNet
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
+
+        #region Nullable From Methods
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Centistokes.
+        /// </summary>
+        public static KinematicViscosity? FromCentistokes(QuantityValue? centistokes)
+        {
+            return centistokes.HasValue ? FromCentistokes(centistokes.Value) : default(KinematicViscosity?);
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Decistokes.
+        /// </summary>
+        public static KinematicViscosity? FromDecistokes(QuantityValue? decistokes)
+        {
+            return decistokes.HasValue ? FromDecistokes(decistokes.Value) : default(KinematicViscosity?);
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Kilostokes.
+        /// </summary>
+        public static KinematicViscosity? FromKilostokes(QuantityValue? kilostokes)
+        {
+            return kilostokes.HasValue ? FromKilostokes(kilostokes.Value) : default(KinematicViscosity?);
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Microstokes.
+        /// </summary>
+        public static KinematicViscosity? FromMicrostokes(QuantityValue? microstokes)
+        {
+            return microstokes.HasValue ? FromMicrostokes(microstokes.Value) : default(KinematicViscosity?);
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Millistokes.
+        /// </summary>
+        public static KinematicViscosity? FromMillistokes(QuantityValue? millistokes)
+        {
+            return millistokes.HasValue ? FromMillistokes(millistokes.Value) : default(KinematicViscosity?);
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Nanostokes.
+        /// </summary>
+        public static KinematicViscosity? FromNanostokes(QuantityValue? nanostokes)
+        {
+            return nanostokes.HasValue ? FromNanostokes(nanostokes.Value) : default(KinematicViscosity?);
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable SquareMetersPerSecond.
+        /// </summary>
+        public static KinematicViscosity? FromSquareMetersPerSecond(QuantityValue? squaremeterspersecond)
+        {
+            return squaremeterspersecond.HasValue ? FromSquareMetersPerSecond(squaremeterspersecond.Value) : default(KinematicViscosity?);
+        }
+
+        /// <summary>
+        ///     Get nullable KinematicViscosity from nullable Stokes.
+        /// </summary>
+        public static KinematicViscosity? FromStokes(QuantityValue? stokes)
+        {
+            return stokes.HasValue ? FromStokes(stokes.Value) : default(KinematicViscosity?);
+        }
+
+        /// <summary>
+        ///     Dynamically convert from value and unit enum <see cref="KinematicViscosityUnit" /> to <see cref="KinematicViscosity" />.
+        /// </summary>
+        /// <param name="value">Value to convert from.</param>
+        /// <param name="fromUnit">Unit to convert from.</param>
+        /// <returns>KinematicViscosity unit value.</returns>
+        public static KinematicViscosity? From(QuantityValue? value, KinematicViscosityUnit fromUnit)
+        {
+            return value.HasValue ? new KinematicViscosity((double)value.Value, fromUnit) : default(KinematicViscosity?);
+        }
+
+        #endregion
+
+        #region Arithmetic Operators
+
+        public static KinematicViscosity operator -(KinematicViscosity right)
+        {
+            return new KinematicViscosity(-right.Value, right.Unit);
+        }
+
+        public static KinematicViscosity operator +(KinematicViscosity left, KinematicViscosity right)
+        {
+            return new KinematicViscosity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static KinematicViscosity operator -(KinematicViscosity left, KinematicViscosity right)
+        {
+            return new KinematicViscosity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static KinematicViscosity operator *(double left, KinematicViscosity right)
+        {
+            return new KinematicViscosity(left * right.Value, right.Unit);
+        }
+
+        public static KinematicViscosity operator *(KinematicViscosity left, double right)
+        {
+            return new KinematicViscosity(left.Value * right, left.Unit);
+        }
+
+        public static KinematicViscosity operator /(KinematicViscosity left, double right)
+        {
+            return new KinematicViscosity(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(KinematicViscosity left, KinematicViscosity right)
+        {
+            return left.SquareMetersPerSecond / right.SquareMetersPerSecond;
+        }
+
+        #endregion
+
+        public static bool operator <=(KinematicViscosity left, KinematicViscosity right)
+        {
+            return left.Value <= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >=(KinematicViscosity left, KinematicViscosity right)
+        {
+            return left.Value >= right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator <(KinematicViscosity left, KinematicViscosity right)
+        {
+            return left.Value < right.AsBaseNumericType(left.Unit);
+        }
+
+        public static bool operator >(KinematicViscosity left, KinematicViscosity right)
+        {
+            return left.Value > right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator ==(KinematicViscosity left, KinematicViscosity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value == right.AsBaseNumericType(left.Unit);
+        }
+
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        public static bool operator !=(KinematicViscosity left, KinematicViscosity right)
+        {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            return left.Value != right.AsBaseNumericType(left.Unit);
+        }
     }
 }
