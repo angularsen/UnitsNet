@@ -11,14 +11,14 @@ function ToCamelCase($str)
 
 function GenerateQuantity($quantity, $outDir)
 {
-    $outFileName = "$outDir/$($quantity.Name).g.cs"
+    $outFileName = "$outDir/../../../Common/GeneratedCode/Quantities/$($quantity.Name).g.cs"
     GenerateQuantitySourceCodeCommon $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) {
         exit 1
     }
     Write-Host -NoNewline "quantity common(OK) "
 
-    $outFileName = "$outDir/NetFramework/$($quantity.Name).NetFramework.g.cs"
+    $outFileName = "$outDir/$($quantity.Name).NetFramework.g.cs"
     GenerateQuantitySourceCodeNetFramework $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) {
         exit 1
@@ -276,7 +276,7 @@ EnsureDirExists ($testsDir = "$PSScriptRoot/../../UnitsNet.Tests/GeneratedCode")
 EnsureDirExists ($numberExtensionsDir = "$PSScriptRoot/../GeneratedCode/Extensions/Number")
 EnsureDirExists ($testsCustomCodeDir = "$PSScriptRoot/../../UnitsNet.Tests/CustomCode")
 
-$templatesDir = "$PSScriptRoot/../UnitDefinitions"
+$templatesDir = "$PSScriptRoot/../../Common/UnitDefinitions"
 $pad = 25
 
 # Parse unit definitions from .json files and populate properties
