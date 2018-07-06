@@ -11,7 +11,7 @@ function ToCamelCase($str)
 
 function GenerateQuantity($quantity, $outDir)
 {
-    $outFileName = "$outDir/../../../Common/GeneratedCode/Quantities/$($quantity.Name).g.cs"
+    $outFileName = "$outDir/../../../Common/GeneratedCode/Quantities/$($quantity.Name).Common.g.cs"
     GenerateQuantitySourceCodeCommon $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) {
         exit 1
