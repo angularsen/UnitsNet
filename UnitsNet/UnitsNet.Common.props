@@ -34,6 +34,12 @@
 
   <!-- Exclude obj folder from default inclusion pattern -->
   <ItemGroup>
+    <Compile Include="..\Common\**\*.cs" Exclude="**\obj\**">
+      <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+    <None Include="..\Common\**\*" Exclude="**\obj\**">
+      <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>
     <Compile Remove="obj\**" />
     <Compile Remove="Properties\AssemblyInfo*.cs" />
     <EmbeddedResource Remove="obj\**" />
