@@ -101,14 +101,17 @@
     <None Include="UnitsNet.WindowsRuntimeComponent.nuspec" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\UnitsNet\**\*.cs;" Exclude="**\AssemblyInfo.cs;**\NetFramework\*;**\obj\**">
+    <Compile Include="..\Common\**\*.cs;" Exclude="**\obj\**">
+      <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+    <None Include="..\Common\**\*" Exclude="**\obj\**">
+      <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>
+    <Compile Include="..\UnitsNet\**\*.cs;" Exclude="**\AssemblyInfo.cs;**\*NetFramework*.cs;**\obj\**">
       <Link>UnitsNet\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Compile>
     <None Include="..\UnitsNet\Scripts\**\*.*">
       <Link>UnitsNet\Scripts\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </None>
-    <None Include="..\UnitsNet\UnitDefinitions\**\*.*">
-      <Link>UnitsNet\UnitDefinitions\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </None>
   </ItemGroup>
   <ItemGroup>
