@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class AreaMomentOfInertia
+    public sealed partial class AreaMomentOfInertia : IQuantity
 #else
-    public partial struct AreaMomentOfInertia : IComparable, IComparable<AreaMomentOfInertia>
+    public partial struct AreaMomentOfInertia : IQuantity, IComparable, IComparable<AreaMomentOfInertia>
 #endif
     {
         /// <summary>
@@ -76,6 +76,11 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public AreaMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static AreaMomentOfInertia()
+        {
+            BaseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public AreaMomentOfInertia(double meterstothefourth)
@@ -140,14 +145,12 @@ namespace UnitsNet
         /// </summary>
         public static AreaMomentOfInertiaUnit BaseUnit => AreaMomentOfInertiaUnit.MeterToTheFourth;
 
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get{ return _baseDimensions; }
+            get;
         }
 
         /// <summary>
@@ -842,6 +845,11 @@ namespace UnitsNet
         /// Represents the smallest possible value of AreaMomentOfInertia
         /// </summary>
         public static AreaMomentOfInertia MinValue => new AreaMomentOfInertia(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => AreaMomentOfInertia.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

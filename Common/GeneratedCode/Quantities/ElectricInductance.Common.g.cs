@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class ElectricInductance
+    public sealed partial class ElectricInductance : IQuantity
 #else
-    public partial struct ElectricInductance : IComparable, IComparable<ElectricInductance>
+    public partial struct ElectricInductance : IQuantity, IComparable, IComparable<ElectricInductance>
 #endif
     {
         /// <summary>
@@ -76,6 +76,11 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ElectricInductanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static ElectricInductance()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -2, -2, 0, 0, 0);
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public ElectricInductance(double henries)
@@ -140,14 +145,12 @@ namespace UnitsNet
         /// </summary>
         public static ElectricInductanceUnit BaseUnit => ElectricInductanceUnit.Henry;
 
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(2, 1, -2, -2, 0, 0, 0);
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get{ return _baseDimensions; }
+            get;
         }
 
         /// <summary>
@@ -742,6 +745,11 @@ namespace UnitsNet
         /// Represents the smallest possible value of ElectricInductance
         /// </summary>
         public static ElectricInductance MinValue => new ElectricInductance(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ElectricInductance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

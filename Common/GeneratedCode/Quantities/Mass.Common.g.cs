@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class Mass
+    public sealed partial class Mass : IQuantity
 #else
-    public partial struct Mass : IComparable, IComparable<Mass>
+    public partial struct Mass : IQuantity, IComparable, IComparable<Mass>
 #endif
     {
         /// <summary>
@@ -76,6 +76,11 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MassUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static Mass()
+        {
+            BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Mass(double kilograms)
@@ -140,14 +145,12 @@ namespace UnitsNet
         /// </summary>
         public static MassUnit BaseUnit => MassUnit.Kilogram;
 
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get{ return _baseDimensions; }
+            get;
         }
 
         /// <summary>
@@ -1142,6 +1145,11 @@ namespace UnitsNet
         /// Represents the smallest possible value of Mass
         /// </summary>
         public static Mass MinValue => new Mass(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Mass.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

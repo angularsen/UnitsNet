@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class Information
+    public sealed partial class Information : IQuantity
 #else
-    public partial struct Information : IComparable, IComparable<Information>
+    public partial struct Information : IQuantity, IComparable, IComparable<Information>
 #endif
     {
         /// <summary>
@@ -76,6 +76,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public InformationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static Information()
+        {
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Information(double bits)
@@ -139,6 +143,14 @@ namespace UnitsNet
         ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
         /// </summary>
         public static InformationUnit BaseUnit => InformationUnit.Bit;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get;
+        }
 
         /// <summary>
         ///     All units of measurement for the Information quantity.
@@ -1232,5 +1244,14 @@ namespace UnitsNet
         /// </summary>
         public static Information MinValue => new Information(decimal.MinValue, BaseUnit);
 
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => Information.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Information.BaseDimensions;
     }
 }

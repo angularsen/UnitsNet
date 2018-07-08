@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class SpecificEntropy
+    public sealed partial class SpecificEntropy : IQuantity
 #else
-    public partial struct SpecificEntropy : IComparable, IComparable<SpecificEntropy>
+    public partial struct SpecificEntropy : IQuantity, IComparable, IComparable<SpecificEntropy>
 #endif
     {
         /// <summary>
@@ -76,6 +76,11 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public SpecificEntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static SpecificEntropy()
+        {
+            BaseDimensions = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public SpecificEntropy(double joulesperkilogramkelvin)
@@ -140,14 +145,12 @@ namespace UnitsNet
         /// </summary>
         public static SpecificEntropyUnit BaseUnit => SpecificEntropyUnit.JoulePerKilogramKelvin;
 
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get{ return _baseDimensions; }
+            get;
         }
 
         /// <summary>
@@ -882,6 +885,11 @@ namespace UnitsNet
         /// Represents the smallest possible value of SpecificEntropy
         /// </summary>
         public static SpecificEntropy MinValue => new SpecificEntropy(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => SpecificEntropy.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

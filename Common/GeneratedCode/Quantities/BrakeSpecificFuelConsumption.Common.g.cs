@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class BrakeSpecificFuelConsumption
+    public sealed partial class BrakeSpecificFuelConsumption : IQuantity
 #else
-    public partial struct BrakeSpecificFuelConsumption : IComparable, IComparable<BrakeSpecificFuelConsumption>
+    public partial struct BrakeSpecificFuelConsumption : IQuantity, IComparable, IComparable<BrakeSpecificFuelConsumption>
 #endif
     {
         /// <summary>
@@ -76,6 +76,11 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public BrakeSpecificFuelConsumptionUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static BrakeSpecificFuelConsumption()
+        {
+            BaseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public BrakeSpecificFuelConsumption(double kilogramsperjoule)
@@ -140,14 +145,12 @@ namespace UnitsNet
         /// </summary>
         public static BrakeSpecificFuelConsumptionUnit BaseUnit => BrakeSpecificFuelConsumptionUnit.KilogramPerJoule;
 
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get{ return _baseDimensions; }
+            get;
         }
 
         /// <summary>
@@ -782,6 +785,11 @@ namespace UnitsNet
         /// Represents the smallest possible value of BrakeSpecificFuelConsumption
         /// </summary>
         public static BrakeSpecificFuelConsumption MinValue => new BrakeSpecificFuelConsumption(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => BrakeSpecificFuelConsumption.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

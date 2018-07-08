@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class ElectricConductivity
+    public sealed partial class ElectricConductivity : IQuantity
 #else
-    public partial struct ElectricConductivity : IComparable, IComparable<ElectricConductivity>
+    public partial struct ElectricConductivity : IQuantity, IComparable, IComparable<ElectricConductivity>
 #endif
     {
         /// <summary>
@@ -76,6 +76,11 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ElectricConductivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static ElectricConductivity()
+        {
+            BaseDimensions = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public ElectricConductivity(double siemenspermeter)
@@ -140,14 +145,12 @@ namespace UnitsNet
         /// </summary>
         public static ElectricConductivityUnit BaseUnit => ElectricConductivityUnit.SiemensPerMeter;
 
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get{ return _baseDimensions; }
+            get;
         }
 
         /// <summary>
@@ -742,6 +745,11 @@ namespace UnitsNet
         /// Represents the smallest possible value of ElectricConductivity
         /// </summary>
         public static ElectricConductivity MinValue => new ElectricConductivity(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => ElectricConductivity.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.

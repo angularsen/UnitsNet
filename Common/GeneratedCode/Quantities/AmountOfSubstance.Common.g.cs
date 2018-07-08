@@ -57,9 +57,9 @@ namespace UnitsNet
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
 #if WINDOWS_UWP
-    public sealed partial class AmountOfSubstance
+    public sealed partial class AmountOfSubstance : IQuantity
 #else
-    public partial struct AmountOfSubstance : IComparable, IComparable<AmountOfSubstance>
+    public partial struct AmountOfSubstance : IQuantity, IComparable, IComparable<AmountOfSubstance>
 #endif
     {
         /// <summary>
@@ -76,6 +76,11 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public AmountOfSubstanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        static AmountOfSubstance()
+        {
+            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
+        }
 
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public AmountOfSubstance(double moles)
@@ -140,14 +145,12 @@ namespace UnitsNet
         /// </summary>
         public static AmountOfSubstanceUnit BaseUnit => AmountOfSubstanceUnit.Mole;
 
-        private static readonly BaseDimensions _baseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
-
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions
         {
-            get{ return _baseDimensions; }
+            get;
         }
 
         /// <summary>
@@ -1002,6 +1005,11 @@ namespace UnitsNet
         /// Represents the smallest possible value of AmountOfSubstance
         /// </summary>
         public static AmountOfSubstance MinValue => new AmountOfSubstance(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => AmountOfSubstance.QuantityType;
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
