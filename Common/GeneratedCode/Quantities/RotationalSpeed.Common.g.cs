@@ -672,59 +672,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-#if WINDOWS_UWP
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-#else
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-#endif
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="ArgumentException">
-        ///     Expected string to have one or two pairs of quantity and unit in the format
-        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
-        /// </exception>
-        /// <exception cref="AmbiguousUnitParseException">
-        ///     More than one unit is represented by the specified unit abbreviation.
-        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
-        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
-        /// </exception>
-        /// <exception cref="UnitsNetException">
-        ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-        ///     Units.NET exceptions from other exceptions.
-        /// </exception>
-        public static RotationalSpeed Parse(
-            string str,
-#if WINDOWS_UWP
-            [CanBeNull] string cultureName)
-#else
-            [CanBeNull] IFormatProvider provider)
-#endif
-        {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-
-#if WINDOWS_UWP
-            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
-#else
-            provider = provider ?? UnitSystem.DefaultCulture;
-#endif
-
-            return QuantityParser.Parse<RotationalSpeed, RotationalSpeedUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    double parsedValue = double.Parse(value, formatProvider2);
-                    RotationalSpeedUnit parsedUnit = ParseUnit(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => FromRadiansPerSecond(x.RadiansPerSecond + y.RadiansPerSecond));
-        }
-
-        /// <summary>
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
@@ -735,54 +682,6 @@ namespace UnitsNet
         public static bool TryParse([CanBeNull] string str, out RotationalSpeed result)
         {
             return TryParse(str, null, out result);
-        }
-
-        /// <summary>
-        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-#if WINDOWS_UWP
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-#else
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-#endif
-        /// <param name="result">Resulting unit quantity if successful.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        public static bool TryParse(
-            [CanBeNull] string str,
-#if WINDOWS_UWP
-            [CanBeNull] string cultureName,
-#else
-            [CanBeNull] IFormatProvider provider,
-#endif
-          out RotationalSpeed result)
-        {
-#if WINDOWS_UWP
-            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
-#else
-            provider = provider ?? UnitSystem.DefaultCulture;
-#endif
-            try
-            {
-
-                result = Parse(
-                  str,
-#if WINDOWS_UWP
-                  cultureName);
-#else
-                  provider);
-#endif
-
-                return true;
-            }
-            catch
-            {
-                result = default(RotationalSpeed);
-                return false;
-            }
         }
 
         /// <summary>
@@ -813,41 +712,6 @@ namespace UnitsNet
         public static RotationalSpeedUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        static RotationalSpeedUnit ParseUnit(string str, IFormatProvider provider = null)
-        {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<RotationalSpeedUnit>(str.Trim());
-
-            if (unit == RotationalSpeedUnit.Undefined)
-            {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized RotationalSpeedUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
-            }
-
-            return unit;
         }
 
         #endregion
