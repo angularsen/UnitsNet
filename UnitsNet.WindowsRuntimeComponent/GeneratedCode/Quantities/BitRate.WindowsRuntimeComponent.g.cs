@@ -69,5 +69,151 @@ namespace UnitsNet
             _value = 0;
             _unit = BaseUnit;
         }
+
+        #region Parsing
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        public static BitRate Parse(string str, [CanBeNull] string cultureName)
+        {
+            if (str == null) throw new ArgumentNullException(nameof(str));
+
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+
+            return QuantityParser.Parse<BitRate, BitRateUnit>(str, provider,
+                delegate(string value, string unit, IFormatProvider formatProvider2)
+                {
+                    double parsedValue = double.Parse(value, formatProvider2);
+                    BitRateUnit parsedUnit = ParseUnit(unit, formatProvider2);
+                    return From(parsedValue, parsedUnit);
+                }, (x, y) => FromBitsPerSecond(x.BitsPerSecond + y.BitsPerSecond));
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out BitRate result)
+        {
+            try
+            {
+                result = Parse(str, cultureName);
+                return true;
+            }
+            catch
+            {
+                result = default(BitRate);
+                return false;
+            }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        internal static BitRateUnit ParseUnit(string str, IFormatProvider provider = null)
+        {
+            if (str == null) throw new ArgumentNullException(nameof(str));
+
+            var unitSystem = UnitSystem.GetCached(provider);
+            var unit = unitSystem.Parse<BitRateUnit>(str.Trim());
+
+            if (unit == BitRateUnit.Undefined)
+            {
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized BitRateUnit.");
+                newEx.Data["input"] = str;
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
+                throw newEx;
+            }
+
+            return unit;
+        }
+
+        #endregion
+
+        #region ToString Methods
+
+        /// <summary>
+        ///     Get string representation of value and unit. Using two significant digits after radix.
+        /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <returns>String representation.</returns>
+        public string ToString(BitRateUnit unit, [CanBeNull] string cultureName)
+        {
+            return ToString(unit, cultureName, 2);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
+        /// <returns>String representation.</returns>
+        [UsedImplicitly]
+        public string ToString(BitRateUnit unit, [CanBeNull] string cultureName, int significantDigitsAfterRadix)
+        {
+            double value = As(unit);
+            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(unit, cultureName, format);
+        }
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        [UsedImplicitly]
+        public string ToString(BitRateUnit unit, [CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)
+        {
+            if (format == null) throw new ArgumentNullException(nameof(format));
+            if (args == null) throw new ArgumentNullException(nameof(args));
+
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+
+            double value = As(unit);
+            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            return string.Format(provider, format, formatArgs);
+        }
+
+        #endregion
     }
 }

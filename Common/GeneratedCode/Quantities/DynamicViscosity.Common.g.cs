@@ -532,59 +532,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-#if WINDOWS_UWP
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-#else
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-#endif
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="ArgumentException">
-        ///     Expected string to have one or two pairs of quantity and unit in the format
-        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
-        /// </exception>
-        /// <exception cref="AmbiguousUnitParseException">
-        ///     More than one unit is represented by the specified unit abbreviation.
-        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
-        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
-        /// </exception>
-        /// <exception cref="UnitsNetException">
-        ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-        ///     Units.NET exceptions from other exceptions.
-        /// </exception>
-        public static DynamicViscosity Parse(
-            string str,
-#if WINDOWS_UWP
-            [CanBeNull] string cultureName)
-#else
-            [CanBeNull] IFormatProvider provider)
-#endif
-        {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-
-#if WINDOWS_UWP
-            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
-#else
-            provider = provider ?? UnitSystem.DefaultCulture;
-#endif
-
-            return QuantityParser.Parse<DynamicViscosity, DynamicViscosityUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    double parsedValue = double.Parse(value, formatProvider2);
-                    DynamicViscosityUnit parsedUnit = ParseUnit(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => FromNewtonSecondsPerMeterSquared(x.NewtonSecondsPerMeterSquared + y.NewtonSecondsPerMeterSquared));
-        }
-
-        /// <summary>
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
@@ -595,54 +542,6 @@ namespace UnitsNet
         public static bool TryParse([CanBeNull] string str, out DynamicViscosity result)
         {
             return TryParse(str, null, out result);
-        }
-
-        /// <summary>
-        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-#if WINDOWS_UWP
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-#else
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-#endif
-        /// <param name="result">Resulting unit quantity if successful.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        public static bool TryParse(
-            [CanBeNull] string str,
-#if WINDOWS_UWP
-            [CanBeNull] string cultureName,
-#else
-            [CanBeNull] IFormatProvider provider,
-#endif
-          out DynamicViscosity result)
-        {
-#if WINDOWS_UWP
-            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
-#else
-            provider = provider ?? UnitSystem.DefaultCulture;
-#endif
-            try
-            {
-
-                result = Parse(
-                  str,
-#if WINDOWS_UWP
-                  cultureName);
-#else
-                  provider);
-#endif
-
-                return true;
-            }
-            catch
-            {
-                result = default(DynamicViscosity);
-                return false;
-            }
         }
 
         /// <summary>
@@ -675,41 +574,6 @@ namespace UnitsNet
             return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        static DynamicViscosityUnit ParseUnit(string str, IFormatProvider provider = null)
-        {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<DynamicViscosityUnit>(str.Trim());
-
-            if (unit == DynamicViscosityUnit.Undefined)
-            {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized DynamicViscosityUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
-            }
-
-            return unit;
-        }
-
         #endregion
 
         [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
@@ -735,105 +599,6 @@ namespace UnitsNet
         public string ToString(DynamicViscosityUnit unit)
         {
             return ToString(unit, null, 2);
-        }
-
-        /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
-        /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-#if WINDOWS_UWP
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-#else
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-#endif
-        /// <returns>String representation.</returns>
-        public string ToString(
-          DynamicViscosityUnit unit,
-#if WINDOWS_UWP
-            [CanBeNull] string cultureName)
-#else
-            [CanBeNull] IFormatProvider provider)
-#endif
-        {
-            return ToString(
-              unit,
-#if WINDOWS_UWP
-              cultureName,
-#else
-              provider,
-#endif
-              2);
-        }
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-#if WINDOWS_UWP
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-#else
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-#endif
-        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
-        /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(
-            DynamicViscosityUnit unit,
-#if WINDOWS_UWP
-            [CanBeNull] string cultureName,
-#else
-            [CanBeNull] IFormatProvider provider,
-#endif
-            int significantDigitsAfterRadix)
-        {
-            double value = As(unit);
-            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(
-              unit,
-#if WINDOWS_UWP
-              cultureName,
-#else
-              provider,
-#endif
-              format);
-        }
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-#if WINDOWS_UWP
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-#else
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-#endif
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
-        /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(
-            DynamicViscosityUnit unit,
-#if WINDOWS_UWP
-            [CanBeNull] string cultureName,
-#else
-            [CanBeNull] IFormatProvider provider,
-#endif
-            [NotNull] string format,
-            [NotNull] params object[] args)
-        {
-            if (format == null) throw new ArgumentNullException(nameof(format));
-            if (args == null) throw new ArgumentNullException(nameof(args));
-
-#if WINDOWS_UWP
-            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
-#else
-            provider = provider ?? UnitSystem.DefaultCulture;
-#endif
-
-            double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
-            return string.Format(provider, format, formatArgs);
         }
 
         /// <summary>
