@@ -157,34 +157,42 @@ namespace UnitsNet
         ///     All units of measurement for the SpecificEnergy quantity.
         /// </summary>
         public static SpecificEnergyUnit[] Units { get; } = Enum.GetValues(typeof(SpecificEnergyUnit)).Cast<SpecificEnergyUnit>().ToArray();
+
         /// <summary>
         ///     Get SpecificEnergy in CaloriesPerGram.
         /// </summary>
         public double CaloriesPerGram => As(SpecificEnergyUnit.CaloriePerGram);
+
         /// <summary>
         ///     Get SpecificEnergy in JoulesPerKilogram.
         /// </summary>
         public double JoulesPerKilogram => As(SpecificEnergyUnit.JoulePerKilogram);
+
         /// <summary>
         ///     Get SpecificEnergy in KilocaloriesPerGram.
         /// </summary>
         public double KilocaloriesPerGram => As(SpecificEnergyUnit.KilocaloriePerGram);
+
         /// <summary>
         ///     Get SpecificEnergy in KilojoulesPerKilogram.
         /// </summary>
         public double KilojoulesPerKilogram => As(SpecificEnergyUnit.KilojoulePerKilogram);
+
         /// <summary>
         ///     Get SpecificEnergy in KilowattHoursPerKilogram.
         /// </summary>
         public double KilowattHoursPerKilogram => As(SpecificEnergyUnit.KilowattHourPerKilogram);
+
         /// <summary>
         ///     Get SpecificEnergy in MegajoulesPerKilogram.
         /// </summary>
         public double MegajoulesPerKilogram => As(SpecificEnergyUnit.MegajoulePerKilogram);
+
         /// <summary>
         ///     Get SpecificEnergy in MegawattHoursPerKilogram.
         /// </summary>
         public double MegawattHoursPerKilogram => As(SpecificEnergyUnit.MegawattHourPerKilogram);
+
         /// <summary>
         ///     Get SpecificEnergy in WattHoursPerKilogram.
         /// </summary>

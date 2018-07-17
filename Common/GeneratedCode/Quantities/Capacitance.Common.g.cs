@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the Capacitance quantity.
         /// </summary>
         public static CapacitanceUnit[] Units { get; } = Enum.GetValues(typeof(CapacitanceUnit)).Cast<CapacitanceUnit>().ToArray();
+
         /// <summary>
         ///     Get Capacitance in Farads.
         /// </summary>

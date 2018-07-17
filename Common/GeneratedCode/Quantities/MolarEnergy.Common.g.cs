@@ -157,14 +157,17 @@ namespace UnitsNet
         ///     All units of measurement for the MolarEnergy quantity.
         /// </summary>
         public static MolarEnergyUnit[] Units { get; } = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>().ToArray();
+
         /// <summary>
         ///     Get MolarEnergy in JoulesPerMole.
         /// </summary>
         public double JoulesPerMole => As(MolarEnergyUnit.JoulePerMole);
+
         /// <summary>
         ///     Get MolarEnergy in KilojoulesPerMole.
         /// </summary>
         public double KilojoulesPerMole => As(MolarEnergyUnit.KilojoulePerMole);
+
         /// <summary>
         ///     Get MolarEnergy in MegajoulesPerMole.
         /// </summary>

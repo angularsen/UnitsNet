@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the AreaDensity quantity.
         /// </summary>
         public static AreaDensityUnit[] Units { get; } = Enum.GetValues(typeof(AreaDensityUnit)).Cast<AreaDensityUnit>().ToArray();
+
         /// <summary>
         ///     Get AreaDensity in KilogramsPerSquareMeter.
         /// </summary>

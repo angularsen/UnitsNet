@@ -157,14 +157,17 @@ namespace UnitsNet
         ///     All units of measurement for the RotationalAcceleration quantity.
         /// </summary>
         public static RotationalAccelerationUnit[] Units { get; } = Enum.GetValues(typeof(RotationalAccelerationUnit)).Cast<RotationalAccelerationUnit>().ToArray();
+
         /// <summary>
         ///     Get RotationalAcceleration in DegreesPerSecondSquared.
         /// </summary>
         public double DegreesPerSecondSquared => As(RotationalAccelerationUnit.DegreePerSecondSquared);
+
         /// <summary>
         ///     Get RotationalAcceleration in RadiansPerSecondSquared.
         /// </summary>
         public double RadiansPerSecondSquared => As(RotationalAccelerationUnit.RadianPerSecondSquared);
+
         /// <summary>
         ///     Get RotationalAcceleration in RevolutionsPerMinutePerSecond.
         /// </summary>

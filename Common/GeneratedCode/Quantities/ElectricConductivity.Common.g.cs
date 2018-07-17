@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the ElectricConductivity quantity.
         /// </summary>
         public static ElectricConductivityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricConductivityUnit)).Cast<ElectricConductivityUnit>().ToArray();
+
         /// <summary>
         ///     Get ElectricConductivity in SiemensPerMeter.
         /// </summary>

@@ -157,14 +157,17 @@ namespace UnitsNet
         ///     All units of measurement for the ReactiveEnergy quantity.
         /// </summary>
         public static ReactiveEnergyUnit[] Units { get; } = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>().ToArray();
+
         /// <summary>
         ///     Get ReactiveEnergy in KilovoltampereReactiveHours.
         /// </summary>
         public double KilovoltampereReactiveHours => As(ReactiveEnergyUnit.KilovoltampereReactiveHour);
+
         /// <summary>
         ///     Get ReactiveEnergy in MegavoltampereReactiveHours.
         /// </summary>
         public double MegavoltampereReactiveHours => As(ReactiveEnergyUnit.MegavoltampereReactiveHour);
+
         /// <summary>
         ///     Get ReactiveEnergy in VoltampereReactiveHours.
         /// </summary>

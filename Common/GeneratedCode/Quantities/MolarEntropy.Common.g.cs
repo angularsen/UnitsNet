@@ -157,14 +157,17 @@ namespace UnitsNet
         ///     All units of measurement for the MolarEntropy quantity.
         /// </summary>
         public static MolarEntropyUnit[] Units { get; } = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>().ToArray();
+
         /// <summary>
         ///     Get MolarEntropy in JoulesPerMoleKelvin.
         /// </summary>
         public double JoulesPerMoleKelvin => As(MolarEntropyUnit.JoulePerMoleKelvin);
+
         /// <summary>
         ///     Get MolarEntropy in KilojoulesPerMoleKelvin.
         /// </summary>
         public double KilojoulesPerMoleKelvin => As(MolarEntropyUnit.KilojoulePerMoleKelvin);
+
         /// <summary>
         ///     Get MolarEntropy in MegajoulesPerMoleKelvin.
         /// </summary>

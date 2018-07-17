@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the ElectricChargeDensity quantity.
         /// </summary>
         public static ElectricChargeDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricChargeDensityUnit)).Cast<ElectricChargeDensityUnit>().ToArray();
+
         /// <summary>
         ///     Get ElectricChargeDensity in CoulombsPerCubicMeter.
         /// </summary>

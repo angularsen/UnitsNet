@@ -157,90 +157,112 @@ namespace UnitsNet
         ///     All units of measurement for the Energy quantity.
         /// </summary>
         public static EnergyUnit[] Units { get; } = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>().ToArray();
+
         /// <summary>
         ///     Get Energy in BritishThermalUnits.
         /// </summary>
         public double BritishThermalUnits => As(EnergyUnit.BritishThermalUnit);
+
         /// <summary>
         ///     Get Energy in Calories.
         /// </summary>
         public double Calories => As(EnergyUnit.Calorie);
+
         /// <summary>
         ///     Get Energy in DecathermsEc.
         /// </summary>
         public double DecathermsEc => As(EnergyUnit.DecathermEc);
+
         /// <summary>
         ///     Get Energy in DecathermsImperial.
         /// </summary>
         public double DecathermsImperial => As(EnergyUnit.DecathermImperial);
+
         /// <summary>
         ///     Get Energy in DecathermsUs.
         /// </summary>
         public double DecathermsUs => As(EnergyUnit.DecathermUs);
+
         /// <summary>
         ///     Get Energy in ElectronVolts.
         /// </summary>
         public double ElectronVolts => As(EnergyUnit.ElectronVolt);
+
         /// <summary>
         ///     Get Energy in Ergs.
         /// </summary>
         public double Ergs => As(EnergyUnit.Erg);
+
         /// <summary>
         ///     Get Energy in FootPounds.
         /// </summary>
         public double FootPounds => As(EnergyUnit.FootPound);
+
         /// <summary>
         ///     Get Energy in GigabritishThermalUnits.
         /// </summary>
         public double GigabritishThermalUnits => As(EnergyUnit.GigabritishThermalUnit);
+
         /// <summary>
         ///     Get Energy in GigawattHours.
         /// </summary>
         public double GigawattHours => As(EnergyUnit.GigawattHour);
+
         /// <summary>
         ///     Get Energy in Joules.
         /// </summary>
         public double Joules => As(EnergyUnit.Joule);
+
         /// <summary>
         ///     Get Energy in KilobritishThermalUnits.
         /// </summary>
         public double KilobritishThermalUnits => As(EnergyUnit.KilobritishThermalUnit);
+
         /// <summary>
         ///     Get Energy in Kilocalories.
         /// </summary>
         public double Kilocalories => As(EnergyUnit.Kilocalorie);
+
         /// <summary>
         ///     Get Energy in Kilojoules.
         /// </summary>
         public double Kilojoules => As(EnergyUnit.Kilojoule);
+
         /// <summary>
         ///     Get Energy in KilowattHours.
         /// </summary>
         public double KilowattHours => As(EnergyUnit.KilowattHour);
+
         /// <summary>
         ///     Get Energy in MegabritishThermalUnits.
         /// </summary>
         public double MegabritishThermalUnits => As(EnergyUnit.MegabritishThermalUnit);
+
         /// <summary>
         ///     Get Energy in Megajoules.
         /// </summary>
         public double Megajoules => As(EnergyUnit.Megajoule);
+
         /// <summary>
         ///     Get Energy in MegawattHours.
         /// </summary>
         public double MegawattHours => As(EnergyUnit.MegawattHour);
+
         /// <summary>
         ///     Get Energy in ThermsEc.
         /// </summary>
         public double ThermsEc => As(EnergyUnit.ThermEc);
+
         /// <summary>
         ///     Get Energy in ThermsImperial.
         /// </summary>
         public double ThermsImperial => As(EnergyUnit.ThermImperial);
+
         /// <summary>
         ///     Get Energy in ThermsUs.
         /// </summary>
         public double ThermsUs => As(EnergyUnit.ThermUs);
+
         /// <summary>
         ///     Get Energy in WattHours.
         /// </summary>

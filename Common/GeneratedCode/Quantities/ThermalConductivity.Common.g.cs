@@ -157,10 +157,12 @@ namespace UnitsNet
         ///     All units of measurement for the ThermalConductivity quantity.
         /// </summary>
         public static ThermalConductivityUnit[] Units { get; } = Enum.GetValues(typeof(ThermalConductivityUnit)).Cast<ThermalConductivityUnit>().ToArray();
+
         /// <summary>
         ///     Get ThermalConductivity in BtusPerHourFootFahrenheit.
         /// </summary>
         public double BtusPerHourFootFahrenheit => As(ThermalConductivityUnit.BtuPerHourFootFahrenheit);
+
         /// <summary>
         ///     Get ThermalConductivity in WattsPerMeterKelvin.
         /// </summary>

@@ -157,18 +157,22 @@ namespace UnitsNet
         ///     All units of measurement for the PressureChangeRate quantity.
         /// </summary>
         public static PressureChangeRateUnit[] Units { get; } = Enum.GetValues(typeof(PressureChangeRateUnit)).Cast<PressureChangeRateUnit>().ToArray();
+
         /// <summary>
         ///     Get PressureChangeRate in AtmospheresPerSecond.
         /// </summary>
         public double AtmospheresPerSecond => As(PressureChangeRateUnit.AtmospherePerSecond);
+
         /// <summary>
         ///     Get PressureChangeRate in KilopascalsPerSecond.
         /// </summary>
         public double KilopascalsPerSecond => As(PressureChangeRateUnit.KilopascalPerSecond);
+
         /// <summary>
         ///     Get PressureChangeRate in MegapascalsPerSecond.
         /// </summary>
         public double MegapascalsPerSecond => As(PressureChangeRateUnit.MegapascalPerSecond);
+
         /// <summary>
         ///     Get PressureChangeRate in PascalsPerSecond.
         /// </summary>

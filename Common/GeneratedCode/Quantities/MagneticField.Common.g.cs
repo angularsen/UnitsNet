@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the MagneticField quantity.
         /// </summary>
         public static MagneticFieldUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFieldUnit)).Cast<MagneticFieldUnit>().ToArray();
+
         /// <summary>
         ///     Get MagneticField in Teslas.
         /// </summary>

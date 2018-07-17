@@ -157,62 +157,77 @@ namespace UnitsNet
         ///     All units of measurement for the MassFlow quantity.
         /// </summary>
         public static MassFlowUnit[] Units { get; } = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>().ToArray();
+
         /// <summary>
         ///     Get MassFlow in CentigramsPerSecond.
         /// </summary>
         public double CentigramsPerSecond => As(MassFlowUnit.CentigramPerSecond);
+
         /// <summary>
         ///     Get MassFlow in DecagramsPerSecond.
         /// </summary>
         public double DecagramsPerSecond => As(MassFlowUnit.DecagramPerSecond);
+
         /// <summary>
         ///     Get MassFlow in DecigramsPerSecond.
         /// </summary>
         public double DecigramsPerSecond => As(MassFlowUnit.DecigramPerSecond);
+
         /// <summary>
         ///     Get MassFlow in GramsPerSecond.
         /// </summary>
         public double GramsPerSecond => As(MassFlowUnit.GramPerSecond);
+
         /// <summary>
         ///     Get MassFlow in HectogramsPerSecond.
         /// </summary>
         public double HectogramsPerSecond => As(MassFlowUnit.HectogramPerSecond);
+
         /// <summary>
         ///     Get MassFlow in KilogramsPerHour.
         /// </summary>
         public double KilogramsPerHour => As(MassFlowUnit.KilogramPerHour);
+
         /// <summary>
         ///     Get MassFlow in KilogramsPerSecond.
         /// </summary>
         public double KilogramsPerSecond => As(MassFlowUnit.KilogramPerSecond);
+
         /// <summary>
         ///     Get MassFlow in MegapoundsPerHour.
         /// </summary>
         public double MegapoundsPerHour => As(MassFlowUnit.MegapoundPerHour);
+
         /// <summary>
         ///     Get MassFlow in MicrogramsPerSecond.
         /// </summary>
         public double MicrogramsPerSecond => As(MassFlowUnit.MicrogramPerSecond);
+
         /// <summary>
         ///     Get MassFlow in MilligramsPerSecond.
         /// </summary>
         public double MilligramsPerSecond => As(MassFlowUnit.MilligramPerSecond);
+
         /// <summary>
         ///     Get MassFlow in NanogramsPerSecond.
         /// </summary>
         public double NanogramsPerSecond => As(MassFlowUnit.NanogramPerSecond);
+
         /// <summary>
         ///     Get MassFlow in PoundsPerHour.
         /// </summary>
         public double PoundsPerHour => As(MassFlowUnit.PoundPerHour);
+
         /// <summary>
         ///     Get MassFlow in ShortTonsPerHour.
         /// </summary>
         public double ShortTonsPerHour => As(MassFlowUnit.ShortTonPerHour);
+
         /// <summary>
         ///     Get MassFlow in TonnesPerDay.
         /// </summary>
         public double TonnesPerDay => As(MassFlowUnit.TonnePerDay);
+
         /// <summary>
         ///     Get MassFlow in TonnesPerHour.
         /// </summary>

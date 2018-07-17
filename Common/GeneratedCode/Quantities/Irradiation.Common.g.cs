@@ -157,14 +157,17 @@ namespace UnitsNet
         ///     All units of measurement for the Irradiation quantity.
         /// </summary>
         public static IrradiationUnit[] Units { get; } = Enum.GetValues(typeof(IrradiationUnit)).Cast<IrradiationUnit>().ToArray();
+
         /// <summary>
         ///     Get Irradiation in JoulesPerSquareMeter.
         /// </summary>
         public double JoulesPerSquareMeter => As(IrradiationUnit.JoulePerSquareMeter);
+
         /// <summary>
         ///     Get Irradiation in KilowattHoursPerSquareMeter.
         /// </summary>
         public double KilowattHoursPerSquareMeter => As(IrradiationUnit.KilowattHourPerSquareMeter);
+
         /// <summary>
         ///     Get Irradiation in WattHoursPerSquareMeter.
         /// </summary>

@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the Permittivity quantity.
         /// </summary>
         public static PermittivityUnit[] Units { get; } = Enum.GetValues(typeof(PermittivityUnit)).Cast<PermittivityUnit>().ToArray();
+
         /// <summary>
         ///     Get Permittivity in FaradsPerMeter.
         /// </summary>

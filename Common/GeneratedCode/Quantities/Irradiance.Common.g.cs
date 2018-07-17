@@ -157,10 +157,12 @@ namespace UnitsNet
         ///     All units of measurement for the Irradiance quantity.
         /// </summary>
         public static IrradianceUnit[] Units { get; } = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>().ToArray();
+
         /// <summary>
         ///     Get Irradiance in KilowattsPerSquareMeter.
         /// </summary>
         public double KilowattsPerSquareMeter => As(IrradianceUnit.KilowattPerSquareMeter);
+
         /// <summary>
         ///     Get Irradiance in WattsPerSquareMeter.
         /// </summary>
