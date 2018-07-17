@@ -167,6 +167,7 @@ namespace UnitsNet
         ///     Get ElectricCurrent in Centiamperes.
         /// </summary>
         public double Centiamperes => As(ElectricCurrentUnit.Centiampere);
+
         /// <summary>
         ///     Get ElectricCurrent in Kiloamperes.
         /// </summary>
