@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the MagneticFlux quantity.
         /// </summary>
         public static MagneticFluxUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>().ToArray();
+
         /// <summary>
         ///     Get MagneticFlux in Webers.
         /// </summary>

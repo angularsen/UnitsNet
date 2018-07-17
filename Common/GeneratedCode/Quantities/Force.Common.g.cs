@@ -157,42 +157,52 @@ namespace UnitsNet
         ///     All units of measurement for the Force quantity.
         /// </summary>
         public static ForceUnit[] Units { get; } = Enum.GetValues(typeof(ForceUnit)).Cast<ForceUnit>().ToArray();
+
         /// <summary>
         ///     Get Force in Decanewtons.
         /// </summary>
         public double Decanewtons => As(ForceUnit.Decanewton);
+
         /// <summary>
         ///     Get Force in Dyne.
         /// </summary>
         public double Dyne => As(ForceUnit.Dyn);
+
         /// <summary>
         ///     Get Force in KilogramsForce.
         /// </summary>
         public double KilogramsForce => As(ForceUnit.KilogramForce);
+
         /// <summary>
         ///     Get Force in Kilonewtons.
         /// </summary>
         public double Kilonewtons => As(ForceUnit.Kilonewton);
+
         /// <summary>
         ///     Get Force in KiloPonds.
         /// </summary>
         public double KiloPonds => As(ForceUnit.KiloPond);
+
         /// <summary>
         ///     Get Force in Meganewtons.
         /// </summary>
         public double Meganewtons => As(ForceUnit.Meganewton);
+
         /// <summary>
         ///     Get Force in Newtons.
         /// </summary>
         public double Newtons => As(ForceUnit.Newton);
+
         /// <summary>
         ///     Get Force in Poundals.
         /// </summary>
         public double Poundals => As(ForceUnit.Poundal);
+
         /// <summary>
         ///     Get Force in PoundsForce.
         /// </summary>
         public double PoundsForce => As(ForceUnit.PoundForce);
+
         /// <summary>
         ///     Get Force in TonnesForce.
         /// </summary>

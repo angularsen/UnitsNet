@@ -157,30 +157,37 @@ namespace UnitsNet
         ///     All units of measurement for the ElectricCurrent quantity.
         /// </summary>
         public static ElectricCurrentUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentUnit)).Cast<ElectricCurrentUnit>().ToArray();
+
         /// <summary>
         ///     Get ElectricCurrent in Amperes.
         /// </summary>
         public double Amperes => As(ElectricCurrentUnit.Ampere);
+
         /// <summary>
         ///     Get ElectricCurrent in Kiloamperes.
         /// </summary>
         public double Kiloamperes => As(ElectricCurrentUnit.Kiloampere);
+
         /// <summary>
         ///     Get ElectricCurrent in Megaamperes.
         /// </summary>
         public double Megaamperes => As(ElectricCurrentUnit.Megaampere);
+
         /// <summary>
         ///     Get ElectricCurrent in Microamperes.
         /// </summary>
         public double Microamperes => As(ElectricCurrentUnit.Microampere);
+
         /// <summary>
         ///     Get ElectricCurrent in Milliamperes.
         /// </summary>
         public double Milliamperes => As(ElectricCurrentUnit.Milliampere);
+
         /// <summary>
         ///     Get ElectricCurrent in Nanoamperes.
         /// </summary>
         public double Nanoamperes => As(ElectricCurrentUnit.Nanoampere);
+
         /// <summary>
         ///     Get ElectricCurrent in Picoamperes.
         /// </summary>

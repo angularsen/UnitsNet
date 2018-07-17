@@ -156,73 +156,89 @@ namespace UnitsNet
         ///     All units of measurement for the TemperatureDelta quantity.
         /// </summary>
         public static TemperatureDeltaUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureDeltaUnit)).Cast<TemperatureDeltaUnit>().ToArray();
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesCelsius.
         /// </summary>
         public double DegreesCelsius => As(TemperatureDeltaUnit.DegreeCelsius);
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesCelsiusDelta.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeCelsius instead")]
         public double DegreesCelsiusDelta => As(TemperatureDeltaUnit.DegreeCelsiusDelta);
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesDelisle.
         /// </summary>
         public double DegreesDelisle => As(TemperatureDeltaUnit.DegreeDelisle);
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesDelisleDelta.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeDelisle instead")]
         public double DegreesDelisleDelta => As(TemperatureDeltaUnit.DegreeDelisleDelta);
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesFahrenheit.
         /// </summary>
         public double DegreesFahrenheit => As(TemperatureDeltaUnit.DegreeFahrenheit);
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesFahrenheitDelta.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeFahrenheit instead")]
         public double DegreesFahrenheitDelta => As(TemperatureDeltaUnit.DegreeFahrenheitDelta);
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesNewton.
         /// </summary>
         public double DegreesNewton => As(TemperatureDeltaUnit.DegreeNewton);
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesNewtonDelta.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeNewton instead")]
         public double DegreesNewtonDelta => As(TemperatureDeltaUnit.DegreeNewtonDelta);
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesRankine.
         /// </summary>
         public double DegreesRankine => As(TemperatureDeltaUnit.DegreeRankine);
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesRankineDelta.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeRankine instead")]
         public double DegreesRankineDelta => As(TemperatureDeltaUnit.DegreeRankineDelta);
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesReaumur.
         /// </summary>
         public double DegreesReaumur => As(TemperatureDeltaUnit.DegreeReaumur);
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesReaumurDelta.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeReaumur instead")]
         public double DegreesReaumurDelta => As(TemperatureDeltaUnit.DegreeReaumurDelta);
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesRoemer.
         /// </summary>
         public double DegreesRoemer => As(TemperatureDeltaUnit.DegreeRoemer);
+
         /// <summary>
         ///     Get TemperatureDelta in DegreesRoemerDelta.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #180, please use DegreeRoemer instead")]
         public double DegreesRoemerDelta => As(TemperatureDeltaUnit.DegreeRoemerDelta);
+
         /// <summary>
         ///     Get TemperatureDelta in Kelvins.
         /// </summary>
         public double Kelvins => As(TemperatureDeltaUnit.Kelvin);
+
         /// <summary>
         ///     Get TemperatureDelta in KelvinsDelta.
         /// </summary>

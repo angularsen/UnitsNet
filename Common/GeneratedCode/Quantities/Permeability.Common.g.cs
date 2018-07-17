@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the Permeability quantity.
         /// </summary>
         public static PermeabilityUnit[] Units { get; } = Enum.GetValues(typeof(PermeabilityUnit)).Cast<PermeabilityUnit>().ToArray();
+
         /// <summary>
         ///     Get Permeability in HenriesPerMeter.
         /// </summary>

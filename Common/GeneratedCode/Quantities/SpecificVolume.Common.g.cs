@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the SpecificVolume quantity.
         /// </summary>
         public static SpecificVolumeUnit[] Units { get; } = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().ToArray();
+
         /// <summary>
         ///     Get SpecificVolume in CubicMetersPerKilogram.
         /// </summary>

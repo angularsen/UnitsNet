@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the LuminousIntensity quantity.
         /// </summary>
         public static LuminousIntensityUnit[] Units { get; } = Enum.GetValues(typeof(LuminousIntensityUnit)).Cast<LuminousIntensityUnit>().ToArray();
+
         /// <summary>
         ///     Get LuminousIntensity in Candela.
         /// </summary>

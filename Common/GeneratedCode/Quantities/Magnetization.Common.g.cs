@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the Magnetization quantity.
         /// </summary>
         public static MagnetizationUnit[] Units { get; } = Enum.GetValues(typeof(MagnetizationUnit)).Cast<MagnetizationUnit>().ToArray();
+
         /// <summary>
         ///     Get Magnetization in AmperesPerMeter.
         /// </summary>

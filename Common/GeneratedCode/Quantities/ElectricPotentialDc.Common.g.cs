@@ -156,22 +156,27 @@ namespace UnitsNet
         ///     All units of measurement for the ElectricPotentialDc quantity.
         /// </summary>
         public static ElectricPotentialDcUnit[] Units { get; } = Enum.GetValues(typeof(ElectricPotentialDcUnit)).Cast<ElectricPotentialDcUnit>().ToArray();
+
         /// <summary>
         ///     Get ElectricPotentialDc in KilovoltsDc.
         /// </summary>
         public double KilovoltsDc => As(ElectricPotentialDcUnit.KilovoltDc);
+
         /// <summary>
         ///     Get ElectricPotentialDc in MegavoltsDc.
         /// </summary>
         public double MegavoltsDc => As(ElectricPotentialDcUnit.MegavoltDc);
+
         /// <summary>
         ///     Get ElectricPotentialDc in MicrovoltsDc.
         /// </summary>
         public double MicrovoltsDc => As(ElectricPotentialDcUnit.MicrovoltDc);
+
         /// <summary>
         ///     Get ElectricPotentialDc in MillivoltsDc.
         /// </summary>
         public double MillivoltsDc => As(ElectricPotentialDcUnit.MillivoltDc);
+
         /// <summary>
         ///     Get ElectricPotentialDc in VoltsDc.
         /// </summary>

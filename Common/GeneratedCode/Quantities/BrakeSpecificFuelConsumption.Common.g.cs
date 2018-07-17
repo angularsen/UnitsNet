@@ -157,14 +157,17 @@ namespace UnitsNet
         ///     All units of measurement for the BrakeSpecificFuelConsumption quantity.
         /// </summary>
         public static BrakeSpecificFuelConsumptionUnit[] Units { get; } = Enum.GetValues(typeof(BrakeSpecificFuelConsumptionUnit)).Cast<BrakeSpecificFuelConsumptionUnit>().ToArray();
+
         /// <summary>
         ///     Get BrakeSpecificFuelConsumption in GramsPerKiloWattHour.
         /// </summary>
         public double GramsPerKiloWattHour => As(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour);
+
         /// <summary>
         ///     Get BrakeSpecificFuelConsumption in KilogramsPerJoule.
         /// </summary>
         public double KilogramsPerJoule => As(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule);
+
         /// <summary>
         ///     Get BrakeSpecificFuelConsumption in PoundsPerMechanicalHorsepowerHour.
         /// </summary>

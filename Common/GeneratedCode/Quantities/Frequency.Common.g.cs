@@ -157,34 +157,42 @@ namespace UnitsNet
         ///     All units of measurement for the Frequency quantity.
         /// </summary>
         public static FrequencyUnit[] Units { get; } = Enum.GetValues(typeof(FrequencyUnit)).Cast<FrequencyUnit>().ToArray();
+
         /// <summary>
         ///     Get Frequency in CyclesPerHour.
         /// </summary>
         public double CyclesPerHour => As(FrequencyUnit.CyclePerHour);
+
         /// <summary>
         ///     Get Frequency in CyclesPerMinute.
         /// </summary>
         public double CyclesPerMinute => As(FrequencyUnit.CyclePerMinute);
+
         /// <summary>
         ///     Get Frequency in Gigahertz.
         /// </summary>
         public double Gigahertz => As(FrequencyUnit.Gigahertz);
+
         /// <summary>
         ///     Get Frequency in Hertz.
         /// </summary>
         public double Hertz => As(FrequencyUnit.Hertz);
+
         /// <summary>
         ///     Get Frequency in Kilohertz.
         /// </summary>
         public double Kilohertz => As(FrequencyUnit.Kilohertz);
+
         /// <summary>
         ///     Get Frequency in Megahertz.
         /// </summary>
         public double Megahertz => As(FrequencyUnit.Megahertz);
+
         /// <summary>
         ///     Get Frequency in RadiansPerSecond.
         /// </summary>
         public double RadiansPerSecond => As(FrequencyUnit.RadianPerSecond);
+
         /// <summary>
         ///     Get Frequency in Terahertz.
         /// </summary>

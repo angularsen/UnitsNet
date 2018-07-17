@@ -157,98 +157,122 @@ namespace UnitsNet
         ///     All units of measurement for the VolumeFlow quantity.
         /// </summary>
         public static VolumeFlowUnit[] Units { get; } = Enum.GetValues(typeof(VolumeFlowUnit)).Cast<VolumeFlowUnit>().ToArray();
+
         /// <summary>
         ///     Get VolumeFlow in CentilitersPerMinute.
         /// </summary>
         public double CentilitersPerMinute => As(VolumeFlowUnit.CentilitersPerMinute);
+
         /// <summary>
         ///     Get VolumeFlow in CubicDecimetersPerMinute.
         /// </summary>
         public double CubicDecimetersPerMinute => As(VolumeFlowUnit.CubicDecimeterPerMinute);
+
         /// <summary>
         ///     Get VolumeFlow in CubicFeetPerHour.
         /// </summary>
         public double CubicFeetPerHour => As(VolumeFlowUnit.CubicFootPerHour);
+
         /// <summary>
         ///     Get VolumeFlow in CubicFeetPerMinute.
         /// </summary>
         public double CubicFeetPerMinute => As(VolumeFlowUnit.CubicFootPerMinute);
+
         /// <summary>
         ///     Get VolumeFlow in CubicFeetPerSecond.
         /// </summary>
         public double CubicFeetPerSecond => As(VolumeFlowUnit.CubicFootPerSecond);
+
         /// <summary>
         ///     Get VolumeFlow in CubicMetersPerHour.
         /// </summary>
         public double CubicMetersPerHour => As(VolumeFlowUnit.CubicMeterPerHour);
+
         /// <summary>
         ///     Get VolumeFlow in CubicMetersPerMinute.
         /// </summary>
         public double CubicMetersPerMinute => As(VolumeFlowUnit.CubicMeterPerMinute);
+
         /// <summary>
         ///     Get VolumeFlow in CubicMetersPerSecond.
         /// </summary>
         public double CubicMetersPerSecond => As(VolumeFlowUnit.CubicMeterPerSecond);
+
         /// <summary>
         ///     Get VolumeFlow in CubicYardsPerHour.
         /// </summary>
         public double CubicYardsPerHour => As(VolumeFlowUnit.CubicYardPerHour);
+
         /// <summary>
         ///     Get VolumeFlow in CubicYardsPerMinute.
         /// </summary>
         public double CubicYardsPerMinute => As(VolumeFlowUnit.CubicYardPerMinute);
+
         /// <summary>
         ///     Get VolumeFlow in CubicYardsPerSecond.
         /// </summary>
         public double CubicYardsPerSecond => As(VolumeFlowUnit.CubicYardPerSecond);
+
         /// <summary>
         ///     Get VolumeFlow in DecilitersPerMinute.
         /// </summary>
         public double DecilitersPerMinute => As(VolumeFlowUnit.DecilitersPerMinute);
+
         /// <summary>
         ///     Get VolumeFlow in KilolitersPerMinute.
         /// </summary>
         public double KilolitersPerMinute => As(VolumeFlowUnit.KilolitersPerMinute);
+
         /// <summary>
         ///     Get VolumeFlow in LitersPerHour.
         /// </summary>
         public double LitersPerHour => As(VolumeFlowUnit.LitersPerHour);
+
         /// <summary>
         ///     Get VolumeFlow in LitersPerMinute.
         /// </summary>
         public double LitersPerMinute => As(VolumeFlowUnit.LitersPerMinute);
+
         /// <summary>
         ///     Get VolumeFlow in LitersPerSecond.
         /// </summary>
         public double LitersPerSecond => As(VolumeFlowUnit.LitersPerSecond);
+
         /// <summary>
         ///     Get VolumeFlow in MicrolitersPerMinute.
         /// </summary>
         public double MicrolitersPerMinute => As(VolumeFlowUnit.MicrolitersPerMinute);
+
         /// <summary>
         ///     Get VolumeFlow in MillilitersPerMinute.
         /// </summary>
         public double MillilitersPerMinute => As(VolumeFlowUnit.MillilitersPerMinute);
+
         /// <summary>
         ///     Get VolumeFlow in MillionUsGallonsPerDay.
         /// </summary>
         public double MillionUsGallonsPerDay => As(VolumeFlowUnit.MillionUsGallonsPerDay);
+
         /// <summary>
         ///     Get VolumeFlow in NanolitersPerMinute.
         /// </summary>
         public double NanolitersPerMinute => As(VolumeFlowUnit.NanolitersPerMinute);
+
         /// <summary>
         ///     Get VolumeFlow in OilBarrelsPerDay.
         /// </summary>
         public double OilBarrelsPerDay => As(VolumeFlowUnit.OilBarrelsPerDay);
+
         /// <summary>
         ///     Get VolumeFlow in UsGallonsPerHour.
         /// </summary>
         public double UsGallonsPerHour => As(VolumeFlowUnit.UsGallonsPerHour);
+
         /// <summary>
         ///     Get VolumeFlow in UsGallonsPerMinute.
         /// </summary>
         public double UsGallonsPerMinute => As(VolumeFlowUnit.UsGallonsPerMinute);
+
         /// <summary>
         ///     Get VolumeFlow in UsGallonsPerSecond.
         /// </summary>

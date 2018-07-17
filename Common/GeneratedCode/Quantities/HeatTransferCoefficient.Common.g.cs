@@ -157,10 +157,12 @@ namespace UnitsNet
         ///     All units of measurement for the HeatTransferCoefficient quantity.
         /// </summary>
         public static HeatTransferCoefficientUnit[] Units { get; } = Enum.GetValues(typeof(HeatTransferCoefficientUnit)).Cast<HeatTransferCoefficientUnit>().ToArray();
+
         /// <summary>
         ///     Get HeatTransferCoefficient in WattsPerSquareMeterCelsius.
         /// </summary>
         public double WattsPerSquareMeterCelsius => As(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius);
+
         /// <summary>
         ///     Get HeatTransferCoefficient in WattsPerSquareMeterKelvin.
         /// </summary>

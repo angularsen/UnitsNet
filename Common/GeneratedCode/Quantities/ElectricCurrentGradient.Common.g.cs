@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the ElectricCurrentGradient quantity.
         /// </summary>
         public static ElectricCurrentGradientUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentGradientUnit)).Cast<ElectricCurrentGradientUnit>().ToArray();
+
         /// <summary>
         ///     Get ElectricCurrentGradient in AmperesPerSecond.
         /// </summary>

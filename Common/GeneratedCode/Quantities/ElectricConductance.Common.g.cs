@@ -157,14 +157,17 @@ namespace UnitsNet
         ///     All units of measurement for the ElectricConductance quantity.
         /// </summary>
         public static ElectricConductanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricConductanceUnit)).Cast<ElectricConductanceUnit>().ToArray();
+
         /// <summary>
         ///     Get ElectricConductance in Microsiemens.
         /// </summary>
         public double Microsiemens => As(ElectricConductanceUnit.Microsiemens);
+
         /// <summary>
         ///     Get ElectricConductance in Millisiemens.
         /// </summary>
         public double Millisiemens => As(ElectricConductanceUnit.Millisiemens);
+
         /// <summary>
         ///     Get ElectricConductance in Siemens.
         /// </summary>

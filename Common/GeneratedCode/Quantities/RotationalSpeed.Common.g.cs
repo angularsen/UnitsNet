@@ -157,54 +157,67 @@ namespace UnitsNet
         ///     All units of measurement for the RotationalSpeed quantity.
         /// </summary>
         public static RotationalSpeedUnit[] Units { get; } = Enum.GetValues(typeof(RotationalSpeedUnit)).Cast<RotationalSpeedUnit>().ToArray();
+
         /// <summary>
         ///     Get RotationalSpeed in CentiradiansPerSecond.
         /// </summary>
         public double CentiradiansPerSecond => As(RotationalSpeedUnit.CentiradianPerSecond);
+
         /// <summary>
         ///     Get RotationalSpeed in DeciradiansPerSecond.
         /// </summary>
         public double DeciradiansPerSecond => As(RotationalSpeedUnit.DeciradianPerSecond);
+
         /// <summary>
         ///     Get RotationalSpeed in DegreesPerMinute.
         /// </summary>
         public double DegreesPerMinute => As(RotationalSpeedUnit.DegreePerMinute);
+
         /// <summary>
         ///     Get RotationalSpeed in DegreesPerSecond.
         /// </summary>
         public double DegreesPerSecond => As(RotationalSpeedUnit.DegreePerSecond);
+
         /// <summary>
         ///     Get RotationalSpeed in MicrodegreesPerSecond.
         /// </summary>
         public double MicrodegreesPerSecond => As(RotationalSpeedUnit.MicrodegreePerSecond);
+
         /// <summary>
         ///     Get RotationalSpeed in MicroradiansPerSecond.
         /// </summary>
         public double MicroradiansPerSecond => As(RotationalSpeedUnit.MicroradianPerSecond);
+
         /// <summary>
         ///     Get RotationalSpeed in MillidegreesPerSecond.
         /// </summary>
         public double MillidegreesPerSecond => As(RotationalSpeedUnit.MillidegreePerSecond);
+
         /// <summary>
         ///     Get RotationalSpeed in MilliradiansPerSecond.
         /// </summary>
         public double MilliradiansPerSecond => As(RotationalSpeedUnit.MilliradianPerSecond);
+
         /// <summary>
         ///     Get RotationalSpeed in NanodegreesPerSecond.
         /// </summary>
         public double NanodegreesPerSecond => As(RotationalSpeedUnit.NanodegreePerSecond);
+
         /// <summary>
         ///     Get RotationalSpeed in NanoradiansPerSecond.
         /// </summary>
         public double NanoradiansPerSecond => As(RotationalSpeedUnit.NanoradianPerSecond);
+
         /// <summary>
         ///     Get RotationalSpeed in RadiansPerSecond.
         /// </summary>
         public double RadiansPerSecond => As(RotationalSpeedUnit.RadianPerSecond);
+
         /// <summary>
         ///     Get RotationalSpeed in RevolutionsPerMinute.
         /// </summary>
         public double RevolutionsPerMinute => As(RotationalSpeedUnit.RevolutionPerMinute);
+
         /// <summary>
         ///     Get RotationalSpeed in RevolutionsPerSecond.
         /// </summary>

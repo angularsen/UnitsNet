@@ -157,14 +157,17 @@ namespace UnitsNet
         ///     All units of measurement for the RotationalStiffnessPerLength quantity.
         /// </summary>
         public static RotationalStiffnessPerLengthUnit[] Units { get; } = Enum.GetValues(typeof(RotationalStiffnessPerLengthUnit)).Cast<RotationalStiffnessPerLengthUnit>().ToArray();
+
         /// <summary>
         ///     Get RotationalStiffnessPerLength in KilonewtonMetersPerRadianPerMeter.
         /// </summary>
         public double KilonewtonMetersPerRadianPerMeter => As(RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter);
+
         /// <summary>
         ///     Get RotationalStiffnessPerLength in MeganewtonMetersPerRadianPerMeter.
         /// </summary>
         public double MeganewtonMetersPerRadianPerMeter => As(RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter);
+
         /// <summary>
         ///     Get RotationalStiffnessPerLength in NewtonMetersPerRadianPerMeter.
         /// </summary>
