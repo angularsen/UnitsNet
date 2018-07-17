@@ -43,6 +43,7 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         Ampere,
+        Centiampere,
         Kiloampere,
         Megaampere,
         Microampere,

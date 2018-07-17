@@ -164,6 +164,11 @@ namespace UnitsNet
         public double Amperes => As(ElectricCurrentUnit.Ampere);
 
         /// <summary>
+        ///     Get ElectricCurrent in Centiamperes.
+        /// </summary>
+        public double Centiamperes => As(ElectricCurrentUnit.Centiampere);
+
+        /// <summary>
         ///     Get ElectricCurrent in Kiloamperes.
         /// </summary>
         public double Kiloamperes => As(ElectricCurrentUnit.Kiloampere);
@@ -211,6 +216,20 @@ namespace UnitsNet
         {
             double value = (double) amperes;
             return new ElectricCurrent(value, ElectricCurrentUnit.Ampere);
+        }
+
+        /// <summary>
+        ///     Get ElectricCurrent from Centiamperes.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricCurrent FromCentiamperes(double centiamperes)
+#else
+        public static ElectricCurrent FromCentiamperes(QuantityValue centiamperes)
+#endif
+        {
+            double value = (double) centiamperes;
+            return new ElectricCurrent(value, ElectricCurrentUnit.Centiampere);
         }
 
         /// <summary>
@@ -495,6 +514,7 @@ namespace UnitsNet
             switch(Unit)
             {
                 case ElectricCurrentUnit.Ampere: return _value;
+                case ElectricCurrentUnit.Centiampere: return (_value) * 1e-2d;
                 case ElectricCurrentUnit.Kiloampere: return (_value) * 1e3d;
                 case ElectricCurrentUnit.Megaampere: return (_value) * 1e6d;
                 case ElectricCurrentUnit.Microampere: return (_value) * 1e-6d;
@@ -516,6 +536,7 @@ namespace UnitsNet
             switch(unit)
             {
                 case ElectricCurrentUnit.Ampere: return baseUnitValue;
+                case ElectricCurrentUnit.Centiampere: return (baseUnitValue) / 1e-2d;
                 case ElectricCurrentUnit.Kiloampere: return (baseUnitValue) / 1e3d;
                 case ElectricCurrentUnit.Megaampere: return (baseUnitValue) / 1e6d;
                 case ElectricCurrentUnit.Microampere: return (baseUnitValue) / 1e-6d;

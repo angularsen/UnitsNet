@@ -71,6 +71,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable ElectricCurrent from nullable Centiamperes.
+        /// </summary>
+        public static ElectricCurrent? FromCentiamperes(QuantityValue? centiamperes)
+        {
+            return centiamperes.HasValue ? FromCentiamperes(centiamperes.Value) : default(ElectricCurrent?);
+        }
+
+        /// <summary>
         ///     Get nullable ElectricCurrent from nullable Kiloamperes.
         /// </summary>
         public static ElectricCurrent? FromKiloamperes(QuantityValue? kiloamperes)

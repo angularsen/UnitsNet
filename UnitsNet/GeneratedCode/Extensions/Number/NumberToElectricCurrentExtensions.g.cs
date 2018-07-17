@@ -78,6 +78,40 @@ namespace UnitsNet.Extensions.NumberToElectricCurrent
 
         #endregion
 
+        #region Centiampere
+
+        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent Centiamperes(this int value) => ElectricCurrent.FromCentiamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent? Centiamperes(this int? value) => ElectricCurrent.FromCentiamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent Centiamperes(this long value) => ElectricCurrent.FromCentiamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent? Centiamperes(this long? value) => ElectricCurrent.FromCentiamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent Centiamperes(this double value) => ElectricCurrent.FromCentiamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent? Centiamperes(this double? value) => ElectricCurrent.FromCentiamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent Centiamperes(this float value) => ElectricCurrent.FromCentiamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent? Centiamperes(this float? value) => ElectricCurrent.FromCentiamperes(value);
+
+        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent Centiamperes(this decimal value) => ElectricCurrent.FromCentiamperes(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(UnitsNet.QuantityValue)" />
+        public static ElectricCurrent? Centiamperes(this decimal? value) => ElectricCurrent.FromCentiamperes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Kiloampere
 
         /// <inheritdoc cref="ElectricCurrent.FromKiloamperes(UnitsNet.QuantityValue)" />
