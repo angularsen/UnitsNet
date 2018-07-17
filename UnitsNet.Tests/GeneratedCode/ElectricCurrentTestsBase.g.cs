@@ -53,6 +53,7 @@ namespace UnitsNet.Tests
     public abstract partial class ElectricCurrentTestsBase
     {
         protected abstract double AmperesInOneAmpere { get; }
+        protected abstract double CentiamperesInOneAmpere { get; }
         protected abstract double KiloamperesInOneAmpere { get; }
         protected abstract double MegaamperesInOneAmpere { get; }
         protected abstract double MicroamperesInOneAmpere { get; }
@@ -62,6 +63,7 @@ namespace UnitsNet.Tests
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double AmperesTolerance { get { return 1e-5; } }
+        protected virtual double CentiamperesTolerance { get { return 1e-5; } }
         protected virtual double KiloamperesTolerance { get { return 1e-5; } }
         protected virtual double MegaamperesTolerance { get { return 1e-5; } }
         protected virtual double MicroamperesTolerance { get { return 1e-5; } }
@@ -75,6 +77,7 @@ namespace UnitsNet.Tests
         {
             ElectricCurrent ampere = ElectricCurrent.FromAmperes(1);
             AssertEx.EqualTolerance(AmperesInOneAmpere, ampere.Amperes, AmperesTolerance);
+            AssertEx.EqualTolerance(CentiamperesInOneAmpere, ampere.Centiamperes, CentiamperesTolerance);
             AssertEx.EqualTolerance(KiloamperesInOneAmpere, ampere.Kiloamperes, KiloamperesTolerance);
             AssertEx.EqualTolerance(MegaamperesInOneAmpere, ampere.Megaamperes, MegaamperesTolerance);
             AssertEx.EqualTolerance(MicroamperesInOneAmpere, ampere.Microamperes, MicroamperesTolerance);
@@ -87,6 +90,7 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, ElectricCurrent.From(1, ElectricCurrentUnit.Ampere).Amperes, AmperesTolerance);
+            AssertEx.EqualTolerance(1, ElectricCurrent.From(1, ElectricCurrentUnit.Centiampere).Centiamperes, CentiamperesTolerance);
             AssertEx.EqualTolerance(1, ElectricCurrent.From(1, ElectricCurrentUnit.Kiloampere).Kiloamperes, KiloamperesTolerance);
             AssertEx.EqualTolerance(1, ElectricCurrent.From(1, ElectricCurrentUnit.Megaampere).Megaamperes, MegaamperesTolerance);
             AssertEx.EqualTolerance(1, ElectricCurrent.From(1, ElectricCurrentUnit.Microampere).Microamperes, MicroamperesTolerance);
@@ -100,6 +104,7 @@ namespace UnitsNet.Tests
         {
             var ampere = ElectricCurrent.FromAmperes(1);
             AssertEx.EqualTolerance(AmperesInOneAmpere, ampere.As(ElectricCurrentUnit.Ampere), AmperesTolerance);
+            AssertEx.EqualTolerance(CentiamperesInOneAmpere, ampere.As(ElectricCurrentUnit.Centiampere), CentiamperesTolerance);
             AssertEx.EqualTolerance(KiloamperesInOneAmpere, ampere.As(ElectricCurrentUnit.Kiloampere), KiloamperesTolerance);
             AssertEx.EqualTolerance(MegaamperesInOneAmpere, ampere.As(ElectricCurrentUnit.Megaampere), MegaamperesTolerance);
             AssertEx.EqualTolerance(MicroamperesInOneAmpere, ampere.As(ElectricCurrentUnit.Microampere), MicroamperesTolerance);
@@ -116,6 +121,10 @@ namespace UnitsNet.Tests
             var ampereQuantity = ampere.ToUnit(ElectricCurrentUnit.Ampere);
             AssertEx.EqualTolerance(AmperesInOneAmpere, (double)ampereQuantity.Value, AmperesTolerance);
             Assert.Equal(ElectricCurrentUnit.Ampere, ampereQuantity.Unit);
+
+            var centiampereQuantity = ampere.ToUnit(ElectricCurrentUnit.Centiampere);
+            AssertEx.EqualTolerance(CentiamperesInOneAmpere, (double)centiampereQuantity.Value, CentiamperesTolerance);
+            Assert.Equal(ElectricCurrentUnit.Centiampere, centiampereQuantity.Unit);
 
             var kiloampereQuantity = ampere.ToUnit(ElectricCurrentUnit.Kiloampere);
             AssertEx.EqualTolerance(KiloamperesInOneAmpere, (double)kiloampereQuantity.Value, KiloamperesTolerance);
@@ -147,6 +156,7 @@ namespace UnitsNet.Tests
         {
             ElectricCurrent ampere = ElectricCurrent.FromAmperes(1);
             AssertEx.EqualTolerance(1, ElectricCurrent.FromAmperes(ampere.Amperes).Amperes, AmperesTolerance);
+            AssertEx.EqualTolerance(1, ElectricCurrent.FromCentiamperes(ampere.Centiamperes).Amperes, CentiamperesTolerance);
             AssertEx.EqualTolerance(1, ElectricCurrent.FromKiloamperes(ampere.Kiloamperes).Amperes, KiloamperesTolerance);
             AssertEx.EqualTolerance(1, ElectricCurrent.FromMegaamperes(ampere.Megaamperes).Amperes, MegaamperesTolerance);
             AssertEx.EqualTolerance(1, ElectricCurrent.FromMicroamperes(ampere.Microamperes).Amperes, MicroamperesTolerance);

@@ -33,6 +33,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MilliamperesInOneAmpere => 1e3;
 
+        protected override double CentiamperesInOneAmpere => 1e2;
+
         protected override double AmperesInOneAmpere => 1;
 
         protected override double KiloamperesInOneAmpere => 1e-3;

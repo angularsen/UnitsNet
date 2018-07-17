@@ -1016,6 +1016,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "A"),
                             }),
+                        new CulturesForEnumValue((int) ElectricCurrentUnit.Centiampere,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "cA"),
+                            }),
                         new CulturesForEnumValue((int) ElectricCurrentUnit.Kiloampere,
                             new[]
                             {
