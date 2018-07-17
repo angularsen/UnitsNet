@@ -157,52 +157,64 @@ namespace UnitsNet
         ///     All units of measurement for the Duration quantity.
         /// </summary>
         public static DurationUnit[] Units { get; } = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>().ToArray();
+
         /// <summary>
         ///     Get Duration in Days.
         /// </summary>
         public double Days => As(DurationUnit.Day);
+
         /// <summary>
         ///     Get Duration in Hours.
         /// </summary>
         public double Hours => As(DurationUnit.Hour);
+
         /// <summary>
         ///     Get Duration in Microseconds.
         /// </summary>
         public double Microseconds => As(DurationUnit.Microsecond);
+
         /// <summary>
         ///     Get Duration in Milliseconds.
         /// </summary>
         public double Milliseconds => As(DurationUnit.Millisecond);
+
         /// <summary>
         ///     Get Duration in Minutes.
         /// </summary>
         public double Minutes => As(DurationUnit.Minute);
+
         /// <summary>
         ///     Get Duration in Months.
         /// </summary>
         [System.Obsolete("Use Month30 instead, which makes it clear that this is an approximate unit based on 30 days per month. The duration of a month varies, but the Gregorian solar calendar has 365.2425/12 = 30.44 days on average.")]
         public double Months => As(DurationUnit.Month);
+
         /// <summary>
         ///     Get Duration in Months30.
         /// </summary>
         public double Months30 => As(DurationUnit.Month30);
+
         /// <summary>
         ///     Get Duration in Nanoseconds.
         /// </summary>
         public double Nanoseconds => As(DurationUnit.Nanosecond);
+
         /// <summary>
         ///     Get Duration in Seconds.
         /// </summary>
         public double Seconds => As(DurationUnit.Second);
+
         /// <summary>
         ///     Get Duration in Weeks.
         /// </summary>
         public double Weeks => As(DurationUnit.Week);
+
         /// <summary>
         ///     Get Duration in Years.
         /// </summary>
         [System.Obsolete("Use Year365 instead, which makes it clear that this is an approximate unit based on 365 days per year. The duration of a year varies due to corrections such as leap years, since a Gregorian solar calendar has 365.2425 days.")]
         public double Years => As(DurationUnit.Year);
+
         /// <summary>
         ///     Get Duration in Years365.
         /// </summary>

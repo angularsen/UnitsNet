@@ -157,26 +157,32 @@ namespace UnitsNet
         ///     All units of measurement for the AreaMomentOfInertia quantity.
         /// </summary>
         public static AreaMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(AreaMomentOfInertiaUnit)).Cast<AreaMomentOfInertiaUnit>().ToArray();
+
         /// <summary>
         ///     Get AreaMomentOfInertia in CentimetersToTheFourth.
         /// </summary>
         public double CentimetersToTheFourth => As(AreaMomentOfInertiaUnit.CentimeterToTheFourth);
+
         /// <summary>
         ///     Get AreaMomentOfInertia in DecimetersToTheFourth.
         /// </summary>
         public double DecimetersToTheFourth => As(AreaMomentOfInertiaUnit.DecimeterToTheFourth);
+
         /// <summary>
         ///     Get AreaMomentOfInertia in FeetToTheFourth.
         /// </summary>
         public double FeetToTheFourth => As(AreaMomentOfInertiaUnit.FootToTheFourth);
+
         /// <summary>
         ///     Get AreaMomentOfInertia in InchesToTheFourth.
         /// </summary>
         public double InchesToTheFourth => As(AreaMomentOfInertiaUnit.InchToTheFourth);
+
         /// <summary>
         ///     Get AreaMomentOfInertia in MetersToTheFourth.
         /// </summary>
         public double MetersToTheFourth => As(AreaMomentOfInertiaUnit.MeterToTheFourth);
+
         /// <summary>
         ///     Get AreaMomentOfInertia in MillimetersToTheFourth.
         /// </summary>

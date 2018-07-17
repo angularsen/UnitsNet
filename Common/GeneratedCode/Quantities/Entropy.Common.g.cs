@@ -157,30 +157,37 @@ namespace UnitsNet
         ///     All units of measurement for the Entropy quantity.
         /// </summary>
         public static EntropyUnit[] Units { get; } = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>().ToArray();
+
         /// <summary>
         ///     Get Entropy in CaloriesPerKelvin.
         /// </summary>
         public double CaloriesPerKelvin => As(EntropyUnit.CaloriePerKelvin);
+
         /// <summary>
         ///     Get Entropy in JoulesPerDegreeCelsius.
         /// </summary>
         public double JoulesPerDegreeCelsius => As(EntropyUnit.JoulePerDegreeCelsius);
+
         /// <summary>
         ///     Get Entropy in JoulesPerKelvin.
         /// </summary>
         public double JoulesPerKelvin => As(EntropyUnit.JoulePerKelvin);
+
         /// <summary>
         ///     Get Entropy in KilocaloriesPerKelvin.
         /// </summary>
         public double KilocaloriesPerKelvin => As(EntropyUnit.KilocaloriePerKelvin);
+
         /// <summary>
         ///     Get Entropy in KilojoulesPerDegreeCelsius.
         /// </summary>
         public double KilojoulesPerDegreeCelsius => As(EntropyUnit.KilojoulePerDegreeCelsius);
+
         /// <summary>
         ///     Get Entropy in KilojoulesPerKelvin.
         /// </summary>
         public double KilojoulesPerKelvin => As(EntropyUnit.KilojoulePerKelvin);
+
         /// <summary>
         ///     Get Entropy in MegajoulesPerKelvin.
         /// </summary>

@@ -157,22 +157,27 @@ namespace UnitsNet
         ///     All units of measurement for the ThermalResistance quantity.
         /// </summary>
         public static ThermalResistanceUnit[] Units { get; } = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().ToArray();
+
         /// <summary>
         ///     Get ThermalResistance in HourSquareFeetDegreesFahrenheitPerBtu.
         /// </summary>
         public double HourSquareFeetDegreesFahrenheitPerBtu => As(ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu);
+
         /// <summary>
         ///     Get ThermalResistance in SquareCentimeterHourDegreesCelsiusPerKilocalorie.
         /// </summary>
         public double SquareCentimeterHourDegreesCelsiusPerKilocalorie => As(ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie);
+
         /// <summary>
         ///     Get ThermalResistance in SquareCentimeterKelvinsPerWatt.
         /// </summary>
         public double SquareCentimeterKelvinsPerWatt => As(ThermalResistanceUnit.SquareCentimeterKelvinPerWatt);
+
         /// <summary>
         ///     Get ThermalResistance in SquareMeterDegreesCelsiusPerWatt.
         /// </summary>
         public double SquareMeterDegreesCelsiusPerWatt => As(ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt);
+
         /// <summary>
         ///     Get ThermalResistance in SquareMeterKelvinsPerKilowatt.
         /// </summary>

@@ -157,18 +157,22 @@ namespace UnitsNet
         ///     All units of measurement for the ElectricResistivity quantity.
         /// </summary>
         public static ElectricResistivityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricResistivityUnit)).Cast<ElectricResistivityUnit>().ToArray();
+
         /// <summary>
         ///     Get ElectricResistivity in MicroohmMeters.
         /// </summary>
         public double MicroohmMeters => As(ElectricResistivityUnit.MicroohmMeter);
+
         /// <summary>
         ///     Get ElectricResistivity in MilliohmMeters.
         /// </summary>
         public double MilliohmMeters => As(ElectricResistivityUnit.MilliohmMeter);
+
         /// <summary>
         ///     Get ElectricResistivity in NanoohmMeters.
         /// </summary>
         public double NanoohmMeters => As(ElectricResistivityUnit.NanoohmMeter);
+
         /// <summary>
         ///     Get ElectricResistivity in OhmMeters.
         /// </summary>

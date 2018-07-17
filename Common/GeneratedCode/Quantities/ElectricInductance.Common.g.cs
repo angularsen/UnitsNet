@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the ElectricInductance quantity.
         /// </summary>
         public static ElectricInductanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricInductanceUnit)).Cast<ElectricInductanceUnit>().ToArray();
+
         /// <summary>
         ///     Get ElectricInductance in Henries.
         /// </summary>

@@ -157,10 +157,12 @@ namespace UnitsNet
         ///     All units of measurement for the MassFlux quantity.
         /// </summary>
         public static MassFluxUnit[] Units { get; } = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>().ToArray();
+
         /// <summary>
         ///     Get MassFlux in GramsPerSecondPerSquareMeter.
         /// </summary>
         public double GramsPerSecondPerSquareMeter => As(MassFluxUnit.GramPerSecondPerSquareMeter);
+
         /// <summary>
         ///     Get MassFlux in KilogramsPerSecondPerSquareMeter.
         /// </summary>

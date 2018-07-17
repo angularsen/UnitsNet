@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the ElectricField quantity.
         /// </summary>
         public static ElectricFieldUnit[] Units { get; } = Enum.GetValues(typeof(ElectricFieldUnit)).Cast<ElectricFieldUnit>().ToArray();
+
         /// <summary>
         ///     Get ElectricField in VoltsPerMeter.
         /// </summary>

@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the ElectricCharge quantity.
         /// </summary>
         public static ElectricChargeUnit[] Units { get; } = Enum.GetValues(typeof(ElectricChargeUnit)).Cast<ElectricChargeUnit>().ToArray();
+
         /// <summary>
         ///     Get ElectricCharge in Coulombs.
         /// </summary>

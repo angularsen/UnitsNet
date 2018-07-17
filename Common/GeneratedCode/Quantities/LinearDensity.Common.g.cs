@@ -157,14 +157,17 @@ namespace UnitsNet
         ///     All units of measurement for the LinearDensity quantity.
         /// </summary>
         public static LinearDensityUnit[] Units { get; } = Enum.GetValues(typeof(LinearDensityUnit)).Cast<LinearDensityUnit>().ToArray();
+
         /// <summary>
         ///     Get LinearDensity in GramsPerMeter.
         /// </summary>
         public double GramsPerMeter => As(LinearDensityUnit.GramPerMeter);
+
         /// <summary>
         ///     Get LinearDensity in KilogramsPerMeter.
         /// </summary>
         public double KilogramsPerMeter => As(LinearDensityUnit.KilogramPerMeter);
+
         /// <summary>
         ///     Get LinearDensity in PoundsPerFoot.
         /// </summary>

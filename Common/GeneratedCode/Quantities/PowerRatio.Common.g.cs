@@ -156,10 +156,12 @@ namespace UnitsNet
         ///     All units of measurement for the PowerRatio quantity.
         /// </summary>
         public static PowerRatioUnit[] Units { get; } = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>().ToArray();
+
         /// <summary>
         ///     Get PowerRatio in DecibelMilliwatts.
         /// </summary>
         public double DecibelMilliwatts => As(PowerRatioUnit.DecibelMilliwatt);
+
         /// <summary>
         ///     Get PowerRatio in DecibelWatts.
         /// </summary>

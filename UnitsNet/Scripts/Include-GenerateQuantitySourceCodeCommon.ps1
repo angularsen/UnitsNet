@@ -214,6 +214,7 @@ namespace UnitsNet
             $obsoleteAttribute = "`r`n        " + $obsoleteAttribute; # apply padding to conformance with code format in this page
         }
 @"
+
         /// <summary>
         ///     Get $quantityName in $propertyName.
         /// </summary>$($obsoleteAttribute)

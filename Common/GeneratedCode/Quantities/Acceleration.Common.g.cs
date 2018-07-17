@@ -157,54 +157,67 @@ namespace UnitsNet
         ///     All units of measurement for the Acceleration quantity.
         /// </summary>
         public static AccelerationUnit[] Units { get; } = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().ToArray();
+
         /// <summary>
         ///     Get Acceleration in CentimetersPerSecondSquared.
         /// </summary>
         public double CentimetersPerSecondSquared => As(AccelerationUnit.CentimeterPerSecondSquared);
+
         /// <summary>
         ///     Get Acceleration in DecimetersPerSecondSquared.
         /// </summary>
         public double DecimetersPerSecondSquared => As(AccelerationUnit.DecimeterPerSecondSquared);
+
         /// <summary>
         ///     Get Acceleration in FeetPerSecondSquared.
         /// </summary>
         public double FeetPerSecondSquared => As(AccelerationUnit.FootPerSecondSquared);
+
         /// <summary>
         ///     Get Acceleration in InchesPerSecondSquared.
         /// </summary>
         public double InchesPerSecondSquared => As(AccelerationUnit.InchPerSecondSquared);
+
         /// <summary>
         ///     Get Acceleration in KilometersPerSecondSquared.
         /// </summary>
         public double KilometersPerSecondSquared => As(AccelerationUnit.KilometerPerSecondSquared);
+
         /// <summary>
         ///     Get Acceleration in KnotsPerHour.
         /// </summary>
         public double KnotsPerHour => As(AccelerationUnit.KnotPerHour);
+
         /// <summary>
         ///     Get Acceleration in KnotsPerMinute.
         /// </summary>
         public double KnotsPerMinute => As(AccelerationUnit.KnotPerMinute);
+
         /// <summary>
         ///     Get Acceleration in KnotsPerSecond.
         /// </summary>
         public double KnotsPerSecond => As(AccelerationUnit.KnotPerSecond);
+
         /// <summary>
         ///     Get Acceleration in MetersPerSecondSquared.
         /// </summary>
         public double MetersPerSecondSquared => As(AccelerationUnit.MeterPerSecondSquared);
+
         /// <summary>
         ///     Get Acceleration in MicrometersPerSecondSquared.
         /// </summary>
         public double MicrometersPerSecondSquared => As(AccelerationUnit.MicrometerPerSecondSquared);
+
         /// <summary>
         ///     Get Acceleration in MillimetersPerSecondSquared.
         /// </summary>
         public double MillimetersPerSecondSquared => As(AccelerationUnit.MillimeterPerSecondSquared);
+
         /// <summary>
         ///     Get Acceleration in NanometersPerSecondSquared.
         /// </summary>
         public double NanometersPerSecondSquared => As(AccelerationUnit.NanometerPerSecondSquared);
+
         /// <summary>
         ///     Get Acceleration in StandardGravity.
         /// </summary>

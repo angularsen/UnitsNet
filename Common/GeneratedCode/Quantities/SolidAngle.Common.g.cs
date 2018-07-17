@@ -156,6 +156,7 @@ namespace UnitsNet
         ///     All units of measurement for the SolidAngle quantity.
         /// </summary>
         public static SolidAngleUnit[] Units { get; } = Enum.GetValues(typeof(SolidAngleUnit)).Cast<SolidAngleUnit>().ToArray();
+
         /// <summary>
         ///     Get SolidAngle in Steradians.
         /// </summary>

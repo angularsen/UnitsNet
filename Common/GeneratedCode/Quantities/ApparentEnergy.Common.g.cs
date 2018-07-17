@@ -157,14 +157,17 @@ namespace UnitsNet
         ///     All units of measurement for the ApparentEnergy quantity.
         /// </summary>
         public static ApparentEnergyUnit[] Units { get; } = Enum.GetValues(typeof(ApparentEnergyUnit)).Cast<ApparentEnergyUnit>().ToArray();
+
         /// <summary>
         ///     Get ApparentEnergy in KilovoltampereHours.
         /// </summary>
         public double KilovoltampereHours => As(ApparentEnergyUnit.KilovoltampereHour);
+
         /// <summary>
         ///     Get ApparentEnergy in MegavoltampereHours.
         /// </summary>
         public double MegavoltampereHours => As(ApparentEnergyUnit.MegavoltampereHour);
+
         /// <summary>
         ///     Get ApparentEnergy in VoltampereHours.
         /// </summary>

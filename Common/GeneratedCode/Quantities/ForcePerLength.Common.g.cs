@@ -157,38 +157,47 @@ namespace UnitsNet
         ///     All units of measurement for the ForcePerLength quantity.
         /// </summary>
         public static ForcePerLengthUnit[] Units { get; } = Enum.GetValues(typeof(ForcePerLengthUnit)).Cast<ForcePerLengthUnit>().ToArray();
+
         /// <summary>
         ///     Get ForcePerLength in CentinewtonsPerMeter.
         /// </summary>
         public double CentinewtonsPerMeter => As(ForcePerLengthUnit.CentinewtonPerMeter);
+
         /// <summary>
         ///     Get ForcePerLength in DecinewtonsPerMeter.
         /// </summary>
         public double DecinewtonsPerMeter => As(ForcePerLengthUnit.DecinewtonPerMeter);
+
         /// <summary>
         ///     Get ForcePerLength in KilogramsForcePerMeter.
         /// </summary>
         public double KilogramsForcePerMeter => As(ForcePerLengthUnit.KilogramForcePerMeter);
+
         /// <summary>
         ///     Get ForcePerLength in KilonewtonsPerMeter.
         /// </summary>
         public double KilonewtonsPerMeter => As(ForcePerLengthUnit.KilonewtonPerMeter);
+
         /// <summary>
         ///     Get ForcePerLength in MeganewtonsPerMeter.
         /// </summary>
         public double MeganewtonsPerMeter => As(ForcePerLengthUnit.MeganewtonPerMeter);
+
         /// <summary>
         ///     Get ForcePerLength in MicronewtonsPerMeter.
         /// </summary>
         public double MicronewtonsPerMeter => As(ForcePerLengthUnit.MicronewtonPerMeter);
+
         /// <summary>
         ///     Get ForcePerLength in MillinewtonsPerMeter.
         /// </summary>
         public double MillinewtonsPerMeter => As(ForcePerLengthUnit.MillinewtonPerMeter);
+
         /// <summary>
         ///     Get ForcePerLength in NanonewtonsPerMeter.
         /// </summary>
         public double NanonewtonsPerMeter => As(ForcePerLengthUnit.NanonewtonPerMeter);
+
         /// <summary>
         ///     Get ForcePerLength in NewtonsPerMeter.
         /// </summary>

@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the ElectricCurrentDensity quantity.
         /// </summary>
         public static ElectricCurrentDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>().ToArray();
+
         /// <summary>
         ///     Get ElectricCurrentDensity in AmperesPerSquareMeter.
         /// </summary>

@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the LapseRate quantity.
         /// </summary>
         public static LapseRateUnit[] Units { get; } = Enum.GetValues(typeof(LapseRateUnit)).Cast<LapseRateUnit>().ToArray();
+
         /// <summary>
         ///     Get LapseRate in DegreesCelciusPerKilometer.
         /// </summary>

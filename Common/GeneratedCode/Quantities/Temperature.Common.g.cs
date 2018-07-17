@@ -157,34 +157,42 @@ namespace UnitsNet
         ///     All units of measurement for the Temperature quantity.
         /// </summary>
         public static TemperatureUnit[] Units { get; } = Enum.GetValues(typeof(TemperatureUnit)).Cast<TemperatureUnit>().ToArray();
+
         /// <summary>
         ///     Get Temperature in DegreesCelsius.
         /// </summary>
         public double DegreesCelsius => As(TemperatureUnit.DegreeCelsius);
+
         /// <summary>
         ///     Get Temperature in DegreesDelisle.
         /// </summary>
         public double DegreesDelisle => As(TemperatureUnit.DegreeDelisle);
+
         /// <summary>
         ///     Get Temperature in DegreesFahrenheit.
         /// </summary>
         public double DegreesFahrenheit => As(TemperatureUnit.DegreeFahrenheit);
+
         /// <summary>
         ///     Get Temperature in DegreesNewton.
         /// </summary>
         public double DegreesNewton => As(TemperatureUnit.DegreeNewton);
+
         /// <summary>
         ///     Get Temperature in DegreesRankine.
         /// </summary>
         public double DegreesRankine => As(TemperatureUnit.DegreeRankine);
+
         /// <summary>
         ///     Get Temperature in DegreesReaumur.
         /// </summary>
         public double DegreesReaumur => As(TemperatureUnit.DegreeReaumur);
+
         /// <summary>
         ///     Get Temperature in DegreesRoemer.
         /// </summary>
         public double DegreesRoemer => As(TemperatureUnit.DegreeRoemer);
+
         /// <summary>
         ///     Get Temperature in Kelvins.
         /// </summary>

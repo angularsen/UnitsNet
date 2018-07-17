@@ -156,22 +156,27 @@ namespace UnitsNet
         ///     All units of measurement for the ElectricPotentialAc quantity.
         /// </summary>
         public static ElectricPotentialAcUnit[] Units { get; } = Enum.GetValues(typeof(ElectricPotentialAcUnit)).Cast<ElectricPotentialAcUnit>().ToArray();
+
         /// <summary>
         ///     Get ElectricPotentialAc in KilovoltsAc.
         /// </summary>
         public double KilovoltsAc => As(ElectricPotentialAcUnit.KilovoltAc);
+
         /// <summary>
         ///     Get ElectricPotentialAc in MegavoltsAc.
         /// </summary>
         public double MegavoltsAc => As(ElectricPotentialAcUnit.MegavoltAc);
+
         /// <summary>
         ///     Get ElectricPotentialAc in MicrovoltsAc.
         /// </summary>
         public double MicrovoltsAc => As(ElectricPotentialAcUnit.MicrovoltAc);
+
         /// <summary>
         ///     Get ElectricPotentialAc in MillivoltsAc.
         /// </summary>
         public double MillivoltsAc => As(ElectricPotentialAcUnit.MillivoltAc);
+
         /// <summary>
         ///     Get ElectricPotentialAc in VoltsAc.
         /// </summary>

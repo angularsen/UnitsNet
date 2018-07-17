@@ -157,6 +157,7 @@ namespace UnitsNet
         ///     All units of measurement for the LuminousFlux quantity.
         /// </summary>
         public static LuminousFluxUnit[] Units { get; } = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>().ToArray();
+
         /// <summary>
         ///     Get LuminousFlux in Lumens.
         /// </summary>

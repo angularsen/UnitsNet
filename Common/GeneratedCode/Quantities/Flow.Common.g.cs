@@ -157,115 +157,139 @@ namespace UnitsNet
         ///     All units of measurement for the Flow quantity.
         /// </summary>
         public static FlowUnit[] Units { get; } = Enum.GetValues(typeof(FlowUnit)).Cast<FlowUnit>().ToArray();
+
         /// <summary>
         ///     Get Flow in CentilitersPerMinute.
         /// </summary>
         public double CentilitersPerMinute => As(FlowUnit.CentilitersPerMinute);
+
         /// <summary>
         ///     Get Flow in CubicDecimetersPerMinute.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicDecimetersPerMinute => As(FlowUnit.CubicDecimeterPerMinute);
+
         /// <summary>
         ///     Get Flow in CubicFeetPerHour.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicFeetPerHour => As(FlowUnit.CubicFootPerHour);
+
         /// <summary>
         ///     Get Flow in CubicFeetPerMinute.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicFeetPerMinute => As(FlowUnit.CubicFootPerMinute);
+
         /// <summary>
         ///     Get Flow in CubicFeetPerSecond.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicFeetPerSecond => As(FlowUnit.CubicFootPerSecond);
+
         /// <summary>
         ///     Get Flow in CubicMetersPerHour.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicMetersPerHour => As(FlowUnit.CubicMeterPerHour);
+
         /// <summary>
         ///     Get Flow in CubicMetersPerMinute.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicMetersPerMinute => As(FlowUnit.CubicMeterPerMinute);
+
         /// <summary>
         ///     Get Flow in CubicMetersPerSecond.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicMetersPerSecond => As(FlowUnit.CubicMeterPerSecond);
+
         /// <summary>
         ///     Get Flow in CubicYardsPerHour.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicYardsPerHour => As(FlowUnit.CubicYardPerHour);
+
         /// <summary>
         ///     Get Flow in CubicYardsPerMinute.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicYardsPerMinute => As(FlowUnit.CubicYardPerMinute);
+
         /// <summary>
         ///     Get Flow in CubicYardsPerSecond.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double CubicYardsPerSecond => As(FlowUnit.CubicYardPerSecond);
+
         /// <summary>
         ///     Get Flow in DecilitersPerMinute.
         /// </summary>
         public double DecilitersPerMinute => As(FlowUnit.DecilitersPerMinute);
+
         /// <summary>
         ///     Get Flow in KilolitersPerMinute.
         /// </summary>
         public double KilolitersPerMinute => As(FlowUnit.KilolitersPerMinute);
+
         /// <summary>
         ///     Get Flow in LitersPerHour.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double LitersPerHour => As(FlowUnit.LitersPerHour);
+
         /// <summary>
         ///     Get Flow in LitersPerMinute.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double LitersPerMinute => As(FlowUnit.LitersPerMinute);
+
         /// <summary>
         ///     Get Flow in LitersPerSecond.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double LitersPerSecond => As(FlowUnit.LitersPerSecond);
+
         /// <summary>
         ///     Get Flow in MicrolitersPerMinute.
         /// </summary>
         public double MicrolitersPerMinute => As(FlowUnit.MicrolitersPerMinute);
+
         /// <summary>
         ///     Get Flow in MillilitersPerMinute.
         /// </summary>
         public double MillilitersPerMinute => As(FlowUnit.MillilitersPerMinute);
+
         /// <summary>
         ///     Get Flow in MillionUsGallonsPerDay.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double MillionUsGallonsPerDay => As(FlowUnit.MillionUsGallonsPerDay);
+
         /// <summary>
         ///     Get Flow in NanolitersPerMinute.
         /// </summary>
         public double NanolitersPerMinute => As(FlowUnit.NanolitersPerMinute);
+
         /// <summary>
         ///     Get Flow in OilBarrelsPerDay.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double OilBarrelsPerDay => As(FlowUnit.OilBarrelsPerDay);
+
         /// <summary>
         ///     Get Flow in UsGallonsPerHour.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double UsGallonsPerHour => As(FlowUnit.UsGallonsPerHour);
+
         /// <summary>
         ///     Get Flow in UsGallonsPerMinute.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public double UsGallonsPerMinute => As(FlowUnit.UsGallonsPerMinute);
+
         /// <summary>
         ///     Get Flow in UsGallonsPerSecond.
         /// </summary>
