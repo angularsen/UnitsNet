@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k/branch/master?svg=true)](https://ci.appveyor.com/project/angularsen/unitsnet/history/branch/master) [![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
+﻿[![Build status](https://ci.appveyor.com/api/projects/status/f8qfnqd7enkc6o4k/branch/master?svg=true)](https://ci.appveyor.com/project/angularsen/unitsnet/history/branch/master) [![Join the chat at https://gitter.im/UnitsNet/Lobby](https://badges.gitter.im/UnitsNet/Lobby.svg)](https://gitter.im/UnitsNet/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 [![Flattr this git repo](https://button.flattr.com/flattr-badge-large.png)](https://flattr.com/submit/auto?fid=g37dpx&url=https://github.com/angularsen/UnitsNet/&title=Units.NET&language=en-US&tags=github&category=software)
 
 
@@ -6,7 +6,7 @@
 
 Everyone have written their share of trivial conversions - or less obvious ones where you need to Google that magic constant. 
 
-Stop littering your code with unnecessary calculations, Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.
+Stop littering your code with unnecessary calculations, Units.NET gives you all the common units of measurement and the conversions between them. It is lightweight and thoroughly tested.
 
 
 ### Build Targets
@@ -19,7 +19,7 @@ Stop littering your code with unnecessary calculations, Units.NET gives you all 
 
 ### Overview
 
-* [50+ quantities with a total of 600+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](UnitsNet/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
+* [50+ quantities with a total of 600+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
 * [1000+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
 * Immutable structs that implement `Equatable`, `IComparable`
 * [Static typing](#static-typing) to avoid ambiguous values or units
@@ -164,11 +164,11 @@ Src: [Samples/WpfMVVMSample](https://github.com/angularsen/UnitsNet/tree/master/
 
 The purpose of this app is to show how to create an `IValueConverter` in order to bind XAML to quantities.
 
-NOTE: A lot of reflection and complexity was introduced due to not having a base type. See #371 for discussion on adding base types.
+NOTE: A lot of reflection and complexity were introduced due to not having a base type. See #371 for discussion on adding base types.
 
 ### <a name="precision"></a>Precision and Accuracy
 
-A base unit is chosen for each unit class, represented by a double value (64-bit), and all conversions go via this unit. This means there will always be a small error in both representing other units than the base unit as well as converting between units.
+A base unit is chosen for each unit class, represented by a double value (64-bit), and all conversions go via this unit. This means that there will always be a small error in both representing other units than the base unit as well as converting between units.
 
 Units.NET was intended for convenience and ease of use, not highly accurate conversions, but I am open to suggestions for improvements.
 
@@ -184,7 +184,7 @@ For more details, see [Precision](https://github.com/angularsen/UnitsNet/wiki/Pr
 **Important!** 
 We cannot guarantee backwards compatibility, although we will strive to do that on a "best effort" basis and bumping the major nuget version when a change is necessary.
 
-The base unit of any unit should be be treated as volatile as we have changed this several times in the history of this library already. Either to reduce precision errors of common units or to simplify code generation. An example is Mass, where the base unit was first Kilogram as this is the SI unit of mass, but in order to use powershell scripts to generate milligrams, nanograms etc. it was easier to choose Gram as the base unit of Mass.
+The base unit of any unit should be treated as volatile as we have changed this several times in the history of this library already. Either to reduce precision errors of common units or to simplify code generation. An example is Mass, where the base unit was first Kilogram as this is the SI unit of mass, but in order to use powershell scripts to generate milligrams, nanograms etc. it was easier to choose Gram as the base unit of Mass.
 
 
 ### <a name="contribute"></a>Want To Contribute?
