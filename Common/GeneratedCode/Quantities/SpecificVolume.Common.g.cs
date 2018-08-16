@@ -159,6 +159,11 @@ namespace UnitsNet
         public static SpecificVolumeUnit[] Units { get; } = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().ToArray();
 
         /// <summary>
+        ///     Get SpecificVolume in CubicFeetsPerPounds.
+        /// </summary>
+        public double CubicFeetsPerPounds => As(SpecificVolumeUnit.CubicFeetPerPound);
+
+        /// <summary>
         ///     Get SpecificVolume in CubicMetersPerKilogram.
         /// </summary>
         public double CubicMetersPerKilogram => As(SpecificVolumeUnit.CubicMeterPerKilogram);
@@ -168,6 +173,20 @@ namespace UnitsNet
         #region Static
 
         public static SpecificVolume Zero => new SpecificVolume(0, BaseUnit);
+
+        /// <summary>
+        ///     Get SpecificVolume from CubicFeetsPerPounds.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificVolume FromCubicFeetsPerPounds(double cubicfeetsperpounds)
+#else
+        public static SpecificVolume FromCubicFeetsPerPounds(QuantityValue cubicfeetsperpounds)
+#endif
+        {
+            double value = (double) cubicfeetsperpounds;
+            return new SpecificVolume(value, SpecificVolumeUnit.CubicFeetPerPound);
+        }
 
         /// <summary>
         ///     Get SpecificVolume from CubicMetersPerKilogram.
@@ -380,6 +399,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case SpecificVolumeUnit.CubicFeetPerPound: return _value/0.062427959968012;
                 case SpecificVolumeUnit.CubicMeterPerKilogram: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -395,6 +415,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case SpecificVolumeUnit.CubicFeetPerPound: return baseUnitValue*0.062427959968012;
                 case SpecificVolumeUnit.CubicMeterPerKilogram: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

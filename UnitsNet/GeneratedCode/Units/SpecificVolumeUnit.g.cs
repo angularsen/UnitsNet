@@ -42,6 +42,7 @@ namespace UnitsNet.Units
     public enum SpecificVolumeUnit
     {
         Undefined = 0,
+        CubicFeetPerPound,
         CubicMeterPerKilogram,
     }
 }
