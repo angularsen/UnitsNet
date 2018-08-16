@@ -159,9 +159,9 @@ namespace UnitsNet
         public static SpecificVolumeUnit[] Units { get; } = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().ToArray();
 
         /// <summary>
-        ///     Get SpecificVolume in CubicFeetsPerPounds.
+        ///     Get SpecificVolume in CubicFeetPerPounds.
         /// </summary>
-        public double CubicFeetsPerPounds => As(SpecificVolumeUnit.CubicFeetPerPound);
+        public double CubicFeetPerPounds => As(SpecificVolumeUnit.CubicFootPerPound);
 
         /// <summary>
         ///     Get SpecificVolume in CubicMetersPerKilogram.
@@ -175,17 +175,17 @@ namespace UnitsNet
         public static SpecificVolume Zero => new SpecificVolume(0, BaseUnit);
 
         /// <summary>
-        ///     Get SpecificVolume from CubicFeetsPerPounds.
+        ///     Get SpecificVolume from CubicFeetPerPounds.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static SpecificVolume FromCubicFeetsPerPounds(double cubicfeetsperpounds)
+        public static SpecificVolume FromCubicFeetPerPounds(double cubicfeetperpounds)
 #else
-        public static SpecificVolume FromCubicFeetsPerPounds(QuantityValue cubicfeetsperpounds)
+        public static SpecificVolume FromCubicFeetPerPounds(QuantityValue cubicfeetperpounds)
 #endif
         {
-            double value = (double) cubicfeetsperpounds;
-            return new SpecificVolume(value, SpecificVolumeUnit.CubicFeetPerPound);
+            double value = (double) cubicfeetperpounds;
+            return new SpecificVolume(value, SpecificVolumeUnit.CubicFootPerPound);
         }
 
         /// <summary>
@@ -399,7 +399,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case SpecificVolumeUnit.CubicFeetPerPound: return _value/0.062427959968012;
+                case SpecificVolumeUnit.CubicFootPerPound: return _value/16.01846353;
                 case SpecificVolumeUnit.CubicMeterPerKilogram: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -415,7 +415,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case SpecificVolumeUnit.CubicFeetPerPound: return baseUnitValue*0.062427959968012;
+                case SpecificVolumeUnit.CubicFootPerPound: return baseUnitValue*16.01846353;
                 case SpecificVolumeUnit.CubicMeterPerKilogram: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

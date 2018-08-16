@@ -21,15 +21,15 @@
       ]
     },
     {
-      "SingularName": "CubicFeetPerPound",
-      "PluralName": "CubicFeetsPerPounds",
-      "FromUnitToBaseFunc": "x/0.062427959968012",
-      "FromBaseToUnitFunc": "x*0.062427959968012",
+      "SingularName": "CubicFootPerPound",
+      "PluralName": "CubicFeetPerPounds",
+      "FromUnitToBaseFunc": "x/16.01846353",
+      "FromBaseToUnitFunc": "x*16.01846353",
       "Prefixes": [],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "f³/lb" ]
+          "Abbreviations": [ "ft³/lb" ]
         }
       ]
     }

@@ -44,37 +44,37 @@ namespace UnitsNet.Extensions.NumberToSpecificVolume
 {
     public static class NumberToSpecificVolumeExtensions
     {
-        #region CubicFeetPerPound
+        #region CubicFootPerPound
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetsPerPounds(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicFeetsPerPounds(this int value) => SpecificVolume.FromCubicFeetsPerPounds(value);
+        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPounds(UnitsNet.QuantityValue)" />
+        public static SpecificVolume CubicFeetPerPounds(this int value) => SpecificVolume.FromCubicFeetPerPounds(value);
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetsPerPounds(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicFeetsPerPounds(this int? value) => SpecificVolume.FromCubicFeetsPerPounds(value);
+        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPounds(UnitsNet.QuantityValue)" />
+        public static SpecificVolume? CubicFeetPerPounds(this int? value) => SpecificVolume.FromCubicFeetPerPounds(value);
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetsPerPounds(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicFeetsPerPounds(this long value) => SpecificVolume.FromCubicFeetsPerPounds(value);
+        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPounds(UnitsNet.QuantityValue)" />
+        public static SpecificVolume CubicFeetPerPounds(this long value) => SpecificVolume.FromCubicFeetPerPounds(value);
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetsPerPounds(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicFeetsPerPounds(this long? value) => SpecificVolume.FromCubicFeetsPerPounds(value);
+        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPounds(UnitsNet.QuantityValue)" />
+        public static SpecificVolume? CubicFeetPerPounds(this long? value) => SpecificVolume.FromCubicFeetPerPounds(value);
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetsPerPounds(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicFeetsPerPounds(this double value) => SpecificVolume.FromCubicFeetsPerPounds(value);
+        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPounds(UnitsNet.QuantityValue)" />
+        public static SpecificVolume CubicFeetPerPounds(this double value) => SpecificVolume.FromCubicFeetPerPounds(value);
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetsPerPounds(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicFeetsPerPounds(this double? value) => SpecificVolume.FromCubicFeetsPerPounds(value);
+        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPounds(UnitsNet.QuantityValue)" />
+        public static SpecificVolume? CubicFeetPerPounds(this double? value) => SpecificVolume.FromCubicFeetPerPounds(value);
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetsPerPounds(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicFeetsPerPounds(this float value) => SpecificVolume.FromCubicFeetsPerPounds(value);
+        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPounds(UnitsNet.QuantityValue)" />
+        public static SpecificVolume CubicFeetPerPounds(this float value) => SpecificVolume.FromCubicFeetPerPounds(value);
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetsPerPounds(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicFeetsPerPounds(this float? value) => SpecificVolume.FromCubicFeetsPerPounds(value);
+        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPounds(UnitsNet.QuantityValue)" />
+        public static SpecificVolume? CubicFeetPerPounds(this float? value) => SpecificVolume.FromCubicFeetPerPounds(value);
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetsPerPounds(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicFeetsPerPounds(this decimal value) => SpecificVolume.FromCubicFeetsPerPounds(Convert.ToDouble(value));
+        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPounds(UnitsNet.QuantityValue)" />
+        public static SpecificVolume CubicFeetPerPounds(this decimal value) => SpecificVolume.FromCubicFeetPerPounds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetsPerPounds(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicFeetsPerPounds(this decimal? value) => SpecificVolume.FromCubicFeetsPerPounds(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPounds(UnitsNet.QuantityValue)" />
+        public static SpecificVolume? CubicFeetPerPounds(this decimal? value) => SpecificVolume.FromCubicFeetPerPounds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

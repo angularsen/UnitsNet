@@ -48,9 +48,9 @@ namespace UnitsNet.Tests.CustomCode
     public class SpecificVolumeTests : SpecificVolumeTestsBase
     {
 
-        protected override double CubicMetersPerKilogramInOneCubicMeterPerKilogram => 1;
+        protected override double CubicMetersPerKilogramInOneCubicMeterPerKilogram => 1;        
 
-        protected override double CubicFeetsPerPoundsInOneCubicMeterPerKilogram => 0.062427959968012;
+        protected override double CubicFeetPerPoundsInOneCubicMeterPerKilogram => 16.01846353;
 
         [Fact]
         public static void SpecificVolumeTimesMassEqualsVolume()
