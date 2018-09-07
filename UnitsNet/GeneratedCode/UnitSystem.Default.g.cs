@@ -4712,6 +4712,16 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "bbl/d", "BOPD"),
                             }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelsPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "bbl/hr", "bph"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelsPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "bbl/min", "bpm"),
+                            }),
                         new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonsPerHour,
                             new[]
                             {

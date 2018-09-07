@@ -63,6 +63,8 @@ namespace UnitsNet.Units
         MillionUsGallonsPerDay,
         NanolitersPerMinute,
         OilBarrelsPerDay,
+        OilBarrelsPerHour,
+        OilBarrelsPerMinute,
         UsGallonsPerHour,
         UsGallonsPerMinute,
         UsGallonsPerSecond,

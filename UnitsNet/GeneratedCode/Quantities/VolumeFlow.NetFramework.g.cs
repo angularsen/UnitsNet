@@ -231,6 +231,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable VolumeFlow from nullable OilBarrelsPerHour.
+        /// </summary>
+        public static VolumeFlow? FromOilBarrelsPerHour(QuantityValue? oilbarrelsperhour)
+        {
+            return oilbarrelsperhour.HasValue ? FromOilBarrelsPerHour(oilbarrelsperhour.Value) : default(VolumeFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable VolumeFlow from nullable OilBarrelsPerMinute.
+        /// </summary>
+        public static VolumeFlow? FromOilBarrelsPerMinute(QuantityValue? oilbarrelsperminute)
+        {
+            return oilbarrelsperminute.HasValue ? FromOilBarrelsPerMinute(oilbarrelsperminute.Value) : default(VolumeFlow?);
+        }
+
+        /// <summary>
         ///     Get nullable VolumeFlow from nullable UsGallonsPerHour.
         /// </summary>
         public static VolumeFlow? FromUsGallonsPerHour(QuantityValue? usgallonsperhour)

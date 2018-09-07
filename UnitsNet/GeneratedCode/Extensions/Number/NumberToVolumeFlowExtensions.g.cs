@@ -758,6 +758,74 @@ namespace UnitsNet.Extensions.NumberToVolumeFlow
 
         #endregion
 
+        #region OilBarrelsPerHour
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(UnitsNet.QuantityValue)" />
+        public static VolumeFlow OilBarrelsPerHour(this int value) => VolumeFlow.FromOilBarrelsPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(UnitsNet.QuantityValue)" />
+        public static VolumeFlow? OilBarrelsPerHour(this int? value) => VolumeFlow.FromOilBarrelsPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(UnitsNet.QuantityValue)" />
+        public static VolumeFlow OilBarrelsPerHour(this long value) => VolumeFlow.FromOilBarrelsPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(UnitsNet.QuantityValue)" />
+        public static VolumeFlow? OilBarrelsPerHour(this long? value) => VolumeFlow.FromOilBarrelsPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(UnitsNet.QuantityValue)" />
+        public static VolumeFlow OilBarrelsPerHour(this double value) => VolumeFlow.FromOilBarrelsPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(UnitsNet.QuantityValue)" />
+        public static VolumeFlow? OilBarrelsPerHour(this double? value) => VolumeFlow.FromOilBarrelsPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(UnitsNet.QuantityValue)" />
+        public static VolumeFlow OilBarrelsPerHour(this float value) => VolumeFlow.FromOilBarrelsPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(UnitsNet.QuantityValue)" />
+        public static VolumeFlow? OilBarrelsPerHour(this float? value) => VolumeFlow.FromOilBarrelsPerHour(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(UnitsNet.QuantityValue)" />
+        public static VolumeFlow OilBarrelsPerHour(this decimal value) => VolumeFlow.FromOilBarrelsPerHour(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(UnitsNet.QuantityValue)" />
+        public static VolumeFlow? OilBarrelsPerHour(this decimal? value) => VolumeFlow.FromOilBarrelsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region OilBarrelsPerMinute
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow OilBarrelsPerMinute(this int value) => VolumeFlow.FromOilBarrelsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow? OilBarrelsPerMinute(this int? value) => VolumeFlow.FromOilBarrelsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow OilBarrelsPerMinute(this long value) => VolumeFlow.FromOilBarrelsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow? OilBarrelsPerMinute(this long? value) => VolumeFlow.FromOilBarrelsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow OilBarrelsPerMinute(this double value) => VolumeFlow.FromOilBarrelsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow? OilBarrelsPerMinute(this double? value) => VolumeFlow.FromOilBarrelsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow OilBarrelsPerMinute(this float value) => VolumeFlow.FromOilBarrelsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow? OilBarrelsPerMinute(this float? value) => VolumeFlow.FromOilBarrelsPerMinute(value);
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow OilBarrelsPerMinute(this decimal value) => VolumeFlow.FromOilBarrelsPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow? OilBarrelsPerMinute(this decimal? value) => VolumeFlow.FromOilBarrelsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region UsGallonsPerHour
 
         /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
