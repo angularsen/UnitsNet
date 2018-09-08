@@ -123,6 +123,13 @@ RotationalSpeedUnit rpm2 == RotationalSpeed.ParseUnit("r/min");  // RotationalSp
 string abbrevKg = Mass.GetAbbreviation(MassUnit.Kilogram); // "kg"
 ```
 
+#### Gotcha: AmbiguousUnitParseException
+Some units of a quantity have the same abbreviation, which means `.Parse()` is not able to know what unit you wanted.
+
+Example:
+`Length.Parse("1 pt")` throws `AmbiguousUnitParseException` with message `Cannot parse "pt" since it could be either of these: DtpPoint, PrinterPoint`.
+
+
 ### <a name="example-app"></a>Example: Creating a dynamic unit converter app
 [Source code](https://github.com/angularsen/UnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>
 [Download](https://github.com/angularsen/UnitsNet/releases/tag/UnitConverterWpf%2F2018-02-04) (release 2018-02-04 for Windows)
