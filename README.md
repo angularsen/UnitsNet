@@ -125,6 +125,7 @@ string abbrevKg = Mass.GetAbbreviation(MassUnit.Kilogram); // "kg"
 
 #### Gotcha: AmbiguousUnitParseException
 Some units of a quantity have the same abbreviation, which means `.Parse()` is not able to know what unit you wanted.
+Unfortunately there is no built-in way to avoid this, either you need to ensure you don't pass in input that cannot be parsed or you need to write your own parser that has more knowledge of preferred units or maybe only a subset of the units.
 
 Example:
 `Length.Parse("1 pt")` throws `AmbiguousUnitParseException` with message `Cannot parse "pt" since it could be either of these: DtpPoint, PrinterPoint`.
