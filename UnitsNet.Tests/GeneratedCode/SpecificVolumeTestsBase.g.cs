@@ -52,11 +52,11 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class SpecificVolumeTestsBase
     {
-        protected abstract double CubicFeetPerPoundsInOneCubicMeterPerKilogram { get; }
+        protected abstract double CubicFeetPerPoundInOneCubicMeterPerKilogram { get; }
         protected abstract double CubicMetersPerKilogramInOneCubicMeterPerKilogram { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double CubicFeetPerPoundsTolerance { get { return 1e-5; } }
+        protected virtual double CubicFeetPerPoundTolerance { get { return 1e-5; } }
         protected virtual double CubicMetersPerKilogramTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -64,14 +64,14 @@ namespace UnitsNet.Tests
         public void CubicMeterPerKilogramToSpecificVolumeUnits()
         {
             SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
-            AssertEx.EqualTolerance(CubicFeetPerPoundsInOneCubicMeterPerKilogram, cubicmeterperkilogram.CubicFeetPerPounds, CubicFeetPerPoundsTolerance);
+            AssertEx.EqualTolerance(CubicFeetPerPoundInOneCubicMeterPerKilogram, cubicmeterperkilogram.CubicFeetPerPound, CubicFeetPerPoundTolerance);
             AssertEx.EqualTolerance(CubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, SpecificVolume.From(1, SpecificVolumeUnit.CubicFootPerPound).CubicFeetPerPounds, CubicFeetPerPoundsTolerance);
+            AssertEx.EqualTolerance(1, SpecificVolume.From(1, SpecificVolumeUnit.CubicFootPerPound).CubicFeetPerPound, CubicFeetPerPoundTolerance);
             AssertEx.EqualTolerance(1, SpecificVolume.From(1, SpecificVolumeUnit.CubicMeterPerKilogram).CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
         }
 
@@ -79,7 +79,7 @@ namespace UnitsNet.Tests
         public void As()
         {
             var cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
-            AssertEx.EqualTolerance(CubicFeetPerPoundsInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.CubicFootPerPound), CubicFeetPerPoundsTolerance);
+            AssertEx.EqualTolerance(CubicFeetPerPoundInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.CubicFootPerPound), CubicFeetPerPoundTolerance);
             AssertEx.EqualTolerance(CubicMetersPerKilogramInOneCubicMeterPerKilogram, cubicmeterperkilogram.As(SpecificVolumeUnit.CubicMeterPerKilogram), CubicMetersPerKilogramTolerance);
         }
 
@@ -89,7 +89,7 @@ namespace UnitsNet.Tests
             var cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
 
             var cubicfootperpoundQuantity = cubicmeterperkilogram.ToUnit(SpecificVolumeUnit.CubicFootPerPound);
-            AssertEx.EqualTolerance(CubicFeetPerPoundsInOneCubicMeterPerKilogram, (double)cubicfootperpoundQuantity.Value, CubicFeetPerPoundsTolerance);
+            AssertEx.EqualTolerance(CubicFeetPerPoundInOneCubicMeterPerKilogram, (double)cubicfootperpoundQuantity.Value, CubicFeetPerPoundTolerance);
             Assert.Equal(SpecificVolumeUnit.CubicFootPerPound, cubicfootperpoundQuantity.Unit);
 
             var cubicmeterperkilogramQuantity = cubicmeterperkilogram.ToUnit(SpecificVolumeUnit.CubicMeterPerKilogram);
@@ -101,7 +101,7 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
-            AssertEx.EqualTolerance(1, SpecificVolume.FromCubicFeetPerPounds(cubicmeterperkilogram.CubicFeetPerPounds).CubicMetersPerKilogram, CubicFeetPerPoundsTolerance);
+            AssertEx.EqualTolerance(1, SpecificVolume.FromCubicFeetPerPound(cubicmeterperkilogram.CubicFeetPerPound).CubicMetersPerKilogram, CubicFeetPerPoundTolerance);
             AssertEx.EqualTolerance(1, SpecificVolume.FromCubicMetersPerKilogram(cubicmeterperkilogram.CubicMetersPerKilogram).CubicMetersPerKilogram, CubicMetersPerKilogramTolerance);
         }
 

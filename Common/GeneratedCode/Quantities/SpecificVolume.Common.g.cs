@@ -159,9 +159,9 @@ namespace UnitsNet
         public static SpecificVolumeUnit[] Units { get; } = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().ToArray();
 
         /// <summary>
-        ///     Get SpecificVolume in CubicFeetPerPounds.
+        ///     Get SpecificVolume in CubicFeetPerPound.
         /// </summary>
-        public double CubicFeetPerPounds => As(SpecificVolumeUnit.CubicFootPerPound);
+        public double CubicFeetPerPound => As(SpecificVolumeUnit.CubicFootPerPound);
 
         /// <summary>
         ///     Get SpecificVolume in CubicMetersPerKilogram.
@@ -175,16 +175,16 @@ namespace UnitsNet
         public static SpecificVolume Zero => new SpecificVolume(0, BaseUnit);
 
         /// <summary>
-        ///     Get SpecificVolume from CubicFeetPerPounds.
+        ///     Get SpecificVolume from CubicFeetPerPound.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static SpecificVolume FromCubicFeetPerPounds(double cubicfeetperpounds)
+        public static SpecificVolume FromCubicFeetPerPound(double cubicfeetperpound)
 #else
-        public static SpecificVolume FromCubicFeetPerPounds(QuantityValue cubicfeetperpounds)
+        public static SpecificVolume FromCubicFeetPerPound(QuantityValue cubicfeetperpound)
 #endif
         {
-            double value = (double) cubicfeetperpounds;
+            double value = (double) cubicfeetperpound;
             return new SpecificVolume(value, SpecificVolumeUnit.CubicFootPerPound);
         }
 

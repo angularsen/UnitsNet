@@ -63,11 +63,11 @@ namespace UnitsNet
         #region Nullable From Methods
 
         /// <summary>
-        ///     Get nullable SpecificVolume from nullable CubicFeetPerPounds.
+        ///     Get nullable SpecificVolume from nullable CubicFeetPerPound.
         /// </summary>
-        public static SpecificVolume? FromCubicFeetPerPounds(QuantityValue? cubicfeetperpounds)
+        public static SpecificVolume? FromCubicFeetPerPound(QuantityValue? cubicfeetperpound)
         {
-            return cubicfeetperpounds.HasValue ? FromCubicFeetPerPounds(cubicfeetperpounds.Value) : default(SpecificVolume?);
+            return cubicfeetperpound.HasValue ? FromCubicFeetPerPound(cubicfeetperpound.Value) : default(SpecificVolume?);
         }
 
         /// <summary>
