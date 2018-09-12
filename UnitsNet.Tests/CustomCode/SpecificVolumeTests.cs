@@ -39,18 +39,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
-using System;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificVolumeTests : SpecificVolumeTestsBase
     {
+        protected override double CubicMetersPerKilogramInOneCubicMeterPerKilogram => 1;        
 
-        protected override double CubicMetersPerKilogramInOneCubicMeterPerKilogram => 1;
+        protected override double CubicFeetPerPoundInOneCubicMeterPerKilogram => 16.01846353;
 
-        
         [Fact]
         public static void SpecificVolumeTimesMassEqualsVolume()
         {
@@ -64,8 +62,5 @@ namespace UnitsNet.Tests.CustomCode
             Density density = 5 / SpecificVolume.FromCubicMetersPerKilogram(20);
             Assert.Equal(density, Density.FromKilogramsPerCubicMeter(0.25));
         }
-
-
-
     }
 }

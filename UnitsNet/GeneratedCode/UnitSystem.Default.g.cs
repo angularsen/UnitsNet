@@ -3728,6 +3728,11 @@ namespace UnitsNet
                 new UnitLocalization(typeof (SpecificVolumeUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) SpecificVolumeUnit.CubicFootPerPound,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft³/lb"),
+                            }),
                         new CulturesForEnumValue((int) SpecificVolumeUnit.CubicMeterPerKilogram,
                             new[]
                             {
