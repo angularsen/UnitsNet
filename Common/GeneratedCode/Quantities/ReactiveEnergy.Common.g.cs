@@ -82,6 +82,9 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
         }
 
+        /// <summary>
+        ///     Creates the quantity with the given value in the base unit VoltampereReactiveHour.
+        /// </summary>
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public ReactiveEnergy(double voltamperereactivehours)
         {
@@ -177,6 +180,9 @@ namespace UnitsNet
 
         #region Static
 
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereReactiveHour.
+        /// </summary>
         public static ReactiveEnergy Zero => new ReactiveEnergy(0, BaseUnit);
 
         /// <summary>
@@ -377,6 +383,10 @@ namespace UnitsNet
             return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current ReactiveEnergy.</returns>
         public override int GetHashCode()
         {
             return new { Value, Unit }.GetHashCode();
@@ -519,10 +529,10 @@ namespace UnitsNet
 
         #endregion
 
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is VoltampereReactiveHour
         /// </summary>
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         public static ReactiveEnergyUnit ToStringDefaultUnit { get; set; } = ReactiveEnergyUnit.VoltampereReactiveHour;
 
         /// <summary>

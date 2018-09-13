@@ -63,7 +63,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
-        // Windows Runtime Component requires a default constructor
+        /// <summary>
+        ///     Creates the quantity with a value of 0 in the base unit NewtonPerCubicMeter.
+        /// </summary>
+        /// <remarks>
+        ///     Windows Runtime Component requires a default constructor.
+        /// </remarks>
         public SpecificWeight()
         {
             _value = 0;

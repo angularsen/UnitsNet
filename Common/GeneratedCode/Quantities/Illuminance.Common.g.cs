@@ -82,6 +82,9 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
         }
 
+        /// <summary>
+        ///     Creates the quantity with the given value in the base unit Lux.
+        /// </summary>
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Illuminance(double lux)
         {
@@ -182,6 +185,9 @@ namespace UnitsNet
 
         #region Static
 
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit Lux.
+        /// </summary>
         public static Illuminance Zero => new Illuminance(0, BaseUnit);
 
         /// <summary>
@@ -396,6 +402,10 @@ namespace UnitsNet
             return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current Illuminance.</returns>
         public override int GetHashCode()
         {
             return new { Value, Unit }.GetHashCode();
@@ -540,10 +550,10 @@ namespace UnitsNet
 
         #endregion
 
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Lux
         /// </summary>
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         public static IlluminanceUnit ToStringDefaultUnit { get; set; } = IlluminanceUnit.Lux;
 
         /// <summary>

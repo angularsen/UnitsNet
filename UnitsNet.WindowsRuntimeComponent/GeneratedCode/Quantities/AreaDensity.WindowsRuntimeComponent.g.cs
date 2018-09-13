@@ -63,7 +63,12 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
-        // Windows Runtime Component requires a default constructor
+        /// <summary>
+        ///     Creates the quantity with a value of 0 in the base unit KilogramPerSquareMeter.
+        /// </summary>
+        /// <remarks>
+        ///     Windows Runtime Component requires a default constructor.
+        /// </remarks>
         public AreaDensity()
         {
             _value = 0;

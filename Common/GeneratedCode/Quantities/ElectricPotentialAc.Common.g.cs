@@ -81,6 +81,9 @@ namespace UnitsNet
         {
         }
 
+        /// <summary>
+        ///     Creates the quantity with the given value in the base unit VoltAc.
+        /// </summary>
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public ElectricPotentialAc(double voltsac)
         {
@@ -186,6 +189,9 @@ namespace UnitsNet
 
         #region Static
 
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit VoltAc.
+        /// </summary>
         public static ElectricPotentialAc Zero => new ElectricPotentialAc(0, BaseUnit);
 
         /// <summary>
@@ -414,6 +420,10 @@ namespace UnitsNet
             return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current ElectricPotentialAc.</returns>
         public override int GetHashCode()
         {
             return new { Value, Unit }.GetHashCode();
@@ -560,10 +570,10 @@ namespace UnitsNet
 
         #endregion
 
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is VoltAc
         /// </summary>
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         public static ElectricPotentialAcUnit ToStringDefaultUnit { get; set; } = ElectricPotentialAcUnit.VoltAc;
 
         /// <summary>

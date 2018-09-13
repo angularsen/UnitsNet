@@ -82,6 +82,9 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
         }
 
+        /// <summary>
+        ///     Creates the quantity with the given value in the base unit Mole.
+        /// </summary>
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public AmountOfSubstance(double moles)
         {
@@ -232,6 +235,9 @@ namespace UnitsNet
 
         #region Static
 
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit Mole.
+        /// </summary>
         public static AmountOfSubstance Zero => new AmountOfSubstance(0, BaseUnit);
 
         /// <summary>
@@ -586,6 +592,10 @@ namespace UnitsNet
             return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current AmountOfSubstance.</returns>
         public override int GetHashCode()
         {
             return new { Value, Unit }.GetHashCode();
@@ -750,10 +760,10 @@ namespace UnitsNet
 
         #endregion
 
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Mole
         /// </summary>
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         public static AmountOfSubstanceUnit ToStringDefaultUnit { get; set; } = AmountOfSubstanceUnit.Mole;
 
         /// <summary>
