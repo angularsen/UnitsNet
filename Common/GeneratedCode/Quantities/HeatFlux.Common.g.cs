@@ -82,6 +82,9 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
         }
 
+        /// <summary>
+        ///     Creates the quantity with the given value in the base unit WattPerSquareMeter.
+        /// </summary>
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public HeatFlux(double wattspersquaremeter)
         {
@@ -242,6 +245,9 @@ namespace UnitsNet
 
         #region Static
 
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeter.
+        /// </summary>
         public static HeatFlux Zero => new HeatFlux(0, BaseUnit);
 
         /// <summary>
@@ -624,6 +630,10 @@ namespace UnitsNet
             return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current HeatFlux.</returns>
         public override int GetHashCode()
         {
             return new { Value, Unit }.GetHashCode();

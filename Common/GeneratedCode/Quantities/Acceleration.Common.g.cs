@@ -82,6 +82,9 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
         }
 
+        /// <summary>
+        ///     Creates the quantity with the given value in the base unit MeterPerSecondSquared.
+        /// </summary>
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Acceleration(double meterspersecondsquared)
         {
@@ -227,6 +230,9 @@ namespace UnitsNet
 
         #region Static
 
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecondSquared.
+        /// </summary>
         public static Acceleration Zero => new Acceleration(0, BaseUnit);
 
         /// <summary>
@@ -567,6 +573,10 @@ namespace UnitsNet
             return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current Acceleration.</returns>
         public override int GetHashCode()
         {
             return new { Value, Unit }.GetHashCode();

@@ -82,6 +82,9 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
         }
 
+        /// <summary>
+        ///     Creates the quantity with the given value in the base unit KilogramPerMeter.
+        /// </summary>
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public LinearDensity(double kilogramspermeter)
         {
@@ -177,6 +180,9 @@ namespace UnitsNet
 
         #region Static
 
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerMeter.
+        /// </summary>
         public static LinearDensity Zero => new LinearDensity(0, BaseUnit);
 
         /// <summary>
@@ -377,6 +383,10 @@ namespace UnitsNet
             return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current LinearDensity.</returns>
         public override int GetHashCode()
         {
             return new { Value, Unit }.GetHashCode();
