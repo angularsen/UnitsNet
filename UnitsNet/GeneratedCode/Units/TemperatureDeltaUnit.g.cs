@@ -39,6 +39,9 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
+    // Disable missing XML comment warnings for the generated unit enums.
+    #pragma warning disable 1591
+
     public enum TemperatureDeltaUnit
     {
         Undefined = 0,
@@ -67,4 +70,6 @@ namespace UnitsNet.Units
         [System.Obsolete("Deprecated due to github issue #180, please use Kelvin instead")]
         KelvinDelta,
     }
+
+    #pragma warning restore 1591
 }

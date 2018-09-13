@@ -477,10 +477,10 @@ namespace UnitsNet
 
         #endregion
 
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is KilogramPerSquareMeter
         /// </summary>
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         public static AreaDensityUnit ToStringDefaultUnit { get; set; } = AreaDensityUnit.KilogramPerSquareMeter;
 
         /// <summary>

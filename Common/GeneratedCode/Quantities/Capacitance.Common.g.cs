@@ -477,10 +477,10 @@ namespace UnitsNet
 
         #endregion
 
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Farad
         /// </summary>
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         public static CapacitanceUnit ToStringDefaultUnit { get; set; } = CapacitanceUnit.Farad;
 
         /// <summary>

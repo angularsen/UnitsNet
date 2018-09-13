@@ -877,7 +877,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.NanolitersPerMinute: return (_value/60000.00000) * 1e-9d;
                 case VolumeFlowUnit.OilBarrelsPerDay: return _value*1.8401307283333333333333333333333e-6;
                 case VolumeFlowUnit.OilBarrelsPerHour: return _value*4.41631375e-5;
-                case VolumeFlowUnit.OilBarrelsPerMinute: return _value*02.64978825e-3;
+                case VolumeFlowUnit.OilBarrelsPerMinute: return _value*2.64978825e-3;
                 case VolumeFlowUnit.UsGallonsPerHour: return _value/951019.38848933424;
                 case VolumeFlowUnit.UsGallonsPerMinute: return _value/15850.323141489;
                 case VolumeFlowUnit.UsGallonsPerSecond: return _value/264.1720523581484;
@@ -917,7 +917,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.NanolitersPerMinute: return (baseUnitValue*60000.00000) / 1e-9d;
                 case VolumeFlowUnit.OilBarrelsPerDay: return baseUnitValue/1.8401307283333333333333333333333e-6;
                 case VolumeFlowUnit.OilBarrelsPerHour: return baseUnitValue/4.41631375e-5;
-                case VolumeFlowUnit.OilBarrelsPerMinute: return baseUnitValue/02.64978825e-3;
+                case VolumeFlowUnit.OilBarrelsPerMinute: return baseUnitValue/2.64978825e-3;
                 case VolumeFlowUnit.UsGallonsPerHour: return baseUnitValue*951019.38848933424;
                 case VolumeFlowUnit.UsGallonsPerMinute: return baseUnitValue*15850.323141489;
                 case VolumeFlowUnit.UsGallonsPerSecond: return baseUnitValue*264.1720523581484;
@@ -1002,10 +1002,10 @@ namespace UnitsNet
 
         #endregion
 
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is CubicMeterPerSecond
         /// </summary>
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         public static VolumeFlowUnit ToStringDefaultUnit { get; set; } = VolumeFlowUnit.CubicMeterPerSecond;
 
         /// <summary>

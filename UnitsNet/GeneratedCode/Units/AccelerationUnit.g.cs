@@ -39,6 +39,9 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
+    // Disable missing XML comment warnings for the generated unit enums.
+    #pragma warning disable 1591
+
     public enum AccelerationUnit
     {
         Undefined = 0,
@@ -56,4 +59,6 @@ namespace UnitsNet.Units
         NanometerPerSecondSquared,
         StandardGravity,
     }
+
+    #pragma warning restore 1591
 }

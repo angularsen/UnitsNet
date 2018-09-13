@@ -519,10 +519,10 @@ namespace UnitsNet
 
         #endregion
 
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is NewtonMeterPerRadianPerMeter
         /// </summary>
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         public static RotationalStiffnessPerLengthUnit ToStringDefaultUnit { get; set; } = RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter;
 
         /// <summary>
