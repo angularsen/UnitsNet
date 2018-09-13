@@ -687,35 +687,6 @@ namespace UnitsNet
             return GetAbbreviation(unit, null);
         }
 
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-#if WINDOWS_UWP
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-#else
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-#endif
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(
-          VolumeFlowUnit unit,
-#if WINDOWS_UWP
-          [CanBeNull] string cultureName)
-#else
-          [CanBeNull] IFormatProvider provider)
-#endif
-        {
-#if WINDOWS_UWP
-            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
-#else
-            provider = provider ?? UnitSystem.DefaultCulture;
-#endif
-
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
-        }
-
         #endregion
 
         #region Equality / IComparable
@@ -877,7 +848,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.NanolitersPerMinute: return (_value/60000.00000) * 1e-9d;
                 case VolumeFlowUnit.OilBarrelsPerDay: return _value*1.8401307283333333333333333333333e-6;
                 case VolumeFlowUnit.OilBarrelsPerHour: return _value*4.41631375e-5;
-                case VolumeFlowUnit.OilBarrelsPerMinute: return _value*02.64978825e-3;
+                case VolumeFlowUnit.OilBarrelsPerMinute: return _value*2.64978825e-3;
                 case VolumeFlowUnit.UsGallonsPerHour: return _value/951019.38848933424;
                 case VolumeFlowUnit.UsGallonsPerMinute: return _value/15850.323141489;
                 case VolumeFlowUnit.UsGallonsPerSecond: return _value/264.1720523581484;
@@ -917,7 +888,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.NanolitersPerMinute: return (baseUnitValue*60000.00000) / 1e-9d;
                 case VolumeFlowUnit.OilBarrelsPerDay: return baseUnitValue/1.8401307283333333333333333333333e-6;
                 case VolumeFlowUnit.OilBarrelsPerHour: return baseUnitValue/4.41631375e-5;
-                case VolumeFlowUnit.OilBarrelsPerMinute: return baseUnitValue/02.64978825e-3;
+                case VolumeFlowUnit.OilBarrelsPerMinute: return baseUnitValue/2.64978825e-3;
                 case VolumeFlowUnit.UsGallonsPerHour: return baseUnitValue*951019.38848933424;
                 case VolumeFlowUnit.UsGallonsPerMinute: return baseUnitValue*15850.323141489;
                 case VolumeFlowUnit.UsGallonsPerSecond: return baseUnitValue*264.1720523581484;

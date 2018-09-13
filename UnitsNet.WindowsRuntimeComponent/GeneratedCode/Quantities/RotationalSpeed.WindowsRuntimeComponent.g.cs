@@ -70,6 +70,21 @@ namespace UnitsNet
             _unit = BaseUnit;
         }
 
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(RotationalSpeedUnit unit, [CanBeNull] string cultureName)
+        {
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
+
         #region Parsing
 
         /// <summary>
