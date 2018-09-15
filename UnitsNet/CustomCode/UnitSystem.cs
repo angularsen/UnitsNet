@@ -275,7 +275,7 @@ namespace UnitsNet
                 case 0:
                     throw new UnitNotFoundException($"Unit not found with abbreviation [{unitAbbreviation}] for unit type [{unitType}].");
                 default:
-                    string unitsCsv = string.Join(", ", unitValues.Select(x => x.ToString()).ToArray());
+                    string unitsCsv = string.Join(", ", unitValues.Select(x => Enum.GetName(unitType, x)).ToArray());
                     throw new AmbiguousUnitParseException(
                         $"Cannot parse '{unitAbbreviation}' since it could be either of these: {unitsCsv}");
             }
