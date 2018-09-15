@@ -277,7 +277,7 @@ namespace UnitsNet
                 default:
                     string unitsCsv = string.Join(", ", unitValues.Select(x => Enum.GetName(unitType, x)).ToArray());
                     throw new AmbiguousUnitParseException(
-                        $"Cannot parse '{unitAbbreviation}' since it could be either of these: {unitsCsv}");
+                        $"Cannot parse \"{unitAbbreviation}\" since it could be either of these: {unitsCsv}");
             }
         }
 

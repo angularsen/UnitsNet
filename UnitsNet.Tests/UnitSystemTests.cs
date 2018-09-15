@@ -470,8 +470,8 @@ namespace UnitsNet.Tests
             var exception2 = Assert.Throws<AmbiguousUnitParseException>(() => Volume.Parse("1 tsp"));
 
             // Assert
-            Assert.Equal("Cannot parse 'tsp' since it could be either of these: MetricTeaspoon, Teaspoon", exception1.Message);
-            Assert.Equal("Cannot parse 'tsp' since it could be either of these: MetricTeaspoon, Teaspoon", exception2.Message);
+            Assert.Equal("Cannot parse \"tsp\" since it could be either of these: MetricTeaspoon, Teaspoon", exception1.Message);
+            Assert.Equal("Cannot parse \"tsp\" since it could be either of these: MetricTeaspoon, Teaspoon", exception2.Message);
         }
 
         [Fact]
