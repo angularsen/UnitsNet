@@ -792,6 +792,74 @@ namespace UnitsNet.Extensions.NumberToMassMomentOfInertia
 
         #endregion
 
+        #region SlugSquareFoot
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia SlugSquareFeet(this int value) => MassMomentOfInertia.FromSlugSquareFeet(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia? SlugSquareFeet(this int? value) => MassMomentOfInertia.FromSlugSquareFeet(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia SlugSquareFeet(this long value) => MassMomentOfInertia.FromSlugSquareFeet(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia? SlugSquareFeet(this long? value) => MassMomentOfInertia.FromSlugSquareFeet(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia SlugSquareFeet(this double value) => MassMomentOfInertia.FromSlugSquareFeet(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia? SlugSquareFeet(this double? value) => MassMomentOfInertia.FromSlugSquareFeet(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia SlugSquareFeet(this float value) => MassMomentOfInertia.FromSlugSquareFeet(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia? SlugSquareFeet(this float? value) => MassMomentOfInertia.FromSlugSquareFeet(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia SlugSquareFeet(this decimal value) => MassMomentOfInertia.FromSlugSquareFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia? SlugSquareFeet(this decimal? value) => MassMomentOfInertia.FromSlugSquareFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region SlugSquareInch
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia SlugSquareInches(this int value) => MassMomentOfInertia.FromSlugSquareInches(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia? SlugSquareInches(this int? value) => MassMomentOfInertia.FromSlugSquareInches(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia SlugSquareInches(this long value) => MassMomentOfInertia.FromSlugSquareInches(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia? SlugSquareInches(this long? value) => MassMomentOfInertia.FromSlugSquareInches(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia SlugSquareInches(this double value) => MassMomentOfInertia.FromSlugSquareInches(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia? SlugSquareInches(this double? value) => MassMomentOfInertia.FromSlugSquareInches(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia SlugSquareInches(this float value) => MassMomentOfInertia.FromSlugSquareInches(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia? SlugSquareInches(this float? value) => MassMomentOfInertia.FromSlugSquareInches(value);
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia SlugSquareInches(this decimal value) => MassMomentOfInertia.FromSlugSquareInches(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia? SlugSquareInches(this decimal? value) => MassMomentOfInertia.FromSlugSquareInches(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region TonneSquareCentimeter
 
         /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareCentimeters(UnitsNet.QuantityValue)" />

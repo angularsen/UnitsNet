@@ -690,6 +690,40 @@ namespace UnitsNet.Extensions.NumberToMass
 
         #endregion
 
+        #region Slug
+
+        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
+        public static Mass Slugs(this int value) => Mass.FromSlugs(value);
+
+        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
+        public static Mass? Slugs(this int? value) => Mass.FromSlugs(value);
+
+        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
+        public static Mass Slugs(this long value) => Mass.FromSlugs(value);
+
+        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
+        public static Mass? Slugs(this long? value) => Mass.FromSlugs(value);
+
+        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
+        public static Mass Slugs(this double value) => Mass.FromSlugs(value);
+
+        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
+        public static Mass? Slugs(this double? value) => Mass.FromSlugs(value);
+
+        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
+        public static Mass Slugs(this float value) => Mass.FromSlugs(value);
+
+        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
+        public static Mass? Slugs(this float? value) => Mass.FromSlugs(value);
+
+        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
+        public static Mass Slugs(this decimal value) => Mass.FromSlugs(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
+        public static Mass? Slugs(this decimal? value) => Mass.FromSlugs(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Stone
 
         /// <inheritdoc cref="Mass.FromStone(UnitsNet.QuantityValue)" />

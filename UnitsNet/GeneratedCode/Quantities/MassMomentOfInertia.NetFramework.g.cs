@@ -239,6 +239,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable SlugSquareFeet.
+        /// </summary>
+        public static MassMomentOfInertia? FromSlugSquareFeet(QuantityValue? slugsquarefeet)
+        {
+            return slugsquarefeet.HasValue ? FromSlugSquareFeet(slugsquarefeet.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable SlugSquareInches.
+        /// </summary>
+        public static MassMomentOfInertia? FromSlugSquareInches(QuantityValue? slugsquareinches)
+        {
+            return slugsquareinches.HasValue ? FromSlugSquareInches(slugsquareinches.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareCentimeters.
         /// </summary>
         public static MassMomentOfInertia? FromTonneSquareCentimeters(QuantityValue? tonnesquarecentimeters)

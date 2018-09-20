@@ -92,6 +92,12 @@ namespace UnitsNet.Units
         ShortTon,
 
         /// <summary>
+        ///     The slug (abbreviation slug) is a unit of mass that is accelerated by 1 ft/s² when a force of one pound (lbf) is exerted on it.
+        /// </summary>
+        /// <remarks>http://en.wikipedia.org/wiki/Slug_(unit)</remarks>
+        Slug,
+
+        /// <summary>
         ///     The stone (abbreviation st) is a unit of mass equal to 14 pounds avoirdupois (about 6.35 kilograms) used in Great Britain and Ireland for measuring human body weight.
         /// </summary>
         /// <remarks>http://en.wikipedia.org/wiki/Stone_(unit)</remarks>
