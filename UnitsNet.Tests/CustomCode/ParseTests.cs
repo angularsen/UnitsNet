@@ -204,7 +204,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("@")]
         [InlineData("#")]
         [InlineData("$")]
-        [InlineData("%")]
+        [InlineData("%%")]
         [InlineData("^")]
         [InlineData("&")]
         [InlineData("*")]
