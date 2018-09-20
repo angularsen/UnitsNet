@@ -234,6 +234,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Mass from nullable Slugs.
+        /// </summary>
+        public static Mass? FromSlugs(QuantityValue? slugs)
+        {
+            return slugs.HasValue ? FromSlugs(slugs.Value) : default(Mass?);
+        }
+
+        /// <summary>
         ///     Get nullable Mass from nullable Stone.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]

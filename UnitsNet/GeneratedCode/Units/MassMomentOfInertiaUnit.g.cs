@@ -67,6 +67,8 @@ namespace UnitsNet.Units
         MilligramSquareMillimeter,
         PoundSquareFoot,
         PoundSquareInch,
+        SlugSquareFoot,
+        SlugSquareInch,
         TonneSquareCentimeter,
         TonneSquareDecimeter,
         TonneSquareMeter,

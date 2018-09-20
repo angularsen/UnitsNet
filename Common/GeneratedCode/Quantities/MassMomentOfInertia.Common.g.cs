@@ -272,6 +272,16 @@ namespace UnitsNet
         public double PoundSquareInches => As(MassMomentOfInertiaUnit.PoundSquareInch);
 
         /// <summary>
+        ///     Get MassMomentOfInertia in SlugSquareFeet.
+        /// </summary>
+        public double SlugSquareFeet => As(MassMomentOfInertiaUnit.SlugSquareFoot);
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in SlugSquareInches.
+        /// </summary>
+        public double SlugSquareInches => As(MassMomentOfInertiaUnit.SlugSquareInch);
+
+        /// <summary>
         ///     Get MassMomentOfInertia in TonneSquareCentimeters.
         /// </summary>
         public double TonneSquareCentimeters => As(MassMomentOfInertiaUnit.TonneSquareCentimeter);
@@ -609,6 +619,34 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get MassMomentOfInertia from SlugSquareFeet.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassMomentOfInertia FromSlugSquareFeet(double slugsquarefeet)
+#else
+        public static MassMomentOfInertia FromSlugSquareFeet(QuantityValue slugsquarefeet)
+#endif
+        {
+            double value = (double) slugsquarefeet;
+            return new MassMomentOfInertia(value, MassMomentOfInertiaUnit.SlugSquareFoot);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from SlugSquareInches.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassMomentOfInertia FromSlugSquareInches(double slugsquareinches)
+#else
+        public static MassMomentOfInertia FromSlugSquareInches(QuantityValue slugsquareinches)
+#endif
+        {
+            double value = (double) slugsquareinches;
+            return new MassMomentOfInertia(value, MassMomentOfInertiaUnit.SlugSquareInch);
+        }
+
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareCentimeters.
         /// </summary>
 #if WINDOWS_UWP
@@ -858,6 +896,8 @@ namespace UnitsNet
                 case MassMomentOfInertiaUnit.MilligramSquareMillimeter: return (_value/1e9) * 1e-3d;
                 case MassMomentOfInertiaUnit.PoundSquareFoot: return _value*4.21401101e-2;
                 case MassMomentOfInertiaUnit.PoundSquareInch: return _value*2.9263965e-4;
+                case MassMomentOfInertiaUnit.SlugSquareFoot: return _value*1.35583;
+                case MassMomentOfInertiaUnit.SlugSquareInch: return _value*9.41548e-3;
                 case MassMomentOfInertiaUnit.TonneSquareCentimeter: return _value/1e1;
                 case MassMomentOfInertiaUnit.TonneSquareDecimeter: return _value/1e-1;
                 case MassMomentOfInertiaUnit.TonneSquareMeter: return _value/1e-3;
@@ -898,6 +938,8 @@ namespace UnitsNet
                 case MassMomentOfInertiaUnit.MilligramSquareMillimeter: return (baseUnitValue*1e9) / 1e-3d;
                 case MassMomentOfInertiaUnit.PoundSquareFoot: return baseUnitValue/4.21401101e-2;
                 case MassMomentOfInertiaUnit.PoundSquareInch: return baseUnitValue/2.9263965e-4;
+                case MassMomentOfInertiaUnit.SlugSquareFoot: return baseUnitValue/1.35583;
+                case MassMomentOfInertiaUnit.SlugSquareInch: return baseUnitValue/9.41548e-3;
                 case MassMomentOfInertiaUnit.TonneSquareCentimeter: return baseUnitValue*1e1;
                 case MassMomentOfInertiaUnit.TonneSquareDecimeter: return baseUnitValue*1e-1;
                 case MassMomentOfInertiaUnit.TonneSquareMeter: return baseUnitValue*1e-3;
