@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         PowerDensity(double numericValue, PowerDensityUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the PowerDensity quantity.
         /// </summary>
-        public static PowerDensityUnit[] Units { get; } = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>().ToArray();
+        public static PowerDensityUnit[] Units { get; } = Enum.GetValues(typeof(PowerDensityUnit)).Cast<PowerDensityUnit>().Except(new PowerDensityUnit[]{ PowerDensityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get PowerDensity in DecawattsPerCubicFoot.

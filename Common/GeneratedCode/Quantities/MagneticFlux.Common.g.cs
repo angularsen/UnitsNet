@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         MagneticFlux(double numericValue, MagneticFluxUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the MagneticFlux quantity.
         /// </summary>
-        public static MagneticFluxUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>().ToArray();
+        public static MagneticFluxUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFluxUnit)).Cast<MagneticFluxUnit>().Except(new MagneticFluxUnit[]{ MagneticFluxUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get MagneticFlux in Webers.

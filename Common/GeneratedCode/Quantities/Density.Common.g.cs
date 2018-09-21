@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         Density(double numericValue, DensityUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the Density quantity.
         /// </summary>
-        public static DensityUnit[] Units { get; } = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().ToArray();
+        public static DensityUnit[] Units { get; } = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().Except(new DensityUnit[]{ DensityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get Density in CentigramsPerDeciLiter.

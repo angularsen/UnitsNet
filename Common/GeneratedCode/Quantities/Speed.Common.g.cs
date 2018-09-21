@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         Speed(double numericValue, SpeedUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the Speed quantity.
         /// </summary>
-        public static SpeedUnit[] Units { get; } = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>().ToArray();
+        public static SpeedUnit[] Units { get; } = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>().Except(new SpeedUnit[]{ SpeedUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get Speed in CentimetersPerHour.

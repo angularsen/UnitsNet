@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         ReactiveEnergy(double numericValue, ReactiveEnergyUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the ReactiveEnergy quantity.
         /// </summary>
-        public static ReactiveEnergyUnit[] Units { get; } = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>().ToArray();
+        public static ReactiveEnergyUnit[] Units { get; } = Enum.GetValues(typeof(ReactiveEnergyUnit)).Cast<ReactiveEnergyUnit>().Except(new ReactiveEnergyUnit[]{ ReactiveEnergyUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get ReactiveEnergy in KilovoltampereReactiveHours.

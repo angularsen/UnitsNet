@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         MolarEnergy(double numericValue, MolarEnergyUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the MolarEnergy quantity.
         /// </summary>
-        public static MolarEnergyUnit[] Units { get; } = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>().ToArray();
+        public static MolarEnergyUnit[] Units { get; } = Enum.GetValues(typeof(MolarEnergyUnit)).Cast<MolarEnergyUnit>().Except(new MolarEnergyUnit[]{ MolarEnergyUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get MolarEnergy in JoulesPerMole.

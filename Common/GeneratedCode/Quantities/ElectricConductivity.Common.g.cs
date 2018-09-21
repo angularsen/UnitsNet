@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         ElectricConductivity(double numericValue, ElectricConductivityUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the ElectricConductivity quantity.
         /// </summary>
-        public static ElectricConductivityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricConductivityUnit)).Cast<ElectricConductivityUnit>().ToArray();
+        public static ElectricConductivityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricConductivityUnit)).Cast<ElectricConductivityUnit>().Except(new ElectricConductivityUnit[]{ ElectricConductivityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get ElectricConductivity in SiemensPerMeter.

@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         ElectricCurrentDensity(double numericValue, ElectricCurrentDensityUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the ElectricCurrentDensity quantity.
         /// </summary>
-        public static ElectricCurrentDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>().ToArray();
+        public static ElectricCurrentDensityUnit[] Units { get; } = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>().Except(new ElectricCurrentDensityUnit[]{ ElectricCurrentDensityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get ElectricCurrentDensity in AmperesPerSquareMeter.

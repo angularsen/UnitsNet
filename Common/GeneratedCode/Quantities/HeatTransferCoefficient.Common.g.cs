@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         HeatTransferCoefficient(double numericValue, HeatTransferCoefficientUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the HeatTransferCoefficient quantity.
         /// </summary>
-        public static HeatTransferCoefficientUnit[] Units { get; } = Enum.GetValues(typeof(HeatTransferCoefficientUnit)).Cast<HeatTransferCoefficientUnit>().ToArray();
+        public static HeatTransferCoefficientUnit[] Units { get; } = Enum.GetValues(typeof(HeatTransferCoefficientUnit)).Cast<HeatTransferCoefficientUnit>().Except(new HeatTransferCoefficientUnit[]{ HeatTransferCoefficientUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get HeatTransferCoefficient in WattsPerSquareMeterCelsius.

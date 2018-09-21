@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         LuminousFlux(double numericValue, LuminousFluxUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the LuminousFlux quantity.
         /// </summary>
-        public static LuminousFluxUnit[] Units { get; } = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>().ToArray();
+        public static LuminousFluxUnit[] Units { get; } = Enum.GetValues(typeof(LuminousFluxUnit)).Cast<LuminousFluxUnit>().Except(new LuminousFluxUnit[]{ LuminousFluxUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get LuminousFlux in Lumens.

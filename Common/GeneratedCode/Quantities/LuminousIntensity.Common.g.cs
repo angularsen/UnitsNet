@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         LuminousIntensity(double numericValue, LuminousIntensityUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the LuminousIntensity quantity.
         /// </summary>
-        public static LuminousIntensityUnit[] Units { get; } = Enum.GetValues(typeof(LuminousIntensityUnit)).Cast<LuminousIntensityUnit>().ToArray();
+        public static LuminousIntensityUnit[] Units { get; } = Enum.GetValues(typeof(LuminousIntensityUnit)).Cast<LuminousIntensityUnit>().Except(new LuminousIntensityUnit[]{ LuminousIntensityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get LuminousIntensity in Candela.

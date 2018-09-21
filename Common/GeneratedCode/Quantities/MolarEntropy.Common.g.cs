@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         MolarEntropy(double numericValue, MolarEntropyUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the MolarEntropy quantity.
         /// </summary>
-        public static MolarEntropyUnit[] Units { get; } = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>().ToArray();
+        public static MolarEntropyUnit[] Units { get; } = Enum.GetValues(typeof(MolarEntropyUnit)).Cast<MolarEntropyUnit>().Except(new MolarEntropyUnit[]{ MolarEntropyUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get MolarEntropy in JoulesPerMoleKelvin.

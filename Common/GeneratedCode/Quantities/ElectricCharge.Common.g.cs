@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         ElectricCharge(double numericValue, ElectricChargeUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the ElectricCharge quantity.
         /// </summary>
-        public static ElectricChargeUnit[] Units { get; } = Enum.GetValues(typeof(ElectricChargeUnit)).Cast<ElectricChargeUnit>().ToArray();
+        public static ElectricChargeUnit[] Units { get; } = Enum.GetValues(typeof(ElectricChargeUnit)).Cast<ElectricChargeUnit>().Except(new ElectricChargeUnit[]{ ElectricChargeUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get ElectricCharge in Coulombs.

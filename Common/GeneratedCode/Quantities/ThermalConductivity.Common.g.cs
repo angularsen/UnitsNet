@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         ThermalConductivity(double numericValue, ThermalConductivityUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the ThermalConductivity quantity.
         /// </summary>
-        public static ThermalConductivityUnit[] Units { get; } = Enum.GetValues(typeof(ThermalConductivityUnit)).Cast<ThermalConductivityUnit>().ToArray();
+        public static ThermalConductivityUnit[] Units { get; } = Enum.GetValues(typeof(ThermalConductivityUnit)).Cast<ThermalConductivityUnit>().Except(new ThermalConductivityUnit[]{ ThermalConductivityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get ThermalConductivity in BtusPerHourFootFahrenheit.

@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         DynamicViscosity(double numericValue, DynamicViscosityUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the DynamicViscosity quantity.
         /// </summary>
-        public static DynamicViscosityUnit[] Units { get; } = Enum.GetValues(typeof(DynamicViscosityUnit)).Cast<DynamicViscosityUnit>().ToArray();
+        public static DynamicViscosityUnit[] Units { get; } = Enum.GetValues(typeof(DynamicViscosityUnit)).Cast<DynamicViscosityUnit>().Except(new DynamicViscosityUnit[]{ DynamicViscosityUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get DynamicViscosity in Centipoise.

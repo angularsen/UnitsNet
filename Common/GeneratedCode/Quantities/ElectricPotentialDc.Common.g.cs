@@ -100,7 +100,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         ElectricPotentialDc(double numericValue, ElectricPotentialDcUnit unit)
         {
@@ -158,7 +158,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the ElectricPotentialDc quantity.
         /// </summary>
-        public static ElectricPotentialDcUnit[] Units { get; } = Enum.GetValues(typeof(ElectricPotentialDcUnit)).Cast<ElectricPotentialDcUnit>().ToArray();
+        public static ElectricPotentialDcUnit[] Units { get; } = Enum.GetValues(typeof(ElectricPotentialDcUnit)).Cast<ElectricPotentialDcUnit>().Except(new ElectricPotentialDcUnit[]{ ElectricPotentialDcUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get ElectricPotentialDc in KilovoltsDc.

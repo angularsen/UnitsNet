@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         ThermalResistance(double numericValue, ThermalResistanceUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the ThermalResistance quantity.
         /// </summary>
-        public static ThermalResistanceUnit[] Units { get; } = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().ToArray();
+        public static ThermalResistanceUnit[] Units { get; } = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>().Except(new ThermalResistanceUnit[]{ ThermalResistanceUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get ThermalResistance in HourSquareFeetDegreesFahrenheitPerBtu.

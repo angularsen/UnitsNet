@@ -100,7 +100,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         VitaminA(double numericValue, VitaminAUnit unit)
         {
@@ -158,7 +158,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the VitaminA quantity.
         /// </summary>
-        public static VitaminAUnit[] Units { get; } = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>().ToArray();
+        public static VitaminAUnit[] Units { get; } = Enum.GetValues(typeof(VitaminAUnit)).Cast<VitaminAUnit>().Except(new VitaminAUnit[]{ VitaminAUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get VitaminA in InternationalUnits.

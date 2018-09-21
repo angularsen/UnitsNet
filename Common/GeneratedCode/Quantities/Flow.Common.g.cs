@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         Flow(double numericValue, FlowUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the Flow quantity.
         /// </summary>
-        public static FlowUnit[] Units { get; } = Enum.GetValues(typeof(FlowUnit)).Cast<FlowUnit>().ToArray();
+        public static FlowUnit[] Units { get; } = Enum.GetValues(typeof(FlowUnit)).Cast<FlowUnit>().Except(new FlowUnit[]{ FlowUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get Flow in CentilitersPerMinute.

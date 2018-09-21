@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         ElectricInductance(double numericValue, ElectricInductanceUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the ElectricInductance quantity.
         /// </summary>
-        public static ElectricInductanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricInductanceUnit)).Cast<ElectricInductanceUnit>().ToArray();
+        public static ElectricInductanceUnit[] Units { get; } = Enum.GetValues(typeof(ElectricInductanceUnit)).Cast<ElectricInductanceUnit>().Except(new ElectricInductanceUnit[]{ ElectricInductanceUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get ElectricInductance in Henries.
