@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -185,5 +186,12 @@ namespace UnitsNet.Tests
             MagneticField tesla = MagneticField.FromTeslas(1);
             Assert.False(tesla.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(MagneticFieldUnit.Undefined, MagneticField.Units);
+        }
+
     }
 }

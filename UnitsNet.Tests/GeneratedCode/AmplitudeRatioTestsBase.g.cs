@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -220,5 +221,12 @@ namespace UnitsNet.Tests
             AmplitudeRatio decibelvolt = AmplitudeRatio.FromDecibelVolts(1);
             Assert.False(decibelvolt.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(AmplitudeRatioUnit.Undefined, AmplitudeRatio.Units);
+        }
+
     }
 }

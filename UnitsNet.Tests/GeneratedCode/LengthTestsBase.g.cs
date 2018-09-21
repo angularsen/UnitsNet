@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -395,5 +396,12 @@ namespace UnitsNet.Tests
             Length meter = Length.FromMeters(1);
             Assert.False(meter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(LengthUnit.Undefined, Length.Units);
+        }
+
     }
 }

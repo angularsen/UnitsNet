@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -615,5 +616,12 @@ namespace UnitsNet.Tests
             PowerDensity wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
             Assert.False(wattpercubicmeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(PowerDensityUnit.Undefined, PowerDensity.Units);
+        }
+
     }
 }

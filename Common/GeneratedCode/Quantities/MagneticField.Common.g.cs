@@ -101,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         MagneticField(double numericValue, MagneticFieldUnit unit)
         {
@@ -159,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the MagneticField quantity.
         /// </summary>
-        public static MagneticFieldUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFieldUnit)).Cast<MagneticFieldUnit>().ToArray();
+        public static MagneticFieldUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFieldUnit)).Cast<MagneticFieldUnit>().Except(new MagneticFieldUnit[]{ MagneticFieldUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get MagneticField in Teslas.

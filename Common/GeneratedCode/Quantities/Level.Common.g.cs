@@ -100,7 +100,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         Level(double numericValue, LevelUnit unit)
         {
@@ -158,7 +158,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the Level quantity.
         /// </summary>
-        public static LevelUnit[] Units { get; } = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().ToArray();
+        public static LevelUnit[] Units { get; } = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().Except(new LevelUnit[]{ LevelUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get Level in Decibels.

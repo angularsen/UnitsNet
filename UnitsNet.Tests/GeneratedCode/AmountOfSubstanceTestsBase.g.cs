@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -315,5 +316,12 @@ namespace UnitsNet.Tests
             AmountOfSubstance mole = AmountOfSubstance.FromMoles(1);
             Assert.False(mole.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(AmountOfSubstanceUnit.Undefined, AmountOfSubstance.Units);
+        }
+
     }
 }

@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -305,5 +306,12 @@ namespace UnitsNet.Tests
             Acceleration meterpersecondsquared = Acceleration.FromMetersPerSecondSquared(1);
             Assert.False(meterpersecondsquared.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(AccelerationUnit.Undefined, Acceleration.Units);
+        }
+
     }
 }

@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -185,5 +186,12 @@ namespace UnitsNet.Tests
             SolidAngle steradian = SolidAngle.FromSteradians(1);
             Assert.False(steradian.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(SolidAngleUnit.Undefined, SolidAngle.Units);
+        }
+
     }
 }

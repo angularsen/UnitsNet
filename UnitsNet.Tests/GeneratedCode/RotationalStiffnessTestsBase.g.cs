@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -205,5 +206,12 @@ namespace UnitsNet.Tests
             RotationalStiffness newtonmeterperradian = RotationalStiffness.FromNewtonMetersPerRadian(1);
             Assert.False(newtonmeterperradian.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(RotationalStiffnessUnit.Undefined, RotationalStiffness.Units);
+        }
+
     }
 }

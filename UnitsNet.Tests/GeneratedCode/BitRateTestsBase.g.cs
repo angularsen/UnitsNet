@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -435,5 +436,12 @@ namespace UnitsNet.Tests
             BitRate bitpersecond = BitRate.FromBitsPerSecond(1);
             Assert.False(bitpersecond.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(BitRateUnit.Undefined, BitRate.Units);
+        }
+
     }
 }

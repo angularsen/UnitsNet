@@ -125,7 +125,7 @@ namespace UnitsNet
     {
 @"
             BaseDimensions = new BaseDimensions($baseDimensionLength, $baseDimensionMass, $baseDimensionTime, $baseDimensionElectricCurrent, $baseDimensionTemperature, $baseDimensionAmountOfSubstance, $baseDimensionLuminousIntensity);
-"@; 
+"@;
     }
 @"
         }
@@ -149,7 +149,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         $quantityName($baseType numericValue, $unitEnumName unit)
         {
@@ -207,8 +207,8 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the $quantityName quantity.
         /// </summary>
-        public static $unitEnumName[] Units { get; } = Enum.GetValues(typeof($unitEnumName)).Cast<$unitEnumName>().ToArray();
-"@; 
+        public static $unitEnumName[] Units { get; } = Enum.GetValues(typeof($unitEnumName)).Cast<$unitEnumName>().Except(new $unitEnumName[]{ $unitEnumName.Undefined }).ToArray();
+"@;
     foreach ($unit in $units) {
         $propertyName = $unit.PluralName;
         $obsoleteAttribute = GetObsoleteAttribute($unit);

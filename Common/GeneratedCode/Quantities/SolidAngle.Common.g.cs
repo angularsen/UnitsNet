@@ -100,7 +100,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         SolidAngle(double numericValue, SolidAngleUnit unit)
         {
@@ -158,7 +158,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the SolidAngle quantity.
         /// </summary>
-        public static SolidAngleUnit[] Units { get; } = Enum.GetValues(typeof(SolidAngleUnit)).Cast<SolidAngleUnit>().ToArray();
+        public static SolidAngleUnit[] Units { get; } = Enum.GetValues(typeof(SolidAngleUnit)).Cast<SolidAngleUnit>().Except(new SolidAngleUnit[]{ SolidAngleUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get SolidAngle in Steradians.

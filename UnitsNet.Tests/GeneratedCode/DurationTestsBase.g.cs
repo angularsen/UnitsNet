@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -295,5 +296,12 @@ namespace UnitsNet.Tests
             Duration second = Duration.FromSeconds(1);
             Assert.False(second.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(DurationUnit.Undefined, Duration.Units);
+        }
+
     }
 }

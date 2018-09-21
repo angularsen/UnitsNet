@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -305,5 +306,12 @@ namespace UnitsNet.Tests
             Area squaremeter = Area.FromSquareMeters(1);
             Assert.False(squaremeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(AreaUnit.Undefined, Area.Units);
+        }
+
     }
 }

@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -235,5 +236,12 @@ namespace UnitsNet.Tests
             DynamicViscosity newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
             Assert.False(newtonsecondpermetersquared.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(DynamicViscosityUnit.Undefined, DynamicViscosity.Units);
+        }
+
     }
 }

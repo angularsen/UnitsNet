@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -195,5 +196,12 @@ namespace UnitsNet.Tests
             SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
             Assert.False(cubicmeterperkilogram.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(SpecificVolumeUnit.Undefined, SpecificVolume.Units);
+        }
+
     }
 }

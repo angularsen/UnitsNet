@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -205,5 +206,12 @@ namespace UnitsNet.Tests
             ElectricConductance siemens = ElectricConductance.FromSiemens(1);
             Assert.False(siemens.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ElectricConductanceUnit.Undefined, ElectricConductance.Units);
+        }
+
     }
 }
