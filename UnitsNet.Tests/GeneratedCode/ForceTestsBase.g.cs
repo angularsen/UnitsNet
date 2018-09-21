@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -275,5 +276,12 @@ namespace UnitsNet.Tests
             Force newton = Force.FromNewtons(1);
             Assert.False(newton.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ForceUnit.Undefined, Force.Units);
+        }
+
     }
 }

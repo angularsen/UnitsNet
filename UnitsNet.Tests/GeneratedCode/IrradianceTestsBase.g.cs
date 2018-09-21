@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -195,5 +196,12 @@ namespace UnitsNet.Tests
             Irradiance wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
             Assert.False(wattpersquaremeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(IrradianceUnit.Undefined, Irradiance.Units);
+        }
+
     }
 }

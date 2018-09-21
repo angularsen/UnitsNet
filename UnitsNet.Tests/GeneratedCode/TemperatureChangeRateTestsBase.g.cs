@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -275,5 +276,12 @@ namespace UnitsNet.Tests
             TemperatureChangeRate degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
             Assert.False(degreecelsiuspersecond.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(TemperatureChangeRateUnit.Undefined, TemperatureChangeRate.Units);
+        }
+
     }
 }

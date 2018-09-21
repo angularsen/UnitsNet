@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -215,5 +216,12 @@ namespace UnitsNet.Tests
             ApparentPower voltampere = ApparentPower.FromVoltamperes(1);
             Assert.False(voltampere.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ApparentPowerUnit.Undefined, ApparentPower.Units);
+        }
+
     }
 }

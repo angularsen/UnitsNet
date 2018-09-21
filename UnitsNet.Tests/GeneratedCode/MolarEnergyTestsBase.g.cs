@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -205,5 +206,12 @@ namespace UnitsNet.Tests
             MolarEnergy joulepermole = MolarEnergy.FromJoulesPerMole(1);
             Assert.False(joulepermole.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(MolarEnergyUnit.Undefined, MolarEnergy.Units);
+        }
+
     }
 }

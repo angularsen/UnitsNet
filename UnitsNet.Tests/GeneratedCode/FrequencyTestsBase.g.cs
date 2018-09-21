@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -255,5 +256,12 @@ namespace UnitsNet.Tests
             Frequency hertz = Frequency.FromHertz(1);
             Assert.False(hertz.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(FrequencyUnit.Undefined, Frequency.Units);
+        }
+
     }
 }

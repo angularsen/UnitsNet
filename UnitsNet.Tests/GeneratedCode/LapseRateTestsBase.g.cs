@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -185,5 +186,12 @@ namespace UnitsNet.Tests
             LapseRate degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
             Assert.False(degreecelsiusperkilometer.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(LapseRateUnit.Undefined, LapseRate.Units);
+        }
+
     }
 }

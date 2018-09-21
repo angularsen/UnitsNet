@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -185,5 +186,12 @@ namespace UnitsNet.Tests
             Capacitance farad = Capacitance.FromFarads(1);
             Assert.False(farad.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(CapacitanceUnit.Undefined, Capacitance.Units);
+        }
+
     }
 }

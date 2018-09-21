@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -185,5 +186,12 @@ namespace UnitsNet.Tests
             ElectricInductance henry = ElectricInductance.FromHenries(1);
             Assert.False(henry.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ElectricInductanceUnit.Undefined, ElectricInductance.Units);
+        }
+
     }
 }

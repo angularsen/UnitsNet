@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -435,5 +436,12 @@ namespace UnitsNet.Tests
             VolumeFlow cubicmeterpersecond = VolumeFlow.FromCubicMetersPerSecond(1);
             Assert.False(cubicmeterpersecond.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(VolumeFlowUnit.Undefined, VolumeFlow.Units);
+        }
+
     }
 }
