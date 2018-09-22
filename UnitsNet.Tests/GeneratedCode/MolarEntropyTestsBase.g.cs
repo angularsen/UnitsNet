@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -205,5 +206,12 @@ namespace UnitsNet.Tests
             MolarEntropy joulepermolekelvin = MolarEntropy.FromJoulesPerMoleKelvin(1);
             Assert.False(joulepermolekelvin.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(MolarEntropyUnit.Undefined, MolarEntropy.Units);
+        }
+
     }
 }

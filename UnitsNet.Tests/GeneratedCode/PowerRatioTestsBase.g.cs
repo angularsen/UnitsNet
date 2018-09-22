@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -200,5 +201,12 @@ namespace UnitsNet.Tests
             PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
             Assert.False(decibelwatt.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(PowerRatioUnit.Undefined, PowerRatio.Units);
+        }
+
     }
 }

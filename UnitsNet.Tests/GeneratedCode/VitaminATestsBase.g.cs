@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -185,5 +186,12 @@ namespace UnitsNet.Tests
             VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
             Assert.False(internationalunit.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(VitaminAUnit.Undefined, VitaminA.Units);
+        }
+
     }
 }

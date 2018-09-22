@@ -91,6 +91,20 @@ namespace UnitsNet
 
         #endregion
 
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(MassFluxUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
+
         #region Arithmetic Operators
 
         public static MassFlux operator -(MassFlux right)

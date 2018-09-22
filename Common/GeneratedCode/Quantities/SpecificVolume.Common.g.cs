@@ -82,6 +82,9 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
         }
 
+        /// <summary>
+        ///     Creates the quantity with the given value in the base unit CubicMeterPerKilogram.
+        /// </summary>
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public SpecificVolume(double cubicmetersperkilogram)
         {
@@ -98,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         SpecificVolume(double numericValue, SpecificVolumeUnit unit)
         {
@@ -156,7 +159,12 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the SpecificVolume quantity.
         /// </summary>
-        public static SpecificVolumeUnit[] Units { get; } = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().ToArray();
+        public static SpecificVolumeUnit[] Units { get; } = Enum.GetValues(typeof(SpecificVolumeUnit)).Cast<SpecificVolumeUnit>().Except(new SpecificVolumeUnit[]{ SpecificVolumeUnit.Undefined }).ToArray();
+
+        /// <summary>
+        ///     Get SpecificVolume in CubicFeetPerPound.
+        /// </summary>
+        public double CubicFeetPerPound => As(SpecificVolumeUnit.CubicFootPerPound);
 
         /// <summary>
         ///     Get SpecificVolume in CubicMetersPerKilogram.
@@ -167,7 +175,24 @@ namespace UnitsNet
 
         #region Static
 
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerKilogram.
+        /// </summary>
         public static SpecificVolume Zero => new SpecificVolume(0, BaseUnit);
+
+        /// <summary>
+        ///     Get SpecificVolume from CubicFeetPerPound.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificVolume FromCubicFeetPerPound(double cubicfeetperpound)
+#else
+        public static SpecificVolume FromCubicFeetPerPound(QuantityValue cubicfeetperpound)
+#endif
+        {
+            double value = (double) cubicfeetperpound;
+            return new SpecificVolume(value, SpecificVolumeUnit.CubicFootPerPound);
+        }
 
         /// <summary>
         ///     Get SpecificVolume from CubicMetersPerKilogram.
@@ -210,35 +235,6 @@ namespace UnitsNet
         public static string GetAbbreviation(SpecificVolumeUnit unit)
         {
             return GetAbbreviation(unit, null);
-        }
-
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-#if WINDOWS_UWP
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-#else
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-#endif
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(
-          SpecificVolumeUnit unit,
-#if WINDOWS_UWP
-          [CanBeNull] string cultureName)
-#else
-          [CanBeNull] IFormatProvider provider)
-#endif
-        {
-#if WINDOWS_UWP
-            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
-#else
-            provider = provider ?? UnitSystem.DefaultCulture;
-#endif
-
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -339,6 +335,10 @@ namespace UnitsNet
             return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current SpecificVolume.</returns>
         public override int GetHashCode()
         {
             return new { Value, Unit }.GetHashCode();
@@ -380,6 +380,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case SpecificVolumeUnit.CubicFootPerPound: return _value/16.01846353;
                 case SpecificVolumeUnit.CubicMeterPerKilogram: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -395,6 +396,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case SpecificVolumeUnit.CubicFootPerPound: return baseUnitValue*16.01846353;
                 case SpecificVolumeUnit.CubicMeterPerKilogram: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
@@ -477,10 +479,10 @@ namespace UnitsNet
 
         #endregion
 
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is CubicMeterPerKilogram
         /// </summary>
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         public static SpecificVolumeUnit ToStringDefaultUnit { get; set; } = SpecificVolumeUnit.CubicMeterPerKilogram;
 
         /// <summary>

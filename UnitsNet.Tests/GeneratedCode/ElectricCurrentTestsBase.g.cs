@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -255,5 +256,12 @@ namespace UnitsNet.Tests
             ElectricCurrent ampere = ElectricCurrent.FromAmperes(1);
             Assert.False(ampere.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ElectricCurrentUnit.Undefined, ElectricCurrent.Units);
+        }
+
     }
 }

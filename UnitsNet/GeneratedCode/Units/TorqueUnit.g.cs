@@ -39,6 +39,9 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
+    // Disable missing XML comment warnings for the generated unit enums.
+    #pragma warning disable 1591
+
     public enum TorqueUnit
     {
         Undefined = 0,
@@ -64,4 +67,6 @@ namespace UnitsNet.Units
         TonneForceMeter,
         TonneForceMillimeter,
     }
+
+    #pragma warning restore 1591
 }

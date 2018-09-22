@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -375,5 +376,12 @@ namespace UnitsNet.Tests
             Power watt = Power.FromWatts(1);
             Assert.False(watt.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(PowerUnit.Undefined, Power.Units);
+        }
+
     }
 }

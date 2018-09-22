@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -435,5 +436,12 @@ namespace UnitsNet.Tests
             Information bit = Information.FromBits(1);
             Assert.False(bit.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(InformationUnit.Undefined, Information.Units);
+        }
+
     }
 }

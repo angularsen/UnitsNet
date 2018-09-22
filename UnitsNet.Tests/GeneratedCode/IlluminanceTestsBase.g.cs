@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -215,5 +216,12 @@ namespace UnitsNet.Tests
             Illuminance lux = Illuminance.FromLux(1);
             Assert.False(lux.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(IlluminanceUnit.Undefined, Illuminance.Units);
+        }
+
     }
 }

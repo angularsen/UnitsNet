@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -455,5 +456,12 @@ namespace UnitsNet.Tests
             MassMomentOfInertia kilogramsquaremeter = MassMomentOfInertia.FromKilogramSquareMeters(1);
             Assert.False(kilogramsquaremeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(MassMomentOfInertiaUnit.Undefined, MassMomentOfInertia.Units);
+        }
+
     }
 }

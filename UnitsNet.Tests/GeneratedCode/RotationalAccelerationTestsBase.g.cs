@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -205,5 +206,12 @@ namespace UnitsNet.Tests
             RotationalAcceleration radianpersecondsquared = RotationalAcceleration.FromRadiansPerSecondSquared(1);
             Assert.False(radianpersecondsquared.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(RotationalAccelerationUnit.Undefined, RotationalAcceleration.Units);
+        }
+
     }
 }

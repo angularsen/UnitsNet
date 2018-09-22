@@ -231,6 +231,22 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable VolumeFlow from nullable OilBarrelsPerHour.
+        /// </summary>
+        public static VolumeFlow? FromOilBarrelsPerHour(QuantityValue? oilbarrelsperhour)
+        {
+            return oilbarrelsperhour.HasValue ? FromOilBarrelsPerHour(oilbarrelsperhour.Value) : default(VolumeFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable VolumeFlow from nullable OilBarrelsPerMinute.
+        /// </summary>
+        public static VolumeFlow? FromOilBarrelsPerMinute(QuantityValue? oilbarrelsperminute)
+        {
+            return oilbarrelsperminute.HasValue ? FromOilBarrelsPerMinute(oilbarrelsperminute.Value) : default(VolumeFlow?);
+        }
+
+        /// <summary>
         ///     Get nullable VolumeFlow from nullable UsGallonsPerHour.
         /// </summary>
         public static VolumeFlow? FromUsGallonsPerHour(QuantityValue? usgallonsperhour)
@@ -266,6 +282,20 @@ namespace UnitsNet
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(VolumeFlowUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 

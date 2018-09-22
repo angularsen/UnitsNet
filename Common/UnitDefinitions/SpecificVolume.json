@@ -19,6 +19,19 @@
           "Abbreviations": [ "m³/kg" ]
         }
       ]
+    },
+    {
+      "SingularName": "CubicFootPerPound",
+      "PluralName": "CubicFeetPerPound",
+      "FromUnitToBaseFunc": "x/16.01846353",
+      "FromBaseToUnitFunc": "x*16.01846353",
+      "Prefixes": [],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ft³/lb" ]
+        }
+      ]
     }
   ]
 }

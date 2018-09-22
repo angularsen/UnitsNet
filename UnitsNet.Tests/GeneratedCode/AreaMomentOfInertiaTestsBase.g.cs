@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -235,5 +236,12 @@ namespace UnitsNet.Tests
             AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
             Assert.False(metertothefourth.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(AreaMomentOfInertiaUnit.Undefined, AreaMomentOfInertia.Units);
+        }
+
     }
 }
