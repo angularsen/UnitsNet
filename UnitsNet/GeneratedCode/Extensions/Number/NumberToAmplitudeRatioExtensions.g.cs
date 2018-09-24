@@ -44,49 +44,17 @@ namespace UnitsNet.Extensions.NumberToAmplitudeRatio
 {
     public static class NumberToAmplitudeRatioExtensions
     {
-        #region DecibelMicrovolt
-
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelMicrovolts(UnitsNet.QuantityValue)" />
         public static AmplitudeRatio DecibelMicrovolts<T>(this T value) => AmplitudeRatio.FromDecibelMicrovolts(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMicrovolts(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static AmplitudeRatio? DecibelMicrovolts<T>(this T? value) where T : struct => AmplitudeRatio.FromDecibelMicrovolts(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DecibelMillivolt
 
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelMillivolts(UnitsNet.QuantityValue)" />
         public static AmplitudeRatio DecibelMillivolts<T>(this T value) => AmplitudeRatio.FromDecibelMillivolts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelMillivolts(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static AmplitudeRatio? DecibelMillivolts<T>(this T? value) where T : struct => AmplitudeRatio.FromDecibelMillivolts(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DecibelUnloaded
-
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(UnitsNet.QuantityValue)" />
         public static AmplitudeRatio DecibelsUnloaded<T>(this T value) => AmplitudeRatio.FromDecibelsUnloaded(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelsUnloaded(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static AmplitudeRatio? DecibelsUnloaded<T>(this T? value) where T : struct => AmplitudeRatio.FromDecibelsUnloaded(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DecibelVolt
-
         /// <inheritdoc cref="AmplitudeRatio.FromDecibelVolts(UnitsNet.QuantityValue)" />
         public static AmplitudeRatio DecibelVolts<T>(this T value) => AmplitudeRatio.FromDecibelVolts(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="AmplitudeRatio.FromDecibelVolts(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static AmplitudeRatio? DecibelVolts<T>(this T? value) where T : struct => AmplitudeRatio.FromDecibelVolts(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

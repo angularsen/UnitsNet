@@ -44,82 +44,26 @@ namespace UnitsNet.Extensions.NumberToEntropy
 {
     public static class NumberToEntropyExtensions
     {
-        #region CaloriePerKelvin
-
         /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(UnitsNet.QuantityValue)" />
         public static Entropy CaloriesPerKelvin<T>(this T value) => Entropy.FromCaloriesPerKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Entropy? CaloriesPerKelvin<T>(this T? value) where T : struct => Entropy.FromCaloriesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region JoulePerDegreeCelsius
 
         /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
         public static Entropy JoulesPerDegreeCelsius<T>(this T value) => Entropy.FromJoulesPerDegreeCelsius(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Entropy? JoulesPerDegreeCelsius<T>(this T? value) where T : struct => Entropy.FromJoulesPerDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region JoulePerKelvin
-
         /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(UnitsNet.QuantityValue)" />
         public static Entropy JoulesPerKelvin<T>(this T value) => Entropy.FromJoulesPerKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Entropy? JoulesPerKelvin<T>(this T? value) where T : struct => Entropy.FromJoulesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilocaloriePerKelvin
 
         /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(UnitsNet.QuantityValue)" />
         public static Entropy KilocaloriesPerKelvin<T>(this T value) => Entropy.FromKilocaloriesPerKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Entropy? KilocaloriesPerKelvin<T>(this T? value) where T : struct => Entropy.FromKilocaloriesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilojoulePerDegreeCelsius
-
         /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
         public static Entropy KilojoulesPerDegreeCelsius<T>(this T value) => Entropy.FromKilojoulesPerDegreeCelsius(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Entropy? KilojoulesPerDegreeCelsius<T>(this T? value) where T : struct => Entropy.FromKilojoulesPerDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilojoulePerKelvin
 
         /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(UnitsNet.QuantityValue)" />
         public static Entropy KilojoulesPerKelvin<T>(this T value) => Entropy.FromKilojoulesPerKelvin(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Entropy? KilojoulesPerKelvin<T>(this T? value) where T : struct => Entropy.FromKilojoulesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MegajoulePerKelvin
-
         /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(UnitsNet.QuantityValue)" />
         public static Entropy MegajoulesPerKelvin<T>(this T value) => Entropy.FromMegajoulesPerKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Entropy? MegajoulesPerKelvin<T>(this T? value) where T : struct => Entropy.FromMegajoulesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

@@ -44,148 +44,44 @@ namespace UnitsNet.Extensions.NumberToRotationalSpeed
 {
     public static class NumberToRotationalSpeedExtensions
     {
-        #region CentiradianPerSecond
-
         /// <inheritdoc cref="RotationalSpeed.FromCentiradiansPerSecond(UnitsNet.QuantityValue)" />
         public static RotationalSpeed CentiradiansPerSecond<T>(this T value) => RotationalSpeed.FromCentiradiansPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="RotationalSpeed.FromCentiradiansPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static RotationalSpeed? CentiradiansPerSecond<T>(this T? value) where T : struct => RotationalSpeed.FromCentiradiansPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DeciradianPerSecond
 
         /// <inheritdoc cref="RotationalSpeed.FromDeciradiansPerSecond(UnitsNet.QuantityValue)" />
         public static RotationalSpeed DeciradiansPerSecond<T>(this T value) => RotationalSpeed.FromDeciradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromDeciradiansPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static RotationalSpeed? DeciradiansPerSecond<T>(this T? value) where T : struct => RotationalSpeed.FromDeciradiansPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DegreePerMinute
-
         /// <inheritdoc cref="RotationalSpeed.FromDegreesPerMinute(UnitsNet.QuantityValue)" />
         public static RotationalSpeed DegreesPerMinute<T>(this T value) => RotationalSpeed.FromDegreesPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static RotationalSpeed? DegreesPerMinute<T>(this T? value) where T : struct => RotationalSpeed.FromDegreesPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DegreePerSecond
 
         /// <inheritdoc cref="RotationalSpeed.FromDegreesPerSecond(UnitsNet.QuantityValue)" />
         public static RotationalSpeed DegreesPerSecond<T>(this T value) => RotationalSpeed.FromDegreesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromDegreesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static RotationalSpeed? DegreesPerSecond<T>(this T? value) where T : struct => RotationalSpeed.FromDegreesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MicrodegreePerSecond
-
         /// <inheritdoc cref="RotationalSpeed.FromMicrodegreesPerSecond(UnitsNet.QuantityValue)" />
         public static RotationalSpeed MicrodegreesPerSecond<T>(this T value) => RotationalSpeed.FromMicrodegreesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="RotationalSpeed.FromMicrodegreesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static RotationalSpeed? MicrodegreesPerSecond<T>(this T? value) where T : struct => RotationalSpeed.FromMicrodegreesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MicroradianPerSecond
 
         /// <inheritdoc cref="RotationalSpeed.FromMicroradiansPerSecond(UnitsNet.QuantityValue)" />
         public static RotationalSpeed MicroradiansPerSecond<T>(this T value) => RotationalSpeed.FromMicroradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromMicroradiansPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static RotationalSpeed? MicroradiansPerSecond<T>(this T? value) where T : struct => RotationalSpeed.FromMicroradiansPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MillidegreePerSecond
-
         /// <inheritdoc cref="RotationalSpeed.FromMillidegreesPerSecond(UnitsNet.QuantityValue)" />
         public static RotationalSpeed MillidegreesPerSecond<T>(this T value) => RotationalSpeed.FromMillidegreesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="RotationalSpeed.FromMillidegreesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static RotationalSpeed? MillidegreesPerSecond<T>(this T? value) where T : struct => RotationalSpeed.FromMillidegreesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MilliradianPerSecond
 
         /// <inheritdoc cref="RotationalSpeed.FromMilliradiansPerSecond(UnitsNet.QuantityValue)" />
         public static RotationalSpeed MilliradiansPerSecond<T>(this T value) => RotationalSpeed.FromMilliradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromMilliradiansPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static RotationalSpeed? MilliradiansPerSecond<T>(this T? value) where T : struct => RotationalSpeed.FromMilliradiansPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region NanodegreePerSecond
-
         /// <inheritdoc cref="RotationalSpeed.FromNanodegreesPerSecond(UnitsNet.QuantityValue)" />
         public static RotationalSpeed NanodegreesPerSecond<T>(this T value) => RotationalSpeed.FromNanodegreesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="RotationalSpeed.FromNanodegreesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static RotationalSpeed? NanodegreesPerSecond<T>(this T? value) where T : struct => RotationalSpeed.FromNanodegreesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region NanoradianPerSecond
 
         /// <inheritdoc cref="RotationalSpeed.FromNanoradiansPerSecond(UnitsNet.QuantityValue)" />
         public static RotationalSpeed NanoradiansPerSecond<T>(this T value) => RotationalSpeed.FromNanoradiansPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromNanoradiansPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static RotationalSpeed? NanoradiansPerSecond<T>(this T? value) where T : struct => RotationalSpeed.FromNanoradiansPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region RadianPerSecond
-
         /// <inheritdoc cref="RotationalSpeed.FromRadiansPerSecond(UnitsNet.QuantityValue)" />
         public static RotationalSpeed RadiansPerSecond<T>(this T value) => RotationalSpeed.FromRadiansPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="RotationalSpeed.FromRadiansPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static RotationalSpeed? RadiansPerSecond<T>(this T? value) where T : struct => RotationalSpeed.FromRadiansPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region RevolutionPerMinute
 
         /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerMinute(UnitsNet.QuantityValue)" />
         public static RotationalSpeed RevolutionsPerMinute<T>(this T value) => RotationalSpeed.FromRevolutionsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static RotationalSpeed? RevolutionsPerMinute<T>(this T? value) where T : struct => RotationalSpeed.FromRevolutionsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region RevolutionPerSecond
-
         /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerSecond(UnitsNet.QuantityValue)" />
         public static RotationalSpeed RevolutionsPerSecond<T>(this T value) => RotationalSpeed.FromRevolutionsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="RotationalSpeed.FromRevolutionsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static RotationalSpeed? RevolutionsPerSecond<T>(this T? value) where T : struct => RotationalSpeed.FromRevolutionsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

@@ -44,27 +44,11 @@ namespace UnitsNet.Extensions.NumberToThermalConductivity
 {
     public static class NumberToThermalConductivityExtensions
     {
-        #region BtuPerHourFootFahrenheit
-
         /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
         public static ThermalConductivity BtusPerHourFootFahrenheit<T>(this T value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ThermalConductivity? BtusPerHourFootFahrenheit<T>(this T? value) where T : struct => ThermalConductivity.FromBtusPerHourFootFahrenheit(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region WattPerMeterKelvin
-
         /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
         public static ThermalConductivity WattsPerMeterKelvin<T>(this T value) => ThermalConductivity.FromWattsPerMeterKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ThermalConductivity? WattsPerMeterKelvin<T>(this T? value) where T : struct => ThermalConductivity.FromWattsPerMeterKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

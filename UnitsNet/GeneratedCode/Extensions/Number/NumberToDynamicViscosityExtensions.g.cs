@@ -44,71 +44,23 @@ namespace UnitsNet.Extensions.NumberToDynamicViscosity
 {
     public static class NumberToDynamicViscosityExtensions
     {
-        #region Centipoise
-
         /// <inheritdoc cref="DynamicViscosity.FromCentipoise(UnitsNet.QuantityValue)" />
         public static DynamicViscosity Centipoise<T>(this T value) => DynamicViscosity.FromCentipoise(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="DynamicViscosity.FromCentipoise(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static DynamicViscosity? Centipoise<T>(this T? value) where T : struct => DynamicViscosity.FromCentipoise(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MicropascalSecond
 
         /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(UnitsNet.QuantityValue)" />
         public static DynamicViscosity MicropascalSeconds<T>(this T value) => DynamicViscosity.FromMicropascalSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static DynamicViscosity? MicropascalSeconds<T>(this T? value) where T : struct => DynamicViscosity.FromMicropascalSeconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MillipascalSecond
-
         /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(UnitsNet.QuantityValue)" />
         public static DynamicViscosity MillipascalSeconds<T>(this T value) => DynamicViscosity.FromMillipascalSeconds(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static DynamicViscosity? MillipascalSeconds<T>(this T? value) where T : struct => DynamicViscosity.FromMillipascalSeconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region NewtonSecondPerMeterSquared
 
         /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(UnitsNet.QuantityValue)" />
         public static DynamicViscosity NewtonSecondsPerMeterSquared<T>(this T value) => DynamicViscosity.FromNewtonSecondsPerMeterSquared(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static DynamicViscosity? NewtonSecondsPerMeterSquared<T>(this T? value) where T : struct => DynamicViscosity.FromNewtonSecondsPerMeterSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region PascalSecond
-
         /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(UnitsNet.QuantityValue)" />
         public static DynamicViscosity PascalSeconds<T>(this T value) => DynamicViscosity.FromPascalSeconds(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static DynamicViscosity? PascalSeconds<T>(this T? value) where T : struct => DynamicViscosity.FromPascalSeconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Poise
-
         /// <inheritdoc cref="DynamicViscosity.FromPoise(UnitsNet.QuantityValue)" />
         public static DynamicViscosity Poise<T>(this T value) => DynamicViscosity.FromPoise(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="DynamicViscosity.FromPoise(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static DynamicViscosity? Poise<T>(this T? value) where T : struct => DynamicViscosity.FromPoise(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

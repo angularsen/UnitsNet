@@ -60,31 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable LapseRate from nullable DegreesCelciusPerKilometer.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static LapseRate? FromDegreesCelciusPerKilometer(QuantityValue? degreescelciusperkilometer)
-        {
-            return degreescelciusperkilometer.HasValue ? FromDegreesCelciusPerKilometer(degreescelciusperkilometer.Value) : default(LapseRate?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="LapseRateUnit" /> to <see cref="LapseRate" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>LapseRate unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static LapseRate? From(QuantityValue? value, LapseRateUnit fromUnit)
-        {
-            return value.HasValue ? new LapseRate((double)value.Value, fromUnit) : default(LapseRate?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

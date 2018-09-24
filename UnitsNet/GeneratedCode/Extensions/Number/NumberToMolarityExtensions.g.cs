@@ -44,93 +44,29 @@ namespace UnitsNet.Extensions.NumberToMolarity
 {
     public static class NumberToMolarityExtensions
     {
-        #region CentimolesPerLiter
-
         /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity CentimolesPerLiter<T>(this T value) => Molarity.FromCentimolesPerLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Molarity.FromCentimolesPerLiter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Molarity? CentimolesPerLiter<T>(this T? value) where T : struct => Molarity.FromCentimolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DecimolesPerLiter
 
         /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity DecimolesPerLiter<T>(this T value) => Molarity.FromDecimolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromDecimolesPerLiter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Molarity? DecimolesPerLiter<T>(this T? value) where T : struct => Molarity.FromDecimolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MicromolesPerLiter
-
         /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MicromolesPerLiter<T>(this T value) => Molarity.FromMicromolesPerLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Molarity.FromMicromolesPerLiter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Molarity? MicromolesPerLiter<T>(this T? value) where T : struct => Molarity.FromMicromolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MillimolesPerLiter
 
         /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MillimolesPerLiter<T>(this T value) => Molarity.FromMillimolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromMillimolesPerLiter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Molarity? MillimolesPerLiter<T>(this T? value) where T : struct => Molarity.FromMillimolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MolesPerCubicMeter
-
         /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
         public static Molarity MolesPerCubicMeter<T>(this T value) => Molarity.FromMolesPerCubicMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Molarity.FromMolesPerCubicMeter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Molarity? MolesPerCubicMeter<T>(this T? value) where T : struct => Molarity.FromMolesPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MolesPerLiter
 
         /// <inheritdoc cref="Molarity.FromMolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity MolesPerLiter<T>(this T value) => Molarity.FromMolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromMolesPerLiter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Molarity? MolesPerLiter<T>(this T? value) where T : struct => Molarity.FromMolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region NanomolesPerLiter
-
         /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity NanomolesPerLiter<T>(this T value) => Molarity.FromNanomolesPerLiter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Molarity.FromNanomolesPerLiter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Molarity? NanomolesPerLiter<T>(this T? value) where T : struct => Molarity.FromNanomolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region PicomolesPerLiter
-
         /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
         public static Molarity PicomolesPerLiter<T>(this T value) => Molarity.FromPicomolesPerLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Molarity.FromPicomolesPerLiter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Molarity? PicomolesPerLiter<T>(this T? value) where T : struct => Molarity.FromPicomolesPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

@@ -44,287 +44,95 @@ namespace UnitsNet.Extensions.NumberToFlow
 {
     public static class NumberToFlowExtensions
     {
-        #region CentilitersPerMinute
-
         /// <inheritdoc cref="Flow.FromCentilitersPerMinute(UnitsNet.QuantityValue)" />
         public static Flow CentilitersPerMinute<T>(this T value) => Flow.FromCentilitersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Flow.FromCentilitersPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? CentilitersPerMinute<T>(this T? value) where T : struct => Flow.FromCentilitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicDecimeterPerMinute
 
         /// <inheritdoc cref="Flow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicDecimetersPerMinute<T>(this T value) => Flow.FromCubicDecimetersPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Flow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? CubicDecimetersPerMinute<T>(this T? value) where T : struct => Flow.FromCubicDecimetersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicFootPerHour
-
         /// <inheritdoc cref="Flow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicFeetPerHour<T>(this T value) => Flow.FromCubicFeetPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Flow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? CubicFeetPerHour<T>(this T? value) where T : struct => Flow.FromCubicFeetPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicFootPerMinute
 
         /// <inheritdoc cref="Flow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicFeetPerMinute<T>(this T value) => Flow.FromCubicFeetPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Flow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? CubicFeetPerMinute<T>(this T? value) where T : struct => Flow.FromCubicFeetPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicFootPerSecond
-
         /// <inheritdoc cref="Flow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicFeetPerSecond<T>(this T value) => Flow.FromCubicFeetPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Flow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? CubicFeetPerSecond<T>(this T? value) where T : struct => Flow.FromCubicFeetPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicMeterPerHour
 
         /// <inheritdoc cref="Flow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicMetersPerHour<T>(this T value) => Flow.FromCubicMetersPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Flow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? CubicMetersPerHour<T>(this T? value) where T : struct => Flow.FromCubicMetersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicMeterPerMinute
-
         /// <inheritdoc cref="Flow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicMetersPerMinute<T>(this T value) => Flow.FromCubicMetersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Flow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? CubicMetersPerMinute<T>(this T? value) where T : struct => Flow.FromCubicMetersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicMeterPerSecond
 
         /// <inheritdoc cref="Flow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicMetersPerSecond<T>(this T value) => Flow.FromCubicMetersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Flow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? CubicMetersPerSecond<T>(this T? value) where T : struct => Flow.FromCubicMetersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicYardPerHour
-
         /// <inheritdoc cref="Flow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicYardsPerHour<T>(this T value) => Flow.FromCubicYardsPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Flow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? CubicYardsPerHour<T>(this T? value) where T : struct => Flow.FromCubicYardsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicYardPerMinute
 
         /// <inheritdoc cref="Flow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicYardsPerMinute<T>(this T value) => Flow.FromCubicYardsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Flow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? CubicYardsPerMinute<T>(this T? value) where T : struct => Flow.FromCubicYardsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicYardPerSecond
-
         /// <inheritdoc cref="Flow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicYardsPerSecond<T>(this T value) => Flow.FromCubicYardsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Flow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? CubicYardsPerSecond<T>(this T? value) where T : struct => Flow.FromCubicYardsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DecilitersPerMinute
-
         /// <inheritdoc cref="Flow.FromDecilitersPerMinute(UnitsNet.QuantityValue)" />
         public static Flow DecilitersPerMinute<T>(this T value) => Flow.FromDecilitersPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Flow.FromDecilitersPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? DecilitersPerMinute<T>(this T? value) where T : struct => Flow.FromDecilitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilolitersPerMinute
-
         /// <inheritdoc cref="Flow.FromKilolitersPerMinute(UnitsNet.QuantityValue)" />
         public static Flow KilolitersPerMinute<T>(this T value) => Flow.FromKilolitersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Flow.FromKilolitersPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? KilolitersPerMinute<T>(this T? value) where T : struct => Flow.FromKilolitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region LitersPerHour
 
         /// <inheritdoc cref="Flow.FromLitersPerHour(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow LitersPerHour<T>(this T value) => Flow.FromLitersPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Flow.FromLitersPerHour(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? LitersPerHour<T>(this T? value) where T : struct => Flow.FromLitersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region LitersPerMinute
-
         /// <inheritdoc cref="Flow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow LitersPerMinute<T>(this T value) => Flow.FromLitersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Flow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? LitersPerMinute<T>(this T? value) where T : struct => Flow.FromLitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region LitersPerSecond
 
         /// <inheritdoc cref="Flow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow LitersPerSecond<T>(this T value) => Flow.FromLitersPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Flow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? LitersPerSecond<T>(this T? value) where T : struct => Flow.FromLitersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MicrolitersPerMinute
-
         /// <inheritdoc cref="Flow.FromMicrolitersPerMinute(UnitsNet.QuantityValue)" />
         public static Flow MicrolitersPerMinute<T>(this T value) => Flow.FromMicrolitersPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Flow.FromMicrolitersPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? MicrolitersPerMinute<T>(this T? value) where T : struct => Flow.FromMicrolitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MillilitersPerMinute
-
         /// <inheritdoc cref="Flow.FromMillilitersPerMinute(UnitsNet.QuantityValue)" />
         public static Flow MillilitersPerMinute<T>(this T value) => Flow.FromMillilitersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Flow.FromMillilitersPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? MillilitersPerMinute<T>(this T? value) where T : struct => Flow.FromMillilitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MillionUsGallonsPerDay
 
         /// <inheritdoc cref="Flow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow MillionUsGallonsPerDay<T>(this T value) => Flow.FromMillionUsGallonsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Flow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? MillionUsGallonsPerDay<T>(this T? value) where T : struct => Flow.FromMillionUsGallonsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region NanolitersPerMinute
-
         /// <inheritdoc cref="Flow.FromNanolitersPerMinute(UnitsNet.QuantityValue)" />
         public static Flow NanolitersPerMinute<T>(this T value) => Flow.FromNanolitersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Flow.FromNanolitersPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? NanolitersPerMinute<T>(this T? value) where T : struct => Flow.FromNanolitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region OilBarrelsPerDay
 
         /// <inheritdoc cref="Flow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow OilBarrelsPerDay<T>(this T value) => Flow.FromOilBarrelsPerDay(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Flow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? OilBarrelsPerDay<T>(this T? value) where T : struct => Flow.FromOilBarrelsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region UsGallonsPerHour
-
         /// <inheritdoc cref="Flow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow UsGallonsPerHour<T>(this T value) => Flow.FromUsGallonsPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Flow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? UsGallonsPerHour<T>(this T? value) where T : struct => Flow.FromUsGallonsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region UsGallonsPerMinute
 
         /// <inheritdoc cref="Flow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow UsGallonsPerMinute<T>(this T value) => Flow.FromUsGallonsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Flow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? UsGallonsPerMinute<T>(this T? value) where T : struct => Flow.FromUsGallonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region UsGallonsPerSecond
-
         /// <inheritdoc cref="Flow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow UsGallonsPerSecond<T>(this T value) => Flow.FromUsGallonsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Flow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Flow? UsGallonsPerSecond<T>(this T? value) where T : struct => Flow.FromUsGallonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

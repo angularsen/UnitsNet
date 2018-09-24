@@ -44,71 +44,23 @@ namespace UnitsNet.Extensions.NumberToAreaMomentOfInertia
 {
     public static class NumberToAreaMomentOfInertiaExtensions
     {
-        #region CentimeterToTheFourth
-
         /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
         public static AreaMomentOfInertia CentimetersToTheFourth<T>(this T value) => AreaMomentOfInertia.FromCentimetersToTheFourth(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static AreaMomentOfInertia? CentimetersToTheFourth<T>(this T? value) where T : struct => AreaMomentOfInertia.FromCentimetersToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DecimeterToTheFourth
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
         public static AreaMomentOfInertia DecimetersToTheFourth<T>(this T value) => AreaMomentOfInertia.FromDecimetersToTheFourth(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static AreaMomentOfInertia? DecimetersToTheFourth<T>(this T? value) where T : struct => AreaMomentOfInertia.FromDecimetersToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region FootToTheFourth
-
         /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
         public static AreaMomentOfInertia FeetToTheFourth<T>(this T value) => AreaMomentOfInertia.FromFeetToTheFourth(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static AreaMomentOfInertia? FeetToTheFourth<T>(this T? value) where T : struct => AreaMomentOfInertia.FromFeetToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region InchToTheFourth
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
         public static AreaMomentOfInertia InchesToTheFourth<T>(this T value) => AreaMomentOfInertia.FromInchesToTheFourth(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static AreaMomentOfInertia? InchesToTheFourth<T>(this T? value) where T : struct => AreaMomentOfInertia.FromInchesToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MeterToTheFourth
-
         /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
         public static AreaMomentOfInertia MetersToTheFourth<T>(this T value) => AreaMomentOfInertia.FromMetersToTheFourth(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static AreaMomentOfInertia? MetersToTheFourth<T>(this T? value) where T : struct => AreaMomentOfInertia.FromMetersToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MillimeterToTheFourth
-
         /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
         public static AreaMomentOfInertia MillimetersToTheFourth<T>(this T value) => AreaMomentOfInertia.FromMillimetersToTheFourth(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static AreaMomentOfInertia? MillimetersToTheFourth<T>(this T? value) where T : struct => AreaMomentOfInertia.FromMillimetersToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

@@ -60,40 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable ThermalConductivity from nullable BtusPerHourFootFahrenheit.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ThermalConductivity? FromBtusPerHourFootFahrenheit(QuantityValue? btusperhourfootfahrenheit)
-        {
-            return btusperhourfootfahrenheit.HasValue ? FromBtusPerHourFootFahrenheit(btusperhourfootfahrenheit.Value) : default(ThermalConductivity?);
-        }
-
-        /// <summary>
-        ///     Get nullable ThermalConductivity from nullable WattsPerMeterKelvin.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ThermalConductivity? FromWattsPerMeterKelvin(QuantityValue? wattspermeterkelvin)
-        {
-            return wattspermeterkelvin.HasValue ? FromWattsPerMeterKelvin(wattspermeterkelvin.Value) : default(ThermalConductivity?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ThermalConductivityUnit" /> to <see cref="ThermalConductivity" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ThermalConductivity unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ThermalConductivity? From(QuantityValue? value, ThermalConductivityUnit fromUnit)
-        {
-            return value.HasValue ? new ThermalConductivity((double)value.Value, fromUnit) : default(ThermalConductivity?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

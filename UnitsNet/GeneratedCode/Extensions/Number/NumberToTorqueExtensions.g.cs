@@ -44,236 +44,68 @@ namespace UnitsNet.Extensions.NumberToTorque
 {
     public static class NumberToTorqueExtensions
     {
-        #region KilogramForceCentimeter
-
         /// <inheritdoc cref="Torque.FromKilogramForceCentimeters(UnitsNet.QuantityValue)" />
         public static Torque KilogramForceCentimeters<T>(this T value) => Torque.FromKilogramForceCentimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Torque.FromKilogramForceCentimeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? KilogramForceCentimeters<T>(this T? value) where T : struct => Torque.FromKilogramForceCentimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilogramForceMeter
 
         /// <inheritdoc cref="Torque.FromKilogramForceMeters(UnitsNet.QuantityValue)" />
         public static Torque KilogramForceMeters<T>(this T value) => Torque.FromKilogramForceMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Torque.FromKilogramForceMeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? KilogramForceMeters<T>(this T? value) where T : struct => Torque.FromKilogramForceMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilogramForceMillimeter
-
         /// <inheritdoc cref="Torque.FromKilogramForceMillimeters(UnitsNet.QuantityValue)" />
         public static Torque KilogramForceMillimeters<T>(this T value) => Torque.FromKilogramForceMillimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Torque.FromKilogramForceMillimeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? KilogramForceMillimeters<T>(this T? value) where T : struct => Torque.FromKilogramForceMillimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilonewtonCentimeter
 
         /// <inheritdoc cref="Torque.FromKilonewtonCentimeters(UnitsNet.QuantityValue)" />
         public static Torque KilonewtonCentimeters<T>(this T value) => Torque.FromKilonewtonCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Torque.FromKilonewtonCentimeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? KilonewtonCentimeters<T>(this T? value) where T : struct => Torque.FromKilonewtonCentimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilonewtonMeter
-
         /// <inheritdoc cref="Torque.FromKilonewtonMeters(UnitsNet.QuantityValue)" />
         public static Torque KilonewtonMeters<T>(this T value) => Torque.FromKilonewtonMeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Torque.FromKilonewtonMeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? KilonewtonMeters<T>(this T? value) where T : struct => Torque.FromKilonewtonMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilonewtonMillimeter
 
         /// <inheritdoc cref="Torque.FromKilonewtonMillimeters(UnitsNet.QuantityValue)" />
         public static Torque KilonewtonMillimeters<T>(this T value) => Torque.FromKilonewtonMillimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Torque.FromKilonewtonMillimeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? KilonewtonMillimeters<T>(this T? value) where T : struct => Torque.FromKilonewtonMillimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilopoundForceFoot
-
         /// <inheritdoc cref="Torque.FromKilopoundForceFeet(UnitsNet.QuantityValue)" />
         public static Torque KilopoundForceFeet<T>(this T value) => Torque.FromKilopoundForceFeet(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Torque.FromKilopoundForceFeet(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? KilopoundForceFeet<T>(this T? value) where T : struct => Torque.FromKilopoundForceFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilopoundForceInch
 
         /// <inheritdoc cref="Torque.FromKilopoundForceInches(UnitsNet.QuantityValue)" />
         public static Torque KilopoundForceInches<T>(this T value) => Torque.FromKilopoundForceInches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Torque.FromKilopoundForceInches(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? KilopoundForceInches<T>(this T? value) where T : struct => Torque.FromKilopoundForceInches(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MeganewtonCentimeter
-
         /// <inheritdoc cref="Torque.FromMeganewtonCentimeters(UnitsNet.QuantityValue)" />
         public static Torque MeganewtonCentimeters<T>(this T value) => Torque.FromMeganewtonCentimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Torque.FromMeganewtonCentimeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? MeganewtonCentimeters<T>(this T? value) where T : struct => Torque.FromMeganewtonCentimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MeganewtonMeter
 
         /// <inheritdoc cref="Torque.FromMeganewtonMeters(UnitsNet.QuantityValue)" />
         public static Torque MeganewtonMeters<T>(this T value) => Torque.FromMeganewtonMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Torque.FromMeganewtonMeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? MeganewtonMeters<T>(this T? value) where T : struct => Torque.FromMeganewtonMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MeganewtonMillimeter
-
         /// <inheritdoc cref="Torque.FromMeganewtonMillimeters(UnitsNet.QuantityValue)" />
         public static Torque MeganewtonMillimeters<T>(this T value) => Torque.FromMeganewtonMillimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Torque.FromMeganewtonMillimeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? MeganewtonMillimeters<T>(this T? value) where T : struct => Torque.FromMeganewtonMillimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MegapoundForceFoot
 
         /// <inheritdoc cref="Torque.FromMegapoundForceFeet(UnitsNet.QuantityValue)" />
         public static Torque MegapoundForceFeet<T>(this T value) => Torque.FromMegapoundForceFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Torque.FromMegapoundForceFeet(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? MegapoundForceFeet<T>(this T? value) where T : struct => Torque.FromMegapoundForceFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MegapoundForceInch
-
         /// <inheritdoc cref="Torque.FromMegapoundForceInches(UnitsNet.QuantityValue)" />
         public static Torque MegapoundForceInches<T>(this T value) => Torque.FromMegapoundForceInches(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Torque.FromMegapoundForceInches(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? MegapoundForceInches<T>(this T? value) where T : struct => Torque.FromMegapoundForceInches(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region NewtonCentimeter
 
         /// <inheritdoc cref="Torque.FromNewtonCentimeters(UnitsNet.QuantityValue)" />
         public static Torque NewtonCentimeters<T>(this T value) => Torque.FromNewtonCentimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Torque.FromNewtonCentimeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? NewtonCentimeters<T>(this T? value) where T : struct => Torque.FromNewtonCentimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region NewtonMeter
-
         /// <inheritdoc cref="Torque.FromNewtonMeters(UnitsNet.QuantityValue)" />
         public static Torque NewtonMeters<T>(this T value) => Torque.FromNewtonMeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Torque.FromNewtonMeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? NewtonMeters<T>(this T? value) where T : struct => Torque.FromNewtonMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region NewtonMillimeter
 
         /// <inheritdoc cref="Torque.FromNewtonMillimeters(UnitsNet.QuantityValue)" />
         public static Torque NewtonMillimeters<T>(this T value) => Torque.FromNewtonMillimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Torque.FromNewtonMillimeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? NewtonMillimeters<T>(this T? value) where T : struct => Torque.FromNewtonMillimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region PoundForceFoot
-
         /// <inheritdoc cref="Torque.FromPoundForceFeet(UnitsNet.QuantityValue)" />
         public static Torque PoundForceFeet<T>(this T value) => Torque.FromPoundForceFeet(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Torque.FromPoundForceFeet(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? PoundForceFeet<T>(this T? value) where T : struct => Torque.FromPoundForceFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region PoundForceInch
 
         /// <inheritdoc cref="Torque.FromPoundForceInches(UnitsNet.QuantityValue)" />
         public static Torque PoundForceInches<T>(this T value) => Torque.FromPoundForceInches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Torque.FromPoundForceInches(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? PoundForceInches<T>(this T? value) where T : struct => Torque.FromPoundForceInches(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region TonneForceCentimeter
-
         /// <inheritdoc cref="Torque.FromTonneForceCentimeters(UnitsNet.QuantityValue)" />
         public static Torque TonneForceCentimeters<T>(this T value) => Torque.FromTonneForceCentimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Torque.FromTonneForceCentimeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? TonneForceCentimeters<T>(this T? value) where T : struct => Torque.FromTonneForceCentimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region TonneForceMeter
 
         /// <inheritdoc cref="Torque.FromTonneForceMeters(UnitsNet.QuantityValue)" />
         public static Torque TonneForceMeters<T>(this T value) => Torque.FromTonneForceMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Torque.FromTonneForceMeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? TonneForceMeters<T>(this T? value) where T : struct => Torque.FromTonneForceMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region TonneForceMillimeter
-
         /// <inheritdoc cref="Torque.FromTonneForceMillimeters(UnitsNet.QuantityValue)" />
         public static Torque TonneForceMillimeters<T>(this T value) => Torque.FromTonneForceMillimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Torque.FromTonneForceMillimeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Torque? TonneForceMillimeters<T>(this T? value) where T : struct => Torque.FromTonneForceMillimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

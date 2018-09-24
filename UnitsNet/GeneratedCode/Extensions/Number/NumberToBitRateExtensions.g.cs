@@ -44,291 +44,83 @@ namespace UnitsNet.Extensions.NumberToBitRate
 {
     public static class NumberToBitRateExtensions
     {
-        #region BitPerSecond
-
         /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate BitsPerSecond<T>(this T value) => BitRate.FromBitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? BitsPerSecond<T>(this T? value) where T : struct => BitRate.FromBitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region BytePerSecond
 
         /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate BytesPerSecond<T>(this T value) => BitRate.FromBytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? BytesPerSecond<T>(this T? value) where T : struct => BitRate.FromBytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region ExabitPerSecond
-
         /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate ExabitsPerSecond<T>(this T value) => BitRate.FromExabitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? ExabitsPerSecond<T>(this T? value) where T : struct => BitRate.FromExabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region ExabytePerSecond
 
         /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate ExabytesPerSecond<T>(this T value) => BitRate.FromExabytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? ExabytesPerSecond<T>(this T? value) where T : struct => BitRate.FromExabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region ExbibitPerSecond
-
         /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate ExbibitsPerSecond<T>(this T value) => BitRate.FromExbibitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? ExbibitsPerSecond<T>(this T? value) where T : struct => BitRate.FromExbibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region ExbibytePerSecond
 
         /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate ExbibytesPerSecond<T>(this T value) => BitRate.FromExbibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? ExbibytesPerSecond<T>(this T? value) where T : struct => BitRate.FromExbibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region GibibitPerSecond
-
         /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate GibibitsPerSecond<T>(this T value) => BitRate.FromGibibitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? GibibitsPerSecond<T>(this T? value) where T : struct => BitRate.FromGibibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region GibibytePerSecond
 
         /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate GibibytesPerSecond<T>(this T value) => BitRate.FromGibibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? GibibytesPerSecond<T>(this T? value) where T : struct => BitRate.FromGibibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region GigabitPerSecond
-
         /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate GigabitsPerSecond<T>(this T value) => BitRate.FromGigabitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? GigabitsPerSecond<T>(this T? value) where T : struct => BitRate.FromGigabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region GigabytePerSecond
 
         /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate GigabytesPerSecond<T>(this T value) => BitRate.FromGigabytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? GigabytesPerSecond<T>(this T? value) where T : struct => BitRate.FromGigabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KibibitPerSecond
-
         /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate KibibitsPerSecond<T>(this T value) => BitRate.FromKibibitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? KibibitsPerSecond<T>(this T? value) where T : struct => BitRate.FromKibibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KibibytePerSecond
 
         /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate KibibytesPerSecond<T>(this T value) => BitRate.FromKibibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? KibibytesPerSecond<T>(this T? value) where T : struct => BitRate.FromKibibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilobitPerSecond
-
         /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate KilobitsPerSecond<T>(this T value) => BitRate.FromKilobitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? KilobitsPerSecond<T>(this T? value) where T : struct => BitRate.FromKilobitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilobytePerSecond
 
         /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate KilobytesPerSecond<T>(this T value) => BitRate.FromKilobytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? KilobytesPerSecond<T>(this T? value) where T : struct => BitRate.FromKilobytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MebibitPerSecond
-
         /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate MebibitsPerSecond<T>(this T value) => BitRate.FromMebibitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? MebibitsPerSecond<T>(this T? value) where T : struct => BitRate.FromMebibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MebibytePerSecond
 
         /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate MebibytesPerSecond<T>(this T value) => BitRate.FromMebibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? MebibytesPerSecond<T>(this T? value) where T : struct => BitRate.FromMebibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MegabitPerSecond
-
         /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate MegabitsPerSecond<T>(this T value) => BitRate.FromMegabitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? MegabitsPerSecond<T>(this T? value) where T : struct => BitRate.FromMegabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MegabytePerSecond
 
         /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate MegabytesPerSecond<T>(this T value) => BitRate.FromMegabytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? MegabytesPerSecond<T>(this T? value) where T : struct => BitRate.FromMegabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region PebibitPerSecond
-
         /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate PebibitsPerSecond<T>(this T value) => BitRate.FromPebibitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? PebibitsPerSecond<T>(this T? value) where T : struct => BitRate.FromPebibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region PebibytePerSecond
 
         /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate PebibytesPerSecond<T>(this T value) => BitRate.FromPebibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? PebibytesPerSecond<T>(this T? value) where T : struct => BitRate.FromPebibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region PetabitPerSecond
-
         /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate PetabitsPerSecond<T>(this T value) => BitRate.FromPetabitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? PetabitsPerSecond<T>(this T? value) where T : struct => BitRate.FromPetabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region PetabytePerSecond
 
         /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate PetabytesPerSecond<T>(this T value) => BitRate.FromPetabytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? PetabytesPerSecond<T>(this T? value) where T : struct => BitRate.FromPetabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region TebibitPerSecond
-
         /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate TebibitsPerSecond<T>(this T value) => BitRate.FromTebibitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? TebibitsPerSecond<T>(this T? value) where T : struct => BitRate.FromTebibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region TebibytePerSecond
 
         /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate TebibytesPerSecond<T>(this T value) => BitRate.FromTebibytesPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? TebibytesPerSecond<T>(this T? value) where T : struct => BitRate.FromTebibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region TerabitPerSecond
-
         /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate TerabitsPerSecond<T>(this T value) => BitRate.FromTerabitsPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? TerabitsPerSecond<T>(this T? value) where T : struct => BitRate.FromTerabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region TerabytePerSecond
-
         /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
         public static BitRate TerabytesPerSecond<T>(this T value) => BitRate.FromTerabytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? TerabytesPerSecond<T>(this T? value) where T : struct => BitRate.FromTerabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }
