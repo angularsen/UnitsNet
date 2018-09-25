@@ -47,34 +47,10 @@ namespace UnitsNet.Extensions.NumberToMagnetization
         #region AmperePerMeter
 
         /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(UnitsNet.QuantityValue)" />
-        public static Magnetization AmperesPerMeter(this int value) => Magnetization.FromAmperesPerMeter(value);
+        public static Magnetization AmperesPerMeter<T>(this T value) => Magnetization.FromAmperesPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(UnitsNet.QuantityValue)" />
-        public static Magnetization? AmperesPerMeter(this int? value) => Magnetization.FromAmperesPerMeter(value);
-
-        /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(UnitsNet.QuantityValue)" />
-        public static Magnetization AmperesPerMeter(this long value) => Magnetization.FromAmperesPerMeter(value);
-
-        /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(UnitsNet.QuantityValue)" />
-        public static Magnetization? AmperesPerMeter(this long? value) => Magnetization.FromAmperesPerMeter(value);
-
-        /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(UnitsNet.QuantityValue)" />
-        public static Magnetization AmperesPerMeter(this double value) => Magnetization.FromAmperesPerMeter(value);
-
-        /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(UnitsNet.QuantityValue)" />
-        public static Magnetization? AmperesPerMeter(this double? value) => Magnetization.FromAmperesPerMeter(value);
-
-        /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(UnitsNet.QuantityValue)" />
-        public static Magnetization AmperesPerMeter(this float value) => Magnetization.FromAmperesPerMeter(value);
-
-        /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(UnitsNet.QuantityValue)" />
-        public static Magnetization? AmperesPerMeter(this float? value) => Magnetization.FromAmperesPerMeter(value);
-
-        /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(UnitsNet.QuantityValue)" />
-        public static Magnetization AmperesPerMeter(this decimal value) => Magnetization.FromAmperesPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Magnetization.FromAmperesPerMeter(UnitsNet.QuantityValue)" />
-        public static Magnetization? AmperesPerMeter(this decimal? value) => Magnetization.FromAmperesPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Magnetization? AmperesPerMeter<T>(this T? value) where T : struct => Magnetization.FromAmperesPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

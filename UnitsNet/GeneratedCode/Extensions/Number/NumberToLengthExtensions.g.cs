@@ -47,748 +47,220 @@ namespace UnitsNet.Extensions.NumberToLength
         #region Centimeter
 
         /// <inheritdoc cref="Length.FromCentimeters(UnitsNet.QuantityValue)" />
-        public static Length Centimeters(this int value) => Length.FromCentimeters(value);
+        public static Length Centimeters<T>(this T value) => Length.FromCentimeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromCentimeters(UnitsNet.QuantityValue)" />
-        public static Length? Centimeters(this int? value) => Length.FromCentimeters(value);
-
-        /// <inheritdoc cref="Length.FromCentimeters(UnitsNet.QuantityValue)" />
-        public static Length Centimeters(this long value) => Length.FromCentimeters(value);
-
-        /// <inheritdoc cref="Length.FromCentimeters(UnitsNet.QuantityValue)" />
-        public static Length? Centimeters(this long? value) => Length.FromCentimeters(value);
-
-        /// <inheritdoc cref="Length.FromCentimeters(UnitsNet.QuantityValue)" />
-        public static Length Centimeters(this double value) => Length.FromCentimeters(value);
-
-        /// <inheritdoc cref="Length.FromCentimeters(UnitsNet.QuantityValue)" />
-        public static Length? Centimeters(this double? value) => Length.FromCentimeters(value);
-
-        /// <inheritdoc cref="Length.FromCentimeters(UnitsNet.QuantityValue)" />
-        public static Length Centimeters(this float value) => Length.FromCentimeters(value);
-
-        /// <inheritdoc cref="Length.FromCentimeters(UnitsNet.QuantityValue)" />
-        public static Length? Centimeters(this float? value) => Length.FromCentimeters(value);
-
-        /// <inheritdoc cref="Length.FromCentimeters(UnitsNet.QuantityValue)" />
-        public static Length Centimeters(this decimal value) => Length.FromCentimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromCentimeters(UnitsNet.QuantityValue)" />
-        public static Length? Centimeters(this decimal? value) => Length.FromCentimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Centimeters<T>(this T? value) where T : struct => Length.FromCentimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Decimeter
 
         /// <inheritdoc cref="Length.FromDecimeters(UnitsNet.QuantityValue)" />
-        public static Length Decimeters(this int value) => Length.FromDecimeters(value);
+        public static Length Decimeters<T>(this T value) => Length.FromDecimeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromDecimeters(UnitsNet.QuantityValue)" />
-        public static Length? Decimeters(this int? value) => Length.FromDecimeters(value);
-
-        /// <inheritdoc cref="Length.FromDecimeters(UnitsNet.QuantityValue)" />
-        public static Length Decimeters(this long value) => Length.FromDecimeters(value);
-
-        /// <inheritdoc cref="Length.FromDecimeters(UnitsNet.QuantityValue)" />
-        public static Length? Decimeters(this long? value) => Length.FromDecimeters(value);
-
-        /// <inheritdoc cref="Length.FromDecimeters(UnitsNet.QuantityValue)" />
-        public static Length Decimeters(this double value) => Length.FromDecimeters(value);
-
-        /// <inheritdoc cref="Length.FromDecimeters(UnitsNet.QuantityValue)" />
-        public static Length? Decimeters(this double? value) => Length.FromDecimeters(value);
-
-        /// <inheritdoc cref="Length.FromDecimeters(UnitsNet.QuantityValue)" />
-        public static Length Decimeters(this float value) => Length.FromDecimeters(value);
-
-        /// <inheritdoc cref="Length.FromDecimeters(UnitsNet.QuantityValue)" />
-        public static Length? Decimeters(this float? value) => Length.FromDecimeters(value);
-
-        /// <inheritdoc cref="Length.FromDecimeters(UnitsNet.QuantityValue)" />
-        public static Length Decimeters(this decimal value) => Length.FromDecimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromDecimeters(UnitsNet.QuantityValue)" />
-        public static Length? Decimeters(this decimal? value) => Length.FromDecimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Decimeters<T>(this T? value) where T : struct => Length.FromDecimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DtpPica
 
         /// <inheritdoc cref="Length.FromDtpPicas(UnitsNet.QuantityValue)" />
-        public static Length DtpPicas(this int value) => Length.FromDtpPicas(value);
+        public static Length DtpPicas<T>(this T value) => Length.FromDtpPicas(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromDtpPicas(UnitsNet.QuantityValue)" />
-        public static Length? DtpPicas(this int? value) => Length.FromDtpPicas(value);
-
-        /// <inheritdoc cref="Length.FromDtpPicas(UnitsNet.QuantityValue)" />
-        public static Length DtpPicas(this long value) => Length.FromDtpPicas(value);
-
-        /// <inheritdoc cref="Length.FromDtpPicas(UnitsNet.QuantityValue)" />
-        public static Length? DtpPicas(this long? value) => Length.FromDtpPicas(value);
-
-        /// <inheritdoc cref="Length.FromDtpPicas(UnitsNet.QuantityValue)" />
-        public static Length DtpPicas(this double value) => Length.FromDtpPicas(value);
-
-        /// <inheritdoc cref="Length.FromDtpPicas(UnitsNet.QuantityValue)" />
-        public static Length? DtpPicas(this double? value) => Length.FromDtpPicas(value);
-
-        /// <inheritdoc cref="Length.FromDtpPicas(UnitsNet.QuantityValue)" />
-        public static Length DtpPicas(this float value) => Length.FromDtpPicas(value);
-
-        /// <inheritdoc cref="Length.FromDtpPicas(UnitsNet.QuantityValue)" />
-        public static Length? DtpPicas(this float? value) => Length.FromDtpPicas(value);
-
-        /// <inheritdoc cref="Length.FromDtpPicas(UnitsNet.QuantityValue)" />
-        public static Length DtpPicas(this decimal value) => Length.FromDtpPicas(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromDtpPicas(UnitsNet.QuantityValue)" />
-        public static Length? DtpPicas(this decimal? value) => Length.FromDtpPicas(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? DtpPicas<T>(this T? value) where T : struct => Length.FromDtpPicas(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DtpPoint
 
         /// <inheritdoc cref="Length.FromDtpPoints(UnitsNet.QuantityValue)" />
-        public static Length DtpPoints(this int value) => Length.FromDtpPoints(value);
+        public static Length DtpPoints<T>(this T value) => Length.FromDtpPoints(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromDtpPoints(UnitsNet.QuantityValue)" />
-        public static Length? DtpPoints(this int? value) => Length.FromDtpPoints(value);
-
-        /// <inheritdoc cref="Length.FromDtpPoints(UnitsNet.QuantityValue)" />
-        public static Length DtpPoints(this long value) => Length.FromDtpPoints(value);
-
-        /// <inheritdoc cref="Length.FromDtpPoints(UnitsNet.QuantityValue)" />
-        public static Length? DtpPoints(this long? value) => Length.FromDtpPoints(value);
-
-        /// <inheritdoc cref="Length.FromDtpPoints(UnitsNet.QuantityValue)" />
-        public static Length DtpPoints(this double value) => Length.FromDtpPoints(value);
-
-        /// <inheritdoc cref="Length.FromDtpPoints(UnitsNet.QuantityValue)" />
-        public static Length? DtpPoints(this double? value) => Length.FromDtpPoints(value);
-
-        /// <inheritdoc cref="Length.FromDtpPoints(UnitsNet.QuantityValue)" />
-        public static Length DtpPoints(this float value) => Length.FromDtpPoints(value);
-
-        /// <inheritdoc cref="Length.FromDtpPoints(UnitsNet.QuantityValue)" />
-        public static Length? DtpPoints(this float? value) => Length.FromDtpPoints(value);
-
-        /// <inheritdoc cref="Length.FromDtpPoints(UnitsNet.QuantityValue)" />
-        public static Length DtpPoints(this decimal value) => Length.FromDtpPoints(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromDtpPoints(UnitsNet.QuantityValue)" />
-        public static Length? DtpPoints(this decimal? value) => Length.FromDtpPoints(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? DtpPoints<T>(this T? value) where T : struct => Length.FromDtpPoints(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Fathom
 
         /// <inheritdoc cref="Length.FromFathoms(UnitsNet.QuantityValue)" />
-        public static Length Fathoms(this int value) => Length.FromFathoms(value);
+        public static Length Fathoms<T>(this T value) => Length.FromFathoms(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromFathoms(UnitsNet.QuantityValue)" />
-        public static Length? Fathoms(this int? value) => Length.FromFathoms(value);
-
-        /// <inheritdoc cref="Length.FromFathoms(UnitsNet.QuantityValue)" />
-        public static Length Fathoms(this long value) => Length.FromFathoms(value);
-
-        /// <inheritdoc cref="Length.FromFathoms(UnitsNet.QuantityValue)" />
-        public static Length? Fathoms(this long? value) => Length.FromFathoms(value);
-
-        /// <inheritdoc cref="Length.FromFathoms(UnitsNet.QuantityValue)" />
-        public static Length Fathoms(this double value) => Length.FromFathoms(value);
-
-        /// <inheritdoc cref="Length.FromFathoms(UnitsNet.QuantityValue)" />
-        public static Length? Fathoms(this double? value) => Length.FromFathoms(value);
-
-        /// <inheritdoc cref="Length.FromFathoms(UnitsNet.QuantityValue)" />
-        public static Length Fathoms(this float value) => Length.FromFathoms(value);
-
-        /// <inheritdoc cref="Length.FromFathoms(UnitsNet.QuantityValue)" />
-        public static Length? Fathoms(this float? value) => Length.FromFathoms(value);
-
-        /// <inheritdoc cref="Length.FromFathoms(UnitsNet.QuantityValue)" />
-        public static Length Fathoms(this decimal value) => Length.FromFathoms(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromFathoms(UnitsNet.QuantityValue)" />
-        public static Length? Fathoms(this decimal? value) => Length.FromFathoms(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Fathoms<T>(this T? value) where T : struct => Length.FromFathoms(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Foot
 
         /// <inheritdoc cref="Length.FromFeet(UnitsNet.QuantityValue)" />
-        public static Length Feet(this int value) => Length.FromFeet(value);
+        public static Length Feet<T>(this T value) => Length.FromFeet(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromFeet(UnitsNet.QuantityValue)" />
-        public static Length? Feet(this int? value) => Length.FromFeet(value);
-
-        /// <inheritdoc cref="Length.FromFeet(UnitsNet.QuantityValue)" />
-        public static Length Feet(this long value) => Length.FromFeet(value);
-
-        /// <inheritdoc cref="Length.FromFeet(UnitsNet.QuantityValue)" />
-        public static Length? Feet(this long? value) => Length.FromFeet(value);
-
-        /// <inheritdoc cref="Length.FromFeet(UnitsNet.QuantityValue)" />
-        public static Length Feet(this double value) => Length.FromFeet(value);
-
-        /// <inheritdoc cref="Length.FromFeet(UnitsNet.QuantityValue)" />
-        public static Length? Feet(this double? value) => Length.FromFeet(value);
-
-        /// <inheritdoc cref="Length.FromFeet(UnitsNet.QuantityValue)" />
-        public static Length Feet(this float value) => Length.FromFeet(value);
-
-        /// <inheritdoc cref="Length.FromFeet(UnitsNet.QuantityValue)" />
-        public static Length? Feet(this float? value) => Length.FromFeet(value);
-
-        /// <inheritdoc cref="Length.FromFeet(UnitsNet.QuantityValue)" />
-        public static Length Feet(this decimal value) => Length.FromFeet(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromFeet(UnitsNet.QuantityValue)" />
-        public static Length? Feet(this decimal? value) => Length.FromFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Feet<T>(this T? value) where T : struct => Length.FromFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Inch
 
         /// <inheritdoc cref="Length.FromInches(UnitsNet.QuantityValue)" />
-        public static Length Inches(this int value) => Length.FromInches(value);
+        public static Length Inches<T>(this T value) => Length.FromInches(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromInches(UnitsNet.QuantityValue)" />
-        public static Length? Inches(this int? value) => Length.FromInches(value);
-
-        /// <inheritdoc cref="Length.FromInches(UnitsNet.QuantityValue)" />
-        public static Length Inches(this long value) => Length.FromInches(value);
-
-        /// <inheritdoc cref="Length.FromInches(UnitsNet.QuantityValue)" />
-        public static Length? Inches(this long? value) => Length.FromInches(value);
-
-        /// <inheritdoc cref="Length.FromInches(UnitsNet.QuantityValue)" />
-        public static Length Inches(this double value) => Length.FromInches(value);
-
-        /// <inheritdoc cref="Length.FromInches(UnitsNet.QuantityValue)" />
-        public static Length? Inches(this double? value) => Length.FromInches(value);
-
-        /// <inheritdoc cref="Length.FromInches(UnitsNet.QuantityValue)" />
-        public static Length Inches(this float value) => Length.FromInches(value);
-
-        /// <inheritdoc cref="Length.FromInches(UnitsNet.QuantityValue)" />
-        public static Length? Inches(this float? value) => Length.FromInches(value);
-
-        /// <inheritdoc cref="Length.FromInches(UnitsNet.QuantityValue)" />
-        public static Length Inches(this decimal value) => Length.FromInches(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromInches(UnitsNet.QuantityValue)" />
-        public static Length? Inches(this decimal? value) => Length.FromInches(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Inches<T>(this T? value) where T : struct => Length.FromInches(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Kilometer
 
         /// <inheritdoc cref="Length.FromKilometers(UnitsNet.QuantityValue)" />
-        public static Length Kilometers(this int value) => Length.FromKilometers(value);
+        public static Length Kilometers<T>(this T value) => Length.FromKilometers(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromKilometers(UnitsNet.QuantityValue)" />
-        public static Length? Kilometers(this int? value) => Length.FromKilometers(value);
-
-        /// <inheritdoc cref="Length.FromKilometers(UnitsNet.QuantityValue)" />
-        public static Length Kilometers(this long value) => Length.FromKilometers(value);
-
-        /// <inheritdoc cref="Length.FromKilometers(UnitsNet.QuantityValue)" />
-        public static Length? Kilometers(this long? value) => Length.FromKilometers(value);
-
-        /// <inheritdoc cref="Length.FromKilometers(UnitsNet.QuantityValue)" />
-        public static Length Kilometers(this double value) => Length.FromKilometers(value);
-
-        /// <inheritdoc cref="Length.FromKilometers(UnitsNet.QuantityValue)" />
-        public static Length? Kilometers(this double? value) => Length.FromKilometers(value);
-
-        /// <inheritdoc cref="Length.FromKilometers(UnitsNet.QuantityValue)" />
-        public static Length Kilometers(this float value) => Length.FromKilometers(value);
-
-        /// <inheritdoc cref="Length.FromKilometers(UnitsNet.QuantityValue)" />
-        public static Length? Kilometers(this float? value) => Length.FromKilometers(value);
-
-        /// <inheritdoc cref="Length.FromKilometers(UnitsNet.QuantityValue)" />
-        public static Length Kilometers(this decimal value) => Length.FromKilometers(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromKilometers(UnitsNet.QuantityValue)" />
-        public static Length? Kilometers(this decimal? value) => Length.FromKilometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Kilometers<T>(this T? value) where T : struct => Length.FromKilometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Meter
 
         /// <inheritdoc cref="Length.FromMeters(UnitsNet.QuantityValue)" />
-        public static Length Meters(this int value) => Length.FromMeters(value);
+        public static Length Meters<T>(this T value) => Length.FromMeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromMeters(UnitsNet.QuantityValue)" />
-        public static Length? Meters(this int? value) => Length.FromMeters(value);
-
-        /// <inheritdoc cref="Length.FromMeters(UnitsNet.QuantityValue)" />
-        public static Length Meters(this long value) => Length.FromMeters(value);
-
-        /// <inheritdoc cref="Length.FromMeters(UnitsNet.QuantityValue)" />
-        public static Length? Meters(this long? value) => Length.FromMeters(value);
-
-        /// <inheritdoc cref="Length.FromMeters(UnitsNet.QuantityValue)" />
-        public static Length Meters(this double value) => Length.FromMeters(value);
-
-        /// <inheritdoc cref="Length.FromMeters(UnitsNet.QuantityValue)" />
-        public static Length? Meters(this double? value) => Length.FromMeters(value);
-
-        /// <inheritdoc cref="Length.FromMeters(UnitsNet.QuantityValue)" />
-        public static Length Meters(this float value) => Length.FromMeters(value);
-
-        /// <inheritdoc cref="Length.FromMeters(UnitsNet.QuantityValue)" />
-        public static Length? Meters(this float? value) => Length.FromMeters(value);
-
-        /// <inheritdoc cref="Length.FromMeters(UnitsNet.QuantityValue)" />
-        public static Length Meters(this decimal value) => Length.FromMeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromMeters(UnitsNet.QuantityValue)" />
-        public static Length? Meters(this decimal? value) => Length.FromMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Meters<T>(this T? value) where T : struct => Length.FromMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Microinch
 
         /// <inheritdoc cref="Length.FromMicroinches(UnitsNet.QuantityValue)" />
-        public static Length Microinches(this int value) => Length.FromMicroinches(value);
+        public static Length Microinches<T>(this T value) => Length.FromMicroinches(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromMicroinches(UnitsNet.QuantityValue)" />
-        public static Length? Microinches(this int? value) => Length.FromMicroinches(value);
-
-        /// <inheritdoc cref="Length.FromMicroinches(UnitsNet.QuantityValue)" />
-        public static Length Microinches(this long value) => Length.FromMicroinches(value);
-
-        /// <inheritdoc cref="Length.FromMicroinches(UnitsNet.QuantityValue)" />
-        public static Length? Microinches(this long? value) => Length.FromMicroinches(value);
-
-        /// <inheritdoc cref="Length.FromMicroinches(UnitsNet.QuantityValue)" />
-        public static Length Microinches(this double value) => Length.FromMicroinches(value);
-
-        /// <inheritdoc cref="Length.FromMicroinches(UnitsNet.QuantityValue)" />
-        public static Length? Microinches(this double? value) => Length.FromMicroinches(value);
-
-        /// <inheritdoc cref="Length.FromMicroinches(UnitsNet.QuantityValue)" />
-        public static Length Microinches(this float value) => Length.FromMicroinches(value);
-
-        /// <inheritdoc cref="Length.FromMicroinches(UnitsNet.QuantityValue)" />
-        public static Length? Microinches(this float? value) => Length.FromMicroinches(value);
-
-        /// <inheritdoc cref="Length.FromMicroinches(UnitsNet.QuantityValue)" />
-        public static Length Microinches(this decimal value) => Length.FromMicroinches(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromMicroinches(UnitsNet.QuantityValue)" />
-        public static Length? Microinches(this decimal? value) => Length.FromMicroinches(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Microinches<T>(this T? value) where T : struct => Length.FromMicroinches(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Micrometer
 
         /// <inheritdoc cref="Length.FromMicrometers(UnitsNet.QuantityValue)" />
-        public static Length Micrometers(this int value) => Length.FromMicrometers(value);
+        public static Length Micrometers<T>(this T value) => Length.FromMicrometers(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromMicrometers(UnitsNet.QuantityValue)" />
-        public static Length? Micrometers(this int? value) => Length.FromMicrometers(value);
-
-        /// <inheritdoc cref="Length.FromMicrometers(UnitsNet.QuantityValue)" />
-        public static Length Micrometers(this long value) => Length.FromMicrometers(value);
-
-        /// <inheritdoc cref="Length.FromMicrometers(UnitsNet.QuantityValue)" />
-        public static Length? Micrometers(this long? value) => Length.FromMicrometers(value);
-
-        /// <inheritdoc cref="Length.FromMicrometers(UnitsNet.QuantityValue)" />
-        public static Length Micrometers(this double value) => Length.FromMicrometers(value);
-
-        /// <inheritdoc cref="Length.FromMicrometers(UnitsNet.QuantityValue)" />
-        public static Length? Micrometers(this double? value) => Length.FromMicrometers(value);
-
-        /// <inheritdoc cref="Length.FromMicrometers(UnitsNet.QuantityValue)" />
-        public static Length Micrometers(this float value) => Length.FromMicrometers(value);
-
-        /// <inheritdoc cref="Length.FromMicrometers(UnitsNet.QuantityValue)" />
-        public static Length? Micrometers(this float? value) => Length.FromMicrometers(value);
-
-        /// <inheritdoc cref="Length.FromMicrometers(UnitsNet.QuantityValue)" />
-        public static Length Micrometers(this decimal value) => Length.FromMicrometers(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromMicrometers(UnitsNet.QuantityValue)" />
-        public static Length? Micrometers(this decimal? value) => Length.FromMicrometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Micrometers<T>(this T? value) where T : struct => Length.FromMicrometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Mil
 
         /// <inheritdoc cref="Length.FromMils(UnitsNet.QuantityValue)" />
-        public static Length Mils(this int value) => Length.FromMils(value);
+        public static Length Mils<T>(this T value) => Length.FromMils(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromMils(UnitsNet.QuantityValue)" />
-        public static Length? Mils(this int? value) => Length.FromMils(value);
-
-        /// <inheritdoc cref="Length.FromMils(UnitsNet.QuantityValue)" />
-        public static Length Mils(this long value) => Length.FromMils(value);
-
-        /// <inheritdoc cref="Length.FromMils(UnitsNet.QuantityValue)" />
-        public static Length? Mils(this long? value) => Length.FromMils(value);
-
-        /// <inheritdoc cref="Length.FromMils(UnitsNet.QuantityValue)" />
-        public static Length Mils(this double value) => Length.FromMils(value);
-
-        /// <inheritdoc cref="Length.FromMils(UnitsNet.QuantityValue)" />
-        public static Length? Mils(this double? value) => Length.FromMils(value);
-
-        /// <inheritdoc cref="Length.FromMils(UnitsNet.QuantityValue)" />
-        public static Length Mils(this float value) => Length.FromMils(value);
-
-        /// <inheritdoc cref="Length.FromMils(UnitsNet.QuantityValue)" />
-        public static Length? Mils(this float? value) => Length.FromMils(value);
-
-        /// <inheritdoc cref="Length.FromMils(UnitsNet.QuantityValue)" />
-        public static Length Mils(this decimal value) => Length.FromMils(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromMils(UnitsNet.QuantityValue)" />
-        public static Length? Mils(this decimal? value) => Length.FromMils(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Mils<T>(this T? value) where T : struct => Length.FromMils(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Mile
 
         /// <inheritdoc cref="Length.FromMiles(UnitsNet.QuantityValue)" />
-        public static Length Miles(this int value) => Length.FromMiles(value);
+        public static Length Miles<T>(this T value) => Length.FromMiles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromMiles(UnitsNet.QuantityValue)" />
-        public static Length? Miles(this int? value) => Length.FromMiles(value);
-
-        /// <inheritdoc cref="Length.FromMiles(UnitsNet.QuantityValue)" />
-        public static Length Miles(this long value) => Length.FromMiles(value);
-
-        /// <inheritdoc cref="Length.FromMiles(UnitsNet.QuantityValue)" />
-        public static Length? Miles(this long? value) => Length.FromMiles(value);
-
-        /// <inheritdoc cref="Length.FromMiles(UnitsNet.QuantityValue)" />
-        public static Length Miles(this double value) => Length.FromMiles(value);
-
-        /// <inheritdoc cref="Length.FromMiles(UnitsNet.QuantityValue)" />
-        public static Length? Miles(this double? value) => Length.FromMiles(value);
-
-        /// <inheritdoc cref="Length.FromMiles(UnitsNet.QuantityValue)" />
-        public static Length Miles(this float value) => Length.FromMiles(value);
-
-        /// <inheritdoc cref="Length.FromMiles(UnitsNet.QuantityValue)" />
-        public static Length? Miles(this float? value) => Length.FromMiles(value);
-
-        /// <inheritdoc cref="Length.FromMiles(UnitsNet.QuantityValue)" />
-        public static Length Miles(this decimal value) => Length.FromMiles(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromMiles(UnitsNet.QuantityValue)" />
-        public static Length? Miles(this decimal? value) => Length.FromMiles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Miles<T>(this T? value) where T : struct => Length.FromMiles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Millimeter
 
         /// <inheritdoc cref="Length.FromMillimeters(UnitsNet.QuantityValue)" />
-        public static Length Millimeters(this int value) => Length.FromMillimeters(value);
+        public static Length Millimeters<T>(this T value) => Length.FromMillimeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromMillimeters(UnitsNet.QuantityValue)" />
-        public static Length? Millimeters(this int? value) => Length.FromMillimeters(value);
-
-        /// <inheritdoc cref="Length.FromMillimeters(UnitsNet.QuantityValue)" />
-        public static Length Millimeters(this long value) => Length.FromMillimeters(value);
-
-        /// <inheritdoc cref="Length.FromMillimeters(UnitsNet.QuantityValue)" />
-        public static Length? Millimeters(this long? value) => Length.FromMillimeters(value);
-
-        /// <inheritdoc cref="Length.FromMillimeters(UnitsNet.QuantityValue)" />
-        public static Length Millimeters(this double value) => Length.FromMillimeters(value);
-
-        /// <inheritdoc cref="Length.FromMillimeters(UnitsNet.QuantityValue)" />
-        public static Length? Millimeters(this double? value) => Length.FromMillimeters(value);
-
-        /// <inheritdoc cref="Length.FromMillimeters(UnitsNet.QuantityValue)" />
-        public static Length Millimeters(this float value) => Length.FromMillimeters(value);
-
-        /// <inheritdoc cref="Length.FromMillimeters(UnitsNet.QuantityValue)" />
-        public static Length? Millimeters(this float? value) => Length.FromMillimeters(value);
-
-        /// <inheritdoc cref="Length.FromMillimeters(UnitsNet.QuantityValue)" />
-        public static Length Millimeters(this decimal value) => Length.FromMillimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromMillimeters(UnitsNet.QuantityValue)" />
-        public static Length? Millimeters(this decimal? value) => Length.FromMillimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Millimeters<T>(this T? value) where T : struct => Length.FromMillimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Nanometer
 
         /// <inheritdoc cref="Length.FromNanometers(UnitsNet.QuantityValue)" />
-        public static Length Nanometers(this int value) => Length.FromNanometers(value);
+        public static Length Nanometers<T>(this T value) => Length.FromNanometers(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromNanometers(UnitsNet.QuantityValue)" />
-        public static Length? Nanometers(this int? value) => Length.FromNanometers(value);
-
-        /// <inheritdoc cref="Length.FromNanometers(UnitsNet.QuantityValue)" />
-        public static Length Nanometers(this long value) => Length.FromNanometers(value);
-
-        /// <inheritdoc cref="Length.FromNanometers(UnitsNet.QuantityValue)" />
-        public static Length? Nanometers(this long? value) => Length.FromNanometers(value);
-
-        /// <inheritdoc cref="Length.FromNanometers(UnitsNet.QuantityValue)" />
-        public static Length Nanometers(this double value) => Length.FromNanometers(value);
-
-        /// <inheritdoc cref="Length.FromNanometers(UnitsNet.QuantityValue)" />
-        public static Length? Nanometers(this double? value) => Length.FromNanometers(value);
-
-        /// <inheritdoc cref="Length.FromNanometers(UnitsNet.QuantityValue)" />
-        public static Length Nanometers(this float value) => Length.FromNanometers(value);
-
-        /// <inheritdoc cref="Length.FromNanometers(UnitsNet.QuantityValue)" />
-        public static Length? Nanometers(this float? value) => Length.FromNanometers(value);
-
-        /// <inheritdoc cref="Length.FromNanometers(UnitsNet.QuantityValue)" />
-        public static Length Nanometers(this decimal value) => Length.FromNanometers(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromNanometers(UnitsNet.QuantityValue)" />
-        public static Length? Nanometers(this decimal? value) => Length.FromNanometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Nanometers<T>(this T? value) where T : struct => Length.FromNanometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NauticalMile
 
         /// <inheritdoc cref="Length.FromNauticalMiles(UnitsNet.QuantityValue)" />
-        public static Length NauticalMiles(this int value) => Length.FromNauticalMiles(value);
+        public static Length NauticalMiles<T>(this T value) => Length.FromNauticalMiles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromNauticalMiles(UnitsNet.QuantityValue)" />
-        public static Length? NauticalMiles(this int? value) => Length.FromNauticalMiles(value);
-
-        /// <inheritdoc cref="Length.FromNauticalMiles(UnitsNet.QuantityValue)" />
-        public static Length NauticalMiles(this long value) => Length.FromNauticalMiles(value);
-
-        /// <inheritdoc cref="Length.FromNauticalMiles(UnitsNet.QuantityValue)" />
-        public static Length? NauticalMiles(this long? value) => Length.FromNauticalMiles(value);
-
-        /// <inheritdoc cref="Length.FromNauticalMiles(UnitsNet.QuantityValue)" />
-        public static Length NauticalMiles(this double value) => Length.FromNauticalMiles(value);
-
-        /// <inheritdoc cref="Length.FromNauticalMiles(UnitsNet.QuantityValue)" />
-        public static Length? NauticalMiles(this double? value) => Length.FromNauticalMiles(value);
-
-        /// <inheritdoc cref="Length.FromNauticalMiles(UnitsNet.QuantityValue)" />
-        public static Length NauticalMiles(this float value) => Length.FromNauticalMiles(value);
-
-        /// <inheritdoc cref="Length.FromNauticalMiles(UnitsNet.QuantityValue)" />
-        public static Length? NauticalMiles(this float? value) => Length.FromNauticalMiles(value);
-
-        /// <inheritdoc cref="Length.FromNauticalMiles(UnitsNet.QuantityValue)" />
-        public static Length NauticalMiles(this decimal value) => Length.FromNauticalMiles(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromNauticalMiles(UnitsNet.QuantityValue)" />
-        public static Length? NauticalMiles(this decimal? value) => Length.FromNauticalMiles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? NauticalMiles<T>(this T? value) where T : struct => Length.FromNauticalMiles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PrinterPica
 
         /// <inheritdoc cref="Length.FromPrinterPicas(UnitsNet.QuantityValue)" />
-        public static Length PrinterPicas(this int value) => Length.FromPrinterPicas(value);
+        public static Length PrinterPicas<T>(this T value) => Length.FromPrinterPicas(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromPrinterPicas(UnitsNet.QuantityValue)" />
-        public static Length? PrinterPicas(this int? value) => Length.FromPrinterPicas(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPicas(UnitsNet.QuantityValue)" />
-        public static Length PrinterPicas(this long value) => Length.FromPrinterPicas(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPicas(UnitsNet.QuantityValue)" />
-        public static Length? PrinterPicas(this long? value) => Length.FromPrinterPicas(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPicas(UnitsNet.QuantityValue)" />
-        public static Length PrinterPicas(this double value) => Length.FromPrinterPicas(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPicas(UnitsNet.QuantityValue)" />
-        public static Length? PrinterPicas(this double? value) => Length.FromPrinterPicas(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPicas(UnitsNet.QuantityValue)" />
-        public static Length PrinterPicas(this float value) => Length.FromPrinterPicas(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPicas(UnitsNet.QuantityValue)" />
-        public static Length? PrinterPicas(this float? value) => Length.FromPrinterPicas(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPicas(UnitsNet.QuantityValue)" />
-        public static Length PrinterPicas(this decimal value) => Length.FromPrinterPicas(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromPrinterPicas(UnitsNet.QuantityValue)" />
-        public static Length? PrinterPicas(this decimal? value) => Length.FromPrinterPicas(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? PrinterPicas<T>(this T? value) where T : struct => Length.FromPrinterPicas(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PrinterPoint
 
         /// <inheritdoc cref="Length.FromPrinterPoints(UnitsNet.QuantityValue)" />
-        public static Length PrinterPoints(this int value) => Length.FromPrinterPoints(value);
+        public static Length PrinterPoints<T>(this T value) => Length.FromPrinterPoints(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromPrinterPoints(UnitsNet.QuantityValue)" />
-        public static Length? PrinterPoints(this int? value) => Length.FromPrinterPoints(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPoints(UnitsNet.QuantityValue)" />
-        public static Length PrinterPoints(this long value) => Length.FromPrinterPoints(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPoints(UnitsNet.QuantityValue)" />
-        public static Length? PrinterPoints(this long? value) => Length.FromPrinterPoints(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPoints(UnitsNet.QuantityValue)" />
-        public static Length PrinterPoints(this double value) => Length.FromPrinterPoints(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPoints(UnitsNet.QuantityValue)" />
-        public static Length? PrinterPoints(this double? value) => Length.FromPrinterPoints(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPoints(UnitsNet.QuantityValue)" />
-        public static Length PrinterPoints(this float value) => Length.FromPrinterPoints(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPoints(UnitsNet.QuantityValue)" />
-        public static Length? PrinterPoints(this float? value) => Length.FromPrinterPoints(value);
-
-        /// <inheritdoc cref="Length.FromPrinterPoints(UnitsNet.QuantityValue)" />
-        public static Length PrinterPoints(this decimal value) => Length.FromPrinterPoints(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromPrinterPoints(UnitsNet.QuantityValue)" />
-        public static Length? PrinterPoints(this decimal? value) => Length.FromPrinterPoints(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? PrinterPoints<T>(this T? value) where T : struct => Length.FromPrinterPoints(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Shackle
 
         /// <inheritdoc cref="Length.FromShackles(UnitsNet.QuantityValue)" />
-        public static Length Shackles(this int value) => Length.FromShackles(value);
+        public static Length Shackles<T>(this T value) => Length.FromShackles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromShackles(UnitsNet.QuantityValue)" />
-        public static Length? Shackles(this int? value) => Length.FromShackles(value);
-
-        /// <inheritdoc cref="Length.FromShackles(UnitsNet.QuantityValue)" />
-        public static Length Shackles(this long value) => Length.FromShackles(value);
-
-        /// <inheritdoc cref="Length.FromShackles(UnitsNet.QuantityValue)" />
-        public static Length? Shackles(this long? value) => Length.FromShackles(value);
-
-        /// <inheritdoc cref="Length.FromShackles(UnitsNet.QuantityValue)" />
-        public static Length Shackles(this double value) => Length.FromShackles(value);
-
-        /// <inheritdoc cref="Length.FromShackles(UnitsNet.QuantityValue)" />
-        public static Length? Shackles(this double? value) => Length.FromShackles(value);
-
-        /// <inheritdoc cref="Length.FromShackles(UnitsNet.QuantityValue)" />
-        public static Length Shackles(this float value) => Length.FromShackles(value);
-
-        /// <inheritdoc cref="Length.FromShackles(UnitsNet.QuantityValue)" />
-        public static Length? Shackles(this float? value) => Length.FromShackles(value);
-
-        /// <inheritdoc cref="Length.FromShackles(UnitsNet.QuantityValue)" />
-        public static Length Shackles(this decimal value) => Length.FromShackles(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromShackles(UnitsNet.QuantityValue)" />
-        public static Length? Shackles(this decimal? value) => Length.FromShackles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Shackles<T>(this T? value) where T : struct => Length.FromShackles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Twip
 
         /// <inheritdoc cref="Length.FromTwips(UnitsNet.QuantityValue)" />
-        public static Length Twips(this int value) => Length.FromTwips(value);
+        public static Length Twips<T>(this T value) => Length.FromTwips(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromTwips(UnitsNet.QuantityValue)" />
-        public static Length? Twips(this int? value) => Length.FromTwips(value);
-
-        /// <inheritdoc cref="Length.FromTwips(UnitsNet.QuantityValue)" />
-        public static Length Twips(this long value) => Length.FromTwips(value);
-
-        /// <inheritdoc cref="Length.FromTwips(UnitsNet.QuantityValue)" />
-        public static Length? Twips(this long? value) => Length.FromTwips(value);
-
-        /// <inheritdoc cref="Length.FromTwips(UnitsNet.QuantityValue)" />
-        public static Length Twips(this double value) => Length.FromTwips(value);
-
-        /// <inheritdoc cref="Length.FromTwips(UnitsNet.QuantityValue)" />
-        public static Length? Twips(this double? value) => Length.FromTwips(value);
-
-        /// <inheritdoc cref="Length.FromTwips(UnitsNet.QuantityValue)" />
-        public static Length Twips(this float value) => Length.FromTwips(value);
-
-        /// <inheritdoc cref="Length.FromTwips(UnitsNet.QuantityValue)" />
-        public static Length? Twips(this float? value) => Length.FromTwips(value);
-
-        /// <inheritdoc cref="Length.FromTwips(UnitsNet.QuantityValue)" />
-        public static Length Twips(this decimal value) => Length.FromTwips(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromTwips(UnitsNet.QuantityValue)" />
-        public static Length? Twips(this decimal? value) => Length.FromTwips(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Twips<T>(this T? value) where T : struct => Length.FromTwips(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region UsSurveyFoot
 
         /// <inheritdoc cref="Length.FromUsSurveyFeet(UnitsNet.QuantityValue)" />
-        public static Length UsSurveyFeet(this int value) => Length.FromUsSurveyFeet(value);
+        public static Length UsSurveyFeet<T>(this T value) => Length.FromUsSurveyFeet(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromUsSurveyFeet(UnitsNet.QuantityValue)" />
-        public static Length? UsSurveyFeet(this int? value) => Length.FromUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Length.FromUsSurveyFeet(UnitsNet.QuantityValue)" />
-        public static Length UsSurveyFeet(this long value) => Length.FromUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Length.FromUsSurveyFeet(UnitsNet.QuantityValue)" />
-        public static Length? UsSurveyFeet(this long? value) => Length.FromUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Length.FromUsSurveyFeet(UnitsNet.QuantityValue)" />
-        public static Length UsSurveyFeet(this double value) => Length.FromUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Length.FromUsSurveyFeet(UnitsNet.QuantityValue)" />
-        public static Length? UsSurveyFeet(this double? value) => Length.FromUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Length.FromUsSurveyFeet(UnitsNet.QuantityValue)" />
-        public static Length UsSurveyFeet(this float value) => Length.FromUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Length.FromUsSurveyFeet(UnitsNet.QuantityValue)" />
-        public static Length? UsSurveyFeet(this float? value) => Length.FromUsSurveyFeet(value);
-
-        /// <inheritdoc cref="Length.FromUsSurveyFeet(UnitsNet.QuantityValue)" />
-        public static Length UsSurveyFeet(this decimal value) => Length.FromUsSurveyFeet(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromUsSurveyFeet(UnitsNet.QuantityValue)" />
-        public static Length? UsSurveyFeet(this decimal? value) => Length.FromUsSurveyFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? UsSurveyFeet<T>(this T? value) where T : struct => Length.FromUsSurveyFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Yard
 
         /// <inheritdoc cref="Length.FromYards(UnitsNet.QuantityValue)" />
-        public static Length Yards(this int value) => Length.FromYards(value);
+        public static Length Yards<T>(this T value) => Length.FromYards(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Length.FromYards(UnitsNet.QuantityValue)" />
-        public static Length? Yards(this int? value) => Length.FromYards(value);
-
-        /// <inheritdoc cref="Length.FromYards(UnitsNet.QuantityValue)" />
-        public static Length Yards(this long value) => Length.FromYards(value);
-
-        /// <inheritdoc cref="Length.FromYards(UnitsNet.QuantityValue)" />
-        public static Length? Yards(this long? value) => Length.FromYards(value);
-
-        /// <inheritdoc cref="Length.FromYards(UnitsNet.QuantityValue)" />
-        public static Length Yards(this double value) => Length.FromYards(value);
-
-        /// <inheritdoc cref="Length.FromYards(UnitsNet.QuantityValue)" />
-        public static Length? Yards(this double? value) => Length.FromYards(value);
-
-        /// <inheritdoc cref="Length.FromYards(UnitsNet.QuantityValue)" />
-        public static Length Yards(this float value) => Length.FromYards(value);
-
-        /// <inheritdoc cref="Length.FromYards(UnitsNet.QuantityValue)" />
-        public static Length? Yards(this float? value) => Length.FromYards(value);
-
-        /// <inheritdoc cref="Length.FromYards(UnitsNet.QuantityValue)" />
-        public static Length Yards(this decimal value) => Length.FromYards(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Length.FromYards(UnitsNet.QuantityValue)" />
-        public static Length? Yards(this decimal? value) => Length.FromYards(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Length? Yards<T>(this T? value) where T : struct => Length.FromYards(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

@@ -47,34 +47,10 @@ namespace UnitsNet.Extensions.NumberToPermittivity
         #region FaradPerMeter
 
         /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
-        public static Permittivity FaradsPerMeter(this int value) => Permittivity.FromFaradsPerMeter(value);
+        public static Permittivity FaradsPerMeter<T>(this T value) => Permittivity.FromFaradsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
-        public static Permittivity? FaradsPerMeter(this int? value) => Permittivity.FromFaradsPerMeter(value);
-
-        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
-        public static Permittivity FaradsPerMeter(this long value) => Permittivity.FromFaradsPerMeter(value);
-
-        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
-        public static Permittivity? FaradsPerMeter(this long? value) => Permittivity.FromFaradsPerMeter(value);
-
-        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
-        public static Permittivity FaradsPerMeter(this double value) => Permittivity.FromFaradsPerMeter(value);
-
-        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
-        public static Permittivity? FaradsPerMeter(this double? value) => Permittivity.FromFaradsPerMeter(value);
-
-        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
-        public static Permittivity FaradsPerMeter(this float value) => Permittivity.FromFaradsPerMeter(value);
-
-        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
-        public static Permittivity? FaradsPerMeter(this float? value) => Permittivity.FromFaradsPerMeter(value);
-
-        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
-        public static Permittivity FaradsPerMeter(this decimal value) => Permittivity.FromFaradsPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
-        public static Permittivity? FaradsPerMeter(this decimal? value) => Permittivity.FromFaradsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Permittivity? FaradsPerMeter<T>(this T? value) where T : struct => Permittivity.FromFaradsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

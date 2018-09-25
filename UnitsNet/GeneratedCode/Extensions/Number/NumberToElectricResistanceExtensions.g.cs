@@ -47,136 +47,40 @@ namespace UnitsNet.Extensions.NumberToElectricResistance
         #region Kiloohm
 
         /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Kiloohms(this int value) => ElectricResistance.FromKiloohms(value);
+        public static ElectricResistance Kiloohms<T>(this T value) => ElectricResistance.FromKiloohms(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Kiloohms(this int? value) => ElectricResistance.FromKiloohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Kiloohms(this long value) => ElectricResistance.FromKiloohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Kiloohms(this long? value) => ElectricResistance.FromKiloohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Kiloohms(this double value) => ElectricResistance.FromKiloohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Kiloohms(this double? value) => ElectricResistance.FromKiloohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Kiloohms(this float value) => ElectricResistance.FromKiloohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Kiloohms(this float? value) => ElectricResistance.FromKiloohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Kiloohms(this decimal value) => ElectricResistance.FromKiloohms(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Kiloohms(this decimal? value) => ElectricResistance.FromKiloohms(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricResistance? Kiloohms<T>(this T? value) where T : struct => ElectricResistance.FromKiloohms(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Megaohm
 
         /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Megaohms(this int value) => ElectricResistance.FromMegaohms(value);
+        public static ElectricResistance Megaohms<T>(this T value) => ElectricResistance.FromMegaohms(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Megaohms(this int? value) => ElectricResistance.FromMegaohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Megaohms(this long value) => ElectricResistance.FromMegaohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Megaohms(this long? value) => ElectricResistance.FromMegaohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Megaohms(this double value) => ElectricResistance.FromMegaohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Megaohms(this double? value) => ElectricResistance.FromMegaohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Megaohms(this float value) => ElectricResistance.FromMegaohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Megaohms(this float? value) => ElectricResistance.FromMegaohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Megaohms(this decimal value) => ElectricResistance.FromMegaohms(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Megaohms(this decimal? value) => ElectricResistance.FromMegaohms(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricResistance? Megaohms<T>(this T? value) where T : struct => ElectricResistance.FromMegaohms(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Milliohm
 
         /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Milliohms(this int value) => ElectricResistance.FromMilliohms(value);
+        public static ElectricResistance Milliohms<T>(this T value) => ElectricResistance.FromMilliohms(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Milliohms(this int? value) => ElectricResistance.FromMilliohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Milliohms(this long value) => ElectricResistance.FromMilliohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Milliohms(this long? value) => ElectricResistance.FromMilliohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Milliohms(this double value) => ElectricResistance.FromMilliohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Milliohms(this double? value) => ElectricResistance.FromMilliohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Milliohms(this float value) => ElectricResistance.FromMilliohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Milliohms(this float? value) => ElectricResistance.FromMilliohms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Milliohms(this decimal value) => ElectricResistance.FromMilliohms(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Milliohms(this decimal? value) => ElectricResistance.FromMilliohms(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricResistance? Milliohms<T>(this T? value) where T : struct => ElectricResistance.FromMilliohms(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Ohm
 
         /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Ohms(this int value) => ElectricResistance.FromOhms(value);
+        public static ElectricResistance Ohms<T>(this T value) => ElectricResistance.FromOhms(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Ohms(this int? value) => ElectricResistance.FromOhms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Ohms(this long value) => ElectricResistance.FromOhms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Ohms(this long? value) => ElectricResistance.FromOhms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Ohms(this double value) => ElectricResistance.FromOhms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Ohms(this double? value) => ElectricResistance.FromOhms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Ohms(this float value) => ElectricResistance.FromOhms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Ohms(this float? value) => ElectricResistance.FromOhms(value);
-
-        /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance Ohms(this decimal value) => ElectricResistance.FromOhms(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
-        public static ElectricResistance? Ohms(this decimal? value) => ElectricResistance.FromOhms(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricResistance? Ohms<T>(this T? value) where T : struct => ElectricResistance.FromOhms(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

@@ -47,34 +47,10 @@ namespace UnitsNet.Extensions.NumberToMagneticFlux
         #region Weber
 
         /// <inheritdoc cref="MagneticFlux.FromWebers(UnitsNet.QuantityValue)" />
-        public static MagneticFlux Webers(this int value) => MagneticFlux.FromWebers(value);
+        public static MagneticFlux Webers<T>(this T value) => MagneticFlux.FromWebers(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MagneticFlux.FromWebers(UnitsNet.QuantityValue)" />
-        public static MagneticFlux? Webers(this int? value) => MagneticFlux.FromWebers(value);
-
-        /// <inheritdoc cref="MagneticFlux.FromWebers(UnitsNet.QuantityValue)" />
-        public static MagneticFlux Webers(this long value) => MagneticFlux.FromWebers(value);
-
-        /// <inheritdoc cref="MagneticFlux.FromWebers(UnitsNet.QuantityValue)" />
-        public static MagneticFlux? Webers(this long? value) => MagneticFlux.FromWebers(value);
-
-        /// <inheritdoc cref="MagneticFlux.FromWebers(UnitsNet.QuantityValue)" />
-        public static MagneticFlux Webers(this double value) => MagneticFlux.FromWebers(value);
-
-        /// <inheritdoc cref="MagneticFlux.FromWebers(UnitsNet.QuantityValue)" />
-        public static MagneticFlux? Webers(this double? value) => MagneticFlux.FromWebers(value);
-
-        /// <inheritdoc cref="MagneticFlux.FromWebers(UnitsNet.QuantityValue)" />
-        public static MagneticFlux Webers(this float value) => MagneticFlux.FromWebers(value);
-
-        /// <inheritdoc cref="MagneticFlux.FromWebers(UnitsNet.QuantityValue)" />
-        public static MagneticFlux? Webers(this float? value) => MagneticFlux.FromWebers(value);
-
-        /// <inheritdoc cref="MagneticFlux.FromWebers(UnitsNet.QuantityValue)" />
-        public static MagneticFlux Webers(this decimal value) => MagneticFlux.FromWebers(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MagneticFlux.FromWebers(UnitsNet.QuantityValue)" />
-        public static MagneticFlux? Webers(this decimal? value) => MagneticFlux.FromWebers(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static MagneticFlux? Webers<T>(this T? value) where T : struct => MagneticFlux.FromWebers(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

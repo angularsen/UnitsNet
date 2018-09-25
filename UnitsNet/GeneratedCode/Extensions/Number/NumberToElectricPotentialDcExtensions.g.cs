@@ -47,170 +47,50 @@ namespace UnitsNet.Extensions.NumberToElectricPotentialDc
         #region KilovoltDc
 
         /// <inheritdoc cref="ElectricPotentialDc.FromKilovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc KilovoltsDc(this int value) => ElectricPotentialDc.FromKilovoltsDc(value);
+        public static ElectricPotentialDc KilovoltsDc<T>(this T value) => ElectricPotentialDc.FromKilovoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromKilovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? KilovoltsDc(this int? value) => ElectricPotentialDc.FromKilovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromKilovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc KilovoltsDc(this long value) => ElectricPotentialDc.FromKilovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromKilovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? KilovoltsDc(this long? value) => ElectricPotentialDc.FromKilovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromKilovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc KilovoltsDc(this double value) => ElectricPotentialDc.FromKilovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromKilovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? KilovoltsDc(this double? value) => ElectricPotentialDc.FromKilovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromKilovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc KilovoltsDc(this float value) => ElectricPotentialDc.FromKilovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromKilovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? KilovoltsDc(this float? value) => ElectricPotentialDc.FromKilovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromKilovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc KilovoltsDc(this decimal value) => ElectricPotentialDc.FromKilovoltsDc(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromKilovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? KilovoltsDc(this decimal? value) => ElectricPotentialDc.FromKilovoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricPotentialDc? KilovoltsDc<T>(this T? value) where T : struct => ElectricPotentialDc.FromKilovoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegavoltDc
 
         /// <inheritdoc cref="ElectricPotentialDc.FromMegavoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MegavoltsDc(this int value) => ElectricPotentialDc.FromMegavoltsDc(value);
+        public static ElectricPotentialDc MegavoltsDc<T>(this T value) => ElectricPotentialDc.FromMegavoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromMegavoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MegavoltsDc(this int? value) => ElectricPotentialDc.FromMegavoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMegavoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MegavoltsDc(this long value) => ElectricPotentialDc.FromMegavoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMegavoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MegavoltsDc(this long? value) => ElectricPotentialDc.FromMegavoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMegavoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MegavoltsDc(this double value) => ElectricPotentialDc.FromMegavoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMegavoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MegavoltsDc(this double? value) => ElectricPotentialDc.FromMegavoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMegavoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MegavoltsDc(this float value) => ElectricPotentialDc.FromMegavoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMegavoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MegavoltsDc(this float? value) => ElectricPotentialDc.FromMegavoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMegavoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MegavoltsDc(this decimal value) => ElectricPotentialDc.FromMegavoltsDc(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMegavoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MegavoltsDc(this decimal? value) => ElectricPotentialDc.FromMegavoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricPotentialDc? MegavoltsDc<T>(this T? value) where T : struct => ElectricPotentialDc.FromMegavoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicrovoltDc
 
         /// <inheritdoc cref="ElectricPotentialDc.FromMicrovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MicrovoltsDc(this int value) => ElectricPotentialDc.FromMicrovoltsDc(value);
+        public static ElectricPotentialDc MicrovoltsDc<T>(this T value) => ElectricPotentialDc.FromMicrovoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromMicrovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MicrovoltsDc(this int? value) => ElectricPotentialDc.FromMicrovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMicrovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MicrovoltsDc(this long value) => ElectricPotentialDc.FromMicrovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMicrovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MicrovoltsDc(this long? value) => ElectricPotentialDc.FromMicrovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMicrovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MicrovoltsDc(this double value) => ElectricPotentialDc.FromMicrovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMicrovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MicrovoltsDc(this double? value) => ElectricPotentialDc.FromMicrovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMicrovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MicrovoltsDc(this float value) => ElectricPotentialDc.FromMicrovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMicrovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MicrovoltsDc(this float? value) => ElectricPotentialDc.FromMicrovoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMicrovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MicrovoltsDc(this decimal value) => ElectricPotentialDc.FromMicrovoltsDc(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMicrovoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MicrovoltsDc(this decimal? value) => ElectricPotentialDc.FromMicrovoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricPotentialDc? MicrovoltsDc<T>(this T? value) where T : struct => ElectricPotentialDc.FromMicrovoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillivoltDc
 
         /// <inheritdoc cref="ElectricPotentialDc.FromMillivoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MillivoltsDc(this int value) => ElectricPotentialDc.FromMillivoltsDc(value);
+        public static ElectricPotentialDc MillivoltsDc<T>(this T value) => ElectricPotentialDc.FromMillivoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromMillivoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MillivoltsDc(this int? value) => ElectricPotentialDc.FromMillivoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMillivoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MillivoltsDc(this long value) => ElectricPotentialDc.FromMillivoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMillivoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MillivoltsDc(this long? value) => ElectricPotentialDc.FromMillivoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMillivoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MillivoltsDc(this double value) => ElectricPotentialDc.FromMillivoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMillivoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MillivoltsDc(this double? value) => ElectricPotentialDc.FromMillivoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMillivoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MillivoltsDc(this float value) => ElectricPotentialDc.FromMillivoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMillivoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MillivoltsDc(this float? value) => ElectricPotentialDc.FromMillivoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMillivoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc MillivoltsDc(this decimal value) => ElectricPotentialDc.FromMillivoltsDc(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromMillivoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? MillivoltsDc(this decimal? value) => ElectricPotentialDc.FromMillivoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricPotentialDc? MillivoltsDc<T>(this T? value) where T : struct => ElectricPotentialDc.FromMillivoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region VoltDc
 
         /// <inheritdoc cref="ElectricPotentialDc.FromVoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc VoltsDc(this int value) => ElectricPotentialDc.FromVoltsDc(value);
+        public static ElectricPotentialDc VoltsDc<T>(this T value) => ElectricPotentialDc.FromVoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromVoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? VoltsDc(this int? value) => ElectricPotentialDc.FromVoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromVoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc VoltsDc(this long value) => ElectricPotentialDc.FromVoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromVoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? VoltsDc(this long? value) => ElectricPotentialDc.FromVoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromVoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc VoltsDc(this double value) => ElectricPotentialDc.FromVoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromVoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? VoltsDc(this double? value) => ElectricPotentialDc.FromVoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromVoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc VoltsDc(this float value) => ElectricPotentialDc.FromVoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromVoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? VoltsDc(this float? value) => ElectricPotentialDc.FromVoltsDc(value);
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromVoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc VoltsDc(this decimal value) => ElectricPotentialDc.FromVoltsDc(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricPotentialDc.FromVoltsDc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialDc? VoltsDc(this decimal? value) => ElectricPotentialDc.FromVoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricPotentialDc? VoltsDc<T>(this T? value) where T : struct => ElectricPotentialDc.FromVoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

@@ -47,884 +47,260 @@ namespace UnitsNet.Extensions.NumberToInformation
         #region Bit
 
         /// <inheritdoc cref="Information.FromBits(UnitsNet.QuantityValue)" />
-        public static Information Bits(this int value) => Information.FromBits(value);
+        public static Information Bits<T>(this T value) => Information.FromBits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromBits(UnitsNet.QuantityValue)" />
-        public static Information? Bits(this int? value) => Information.FromBits(value);
-
-        /// <inheritdoc cref="Information.FromBits(UnitsNet.QuantityValue)" />
-        public static Information Bits(this long value) => Information.FromBits(value);
-
-        /// <inheritdoc cref="Information.FromBits(UnitsNet.QuantityValue)" />
-        public static Information? Bits(this long? value) => Information.FromBits(value);
-
-        /// <inheritdoc cref="Information.FromBits(UnitsNet.QuantityValue)" />
-        public static Information Bits(this double value) => Information.FromBits(value);
-
-        /// <inheritdoc cref="Information.FromBits(UnitsNet.QuantityValue)" />
-        public static Information? Bits(this double? value) => Information.FromBits(value);
-
-        /// <inheritdoc cref="Information.FromBits(UnitsNet.QuantityValue)" />
-        public static Information Bits(this float value) => Information.FromBits(value);
-
-        /// <inheritdoc cref="Information.FromBits(UnitsNet.QuantityValue)" />
-        public static Information? Bits(this float? value) => Information.FromBits(value);
-
-        /// <inheritdoc cref="Information.FromBits(UnitsNet.QuantityValue)" />
-        public static Information Bits(this decimal value) => Information.FromBits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromBits(UnitsNet.QuantityValue)" />
-        public static Information? Bits(this decimal? value) => Information.FromBits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Bits<T>(this T? value) where T : struct => Information.FromBits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Byte
 
         /// <inheritdoc cref="Information.FromBytes(UnitsNet.QuantityValue)" />
-        public static Information Bytes(this int value) => Information.FromBytes(value);
+        public static Information Bytes<T>(this T value) => Information.FromBytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromBytes(UnitsNet.QuantityValue)" />
-        public static Information? Bytes(this int? value) => Information.FromBytes(value);
-
-        /// <inheritdoc cref="Information.FromBytes(UnitsNet.QuantityValue)" />
-        public static Information Bytes(this long value) => Information.FromBytes(value);
-
-        /// <inheritdoc cref="Information.FromBytes(UnitsNet.QuantityValue)" />
-        public static Information? Bytes(this long? value) => Information.FromBytes(value);
-
-        /// <inheritdoc cref="Information.FromBytes(UnitsNet.QuantityValue)" />
-        public static Information Bytes(this double value) => Information.FromBytes(value);
-
-        /// <inheritdoc cref="Information.FromBytes(UnitsNet.QuantityValue)" />
-        public static Information? Bytes(this double? value) => Information.FromBytes(value);
-
-        /// <inheritdoc cref="Information.FromBytes(UnitsNet.QuantityValue)" />
-        public static Information Bytes(this float value) => Information.FromBytes(value);
-
-        /// <inheritdoc cref="Information.FromBytes(UnitsNet.QuantityValue)" />
-        public static Information? Bytes(this float? value) => Information.FromBytes(value);
-
-        /// <inheritdoc cref="Information.FromBytes(UnitsNet.QuantityValue)" />
-        public static Information Bytes(this decimal value) => Information.FromBytes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromBytes(UnitsNet.QuantityValue)" />
-        public static Information? Bytes(this decimal? value) => Information.FromBytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Bytes<T>(this T? value) where T : struct => Information.FromBytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Exabit
 
         /// <inheritdoc cref="Information.FromExabits(UnitsNet.QuantityValue)" />
-        public static Information Exabits(this int value) => Information.FromExabits(value);
+        public static Information Exabits<T>(this T value) => Information.FromExabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromExabits(UnitsNet.QuantityValue)" />
-        public static Information? Exabits(this int? value) => Information.FromExabits(value);
-
-        /// <inheritdoc cref="Information.FromExabits(UnitsNet.QuantityValue)" />
-        public static Information Exabits(this long value) => Information.FromExabits(value);
-
-        /// <inheritdoc cref="Information.FromExabits(UnitsNet.QuantityValue)" />
-        public static Information? Exabits(this long? value) => Information.FromExabits(value);
-
-        /// <inheritdoc cref="Information.FromExabits(UnitsNet.QuantityValue)" />
-        public static Information Exabits(this double value) => Information.FromExabits(value);
-
-        /// <inheritdoc cref="Information.FromExabits(UnitsNet.QuantityValue)" />
-        public static Information? Exabits(this double? value) => Information.FromExabits(value);
-
-        /// <inheritdoc cref="Information.FromExabits(UnitsNet.QuantityValue)" />
-        public static Information Exabits(this float value) => Information.FromExabits(value);
-
-        /// <inheritdoc cref="Information.FromExabits(UnitsNet.QuantityValue)" />
-        public static Information? Exabits(this float? value) => Information.FromExabits(value);
-
-        /// <inheritdoc cref="Information.FromExabits(UnitsNet.QuantityValue)" />
-        public static Information Exabits(this decimal value) => Information.FromExabits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromExabits(UnitsNet.QuantityValue)" />
-        public static Information? Exabits(this decimal? value) => Information.FromExabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Exabits<T>(this T? value) where T : struct => Information.FromExabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Exabyte
 
         /// <inheritdoc cref="Information.FromExabytes(UnitsNet.QuantityValue)" />
-        public static Information Exabytes(this int value) => Information.FromExabytes(value);
+        public static Information Exabytes<T>(this T value) => Information.FromExabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromExabytes(UnitsNet.QuantityValue)" />
-        public static Information? Exabytes(this int? value) => Information.FromExabytes(value);
-
-        /// <inheritdoc cref="Information.FromExabytes(UnitsNet.QuantityValue)" />
-        public static Information Exabytes(this long value) => Information.FromExabytes(value);
-
-        /// <inheritdoc cref="Information.FromExabytes(UnitsNet.QuantityValue)" />
-        public static Information? Exabytes(this long? value) => Information.FromExabytes(value);
-
-        /// <inheritdoc cref="Information.FromExabytes(UnitsNet.QuantityValue)" />
-        public static Information Exabytes(this double value) => Information.FromExabytes(value);
-
-        /// <inheritdoc cref="Information.FromExabytes(UnitsNet.QuantityValue)" />
-        public static Information? Exabytes(this double? value) => Information.FromExabytes(value);
-
-        /// <inheritdoc cref="Information.FromExabytes(UnitsNet.QuantityValue)" />
-        public static Information Exabytes(this float value) => Information.FromExabytes(value);
-
-        /// <inheritdoc cref="Information.FromExabytes(UnitsNet.QuantityValue)" />
-        public static Information? Exabytes(this float? value) => Information.FromExabytes(value);
-
-        /// <inheritdoc cref="Information.FromExabytes(UnitsNet.QuantityValue)" />
-        public static Information Exabytes(this decimal value) => Information.FromExabytes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromExabytes(UnitsNet.QuantityValue)" />
-        public static Information? Exabytes(this decimal? value) => Information.FromExabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Exabytes<T>(this T? value) where T : struct => Information.FromExabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Exbibit
 
         /// <inheritdoc cref="Information.FromExbibits(UnitsNet.QuantityValue)" />
-        public static Information Exbibits(this int value) => Information.FromExbibits(value);
+        public static Information Exbibits<T>(this T value) => Information.FromExbibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromExbibits(UnitsNet.QuantityValue)" />
-        public static Information? Exbibits(this int? value) => Information.FromExbibits(value);
-
-        /// <inheritdoc cref="Information.FromExbibits(UnitsNet.QuantityValue)" />
-        public static Information Exbibits(this long value) => Information.FromExbibits(value);
-
-        /// <inheritdoc cref="Information.FromExbibits(UnitsNet.QuantityValue)" />
-        public static Information? Exbibits(this long? value) => Information.FromExbibits(value);
-
-        /// <inheritdoc cref="Information.FromExbibits(UnitsNet.QuantityValue)" />
-        public static Information Exbibits(this double value) => Information.FromExbibits(value);
-
-        /// <inheritdoc cref="Information.FromExbibits(UnitsNet.QuantityValue)" />
-        public static Information? Exbibits(this double? value) => Information.FromExbibits(value);
-
-        /// <inheritdoc cref="Information.FromExbibits(UnitsNet.QuantityValue)" />
-        public static Information Exbibits(this float value) => Information.FromExbibits(value);
-
-        /// <inheritdoc cref="Information.FromExbibits(UnitsNet.QuantityValue)" />
-        public static Information? Exbibits(this float? value) => Information.FromExbibits(value);
-
-        /// <inheritdoc cref="Information.FromExbibits(UnitsNet.QuantityValue)" />
-        public static Information Exbibits(this decimal value) => Information.FromExbibits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromExbibits(UnitsNet.QuantityValue)" />
-        public static Information? Exbibits(this decimal? value) => Information.FromExbibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Exbibits<T>(this T? value) where T : struct => Information.FromExbibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Exbibyte
 
         /// <inheritdoc cref="Information.FromExbibytes(UnitsNet.QuantityValue)" />
-        public static Information Exbibytes(this int value) => Information.FromExbibytes(value);
+        public static Information Exbibytes<T>(this T value) => Information.FromExbibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromExbibytes(UnitsNet.QuantityValue)" />
-        public static Information? Exbibytes(this int? value) => Information.FromExbibytes(value);
-
-        /// <inheritdoc cref="Information.FromExbibytes(UnitsNet.QuantityValue)" />
-        public static Information Exbibytes(this long value) => Information.FromExbibytes(value);
-
-        /// <inheritdoc cref="Information.FromExbibytes(UnitsNet.QuantityValue)" />
-        public static Information? Exbibytes(this long? value) => Information.FromExbibytes(value);
-
-        /// <inheritdoc cref="Information.FromExbibytes(UnitsNet.QuantityValue)" />
-        public static Information Exbibytes(this double value) => Information.FromExbibytes(value);
-
-        /// <inheritdoc cref="Information.FromExbibytes(UnitsNet.QuantityValue)" />
-        public static Information? Exbibytes(this double? value) => Information.FromExbibytes(value);
-
-        /// <inheritdoc cref="Information.FromExbibytes(UnitsNet.QuantityValue)" />
-        public static Information Exbibytes(this float value) => Information.FromExbibytes(value);
-
-        /// <inheritdoc cref="Information.FromExbibytes(UnitsNet.QuantityValue)" />
-        public static Information? Exbibytes(this float? value) => Information.FromExbibytes(value);
-
-        /// <inheritdoc cref="Information.FromExbibytes(UnitsNet.QuantityValue)" />
-        public static Information Exbibytes(this decimal value) => Information.FromExbibytes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromExbibytes(UnitsNet.QuantityValue)" />
-        public static Information? Exbibytes(this decimal? value) => Information.FromExbibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Exbibytes<T>(this T? value) where T : struct => Information.FromExbibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Gibibit
 
         /// <inheritdoc cref="Information.FromGibibits(UnitsNet.QuantityValue)" />
-        public static Information Gibibits(this int value) => Information.FromGibibits(value);
+        public static Information Gibibits<T>(this T value) => Information.FromGibibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromGibibits(UnitsNet.QuantityValue)" />
-        public static Information? Gibibits(this int? value) => Information.FromGibibits(value);
-
-        /// <inheritdoc cref="Information.FromGibibits(UnitsNet.QuantityValue)" />
-        public static Information Gibibits(this long value) => Information.FromGibibits(value);
-
-        /// <inheritdoc cref="Information.FromGibibits(UnitsNet.QuantityValue)" />
-        public static Information? Gibibits(this long? value) => Information.FromGibibits(value);
-
-        /// <inheritdoc cref="Information.FromGibibits(UnitsNet.QuantityValue)" />
-        public static Information Gibibits(this double value) => Information.FromGibibits(value);
-
-        /// <inheritdoc cref="Information.FromGibibits(UnitsNet.QuantityValue)" />
-        public static Information? Gibibits(this double? value) => Information.FromGibibits(value);
-
-        /// <inheritdoc cref="Information.FromGibibits(UnitsNet.QuantityValue)" />
-        public static Information Gibibits(this float value) => Information.FromGibibits(value);
-
-        /// <inheritdoc cref="Information.FromGibibits(UnitsNet.QuantityValue)" />
-        public static Information? Gibibits(this float? value) => Information.FromGibibits(value);
-
-        /// <inheritdoc cref="Information.FromGibibits(UnitsNet.QuantityValue)" />
-        public static Information Gibibits(this decimal value) => Information.FromGibibits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromGibibits(UnitsNet.QuantityValue)" />
-        public static Information? Gibibits(this decimal? value) => Information.FromGibibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Gibibits<T>(this T? value) where T : struct => Information.FromGibibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Gibibyte
 
         /// <inheritdoc cref="Information.FromGibibytes(UnitsNet.QuantityValue)" />
-        public static Information Gibibytes(this int value) => Information.FromGibibytes(value);
+        public static Information Gibibytes<T>(this T value) => Information.FromGibibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromGibibytes(UnitsNet.QuantityValue)" />
-        public static Information? Gibibytes(this int? value) => Information.FromGibibytes(value);
-
-        /// <inheritdoc cref="Information.FromGibibytes(UnitsNet.QuantityValue)" />
-        public static Information Gibibytes(this long value) => Information.FromGibibytes(value);
-
-        /// <inheritdoc cref="Information.FromGibibytes(UnitsNet.QuantityValue)" />
-        public static Information? Gibibytes(this long? value) => Information.FromGibibytes(value);
-
-        /// <inheritdoc cref="Information.FromGibibytes(UnitsNet.QuantityValue)" />
-        public static Information Gibibytes(this double value) => Information.FromGibibytes(value);
-
-        /// <inheritdoc cref="Information.FromGibibytes(UnitsNet.QuantityValue)" />
-        public static Information? Gibibytes(this double? value) => Information.FromGibibytes(value);
-
-        /// <inheritdoc cref="Information.FromGibibytes(UnitsNet.QuantityValue)" />
-        public static Information Gibibytes(this float value) => Information.FromGibibytes(value);
-
-        /// <inheritdoc cref="Information.FromGibibytes(UnitsNet.QuantityValue)" />
-        public static Information? Gibibytes(this float? value) => Information.FromGibibytes(value);
-
-        /// <inheritdoc cref="Information.FromGibibytes(UnitsNet.QuantityValue)" />
-        public static Information Gibibytes(this decimal value) => Information.FromGibibytes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromGibibytes(UnitsNet.QuantityValue)" />
-        public static Information? Gibibytes(this decimal? value) => Information.FromGibibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Gibibytes<T>(this T? value) where T : struct => Information.FromGibibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Gigabit
 
         /// <inheritdoc cref="Information.FromGigabits(UnitsNet.QuantityValue)" />
-        public static Information Gigabits(this int value) => Information.FromGigabits(value);
+        public static Information Gigabits<T>(this T value) => Information.FromGigabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromGigabits(UnitsNet.QuantityValue)" />
-        public static Information? Gigabits(this int? value) => Information.FromGigabits(value);
-
-        /// <inheritdoc cref="Information.FromGigabits(UnitsNet.QuantityValue)" />
-        public static Information Gigabits(this long value) => Information.FromGigabits(value);
-
-        /// <inheritdoc cref="Information.FromGigabits(UnitsNet.QuantityValue)" />
-        public static Information? Gigabits(this long? value) => Information.FromGigabits(value);
-
-        /// <inheritdoc cref="Information.FromGigabits(UnitsNet.QuantityValue)" />
-        public static Information Gigabits(this double value) => Information.FromGigabits(value);
-
-        /// <inheritdoc cref="Information.FromGigabits(UnitsNet.QuantityValue)" />
-        public static Information? Gigabits(this double? value) => Information.FromGigabits(value);
-
-        /// <inheritdoc cref="Information.FromGigabits(UnitsNet.QuantityValue)" />
-        public static Information Gigabits(this float value) => Information.FromGigabits(value);
-
-        /// <inheritdoc cref="Information.FromGigabits(UnitsNet.QuantityValue)" />
-        public static Information? Gigabits(this float? value) => Information.FromGigabits(value);
-
-        /// <inheritdoc cref="Information.FromGigabits(UnitsNet.QuantityValue)" />
-        public static Information Gigabits(this decimal value) => Information.FromGigabits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromGigabits(UnitsNet.QuantityValue)" />
-        public static Information? Gigabits(this decimal? value) => Information.FromGigabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Gigabits<T>(this T? value) where T : struct => Information.FromGigabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Gigabyte
 
         /// <inheritdoc cref="Information.FromGigabytes(UnitsNet.QuantityValue)" />
-        public static Information Gigabytes(this int value) => Information.FromGigabytes(value);
+        public static Information Gigabytes<T>(this T value) => Information.FromGigabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromGigabytes(UnitsNet.QuantityValue)" />
-        public static Information? Gigabytes(this int? value) => Information.FromGigabytes(value);
-
-        /// <inheritdoc cref="Information.FromGigabytes(UnitsNet.QuantityValue)" />
-        public static Information Gigabytes(this long value) => Information.FromGigabytes(value);
-
-        /// <inheritdoc cref="Information.FromGigabytes(UnitsNet.QuantityValue)" />
-        public static Information? Gigabytes(this long? value) => Information.FromGigabytes(value);
-
-        /// <inheritdoc cref="Information.FromGigabytes(UnitsNet.QuantityValue)" />
-        public static Information Gigabytes(this double value) => Information.FromGigabytes(value);
-
-        /// <inheritdoc cref="Information.FromGigabytes(UnitsNet.QuantityValue)" />
-        public static Information? Gigabytes(this double? value) => Information.FromGigabytes(value);
-
-        /// <inheritdoc cref="Information.FromGigabytes(UnitsNet.QuantityValue)" />
-        public static Information Gigabytes(this float value) => Information.FromGigabytes(value);
-
-        /// <inheritdoc cref="Information.FromGigabytes(UnitsNet.QuantityValue)" />
-        public static Information? Gigabytes(this float? value) => Information.FromGigabytes(value);
-
-        /// <inheritdoc cref="Information.FromGigabytes(UnitsNet.QuantityValue)" />
-        public static Information Gigabytes(this decimal value) => Information.FromGigabytes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromGigabytes(UnitsNet.QuantityValue)" />
-        public static Information? Gigabytes(this decimal? value) => Information.FromGigabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Gigabytes<T>(this T? value) where T : struct => Information.FromGigabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Kibibit
 
         /// <inheritdoc cref="Information.FromKibibits(UnitsNet.QuantityValue)" />
-        public static Information Kibibits(this int value) => Information.FromKibibits(value);
+        public static Information Kibibits<T>(this T value) => Information.FromKibibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromKibibits(UnitsNet.QuantityValue)" />
-        public static Information? Kibibits(this int? value) => Information.FromKibibits(value);
-
-        /// <inheritdoc cref="Information.FromKibibits(UnitsNet.QuantityValue)" />
-        public static Information Kibibits(this long value) => Information.FromKibibits(value);
-
-        /// <inheritdoc cref="Information.FromKibibits(UnitsNet.QuantityValue)" />
-        public static Information? Kibibits(this long? value) => Information.FromKibibits(value);
-
-        /// <inheritdoc cref="Information.FromKibibits(UnitsNet.QuantityValue)" />
-        public static Information Kibibits(this double value) => Information.FromKibibits(value);
-
-        /// <inheritdoc cref="Information.FromKibibits(UnitsNet.QuantityValue)" />
-        public static Information? Kibibits(this double? value) => Information.FromKibibits(value);
-
-        /// <inheritdoc cref="Information.FromKibibits(UnitsNet.QuantityValue)" />
-        public static Information Kibibits(this float value) => Information.FromKibibits(value);
-
-        /// <inheritdoc cref="Information.FromKibibits(UnitsNet.QuantityValue)" />
-        public static Information? Kibibits(this float? value) => Information.FromKibibits(value);
-
-        /// <inheritdoc cref="Information.FromKibibits(UnitsNet.QuantityValue)" />
-        public static Information Kibibits(this decimal value) => Information.FromKibibits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromKibibits(UnitsNet.QuantityValue)" />
-        public static Information? Kibibits(this decimal? value) => Information.FromKibibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Kibibits<T>(this T? value) where T : struct => Information.FromKibibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Kibibyte
 
         /// <inheritdoc cref="Information.FromKibibytes(UnitsNet.QuantityValue)" />
-        public static Information Kibibytes(this int value) => Information.FromKibibytes(value);
+        public static Information Kibibytes<T>(this T value) => Information.FromKibibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromKibibytes(UnitsNet.QuantityValue)" />
-        public static Information? Kibibytes(this int? value) => Information.FromKibibytes(value);
-
-        /// <inheritdoc cref="Information.FromKibibytes(UnitsNet.QuantityValue)" />
-        public static Information Kibibytes(this long value) => Information.FromKibibytes(value);
-
-        /// <inheritdoc cref="Information.FromKibibytes(UnitsNet.QuantityValue)" />
-        public static Information? Kibibytes(this long? value) => Information.FromKibibytes(value);
-
-        /// <inheritdoc cref="Information.FromKibibytes(UnitsNet.QuantityValue)" />
-        public static Information Kibibytes(this double value) => Information.FromKibibytes(value);
-
-        /// <inheritdoc cref="Information.FromKibibytes(UnitsNet.QuantityValue)" />
-        public static Information? Kibibytes(this double? value) => Information.FromKibibytes(value);
-
-        /// <inheritdoc cref="Information.FromKibibytes(UnitsNet.QuantityValue)" />
-        public static Information Kibibytes(this float value) => Information.FromKibibytes(value);
-
-        /// <inheritdoc cref="Information.FromKibibytes(UnitsNet.QuantityValue)" />
-        public static Information? Kibibytes(this float? value) => Information.FromKibibytes(value);
-
-        /// <inheritdoc cref="Information.FromKibibytes(UnitsNet.QuantityValue)" />
-        public static Information Kibibytes(this decimal value) => Information.FromKibibytes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromKibibytes(UnitsNet.QuantityValue)" />
-        public static Information? Kibibytes(this decimal? value) => Information.FromKibibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Kibibytes<T>(this T? value) where T : struct => Information.FromKibibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Kilobit
 
         /// <inheritdoc cref="Information.FromKilobits(UnitsNet.QuantityValue)" />
-        public static Information Kilobits(this int value) => Information.FromKilobits(value);
+        public static Information Kilobits<T>(this T value) => Information.FromKilobits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromKilobits(UnitsNet.QuantityValue)" />
-        public static Information? Kilobits(this int? value) => Information.FromKilobits(value);
-
-        /// <inheritdoc cref="Information.FromKilobits(UnitsNet.QuantityValue)" />
-        public static Information Kilobits(this long value) => Information.FromKilobits(value);
-
-        /// <inheritdoc cref="Information.FromKilobits(UnitsNet.QuantityValue)" />
-        public static Information? Kilobits(this long? value) => Information.FromKilobits(value);
-
-        /// <inheritdoc cref="Information.FromKilobits(UnitsNet.QuantityValue)" />
-        public static Information Kilobits(this double value) => Information.FromKilobits(value);
-
-        /// <inheritdoc cref="Information.FromKilobits(UnitsNet.QuantityValue)" />
-        public static Information? Kilobits(this double? value) => Information.FromKilobits(value);
-
-        /// <inheritdoc cref="Information.FromKilobits(UnitsNet.QuantityValue)" />
-        public static Information Kilobits(this float value) => Information.FromKilobits(value);
-
-        /// <inheritdoc cref="Information.FromKilobits(UnitsNet.QuantityValue)" />
-        public static Information? Kilobits(this float? value) => Information.FromKilobits(value);
-
-        /// <inheritdoc cref="Information.FromKilobits(UnitsNet.QuantityValue)" />
-        public static Information Kilobits(this decimal value) => Information.FromKilobits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromKilobits(UnitsNet.QuantityValue)" />
-        public static Information? Kilobits(this decimal? value) => Information.FromKilobits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Kilobits<T>(this T? value) where T : struct => Information.FromKilobits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Kilobyte
 
         /// <inheritdoc cref="Information.FromKilobytes(UnitsNet.QuantityValue)" />
-        public static Information Kilobytes(this int value) => Information.FromKilobytes(value);
+        public static Information Kilobytes<T>(this T value) => Information.FromKilobytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromKilobytes(UnitsNet.QuantityValue)" />
-        public static Information? Kilobytes(this int? value) => Information.FromKilobytes(value);
-
-        /// <inheritdoc cref="Information.FromKilobytes(UnitsNet.QuantityValue)" />
-        public static Information Kilobytes(this long value) => Information.FromKilobytes(value);
-
-        /// <inheritdoc cref="Information.FromKilobytes(UnitsNet.QuantityValue)" />
-        public static Information? Kilobytes(this long? value) => Information.FromKilobytes(value);
-
-        /// <inheritdoc cref="Information.FromKilobytes(UnitsNet.QuantityValue)" />
-        public static Information Kilobytes(this double value) => Information.FromKilobytes(value);
-
-        /// <inheritdoc cref="Information.FromKilobytes(UnitsNet.QuantityValue)" />
-        public static Information? Kilobytes(this double? value) => Information.FromKilobytes(value);
-
-        /// <inheritdoc cref="Information.FromKilobytes(UnitsNet.QuantityValue)" />
-        public static Information Kilobytes(this float value) => Information.FromKilobytes(value);
-
-        /// <inheritdoc cref="Information.FromKilobytes(UnitsNet.QuantityValue)" />
-        public static Information? Kilobytes(this float? value) => Information.FromKilobytes(value);
-
-        /// <inheritdoc cref="Information.FromKilobytes(UnitsNet.QuantityValue)" />
-        public static Information Kilobytes(this decimal value) => Information.FromKilobytes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromKilobytes(UnitsNet.QuantityValue)" />
-        public static Information? Kilobytes(this decimal? value) => Information.FromKilobytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Kilobytes<T>(this T? value) where T : struct => Information.FromKilobytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Mebibit
 
         /// <inheritdoc cref="Information.FromMebibits(UnitsNet.QuantityValue)" />
-        public static Information Mebibits(this int value) => Information.FromMebibits(value);
+        public static Information Mebibits<T>(this T value) => Information.FromMebibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromMebibits(UnitsNet.QuantityValue)" />
-        public static Information? Mebibits(this int? value) => Information.FromMebibits(value);
-
-        /// <inheritdoc cref="Information.FromMebibits(UnitsNet.QuantityValue)" />
-        public static Information Mebibits(this long value) => Information.FromMebibits(value);
-
-        /// <inheritdoc cref="Information.FromMebibits(UnitsNet.QuantityValue)" />
-        public static Information? Mebibits(this long? value) => Information.FromMebibits(value);
-
-        /// <inheritdoc cref="Information.FromMebibits(UnitsNet.QuantityValue)" />
-        public static Information Mebibits(this double value) => Information.FromMebibits(value);
-
-        /// <inheritdoc cref="Information.FromMebibits(UnitsNet.QuantityValue)" />
-        public static Information? Mebibits(this double? value) => Information.FromMebibits(value);
-
-        /// <inheritdoc cref="Information.FromMebibits(UnitsNet.QuantityValue)" />
-        public static Information Mebibits(this float value) => Information.FromMebibits(value);
-
-        /// <inheritdoc cref="Information.FromMebibits(UnitsNet.QuantityValue)" />
-        public static Information? Mebibits(this float? value) => Information.FromMebibits(value);
-
-        /// <inheritdoc cref="Information.FromMebibits(UnitsNet.QuantityValue)" />
-        public static Information Mebibits(this decimal value) => Information.FromMebibits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromMebibits(UnitsNet.QuantityValue)" />
-        public static Information? Mebibits(this decimal? value) => Information.FromMebibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Mebibits<T>(this T? value) where T : struct => Information.FromMebibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Mebibyte
 
         /// <inheritdoc cref="Information.FromMebibytes(UnitsNet.QuantityValue)" />
-        public static Information Mebibytes(this int value) => Information.FromMebibytes(value);
+        public static Information Mebibytes<T>(this T value) => Information.FromMebibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromMebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Mebibytes(this int? value) => Information.FromMebibytes(value);
-
-        /// <inheritdoc cref="Information.FromMebibytes(UnitsNet.QuantityValue)" />
-        public static Information Mebibytes(this long value) => Information.FromMebibytes(value);
-
-        /// <inheritdoc cref="Information.FromMebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Mebibytes(this long? value) => Information.FromMebibytes(value);
-
-        /// <inheritdoc cref="Information.FromMebibytes(UnitsNet.QuantityValue)" />
-        public static Information Mebibytes(this double value) => Information.FromMebibytes(value);
-
-        /// <inheritdoc cref="Information.FromMebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Mebibytes(this double? value) => Information.FromMebibytes(value);
-
-        /// <inheritdoc cref="Information.FromMebibytes(UnitsNet.QuantityValue)" />
-        public static Information Mebibytes(this float value) => Information.FromMebibytes(value);
-
-        /// <inheritdoc cref="Information.FromMebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Mebibytes(this float? value) => Information.FromMebibytes(value);
-
-        /// <inheritdoc cref="Information.FromMebibytes(UnitsNet.QuantityValue)" />
-        public static Information Mebibytes(this decimal value) => Information.FromMebibytes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromMebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Mebibytes(this decimal? value) => Information.FromMebibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Mebibytes<T>(this T? value) where T : struct => Information.FromMebibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Megabit
 
         /// <inheritdoc cref="Information.FromMegabits(UnitsNet.QuantityValue)" />
-        public static Information Megabits(this int value) => Information.FromMegabits(value);
+        public static Information Megabits<T>(this T value) => Information.FromMegabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromMegabits(UnitsNet.QuantityValue)" />
-        public static Information? Megabits(this int? value) => Information.FromMegabits(value);
-
-        /// <inheritdoc cref="Information.FromMegabits(UnitsNet.QuantityValue)" />
-        public static Information Megabits(this long value) => Information.FromMegabits(value);
-
-        /// <inheritdoc cref="Information.FromMegabits(UnitsNet.QuantityValue)" />
-        public static Information? Megabits(this long? value) => Information.FromMegabits(value);
-
-        /// <inheritdoc cref="Information.FromMegabits(UnitsNet.QuantityValue)" />
-        public static Information Megabits(this double value) => Information.FromMegabits(value);
-
-        /// <inheritdoc cref="Information.FromMegabits(UnitsNet.QuantityValue)" />
-        public static Information? Megabits(this double? value) => Information.FromMegabits(value);
-
-        /// <inheritdoc cref="Information.FromMegabits(UnitsNet.QuantityValue)" />
-        public static Information Megabits(this float value) => Information.FromMegabits(value);
-
-        /// <inheritdoc cref="Information.FromMegabits(UnitsNet.QuantityValue)" />
-        public static Information? Megabits(this float? value) => Information.FromMegabits(value);
-
-        /// <inheritdoc cref="Information.FromMegabits(UnitsNet.QuantityValue)" />
-        public static Information Megabits(this decimal value) => Information.FromMegabits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromMegabits(UnitsNet.QuantityValue)" />
-        public static Information? Megabits(this decimal? value) => Information.FromMegabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Megabits<T>(this T? value) where T : struct => Information.FromMegabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Megabyte
 
         /// <inheritdoc cref="Information.FromMegabytes(UnitsNet.QuantityValue)" />
-        public static Information Megabytes(this int value) => Information.FromMegabytes(value);
+        public static Information Megabytes<T>(this T value) => Information.FromMegabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromMegabytes(UnitsNet.QuantityValue)" />
-        public static Information? Megabytes(this int? value) => Information.FromMegabytes(value);
-
-        /// <inheritdoc cref="Information.FromMegabytes(UnitsNet.QuantityValue)" />
-        public static Information Megabytes(this long value) => Information.FromMegabytes(value);
-
-        /// <inheritdoc cref="Information.FromMegabytes(UnitsNet.QuantityValue)" />
-        public static Information? Megabytes(this long? value) => Information.FromMegabytes(value);
-
-        /// <inheritdoc cref="Information.FromMegabytes(UnitsNet.QuantityValue)" />
-        public static Information Megabytes(this double value) => Information.FromMegabytes(value);
-
-        /// <inheritdoc cref="Information.FromMegabytes(UnitsNet.QuantityValue)" />
-        public static Information? Megabytes(this double? value) => Information.FromMegabytes(value);
-
-        /// <inheritdoc cref="Information.FromMegabytes(UnitsNet.QuantityValue)" />
-        public static Information Megabytes(this float value) => Information.FromMegabytes(value);
-
-        /// <inheritdoc cref="Information.FromMegabytes(UnitsNet.QuantityValue)" />
-        public static Information? Megabytes(this float? value) => Information.FromMegabytes(value);
-
-        /// <inheritdoc cref="Information.FromMegabytes(UnitsNet.QuantityValue)" />
-        public static Information Megabytes(this decimal value) => Information.FromMegabytes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromMegabytes(UnitsNet.QuantityValue)" />
-        public static Information? Megabytes(this decimal? value) => Information.FromMegabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Megabytes<T>(this T? value) where T : struct => Information.FromMegabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Pebibit
 
         /// <inheritdoc cref="Information.FromPebibits(UnitsNet.QuantityValue)" />
-        public static Information Pebibits(this int value) => Information.FromPebibits(value);
+        public static Information Pebibits<T>(this T value) => Information.FromPebibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromPebibits(UnitsNet.QuantityValue)" />
-        public static Information? Pebibits(this int? value) => Information.FromPebibits(value);
-
-        /// <inheritdoc cref="Information.FromPebibits(UnitsNet.QuantityValue)" />
-        public static Information Pebibits(this long value) => Information.FromPebibits(value);
-
-        /// <inheritdoc cref="Information.FromPebibits(UnitsNet.QuantityValue)" />
-        public static Information? Pebibits(this long? value) => Information.FromPebibits(value);
-
-        /// <inheritdoc cref="Information.FromPebibits(UnitsNet.QuantityValue)" />
-        public static Information Pebibits(this double value) => Information.FromPebibits(value);
-
-        /// <inheritdoc cref="Information.FromPebibits(UnitsNet.QuantityValue)" />
-        public static Information? Pebibits(this double? value) => Information.FromPebibits(value);
-
-        /// <inheritdoc cref="Information.FromPebibits(UnitsNet.QuantityValue)" />
-        public static Information Pebibits(this float value) => Information.FromPebibits(value);
-
-        /// <inheritdoc cref="Information.FromPebibits(UnitsNet.QuantityValue)" />
-        public static Information? Pebibits(this float? value) => Information.FromPebibits(value);
-
-        /// <inheritdoc cref="Information.FromPebibits(UnitsNet.QuantityValue)" />
-        public static Information Pebibits(this decimal value) => Information.FromPebibits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromPebibits(UnitsNet.QuantityValue)" />
-        public static Information? Pebibits(this decimal? value) => Information.FromPebibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Pebibits<T>(this T? value) where T : struct => Information.FromPebibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Pebibyte
 
         /// <inheritdoc cref="Information.FromPebibytes(UnitsNet.QuantityValue)" />
-        public static Information Pebibytes(this int value) => Information.FromPebibytes(value);
+        public static Information Pebibytes<T>(this T value) => Information.FromPebibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromPebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Pebibytes(this int? value) => Information.FromPebibytes(value);
-
-        /// <inheritdoc cref="Information.FromPebibytes(UnitsNet.QuantityValue)" />
-        public static Information Pebibytes(this long value) => Information.FromPebibytes(value);
-
-        /// <inheritdoc cref="Information.FromPebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Pebibytes(this long? value) => Information.FromPebibytes(value);
-
-        /// <inheritdoc cref="Information.FromPebibytes(UnitsNet.QuantityValue)" />
-        public static Information Pebibytes(this double value) => Information.FromPebibytes(value);
-
-        /// <inheritdoc cref="Information.FromPebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Pebibytes(this double? value) => Information.FromPebibytes(value);
-
-        /// <inheritdoc cref="Information.FromPebibytes(UnitsNet.QuantityValue)" />
-        public static Information Pebibytes(this float value) => Information.FromPebibytes(value);
-
-        /// <inheritdoc cref="Information.FromPebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Pebibytes(this float? value) => Information.FromPebibytes(value);
-
-        /// <inheritdoc cref="Information.FromPebibytes(UnitsNet.QuantityValue)" />
-        public static Information Pebibytes(this decimal value) => Information.FromPebibytes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromPebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Pebibytes(this decimal? value) => Information.FromPebibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Pebibytes<T>(this T? value) where T : struct => Information.FromPebibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Petabit
 
         /// <inheritdoc cref="Information.FromPetabits(UnitsNet.QuantityValue)" />
-        public static Information Petabits(this int value) => Information.FromPetabits(value);
+        public static Information Petabits<T>(this T value) => Information.FromPetabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromPetabits(UnitsNet.QuantityValue)" />
-        public static Information? Petabits(this int? value) => Information.FromPetabits(value);
-
-        /// <inheritdoc cref="Information.FromPetabits(UnitsNet.QuantityValue)" />
-        public static Information Petabits(this long value) => Information.FromPetabits(value);
-
-        /// <inheritdoc cref="Information.FromPetabits(UnitsNet.QuantityValue)" />
-        public static Information? Petabits(this long? value) => Information.FromPetabits(value);
-
-        /// <inheritdoc cref="Information.FromPetabits(UnitsNet.QuantityValue)" />
-        public static Information Petabits(this double value) => Information.FromPetabits(value);
-
-        /// <inheritdoc cref="Information.FromPetabits(UnitsNet.QuantityValue)" />
-        public static Information? Petabits(this double? value) => Information.FromPetabits(value);
-
-        /// <inheritdoc cref="Information.FromPetabits(UnitsNet.QuantityValue)" />
-        public static Information Petabits(this float value) => Information.FromPetabits(value);
-
-        /// <inheritdoc cref="Information.FromPetabits(UnitsNet.QuantityValue)" />
-        public static Information? Petabits(this float? value) => Information.FromPetabits(value);
-
-        /// <inheritdoc cref="Information.FromPetabits(UnitsNet.QuantityValue)" />
-        public static Information Petabits(this decimal value) => Information.FromPetabits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromPetabits(UnitsNet.QuantityValue)" />
-        public static Information? Petabits(this decimal? value) => Information.FromPetabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Petabits<T>(this T? value) where T : struct => Information.FromPetabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Petabyte
 
         /// <inheritdoc cref="Information.FromPetabytes(UnitsNet.QuantityValue)" />
-        public static Information Petabytes(this int value) => Information.FromPetabytes(value);
+        public static Information Petabytes<T>(this T value) => Information.FromPetabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromPetabytes(UnitsNet.QuantityValue)" />
-        public static Information? Petabytes(this int? value) => Information.FromPetabytes(value);
-
-        /// <inheritdoc cref="Information.FromPetabytes(UnitsNet.QuantityValue)" />
-        public static Information Petabytes(this long value) => Information.FromPetabytes(value);
-
-        /// <inheritdoc cref="Information.FromPetabytes(UnitsNet.QuantityValue)" />
-        public static Information? Petabytes(this long? value) => Information.FromPetabytes(value);
-
-        /// <inheritdoc cref="Information.FromPetabytes(UnitsNet.QuantityValue)" />
-        public static Information Petabytes(this double value) => Information.FromPetabytes(value);
-
-        /// <inheritdoc cref="Information.FromPetabytes(UnitsNet.QuantityValue)" />
-        public static Information? Petabytes(this double? value) => Information.FromPetabytes(value);
-
-        /// <inheritdoc cref="Information.FromPetabytes(UnitsNet.QuantityValue)" />
-        public static Information Petabytes(this float value) => Information.FromPetabytes(value);
-
-        /// <inheritdoc cref="Information.FromPetabytes(UnitsNet.QuantityValue)" />
-        public static Information? Petabytes(this float? value) => Information.FromPetabytes(value);
-
-        /// <inheritdoc cref="Information.FromPetabytes(UnitsNet.QuantityValue)" />
-        public static Information Petabytes(this decimal value) => Information.FromPetabytes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromPetabytes(UnitsNet.QuantityValue)" />
-        public static Information? Petabytes(this decimal? value) => Information.FromPetabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Petabytes<T>(this T? value) where T : struct => Information.FromPetabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Tebibit
 
         /// <inheritdoc cref="Information.FromTebibits(UnitsNet.QuantityValue)" />
-        public static Information Tebibits(this int value) => Information.FromTebibits(value);
+        public static Information Tebibits<T>(this T value) => Information.FromTebibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromTebibits(UnitsNet.QuantityValue)" />
-        public static Information? Tebibits(this int? value) => Information.FromTebibits(value);
-
-        /// <inheritdoc cref="Information.FromTebibits(UnitsNet.QuantityValue)" />
-        public static Information Tebibits(this long value) => Information.FromTebibits(value);
-
-        /// <inheritdoc cref="Information.FromTebibits(UnitsNet.QuantityValue)" />
-        public static Information? Tebibits(this long? value) => Information.FromTebibits(value);
-
-        /// <inheritdoc cref="Information.FromTebibits(UnitsNet.QuantityValue)" />
-        public static Information Tebibits(this double value) => Information.FromTebibits(value);
-
-        /// <inheritdoc cref="Information.FromTebibits(UnitsNet.QuantityValue)" />
-        public static Information? Tebibits(this double? value) => Information.FromTebibits(value);
-
-        /// <inheritdoc cref="Information.FromTebibits(UnitsNet.QuantityValue)" />
-        public static Information Tebibits(this float value) => Information.FromTebibits(value);
-
-        /// <inheritdoc cref="Information.FromTebibits(UnitsNet.QuantityValue)" />
-        public static Information? Tebibits(this float? value) => Information.FromTebibits(value);
-
-        /// <inheritdoc cref="Information.FromTebibits(UnitsNet.QuantityValue)" />
-        public static Information Tebibits(this decimal value) => Information.FromTebibits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromTebibits(UnitsNet.QuantityValue)" />
-        public static Information? Tebibits(this decimal? value) => Information.FromTebibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Tebibits<T>(this T? value) where T : struct => Information.FromTebibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Tebibyte
 
         /// <inheritdoc cref="Information.FromTebibytes(UnitsNet.QuantityValue)" />
-        public static Information Tebibytes(this int value) => Information.FromTebibytes(value);
+        public static Information Tebibytes<T>(this T value) => Information.FromTebibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromTebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Tebibytes(this int? value) => Information.FromTebibytes(value);
-
-        /// <inheritdoc cref="Information.FromTebibytes(UnitsNet.QuantityValue)" />
-        public static Information Tebibytes(this long value) => Information.FromTebibytes(value);
-
-        /// <inheritdoc cref="Information.FromTebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Tebibytes(this long? value) => Information.FromTebibytes(value);
-
-        /// <inheritdoc cref="Information.FromTebibytes(UnitsNet.QuantityValue)" />
-        public static Information Tebibytes(this double value) => Information.FromTebibytes(value);
-
-        /// <inheritdoc cref="Information.FromTebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Tebibytes(this double? value) => Information.FromTebibytes(value);
-
-        /// <inheritdoc cref="Information.FromTebibytes(UnitsNet.QuantityValue)" />
-        public static Information Tebibytes(this float value) => Information.FromTebibytes(value);
-
-        /// <inheritdoc cref="Information.FromTebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Tebibytes(this float? value) => Information.FromTebibytes(value);
-
-        /// <inheritdoc cref="Information.FromTebibytes(UnitsNet.QuantityValue)" />
-        public static Information Tebibytes(this decimal value) => Information.FromTebibytes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromTebibytes(UnitsNet.QuantityValue)" />
-        public static Information? Tebibytes(this decimal? value) => Information.FromTebibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Tebibytes<T>(this T? value) where T : struct => Information.FromTebibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Terabit
 
         /// <inheritdoc cref="Information.FromTerabits(UnitsNet.QuantityValue)" />
-        public static Information Terabits(this int value) => Information.FromTerabits(value);
+        public static Information Terabits<T>(this T value) => Information.FromTerabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromTerabits(UnitsNet.QuantityValue)" />
-        public static Information? Terabits(this int? value) => Information.FromTerabits(value);
-
-        /// <inheritdoc cref="Information.FromTerabits(UnitsNet.QuantityValue)" />
-        public static Information Terabits(this long value) => Information.FromTerabits(value);
-
-        /// <inheritdoc cref="Information.FromTerabits(UnitsNet.QuantityValue)" />
-        public static Information? Terabits(this long? value) => Information.FromTerabits(value);
-
-        /// <inheritdoc cref="Information.FromTerabits(UnitsNet.QuantityValue)" />
-        public static Information Terabits(this double value) => Information.FromTerabits(value);
-
-        /// <inheritdoc cref="Information.FromTerabits(UnitsNet.QuantityValue)" />
-        public static Information? Terabits(this double? value) => Information.FromTerabits(value);
-
-        /// <inheritdoc cref="Information.FromTerabits(UnitsNet.QuantityValue)" />
-        public static Information Terabits(this float value) => Information.FromTerabits(value);
-
-        /// <inheritdoc cref="Information.FromTerabits(UnitsNet.QuantityValue)" />
-        public static Information? Terabits(this float? value) => Information.FromTerabits(value);
-
-        /// <inheritdoc cref="Information.FromTerabits(UnitsNet.QuantityValue)" />
-        public static Information Terabits(this decimal value) => Information.FromTerabits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromTerabits(UnitsNet.QuantityValue)" />
-        public static Information? Terabits(this decimal? value) => Information.FromTerabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Terabits<T>(this T? value) where T : struct => Information.FromTerabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Terabyte
 
         /// <inheritdoc cref="Information.FromTerabytes(UnitsNet.QuantityValue)" />
-        public static Information Terabytes(this int value) => Information.FromTerabytes(value);
+        public static Information Terabytes<T>(this T value) => Information.FromTerabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromTerabytes(UnitsNet.QuantityValue)" />
-        public static Information? Terabytes(this int? value) => Information.FromTerabytes(value);
-
-        /// <inheritdoc cref="Information.FromTerabytes(UnitsNet.QuantityValue)" />
-        public static Information Terabytes(this long value) => Information.FromTerabytes(value);
-
-        /// <inheritdoc cref="Information.FromTerabytes(UnitsNet.QuantityValue)" />
-        public static Information? Terabytes(this long? value) => Information.FromTerabytes(value);
-
-        /// <inheritdoc cref="Information.FromTerabytes(UnitsNet.QuantityValue)" />
-        public static Information Terabytes(this double value) => Information.FromTerabytes(value);
-
-        /// <inheritdoc cref="Information.FromTerabytes(UnitsNet.QuantityValue)" />
-        public static Information? Terabytes(this double? value) => Information.FromTerabytes(value);
-
-        /// <inheritdoc cref="Information.FromTerabytes(UnitsNet.QuantityValue)" />
-        public static Information Terabytes(this float value) => Information.FromTerabytes(value);
-
-        /// <inheritdoc cref="Information.FromTerabytes(UnitsNet.QuantityValue)" />
-        public static Information? Terabytes(this float? value) => Information.FromTerabytes(value);
-
-        /// <inheritdoc cref="Information.FromTerabytes(UnitsNet.QuantityValue)" />
-        public static Information Terabytes(this decimal value) => Information.FromTerabytes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Information.FromTerabytes(UnitsNet.QuantityValue)" />
-        public static Information? Terabytes(this decimal? value) => Information.FromTerabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Information? Terabytes<T>(this T? value) where T : struct => Information.FromTerabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

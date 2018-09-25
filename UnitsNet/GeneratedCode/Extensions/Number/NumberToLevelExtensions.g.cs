@@ -47,68 +47,20 @@ namespace UnitsNet.Extensions.NumberToLevel
         #region Decibel
 
         /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
-        public static Level Decibels(this int value) => Level.FromDecibels(value);
+        public static Level Decibels<T>(this T value) => Level.FromDecibels(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
-        public static Level? Decibels(this int? value) => Level.FromDecibels(value);
-
-        /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
-        public static Level Decibels(this long value) => Level.FromDecibels(value);
-
-        /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
-        public static Level? Decibels(this long? value) => Level.FromDecibels(value);
-
-        /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
-        public static Level Decibels(this double value) => Level.FromDecibels(value);
-
-        /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
-        public static Level? Decibels(this double? value) => Level.FromDecibels(value);
-
-        /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
-        public static Level Decibels(this float value) => Level.FromDecibels(value);
-
-        /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
-        public static Level? Decibels(this float? value) => Level.FromDecibels(value);
-
-        /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
-        public static Level Decibels(this decimal value) => Level.FromDecibels(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
-        public static Level? Decibels(this decimal? value) => Level.FromDecibels(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Level? Decibels<T>(this T? value) where T : struct => Level.FromDecibels(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Neper
 
         /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
-        public static Level Nepers(this int value) => Level.FromNepers(value);
+        public static Level Nepers<T>(this T value) => Level.FromNepers(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
-        public static Level? Nepers(this int? value) => Level.FromNepers(value);
-
-        /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
-        public static Level Nepers(this long value) => Level.FromNepers(value);
-
-        /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
-        public static Level? Nepers(this long? value) => Level.FromNepers(value);
-
-        /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
-        public static Level Nepers(this double value) => Level.FromNepers(value);
-
-        /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
-        public static Level? Nepers(this double? value) => Level.FromNepers(value);
-
-        /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
-        public static Level Nepers(this float value) => Level.FromNepers(value);
-
-        /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
-        public static Level? Nepers(this float? value) => Level.FromNepers(value);
-
-        /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
-        public static Level Nepers(this decimal value) => Level.FromNepers(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
-        public static Level? Nepers(this decimal? value) => Level.FromNepers(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Level? Nepers<T>(this T? value) where T : struct => Level.FromNepers(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

@@ -47,476 +47,140 @@ namespace UnitsNet.Extensions.NumberToAngle
         #region Arcminute
 
         /// <inheritdoc cref="Angle.FromArcminutes(UnitsNet.QuantityValue)" />
-        public static Angle Arcminutes(this int value) => Angle.FromArcminutes(value);
+        public static Angle Arcminutes<T>(this T value) => Angle.FromArcminutes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromArcminutes(UnitsNet.QuantityValue)" />
-        public static Angle? Arcminutes(this int? value) => Angle.FromArcminutes(value);
-
-        /// <inheritdoc cref="Angle.FromArcminutes(UnitsNet.QuantityValue)" />
-        public static Angle Arcminutes(this long value) => Angle.FromArcminutes(value);
-
-        /// <inheritdoc cref="Angle.FromArcminutes(UnitsNet.QuantityValue)" />
-        public static Angle? Arcminutes(this long? value) => Angle.FromArcminutes(value);
-
-        /// <inheritdoc cref="Angle.FromArcminutes(UnitsNet.QuantityValue)" />
-        public static Angle Arcminutes(this double value) => Angle.FromArcminutes(value);
-
-        /// <inheritdoc cref="Angle.FromArcminutes(UnitsNet.QuantityValue)" />
-        public static Angle? Arcminutes(this double? value) => Angle.FromArcminutes(value);
-
-        /// <inheritdoc cref="Angle.FromArcminutes(UnitsNet.QuantityValue)" />
-        public static Angle Arcminutes(this float value) => Angle.FromArcminutes(value);
-
-        /// <inheritdoc cref="Angle.FromArcminutes(UnitsNet.QuantityValue)" />
-        public static Angle? Arcminutes(this float? value) => Angle.FromArcminutes(value);
-
-        /// <inheritdoc cref="Angle.FromArcminutes(UnitsNet.QuantityValue)" />
-        public static Angle Arcminutes(this decimal value) => Angle.FromArcminutes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromArcminutes(UnitsNet.QuantityValue)" />
-        public static Angle? Arcminutes(this decimal? value) => Angle.FromArcminutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Arcminutes<T>(this T? value) where T : struct => Angle.FromArcminutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Arcsecond
 
         /// <inheritdoc cref="Angle.FromArcseconds(UnitsNet.QuantityValue)" />
-        public static Angle Arcseconds(this int value) => Angle.FromArcseconds(value);
+        public static Angle Arcseconds<T>(this T value) => Angle.FromArcseconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromArcseconds(UnitsNet.QuantityValue)" />
-        public static Angle? Arcseconds(this int? value) => Angle.FromArcseconds(value);
-
-        /// <inheritdoc cref="Angle.FromArcseconds(UnitsNet.QuantityValue)" />
-        public static Angle Arcseconds(this long value) => Angle.FromArcseconds(value);
-
-        /// <inheritdoc cref="Angle.FromArcseconds(UnitsNet.QuantityValue)" />
-        public static Angle? Arcseconds(this long? value) => Angle.FromArcseconds(value);
-
-        /// <inheritdoc cref="Angle.FromArcseconds(UnitsNet.QuantityValue)" />
-        public static Angle Arcseconds(this double value) => Angle.FromArcseconds(value);
-
-        /// <inheritdoc cref="Angle.FromArcseconds(UnitsNet.QuantityValue)" />
-        public static Angle? Arcseconds(this double? value) => Angle.FromArcseconds(value);
-
-        /// <inheritdoc cref="Angle.FromArcseconds(UnitsNet.QuantityValue)" />
-        public static Angle Arcseconds(this float value) => Angle.FromArcseconds(value);
-
-        /// <inheritdoc cref="Angle.FromArcseconds(UnitsNet.QuantityValue)" />
-        public static Angle? Arcseconds(this float? value) => Angle.FromArcseconds(value);
-
-        /// <inheritdoc cref="Angle.FromArcseconds(UnitsNet.QuantityValue)" />
-        public static Angle Arcseconds(this decimal value) => Angle.FromArcseconds(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromArcseconds(UnitsNet.QuantityValue)" />
-        public static Angle? Arcseconds(this decimal? value) => Angle.FromArcseconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Arcseconds<T>(this T? value) where T : struct => Angle.FromArcseconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Centiradian
 
         /// <inheritdoc cref="Angle.FromCentiradians(UnitsNet.QuantityValue)" />
-        public static Angle Centiradians(this int value) => Angle.FromCentiradians(value);
+        public static Angle Centiradians<T>(this T value) => Angle.FromCentiradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromCentiradians(UnitsNet.QuantityValue)" />
-        public static Angle? Centiradians(this int? value) => Angle.FromCentiradians(value);
-
-        /// <inheritdoc cref="Angle.FromCentiradians(UnitsNet.QuantityValue)" />
-        public static Angle Centiradians(this long value) => Angle.FromCentiradians(value);
-
-        /// <inheritdoc cref="Angle.FromCentiradians(UnitsNet.QuantityValue)" />
-        public static Angle? Centiradians(this long? value) => Angle.FromCentiradians(value);
-
-        /// <inheritdoc cref="Angle.FromCentiradians(UnitsNet.QuantityValue)" />
-        public static Angle Centiradians(this double value) => Angle.FromCentiradians(value);
-
-        /// <inheritdoc cref="Angle.FromCentiradians(UnitsNet.QuantityValue)" />
-        public static Angle? Centiradians(this double? value) => Angle.FromCentiradians(value);
-
-        /// <inheritdoc cref="Angle.FromCentiradians(UnitsNet.QuantityValue)" />
-        public static Angle Centiradians(this float value) => Angle.FromCentiradians(value);
-
-        /// <inheritdoc cref="Angle.FromCentiradians(UnitsNet.QuantityValue)" />
-        public static Angle? Centiradians(this float? value) => Angle.FromCentiradians(value);
-
-        /// <inheritdoc cref="Angle.FromCentiradians(UnitsNet.QuantityValue)" />
-        public static Angle Centiradians(this decimal value) => Angle.FromCentiradians(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromCentiradians(UnitsNet.QuantityValue)" />
-        public static Angle? Centiradians(this decimal? value) => Angle.FromCentiradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Centiradians<T>(this T? value) where T : struct => Angle.FromCentiradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Deciradian
 
         /// <inheritdoc cref="Angle.FromDeciradians(UnitsNet.QuantityValue)" />
-        public static Angle Deciradians(this int value) => Angle.FromDeciradians(value);
+        public static Angle Deciradians<T>(this T value) => Angle.FromDeciradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromDeciradians(UnitsNet.QuantityValue)" />
-        public static Angle? Deciradians(this int? value) => Angle.FromDeciradians(value);
-
-        /// <inheritdoc cref="Angle.FromDeciradians(UnitsNet.QuantityValue)" />
-        public static Angle Deciradians(this long value) => Angle.FromDeciradians(value);
-
-        /// <inheritdoc cref="Angle.FromDeciradians(UnitsNet.QuantityValue)" />
-        public static Angle? Deciradians(this long? value) => Angle.FromDeciradians(value);
-
-        /// <inheritdoc cref="Angle.FromDeciradians(UnitsNet.QuantityValue)" />
-        public static Angle Deciradians(this double value) => Angle.FromDeciradians(value);
-
-        /// <inheritdoc cref="Angle.FromDeciradians(UnitsNet.QuantityValue)" />
-        public static Angle? Deciradians(this double? value) => Angle.FromDeciradians(value);
-
-        /// <inheritdoc cref="Angle.FromDeciradians(UnitsNet.QuantityValue)" />
-        public static Angle Deciradians(this float value) => Angle.FromDeciradians(value);
-
-        /// <inheritdoc cref="Angle.FromDeciradians(UnitsNet.QuantityValue)" />
-        public static Angle? Deciradians(this float? value) => Angle.FromDeciradians(value);
-
-        /// <inheritdoc cref="Angle.FromDeciradians(UnitsNet.QuantityValue)" />
-        public static Angle Deciradians(this decimal value) => Angle.FromDeciradians(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromDeciradians(UnitsNet.QuantityValue)" />
-        public static Angle? Deciradians(this decimal? value) => Angle.FromDeciradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Deciradians<T>(this T? value) where T : struct => Angle.FromDeciradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Degree
 
         /// <inheritdoc cref="Angle.FromDegrees(UnitsNet.QuantityValue)" />
-        public static Angle Degrees(this int value) => Angle.FromDegrees(value);
+        public static Angle Degrees<T>(this T value) => Angle.FromDegrees(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromDegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Degrees(this int? value) => Angle.FromDegrees(value);
-
-        /// <inheritdoc cref="Angle.FromDegrees(UnitsNet.QuantityValue)" />
-        public static Angle Degrees(this long value) => Angle.FromDegrees(value);
-
-        /// <inheritdoc cref="Angle.FromDegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Degrees(this long? value) => Angle.FromDegrees(value);
-
-        /// <inheritdoc cref="Angle.FromDegrees(UnitsNet.QuantityValue)" />
-        public static Angle Degrees(this double value) => Angle.FromDegrees(value);
-
-        /// <inheritdoc cref="Angle.FromDegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Degrees(this double? value) => Angle.FromDegrees(value);
-
-        /// <inheritdoc cref="Angle.FromDegrees(UnitsNet.QuantityValue)" />
-        public static Angle Degrees(this float value) => Angle.FromDegrees(value);
-
-        /// <inheritdoc cref="Angle.FromDegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Degrees(this float? value) => Angle.FromDegrees(value);
-
-        /// <inheritdoc cref="Angle.FromDegrees(UnitsNet.QuantityValue)" />
-        public static Angle Degrees(this decimal value) => Angle.FromDegrees(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromDegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Degrees(this decimal? value) => Angle.FromDegrees(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Degrees<T>(this T? value) where T : struct => Angle.FromDegrees(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Gradian
 
         /// <inheritdoc cref="Angle.FromGradians(UnitsNet.QuantityValue)" />
-        public static Angle Gradians(this int value) => Angle.FromGradians(value);
+        public static Angle Gradians<T>(this T value) => Angle.FromGradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromGradians(UnitsNet.QuantityValue)" />
-        public static Angle? Gradians(this int? value) => Angle.FromGradians(value);
-
-        /// <inheritdoc cref="Angle.FromGradians(UnitsNet.QuantityValue)" />
-        public static Angle Gradians(this long value) => Angle.FromGradians(value);
-
-        /// <inheritdoc cref="Angle.FromGradians(UnitsNet.QuantityValue)" />
-        public static Angle? Gradians(this long? value) => Angle.FromGradians(value);
-
-        /// <inheritdoc cref="Angle.FromGradians(UnitsNet.QuantityValue)" />
-        public static Angle Gradians(this double value) => Angle.FromGradians(value);
-
-        /// <inheritdoc cref="Angle.FromGradians(UnitsNet.QuantityValue)" />
-        public static Angle? Gradians(this double? value) => Angle.FromGradians(value);
-
-        /// <inheritdoc cref="Angle.FromGradians(UnitsNet.QuantityValue)" />
-        public static Angle Gradians(this float value) => Angle.FromGradians(value);
-
-        /// <inheritdoc cref="Angle.FromGradians(UnitsNet.QuantityValue)" />
-        public static Angle? Gradians(this float? value) => Angle.FromGradians(value);
-
-        /// <inheritdoc cref="Angle.FromGradians(UnitsNet.QuantityValue)" />
-        public static Angle Gradians(this decimal value) => Angle.FromGradians(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromGradians(UnitsNet.QuantityValue)" />
-        public static Angle? Gradians(this decimal? value) => Angle.FromGradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Gradians<T>(this T? value) where T : struct => Angle.FromGradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Microdegree
 
         /// <inheritdoc cref="Angle.FromMicrodegrees(UnitsNet.QuantityValue)" />
-        public static Angle Microdegrees(this int value) => Angle.FromMicrodegrees(value);
+        public static Angle Microdegrees<T>(this T value) => Angle.FromMicrodegrees(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromMicrodegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Microdegrees(this int? value) => Angle.FromMicrodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMicrodegrees(UnitsNet.QuantityValue)" />
-        public static Angle Microdegrees(this long value) => Angle.FromMicrodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMicrodegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Microdegrees(this long? value) => Angle.FromMicrodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMicrodegrees(UnitsNet.QuantityValue)" />
-        public static Angle Microdegrees(this double value) => Angle.FromMicrodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMicrodegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Microdegrees(this double? value) => Angle.FromMicrodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMicrodegrees(UnitsNet.QuantityValue)" />
-        public static Angle Microdegrees(this float value) => Angle.FromMicrodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMicrodegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Microdegrees(this float? value) => Angle.FromMicrodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMicrodegrees(UnitsNet.QuantityValue)" />
-        public static Angle Microdegrees(this decimal value) => Angle.FromMicrodegrees(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromMicrodegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Microdegrees(this decimal? value) => Angle.FromMicrodegrees(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Microdegrees<T>(this T? value) where T : struct => Angle.FromMicrodegrees(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Microradian
 
         /// <inheritdoc cref="Angle.FromMicroradians(UnitsNet.QuantityValue)" />
-        public static Angle Microradians(this int value) => Angle.FromMicroradians(value);
+        public static Angle Microradians<T>(this T value) => Angle.FromMicroradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromMicroradians(UnitsNet.QuantityValue)" />
-        public static Angle? Microradians(this int? value) => Angle.FromMicroradians(value);
-
-        /// <inheritdoc cref="Angle.FromMicroradians(UnitsNet.QuantityValue)" />
-        public static Angle Microradians(this long value) => Angle.FromMicroradians(value);
-
-        /// <inheritdoc cref="Angle.FromMicroradians(UnitsNet.QuantityValue)" />
-        public static Angle? Microradians(this long? value) => Angle.FromMicroradians(value);
-
-        /// <inheritdoc cref="Angle.FromMicroradians(UnitsNet.QuantityValue)" />
-        public static Angle Microradians(this double value) => Angle.FromMicroradians(value);
-
-        /// <inheritdoc cref="Angle.FromMicroradians(UnitsNet.QuantityValue)" />
-        public static Angle? Microradians(this double? value) => Angle.FromMicroradians(value);
-
-        /// <inheritdoc cref="Angle.FromMicroradians(UnitsNet.QuantityValue)" />
-        public static Angle Microradians(this float value) => Angle.FromMicroradians(value);
-
-        /// <inheritdoc cref="Angle.FromMicroradians(UnitsNet.QuantityValue)" />
-        public static Angle? Microradians(this float? value) => Angle.FromMicroradians(value);
-
-        /// <inheritdoc cref="Angle.FromMicroradians(UnitsNet.QuantityValue)" />
-        public static Angle Microradians(this decimal value) => Angle.FromMicroradians(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromMicroradians(UnitsNet.QuantityValue)" />
-        public static Angle? Microradians(this decimal? value) => Angle.FromMicroradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Microradians<T>(this T? value) where T : struct => Angle.FromMicroradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Millidegree
 
         /// <inheritdoc cref="Angle.FromMillidegrees(UnitsNet.QuantityValue)" />
-        public static Angle Millidegrees(this int value) => Angle.FromMillidegrees(value);
+        public static Angle Millidegrees<T>(this T value) => Angle.FromMillidegrees(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromMillidegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Millidegrees(this int? value) => Angle.FromMillidegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMillidegrees(UnitsNet.QuantityValue)" />
-        public static Angle Millidegrees(this long value) => Angle.FromMillidegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMillidegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Millidegrees(this long? value) => Angle.FromMillidegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMillidegrees(UnitsNet.QuantityValue)" />
-        public static Angle Millidegrees(this double value) => Angle.FromMillidegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMillidegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Millidegrees(this double? value) => Angle.FromMillidegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMillidegrees(UnitsNet.QuantityValue)" />
-        public static Angle Millidegrees(this float value) => Angle.FromMillidegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMillidegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Millidegrees(this float? value) => Angle.FromMillidegrees(value);
-
-        /// <inheritdoc cref="Angle.FromMillidegrees(UnitsNet.QuantityValue)" />
-        public static Angle Millidegrees(this decimal value) => Angle.FromMillidegrees(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromMillidegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Millidegrees(this decimal? value) => Angle.FromMillidegrees(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Millidegrees<T>(this T? value) where T : struct => Angle.FromMillidegrees(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Milliradian
 
         /// <inheritdoc cref="Angle.FromMilliradians(UnitsNet.QuantityValue)" />
-        public static Angle Milliradians(this int value) => Angle.FromMilliradians(value);
+        public static Angle Milliradians<T>(this T value) => Angle.FromMilliradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromMilliradians(UnitsNet.QuantityValue)" />
-        public static Angle? Milliradians(this int? value) => Angle.FromMilliradians(value);
-
-        /// <inheritdoc cref="Angle.FromMilliradians(UnitsNet.QuantityValue)" />
-        public static Angle Milliradians(this long value) => Angle.FromMilliradians(value);
-
-        /// <inheritdoc cref="Angle.FromMilliradians(UnitsNet.QuantityValue)" />
-        public static Angle? Milliradians(this long? value) => Angle.FromMilliradians(value);
-
-        /// <inheritdoc cref="Angle.FromMilliradians(UnitsNet.QuantityValue)" />
-        public static Angle Milliradians(this double value) => Angle.FromMilliradians(value);
-
-        /// <inheritdoc cref="Angle.FromMilliradians(UnitsNet.QuantityValue)" />
-        public static Angle? Milliradians(this double? value) => Angle.FromMilliradians(value);
-
-        /// <inheritdoc cref="Angle.FromMilliradians(UnitsNet.QuantityValue)" />
-        public static Angle Milliradians(this float value) => Angle.FromMilliradians(value);
-
-        /// <inheritdoc cref="Angle.FromMilliradians(UnitsNet.QuantityValue)" />
-        public static Angle? Milliradians(this float? value) => Angle.FromMilliradians(value);
-
-        /// <inheritdoc cref="Angle.FromMilliradians(UnitsNet.QuantityValue)" />
-        public static Angle Milliradians(this decimal value) => Angle.FromMilliradians(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromMilliradians(UnitsNet.QuantityValue)" />
-        public static Angle? Milliradians(this decimal? value) => Angle.FromMilliradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Milliradians<T>(this T? value) where T : struct => Angle.FromMilliradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Nanodegree
 
         /// <inheritdoc cref="Angle.FromNanodegrees(UnitsNet.QuantityValue)" />
-        public static Angle Nanodegrees(this int value) => Angle.FromNanodegrees(value);
+        public static Angle Nanodegrees<T>(this T value) => Angle.FromNanodegrees(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromNanodegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Nanodegrees(this int? value) => Angle.FromNanodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromNanodegrees(UnitsNet.QuantityValue)" />
-        public static Angle Nanodegrees(this long value) => Angle.FromNanodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromNanodegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Nanodegrees(this long? value) => Angle.FromNanodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromNanodegrees(UnitsNet.QuantityValue)" />
-        public static Angle Nanodegrees(this double value) => Angle.FromNanodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromNanodegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Nanodegrees(this double? value) => Angle.FromNanodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromNanodegrees(UnitsNet.QuantityValue)" />
-        public static Angle Nanodegrees(this float value) => Angle.FromNanodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromNanodegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Nanodegrees(this float? value) => Angle.FromNanodegrees(value);
-
-        /// <inheritdoc cref="Angle.FromNanodegrees(UnitsNet.QuantityValue)" />
-        public static Angle Nanodegrees(this decimal value) => Angle.FromNanodegrees(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromNanodegrees(UnitsNet.QuantityValue)" />
-        public static Angle? Nanodegrees(this decimal? value) => Angle.FromNanodegrees(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Nanodegrees<T>(this T? value) where T : struct => Angle.FromNanodegrees(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Nanoradian
 
         /// <inheritdoc cref="Angle.FromNanoradians(UnitsNet.QuantityValue)" />
-        public static Angle Nanoradians(this int value) => Angle.FromNanoradians(value);
+        public static Angle Nanoradians<T>(this T value) => Angle.FromNanoradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromNanoradians(UnitsNet.QuantityValue)" />
-        public static Angle? Nanoradians(this int? value) => Angle.FromNanoradians(value);
-
-        /// <inheritdoc cref="Angle.FromNanoradians(UnitsNet.QuantityValue)" />
-        public static Angle Nanoradians(this long value) => Angle.FromNanoradians(value);
-
-        /// <inheritdoc cref="Angle.FromNanoradians(UnitsNet.QuantityValue)" />
-        public static Angle? Nanoradians(this long? value) => Angle.FromNanoradians(value);
-
-        /// <inheritdoc cref="Angle.FromNanoradians(UnitsNet.QuantityValue)" />
-        public static Angle Nanoradians(this double value) => Angle.FromNanoradians(value);
-
-        /// <inheritdoc cref="Angle.FromNanoradians(UnitsNet.QuantityValue)" />
-        public static Angle? Nanoradians(this double? value) => Angle.FromNanoradians(value);
-
-        /// <inheritdoc cref="Angle.FromNanoradians(UnitsNet.QuantityValue)" />
-        public static Angle Nanoradians(this float value) => Angle.FromNanoradians(value);
-
-        /// <inheritdoc cref="Angle.FromNanoradians(UnitsNet.QuantityValue)" />
-        public static Angle? Nanoradians(this float? value) => Angle.FromNanoradians(value);
-
-        /// <inheritdoc cref="Angle.FromNanoradians(UnitsNet.QuantityValue)" />
-        public static Angle Nanoradians(this decimal value) => Angle.FromNanoradians(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromNanoradians(UnitsNet.QuantityValue)" />
-        public static Angle? Nanoradians(this decimal? value) => Angle.FromNanoradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Nanoradians<T>(this T? value) where T : struct => Angle.FromNanoradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Radian
 
         /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
-        public static Angle Radians(this int value) => Angle.FromRadians(value);
+        public static Angle Radians<T>(this T value) => Angle.FromRadians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
-        public static Angle? Radians(this int? value) => Angle.FromRadians(value);
-
-        /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
-        public static Angle Radians(this long value) => Angle.FromRadians(value);
-
-        /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
-        public static Angle? Radians(this long? value) => Angle.FromRadians(value);
-
-        /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
-        public static Angle Radians(this double value) => Angle.FromRadians(value);
-
-        /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
-        public static Angle? Radians(this double? value) => Angle.FromRadians(value);
-
-        /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
-        public static Angle Radians(this float value) => Angle.FromRadians(value);
-
-        /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
-        public static Angle? Radians(this float? value) => Angle.FromRadians(value);
-
-        /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
-        public static Angle Radians(this decimal value) => Angle.FromRadians(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
-        public static Angle? Radians(this decimal? value) => Angle.FromRadians(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Radians<T>(this T? value) where T : struct => Angle.FromRadians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Revolution
 
         /// <inheritdoc cref="Angle.FromRevolutions(UnitsNet.QuantityValue)" />
-        public static Angle Revolutions(this int value) => Angle.FromRevolutions(value);
+        public static Angle Revolutions<T>(this T value) => Angle.FromRevolutions(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromRevolutions(UnitsNet.QuantityValue)" />
-        public static Angle? Revolutions(this int? value) => Angle.FromRevolutions(value);
-
-        /// <inheritdoc cref="Angle.FromRevolutions(UnitsNet.QuantityValue)" />
-        public static Angle Revolutions(this long value) => Angle.FromRevolutions(value);
-
-        /// <inheritdoc cref="Angle.FromRevolutions(UnitsNet.QuantityValue)" />
-        public static Angle? Revolutions(this long? value) => Angle.FromRevolutions(value);
-
-        /// <inheritdoc cref="Angle.FromRevolutions(UnitsNet.QuantityValue)" />
-        public static Angle Revolutions(this double value) => Angle.FromRevolutions(value);
-
-        /// <inheritdoc cref="Angle.FromRevolutions(UnitsNet.QuantityValue)" />
-        public static Angle? Revolutions(this double? value) => Angle.FromRevolutions(value);
-
-        /// <inheritdoc cref="Angle.FromRevolutions(UnitsNet.QuantityValue)" />
-        public static Angle Revolutions(this float value) => Angle.FromRevolutions(value);
-
-        /// <inheritdoc cref="Angle.FromRevolutions(UnitsNet.QuantityValue)" />
-        public static Angle? Revolutions(this float? value) => Angle.FromRevolutions(value);
-
-        /// <inheritdoc cref="Angle.FromRevolutions(UnitsNet.QuantityValue)" />
-        public static Angle Revolutions(this decimal value) => Angle.FromRevolutions(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Angle.FromRevolutions(UnitsNet.QuantityValue)" />
-        public static Angle? Revolutions(this decimal? value) => Angle.FromRevolutions(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Angle? Revolutions<T>(this T? value) where T : struct => Angle.FromRevolutions(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

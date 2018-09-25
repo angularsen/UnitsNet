@@ -47,34 +47,10 @@ namespace UnitsNet.Extensions.NumberToLapseRate
         #region DegreeCelsiusPerKilometer
 
         /// <inheritdoc cref="LapseRate.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static LapseRate DegreesCelciusPerKilometer(this int value) => LapseRate.FromDegreesCelciusPerKilometer(value);
+        public static LapseRate DegreesCelciusPerKilometer<T>(this T value) => LapseRate.FromDegreesCelciusPerKilometer(Convert.ToDouble(value));
 
         /// <inheritdoc cref="LapseRate.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static LapseRate? DegreesCelciusPerKilometer(this int? value) => LapseRate.FromDegreesCelciusPerKilometer(value);
-
-        /// <inheritdoc cref="LapseRate.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static LapseRate DegreesCelciusPerKilometer(this long value) => LapseRate.FromDegreesCelciusPerKilometer(value);
-
-        /// <inheritdoc cref="LapseRate.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static LapseRate? DegreesCelciusPerKilometer(this long? value) => LapseRate.FromDegreesCelciusPerKilometer(value);
-
-        /// <inheritdoc cref="LapseRate.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static LapseRate DegreesCelciusPerKilometer(this double value) => LapseRate.FromDegreesCelciusPerKilometer(value);
-
-        /// <inheritdoc cref="LapseRate.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static LapseRate? DegreesCelciusPerKilometer(this double? value) => LapseRate.FromDegreesCelciusPerKilometer(value);
-
-        /// <inheritdoc cref="LapseRate.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static LapseRate DegreesCelciusPerKilometer(this float value) => LapseRate.FromDegreesCelciusPerKilometer(value);
-
-        /// <inheritdoc cref="LapseRate.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static LapseRate? DegreesCelciusPerKilometer(this float? value) => LapseRate.FromDegreesCelciusPerKilometer(value);
-
-        /// <inheritdoc cref="LapseRate.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static LapseRate DegreesCelciusPerKilometer(this decimal value) => LapseRate.FromDegreesCelciusPerKilometer(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="LapseRate.FromDegreesCelciusPerKilometer(UnitsNet.QuantityValue)" />
-        public static LapseRate? DegreesCelciusPerKilometer(this decimal? value) => LapseRate.FromDegreesCelciusPerKilometer(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static LapseRate? DegreesCelciusPerKilometer<T>(this T? value) where T : struct => LapseRate.FromDegreesCelciusPerKilometer(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

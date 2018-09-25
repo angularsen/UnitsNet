@@ -47,68 +47,20 @@ namespace UnitsNet.Extensions.NumberToThermalConductivity
         #region BtuPerHourFootFahrenheit
 
         /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity BtusPerHourFootFahrenheit(this int value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
+        public static ThermalConductivity BtusPerHourFootFahrenheit<T>(this T value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity? BtusPerHourFootFahrenheit(this int? value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity BtusPerHourFootFahrenheit(this long value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity? BtusPerHourFootFahrenheit(this long? value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity BtusPerHourFootFahrenheit(this double value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity? BtusPerHourFootFahrenheit(this double? value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity BtusPerHourFootFahrenheit(this float value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity? BtusPerHourFootFahrenheit(this float? value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity BtusPerHourFootFahrenheit(this decimal value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ThermalConductivity.FromBtusPerHourFootFahrenheit(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity? BtusPerHourFootFahrenheit(this decimal? value) => ThermalConductivity.FromBtusPerHourFootFahrenheit(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ThermalConductivity? BtusPerHourFootFahrenheit<T>(this T? value) where T : struct => ThermalConductivity.FromBtusPerHourFootFahrenheit(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region WattPerMeterKelvin
 
         /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity WattsPerMeterKelvin(this int value) => ThermalConductivity.FromWattsPerMeterKelvin(value);
+        public static ThermalConductivity WattsPerMeterKelvin<T>(this T value) => ThermalConductivity.FromWattsPerMeterKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity? WattsPerMeterKelvin(this int? value) => ThermalConductivity.FromWattsPerMeterKelvin(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity WattsPerMeterKelvin(this long value) => ThermalConductivity.FromWattsPerMeterKelvin(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity? WattsPerMeterKelvin(this long? value) => ThermalConductivity.FromWattsPerMeterKelvin(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity WattsPerMeterKelvin(this double value) => ThermalConductivity.FromWattsPerMeterKelvin(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity? WattsPerMeterKelvin(this double? value) => ThermalConductivity.FromWattsPerMeterKelvin(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity WattsPerMeterKelvin(this float value) => ThermalConductivity.FromWattsPerMeterKelvin(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity? WattsPerMeterKelvin(this float? value) => ThermalConductivity.FromWattsPerMeterKelvin(value);
-
-        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity WattsPerMeterKelvin(this decimal value) => ThermalConductivity.FromWattsPerMeterKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ThermalConductivity.FromWattsPerMeterKelvin(UnitsNet.QuantityValue)" />
-        public static ThermalConductivity? WattsPerMeterKelvin(this decimal? value) => ThermalConductivity.FromWattsPerMeterKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ThermalConductivity? WattsPerMeterKelvin<T>(this T? value) where T : struct => ThermalConductivity.FromWattsPerMeterKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

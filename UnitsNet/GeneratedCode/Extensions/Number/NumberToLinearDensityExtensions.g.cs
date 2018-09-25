@@ -47,102 +47,30 @@ namespace UnitsNet.Extensions.NumberToLinearDensity
         #region GramPerMeter
 
         /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity GramsPerMeter(this int value) => LinearDensity.FromGramsPerMeter(value);
+        public static LinearDensity GramsPerMeter<T>(this T value) => LinearDensity.FromGramsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity? GramsPerMeter(this int? value) => LinearDensity.FromGramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity GramsPerMeter(this long value) => LinearDensity.FromGramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity? GramsPerMeter(this long? value) => LinearDensity.FromGramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity GramsPerMeter(this double value) => LinearDensity.FromGramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity? GramsPerMeter(this double? value) => LinearDensity.FromGramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity GramsPerMeter(this float value) => LinearDensity.FromGramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity? GramsPerMeter(this float? value) => LinearDensity.FromGramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity GramsPerMeter(this decimal value) => LinearDensity.FromGramsPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity? GramsPerMeter(this decimal? value) => LinearDensity.FromGramsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static LinearDensity? GramsPerMeter<T>(this T? value) where T : struct => LinearDensity.FromGramsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramPerMeter
 
         /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity KilogramsPerMeter(this int value) => LinearDensity.FromKilogramsPerMeter(value);
+        public static LinearDensity KilogramsPerMeter<T>(this T value) => LinearDensity.FromKilogramsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity? KilogramsPerMeter(this int? value) => LinearDensity.FromKilogramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity KilogramsPerMeter(this long value) => LinearDensity.FromKilogramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity? KilogramsPerMeter(this long? value) => LinearDensity.FromKilogramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity KilogramsPerMeter(this double value) => LinearDensity.FromKilogramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity? KilogramsPerMeter(this double? value) => LinearDensity.FromKilogramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity KilogramsPerMeter(this float value) => LinearDensity.FromKilogramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity? KilogramsPerMeter(this float? value) => LinearDensity.FromKilogramsPerMeter(value);
-
-        /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity KilogramsPerMeter(this decimal value) => LinearDensity.FromKilogramsPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(UnitsNet.QuantityValue)" />
-        public static LinearDensity? KilogramsPerMeter(this decimal? value) => LinearDensity.FromKilogramsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static LinearDensity? KilogramsPerMeter<T>(this T? value) where T : struct => LinearDensity.FromKilogramsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PoundPerFoot
 
         /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearDensity PoundsPerFoot(this int value) => LinearDensity.FromPoundsPerFoot(value);
+        public static LinearDensity PoundsPerFoot<T>(this T value) => LinearDensity.FromPoundsPerFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearDensity? PoundsPerFoot(this int? value) => LinearDensity.FromPoundsPerFoot(value);
-
-        /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearDensity PoundsPerFoot(this long value) => LinearDensity.FromPoundsPerFoot(value);
-
-        /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearDensity? PoundsPerFoot(this long? value) => LinearDensity.FromPoundsPerFoot(value);
-
-        /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearDensity PoundsPerFoot(this double value) => LinearDensity.FromPoundsPerFoot(value);
-
-        /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearDensity? PoundsPerFoot(this double? value) => LinearDensity.FromPoundsPerFoot(value);
-
-        /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearDensity PoundsPerFoot(this float value) => LinearDensity.FromPoundsPerFoot(value);
-
-        /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearDensity? PoundsPerFoot(this float? value) => LinearDensity.FromPoundsPerFoot(value);
-
-        /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearDensity PoundsPerFoot(this decimal value) => LinearDensity.FromPoundsPerFoot(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(UnitsNet.QuantityValue)" />
-        public static LinearDensity? PoundsPerFoot(this decimal? value) => LinearDensity.FromPoundsPerFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static LinearDensity? PoundsPerFoot<T>(this T? value) where T : struct => LinearDensity.FromPoundsPerFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

@@ -47,102 +47,30 @@ namespace UnitsNet.Extensions.NumberToMolarEntropy
         #region JoulePerMoleKelvin
 
         /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy JoulesPerMoleKelvin(this int value) => MolarEntropy.FromJoulesPerMoleKelvin(value);
+        public static MolarEntropy JoulesPerMoleKelvin<T>(this T value) => MolarEntropy.FromJoulesPerMoleKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? JoulesPerMoleKelvin(this int? value) => MolarEntropy.FromJoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy JoulesPerMoleKelvin(this long value) => MolarEntropy.FromJoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? JoulesPerMoleKelvin(this long? value) => MolarEntropy.FromJoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy JoulesPerMoleKelvin(this double value) => MolarEntropy.FromJoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? JoulesPerMoleKelvin(this double? value) => MolarEntropy.FromJoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy JoulesPerMoleKelvin(this float value) => MolarEntropy.FromJoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? JoulesPerMoleKelvin(this float? value) => MolarEntropy.FromJoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy JoulesPerMoleKelvin(this decimal value) => MolarEntropy.FromJoulesPerMoleKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? JoulesPerMoleKelvin(this decimal? value) => MolarEntropy.FromJoulesPerMoleKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static MolarEntropy? JoulesPerMoleKelvin<T>(this T? value) where T : struct => MolarEntropy.FromJoulesPerMoleKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilojoulePerMoleKelvin
 
         /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy KilojoulesPerMoleKelvin(this int value) => MolarEntropy.FromKilojoulesPerMoleKelvin(value);
+        public static MolarEntropy KilojoulesPerMoleKelvin<T>(this T value) => MolarEntropy.FromKilojoulesPerMoleKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? KilojoulesPerMoleKelvin(this int? value) => MolarEntropy.FromKilojoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy KilojoulesPerMoleKelvin(this long value) => MolarEntropy.FromKilojoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? KilojoulesPerMoleKelvin(this long? value) => MolarEntropy.FromKilojoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy KilojoulesPerMoleKelvin(this double value) => MolarEntropy.FromKilojoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? KilojoulesPerMoleKelvin(this double? value) => MolarEntropy.FromKilojoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy KilojoulesPerMoleKelvin(this float value) => MolarEntropy.FromKilojoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? KilojoulesPerMoleKelvin(this float? value) => MolarEntropy.FromKilojoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy KilojoulesPerMoleKelvin(this decimal value) => MolarEntropy.FromKilojoulesPerMoleKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? KilojoulesPerMoleKelvin(this decimal? value) => MolarEntropy.FromKilojoulesPerMoleKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static MolarEntropy? KilojoulesPerMoleKelvin<T>(this T? value) where T : struct => MolarEntropy.FromKilojoulesPerMoleKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegajoulePerMoleKelvin
 
         /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy MegajoulesPerMoleKelvin(this int value) => MolarEntropy.FromMegajoulesPerMoleKelvin(value);
+        public static MolarEntropy MegajoulesPerMoleKelvin<T>(this T value) => MolarEntropy.FromMegajoulesPerMoleKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? MegajoulesPerMoleKelvin(this int? value) => MolarEntropy.FromMegajoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy MegajoulesPerMoleKelvin(this long value) => MolarEntropy.FromMegajoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? MegajoulesPerMoleKelvin(this long? value) => MolarEntropy.FromMegajoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy MegajoulesPerMoleKelvin(this double value) => MolarEntropy.FromMegajoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? MegajoulesPerMoleKelvin(this double? value) => MolarEntropy.FromMegajoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy MegajoulesPerMoleKelvin(this float value) => MolarEntropy.FromMegajoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? MegajoulesPerMoleKelvin(this float? value) => MolarEntropy.FromMegajoulesPerMoleKelvin(value);
-
-        /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy MegajoulesPerMoleKelvin(this decimal value) => MolarEntropy.FromMegajoulesPerMoleKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
-        public static MolarEntropy? MegajoulesPerMoleKelvin(this decimal? value) => MolarEntropy.FromMegajoulesPerMoleKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static MolarEntropy? MegajoulesPerMoleKelvin<T>(this T? value) where T : struct => MolarEntropy.FromMegajoulesPerMoleKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
