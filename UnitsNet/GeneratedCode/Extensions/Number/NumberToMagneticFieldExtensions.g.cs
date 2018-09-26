@@ -47,34 +47,10 @@ namespace UnitsNet.Extensions.NumberToMagneticField
         #region Tesla
 
         /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />
-        public static MagneticField Teslas(this int value) => MagneticField.FromTeslas(value);
+        public static MagneticField Teslas<T>(this T value) => MagneticField.FromTeslas(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />
-        public static MagneticField? Teslas(this int? value) => MagneticField.FromTeslas(value);
-
-        /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />
-        public static MagneticField Teslas(this long value) => MagneticField.FromTeslas(value);
-
-        /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />
-        public static MagneticField? Teslas(this long? value) => MagneticField.FromTeslas(value);
-
-        /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />
-        public static MagneticField Teslas(this double value) => MagneticField.FromTeslas(value);
-
-        /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />
-        public static MagneticField? Teslas(this double? value) => MagneticField.FromTeslas(value);
-
-        /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />
-        public static MagneticField Teslas(this float value) => MagneticField.FromTeslas(value);
-
-        /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />
-        public static MagneticField? Teslas(this float? value) => MagneticField.FromTeslas(value);
-
-        /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />
-        public static MagneticField Teslas(this decimal value) => MagneticField.FromTeslas(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />
-        public static MagneticField? Teslas(this decimal? value) => MagneticField.FromTeslas(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static MagneticField? Teslas<T>(this T? value) where T : struct => MagneticField.FromTeslas(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

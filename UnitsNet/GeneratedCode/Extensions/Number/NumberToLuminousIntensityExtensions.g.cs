@@ -47,34 +47,10 @@ namespace UnitsNet.Extensions.NumberToLuminousIntensity
         #region Candela
 
         /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
-        public static LuminousIntensity Candela(this int value) => LuminousIntensity.FromCandela(value);
+        public static LuminousIntensity Candela<T>(this T value) => LuminousIntensity.FromCandela(Convert.ToDouble(value));
 
         /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
-        public static LuminousIntensity? Candela(this int? value) => LuminousIntensity.FromCandela(value);
-
-        /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
-        public static LuminousIntensity Candela(this long value) => LuminousIntensity.FromCandela(value);
-
-        /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
-        public static LuminousIntensity? Candela(this long? value) => LuminousIntensity.FromCandela(value);
-
-        /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
-        public static LuminousIntensity Candela(this double value) => LuminousIntensity.FromCandela(value);
-
-        /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
-        public static LuminousIntensity? Candela(this double? value) => LuminousIntensity.FromCandela(value);
-
-        /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
-        public static LuminousIntensity Candela(this float value) => LuminousIntensity.FromCandela(value);
-
-        /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
-        public static LuminousIntensity? Candela(this float? value) => LuminousIntensity.FromCandela(value);
-
-        /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
-        public static LuminousIntensity Candela(this decimal value) => LuminousIntensity.FromCandela(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
-        public static LuminousIntensity? Candela(this decimal? value) => LuminousIntensity.FromCandela(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static LuminousIntensity? Candela<T>(this T? value) where T : struct => LuminousIntensity.FromCandela(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

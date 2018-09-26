@@ -47,204 +47,60 @@ namespace UnitsNet.Extensions.NumberToAreaMomentOfInertia
         #region CentimeterToTheFourth
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia CentimetersToTheFourth(this int value) => AreaMomentOfInertia.FromCentimetersToTheFourth(value);
+        public static AreaMomentOfInertia CentimetersToTheFourth<T>(this T value) => AreaMomentOfInertia.FromCentimetersToTheFourth(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? CentimetersToTheFourth(this int? value) => AreaMomentOfInertia.FromCentimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia CentimetersToTheFourth(this long value) => AreaMomentOfInertia.FromCentimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? CentimetersToTheFourth(this long? value) => AreaMomentOfInertia.FromCentimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia CentimetersToTheFourth(this double value) => AreaMomentOfInertia.FromCentimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? CentimetersToTheFourth(this double? value) => AreaMomentOfInertia.FromCentimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia CentimetersToTheFourth(this float value) => AreaMomentOfInertia.FromCentimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? CentimetersToTheFourth(this float? value) => AreaMomentOfInertia.FromCentimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia CentimetersToTheFourth(this decimal value) => AreaMomentOfInertia.FromCentimetersToTheFourth(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromCentimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? CentimetersToTheFourth(this decimal? value) => AreaMomentOfInertia.FromCentimetersToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static AreaMomentOfInertia? CentimetersToTheFourth<T>(this T? value) where T : struct => AreaMomentOfInertia.FromCentimetersToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecimeterToTheFourth
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia DecimetersToTheFourth(this int value) => AreaMomentOfInertia.FromDecimetersToTheFourth(value);
+        public static AreaMomentOfInertia DecimetersToTheFourth<T>(this T value) => AreaMomentOfInertia.FromDecimetersToTheFourth(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? DecimetersToTheFourth(this int? value) => AreaMomentOfInertia.FromDecimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia DecimetersToTheFourth(this long value) => AreaMomentOfInertia.FromDecimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? DecimetersToTheFourth(this long? value) => AreaMomentOfInertia.FromDecimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia DecimetersToTheFourth(this double value) => AreaMomentOfInertia.FromDecimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? DecimetersToTheFourth(this double? value) => AreaMomentOfInertia.FromDecimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia DecimetersToTheFourth(this float value) => AreaMomentOfInertia.FromDecimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? DecimetersToTheFourth(this float? value) => AreaMomentOfInertia.FromDecimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia DecimetersToTheFourth(this decimal value) => AreaMomentOfInertia.FromDecimetersToTheFourth(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromDecimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? DecimetersToTheFourth(this decimal? value) => AreaMomentOfInertia.FromDecimetersToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static AreaMomentOfInertia? DecimetersToTheFourth<T>(this T? value) where T : struct => AreaMomentOfInertia.FromDecimetersToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region FootToTheFourth
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia FeetToTheFourth(this int value) => AreaMomentOfInertia.FromFeetToTheFourth(value);
+        public static AreaMomentOfInertia FeetToTheFourth<T>(this T value) => AreaMomentOfInertia.FromFeetToTheFourth(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? FeetToTheFourth(this int? value) => AreaMomentOfInertia.FromFeetToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia FeetToTheFourth(this long value) => AreaMomentOfInertia.FromFeetToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? FeetToTheFourth(this long? value) => AreaMomentOfInertia.FromFeetToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia FeetToTheFourth(this double value) => AreaMomentOfInertia.FromFeetToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? FeetToTheFourth(this double? value) => AreaMomentOfInertia.FromFeetToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia FeetToTheFourth(this float value) => AreaMomentOfInertia.FromFeetToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? FeetToTheFourth(this float? value) => AreaMomentOfInertia.FromFeetToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia FeetToTheFourth(this decimal value) => AreaMomentOfInertia.FromFeetToTheFourth(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromFeetToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? FeetToTheFourth(this decimal? value) => AreaMomentOfInertia.FromFeetToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static AreaMomentOfInertia? FeetToTheFourth<T>(this T? value) where T : struct => AreaMomentOfInertia.FromFeetToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region InchToTheFourth
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia InchesToTheFourth(this int value) => AreaMomentOfInertia.FromInchesToTheFourth(value);
+        public static AreaMomentOfInertia InchesToTheFourth<T>(this T value) => AreaMomentOfInertia.FromInchesToTheFourth(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? InchesToTheFourth(this int? value) => AreaMomentOfInertia.FromInchesToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia InchesToTheFourth(this long value) => AreaMomentOfInertia.FromInchesToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? InchesToTheFourth(this long? value) => AreaMomentOfInertia.FromInchesToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia InchesToTheFourth(this double value) => AreaMomentOfInertia.FromInchesToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? InchesToTheFourth(this double? value) => AreaMomentOfInertia.FromInchesToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia InchesToTheFourth(this float value) => AreaMomentOfInertia.FromInchesToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? InchesToTheFourth(this float? value) => AreaMomentOfInertia.FromInchesToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia InchesToTheFourth(this decimal value) => AreaMomentOfInertia.FromInchesToTheFourth(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromInchesToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? InchesToTheFourth(this decimal? value) => AreaMomentOfInertia.FromInchesToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static AreaMomentOfInertia? InchesToTheFourth<T>(this T? value) where T : struct => AreaMomentOfInertia.FromInchesToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MeterToTheFourth
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia MetersToTheFourth(this int value) => AreaMomentOfInertia.FromMetersToTheFourth(value);
+        public static AreaMomentOfInertia MetersToTheFourth<T>(this T value) => AreaMomentOfInertia.FromMetersToTheFourth(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? MetersToTheFourth(this int? value) => AreaMomentOfInertia.FromMetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia MetersToTheFourth(this long value) => AreaMomentOfInertia.FromMetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? MetersToTheFourth(this long? value) => AreaMomentOfInertia.FromMetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia MetersToTheFourth(this double value) => AreaMomentOfInertia.FromMetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? MetersToTheFourth(this double? value) => AreaMomentOfInertia.FromMetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia MetersToTheFourth(this float value) => AreaMomentOfInertia.FromMetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? MetersToTheFourth(this float? value) => AreaMomentOfInertia.FromMetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia MetersToTheFourth(this decimal value) => AreaMomentOfInertia.FromMetersToTheFourth(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? MetersToTheFourth(this decimal? value) => AreaMomentOfInertia.FromMetersToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static AreaMomentOfInertia? MetersToTheFourth<T>(this T? value) where T : struct => AreaMomentOfInertia.FromMetersToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillimeterToTheFourth
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia MillimetersToTheFourth(this int value) => AreaMomentOfInertia.FromMillimetersToTheFourth(value);
+        public static AreaMomentOfInertia MillimetersToTheFourth<T>(this T value) => AreaMomentOfInertia.FromMillimetersToTheFourth(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? MillimetersToTheFourth(this int? value) => AreaMomentOfInertia.FromMillimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia MillimetersToTheFourth(this long value) => AreaMomentOfInertia.FromMillimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? MillimetersToTheFourth(this long? value) => AreaMomentOfInertia.FromMillimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia MillimetersToTheFourth(this double value) => AreaMomentOfInertia.FromMillimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? MillimetersToTheFourth(this double? value) => AreaMomentOfInertia.FromMillimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia MillimetersToTheFourth(this float value) => AreaMomentOfInertia.FromMillimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? MillimetersToTheFourth(this float? value) => AreaMomentOfInertia.FromMillimetersToTheFourth(value);
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia MillimetersToTheFourth(this decimal value) => AreaMomentOfInertia.FromMillimetersToTheFourth(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="AreaMomentOfInertia.FromMillimetersToTheFourth(UnitsNet.QuantityValue)" />
-        public static AreaMomentOfInertia? MillimetersToTheFourth(this decimal? value) => AreaMomentOfInertia.FromMillimetersToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static AreaMomentOfInertia? MillimetersToTheFourth<T>(this T? value) where T : struct => AreaMomentOfInertia.FromMillimetersToTheFourth(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

@@ -1,4 +1,4 @@
-function GenerateNumberExtensionsSourceCode($quantity)
+﻿function GenerateNumberExtensionsSourceCode($quantity)
 {
     $quantityName = $quantity.Name;
     $units = $quantity.Units;
@@ -52,38 +52,15 @@ namespace UnitsNet.Extensions.NumberTo$quantityName
 "@; foreach ($unit in $units) {
         # A few units share the exact same name across quantities, which give extension method name conflicts.
         # We add "OmitExtensionMethod": true on all but one of the conflicting units in JSON.
-        if ($unit.OmitExtensionMethod) { continue }@"
+        if ($unit.OmitExtensionMethod) { continue }
+@"
         #region $($unit.SingularName)
 
         /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />
-        public static $quantityName $($unit.PluralName)(this int value) => $quantityName.From$($unit.PluralName)(value);
+        public static $quantityName $($unit.PluralName)<T>(this T value) => $quantityName.From$($unit.PluralName)(Convert.ToDouble(value));
 
         /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />
-        public static $($quantityName)? $($unit.PluralName)(this int? value) => $quantityName.From$($unit.PluralName)(value);
-
-        /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />
-        public static $quantityName $($unit.PluralName)(this long value) => $quantityName.From$($unit.PluralName)(value);
-
-        /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />
-        public static $($quantityName)? $($unit.PluralName)(this long? value) => $quantityName.From$($unit.PluralName)(value);
-
-        /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />
-        public static $quantityName $($unit.PluralName)(this double value) => $quantityName.From$($unit.PluralName)(value);
-
-        /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />
-        public static $($quantityName)? $($unit.PluralName)(this double? value) => $quantityName.From$($unit.PluralName)(value);
-
-        /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />
-        public static $quantityName $($unit.PluralName)(this float value) => $quantityName.From$($unit.PluralName)(value);
-
-        /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />
-        public static $($quantityName)? $($unit.PluralName)(this float? value) => $quantityName.From$($unit.PluralName)(value);
-
-        /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />
-        public static $quantityName $($unit.PluralName)(this decimal value) => $quantityName.From$($unit.PluralName)(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />
-        public static $($quantityName)? $($unit.PluralName)(this decimal? value) => $quantityName.From$($unit.PluralName)(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static $($quantityName)? $($unit.PluralName)<T>(this T? value) where T : struct => $quantityName.From$($unit.PluralName)(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

@@ -47,374 +47,110 @@ namespace UnitsNet.Extensions.NumberToForceChangeRate
         #region CentinewtonPerSecond
 
         /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate CentinewtonsPerSecond(this int value) => ForceChangeRate.FromCentinewtonsPerSecond(value);
+        public static ForceChangeRate CentinewtonsPerSecond<T>(this T value) => ForceChangeRate.FromCentinewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? CentinewtonsPerSecond(this int? value) => ForceChangeRate.FromCentinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate CentinewtonsPerSecond(this long value) => ForceChangeRate.FromCentinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? CentinewtonsPerSecond(this long? value) => ForceChangeRate.FromCentinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate CentinewtonsPerSecond(this double value) => ForceChangeRate.FromCentinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? CentinewtonsPerSecond(this double? value) => ForceChangeRate.FromCentinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate CentinewtonsPerSecond(this float value) => ForceChangeRate.FromCentinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? CentinewtonsPerSecond(this float? value) => ForceChangeRate.FromCentinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate CentinewtonsPerSecond(this decimal value) => ForceChangeRate.FromCentinewtonsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? CentinewtonsPerSecond(this decimal? value) => ForceChangeRate.FromCentinewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ForceChangeRate? CentinewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromCentinewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecanewtonPerMinute
 
         /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecanewtonsPerMinute(this int value) => ForceChangeRate.FromDecanewtonsPerMinute(value);
+        public static ForceChangeRate DecanewtonsPerMinute<T>(this T value) => ForceChangeRate.FromDecanewtonsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecanewtonsPerMinute(this int? value) => ForceChangeRate.FromDecanewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecanewtonsPerMinute(this long value) => ForceChangeRate.FromDecanewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecanewtonsPerMinute(this long? value) => ForceChangeRate.FromDecanewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecanewtonsPerMinute(this double value) => ForceChangeRate.FromDecanewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecanewtonsPerMinute(this double? value) => ForceChangeRate.FromDecanewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecanewtonsPerMinute(this float value) => ForceChangeRate.FromDecanewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecanewtonsPerMinute(this float? value) => ForceChangeRate.FromDecanewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecanewtonsPerMinute(this decimal value) => ForceChangeRate.FromDecanewtonsPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecanewtonsPerMinute(this decimal? value) => ForceChangeRate.FromDecanewtonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ForceChangeRate? DecanewtonsPerMinute<T>(this T? value) where T : struct => ForceChangeRate.FromDecanewtonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecanewtonPerSecond
 
         /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecanewtonsPerSecond(this int value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
+        public static ForceChangeRate DecanewtonsPerSecond<T>(this T value) => ForceChangeRate.FromDecanewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecanewtonsPerSecond(this int? value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecanewtonsPerSecond(this long value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecanewtonsPerSecond(this long? value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecanewtonsPerSecond(this double value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecanewtonsPerSecond(this double? value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecanewtonsPerSecond(this float value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecanewtonsPerSecond(this float? value) => ForceChangeRate.FromDecanewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecanewtonsPerSecond(this decimal value) => ForceChangeRate.FromDecanewtonsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecanewtonsPerSecond(this decimal? value) => ForceChangeRate.FromDecanewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ForceChangeRate? DecanewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromDecanewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecinewtonPerSecond
 
         /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecinewtonsPerSecond(this int value) => ForceChangeRate.FromDecinewtonsPerSecond(value);
+        public static ForceChangeRate DecinewtonsPerSecond<T>(this T value) => ForceChangeRate.FromDecinewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecinewtonsPerSecond(this int? value) => ForceChangeRate.FromDecinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecinewtonsPerSecond(this long value) => ForceChangeRate.FromDecinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecinewtonsPerSecond(this long? value) => ForceChangeRate.FromDecinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecinewtonsPerSecond(this double value) => ForceChangeRate.FromDecinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecinewtonsPerSecond(this double? value) => ForceChangeRate.FromDecinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecinewtonsPerSecond(this float value) => ForceChangeRate.FromDecinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecinewtonsPerSecond(this float? value) => ForceChangeRate.FromDecinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate DecinewtonsPerSecond(this decimal value) => ForceChangeRate.FromDecinewtonsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? DecinewtonsPerSecond(this decimal? value) => ForceChangeRate.FromDecinewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ForceChangeRate? DecinewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromDecinewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilonewtonPerMinute
 
         /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate KilonewtonsPerMinute(this int value) => ForceChangeRate.FromKilonewtonsPerMinute(value);
+        public static ForceChangeRate KilonewtonsPerMinute<T>(this T value) => ForceChangeRate.FromKilonewtonsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? KilonewtonsPerMinute(this int? value) => ForceChangeRate.FromKilonewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate KilonewtonsPerMinute(this long value) => ForceChangeRate.FromKilonewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? KilonewtonsPerMinute(this long? value) => ForceChangeRate.FromKilonewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate KilonewtonsPerMinute(this double value) => ForceChangeRate.FromKilonewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? KilonewtonsPerMinute(this double? value) => ForceChangeRate.FromKilonewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate KilonewtonsPerMinute(this float value) => ForceChangeRate.FromKilonewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? KilonewtonsPerMinute(this float? value) => ForceChangeRate.FromKilonewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate KilonewtonsPerMinute(this decimal value) => ForceChangeRate.FromKilonewtonsPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? KilonewtonsPerMinute(this decimal? value) => ForceChangeRate.FromKilonewtonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ForceChangeRate? KilonewtonsPerMinute<T>(this T? value) where T : struct => ForceChangeRate.FromKilonewtonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilonewtonPerSecond
 
         /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate KilonewtonsPerSecond(this int value) => ForceChangeRate.FromKilonewtonsPerSecond(value);
+        public static ForceChangeRate KilonewtonsPerSecond<T>(this T value) => ForceChangeRate.FromKilonewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? KilonewtonsPerSecond(this int? value) => ForceChangeRate.FromKilonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate KilonewtonsPerSecond(this long value) => ForceChangeRate.FromKilonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? KilonewtonsPerSecond(this long? value) => ForceChangeRate.FromKilonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate KilonewtonsPerSecond(this double value) => ForceChangeRate.FromKilonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? KilonewtonsPerSecond(this double? value) => ForceChangeRate.FromKilonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate KilonewtonsPerSecond(this float value) => ForceChangeRate.FromKilonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? KilonewtonsPerSecond(this float? value) => ForceChangeRate.FromKilonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate KilonewtonsPerSecond(this decimal value) => ForceChangeRate.FromKilonewtonsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? KilonewtonsPerSecond(this decimal? value) => ForceChangeRate.FromKilonewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ForceChangeRate? KilonewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromKilonewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicronewtonPerSecond
 
         /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate MicronewtonsPerSecond(this int value) => ForceChangeRate.FromMicronewtonsPerSecond(value);
+        public static ForceChangeRate MicronewtonsPerSecond<T>(this T value) => ForceChangeRate.FromMicronewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? MicronewtonsPerSecond(this int? value) => ForceChangeRate.FromMicronewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate MicronewtonsPerSecond(this long value) => ForceChangeRate.FromMicronewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? MicronewtonsPerSecond(this long? value) => ForceChangeRate.FromMicronewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate MicronewtonsPerSecond(this double value) => ForceChangeRate.FromMicronewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? MicronewtonsPerSecond(this double? value) => ForceChangeRate.FromMicronewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate MicronewtonsPerSecond(this float value) => ForceChangeRate.FromMicronewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? MicronewtonsPerSecond(this float? value) => ForceChangeRate.FromMicronewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate MicronewtonsPerSecond(this decimal value) => ForceChangeRate.FromMicronewtonsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? MicronewtonsPerSecond(this decimal? value) => ForceChangeRate.FromMicronewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ForceChangeRate? MicronewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromMicronewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillinewtonPerSecond
 
         /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate MillinewtonsPerSecond(this int value) => ForceChangeRate.FromMillinewtonsPerSecond(value);
+        public static ForceChangeRate MillinewtonsPerSecond<T>(this T value) => ForceChangeRate.FromMillinewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? MillinewtonsPerSecond(this int? value) => ForceChangeRate.FromMillinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate MillinewtonsPerSecond(this long value) => ForceChangeRate.FromMillinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? MillinewtonsPerSecond(this long? value) => ForceChangeRate.FromMillinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate MillinewtonsPerSecond(this double value) => ForceChangeRate.FromMillinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? MillinewtonsPerSecond(this double? value) => ForceChangeRate.FromMillinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate MillinewtonsPerSecond(this float value) => ForceChangeRate.FromMillinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? MillinewtonsPerSecond(this float? value) => ForceChangeRate.FromMillinewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate MillinewtonsPerSecond(this decimal value) => ForceChangeRate.FromMillinewtonsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? MillinewtonsPerSecond(this decimal? value) => ForceChangeRate.FromMillinewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ForceChangeRate? MillinewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromMillinewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanonewtonPerSecond
 
         /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NanonewtonsPerSecond(this int value) => ForceChangeRate.FromNanonewtonsPerSecond(value);
+        public static ForceChangeRate NanonewtonsPerSecond<T>(this T value) => ForceChangeRate.FromNanonewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NanonewtonsPerSecond(this int? value) => ForceChangeRate.FromNanonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NanonewtonsPerSecond(this long value) => ForceChangeRate.FromNanonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NanonewtonsPerSecond(this long? value) => ForceChangeRate.FromNanonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NanonewtonsPerSecond(this double value) => ForceChangeRate.FromNanonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NanonewtonsPerSecond(this double? value) => ForceChangeRate.FromNanonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NanonewtonsPerSecond(this float value) => ForceChangeRate.FromNanonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NanonewtonsPerSecond(this float? value) => ForceChangeRate.FromNanonewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NanonewtonsPerSecond(this decimal value) => ForceChangeRate.FromNanonewtonsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NanonewtonsPerSecond(this decimal? value) => ForceChangeRate.FromNanonewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ForceChangeRate? NanonewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromNanonewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NewtonPerMinute
 
         /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NewtonsPerMinute(this int value) => ForceChangeRate.FromNewtonsPerMinute(value);
+        public static ForceChangeRate NewtonsPerMinute<T>(this T value) => ForceChangeRate.FromNewtonsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NewtonsPerMinute(this int? value) => ForceChangeRate.FromNewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NewtonsPerMinute(this long value) => ForceChangeRate.FromNewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NewtonsPerMinute(this long? value) => ForceChangeRate.FromNewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NewtonsPerMinute(this double value) => ForceChangeRate.FromNewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NewtonsPerMinute(this double? value) => ForceChangeRate.FromNewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NewtonsPerMinute(this float value) => ForceChangeRate.FromNewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NewtonsPerMinute(this float? value) => ForceChangeRate.FromNewtonsPerMinute(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NewtonsPerMinute(this decimal value) => ForceChangeRate.FromNewtonsPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NewtonsPerMinute(this decimal? value) => ForceChangeRate.FromNewtonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ForceChangeRate? NewtonsPerMinute<T>(this T? value) where T : struct => ForceChangeRate.FromNewtonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NewtonPerSecond
 
         /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NewtonsPerSecond(this int value) => ForceChangeRate.FromNewtonsPerSecond(value);
+        public static ForceChangeRate NewtonsPerSecond<T>(this T value) => ForceChangeRate.FromNewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NewtonsPerSecond(this int? value) => ForceChangeRate.FromNewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NewtonsPerSecond(this long value) => ForceChangeRate.FromNewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NewtonsPerSecond(this long? value) => ForceChangeRate.FromNewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NewtonsPerSecond(this double value) => ForceChangeRate.FromNewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NewtonsPerSecond(this double? value) => ForceChangeRate.FromNewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NewtonsPerSecond(this float value) => ForceChangeRate.FromNewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NewtonsPerSecond(this float? value) => ForceChangeRate.FromNewtonsPerSecond(value);
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate NewtonsPerSecond(this decimal value) => ForceChangeRate.FromNewtonsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(UnitsNet.QuantityValue)" />
-        public static ForceChangeRate? NewtonsPerSecond(this decimal? value) => ForceChangeRate.FromNewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ForceChangeRate? NewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromNewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

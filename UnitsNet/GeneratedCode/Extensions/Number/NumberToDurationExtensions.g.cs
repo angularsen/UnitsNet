@@ -47,408 +47,120 @@ namespace UnitsNet.Extensions.NumberToDuration
         #region Day
 
         /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
-        public static Duration Days(this int value) => Duration.FromDays(value);
+        public static Duration Days<T>(this T value) => Duration.FromDays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
-        public static Duration? Days(this int? value) => Duration.FromDays(value);
-
-        /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
-        public static Duration Days(this long value) => Duration.FromDays(value);
-
-        /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
-        public static Duration? Days(this long? value) => Duration.FromDays(value);
-
-        /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
-        public static Duration Days(this double value) => Duration.FromDays(value);
-
-        /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
-        public static Duration? Days(this double? value) => Duration.FromDays(value);
-
-        /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
-        public static Duration Days(this float value) => Duration.FromDays(value);
-
-        /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
-        public static Duration? Days(this float? value) => Duration.FromDays(value);
-
-        /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
-        public static Duration Days(this decimal value) => Duration.FromDays(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
-        public static Duration? Days(this decimal? value) => Duration.FromDays(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Duration? Days<T>(this T? value) where T : struct => Duration.FromDays(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Hour
 
         /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
-        public static Duration Hours(this int value) => Duration.FromHours(value);
+        public static Duration Hours<T>(this T value) => Duration.FromHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
-        public static Duration? Hours(this int? value) => Duration.FromHours(value);
-
-        /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
-        public static Duration Hours(this long value) => Duration.FromHours(value);
-
-        /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
-        public static Duration? Hours(this long? value) => Duration.FromHours(value);
-
-        /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
-        public static Duration Hours(this double value) => Duration.FromHours(value);
-
-        /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
-        public static Duration? Hours(this double? value) => Duration.FromHours(value);
-
-        /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
-        public static Duration Hours(this float value) => Duration.FromHours(value);
-
-        /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
-        public static Duration? Hours(this float? value) => Duration.FromHours(value);
-
-        /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
-        public static Duration Hours(this decimal value) => Duration.FromHours(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
-        public static Duration? Hours(this decimal? value) => Duration.FromHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Duration? Hours<T>(this T? value) where T : struct => Duration.FromHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Microsecond
 
         /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
-        public static Duration Microseconds(this int value) => Duration.FromMicroseconds(value);
+        public static Duration Microseconds<T>(this T value) => Duration.FromMicroseconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Microseconds(this int? value) => Duration.FromMicroseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
-        public static Duration Microseconds(this long value) => Duration.FromMicroseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Microseconds(this long? value) => Duration.FromMicroseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
-        public static Duration Microseconds(this double value) => Duration.FromMicroseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Microseconds(this double? value) => Duration.FromMicroseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
-        public static Duration Microseconds(this float value) => Duration.FromMicroseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Microseconds(this float? value) => Duration.FromMicroseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
-        public static Duration Microseconds(this decimal value) => Duration.FromMicroseconds(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Microseconds(this decimal? value) => Duration.FromMicroseconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Duration? Microseconds<T>(this T? value) where T : struct => Duration.FromMicroseconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Millisecond
 
         /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
-        public static Duration Milliseconds(this int value) => Duration.FromMilliseconds(value);
+        public static Duration Milliseconds<T>(this T value) => Duration.FromMilliseconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Milliseconds(this int? value) => Duration.FromMilliseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
-        public static Duration Milliseconds(this long value) => Duration.FromMilliseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Milliseconds(this long? value) => Duration.FromMilliseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
-        public static Duration Milliseconds(this double value) => Duration.FromMilliseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Milliseconds(this double? value) => Duration.FromMilliseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
-        public static Duration Milliseconds(this float value) => Duration.FromMilliseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Milliseconds(this float? value) => Duration.FromMilliseconds(value);
-
-        /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
-        public static Duration Milliseconds(this decimal value) => Duration.FromMilliseconds(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Milliseconds(this decimal? value) => Duration.FromMilliseconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Duration? Milliseconds<T>(this T? value) where T : struct => Duration.FromMilliseconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Minute
 
         /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
-        public static Duration Minutes(this int value) => Duration.FromMinutes(value);
+        public static Duration Minutes<T>(this T value) => Duration.FromMinutes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
-        public static Duration? Minutes(this int? value) => Duration.FromMinutes(value);
-
-        /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
-        public static Duration Minutes(this long value) => Duration.FromMinutes(value);
-
-        /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
-        public static Duration? Minutes(this long? value) => Duration.FromMinutes(value);
-
-        /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
-        public static Duration Minutes(this double value) => Duration.FromMinutes(value);
-
-        /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
-        public static Duration? Minutes(this double? value) => Duration.FromMinutes(value);
-
-        /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
-        public static Duration Minutes(this float value) => Duration.FromMinutes(value);
-
-        /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
-        public static Duration? Minutes(this float? value) => Duration.FromMinutes(value);
-
-        /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
-        public static Duration Minutes(this decimal value) => Duration.FromMinutes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
-        public static Duration? Minutes(this decimal? value) => Duration.FromMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Duration? Minutes<T>(this T? value) where T : struct => Duration.FromMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Month
 
         /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
-        public static Duration Months(this int value) => Duration.FromMonths(value);
+        public static Duration Months<T>(this T value) => Duration.FromMonths(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
-        public static Duration? Months(this int? value) => Duration.FromMonths(value);
-
-        /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
-        public static Duration Months(this long value) => Duration.FromMonths(value);
-
-        /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
-        public static Duration? Months(this long? value) => Duration.FromMonths(value);
-
-        /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
-        public static Duration Months(this double value) => Duration.FromMonths(value);
-
-        /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
-        public static Duration? Months(this double? value) => Duration.FromMonths(value);
-
-        /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
-        public static Duration Months(this float value) => Duration.FromMonths(value);
-
-        /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
-        public static Duration? Months(this float? value) => Duration.FromMonths(value);
-
-        /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
-        public static Duration Months(this decimal value) => Duration.FromMonths(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
-        public static Duration? Months(this decimal? value) => Duration.FromMonths(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Duration? Months<T>(this T? value) where T : struct => Duration.FromMonths(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Month30
 
         /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
-        public static Duration Months30(this int value) => Duration.FromMonths30(value);
+        public static Duration Months30<T>(this T value) => Duration.FromMonths30(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
-        public static Duration? Months30(this int? value) => Duration.FromMonths30(value);
-
-        /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
-        public static Duration Months30(this long value) => Duration.FromMonths30(value);
-
-        /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
-        public static Duration? Months30(this long? value) => Duration.FromMonths30(value);
-
-        /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
-        public static Duration Months30(this double value) => Duration.FromMonths30(value);
-
-        /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
-        public static Duration? Months30(this double? value) => Duration.FromMonths30(value);
-
-        /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
-        public static Duration Months30(this float value) => Duration.FromMonths30(value);
-
-        /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
-        public static Duration? Months30(this float? value) => Duration.FromMonths30(value);
-
-        /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
-        public static Duration Months30(this decimal value) => Duration.FromMonths30(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
-        public static Duration? Months30(this decimal? value) => Duration.FromMonths30(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Duration? Months30<T>(this T? value) where T : struct => Duration.FromMonths30(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Nanosecond
 
         /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
-        public static Duration Nanoseconds(this int value) => Duration.FromNanoseconds(value);
+        public static Duration Nanoseconds<T>(this T value) => Duration.FromNanoseconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Nanoseconds(this int? value) => Duration.FromNanoseconds(value);
-
-        /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
-        public static Duration Nanoseconds(this long value) => Duration.FromNanoseconds(value);
-
-        /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Nanoseconds(this long? value) => Duration.FromNanoseconds(value);
-
-        /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
-        public static Duration Nanoseconds(this double value) => Duration.FromNanoseconds(value);
-
-        /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Nanoseconds(this double? value) => Duration.FromNanoseconds(value);
-
-        /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
-        public static Duration Nanoseconds(this float value) => Duration.FromNanoseconds(value);
-
-        /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Nanoseconds(this float? value) => Duration.FromNanoseconds(value);
-
-        /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
-        public static Duration Nanoseconds(this decimal value) => Duration.FromNanoseconds(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
-        public static Duration? Nanoseconds(this decimal? value) => Duration.FromNanoseconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Duration? Nanoseconds<T>(this T? value) where T : struct => Duration.FromNanoseconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Second
 
         /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
-        public static Duration Seconds(this int value) => Duration.FromSeconds(value);
+        public static Duration Seconds<T>(this T value) => Duration.FromSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
-        public static Duration? Seconds(this int? value) => Duration.FromSeconds(value);
-
-        /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
-        public static Duration Seconds(this long value) => Duration.FromSeconds(value);
-
-        /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
-        public static Duration? Seconds(this long? value) => Duration.FromSeconds(value);
-
-        /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
-        public static Duration Seconds(this double value) => Duration.FromSeconds(value);
-
-        /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
-        public static Duration? Seconds(this double? value) => Duration.FromSeconds(value);
-
-        /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
-        public static Duration Seconds(this float value) => Duration.FromSeconds(value);
-
-        /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
-        public static Duration? Seconds(this float? value) => Duration.FromSeconds(value);
-
-        /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
-        public static Duration Seconds(this decimal value) => Duration.FromSeconds(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
-        public static Duration? Seconds(this decimal? value) => Duration.FromSeconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Duration? Seconds<T>(this T? value) where T : struct => Duration.FromSeconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Week
 
         /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
-        public static Duration Weeks(this int value) => Duration.FromWeeks(value);
+        public static Duration Weeks<T>(this T value) => Duration.FromWeeks(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
-        public static Duration? Weeks(this int? value) => Duration.FromWeeks(value);
-
-        /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
-        public static Duration Weeks(this long value) => Duration.FromWeeks(value);
-
-        /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
-        public static Duration? Weeks(this long? value) => Duration.FromWeeks(value);
-
-        /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
-        public static Duration Weeks(this double value) => Duration.FromWeeks(value);
-
-        /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
-        public static Duration? Weeks(this double? value) => Duration.FromWeeks(value);
-
-        /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
-        public static Duration Weeks(this float value) => Duration.FromWeeks(value);
-
-        /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
-        public static Duration? Weeks(this float? value) => Duration.FromWeeks(value);
-
-        /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
-        public static Duration Weeks(this decimal value) => Duration.FromWeeks(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
-        public static Duration? Weeks(this decimal? value) => Duration.FromWeeks(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Duration? Weeks<T>(this T? value) where T : struct => Duration.FromWeeks(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Year
 
         /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
-        public static Duration Years(this int value) => Duration.FromYears(value);
+        public static Duration Years<T>(this T value) => Duration.FromYears(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
-        public static Duration? Years(this int? value) => Duration.FromYears(value);
-
-        /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
-        public static Duration Years(this long value) => Duration.FromYears(value);
-
-        /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
-        public static Duration? Years(this long? value) => Duration.FromYears(value);
-
-        /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
-        public static Duration Years(this double value) => Duration.FromYears(value);
-
-        /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
-        public static Duration? Years(this double? value) => Duration.FromYears(value);
-
-        /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
-        public static Duration Years(this float value) => Duration.FromYears(value);
-
-        /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
-        public static Duration? Years(this float? value) => Duration.FromYears(value);
-
-        /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
-        public static Duration Years(this decimal value) => Duration.FromYears(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
-        public static Duration? Years(this decimal? value) => Duration.FromYears(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Duration? Years<T>(this T? value) where T : struct => Duration.FromYears(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Year365
 
         /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
-        public static Duration Years365(this int value) => Duration.FromYears365(value);
+        public static Duration Years365<T>(this T value) => Duration.FromYears365(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
-        public static Duration? Years365(this int? value) => Duration.FromYears365(value);
-
-        /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
-        public static Duration Years365(this long value) => Duration.FromYears365(value);
-
-        /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
-        public static Duration? Years365(this long? value) => Duration.FromYears365(value);
-
-        /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
-        public static Duration Years365(this double value) => Duration.FromYears365(value);
-
-        /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
-        public static Duration? Years365(this double? value) => Duration.FromYears365(value);
-
-        /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
-        public static Duration Years365(this float value) => Duration.FromYears365(value);
-
-        /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
-        public static Duration? Years365(this float? value) => Duration.FromYears365(value);
-
-        /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
-        public static Duration Years365(this decimal value) => Duration.FromYears365(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
-        public static Duration? Years365(this decimal? value) => Duration.FromYears365(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Duration? Years365<T>(this T? value) where T : struct => Duration.FromYears365(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

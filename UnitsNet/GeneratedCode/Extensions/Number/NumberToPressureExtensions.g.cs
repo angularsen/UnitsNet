@@ -47,1292 +47,380 @@ namespace UnitsNet.Extensions.NumberToPressure
         #region Atmosphere
 
         /// <inheritdoc cref="Pressure.FromAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure Atmospheres(this int value) => Pressure.FromAtmospheres(value);
+        public static Pressure Atmospheres<T>(this T value) => Pressure.FromAtmospheres(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure? Atmospheres(this int? value) => Pressure.FromAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure Atmospheres(this long value) => Pressure.FromAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure? Atmospheres(this long? value) => Pressure.FromAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure Atmospheres(this double value) => Pressure.FromAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure? Atmospheres(this double? value) => Pressure.FromAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure Atmospheres(this float value) => Pressure.FromAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure? Atmospheres(this float? value) => Pressure.FromAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure Atmospheres(this decimal value) => Pressure.FromAtmospheres(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure? Atmospheres(this decimal? value) => Pressure.FromAtmospheres(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Atmospheres<T>(this T? value) where T : struct => Pressure.FromAtmospheres(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Bar
 
         /// <inheritdoc cref="Pressure.FromBars(UnitsNet.QuantityValue)" />
-        public static Pressure Bars(this int value) => Pressure.FromBars(value);
+        public static Pressure Bars<T>(this T value) => Pressure.FromBars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromBars(UnitsNet.QuantityValue)" />
-        public static Pressure? Bars(this int? value) => Pressure.FromBars(value);
-
-        /// <inheritdoc cref="Pressure.FromBars(UnitsNet.QuantityValue)" />
-        public static Pressure Bars(this long value) => Pressure.FromBars(value);
-
-        /// <inheritdoc cref="Pressure.FromBars(UnitsNet.QuantityValue)" />
-        public static Pressure? Bars(this long? value) => Pressure.FromBars(value);
-
-        /// <inheritdoc cref="Pressure.FromBars(UnitsNet.QuantityValue)" />
-        public static Pressure Bars(this double value) => Pressure.FromBars(value);
-
-        /// <inheritdoc cref="Pressure.FromBars(UnitsNet.QuantityValue)" />
-        public static Pressure? Bars(this double? value) => Pressure.FromBars(value);
-
-        /// <inheritdoc cref="Pressure.FromBars(UnitsNet.QuantityValue)" />
-        public static Pressure Bars(this float value) => Pressure.FromBars(value);
-
-        /// <inheritdoc cref="Pressure.FromBars(UnitsNet.QuantityValue)" />
-        public static Pressure? Bars(this float? value) => Pressure.FromBars(value);
-
-        /// <inheritdoc cref="Pressure.FromBars(UnitsNet.QuantityValue)" />
-        public static Pressure Bars(this decimal value) => Pressure.FromBars(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromBars(UnitsNet.QuantityValue)" />
-        public static Pressure? Bars(this decimal? value) => Pressure.FromBars(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Bars<T>(this T? value) where T : struct => Pressure.FromBars(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Centibar
 
         /// <inheritdoc cref="Pressure.FromCentibars(UnitsNet.QuantityValue)" />
-        public static Pressure Centibars(this int value) => Pressure.FromCentibars(value);
+        public static Pressure Centibars<T>(this T value) => Pressure.FromCentibars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromCentibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Centibars(this int? value) => Pressure.FromCentibars(value);
-
-        /// <inheritdoc cref="Pressure.FromCentibars(UnitsNet.QuantityValue)" />
-        public static Pressure Centibars(this long value) => Pressure.FromCentibars(value);
-
-        /// <inheritdoc cref="Pressure.FromCentibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Centibars(this long? value) => Pressure.FromCentibars(value);
-
-        /// <inheritdoc cref="Pressure.FromCentibars(UnitsNet.QuantityValue)" />
-        public static Pressure Centibars(this double value) => Pressure.FromCentibars(value);
-
-        /// <inheritdoc cref="Pressure.FromCentibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Centibars(this double? value) => Pressure.FromCentibars(value);
-
-        /// <inheritdoc cref="Pressure.FromCentibars(UnitsNet.QuantityValue)" />
-        public static Pressure Centibars(this float value) => Pressure.FromCentibars(value);
-
-        /// <inheritdoc cref="Pressure.FromCentibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Centibars(this float? value) => Pressure.FromCentibars(value);
-
-        /// <inheritdoc cref="Pressure.FromCentibars(UnitsNet.QuantityValue)" />
-        public static Pressure Centibars(this decimal value) => Pressure.FromCentibars(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromCentibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Centibars(this decimal? value) => Pressure.FromCentibars(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Centibars<T>(this T? value) where T : struct => Pressure.FromCentibars(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Decapascal
 
         /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Decapascals(this int value) => Pressure.FromDecapascals(value);
+        public static Pressure Decapascals<T>(this T value) => Pressure.FromDecapascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Decapascals(this int? value) => Pressure.FromDecapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Decapascals(this long value) => Pressure.FromDecapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Decapascals(this long? value) => Pressure.FromDecapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Decapascals(this double value) => Pressure.FromDecapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Decapascals(this double? value) => Pressure.FromDecapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Decapascals(this float value) => Pressure.FromDecapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Decapascals(this float? value) => Pressure.FromDecapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Decapascals(this decimal value) => Pressure.FromDecapascals(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Decapascals(this decimal? value) => Pressure.FromDecapascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Decapascals<T>(this T? value) where T : struct => Pressure.FromDecapascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Decibar
 
         /// <inheritdoc cref="Pressure.FromDecibars(UnitsNet.QuantityValue)" />
-        public static Pressure Decibars(this int value) => Pressure.FromDecibars(value);
+        public static Pressure Decibars<T>(this T value) => Pressure.FromDecibars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromDecibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Decibars(this int? value) => Pressure.FromDecibars(value);
-
-        /// <inheritdoc cref="Pressure.FromDecibars(UnitsNet.QuantityValue)" />
-        public static Pressure Decibars(this long value) => Pressure.FromDecibars(value);
-
-        /// <inheritdoc cref="Pressure.FromDecibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Decibars(this long? value) => Pressure.FromDecibars(value);
-
-        /// <inheritdoc cref="Pressure.FromDecibars(UnitsNet.QuantityValue)" />
-        public static Pressure Decibars(this double value) => Pressure.FromDecibars(value);
-
-        /// <inheritdoc cref="Pressure.FromDecibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Decibars(this double? value) => Pressure.FromDecibars(value);
-
-        /// <inheritdoc cref="Pressure.FromDecibars(UnitsNet.QuantityValue)" />
-        public static Pressure Decibars(this float value) => Pressure.FromDecibars(value);
-
-        /// <inheritdoc cref="Pressure.FromDecibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Decibars(this float? value) => Pressure.FromDecibars(value);
-
-        /// <inheritdoc cref="Pressure.FromDecibars(UnitsNet.QuantityValue)" />
-        public static Pressure Decibars(this decimal value) => Pressure.FromDecibars(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromDecibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Decibars(this decimal? value) => Pressure.FromDecibars(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Decibars<T>(this T? value) where T : struct => Pressure.FromDecibars(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region FootOfHead
 
         /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure FeetOfHead(this int value) => Pressure.FromFeetOfHead(value);
+        public static Pressure FeetOfHead<T>(this T value) => Pressure.FromFeetOfHead(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure? FeetOfHead(this int? value) => Pressure.FromFeetOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure FeetOfHead(this long value) => Pressure.FromFeetOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure? FeetOfHead(this long? value) => Pressure.FromFeetOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure FeetOfHead(this double value) => Pressure.FromFeetOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure? FeetOfHead(this double? value) => Pressure.FromFeetOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure FeetOfHead(this float value) => Pressure.FromFeetOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure? FeetOfHead(this float? value) => Pressure.FromFeetOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure FeetOfHead(this decimal value) => Pressure.FromFeetOfHead(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure? FeetOfHead(this decimal? value) => Pressure.FromFeetOfHead(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? FeetOfHead<T>(this T? value) where T : struct => Pressure.FromFeetOfHead(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Gigapascal
 
         /// <inheritdoc cref="Pressure.FromGigapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Gigapascals(this int value) => Pressure.FromGigapascals(value);
+        public static Pressure Gigapascals<T>(this T value) => Pressure.FromGigapascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromGigapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Gigapascals(this int? value) => Pressure.FromGigapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromGigapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Gigapascals(this long value) => Pressure.FromGigapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromGigapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Gigapascals(this long? value) => Pressure.FromGigapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromGigapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Gigapascals(this double value) => Pressure.FromGigapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromGigapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Gigapascals(this double? value) => Pressure.FromGigapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromGigapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Gigapascals(this float value) => Pressure.FromGigapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromGigapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Gigapascals(this float? value) => Pressure.FromGigapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromGigapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Gigapascals(this decimal value) => Pressure.FromGigapascals(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromGigapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Gigapascals(this decimal? value) => Pressure.FromGigapascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Gigapascals<T>(this T? value) where T : struct => Pressure.FromGigapascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Hectopascal
 
         /// <inheritdoc cref="Pressure.FromHectopascals(UnitsNet.QuantityValue)" />
-        public static Pressure Hectopascals(this int value) => Pressure.FromHectopascals(value);
+        public static Pressure Hectopascals<T>(this T value) => Pressure.FromHectopascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromHectopascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Hectopascals(this int? value) => Pressure.FromHectopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromHectopascals(UnitsNet.QuantityValue)" />
-        public static Pressure Hectopascals(this long value) => Pressure.FromHectopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromHectopascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Hectopascals(this long? value) => Pressure.FromHectopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromHectopascals(UnitsNet.QuantityValue)" />
-        public static Pressure Hectopascals(this double value) => Pressure.FromHectopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromHectopascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Hectopascals(this double? value) => Pressure.FromHectopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromHectopascals(UnitsNet.QuantityValue)" />
-        public static Pressure Hectopascals(this float value) => Pressure.FromHectopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromHectopascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Hectopascals(this float? value) => Pressure.FromHectopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromHectopascals(UnitsNet.QuantityValue)" />
-        public static Pressure Hectopascals(this decimal value) => Pressure.FromHectopascals(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromHectopascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Hectopascals(this decimal? value) => Pressure.FromHectopascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Hectopascals<T>(this T? value) where T : struct => Pressure.FromHectopascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region InchOfMercury
 
         /// <inheritdoc cref="Pressure.FromInchesOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure InchesOfMercury(this int value) => Pressure.FromInchesOfMercury(value);
+        public static Pressure InchesOfMercury<T>(this T value) => Pressure.FromInchesOfMercury(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromInchesOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure? InchesOfMercury(this int? value) => Pressure.FromInchesOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromInchesOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure InchesOfMercury(this long value) => Pressure.FromInchesOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromInchesOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure? InchesOfMercury(this long? value) => Pressure.FromInchesOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromInchesOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure InchesOfMercury(this double value) => Pressure.FromInchesOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromInchesOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure? InchesOfMercury(this double? value) => Pressure.FromInchesOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromInchesOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure InchesOfMercury(this float value) => Pressure.FromInchesOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromInchesOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure? InchesOfMercury(this float? value) => Pressure.FromInchesOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromInchesOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure InchesOfMercury(this decimal value) => Pressure.FromInchesOfMercury(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromInchesOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure? InchesOfMercury(this decimal? value) => Pressure.FromInchesOfMercury(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? InchesOfMercury<T>(this T? value) where T : struct => Pressure.FromInchesOfMercury(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Kilobar
 
         /// <inheritdoc cref="Pressure.FromKilobars(UnitsNet.QuantityValue)" />
-        public static Pressure Kilobars(this int value) => Pressure.FromKilobars(value);
+        public static Pressure Kilobars<T>(this T value) => Pressure.FromKilobars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilobars(UnitsNet.QuantityValue)" />
-        public static Pressure? Kilobars(this int? value) => Pressure.FromKilobars(value);
-
-        /// <inheritdoc cref="Pressure.FromKilobars(UnitsNet.QuantityValue)" />
-        public static Pressure Kilobars(this long value) => Pressure.FromKilobars(value);
-
-        /// <inheritdoc cref="Pressure.FromKilobars(UnitsNet.QuantityValue)" />
-        public static Pressure? Kilobars(this long? value) => Pressure.FromKilobars(value);
-
-        /// <inheritdoc cref="Pressure.FromKilobars(UnitsNet.QuantityValue)" />
-        public static Pressure Kilobars(this double value) => Pressure.FromKilobars(value);
-
-        /// <inheritdoc cref="Pressure.FromKilobars(UnitsNet.QuantityValue)" />
-        public static Pressure? Kilobars(this double? value) => Pressure.FromKilobars(value);
-
-        /// <inheritdoc cref="Pressure.FromKilobars(UnitsNet.QuantityValue)" />
-        public static Pressure Kilobars(this float value) => Pressure.FromKilobars(value);
-
-        /// <inheritdoc cref="Pressure.FromKilobars(UnitsNet.QuantityValue)" />
-        public static Pressure? Kilobars(this float? value) => Pressure.FromKilobars(value);
-
-        /// <inheritdoc cref="Pressure.FromKilobars(UnitsNet.QuantityValue)" />
-        public static Pressure Kilobars(this decimal value) => Pressure.FromKilobars(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromKilobars(UnitsNet.QuantityValue)" />
-        public static Pressure? Kilobars(this decimal? value) => Pressure.FromKilobars(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Kilobars<T>(this T? value) where T : struct => Pressure.FromKilobars(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramForcePerSquareCentimeter
 
         /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareCentimeter(this int value) => Pressure.FromKilogramsForcePerSquareCentimeter(value);
+        public static Pressure KilogramsForcePerSquareCentimeter<T>(this T value) => Pressure.FromKilogramsForcePerSquareCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareCentimeter(this int? value) => Pressure.FromKilogramsForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareCentimeter(this long value) => Pressure.FromKilogramsForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareCentimeter(this long? value) => Pressure.FromKilogramsForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareCentimeter(this double value) => Pressure.FromKilogramsForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareCentimeter(this double? value) => Pressure.FromKilogramsForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareCentimeter(this float value) => Pressure.FromKilogramsForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareCentimeter(this float? value) => Pressure.FromKilogramsForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareCentimeter(this decimal value) => Pressure.FromKilogramsForcePerSquareCentimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareCentimeter(this decimal? value) => Pressure.FromKilogramsForcePerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? KilogramsForcePerSquareCentimeter<T>(this T? value) where T : struct => Pressure.FromKilogramsForcePerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramForcePerSquareMeter
 
         /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareMeter(this int value) => Pressure.FromKilogramsForcePerSquareMeter(value);
+        public static Pressure KilogramsForcePerSquareMeter<T>(this T value) => Pressure.FromKilogramsForcePerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareMeter(this int? value) => Pressure.FromKilogramsForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareMeter(this long value) => Pressure.FromKilogramsForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareMeter(this long? value) => Pressure.FromKilogramsForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareMeter(this double value) => Pressure.FromKilogramsForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareMeter(this double? value) => Pressure.FromKilogramsForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareMeter(this float value) => Pressure.FromKilogramsForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareMeter(this float? value) => Pressure.FromKilogramsForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareMeter(this decimal value) => Pressure.FromKilogramsForcePerSquareMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareMeter(this decimal? value) => Pressure.FromKilogramsForcePerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? KilogramsForcePerSquareMeter<T>(this T? value) where T : struct => Pressure.FromKilogramsForcePerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramForcePerSquareMillimeter
 
         /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareMillimeter(this int value) => Pressure.FromKilogramsForcePerSquareMillimeter(value);
+        public static Pressure KilogramsForcePerSquareMillimeter<T>(this T value) => Pressure.FromKilogramsForcePerSquareMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareMillimeter(this int? value) => Pressure.FromKilogramsForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareMillimeter(this long value) => Pressure.FromKilogramsForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareMillimeter(this long? value) => Pressure.FromKilogramsForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareMillimeter(this double value) => Pressure.FromKilogramsForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareMillimeter(this double? value) => Pressure.FromKilogramsForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareMillimeter(this float value) => Pressure.FromKilogramsForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareMillimeter(this float? value) => Pressure.FromKilogramsForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilogramsForcePerSquareMillimeter(this decimal value) => Pressure.FromKilogramsForcePerSquareMillimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilogramsForcePerSquareMillimeter(this decimal? value) => Pressure.FromKilogramsForcePerSquareMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? KilogramsForcePerSquareMillimeter<T>(this T? value) where T : struct => Pressure.FromKilogramsForcePerSquareMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilonewtonPerSquareCentimeter
 
         /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareCentimeter(this int value) => Pressure.FromKilonewtonsPerSquareCentimeter(value);
+        public static Pressure KilonewtonsPerSquareCentimeter<T>(this T value) => Pressure.FromKilonewtonsPerSquareCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareCentimeter(this int? value) => Pressure.FromKilonewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareCentimeter(this long value) => Pressure.FromKilonewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareCentimeter(this long? value) => Pressure.FromKilonewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareCentimeter(this double value) => Pressure.FromKilonewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareCentimeter(this double? value) => Pressure.FromKilonewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareCentimeter(this float value) => Pressure.FromKilonewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareCentimeter(this float? value) => Pressure.FromKilonewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareCentimeter(this decimal value) => Pressure.FromKilonewtonsPerSquareCentimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareCentimeter(this decimal? value) => Pressure.FromKilonewtonsPerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? KilonewtonsPerSquareCentimeter<T>(this T? value) where T : struct => Pressure.FromKilonewtonsPerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilonewtonPerSquareMeter
 
         /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareMeter(this int value) => Pressure.FromKilonewtonsPerSquareMeter(value);
+        public static Pressure KilonewtonsPerSquareMeter<T>(this T value) => Pressure.FromKilonewtonsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareMeter(this int? value) => Pressure.FromKilonewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareMeter(this long value) => Pressure.FromKilonewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareMeter(this long? value) => Pressure.FromKilonewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareMeter(this double value) => Pressure.FromKilonewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareMeter(this double? value) => Pressure.FromKilonewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareMeter(this float value) => Pressure.FromKilonewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareMeter(this float? value) => Pressure.FromKilonewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareMeter(this decimal value) => Pressure.FromKilonewtonsPerSquareMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareMeter(this decimal? value) => Pressure.FromKilonewtonsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? KilonewtonsPerSquareMeter<T>(this T? value) where T : struct => Pressure.FromKilonewtonsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilonewtonPerSquareMillimeter
 
         /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareMillimeter(this int value) => Pressure.FromKilonewtonsPerSquareMillimeter(value);
+        public static Pressure KilonewtonsPerSquareMillimeter<T>(this T value) => Pressure.FromKilonewtonsPerSquareMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareMillimeter(this int? value) => Pressure.FromKilonewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareMillimeter(this long value) => Pressure.FromKilonewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareMillimeter(this long? value) => Pressure.FromKilonewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareMillimeter(this double value) => Pressure.FromKilonewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareMillimeter(this double? value) => Pressure.FromKilonewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareMillimeter(this float value) => Pressure.FromKilonewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareMillimeter(this float? value) => Pressure.FromKilonewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure KilonewtonsPerSquareMillimeter(this decimal value) => Pressure.FromKilonewtonsPerSquareMillimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? KilonewtonsPerSquareMillimeter(this decimal? value) => Pressure.FromKilonewtonsPerSquareMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? KilonewtonsPerSquareMillimeter<T>(this T? value) where T : struct => Pressure.FromKilonewtonsPerSquareMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Kilopascal
 
         /// <inheritdoc cref="Pressure.FromKilopascals(UnitsNet.QuantityValue)" />
-        public static Pressure Kilopascals(this int value) => Pressure.FromKilopascals(value);
+        public static Pressure Kilopascals<T>(this T value) => Pressure.FromKilopascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilopascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Kilopascals(this int? value) => Pressure.FromKilopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopascals(UnitsNet.QuantityValue)" />
-        public static Pressure Kilopascals(this long value) => Pressure.FromKilopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Kilopascals(this long? value) => Pressure.FromKilopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopascals(UnitsNet.QuantityValue)" />
-        public static Pressure Kilopascals(this double value) => Pressure.FromKilopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Kilopascals(this double? value) => Pressure.FromKilopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopascals(UnitsNet.QuantityValue)" />
-        public static Pressure Kilopascals(this float value) => Pressure.FromKilopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Kilopascals(this float? value) => Pressure.FromKilopascals(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopascals(UnitsNet.QuantityValue)" />
-        public static Pressure Kilopascals(this decimal value) => Pressure.FromKilopascals(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromKilopascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Kilopascals(this decimal? value) => Pressure.FromKilopascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Kilopascals<T>(this T? value) where T : struct => Pressure.FromKilopascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilopoundForcePerSquareFoot
 
         /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure KilopoundsForcePerSquareFoot(this int value) => Pressure.FromKilopoundsForcePerSquareFoot(value);
+        public static Pressure KilopoundsForcePerSquareFoot<T>(this T value) => Pressure.FromKilopoundsForcePerSquareFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure? KilopoundsForcePerSquareFoot(this int? value) => Pressure.FromKilopoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure KilopoundsForcePerSquareFoot(this long value) => Pressure.FromKilopoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure? KilopoundsForcePerSquareFoot(this long? value) => Pressure.FromKilopoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure KilopoundsForcePerSquareFoot(this double value) => Pressure.FromKilopoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure? KilopoundsForcePerSquareFoot(this double? value) => Pressure.FromKilopoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure KilopoundsForcePerSquareFoot(this float value) => Pressure.FromKilopoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure? KilopoundsForcePerSquareFoot(this float? value) => Pressure.FromKilopoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure KilopoundsForcePerSquareFoot(this decimal value) => Pressure.FromKilopoundsForcePerSquareFoot(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure? KilopoundsForcePerSquareFoot(this decimal? value) => Pressure.FromKilopoundsForcePerSquareFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? KilopoundsForcePerSquareFoot<T>(this T? value) where T : struct => Pressure.FromKilopoundsForcePerSquareFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilopoundForcePerSquareInch
 
         /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure KilopoundsForcePerSquareInch(this int value) => Pressure.FromKilopoundsForcePerSquareInch(value);
+        public static Pressure KilopoundsForcePerSquareInch<T>(this T value) => Pressure.FromKilopoundsForcePerSquareInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure? KilopoundsForcePerSquareInch(this int? value) => Pressure.FromKilopoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure KilopoundsForcePerSquareInch(this long value) => Pressure.FromKilopoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure? KilopoundsForcePerSquareInch(this long? value) => Pressure.FromKilopoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure KilopoundsForcePerSquareInch(this double value) => Pressure.FromKilopoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure? KilopoundsForcePerSquareInch(this double? value) => Pressure.FromKilopoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure KilopoundsForcePerSquareInch(this float value) => Pressure.FromKilopoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure? KilopoundsForcePerSquareInch(this float? value) => Pressure.FromKilopoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure KilopoundsForcePerSquareInch(this decimal value) => Pressure.FromKilopoundsForcePerSquareInch(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure? KilopoundsForcePerSquareInch(this decimal? value) => Pressure.FromKilopoundsForcePerSquareInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? KilopoundsForcePerSquareInch<T>(this T? value) where T : struct => Pressure.FromKilopoundsForcePerSquareInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Megabar
 
         /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
-        public static Pressure Megabars(this int value) => Pressure.FromMegabars(value);
+        public static Pressure Megabars<T>(this T value) => Pressure.FromMegabars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
-        public static Pressure? Megabars(this int? value) => Pressure.FromMegabars(value);
-
-        /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
-        public static Pressure Megabars(this long value) => Pressure.FromMegabars(value);
-
-        /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
-        public static Pressure? Megabars(this long? value) => Pressure.FromMegabars(value);
-
-        /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
-        public static Pressure Megabars(this double value) => Pressure.FromMegabars(value);
-
-        /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
-        public static Pressure? Megabars(this double? value) => Pressure.FromMegabars(value);
-
-        /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
-        public static Pressure Megabars(this float value) => Pressure.FromMegabars(value);
-
-        /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
-        public static Pressure? Megabars(this float? value) => Pressure.FromMegabars(value);
-
-        /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
-        public static Pressure Megabars(this decimal value) => Pressure.FromMegabars(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
-        public static Pressure? Megabars(this decimal? value) => Pressure.FromMegabars(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Megabars<T>(this T? value) where T : struct => Pressure.FromMegabars(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MeganewtonPerSquareMeter
 
         /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure MeganewtonsPerSquareMeter(this int value) => Pressure.FromMeganewtonsPerSquareMeter(value);
+        public static Pressure MeganewtonsPerSquareMeter<T>(this T value) => Pressure.FromMeganewtonsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? MeganewtonsPerSquareMeter(this int? value) => Pressure.FromMeganewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure MeganewtonsPerSquareMeter(this long value) => Pressure.FromMeganewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? MeganewtonsPerSquareMeter(this long? value) => Pressure.FromMeganewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure MeganewtonsPerSquareMeter(this double value) => Pressure.FromMeganewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? MeganewtonsPerSquareMeter(this double? value) => Pressure.FromMeganewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure MeganewtonsPerSquareMeter(this float value) => Pressure.FromMeganewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? MeganewtonsPerSquareMeter(this float? value) => Pressure.FromMeganewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure MeganewtonsPerSquareMeter(this decimal value) => Pressure.FromMeganewtonsPerSquareMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? MeganewtonsPerSquareMeter(this decimal? value) => Pressure.FromMeganewtonsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? MeganewtonsPerSquareMeter<T>(this T? value) where T : struct => Pressure.FromMeganewtonsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Megapascal
 
         /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Megapascals(this int value) => Pressure.FromMegapascals(value);
+        public static Pressure Megapascals<T>(this T value) => Pressure.FromMegapascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Megapascals(this int? value) => Pressure.FromMegapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Megapascals(this long value) => Pressure.FromMegapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Megapascals(this long? value) => Pressure.FromMegapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Megapascals(this double value) => Pressure.FromMegapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Megapascals(this double? value) => Pressure.FromMegapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Megapascals(this float value) => Pressure.FromMegapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Megapascals(this float? value) => Pressure.FromMegapascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
-        public static Pressure Megapascals(this decimal value) => Pressure.FromMegapascals(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Megapascals(this decimal? value) => Pressure.FromMegapascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Megapascals<T>(this T? value) where T : struct => Pressure.FromMegapascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MeterOfHead
 
         /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure MetersOfHead(this int value) => Pressure.FromMetersOfHead(value);
+        public static Pressure MetersOfHead<T>(this T value) => Pressure.FromMetersOfHead(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure? MetersOfHead(this int? value) => Pressure.FromMetersOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure MetersOfHead(this long value) => Pressure.FromMetersOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure? MetersOfHead(this long? value) => Pressure.FromMetersOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure MetersOfHead(this double value) => Pressure.FromMetersOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure? MetersOfHead(this double? value) => Pressure.FromMetersOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure MetersOfHead(this float value) => Pressure.FromMetersOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure? MetersOfHead(this float? value) => Pressure.FromMetersOfHead(value);
-
-        /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure MetersOfHead(this decimal value) => Pressure.FromMetersOfHead(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
-        public static Pressure? MetersOfHead(this decimal? value) => Pressure.FromMetersOfHead(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? MetersOfHead<T>(this T? value) where T : struct => Pressure.FromMetersOfHead(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Micropascal
 
         /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />
-        public static Pressure Micropascals(this int value) => Pressure.FromMicropascals(value);
+        public static Pressure Micropascals<T>(this T value) => Pressure.FromMicropascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Micropascals(this int? value) => Pressure.FromMicropascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />
-        public static Pressure Micropascals(this long value) => Pressure.FromMicropascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Micropascals(this long? value) => Pressure.FromMicropascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />
-        public static Pressure Micropascals(this double value) => Pressure.FromMicropascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Micropascals(this double? value) => Pressure.FromMicropascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />
-        public static Pressure Micropascals(this float value) => Pressure.FromMicropascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Micropascals(this float? value) => Pressure.FromMicropascals(value);
-
-        /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />
-        public static Pressure Micropascals(this decimal value) => Pressure.FromMicropascals(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Micropascals(this decimal? value) => Pressure.FromMicropascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Micropascals<T>(this T? value) where T : struct => Pressure.FromMicropascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Millibar
 
         /// <inheritdoc cref="Pressure.FromMillibars(UnitsNet.QuantityValue)" />
-        public static Pressure Millibars(this int value) => Pressure.FromMillibars(value);
+        public static Pressure Millibars<T>(this T value) => Pressure.FromMillibars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMillibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Millibars(this int? value) => Pressure.FromMillibars(value);
-
-        /// <inheritdoc cref="Pressure.FromMillibars(UnitsNet.QuantityValue)" />
-        public static Pressure Millibars(this long value) => Pressure.FromMillibars(value);
-
-        /// <inheritdoc cref="Pressure.FromMillibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Millibars(this long? value) => Pressure.FromMillibars(value);
-
-        /// <inheritdoc cref="Pressure.FromMillibars(UnitsNet.QuantityValue)" />
-        public static Pressure Millibars(this double value) => Pressure.FromMillibars(value);
-
-        /// <inheritdoc cref="Pressure.FromMillibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Millibars(this double? value) => Pressure.FromMillibars(value);
-
-        /// <inheritdoc cref="Pressure.FromMillibars(UnitsNet.QuantityValue)" />
-        public static Pressure Millibars(this float value) => Pressure.FromMillibars(value);
-
-        /// <inheritdoc cref="Pressure.FromMillibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Millibars(this float? value) => Pressure.FromMillibars(value);
-
-        /// <inheritdoc cref="Pressure.FromMillibars(UnitsNet.QuantityValue)" />
-        public static Pressure Millibars(this decimal value) => Pressure.FromMillibars(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromMillibars(UnitsNet.QuantityValue)" />
-        public static Pressure? Millibars(this decimal? value) => Pressure.FromMillibars(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Millibars<T>(this T? value) where T : struct => Pressure.FromMillibars(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillimeterOfMercury
 
         /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure MillimetersOfMercury(this int value) => Pressure.FromMillimetersOfMercury(value);
+        public static Pressure MillimetersOfMercury<T>(this T value) => Pressure.FromMillimetersOfMercury(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure? MillimetersOfMercury(this int? value) => Pressure.FromMillimetersOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure MillimetersOfMercury(this long value) => Pressure.FromMillimetersOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure? MillimetersOfMercury(this long? value) => Pressure.FromMillimetersOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure MillimetersOfMercury(this double value) => Pressure.FromMillimetersOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure? MillimetersOfMercury(this double? value) => Pressure.FromMillimetersOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure MillimetersOfMercury(this float value) => Pressure.FromMillimetersOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure? MillimetersOfMercury(this float? value) => Pressure.FromMillimetersOfMercury(value);
-
-        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure MillimetersOfMercury(this decimal value) => Pressure.FromMillimetersOfMercury(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(UnitsNet.QuantityValue)" />
-        public static Pressure? MillimetersOfMercury(this decimal? value) => Pressure.FromMillimetersOfMercury(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? MillimetersOfMercury<T>(this T? value) where T : struct => Pressure.FromMillimetersOfMercury(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NewtonPerSquareCentimeter
 
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareCentimeter(this int value) => Pressure.FromNewtonsPerSquareCentimeter(value);
+        public static Pressure NewtonsPerSquareCentimeter<T>(this T value) => Pressure.FromNewtonsPerSquareCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareCentimeter(this int? value) => Pressure.FromNewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareCentimeter(this long value) => Pressure.FromNewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareCentimeter(this long? value) => Pressure.FromNewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareCentimeter(this double value) => Pressure.FromNewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareCentimeter(this double? value) => Pressure.FromNewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareCentimeter(this float value) => Pressure.FromNewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareCentimeter(this float? value) => Pressure.FromNewtonsPerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareCentimeter(this decimal value) => Pressure.FromNewtonsPerSquareCentimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareCentimeter(this decimal? value) => Pressure.FromNewtonsPerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? NewtonsPerSquareCentimeter<T>(this T? value) where T : struct => Pressure.FromNewtonsPerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NewtonPerSquareMeter
 
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareMeter(this int value) => Pressure.FromNewtonsPerSquareMeter(value);
+        public static Pressure NewtonsPerSquareMeter<T>(this T value) => Pressure.FromNewtonsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareMeter(this int? value) => Pressure.FromNewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareMeter(this long value) => Pressure.FromNewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareMeter(this long? value) => Pressure.FromNewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareMeter(this double value) => Pressure.FromNewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareMeter(this double? value) => Pressure.FromNewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareMeter(this float value) => Pressure.FromNewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareMeter(this float? value) => Pressure.FromNewtonsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareMeter(this decimal value) => Pressure.FromNewtonsPerSquareMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareMeter(this decimal? value) => Pressure.FromNewtonsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? NewtonsPerSquareMeter<T>(this T? value) where T : struct => Pressure.FromNewtonsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NewtonPerSquareMillimeter
 
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareMillimeter(this int value) => Pressure.FromNewtonsPerSquareMillimeter(value);
+        public static Pressure NewtonsPerSquareMillimeter<T>(this T value) => Pressure.FromNewtonsPerSquareMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareMillimeter(this int? value) => Pressure.FromNewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareMillimeter(this long value) => Pressure.FromNewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareMillimeter(this long? value) => Pressure.FromNewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareMillimeter(this double value) => Pressure.FromNewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareMillimeter(this double? value) => Pressure.FromNewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareMillimeter(this float value) => Pressure.FromNewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareMillimeter(this float? value) => Pressure.FromNewtonsPerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure NewtonsPerSquareMillimeter(this decimal value) => Pressure.FromNewtonsPerSquareMillimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? NewtonsPerSquareMillimeter(this decimal? value) => Pressure.FromNewtonsPerSquareMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? NewtonsPerSquareMillimeter<T>(this T? value) where T : struct => Pressure.FromNewtonsPerSquareMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Pascal
 
         /// <inheritdoc cref="Pressure.FromPascals(UnitsNet.QuantityValue)" />
-        public static Pressure Pascals(this int value) => Pressure.FromPascals(value);
+        public static Pressure Pascals<T>(this T value) => Pressure.FromPascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromPascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Pascals(this int? value) => Pressure.FromPascals(value);
-
-        /// <inheritdoc cref="Pressure.FromPascals(UnitsNet.QuantityValue)" />
-        public static Pressure Pascals(this long value) => Pressure.FromPascals(value);
-
-        /// <inheritdoc cref="Pressure.FromPascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Pascals(this long? value) => Pressure.FromPascals(value);
-
-        /// <inheritdoc cref="Pressure.FromPascals(UnitsNet.QuantityValue)" />
-        public static Pressure Pascals(this double value) => Pressure.FromPascals(value);
-
-        /// <inheritdoc cref="Pressure.FromPascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Pascals(this double? value) => Pressure.FromPascals(value);
-
-        /// <inheritdoc cref="Pressure.FromPascals(UnitsNet.QuantityValue)" />
-        public static Pressure Pascals(this float value) => Pressure.FromPascals(value);
-
-        /// <inheritdoc cref="Pressure.FromPascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Pascals(this float? value) => Pressure.FromPascals(value);
-
-        /// <inheritdoc cref="Pressure.FromPascals(UnitsNet.QuantityValue)" />
-        public static Pressure Pascals(this decimal value) => Pressure.FromPascals(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromPascals(UnitsNet.QuantityValue)" />
-        public static Pressure? Pascals(this decimal? value) => Pressure.FromPascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Pascals<T>(this T? value) where T : struct => Pressure.FromPascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PoundForcePerSquareFoot
 
         /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure PoundsForcePerSquareFoot(this int value) => Pressure.FromPoundsForcePerSquareFoot(value);
+        public static Pressure PoundsForcePerSquareFoot<T>(this T value) => Pressure.FromPoundsForcePerSquareFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure? PoundsForcePerSquareFoot(this int? value) => Pressure.FromPoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure PoundsForcePerSquareFoot(this long value) => Pressure.FromPoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure? PoundsForcePerSquareFoot(this long? value) => Pressure.FromPoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure PoundsForcePerSquareFoot(this double value) => Pressure.FromPoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure? PoundsForcePerSquareFoot(this double? value) => Pressure.FromPoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure PoundsForcePerSquareFoot(this float value) => Pressure.FromPoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure? PoundsForcePerSquareFoot(this float? value) => Pressure.FromPoundsForcePerSquareFoot(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure PoundsForcePerSquareFoot(this decimal value) => Pressure.FromPoundsForcePerSquareFoot(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
-        public static Pressure? PoundsForcePerSquareFoot(this decimal? value) => Pressure.FromPoundsForcePerSquareFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? PoundsForcePerSquareFoot<T>(this T? value) where T : struct => Pressure.FromPoundsForcePerSquareFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PoundForcePerSquareInch
 
         /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure PoundsForcePerSquareInch(this int value) => Pressure.FromPoundsForcePerSquareInch(value);
+        public static Pressure PoundsForcePerSquareInch<T>(this T value) => Pressure.FromPoundsForcePerSquareInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure? PoundsForcePerSquareInch(this int? value) => Pressure.FromPoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure PoundsForcePerSquareInch(this long value) => Pressure.FromPoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure? PoundsForcePerSquareInch(this long? value) => Pressure.FromPoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure PoundsForcePerSquareInch(this double value) => Pressure.FromPoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure? PoundsForcePerSquareInch(this double? value) => Pressure.FromPoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure PoundsForcePerSquareInch(this float value) => Pressure.FromPoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure? PoundsForcePerSquareInch(this float? value) => Pressure.FromPoundsForcePerSquareInch(value);
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure PoundsForcePerSquareInch(this decimal value) => Pressure.FromPoundsForcePerSquareInch(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
-        public static Pressure? PoundsForcePerSquareInch(this decimal? value) => Pressure.FromPoundsForcePerSquareInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? PoundsForcePerSquareInch<T>(this T? value) where T : struct => Pressure.FromPoundsForcePerSquareInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Psi
 
         /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
-        public static Pressure Psi(this int value) => Pressure.FromPsi(value);
+        public static Pressure Psi<T>(this T value) => Pressure.FromPsi(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
-        public static Pressure? Psi(this int? value) => Pressure.FromPsi(value);
-
-        /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
-        public static Pressure Psi(this long value) => Pressure.FromPsi(value);
-
-        /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
-        public static Pressure? Psi(this long? value) => Pressure.FromPsi(value);
-
-        /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
-        public static Pressure Psi(this double value) => Pressure.FromPsi(value);
-
-        /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
-        public static Pressure? Psi(this double? value) => Pressure.FromPsi(value);
-
-        /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
-        public static Pressure Psi(this float value) => Pressure.FromPsi(value);
-
-        /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
-        public static Pressure? Psi(this float? value) => Pressure.FromPsi(value);
-
-        /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
-        public static Pressure Psi(this decimal value) => Pressure.FromPsi(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
-        public static Pressure? Psi(this decimal? value) => Pressure.FromPsi(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Psi<T>(this T? value) where T : struct => Pressure.FromPsi(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region TechnicalAtmosphere
 
         /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure TechnicalAtmospheres(this int value) => Pressure.FromTechnicalAtmospheres(value);
+        public static Pressure TechnicalAtmospheres<T>(this T value) => Pressure.FromTechnicalAtmospheres(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure? TechnicalAtmospheres(this int? value) => Pressure.FromTechnicalAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure TechnicalAtmospheres(this long value) => Pressure.FromTechnicalAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure? TechnicalAtmospheres(this long? value) => Pressure.FromTechnicalAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure TechnicalAtmospheres(this double value) => Pressure.FromTechnicalAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure? TechnicalAtmospheres(this double? value) => Pressure.FromTechnicalAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure TechnicalAtmospheres(this float value) => Pressure.FromTechnicalAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure? TechnicalAtmospheres(this float? value) => Pressure.FromTechnicalAtmospheres(value);
-
-        /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure TechnicalAtmospheres(this decimal value) => Pressure.FromTechnicalAtmospheres(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
-        public static Pressure? TechnicalAtmospheres(this decimal? value) => Pressure.FromTechnicalAtmospheres(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? TechnicalAtmospheres<T>(this T? value) where T : struct => Pressure.FromTechnicalAtmospheres(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region TonneForcePerSquareCentimeter
 
         /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareCentimeter(this int value) => Pressure.FromTonnesForcePerSquareCentimeter(value);
+        public static Pressure TonnesForcePerSquareCentimeter<T>(this T value) => Pressure.FromTonnesForcePerSquareCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareCentimeter(this int? value) => Pressure.FromTonnesForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareCentimeter(this long value) => Pressure.FromTonnesForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareCentimeter(this long? value) => Pressure.FromTonnesForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareCentimeter(this double value) => Pressure.FromTonnesForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareCentimeter(this double? value) => Pressure.FromTonnesForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareCentimeter(this float value) => Pressure.FromTonnesForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareCentimeter(this float? value) => Pressure.FromTonnesForcePerSquareCentimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareCentimeter(this decimal value) => Pressure.FromTonnesForcePerSquareCentimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareCentimeter(this decimal? value) => Pressure.FromTonnesForcePerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? TonnesForcePerSquareCentimeter<T>(this T? value) where T : struct => Pressure.FromTonnesForcePerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region TonneForcePerSquareMeter
 
         /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareMeter(this int value) => Pressure.FromTonnesForcePerSquareMeter(value);
+        public static Pressure TonnesForcePerSquareMeter<T>(this T value) => Pressure.FromTonnesForcePerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareMeter(this int? value) => Pressure.FromTonnesForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareMeter(this long value) => Pressure.FromTonnesForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareMeter(this long? value) => Pressure.FromTonnesForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareMeter(this double value) => Pressure.FromTonnesForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareMeter(this double? value) => Pressure.FromTonnesForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareMeter(this float value) => Pressure.FromTonnesForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareMeter(this float? value) => Pressure.FromTonnesForcePerSquareMeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareMeter(this decimal value) => Pressure.FromTonnesForcePerSquareMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareMeter(this decimal? value) => Pressure.FromTonnesForcePerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? TonnesForcePerSquareMeter<T>(this T? value) where T : struct => Pressure.FromTonnesForcePerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region TonneForcePerSquareMillimeter
 
         /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareMillimeter(this int value) => Pressure.FromTonnesForcePerSquareMillimeter(value);
+        public static Pressure TonnesForcePerSquareMillimeter<T>(this T value) => Pressure.FromTonnesForcePerSquareMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareMillimeter(this int? value) => Pressure.FromTonnesForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareMillimeter(this long value) => Pressure.FromTonnesForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareMillimeter(this long? value) => Pressure.FromTonnesForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareMillimeter(this double value) => Pressure.FromTonnesForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareMillimeter(this double? value) => Pressure.FromTonnesForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareMillimeter(this float value) => Pressure.FromTonnesForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareMillimeter(this float? value) => Pressure.FromTonnesForcePerSquareMillimeter(value);
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure TonnesForcePerSquareMillimeter(this decimal value) => Pressure.FromTonnesForcePerSquareMillimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
-        public static Pressure? TonnesForcePerSquareMillimeter(this decimal? value) => Pressure.FromTonnesForcePerSquareMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? TonnesForcePerSquareMillimeter<T>(this T? value) where T : struct => Pressure.FromTonnesForcePerSquareMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Torr
 
         /// <inheritdoc cref="Pressure.FromTorrs(UnitsNet.QuantityValue)" />
-        public static Pressure Torrs(this int value) => Pressure.FromTorrs(value);
+        public static Pressure Torrs<T>(this T value) => Pressure.FromTorrs(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromTorrs(UnitsNet.QuantityValue)" />
-        public static Pressure? Torrs(this int? value) => Pressure.FromTorrs(value);
-
-        /// <inheritdoc cref="Pressure.FromTorrs(UnitsNet.QuantityValue)" />
-        public static Pressure Torrs(this long value) => Pressure.FromTorrs(value);
-
-        /// <inheritdoc cref="Pressure.FromTorrs(UnitsNet.QuantityValue)" />
-        public static Pressure? Torrs(this long? value) => Pressure.FromTorrs(value);
-
-        /// <inheritdoc cref="Pressure.FromTorrs(UnitsNet.QuantityValue)" />
-        public static Pressure Torrs(this double value) => Pressure.FromTorrs(value);
-
-        /// <inheritdoc cref="Pressure.FromTorrs(UnitsNet.QuantityValue)" />
-        public static Pressure? Torrs(this double? value) => Pressure.FromTorrs(value);
-
-        /// <inheritdoc cref="Pressure.FromTorrs(UnitsNet.QuantityValue)" />
-        public static Pressure Torrs(this float value) => Pressure.FromTorrs(value);
-
-        /// <inheritdoc cref="Pressure.FromTorrs(UnitsNet.QuantityValue)" />
-        public static Pressure? Torrs(this float? value) => Pressure.FromTorrs(value);
-
-        /// <inheritdoc cref="Pressure.FromTorrs(UnitsNet.QuantityValue)" />
-        public static Pressure Torrs(this decimal value) => Pressure.FromTorrs(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromTorrs(UnitsNet.QuantityValue)" />
-        public static Pressure? Torrs(this decimal? value) => Pressure.FromTorrs(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Pressure? Torrs<T>(this T? value) where T : struct => Pressure.FromTorrs(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

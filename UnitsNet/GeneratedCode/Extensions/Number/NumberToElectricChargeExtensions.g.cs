@@ -47,34 +47,10 @@ namespace UnitsNet.Extensions.NumberToElectricCharge
         #region Coulomb
 
         /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
-        public static ElectricCharge Coulombs(this int value) => ElectricCharge.FromCoulombs(value);
+        public static ElectricCharge Coulombs<T>(this T value) => ElectricCharge.FromCoulombs(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
-        public static ElectricCharge? Coulombs(this int? value) => ElectricCharge.FromCoulombs(value);
-
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
-        public static ElectricCharge Coulombs(this long value) => ElectricCharge.FromCoulombs(value);
-
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
-        public static ElectricCharge? Coulombs(this long? value) => ElectricCharge.FromCoulombs(value);
-
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
-        public static ElectricCharge Coulombs(this double value) => ElectricCharge.FromCoulombs(value);
-
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
-        public static ElectricCharge? Coulombs(this double? value) => ElectricCharge.FromCoulombs(value);
-
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
-        public static ElectricCharge Coulombs(this float value) => ElectricCharge.FromCoulombs(value);
-
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
-        public static ElectricCharge? Coulombs(this float? value) => ElectricCharge.FromCoulombs(value);
-
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
-        public static ElectricCharge Coulombs(this decimal value) => ElectricCharge.FromCoulombs(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricCharge.FromCoulombs(UnitsNet.QuantityValue)" />
-        public static ElectricCharge? Coulombs(this decimal? value) => ElectricCharge.FromCoulombs(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricCharge? Coulombs<T>(this T? value) where T : struct => ElectricCharge.FromCoulombs(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

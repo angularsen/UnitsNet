@@ -47,68 +47,20 @@ namespace UnitsNet.Extensions.NumberToIrradiance
         #region KilowattPerSquareMeter
 
         /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance KilowattsPerSquareMeter(this int value) => Irradiance.FromKilowattsPerSquareMeter(value);
+        public static Irradiance KilowattsPerSquareMeter<T>(this T value) => Irradiance.FromKilowattsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance? KilowattsPerSquareMeter(this int? value) => Irradiance.FromKilowattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance KilowattsPerSquareMeter(this long value) => Irradiance.FromKilowattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance? KilowattsPerSquareMeter(this long? value) => Irradiance.FromKilowattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance KilowattsPerSquareMeter(this double value) => Irradiance.FromKilowattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance? KilowattsPerSquareMeter(this double? value) => Irradiance.FromKilowattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance KilowattsPerSquareMeter(this float value) => Irradiance.FromKilowattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance? KilowattsPerSquareMeter(this float? value) => Irradiance.FromKilowattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance KilowattsPerSquareMeter(this decimal value) => Irradiance.FromKilowattsPerSquareMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance? KilowattsPerSquareMeter(this decimal? value) => Irradiance.FromKilowattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Irradiance? KilowattsPerSquareMeter<T>(this T? value) where T : struct => Irradiance.FromKilowattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region WattPerSquareMeter
 
         /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance WattsPerSquareMeter(this int value) => Irradiance.FromWattsPerSquareMeter(value);
+        public static Irradiance WattsPerSquareMeter<T>(this T value) => Irradiance.FromWattsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance? WattsPerSquareMeter(this int? value) => Irradiance.FromWattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance WattsPerSquareMeter(this long value) => Irradiance.FromWattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance? WattsPerSquareMeter(this long? value) => Irradiance.FromWattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance WattsPerSquareMeter(this double value) => Irradiance.FromWattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance? WattsPerSquareMeter(this double? value) => Irradiance.FromWattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance WattsPerSquareMeter(this float value) => Irradiance.FromWattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance? WattsPerSquareMeter(this float? value) => Irradiance.FromWattsPerSquareMeter(value);
-
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance WattsPerSquareMeter(this decimal value) => Irradiance.FromWattsPerSquareMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static Irradiance? WattsPerSquareMeter(this decimal? value) => Irradiance.FromWattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Irradiance? WattsPerSquareMeter<T>(this T? value) where T : struct => Irradiance.FromWattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

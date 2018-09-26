@@ -47,136 +47,40 @@ namespace UnitsNet.Extensions.NumberToPressureChangeRate
         #region AtmospherePerSecond
 
         /// <inheritdoc cref="PressureChangeRate.FromAtmospheresPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate AtmospheresPerSecond(this int value) => PressureChangeRate.FromAtmospheresPerSecond(value);
+        public static PressureChangeRate AtmospheresPerSecond<T>(this T value) => PressureChangeRate.FromAtmospheresPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PressureChangeRate.FromAtmospheresPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? AtmospheresPerSecond(this int? value) => PressureChangeRate.FromAtmospheresPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromAtmospheresPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate AtmospheresPerSecond(this long value) => PressureChangeRate.FromAtmospheresPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromAtmospheresPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? AtmospheresPerSecond(this long? value) => PressureChangeRate.FromAtmospheresPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromAtmospheresPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate AtmospheresPerSecond(this double value) => PressureChangeRate.FromAtmospheresPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromAtmospheresPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? AtmospheresPerSecond(this double? value) => PressureChangeRate.FromAtmospheresPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromAtmospheresPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate AtmospheresPerSecond(this float value) => PressureChangeRate.FromAtmospheresPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromAtmospheresPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? AtmospheresPerSecond(this float? value) => PressureChangeRate.FromAtmospheresPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromAtmospheresPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate AtmospheresPerSecond(this decimal value) => PressureChangeRate.FromAtmospheresPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="PressureChangeRate.FromAtmospheresPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? AtmospheresPerSecond(this decimal? value) => PressureChangeRate.FromAtmospheresPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static PressureChangeRate? AtmospheresPerSecond<T>(this T? value) where T : struct => PressureChangeRate.FromAtmospheresPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilopascalPerSecond
 
         /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate KilopascalsPerSecond(this int value) => PressureChangeRate.FromKilopascalsPerSecond(value);
+        public static PressureChangeRate KilopascalsPerSecond<T>(this T value) => PressureChangeRate.FromKilopascalsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? KilopascalsPerSecond(this int? value) => PressureChangeRate.FromKilopascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate KilopascalsPerSecond(this long value) => PressureChangeRate.FromKilopascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? KilopascalsPerSecond(this long? value) => PressureChangeRate.FromKilopascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate KilopascalsPerSecond(this double value) => PressureChangeRate.FromKilopascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? KilopascalsPerSecond(this double? value) => PressureChangeRate.FromKilopascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate KilopascalsPerSecond(this float value) => PressureChangeRate.FromKilopascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? KilopascalsPerSecond(this float? value) => PressureChangeRate.FromKilopascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate KilopascalsPerSecond(this decimal value) => PressureChangeRate.FromKilopascalsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="PressureChangeRate.FromKilopascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? KilopascalsPerSecond(this decimal? value) => PressureChangeRate.FromKilopascalsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static PressureChangeRate? KilopascalsPerSecond<T>(this T? value) where T : struct => PressureChangeRate.FromKilopascalsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegapascalPerSecond
 
         /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate MegapascalsPerSecond(this int value) => PressureChangeRate.FromMegapascalsPerSecond(value);
+        public static PressureChangeRate MegapascalsPerSecond<T>(this T value) => PressureChangeRate.FromMegapascalsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? MegapascalsPerSecond(this int? value) => PressureChangeRate.FromMegapascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate MegapascalsPerSecond(this long value) => PressureChangeRate.FromMegapascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? MegapascalsPerSecond(this long? value) => PressureChangeRate.FromMegapascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate MegapascalsPerSecond(this double value) => PressureChangeRate.FromMegapascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? MegapascalsPerSecond(this double? value) => PressureChangeRate.FromMegapascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate MegapascalsPerSecond(this float value) => PressureChangeRate.FromMegapascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? MegapascalsPerSecond(this float? value) => PressureChangeRate.FromMegapascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate MegapascalsPerSecond(this decimal value) => PressureChangeRate.FromMegapascalsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="PressureChangeRate.FromMegapascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? MegapascalsPerSecond(this decimal? value) => PressureChangeRate.FromMegapascalsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static PressureChangeRate? MegapascalsPerSecond<T>(this T? value) where T : struct => PressureChangeRate.FromMegapascalsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PascalPerSecond
 
         /// <inheritdoc cref="PressureChangeRate.FromPascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate PascalsPerSecond(this int value) => PressureChangeRate.FromPascalsPerSecond(value);
+        public static PressureChangeRate PascalsPerSecond<T>(this T value) => PressureChangeRate.FromPascalsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PressureChangeRate.FromPascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? PascalsPerSecond(this int? value) => PressureChangeRate.FromPascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromPascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate PascalsPerSecond(this long value) => PressureChangeRate.FromPascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromPascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? PascalsPerSecond(this long? value) => PressureChangeRate.FromPascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromPascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate PascalsPerSecond(this double value) => PressureChangeRate.FromPascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromPascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? PascalsPerSecond(this double? value) => PressureChangeRate.FromPascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromPascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate PascalsPerSecond(this float value) => PressureChangeRate.FromPascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromPascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? PascalsPerSecond(this float? value) => PressureChangeRate.FromPascalsPerSecond(value);
-
-        /// <inheritdoc cref="PressureChangeRate.FromPascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate PascalsPerSecond(this decimal value) => PressureChangeRate.FromPascalsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="PressureChangeRate.FromPascalsPerSecond(UnitsNet.QuantityValue)" />
-        public static PressureChangeRate? PascalsPerSecond(this decimal? value) => PressureChangeRate.FromPascalsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static PressureChangeRate? PascalsPerSecond<T>(this T? value) where T : struct => PressureChangeRate.FromPascalsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

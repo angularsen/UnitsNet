@@ -47,102 +47,30 @@ namespace UnitsNet.Extensions.NumberToReactiveEnergy
         #region KilovoltampereReactiveHour
 
         /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy KilovoltampereReactiveHours(this int value) => ReactiveEnergy.FromKilovoltampereReactiveHours(value);
+        public static ReactiveEnergy KilovoltampereReactiveHours<T>(this T value) => ReactiveEnergy.FromKilovoltampereReactiveHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? KilovoltampereReactiveHours(this int? value) => ReactiveEnergy.FromKilovoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy KilovoltampereReactiveHours(this long value) => ReactiveEnergy.FromKilovoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? KilovoltampereReactiveHours(this long? value) => ReactiveEnergy.FromKilovoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy KilovoltampereReactiveHours(this double value) => ReactiveEnergy.FromKilovoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? KilovoltampereReactiveHours(this double? value) => ReactiveEnergy.FromKilovoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy KilovoltampereReactiveHours(this float value) => ReactiveEnergy.FromKilovoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? KilovoltampereReactiveHours(this float? value) => ReactiveEnergy.FromKilovoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy KilovoltampereReactiveHours(this decimal value) => ReactiveEnergy.FromKilovoltampereReactiveHours(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? KilovoltampereReactiveHours(this decimal? value) => ReactiveEnergy.FromKilovoltampereReactiveHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ReactiveEnergy? KilovoltampereReactiveHours<T>(this T? value) where T : struct => ReactiveEnergy.FromKilovoltampereReactiveHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegavoltampereReactiveHour
 
         /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy MegavoltampereReactiveHours(this int value) => ReactiveEnergy.FromMegavoltampereReactiveHours(value);
+        public static ReactiveEnergy MegavoltampereReactiveHours<T>(this T value) => ReactiveEnergy.FromMegavoltampereReactiveHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? MegavoltampereReactiveHours(this int? value) => ReactiveEnergy.FromMegavoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy MegavoltampereReactiveHours(this long value) => ReactiveEnergy.FromMegavoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? MegavoltampereReactiveHours(this long? value) => ReactiveEnergy.FromMegavoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy MegavoltampereReactiveHours(this double value) => ReactiveEnergy.FromMegavoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? MegavoltampereReactiveHours(this double? value) => ReactiveEnergy.FromMegavoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy MegavoltampereReactiveHours(this float value) => ReactiveEnergy.FromMegavoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? MegavoltampereReactiveHours(this float? value) => ReactiveEnergy.FromMegavoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy MegavoltampereReactiveHours(this decimal value) => ReactiveEnergy.FromMegavoltampereReactiveHours(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? MegavoltampereReactiveHours(this decimal? value) => ReactiveEnergy.FromMegavoltampereReactiveHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ReactiveEnergy? MegavoltampereReactiveHours<T>(this T? value) where T : struct => ReactiveEnergy.FromMegavoltampereReactiveHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region VoltampereReactiveHour
 
         /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy VoltampereReactiveHours(this int value) => ReactiveEnergy.FromVoltampereReactiveHours(value);
+        public static ReactiveEnergy VoltampereReactiveHours<T>(this T value) => ReactiveEnergy.FromVoltampereReactiveHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? VoltampereReactiveHours(this int? value) => ReactiveEnergy.FromVoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy VoltampereReactiveHours(this long value) => ReactiveEnergy.FromVoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? VoltampereReactiveHours(this long? value) => ReactiveEnergy.FromVoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy VoltampereReactiveHours(this double value) => ReactiveEnergy.FromVoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? VoltampereReactiveHours(this double? value) => ReactiveEnergy.FromVoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy VoltampereReactiveHours(this float value) => ReactiveEnergy.FromVoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? VoltampereReactiveHours(this float? value) => ReactiveEnergy.FromVoltampereReactiveHours(value);
-
-        /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy VoltampereReactiveHours(this decimal value) => ReactiveEnergy.FromVoltampereReactiveHours(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(UnitsNet.QuantityValue)" />
-        public static ReactiveEnergy? VoltampereReactiveHours(this decimal? value) => ReactiveEnergy.FromVoltampereReactiveHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ReactiveEnergy? VoltampereReactiveHours<T>(this T? value) where T : struct => ReactiveEnergy.FromVoltampereReactiveHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

@@ -47,34 +47,10 @@ namespace UnitsNet.Extensions.NumberToPermeability
         #region HenryPerMeter
 
         /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
-        public static Permeability HenriesPerMeter(this int value) => Permeability.FromHenriesPerMeter(value);
+        public static Permeability HenriesPerMeter<T>(this T value) => Permeability.FromHenriesPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
-        public static Permeability? HenriesPerMeter(this int? value) => Permeability.FromHenriesPerMeter(value);
-
-        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
-        public static Permeability HenriesPerMeter(this long value) => Permeability.FromHenriesPerMeter(value);
-
-        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
-        public static Permeability? HenriesPerMeter(this long? value) => Permeability.FromHenriesPerMeter(value);
-
-        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
-        public static Permeability HenriesPerMeter(this double value) => Permeability.FromHenriesPerMeter(value);
-
-        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
-        public static Permeability? HenriesPerMeter(this double? value) => Permeability.FromHenriesPerMeter(value);
-
-        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
-        public static Permeability HenriesPerMeter(this float value) => Permeability.FromHenriesPerMeter(value);
-
-        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
-        public static Permeability? HenriesPerMeter(this float? value) => Permeability.FromHenriesPerMeter(value);
-
-        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
-        public static Permeability HenriesPerMeter(this decimal value) => Permeability.FromHenriesPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
-        public static Permeability? HenriesPerMeter(this decimal? value) => Permeability.FromHenriesPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Permeability? HenriesPerMeter<T>(this T? value) where T : struct => Permeability.FromHenriesPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

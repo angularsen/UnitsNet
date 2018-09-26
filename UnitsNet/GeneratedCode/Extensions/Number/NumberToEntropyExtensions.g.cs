@@ -47,238 +47,70 @@ namespace UnitsNet.Extensions.NumberToEntropy
         #region CaloriePerKelvin
 
         /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy CaloriesPerKelvin(this int value) => Entropy.FromCaloriesPerKelvin(value);
+        public static Entropy CaloriesPerKelvin<T>(this T value) => Entropy.FromCaloriesPerKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? CaloriesPerKelvin(this int? value) => Entropy.FromCaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy CaloriesPerKelvin(this long value) => Entropy.FromCaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? CaloriesPerKelvin(this long? value) => Entropy.FromCaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy CaloriesPerKelvin(this double value) => Entropy.FromCaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? CaloriesPerKelvin(this double? value) => Entropy.FromCaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy CaloriesPerKelvin(this float value) => Entropy.FromCaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? CaloriesPerKelvin(this float? value) => Entropy.FromCaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy CaloriesPerKelvin(this decimal value) => Entropy.FromCaloriesPerKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Entropy.FromCaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? CaloriesPerKelvin(this decimal? value) => Entropy.FromCaloriesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Entropy? CaloriesPerKelvin<T>(this T? value) where T : struct => Entropy.FromCaloriesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region JoulePerDegreeCelsius
 
         /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy JoulesPerDegreeCelsius(this int value) => Entropy.FromJoulesPerDegreeCelsius(value);
+        public static Entropy JoulesPerDegreeCelsius<T>(this T value) => Entropy.FromJoulesPerDegreeCelsius(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy? JoulesPerDegreeCelsius(this int? value) => Entropy.FromJoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy JoulesPerDegreeCelsius(this long value) => Entropy.FromJoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy? JoulesPerDegreeCelsius(this long? value) => Entropy.FromJoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy JoulesPerDegreeCelsius(this double value) => Entropy.FromJoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy? JoulesPerDegreeCelsius(this double? value) => Entropy.FromJoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy JoulesPerDegreeCelsius(this float value) => Entropy.FromJoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy? JoulesPerDegreeCelsius(this float? value) => Entropy.FromJoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy JoulesPerDegreeCelsius(this decimal value) => Entropy.FromJoulesPerDegreeCelsius(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy? JoulesPerDegreeCelsius(this decimal? value) => Entropy.FromJoulesPerDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Entropy? JoulesPerDegreeCelsius<T>(this T? value) where T : struct => Entropy.FromJoulesPerDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region JoulePerKelvin
 
         /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy JoulesPerKelvin(this int value) => Entropy.FromJoulesPerKelvin(value);
+        public static Entropy JoulesPerKelvin<T>(this T value) => Entropy.FromJoulesPerKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? JoulesPerKelvin(this int? value) => Entropy.FromJoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy JoulesPerKelvin(this long value) => Entropy.FromJoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? JoulesPerKelvin(this long? value) => Entropy.FromJoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy JoulesPerKelvin(this double value) => Entropy.FromJoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? JoulesPerKelvin(this double? value) => Entropy.FromJoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy JoulesPerKelvin(this float value) => Entropy.FromJoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? JoulesPerKelvin(this float? value) => Entropy.FromJoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy JoulesPerKelvin(this decimal value) => Entropy.FromJoulesPerKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Entropy.FromJoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? JoulesPerKelvin(this decimal? value) => Entropy.FromJoulesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Entropy? JoulesPerKelvin<T>(this T? value) where T : struct => Entropy.FromJoulesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilocaloriePerKelvin
 
         /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy KilocaloriesPerKelvin(this int value) => Entropy.FromKilocaloriesPerKelvin(value);
+        public static Entropy KilocaloriesPerKelvin<T>(this T value) => Entropy.FromKilocaloriesPerKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? KilocaloriesPerKelvin(this int? value) => Entropy.FromKilocaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy KilocaloriesPerKelvin(this long value) => Entropy.FromKilocaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? KilocaloriesPerKelvin(this long? value) => Entropy.FromKilocaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy KilocaloriesPerKelvin(this double value) => Entropy.FromKilocaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? KilocaloriesPerKelvin(this double? value) => Entropy.FromKilocaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy KilocaloriesPerKelvin(this float value) => Entropy.FromKilocaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? KilocaloriesPerKelvin(this float? value) => Entropy.FromKilocaloriesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy KilocaloriesPerKelvin(this decimal value) => Entropy.FromKilocaloriesPerKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Entropy.FromKilocaloriesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? KilocaloriesPerKelvin(this decimal? value) => Entropy.FromKilocaloriesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Entropy? KilocaloriesPerKelvin<T>(this T? value) where T : struct => Entropy.FromKilocaloriesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilojoulePerDegreeCelsius
 
         /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy KilojoulesPerDegreeCelsius(this int value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
+        public static Entropy KilojoulesPerDegreeCelsius<T>(this T value) => Entropy.FromKilojoulesPerDegreeCelsius(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy? KilojoulesPerDegreeCelsius(this int? value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy KilojoulesPerDegreeCelsius(this long value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy? KilojoulesPerDegreeCelsius(this long? value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy KilojoulesPerDegreeCelsius(this double value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy? KilojoulesPerDegreeCelsius(this double? value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy KilojoulesPerDegreeCelsius(this float value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy? KilojoulesPerDegreeCelsius(this float? value) => Entropy.FromKilojoulesPerDegreeCelsius(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy KilojoulesPerDegreeCelsius(this decimal value) => Entropy.FromKilojoulesPerDegreeCelsius(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static Entropy? KilojoulesPerDegreeCelsius(this decimal? value) => Entropy.FromKilojoulesPerDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Entropy? KilojoulesPerDegreeCelsius<T>(this T? value) where T : struct => Entropy.FromKilojoulesPerDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilojoulePerKelvin
 
         /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy KilojoulesPerKelvin(this int value) => Entropy.FromKilojoulesPerKelvin(value);
+        public static Entropy KilojoulesPerKelvin<T>(this T value) => Entropy.FromKilojoulesPerKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? KilojoulesPerKelvin(this int? value) => Entropy.FromKilojoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy KilojoulesPerKelvin(this long value) => Entropy.FromKilojoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? KilojoulesPerKelvin(this long? value) => Entropy.FromKilojoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy KilojoulesPerKelvin(this double value) => Entropy.FromKilojoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? KilojoulesPerKelvin(this double? value) => Entropy.FromKilojoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy KilojoulesPerKelvin(this float value) => Entropy.FromKilojoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? KilojoulesPerKelvin(this float? value) => Entropy.FromKilojoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy KilojoulesPerKelvin(this decimal value) => Entropy.FromKilojoulesPerKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Entropy.FromKilojoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? KilojoulesPerKelvin(this decimal? value) => Entropy.FromKilojoulesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Entropy? KilojoulesPerKelvin<T>(this T? value) where T : struct => Entropy.FromKilojoulesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegajoulePerKelvin
 
         /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy MegajoulesPerKelvin(this int value) => Entropy.FromMegajoulesPerKelvin(value);
+        public static Entropy MegajoulesPerKelvin<T>(this T value) => Entropy.FromMegajoulesPerKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? MegajoulesPerKelvin(this int? value) => Entropy.FromMegajoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy MegajoulesPerKelvin(this long value) => Entropy.FromMegajoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? MegajoulesPerKelvin(this long? value) => Entropy.FromMegajoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy MegajoulesPerKelvin(this double value) => Entropy.FromMegajoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? MegajoulesPerKelvin(this double? value) => Entropy.FromMegajoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy MegajoulesPerKelvin(this float value) => Entropy.FromMegajoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? MegajoulesPerKelvin(this float? value) => Entropy.FromMegajoulesPerKelvin(value);
-
-        /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy MegajoulesPerKelvin(this decimal value) => Entropy.FromMegajoulesPerKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Entropy.FromMegajoulesPerKelvin(UnitsNet.QuantityValue)" />
-        public static Entropy? MegajoulesPerKelvin(this decimal? value) => Entropy.FromMegajoulesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Entropy? MegajoulesPerKelvin<T>(this T? value) where T : struct => Entropy.FromMegajoulesPerKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

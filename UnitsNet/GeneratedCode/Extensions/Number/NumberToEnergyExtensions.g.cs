@@ -47,748 +47,220 @@ namespace UnitsNet.Extensions.NumberToEnergy
         #region BritishThermalUnit
 
         /// <inheritdoc cref="Energy.FromBritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy BritishThermalUnits(this int value) => Energy.FromBritishThermalUnits(value);
+        public static Energy BritishThermalUnits<T>(this T value) => Energy.FromBritishThermalUnits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromBritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? BritishThermalUnits(this int? value) => Energy.FromBritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromBritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy BritishThermalUnits(this long value) => Energy.FromBritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromBritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? BritishThermalUnits(this long? value) => Energy.FromBritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromBritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy BritishThermalUnits(this double value) => Energy.FromBritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromBritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? BritishThermalUnits(this double? value) => Energy.FromBritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromBritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy BritishThermalUnits(this float value) => Energy.FromBritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromBritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? BritishThermalUnits(this float? value) => Energy.FromBritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromBritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy BritishThermalUnits(this decimal value) => Energy.FromBritishThermalUnits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromBritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? BritishThermalUnits(this decimal? value) => Energy.FromBritishThermalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? BritishThermalUnits<T>(this T? value) where T : struct => Energy.FromBritishThermalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Calorie
 
         /// <inheritdoc cref="Energy.FromCalories(UnitsNet.QuantityValue)" />
-        public static Energy Calories(this int value) => Energy.FromCalories(value);
+        public static Energy Calories<T>(this T value) => Energy.FromCalories(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromCalories(UnitsNet.QuantityValue)" />
-        public static Energy? Calories(this int? value) => Energy.FromCalories(value);
-
-        /// <inheritdoc cref="Energy.FromCalories(UnitsNet.QuantityValue)" />
-        public static Energy Calories(this long value) => Energy.FromCalories(value);
-
-        /// <inheritdoc cref="Energy.FromCalories(UnitsNet.QuantityValue)" />
-        public static Energy? Calories(this long? value) => Energy.FromCalories(value);
-
-        /// <inheritdoc cref="Energy.FromCalories(UnitsNet.QuantityValue)" />
-        public static Energy Calories(this double value) => Energy.FromCalories(value);
-
-        /// <inheritdoc cref="Energy.FromCalories(UnitsNet.QuantityValue)" />
-        public static Energy? Calories(this double? value) => Energy.FromCalories(value);
-
-        /// <inheritdoc cref="Energy.FromCalories(UnitsNet.QuantityValue)" />
-        public static Energy Calories(this float value) => Energy.FromCalories(value);
-
-        /// <inheritdoc cref="Energy.FromCalories(UnitsNet.QuantityValue)" />
-        public static Energy? Calories(this float? value) => Energy.FromCalories(value);
-
-        /// <inheritdoc cref="Energy.FromCalories(UnitsNet.QuantityValue)" />
-        public static Energy Calories(this decimal value) => Energy.FromCalories(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromCalories(UnitsNet.QuantityValue)" />
-        public static Energy? Calories(this decimal? value) => Energy.FromCalories(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? Calories<T>(this T? value) where T : struct => Energy.FromCalories(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecathermEc
 
         /// <inheritdoc cref="Energy.FromDecathermsEc(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsEc(this int value) => Energy.FromDecathermsEc(value);
+        public static Energy DecathermsEc<T>(this T value) => Energy.FromDecathermsEc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromDecathermsEc(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsEc(this int? value) => Energy.FromDecathermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsEc(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsEc(this long value) => Energy.FromDecathermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsEc(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsEc(this long? value) => Energy.FromDecathermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsEc(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsEc(this double value) => Energy.FromDecathermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsEc(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsEc(this double? value) => Energy.FromDecathermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsEc(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsEc(this float value) => Energy.FromDecathermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsEc(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsEc(this float? value) => Energy.FromDecathermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsEc(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsEc(this decimal value) => Energy.FromDecathermsEc(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromDecathermsEc(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsEc(this decimal? value) => Energy.FromDecathermsEc(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? DecathermsEc<T>(this T? value) where T : struct => Energy.FromDecathermsEc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecathermImperial
 
         /// <inheritdoc cref="Energy.FromDecathermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsImperial(this int value) => Energy.FromDecathermsImperial(value);
+        public static Energy DecathermsImperial<T>(this T value) => Energy.FromDecathermsImperial(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromDecathermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsImperial(this int? value) => Energy.FromDecathermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsImperial(this long value) => Energy.FromDecathermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsImperial(this long? value) => Energy.FromDecathermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsImperial(this double value) => Energy.FromDecathermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsImperial(this double? value) => Energy.FromDecathermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsImperial(this float value) => Energy.FromDecathermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsImperial(this float? value) => Energy.FromDecathermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsImperial(this decimal value) => Energy.FromDecathermsImperial(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromDecathermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsImperial(this decimal? value) => Energy.FromDecathermsImperial(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? DecathermsImperial<T>(this T? value) where T : struct => Energy.FromDecathermsImperial(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecathermUs
 
         /// <inheritdoc cref="Energy.FromDecathermsUs(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsUs(this int value) => Energy.FromDecathermsUs(value);
+        public static Energy DecathermsUs<T>(this T value) => Energy.FromDecathermsUs(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromDecathermsUs(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsUs(this int? value) => Energy.FromDecathermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsUs(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsUs(this long value) => Energy.FromDecathermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsUs(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsUs(this long? value) => Energy.FromDecathermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsUs(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsUs(this double value) => Energy.FromDecathermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsUs(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsUs(this double? value) => Energy.FromDecathermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsUs(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsUs(this float value) => Energy.FromDecathermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsUs(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsUs(this float? value) => Energy.FromDecathermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromDecathermsUs(UnitsNet.QuantityValue)" />
-        public static Energy DecathermsUs(this decimal value) => Energy.FromDecathermsUs(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromDecathermsUs(UnitsNet.QuantityValue)" />
-        public static Energy? DecathermsUs(this decimal? value) => Energy.FromDecathermsUs(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? DecathermsUs<T>(this T? value) where T : struct => Energy.FromDecathermsUs(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region ElectronVolt
 
         /// <inheritdoc cref="Energy.FromElectronVolts(UnitsNet.QuantityValue)" />
-        public static Energy ElectronVolts(this int value) => Energy.FromElectronVolts(value);
+        public static Energy ElectronVolts<T>(this T value) => Energy.FromElectronVolts(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromElectronVolts(UnitsNet.QuantityValue)" />
-        public static Energy? ElectronVolts(this int? value) => Energy.FromElectronVolts(value);
-
-        /// <inheritdoc cref="Energy.FromElectronVolts(UnitsNet.QuantityValue)" />
-        public static Energy ElectronVolts(this long value) => Energy.FromElectronVolts(value);
-
-        /// <inheritdoc cref="Energy.FromElectronVolts(UnitsNet.QuantityValue)" />
-        public static Energy? ElectronVolts(this long? value) => Energy.FromElectronVolts(value);
-
-        /// <inheritdoc cref="Energy.FromElectronVolts(UnitsNet.QuantityValue)" />
-        public static Energy ElectronVolts(this double value) => Energy.FromElectronVolts(value);
-
-        /// <inheritdoc cref="Energy.FromElectronVolts(UnitsNet.QuantityValue)" />
-        public static Energy? ElectronVolts(this double? value) => Energy.FromElectronVolts(value);
-
-        /// <inheritdoc cref="Energy.FromElectronVolts(UnitsNet.QuantityValue)" />
-        public static Energy ElectronVolts(this float value) => Energy.FromElectronVolts(value);
-
-        /// <inheritdoc cref="Energy.FromElectronVolts(UnitsNet.QuantityValue)" />
-        public static Energy? ElectronVolts(this float? value) => Energy.FromElectronVolts(value);
-
-        /// <inheritdoc cref="Energy.FromElectronVolts(UnitsNet.QuantityValue)" />
-        public static Energy ElectronVolts(this decimal value) => Energy.FromElectronVolts(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromElectronVolts(UnitsNet.QuantityValue)" />
-        public static Energy? ElectronVolts(this decimal? value) => Energy.FromElectronVolts(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? ElectronVolts<T>(this T? value) where T : struct => Energy.FromElectronVolts(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Erg
 
         /// <inheritdoc cref="Energy.FromErgs(UnitsNet.QuantityValue)" />
-        public static Energy Ergs(this int value) => Energy.FromErgs(value);
+        public static Energy Ergs<T>(this T value) => Energy.FromErgs(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromErgs(UnitsNet.QuantityValue)" />
-        public static Energy? Ergs(this int? value) => Energy.FromErgs(value);
-
-        /// <inheritdoc cref="Energy.FromErgs(UnitsNet.QuantityValue)" />
-        public static Energy Ergs(this long value) => Energy.FromErgs(value);
-
-        /// <inheritdoc cref="Energy.FromErgs(UnitsNet.QuantityValue)" />
-        public static Energy? Ergs(this long? value) => Energy.FromErgs(value);
-
-        /// <inheritdoc cref="Energy.FromErgs(UnitsNet.QuantityValue)" />
-        public static Energy Ergs(this double value) => Energy.FromErgs(value);
-
-        /// <inheritdoc cref="Energy.FromErgs(UnitsNet.QuantityValue)" />
-        public static Energy? Ergs(this double? value) => Energy.FromErgs(value);
-
-        /// <inheritdoc cref="Energy.FromErgs(UnitsNet.QuantityValue)" />
-        public static Energy Ergs(this float value) => Energy.FromErgs(value);
-
-        /// <inheritdoc cref="Energy.FromErgs(UnitsNet.QuantityValue)" />
-        public static Energy? Ergs(this float? value) => Energy.FromErgs(value);
-
-        /// <inheritdoc cref="Energy.FromErgs(UnitsNet.QuantityValue)" />
-        public static Energy Ergs(this decimal value) => Energy.FromErgs(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromErgs(UnitsNet.QuantityValue)" />
-        public static Energy? Ergs(this decimal? value) => Energy.FromErgs(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? Ergs<T>(this T? value) where T : struct => Energy.FromErgs(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region FootPound
 
         /// <inheritdoc cref="Energy.FromFootPounds(UnitsNet.QuantityValue)" />
-        public static Energy FootPounds(this int value) => Energy.FromFootPounds(value);
+        public static Energy FootPounds<T>(this T value) => Energy.FromFootPounds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromFootPounds(UnitsNet.QuantityValue)" />
-        public static Energy? FootPounds(this int? value) => Energy.FromFootPounds(value);
-
-        /// <inheritdoc cref="Energy.FromFootPounds(UnitsNet.QuantityValue)" />
-        public static Energy FootPounds(this long value) => Energy.FromFootPounds(value);
-
-        /// <inheritdoc cref="Energy.FromFootPounds(UnitsNet.QuantityValue)" />
-        public static Energy? FootPounds(this long? value) => Energy.FromFootPounds(value);
-
-        /// <inheritdoc cref="Energy.FromFootPounds(UnitsNet.QuantityValue)" />
-        public static Energy FootPounds(this double value) => Energy.FromFootPounds(value);
-
-        /// <inheritdoc cref="Energy.FromFootPounds(UnitsNet.QuantityValue)" />
-        public static Energy? FootPounds(this double? value) => Energy.FromFootPounds(value);
-
-        /// <inheritdoc cref="Energy.FromFootPounds(UnitsNet.QuantityValue)" />
-        public static Energy FootPounds(this float value) => Energy.FromFootPounds(value);
-
-        /// <inheritdoc cref="Energy.FromFootPounds(UnitsNet.QuantityValue)" />
-        public static Energy? FootPounds(this float? value) => Energy.FromFootPounds(value);
-
-        /// <inheritdoc cref="Energy.FromFootPounds(UnitsNet.QuantityValue)" />
-        public static Energy FootPounds(this decimal value) => Energy.FromFootPounds(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromFootPounds(UnitsNet.QuantityValue)" />
-        public static Energy? FootPounds(this decimal? value) => Energy.FromFootPounds(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? FootPounds<T>(this T? value) where T : struct => Energy.FromFootPounds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GigabritishThermalUnit
 
         /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy GigabritishThermalUnits(this int value) => Energy.FromGigabritishThermalUnits(value);
+        public static Energy GigabritishThermalUnits<T>(this T value) => Energy.FromGigabritishThermalUnits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? GigabritishThermalUnits(this int? value) => Energy.FromGigabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy GigabritishThermalUnits(this long value) => Energy.FromGigabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? GigabritishThermalUnits(this long? value) => Energy.FromGigabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy GigabritishThermalUnits(this double value) => Energy.FromGigabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? GigabritishThermalUnits(this double? value) => Energy.FromGigabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy GigabritishThermalUnits(this float value) => Energy.FromGigabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? GigabritishThermalUnits(this float? value) => Energy.FromGigabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy GigabritishThermalUnits(this decimal value) => Energy.FromGigabritishThermalUnits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? GigabritishThermalUnits(this decimal? value) => Energy.FromGigabritishThermalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? GigabritishThermalUnits<T>(this T? value) where T : struct => Energy.FromGigabritishThermalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GigawattHour
 
         /// <inheritdoc cref="Energy.FromGigawattHours(UnitsNet.QuantityValue)" />
-        public static Energy GigawattHours(this int value) => Energy.FromGigawattHours(value);
+        public static Energy GigawattHours<T>(this T value) => Energy.FromGigawattHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromGigawattHours(UnitsNet.QuantityValue)" />
-        public static Energy? GigawattHours(this int? value) => Energy.FromGigawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromGigawattHours(UnitsNet.QuantityValue)" />
-        public static Energy GigawattHours(this long value) => Energy.FromGigawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromGigawattHours(UnitsNet.QuantityValue)" />
-        public static Energy? GigawattHours(this long? value) => Energy.FromGigawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromGigawattHours(UnitsNet.QuantityValue)" />
-        public static Energy GigawattHours(this double value) => Energy.FromGigawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromGigawattHours(UnitsNet.QuantityValue)" />
-        public static Energy? GigawattHours(this double? value) => Energy.FromGigawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromGigawattHours(UnitsNet.QuantityValue)" />
-        public static Energy GigawattHours(this float value) => Energy.FromGigawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromGigawattHours(UnitsNet.QuantityValue)" />
-        public static Energy? GigawattHours(this float? value) => Energy.FromGigawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromGigawattHours(UnitsNet.QuantityValue)" />
-        public static Energy GigawattHours(this decimal value) => Energy.FromGigawattHours(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromGigawattHours(UnitsNet.QuantityValue)" />
-        public static Energy? GigawattHours(this decimal? value) => Energy.FromGigawattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? GigawattHours<T>(this T? value) where T : struct => Energy.FromGigawattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Joule
 
         /// <inheritdoc cref="Energy.FromJoules(UnitsNet.QuantityValue)" />
-        public static Energy Joules(this int value) => Energy.FromJoules(value);
+        public static Energy Joules<T>(this T value) => Energy.FromJoules(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromJoules(UnitsNet.QuantityValue)" />
-        public static Energy? Joules(this int? value) => Energy.FromJoules(value);
-
-        /// <inheritdoc cref="Energy.FromJoules(UnitsNet.QuantityValue)" />
-        public static Energy Joules(this long value) => Energy.FromJoules(value);
-
-        /// <inheritdoc cref="Energy.FromJoules(UnitsNet.QuantityValue)" />
-        public static Energy? Joules(this long? value) => Energy.FromJoules(value);
-
-        /// <inheritdoc cref="Energy.FromJoules(UnitsNet.QuantityValue)" />
-        public static Energy Joules(this double value) => Energy.FromJoules(value);
-
-        /// <inheritdoc cref="Energy.FromJoules(UnitsNet.QuantityValue)" />
-        public static Energy? Joules(this double? value) => Energy.FromJoules(value);
-
-        /// <inheritdoc cref="Energy.FromJoules(UnitsNet.QuantityValue)" />
-        public static Energy Joules(this float value) => Energy.FromJoules(value);
-
-        /// <inheritdoc cref="Energy.FromJoules(UnitsNet.QuantityValue)" />
-        public static Energy? Joules(this float? value) => Energy.FromJoules(value);
-
-        /// <inheritdoc cref="Energy.FromJoules(UnitsNet.QuantityValue)" />
-        public static Energy Joules(this decimal value) => Energy.FromJoules(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromJoules(UnitsNet.QuantityValue)" />
-        public static Energy? Joules(this decimal? value) => Energy.FromJoules(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? Joules<T>(this T? value) where T : struct => Energy.FromJoules(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilobritishThermalUnit
 
         /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy KilobritishThermalUnits(this int value) => Energy.FromKilobritishThermalUnits(value);
+        public static Energy KilobritishThermalUnits<T>(this T value) => Energy.FromKilobritishThermalUnits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? KilobritishThermalUnits(this int? value) => Energy.FromKilobritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy KilobritishThermalUnits(this long value) => Energy.FromKilobritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? KilobritishThermalUnits(this long? value) => Energy.FromKilobritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy KilobritishThermalUnits(this double value) => Energy.FromKilobritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? KilobritishThermalUnits(this double? value) => Energy.FromKilobritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy KilobritishThermalUnits(this float value) => Energy.FromKilobritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? KilobritishThermalUnits(this float? value) => Energy.FromKilobritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy KilobritishThermalUnits(this decimal value) => Energy.FromKilobritishThermalUnits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? KilobritishThermalUnits(this decimal? value) => Energy.FromKilobritishThermalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? KilobritishThermalUnits<T>(this T? value) where T : struct => Energy.FromKilobritishThermalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Kilocalorie
 
         /// <inheritdoc cref="Energy.FromKilocalories(UnitsNet.QuantityValue)" />
-        public static Energy Kilocalories(this int value) => Energy.FromKilocalories(value);
+        public static Energy Kilocalories<T>(this T value) => Energy.FromKilocalories(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromKilocalories(UnitsNet.QuantityValue)" />
-        public static Energy? Kilocalories(this int? value) => Energy.FromKilocalories(value);
-
-        /// <inheritdoc cref="Energy.FromKilocalories(UnitsNet.QuantityValue)" />
-        public static Energy Kilocalories(this long value) => Energy.FromKilocalories(value);
-
-        /// <inheritdoc cref="Energy.FromKilocalories(UnitsNet.QuantityValue)" />
-        public static Energy? Kilocalories(this long? value) => Energy.FromKilocalories(value);
-
-        /// <inheritdoc cref="Energy.FromKilocalories(UnitsNet.QuantityValue)" />
-        public static Energy Kilocalories(this double value) => Energy.FromKilocalories(value);
-
-        /// <inheritdoc cref="Energy.FromKilocalories(UnitsNet.QuantityValue)" />
-        public static Energy? Kilocalories(this double? value) => Energy.FromKilocalories(value);
-
-        /// <inheritdoc cref="Energy.FromKilocalories(UnitsNet.QuantityValue)" />
-        public static Energy Kilocalories(this float value) => Energy.FromKilocalories(value);
-
-        /// <inheritdoc cref="Energy.FromKilocalories(UnitsNet.QuantityValue)" />
-        public static Energy? Kilocalories(this float? value) => Energy.FromKilocalories(value);
-
-        /// <inheritdoc cref="Energy.FromKilocalories(UnitsNet.QuantityValue)" />
-        public static Energy Kilocalories(this decimal value) => Energy.FromKilocalories(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromKilocalories(UnitsNet.QuantityValue)" />
-        public static Energy? Kilocalories(this decimal? value) => Energy.FromKilocalories(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? Kilocalories<T>(this T? value) where T : struct => Energy.FromKilocalories(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Kilojoule
 
         /// <inheritdoc cref="Energy.FromKilojoules(UnitsNet.QuantityValue)" />
-        public static Energy Kilojoules(this int value) => Energy.FromKilojoules(value);
+        public static Energy Kilojoules<T>(this T value) => Energy.FromKilojoules(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromKilojoules(UnitsNet.QuantityValue)" />
-        public static Energy? Kilojoules(this int? value) => Energy.FromKilojoules(value);
-
-        /// <inheritdoc cref="Energy.FromKilojoules(UnitsNet.QuantityValue)" />
-        public static Energy Kilojoules(this long value) => Energy.FromKilojoules(value);
-
-        /// <inheritdoc cref="Energy.FromKilojoules(UnitsNet.QuantityValue)" />
-        public static Energy? Kilojoules(this long? value) => Energy.FromKilojoules(value);
-
-        /// <inheritdoc cref="Energy.FromKilojoules(UnitsNet.QuantityValue)" />
-        public static Energy Kilojoules(this double value) => Energy.FromKilojoules(value);
-
-        /// <inheritdoc cref="Energy.FromKilojoules(UnitsNet.QuantityValue)" />
-        public static Energy? Kilojoules(this double? value) => Energy.FromKilojoules(value);
-
-        /// <inheritdoc cref="Energy.FromKilojoules(UnitsNet.QuantityValue)" />
-        public static Energy Kilojoules(this float value) => Energy.FromKilojoules(value);
-
-        /// <inheritdoc cref="Energy.FromKilojoules(UnitsNet.QuantityValue)" />
-        public static Energy? Kilojoules(this float? value) => Energy.FromKilojoules(value);
-
-        /// <inheritdoc cref="Energy.FromKilojoules(UnitsNet.QuantityValue)" />
-        public static Energy Kilojoules(this decimal value) => Energy.FromKilojoules(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromKilojoules(UnitsNet.QuantityValue)" />
-        public static Energy? Kilojoules(this decimal? value) => Energy.FromKilojoules(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? Kilojoules<T>(this T? value) where T : struct => Energy.FromKilojoules(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilowattHour
 
         /// <inheritdoc cref="Energy.FromKilowattHours(UnitsNet.QuantityValue)" />
-        public static Energy KilowattHours(this int value) => Energy.FromKilowattHours(value);
+        public static Energy KilowattHours<T>(this T value) => Energy.FromKilowattHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromKilowattHours(UnitsNet.QuantityValue)" />
-        public static Energy? KilowattHours(this int? value) => Energy.FromKilowattHours(value);
-
-        /// <inheritdoc cref="Energy.FromKilowattHours(UnitsNet.QuantityValue)" />
-        public static Energy KilowattHours(this long value) => Energy.FromKilowattHours(value);
-
-        /// <inheritdoc cref="Energy.FromKilowattHours(UnitsNet.QuantityValue)" />
-        public static Energy? KilowattHours(this long? value) => Energy.FromKilowattHours(value);
-
-        /// <inheritdoc cref="Energy.FromKilowattHours(UnitsNet.QuantityValue)" />
-        public static Energy KilowattHours(this double value) => Energy.FromKilowattHours(value);
-
-        /// <inheritdoc cref="Energy.FromKilowattHours(UnitsNet.QuantityValue)" />
-        public static Energy? KilowattHours(this double? value) => Energy.FromKilowattHours(value);
-
-        /// <inheritdoc cref="Energy.FromKilowattHours(UnitsNet.QuantityValue)" />
-        public static Energy KilowattHours(this float value) => Energy.FromKilowattHours(value);
-
-        /// <inheritdoc cref="Energy.FromKilowattHours(UnitsNet.QuantityValue)" />
-        public static Energy? KilowattHours(this float? value) => Energy.FromKilowattHours(value);
-
-        /// <inheritdoc cref="Energy.FromKilowattHours(UnitsNet.QuantityValue)" />
-        public static Energy KilowattHours(this decimal value) => Energy.FromKilowattHours(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromKilowattHours(UnitsNet.QuantityValue)" />
-        public static Energy? KilowattHours(this decimal? value) => Energy.FromKilowattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? KilowattHours<T>(this T? value) where T : struct => Energy.FromKilowattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegabritishThermalUnit
 
         /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy MegabritishThermalUnits(this int value) => Energy.FromMegabritishThermalUnits(value);
+        public static Energy MegabritishThermalUnits<T>(this T value) => Energy.FromMegabritishThermalUnits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? MegabritishThermalUnits(this int? value) => Energy.FromMegabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy MegabritishThermalUnits(this long value) => Energy.FromMegabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? MegabritishThermalUnits(this long? value) => Energy.FromMegabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy MegabritishThermalUnits(this double value) => Energy.FromMegabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? MegabritishThermalUnits(this double? value) => Energy.FromMegabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy MegabritishThermalUnits(this float value) => Energy.FromMegabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? MegabritishThermalUnits(this float? value) => Energy.FromMegabritishThermalUnits(value);
-
-        /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy MegabritishThermalUnits(this decimal value) => Energy.FromMegabritishThermalUnits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(UnitsNet.QuantityValue)" />
-        public static Energy? MegabritishThermalUnits(this decimal? value) => Energy.FromMegabritishThermalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? MegabritishThermalUnits<T>(this T? value) where T : struct => Energy.FromMegabritishThermalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Megajoule
 
         /// <inheritdoc cref="Energy.FromMegajoules(UnitsNet.QuantityValue)" />
-        public static Energy Megajoules(this int value) => Energy.FromMegajoules(value);
+        public static Energy Megajoules<T>(this T value) => Energy.FromMegajoules(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromMegajoules(UnitsNet.QuantityValue)" />
-        public static Energy? Megajoules(this int? value) => Energy.FromMegajoules(value);
-
-        /// <inheritdoc cref="Energy.FromMegajoules(UnitsNet.QuantityValue)" />
-        public static Energy Megajoules(this long value) => Energy.FromMegajoules(value);
-
-        /// <inheritdoc cref="Energy.FromMegajoules(UnitsNet.QuantityValue)" />
-        public static Energy? Megajoules(this long? value) => Energy.FromMegajoules(value);
-
-        /// <inheritdoc cref="Energy.FromMegajoules(UnitsNet.QuantityValue)" />
-        public static Energy Megajoules(this double value) => Energy.FromMegajoules(value);
-
-        /// <inheritdoc cref="Energy.FromMegajoules(UnitsNet.QuantityValue)" />
-        public static Energy? Megajoules(this double? value) => Energy.FromMegajoules(value);
-
-        /// <inheritdoc cref="Energy.FromMegajoules(UnitsNet.QuantityValue)" />
-        public static Energy Megajoules(this float value) => Energy.FromMegajoules(value);
-
-        /// <inheritdoc cref="Energy.FromMegajoules(UnitsNet.QuantityValue)" />
-        public static Energy? Megajoules(this float? value) => Energy.FromMegajoules(value);
-
-        /// <inheritdoc cref="Energy.FromMegajoules(UnitsNet.QuantityValue)" />
-        public static Energy Megajoules(this decimal value) => Energy.FromMegajoules(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromMegajoules(UnitsNet.QuantityValue)" />
-        public static Energy? Megajoules(this decimal? value) => Energy.FromMegajoules(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? Megajoules<T>(this T? value) where T : struct => Energy.FromMegajoules(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegawattHour
 
         /// <inheritdoc cref="Energy.FromMegawattHours(UnitsNet.QuantityValue)" />
-        public static Energy MegawattHours(this int value) => Energy.FromMegawattHours(value);
+        public static Energy MegawattHours<T>(this T value) => Energy.FromMegawattHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromMegawattHours(UnitsNet.QuantityValue)" />
-        public static Energy? MegawattHours(this int? value) => Energy.FromMegawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromMegawattHours(UnitsNet.QuantityValue)" />
-        public static Energy MegawattHours(this long value) => Energy.FromMegawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromMegawattHours(UnitsNet.QuantityValue)" />
-        public static Energy? MegawattHours(this long? value) => Energy.FromMegawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromMegawattHours(UnitsNet.QuantityValue)" />
-        public static Energy MegawattHours(this double value) => Energy.FromMegawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromMegawattHours(UnitsNet.QuantityValue)" />
-        public static Energy? MegawattHours(this double? value) => Energy.FromMegawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromMegawattHours(UnitsNet.QuantityValue)" />
-        public static Energy MegawattHours(this float value) => Energy.FromMegawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromMegawattHours(UnitsNet.QuantityValue)" />
-        public static Energy? MegawattHours(this float? value) => Energy.FromMegawattHours(value);
-
-        /// <inheritdoc cref="Energy.FromMegawattHours(UnitsNet.QuantityValue)" />
-        public static Energy MegawattHours(this decimal value) => Energy.FromMegawattHours(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromMegawattHours(UnitsNet.QuantityValue)" />
-        public static Energy? MegawattHours(this decimal? value) => Energy.FromMegawattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? MegawattHours<T>(this T? value) where T : struct => Energy.FromMegawattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region ThermEc
 
         /// <inheritdoc cref="Energy.FromThermsEc(UnitsNet.QuantityValue)" />
-        public static Energy ThermsEc(this int value) => Energy.FromThermsEc(value);
+        public static Energy ThermsEc<T>(this T value) => Energy.FromThermsEc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromThermsEc(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsEc(this int? value) => Energy.FromThermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromThermsEc(UnitsNet.QuantityValue)" />
-        public static Energy ThermsEc(this long value) => Energy.FromThermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromThermsEc(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsEc(this long? value) => Energy.FromThermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromThermsEc(UnitsNet.QuantityValue)" />
-        public static Energy ThermsEc(this double value) => Energy.FromThermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromThermsEc(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsEc(this double? value) => Energy.FromThermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromThermsEc(UnitsNet.QuantityValue)" />
-        public static Energy ThermsEc(this float value) => Energy.FromThermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromThermsEc(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsEc(this float? value) => Energy.FromThermsEc(value);
-
-        /// <inheritdoc cref="Energy.FromThermsEc(UnitsNet.QuantityValue)" />
-        public static Energy ThermsEc(this decimal value) => Energy.FromThermsEc(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromThermsEc(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsEc(this decimal? value) => Energy.FromThermsEc(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? ThermsEc<T>(this T? value) where T : struct => Energy.FromThermsEc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region ThermImperial
 
         /// <inheritdoc cref="Energy.FromThermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy ThermsImperial(this int value) => Energy.FromThermsImperial(value);
+        public static Energy ThermsImperial<T>(this T value) => Energy.FromThermsImperial(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromThermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsImperial(this int? value) => Energy.FromThermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromThermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy ThermsImperial(this long value) => Energy.FromThermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromThermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsImperial(this long? value) => Energy.FromThermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromThermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy ThermsImperial(this double value) => Energy.FromThermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromThermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsImperial(this double? value) => Energy.FromThermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromThermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy ThermsImperial(this float value) => Energy.FromThermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromThermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsImperial(this float? value) => Energy.FromThermsImperial(value);
-
-        /// <inheritdoc cref="Energy.FromThermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy ThermsImperial(this decimal value) => Energy.FromThermsImperial(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromThermsImperial(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsImperial(this decimal? value) => Energy.FromThermsImperial(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? ThermsImperial<T>(this T? value) where T : struct => Energy.FromThermsImperial(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region ThermUs
 
         /// <inheritdoc cref="Energy.FromThermsUs(UnitsNet.QuantityValue)" />
-        public static Energy ThermsUs(this int value) => Energy.FromThermsUs(value);
+        public static Energy ThermsUs<T>(this T value) => Energy.FromThermsUs(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromThermsUs(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsUs(this int? value) => Energy.FromThermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromThermsUs(UnitsNet.QuantityValue)" />
-        public static Energy ThermsUs(this long value) => Energy.FromThermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromThermsUs(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsUs(this long? value) => Energy.FromThermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromThermsUs(UnitsNet.QuantityValue)" />
-        public static Energy ThermsUs(this double value) => Energy.FromThermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromThermsUs(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsUs(this double? value) => Energy.FromThermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromThermsUs(UnitsNet.QuantityValue)" />
-        public static Energy ThermsUs(this float value) => Energy.FromThermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromThermsUs(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsUs(this float? value) => Energy.FromThermsUs(value);
-
-        /// <inheritdoc cref="Energy.FromThermsUs(UnitsNet.QuantityValue)" />
-        public static Energy ThermsUs(this decimal value) => Energy.FromThermsUs(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromThermsUs(UnitsNet.QuantityValue)" />
-        public static Energy? ThermsUs(this decimal? value) => Energy.FromThermsUs(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? ThermsUs<T>(this T? value) where T : struct => Energy.FromThermsUs(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region WattHour
 
         /// <inheritdoc cref="Energy.FromWattHours(UnitsNet.QuantityValue)" />
-        public static Energy WattHours(this int value) => Energy.FromWattHours(value);
+        public static Energy WattHours<T>(this T value) => Energy.FromWattHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromWattHours(UnitsNet.QuantityValue)" />
-        public static Energy? WattHours(this int? value) => Energy.FromWattHours(value);
-
-        /// <inheritdoc cref="Energy.FromWattHours(UnitsNet.QuantityValue)" />
-        public static Energy WattHours(this long value) => Energy.FromWattHours(value);
-
-        /// <inheritdoc cref="Energy.FromWattHours(UnitsNet.QuantityValue)" />
-        public static Energy? WattHours(this long? value) => Energy.FromWattHours(value);
-
-        /// <inheritdoc cref="Energy.FromWattHours(UnitsNet.QuantityValue)" />
-        public static Energy WattHours(this double value) => Energy.FromWattHours(value);
-
-        /// <inheritdoc cref="Energy.FromWattHours(UnitsNet.QuantityValue)" />
-        public static Energy? WattHours(this double? value) => Energy.FromWattHours(value);
-
-        /// <inheritdoc cref="Energy.FromWattHours(UnitsNet.QuantityValue)" />
-        public static Energy WattHours(this float value) => Energy.FromWattHours(value);
-
-        /// <inheritdoc cref="Energy.FromWattHours(UnitsNet.QuantityValue)" />
-        public static Energy? WattHours(this float? value) => Energy.FromWattHours(value);
-
-        /// <inheritdoc cref="Energy.FromWattHours(UnitsNet.QuantityValue)" />
-        public static Energy WattHours(this decimal value) => Energy.FromWattHours(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Energy.FromWattHours(UnitsNet.QuantityValue)" />
-        public static Energy? WattHours(this decimal? value) => Energy.FromWattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Energy? WattHours<T>(this T? value) where T : struct => Energy.FromWattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

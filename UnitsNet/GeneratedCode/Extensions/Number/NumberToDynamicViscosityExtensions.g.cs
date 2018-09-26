@@ -47,204 +47,60 @@ namespace UnitsNet.Extensions.NumberToDynamicViscosity
         #region Centipoise
 
         /// <inheritdoc cref="DynamicViscosity.FromCentipoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity Centipoise(this int value) => DynamicViscosity.FromCentipoise(value);
+        public static DynamicViscosity Centipoise<T>(this T value) => DynamicViscosity.FromCentipoise(Convert.ToDouble(value));
 
         /// <inheritdoc cref="DynamicViscosity.FromCentipoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? Centipoise(this int? value) => DynamicViscosity.FromCentipoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromCentipoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity Centipoise(this long value) => DynamicViscosity.FromCentipoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromCentipoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? Centipoise(this long? value) => DynamicViscosity.FromCentipoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromCentipoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity Centipoise(this double value) => DynamicViscosity.FromCentipoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromCentipoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? Centipoise(this double? value) => DynamicViscosity.FromCentipoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromCentipoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity Centipoise(this float value) => DynamicViscosity.FromCentipoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromCentipoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? Centipoise(this float? value) => DynamicViscosity.FromCentipoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromCentipoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity Centipoise(this decimal value) => DynamicViscosity.FromCentipoise(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="DynamicViscosity.FromCentipoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? Centipoise(this decimal? value) => DynamicViscosity.FromCentipoise(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static DynamicViscosity? Centipoise<T>(this T? value) where T : struct => DynamicViscosity.FromCentipoise(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicropascalSecond
 
         /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity MicropascalSeconds(this int value) => DynamicViscosity.FromMicropascalSeconds(value);
+        public static DynamicViscosity MicropascalSeconds<T>(this T value) => DynamicViscosity.FromMicropascalSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? MicropascalSeconds(this int? value) => DynamicViscosity.FromMicropascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity MicropascalSeconds(this long value) => DynamicViscosity.FromMicropascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? MicropascalSeconds(this long? value) => DynamicViscosity.FromMicropascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity MicropascalSeconds(this double value) => DynamicViscosity.FromMicropascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? MicropascalSeconds(this double? value) => DynamicViscosity.FromMicropascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity MicropascalSeconds(this float value) => DynamicViscosity.FromMicropascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? MicropascalSeconds(this float? value) => DynamicViscosity.FromMicropascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity MicropascalSeconds(this decimal value) => DynamicViscosity.FromMicropascalSeconds(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="DynamicViscosity.FromMicropascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? MicropascalSeconds(this decimal? value) => DynamicViscosity.FromMicropascalSeconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static DynamicViscosity? MicropascalSeconds<T>(this T? value) where T : struct => DynamicViscosity.FromMicropascalSeconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillipascalSecond
 
         /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity MillipascalSeconds(this int value) => DynamicViscosity.FromMillipascalSeconds(value);
+        public static DynamicViscosity MillipascalSeconds<T>(this T value) => DynamicViscosity.FromMillipascalSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? MillipascalSeconds(this int? value) => DynamicViscosity.FromMillipascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity MillipascalSeconds(this long value) => DynamicViscosity.FromMillipascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? MillipascalSeconds(this long? value) => DynamicViscosity.FromMillipascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity MillipascalSeconds(this double value) => DynamicViscosity.FromMillipascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? MillipascalSeconds(this double? value) => DynamicViscosity.FromMillipascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity MillipascalSeconds(this float value) => DynamicViscosity.FromMillipascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? MillipascalSeconds(this float? value) => DynamicViscosity.FromMillipascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity MillipascalSeconds(this decimal value) => DynamicViscosity.FromMillipascalSeconds(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="DynamicViscosity.FromMillipascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? MillipascalSeconds(this decimal? value) => DynamicViscosity.FromMillipascalSeconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static DynamicViscosity? MillipascalSeconds<T>(this T? value) where T : struct => DynamicViscosity.FromMillipascalSeconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NewtonSecondPerMeterSquared
 
         /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity NewtonSecondsPerMeterSquared(this int value) => DynamicViscosity.FromNewtonSecondsPerMeterSquared(value);
+        public static DynamicViscosity NewtonSecondsPerMeterSquared<T>(this T value) => DynamicViscosity.FromNewtonSecondsPerMeterSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? NewtonSecondsPerMeterSquared(this int? value) => DynamicViscosity.FromNewtonSecondsPerMeterSquared(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity NewtonSecondsPerMeterSquared(this long value) => DynamicViscosity.FromNewtonSecondsPerMeterSquared(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? NewtonSecondsPerMeterSquared(this long? value) => DynamicViscosity.FromNewtonSecondsPerMeterSquared(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity NewtonSecondsPerMeterSquared(this double value) => DynamicViscosity.FromNewtonSecondsPerMeterSquared(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? NewtonSecondsPerMeterSquared(this double? value) => DynamicViscosity.FromNewtonSecondsPerMeterSquared(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity NewtonSecondsPerMeterSquared(this float value) => DynamicViscosity.FromNewtonSecondsPerMeterSquared(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? NewtonSecondsPerMeterSquared(this float? value) => DynamicViscosity.FromNewtonSecondsPerMeterSquared(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity NewtonSecondsPerMeterSquared(this decimal value) => DynamicViscosity.FromNewtonSecondsPerMeterSquared(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="DynamicViscosity.FromNewtonSecondsPerMeterSquared(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? NewtonSecondsPerMeterSquared(this decimal? value) => DynamicViscosity.FromNewtonSecondsPerMeterSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static DynamicViscosity? NewtonSecondsPerMeterSquared<T>(this T? value) where T : struct => DynamicViscosity.FromNewtonSecondsPerMeterSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PascalSecond
 
         /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity PascalSeconds(this int value) => DynamicViscosity.FromPascalSeconds(value);
+        public static DynamicViscosity PascalSeconds<T>(this T value) => DynamicViscosity.FromPascalSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? PascalSeconds(this int? value) => DynamicViscosity.FromPascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity PascalSeconds(this long value) => DynamicViscosity.FromPascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? PascalSeconds(this long? value) => DynamicViscosity.FromPascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity PascalSeconds(this double value) => DynamicViscosity.FromPascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? PascalSeconds(this double? value) => DynamicViscosity.FromPascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity PascalSeconds(this float value) => DynamicViscosity.FromPascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? PascalSeconds(this float? value) => DynamicViscosity.FromPascalSeconds(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity PascalSeconds(this decimal value) => DynamicViscosity.FromPascalSeconds(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="DynamicViscosity.FromPascalSeconds(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? PascalSeconds(this decimal? value) => DynamicViscosity.FromPascalSeconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static DynamicViscosity? PascalSeconds<T>(this T? value) where T : struct => DynamicViscosity.FromPascalSeconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Poise
 
         /// <inheritdoc cref="DynamicViscosity.FromPoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity Poise(this int value) => DynamicViscosity.FromPoise(value);
+        public static DynamicViscosity Poise<T>(this T value) => DynamicViscosity.FromPoise(Convert.ToDouble(value));
 
         /// <inheritdoc cref="DynamicViscosity.FromPoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? Poise(this int? value) => DynamicViscosity.FromPoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity Poise(this long value) => DynamicViscosity.FromPoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? Poise(this long? value) => DynamicViscosity.FromPoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity Poise(this double value) => DynamicViscosity.FromPoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? Poise(this double? value) => DynamicViscosity.FromPoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity Poise(this float value) => DynamicViscosity.FromPoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? Poise(this float? value) => DynamicViscosity.FromPoise(value);
-
-        /// <inheritdoc cref="DynamicViscosity.FromPoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity Poise(this decimal value) => DynamicViscosity.FromPoise(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="DynamicViscosity.FromPoise(UnitsNet.QuantityValue)" />
-        public static DynamicViscosity? Poise(this decimal? value) => DynamicViscosity.FromPoise(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static DynamicViscosity? Poise<T>(this T? value) where T : struct => DynamicViscosity.FromPoise(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

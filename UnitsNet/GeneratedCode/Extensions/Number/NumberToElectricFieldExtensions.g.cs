@@ -47,34 +47,10 @@ namespace UnitsNet.Extensions.NumberToElectricField
         #region VoltPerMeter
 
         /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricField VoltsPerMeter(this int value) => ElectricField.FromVoltsPerMeter(value);
+        public static ElectricField VoltsPerMeter<T>(this T value) => ElectricField.FromVoltsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricField? VoltsPerMeter(this int? value) => ElectricField.FromVoltsPerMeter(value);
-
-        /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricField VoltsPerMeter(this long value) => ElectricField.FromVoltsPerMeter(value);
-
-        /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricField? VoltsPerMeter(this long? value) => ElectricField.FromVoltsPerMeter(value);
-
-        /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricField VoltsPerMeter(this double value) => ElectricField.FromVoltsPerMeter(value);
-
-        /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricField? VoltsPerMeter(this double? value) => ElectricField.FromVoltsPerMeter(value);
-
-        /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricField VoltsPerMeter(this float value) => ElectricField.FromVoltsPerMeter(value);
-
-        /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricField? VoltsPerMeter(this float? value) => ElectricField.FromVoltsPerMeter(value);
-
-        /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricField VoltsPerMeter(this decimal value) => ElectricField.FromVoltsPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricField? VoltsPerMeter(this decimal? value) => ElectricField.FromVoltsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricField? VoltsPerMeter<T>(this T? value) where T : struct => ElectricField.FromVoltsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

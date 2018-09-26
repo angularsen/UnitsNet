@@ -47,102 +47,30 @@ namespace UnitsNet.Extensions.NumberToBrakeSpecificFuelConsumption
         #region GramPerKiloWattHour
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption GramsPerKiloWattHour(this int value) => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value);
+        public static BrakeSpecificFuelConsumption GramsPerKiloWattHour<T>(this T value) => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? GramsPerKiloWattHour(this int? value) => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption GramsPerKiloWattHour(this long value) => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? GramsPerKiloWattHour(this long? value) => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption GramsPerKiloWattHour(this double value) => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? GramsPerKiloWattHour(this double? value) => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption GramsPerKiloWattHour(this float value) => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? GramsPerKiloWattHour(this float? value) => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption GramsPerKiloWattHour(this decimal value) => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? GramsPerKiloWattHour(this decimal? value) => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static BrakeSpecificFuelConsumption? GramsPerKiloWattHour<T>(this T? value) where T : struct => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramPerJoule
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption KilogramsPerJoule(this int value) => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value);
+        public static BrakeSpecificFuelConsumption KilogramsPerJoule<T>(this T value) => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? KilogramsPerJoule(this int? value) => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption KilogramsPerJoule(this long value) => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? KilogramsPerJoule(this long? value) => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption KilogramsPerJoule(this double value) => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? KilogramsPerJoule(this double? value) => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption KilogramsPerJoule(this float value) => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? KilogramsPerJoule(this float? value) => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption KilogramsPerJoule(this decimal value) => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? KilogramsPerJoule(this decimal? value) => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static BrakeSpecificFuelConsumption? KilogramsPerJoule<T>(this T? value) where T : struct => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PoundPerMechanicalHorsepowerHour
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption PoundsPerMechanicalHorsepowerHour(this int value) => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value);
+        public static BrakeSpecificFuelConsumption PoundsPerMechanicalHorsepowerHour<T>(this T value) => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? PoundsPerMechanicalHorsepowerHour(this int? value) => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption PoundsPerMechanicalHorsepowerHour(this long value) => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? PoundsPerMechanicalHorsepowerHour(this long? value) => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption PoundsPerMechanicalHorsepowerHour(this double value) => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? PoundsPerMechanicalHorsepowerHour(this double? value) => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption PoundsPerMechanicalHorsepowerHour(this float value) => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? PoundsPerMechanicalHorsepowerHour(this float? value) => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value);
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption PoundsPerMechanicalHorsepowerHour(this decimal value) => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(UnitsNet.QuantityValue)" />
-        public static BrakeSpecificFuelConsumption? PoundsPerMechanicalHorsepowerHour(this decimal? value) => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static BrakeSpecificFuelConsumption? PoundsPerMechanicalHorsepowerHour<T>(this T? value) where T : struct => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

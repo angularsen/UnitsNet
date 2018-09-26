@@ -47,136 +47,40 @@ namespace UnitsNet.Extensions.NumberToElectricAdmittance
         #region Microsiemens
 
         /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Microsiemens(this int value) => ElectricAdmittance.FromMicrosiemens(value);
+        public static ElectricAdmittance Microsiemens<T>(this T value) => ElectricAdmittance.FromMicrosiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Microsiemens(this int? value) => ElectricAdmittance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Microsiemens(this long value) => ElectricAdmittance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Microsiemens(this long? value) => ElectricAdmittance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Microsiemens(this double value) => ElectricAdmittance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Microsiemens(this double? value) => ElectricAdmittance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Microsiemens(this float value) => ElectricAdmittance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Microsiemens(this float? value) => ElectricAdmittance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Microsiemens(this decimal value) => ElectricAdmittance.FromMicrosiemens(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Microsiemens(this decimal? value) => ElectricAdmittance.FromMicrosiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricAdmittance? Microsiemens<T>(this T? value) where T : struct => ElectricAdmittance.FromMicrosiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Millisiemens
 
         /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Millisiemens(this int value) => ElectricAdmittance.FromMillisiemens(value);
+        public static ElectricAdmittance Millisiemens<T>(this T value) => ElectricAdmittance.FromMillisiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Millisiemens(this int? value) => ElectricAdmittance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Millisiemens(this long value) => ElectricAdmittance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Millisiemens(this long? value) => ElectricAdmittance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Millisiemens(this double value) => ElectricAdmittance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Millisiemens(this double? value) => ElectricAdmittance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Millisiemens(this float value) => ElectricAdmittance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Millisiemens(this float? value) => ElectricAdmittance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Millisiemens(this decimal value) => ElectricAdmittance.FromMillisiemens(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Millisiemens(this decimal? value) => ElectricAdmittance.FromMillisiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricAdmittance? Millisiemens<T>(this T? value) where T : struct => ElectricAdmittance.FromMillisiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Nanosiemens
 
         /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Nanosiemens(this int value) => ElectricAdmittance.FromNanosiemens(value);
+        public static ElectricAdmittance Nanosiemens<T>(this T value) => ElectricAdmittance.FromNanosiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Nanosiemens(this int? value) => ElectricAdmittance.FromNanosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Nanosiemens(this long value) => ElectricAdmittance.FromNanosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Nanosiemens(this long? value) => ElectricAdmittance.FromNanosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Nanosiemens(this double value) => ElectricAdmittance.FromNanosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Nanosiemens(this double? value) => ElectricAdmittance.FromNanosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Nanosiemens(this float value) => ElectricAdmittance.FromNanosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Nanosiemens(this float? value) => ElectricAdmittance.FromNanosiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Nanosiemens(this decimal value) => ElectricAdmittance.FromNanosiemens(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Nanosiemens(this decimal? value) => ElectricAdmittance.FromNanosiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricAdmittance? Nanosiemens<T>(this T? value) where T : struct => ElectricAdmittance.FromNanosiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Siemens
 
         /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Siemens(this int value) => ElectricAdmittance.FromSiemens(value);
+        public static ElectricAdmittance Siemens<T>(this T value) => ElectricAdmittance.FromSiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Siemens(this int? value) => ElectricAdmittance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Siemens(this long value) => ElectricAdmittance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Siemens(this long? value) => ElectricAdmittance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Siemens(this double value) => ElectricAdmittance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Siemens(this double? value) => ElectricAdmittance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Siemens(this float value) => ElectricAdmittance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Siemens(this float? value) => ElectricAdmittance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance Siemens(this decimal value) => ElectricAdmittance.FromSiemens(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricAdmittance? Siemens(this decimal? value) => ElectricAdmittance.FromSiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static ElectricAdmittance? Siemens<T>(this T? value) where T : struct => ElectricAdmittance.FromSiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
