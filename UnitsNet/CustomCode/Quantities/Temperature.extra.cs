@@ -42,7 +42,7 @@ namespace UnitsNet
         /// <returns>The new temperature.</returns>
         public static Temperature operator +(Temperature left, TemperatureDelta right)
         {
-            return new Temperature(left.Kelvins + right.KelvinsDelta);
+            return new Temperature(left.Kelvins + right.Kelvins);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace UnitsNet
         /// <returns>The new temperature.</returns>
         public static Temperature operator +(TemperatureDelta left, Temperature right)
         {
-            return new Temperature(left.KelvinsDelta + right.Kelvins);
+            return new Temperature(left.Kelvins + right.Kelvins);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace UnitsNet
         /// <returns>The new temperature.</returns>
         public static Temperature operator -(Temperature left, TemperatureDelta right)
         {
-            return new Temperature(left.Kelvins - right.KelvinsDelta);
+            return new Temperature(left.Kelvins - right.Kelvins);
         }
 
         /// <summary>

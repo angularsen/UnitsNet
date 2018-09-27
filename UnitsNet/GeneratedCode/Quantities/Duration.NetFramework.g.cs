@@ -108,15 +108,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Duration from nullable Months.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Duration? FromMonths(QuantityValue? months)
-        {
-            return months.HasValue ? FromMonths(months.Value) : default(Duration?);
-        }
-
-        /// <summary>
         ///     Get nullable Duration from nullable Months30.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
@@ -150,15 +141,6 @@ namespace UnitsNet
         public static Duration? FromWeeks(QuantityValue? weeks)
         {
             return weeks.HasValue ? FromWeeks(weeks.Value) : default(Duration?);
-        }
-
-        /// <summary>
-        ///     Get nullable Duration from nullable Years.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Duration? FromYears(QuantityValue? years)
-        {
-            return years.HasValue ? FromYears(years.Value) : default(Duration?);
         }
 
         /// <summary>

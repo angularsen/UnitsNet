@@ -72,30 +72,12 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable TemperatureDelta from nullable DegreesCelsiusDelta.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static TemperatureDelta? FromDegreesCelsiusDelta(QuantityValue? degreescelsiusdelta)
-        {
-            return degreescelsiusdelta.HasValue ? FromDegreesCelsiusDelta(degreescelsiusdelta.Value) : default(TemperatureDelta?);
-        }
-
-        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesDelisle.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesDelisle(QuantityValue? degreesdelisle)
         {
             return degreesdelisle.HasValue ? FromDegreesDelisle(degreesdelisle.Value) : default(TemperatureDelta?);
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureDelta from nullable DegreesDelisleDelta.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static TemperatureDelta? FromDegreesDelisleDelta(QuantityValue? degreesdelisledelta)
-        {
-            return degreesdelisledelta.HasValue ? FromDegreesDelisleDelta(degreesdelisledelta.Value) : default(TemperatureDelta?);
         }
 
         /// <summary>
@@ -108,30 +90,12 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable TemperatureDelta from nullable DegreesFahrenheitDelta.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static TemperatureDelta? FromDegreesFahrenheitDelta(QuantityValue? degreesfahrenheitdelta)
-        {
-            return degreesfahrenheitdelta.HasValue ? FromDegreesFahrenheitDelta(degreesfahrenheitdelta.Value) : default(TemperatureDelta?);
-        }
-
-        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesNewton.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesNewton(QuantityValue? degreesnewton)
         {
             return degreesnewton.HasValue ? FromDegreesNewton(degreesnewton.Value) : default(TemperatureDelta?);
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureDelta from nullable DegreesNewtonDelta.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static TemperatureDelta? FromDegreesNewtonDelta(QuantityValue? degreesnewtondelta)
-        {
-            return degreesnewtondelta.HasValue ? FromDegreesNewtonDelta(degreesnewtondelta.Value) : default(TemperatureDelta?);
         }
 
         /// <summary>
@@ -144,30 +108,12 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable TemperatureDelta from nullable DegreesRankineDelta.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static TemperatureDelta? FromDegreesRankineDelta(QuantityValue? degreesrankinedelta)
-        {
-            return degreesrankinedelta.HasValue ? FromDegreesRankineDelta(degreesrankinedelta.Value) : default(TemperatureDelta?);
-        }
-
-        /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesReaumur.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesReaumur(QuantityValue? degreesreaumur)
         {
             return degreesreaumur.HasValue ? FromDegreesReaumur(degreesreaumur.Value) : default(TemperatureDelta?);
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureDelta from nullable DegreesReaumurDelta.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static TemperatureDelta? FromDegreesReaumurDelta(QuantityValue? degreesreaumurdelta)
-        {
-            return degreesreaumurdelta.HasValue ? FromDegreesReaumurDelta(degreesreaumurdelta.Value) : default(TemperatureDelta?);
         }
 
         /// <summary>
@@ -180,30 +126,12 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable TemperatureDelta from nullable DegreesRoemerDelta.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static TemperatureDelta? FromDegreesRoemerDelta(QuantityValue? degreesroemerdelta)
-        {
-            return degreesroemerdelta.HasValue ? FromDegreesRoemerDelta(degreesroemerdelta.Value) : default(TemperatureDelta?);
-        }
-
-        /// <summary>
         ///     Get nullable TemperatureDelta from nullable Kelvins.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromKelvins(QuantityValue? kelvins)
         {
             return kelvins.HasValue ? FromKelvins(kelvins.Value) : default(TemperatureDelta?);
-        }
-
-        /// <summary>
-        ///     Get nullable TemperatureDelta from nullable KelvinsDelta.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static TemperatureDelta? FromKelvinsDelta(QuantityValue? kelvinsdelta)
-        {
-            return kelvinsdelta.HasValue ? FromKelvinsDelta(kelvinsdelta.Value) : default(TemperatureDelta?);
         }
 
         /// <summary>

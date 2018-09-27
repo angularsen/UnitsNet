@@ -396,18 +396,6 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         #endregion
 
-        #region Psi
-
-        /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
-        [System.Obsolete("Deprecated due to github issue #215, please use PoundForcePerSquareInch instead")]
-        public static Pressure Psi<T>(this T value) => Pressure.FromPsi(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Pressure? Psi<T>(this T? value) where T : struct => Pressure.FromPsi(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
         #region TechnicalAtmosphere
 
         /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />

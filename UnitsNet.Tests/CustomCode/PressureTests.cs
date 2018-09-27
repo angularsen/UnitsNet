@@ -66,8 +66,6 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsForcePerSquareInchInOnePascal => 1.450377377302092e-4;
 
-        protected override double PsiInOnePascal => 1.450377377302092e-4;
-
         protected override double TechnicalAtmospheresInOnePascal => 1.0197*1E-5;
 
         protected override double TonnesForcePerSquareCentimeterInOnePascal => 1.019716212977928e-8;

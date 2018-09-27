@@ -351,24 +351,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Volume from nullable Tablespoons.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Volume? FromTablespoons(QuantityValue? tablespoons)
-        {
-            return tablespoons.HasValue ? FromTablespoons(tablespoons.Value) : default(Volume?);
-        }
-
-        /// <summary>
-        ///     Get nullable Volume from nullable Teaspoons.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Volume? FromTeaspoons(QuantityValue? teaspoons)
-        {
-            return teaspoons.HasValue ? FromTeaspoons(teaspoons.Value) : default(Volume?);
-        }
-
-        /// <summary>
         ///     Get nullable Volume from nullable UkTablespoons.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]

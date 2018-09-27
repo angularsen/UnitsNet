@@ -77,8 +77,6 @@ namespace UnitsNet.Units
         Pascal,
         PoundForcePerSquareFoot,
         PoundForcePerSquareInch,
-        [System.Obsolete("Deprecated due to github issue #215, please use PoundForcePerSquareInch instead")]
-        Psi,
         TechnicalAtmosphere,
         TonneForcePerSquareCentimeter,
         TonneForcePerSquareMeter,

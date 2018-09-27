@@ -45,15 +45,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class TemperatureDeltaTests : TemperatureDeltaTestsBase
     {
-        protected override double DegreesCelsiusDeltaInOneKelvin => 1;
-        protected override double DegreesDelisleDeltaInOneKelvin => -1.5d;
-        protected override double DegreesFahrenheitDeltaInOneKelvin => 1.8;
-        protected override double DegreesNewtonDeltaInOneKelvin => 0.33d;
-        protected override double DegreesRankineDeltaInOneKelvin => 1.8;
-        protected override double DegreesReaumurDeltaInOneKelvin => 0.8;
-        protected override double DegreesRoemerDeltaInOneKelvin => 21/40d;
-        protected override double KelvinsDeltaInOneKelvin => 1;
-
         protected override double DegreesCelsiusInOneKelvin => 1;
         protected override double DegreesDelisleInOneKelvin => -1.5d;
         protected override double DegreesFahrenheitInOneKelvin => 1.8;

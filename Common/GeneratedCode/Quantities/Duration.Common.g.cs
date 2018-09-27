@@ -187,12 +187,6 @@ namespace UnitsNet
         public double Minutes => As(DurationUnit.Minute);
 
         /// <summary>
-        ///     Get Duration in Months.
-        /// </summary>
-        [System.Obsolete("Use Month30 instead, which makes it clear that this is an approximate unit based on 30 days per month. The duration of a month varies, but the Gregorian solar calendar has 365.2425/12 = 30.44 days on average.")]
-        public double Months => As(DurationUnit.Month);
-
-        /// <summary>
         ///     Get Duration in Months30.
         /// </summary>
         public double Months30 => As(DurationUnit.Month30);
@@ -211,12 +205,6 @@ namespace UnitsNet
         ///     Get Duration in Weeks.
         /// </summary>
         public double Weeks => As(DurationUnit.Week);
-
-        /// <summary>
-        ///     Get Duration in Years.
-        /// </summary>
-        [System.Obsolete("Use Year365 instead, which makes it clear that this is an approximate unit based on 365 days per year. The duration of a year varies due to corrections such as leap years, since a Gregorian solar calendar has 365.2425 days.")]
-        public double Years => As(DurationUnit.Year);
 
         /// <summary>
         ///     Get Duration in Years365.
@@ -303,21 +291,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Duration from Months.
-        /// </summary>
-        [System.Obsolete("Use Month30 instead, which makes it clear that this is an approximate unit based on 30 days per month. The duration of a month varies, but the Gregorian solar calendar has 365.2425/12 = 30.44 days on average.")]
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Duration FromMonths(double months)
-#else
-        public static Duration FromMonths(QuantityValue months)
-#endif
-        {
-            double value = (double) months;
-            return new Duration(value, DurationUnit.Month);
-        }
-
-        /// <summary>
         ///     Get Duration from Months30.
         /// </summary>
 #if WINDOWS_UWP
@@ -371,21 +344,6 @@ namespace UnitsNet
         {
             double value = (double) weeks;
             return new Duration(value, DurationUnit.Week);
-        }
-
-        /// <summary>
-        ///     Get Duration from Years.
-        /// </summary>
-        [System.Obsolete("Use Year365 instead, which makes it clear that this is an approximate unit based on 365 days per year. The duration of a year varies due to corrections such as leap years, since a Gregorian solar calendar has 365.2425 days.")]
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Duration FromYears(double years)
-#else
-        public static Duration FromYears(QuantityValue years)
-#endif
-        {
-            double value = (double) years;
-            return new Duration(value, DurationUnit.Year);
         }
 
         /// <summary>
@@ -579,12 +537,10 @@ namespace UnitsNet
                 case DurationUnit.Microsecond: return (_value) * 1e-6d;
                 case DurationUnit.Millisecond: return (_value) * 1e-3d;
                 case DurationUnit.Minute: return _value*60;
-                case DurationUnit.Month: return _value*30*24*3600;
                 case DurationUnit.Month30: return _value*30*24*3600;
                 case DurationUnit.Nanosecond: return (_value) * 1e-9d;
                 case DurationUnit.Second: return _value;
                 case DurationUnit.Week: return _value*7*24*3600;
-                case DurationUnit.Year: return _value*365*24*3600;
                 case DurationUnit.Year365: return _value*365*24*3600;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -605,12 +561,10 @@ namespace UnitsNet
                 case DurationUnit.Microsecond: return (baseUnitValue) / 1e-6d;
                 case DurationUnit.Millisecond: return (baseUnitValue) / 1e-3d;
                 case DurationUnit.Minute: return baseUnitValue/60;
-                case DurationUnit.Month: return baseUnitValue/(30*24*3600);
                 case DurationUnit.Month30: return baseUnitValue/(30*24*3600);
                 case DurationUnit.Nanosecond: return (baseUnitValue) / 1e-9d;
                 case DurationUnit.Second: return baseUnitValue;
                 case DurationUnit.Week: return baseUnitValue/(7*24*3600);
-                case DurationUnit.Year: return baseUnitValue/(365*24*3600);
                 case DurationUnit.Year365: return baseUnitValue/(365*24*3600);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

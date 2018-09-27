@@ -396,30 +396,6 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         #endregion
 
-        #region Tablespoon
-
-        /// <inheritdoc cref="Volume.FromTablespoons(UnitsNet.QuantityValue)" />
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
-        public static Volume Tablespoons<T>(this T value) => Volume.FromTablespoons(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromTablespoons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? Tablespoons<T>(this T? value) where T : struct => Volume.FromTablespoons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Teaspoon
-
-        /// <inheritdoc cref="Volume.FromTeaspoons(UnitsNet.QuantityValue)" />
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
-        public static Volume Teaspoons<T>(this T value) => Volume.FromTeaspoons(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromTeaspoons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? Teaspoons<T>(this T? value) where T : struct => Volume.FromTeaspoons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
         #region UkTablespoon
 
         /// <inheritdoc cref="Volume.FromUkTablespoons(UnitsNet.QuantityValue)" />

@@ -351,15 +351,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Pressure from nullable Psi.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Pressure? FromPsi(QuantityValue? psi)
-        {
-            return psi.HasValue ? FromPsi(psi.Value) : default(Pressure?);
-        }
-
-        /// <summary>
         ///     Get nullable Pressure from nullable TechnicalAtmospheres.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]

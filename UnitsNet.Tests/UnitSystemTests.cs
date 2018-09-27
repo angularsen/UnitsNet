@@ -259,7 +259,6 @@ namespace UnitsNet.Tests
             Assert.Equal(DurationUnit.Microsecond, Duration.ParseUnit("\u00b5s"));
             Assert.Equal(ElectricCurrentUnit.Microampere, ElectricCurrent.ParseUnit("\u00b5A"));
             Assert.Equal(ElectricPotentialUnit.Microvolt, ElectricPotential.ParseUnit("\u00b5V"));
-            Assert.Equal(FlowUnit.MicrolitersPerMinute, Flow.ParseUnit("\u00b5LPM"));
             Assert.Equal(ForceChangeRateUnit.MicronewtonPerSecond, ForceChangeRate.ParseUnit("\u00b5N/s"));
             Assert.Equal(ForcePerLengthUnit.MicronewtonPerMeter, ForcePerLength.ParseUnit("\u00b5N/m"));
             Assert.Equal(KinematicViscosityUnit.Microstokes, KinematicViscosity.ParseUnit("\u00b5St"));
@@ -276,6 +275,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, TemperatureChangeRate.ParseUnit("\u00b5°C/s"));
             Assert.Equal(VolumeUnit.Microliter, Volume.ParseUnit("\u00b5l"));
             Assert.Equal(VolumeUnit.CubicMicrometer, Volume.ParseUnit("\u00b5m³"));
+            Assert.Equal(VolumeFlowUnit.MicrolitersPerMinute, VolumeFlow.ParseUnit("\u00b5LPM"));
 
             // "\u03bc" = Lower case greek letter 'Mu' 
             Assert.Throws<UnitNotFoundException>(() => Acceleration.ParseUnit("\u03bcm/s²"));
@@ -286,7 +286,6 @@ namespace UnitsNet.Tests
             Assert.Throws<UnitNotFoundException>(() => Duration.ParseUnit("\u03bcs"));
             Assert.Throws<UnitNotFoundException>(() => ElectricCurrent.ParseUnit("\u03bcA"));
             Assert.Throws<UnitNotFoundException>(() => ElectricPotential.ParseUnit("\u03bcV"));
-            Assert.Throws<UnitNotFoundException>(() => Flow.ParseUnit("\u03bcLPM"));
             Assert.Throws<UnitNotFoundException>(() => ForceChangeRate.ParseUnit("\u03bcN/s"));
             Assert.Throws<UnitNotFoundException>(() => ForcePerLength.ParseUnit("\u03bcN/m"));
             Assert.Throws<UnitNotFoundException>(() => KinematicViscosity.ParseUnit("\u03bcSt"));
@@ -303,6 +302,7 @@ namespace UnitsNet.Tests
             Assert.Throws<UnitNotFoundException>(() => TemperatureChangeRate.ParseUnit("\u03bc°C/s"));
             Assert.Throws<UnitNotFoundException>(() => Volume.ParseUnit("\u03bcl"));
             Assert.Throws<UnitNotFoundException>(() => Volume.ParseUnit("\u03bcm³"));
+            Assert.Throws<UnitNotFoundException>( () => VolumeFlow.ParseUnit( "\u03bcLPM" ) );
         }
 
         [Theory]
@@ -315,9 +315,7 @@ namespace UnitsNet.Tests
                 .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AngleUnit>()))
                 .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AreaUnit>()))
                 .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<DurationUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName,
-                    EnumUtils.GetEnumValues<ElectricPotentialUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<FlowUnit>()))
+                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ElectricPotentialUnit>()))
                 .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ForceUnit>()))
                 .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<LengthUnit>()))
                 .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<MassUnit>()))
@@ -350,7 +348,6 @@ namespace UnitsNet.Tests
             Assert.Equal("1 °", Angle.FromDegrees(1).ToString());
             Assert.Equal("1 m²", Area.FromSquareMeters(1).ToString());
             Assert.Equal("1 V", ElectricPotential.FromVolts(1).ToString());
-            Assert.Equal("1 m³/s", Flow.FromCubicMetersPerSecond(1).ToString());
             Assert.Equal("1 N", Force.FromNewtons(1).ToString());
             Assert.Equal("1 m", Length.FromMeters(1).ToString());
             Assert.Equal("1 kg", Mass.FromKilograms(1).ToString());
@@ -359,6 +356,7 @@ namespace UnitsNet.Tests
             Assert.Equal("1 K", Temperature.FromKelvins(1).ToString());
             Assert.Equal("1 N·m", Torque.FromNewtonMeters(1).ToString());
             Assert.Equal("1 m³", Volume.FromCubicMeters(1).ToString());
+            Assert.Equal("1 m³/s", VolumeFlow.FromCubicMetersPerSecond(1).ToString());
 
             Assert.Equal("2 ft 3 in", Length.FromFeetInches(2, 3).FeetInches.ToString());
             Assert.Equal("3 st 7 lb", Mass.FromStonePounds(3, 7).StonePounds.ToString());
@@ -464,14 +462,14 @@ namespace UnitsNet.Tests
             UnitSystem unitSystem = UnitSystem.Default;
 
             // Act 1
-            var exception1 = Assert.Throws<AmbiguousUnitParseException>(() => unitSystem.Parse<VolumeUnit>("tsp"));
+            var exception1 = Assert.Throws<AmbiguousUnitParseException>(() => unitSystem.Parse<LengthUnit>("pt"));
 
             // Act 2
-            var exception2 = Assert.Throws<AmbiguousUnitParseException>(() => Volume.Parse("1 tsp"));
+            var exception2 = Assert.Throws<AmbiguousUnitParseException>(() => Length.Parse("1 pt"));
 
             // Assert
-            Assert.Equal("Cannot parse \"tsp\" since it could be either of these: MetricTeaspoon, Teaspoon", exception1.Message);
-            Assert.Equal("Cannot parse \"tsp\" since it could be either of these: MetricTeaspoon, Teaspoon", exception2.Message);
+            Assert.Equal("Cannot parse \"pt\" since it could be either of these: DtpPoint, PrinterPoint", exception1.Message);
+            Assert.Equal("Cannot parse \"pt\" since it could be either of these: DtpPoint, PrinterPoint", exception2.Message);
         }
 
         [Fact]
