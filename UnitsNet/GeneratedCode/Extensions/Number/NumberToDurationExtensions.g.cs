@@ -102,6 +102,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         #region Month
 
         /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Use Month30 instead, which makes it clear that this is an approximate unit based on 30 days per month. The duration of a month varies, but the Gregorian solar calendar has 365.2425/12 = 30.44 days on average.")]
         public static Duration Months<T>(this T value) => Duration.FromMonths(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
@@ -157,6 +158,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         #region Year
 
         /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Use Year365 instead, which makes it clear that this is an approximate unit based on 365 days per year. The duration of a year varies due to corrections such as leap years, since a Gregorian solar calendar has 365.2425 days.")]
         public static Duration Years<T>(this T value) => Duration.FromYears(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
