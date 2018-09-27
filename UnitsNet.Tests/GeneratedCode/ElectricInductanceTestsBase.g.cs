@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => henry.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ElectricInductance a = ElectricInductance.FromHenries(1);
-            ElectricInductance b = ElectricInductance.FromHenries(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ElectricInductance v = ElectricInductance.FromHenries(1);
-            Assert.True(v.Equals(ElectricInductance.FromHenries(1), ElectricInductance.FromHenries(HenriesTolerance)));
-            Assert.False(v.Equals(ElectricInductance.Zero, ElectricInductance.FromHenries(HenriesTolerance)));
+            Assert.True(v.Equals(ElectricInductance.FromHenries(1), HenriesTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricInductance.Zero, HenriesTolerance, ComparisonType.Relative));
         }
 
         [Fact]

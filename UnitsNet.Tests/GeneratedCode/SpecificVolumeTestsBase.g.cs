@@ -159,28 +159,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => cubicmeterperkilogram.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            SpecificVolume a = SpecificVolume.FromCubicMetersPerKilogram(1);
-            SpecificVolume b = SpecificVolume.FromCubicMetersPerKilogram(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             SpecificVolume v = SpecificVolume.FromCubicMetersPerKilogram(1);
-            Assert.True(v.Equals(SpecificVolume.FromCubicMetersPerKilogram(1), SpecificVolume.FromCubicMetersPerKilogram(CubicMetersPerKilogramTolerance)));
-            Assert.False(v.Equals(SpecificVolume.Zero, SpecificVolume.FromCubicMetersPerKilogram(CubicMetersPerKilogramTolerance)));
+            Assert.True(v.Equals(SpecificVolume.FromCubicMetersPerKilogram(1), CubicMetersPerKilogramTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(SpecificVolume.Zero, CubicMetersPerKilogramTolerance, ComparisonType.Relative));
         }
 
         [Fact]

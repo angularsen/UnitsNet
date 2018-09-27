@@ -259,28 +259,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => second.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Duration a = Duration.FromSeconds(1);
-            Duration b = Duration.FromSeconds(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Duration v = Duration.FromSeconds(1);
-            Assert.True(v.Equals(Duration.FromSeconds(1), Duration.FromSeconds(SecondsTolerance)));
-            Assert.False(v.Equals(Duration.Zero, Duration.FromSeconds(SecondsTolerance)));
+            Assert.True(v.Equals(Duration.FromSeconds(1), SecondsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Duration.Zero, SecondsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

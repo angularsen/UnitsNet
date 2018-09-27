@@ -399,28 +399,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => bitpersecond.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            BitRate a = BitRate.FromBitsPerSecond(1);
-            BitRate b = BitRate.FromBitsPerSecond(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             BitRate v = BitRate.FromBitsPerSecond(1);
-            Assert.True(v.Equals(BitRate.FromBitsPerSecond(1), BitRate.FromBitsPerSecond(BitsPerSecondTolerance)));
-            Assert.False(v.Equals(BitRate.Zero, BitRate.FromBitsPerSecond(BitsPerSecondTolerance)));
+            Assert.True(v.Equals(BitRate.FromBitsPerSecond(1), BitsPerSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(BitRate.Zero, BitsPerSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]

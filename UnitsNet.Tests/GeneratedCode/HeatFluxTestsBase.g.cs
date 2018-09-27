@@ -299,28 +299,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => wattpersquaremeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            HeatFlux a = HeatFlux.FromWattsPerSquareMeter(1);
-            HeatFlux b = HeatFlux.FromWattsPerSquareMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             HeatFlux v = HeatFlux.FromWattsPerSquareMeter(1);
-            Assert.True(v.Equals(HeatFlux.FromWattsPerSquareMeter(1), HeatFlux.FromWattsPerSquareMeter(WattsPerSquareMeterTolerance)));
-            Assert.False(v.Equals(HeatFlux.Zero, HeatFlux.FromWattsPerSquareMeter(WattsPerSquareMeterTolerance)));
+            Assert.True(v.Equals(HeatFlux.FromWattsPerSquareMeter(1), WattsPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(HeatFlux.Zero, WattsPerSquareMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

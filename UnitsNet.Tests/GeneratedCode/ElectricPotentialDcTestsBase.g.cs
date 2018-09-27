@@ -189,28 +189,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => voltdc.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ElectricPotentialDc a = ElectricPotentialDc.FromVoltsDc(1);
-            ElectricPotentialDc b = ElectricPotentialDc.FromVoltsDc(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ElectricPotentialDc v = ElectricPotentialDc.FromVoltsDc(1);
-            Assert.True(v.Equals(ElectricPotentialDc.FromVoltsDc(1), ElectricPotentialDc.FromVoltsDc(VoltsDcTolerance)));
-            Assert.False(v.Equals(ElectricPotentialDc.Zero, ElectricPotentialDc.FromVoltsDc(VoltsDcTolerance)));
+            Assert.True(v.Equals(ElectricPotentialDc.FromVoltsDc(1), VoltsDcTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricPotentialDc.Zero, VoltsDcTolerance, ComparisonType.Relative));
         }
 
         [Fact]

@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => faradpermeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Permittivity a = Permittivity.FromFaradsPerMeter(1);
-            Permittivity b = Permittivity.FromFaradsPerMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Permittivity v = Permittivity.FromFaradsPerMeter(1);
-            Assert.True(v.Equals(Permittivity.FromFaradsPerMeter(1), Permittivity.FromFaradsPerMeter(FaradsPerMeterTolerance)));
-            Assert.False(v.Equals(Permittivity.Zero, Permittivity.FromFaradsPerMeter(FaradsPerMeterTolerance)));
+            Assert.True(v.Equals(Permittivity.FromFaradsPerMeter(1), FaradsPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Permittivity.Zero, FaradsPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

@@ -379,28 +379,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => cubicmeterpersecond.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Flow a = Flow.FromCubicMetersPerSecond(1);
-            Flow b = Flow.FromCubicMetersPerSecond(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Flow v = Flow.FromCubicMetersPerSecond(1);
-            Assert.True(v.Equals(Flow.FromCubicMetersPerSecond(1), Flow.FromCubicMetersPerSecond(CubicMetersPerSecondTolerance)));
-            Assert.False(v.Equals(Flow.Zero, Flow.FromCubicMetersPerSecond(CubicMetersPerSecondTolerance)));
+            Assert.True(v.Equals(Flow.FromCubicMetersPerSecond(1), CubicMetersPerSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Flow.Zero, CubicMetersPerSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]

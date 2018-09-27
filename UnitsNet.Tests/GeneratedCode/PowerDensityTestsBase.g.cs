@@ -579,28 +579,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => wattpercubicmeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            PowerDensity a = PowerDensity.FromWattsPerCubicMeter(1);
-            PowerDensity b = PowerDensity.FromWattsPerCubicMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             PowerDensity v = PowerDensity.FromWattsPerCubicMeter(1);
-            Assert.True(v.Equals(PowerDensity.FromWattsPerCubicMeter(1), PowerDensity.FromWattsPerCubicMeter(WattsPerCubicMeterTolerance)));
-            Assert.False(v.Equals(PowerDensity.Zero, PowerDensity.FromWattsPerCubicMeter(WattsPerCubicMeterTolerance)));
+            Assert.True(v.Equals(PowerDensity.FromWattsPerCubicMeter(1), WattsPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(PowerDensity.Zero, WattsPerCubicMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

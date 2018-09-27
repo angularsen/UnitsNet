@@ -219,28 +219,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => molespercubicmeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Molarity a = Molarity.FromMolesPerCubicMeter(1);
-            Molarity b = Molarity.FromMolesPerCubicMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Molarity v = Molarity.FromMolesPerCubicMeter(1);
-            Assert.True(v.Equals(Molarity.FromMolesPerCubicMeter(1), Molarity.FromMolesPerCubicMeter(MolesPerCubicMeterTolerance)));
-            Assert.False(v.Equals(Molarity.Zero, Molarity.FromMolesPerCubicMeter(MolesPerCubicMeterTolerance)));
+            Assert.True(v.Equals(Molarity.FromMolesPerCubicMeter(1), MolesPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Molarity.Zero, MolesPerCubicMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

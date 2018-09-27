@@ -219,28 +219,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => jouleperkilogram.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            SpecificEnergy a = SpecificEnergy.FromJoulesPerKilogram(1);
-            SpecificEnergy b = SpecificEnergy.FromJoulesPerKilogram(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             SpecificEnergy v = SpecificEnergy.FromJoulesPerKilogram(1);
-            Assert.True(v.Equals(SpecificEnergy.FromJoulesPerKilogram(1), SpecificEnergy.FromJoulesPerKilogram(JoulesPerKilogramTolerance)));
-            Assert.False(v.Equals(SpecificEnergy.Zero, SpecificEnergy.FromJoulesPerKilogram(JoulesPerKilogramTolerance)));
+            Assert.True(v.Equals(SpecificEnergy.FromJoulesPerKilogram(1), JoulesPerKilogramTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(SpecificEnergy.Zero, JoulesPerKilogramTolerance, ComparisonType.Relative));
         }
 
         [Fact]

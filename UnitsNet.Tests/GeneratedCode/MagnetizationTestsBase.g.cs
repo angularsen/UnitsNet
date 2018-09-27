@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => amperepermeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Magnetization a = Magnetization.FromAmperesPerMeter(1);
-            Magnetization b = Magnetization.FromAmperesPerMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Magnetization v = Magnetization.FromAmperesPerMeter(1);
-            Assert.True(v.Equals(Magnetization.FromAmperesPerMeter(1), Magnetization.FromAmperesPerMeter(AmperesPerMeterTolerance)));
-            Assert.False(v.Equals(Magnetization.Zero, Magnetization.FromAmperesPerMeter(AmperesPerMeterTolerance)));
+            Assert.True(v.Equals(Magnetization.FromAmperesPerMeter(1), AmperesPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Magnetization.Zero, AmperesPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => coulomb.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ElectricCharge a = ElectricCharge.FromCoulombs(1);
-            ElectricCharge b = ElectricCharge.FromCoulombs(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ElectricCharge v = ElectricCharge.FromCoulombs(1);
-            Assert.True(v.Equals(ElectricCharge.FromCoulombs(1), ElectricCharge.FromCoulombs(CoulombsTolerance)));
-            Assert.False(v.Equals(ElectricCharge.Zero, ElectricCharge.FromCoulombs(CoulombsTolerance)));
+            Assert.True(v.Equals(ElectricCharge.FromCoulombs(1), CoulombsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricCharge.Zero, CoulombsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

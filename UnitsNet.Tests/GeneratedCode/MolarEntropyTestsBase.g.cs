@@ -169,28 +169,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => joulepermolekelvin.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            MolarEntropy a = MolarEntropy.FromJoulesPerMoleKelvin(1);
-            MolarEntropy b = MolarEntropy.FromJoulesPerMoleKelvin(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             MolarEntropy v = MolarEntropy.FromJoulesPerMoleKelvin(1);
-            Assert.True(v.Equals(MolarEntropy.FromJoulesPerMoleKelvin(1), MolarEntropy.FromJoulesPerMoleKelvin(JoulesPerMoleKelvinTolerance)));
-            Assert.False(v.Equals(MolarEntropy.Zero, MolarEntropy.FromJoulesPerMoleKelvin(JoulesPerMoleKelvinTolerance)));
+            Assert.True(v.Equals(MolarEntropy.FromJoulesPerMoleKelvin(1), JoulesPerMoleKelvinTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MolarEntropy.Zero, JoulesPerMoleKelvinTolerance, ComparisonType.Relative));
         }
 
         [Fact]

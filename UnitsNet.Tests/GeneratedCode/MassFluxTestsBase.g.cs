@@ -159,28 +159,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => kilogrampersecondpersquaremeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            MassFlux a = MassFlux.FromKilogramsPerSecondPerSquareMeter(1);
-            MassFlux b = MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             MassFlux v = MassFlux.FromKilogramsPerSecondPerSquareMeter(1);
-            Assert.True(v.Equals(MassFlux.FromKilogramsPerSecondPerSquareMeter(1), MassFlux.FromKilogramsPerSecondPerSquareMeter(KilogramsPerSecondPerSquareMeterTolerance)));
-            Assert.False(v.Equals(MassFlux.Zero, MassFlux.FromKilogramsPerSecondPerSquareMeter(KilogramsPerSecondPerSquareMeterTolerance)));
+            Assert.True(v.Equals(MassFlux.FromKilogramsPerSecondPerSquareMeter(1), KilogramsPerSecondPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MassFlux.Zero, KilogramsPerSecondPerSquareMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

@@ -229,28 +229,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => newtonpermeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ForcePerLength a = ForcePerLength.FromNewtonsPerMeter(1);
-            ForcePerLength b = ForcePerLength.FromNewtonsPerMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ForcePerLength v = ForcePerLength.FromNewtonsPerMeter(1);
-            Assert.True(v.Equals(ForcePerLength.FromNewtonsPerMeter(1), ForcePerLength.FromNewtonsPerMeter(NewtonsPerMeterTolerance)));
-            Assert.False(v.Equals(ForcePerLength.Zero, ForcePerLength.FromNewtonsPerMeter(NewtonsPerMeterTolerance)));
+            Assert.True(v.Equals(ForcePerLength.FromNewtonsPerMeter(1), NewtonsPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ForcePerLength.Zero, NewtonsPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

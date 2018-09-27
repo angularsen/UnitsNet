@@ -519,28 +519,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => pascal.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Pressure a = Pressure.FromPascals(1);
-            Pressure b = Pressure.FromPascals(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Pressure v = Pressure.FromPascals(1);
-            Assert.True(v.Equals(Pressure.FromPascals(1), Pressure.FromPascals(PascalsTolerance)));
-            Assert.False(v.Equals(Pressure.Zero, Pressure.FromPascals(PascalsTolerance)));
+            Assert.True(v.Equals(Pressure.FromPascals(1), PascalsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Pressure.Zero, PascalsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

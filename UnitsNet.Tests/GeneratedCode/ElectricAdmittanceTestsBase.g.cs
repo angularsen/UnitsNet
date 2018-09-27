@@ -179,28 +179,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => siemens.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ElectricAdmittance a = ElectricAdmittance.FromSiemens(1);
-            ElectricAdmittance b = ElectricAdmittance.FromSiemens(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ElectricAdmittance v = ElectricAdmittance.FromSiemens(1);
-            Assert.True(v.Equals(ElectricAdmittance.FromSiemens(1), ElectricAdmittance.FromSiemens(SiemensTolerance)));
-            Assert.False(v.Equals(ElectricAdmittance.Zero, ElectricAdmittance.FromSiemens(SiemensTolerance)));
+            Assert.True(v.Equals(ElectricAdmittance.FromSiemens(1), SiemensTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricAdmittance.Zero, SiemensTolerance, ComparisonType.Relative));
         }
 
         [Fact]

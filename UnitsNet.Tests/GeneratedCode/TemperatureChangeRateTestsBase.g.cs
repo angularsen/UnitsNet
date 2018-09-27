@@ -239,28 +239,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => degreecelsiuspersecond.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            TemperatureChangeRate a = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
-            TemperatureChangeRate b = TemperatureChangeRate.FromDegreesCelsiusPerSecond(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             TemperatureChangeRate v = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
-            Assert.True(v.Equals(TemperatureChangeRate.FromDegreesCelsiusPerSecond(1), TemperatureChangeRate.FromDegreesCelsiusPerSecond(DegreesCelsiusPerSecondTolerance)));
-            Assert.False(v.Equals(TemperatureChangeRate.Zero, TemperatureChangeRate.FromDegreesCelsiusPerSecond(DegreesCelsiusPerSecondTolerance)));
+            Assert.True(v.Equals(TemperatureChangeRate.FromDegreesCelsiusPerSecond(1), DegreesCelsiusPerSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(TemperatureChangeRate.Zero, DegreesCelsiusPerSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]

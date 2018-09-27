@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => voltpermeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ElectricField a = ElectricField.FromVoltsPerMeter(1);
-            ElectricField b = ElectricField.FromVoltsPerMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ElectricField v = ElectricField.FromVoltsPerMeter(1);
-            Assert.True(v.Equals(ElectricField.FromVoltsPerMeter(1), ElectricField.FromVoltsPerMeter(VoltsPerMeterTolerance)));
-            Assert.False(v.Equals(ElectricField.Zero, ElectricField.FromVoltsPerMeter(VoltsPerMeterTolerance)));
+            Assert.True(v.Equals(ElectricField.FromVoltsPerMeter(1), VoltsPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricField.Zero, VoltsPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

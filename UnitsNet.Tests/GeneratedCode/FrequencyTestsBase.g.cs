@@ -219,28 +219,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => hertz.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Frequency a = Frequency.FromHertz(1);
-            Frequency b = Frequency.FromHertz(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Frequency v = Frequency.FromHertz(1);
-            Assert.True(v.Equals(Frequency.FromHertz(1), Frequency.FromHertz(HertzTolerance)));
-            Assert.False(v.Equals(Frequency.Zero, Frequency.FromHertz(HertzTolerance)));
+            Assert.True(v.Equals(Frequency.FromHertz(1), HertzTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Frequency.Zero, HertzTolerance, ComparisonType.Relative));
         }
 
         [Fact]

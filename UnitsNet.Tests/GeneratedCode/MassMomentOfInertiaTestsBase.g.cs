@@ -399,28 +399,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => kilogramsquaremeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            MassMomentOfInertia a = MassMomentOfInertia.FromKilogramSquareMeters(1);
-            MassMomentOfInertia b = MassMomentOfInertia.FromKilogramSquareMeters(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             MassMomentOfInertia v = MassMomentOfInertia.FromKilogramSquareMeters(1);
-            Assert.True(v.Equals(MassMomentOfInertia.FromKilogramSquareMeters(1), MassMomentOfInertia.FromKilogramSquareMeters(KilogramSquareMetersTolerance)));
-            Assert.False(v.Equals(MassMomentOfInertia.Zero, MassMomentOfInertia.FromKilogramSquareMeters(KilogramSquareMetersTolerance)));
+            Assert.True(v.Equals(MassMomentOfInertia.FromKilogramSquareMeters(1), KilogramSquareMetersTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MassMomentOfInertia.Zero, KilogramSquareMetersTolerance, ComparisonType.Relative));
         }
 
         [Fact]

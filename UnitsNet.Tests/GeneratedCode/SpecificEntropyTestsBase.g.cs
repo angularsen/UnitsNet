@@ -219,28 +219,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => jouleperkilogramkelvin.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            SpecificEntropy a = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
-            SpecificEntropy b = SpecificEntropy.FromJoulesPerKilogramKelvin(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             SpecificEntropy v = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
-            Assert.True(v.Equals(SpecificEntropy.FromJoulesPerKilogramKelvin(1), SpecificEntropy.FromJoulesPerKilogramKelvin(JoulesPerKilogramKelvinTolerance)));
-            Assert.False(v.Equals(SpecificEntropy.Zero, SpecificEntropy.FromJoulesPerKilogramKelvin(JoulesPerKilogramKelvinTolerance)));
+            Assert.True(v.Equals(SpecificEntropy.FromJoulesPerKilogramKelvin(1), JoulesPerKilogramKelvinTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(SpecificEntropy.Zero, JoulesPerKilogramKelvinTolerance, ComparisonType.Relative));
         }
 
         [Fact]

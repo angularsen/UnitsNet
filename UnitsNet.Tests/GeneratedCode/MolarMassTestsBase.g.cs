@@ -259,28 +259,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => kilogrampermole.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            MolarMass a = MolarMass.FromKilogramsPerMole(1);
-            MolarMass b = MolarMass.FromKilogramsPerMole(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             MolarMass v = MolarMass.FromKilogramsPerMole(1);
-            Assert.True(v.Equals(MolarMass.FromKilogramsPerMole(1), MolarMass.FromKilogramsPerMole(KilogramsPerMoleTolerance)));
-            Assert.False(v.Equals(MolarMass.Zero, MolarMass.FromKilogramsPerMole(KilogramsPerMoleTolerance)));
+            Assert.True(v.Equals(MolarMass.FromKilogramsPerMole(1), KilogramsPerMoleTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MolarMass.Zero, KilogramsPerMoleTolerance, ComparisonType.Relative));
         }
 
         [Fact]

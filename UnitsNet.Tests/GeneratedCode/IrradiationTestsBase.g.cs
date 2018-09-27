@@ -169,28 +169,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => joulepersquaremeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Irradiation a = Irradiation.FromJoulesPerSquareMeter(1);
-            Irradiation b = Irradiation.FromJoulesPerSquareMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Irradiation v = Irradiation.FromJoulesPerSquareMeter(1);
-            Assert.True(v.Equals(Irradiation.FromJoulesPerSquareMeter(1), Irradiation.FromJoulesPerSquareMeter(JoulesPerSquareMeterTolerance)));
-            Assert.False(v.Equals(Irradiation.Zero, Irradiation.FromJoulesPerSquareMeter(JoulesPerSquareMeterTolerance)));
+            Assert.True(v.Equals(Irradiation.FromJoulesPerSquareMeter(1), JoulesPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Irradiation.Zero, JoulesPerSquareMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

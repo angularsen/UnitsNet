@@ -189,28 +189,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => squaremeterkelvinperkilowatt.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ThermalResistance a = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
-            ThermalResistance b = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ThermalResistance v = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
-            Assert.True(v.Equals(ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1), ThermalResistance.FromSquareMeterKelvinsPerKilowatt(SquareMeterKelvinsPerKilowattTolerance)));
-            Assert.False(v.Equals(ThermalResistance.Zero, ThermalResistance.FromSquareMeterKelvinsPerKilowatt(SquareMeterKelvinsPerKilowattTolerance)));
+            Assert.True(v.Equals(ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1), SquareMeterKelvinsPerKilowattTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ThermalResistance.Zero, SquareMeterKelvinsPerKilowattTolerance, ComparisonType.Relative));
         }
 
         [Fact]

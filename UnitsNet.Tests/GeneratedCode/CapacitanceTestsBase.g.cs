@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => farad.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Capacitance a = Capacitance.FromFarads(1);
-            Capacitance b = Capacitance.FromFarads(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Capacitance v = Capacitance.FromFarads(1);
-            Assert.True(v.Equals(Capacitance.FromFarads(1), Capacitance.FromFarads(FaradsTolerance)));
-            Assert.False(v.Equals(Capacitance.Zero, Capacitance.FromFarads(FaradsTolerance)));
+            Assert.True(v.Equals(Capacitance.FromFarads(1), FaradsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Capacitance.Zero, FaradsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

@@ -199,28 +199,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => decimalfraction.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Ratio a = Ratio.FromDecimalFractions(1);
-            Ratio b = Ratio.FromDecimalFractions(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Ratio v = Ratio.FromDecimalFractions(1);
-            Assert.True(v.Equals(Ratio.FromDecimalFractions(1), Ratio.FromDecimalFractions(DecimalFractionsTolerance)));
-            Assert.False(v.Equals(Ratio.Zero, Ratio.FromDecimalFractions(DecimalFractionsTolerance)));
+            Assert.True(v.Equals(Ratio.FromDecimalFractions(1), DecimalFractionsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Ratio.Zero, DecimalFractionsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

@@ -18,13 +18,14 @@ namespace UnitsNet.Tests
             [Fact]
             public void LengthEquals_GivenMaxError_ReturnsTrueIfWithinError()
             {
-                Length smallError = Length.FromMeters(1e-5);
-                Assert.True(Length.FromMeters(1).Equals(Length.FromMeters(1), Length.Zero), "Integer values have zero difference.");
-                Assert.True(Length.FromMeters(1).Equals(Length.FromMeters(1), smallError), "Using a max difference value should not change that fact.");
+                var smallError = 1e-5;
 
-                Assert.False(Length.FromMeters(1 + 0.39).Equals(Length.FromMeters(1.39), Length.Zero),
+                Assert.True(Length.FromMeters(1).Equals(Length.FromMeters(1), 0, ComparisonType.Relative), "Integer values have zero difference.");
+                Assert.True(Length.FromMeters(1).Equals(Length.FromMeters(1), smallError, ComparisonType.Relative), "Using a max difference value should not change that fact.");
+
+                Assert.False(Length.FromMeters(1 + 0.39).Equals(Length.FromMeters(1.39), 0, ComparisonType.Relative),
                     "Example of floating precision arithmetic that produces slightly different results.");
-                Assert.True(Length.FromMeters(1 + 0.39).Equals(Length.FromMeters(1.39), smallError), "But the difference is very small");
+                Assert.True(Length.FromMeters(1 + 0.39).Equals(Length.FromMeters(1.39), smallError, ComparisonType.Relative), "But the difference is very small");
             }
         }
     }

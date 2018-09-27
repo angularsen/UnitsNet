@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => amperepersquaremeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ElectricCurrentDensity a = ElectricCurrentDensity.FromAmperesPerSquareMeter(1);
-            ElectricCurrentDensity b = ElectricCurrentDensity.FromAmperesPerSquareMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ElectricCurrentDensity v = ElectricCurrentDensity.FromAmperesPerSquareMeter(1);
-            Assert.True(v.Equals(ElectricCurrentDensity.FromAmperesPerSquareMeter(1), ElectricCurrentDensity.FromAmperesPerSquareMeter(AmperesPerSquareMeterTolerance)));
-            Assert.False(v.Equals(ElectricCurrentDensity.Zero, ElectricCurrentDensity.FromAmperesPerSquareMeter(AmperesPerSquareMeterTolerance)));
+            Assert.True(v.Equals(ElectricCurrentDensity.FromAmperesPerSquareMeter(1), AmperesPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricCurrentDensity.Zero, AmperesPerSquareMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

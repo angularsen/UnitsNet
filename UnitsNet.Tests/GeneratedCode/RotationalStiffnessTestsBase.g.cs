@@ -169,28 +169,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => newtonmeterperradian.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            RotationalStiffness a = RotationalStiffness.FromNewtonMetersPerRadian(1);
-            RotationalStiffness b = RotationalStiffness.FromNewtonMetersPerRadian(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             RotationalStiffness v = RotationalStiffness.FromNewtonMetersPerRadian(1);
-            Assert.True(v.Equals(RotationalStiffness.FromNewtonMetersPerRadian(1), RotationalStiffness.FromNewtonMetersPerRadian(NewtonMetersPerRadianTolerance)));
-            Assert.False(v.Equals(RotationalStiffness.Zero, RotationalStiffness.FromNewtonMetersPerRadian(NewtonMetersPerRadianTolerance)));
+            Assert.True(v.Equals(RotationalStiffness.FromNewtonMetersPerRadian(1), NewtonMetersPerRadianTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(RotationalStiffness.Zero, NewtonMetersPerRadianTolerance, ComparisonType.Relative));
         }
 
         [Fact]
