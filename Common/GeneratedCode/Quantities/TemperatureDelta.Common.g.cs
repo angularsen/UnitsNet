@@ -274,6 +274,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesCelsiusDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeCelsius instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesCelsiusDelta(double degreescelsiusdelta)
@@ -302,6 +303,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesDelisleDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeDelisle instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesDelisleDelta(double degreesdelisledelta)
@@ -330,6 +332,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesFahrenheitDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeFahrenheit instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesFahrenheitDelta(double degreesfahrenheitdelta)
@@ -358,6 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesNewtonDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeNewton instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesNewtonDelta(double degreesnewtondelta)
@@ -386,6 +390,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesRankineDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeRankine instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesRankineDelta(double degreesrankinedelta)
@@ -414,6 +419,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesReaumurDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeReaumur instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesReaumurDelta(double degreesreaumurdelta)
@@ -442,6 +448,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesRoemerDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeRoemer instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesRoemerDelta(double degreesroemerdelta)
@@ -470,6 +477,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from KelvinsDelta.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #180, please use Kelvin instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromKelvinsDelta(double kelvinsdelta)

@@ -234,10 +234,16 @@ namespace UnitsNet
         public static $quantityName Zero => new $quantityName(0, BaseUnit);
 
 "@; foreach ($unit in $units) {
-        $valueParamName = $unit.PluralName.ToLowerInvariant();@"
+        $valueParamName = $unit.PluralName.ToLowerInvariant();
+        $obsoleteAttribute = GetObsoleteAttribute($unit);
+        if ($obsoleteAttribute)
+        {
+            $obsoleteAttribute = "`r`n        " + $obsoleteAttribute; # apply padding to conformance with code format in this page
+        }
+@"
         /// <summary>
         ///     Get $quantityName from $($unit.PluralName).
-        /// </summary>
+        /// </summary>$($obsoleteAttribute)
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static $quantityName From$($unit.PluralName)(double $valueParamName)

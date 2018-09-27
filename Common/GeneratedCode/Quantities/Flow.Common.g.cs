@@ -325,6 +325,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicDecimetersPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicDecimetersPerMinute(double cubicdecimetersperminute)
@@ -339,6 +340,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicFeetPerHour.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicFeetPerHour(double cubicfeetperhour)
@@ -353,6 +355,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicFeetPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicFeetPerMinute(double cubicfeetperminute)
@@ -367,6 +370,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicFeetPerSecond.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicFeetPerSecond(double cubicfeetpersecond)
@@ -381,6 +385,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicMetersPerHour.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicMetersPerHour(double cubicmetersperhour)
@@ -395,6 +400,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicMetersPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicMetersPerMinute(double cubicmetersperminute)
@@ -409,6 +415,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicMetersPerSecond.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicMetersPerSecond(double cubicmeterspersecond)
@@ -423,6 +430,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicYardsPerHour.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicYardsPerHour(double cubicyardsperhour)
@@ -437,6 +445,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicYardsPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicYardsPerMinute(double cubicyardsperminute)
@@ -451,6 +460,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicYardsPerSecond.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicYardsPerSecond(double cubicyardspersecond)
@@ -493,6 +503,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from LitersPerHour.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromLitersPerHour(double litersperhour)
@@ -507,6 +518,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from LitersPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromLitersPerMinute(double litersperminute)
@@ -521,6 +533,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from LitersPerSecond.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromLitersPerSecond(double literspersecond)
@@ -563,6 +576,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from MillionUsGallonsPerDay.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromMillionUsGallonsPerDay(double millionusgallonsperday)
@@ -591,6 +605,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from OilBarrelsPerDay.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromOilBarrelsPerDay(double oilbarrelsperday)
@@ -605,6 +620,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from UsGallonsPerHour.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromUsGallonsPerHour(double usgallonsperhour)
@@ -619,6 +635,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from UsGallonsPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromUsGallonsPerMinute(double usgallonsperminute)
@@ -633,6 +650,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from UsGallonsPerSecond.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromUsGallonsPerSecond(double usgallonspersecond)
