@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToRatio
         public static Ratio DecimalFractions<T>(this T value) => Ratio.FromDecimalFractions(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Ratio? DecimalFractions<T>(this T? value) where T : struct => Ratio.FromDecimalFractions(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToRatio
         public static Ratio PartsPerBillion<T>(this T value) => Ratio.FromPartsPerBillion(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Ratio? PartsPerBillion<T>(this T? value) where T : struct => Ratio.FromPartsPerBillion(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToRatio
         public static Ratio PartsPerMillion<T>(this T value) => Ratio.FromPartsPerMillion(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Ratio.FromPartsPerMillion(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Ratio? PartsPerMillion<T>(this T? value) where T : struct => Ratio.FromPartsPerMillion(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToRatio
         public static Ratio PartsPerThousand<T>(this T value) => Ratio.FromPartsPerThousand(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Ratio.FromPartsPerThousand(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Ratio? PartsPerThousand<T>(this T? value) where T : struct => Ratio.FromPartsPerThousand(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToRatio
         public static Ratio PartsPerTrillion<T>(this T value) => Ratio.FromPartsPerTrillion(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Ratio.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Ratio? PartsPerTrillion<T>(this T? value) where T : struct => Ratio.FromPartsPerTrillion(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToRatio
         public static Ratio Percent<T>(this T value) => Ratio.FromPercent(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Ratio? Percent<T>(this T? value) where T : struct => Ratio.FromPercent(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

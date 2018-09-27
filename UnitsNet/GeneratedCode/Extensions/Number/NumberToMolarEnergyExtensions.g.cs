@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToMolarEnergy
         public static MolarEnergy JoulesPerMole<T>(this T value) => MolarEnergy.FromJoulesPerMole(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MolarEnergy? JoulesPerMole<T>(this T? value) where T : struct => MolarEnergy.FromJoulesPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToMolarEnergy
         public static MolarEnergy KilojoulesPerMole<T>(this T value) => MolarEnergy.FromKilojoulesPerMole(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MolarEnergy? KilojoulesPerMole<T>(this T? value) where T : struct => MolarEnergy.FromKilojoulesPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToMolarEnergy
         public static MolarEnergy MegajoulesPerMole<T>(this T value) => MolarEnergy.FromMegajoulesPerMole(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MolarEnergy? MegajoulesPerMole<T>(this T? value) where T : struct => MolarEnergy.FromMegajoulesPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

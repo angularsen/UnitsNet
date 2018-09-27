@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable GramSquareCentimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromGramSquareCentimeters(QuantityValue? gramsquarecentimeters)
         {
             return gramsquarecentimeters.HasValue ? FromGramSquareCentimeters(gramsquarecentimeters.Value) : default(MassMomentOfInertia?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable GramSquareDecimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromGramSquareDecimeters(QuantityValue? gramsquaredecimeters)
         {
             return gramsquaredecimeters.HasValue ? FromGramSquareDecimeters(gramsquaredecimeters.Value) : default(MassMomentOfInertia?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable GramSquareMeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromGramSquareMeters(QuantityValue? gramsquaremeters)
         {
             return gramsquaremeters.HasValue ? FromGramSquareMeters(gramsquaremeters.Value) : default(MassMomentOfInertia?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable GramSquareMillimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromGramSquareMillimeters(QuantityValue? gramsquaremillimeters)
         {
             return gramsquaremillimeters.HasValue ? FromGramSquareMillimeters(gramsquaremillimeters.Value) : default(MassMomentOfInertia?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilogramSquareCentimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromKilogramSquareCentimeters(QuantityValue? kilogramsquarecentimeters)
         {
             return kilogramsquarecentimeters.HasValue ? FromKilogramSquareCentimeters(kilogramsquarecentimeters.Value) : default(MassMomentOfInertia?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilogramSquareDecimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromKilogramSquareDecimeters(QuantityValue? kilogramsquaredecimeters)
         {
             return kilogramsquaredecimeters.HasValue ? FromKilogramSquareDecimeters(kilogramsquaredecimeters.Value) : default(MassMomentOfInertia?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilogramSquareMeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromKilogramSquareMeters(QuantityValue? kilogramsquaremeters)
         {
             return kilogramsquaremeters.HasValue ? FromKilogramSquareMeters(kilogramsquaremeters.Value) : default(MassMomentOfInertia?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilogramSquareMillimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromKilogramSquareMillimeters(QuantityValue? kilogramsquaremillimeters)
         {
             return kilogramsquaremillimeters.HasValue ? FromKilogramSquareMillimeters(kilogramsquaremillimeters.Value) : default(MassMomentOfInertia?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareCentimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromKilotonneSquareCentimeters(QuantityValue? kilotonnesquarecentimeters)
         {
             return kilotonnesquarecentimeters.HasValue ? FromKilotonneSquareCentimeters(kilotonnesquarecentimeters.Value) : default(MassMomentOfInertia?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareDecimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromKilotonneSquareDecimeters(QuantityValue? kilotonnesquaredecimeters)
         {
             return kilotonnesquaredecimeters.HasValue ? FromKilotonneSquareDecimeters(kilotonnesquaredecimeters.Value) : default(MassMomentOfInertia?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareMeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromKilotonneSquareMeters(QuantityValue? kilotonnesquaremeters)
         {
             return kilotonnesquaremeters.HasValue ? FromKilotonneSquareMeters(kilotonnesquaremeters.Value) : default(MassMomentOfInertia?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable KilotonneSquareMilimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromKilotonneSquareMilimeters(QuantityValue? kilotonnesquaremilimeters)
         {
             return kilotonnesquaremilimeters.HasValue ? FromKilotonneSquareMilimeters(kilotonnesquaremilimeters.Value) : default(MassMomentOfInertia?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareCentimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromMegatonneSquareCentimeters(QuantityValue? megatonnesquarecentimeters)
         {
             return megatonnesquarecentimeters.HasValue ? FromMegatonneSquareCentimeters(megatonnesquarecentimeters.Value) : default(MassMomentOfInertia?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareDecimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromMegatonneSquareDecimeters(QuantityValue? megatonnesquaredecimeters)
         {
             return megatonnesquaredecimeters.HasValue ? FromMegatonneSquareDecimeters(megatonnesquaredecimeters.Value) : default(MassMomentOfInertia?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareMeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromMegatonneSquareMeters(QuantityValue? megatonnesquaremeters)
         {
             return megatonnesquaremeters.HasValue ? FromMegatonneSquareMeters(megatonnesquaremeters.Value) : default(MassMomentOfInertia?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MegatonneSquareMilimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromMegatonneSquareMilimeters(QuantityValue? megatonnesquaremilimeters)
         {
             return megatonnesquaremilimeters.HasValue ? FromMegatonneSquareMilimeters(megatonnesquaremilimeters.Value) : default(MassMomentOfInertia?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MilligramSquareCentimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromMilligramSquareCentimeters(QuantityValue? milligramsquarecentimeters)
         {
             return milligramsquarecentimeters.HasValue ? FromMilligramSquareCentimeters(milligramsquarecentimeters.Value) : default(MassMomentOfInertia?);
@@ -201,6 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MilligramSquareDecimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromMilligramSquareDecimeters(QuantityValue? milligramsquaredecimeters)
         {
             return milligramsquaredecimeters.HasValue ? FromMilligramSquareDecimeters(milligramsquaredecimeters.Value) : default(MassMomentOfInertia?);
@@ -209,6 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MilligramSquareMeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromMilligramSquareMeters(QuantityValue? milligramsquaremeters)
         {
             return milligramsquaremeters.HasValue ? FromMilligramSquareMeters(milligramsquaremeters.Value) : default(MassMomentOfInertia?);
@@ -217,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable MilligramSquareMillimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromMilligramSquareMillimeters(QuantityValue? milligramsquaremillimeters)
         {
             return milligramsquaremillimeters.HasValue ? FromMilligramSquareMillimeters(milligramsquaremillimeters.Value) : default(MassMomentOfInertia?);
@@ -225,6 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable PoundSquareFeet.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromPoundSquareFeet(QuantityValue? poundsquarefeet)
         {
             return poundsquarefeet.HasValue ? FromPoundSquareFeet(poundsquarefeet.Value) : default(MassMomentOfInertia?);
@@ -233,6 +254,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable PoundSquareInches.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromPoundSquareInches(QuantityValue? poundsquareinches)
         {
             return poundsquareinches.HasValue ? FromPoundSquareInches(poundsquareinches.Value) : default(MassMomentOfInertia?);
@@ -241,6 +263,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareCentimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromTonneSquareCentimeters(QuantityValue? tonnesquarecentimeters)
         {
             return tonnesquarecentimeters.HasValue ? FromTonneSquareCentimeters(tonnesquarecentimeters.Value) : default(MassMomentOfInertia?);
@@ -249,6 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareDecimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromTonneSquareDecimeters(QuantityValue? tonnesquaredecimeters)
         {
             return tonnesquaredecimeters.HasValue ? FromTonneSquareDecimeters(tonnesquaredecimeters.Value) : default(MassMomentOfInertia?);
@@ -257,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareMeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromTonneSquareMeters(QuantityValue? tonnesquaremeters)
         {
             return tonnesquaremeters.HasValue ? FromTonneSquareMeters(tonnesquaremeters.Value) : default(MassMomentOfInertia?);
@@ -265,6 +290,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareMilimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassMomentOfInertia? FromTonneSquareMilimeters(QuantityValue? tonnesquaremilimeters)
         {
             return tonnesquaremilimeters.HasValue ? FromTonneSquareMilimeters(tonnesquaremilimeters.Value) : default(MassMomentOfInertia?);
@@ -276,6 +302,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MassMomentOfInertia unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MassMomentOfInertia? From(QuantityValue? value, MassMomentOfInertiaUnit fromUnit)
         {
             return value.HasValue ? new MassMomentOfInertia((double)value.Value, fromUnit) : default(MassMomentOfInertia?);

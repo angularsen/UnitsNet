@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         public static Duration Days<T>(this T value) => Duration.FromDays(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromDays(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Duration? Days<T>(this T? value) where T : struct => Duration.FromDays(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         public static Duration Hours<T>(this T value) => Duration.FromHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromHours(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Duration? Hours<T>(this T? value) where T : struct => Duration.FromHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         public static Duration Microseconds<T>(this T value) => Duration.FromMicroseconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromMicroseconds(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Duration? Microseconds<T>(this T? value) where T : struct => Duration.FromMicroseconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         public static Duration Milliseconds<T>(this T value) => Duration.FromMilliseconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromMilliseconds(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Duration? Milliseconds<T>(this T? value) where T : struct => Duration.FromMilliseconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         public static Duration Minutes<T>(this T value) => Duration.FromMinutes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Duration? Minutes<T>(this T? value) where T : struct => Duration.FromMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         public static Duration Months<T>(this T value) => Duration.FromMonths(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Duration? Months<T>(this T? value) where T : struct => Duration.FromMonths(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         public static Duration Months30<T>(this T value) => Duration.FromMonths30(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Duration? Months30<T>(this T? value) where T : struct => Duration.FromMonths30(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         public static Duration Nanoseconds<T>(this T value) => Duration.FromNanoseconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromNanoseconds(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Duration? Nanoseconds<T>(this T? value) where T : struct => Duration.FromNanoseconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -130,6 +138,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         public static Duration Seconds<T>(this T value) => Duration.FromSeconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromSeconds(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Duration? Seconds<T>(this T? value) where T : struct => Duration.FromSeconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -140,6 +149,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         public static Duration Weeks<T>(this T value) => Duration.FromWeeks(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Duration? Weeks<T>(this T? value) where T : struct => Duration.FromWeeks(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -150,6 +160,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         public static Duration Years<T>(this T value) => Duration.FromYears(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Duration? Years<T>(this T? value) where T : struct => Duration.FromYears(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -160,6 +171,7 @@ namespace UnitsNet.Extensions.NumberToDuration
         public static Duration Years365<T>(this T value) => Duration.FromYears365(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Duration? Years365<T>(this T? value) where T : struct => Duration.FromYears365(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

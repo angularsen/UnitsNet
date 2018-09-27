@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlux from nullable GramsPerSecondPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlux? FromGramsPerSecondPerSquareMeter(QuantityValue? gramspersecondpersquaremeter)
         {
             return gramspersecondpersquaremeter.HasValue ? FromGramsPerSecondPerSquareMeter(gramspersecondpersquaremeter.Value) : default(MassFlux?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlux from nullable KilogramsPerSecondPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlux? FromKilogramsPerSecondPerSquareMeter(QuantityValue? kilogramspersecondpersquaremeter)
         {
             return kilogramspersecondpersquaremeter.HasValue ? FromKilogramsPerSecondPerSquareMeter(kilogramspersecondpersquaremeter.Value) : default(MassFlux?);
@@ -84,6 +86,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MassFlux unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MassFlux? From(QuantityValue? value, MassFluxUnit fromUnit)
         {
             return value.HasValue ? new MassFlux((double)value.Value, fromUnit) : default(MassFlux?);

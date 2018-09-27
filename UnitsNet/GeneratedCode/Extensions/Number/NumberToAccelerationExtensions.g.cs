@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
         public static Acceleration CentimetersPerSecondSquared<T>(this T value) => Acceleration.FromCentimetersPerSecondSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Acceleration.FromCentimetersPerSecondSquared(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? CentimetersPerSecondSquared<T>(this T? value) where T : struct => Acceleration.FromCentimetersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
         public static Acceleration DecimetersPerSecondSquared<T>(this T value) => Acceleration.FromDecimetersPerSecondSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Acceleration.FromDecimetersPerSecondSquared(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? DecimetersPerSecondSquared<T>(this T? value) where T : struct => Acceleration.FromDecimetersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
         public static Acceleration FeetPerSecondSquared<T>(this T value) => Acceleration.FromFeetPerSecondSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Acceleration.FromFeetPerSecondSquared(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? FeetPerSecondSquared<T>(this T? value) where T : struct => Acceleration.FromFeetPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
         public static Acceleration InchesPerSecondSquared<T>(this T value) => Acceleration.FromInchesPerSecondSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Acceleration.FromInchesPerSecondSquared(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? InchesPerSecondSquared<T>(this T? value) where T : struct => Acceleration.FromInchesPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
         public static Acceleration KilometersPerSecondSquared<T>(this T value) => Acceleration.FromKilometersPerSecondSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Acceleration.FromKilometersPerSecondSquared(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? KilometersPerSecondSquared<T>(this T? value) where T : struct => Acceleration.FromKilometersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
         public static Acceleration KnotsPerHour<T>(this T value) => Acceleration.FromKnotsPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Acceleration.FromKnotsPerHour(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? KnotsPerHour<T>(this T? value) where T : struct => Acceleration.FromKnotsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
         public static Acceleration KnotsPerMinute<T>(this T value) => Acceleration.FromKnotsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Acceleration.FromKnotsPerMinute(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? KnotsPerMinute<T>(this T? value) where T : struct => Acceleration.FromKnotsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
         public static Acceleration KnotsPerSecond<T>(this T value) => Acceleration.FromKnotsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Acceleration.FromKnotsPerSecond(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? KnotsPerSecond<T>(this T? value) where T : struct => Acceleration.FromKnotsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -130,6 +138,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
         public static Acceleration MetersPerSecondSquared<T>(this T value) => Acceleration.FromMetersPerSecondSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Acceleration.FromMetersPerSecondSquared(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? MetersPerSecondSquared<T>(this T? value) where T : struct => Acceleration.FromMetersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -140,6 +149,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
         public static Acceleration MicrometersPerSecondSquared<T>(this T value) => Acceleration.FromMicrometersPerSecondSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Acceleration.FromMicrometersPerSecondSquared(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? MicrometersPerSecondSquared<T>(this T? value) where T : struct => Acceleration.FromMicrometersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -150,6 +160,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
         public static Acceleration MillimetersPerSecondSquared<T>(this T value) => Acceleration.FromMillimetersPerSecondSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Acceleration.FromMillimetersPerSecondSquared(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? MillimetersPerSecondSquared<T>(this T? value) where T : struct => Acceleration.FromMillimetersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -160,6 +171,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
         public static Acceleration NanometersPerSecondSquared<T>(this T value) => Acceleration.FromNanometersPerSecondSquared(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Acceleration.FromNanometersPerSecondSquared(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? NanometersPerSecondSquared<T>(this T? value) where T : struct => Acceleration.FromNanometersPerSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -170,6 +182,7 @@ namespace UnitsNet.Extensions.NumberToAcceleration
         public static Acceleration StandardGravity<T>(this T value) => Acceleration.FromStandardGravity(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Acceleration.FromStandardGravity(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? StandardGravity<T>(this T? value) where T : struct => Acceleration.FromStandardGravity(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToThermalResistance
         public static ThermalResistance HourSquareFeetDegreesFahrenheitPerBtu<T>(this T value) => ThermalResistance.FromHourSquareFeetDegreesFahrenheitPerBtu(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ThermalResistance.FromHourSquareFeetDegreesFahrenheitPerBtu(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ThermalResistance? HourSquareFeetDegreesFahrenheitPerBtu<T>(this T? value) where T : struct => ThermalResistance.FromHourSquareFeetDegreesFahrenheitPerBtu(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToThermalResistance
         public static ThermalResistance SquareCentimeterHourDegreesCelsiusPerKilocalorie<T>(this T value) => ThermalResistance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ThermalResistance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ThermalResistance? SquareCentimeterHourDegreesCelsiusPerKilocalorie<T>(this T? value) where T : struct => ThermalResistance.FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToThermalResistance
         public static ThermalResistance SquareCentimeterKelvinsPerWatt<T>(this T value) => ThermalResistance.FromSquareCentimeterKelvinsPerWatt(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ThermalResistance.FromSquareCentimeterKelvinsPerWatt(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ThermalResistance? SquareCentimeterKelvinsPerWatt<T>(this T? value) where T : struct => ThermalResistance.FromSquareCentimeterKelvinsPerWatt(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToThermalResistance
         public static ThermalResistance SquareMeterDegreesCelsiusPerWatt<T>(this T value) => ThermalResistance.FromSquareMeterDegreesCelsiusPerWatt(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ThermalResistance.FromSquareMeterDegreesCelsiusPerWatt(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ThermalResistance? SquareMeterDegreesCelsiusPerWatt<T>(this T? value) where T : struct => ThermalResistance.FromSquareMeterDegreesCelsiusPerWatt(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToThermalResistance
         public static ThermalResistance SquareMeterKelvinsPerKilowatt<T>(this T value) => ThermalResistance.FromSquareMeterKelvinsPerKilowatt(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ThermalResistance.FromSquareMeterKelvinsPerKilowatt(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ThermalResistance? SquareMeterKelvinsPerKilowatt<T>(this T? value) where T : struct => ThermalResistance.FromSquareMeterKelvinsPerKilowatt(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

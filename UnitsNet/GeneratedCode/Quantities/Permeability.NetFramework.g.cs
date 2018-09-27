@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Permeability from nullable HenriesPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Permeability? FromHenriesPerMeter(QuantityValue? henriespermeter)
         {
             return henriespermeter.HasValue ? FromHenriesPerMeter(henriespermeter.Value) : default(Permeability?);
@@ -76,6 +77,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Permeability unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Permeability? From(QuantityValue? value, PermeabilityUnit fromUnit)
         {
             return value.HasValue ? new Permeability((double)value.Value, fromUnit) : default(Permeability?);

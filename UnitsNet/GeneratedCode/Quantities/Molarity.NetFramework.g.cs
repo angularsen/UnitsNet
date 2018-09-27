@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable CentimolesPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Molarity? FromCentimolesPerLiter(QuantityValue? centimolesperliter)
         {
             return centimolesperliter.HasValue ? FromCentimolesPerLiter(centimolesperliter.Value) : default(Molarity?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable DecimolesPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Molarity? FromDecimolesPerLiter(QuantityValue? decimolesperliter)
         {
             return decimolesperliter.HasValue ? FromDecimolesPerLiter(decimolesperliter.Value) : default(Molarity?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable MicromolesPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Molarity? FromMicromolesPerLiter(QuantityValue? micromolesperliter)
         {
             return micromolesperliter.HasValue ? FromMicromolesPerLiter(micromolesperliter.Value) : default(Molarity?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable MillimolesPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Molarity? FromMillimolesPerLiter(QuantityValue? millimolesperliter)
         {
             return millimolesperliter.HasValue ? FromMillimolesPerLiter(millimolesperliter.Value) : default(Molarity?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable MolesPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Molarity? FromMolesPerCubicMeter(QuantityValue? molespercubicmeter)
         {
             return molespercubicmeter.HasValue ? FromMolesPerCubicMeter(molespercubicmeter.Value) : default(Molarity?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable MolesPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Molarity? FromMolesPerLiter(QuantityValue? molesperliter)
         {
             return molesperliter.HasValue ? FromMolesPerLiter(molesperliter.Value) : default(Molarity?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable NanomolesPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Molarity? FromNanomolesPerLiter(QuantityValue? nanomolesperliter)
         {
             return nanomolesperliter.HasValue ? FromNanomolesPerLiter(nanomolesperliter.Value) : default(Molarity?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Molarity from nullable PicomolesPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Molarity? FromPicomolesPerLiter(QuantityValue? picomolesperliter)
         {
             return picomolesperliter.HasValue ? FromPicomolesPerLiter(picomolesperliter.Value) : default(Molarity?);
@@ -132,6 +140,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Molarity unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Molarity? From(QuantityValue? value, MolarityUnit fromUnit)
         {
             return value.HasValue ? new Molarity((double)value.Value, fromUnit) : default(Molarity?);

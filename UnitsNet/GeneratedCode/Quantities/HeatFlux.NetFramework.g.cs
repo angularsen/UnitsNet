@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable BtusPerHourSquareFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromBtusPerHourSquareFoot(QuantityValue? btusperhoursquarefoot)
         {
             return btusperhoursquarefoot.HasValue ? FromBtusPerHourSquareFoot(btusperhoursquarefoot.Value) : default(HeatFlux?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable BtusPerMinuteSquareFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromBtusPerMinuteSquareFoot(QuantityValue? btusperminutesquarefoot)
         {
             return btusperminutesquarefoot.HasValue ? FromBtusPerMinuteSquareFoot(btusperminutesquarefoot.Value) : default(HeatFlux?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable BtusPerSecondSquareFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromBtusPerSecondSquareFoot(QuantityValue? btuspersecondsquarefoot)
         {
             return btuspersecondsquarefoot.HasValue ? FromBtusPerSecondSquareFoot(btuspersecondsquarefoot.Value) : default(HeatFlux?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable BtusPerSecondSquareInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromBtusPerSecondSquareInch(QuantityValue? btuspersecondsquareinch)
         {
             return btuspersecondsquareinch.HasValue ? FromBtusPerSecondSquareInch(btuspersecondsquareinch.Value) : default(HeatFlux?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable CaloriesPerSecondSquareCentimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromCaloriesPerSecondSquareCentimeter(QuantityValue? caloriespersecondsquarecentimeter)
         {
             return caloriespersecondsquarecentimeter.HasValue ? FromCaloriesPerSecondSquareCentimeter(caloriespersecondsquarecentimeter.Value) : default(HeatFlux?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable CentiwattsPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromCentiwattsPerSquareMeter(QuantityValue? centiwattspersquaremeter)
         {
             return centiwattspersquaremeter.HasValue ? FromCentiwattsPerSquareMeter(centiwattspersquaremeter.Value) : default(HeatFlux?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable DeciwattsPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromDeciwattsPerSquareMeter(QuantityValue? deciwattspersquaremeter)
         {
             return deciwattspersquaremeter.HasValue ? FromDeciwattsPerSquareMeter(deciwattspersquaremeter.Value) : default(HeatFlux?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable KilocaloriesPerHourSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromKilocaloriesPerHourSquareMeter(QuantityValue? kilocaloriesperhoursquaremeter)
         {
             return kilocaloriesperhoursquaremeter.HasValue ? FromKilocaloriesPerHourSquareMeter(kilocaloriesperhoursquaremeter.Value) : default(HeatFlux?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable KilocaloriesPerSecondSquareCentimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromKilocaloriesPerSecondSquareCentimeter(QuantityValue? kilocaloriespersecondsquarecentimeter)
         {
             return kilocaloriespersecondsquarecentimeter.HasValue ? FromKilocaloriesPerSecondSquareCentimeter(kilocaloriespersecondsquarecentimeter.Value) : default(HeatFlux?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable KilowattsPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromKilowattsPerSquareMeter(QuantityValue? kilowattspersquaremeter)
         {
             return kilowattspersquaremeter.HasValue ? FromKilowattsPerSquareMeter(kilowattspersquaremeter.Value) : default(HeatFlux?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable MicrowattsPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromMicrowattsPerSquareMeter(QuantityValue? microwattspersquaremeter)
         {
             return microwattspersquaremeter.HasValue ? FromMicrowattsPerSquareMeter(microwattspersquaremeter.Value) : default(HeatFlux?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable MilliwattsPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromMilliwattsPerSquareMeter(QuantityValue? milliwattspersquaremeter)
         {
             return milliwattspersquaremeter.HasValue ? FromMilliwattsPerSquareMeter(milliwattspersquaremeter.Value) : default(HeatFlux?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable NanowattsPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromNanowattsPerSquareMeter(QuantityValue? nanowattspersquaremeter)
         {
             return nanowattspersquaremeter.HasValue ? FromNanowattsPerSquareMeter(nanowattspersquaremeter.Value) : default(HeatFlux?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable WattsPerSquareFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromWattsPerSquareFoot(QuantityValue? wattspersquarefoot)
         {
             return wattspersquarefoot.HasValue ? FromWattsPerSquareFoot(wattspersquarefoot.Value) : default(HeatFlux?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable WattsPerSquareInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromWattsPerSquareInch(QuantityValue? wattspersquareinch)
         {
             return wattspersquareinch.HasValue ? FromWattsPerSquareInch(wattspersquareinch.Value) : default(HeatFlux?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable HeatFlux from nullable WattsPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static HeatFlux? FromWattsPerSquareMeter(QuantityValue? wattspersquaremeter)
         {
             return wattspersquaremeter.HasValue ? FromWattsPerSquareMeter(wattspersquaremeter.Value) : default(HeatFlux?);
@@ -196,6 +212,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>HeatFlux unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? From(QuantityValue? value, HeatFluxUnit fromUnit)
         {
             return value.HasValue ? new HeatFlux((double)value.Value, fromUnit) : default(HeatFlux?);

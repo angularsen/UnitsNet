@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable BoilerHorsepower.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromBoilerHorsepower(QuantityValue? boilerhorsepower)
         {
             return boilerhorsepower.HasValue ? FromBoilerHorsepower(boilerhorsepower.Value) : default(Power?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable BritishThermalUnitsPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromBritishThermalUnitsPerHour(QuantityValue? britishthermalunitsperhour)
         {
             return britishthermalunitsperhour.HasValue ? FromBritishThermalUnitsPerHour(britishthermalunitsperhour.Value) : default(Power?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable Decawatts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromDecawatts(QuantityValue? decawatts)
         {
             return decawatts.HasValue ? FromDecawatts(decawatts.Value) : default(Power?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable Deciwatts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromDeciwatts(QuantityValue? deciwatts)
         {
             return deciwatts.HasValue ? FromDeciwatts(deciwatts.Value) : default(Power?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable ElectricalHorsepower.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromElectricalHorsepower(QuantityValue? electricalhorsepower)
         {
             return electricalhorsepower.HasValue ? FromElectricalHorsepower(electricalhorsepower.Value) : default(Power?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable Femtowatts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromFemtowatts(QuantityValue? femtowatts)
         {
             return femtowatts.HasValue ? FromFemtowatts(femtowatts.Value) : default(Power?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable Gigawatts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromGigawatts(QuantityValue? gigawatts)
         {
             return gigawatts.HasValue ? FromGigawatts(gigawatts.Value) : default(Power?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable HydraulicHorsepower.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromHydraulicHorsepower(QuantityValue? hydraulichorsepower)
         {
             return hydraulichorsepower.HasValue ? FromHydraulicHorsepower(hydraulichorsepower.Value) : default(Power?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable KilobritishThermalUnitsPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromKilobritishThermalUnitsPerHour(QuantityValue? kilobritishthermalunitsperhour)
         {
             return kilobritishthermalunitsperhour.HasValue ? FromKilobritishThermalUnitsPerHour(kilobritishthermalunitsperhour.Value) : default(Power?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable Kilowatts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromKilowatts(QuantityValue? kilowatts)
         {
             return kilowatts.HasValue ? FromKilowatts(kilowatts.Value) : default(Power?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable MechanicalHorsepower.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromMechanicalHorsepower(QuantityValue? mechanicalhorsepower)
         {
             return mechanicalhorsepower.HasValue ? FromMechanicalHorsepower(mechanicalhorsepower.Value) : default(Power?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable Megawatts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromMegawatts(QuantityValue? megawatts)
         {
             return megawatts.HasValue ? FromMegawatts(megawatts.Value) : default(Power?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable MetricHorsepower.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromMetricHorsepower(QuantityValue? metrichorsepower)
         {
             return metrichorsepower.HasValue ? FromMetricHorsepower(metrichorsepower.Value) : default(Power?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable Microwatts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromMicrowatts(QuantityValue? microwatts)
         {
             return microwatts.HasValue ? FromMicrowatts(microwatts.Value) : default(Power?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable Milliwatts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromMilliwatts(QuantityValue? milliwatts)
         {
             return milliwatts.HasValue ? FromMilliwatts(milliwatts.Value) : default(Power?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable Nanowatts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromNanowatts(QuantityValue? nanowatts)
         {
             return nanowatts.HasValue ? FromNanowatts(nanowatts.Value) : default(Power?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable Petawatts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromPetawatts(QuantityValue? petawatts)
         {
             return petawatts.HasValue ? FromPetawatts(petawatts.Value) : default(Power?);
@@ -201,6 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable Picowatts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromPicowatts(QuantityValue? picowatts)
         {
             return picowatts.HasValue ? FromPicowatts(picowatts.Value) : default(Power?);
@@ -209,6 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable Terawatts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromTerawatts(QuantityValue? terawatts)
         {
             return terawatts.HasValue ? FromTerawatts(terawatts.Value) : default(Power?);
@@ -217,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Power from nullable Watts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Power? FromWatts(QuantityValue? watts)
         {
             return watts.HasValue ? FromWatts(watts.Value) : default(Power?);
@@ -228,6 +248,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Power unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Power? From(QuantityValue? value, PowerUnit fromUnit)
         {
             return value.HasValue ? new Power((decimal)value.Value, fromUnit) : default(Power?);

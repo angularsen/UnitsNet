@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Bits<T>(this T value) => Information.FromBits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromBits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Bits<T>(this T? value) where T : struct => Information.FromBits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Bytes<T>(this T value) => Information.FromBytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromBytes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Bytes<T>(this T? value) where T : struct => Information.FromBytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Exabits<T>(this T value) => Information.FromExabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromExabits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Exabits<T>(this T? value) where T : struct => Information.FromExabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Exabytes<T>(this T value) => Information.FromExabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromExabytes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Exabytes<T>(this T? value) where T : struct => Information.FromExabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Exbibits<T>(this T value) => Information.FromExbibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromExbibits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Exbibits<T>(this T? value) where T : struct => Information.FromExbibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Exbibytes<T>(this T value) => Information.FromExbibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromExbibytes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Exbibytes<T>(this T? value) where T : struct => Information.FromExbibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Gibibits<T>(this T value) => Information.FromGibibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromGibibits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Gibibits<T>(this T? value) where T : struct => Information.FromGibibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Gibibytes<T>(this T value) => Information.FromGibibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromGibibytes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Gibibytes<T>(this T? value) where T : struct => Information.FromGibibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -130,6 +138,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Gigabits<T>(this T value) => Information.FromGigabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromGigabits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Gigabits<T>(this T? value) where T : struct => Information.FromGigabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -140,6 +149,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Gigabytes<T>(this T value) => Information.FromGigabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromGigabytes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Gigabytes<T>(this T? value) where T : struct => Information.FromGigabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -150,6 +160,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Kibibits<T>(this T value) => Information.FromKibibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromKibibits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Kibibits<T>(this T? value) where T : struct => Information.FromKibibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -160,6 +171,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Kibibytes<T>(this T value) => Information.FromKibibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromKibibytes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Kibibytes<T>(this T? value) where T : struct => Information.FromKibibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -170,6 +182,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Kilobits<T>(this T value) => Information.FromKilobits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromKilobits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Kilobits<T>(this T? value) where T : struct => Information.FromKilobits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -180,6 +193,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Kilobytes<T>(this T value) => Information.FromKilobytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromKilobytes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Kilobytes<T>(this T? value) where T : struct => Information.FromKilobytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -190,6 +204,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Mebibits<T>(this T value) => Information.FromMebibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromMebibits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Mebibits<T>(this T? value) where T : struct => Information.FromMebibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -200,6 +215,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Mebibytes<T>(this T value) => Information.FromMebibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromMebibytes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Mebibytes<T>(this T? value) where T : struct => Information.FromMebibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -210,6 +226,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Megabits<T>(this T value) => Information.FromMegabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromMegabits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Megabits<T>(this T? value) where T : struct => Information.FromMegabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -220,6 +237,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Megabytes<T>(this T value) => Information.FromMegabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromMegabytes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Megabytes<T>(this T? value) where T : struct => Information.FromMegabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -230,6 +248,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Pebibits<T>(this T value) => Information.FromPebibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromPebibits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Pebibits<T>(this T? value) where T : struct => Information.FromPebibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -240,6 +259,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Pebibytes<T>(this T value) => Information.FromPebibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromPebibytes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Pebibytes<T>(this T? value) where T : struct => Information.FromPebibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -250,6 +270,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Petabits<T>(this T value) => Information.FromPetabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromPetabits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Petabits<T>(this T? value) where T : struct => Information.FromPetabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -260,6 +281,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Petabytes<T>(this T value) => Information.FromPetabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromPetabytes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Petabytes<T>(this T? value) where T : struct => Information.FromPetabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -270,6 +292,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Tebibits<T>(this T value) => Information.FromTebibits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromTebibits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Tebibits<T>(this T? value) where T : struct => Information.FromTebibits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -280,6 +303,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Tebibytes<T>(this T value) => Information.FromTebibytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromTebibytes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Tebibytes<T>(this T? value) where T : struct => Information.FromTebibytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -290,6 +314,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Terabits<T>(this T value) => Information.FromTerabits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromTerabits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Terabits<T>(this T? value) where T : struct => Information.FromTerabits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -300,6 +325,7 @@ namespace UnitsNet.Extensions.NumberToInformation
         public static Information Terabytes<T>(this T value) => Information.FromTerabytes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Information.FromTerabytes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? Terabytes<T>(this T? value) where T : struct => Information.FromTerabytes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

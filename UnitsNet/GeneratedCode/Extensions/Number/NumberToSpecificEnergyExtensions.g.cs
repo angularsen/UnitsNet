@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToSpecificEnergy
         public static SpecificEnergy CaloriesPerGram<T>(this T value) => SpecificEnergy.FromCaloriesPerGram(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEnergy.FromCaloriesPerGram(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificEnergy? CaloriesPerGram<T>(this T? value) where T : struct => SpecificEnergy.FromCaloriesPerGram(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToSpecificEnergy
         public static SpecificEnergy JoulesPerKilogram<T>(this T value) => SpecificEnergy.FromJoulesPerKilogram(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEnergy.FromJoulesPerKilogram(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificEnergy? JoulesPerKilogram<T>(this T? value) where T : struct => SpecificEnergy.FromJoulesPerKilogram(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToSpecificEnergy
         public static SpecificEnergy KilocaloriesPerGram<T>(this T value) => SpecificEnergy.FromKilocaloriesPerGram(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEnergy.FromKilocaloriesPerGram(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificEnergy? KilocaloriesPerGram<T>(this T? value) where T : struct => SpecificEnergy.FromKilocaloriesPerGram(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToSpecificEnergy
         public static SpecificEnergy KilojoulesPerKilogram<T>(this T value) => SpecificEnergy.FromKilojoulesPerKilogram(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEnergy.FromKilojoulesPerKilogram(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificEnergy? KilojoulesPerKilogram<T>(this T? value) where T : struct => SpecificEnergy.FromKilojoulesPerKilogram(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToSpecificEnergy
         public static SpecificEnergy KilowattHoursPerKilogram<T>(this T value) => SpecificEnergy.FromKilowattHoursPerKilogram(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEnergy.FromKilowattHoursPerKilogram(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificEnergy? KilowattHoursPerKilogram<T>(this T? value) where T : struct => SpecificEnergy.FromKilowattHoursPerKilogram(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToSpecificEnergy
         public static SpecificEnergy MegajoulesPerKilogram<T>(this T value) => SpecificEnergy.FromMegajoulesPerKilogram(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEnergy.FromMegajoulesPerKilogram(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificEnergy? MegajoulesPerKilogram<T>(this T? value) where T : struct => SpecificEnergy.FromMegajoulesPerKilogram(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToSpecificEnergy
         public static SpecificEnergy MegawattHoursPerKilogram<T>(this T value) => SpecificEnergy.FromMegawattHoursPerKilogram(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEnergy.FromMegawattHoursPerKilogram(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificEnergy? MegawattHoursPerKilogram<T>(this T? value) where T : struct => SpecificEnergy.FromMegawattHoursPerKilogram(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToSpecificEnergy
         public static SpecificEnergy WattHoursPerKilogram<T>(this T value) => SpecificEnergy.FromWattHoursPerKilogram(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEnergy.FromWattHoursPerKilogram(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificEnergy? WattHoursPerKilogram<T>(this T? value) where T : struct => SpecificEnergy.FromWattHoursPerKilogram(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Atmospheres<T>(this T value) => Pressure.FromAtmospheres(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromAtmospheres(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Atmospheres<T>(this T? value) where T : struct => Pressure.FromAtmospheres(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Bars<T>(this T value) => Pressure.FromBars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromBars(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Bars<T>(this T? value) where T : struct => Pressure.FromBars(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Centibars<T>(this T value) => Pressure.FromCentibars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromCentibars(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Centibars<T>(this T? value) where T : struct => Pressure.FromCentibars(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Decapascals<T>(this T value) => Pressure.FromDecapascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromDecapascals(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Decapascals<T>(this T? value) where T : struct => Pressure.FromDecapascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Decibars<T>(this T value) => Pressure.FromDecibars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromDecibars(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Decibars<T>(this T? value) where T : struct => Pressure.FromDecibars(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure FeetOfHead<T>(this T value) => Pressure.FromFeetOfHead(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? FeetOfHead<T>(this T? value) where T : struct => Pressure.FromFeetOfHead(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Gigapascals<T>(this T value) => Pressure.FromGigapascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromGigapascals(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Gigapascals<T>(this T? value) where T : struct => Pressure.FromGigapascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Hectopascals<T>(this T value) => Pressure.FromHectopascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromHectopascals(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Hectopascals<T>(this T? value) where T : struct => Pressure.FromHectopascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -130,6 +138,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure InchesOfMercury<T>(this T value) => Pressure.FromInchesOfMercury(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromInchesOfMercury(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? InchesOfMercury<T>(this T? value) where T : struct => Pressure.FromInchesOfMercury(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -140,6 +149,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Kilobars<T>(this T value) => Pressure.FromKilobars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilobars(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Kilobars<T>(this T? value) where T : struct => Pressure.FromKilobars(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -150,6 +160,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure KilogramsForcePerSquareCentimeter<T>(this T value) => Pressure.FromKilogramsForcePerSquareCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? KilogramsForcePerSquareCentimeter<T>(this T? value) where T : struct => Pressure.FromKilogramsForcePerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -160,6 +171,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure KilogramsForcePerSquareMeter<T>(this T value) => Pressure.FromKilogramsForcePerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? KilogramsForcePerSquareMeter<T>(this T? value) where T : struct => Pressure.FromKilogramsForcePerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -170,6 +182,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure KilogramsForcePerSquareMillimeter<T>(this T value) => Pressure.FromKilogramsForcePerSquareMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilogramsForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? KilogramsForcePerSquareMillimeter<T>(this T? value) where T : struct => Pressure.FromKilogramsForcePerSquareMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -180,6 +193,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure KilonewtonsPerSquareCentimeter<T>(this T value) => Pressure.FromKilonewtonsPerSquareCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? KilonewtonsPerSquareCentimeter<T>(this T? value) where T : struct => Pressure.FromKilonewtonsPerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -190,6 +204,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure KilonewtonsPerSquareMeter<T>(this T value) => Pressure.FromKilonewtonsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? KilonewtonsPerSquareMeter<T>(this T? value) where T : struct => Pressure.FromKilonewtonsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -200,6 +215,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure KilonewtonsPerSquareMillimeter<T>(this T value) => Pressure.FromKilonewtonsPerSquareMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilonewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? KilonewtonsPerSquareMillimeter<T>(this T? value) where T : struct => Pressure.FromKilonewtonsPerSquareMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -210,6 +226,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Kilopascals<T>(this T value) => Pressure.FromKilopascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilopascals(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Kilopascals<T>(this T? value) where T : struct => Pressure.FromKilopascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -220,6 +237,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure KilopoundsForcePerSquareFoot<T>(this T value) => Pressure.FromKilopoundsForcePerSquareFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? KilopoundsForcePerSquareFoot<T>(this T? value) where T : struct => Pressure.FromKilopoundsForcePerSquareFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -230,6 +248,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure KilopoundsForcePerSquareInch<T>(this T value) => Pressure.FromKilopoundsForcePerSquareInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromKilopoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? KilopoundsForcePerSquareInch<T>(this T? value) where T : struct => Pressure.FromKilopoundsForcePerSquareInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -240,6 +259,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Megabars<T>(this T value) => Pressure.FromMegabars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMegabars(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Megabars<T>(this T? value) where T : struct => Pressure.FromMegabars(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -250,6 +270,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure MeganewtonsPerSquareMeter<T>(this T value) => Pressure.FromMeganewtonsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMeganewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? MeganewtonsPerSquareMeter<T>(this T? value) where T : struct => Pressure.FromMeganewtonsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -260,6 +281,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Megapascals<T>(this T value) => Pressure.FromMegapascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMegapascals(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Megapascals<T>(this T? value) where T : struct => Pressure.FromMegapascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -270,6 +292,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure MetersOfHead<T>(this T value) => Pressure.FromMetersOfHead(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMetersOfHead(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? MetersOfHead<T>(this T? value) where T : struct => Pressure.FromMetersOfHead(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -280,6 +303,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Micropascals<T>(this T value) => Pressure.FromMicropascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Micropascals<T>(this T? value) where T : struct => Pressure.FromMicropascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -290,6 +314,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Millibars<T>(this T value) => Pressure.FromMillibars(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMillibars(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Millibars<T>(this T? value) where T : struct => Pressure.FromMillibars(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -300,6 +325,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure MillimetersOfMercury<T>(this T value) => Pressure.FromMillimetersOfMercury(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromMillimetersOfMercury(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? MillimetersOfMercury<T>(this T? value) where T : struct => Pressure.FromMillimetersOfMercury(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -310,6 +336,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure NewtonsPerSquareCentimeter<T>(this T value) => Pressure.FromNewtonsPerSquareCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? NewtonsPerSquareCentimeter<T>(this T? value) where T : struct => Pressure.FromNewtonsPerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -320,6 +347,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure NewtonsPerSquareMeter<T>(this T value) => Pressure.FromNewtonsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? NewtonsPerSquareMeter<T>(this T? value) where T : struct => Pressure.FromNewtonsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -330,6 +358,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure NewtonsPerSquareMillimeter<T>(this T value) => Pressure.FromNewtonsPerSquareMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareMillimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? NewtonsPerSquareMillimeter<T>(this T? value) where T : struct => Pressure.FromNewtonsPerSquareMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -340,6 +369,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Pascals<T>(this T value) => Pressure.FromPascals(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromPascals(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Pascals<T>(this T? value) where T : struct => Pressure.FromPascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -350,6 +380,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure PoundsForcePerSquareFoot<T>(this T value) => Pressure.FromPoundsForcePerSquareFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? PoundsForcePerSquareFoot<T>(this T? value) where T : struct => Pressure.FromPoundsForcePerSquareFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -360,6 +391,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure PoundsForcePerSquareInch<T>(this T value) => Pressure.FromPoundsForcePerSquareInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? PoundsForcePerSquareInch<T>(this T? value) where T : struct => Pressure.FromPoundsForcePerSquareInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -370,6 +402,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Psi<T>(this T value) => Pressure.FromPsi(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Psi<T>(this T? value) where T : struct => Pressure.FromPsi(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -380,6 +413,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure TechnicalAtmospheres<T>(this T value) => Pressure.FromTechnicalAtmospheres(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? TechnicalAtmospheres<T>(this T? value) where T : struct => Pressure.FromTechnicalAtmospheres(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -390,6 +424,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure TonnesForcePerSquareCentimeter<T>(this T value) => Pressure.FromTonnesForcePerSquareCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareCentimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? TonnesForcePerSquareCentimeter<T>(this T? value) where T : struct => Pressure.FromTonnesForcePerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -400,6 +435,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure TonnesForcePerSquareMeter<T>(this T value) => Pressure.FromTonnesForcePerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? TonnesForcePerSquareMeter<T>(this T? value) where T : struct => Pressure.FromTonnesForcePerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -410,6 +446,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure TonnesForcePerSquareMillimeter<T>(this T value) => Pressure.FromTonnesForcePerSquareMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromTonnesForcePerSquareMillimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? TonnesForcePerSquareMillimeter<T>(this T? value) where T : struct => Pressure.FromTonnesForcePerSquareMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -420,6 +457,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         public static Pressure Torrs<T>(this T value) => Pressure.FromTorrs(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromTorrs(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? Torrs<T>(this T? value) where T : struct => Pressure.FromTorrs(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

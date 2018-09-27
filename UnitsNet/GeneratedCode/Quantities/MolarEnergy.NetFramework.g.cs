@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarEnergy from nullable JoulesPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarEnergy? FromJoulesPerMole(QuantityValue? joulespermole)
         {
             return joulespermole.HasValue ? FromJoulesPerMole(joulespermole.Value) : default(MolarEnergy?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarEnergy from nullable KilojoulesPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarEnergy? FromKilojoulesPerMole(QuantityValue? kilojoulespermole)
         {
             return kilojoulespermole.HasValue ? FromKilojoulesPerMole(kilojoulespermole.Value) : default(MolarEnergy?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarEnergy from nullable MegajoulesPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarEnergy? FromMegajoulesPerMole(QuantityValue? megajoulespermole)
         {
             return megajoulespermole.HasValue ? FromMegajoulesPerMole(megajoulespermole.Value) : default(MolarEnergy?);
@@ -92,6 +95,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarEnergy unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MolarEnergy? From(QuantityValue? value, MolarEnergyUnit fromUnit)
         {
             return value.HasValue ? new MolarEnergy((double)value.Value, fromUnit) : default(MolarEnergy?);

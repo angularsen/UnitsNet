@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrentDensity from nullable AmperesPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricCurrentDensity? FromAmperesPerSquareMeter(QuantityValue? amperespersquaremeter)
         {
             return amperespersquaremeter.HasValue ? FromAmperesPerSquareMeter(amperespersquaremeter.Value) : default(ElectricCurrentDensity?);
@@ -76,6 +77,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCurrentDensity unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricCurrentDensity? From(QuantityValue? value, ElectricCurrentDensityUnit fromUnit)
         {
             return value.HasValue ? new ElectricCurrentDensity((double)value.Value, fromUnit) : default(ElectricCurrentDensity?);

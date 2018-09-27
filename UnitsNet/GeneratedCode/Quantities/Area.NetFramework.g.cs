@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Area from nullable Acres.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Area? FromAcres(QuantityValue? acres)
         {
             return acres.HasValue ? FromAcres(acres.Value) : default(Area?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Area from nullable Hectares.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Area? FromHectares(QuantityValue? hectares)
         {
             return hectares.HasValue ? FromHectares(hectares.Value) : default(Area?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Area from nullable SquareCentimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Area? FromSquareCentimeters(QuantityValue? squarecentimeters)
         {
             return squarecentimeters.HasValue ? FromSquareCentimeters(squarecentimeters.Value) : default(Area?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Area from nullable SquareDecimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Area? FromSquareDecimeters(QuantityValue? squaredecimeters)
         {
             return squaredecimeters.HasValue ? FromSquareDecimeters(squaredecimeters.Value) : default(Area?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Area from nullable SquareFeet.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Area? FromSquareFeet(QuantityValue? squarefeet)
         {
             return squarefeet.HasValue ? FromSquareFeet(squarefeet.Value) : default(Area?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Area from nullable SquareInches.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Area? FromSquareInches(QuantityValue? squareinches)
         {
             return squareinches.HasValue ? FromSquareInches(squareinches.Value) : default(Area?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Area from nullable SquareKilometers.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Area? FromSquareKilometers(QuantityValue? squarekilometers)
         {
             return squarekilometers.HasValue ? FromSquareKilometers(squarekilometers.Value) : default(Area?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Area from nullable SquareMeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Area? FromSquareMeters(QuantityValue? squaremeters)
         {
             return squaremeters.HasValue ? FromSquareMeters(squaremeters.Value) : default(Area?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Area from nullable SquareMicrometers.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Area? FromSquareMicrometers(QuantityValue? squaremicrometers)
         {
             return squaremicrometers.HasValue ? FromSquareMicrometers(squaremicrometers.Value) : default(Area?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Area from nullable SquareMiles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Area? FromSquareMiles(QuantityValue? squaremiles)
         {
             return squaremiles.HasValue ? FromSquareMiles(squaremiles.Value) : default(Area?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Area from nullable SquareMillimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Area? FromSquareMillimeters(QuantityValue? squaremillimeters)
         {
             return squaremillimeters.HasValue ? FromSquareMillimeters(squaremillimeters.Value) : default(Area?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Area from nullable SquareYards.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Area? FromSquareYards(QuantityValue? squareyards)
         {
             return squareyards.HasValue ? FromSquareYards(squareyards.Value) : default(Area?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Area from nullable UsSurveySquareFeet.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Area? FromUsSurveySquareFeet(QuantityValue? ussurveysquarefeet)
         {
             return ussurveysquarefeet.HasValue ? FromUsSurveySquareFeet(ussurveysquarefeet.Value) : default(Area?);
@@ -172,6 +185,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Area unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? From(QuantityValue? value, AreaUnit fromUnit)
         {
             return value.HasValue ? new Area((double)value.Value, fromUnit) : default(Area?);

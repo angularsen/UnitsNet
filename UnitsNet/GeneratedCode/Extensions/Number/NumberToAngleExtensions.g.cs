@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Arcminutes<T>(this T value) => Angle.FromArcminutes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromArcminutes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Arcminutes<T>(this T? value) where T : struct => Angle.FromArcminutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Arcseconds<T>(this T value) => Angle.FromArcseconds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromArcseconds(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Arcseconds<T>(this T? value) where T : struct => Angle.FromArcseconds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Centiradians<T>(this T value) => Angle.FromCentiradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromCentiradians(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Centiradians<T>(this T? value) where T : struct => Angle.FromCentiradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Deciradians<T>(this T value) => Angle.FromDeciradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromDeciradians(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Deciradians<T>(this T? value) where T : struct => Angle.FromDeciradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Degrees<T>(this T value) => Angle.FromDegrees(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromDegrees(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Degrees<T>(this T? value) where T : struct => Angle.FromDegrees(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Gradians<T>(this T value) => Angle.FromGradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromGradians(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Gradians<T>(this T? value) where T : struct => Angle.FromGradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Microdegrees<T>(this T value) => Angle.FromMicrodegrees(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromMicrodegrees(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Microdegrees<T>(this T? value) where T : struct => Angle.FromMicrodegrees(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Microradians<T>(this T value) => Angle.FromMicroradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromMicroradians(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Microradians<T>(this T? value) where T : struct => Angle.FromMicroradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -130,6 +138,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Millidegrees<T>(this T value) => Angle.FromMillidegrees(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromMillidegrees(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Millidegrees<T>(this T? value) where T : struct => Angle.FromMillidegrees(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -140,6 +149,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Milliradians<T>(this T value) => Angle.FromMilliradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromMilliradians(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Milliradians<T>(this T? value) where T : struct => Angle.FromMilliradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -150,6 +160,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Nanodegrees<T>(this T value) => Angle.FromNanodegrees(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromNanodegrees(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Nanodegrees<T>(this T? value) where T : struct => Angle.FromNanodegrees(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -160,6 +171,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Nanoradians<T>(this T value) => Angle.FromNanoradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromNanoradians(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Nanoradians<T>(this T? value) where T : struct => Angle.FromNanoradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -170,6 +182,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Radians<T>(this T value) => Angle.FromRadians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromRadians(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Radians<T>(this T? value) where T : struct => Angle.FromRadians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -180,6 +193,7 @@ namespace UnitsNet.Extensions.NumberToAngle
         public static Angle Revolutions<T>(this T value) => Angle.FromRevolutions(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Angle.FromRevolutions(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? Revolutions<T>(this T? value) where T : struct => Angle.FromRevolutions(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

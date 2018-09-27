@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToHeatTransferCoefficient
         public static HeatTransferCoefficient WattsPerSquareMeterCelsius<T>(this T value) => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatTransferCoefficient? WattsPerSquareMeterCelsius<T>(this T? value) where T : struct => HeatTransferCoefficient.FromWattsPerSquareMeterCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToHeatTransferCoefficient
         public static HeatTransferCoefficient WattsPerSquareMeterKelvin<T>(this T value) => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatTransferCoefficient? WattsPerSquareMeterKelvin<T>(this T? value) where T : struct => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

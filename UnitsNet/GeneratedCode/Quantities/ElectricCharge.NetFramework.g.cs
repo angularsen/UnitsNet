@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCharge from nullable Coulombs.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricCharge? FromCoulombs(QuantityValue? coulombs)
         {
             return coulombs.HasValue ? FromCoulombs(coulombs.Value) : default(ElectricCharge?);
@@ -76,6 +77,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCharge unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricCharge? From(QuantityValue? value, ElectricChargeUnit fromUnit)
         {
             return value.HasValue ? new ElectricCharge((double)value.Value, fromUnit) : default(ElectricCharge?);

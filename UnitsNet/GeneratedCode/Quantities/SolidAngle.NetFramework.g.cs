@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SolidAngle from nullable Steradians.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SolidAngle? FromSteradians(QuantityValue? steradians)
         {
             return steradians.HasValue ? FromSteradians(steradians.Value) : default(SolidAngle?);
@@ -76,6 +77,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SolidAngle unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SolidAngle? From(QuantityValue? value, SolidAngleUnit fromUnit)
         {
             return value.HasValue ? new SolidAngle((double)value.Value, fromUnit) : default(SolidAngle?);

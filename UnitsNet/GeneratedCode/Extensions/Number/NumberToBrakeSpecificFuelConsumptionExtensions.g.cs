@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToBrakeSpecificFuelConsumption
         public static BrakeSpecificFuelConsumption GramsPerKiloWattHour<T>(this T value) => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static BrakeSpecificFuelConsumption? GramsPerKiloWattHour<T>(this T? value) where T : struct => BrakeSpecificFuelConsumption.FromGramsPerKiloWattHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToBrakeSpecificFuelConsumption
         public static BrakeSpecificFuelConsumption KilogramsPerJoule<T>(this T value) => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromKilogramsPerJoule(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static BrakeSpecificFuelConsumption? KilogramsPerJoule<T>(this T? value) where T : struct => BrakeSpecificFuelConsumption.FromKilogramsPerJoule(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToBrakeSpecificFuelConsumption
         public static BrakeSpecificFuelConsumption PoundsPerMechanicalHorsepowerHour<T>(this T value) => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static BrakeSpecificFuelConsumption? PoundsPerMechanicalHorsepowerHour<T>(this T? value) where T : struct => BrakeSpecificFuelConsumption.FromPoundsPerMechanicalHorsepowerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MagneticFlux from nullable Webers.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MagneticFlux? FromWebers(QuantityValue? webers)
         {
             return webers.HasValue ? FromWebers(webers.Value) : default(MagneticFlux?);
@@ -76,6 +77,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MagneticFlux unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MagneticFlux? From(QuantityValue? value, MagneticFluxUnit fromUnit)
         {
             return value.HasValue ? new MagneticFlux((double)value.Value, fromUnit) : default(MagneticFlux?);

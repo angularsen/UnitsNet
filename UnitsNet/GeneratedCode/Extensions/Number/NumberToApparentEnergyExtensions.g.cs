@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToApparentEnergy
         public static ApparentEnergy KilovoltampereHours<T>(this T value) => ApparentEnergy.FromKilovoltampereHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentEnergy.FromKilovoltampereHours(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ApparentEnergy? KilovoltampereHours<T>(this T? value) where T : struct => ApparentEnergy.FromKilovoltampereHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToApparentEnergy
         public static ApparentEnergy MegavoltampereHours<T>(this T value) => ApparentEnergy.FromMegavoltampereHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentEnergy.FromMegavoltampereHours(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ApparentEnergy? MegavoltampereHours<T>(this T? value) where T : struct => ApparentEnergy.FromMegavoltampereHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToApparentEnergy
         public static ApparentEnergy VoltampereHours<T>(this T value) => ApparentEnergy.FromVoltampereHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ApparentEnergy.FromVoltampereHours(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ApparentEnergy? VoltampereHours<T>(this T? value) where T : struct => ApparentEnergy.FromVoltampereHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

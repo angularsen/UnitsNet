@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Irradiation from nullable JoulesPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Irradiation? FromJoulesPerSquareMeter(QuantityValue? joulespersquaremeter)
         {
             return joulespersquaremeter.HasValue ? FromJoulesPerSquareMeter(joulespersquaremeter.Value) : default(Irradiation?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Irradiation from nullable KilowattHoursPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Irradiation? FromKilowattHoursPerSquareMeter(QuantityValue? kilowatthourspersquaremeter)
         {
             return kilowatthourspersquaremeter.HasValue ? FromKilowattHoursPerSquareMeter(kilowatthourspersquaremeter.Value) : default(Irradiation?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Irradiation from nullable WattHoursPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Irradiation? FromWattHoursPerSquareMeter(QuantityValue? watthourspersquaremeter)
         {
             return watthourspersquaremeter.HasValue ? FromWattHoursPerSquareMeter(watthourspersquaremeter.Value) : default(Irradiation?);
@@ -92,6 +95,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Irradiation unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Irradiation? From(QuantityValue? value, IrradiationUnit fromUnit)
         {
             return value.HasValue ? new Irradiation((double)value.Value, fromUnit) : default(Irradiation?);

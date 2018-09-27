@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToMassFlux
         public static MassFlux GramsPerSecondPerSquareMeter<T>(this T value) => MassFlux.FromGramsPerSecondPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MassFlux? GramsPerSecondPerSquareMeter<T>(this T? value) where T : struct => MassFlux.FromGramsPerSecondPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToMassFlux
         public static MassFlux KilogramsPerSecondPerSquareMeter<T>(this T value) => MassFlux.FromKilogramsPerSecondPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MassFlux? KilogramsPerSecondPerSquareMeter<T>(this T? value) where T : struct => MassFlux.FromKilogramsPerSecondPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricAdmittance from nullable Microsiemens.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricAdmittance? FromMicrosiemens(QuantityValue? microsiemens)
         {
             return microsiemens.HasValue ? FromMicrosiemens(microsiemens.Value) : default(ElectricAdmittance?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricAdmittance from nullable Millisiemens.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricAdmittance? FromMillisiemens(QuantityValue? millisiemens)
         {
             return millisiemens.HasValue ? FromMillisiemens(millisiemens.Value) : default(ElectricAdmittance?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricAdmittance from nullable Nanosiemens.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricAdmittance? FromNanosiemens(QuantityValue? nanosiemens)
         {
             return nanosiemens.HasValue ? FromNanosiemens(nanosiemens.Value) : default(ElectricAdmittance?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricAdmittance from nullable Siemens.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricAdmittance? FromSiemens(QuantityValue? siemens)
         {
             return siemens.HasValue ? FromSiemens(siemens.Value) : default(ElectricAdmittance?);
@@ -100,6 +104,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricAdmittance unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricAdmittance? From(QuantityValue? value, ElectricAdmittanceUnit fromUnit)
         {
             return value.HasValue ? new ElectricAdmittance((double)value.Value, fromUnit) : default(ElectricAdmittance?);

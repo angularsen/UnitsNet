@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AreaMomentOfInertia from nullable CentimetersToTheFourth.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AreaMomentOfInertia? FromCentimetersToTheFourth(QuantityValue? centimeterstothefourth)
         {
             return centimeterstothefourth.HasValue ? FromCentimetersToTheFourth(centimeterstothefourth.Value) : default(AreaMomentOfInertia?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AreaMomentOfInertia from nullable DecimetersToTheFourth.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AreaMomentOfInertia? FromDecimetersToTheFourth(QuantityValue? decimeterstothefourth)
         {
             return decimeterstothefourth.HasValue ? FromDecimetersToTheFourth(decimeterstothefourth.Value) : default(AreaMomentOfInertia?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AreaMomentOfInertia from nullable FeetToTheFourth.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AreaMomentOfInertia? FromFeetToTheFourth(QuantityValue? feettothefourth)
         {
             return feettothefourth.HasValue ? FromFeetToTheFourth(feettothefourth.Value) : default(AreaMomentOfInertia?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AreaMomentOfInertia from nullable InchesToTheFourth.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AreaMomentOfInertia? FromInchesToTheFourth(QuantityValue? inchestothefourth)
         {
             return inchestothefourth.HasValue ? FromInchesToTheFourth(inchestothefourth.Value) : default(AreaMomentOfInertia?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AreaMomentOfInertia from nullable MetersToTheFourth.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AreaMomentOfInertia? FromMetersToTheFourth(QuantityValue? meterstothefourth)
         {
             return meterstothefourth.HasValue ? FromMetersToTheFourth(meterstothefourth.Value) : default(AreaMomentOfInertia?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AreaMomentOfInertia from nullable MillimetersToTheFourth.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AreaMomentOfInertia? FromMillimetersToTheFourth(QuantityValue? millimeterstothefourth)
         {
             return millimeterstothefourth.HasValue ? FromMillimetersToTheFourth(millimeterstothefourth.Value) : default(AreaMomentOfInertia?);
@@ -116,6 +122,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AreaMomentOfInertia unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AreaMomentOfInertia? From(QuantityValue? value, AreaMomentOfInertiaUnit fromUnit)
         {
             return value.HasValue ? new AreaMomentOfInertia((double)value.Value, fromUnit) : default(AreaMomentOfInertia?);

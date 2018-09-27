@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Centigrams.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromCentigrams(QuantityValue? centigrams)
         {
             return centigrams.HasValue ? FromCentigrams(centigrams.Value) : default(Mass?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Decagrams.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromDecagrams(QuantityValue? decagrams)
         {
             return decagrams.HasValue ? FromDecagrams(decagrams.Value) : default(Mass?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Decigrams.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromDecigrams(QuantityValue? decigrams)
         {
             return decigrams.HasValue ? FromDecigrams(decigrams.Value) : default(Mass?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Grams.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromGrams(QuantityValue? grams)
         {
             return grams.HasValue ? FromGrams(grams.Value) : default(Mass?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Hectograms.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromHectograms(QuantityValue? hectograms)
         {
             return hectograms.HasValue ? FromHectograms(hectograms.Value) : default(Mass?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Kilograms.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromKilograms(QuantityValue? kilograms)
         {
             return kilograms.HasValue ? FromKilograms(kilograms.Value) : default(Mass?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Kilopounds.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromKilopounds(QuantityValue? kilopounds)
         {
             return kilopounds.HasValue ? FromKilopounds(kilopounds.Value) : default(Mass?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Kilotonnes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromKilotonnes(QuantityValue? kilotonnes)
         {
             return kilotonnes.HasValue ? FromKilotonnes(kilotonnes.Value) : default(Mass?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable LongHundredweight.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromLongHundredweight(QuantityValue? longhundredweight)
         {
             return longhundredweight.HasValue ? FromLongHundredweight(longhundredweight.Value) : default(Mass?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable LongTons.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromLongTons(QuantityValue? longtons)
         {
             return longtons.HasValue ? FromLongTons(longtons.Value) : default(Mass?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Megapounds.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromMegapounds(QuantityValue? megapounds)
         {
             return megapounds.HasValue ? FromMegapounds(megapounds.Value) : default(Mass?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Megatonnes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromMegatonnes(QuantityValue? megatonnes)
         {
             return megatonnes.HasValue ? FromMegatonnes(megatonnes.Value) : default(Mass?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Micrograms.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromMicrograms(QuantityValue? micrograms)
         {
             return micrograms.HasValue ? FromMicrograms(micrograms.Value) : default(Mass?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Milligrams.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromMilligrams(QuantityValue? milligrams)
         {
             return milligrams.HasValue ? FromMilligrams(milligrams.Value) : default(Mass?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Nanograms.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromNanograms(QuantityValue? nanograms)
         {
             return nanograms.HasValue ? FromNanograms(nanograms.Value) : default(Mass?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Ounces.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromOunces(QuantityValue? ounces)
         {
             return ounces.HasValue ? FromOunces(ounces.Value) : default(Mass?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Pounds.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromPounds(QuantityValue? pounds)
         {
             return pounds.HasValue ? FromPounds(pounds.Value) : default(Mass?);
@@ -201,6 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable ShortHundredweight.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromShortHundredweight(QuantityValue? shorthundredweight)
         {
             return shorthundredweight.HasValue ? FromShortHundredweight(shorthundredweight.Value) : default(Mass?);
@@ -209,6 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable ShortTons.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromShortTons(QuantityValue? shorttons)
         {
             return shorttons.HasValue ? FromShortTons(shorttons.Value) : default(Mass?);
@@ -217,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Stone.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromStone(QuantityValue? stone)
         {
             return stone.HasValue ? FromStone(stone.Value) : default(Mass?);
@@ -225,6 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Mass from nullable Tonnes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Mass? FromTonnes(QuantityValue? tonnes)
         {
             return tonnes.HasValue ? FromTonnes(tonnes.Value) : default(Mass?);
@@ -236,6 +257,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Mass unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Mass? From(QuantityValue? value, MassUnit fromUnit)
         {
             return value.HasValue ? new Mass((double)value.Value, fromUnit) : default(Mass?);

@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToForceChangeRate
         public static ForceChangeRate CentinewtonsPerSecond<T>(this T value) => ForceChangeRate.FromCentinewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromCentinewtonsPerSecond(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ForceChangeRate? CentinewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromCentinewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToForceChangeRate
         public static ForceChangeRate DecanewtonsPerMinute<T>(this T value) => ForceChangeRate.FromDecanewtonsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerMinute(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ForceChangeRate? DecanewtonsPerMinute<T>(this T? value) where T : struct => ForceChangeRate.FromDecanewtonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToForceChangeRate
         public static ForceChangeRate DecanewtonsPerSecond<T>(this T value) => ForceChangeRate.FromDecanewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromDecanewtonsPerSecond(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ForceChangeRate? DecanewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromDecanewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToForceChangeRate
         public static ForceChangeRate DecinewtonsPerSecond<T>(this T value) => ForceChangeRate.FromDecinewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromDecinewtonsPerSecond(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ForceChangeRate? DecinewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromDecinewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToForceChangeRate
         public static ForceChangeRate KilonewtonsPerMinute<T>(this T value) => ForceChangeRate.FromKilonewtonsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerMinute(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ForceChangeRate? KilonewtonsPerMinute<T>(this T? value) where T : struct => ForceChangeRate.FromKilonewtonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToForceChangeRate
         public static ForceChangeRate KilonewtonsPerSecond<T>(this T value) => ForceChangeRate.FromKilonewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromKilonewtonsPerSecond(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ForceChangeRate? KilonewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromKilonewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToForceChangeRate
         public static ForceChangeRate MicronewtonsPerSecond<T>(this T value) => ForceChangeRate.FromMicronewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromMicronewtonsPerSecond(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ForceChangeRate? MicronewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromMicronewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToForceChangeRate
         public static ForceChangeRate MillinewtonsPerSecond<T>(this T value) => ForceChangeRate.FromMillinewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromMillinewtonsPerSecond(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ForceChangeRate? MillinewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromMillinewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -130,6 +138,7 @@ namespace UnitsNet.Extensions.NumberToForceChangeRate
         public static ForceChangeRate NanonewtonsPerSecond<T>(this T value) => ForceChangeRate.FromNanonewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromNanonewtonsPerSecond(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ForceChangeRate? NanonewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromNanonewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -140,6 +149,7 @@ namespace UnitsNet.Extensions.NumberToForceChangeRate
         public static ForceChangeRate NewtonsPerMinute<T>(this T value) => ForceChangeRate.FromNewtonsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerMinute(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ForceChangeRate? NewtonsPerMinute<T>(this T? value) where T : struct => ForceChangeRate.FromNewtonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -150,6 +160,7 @@ namespace UnitsNet.Extensions.NumberToForceChangeRate
         public static ForceChangeRate NewtonsPerSecond<T>(this T value) => ForceChangeRate.FromNewtonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForceChangeRate.FromNewtonsPerSecond(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ForceChangeRate? NewtonsPerSecond<T>(this T? value) where T : struct => ForceChangeRate.FromNewtonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

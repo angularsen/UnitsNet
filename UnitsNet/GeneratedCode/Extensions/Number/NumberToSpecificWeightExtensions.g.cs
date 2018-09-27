@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight KilogramsForcePerCubicCentimeter<T>(this T value) => SpecificWeight.FromKilogramsForcePerCubicCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilogramsForcePerCubicCentimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? KilogramsForcePerCubicCentimeter<T>(this T? value) where T : struct => SpecificWeight.FromKilogramsForcePerCubicCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight KilogramsForcePerCubicMeter<T>(this T value) => SpecificWeight.FromKilogramsForcePerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilogramsForcePerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? KilogramsForcePerCubicMeter<T>(this T? value) where T : struct => SpecificWeight.FromKilogramsForcePerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight KilogramsForcePerCubicMillimeter<T>(this T value) => SpecificWeight.FromKilogramsForcePerCubicMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilogramsForcePerCubicMillimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? KilogramsForcePerCubicMillimeter<T>(this T? value) where T : struct => SpecificWeight.FromKilogramsForcePerCubicMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight KilonewtonsPerCubicCentimeter<T>(this T value) => SpecificWeight.FromKilonewtonsPerCubicCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicCentimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? KilonewtonsPerCubicCentimeter<T>(this T? value) where T : struct => SpecificWeight.FromKilonewtonsPerCubicCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight KilonewtonsPerCubicMeter<T>(this T value) => SpecificWeight.FromKilonewtonsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? KilonewtonsPerCubicMeter<T>(this T? value) where T : struct => SpecificWeight.FromKilonewtonsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight KilonewtonsPerCubicMillimeter<T>(this T value) => SpecificWeight.FromKilonewtonsPerCubicMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilonewtonsPerCubicMillimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? KilonewtonsPerCubicMillimeter<T>(this T? value) where T : struct => SpecificWeight.FromKilonewtonsPerCubicMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight KilopoundsForcePerCubicFoot<T>(this T value) => SpecificWeight.FromKilopoundsForcePerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilopoundsForcePerCubicFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? KilopoundsForcePerCubicFoot<T>(this T? value) where T : struct => SpecificWeight.FromKilopoundsForcePerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight KilopoundsForcePerCubicInch<T>(this T value) => SpecificWeight.FromKilopoundsForcePerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromKilopoundsForcePerCubicInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? KilopoundsForcePerCubicInch<T>(this T? value) where T : struct => SpecificWeight.FromKilopoundsForcePerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -130,6 +138,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight MeganewtonsPerCubicMeter<T>(this T value) => SpecificWeight.FromMeganewtonsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromMeganewtonsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? MeganewtonsPerCubicMeter<T>(this T? value) where T : struct => SpecificWeight.FromMeganewtonsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -140,6 +149,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight NewtonsPerCubicCentimeter<T>(this T value) => SpecificWeight.FromNewtonsPerCubicCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicCentimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? NewtonsPerCubicCentimeter<T>(this T? value) where T : struct => SpecificWeight.FromNewtonsPerCubicCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -150,6 +160,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight NewtonsPerCubicMeter<T>(this T value) => SpecificWeight.FromNewtonsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? NewtonsPerCubicMeter<T>(this T? value) where T : struct => SpecificWeight.FromNewtonsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -160,6 +171,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight NewtonsPerCubicMillimeter<T>(this T value) => SpecificWeight.FromNewtonsPerCubicMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromNewtonsPerCubicMillimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? NewtonsPerCubicMillimeter<T>(this T? value) where T : struct => SpecificWeight.FromNewtonsPerCubicMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -170,6 +182,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight PoundsForcePerCubicFoot<T>(this T value) => SpecificWeight.FromPoundsForcePerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromPoundsForcePerCubicFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? PoundsForcePerCubicFoot<T>(this T? value) where T : struct => SpecificWeight.FromPoundsForcePerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -180,6 +193,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight PoundsForcePerCubicInch<T>(this T value) => SpecificWeight.FromPoundsForcePerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromPoundsForcePerCubicInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? PoundsForcePerCubicInch<T>(this T? value) where T : struct => SpecificWeight.FromPoundsForcePerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -190,6 +204,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight TonnesForcePerCubicCentimeter<T>(this T value) => SpecificWeight.FromTonnesForcePerCubicCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicCentimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? TonnesForcePerCubicCentimeter<T>(this T? value) where T : struct => SpecificWeight.FromTonnesForcePerCubicCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -200,6 +215,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight TonnesForcePerCubicMeter<T>(this T value) => SpecificWeight.FromTonnesForcePerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? TonnesForcePerCubicMeter<T>(this T? value) where T : struct => SpecificWeight.FromTonnesForcePerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -210,6 +226,7 @@ namespace UnitsNet.Extensions.NumberToSpecificWeight
         public static SpecificWeight TonnesForcePerCubicMillimeter<T>(this T value) => SpecificWeight.FromTonnesForcePerCubicMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificWeight.FromTonnesForcePerCubicMillimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? TonnesForcePerCubicMillimeter<T>(this T? value) where T : struct => SpecificWeight.FromTonnesForcePerCubicMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

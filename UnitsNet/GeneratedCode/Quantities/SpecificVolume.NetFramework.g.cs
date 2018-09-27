@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificVolume from nullable CubicFeetPerPound.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificVolume? FromCubicFeetPerPound(QuantityValue? cubicfeetperpound)
         {
             return cubicfeetperpound.HasValue ? FromCubicFeetPerPound(cubicfeetperpound.Value) : default(SpecificVolume?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificVolume from nullable CubicMetersPerKilogram.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificVolume? FromCubicMetersPerKilogram(QuantityValue? cubicmetersperkilogram)
         {
             return cubicmetersperkilogram.HasValue ? FromCubicMetersPerKilogram(cubicmetersperkilogram.Value) : default(SpecificVolume?);
@@ -84,6 +86,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificVolume unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificVolume? From(QuantityValue? value, SpecificVolumeUnit fromUnit)
         {
             return value.HasValue ? new SpecificVolume((double)value.Value, fromUnit) : default(SpecificVolume?);

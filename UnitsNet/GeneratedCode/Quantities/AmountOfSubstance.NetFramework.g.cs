@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Centimoles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromCentimoles(QuantityValue? centimoles)
         {
             return centimoles.HasValue ? FromCentimoles(centimoles.Value) : default(AmountOfSubstance?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable CentipoundMoles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromCentipoundMoles(QuantityValue? centipoundmoles)
         {
             return centipoundmoles.HasValue ? FromCentipoundMoles(centipoundmoles.Value) : default(AmountOfSubstance?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Decimoles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromDecimoles(QuantityValue? decimoles)
         {
             return decimoles.HasValue ? FromDecimoles(decimoles.Value) : default(AmountOfSubstance?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable DecipoundMoles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromDecipoundMoles(QuantityValue? decipoundmoles)
         {
             return decipoundmoles.HasValue ? FromDecipoundMoles(decipoundmoles.Value) : default(AmountOfSubstance?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Kilomoles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromKilomoles(QuantityValue? kilomoles)
         {
             return kilomoles.HasValue ? FromKilomoles(kilomoles.Value) : default(AmountOfSubstance?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable KilopoundMoles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromKilopoundMoles(QuantityValue? kilopoundmoles)
         {
             return kilopoundmoles.HasValue ? FromKilopoundMoles(kilopoundmoles.Value) : default(AmountOfSubstance?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Micromoles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromMicromoles(QuantityValue? micromoles)
         {
             return micromoles.HasValue ? FromMicromoles(micromoles.Value) : default(AmountOfSubstance?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable MicropoundMoles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromMicropoundMoles(QuantityValue? micropoundmoles)
         {
             return micropoundmoles.HasValue ? FromMicropoundMoles(micropoundmoles.Value) : default(AmountOfSubstance?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Millimoles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromMillimoles(QuantityValue? millimoles)
         {
             return millimoles.HasValue ? FromMillimoles(millimoles.Value) : default(AmountOfSubstance?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable MillipoundMoles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromMillipoundMoles(QuantityValue? millipoundmoles)
         {
             return millipoundmoles.HasValue ? FromMillipoundMoles(millipoundmoles.Value) : default(AmountOfSubstance?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Moles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromMoles(QuantityValue? moles)
         {
             return moles.HasValue ? FromMoles(moles.Value) : default(AmountOfSubstance?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Nanomoles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromNanomoles(QuantityValue? nanomoles)
         {
             return nanomoles.HasValue ? FromNanomoles(nanomoles.Value) : default(AmountOfSubstance?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable NanopoundMoles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromNanopoundMoles(QuantityValue? nanopoundmoles)
         {
             return nanopoundmoles.HasValue ? FromNanopoundMoles(nanopoundmoles.Value) : default(AmountOfSubstance?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmountOfSubstance from nullable PoundMoles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmountOfSubstance? FromPoundMoles(QuantityValue? poundmoles)
         {
             return poundmoles.HasValue ? FromPoundMoles(poundmoles.Value) : default(AmountOfSubstance?);
@@ -180,6 +194,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AmountOfSubstance unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? From(QuantityValue? value, AmountOfSubstanceUnit fromUnit)
         {
             return value.HasValue ? new AmountOfSubstance((double)value.Value, fromUnit) : default(AmountOfSubstance?);

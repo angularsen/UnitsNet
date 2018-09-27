@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToMolarEntropy
         public static MolarEntropy JoulesPerMoleKelvin<T>(this T value) => MolarEntropy.FromJoulesPerMoleKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarEntropy.FromJoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MolarEntropy? JoulesPerMoleKelvin<T>(this T? value) where T : struct => MolarEntropy.FromJoulesPerMoleKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToMolarEntropy
         public static MolarEntropy KilojoulesPerMoleKelvin<T>(this T value) => MolarEntropy.FromKilojoulesPerMoleKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarEntropy.FromKilojoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MolarEntropy? KilojoulesPerMoleKelvin<T>(this T? value) where T : struct => MolarEntropy.FromKilojoulesPerMoleKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToMolarEntropy
         public static MolarEntropy MegajoulesPerMoleKelvin<T>(this T value) => MolarEntropy.FromMegajoulesPerMoleKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarEntropy.FromMegajoulesPerMoleKelvin(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MolarEntropy? MegajoulesPerMoleKelvin<T>(this T? value) where T : struct => MolarEntropy.FromMegajoulesPerMoleKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

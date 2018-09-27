@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToElectricAdmittance
         public static ElectricAdmittance Microsiemens<T>(this T value) => ElectricAdmittance.FromMicrosiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromMicrosiemens(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricAdmittance? Microsiemens<T>(this T? value) where T : struct => ElectricAdmittance.FromMicrosiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToElectricAdmittance
         public static ElectricAdmittance Millisiemens<T>(this T value) => ElectricAdmittance.FromMillisiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromMillisiemens(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricAdmittance? Millisiemens<T>(this T? value) where T : struct => ElectricAdmittance.FromMillisiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToElectricAdmittance
         public static ElectricAdmittance Nanosiemens<T>(this T value) => ElectricAdmittance.FromNanosiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromNanosiemens(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricAdmittance? Nanosiemens<T>(this T? value) where T : struct => ElectricAdmittance.FromNanosiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToElectricAdmittance
         public static ElectricAdmittance Siemens<T>(this T value) => ElectricAdmittance.FromSiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricAdmittance.FromSiemens(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricAdmittance? Siemens<T>(this T? value) where T : struct => ElectricAdmittance.FromSiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

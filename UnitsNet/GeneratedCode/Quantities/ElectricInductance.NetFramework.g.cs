@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricInductance from nullable Henries.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricInductance? FromHenries(QuantityValue? henries)
         {
             return henries.HasValue ? FromHenries(henries.Value) : default(ElectricInductance?);
@@ -76,6 +77,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricInductance unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricInductance? From(QuantityValue? value, ElectricInductanceUnit fromUnit)
         {
             return value.HasValue ? new ElectricInductance((double)value.Value, fromUnit) : default(ElectricInductance?);

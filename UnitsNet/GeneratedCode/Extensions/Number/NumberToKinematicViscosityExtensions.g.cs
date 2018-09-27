@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToKinematicViscosity
         public static KinematicViscosity Centistokes<T>(this T value) => KinematicViscosity.FromCentistokes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="KinematicViscosity.FromCentistokes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static KinematicViscosity? Centistokes<T>(this T? value) where T : struct => KinematicViscosity.FromCentistokes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToKinematicViscosity
         public static KinematicViscosity Decistokes<T>(this T value) => KinematicViscosity.FromDecistokes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="KinematicViscosity.FromDecistokes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static KinematicViscosity? Decistokes<T>(this T? value) where T : struct => KinematicViscosity.FromDecistokes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToKinematicViscosity
         public static KinematicViscosity Kilostokes<T>(this T value) => KinematicViscosity.FromKilostokes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="KinematicViscosity.FromKilostokes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static KinematicViscosity? Kilostokes<T>(this T? value) where T : struct => KinematicViscosity.FromKilostokes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToKinematicViscosity
         public static KinematicViscosity Microstokes<T>(this T value) => KinematicViscosity.FromMicrostokes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="KinematicViscosity.FromMicrostokes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static KinematicViscosity? Microstokes<T>(this T? value) where T : struct => KinematicViscosity.FromMicrostokes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToKinematicViscosity
         public static KinematicViscosity Millistokes<T>(this T value) => KinematicViscosity.FromMillistokes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="KinematicViscosity.FromMillistokes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static KinematicViscosity? Millistokes<T>(this T? value) where T : struct => KinematicViscosity.FromMillistokes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToKinematicViscosity
         public static KinematicViscosity Nanostokes<T>(this T value) => KinematicViscosity.FromNanostokes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="KinematicViscosity.FromNanostokes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static KinematicViscosity? Nanostokes<T>(this T? value) where T : struct => KinematicViscosity.FromNanostokes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToKinematicViscosity
         public static KinematicViscosity SquareMetersPerSecond<T>(this T value) => KinematicViscosity.FromSquareMetersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="KinematicViscosity.FromSquareMetersPerSecond(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static KinematicViscosity? SquareMetersPerSecond<T>(this T? value) where T : struct => KinematicViscosity.FromSquareMetersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToKinematicViscosity
         public static KinematicViscosity Stokes<T>(this T value) => KinematicViscosity.FromStokes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="KinematicViscosity.FromStokes(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static KinematicViscosity? Stokes<T>(this T? value) where T : struct => KinematicViscosity.FromStokes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

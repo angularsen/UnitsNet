@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalStiffnessPerLength from nullable KilonewtonMetersPerRadianPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalStiffnessPerLength? FromKilonewtonMetersPerRadianPerMeter(QuantityValue? kilonewtonmetersperradianpermeter)
         {
             return kilonewtonmetersperradianpermeter.HasValue ? FromKilonewtonMetersPerRadianPerMeter(kilonewtonmetersperradianpermeter.Value) : default(RotationalStiffnessPerLength?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalStiffnessPerLength from nullable MeganewtonMetersPerRadianPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalStiffnessPerLength? FromMeganewtonMetersPerRadianPerMeter(QuantityValue? meganewtonmetersperradianpermeter)
         {
             return meganewtonmetersperradianpermeter.HasValue ? FromMeganewtonMetersPerRadianPerMeter(meganewtonmetersperradianpermeter.Value) : default(RotationalStiffnessPerLength?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalStiffnessPerLength from nullable NewtonMetersPerRadianPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalStiffnessPerLength? FromNewtonMetersPerRadianPerMeter(QuantityValue? newtonmetersperradianpermeter)
         {
             return newtonmetersperradianpermeter.HasValue ? FromNewtonMetersPerRadianPerMeter(newtonmetersperradianpermeter.Value) : default(RotationalStiffnessPerLength?);
@@ -92,6 +95,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RotationalStiffnessPerLength unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static RotationalStiffnessPerLength? From(QuantityValue? value, RotationalStiffnessPerLengthUnit fromUnit)
         {
             return value.HasValue ? new RotationalStiffnessPerLength((double)value.Value, fromUnit) : default(RotationalStiffnessPerLength?);

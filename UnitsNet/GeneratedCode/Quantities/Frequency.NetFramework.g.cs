@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Frequency from nullable CyclesPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Frequency? FromCyclesPerHour(QuantityValue? cyclesperhour)
         {
             return cyclesperhour.HasValue ? FromCyclesPerHour(cyclesperhour.Value) : default(Frequency?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Frequency from nullable CyclesPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Frequency? FromCyclesPerMinute(QuantityValue? cyclesperminute)
         {
             return cyclesperminute.HasValue ? FromCyclesPerMinute(cyclesperminute.Value) : default(Frequency?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Frequency from nullable Gigahertz.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Frequency? FromGigahertz(QuantityValue? gigahertz)
         {
             return gigahertz.HasValue ? FromGigahertz(gigahertz.Value) : default(Frequency?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Frequency from nullable Hertz.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Frequency? FromHertz(QuantityValue? hertz)
         {
             return hertz.HasValue ? FromHertz(hertz.Value) : default(Frequency?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Frequency from nullable Kilohertz.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Frequency? FromKilohertz(QuantityValue? kilohertz)
         {
             return kilohertz.HasValue ? FromKilohertz(kilohertz.Value) : default(Frequency?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Frequency from nullable Megahertz.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Frequency? FromMegahertz(QuantityValue? megahertz)
         {
             return megahertz.HasValue ? FromMegahertz(megahertz.Value) : default(Frequency?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Frequency from nullable RadiansPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Frequency? FromRadiansPerSecond(QuantityValue? radianspersecond)
         {
             return radianspersecond.HasValue ? FromRadiansPerSecond(radianspersecond.Value) : default(Frequency?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Frequency from nullable Terahertz.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Frequency? FromTerahertz(QuantityValue? terahertz)
         {
             return terahertz.HasValue ? FromTerahertz(terahertz.Value) : default(Frequency?);
@@ -132,6 +140,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Frequency unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Frequency? From(QuantityValue? value, FrequencyUnit fromUnit)
         {
             return value.HasValue ? new Frequency((double)value.Value, fromUnit) : default(Frequency?);

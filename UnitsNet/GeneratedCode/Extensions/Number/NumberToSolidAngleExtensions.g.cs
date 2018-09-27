@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToSolidAngle
         public static SolidAngle Steradians<T>(this T value) => SolidAngle.FromSteradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SolidAngle? Steradians<T>(this T? value) where T : struct => SolidAngle.FromSteradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

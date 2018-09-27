@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToElectricPotentialDc
         public static ElectricPotentialDc KilovoltsDc<T>(this T value) => ElectricPotentialDc.FromKilovoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromKilovoltsDc(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricPotentialDc? KilovoltsDc<T>(this T? value) where T : struct => ElectricPotentialDc.FromKilovoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToElectricPotentialDc
         public static ElectricPotentialDc MegavoltsDc<T>(this T value) => ElectricPotentialDc.FromMegavoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromMegavoltsDc(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricPotentialDc? MegavoltsDc<T>(this T? value) where T : struct => ElectricPotentialDc.FromMegavoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToElectricPotentialDc
         public static ElectricPotentialDc MicrovoltsDc<T>(this T value) => ElectricPotentialDc.FromMicrovoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromMicrovoltsDc(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricPotentialDc? MicrovoltsDc<T>(this T? value) where T : struct => ElectricPotentialDc.FromMicrovoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToElectricPotentialDc
         public static ElectricPotentialDc MillivoltsDc<T>(this T value) => ElectricPotentialDc.FromMillivoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromMillivoltsDc(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricPotentialDc? MillivoltsDc<T>(this T? value) where T : struct => ElectricPotentialDc.FromMillivoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToElectricPotentialDc
         public static ElectricPotentialDc VoltsDc<T>(this T value) => ElectricPotentialDc.FromVoltsDc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialDc.FromVoltsDc(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricPotentialDc? VoltsDc<T>(this T? value) where T : struct => ElectricPotentialDc.FromVoltsDc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

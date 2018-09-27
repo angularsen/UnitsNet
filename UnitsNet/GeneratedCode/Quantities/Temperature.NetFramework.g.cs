@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesCelsius.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesCelsius(QuantityValue? degreescelsius)
         {
             return degreescelsius.HasValue ? FromDegreesCelsius(degreescelsius.Value) : default(Temperature?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesDelisle.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesDelisle(QuantityValue? degreesdelisle)
         {
             return degreesdelisle.HasValue ? FromDegreesDelisle(degreesdelisle.Value) : default(Temperature?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesFahrenheit.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesFahrenheit(QuantityValue? degreesfahrenheit)
         {
             return degreesfahrenheit.HasValue ? FromDegreesFahrenheit(degreesfahrenheit.Value) : default(Temperature?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesNewton.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesNewton(QuantityValue? degreesnewton)
         {
             return degreesnewton.HasValue ? FromDegreesNewton(degreesnewton.Value) : default(Temperature?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesRankine.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesRankine(QuantityValue? degreesrankine)
         {
             return degreesrankine.HasValue ? FromDegreesRankine(degreesrankine.Value) : default(Temperature?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesReaumur.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesReaumur(QuantityValue? degreesreaumur)
         {
             return degreesreaumur.HasValue ? FromDegreesReaumur(degreesreaumur.Value) : default(Temperature?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesRoemer.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesRoemer(QuantityValue? degreesroemer)
         {
             return degreesroemer.HasValue ? FromDegreesRoemer(degreesroemer.Value) : default(Temperature?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable Kelvins.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromKelvins(QuantityValue? kelvins)
         {
             return kelvins.HasValue ? FromKelvins(kelvins.Value) : default(Temperature?);
@@ -132,6 +140,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Temperature unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Temperature? From(QuantityValue? value, TemperatureUnit fromUnit)
         {
             return value.HasValue ? new Temperature((double)value.Value, fromUnit) : default(Temperature?);

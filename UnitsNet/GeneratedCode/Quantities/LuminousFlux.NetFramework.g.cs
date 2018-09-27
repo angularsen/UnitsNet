@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable LuminousFlux from nullable Lumens.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static LuminousFlux? FromLumens(QuantityValue? lumens)
         {
             return lumens.HasValue ? FromLumens(lumens.Value) : default(LuminousFlux?);
@@ -76,6 +77,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LuminousFlux unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static LuminousFlux? From(QuantityValue? value, LuminousFluxUnit fromUnit)
         {
             return value.HasValue ? new LuminousFlux((double)value.Value, fromUnit) : default(LuminousFlux?);

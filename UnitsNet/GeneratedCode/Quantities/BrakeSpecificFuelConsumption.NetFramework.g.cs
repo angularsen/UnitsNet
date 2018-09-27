@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BrakeSpecificFuelConsumption from nullable GramsPerKiloWattHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BrakeSpecificFuelConsumption? FromGramsPerKiloWattHour(QuantityValue? gramsperkilowatthour)
         {
             return gramsperkilowatthour.HasValue ? FromGramsPerKiloWattHour(gramsperkilowatthour.Value) : default(BrakeSpecificFuelConsumption?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BrakeSpecificFuelConsumption from nullable KilogramsPerJoule.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BrakeSpecificFuelConsumption? FromKilogramsPerJoule(QuantityValue? kilogramsperjoule)
         {
             return kilogramsperjoule.HasValue ? FromKilogramsPerJoule(kilogramsperjoule.Value) : default(BrakeSpecificFuelConsumption?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BrakeSpecificFuelConsumption from nullable PoundsPerMechanicalHorsepowerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BrakeSpecificFuelConsumption? FromPoundsPerMechanicalHorsepowerHour(QuantityValue? poundspermechanicalhorsepowerhour)
         {
             return poundspermechanicalhorsepowerhour.HasValue ? FromPoundsPerMechanicalHorsepowerHour(poundspermechanicalhorsepowerhour.Value) : default(BrakeSpecificFuelConsumption?);
@@ -92,6 +95,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>BrakeSpecificFuelConsumption unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static BrakeSpecificFuelConsumption? From(QuantityValue? value, BrakeSpecificFuelConsumptionUnit fromUnit)
         {
             return value.HasValue ? new BrakeSpecificFuelConsumption((double)value.Value, fromUnit) : default(BrakeSpecificFuelConsumption?);
