@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToReactivePower
         public static ReactivePower GigavoltamperesReactive<T>(this T value) => ReactivePower.FromGigavoltamperesReactive(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactivePower.FromGigavoltamperesReactive(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ReactivePower? GigavoltamperesReactive<T>(this T? value) where T : struct => ReactivePower.FromGigavoltamperesReactive(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToReactivePower
         public static ReactivePower KilovoltamperesReactive<T>(this T value) => ReactivePower.FromKilovoltamperesReactive(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactivePower.FromKilovoltamperesReactive(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ReactivePower? KilovoltamperesReactive<T>(this T? value) where T : struct => ReactivePower.FromKilovoltamperesReactive(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToReactivePower
         public static ReactivePower MegavoltamperesReactive<T>(this T value) => ReactivePower.FromMegavoltamperesReactive(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactivePower.FromMegavoltamperesReactive(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ReactivePower? MegavoltamperesReactive<T>(this T? value) where T : struct => ReactivePower.FromMegavoltamperesReactive(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToReactivePower
         public static ReactivePower VoltamperesReactive<T>(this T value) => ReactivePower.FromVoltamperesReactive(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactivePower.FromVoltamperesReactive(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ReactivePower? VoltamperesReactive<T>(this T? value) where T : struct => ReactivePower.FromVoltamperesReactive(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

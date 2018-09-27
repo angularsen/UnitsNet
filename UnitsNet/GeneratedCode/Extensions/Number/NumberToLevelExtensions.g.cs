@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToLevel
         public static Level Decibels<T>(this T value) => Level.FromDecibels(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Level.FromDecibels(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Level? Decibels<T>(this T? value) where T : struct => Level.FromDecibels(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToLevel
         public static Level Nepers<T>(this T value) => Level.FromNepers(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Level.FromNepers(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Level? Nepers<T>(this T? value) where T : struct => Level.FromNepers(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

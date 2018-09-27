@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrentGradient from nullable AmperesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricCurrentGradient? FromAmperesPerSecond(QuantityValue? amperespersecond)
         {
             return amperespersecond.HasValue ? FromAmperesPerSecond(amperespersecond.Value) : default(ElectricCurrentGradient?);
@@ -76,6 +77,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCurrentGradient unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricCurrentGradient? From(QuantityValue? value, ElectricCurrentGradientUnit fromUnit)
         {
             return value.HasValue ? new ElectricCurrentGradient((double)value.Value, fromUnit) : default(ElectricCurrentGradient?);

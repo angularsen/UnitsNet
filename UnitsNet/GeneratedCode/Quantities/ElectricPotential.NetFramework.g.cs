@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotential from nullable Kilovolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricPotential? FromKilovolts(QuantityValue? kilovolts)
         {
             return kilovolts.HasValue ? FromKilovolts(kilovolts.Value) : default(ElectricPotential?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotential from nullable Megavolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricPotential? FromMegavolts(QuantityValue? megavolts)
         {
             return megavolts.HasValue ? FromMegavolts(megavolts.Value) : default(ElectricPotential?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotential from nullable Microvolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricPotential? FromMicrovolts(QuantityValue? microvolts)
         {
             return microvolts.HasValue ? FromMicrovolts(microvolts.Value) : default(ElectricPotential?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotential from nullable Millivolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricPotential? FromMillivolts(QuantityValue? millivolts)
         {
             return millivolts.HasValue ? FromMillivolts(millivolts.Value) : default(ElectricPotential?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotential from nullable Volts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricPotential? FromVolts(QuantityValue? volts)
         {
             return volts.HasValue ? FromVolts(volts.Value) : default(ElectricPotential?);
@@ -108,6 +113,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricPotential unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricPotential? From(QuantityValue? value, ElectricPotentialUnit fromUnit)
         {
             return value.HasValue ? new ElectricPotential((double)value.Value, fromUnit) : default(ElectricPotential?);

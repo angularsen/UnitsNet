@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PressureChangeRate from nullable AtmospheresPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PressureChangeRate? FromAtmospheresPerSecond(QuantityValue? atmospherespersecond)
         {
             return atmospherespersecond.HasValue ? FromAtmospheresPerSecond(atmospherespersecond.Value) : default(PressureChangeRate?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PressureChangeRate from nullable KilopascalsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PressureChangeRate? FromKilopascalsPerSecond(QuantityValue? kilopascalspersecond)
         {
             return kilopascalspersecond.HasValue ? FromKilopascalsPerSecond(kilopascalspersecond.Value) : default(PressureChangeRate?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PressureChangeRate from nullable MegapascalsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PressureChangeRate? FromMegapascalsPerSecond(QuantityValue? megapascalspersecond)
         {
             return megapascalspersecond.HasValue ? FromMegapascalsPerSecond(megapascalspersecond.Value) : default(PressureChangeRate?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PressureChangeRate from nullable PascalsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PressureChangeRate? FromPascalsPerSecond(QuantityValue? pascalspersecond)
         {
             return pascalspersecond.HasValue ? FromPascalsPerSecond(pascalspersecond.Value) : default(PressureChangeRate?);
@@ -100,6 +104,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>PressureChangeRate unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PressureChangeRate? From(QuantityValue? value, PressureChangeRateUnit fromUnit)
         {
             return value.HasValue ? new PressureChangeRate((double)value.Value, fromUnit) : default(PressureChangeRate?);

@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicCentimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromKilogramsForcePerCubicCentimeter(QuantityValue? kilogramsforcepercubiccentimeter)
         {
             return kilogramsforcepercubiccentimeter.HasValue ? FromKilogramsForcePerCubicCentimeter(kilogramsforcepercubiccentimeter.Value) : default(SpecificWeight?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromKilogramsForcePerCubicMeter(QuantityValue? kilogramsforcepercubicmeter)
         {
             return kilogramsforcepercubicmeter.HasValue ? FromKilogramsForcePerCubicMeter(kilogramsforcepercubicmeter.Value) : default(SpecificWeight?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilogramsForcePerCubicMillimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromKilogramsForcePerCubicMillimeter(QuantityValue? kilogramsforcepercubicmillimeter)
         {
             return kilogramsforcepercubicmillimeter.HasValue ? FromKilogramsForcePerCubicMillimeter(kilogramsforcepercubicmillimeter.Value) : default(SpecificWeight?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicCentimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromKilonewtonsPerCubicCentimeter(QuantityValue? kilonewtonspercubiccentimeter)
         {
             return kilonewtonspercubiccentimeter.HasValue ? FromKilonewtonsPerCubicCentimeter(kilonewtonspercubiccentimeter.Value) : default(SpecificWeight?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromKilonewtonsPerCubicMeter(QuantityValue? kilonewtonspercubicmeter)
         {
             return kilonewtonspercubicmeter.HasValue ? FromKilonewtonsPerCubicMeter(kilonewtonspercubicmeter.Value) : default(SpecificWeight?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilonewtonsPerCubicMillimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromKilonewtonsPerCubicMillimeter(QuantityValue? kilonewtonspercubicmillimeter)
         {
             return kilonewtonspercubicmillimeter.HasValue ? FromKilonewtonsPerCubicMillimeter(kilonewtonspercubicmillimeter.Value) : default(SpecificWeight?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromKilopoundsForcePerCubicFoot(QuantityValue? kilopoundsforcepercubicfoot)
         {
             return kilopoundsforcepercubicfoot.HasValue ? FromKilopoundsForcePerCubicFoot(kilopoundsforcepercubicfoot.Value) : default(SpecificWeight?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable KilopoundsForcePerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromKilopoundsForcePerCubicInch(QuantityValue? kilopoundsforcepercubicinch)
         {
             return kilopoundsforcepercubicinch.HasValue ? FromKilopoundsForcePerCubicInch(kilopoundsforcepercubicinch.Value) : default(SpecificWeight?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable MeganewtonsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromMeganewtonsPerCubicMeter(QuantityValue? meganewtonspercubicmeter)
         {
             return meganewtonspercubicmeter.HasValue ? FromMeganewtonsPerCubicMeter(meganewtonspercubicmeter.Value) : default(SpecificWeight?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable NewtonsPerCubicCentimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromNewtonsPerCubicCentimeter(QuantityValue? newtonspercubiccentimeter)
         {
             return newtonspercubiccentimeter.HasValue ? FromNewtonsPerCubicCentimeter(newtonspercubiccentimeter.Value) : default(SpecificWeight?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromNewtonsPerCubicMeter(QuantityValue? newtonspercubicmeter)
         {
             return newtonspercubicmeter.HasValue ? FromNewtonsPerCubicMeter(newtonspercubicmeter.Value) : default(SpecificWeight?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable NewtonsPerCubicMillimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromNewtonsPerCubicMillimeter(QuantityValue? newtonspercubicmillimeter)
         {
             return newtonspercubicmillimeter.HasValue ? FromNewtonsPerCubicMillimeter(newtonspercubicmillimeter.Value) : default(SpecificWeight?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromPoundsForcePerCubicFoot(QuantityValue? poundsforcepercubicfoot)
         {
             return poundsforcepercubicfoot.HasValue ? FromPoundsForcePerCubicFoot(poundsforcepercubicfoot.Value) : default(SpecificWeight?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable PoundsForcePerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromPoundsForcePerCubicInch(QuantityValue? poundsforcepercubicinch)
         {
             return poundsforcepercubicinch.HasValue ? FromPoundsForcePerCubicInch(poundsforcepercubicinch.Value) : default(SpecificWeight?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicCentimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromTonnesForcePerCubicCentimeter(QuantityValue? tonnesforcepercubiccentimeter)
         {
             return tonnesforcepercubiccentimeter.HasValue ? FromTonnesForcePerCubicCentimeter(tonnesforcepercubiccentimeter.Value) : default(SpecificWeight?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromTonnesForcePerCubicMeter(QuantityValue? tonnesforcepercubicmeter)
         {
             return tonnesforcepercubicmeter.HasValue ? FromTonnesForcePerCubicMeter(tonnesforcepercubicmeter.Value) : default(SpecificWeight?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificWeight from nullable TonnesForcePerCubicMillimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificWeight? FromTonnesForcePerCubicMillimeter(QuantityValue? tonnesforcepercubicmillimeter)
         {
             return tonnesforcepercubicmillimeter.HasValue ? FromTonnesForcePerCubicMillimeter(tonnesforcepercubicmillimeter.Value) : default(SpecificWeight?);
@@ -204,6 +221,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificWeight unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificWeight? From(QuantityValue? value, SpecificWeightUnit fromUnit)
         {
             return value.HasValue ? new SpecificWeight((double)value.Value, fromUnit) : default(SpecificWeight?);

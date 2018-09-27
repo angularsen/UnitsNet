@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable DecimalFractions.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Ratio? FromDecimalFractions(QuantityValue? decimalfractions)
         {
             return decimalfractions.HasValue ? FromDecimalFractions(decimalfractions.Value) : default(Ratio?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable PartsPerBillion.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Ratio? FromPartsPerBillion(QuantityValue? partsperbillion)
         {
             return partsperbillion.HasValue ? FromPartsPerBillion(partsperbillion.Value) : default(Ratio?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable PartsPerMillion.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Ratio? FromPartsPerMillion(QuantityValue? partspermillion)
         {
             return partspermillion.HasValue ? FromPartsPerMillion(partspermillion.Value) : default(Ratio?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable PartsPerThousand.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Ratio? FromPartsPerThousand(QuantityValue? partsperthousand)
         {
             return partsperthousand.HasValue ? FromPartsPerThousand(partsperthousand.Value) : default(Ratio?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable PartsPerTrillion.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Ratio? FromPartsPerTrillion(QuantityValue? partspertrillion)
         {
             return partspertrillion.HasValue ? FromPartsPerTrillion(partspertrillion.Value) : default(Ratio?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable Percent.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Ratio? FromPercent(QuantityValue? percent)
         {
             return percent.HasValue ? FromPercent(percent.Value) : default(Ratio?);
@@ -116,6 +122,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Ratio unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Ratio? From(QuantityValue? value, RatioUnit fromUnit)
         {
             return value.HasValue ? new Ratio((double)value.Value, fromUnit) : default(Ratio?);

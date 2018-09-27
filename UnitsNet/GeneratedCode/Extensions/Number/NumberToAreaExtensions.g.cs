@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToArea
         public static Area Acres<T>(this T value) => Area.FromAcres(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromAcres(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? Acres<T>(this T? value) where T : struct => Area.FromAcres(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToArea
         public static Area Hectares<T>(this T value) => Area.FromHectares(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromHectares(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? Hectares<T>(this T? value) where T : struct => Area.FromHectares(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToArea
         public static Area SquareCentimeters<T>(this T value) => Area.FromSquareCentimeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareCentimeters(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? SquareCentimeters<T>(this T? value) where T : struct => Area.FromSquareCentimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToArea
         public static Area SquareDecimeters<T>(this T value) => Area.FromSquareDecimeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareDecimeters(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? SquareDecimeters<T>(this T? value) where T : struct => Area.FromSquareDecimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToArea
         public static Area SquareFeet<T>(this T value) => Area.FromSquareFeet(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareFeet(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? SquareFeet<T>(this T? value) where T : struct => Area.FromSquareFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToArea
         public static Area SquareInches<T>(this T value) => Area.FromSquareInches(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareInches(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? SquareInches<T>(this T? value) where T : struct => Area.FromSquareInches(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToArea
         public static Area SquareKilometers<T>(this T value) => Area.FromSquareKilometers(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareKilometers(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? SquareKilometers<T>(this T? value) where T : struct => Area.FromSquareKilometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToArea
         public static Area SquareMeters<T>(this T value) => Area.FromSquareMeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareMeters(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? SquareMeters<T>(this T? value) where T : struct => Area.FromSquareMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -130,6 +138,7 @@ namespace UnitsNet.Extensions.NumberToArea
         public static Area SquareMicrometers<T>(this T value) => Area.FromSquareMicrometers(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareMicrometers(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? SquareMicrometers<T>(this T? value) where T : struct => Area.FromSquareMicrometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -140,6 +149,7 @@ namespace UnitsNet.Extensions.NumberToArea
         public static Area SquareMiles<T>(this T value) => Area.FromSquareMiles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareMiles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? SquareMiles<T>(this T? value) where T : struct => Area.FromSquareMiles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -150,6 +160,7 @@ namespace UnitsNet.Extensions.NumberToArea
         public static Area SquareMillimeters<T>(this T value) => Area.FromSquareMillimeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareMillimeters(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? SquareMillimeters<T>(this T? value) where T : struct => Area.FromSquareMillimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -160,6 +171,7 @@ namespace UnitsNet.Extensions.NumberToArea
         public static Area SquareYards<T>(this T value) => Area.FromSquareYards(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareYards(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? SquareYards<T>(this T? value) where T : struct => Area.FromSquareYards(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -170,6 +182,7 @@ namespace UnitsNet.Extensions.NumberToArea
         public static Area UsSurveySquareFeet<T>(this T value) => Area.FromUsSurveySquareFeet(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromUsSurveySquareFeet(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Area? UsSurveySquareFeet<T>(this T? value) where T : struct => Area.FromUsSurveySquareFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

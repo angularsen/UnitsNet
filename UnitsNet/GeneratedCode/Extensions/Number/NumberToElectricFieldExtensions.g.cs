@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToElectricField
         public static ElectricField VoltsPerMeter<T>(this T value) => ElectricField.FromVoltsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricField.FromVoltsPerMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricField? VoltsPerMeter<T>(this T? value) where T : struct => ElectricField.FromVoltsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

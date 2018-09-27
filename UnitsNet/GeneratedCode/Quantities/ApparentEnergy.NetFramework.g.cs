@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ApparentEnergy from nullable KilovoltampereHours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ApparentEnergy? FromKilovoltampereHours(QuantityValue? kilovoltamperehours)
         {
             return kilovoltamperehours.HasValue ? FromKilovoltampereHours(kilovoltamperehours.Value) : default(ApparentEnergy?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ApparentEnergy from nullable MegavoltampereHours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ApparentEnergy? FromMegavoltampereHours(QuantityValue? megavoltamperehours)
         {
             return megavoltamperehours.HasValue ? FromMegavoltampereHours(megavoltamperehours.Value) : default(ApparentEnergy?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ApparentEnergy from nullable VoltampereHours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ApparentEnergy? FromVoltampereHours(QuantityValue? voltamperehours)
         {
             return voltamperehours.HasValue ? FromVoltampereHours(voltamperehours.Value) : default(ApparentEnergy?);
@@ -92,6 +95,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ApparentEnergy unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ApparentEnergy? From(QuantityValue? value, ApparentEnergyUnit fromUnit)
         {
             return value.HasValue ? new ApparentEnergy((double)value.Value, fromUnit) : default(ApparentEnergy?);

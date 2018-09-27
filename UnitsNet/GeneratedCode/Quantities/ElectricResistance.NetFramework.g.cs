@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricResistance from nullable Kiloohms.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricResistance? FromKiloohms(QuantityValue? kiloohms)
         {
             return kiloohms.HasValue ? FromKiloohms(kiloohms.Value) : default(ElectricResistance?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricResistance from nullable Megaohms.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricResistance? FromMegaohms(QuantityValue? megaohms)
         {
             return megaohms.HasValue ? FromMegaohms(megaohms.Value) : default(ElectricResistance?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricResistance from nullable Milliohms.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricResistance? FromMilliohms(QuantityValue? milliohms)
         {
             return milliohms.HasValue ? FromMilliohms(milliohms.Value) : default(ElectricResistance?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricResistance from nullable Ohms.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricResistance? FromOhms(QuantityValue? ohms)
         {
             return ohms.HasValue ? FromOhms(ohms.Value) : default(ElectricResistance?);
@@ -100,6 +104,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricResistance unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricResistance? From(QuantityValue? value, ElectricResistanceUnit fromUnit)
         {
             return value.HasValue ? new ElectricResistance((double)value.Value, fromUnit) : default(ElectricResistance?);

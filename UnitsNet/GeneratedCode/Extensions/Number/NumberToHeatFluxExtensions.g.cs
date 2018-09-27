@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux BtusPerHourSquareFoot<T>(this T value) => HeatFlux.FromBtusPerHourSquareFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromBtusPerHourSquareFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? BtusPerHourSquareFoot<T>(this T? value) where T : struct => HeatFlux.FromBtusPerHourSquareFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux BtusPerMinuteSquareFoot<T>(this T value) => HeatFlux.FromBtusPerMinuteSquareFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromBtusPerMinuteSquareFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? BtusPerMinuteSquareFoot<T>(this T? value) where T : struct => HeatFlux.FromBtusPerMinuteSquareFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux BtusPerSecondSquareFoot<T>(this T value) => HeatFlux.FromBtusPerSecondSquareFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromBtusPerSecondSquareFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? BtusPerSecondSquareFoot<T>(this T? value) where T : struct => HeatFlux.FromBtusPerSecondSquareFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux BtusPerSecondSquareInch<T>(this T value) => HeatFlux.FromBtusPerSecondSquareInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromBtusPerSecondSquareInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? BtusPerSecondSquareInch<T>(this T? value) where T : struct => HeatFlux.FromBtusPerSecondSquareInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux CaloriesPerSecondSquareCentimeter<T>(this T value) => HeatFlux.FromCaloriesPerSecondSquareCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromCaloriesPerSecondSquareCentimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? CaloriesPerSecondSquareCentimeter<T>(this T? value) where T : struct => HeatFlux.FromCaloriesPerSecondSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux CentiwattsPerSquareMeter<T>(this T value) => HeatFlux.FromCentiwattsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromCentiwattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? CentiwattsPerSquareMeter<T>(this T? value) where T : struct => HeatFlux.FromCentiwattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux DeciwattsPerSquareMeter<T>(this T value) => HeatFlux.FromDeciwattsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromDeciwattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? DeciwattsPerSquareMeter<T>(this T? value) where T : struct => HeatFlux.FromDeciwattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux KilocaloriesPerHourSquareMeter<T>(this T value) => HeatFlux.FromKilocaloriesPerHourSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromKilocaloriesPerHourSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? KilocaloriesPerHourSquareMeter<T>(this T? value) where T : struct => HeatFlux.FromKilocaloriesPerHourSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -130,6 +138,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux KilocaloriesPerSecondSquareCentimeter<T>(this T value) => HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? KilocaloriesPerSecondSquareCentimeter<T>(this T? value) where T : struct => HeatFlux.FromKilocaloriesPerSecondSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -140,6 +149,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux KilowattsPerSquareMeter<T>(this T value) => HeatFlux.FromKilowattsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? KilowattsPerSquareMeter<T>(this T? value) where T : struct => HeatFlux.FromKilowattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -150,6 +160,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux MicrowattsPerSquareMeter<T>(this T value) => HeatFlux.FromMicrowattsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromMicrowattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? MicrowattsPerSquareMeter<T>(this T? value) where T : struct => HeatFlux.FromMicrowattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -160,6 +171,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux MilliwattsPerSquareMeter<T>(this T value) => HeatFlux.FromMilliwattsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromMilliwattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? MilliwattsPerSquareMeter<T>(this T? value) where T : struct => HeatFlux.FromMilliwattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -170,6 +182,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux NanowattsPerSquareMeter<T>(this T value) => HeatFlux.FromNanowattsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromNanowattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? NanowattsPerSquareMeter<T>(this T? value) where T : struct => HeatFlux.FromNanowattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -180,6 +193,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux WattsPerSquareFoot<T>(this T value) => HeatFlux.FromWattsPerSquareFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromWattsPerSquareFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? WattsPerSquareFoot<T>(this T? value) where T : struct => HeatFlux.FromWattsPerSquareFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -190,6 +204,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux WattsPerSquareInch<T>(this T value) => HeatFlux.FromWattsPerSquareInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromWattsPerSquareInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? WattsPerSquareInch<T>(this T? value) where T : struct => HeatFlux.FromWattsPerSquareInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -200,6 +215,7 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
         public static HeatFlux WattsPerSquareMeter<T>(this T value) => HeatFlux.FromWattsPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="HeatFlux.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static HeatFlux? WattsPerSquareMeter<T>(this T? value) where T : struct => HeatFlux.FromWattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable CentimetersPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromCentimetersPerHour(QuantityValue? centimetersperhour)
         {
             return centimetersperhour.HasValue ? FromCentimetersPerHour(centimetersperhour.Value) : default(Speed?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable CentimetersPerMinutes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromCentimetersPerMinutes(QuantityValue? centimetersperminutes)
         {
             return centimetersperminutes.HasValue ? FromCentimetersPerMinutes(centimetersperminutes.Value) : default(Speed?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable CentimetersPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromCentimetersPerSecond(QuantityValue? centimeterspersecond)
         {
             return centimeterspersecond.HasValue ? FromCentimetersPerSecond(centimeterspersecond.Value) : default(Speed?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable DecimetersPerMinutes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromDecimetersPerMinutes(QuantityValue? decimetersperminutes)
         {
             return decimetersperminutes.HasValue ? FromDecimetersPerMinutes(decimetersperminutes.Value) : default(Speed?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable DecimetersPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromDecimetersPerSecond(QuantityValue? decimeterspersecond)
         {
             return decimeterspersecond.HasValue ? FromDecimetersPerSecond(decimeterspersecond.Value) : default(Speed?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable FeetPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromFeetPerHour(QuantityValue? feetperhour)
         {
             return feetperhour.HasValue ? FromFeetPerHour(feetperhour.Value) : default(Speed?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable FeetPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromFeetPerMinute(QuantityValue? feetperminute)
         {
             return feetperminute.HasValue ? FromFeetPerMinute(feetperminute.Value) : default(Speed?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable FeetPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromFeetPerSecond(QuantityValue? feetpersecond)
         {
             return feetpersecond.HasValue ? FromFeetPerSecond(feetpersecond.Value) : default(Speed?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable InchesPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromInchesPerHour(QuantityValue? inchesperhour)
         {
             return inchesperhour.HasValue ? FromInchesPerHour(inchesperhour.Value) : default(Speed?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable InchesPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromInchesPerMinute(QuantityValue? inchesperminute)
         {
             return inchesperminute.HasValue ? FromInchesPerMinute(inchesperminute.Value) : default(Speed?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable InchesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromInchesPerSecond(QuantityValue? inchespersecond)
         {
             return inchespersecond.HasValue ? FromInchesPerSecond(inchespersecond.Value) : default(Speed?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable KilometersPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromKilometersPerHour(QuantityValue? kilometersperhour)
         {
             return kilometersperhour.HasValue ? FromKilometersPerHour(kilometersperhour.Value) : default(Speed?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable KilometersPerMinutes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromKilometersPerMinutes(QuantityValue? kilometersperminutes)
         {
             return kilometersperminutes.HasValue ? FromKilometersPerMinutes(kilometersperminutes.Value) : default(Speed?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable KilometersPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromKilometersPerSecond(QuantityValue? kilometerspersecond)
         {
             return kilometerspersecond.HasValue ? FromKilometersPerSecond(kilometerspersecond.Value) : default(Speed?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable Knots.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromKnots(QuantityValue? knots)
         {
             return knots.HasValue ? FromKnots(knots.Value) : default(Speed?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MetersPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromMetersPerHour(QuantityValue? metersperhour)
         {
             return metersperhour.HasValue ? FromMetersPerHour(metersperhour.Value) : default(Speed?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MetersPerMinutes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromMetersPerMinutes(QuantityValue? metersperminutes)
         {
             return metersperminutes.HasValue ? FromMetersPerMinutes(metersperminutes.Value) : default(Speed?);
@@ -201,6 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MetersPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromMetersPerSecond(QuantityValue? meterspersecond)
         {
             return meterspersecond.HasValue ? FromMetersPerSecond(meterspersecond.Value) : default(Speed?);
@@ -209,6 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MicrometersPerMinutes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromMicrometersPerMinutes(QuantityValue? micrometersperminutes)
         {
             return micrometersperminutes.HasValue ? FromMicrometersPerMinutes(micrometersperminutes.Value) : default(Speed?);
@@ -217,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MicrometersPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromMicrometersPerSecond(QuantityValue? micrometerspersecond)
         {
             return micrometerspersecond.HasValue ? FromMicrometersPerSecond(micrometerspersecond.Value) : default(Speed?);
@@ -225,6 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MilesPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromMilesPerHour(QuantityValue? milesperhour)
         {
             return milesperhour.HasValue ? FromMilesPerHour(milesperhour.Value) : default(Speed?);
@@ -233,6 +254,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MillimetersPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromMillimetersPerHour(QuantityValue? millimetersperhour)
         {
             return millimetersperhour.HasValue ? FromMillimetersPerHour(millimetersperhour.Value) : default(Speed?);
@@ -241,6 +263,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MillimetersPerMinutes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromMillimetersPerMinutes(QuantityValue? millimetersperminutes)
         {
             return millimetersperminutes.HasValue ? FromMillimetersPerMinutes(millimetersperminutes.Value) : default(Speed?);
@@ -249,6 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable MillimetersPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromMillimetersPerSecond(QuantityValue? millimeterspersecond)
         {
             return millimeterspersecond.HasValue ? FromMillimetersPerSecond(millimeterspersecond.Value) : default(Speed?);
@@ -257,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable NanometersPerMinutes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromNanometersPerMinutes(QuantityValue? nanometersperminutes)
         {
             return nanometersperminutes.HasValue ? FromNanometersPerMinutes(nanometersperminutes.Value) : default(Speed?);
@@ -265,6 +290,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable NanometersPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromNanometersPerSecond(QuantityValue? nanometerspersecond)
         {
             return nanometerspersecond.HasValue ? FromNanometersPerSecond(nanometerspersecond.Value) : default(Speed?);
@@ -273,6 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable UsSurveyFeetPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromUsSurveyFeetPerHour(QuantityValue? ussurveyfeetperhour)
         {
             return ussurveyfeetperhour.HasValue ? FromUsSurveyFeetPerHour(ussurveyfeetperhour.Value) : default(Speed?);
@@ -281,6 +308,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable UsSurveyFeetPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromUsSurveyFeetPerMinute(QuantityValue? ussurveyfeetperminute)
         {
             return ussurveyfeetperminute.HasValue ? FromUsSurveyFeetPerMinute(ussurveyfeetperminute.Value) : default(Speed?);
@@ -289,6 +317,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable UsSurveyFeetPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromUsSurveyFeetPerSecond(QuantityValue? ussurveyfeetpersecond)
         {
             return ussurveyfeetpersecond.HasValue ? FromUsSurveyFeetPerSecond(ussurveyfeetpersecond.Value) : default(Speed?);
@@ -297,6 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable YardsPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromYardsPerHour(QuantityValue? yardsperhour)
         {
             return yardsperhour.HasValue ? FromYardsPerHour(yardsperhour.Value) : default(Speed?);
@@ -305,6 +335,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable YardsPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromYardsPerMinute(QuantityValue? yardsperminute)
         {
             return yardsperminute.HasValue ? FromYardsPerMinute(yardsperminute.Value) : default(Speed?);
@@ -313,6 +344,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Speed from nullable YardsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Speed? FromYardsPerSecond(QuantityValue? yardspersecond)
         {
             return yardspersecond.HasValue ? FromYardsPerSecond(yardspersecond.Value) : default(Speed?);
@@ -324,6 +356,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Speed unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Speed? From(QuantityValue? value, SpeedUnit fromUnit)
         {
             return value.HasValue ? new Speed((double)value.Value, fromUnit) : default(Speed?);

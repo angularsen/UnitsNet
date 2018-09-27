@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Centistokes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static KinematicViscosity? FromCentistokes(QuantityValue? centistokes)
         {
             return centistokes.HasValue ? FromCentistokes(centistokes.Value) : default(KinematicViscosity?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Decistokes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static KinematicViscosity? FromDecistokes(QuantityValue? decistokes)
         {
             return decistokes.HasValue ? FromDecistokes(decistokes.Value) : default(KinematicViscosity?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Kilostokes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static KinematicViscosity? FromKilostokes(QuantityValue? kilostokes)
         {
             return kilostokes.HasValue ? FromKilostokes(kilostokes.Value) : default(KinematicViscosity?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Microstokes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static KinematicViscosity? FromMicrostokes(QuantityValue? microstokes)
         {
             return microstokes.HasValue ? FromMicrostokes(microstokes.Value) : default(KinematicViscosity?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Millistokes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static KinematicViscosity? FromMillistokes(QuantityValue? millistokes)
         {
             return millistokes.HasValue ? FromMillistokes(millistokes.Value) : default(KinematicViscosity?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Nanostokes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static KinematicViscosity? FromNanostokes(QuantityValue? nanostokes)
         {
             return nanostokes.HasValue ? FromNanostokes(nanostokes.Value) : default(KinematicViscosity?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable SquareMetersPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static KinematicViscosity? FromSquareMetersPerSecond(QuantityValue? squaremeterspersecond)
         {
             return squaremeterspersecond.HasValue ? FromSquareMetersPerSecond(squaremeterspersecond.Value) : default(KinematicViscosity?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable KinematicViscosity from nullable Stokes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static KinematicViscosity? FromStokes(QuantityValue? stokes)
         {
             return stokes.HasValue ? FromStokes(stokes.Value) : default(KinematicViscosity?);
@@ -132,6 +140,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>KinematicViscosity unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static KinematicViscosity? From(QuantityValue? value, KinematicViscosityUnit fromUnit)
         {
             return value.HasValue ? new KinematicViscosity((double)value.Value, fromUnit) : default(KinematicViscosity?);

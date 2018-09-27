@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelMicrovolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmplitudeRatio? FromDecibelMicrovolts(QuantityValue? decibelmicrovolts)
         {
             return decibelmicrovolts.HasValue ? FromDecibelMicrovolts(decibelmicrovolts.Value) : default(AmplitudeRatio?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelMillivolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmplitudeRatio? FromDecibelMillivolts(QuantityValue? decibelmillivolts)
         {
             return decibelmillivolts.HasValue ? FromDecibelMillivolts(decibelmillivolts.Value) : default(AmplitudeRatio?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelsUnloaded.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmplitudeRatio? FromDecibelsUnloaded(QuantityValue? decibelsunloaded)
         {
             return decibelsunloaded.HasValue ? FromDecibelsUnloaded(decibelsunloaded.Value) : default(AmplitudeRatio?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelVolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmplitudeRatio? FromDecibelVolts(QuantityValue? decibelvolts)
         {
             return decibelvolts.HasValue ? FromDecibelVolts(decibelvolts.Value) : default(AmplitudeRatio?);
@@ -100,6 +104,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AmplitudeRatio unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmplitudeRatio? From(QuantityValue? value, AmplitudeRatioUnit fromUnit)
         {
             return value.HasValue ? new AmplitudeRatio((double)value.Value, fromUnit) : default(AmplitudeRatio?);

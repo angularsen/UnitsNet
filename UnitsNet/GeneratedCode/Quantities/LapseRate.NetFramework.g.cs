@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable LapseRate from nullable DegreesCelciusPerKilometer.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static LapseRate? FromDegreesCelciusPerKilometer(QuantityValue? degreescelciusperkilometer)
         {
             return degreescelciusperkilometer.HasValue ? FromDegreesCelciusPerKilometer(degreescelciusperkilometer.Value) : default(LapseRate?);
@@ -76,6 +77,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LapseRate unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static LapseRate? From(QuantityValue? value, LapseRateUnit fromUnit)
         {
             return value.HasValue ? new LapseRate((double)value.Value, fromUnit) : default(LapseRate?);

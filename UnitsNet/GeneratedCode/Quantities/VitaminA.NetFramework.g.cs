@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable VitaminA from nullable InternationalUnits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static VitaminA? FromInternationalUnits(QuantityValue? internationalunits)
         {
             return internationalunits.HasValue ? FromInternationalUnits(internationalunits.Value) : default(VitaminA?);
@@ -76,6 +77,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VitaminA unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static VitaminA? From(QuantityValue? value, VitaminAUnit fromUnit)
         {
             return value.HasValue ? new VitaminA((double)value.Value, fromUnit) : default(VitaminA?);

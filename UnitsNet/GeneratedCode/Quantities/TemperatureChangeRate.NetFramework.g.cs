@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable CentidegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromCentidegreesCelsiusPerSecond(QuantityValue? centidegreescelsiuspersecond)
         {
             return centidegreescelsiuspersecond.HasValue ? FromCentidegreesCelsiusPerSecond(centidegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable DecadegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromDecadegreesCelsiusPerSecond(QuantityValue? decadegreescelsiuspersecond)
         {
             return decadegreescelsiuspersecond.HasValue ? FromDecadegreesCelsiusPerSecond(decadegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable DecidegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromDecidegreesCelsiusPerSecond(QuantityValue? decidegreescelsiuspersecond)
         {
             return decidegreescelsiuspersecond.HasValue ? FromDecidegreesCelsiusPerSecond(decidegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromDegreesCelsiusPerMinute(QuantityValue? degreescelsiusperminute)
         {
             return degreescelsiusperminute.HasValue ? FromDegreesCelsiusPerMinute(degreescelsiusperminute.Value) : default(TemperatureChangeRate?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromDegreesCelsiusPerSecond(QuantityValue? degreescelsiuspersecond)
         {
             return degreescelsiuspersecond.HasValue ? FromDegreesCelsiusPerSecond(degreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable HectodegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromHectodegreesCelsiusPerSecond(QuantityValue? hectodegreescelsiuspersecond)
         {
             return hectodegreescelsiuspersecond.HasValue ? FromHectodegreesCelsiusPerSecond(hectodegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable KilodegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromKilodegreesCelsiusPerSecond(QuantityValue? kilodegreescelsiuspersecond)
         {
             return kilodegreescelsiuspersecond.HasValue ? FromKilodegreesCelsiusPerSecond(kilodegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable MicrodegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromMicrodegreesCelsiusPerSecond(QuantityValue? microdegreescelsiuspersecond)
         {
             return microdegreescelsiuspersecond.HasValue ? FromMicrodegreesCelsiusPerSecond(microdegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable MillidegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromMillidegreesCelsiusPerSecond(QuantityValue? millidegreescelsiuspersecond)
         {
             return millidegreescelsiuspersecond.HasValue ? FromMillidegreesCelsiusPerSecond(millidegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable NanodegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromNanodegreesCelsiusPerSecond(QuantityValue? nanodegreescelsiuspersecond)
         {
             return nanodegreescelsiuspersecond.HasValue ? FromNanodegreesCelsiusPerSecond(nanodegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -148,6 +158,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>TemperatureChangeRate unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static TemperatureChangeRate? From(QuantityValue? value, TemperatureChangeRateUnit fromUnit)
         {
             return value.HasValue ? new TemperatureChangeRate((double)value.Value, fromUnit) : default(TemperatureChangeRate?);

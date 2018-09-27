@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable LinearDensity from nullable GramsPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static LinearDensity? FromGramsPerMeter(QuantityValue? gramspermeter)
         {
             return gramspermeter.HasValue ? FromGramsPerMeter(gramspermeter.Value) : default(LinearDensity?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable LinearDensity from nullable KilogramsPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static LinearDensity? FromKilogramsPerMeter(QuantityValue? kilogramspermeter)
         {
             return kilogramspermeter.HasValue ? FromKilogramsPerMeter(kilogramspermeter.Value) : default(LinearDensity?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable LinearDensity from nullable PoundsPerFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static LinearDensity? FromPoundsPerFoot(QuantityValue? poundsperfoot)
         {
             return poundsperfoot.HasValue ? FromPoundsPerFoot(poundsperfoot.Value) : default(LinearDensity?);
@@ -92,6 +95,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LinearDensity unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static LinearDensity? From(QuantityValue? value, LinearDensityUnit fromUnit)
         {
             return value.HasValue ? new LinearDensity((double)value.Value, fromUnit) : default(LinearDensity?);

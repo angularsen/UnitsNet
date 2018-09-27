@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy BritishThermalUnits<T>(this T value) => Energy.FromBritishThermalUnits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromBritishThermalUnits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? BritishThermalUnits<T>(this T? value) where T : struct => Energy.FromBritishThermalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy Calories<T>(this T value) => Energy.FromCalories(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromCalories(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? Calories<T>(this T? value) where T : struct => Energy.FromCalories(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy DecathermsEc<T>(this T value) => Energy.FromDecathermsEc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromDecathermsEc(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? DecathermsEc<T>(this T? value) where T : struct => Energy.FromDecathermsEc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy DecathermsImperial<T>(this T value) => Energy.FromDecathermsImperial(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromDecathermsImperial(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? DecathermsImperial<T>(this T? value) where T : struct => Energy.FromDecathermsImperial(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy DecathermsUs<T>(this T value) => Energy.FromDecathermsUs(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromDecathermsUs(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? DecathermsUs<T>(this T? value) where T : struct => Energy.FromDecathermsUs(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy ElectronVolts<T>(this T value) => Energy.FromElectronVolts(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromElectronVolts(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? ElectronVolts<T>(this T? value) where T : struct => Energy.FromElectronVolts(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy Ergs<T>(this T value) => Energy.FromErgs(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromErgs(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? Ergs<T>(this T? value) where T : struct => Energy.FromErgs(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy FootPounds<T>(this T value) => Energy.FromFootPounds(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromFootPounds(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? FootPounds<T>(this T? value) where T : struct => Energy.FromFootPounds(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -130,6 +138,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy GigabritishThermalUnits<T>(this T value) => Energy.FromGigabritishThermalUnits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromGigabritishThermalUnits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? GigabritishThermalUnits<T>(this T? value) where T : struct => Energy.FromGigabritishThermalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -140,6 +149,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy GigawattHours<T>(this T value) => Energy.FromGigawattHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromGigawattHours(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? GigawattHours<T>(this T? value) where T : struct => Energy.FromGigawattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -150,6 +160,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy Joules<T>(this T value) => Energy.FromJoules(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromJoules(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? Joules<T>(this T? value) where T : struct => Energy.FromJoules(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -160,6 +171,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy KilobritishThermalUnits<T>(this T value) => Energy.FromKilobritishThermalUnits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromKilobritishThermalUnits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? KilobritishThermalUnits<T>(this T? value) where T : struct => Energy.FromKilobritishThermalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -170,6 +182,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy Kilocalories<T>(this T value) => Energy.FromKilocalories(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromKilocalories(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? Kilocalories<T>(this T? value) where T : struct => Energy.FromKilocalories(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -180,6 +193,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy Kilojoules<T>(this T value) => Energy.FromKilojoules(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromKilojoules(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? Kilojoules<T>(this T? value) where T : struct => Energy.FromKilojoules(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -190,6 +204,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy KilowattHours<T>(this T value) => Energy.FromKilowattHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromKilowattHours(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? KilowattHours<T>(this T? value) where T : struct => Energy.FromKilowattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -200,6 +215,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy MegabritishThermalUnits<T>(this T value) => Energy.FromMegabritishThermalUnits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromMegabritishThermalUnits(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? MegabritishThermalUnits<T>(this T? value) where T : struct => Energy.FromMegabritishThermalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -210,6 +226,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy Megajoules<T>(this T value) => Energy.FromMegajoules(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromMegajoules(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? Megajoules<T>(this T? value) where T : struct => Energy.FromMegajoules(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -220,6 +237,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy MegawattHours<T>(this T value) => Energy.FromMegawattHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromMegawattHours(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? MegawattHours<T>(this T? value) where T : struct => Energy.FromMegawattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -230,6 +248,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy ThermsEc<T>(this T value) => Energy.FromThermsEc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromThermsEc(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? ThermsEc<T>(this T? value) where T : struct => Energy.FromThermsEc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -240,6 +259,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy ThermsImperial<T>(this T value) => Energy.FromThermsImperial(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromThermsImperial(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? ThermsImperial<T>(this T? value) where T : struct => Energy.FromThermsImperial(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -250,6 +270,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy ThermsUs<T>(this T value) => Energy.FromThermsUs(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromThermsUs(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? ThermsUs<T>(this T? value) where T : struct => Energy.FromThermsUs(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -260,6 +281,7 @@ namespace UnitsNet.Extensions.NumberToEnergy
         public static Energy WattHours<T>(this T value) => Energy.FromWattHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Energy.FromWattHours(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? WattHours<T>(this T? value) where T : struct => Energy.FromWattHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricField from nullable VoltsPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricField? FromVoltsPerMeter(QuantityValue? voltspermeter)
         {
             return voltspermeter.HasValue ? FromVoltsPerMeter(voltspermeter.Value) : default(ElectricField?);
@@ -76,6 +77,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricField unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricField? From(QuantityValue? value, ElectricFieldUnit fromUnit)
         {
             return value.HasValue ? new ElectricField((double)value.Value, fromUnit) : default(ElectricField?);

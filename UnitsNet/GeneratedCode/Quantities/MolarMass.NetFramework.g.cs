@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarMass from nullable CentigramsPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarMass? FromCentigramsPerMole(QuantityValue? centigramspermole)
         {
             return centigramspermole.HasValue ? FromCentigramsPerMole(centigramspermole.Value) : default(MolarMass?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarMass from nullable DecagramsPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarMass? FromDecagramsPerMole(QuantityValue? decagramspermole)
         {
             return decagramspermole.HasValue ? FromDecagramsPerMole(decagramspermole.Value) : default(MolarMass?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarMass from nullable DecigramsPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarMass? FromDecigramsPerMole(QuantityValue? decigramspermole)
         {
             return decigramspermole.HasValue ? FromDecigramsPerMole(decigramspermole.Value) : default(MolarMass?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarMass from nullable GramsPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarMass? FromGramsPerMole(QuantityValue? gramspermole)
         {
             return gramspermole.HasValue ? FromGramsPerMole(gramspermole.Value) : default(MolarMass?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarMass from nullable HectogramsPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarMass? FromHectogramsPerMole(QuantityValue? hectogramspermole)
         {
             return hectogramspermole.HasValue ? FromHectogramsPerMole(hectogramspermole.Value) : default(MolarMass?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarMass from nullable KilogramsPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarMass? FromKilogramsPerMole(QuantityValue? kilogramspermole)
         {
             return kilogramspermole.HasValue ? FromKilogramsPerMole(kilogramspermole.Value) : default(MolarMass?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarMass from nullable KilopoundsPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarMass? FromKilopoundsPerMole(QuantityValue? kilopoundspermole)
         {
             return kilopoundspermole.HasValue ? FromKilopoundsPerMole(kilopoundspermole.Value) : default(MolarMass?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarMass from nullable MegapoundsPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarMass? FromMegapoundsPerMole(QuantityValue? megapoundspermole)
         {
             return megapoundspermole.HasValue ? FromMegapoundsPerMole(megapoundspermole.Value) : default(MolarMass?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarMass from nullable MicrogramsPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarMass? FromMicrogramsPerMole(QuantityValue? microgramspermole)
         {
             return microgramspermole.HasValue ? FromMicrogramsPerMole(microgramspermole.Value) : default(MolarMass?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarMass from nullable MilligramsPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarMass? FromMilligramsPerMole(QuantityValue? milligramspermole)
         {
             return milligramspermole.HasValue ? FromMilligramsPerMole(milligramspermole.Value) : default(MolarMass?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarMass from nullable NanogramsPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarMass? FromNanogramsPerMole(QuantityValue? nanogramspermole)
         {
             return nanogramspermole.HasValue ? FromNanogramsPerMole(nanogramspermole.Value) : default(MolarMass?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MolarMass from nullable PoundsPerMole.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MolarMass? FromPoundsPerMole(QuantityValue? poundspermole)
         {
             return poundspermole.HasValue ? FromPoundsPerMole(poundspermole.Value) : default(MolarMass?);
@@ -164,6 +176,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MolarMass unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MolarMass? From(QuantityValue? value, MolarMassUnit fromUnit)
         {
             return value.HasValue ? new MolarMass((double)value.Value, fromUnit) : default(MolarMass?);

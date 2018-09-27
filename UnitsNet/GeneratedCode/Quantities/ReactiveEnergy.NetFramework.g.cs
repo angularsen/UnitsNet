@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ReactiveEnergy from nullable KilovoltampereReactiveHours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ReactiveEnergy? FromKilovoltampereReactiveHours(QuantityValue? kilovoltamperereactivehours)
         {
             return kilovoltamperereactivehours.HasValue ? FromKilovoltampereReactiveHours(kilovoltamperereactivehours.Value) : default(ReactiveEnergy?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ReactiveEnergy from nullable MegavoltampereReactiveHours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ReactiveEnergy? FromMegavoltampereReactiveHours(QuantityValue? megavoltamperereactivehours)
         {
             return megavoltamperereactivehours.HasValue ? FromMegavoltampereReactiveHours(megavoltamperereactivehours.Value) : default(ReactiveEnergy?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ReactiveEnergy from nullable VoltampereReactiveHours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ReactiveEnergy? FromVoltampereReactiveHours(QuantityValue? voltamperereactivehours)
         {
             return voltamperereactivehours.HasValue ? FromVoltampereReactiveHours(voltamperereactivehours.Value) : default(ReactiveEnergy?);
@@ -92,6 +95,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ReactiveEnergy unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ReactiveEnergy? From(QuantityValue? value, ReactiveEnergyUnit fromUnit)
         {
             return value.HasValue ? new ReactiveEnergy((double)value.Value, fromUnit) : default(ReactiveEnergy?);

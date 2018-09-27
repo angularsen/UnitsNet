@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity DecawattsPerCubicFoot<T>(this T value) => PowerDensity.FromDecawattsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? DecawattsPerCubicFoot<T>(this T? value) where T : struct => PowerDensity.FromDecawattsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity DecawattsPerCubicInch<T>(this T value) => PowerDensity.FromDecawattsPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? DecawattsPerCubicInch<T>(this T? value) where T : struct => PowerDensity.FromDecawattsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity DecawattsPerCubicMeter<T>(this T value) => PowerDensity.FromDecawattsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromDecawattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? DecawattsPerCubicMeter<T>(this T? value) where T : struct => PowerDensity.FromDecawattsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity DecawattsPerLiter<T>(this T value) => PowerDensity.FromDecawattsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromDecawattsPerLiter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? DecawattsPerLiter<T>(this T? value) where T : struct => PowerDensity.FromDecawattsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity DeciwattsPerCubicFoot<T>(this T value) => PowerDensity.FromDeciwattsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? DeciwattsPerCubicFoot<T>(this T? value) where T : struct => PowerDensity.FromDeciwattsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity DeciwattsPerCubicInch<T>(this T value) => PowerDensity.FromDeciwattsPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? DeciwattsPerCubicInch<T>(this T? value) where T : struct => PowerDensity.FromDeciwattsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity DeciwattsPerCubicMeter<T>(this T value) => PowerDensity.FromDeciwattsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromDeciwattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? DeciwattsPerCubicMeter<T>(this T? value) where T : struct => PowerDensity.FromDeciwattsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity DeciwattsPerLiter<T>(this T value) => PowerDensity.FromDeciwattsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromDeciwattsPerLiter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? DeciwattsPerLiter<T>(this T? value) where T : struct => PowerDensity.FromDeciwattsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -130,6 +138,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity GigawattsPerCubicFoot<T>(this T value) => PowerDensity.FromGigawattsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? GigawattsPerCubicFoot<T>(this T? value) where T : struct => PowerDensity.FromGigawattsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -140,6 +149,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity GigawattsPerCubicInch<T>(this T value) => PowerDensity.FromGigawattsPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? GigawattsPerCubicInch<T>(this T? value) where T : struct => PowerDensity.FromGigawattsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -150,6 +160,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity GigawattsPerCubicMeter<T>(this T value) => PowerDensity.FromGigawattsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromGigawattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? GigawattsPerCubicMeter<T>(this T? value) where T : struct => PowerDensity.FromGigawattsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -160,6 +171,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity GigawattsPerLiter<T>(this T value) => PowerDensity.FromGigawattsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromGigawattsPerLiter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? GigawattsPerLiter<T>(this T? value) where T : struct => PowerDensity.FromGigawattsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -170,6 +182,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity KilowattsPerCubicFoot<T>(this T value) => PowerDensity.FromKilowattsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? KilowattsPerCubicFoot<T>(this T? value) where T : struct => PowerDensity.FromKilowattsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -180,6 +193,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity KilowattsPerCubicInch<T>(this T value) => PowerDensity.FromKilowattsPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? KilowattsPerCubicInch<T>(this T? value) where T : struct => PowerDensity.FromKilowattsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -190,6 +204,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity KilowattsPerCubicMeter<T>(this T value) => PowerDensity.FromKilowattsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromKilowattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? KilowattsPerCubicMeter<T>(this T? value) where T : struct => PowerDensity.FromKilowattsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -200,6 +215,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity KilowattsPerLiter<T>(this T value) => PowerDensity.FromKilowattsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromKilowattsPerLiter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? KilowattsPerLiter<T>(this T? value) where T : struct => PowerDensity.FromKilowattsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -210,6 +226,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity MegawattsPerCubicFoot<T>(this T value) => PowerDensity.FromMegawattsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? MegawattsPerCubicFoot<T>(this T? value) where T : struct => PowerDensity.FromMegawattsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -220,6 +237,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity MegawattsPerCubicInch<T>(this T value) => PowerDensity.FromMegawattsPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? MegawattsPerCubicInch<T>(this T? value) where T : struct => PowerDensity.FromMegawattsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -230,6 +248,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity MegawattsPerCubicMeter<T>(this T value) => PowerDensity.FromMegawattsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromMegawattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? MegawattsPerCubicMeter<T>(this T? value) where T : struct => PowerDensity.FromMegawattsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -240,6 +259,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity MegawattsPerLiter<T>(this T value) => PowerDensity.FromMegawattsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromMegawattsPerLiter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? MegawattsPerLiter<T>(this T? value) where T : struct => PowerDensity.FromMegawattsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -250,6 +270,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity MicrowattsPerCubicFoot<T>(this T value) => PowerDensity.FromMicrowattsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? MicrowattsPerCubicFoot<T>(this T? value) where T : struct => PowerDensity.FromMicrowattsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -260,6 +281,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity MicrowattsPerCubicInch<T>(this T value) => PowerDensity.FromMicrowattsPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? MicrowattsPerCubicInch<T>(this T? value) where T : struct => PowerDensity.FromMicrowattsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -270,6 +292,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity MicrowattsPerCubicMeter<T>(this T value) => PowerDensity.FromMicrowattsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromMicrowattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? MicrowattsPerCubicMeter<T>(this T? value) where T : struct => PowerDensity.FromMicrowattsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -280,6 +303,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity MicrowattsPerLiter<T>(this T value) => PowerDensity.FromMicrowattsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromMicrowattsPerLiter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? MicrowattsPerLiter<T>(this T? value) where T : struct => PowerDensity.FromMicrowattsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -290,6 +314,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity MilliwattsPerCubicFoot<T>(this T value) => PowerDensity.FromMilliwattsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? MilliwattsPerCubicFoot<T>(this T? value) where T : struct => PowerDensity.FromMilliwattsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -300,6 +325,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity MilliwattsPerCubicInch<T>(this T value) => PowerDensity.FromMilliwattsPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? MilliwattsPerCubicInch<T>(this T? value) where T : struct => PowerDensity.FromMilliwattsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -310,6 +336,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity MilliwattsPerCubicMeter<T>(this T value) => PowerDensity.FromMilliwattsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromMilliwattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? MilliwattsPerCubicMeter<T>(this T? value) where T : struct => PowerDensity.FromMilliwattsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -320,6 +347,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity MilliwattsPerLiter<T>(this T value) => PowerDensity.FromMilliwattsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromMilliwattsPerLiter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? MilliwattsPerLiter<T>(this T? value) where T : struct => PowerDensity.FromMilliwattsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -330,6 +358,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity NanowattsPerCubicFoot<T>(this T value) => PowerDensity.FromNanowattsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? NanowattsPerCubicFoot<T>(this T? value) where T : struct => PowerDensity.FromNanowattsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -340,6 +369,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity NanowattsPerCubicInch<T>(this T value) => PowerDensity.FromNanowattsPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? NanowattsPerCubicInch<T>(this T? value) where T : struct => PowerDensity.FromNanowattsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -350,6 +380,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity NanowattsPerCubicMeter<T>(this T value) => PowerDensity.FromNanowattsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromNanowattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? NanowattsPerCubicMeter<T>(this T? value) where T : struct => PowerDensity.FromNanowattsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -360,6 +391,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity NanowattsPerLiter<T>(this T value) => PowerDensity.FromNanowattsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromNanowattsPerLiter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? NanowattsPerLiter<T>(this T? value) where T : struct => PowerDensity.FromNanowattsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -370,6 +402,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity PicowattsPerCubicFoot<T>(this T value) => PowerDensity.FromPicowattsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? PicowattsPerCubicFoot<T>(this T? value) where T : struct => PowerDensity.FromPicowattsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -380,6 +413,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity PicowattsPerCubicInch<T>(this T value) => PowerDensity.FromPicowattsPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? PicowattsPerCubicInch<T>(this T? value) where T : struct => PowerDensity.FromPicowattsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -390,6 +424,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity PicowattsPerCubicMeter<T>(this T value) => PowerDensity.FromPicowattsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromPicowattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? PicowattsPerCubicMeter<T>(this T? value) where T : struct => PowerDensity.FromPicowattsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -400,6 +435,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity PicowattsPerLiter<T>(this T value) => PowerDensity.FromPicowattsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromPicowattsPerLiter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? PicowattsPerLiter<T>(this T? value) where T : struct => PowerDensity.FromPicowattsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -410,6 +446,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity TerawattsPerCubicFoot<T>(this T value) => PowerDensity.FromTerawattsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? TerawattsPerCubicFoot<T>(this T? value) where T : struct => PowerDensity.FromTerawattsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -420,6 +457,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity TerawattsPerCubicInch<T>(this T value) => PowerDensity.FromTerawattsPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? TerawattsPerCubicInch<T>(this T? value) where T : struct => PowerDensity.FromTerawattsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -430,6 +468,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity TerawattsPerCubicMeter<T>(this T value) => PowerDensity.FromTerawattsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromTerawattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? TerawattsPerCubicMeter<T>(this T? value) where T : struct => PowerDensity.FromTerawattsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -440,6 +479,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity TerawattsPerLiter<T>(this T value) => PowerDensity.FromTerawattsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromTerawattsPerLiter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? TerawattsPerLiter<T>(this T? value) where T : struct => PowerDensity.FromTerawattsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -450,6 +490,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity WattsPerCubicFoot<T>(this T value) => PowerDensity.FromWattsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromWattsPerCubicFoot(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? WattsPerCubicFoot<T>(this T? value) where T : struct => PowerDensity.FromWattsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -460,6 +501,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity WattsPerCubicInch<T>(this T value) => PowerDensity.FromWattsPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromWattsPerCubicInch(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? WattsPerCubicInch<T>(this T? value) where T : struct => PowerDensity.FromWattsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -470,6 +512,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity WattsPerCubicMeter<T>(this T value) => PowerDensity.FromWattsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromWattsPerCubicMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? WattsPerCubicMeter<T>(this T? value) where T : struct => PowerDensity.FromWattsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -480,6 +523,7 @@ namespace UnitsNet.Extensions.NumberToPowerDensity
         public static PowerDensity WattsPerLiter<T>(this T value) => PowerDensity.FromWattsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="PowerDensity.FromWattsPerLiter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? WattsPerLiter<T>(this T? value) where T : struct => PowerDensity.FromWattsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

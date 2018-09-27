@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance Centimoles<T>(this T value) => AmountOfSubstance.FromCentimoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromCentimoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? Centimoles<T>(this T? value) where T : struct => AmountOfSubstance.FromCentimoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance CentipoundMoles<T>(this T value) => AmountOfSubstance.FromCentipoundMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromCentipoundMoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? CentipoundMoles<T>(this T? value) where T : struct => AmountOfSubstance.FromCentipoundMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance Decimoles<T>(this T value) => AmountOfSubstance.FromDecimoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromDecimoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? Decimoles<T>(this T? value) where T : struct => AmountOfSubstance.FromDecimoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance DecipoundMoles<T>(this T value) => AmountOfSubstance.FromDecipoundMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromDecipoundMoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? DecipoundMoles<T>(this T? value) where T : struct => AmountOfSubstance.FromDecipoundMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -90,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance Kilomoles<T>(this T value) => AmountOfSubstance.FromKilomoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromKilomoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? Kilomoles<T>(this T? value) where T : struct => AmountOfSubstance.FromKilomoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -100,6 +105,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance KilopoundMoles<T>(this T value) => AmountOfSubstance.FromKilopoundMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromKilopoundMoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? KilopoundMoles<T>(this T? value) where T : struct => AmountOfSubstance.FromKilopoundMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -110,6 +116,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance Micromoles<T>(this T value) => AmountOfSubstance.FromMicromoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromMicromoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? Micromoles<T>(this T? value) where T : struct => AmountOfSubstance.FromMicromoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -120,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance MicropoundMoles<T>(this T value) => AmountOfSubstance.FromMicropoundMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromMicropoundMoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? MicropoundMoles<T>(this T? value) where T : struct => AmountOfSubstance.FromMicropoundMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -130,6 +138,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance Millimoles<T>(this T value) => AmountOfSubstance.FromMillimoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromMillimoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? Millimoles<T>(this T? value) where T : struct => AmountOfSubstance.FromMillimoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -140,6 +149,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance MillipoundMoles<T>(this T value) => AmountOfSubstance.FromMillipoundMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromMillipoundMoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? MillipoundMoles<T>(this T? value) where T : struct => AmountOfSubstance.FromMillipoundMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -150,6 +160,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance Moles<T>(this T value) => AmountOfSubstance.FromMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromMoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? Moles<T>(this T? value) where T : struct => AmountOfSubstance.FromMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -160,6 +171,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance Nanomoles<T>(this T value) => AmountOfSubstance.FromNanomoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromNanomoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? Nanomoles<T>(this T? value) where T : struct => AmountOfSubstance.FromNanomoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -170,6 +182,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance NanopoundMoles<T>(this T value) => AmountOfSubstance.FromNanopoundMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromNanopoundMoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? NanopoundMoles<T>(this T? value) where T : struct => AmountOfSubstance.FromNanopoundMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -180,6 +193,7 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
         public static AmountOfSubstance PoundMoles<T>(this T value) => AmountOfSubstance.FromPoundMoles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="AmountOfSubstance.FromPoundMoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmountOfSubstance? PoundMoles<T>(this T? value) where T : struct => AmountOfSubstance.FromPoundMoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

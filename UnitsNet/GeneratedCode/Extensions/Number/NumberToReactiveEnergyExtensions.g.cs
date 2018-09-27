@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToReactiveEnergy
         public static ReactiveEnergy KilovoltampereReactiveHours<T>(this T value) => ReactiveEnergy.FromKilovoltampereReactiveHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactiveEnergy.FromKilovoltampereReactiveHours(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ReactiveEnergy? KilovoltampereReactiveHours<T>(this T? value) where T : struct => ReactiveEnergy.FromKilovoltampereReactiveHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToReactiveEnergy
         public static ReactiveEnergy MegavoltampereReactiveHours<T>(this T value) => ReactiveEnergy.FromMegavoltampereReactiveHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactiveEnergy.FromMegavoltampereReactiveHours(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ReactiveEnergy? MegavoltampereReactiveHours<T>(this T? value) where T : struct => ReactiveEnergy.FromMegavoltampereReactiveHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToReactiveEnergy
         public static ReactiveEnergy VoltampereReactiveHours<T>(this T value) => ReactiveEnergy.FromVoltampereReactiveHours(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ReactiveEnergy.FromVoltampereReactiveHours(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ReactiveEnergy? VoltampereReactiveHours<T>(this T? value) where T : struct => ReactiveEnergy.FromVoltampereReactiveHours(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

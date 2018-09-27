@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable CentinewtonsPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForcePerLength? FromCentinewtonsPerMeter(QuantityValue? centinewtonspermeter)
         {
             return centinewtonspermeter.HasValue ? FromCentinewtonsPerMeter(centinewtonspermeter.Value) : default(ForcePerLength?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable DecinewtonsPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForcePerLength? FromDecinewtonsPerMeter(QuantityValue? decinewtonspermeter)
         {
             return decinewtonspermeter.HasValue ? FromDecinewtonsPerMeter(decinewtonspermeter.Value) : default(ForcePerLength?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable KilogramsForcePerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForcePerLength? FromKilogramsForcePerMeter(QuantityValue? kilogramsforcepermeter)
         {
             return kilogramsforcepermeter.HasValue ? FromKilogramsForcePerMeter(kilogramsforcepermeter.Value) : default(ForcePerLength?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable KilonewtonsPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForcePerLength? FromKilonewtonsPerMeter(QuantityValue? kilonewtonspermeter)
         {
             return kilonewtonspermeter.HasValue ? FromKilonewtonsPerMeter(kilonewtonspermeter.Value) : default(ForcePerLength?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable MeganewtonsPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForcePerLength? FromMeganewtonsPerMeter(QuantityValue? meganewtonspermeter)
         {
             return meganewtonspermeter.HasValue ? FromMeganewtonsPerMeter(meganewtonspermeter.Value) : default(ForcePerLength?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable MicronewtonsPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForcePerLength? FromMicronewtonsPerMeter(QuantityValue? micronewtonspermeter)
         {
             return micronewtonspermeter.HasValue ? FromMicronewtonsPerMeter(micronewtonspermeter.Value) : default(ForcePerLength?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable MillinewtonsPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForcePerLength? FromMillinewtonsPerMeter(QuantityValue? millinewtonspermeter)
         {
             return millinewtonspermeter.HasValue ? FromMillinewtonsPerMeter(millinewtonspermeter.Value) : default(ForcePerLength?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable NanonewtonsPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForcePerLength? FromNanonewtonsPerMeter(QuantityValue? nanonewtonspermeter)
         {
             return nanonewtonspermeter.HasValue ? FromNanonewtonsPerMeter(nanonewtonspermeter.Value) : default(ForcePerLength?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForcePerLength from nullable NewtonsPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForcePerLength? FromNewtonsPerMeter(QuantityValue? newtonspermeter)
         {
             return newtonspermeter.HasValue ? FromNewtonsPerMeter(newtonspermeter.Value) : default(ForcePerLength?);
@@ -140,6 +149,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ForcePerLength unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ForcePerLength? From(QuantityValue? value, ForcePerLengthUnit fromUnit)
         {
             return value.HasValue ? new ForcePerLength((double)value.Value, fromUnit) : default(ForcePerLength?);

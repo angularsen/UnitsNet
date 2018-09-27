@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToElectricResistivity
         public static ElectricResistivity MicroohmMeters<T>(this T value) => ElectricResistivity.FromMicroohmMeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricResistivity.FromMicroohmMeters(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricResistivity? MicroohmMeters<T>(this T? value) where T : struct => ElectricResistivity.FromMicroohmMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -60,6 +61,7 @@ namespace UnitsNet.Extensions.NumberToElectricResistivity
         public static ElectricResistivity MilliohmMeters<T>(this T value) => ElectricResistivity.FromMilliohmMeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricResistivity.FromMilliohmMeters(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricResistivity? MilliohmMeters<T>(this T? value) where T : struct => ElectricResistivity.FromMilliohmMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -70,6 +72,7 @@ namespace UnitsNet.Extensions.NumberToElectricResistivity
         public static ElectricResistivity NanoohmMeters<T>(this T value) => ElectricResistivity.FromNanoohmMeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricResistivity.FromNanoohmMeters(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricResistivity? NanoohmMeters<T>(this T? value) where T : struct => ElectricResistivity.FromNanoohmMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
@@ -80,6 +83,7 @@ namespace UnitsNet.Extensions.NumberToElectricResistivity
         public static ElectricResistivity OhmMeters<T>(this T value) => ElectricResistivity.FromOhmMeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricResistivity.FromOhmMeters(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricResistivity? OhmMeters<T>(this T? value) where T : struct => ElectricResistivity.FromOhmMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion

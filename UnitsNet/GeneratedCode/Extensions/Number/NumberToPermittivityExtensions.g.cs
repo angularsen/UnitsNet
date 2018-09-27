@@ -50,6 +50,7 @@ namespace UnitsNet.Extensions.NumberToPermittivity
         public static Permittivity FaradsPerMeter<T>(this T value) => Permittivity.FromFaradsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Permittivity.FromFaradsPerMeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Permittivity? FaradsPerMeter<T>(this T? value) where T : struct => Permittivity.FromFaradsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
