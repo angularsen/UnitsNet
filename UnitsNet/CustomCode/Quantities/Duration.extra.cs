@@ -75,16 +75,6 @@ namespace UnitsNet
             return duration.Seconds >= timeSpan.TotalSeconds;
         }
 
-        public static bool operator ==(Duration duration, TimeSpan timeSpan)
-        {
-            return duration.Seconds == timeSpan.TotalSeconds;
-        }
-
-        public static bool operator !=(Duration duration, TimeSpan timeSpan)
-        {
-            return duration.Seconds != timeSpan.TotalSeconds;
-        }
-
         public static bool operator <(TimeSpan timeSpan, Duration duration)
         {
             return timeSpan.TotalSeconds < duration.Seconds;
@@ -103,16 +93,6 @@ namespace UnitsNet
         public static bool operator >=(TimeSpan timeSpan, Duration duration)
         {
             return timeSpan.TotalSeconds >= duration.Seconds;
-        }
-
-        public static bool operator ==(TimeSpan timeSpan, Duration duration)
-        {
-            return timeSpan.TotalSeconds == duration.Seconds;
-        }
-
-        public static bool operator !=(TimeSpan timeSpan, Duration duration)
-        {
-            return timeSpan.TotalSeconds != duration.Seconds;
         }
 
         public static Volume operator *(Duration duration, VolumeFlow volumeFlow)
