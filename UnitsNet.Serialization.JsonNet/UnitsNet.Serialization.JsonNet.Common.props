@@ -20,10 +20,8 @@
 
   <!-- Assembly and msbuild properties -->
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.0;net35;net40</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
     <RootNamespace>UnitsNet.Serialization.JsonNet</RootNamespace>
-    <!-- Workaround for building with dotnet CLI and targeting .NET 3.5: https://github.com/Microsoft/msbuild/issues/1333#issuecomment-296346352 -->
-    <FrameworkPathOverride Condition="'$(TargetFramework)' == 'net35'">C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client</FrameworkPathOverride>
     <NoWarn>CS1701;CS1702;CS1705;CS0618</NoWarn>
   </PropertyGroup>
 
