@@ -43,9 +43,6 @@ test: off
 artifacts:
 - path: Artifacts\UnitsNet.zip
 - path: 'Artifacts\NuGet\*.nupkg' # find all NuGet packages recursively
-environment:
-  api_key:
-    secure: NlJ+D6kXfgU6RgRuf9okylLDENp8DA3tTRSC6UHBNbRS9ZAvRrC3Z0++Mr5VtGvz
 deploy:
 - provider: NuGet
   api_key:
@@ -53,4 +50,3 @@ deploy:
   skip_symbols: false
   on:
     branch: master
-
