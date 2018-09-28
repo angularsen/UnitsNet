@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,8 +20,6 @@
 // THE SOFTWARE.
 
 using Xunit;
-using UnitsNet.Extensions.NumberToAcceleration;
-using UnitsNet.Extensions.NumberToPower;
 
 namespace UnitsNet.Tests
 {
@@ -30,32 +28,14 @@ namespace UnitsNet.Tests
         [Fact]
         public static void CreatingQuantityWithDoubleBackingFieldFromDecimalReturnsCorrectValue()
         {
-            decimal oneMeterPerSecondSquared = 1m;
-            Acceleration acceleration = Acceleration.FromMetersPerSecondSquared(oneMeterPerSecondSquared);
-            Assert.Equal(1.0, acceleration.MetersPerSecondSquared);
-        }
-
-        [Fact]
-        public static void CreatingQuantityWithDoubleBackingFieldFromDecimalWithExtensionMethodReturnsCorrectValue()
-        {
-            decimal oneMeterPerSecondSquared = 1m;
-            Acceleration acceleration = oneMeterPerSecondSquared.MetersPerSecondSquared();
+            Acceleration acceleration = Acceleration.FromMetersPerSecondSquared(1m);
             Assert.Equal(1.0, acceleration.MetersPerSecondSquared);
         }
 
         [Fact]
         public static void CreatingQuantityWithDecimalBackingFieldFromDecimalReturnsCorrectValue()
         {
-            decimal oneWatt = 1m;
-            Power power = Power.FromWatts(oneWatt);
-            Assert.Equal(1.0, power.Watts);
-        }
-
-        [Fact]
-        public static void CreatingQuantityWithDecimalBackingFieldFromDecimalWithExtensionMethodReturnsCorrectValue()
-        {
-            decimal oneWatt = 1m;
-            Power power = oneWatt.Watts();
+            Power power = Power.FromWatts(1m);
             Assert.Equal(1.0, power.Watts);
         }
     }
