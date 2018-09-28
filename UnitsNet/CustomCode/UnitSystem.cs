@@ -157,9 +157,8 @@ namespace UnitsNet
 
         /// <summary>
         /// Whether this instance is for the <see cref="FallbackCulture"/>.
-        /// TODO Make this private.
         /// </summary>
-        public bool IsFallbackCulture => Culture.Equals(FallbackCulture);
+        private bool IsFallbackCulture => Culture.Equals(FallbackCulture);
 
         /// <summary>
         /// Clear the cached singleton instances.
