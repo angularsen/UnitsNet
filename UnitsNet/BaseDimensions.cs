@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,6 +29,7 @@ namespace UnitsNet
     /// </summary>
     public sealed class BaseDimensions
     {
+        /// <inheritdoc />
         public BaseDimensions(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
         {
             Length = length;
@@ -40,6 +41,7 @@ namespace UnitsNet
             LuminousIntensity = luminousIntensity;
         }
 
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is BaseDimensions))
@@ -56,6 +58,7 @@ namespace UnitsNet
                 LuminousIntensity == baseDimensionsObj.LuminousIntensity;
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             int hash = 17;
@@ -69,6 +72,11 @@ namespace UnitsNet
             return hash;
         }
 
+        /// <summary>
+        /// Get resulting dimensions after multiplying two dimensions, by performing addition of each dimension.
+        /// </summary>
+        /// <param name="right">Other dimensions.</param>
+        /// <returns>Resulting dimensions.</returns>
         public BaseDimensions Multiply(BaseDimensions right)
         {
             return new BaseDimensions(
@@ -81,6 +89,11 @@ namespace UnitsNet
                 LuminousIntensity + right.LuminousIntensity);
         }
 
+        /// <summary>
+        /// Get resulting dimensions after dividing two dimensions, by performing subtraction of each dimension.
+        /// </summary>
+        /// <param name="right">Other dimensions.</param>
+        /// <returns>Resulting dimensions.</returns>
         public BaseDimensions Divide(BaseDimensions right)
         {
             return new BaseDimensions(
@@ -94,27 +107,52 @@ namespace UnitsNet
         }
 
 #if !WINDOWS_UWP
+        /// <summary>
+        /// Check if two dimensions are equal.
+        /// </summary>
+        /// <param name="left">Left.</param>
+        /// <param name="right">Right.</param>
+        /// <returns>True if equal.</returns>
         public static bool operator ==(BaseDimensions left, BaseDimensions right)
         {
             return left.Equals(right);
         }
-    
+
+        /// <summary>
+        /// Check if two dimensions are unequal.
+        /// </summary>
+        /// <param name="left">Left.</param>
+        /// <param name="right">Right.</param>
+        /// <returns>True if not equal.</returns>
         public static bool operator !=(BaseDimensions left, BaseDimensions right)
         {
             return !( left == right );
         }
 
+        /// <summary>
+        /// Multiply two dimensions.
+        /// </summary>
+        /// <param name="left">Left.</param>
+        /// <param name="right">Right.</param>
+        /// <returns>Resulting dimensions.</returns>
         public static BaseDimensions operator *(BaseDimensions left, BaseDimensions right)
         {
             return left.Multiply(right);
         }
 
+        /// <summary>
+        /// Divide two dimensions.
+        /// </summary>
+        /// <param name="left">Left.</param>
+        /// <param name="right">Right.</param>
+        /// <returns>Resulting dimensions.</returns>
         public static BaseDimensions operator /(BaseDimensions left, BaseDimensions right)
         {
             return left.Divide(right);
         }
 #endif
 
+        /// <inheritdoc />
         public override string ToString()
         {
             var sb = new StringBuilder();
