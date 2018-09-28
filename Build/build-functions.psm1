@@ -28,7 +28,13 @@ function Update-GeneratedCode {
 
 function Start-Build([boolean] $skipUWP = $false) {
   write-host -foreground blue "Start-Build...`n---"
-  dotnet build --configuration Release "$root\UnitsNet.sln"
+
+  $msbuildFileLogger = "/l:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.msbuild.log"
+
+  $appVeyorMsbuildLogger = "C:\Program Files\AppVeyor\BuildAgent\dotnetcore\Appveyor.MSBuildLogger.dll"
+  $appVeyorLogger = if (Test-Path "$appVeyorMsbuildLogger") { "/l:$appVeyorMsbuildLogger" } else { "" }
+
+  dotnet build --configuration Release "$root\UnitsNet.sln" $msbuildFileLogger $appVeyorLogger
   if ($lastexitcode -ne 0) { exit 1 }
 
   if ($skipUWP -eq $true)
@@ -37,11 +43,12 @@ function Start-Build([boolean] $skipUWP = $false) {
   }
   else
   {
+    $msbuildFileLogger = "/l:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.WindowsRuntimeComponent.msbuild.log"
     # dontnet CLI does not support WindowsRuntimeComponent project type yet
     # msbuild does not auto-restore nugets for this project type
     write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using MSBuild15 instead"
     & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release /t:restore
-    & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release
+    & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release $msbuildFileLogger $appVeyorLogger
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
@@ -56,7 +63,7 @@ function Start-Tests {
     )
 
   # Parent dir must exist before xunit tries to write files to it
-  new-item -type directory $testReportDir 1> $null
+  new-item -type directory -force $testReportDir 1> $null
 
   write-host -foreground blue "Run tests...`n---"
   foreach ($projectPath in $projectPaths) {
