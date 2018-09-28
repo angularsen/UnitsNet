@@ -140,14 +140,6 @@ namespace UnitsNet.Extensions.NumberToVolume
         /// <inheritdoc cref="Volume.FromOilBarrels(UnitsNet.QuantityValue)" />
         public static Volume OilBarrels<T>(this T value) => Volume.FromOilBarrels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromTablespoons(UnitsNet.QuantityValue)" />
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
-        public static Volume Tablespoons<T>(this T value) => Volume.FromTablespoons(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromTeaspoons(UnitsNet.QuantityValue)" />
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
-        public static Volume Teaspoons<T>(this T value) => Volume.FromTeaspoons(Convert.ToDouble(value));
-
         /// <inheritdoc cref="Volume.FromUkTablespoons(UnitsNet.QuantityValue)" />
         public static Volume UkTablespoons<T>(this T value) => Volume.FromUkTablespoons(Convert.ToDouble(value));
 

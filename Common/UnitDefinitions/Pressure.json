@@ -162,23 +162,6 @@
       ]
     },
     {
-      "SingularName": "Psi",
-      "PluralName": "Psi",
-      "ObsoleteText": "Deprecated due to github issue #215, please use PoundForcePerSquareInch instead",
-      "FromUnitToBaseFunc": "x*6.894757293168361e3",
-      "FromBaseToUnitFunc": "x/6.894757293168361e3",
-      "Localization": [
-        {
-          "Culture": "en-US",
-          "Abbreviations": [ "psi" ]
-        },
-        {
-          "Culture": "ru-RU",
-          "Abbreviations": [ "psi" ]
-        }
-      ]
-    },
-    {
       "SingularName": "TechnicalAtmosphere",
       "PluralName": "TechnicalAtmospheres",
       "FromUnitToBaseFunc": "x*9.80680592331*1e4",

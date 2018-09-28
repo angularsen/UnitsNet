@@ -85,7 +85,6 @@ namespace UnitsNet.Tests
         protected abstract double PascalsInOnePascal { get; }
         protected abstract double PoundsForcePerSquareFootInOnePascal { get; }
         protected abstract double PoundsForcePerSquareInchInOnePascal { get; }
-        protected abstract double PsiInOnePascal { get; }
         protected abstract double TechnicalAtmospheresInOnePascal { get; }
         protected abstract double TonnesForcePerSquareCentimeterInOnePascal { get; }
         protected abstract double TonnesForcePerSquareMeterInOnePascal { get; }
@@ -125,7 +124,6 @@ namespace UnitsNet.Tests
         protected virtual double PascalsTolerance { get { return 1e-5; } }
         protected virtual double PoundsForcePerSquareFootTolerance { get { return 1e-5; } }
         protected virtual double PoundsForcePerSquareInchTolerance { get { return 1e-5; } }
-        protected virtual double PsiTolerance { get { return 1e-5; } }
         protected virtual double TechnicalAtmospheresTolerance { get { return 1e-5; } }
         protected virtual double TonnesForcePerSquareCentimeterTolerance { get { return 1e-5; } }
         protected virtual double TonnesForcePerSquareMeterTolerance { get { return 1e-5; } }
@@ -169,7 +167,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PascalsInOnePascal, pascal.Pascals, PascalsTolerance);
             AssertEx.EqualTolerance(PoundsForcePerSquareFootInOnePascal, pascal.PoundsForcePerSquareFoot, PoundsForcePerSquareFootTolerance);
             AssertEx.EqualTolerance(PoundsForcePerSquareInchInOnePascal, pascal.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
-            AssertEx.EqualTolerance(PsiInOnePascal, pascal.Psi, PsiTolerance);
             AssertEx.EqualTolerance(TechnicalAtmospheresInOnePascal, pascal.TechnicalAtmospheres, TechnicalAtmospheresTolerance);
             AssertEx.EqualTolerance(TonnesForcePerSquareCentimeterInOnePascal, pascal.TonnesForcePerSquareCentimeter, TonnesForcePerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(TonnesForcePerSquareMeterInOnePascal, pascal.TonnesForcePerSquareMeter, TonnesForcePerSquareMeterTolerance);
@@ -212,7 +209,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Pascal).Pascals, PascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.PoundForcePerSquareFoot).PoundsForcePerSquareFoot, PoundsForcePerSquareFootTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.PoundForcePerSquareInch).PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
-            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Psi).Psi, PsiTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.TechnicalAtmosphere).TechnicalAtmospheres, TechnicalAtmospheresTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.TonneForcePerSquareCentimeter).TonnesForcePerSquareCentimeter, TonnesForcePerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.TonneForcePerSquareMeter).TonnesForcePerSquareMeter, TonnesForcePerSquareMeterTolerance);
@@ -256,7 +252,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PascalsInOnePascal, pascal.As(PressureUnit.Pascal), PascalsTolerance);
             AssertEx.EqualTolerance(PoundsForcePerSquareFootInOnePascal, pascal.As(PressureUnit.PoundForcePerSquareFoot), PoundsForcePerSquareFootTolerance);
             AssertEx.EqualTolerance(PoundsForcePerSquareInchInOnePascal, pascal.As(PressureUnit.PoundForcePerSquareInch), PoundsForcePerSquareInchTolerance);
-            AssertEx.EqualTolerance(PsiInOnePascal, pascal.As(PressureUnit.Psi), PsiTolerance);
             AssertEx.EqualTolerance(TechnicalAtmospheresInOnePascal, pascal.As(PressureUnit.TechnicalAtmosphere), TechnicalAtmospheresTolerance);
             AssertEx.EqualTolerance(TonnesForcePerSquareCentimeterInOnePascal, pascal.As(PressureUnit.TonneForcePerSquareCentimeter), TonnesForcePerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(TonnesForcePerSquareMeterInOnePascal, pascal.As(PressureUnit.TonneForcePerSquareMeter), TonnesForcePerSquareMeterTolerance);
@@ -397,10 +392,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PoundsForcePerSquareInchInOnePascal, (double)poundforcepersquareinchQuantity.Value, PoundsForcePerSquareInchTolerance);
             Assert.Equal(PressureUnit.PoundForcePerSquareInch, poundforcepersquareinchQuantity.Unit);
 
-            var psiQuantity = pascal.ToUnit(PressureUnit.Psi);
-            AssertEx.EqualTolerance(PsiInOnePascal, (double)psiQuantity.Value, PsiTolerance);
-            Assert.Equal(PressureUnit.Psi, psiQuantity.Unit);
-
             var technicalatmosphereQuantity = pascal.ToUnit(PressureUnit.TechnicalAtmosphere);
             AssertEx.EqualTolerance(TechnicalAtmospheresInOnePascal, (double)technicalatmosphereQuantity.Value, TechnicalAtmospheresTolerance);
             Assert.Equal(PressureUnit.TechnicalAtmosphere, technicalatmosphereQuantity.Unit);
@@ -458,7 +449,6 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.FromPascals(pascal.Pascals).Pascals, PascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromPoundsForcePerSquareFoot(pascal.PoundsForcePerSquareFoot).Pascals, PoundsForcePerSquareFootTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromPoundsForcePerSquareInch(pascal.PoundsForcePerSquareInch).Pascals, PoundsForcePerSquareInchTolerance);
-            AssertEx.EqualTolerance(1, Pressure.FromPsi(pascal.Psi).Pascals, PsiTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromTechnicalAtmospheres(pascal.TechnicalAtmospheres).Pascals, TechnicalAtmospheresTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromTonnesForcePerSquareCentimeter(pascal.TonnesForcePerSquareCentimeter).Pascals, TonnesForcePerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromTonnesForcePerSquareMeter(pascal.TonnesForcePerSquareMeter).Pascals, TonnesForcePerSquareMeterTolerance);

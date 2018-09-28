@@ -77,10 +77,6 @@ namespace UnitsNet.Units
         Microliter,
         Milliliter,
         OilBarrel,
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
-        Tablespoon,
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
-        Teaspoon,
         UkTablespoon,
         UsBeerBarrel,
         UsCustomaryCup,

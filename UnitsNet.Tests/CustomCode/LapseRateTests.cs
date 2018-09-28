@@ -52,14 +52,14 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void TemperatureDeltaDividedByLapseRateEqualsLength()
         {
-            Length length = TemperatureDelta.FromDegreesCelsiusDelta(50) / LapseRate.FromDegreesCelciusPerKilometer(5);
+            Length length = TemperatureDelta.FromDegreesCelsius(50) / LapseRate.FromDegreesCelciusPerKilometer(5);
             Assert.Equal(length, Length.FromKilometers(10));
         }
 
         [Fact]
         public void TemperatureDeltaDividedByLengthEqualsLapseRate()
         {
-            LapseRate lapseRate = TemperatureDelta.FromDegreesCelsiusDelta(50) / Length.FromKilometers(10);
+            LapseRate lapseRate = TemperatureDelta.FromDegreesCelsius(50) / Length.FromKilometers(10);
             Assert.Equal(lapseRate, LapseRate.FromDegreesCelciusPerKilometer(5));
         }
 
@@ -67,14 +67,14 @@ namespace UnitsNet.Tests.CustomCode
         public void LengthMultipliedByLapseRateEqualsTemperatureDelta()
         {
             TemperatureDelta temperatureDelta = Length.FromKilometers(10) * LapseRate.FromDegreesCelciusPerKilometer(5);
-            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsiusDelta(50));
+            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsius(50));
         }
 
         [Fact]
         public void LapseRateMultipliedByLengthEqualsTemperatureDelta()
         {
             TemperatureDelta temperatureDelta = LapseRate.FromDegreesCelciusPerKilometer(5) * Length.FromKilometers(10);
-            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsiusDelta(50));
+            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsius(50));
         }
     }
 }

@@ -81,7 +81,6 @@ namespace UnitsNet
         ElectricResistivity,
         Energy,
         Entropy,
-        Flow,
         Force,
         ForceChangeRate,
         ForcePerLength,

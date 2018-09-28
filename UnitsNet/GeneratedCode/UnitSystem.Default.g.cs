@@ -861,12 +861,6 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "m", "min", "minute", "minutes"),
                                 new AbbreviationsForCulture("ru-RU", "мин"),
                             }),
-                        new CulturesForEnumValue((int) DurationUnit.Month,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mo", "month", "months"),
-                                new AbbreviationsForCulture("ru-RU", "месяц"),
-                            }),
                         new CulturesForEnumValue((int) DurationUnit.Month30,
                             new[]
                             {
@@ -890,12 +884,6 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "wk", "week", "weeks"),
                                 new AbbreviationsForCulture("ru-RU", "мин"),
-                            }),
-                        new CulturesForEnumValue((int) DurationUnit.Year,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yr", "year", "years"),
-                                new AbbreviationsForCulture("ru-RU", "год"),
                             }),
                         new CulturesForEnumValue((int) DurationUnit.Year365,
                             new[]
@@ -1389,134 +1377,6 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MJ/K"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (FlowUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) FlowUnit.CentilitersPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cLPM"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.CubicDecimeterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dm³/min"),
-                                new AbbreviationsForCulture("ru-RU", "дм³/мин"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.CubicFootPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft³/h", "cf/hr"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.CubicFootPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft³/min"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.CubicFootPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft³/s"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.CubicMeterPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m³/h"),
-                                new AbbreviationsForCulture("ru-RU", "м³/ч"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.CubicMeterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m³/min"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.CubicMeterPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m³/s"),
-                                new AbbreviationsForCulture("ru-RU", "м³/с"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.CubicYardPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yd³/h"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.CubicYardPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yd³/min"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.CubicYardPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yd³/s"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.DecilitersPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dLPM"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.KilolitersPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kLPM"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.LitersPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "LPH"),
-                                new AbbreviationsForCulture("ru-RU", "л/ч"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.LitersPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "LPM"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.LitersPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "LPS"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.MicrolitersPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µLPM"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.MillilitersPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mLPM"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.MillionUsGallonsPerDay,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MGD"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.NanolitersPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nLPM"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.OilBarrelsPerDay,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "bbl/d", "BOPD"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.UsGallonsPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "gal (U.S.)/h"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.UsGallonsPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "gal (U.S.)/min", "GPM"),
-                            }),
-                        new CulturesForEnumValue((int) FlowUnit.UsGallonsPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "gal (U.S.)/s"),
                             }),
                     }),
                 new UnitLocalization(typeof (ForceUnit),
@@ -3351,12 +3211,6 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "psi", "lb/in²"),
                             }),
-                        new CulturesForEnumValue((int) PressureUnit.Psi,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "psi"),
-                                new AbbreviationsForCulture("ru-RU", "psi"),
-                            }),
                         new CulturesForEnumValue((int) PressureUnit.TechnicalAtmosphere,
                             new[]
                             {
@@ -4098,17 +3952,7 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "∆°C"),
                             }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeCelsiusDelta,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°C"),
-                            }),
                         new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeDelisle,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°De"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeDelisleDelta,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "∆°De"),
@@ -4118,17 +3962,7 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "∆°F"),
                             }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeFahrenheitDelta,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°F"),
-                            }),
                         new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeNewton,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°N"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeNewtonDelta,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "∆°N"),
@@ -4138,17 +3972,7 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "∆°R"),
                             }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeRankineDelta,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°R"),
-                            }),
                         new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeReaumur,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°Ré"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeReaumurDelta,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "∆°Ré"),
@@ -4158,17 +3982,7 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "∆°Rø"),
                             }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeRoemerDelta,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°Rø"),
-                            }),
                         new CulturesForEnumValue((int) TemperatureDeltaUnit.Kelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆K"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.KelvinDelta,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "∆K"),
@@ -4531,20 +4345,6 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "bbl"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.Tablespoon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Tbsp", "Tbs", "T", "tb", "tbs", "tbsp", "tblsp", "tblspn", "Tbsp.", "Tbs.", "T.", "tb.", "tbs.", "tbsp.", "tblsp.", "tblspn.", "tablespoon", "Tablespoon"),
-                                new AbbreviationsForCulture("ru-RU", "столовая ложка"),
-                                new AbbreviationsForCulture("nb-NO", "ss", "ss.", "SS", "SS."),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.Teaspoon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon"),
-                                new AbbreviationsForCulture("ru-RU", "чайная ложка"),
-                                new AbbreviationsForCulture("nb-NO", "ts", "ts."),
                             }),
                         new CulturesForEnumValue((int) VolumeUnit.UkTablespoon,
                             new[]

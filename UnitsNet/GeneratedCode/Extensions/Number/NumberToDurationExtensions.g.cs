@@ -59,10 +59,6 @@ namespace UnitsNet.Extensions.NumberToDuration
         /// <inheritdoc cref="Duration.FromMinutes(UnitsNet.QuantityValue)" />
         public static Duration Minutes<T>(this T value) => Duration.FromMinutes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Duration.FromMonths(UnitsNet.QuantityValue)" />
-        [System.Obsolete("Use Month30 instead, which makes it clear that this is an approximate unit based on 30 days per month. The duration of a month varies, but the Gregorian solar calendar has 365.2425/12 = 30.44 days on average.")]
-        public static Duration Months<T>(this T value) => Duration.FromMonths(Convert.ToDouble(value));
-
         /// <inheritdoc cref="Duration.FromMonths30(UnitsNet.QuantityValue)" />
         public static Duration Months30<T>(this T value) => Duration.FromMonths30(Convert.ToDouble(value));
 
@@ -74,10 +70,6 @@ namespace UnitsNet.Extensions.NumberToDuration
 
         /// <inheritdoc cref="Duration.FromWeeks(UnitsNet.QuantityValue)" />
         public static Duration Weeks<T>(this T value) => Duration.FromWeeks(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Duration.FromYears(UnitsNet.QuantityValue)" />
-        [System.Obsolete("Use Year365 instead, which makes it clear that this is an approximate unit based on 365 days per year. The duration of a year varies due to corrections such as leap years, since a Gregorian solar calendar has 365.2425 days.")]
-        public static Duration Years<T>(this T value) => Duration.FromYears(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Duration.FromYears365(UnitsNet.QuantityValue)" />
         public static Duration Years365<T>(this T value) => Duration.FromYears365(Convert.ToDouble(value));

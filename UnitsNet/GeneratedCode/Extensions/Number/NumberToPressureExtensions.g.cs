@@ -140,10 +140,6 @@ namespace UnitsNet.Extensions.NumberToPressure
         /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
         public static Pressure PoundsForcePerSquareInch<T>(this T value) => Pressure.FromPoundsForcePerSquareInch(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
-        [System.Obsolete("Deprecated due to github issue #215, please use PoundForcePerSquareInch instead")]
-        public static Pressure Psi<T>(this T value) => Pressure.FromPsi(Convert.ToDouble(value));
-
         /// <inheritdoc cref="Pressure.FromTechnicalAtmospheres(UnitsNet.QuantityValue)" />
         public static Pressure TechnicalAtmospheres<T>(this T value) => Pressure.FromTechnicalAtmospheres(Convert.ToDouble(value));
 

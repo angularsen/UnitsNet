@@ -322,18 +322,6 @@ namespace UnitsNet
         public double OilBarrels => As(VolumeUnit.OilBarrel);
 
         /// <summary>
-        ///     Get Volume in Tablespoons.
-        /// </summary>
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
-        public double Tablespoons => As(VolumeUnit.Tablespoon);
-
-        /// <summary>
-        ///     Get Volume in Teaspoons.
-        /// </summary>
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
-        public double Teaspoons => As(VolumeUnit.Teaspoon);
-
-        /// <summary>
         ///     Get Volume in UkTablespoons.
         /// </summary>
         public double UkTablespoons => As(VolumeUnit.UkTablespoon);
@@ -841,36 +829,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Volume from Tablespoons.
-        /// </summary>
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Volume FromTablespoons(double tablespoons)
-#else
-        public static Volume FromTablespoons(QuantityValue tablespoons)
-#endif
-        {
-            double value = (double) tablespoons;
-            return new Volume(value, VolumeUnit.Tablespoon);
-        }
-
-        /// <summary>
-        ///     Get Volume from Teaspoons.
-        /// </summary>
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Volume FromTeaspoons(double teaspoons)
-#else
-        public static Volume FromTeaspoons(QuantityValue teaspoons)
-#endif
-        {
-            double value = (double) teaspoons;
-            return new Volume(value, VolumeUnit.Teaspoon);
-        }
-
-        /// <summary>
         ///     Get Volume from UkTablespoons.
         /// </summary>
 #if WINDOWS_UWP
@@ -1190,8 +1148,6 @@ namespace UnitsNet
                 case VolumeUnit.Microliter: return (_value/1e3) * 1e-6d;
                 case VolumeUnit.Milliliter: return (_value/1e3) * 1e-3d;
                 case VolumeUnit.OilBarrel: return _value*0.158987294928;
-                case VolumeUnit.Tablespoon: return _value*1.478676478125e-5;
-                case VolumeUnit.Teaspoon: return _value*4.92892159375e-6;
                 case VolumeUnit.UkTablespoon: return _value*1.5e-5;
                 case VolumeUnit.UsBeerBarrel: return _value*0.1173477658;
                 case VolumeUnit.UsCustomaryCup: return _value*0.0002365882365;
@@ -1248,8 +1204,6 @@ namespace UnitsNet
                 case VolumeUnit.Microliter: return (baseUnitValue*1e3) / 1e-6d;
                 case VolumeUnit.Milliliter: return (baseUnitValue*1e3) / 1e-3d;
                 case VolumeUnit.OilBarrel: return baseUnitValue/0.158987294928;
-                case VolumeUnit.Tablespoon: return baseUnitValue/1.478676478125e-5;
-                case VolumeUnit.Teaspoon: return baseUnitValue/4.92892159375e-6;
                 case VolumeUnit.UkTablespoon: return baseUnitValue/1.5e-5;
                 case VolumeUnit.UsBeerBarrel: return baseUnitValue/0.1173477658;
                 case VolumeUnit.UsCustomaryCup: return baseUnitValue/0.0002365882365;
