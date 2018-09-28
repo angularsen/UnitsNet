@@ -60,31 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable Magnetization from nullable AmperesPerMeter.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Magnetization? FromAmperesPerMeter(QuantityValue? amperespermeter)
-        {
-            return amperespermeter.HasValue ? FromAmperesPerMeter(amperespermeter.Value) : default(Magnetization?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="MagnetizationUnit" /> to <see cref="Magnetization" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Magnetization unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Magnetization? From(QuantityValue? value, MagnetizationUnit fromUnit)
-        {
-            return value.HasValue ? new Magnetization((double)value.Value, fromUnit) : default(Magnetization?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

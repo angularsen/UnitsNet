@@ -44,38 +44,14 @@ namespace UnitsNet.Extensions.NumberToElectricConductance
 {
     public static class NumberToElectricConductanceExtensions
     {
-        #region Microsiemens
-
         /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Microsiemens<T>(this T value) => ElectricConductance.FromMicrosiemens(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricConductance? Microsiemens<T>(this T? value) where T : struct => ElectricConductance.FromMicrosiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Millisiemens
 
         /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Millisiemens<T>(this T value) => ElectricConductance.FromMillisiemens(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricConductance? Millisiemens<T>(this T? value) where T : struct => ElectricConductance.FromMillisiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Siemens
-
         /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
         public static ElectricConductance Siemens<T>(this T value) => ElectricConductance.FromSiemens(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricConductance? Siemens<T>(this T? value) where T : struct => ElectricConductance.FromSiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

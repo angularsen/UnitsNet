@@ -44,115 +44,35 @@ namespace UnitsNet.Extensions.NumberToTemperatureChangeRate
 {
     public static class NumberToTemperatureChangeRateExtensions
     {
-        #region CentidegreeCelsiusPerSecond
-
         /// <inheritdoc cref="TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
         public static TemperatureChangeRate CentidegreesCelsiusPerSecond<T>(this T value) => TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static TemperatureChangeRate? CentidegreesCelsiusPerSecond<T>(this T? value) where T : struct => TemperatureChangeRate.FromCentidegreesCelsiusPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DecadegreeCelsiusPerSecond
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
         public static TemperatureChangeRate DecadegreesCelsiusPerSecond<T>(this T value) => TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static TemperatureChangeRate? DecadegreesCelsiusPerSecond<T>(this T? value) where T : struct => TemperatureChangeRate.FromDecadegreesCelsiusPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DecidegreeCelsiusPerSecond
-
         /// <inheritdoc cref="TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
         public static TemperatureChangeRate DecidegreesCelsiusPerSecond<T>(this T value) => TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static TemperatureChangeRate? DecidegreesCelsiusPerSecond<T>(this T? value) where T : struct => TemperatureChangeRate.FromDecidegreesCelsiusPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DegreeCelsiusPerMinute
 
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(UnitsNet.QuantityValue)" />
         public static TemperatureChangeRate DegreesCelsiusPerMinute<T>(this T value) => TemperatureChangeRate.FromDegreesCelsiusPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerMinute(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static TemperatureChangeRate? DegreesCelsiusPerMinute<T>(this T? value) where T : struct => TemperatureChangeRate.FromDegreesCelsiusPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DegreeCelsiusPerSecond
-
         /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
         public static TemperatureChangeRate DegreesCelsiusPerSecond<T>(this T value) => TemperatureChangeRate.FromDegreesCelsiusPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="TemperatureChangeRate.FromDegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static TemperatureChangeRate? DegreesCelsiusPerSecond<T>(this T? value) where T : struct => TemperatureChangeRate.FromDegreesCelsiusPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region HectodegreeCelsiusPerSecond
 
         /// <inheritdoc cref="TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
         public static TemperatureChangeRate HectodegreesCelsiusPerSecond<T>(this T value) => TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static TemperatureChangeRate? HectodegreesCelsiusPerSecond<T>(this T? value) where T : struct => TemperatureChangeRate.FromHectodegreesCelsiusPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilodegreeCelsiusPerSecond
-
         /// <inheritdoc cref="TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
         public static TemperatureChangeRate KilodegreesCelsiusPerSecond<T>(this T value) => TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static TemperatureChangeRate? KilodegreesCelsiusPerSecond<T>(this T? value) where T : struct => TemperatureChangeRate.FromKilodegreesCelsiusPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MicrodegreeCelsiusPerSecond
 
         /// <inheritdoc cref="TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
         public static TemperatureChangeRate MicrodegreesCelsiusPerSecond<T>(this T value) => TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static TemperatureChangeRate? MicrodegreesCelsiusPerSecond<T>(this T? value) where T : struct => TemperatureChangeRate.FromMicrodegreesCelsiusPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MillidegreeCelsiusPerSecond
-
         /// <inheritdoc cref="TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
         public static TemperatureChangeRate MillidegreesCelsiusPerSecond<T>(this T value) => TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static TemperatureChangeRate? MillidegreesCelsiusPerSecond<T>(this T? value) where T : struct => TemperatureChangeRate.FromMillidegreesCelsiusPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region NanodegreeCelsiusPerSecond
-
         /// <inheritdoc cref="TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
         public static TemperatureChangeRate NanodegreesCelsiusPerSecond<T>(this T value) => TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static TemperatureChangeRate? NanodegreesCelsiusPerSecond<T>(this T? value) where T : struct => TemperatureChangeRate.FromNanodegreesCelsiusPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

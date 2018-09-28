@@ -44,27 +44,11 @@ namespace UnitsNet.Extensions.NumberToSpecificVolume
 {
     public static class NumberToSpecificVolumeExtensions
     {
-        #region CubicFootPerPound
-
         /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
         public static SpecificVolume CubicFeetPerPound<T>(this T value) => SpecificVolume.FromCubicFeetPerPound(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static SpecificVolume? CubicFeetPerPound<T>(this T? value) where T : struct => SpecificVolume.FromCubicFeetPerPound(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicMeterPerKilogram
-
         /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
         public static SpecificVolume CubicMetersPerKilogram<T>(this T value) => SpecificVolume.FromCubicMetersPerKilogram(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static SpecificVolume? CubicMetersPerKilogram<T>(this T? value) where T : struct => SpecificVolume.FromCubicMetersPerKilogram(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

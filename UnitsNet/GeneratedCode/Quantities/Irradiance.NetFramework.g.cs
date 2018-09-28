@@ -60,40 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable Irradiance from nullable KilowattsPerSquareMeter.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Irradiance? FromKilowattsPerSquareMeter(QuantityValue? kilowattspersquaremeter)
-        {
-            return kilowattspersquaremeter.HasValue ? FromKilowattsPerSquareMeter(kilowattspersquaremeter.Value) : default(Irradiance?);
-        }
-
-        /// <summary>
-        ///     Get nullable Irradiance from nullable WattsPerSquareMeter.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Irradiance? FromWattsPerSquareMeter(QuantityValue? wattspersquaremeter)
-        {
-            return wattspersquaremeter.HasValue ? FromWattsPerSquareMeter(wattspersquaremeter.Value) : default(Irradiance?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="IrradianceUnit" /> to <see cref="Irradiance" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Irradiance unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Irradiance? From(QuantityValue? value, IrradianceUnit fromUnit)
-        {
-            return value.HasValue ? new Irradiance((double)value.Value, fromUnit) : default(Irradiance?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

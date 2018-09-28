@@ -44,137 +44,41 @@ namespace UnitsNet.Extensions.NumberToMolarMass
 {
     public static class NumberToMolarMassExtensions
     {
-        #region CentigramPerMole
-
         /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(UnitsNet.QuantityValue)" />
         public static MolarMass CentigramsPerMole<T>(this T value) => MolarMass.FromCentigramsPerMole(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MolarMass.FromCentigramsPerMole(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static MolarMass? CentigramsPerMole<T>(this T? value) where T : struct => MolarMass.FromCentigramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DecagramPerMole
 
         /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(UnitsNet.QuantityValue)" />
         public static MolarMass DecagramsPerMole<T>(this T value) => MolarMass.FromDecagramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromDecagramsPerMole(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static MolarMass? DecagramsPerMole<T>(this T? value) where T : struct => MolarMass.FromDecagramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DecigramPerMole
-
         /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(UnitsNet.QuantityValue)" />
         public static MolarMass DecigramsPerMole<T>(this T value) => MolarMass.FromDecigramsPerMole(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MolarMass.FromDecigramsPerMole(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static MolarMass? DecigramsPerMole<T>(this T? value) where T : struct => MolarMass.FromDecigramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region GramPerMole
 
         /// <inheritdoc cref="MolarMass.FromGramsPerMole(UnitsNet.QuantityValue)" />
         public static MolarMass GramsPerMole<T>(this T value) => MolarMass.FromGramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromGramsPerMole(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static MolarMass? GramsPerMole<T>(this T? value) where T : struct => MolarMass.FromGramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region HectogramPerMole
-
         /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(UnitsNet.QuantityValue)" />
         public static MolarMass HectogramsPerMole<T>(this T value) => MolarMass.FromHectogramsPerMole(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MolarMass.FromHectogramsPerMole(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static MolarMass? HectogramsPerMole<T>(this T? value) where T : struct => MolarMass.FromHectogramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilogramPerMole
 
         /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(UnitsNet.QuantityValue)" />
         public static MolarMass KilogramsPerMole<T>(this T value) => MolarMass.FromKilogramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromKilogramsPerMole(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static MolarMass? KilogramsPerMole<T>(this T? value) where T : struct => MolarMass.FromKilogramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilopoundPerMole
-
         /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(UnitsNet.QuantityValue)" />
         public static MolarMass KilopoundsPerMole<T>(this T value) => MolarMass.FromKilopoundsPerMole(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MolarMass.FromKilopoundsPerMole(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static MolarMass? KilopoundsPerMole<T>(this T? value) where T : struct => MolarMass.FromKilopoundsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MegapoundPerMole
 
         /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(UnitsNet.QuantityValue)" />
         public static MolarMass MegapoundsPerMole<T>(this T value) => MolarMass.FromMegapoundsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromMegapoundsPerMole(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static MolarMass? MegapoundsPerMole<T>(this T? value) where T : struct => MolarMass.FromMegapoundsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MicrogramPerMole
-
         /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(UnitsNet.QuantityValue)" />
         public static MolarMass MicrogramsPerMole<T>(this T value) => MolarMass.FromMicrogramsPerMole(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MolarMass.FromMicrogramsPerMole(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static MolarMass? MicrogramsPerMole<T>(this T? value) where T : struct => MolarMass.FromMicrogramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MilligramPerMole
 
         /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(UnitsNet.QuantityValue)" />
         public static MolarMass MilligramsPerMole<T>(this T value) => MolarMass.FromMilligramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromMilligramsPerMole(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static MolarMass? MilligramsPerMole<T>(this T? value) where T : struct => MolarMass.FromMilligramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region NanogramPerMole
-
         /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(UnitsNet.QuantityValue)" />
         public static MolarMass NanogramsPerMole<T>(this T value) => MolarMass.FromNanogramsPerMole(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="MolarMass.FromNanogramsPerMole(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static MolarMass? NanogramsPerMole<T>(this T? value) where T : struct => MolarMass.FromNanogramsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region PoundPerMole
-
         /// <inheritdoc cref="MolarMass.FromPoundsPerMole(UnitsNet.QuantityValue)" />
         public static MolarMass PoundsPerMole<T>(this T value) => MolarMass.FromPoundsPerMole(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MolarMass.FromPoundsPerMole(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static MolarMass? PoundsPerMole<T>(this T? value) where T : struct => MolarMass.FromPoundsPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

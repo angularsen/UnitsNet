@@ -44,16 +44,8 @@ namespace UnitsNet.Extensions.NumberToElectricChargeDensity
 {
     public static class NumberToElectricChargeDensityExtensions
     {
-        #region CoulombPerCubicMeter
-
         /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(UnitsNet.QuantityValue)" />
         public static ElectricChargeDensity CoulombsPerCubicMeter<T>(this T value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricChargeDensity? CoulombsPerCubicMeter<T>(this T? value) where T : struct => ElectricChargeDensity.FromCoulombsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

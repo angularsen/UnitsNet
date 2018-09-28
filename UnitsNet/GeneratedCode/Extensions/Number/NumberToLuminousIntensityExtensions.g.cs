@@ -44,16 +44,8 @@ namespace UnitsNet.Extensions.NumberToLuminousIntensity
 {
     public static class NumberToLuminousIntensityExtensions
     {
-        #region Candela
-
         /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
         public static LuminousIntensity Candela<T>(this T value) => LuminousIntensity.FromCandela(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="LuminousIntensity.FromCandela(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static LuminousIntensity? Candela<T>(this T? value) where T : struct => LuminousIntensity.FromCandela(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

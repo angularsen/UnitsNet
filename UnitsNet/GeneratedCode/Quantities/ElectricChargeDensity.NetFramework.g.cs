@@ -60,31 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable ElectricChargeDensity from nullable CoulombsPerCubicMeter.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ElectricChargeDensity? FromCoulombsPerCubicMeter(QuantityValue? coulombspercubicmeter)
-        {
-            return coulombspercubicmeter.HasValue ? FromCoulombsPerCubicMeter(coulombspercubicmeter.Value) : default(ElectricChargeDensity?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricChargeDensityUnit" /> to <see cref="ElectricChargeDensity" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricChargeDensity unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricChargeDensity? From(QuantityValue? value, ElectricChargeDensityUnit fromUnit)
-        {
-            return value.HasValue ? new ElectricChargeDensity((double)value.Value, fromUnit) : default(ElectricChargeDensity?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

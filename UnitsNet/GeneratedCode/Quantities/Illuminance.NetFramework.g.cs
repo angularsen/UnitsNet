@@ -60,58 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable Illuminance from nullable Kilolux.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Illuminance? FromKilolux(QuantityValue? kilolux)
-        {
-            return kilolux.HasValue ? FromKilolux(kilolux.Value) : default(Illuminance?);
-        }
-
-        /// <summary>
-        ///     Get nullable Illuminance from nullable Lux.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Illuminance? FromLux(QuantityValue? lux)
-        {
-            return lux.HasValue ? FromLux(lux.Value) : default(Illuminance?);
-        }
-
-        /// <summary>
-        ///     Get nullable Illuminance from nullable Megalux.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Illuminance? FromMegalux(QuantityValue? megalux)
-        {
-            return megalux.HasValue ? FromMegalux(megalux.Value) : default(Illuminance?);
-        }
-
-        /// <summary>
-        ///     Get nullable Illuminance from nullable Millilux.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Illuminance? FromMillilux(QuantityValue? millilux)
-        {
-            return millilux.HasValue ? FromMillilux(millilux.Value) : default(Illuminance?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="IlluminanceUnit" /> to <see cref="Illuminance" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Illuminance unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Illuminance? From(QuantityValue? value, IlluminanceUnit fromUnit)
-        {
-            return value.HasValue ? new Illuminance((double)value.Value, fromUnit) : default(Illuminance?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>

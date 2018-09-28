@@ -44,16 +44,8 @@ namespace UnitsNet.Extensions.NumberToElectricCurrentGradient
 {
     public static class NumberToElectricCurrentGradientExtensions
     {
-        #region AmperePerSecond
-
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
         public static ElectricCurrentGradient AmperesPerSecond<T>(this T value) => ElectricCurrentGradient.FromAmperesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricCurrentGradient? AmperesPerSecond<T>(this T? value) where T : struct => ElectricCurrentGradient.FromAmperesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

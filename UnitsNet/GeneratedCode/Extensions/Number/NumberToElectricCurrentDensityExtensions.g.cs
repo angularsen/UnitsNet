@@ -44,16 +44,8 @@ namespace UnitsNet.Extensions.NumberToElectricCurrentDensity
 {
     public static class NumberToElectricCurrentDensityExtensions
     {
-        #region AmperePerSquareMeter
-
         /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(UnitsNet.QuantityValue)" />
         public static ElectricCurrentDensity AmperesPerSquareMeter<T>(this T value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricCurrentDensity? AmperesPerSquareMeter<T>(this T? value) where T : struct => ElectricCurrentDensity.FromAmperesPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

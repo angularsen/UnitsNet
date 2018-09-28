@@ -44,16 +44,8 @@ namespace UnitsNet.Extensions.NumberToPermeability
 {
     public static class NumberToPermeabilityExtensions
     {
-        #region HenryPerMeter
-
         /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
         public static Permeability HenriesPerMeter<T>(this T value) => Permeability.FromHenriesPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Permeability.FromHenriesPerMeter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Permeability? HenriesPerMeter<T>(this T? value) where T : struct => Permeability.FromHenriesPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

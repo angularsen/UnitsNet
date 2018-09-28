@@ -44,49 +44,17 @@ namespace UnitsNet.Extensions.NumberToElectricResistance
 {
     public static class NumberToElectricResistanceExtensions
     {
-        #region Kiloohm
-
         /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
         public static ElectricResistance Kiloohms<T>(this T value) => ElectricResistance.FromKiloohms(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricResistance? Kiloohms<T>(this T? value) where T : struct => ElectricResistance.FromKiloohms(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Megaohm
 
         /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
         public static ElectricResistance Megaohms<T>(this T value) => ElectricResistance.FromMegaohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromMegaohms(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricResistance? Megaohms<T>(this T? value) where T : struct => ElectricResistance.FromMegaohms(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Milliohm
-
         /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
         public static ElectricResistance Milliohms<T>(this T value) => ElectricResistance.FromMilliohms(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricResistance.FromMilliohms(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricResistance? Milliohms<T>(this T? value) where T : struct => ElectricResistance.FromMilliohms(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Ohm
-
         /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
         public static ElectricResistance Ohms<T>(this T value) => ElectricResistance.FromOhms(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricResistance.FromOhms(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricResistance? Ohms<T>(this T? value) where T : struct => ElectricResistance.FromOhms(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

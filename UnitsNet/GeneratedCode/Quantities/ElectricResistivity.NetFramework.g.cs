@@ -60,58 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable ElectricResistivity from nullable MicroohmMeters.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ElectricResistivity? FromMicroohmMeters(QuantityValue? microohmmeters)
-        {
-            return microohmmeters.HasValue ? FromMicroohmMeters(microohmmeters.Value) : default(ElectricResistivity?);
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistivity from nullable MilliohmMeters.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ElectricResistivity? FromMilliohmMeters(QuantityValue? milliohmmeters)
-        {
-            return milliohmmeters.HasValue ? FromMilliohmMeters(milliohmmeters.Value) : default(ElectricResistivity?);
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistivity from nullable NanoohmMeters.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ElectricResistivity? FromNanoohmMeters(QuantityValue? nanoohmmeters)
-        {
-            return nanoohmmeters.HasValue ? FromNanoohmMeters(nanoohmmeters.Value) : default(ElectricResistivity?);
-        }
-
-        /// <summary>
-        ///     Get nullable ElectricResistivity from nullable OhmMeters.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ElectricResistivity? FromOhmMeters(QuantityValue? ohmmeters)
-        {
-            return ohmmeters.HasValue ? FromOhmMeters(ohmmeters.Value) : default(ElectricResistivity?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ElectricResistivityUnit" /> to <see cref="ElectricResistivity" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ElectricResistivity unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricResistivity? From(QuantityValue? value, ElectricResistivityUnit fromUnit)
-        {
-            return value.HasValue ? new ElectricResistivity((double)value.Value, fromUnit) : default(ElectricResistivity?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
