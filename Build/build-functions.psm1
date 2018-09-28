@@ -29,12 +29,13 @@ function Update-GeneratedCode {
 function Start-Build([boolean] $skipUWP = $false) {
   write-host -foreground blue "Start-Build...`n---"
 
-  $msbuildFileLogger = "/l:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.msbuild.log"
+  $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.msbuild.log"
 
-  $appVeyorMsbuildLogger = "C:\Program Files\AppVeyor\BuildAgent\dotnetcore\Appveyor.MSBuildLogger.dll"
-  $appVeyorLogger = if (Test-Path "$appVeyorMsbuildLogger") { "/l:$appVeyorMsbuildLogger" } else { "" }
+  $appVeyorLoggerDll = "C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+  $appVeyorLoggerNetCoreDll = "C:\Program Files\AppVeyor\BuildAgent\dotnetcore\Appveyor.MSBuildLogger.dll"
+  $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerNetCoreDll") { "/logger:$appVeyorLoggerNetCoreDll" } else { "" }
 
-  dotnet build --configuration Release "$root\UnitsNet.sln" $msbuildFileLogger $appVeyorLogger
+  dotnet build --configuration Release "$root\UnitsNet.sln" $fileLoggerArg $appVeyorLoggerArg
   if ($lastexitcode -ne 0) { exit 1 }
 
   if ($skipUWP -eq $true)
@@ -43,12 +44,14 @@ function Start-Build([boolean] $skipUWP = $false) {
   }
   else
   {
-    $msbuildFileLogger = "/l:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.WindowsRuntimeComponent.msbuild.log"
+    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.WindowsRuntimeComponent.msbuild.log"
+    $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
+
     # dontnet CLI does not support WindowsRuntimeComponent project type yet
     # msbuild does not auto-restore nugets for this project type
     write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using MSBuild15 instead"
     & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release /t:restore
-    & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release $msbuildFileLogger $appVeyorLogger
+    & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
