@@ -1,20 +1,18 @@
 version: '{build}'
 image: Visual Studio 2017
-only_commits:
+skip_commits:
   files:
-    - appveyor.yml
-    - '**/*.sln'
-    - '**/*.csproj'
-    - '**/*.props'
-    - '**/*.nuspec'
-    - '**/*.cs'
-    - '**/*.json'
-    - '**/*.ps1'
-    - '**/*.psm1'
-    - '**/*.bat'
+   - docs/*
+   - '**/*.md'
 
-nuget:
-  disable_publish_on_pr: false     # enable publishing of .nupkg artifacts
+# fetch repository as zip archive, not doing any git operations on it
+shallow_clone: true
+
+# build cache to preserve files/folders between builds
+cache:
+  - packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
+  - '%LocalAppData%\NuGet\Cache'    # NuGet < v3
+  - '%LocalAppData%\NuGet\v3-cache' # NuGet v3
 
 build_script:
 - ps: |
@@ -41,12 +39,15 @@ build_script:
         Write-Host "Build failed with exit code $BuildExitCode."
         exit $BuildExitCode
     }
+
 # Do not build feature branch with open Pull Requests
 skip_branch_with_pr: true
 test: off
+
 artifacts:
 - path: Artifacts\UnitsNet.zip
 - path: 'Artifacts\NuGet\*.nupkg' # find all NuGet packages recursively
+
 deploy:
 - provider: NuGet
   api_key:
@@ -54,6 +55,7 @@ deploy:
   skip_symbols: false
   on:
     branch: master
+
 - provider: NuGet
   api_key:
     secure: NlJ+D6kXfgU6RgRuf9okylLDENp8DA3tTRSC6UHBNbRS9ZAvRrC3Z0++Mr5VtGvz
