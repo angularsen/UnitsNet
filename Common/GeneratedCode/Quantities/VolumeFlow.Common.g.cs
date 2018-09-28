@@ -217,7 +217,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow in MillionUsGallonsPerDay.
         /// </summary>
-        public double MillionUsGallonsPerDay => As(VolumeFlowUnit.MillionUsGallonPerDay);
+        public double MillionUsGallonsPerDay => As(VolumeFlowUnit.MillionUsGallonsPerDay);
 
         /// <summary>
         ///     Get VolumeFlow in NanolitersPerMinute.
@@ -526,7 +526,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) millionusgallonsperday;
-            return new VolumeFlow(value, VolumeFlowUnit.MillionUsGallonPerDay);
+            return new VolumeFlow(value, VolumeFlowUnit.MillionUsGallonsPerDay);
         }
 
         /// <summary>
@@ -793,7 +793,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.LiterPerSecond: return _value/1000;
                 case VolumeFlowUnit.MicroliterPerMinute: return (_value/60000.00000) * 1e-6d;
                 case VolumeFlowUnit.MilliliterPerMinute: return (_value/60000.00000) * 1e-3d;
-                case VolumeFlowUnit.MillionUsGallonPerDay: return _value/22.824465227;
+                case VolumeFlowUnit.MillionUsGallonsPerDay: return _value/22.824465227;
                 case VolumeFlowUnit.NanoliterPerMinute: return (_value/60000.00000) * 1e-9d;
                 case VolumeFlowUnit.OilBarrelPerDay: return _value*1.8401307283333333333333333333333e-6;
                 case VolumeFlowUnit.OilBarrelPerHour: return _value*4.41631375e-5;
@@ -833,7 +833,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.LiterPerSecond: return baseUnitValue*1000;
                 case VolumeFlowUnit.MicroliterPerMinute: return (baseUnitValue*60000.00000) / 1e-6d;
                 case VolumeFlowUnit.MilliliterPerMinute: return (baseUnitValue*60000.00000) / 1e-3d;
-                case VolumeFlowUnit.MillionUsGallonPerDay: return baseUnitValue*22.824465227;
+                case VolumeFlowUnit.MillionUsGallonsPerDay: return baseUnitValue*22.824465227;
                 case VolumeFlowUnit.NanoliterPerMinute: return (baseUnitValue*60000.00000) / 1e-9d;
                 case VolumeFlowUnit.OilBarrelPerDay: return baseUnitValue/1.8401307283333333333333333333333e-6;
                 case VolumeFlowUnit.OilBarrelPerHour: return baseUnitValue/4.41631375e-5;

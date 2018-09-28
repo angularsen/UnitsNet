@@ -63,7 +63,7 @@ namespace UnitsNet.Units
         LiterPerSecond,
         MicroliterPerMinute,
         MilliliterPerMinute,
-        MillionUsGallonPerDay,
+        MillionUsGallonsPerDay,
         NanoliterPerMinute,
         OilBarrelPerDay,
         OilBarrelPerHour,

@@ -4502,7 +4502,7 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "mLPM"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.MillionUsGallonPerDay,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.MillionUsGallonsPerDay,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MGD"),
