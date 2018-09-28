@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -48,6 +48,9 @@ namespace UnitsNet
                 ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
                 : NumberFormatInfo.CurrentInfo;
 
+            if (numFormat == null)
+                throw new InvalidOperationException($"No number format was found for the given format provider: {formatProvider}");
+
             string numRegex = string.Format(@"[\d., {0}{1}]*\d",
                 // allows digits, dots, commas, and spaces in the quantity (must end in digit)
                 numFormat.NumberGroupSeparator, // adds provided (or current) culture's group separator
@@ -60,7 +63,7 @@ namespace UnitsNet
                 .OrderByDescending(s => s.Length)       // Important to order by length -- if "m" is before "mm" and the input is "mm", it will match just "m" and throw invalid string error
                 .Select(Regex.Escape)                   // Escape special regex characters
                 .ToArray();
-            
+
             string unitsRegex = $"({String.Join("|", unitAbbreviations)})";
 
             string regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
@@ -83,7 +86,7 @@ namespace UnitsNet
 
         /// <summary>
         ///     Parse a string given a particular regular expression.
-        /// </summary>  
+        /// </summary>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         private static List<TQuantity> ParseWithRegex<TQuantity>(string regexString, string str, ParseUnit<TQuantity> parseUnit,
             IFormatProvider formatProvider = null)
