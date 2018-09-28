@@ -843,6 +843,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Tablespoons.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromTablespoons(double tablespoons)
@@ -857,6 +858,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Teaspoons.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromTeaspoons(double teaspoons)

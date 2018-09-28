@@ -89,10 +89,17 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
+"@;
+$obsoleteAttribute = GetObsoleteAttribute($quantity);
+if ($obsoleteAttribute)
+{
+    $obsoleteAttribute = "`r`n    " + $obsoleteAttribute; # apply padding to conformance with code format in this section
+}
+@"
     /// <summary>
     ///     $($quantity.XmlDoc)
     /// </summary>
-    // ReSharper disable once PartialTypeWithSinglePart
+    // ReSharper disable once PartialTypeWithSinglePart$($obsoleteAttribute)
 
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
@@ -234,10 +241,16 @@ namespace UnitsNet
         public static $quantityName Zero => new $quantityName(0, BaseUnit);
 
 "@; foreach ($unit in $units) {
-        $valueParamName = $unit.PluralName.ToLowerInvariant();@"
+        $valueParamName = $unit.PluralName.ToLowerInvariant();
+        $obsoleteAttribute = GetObsoleteAttribute($unit);
+        if ($obsoleteAttribute)
+        {
+            $obsoleteAttribute = "`r`n        " + $obsoleteAttribute; # apply padding to conformance with code format in this page
+        }
+@"
         /// <summary>
         ///     Get $quantityName from $($unit.PluralName).
-        /// </summary>
+        /// </summary>$($obsoleteAttribute)
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static $quantityName From$($unit.PluralName)(double $valueParamName)

@@ -305,6 +305,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Months.
         /// </summary>
+        [System.Obsolete("Use Month30 instead, which makes it clear that this is an approximate unit based on 30 days per month. The duration of a month varies, but the Gregorian solar calendar has 365.2425/12 = 30.44 days on average.")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Duration FromMonths(double months)
@@ -375,6 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Years.
         /// </summary>
+        [System.Obsolete("Use Year365 instead, which makes it clear that this is an approximate unit based on 365 days per year. The duration of a year varies due to corrections such as leap years, since a Gregorian solar calendar has 365.2425 days.")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Duration FromYears(double years)
