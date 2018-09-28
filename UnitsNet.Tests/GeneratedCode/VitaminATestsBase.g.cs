@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => internationalunit.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            VitaminA a = VitaminA.FromInternationalUnits(1);
-            VitaminA b = VitaminA.FromInternationalUnits(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             VitaminA v = VitaminA.FromInternationalUnits(1);
-            Assert.True(v.Equals(VitaminA.FromInternationalUnits(1), VitaminA.FromInternationalUnits(InternationalUnitsTolerance)));
-            Assert.False(v.Equals(VitaminA.Zero, VitaminA.FromInternationalUnits(InternationalUnitsTolerance)));
+            Assert.True(v.Equals(VitaminA.FromInternationalUnits(1), InternationalUnitsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(VitaminA.Zero, InternationalUnitsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

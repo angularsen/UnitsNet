@@ -219,28 +219,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => ampere.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ElectricCurrent a = ElectricCurrent.FromAmperes(1);
-            ElectricCurrent b = ElectricCurrent.FromAmperes(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ElectricCurrent v = ElectricCurrent.FromAmperes(1);
-            Assert.True(v.Equals(ElectricCurrent.FromAmperes(1), ElectricCurrent.FromAmperes(AmperesTolerance)));
-            Assert.False(v.Equals(ElectricCurrent.Zero, ElectricCurrent.FromAmperes(AmperesTolerance)));
+            Assert.True(v.Equals(ElectricCurrent.FromAmperes(1), AmperesTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricCurrent.Zero, AmperesTolerance, ComparisonType.Relative));
         }
 
         [Fact]

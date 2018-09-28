@@ -207,28 +207,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => kelvin.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Temperature a = Temperature.FromKelvins(1);
-            Temperature b = Temperature.FromKelvins(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Temperature v = Temperature.FromKelvins(1);
-            Assert.True(v.Equals(Temperature.FromKelvins(1), Temperature.FromKelvins(KelvinsTolerance)));
-            Assert.False(v.Equals(Temperature.Zero, Temperature.FromKelvins(KelvinsTolerance)));
+            Assert.True(v.Equals(Temperature.FromKelvins(1), KelvinsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Temperature.Zero, KelvinsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

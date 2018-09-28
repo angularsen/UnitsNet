@@ -579,28 +579,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => cubicmeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Volume a = Volume.FromCubicMeters(1);
-            Volume b = Volume.FromCubicMeters(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Volume v = Volume.FromCubicMeters(1);
-            Assert.True(v.Equals(Volume.FromCubicMeters(1), Volume.FromCubicMeters(CubicMetersTolerance)));
-            Assert.False(v.Equals(Volume.Zero, Volume.FromCubicMeters(CubicMetersTolerance)));
+            Assert.True(v.Equals(Volume.FromCubicMeters(1), CubicMetersTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Volume.Zero, CubicMetersTolerance, ComparisonType.Relative));
         }
 
         [Fact]

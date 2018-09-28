@@ -164,28 +164,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => decibelwatt.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            PowerRatio a = PowerRatio.FromDecibelWatts(1);
-            PowerRatio b = PowerRatio.FromDecibelWatts(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             PowerRatio v = PowerRatio.FromDecibelWatts(1);
-            Assert.True(v.Equals(PowerRatio.FromDecibelWatts(1), PowerRatio.FromDecibelWatts(DecibelWattsTolerance)));
-            Assert.False(v.Equals(PowerRatio.Zero, PowerRatio.FromDecibelWatts(DecibelWattsTolerance)));
+            Assert.True(v.Equals(PowerRatio.FromDecibelWatts(1), DecibelWattsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(PowerRatio.Zero, DecibelWattsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

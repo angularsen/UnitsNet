@@ -359,28 +359,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => meter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Length a = Length.FromMeters(1);
-            Length b = Length.FromMeters(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Length v = Length.FromMeters(1);
-            Assert.True(v.Equals(Length.FromMeters(1), Length.FromMeters(MetersTolerance)));
-            Assert.False(v.Equals(Length.Zero, Length.FromMeters(MetersTolerance)));
+            Assert.True(v.Equals(Length.FromMeters(1), MetersTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Length.Zero, MetersTolerance, ComparisonType.Relative));
         }
 
         [Fact]

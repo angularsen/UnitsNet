@@ -184,28 +184,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => decibelvolt.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            AmplitudeRatio a = AmplitudeRatio.FromDecibelVolts(1);
-            AmplitudeRatio b = AmplitudeRatio.FromDecibelVolts(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             AmplitudeRatio v = AmplitudeRatio.FromDecibelVolts(1);
-            Assert.True(v.Equals(AmplitudeRatio.FromDecibelVolts(1), AmplitudeRatio.FromDecibelVolts(DecibelVoltsTolerance)));
-            Assert.False(v.Equals(AmplitudeRatio.Zero, AmplitudeRatio.FromDecibelVolts(DecibelVoltsTolerance)));
+            Assert.True(v.Equals(AmplitudeRatio.FromDecibelVolts(1), DecibelVoltsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(AmplitudeRatio.Zero, DecibelVoltsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

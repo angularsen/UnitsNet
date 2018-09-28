@@ -315,15 +315,6 @@ if ($obsoleteAttribute)
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
-        $($obsoleteEqualityIfDouble)public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is $quantityName))
-                return false;
-
-            var objQuantity = ($quantityName)obj;
-            return _value.Equals(objQuantity.AsBaseNumericType(this.Unit));
-        }
-
         /// <summary>
         ///     <para>
         ///     Compare equality to another $quantityName within the given absolute or relative tolerance.
@@ -373,20 +364,6 @@ if ($obsoleteAttribute)
             double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
-        }
-
-        /// <summary>
-        ///     Compare equality to another $quantityName by specifying a max allowed difference.
-        ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
-        /// </summary>
-        /// <param name="other">Other quantity to compare to.</param>
-        /// <param name="maxError">Max error allowed.</param>
-        /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
-        [Obsolete("Please use the Equals($quantityName, double, ComparisonType) overload. This method will be removed in a future version.")]
-        public bool Equals($quantityName other, $quantityName maxError)
-        {
-            return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         /// <summary>

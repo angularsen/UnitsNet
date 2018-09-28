@@ -159,28 +159,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => wattpermeterkelvin.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ThermalConductivity a = ThermalConductivity.FromWattsPerMeterKelvin(1);
-            ThermalConductivity b = ThermalConductivity.FromWattsPerMeterKelvin(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ThermalConductivity v = ThermalConductivity.FromWattsPerMeterKelvin(1);
-            Assert.True(v.Equals(ThermalConductivity.FromWattsPerMeterKelvin(1), ThermalConductivity.FromWattsPerMeterKelvin(WattsPerMeterKelvinTolerance)));
-            Assert.False(v.Equals(ThermalConductivity.Zero, ThermalConductivity.FromWattsPerMeterKelvin(WattsPerMeterKelvinTolerance)));
+            Assert.True(v.Equals(ThermalConductivity.FromWattsPerMeterKelvin(1), WattsPerMeterKelvinTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ThermalConductivity.Zero, WattsPerMeterKelvinTolerance, ComparisonType.Relative));
         }
 
         [Fact]

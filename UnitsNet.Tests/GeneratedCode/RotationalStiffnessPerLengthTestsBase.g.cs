@@ -169,28 +169,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => newtonmeterperradianpermeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            RotationalStiffnessPerLength a = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
-            RotationalStiffnessPerLength b = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             RotationalStiffnessPerLength v = RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1);
-            Assert.True(v.Equals(RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1), RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(NewtonMetersPerRadianPerMeterTolerance)));
-            Assert.False(v.Equals(RotationalStiffnessPerLength.Zero, RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(NewtonMetersPerRadianPerMeterTolerance)));
+            Assert.True(v.Equals(RotationalStiffnessPerLength.FromNewtonMetersPerRadianPerMeter(1), NewtonMetersPerRadianPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(RotationalStiffnessPerLength.Zero, NewtonMetersPerRadianPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

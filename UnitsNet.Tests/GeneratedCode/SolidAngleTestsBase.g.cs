@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => steradian.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            SolidAngle a = SolidAngle.FromSteradians(1);
-            SolidAngle b = SolidAngle.FromSteradians(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             SolidAngle v = SolidAngle.FromSteradians(1);
-            Assert.True(v.Equals(SolidAngle.FromSteradians(1), SolidAngle.FromSteradians(SteradiansTolerance)));
-            Assert.False(v.Equals(SolidAngle.Zero, SolidAngle.FromSteradians(SteradiansTolerance)));
+            Assert.True(v.Equals(SolidAngle.FromSteradians(1), SteradiansTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(SolidAngle.Zero, SteradiansTolerance, ComparisonType.Relative));
         }
 
         [Fact]

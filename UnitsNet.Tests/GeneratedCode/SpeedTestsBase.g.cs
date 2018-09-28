@@ -459,28 +459,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => meterpersecond.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Speed a = Speed.FromMetersPerSecond(1);
-            Speed b = Speed.FromMetersPerSecond(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Speed v = Speed.FromMetersPerSecond(1);
-            Assert.True(v.Equals(Speed.FromMetersPerSecond(1), Speed.FromMetersPerSecond(MetersPerSecondTolerance)));
-            Assert.False(v.Equals(Speed.Zero, Speed.FromMetersPerSecond(MetersPerSecondTolerance)));
+            Assert.True(v.Equals(Speed.FromMetersPerSecond(1), MetersPerSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Speed.Zero, MetersPerSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]

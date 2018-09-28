@@ -349,28 +349,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => newtonmeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Torque a = Torque.FromNewtonMeters(1);
-            Torque b = Torque.FromNewtonMeters(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Torque v = Torque.FromNewtonMeters(1);
-            Assert.True(v.Equals(Torque.FromNewtonMeters(1), Torque.FromNewtonMeters(NewtonMetersTolerance)));
-            Assert.False(v.Equals(Torque.Zero, Torque.FromNewtonMeters(NewtonMetersTolerance)));
+            Assert.True(v.Equals(Torque.FromNewtonMeters(1), NewtonMetersTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Torque.Zero, NewtonMetersTolerance, ComparisonType.Relative));
         }
 
         [Fact]

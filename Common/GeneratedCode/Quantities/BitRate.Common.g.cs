@@ -715,15 +715,6 @@ namespace UnitsNet
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is BitRate))
-                return false;
-
-            var objQuantity = (BitRate)obj;
-            return _value.Equals(objQuantity.AsBaseNumericType(this.Unit));
-        }
-
         /// <summary>
         ///     <para>
         ///     Compare equality to another BitRate within the given absolute or relative tolerance.
@@ -773,20 +764,6 @@ namespace UnitsNet
             double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
-        }
-
-        /// <summary>
-        ///     Compare equality to another BitRate by specifying a max allowed difference.
-        ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
-        /// </summary>
-        /// <param name="other">Other quantity to compare to.</param>
-        /// <param name="maxError">Max error allowed.</param>
-        /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
-        [Obsolete("Please use the Equals(BitRate, double, ComparisonType) overload. This method will be removed in a future version.")]
-        public bool Equals(BitRate other, BitRate maxError)
-        {
-            return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         /// <summary>

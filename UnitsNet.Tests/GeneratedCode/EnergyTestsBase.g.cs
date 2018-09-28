@@ -359,28 +359,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => joule.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Energy a = Energy.FromJoules(1);
-            Energy b = Energy.FromJoules(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Energy v = Energy.FromJoules(1);
-            Assert.True(v.Equals(Energy.FromJoules(1), Energy.FromJoules(JoulesTolerance)));
-            Assert.False(v.Equals(Energy.Zero, Energy.FromJoules(JoulesTolerance)));
+            Assert.True(v.Equals(Energy.FromJoules(1), JoulesTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Energy.Zero, JoulesTolerance, ComparisonType.Relative));
         }
 
         [Fact]

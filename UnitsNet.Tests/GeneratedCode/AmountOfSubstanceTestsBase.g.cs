@@ -279,28 +279,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => mole.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            AmountOfSubstance a = AmountOfSubstance.FromMoles(1);
-            AmountOfSubstance b = AmountOfSubstance.FromMoles(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             AmountOfSubstance v = AmountOfSubstance.FromMoles(1);
-            Assert.True(v.Equals(AmountOfSubstance.FromMoles(1), AmountOfSubstance.FromMoles(MolesTolerance)));
-            Assert.False(v.Equals(AmountOfSubstance.Zero, AmountOfSubstance.FromMoles(MolesTolerance)));
+            Assert.True(v.Equals(AmountOfSubstance.FromMoles(1), MolesTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(AmountOfSubstance.Zero, MolesTolerance, ComparisonType.Relative));
         }
 
         [Fact]

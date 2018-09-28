@@ -159,28 +159,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => wattpersquaremeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Irradiance a = Irradiance.FromWattsPerSquareMeter(1);
-            Irradiance b = Irradiance.FromWattsPerSquareMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Irradiance v = Irradiance.FromWattsPerSquareMeter(1);
-            Assert.True(v.Equals(Irradiance.FromWattsPerSquareMeter(1), Irradiance.FromWattsPerSquareMeter(WattsPerSquareMeterTolerance)));
-            Assert.False(v.Equals(Irradiance.Zero, Irradiance.FromWattsPerSquareMeter(WattsPerSquareMeterTolerance)));
+            Assert.True(v.Equals(Irradiance.FromWattsPerSquareMeter(1), WattsPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Irradiance.Zero, WattsPerSquareMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

@@ -279,28 +279,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => degree.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Angle a = Angle.FromDegrees(1);
-            Angle b = Angle.FromDegrees(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Angle v = Angle.FromDegrees(1);
-            Assert.True(v.Equals(Angle.FromDegrees(1), Angle.FromDegrees(DegreesTolerance)));
-            Assert.False(v.Equals(Angle.Zero, Angle.FromDegrees(DegreesTolerance)));
+            Assert.True(v.Equals(Angle.FromDegrees(1), DegreesTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Angle.Zero, DegreesTolerance, ComparisonType.Relative));
         }
 
         [Fact]

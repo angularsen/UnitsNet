@@ -198,28 +198,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => $baseUnitVariableName.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            $quantityName a = $quantityName.From$baseUnitPluralName(1);
-            $quantityName b = $quantityName.From$baseUnitPluralName(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             $quantityName v = $quantityName.From$baseUnitPluralName(1);
-            Assert.True(v.Equals($quantityName.From$baseUnitPluralName(1), $quantityName.From$baseUnitPluralName($($baseUnitPluralName)Tolerance)));
-            Assert.False(v.Equals($quantityName.Zero, $quantityName.From$baseUnitPluralName($($baseUnitPluralName)Tolerance)));
+            Assert.True(v.Equals($quantityName.From$baseUnitPluralName(1), $($baseUnitPluralName)Tolerance, ComparisonType.Relative));
+            Assert.False(v.Equals($quantityName.Zero, $($baseUnitPluralName)Tolerance, ComparisonType.Relative));
         }
 
         [Fact]

@@ -199,28 +199,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => newtonsecondpermetersquared.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            DynamicViscosity a = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
-            DynamicViscosity b = DynamicViscosity.FromNewtonSecondsPerMeterSquared(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             DynamicViscosity v = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
-            Assert.True(v.Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(1), DynamicViscosity.FromNewtonSecondsPerMeterSquared(NewtonSecondsPerMeterSquaredTolerance)));
-            Assert.False(v.Equals(DynamicViscosity.Zero, DynamicViscosity.FromNewtonSecondsPerMeterSquared(NewtonSecondsPerMeterSquaredTolerance)));
+            Assert.True(v.Equals(DynamicViscosity.FromNewtonSecondsPerMeterSquared(1), NewtonSecondsPerMeterSquaredTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(DynamicViscosity.Zero, NewtonSecondsPerMeterSquaredTolerance, ComparisonType.Relative));
         }
 
         [Fact]

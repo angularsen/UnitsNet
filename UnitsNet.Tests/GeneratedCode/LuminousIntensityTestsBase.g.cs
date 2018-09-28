@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => candela.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            LuminousIntensity a = LuminousIntensity.FromCandela(1);
-            LuminousIntensity b = LuminousIntensity.FromCandela(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             LuminousIntensity v = LuminousIntensity.FromCandela(1);
-            Assert.True(v.Equals(LuminousIntensity.FromCandela(1), LuminousIntensity.FromCandela(CandelaTolerance)));
-            Assert.False(v.Equals(LuminousIntensity.Zero, LuminousIntensity.FromCandela(CandelaTolerance)));
+            Assert.True(v.Equals(LuminousIntensity.FromCandela(1), CandelaTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(LuminousIntensity.Zero, CandelaTolerance, ComparisonType.Relative));
         }
 
         [Fact]
