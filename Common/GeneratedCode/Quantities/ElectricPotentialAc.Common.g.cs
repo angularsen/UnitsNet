@@ -82,20 +82,10 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates the quantity with the given value in the base unit VoltAc.
-        /// </summary>
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public ElectricPotentialAc(double voltsac)
-        {
-            _value = Convert.ToDouble(voltsac);
-            _unit = BaseUnit;
-        }
-
-        /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
         /// <param name="numericValue">Numeric value.</param>
-        /// <param name="unit">Unit representation.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
@@ -108,33 +98,6 @@ namespace UnitsNet
             _unit = unit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit VoltAc.
-        /// </summary>
-        /// <param name="voltsac">Value assuming base unit VoltAc.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        ElectricPotentialAc(long voltsac) : this(Convert.ToDouble(voltsac), BaseUnit) { }
-
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        // Windows Runtime Component does not support decimal type
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit VoltAc.
-        /// </summary>
-        /// <param name="voltsac">Value assuming base unit VoltAc.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        ElectricPotentialAc(decimal voltsac) : this(Convert.ToDouble(voltsac), BaseUnit) { }
-
         #region Properties
 
         /// <summary>
@@ -143,7 +106,7 @@ namespace UnitsNet
         public static QuantityType QuantityType => QuantityType.ElectricPotentialAc;
 
         /// <summary>
-        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        ///     The base unit of ElectricPotentialAc, which is VoltAc. All conversions go via this value.
         /// </summary>
         public static ElectricPotentialAcUnit BaseUnit => ElectricPotentialAcUnit.VoltAc;
 
@@ -500,12 +463,6 @@ namespace UnitsNet
         }
 
         #endregion
-
-        /// <summary>
-        ///     Set the default unit used by ToString(). Default is VoltAc
-        /// </summary>
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
-        public static ElectricPotentialAcUnit ToStringDefaultUnit { get; set; } = ElectricPotentialAcUnit.VoltAc;
 
         /// <summary>
         ///     Get default string representation of value and unit.

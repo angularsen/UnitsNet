@@ -83,20 +83,10 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates the quantity with the given value in the base unit KilogramSquareMeter.
-        /// </summary>
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public MassMomentOfInertia(double kilogramsquaremeters)
-        {
-            _value = Convert.ToDouble(kilogramsquaremeters);
-            _unit = BaseUnit;
-        }
-
-        /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
         /// <param name="numericValue">Numeric value.</param>
-        /// <param name="unit">Unit representation.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
@@ -109,33 +99,6 @@ namespace UnitsNet
             _unit = unit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit KilogramSquareMeter.
-        /// </summary>
-        /// <param name="kilogramsquaremeters">Value assuming base unit KilogramSquareMeter.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        MassMomentOfInertia(long kilogramsquaremeters) : this(Convert.ToDouble(kilogramsquaremeters), BaseUnit) { }
-
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        // Windows Runtime Component does not support decimal type
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit KilogramSquareMeter.
-        /// </summary>
-        /// <param name="kilogramsquaremeters">Value assuming base unit KilogramSquareMeter.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        MassMomentOfInertia(decimal kilogramsquaremeters) : this(Convert.ToDouble(kilogramsquaremeters), BaseUnit) { }
-
         #region Properties
 
         /// <summary>
@@ -144,7 +107,7 @@ namespace UnitsNet
         public static QuantityType QuantityType => QuantityType.MassMomentOfInertia;
 
         /// <summary>
-        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        ///     The base unit of MassMomentOfInertia, which is KilogramSquareMeter. All conversions go via this value.
         /// </summary>
         public static MassMomentOfInertiaUnit BaseUnit => MassMomentOfInertiaUnit.KilogramSquareMeter;
 
@@ -942,12 +905,6 @@ namespace UnitsNet
         }
 
         #endregion
-
-        /// <summary>
-        ///     Set the default unit used by ToString(). Default is KilogramSquareMeter
-        /// </summary>
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
-        public static MassMomentOfInertiaUnit ToStringDefaultUnit { get; set; } = MassMomentOfInertiaUnit.KilogramSquareMeter;
 
         /// <summary>
         ///     Get default string representation of value and unit.

@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
+
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
@@ -38,7 +40,7 @@ namespace UnitsNet
         /// <param name="molecularWeight"></param>
         public static Density FromMolarity(Molarity molarity, Mass molecularWeight)
         {
-            return new Density(molarity.MolesPerCubicMeter * molecularWeight.Kilograms);
+            return new Density(molarity.MolesPerCubicMeter * molecularWeight.Kilograms, DensityUnit.KilogramPerCubicMeter);
         }
 
         public static Molarity ToMolarity(Density density, Mass molecularWeight)

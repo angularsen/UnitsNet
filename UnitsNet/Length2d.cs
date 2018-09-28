@@ -197,7 +197,7 @@ namespace UnitsNet
         public override string ToString()
         {
             return
-                $"({X.Meters:0.##}, {Y.Meters:0.##}) {UnitSystem.GetCached().GetDefaultAbbreviation(LengthUnit.Meter)}";
+                $"({X.Meters:0.##}, {Y.Meters:0.##}) {UnitSystem.Default.GetDefaultAbbreviation(LengthUnit.Meter)}";
         }
 
         public Length DistanceTo(Length2d other)

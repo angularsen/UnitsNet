@@ -83,20 +83,10 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates the quantity with the given value in the base unit WattPerSquareMeter.
-        /// </summary>
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public HeatFlux(double wattspersquaremeter)
-        {
-            _value = Convert.ToDouble(wattspersquaremeter);
-            _unit = BaseUnit;
-        }
-
-        /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
         /// <param name="numericValue">Numeric value.</param>
-        /// <param name="unit">Unit representation.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
@@ -109,33 +99,6 @@ namespace UnitsNet
             _unit = unit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit WattPerSquareMeter.
-        /// </summary>
-        /// <param name="wattspersquaremeter">Value assuming base unit WattPerSquareMeter.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        HeatFlux(long wattspersquaremeter) : this(Convert.ToDouble(wattspersquaremeter), BaseUnit) { }
-
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        // Windows Runtime Component does not support decimal type
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit WattPerSquareMeter.
-        /// </summary>
-        /// <param name="wattspersquaremeter">Value assuming base unit WattPerSquareMeter.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        HeatFlux(decimal wattspersquaremeter) : this(Convert.ToDouble(wattspersquaremeter), BaseUnit) { }
-
         #region Properties
 
         /// <summary>
@@ -144,7 +107,7 @@ namespace UnitsNet
         public static QuantityType QuantityType => QuantityType.HeatFlux;
 
         /// <summary>
-        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        ///     The base unit of HeatFlux, which is WattPerSquareMeter. All conversions go via this value.
         /// </summary>
         public static HeatFluxUnit BaseUnit => HeatFluxUnit.WattPerSquareMeter;
 
@@ -732,12 +695,6 @@ namespace UnitsNet
         }
 
         #endregion
-
-        /// <summary>
-        ///     Set the default unit used by ToString(). Default is WattPerSquareMeter
-        /// </summary>
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
-        public static HeatFluxUnit ToStringDefaultUnit { get; set; } = HeatFluxUnit.WattPerSquareMeter;
 
         /// <summary>
         ///     Get default string representation of value and unit.

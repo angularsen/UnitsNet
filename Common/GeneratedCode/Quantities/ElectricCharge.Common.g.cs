@@ -83,20 +83,10 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates the quantity with the given value in the base unit Coulomb.
-        /// </summary>
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public ElectricCharge(double coulombs)
-        {
-            _value = Convert.ToDouble(coulombs);
-            _unit = BaseUnit;
-        }
-
-        /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
         /// <param name="numericValue">Numeric value.</param>
-        /// <param name="unit">Unit representation.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
@@ -109,33 +99,6 @@ namespace UnitsNet
             _unit = unit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit Coulomb.
-        /// </summary>
-        /// <param name="coulombs">Value assuming base unit Coulomb.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        ElectricCharge(long coulombs) : this(Convert.ToDouble(coulombs), BaseUnit) { }
-
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        // Windows Runtime Component does not support decimal type
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit Coulomb.
-        /// </summary>
-        /// <param name="coulombs">Value assuming base unit Coulomb.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        ElectricCharge(decimal coulombs) : this(Convert.ToDouble(coulombs), BaseUnit) { }
-
         #region Properties
 
         /// <summary>
@@ -144,7 +107,7 @@ namespace UnitsNet
         public static QuantityType QuantityType => QuantityType.ElectricCharge;
 
         /// <summary>
-        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        ///     The base unit of ElectricCharge, which is Coulomb. All conversions go via this value.
         /// </summary>
         public static ElectricChargeUnit BaseUnit => ElectricChargeUnit.Coulomb;
 
@@ -417,12 +380,6 @@ namespace UnitsNet
         }
 
         #endregion
-
-        /// <summary>
-        ///     Set the default unit used by ToString(). Default is Coulomb
-        /// </summary>
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
-        public static ElectricChargeUnit ToStringDefaultUnit { get; set; } = ElectricChargeUnit.Coulomb;
 
         /// <summary>
         ///     Get default string representation of value and unit.

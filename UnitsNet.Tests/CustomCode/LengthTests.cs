@@ -130,22 +130,16 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void ToStringReturnsCorrectNumberAndUnitWithDefaultUnitWhichIsMeter()
         {
-            LengthUnit oldUnit = Length.ToStringDefaultUnit;
-            Length.ToStringDefaultUnit = LengthUnit.Meter;
-            Length meter = Length.FromMeters(5);
+            var meter = Length.FromMeters(5);
             string meterString = meter.ToString();
-            Length.ToStringDefaultUnit = oldUnit;
             Assert.Equal("5 m", meterString);
         }
 
         [Fact]
         public void ToStringReturnsCorrectNumberAndUnitWithCentimeterAsDefualtUnit()
         {
-            LengthUnit oldUnit = Length.ToStringDefaultUnit;
-            Length.ToStringDefaultUnit = LengthUnit.Centimeter;
-            Length value = Length.From(2, LengthUnit.Centimeter);
+            var value = Length.From(2, LengthUnit.Centimeter);
             string valueString = value.ToString();
-            Length.ToStringDefaultUnit = oldUnit;
             Assert.Equal("2 cm", valueString);
         }
 
@@ -159,8 +153,6 @@ namespace UnitsNet.Tests.CustomCode
         public void MinValueIsCorrectForUnitWithBaseTypeDouble()
         {
             Assert.Equal(double.MinValue, Length.MinValue.Meters);
-        }
-
-        
+        }        
     }
 }

@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
+
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
@@ -70,24 +72,24 @@ namespace UnitsNet
         {
             double metersSquared = area.Meters.X * area.Meters.Y;
             double newtons = p.Pascals * metersSquared;
-            return new Force(newtons);
+            return new Force(newtons, ForceUnit.Newton);
         }
 
         public static Force FromMassByAcceleration(Mass mass, double metersPerSecondSquared)
         {
-            return new Force(mass.Kilograms * metersPerSecondSquared);
+            return new Force(mass.Kilograms * metersPerSecondSquared, ForceUnit.Newton);
         }
 #endif
 
         public static Force FromPressureByArea(Pressure p, Area area)
         {
             double newtons = p.Pascals * area.SquareMeters;
-            return new Force(newtons);
+            return new Force(newtons, ForceUnit.Newton);
         }
 
         public static Force FromMassByAcceleration(Mass mass, Acceleration acceleration)
         {
-            return new Force(mass.Kilograms * acceleration.MetersPerSecondSquared);
+            return new Force(mass.Kilograms * acceleration.MetersPerSecondSquared, ForceUnit.Newton);
         }
     }
 }
