@@ -48,6 +48,8 @@ function Set-ProjectVersion([string] $file, [string] $version) {
 }
 
 function Set-AssemblyInfoVersion([string] $file, [string] $version) {
+  # Strip out any suffix: "4.0.0-alpha1" => "4.0.0"
+  $version = $version.Split('-')[0]
   Write-Host "$file -> $version"
   (Get-Content $file) -replace 'Assembly(File)?Version\(".*?"\)', "Assembly`$1Version(`"$version`")" | Set-Content $file
 }
