@@ -22,8 +22,6 @@
 // Operator overloads not supported in Windows Runtime Components, we use 'double' type instead
 
 #if !WINDOWS_UWP
-using System;
-
 namespace UnitsNet
 {
     /// <summary>

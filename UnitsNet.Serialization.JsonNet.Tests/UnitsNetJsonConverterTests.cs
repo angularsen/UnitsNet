@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -121,12 +121,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void NullValue_ExpectJsonContainsNullString()
             {
-                Mass? nullMass = null;
-                var expectedJson = "null";
-
-                string json = SerializeObject(nullMass);
-
-                Assert.Equal(expectedJson, json);
+                string json = SerializeObject(null);
+                Assert.Equal("null", json);
             }
 
             [Fact]
@@ -242,7 +238,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 string json = JsonConvert.SerializeObject(testObjWithIComparable, jsonSerializerSettings);
 
                 var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithIComparable>(json,jsonSerializerSettings);
-               
+
                 Assert.Equal(typeof(Power), deserializedTestObject.Value.GetType());
                 Assert.Equal(Power.FromWatts(10), (Power)deserializedTestObject.Value);
             }

@@ -40,6 +40,7 @@ namespace UnitsNet
         public Vector2 Meters;
     }
 #else
+    // ReSharper disable once InconsistentNaming
     public struct Length2d : IEquatable<Length2d>
     {
         /// <summary>
