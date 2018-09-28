@@ -31,6 +31,14 @@ using UnitsNet.Units;
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
+    /// <summary>
+    /// Main facade for working with units dynamically and configuring default behavior for quantities' ToString():
+    /// - Instance per culture via <see cref="GetCached(System.IFormatProvider)"/>, for caching number formatting and unit abbreviation localization
+    /// - Use <see cref="Default"/> for local system's current culture
+    /// - Override <see cref="DefaultCulture"/> to affect number formatting and localization of all quantities' ToString() when culture is not specified
+    /// - <see cref="Parse"/> unit abbreviations with dynamic types
+    /// - Dynamically add abbreviations to unit enums with <see cref="MapUnitToAbbreviation"/>
+    /// </summary>
     [PublicAPI]
     public sealed partial class UnitSystem
     {
@@ -38,11 +46,11 @@ namespace UnitsNet
 
         /// <summary>
         ///     Fallback culture used by <see cref="GetAllAbbreviations{TUnitType}" /> and
-        ///     <see cref="GetDefaultAbbreviation{TUnitType}(TUnitType,CultureInfo)" />
+        ///     <see cref="GetDefaultAbbreviation{TUnitType}" />
         ///     if no abbreviations are found with current <see cref="Culture" />.
         /// </summary>
         /// <example>
-        ///     User wants to call <see cref="Parse{TUnitType}(string,System.IFormatProvider)" /> or <see cref="object.ToString" /> with Russian
+        ///     User wants to call <see cref="Parse{TUnitType}" /> or <see cref="Length.ToString()" /> with Russian
         ///     culture, but no translation is defined, so we return the US English definition as a last resort. If it's not
         ///     defined there either, an exception is thrown.
         /// </example>
@@ -147,8 +155,16 @@ namespace UnitsNet
 #endif
             static IFormatProvider DefaultCulture { get; set; } = CultureInfo.CurrentUICulture;
 
+        /// <summary>
+        /// Whether this instance is for the <see cref="FallbackCulture"/>.
+        /// TODO Make this private.
+        /// </summary>
         public bool IsFallbackCulture => Culture.Equals(FallbackCulture);
 
+        /// <summary>
+        /// Clear the cached singleton instances.
+        /// Calling <see cref="Default"/> or <see cref="GetCached(string)"/> afterwards will create a new instance.
+        /// </summary>
         [PublicAPI]
         public static void ClearCache()
         {
@@ -185,6 +201,11 @@ namespace UnitsNet
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        /// <summary>
+        /// Gets or creates the singleton instance configured with localized unit abbreviations and number formatting for the given culture.
+        /// </summary>
+        /// <param name="cultureInfo">The culture.</param>
+        /// <returns>The instance.</returns>
 #if WINDOWS_UWP
         internal
 #else
@@ -205,19 +226,13 @@ namespace UnitsNet
             }
         }
 
-        [PublicAPI]
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            static TUnitType Parse<TUnitType>(string unitAbbreviation, IFormatProvider culture)
-            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
-        {
-            return GetCached(culture).Parse<TUnitType>(unitAbbreviation);
-        }
-
+        /// <summary>
+        /// Parses a unit abbreviation for a given unit enumeration type.
+        /// Example: Parse&lt;LengthUnit&gt;("km") => LengthUnit.Kilometer
+        /// </summary>
+        /// <param name="unitAbbreviation"></param>
+        /// <typeparam name="TUnitType"></typeparam>
+        /// <returns></returns>
         [PublicAPI]
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
@@ -246,12 +261,10 @@ namespace UnitsNet
         [PublicAPI]
         public object Parse(string unitAbbreviation, Type unitType)
         {
-            AbbreviationMap abbrevToUnitValue;
-            if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out abbrevToUnitValue))
+            if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out var abbrevToUnitValue))
                 throw new UnitNotFoundException($"No abbreviations defined for unit type [{unitType}] for culture [{Culture}].");
 
-            List<int> unitIntValues;
-            List<object> unitValues = abbrevToUnitValue.TryGetValue(unitAbbreviation, out unitIntValues)
+            List<object> unitValues = abbrevToUnitValue.TryGetValue(unitAbbreviation, out var unitIntValues)
                 ? unitIntValues.Distinct().Cast<object>().ToList()
                 : new List<object>();
 
@@ -268,19 +281,13 @@ namespace UnitsNet
             }
         }
 
-        [PublicAPI]
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            static string GetDefaultAbbreviation<TUnitType>(TUnitType unit, CultureInfo culture)
-            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
-        {
-            return GetCached(culture).GetDefaultAbbreviation(unit);
-        }
-
+        /// <summary>
+        /// Gets the default abbreviation for a given unit. If a unit has more than one abbreviation defined, then it returns the first one.
+        /// Example: GetDefaultAbbreviation&lt;LengthUnit&gt;(LengthUnit.Kilometer) => "km"
+        /// </summary>
+        /// <param name="unit">The unit enum value.</param>
+        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
+        /// <returns>The default unit abbreviation string.</returns>
         [PublicAPI]
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
@@ -294,12 +301,28 @@ namespace UnitsNet
             return GetAllAbbreviations(unit).First();
         }
 
+        /// <summary>
+        /// Gets the default abbreviation for a given unit type and its numeric enum value.
+        /// If a unit has more than one abbreviation defined, then it returns the first one.
+        /// Example: GetDefaultAbbreviation&lt;LengthUnit&gt;(typeof(LengthUnit), 1) => "cm"
+        /// </summary>
+        /// <param name="unitType">The unit enum type.</param>
+        /// <param name="unitValue">The unit enum value.</param>
+        /// <returns>The default unit abbreviation string.</returns>
         [PublicAPI]
         public string GetDefaultAbbreviation(Type unitType, int unitValue)
         {
             return GetAllAbbreviations(unitType, unitValue).First();
         }
 
+        /// <summary>
+        /// Adds one or more unit abbreviation for the given unit enum value.
+        /// This is used to dynamically add abbreviations for existing unit enums such as <see cref="LengthUnit"/> or to extend with third-party unit enums
+        /// in order to <see cref="Parse{TUnitType}"/> or <see cref="GetDefaultAbbreviation{TUnitType}"/> on them later.
+        /// </summary>
+        /// <param name="unit">The unit enum value.</param>
+        /// <param name="abbreviations">Unit abbreviations to add.</param>
+        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         [PublicAPI]
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
@@ -318,6 +341,14 @@ namespace UnitsNet
             MapUnitToAbbreviation(unitType, unitValue, abbreviations);
         }
 
+        /// <summary>
+        /// Adds one or more unit abbreviation for the given unit enum value.
+        /// This is used to dynamically add abbreviations for existing unit enums such as <see cref="LengthUnit"/> or to extend with third-party unit enums
+        /// in order to <see cref="Parse{TUnitType}"/> or <see cref="GetDefaultAbbreviation{TUnitType}"/> on them later.
+        /// </summary>
+        /// <param name="unitType">The unit enum type.</param>
+        /// <param name="unitValue">The unit enum value.</param>
+        /// <param name="abbreviations">Unit abbreviations to add.</param>
         [PublicAPI]
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
@@ -364,6 +395,13 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        /// Try to parse a unit abbreviation.
+        /// </summary>
+        /// <param name="unitAbbreviation">The string value.</param>
+        /// <param name="unit">The unit enum value as out result.</param>
+        /// <typeparam name="TUnitType">Type of unit enum.</typeparam>
+        /// <returns>True if successful.</returns>
         [PublicAPI]
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
 #if WINDOWS_UWP
@@ -386,6 +424,13 @@ namespace UnitsNet
             }
         }
 
+        /// <summary>
+        /// Try to parse a unit abbreviation.
+        /// </summary>
+        /// <param name="unitAbbreviation">The string value.</param>
+        /// <param name="unitType">Type of unit enum.</param>
+        /// <param name="unit">The unit enum value as out result.</param>
+        /// <returns>True if successful.</returns>
         [PublicAPI]
         public bool TryParse(string unitAbbreviation, Type unitType, out object unit)
         {
