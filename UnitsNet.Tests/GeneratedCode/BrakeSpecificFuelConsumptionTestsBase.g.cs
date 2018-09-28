@@ -169,28 +169,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => kilogramperjoule.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            BrakeSpecificFuelConsumption a = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
-            BrakeSpecificFuelConsumption b = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             BrakeSpecificFuelConsumption v = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
-            Assert.True(v.Equals(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1), BrakeSpecificFuelConsumption.FromKilogramsPerJoule(KilogramsPerJouleTolerance)));
-            Assert.False(v.Equals(BrakeSpecificFuelConsumption.Zero, BrakeSpecificFuelConsumption.FromKilogramsPerJoule(KilogramsPerJouleTolerance)));
+            Assert.True(v.Equals(BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1), KilogramsPerJouleTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(BrakeSpecificFuelConsumption.Zero, KilogramsPerJouleTolerance, ComparisonType.Relative));
         }
 
         [Fact]

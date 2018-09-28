@@ -179,28 +179,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => pascalpersecond.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            PressureChangeRate a = PressureChangeRate.FromPascalsPerSecond(1);
-            PressureChangeRate b = PressureChangeRate.FromPascalsPerSecond(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             PressureChangeRate v = PressureChangeRate.FromPascalsPerSecond(1);
-            Assert.True(v.Equals(PressureChangeRate.FromPascalsPerSecond(1), PressureChangeRate.FromPascalsPerSecond(PascalsPerSecondTolerance)));
-            Assert.False(v.Equals(PressureChangeRate.Zero, PressureChangeRate.FromPascalsPerSecond(PascalsPerSecondTolerance)));
+            Assert.True(v.Equals(PressureChangeRate.FromPascalsPerSecond(1), PascalsPerSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(PressureChangeRate.Zero, PascalsPerSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]

@@ -399,28 +399,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => bit.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Information a = Information.FromBits(1);
-            Information b = Information.FromBits(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Information v = Information.FromBits(1);
-            Assert.True(v.Equals(Information.FromBits(1), Information.FromBits(BitsTolerance)));
-            Assert.False(v.Equals(Information.Zero, Information.FromBits(BitsTolerance)));
+            Assert.True(v.Equals(Information.FromBits(1), BitsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Information.Zero, BitsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

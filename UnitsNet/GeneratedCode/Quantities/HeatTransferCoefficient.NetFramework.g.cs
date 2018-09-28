@@ -60,40 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable HeatTransferCoefficient from nullable WattsPerSquareMeterCelsius.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static HeatTransferCoefficient? FromWattsPerSquareMeterCelsius(QuantityValue? wattspersquaremetercelsius)
-        {
-            return wattspersquaremetercelsius.HasValue ? FromWattsPerSquareMeterCelsius(wattspersquaremetercelsius.Value) : default(HeatTransferCoefficient?);
-        }
-
-        /// <summary>
-        ///     Get nullable HeatTransferCoefficient from nullable WattsPerSquareMeterKelvin.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static HeatTransferCoefficient? FromWattsPerSquareMeterKelvin(QuantityValue? wattspersquaremeterkelvin)
-        {
-            return wattspersquaremeterkelvin.HasValue ? FromWattsPerSquareMeterKelvin(wattspersquaremeterkelvin.Value) : default(HeatTransferCoefficient?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="HeatTransferCoefficientUnit" /> to <see cref="HeatTransferCoefficient" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>HeatTransferCoefficient unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static HeatTransferCoefficient? From(QuantityValue? value, HeatTransferCoefficientUnit fromUnit)
-        {
-            return value.HasValue ? new HeatTransferCoefficient((double)value.Value, fromUnit) : default(HeatTransferCoefficient?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -165,20 +131,6 @@ namespace UnitsNet
         public static bool operator >(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator ==(HeatTransferCoefficient left, HeatTransferCoefficient right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator !=(HeatTransferCoefficient left, HeatTransferCoefficient right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 
         #region Parsing

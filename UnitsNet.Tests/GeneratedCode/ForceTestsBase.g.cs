@@ -239,28 +239,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => newton.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Force a = Force.FromNewtons(1);
-            Force b = Force.FromNewtons(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Force v = Force.FromNewtons(1);
-            Assert.True(v.Equals(Force.FromNewtons(1), Force.FromNewtons(NewtonsTolerance)));
-            Assert.False(v.Equals(Force.Zero, Force.FromNewtons(NewtonsTolerance)));
+            Assert.True(v.Equals(Force.FromNewtons(1), NewtonsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Force.Zero, NewtonsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

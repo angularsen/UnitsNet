@@ -519,28 +519,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => kilogrampercubicmeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Density a = Density.FromKilogramsPerCubicMeter(1);
-            Density b = Density.FromKilogramsPerCubicMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Density v = Density.FromKilogramsPerCubicMeter(1);
-            Assert.True(v.Equals(Density.FromKilogramsPerCubicMeter(1), Density.FromKilogramsPerCubicMeter(KilogramsPerCubicMeterTolerance)));
-            Assert.False(v.Equals(Density.Zero, Density.FromKilogramsPerCubicMeter(KilogramsPerCubicMeterTolerance)));
+            Assert.True(v.Equals(Density.FromKilogramsPerCubicMeter(1), KilogramsPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Density.Zero, KilogramsPerCubicMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

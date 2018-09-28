@@ -269,28 +269,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => squaremeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Area a = Area.FromSquareMeters(1);
-            Area b = Area.FromSquareMeters(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Area v = Area.FromSquareMeters(1);
-            Assert.True(v.Equals(Area.FromSquareMeters(1), Area.FromSquareMeters(SquareMetersTolerance)));
-            Assert.False(v.Equals(Area.Zero, Area.FromSquareMeters(SquareMetersTolerance)));
+            Assert.True(v.Equals(Area.FromSquareMeters(1), SquareMetersTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Area.Zero, SquareMetersTolerance, ComparisonType.Relative));
         }
 
         [Fact]

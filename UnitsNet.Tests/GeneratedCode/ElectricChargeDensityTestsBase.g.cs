@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => coulombpercubicmeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ElectricChargeDensity a = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
-            ElectricChargeDensity b = ElectricChargeDensity.FromCoulombsPerCubicMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ElectricChargeDensity v = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
-            Assert.True(v.Equals(ElectricChargeDensity.FromCoulombsPerCubicMeter(1), ElectricChargeDensity.FromCoulombsPerCubicMeter(CoulombsPerCubicMeterTolerance)));
-            Assert.False(v.Equals(ElectricChargeDensity.Zero, ElectricChargeDensity.FromCoulombsPerCubicMeter(CoulombsPerCubicMeterTolerance)));
+            Assert.True(v.Equals(ElectricChargeDensity.FromCoulombsPerCubicMeter(1), CoulombsPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricChargeDensity.Zero, CoulombsPerCubicMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

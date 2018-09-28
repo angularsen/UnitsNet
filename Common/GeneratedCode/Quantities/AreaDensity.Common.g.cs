@@ -83,20 +83,10 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates the quantity with the given value in the base unit KilogramPerSquareMeter.
-        /// </summary>
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public AreaDensity(double kilogramspersquaremeter)
-        {
-            _value = Convert.ToDouble(kilogramspersquaremeter);
-            _unit = BaseUnit;
-        }
-
-        /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
         /// <param name="numericValue">Numeric value.</param>
-        /// <param name="unit">Unit representation.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
@@ -109,33 +99,6 @@ namespace UnitsNet
             _unit = unit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit KilogramPerSquareMeter.
-        /// </summary>
-        /// <param name="kilogramspersquaremeter">Value assuming base unit KilogramPerSquareMeter.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        AreaDensity(long kilogramspersquaremeter) : this(Convert.ToDouble(kilogramspersquaremeter), BaseUnit) { }
-
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        // Windows Runtime Component does not support decimal type
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit KilogramPerSquareMeter.
-        /// </summary>
-        /// <param name="kilogramspersquaremeter">Value assuming base unit KilogramPerSquareMeter.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        AreaDensity(decimal kilogramspersquaremeter) : this(Convert.ToDouble(kilogramspersquaremeter), BaseUnit) { }
-
         #region Properties
 
         /// <summary>
@@ -144,7 +107,7 @@ namespace UnitsNet
         public static QuantityType QuantityType => QuantityType.AreaDensity;
 
         /// <summary>
-        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        ///     The base unit of AreaDensity, which is KilogramPerSquareMeter. All conversions go via this value.
         /// </summary>
         public static AreaDensityUnit BaseUnit => AreaDensityUnit.KilogramPerSquareMeter;
 
@@ -241,16 +204,6 @@ namespace UnitsNet
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is AreaDensity))
-                return false;
-
-            var objQuantity = (AreaDensity)obj;
-            return _value.Equals(objQuantity.AsBaseNumericType(this.Unit));
-        }
-
         /// <summary>
         ///     <para>
         ///     Compare equality to another AreaDensity within the given absolute or relative tolerance.
@@ -300,20 +253,6 @@ namespace UnitsNet
             double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
-        }
-
-        /// <summary>
-        ///     Compare equality to another AreaDensity by specifying a max allowed difference.
-        ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
-        /// </summary>
-        /// <param name="other">Other quantity to compare to.</param>
-        /// <param name="maxError">Max error allowed.</param>
-        /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
-        [Obsolete("Please use the Equals(AreaDensity, double, ComparisonType) overload. This method will be removed in a future version.")]
-        public bool Equals(AreaDensity other, AreaDensity maxError)
-        {
-            return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         /// <summary>
@@ -441,12 +380,6 @@ namespace UnitsNet
         }
 
         #endregion
-
-        /// <summary>
-        ///     Set the default unit used by ToString(). Default is KilogramPerSquareMeter
-        /// </summary>
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
-        public static AreaDensityUnit ToStringDefaultUnit { get; set; } = AreaDensityUnit.KilogramPerSquareMeter;
 
         /// <summary>
         ///     Get default string representation of value and unit.

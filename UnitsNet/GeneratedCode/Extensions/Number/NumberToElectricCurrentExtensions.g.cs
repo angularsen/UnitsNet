@@ -44,93 +44,29 @@ namespace UnitsNet.Extensions.NumberToElectricCurrent
 {
     public static class NumberToElectricCurrentExtensions
     {
-        #region Ampere
-
         /// <inheritdoc cref="ElectricCurrent.FromAmperes(UnitsNet.QuantityValue)" />
         public static ElectricCurrent Amperes<T>(this T value) => ElectricCurrent.FromAmperes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricCurrent.FromAmperes(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricCurrent? Amperes<T>(this T? value) where T : struct => ElectricCurrent.FromAmperes(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Centiampere
 
         /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(UnitsNet.QuantityValue)" />
         public static ElectricCurrent Centiamperes<T>(this T value) => ElectricCurrent.FromCentiamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromCentiamperes(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricCurrent? Centiamperes<T>(this T? value) where T : struct => ElectricCurrent.FromCentiamperes(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Kiloampere
-
         /// <inheritdoc cref="ElectricCurrent.FromKiloamperes(UnitsNet.QuantityValue)" />
         public static ElectricCurrent Kiloamperes<T>(this T value) => ElectricCurrent.FromKiloamperes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricCurrent.FromKiloamperes(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricCurrent? Kiloamperes<T>(this T? value) where T : struct => ElectricCurrent.FromKiloamperes(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Megaampere
 
         /// <inheritdoc cref="ElectricCurrent.FromMegaamperes(UnitsNet.QuantityValue)" />
         public static ElectricCurrent Megaamperes<T>(this T value) => ElectricCurrent.FromMegaamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromMegaamperes(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricCurrent? Megaamperes<T>(this T? value) where T : struct => ElectricCurrent.FromMegaamperes(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Microampere
-
         /// <inheritdoc cref="ElectricCurrent.FromMicroamperes(UnitsNet.QuantityValue)" />
         public static ElectricCurrent Microamperes<T>(this T value) => ElectricCurrent.FromMicroamperes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricCurrent.FromMicroamperes(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricCurrent? Microamperes<T>(this T? value) where T : struct => ElectricCurrent.FromMicroamperes(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Milliampere
 
         /// <inheritdoc cref="ElectricCurrent.FromMilliamperes(UnitsNet.QuantityValue)" />
         public static ElectricCurrent Milliamperes<T>(this T value) => ElectricCurrent.FromMilliamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromMilliamperes(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricCurrent? Milliamperes<T>(this T? value) where T : struct => ElectricCurrent.FromMilliamperes(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Nanoampere
-
         /// <inheritdoc cref="ElectricCurrent.FromNanoamperes(UnitsNet.QuantityValue)" />
         public static ElectricCurrent Nanoamperes<T>(this T value) => ElectricCurrent.FromNanoamperes(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="ElectricCurrent.FromNanoamperes(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricCurrent? Nanoamperes<T>(this T? value) where T : struct => ElectricCurrent.FromNanoamperes(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Picoampere
-
         /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(UnitsNet.QuantityValue)" />
         public static ElectricCurrent Picoamperes<T>(this T value) => ElectricCurrent.FromPicoamperes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricCurrent.FromPicoamperes(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ElectricCurrent? Picoamperes<T>(this T? value) where T : struct => ElectricCurrent.FromPicoamperes(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

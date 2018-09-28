@@ -43,7 +43,7 @@ namespace UnitsNet
     {
         public static Mass FromGravitationalForce(Force f)
         {
-            return new Mass(f.KilogramsForce);
+            return new Mass(f.KilogramsForce, MassUnit.Kilogram);
         }
 
         /// <summary>

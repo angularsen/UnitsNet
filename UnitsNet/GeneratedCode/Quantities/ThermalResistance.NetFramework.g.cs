@@ -60,67 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable ThermalResistance from nullable HourSquareFeetDegreesFahrenheitPerBtu.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ThermalResistance? FromHourSquareFeetDegreesFahrenheitPerBtu(QuantityValue? hoursquarefeetdegreesfahrenheitperbtu)
-        {
-            return hoursquarefeetdegreesfahrenheitperbtu.HasValue ? FromHourSquareFeetDegreesFahrenheitPerBtu(hoursquarefeetdegreesfahrenheitperbtu.Value) : default(ThermalResistance?);
-        }
-
-        /// <summary>
-        ///     Get nullable ThermalResistance from nullable SquareCentimeterHourDegreesCelsiusPerKilocalorie.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ThermalResistance? FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(QuantityValue? squarecentimeterhourdegreescelsiusperkilocalorie)
-        {
-            return squarecentimeterhourdegreescelsiusperkilocalorie.HasValue ? FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(squarecentimeterhourdegreescelsiusperkilocalorie.Value) : default(ThermalResistance?);
-        }
-
-        /// <summary>
-        ///     Get nullable ThermalResistance from nullable SquareCentimeterKelvinsPerWatt.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ThermalResistance? FromSquareCentimeterKelvinsPerWatt(QuantityValue? squarecentimeterkelvinsperwatt)
-        {
-            return squarecentimeterkelvinsperwatt.HasValue ? FromSquareCentimeterKelvinsPerWatt(squarecentimeterkelvinsperwatt.Value) : default(ThermalResistance?);
-        }
-
-        /// <summary>
-        ///     Get nullable ThermalResistance from nullable SquareMeterDegreesCelsiusPerWatt.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ThermalResistance? FromSquareMeterDegreesCelsiusPerWatt(QuantityValue? squaremeterdegreescelsiusperwatt)
-        {
-            return squaremeterdegreescelsiusperwatt.HasValue ? FromSquareMeterDegreesCelsiusPerWatt(squaremeterdegreescelsiusperwatt.Value) : default(ThermalResistance?);
-        }
-
-        /// <summary>
-        ///     Get nullable ThermalResistance from nullable SquareMeterKelvinsPerKilowatt.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ThermalResistance? FromSquareMeterKelvinsPerKilowatt(QuantityValue? squaremeterkelvinsperkilowatt)
-        {
-            return squaremeterkelvinsperkilowatt.HasValue ? FromSquareMeterKelvinsPerKilowatt(squaremeterkelvinsperkilowatt.Value) : default(ThermalResistance?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ThermalResistanceUnit" /> to <see cref="ThermalResistance" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ThermalResistance unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ThermalResistance? From(QuantityValue? value, ThermalResistanceUnit fromUnit)
-        {
-            return value.HasValue ? new ThermalResistance((double)value.Value, fromUnit) : default(ThermalResistance?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -192,20 +131,6 @@ namespace UnitsNet
         public static bool operator >(ThermalResistance left, ThermalResistance right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator ==(ThermalResistance left, ThermalResistance right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator !=(ThermalResistance left, ThermalResistance right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 
         #region Parsing

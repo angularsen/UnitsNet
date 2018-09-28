@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => kilogrampersquaremeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            AreaDensity a = AreaDensity.FromKilogramsPerSquareMeter(1);
-            AreaDensity b = AreaDensity.FromKilogramsPerSquareMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             AreaDensity v = AreaDensity.FromKilogramsPerSquareMeter(1);
-            Assert.True(v.Equals(AreaDensity.FromKilogramsPerSquareMeter(1), AreaDensity.FromKilogramsPerSquareMeter(KilogramsPerSquareMeterTolerance)));
-            Assert.False(v.Equals(AreaDensity.Zero, AreaDensity.FromKilogramsPerSquareMeter(KilogramsPerSquareMeterTolerance)));
+            Assert.True(v.Equals(AreaDensity.FromKilogramsPerSquareMeter(1), KilogramsPerSquareMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(AreaDensity.Zero, KilogramsPerSquareMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

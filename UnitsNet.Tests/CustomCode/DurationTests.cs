@@ -36,8 +36,6 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MinutesInOneSecond => 0.0166667;
 
-        protected override double MonthsInOneSecond => 3.858024691358024e-7;
-
         protected override double Months30InOneSecond => 3.858024691358024e-7;
 
         protected override double NanosecondsInOneSecond => 1e+9;
@@ -45,8 +43,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double SecondsInOneSecond => 1;
 
         protected override double WeeksInOneSecond => 1.653439153439153e-6;
-
-        protected override double YearsInOneSecond => 3.170979198376458e-8;
 
         protected override double Years365InOneSecond => 3.170979198376458e-8;
 

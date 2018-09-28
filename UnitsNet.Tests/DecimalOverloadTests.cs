@@ -36,45 +36,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public static void CreatingQuantityWithDoubleBackingFieldFromNullableDecimalReturnsCorrectValue()
-        {
-            decimal? oneMeterPerSecondSquared = 1m;
-            Acceleration? acceleration = Acceleration.FromMetersPerSecondSquared(oneMeterPerSecondSquared);
-            Assert.NotNull(acceleration);
-            Assert.Equal(1.0, acceleration.Value.MetersPerSecondSquared);
-        }
-
-        [Fact]
-        public static void CreatingQuantityWithDoubleBackingFieldFromNullableDecimalReturnsNullWhenGivenNull()
-        {
-            decimal? nullDecimal = null;
-            Acceleration? acceleration = Acceleration.FromMetersPerSecondSquared(nullDecimal);
-            Assert.Null(acceleration);
-        }
-
-        [Fact]
         public static void CreatingQuantityWithDoubleBackingFieldFromDecimalWithExtensionMethodReturnsCorrectValue()
         {
             decimal oneMeterPerSecondSquared = 1m;
             Acceleration acceleration = oneMeterPerSecondSquared.MetersPerSecondSquared();
             Assert.Equal(1.0, acceleration.MetersPerSecondSquared);
-        }
-
-        [Fact]
-        public static void CreatingQuantityWithDoubleBackingFieldFromNullableDecimalWithExtensionMethodReturnsCorrectValue()
-        {
-            decimal? oneMeterPerSecondSquared = 1m;
-            Acceleration? acceleration = oneMeterPerSecondSquared.MetersPerSecondSquared();
-            Assert.NotNull(acceleration);
-            Assert.Equal(1.0, acceleration.Value.MetersPerSecondSquared);
-        }
-
-        [Fact]
-        public static void CreatingQuantityWithDoubleBackingFieldFromNullableDecimalWithExtensionMethodReturnsNullWhenGivenNull()
-        {
-            decimal? nullDecimal = null;
-            Acceleration? acceleration = nullDecimal.MetersPerSecondSquared();
-            Assert.Null(acceleration);
         }
 
         [Fact]
@@ -86,45 +52,11 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public static void CreatingQuantityWithDecimalBackingFieldFromNullableDecimalReturnsCorrectValue()
-        {
-            decimal? oneWatt = 1m;
-            Power? power = Power.FromWatts(oneWatt);
-            Assert.NotNull(power);
-            Assert.Equal(1.0, power.Value.Watts);
-        }
-
-        [Fact]
-        public static void CreatingQuantityWithDecimalBackingFieldFromNullableDecimalReturnsNullWhenGivenNull()
-        {
-            decimal? nullDecimal = null;
-            Power? power = Power.FromWatts(nullDecimal);
-            Assert.Null(power);
-        }
-
-        [Fact]
         public static void CreatingQuantityWithDecimalBackingFieldFromDecimalWithExtensionMethodReturnsCorrectValue()
         {
             decimal oneWatt = 1m;
             Power power = oneWatt.Watts();
             Assert.Equal(1.0, power.Watts);
-        }
-
-        [Fact]
-        public static void CreatingQuantityWithDecimalBackingFieldFromNullableDecimalWithExtensionMethodReturnsCorrectValue()
-        {
-            decimal? oneWatt = 1m;
-            Power? power = oneWatt.Watts();
-            Assert.NotNull(power);
-            Assert.Equal(1.0, power.Value.Watts);
-        }
-
-        [Fact]
-        public static void CreatingQuantityWithDecimalBackingFieldFromNullableDecimalWithExtensionMethodReturnsNullWhenGivenNull()
-        {
-            decimal? nullDecimal = null;
-            Power? power = nullDecimal.Watts();
-            Assert.Null(power);
         }
     }
 }

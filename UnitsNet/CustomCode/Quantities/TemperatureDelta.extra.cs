@@ -35,7 +35,7 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static LapseRate operator /(TemperatureDelta left, Length right)
         {
-            return LapseRate.FromDegreesCelciusPerKilometer(left.DegreesCelsiusDelta / right.Kilometers);
+            return LapseRate.FromDegreesCelciusPerKilometer(left.DegreesCelsius / right.Kilometers);
         }
 
         public static SpecificEnergy operator *(SpecificEntropy specificEntropy, TemperatureDelta temperatureDelta)

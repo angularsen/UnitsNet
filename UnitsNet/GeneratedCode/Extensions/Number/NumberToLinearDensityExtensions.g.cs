@@ -44,38 +44,14 @@ namespace UnitsNet.Extensions.NumberToLinearDensity
 {
     public static class NumberToLinearDensityExtensions
     {
-        #region GramPerMeter
-
         /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(UnitsNet.QuantityValue)" />
         public static LinearDensity GramsPerMeter<T>(this T value) => LinearDensity.FromGramsPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="LinearDensity.FromGramsPerMeter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static LinearDensity? GramsPerMeter<T>(this T? value) where T : struct => LinearDensity.FromGramsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilogramPerMeter
 
         /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(UnitsNet.QuantityValue)" />
         public static LinearDensity KilogramsPerMeter<T>(this T value) => LinearDensity.FromKilogramsPerMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="LinearDensity.FromKilogramsPerMeter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static LinearDensity? KilogramsPerMeter<T>(this T? value) where T : struct => LinearDensity.FromKilogramsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region PoundPerFoot
-
         /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(UnitsNet.QuantityValue)" />
         public static LinearDensity PoundsPerFoot<T>(this T value) => LinearDensity.FromPoundsPerFoot(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="LinearDensity.FromPoundsPerFoot(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static LinearDensity? PoundsPerFoot<T>(this T? value) where T : struct => LinearDensity.FromPoundsPerFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

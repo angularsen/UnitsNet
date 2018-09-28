@@ -179,28 +179,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => ohm.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ElectricResistance a = ElectricResistance.FromOhms(1);
-            ElectricResistance b = ElectricResistance.FromOhms(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ElectricResistance v = ElectricResistance.FromOhms(1);
-            Assert.True(v.Equals(ElectricResistance.FromOhms(1), ElectricResistance.FromOhms(OhmsTolerance)));
-            Assert.False(v.Equals(ElectricResistance.Zero, ElectricResistance.FromOhms(OhmsTolerance)));
+            Assert.True(v.Equals(ElectricResistance.FromOhms(1), OhmsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricResistance.Zero, OhmsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

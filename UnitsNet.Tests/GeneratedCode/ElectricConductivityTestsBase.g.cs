@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => siemenspermeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ElectricConductivity a = ElectricConductivity.FromSiemensPerMeter(1);
-            ElectricConductivity b = ElectricConductivity.FromSiemensPerMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ElectricConductivity v = ElectricConductivity.FromSiemensPerMeter(1);
-            Assert.True(v.Equals(ElectricConductivity.FromSiemensPerMeter(1), ElectricConductivity.FromSiemensPerMeter(SiemensPerMeterTolerance)));
-            Assert.False(v.Equals(ElectricConductivity.Zero, ElectricConductivity.FromSiemensPerMeter(SiemensPerMeterTolerance)));
+            Assert.True(v.Equals(ElectricConductivity.FromSiemensPerMeter(1), SiemensPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricConductivity.Zero, SiemensPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

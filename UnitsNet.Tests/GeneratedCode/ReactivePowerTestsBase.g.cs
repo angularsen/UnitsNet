@@ -179,28 +179,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => voltamperereactive.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ReactivePower a = ReactivePower.FromVoltamperesReactive(1);
-            ReactivePower b = ReactivePower.FromVoltamperesReactive(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ReactivePower v = ReactivePower.FromVoltamperesReactive(1);
-            Assert.True(v.Equals(ReactivePower.FromVoltamperesReactive(1), ReactivePower.FromVoltamperesReactive(VoltamperesReactiveTolerance)));
-            Assert.False(v.Equals(ReactivePower.Zero, ReactivePower.FromVoltamperesReactive(VoltamperesReactiveTolerance)));
+            Assert.True(v.Equals(ReactivePower.FromVoltamperesReactive(1), VoltamperesReactiveTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ReactivePower.Zero, VoltamperesReactiveTolerance, ComparisonType.Relative));
         }
 
         [Fact]

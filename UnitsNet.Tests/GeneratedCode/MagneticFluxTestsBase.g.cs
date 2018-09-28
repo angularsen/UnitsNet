@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => weber.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            MagneticFlux a = MagneticFlux.FromWebers(1);
-            MagneticFlux b = MagneticFlux.FromWebers(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             MagneticFlux v = MagneticFlux.FromWebers(1);
-            Assert.True(v.Equals(MagneticFlux.FromWebers(1), MagneticFlux.FromWebers(WebersTolerance)));
-            Assert.False(v.Equals(MagneticFlux.Zero, MagneticFlux.FromWebers(WebersTolerance)));
+            Assert.True(v.Equals(MagneticFlux.FromWebers(1), WebersTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MagneticFlux.Zero, WebersTolerance, ComparisonType.Relative));
         }
 
         [Fact]

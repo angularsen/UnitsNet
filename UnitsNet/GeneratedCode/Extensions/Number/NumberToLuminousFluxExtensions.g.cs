@@ -44,16 +44,8 @@ namespace UnitsNet.Extensions.NumberToLuminousFlux
 {
     public static class NumberToLuminousFluxExtensions
     {
-        #region Lumen
-
         /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
         public static LuminousFlux Lumens<T>(this T value) => LuminousFlux.FromLumens(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static LuminousFlux? Lumens<T>(this T? value) where T : struct => LuminousFlux.FromLumens(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

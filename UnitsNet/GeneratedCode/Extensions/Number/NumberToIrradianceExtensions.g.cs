@@ -44,27 +44,11 @@ namespace UnitsNet.Extensions.NumberToIrradiance
 {
     public static class NumberToIrradianceExtensions
     {
-        #region KilowattPerSquareMeter
-
         /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiance KilowattsPerSquareMeter<T>(this T value) => Irradiance.FromKilowattsPerSquareMeter(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Irradiance.FromKilowattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Irradiance? KilowattsPerSquareMeter<T>(this T? value) where T : struct => Irradiance.FromKilowattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region WattPerSquareMeter
-
         /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
         public static Irradiance WattsPerSquareMeter<T>(this T value) => Irradiance.FromWattsPerSquareMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Irradiance.FromWattsPerSquareMeter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Irradiance? WattsPerSquareMeter<T>(this T? value) where T : struct => Irradiance.FromWattsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

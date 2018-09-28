@@ -48,19 +48,16 @@ namespace UnitsNet.Tests
             {
 #pragma warning disable 618
                 // double types
-                Assert.Equal("5 kg", new Mass(5L).ToString());
-                Assert.Equal("5 kg", new Mass(5d).ToString());
-                Assert.Equal("5 kg", new Mass(5m).ToString());
+                Assert.Equal("5 kg", new Mass(5L, MassUnit.Kilogram).ToString());
+                Assert.Equal("5 kg", new Mass(5d, MassUnit.Kilogram).ToString());
 
                 // decimal types
-                Assert.Equal("5 b", new Information(5L).ToString());
-                Assert.Equal("5 b", new Information(5d).ToString());
-                Assert.Equal("5 b", new Information(5m).ToString());
+                Assert.Equal("5 b", new Information(5L, InformationUnit.Bit).ToString());
+                Assert.Equal("5 b", new Information(5m, InformationUnit.Bit).ToString());
 
                 // logarithmic types
-                Assert.Equal("5 dB", new Level(5L).ToString());
-                Assert.Equal("5 dB", new Level(5d).ToString());
-                Assert.Equal("5 dB", new Level(5m).ToString());
+                Assert.Equal("5 dB", new Level(5L, LevelUnit.Decibel).ToString());
+                Assert.Equal("5 dB", new Level(5d, LevelUnit.Decibel).ToString());
 #pragma warning restore 618
             }
 

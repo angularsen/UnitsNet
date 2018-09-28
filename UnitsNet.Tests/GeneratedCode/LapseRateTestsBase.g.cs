@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => degreecelsiusperkilometer.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            LapseRate a = LapseRate.FromDegreesCelciusPerKilometer(1);
-            LapseRate b = LapseRate.FromDegreesCelciusPerKilometer(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             LapseRate v = LapseRate.FromDegreesCelciusPerKilometer(1);
-            Assert.True(v.Equals(LapseRate.FromDegreesCelciusPerKilometer(1), LapseRate.FromDegreesCelciusPerKilometer(DegreesCelciusPerKilometerTolerance)));
-            Assert.False(v.Equals(LapseRate.Zero, LapseRate.FromDegreesCelciusPerKilometer(DegreesCelciusPerKilometerTolerance)));
+            Assert.True(v.Equals(LapseRate.FromDegreesCelciusPerKilometer(1), DegreesCelciusPerKilometerTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(LapseRate.Zero, DegreesCelciusPerKilometerTolerance, ComparisonType.Relative));
         }
 
         [Fact]

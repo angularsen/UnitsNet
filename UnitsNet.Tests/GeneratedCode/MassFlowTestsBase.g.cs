@@ -289,28 +289,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => grampersecond.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            MassFlow a = MassFlow.FromGramsPerSecond(1);
-            MassFlow b = MassFlow.FromGramsPerSecond(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             MassFlow v = MassFlow.FromGramsPerSecond(1);
-            Assert.True(v.Equals(MassFlow.FromGramsPerSecond(1), MassFlow.FromGramsPerSecond(GramsPerSecondTolerance)));
-            Assert.False(v.Equals(MassFlow.Zero, MassFlow.FromGramsPerSecond(GramsPerSecondTolerance)));
+            Assert.True(v.Equals(MassFlow.FromGramsPerSecond(1), GramsPerSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MassFlow.Zero, GramsPerSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]

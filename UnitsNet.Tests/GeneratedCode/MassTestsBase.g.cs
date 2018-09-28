@@ -349,28 +349,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => kilogram.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Mass a = Mass.FromKilograms(1);
-            Mass b = Mass.FromKilograms(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Mass v = Mass.FromKilograms(1);
-            Assert.True(v.Equals(Mass.FromKilograms(1), Mass.FromKilograms(KilogramsTolerance)));
-            Assert.False(v.Equals(Mass.Zero, Mass.FromKilograms(KilogramsTolerance)));
+            Assert.True(v.Equals(Mass.FromKilograms(1), KilogramsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Mass.Zero, KilogramsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

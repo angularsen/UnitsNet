@@ -44,16 +44,8 @@ namespace UnitsNet.Extensions.NumberToAreaDensity
 {
     public static class NumberToAreaDensityExtensions
     {
-        #region KilogramPerSquareMeter
-
         /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(UnitsNet.QuantityValue)" />
         public static AreaDensity KilogramsPerSquareMeter<T>(this T value) => AreaDensity.FromKilogramsPerSquareMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="AreaDensity.FromKilogramsPerSquareMeter(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static AreaDensity? KilogramsPerSquareMeter<T>(this T? value) where T : struct => AreaDensity.FromKilogramsPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

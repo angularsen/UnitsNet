@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => lumen.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            LuminousFlux a = LuminousFlux.FromLumens(1);
-            LuminousFlux b = LuminousFlux.FromLumens(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             LuminousFlux v = LuminousFlux.FromLumens(1);
-            Assert.True(v.Equals(LuminousFlux.FromLumens(1), LuminousFlux.FromLumens(LumensTolerance)));
-            Assert.False(v.Equals(LuminousFlux.Zero, LuminousFlux.FromLumens(LumensTolerance)));
+            Assert.True(v.Equals(LuminousFlux.FromLumens(1), LumensTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(LuminousFlux.Zero, LumensTolerance, ComparisonType.Relative));
         }
 
         [Fact]

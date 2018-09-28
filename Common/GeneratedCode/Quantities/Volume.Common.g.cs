@@ -83,20 +83,10 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates the quantity with the given value in the base unit CubicMeter.
-        /// </summary>
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public Volume(double cubicmeters)
-        {
-            _value = Convert.ToDouble(cubicmeters);
-            _unit = BaseUnit;
-        }
-
-        /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
         /// <param name="numericValue">Numeric value.</param>
-        /// <param name="unit">Unit representation.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
@@ -109,33 +99,6 @@ namespace UnitsNet
             _unit = unit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit CubicMeter.
-        /// </summary>
-        /// <param name="cubicmeters">Value assuming base unit CubicMeter.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        Volume(long cubicmeters) : this(Convert.ToDouble(cubicmeters), BaseUnit) { }
-
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        // Windows Runtime Component does not support decimal type
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit CubicMeter.
-        /// </summary>
-        /// <param name="cubicmeters">Value assuming base unit CubicMeter.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        Volume(decimal cubicmeters) : this(Convert.ToDouble(cubicmeters), BaseUnit) { }
-
         #region Properties
 
         /// <summary>
@@ -144,7 +107,7 @@ namespace UnitsNet
         public static QuantityType QuantityType => QuantityType.Volume;
 
         /// <summary>
-        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        ///     The base unit of Volume, which is CubicMeter. All conversions go via this value.
         /// </summary>
         public static VolumeUnit BaseUnit => VolumeUnit.CubicMeter;
 
@@ -320,18 +283,6 @@ namespace UnitsNet
         ///     Get Volume in OilBarrels.
         /// </summary>
         public double OilBarrels => As(VolumeUnit.OilBarrel);
-
-        /// <summary>
-        ///     Get Volume in Tablespoons.
-        /// </summary>
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
-        public double Tablespoons => As(VolumeUnit.Tablespoon);
-
-        /// <summary>
-        ///     Get Volume in Teaspoons.
-        /// </summary>
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
-        public double Teaspoons => As(VolumeUnit.Teaspoon);
 
         /// <summary>
         ///     Get Volume in UkTablespoons.
@@ -841,36 +792,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Volume from Tablespoons.
-        /// </summary>
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Volume FromTablespoons(double tablespoons)
-#else
-        public static Volume FromTablespoons(QuantityValue tablespoons)
-#endif
-        {
-            double value = (double) tablespoons;
-            return new Volume(value, VolumeUnit.Tablespoon);
-        }
-
-        /// <summary>
-        ///     Get Volume from Teaspoons.
-        /// </summary>
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Volume FromTeaspoons(double teaspoons)
-#else
-        public static Volume FromTeaspoons(QuantityValue teaspoons)
-#endif
-        {
-            double value = (double) teaspoons;
-            return new Volume(value, VolumeUnit.Teaspoon);
-        }
-
-        /// <summary>
         ///     Get Volume from UkTablespoons.
         /// </summary>
 #if WINDOWS_UWP
@@ -1062,16 +983,6 @@ namespace UnitsNet
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is Volume))
-                return false;
-
-            var objQuantity = (Volume)obj;
-            return _value.Equals(objQuantity.AsBaseNumericType(this.Unit));
-        }
-
         /// <summary>
         ///     <para>
         ///     Compare equality to another Volume within the given absolute or relative tolerance.
@@ -1121,20 +1032,6 @@ namespace UnitsNet
             double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
-        }
-
-        /// <summary>
-        ///     Compare equality to another Volume by specifying a max allowed difference.
-        ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
-        /// </summary>
-        /// <param name="other">Other quantity to compare to.</param>
-        /// <param name="maxError">Max error allowed.</param>
-        /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
-        [Obsolete("Please use the Equals(Volume, double, ComparisonType) overload. This method will be removed in a future version.")]
-        public bool Equals(Volume other, Volume maxError)
-        {
-            return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         /// <summary>
@@ -1214,8 +1111,6 @@ namespace UnitsNet
                 case VolumeUnit.Microliter: return (_value/1e3) * 1e-6d;
                 case VolumeUnit.Milliliter: return (_value/1e3) * 1e-3d;
                 case VolumeUnit.OilBarrel: return _value*0.158987294928;
-                case VolumeUnit.Tablespoon: return _value*1.478676478125e-5;
-                case VolumeUnit.Teaspoon: return _value*4.92892159375e-6;
                 case VolumeUnit.UkTablespoon: return _value*1.5e-5;
                 case VolumeUnit.UsBeerBarrel: return _value*0.1173477658;
                 case VolumeUnit.UsCustomaryCup: return _value*0.0002365882365;
@@ -1272,8 +1167,6 @@ namespace UnitsNet
                 case VolumeUnit.Microliter: return (baseUnitValue*1e3) / 1e-6d;
                 case VolumeUnit.Milliliter: return (baseUnitValue*1e3) / 1e-3d;
                 case VolumeUnit.OilBarrel: return baseUnitValue/0.158987294928;
-                case VolumeUnit.Tablespoon: return baseUnitValue/1.478676478125e-5;
-                case VolumeUnit.Teaspoon: return baseUnitValue/4.92892159375e-6;
                 case VolumeUnit.UkTablespoon: return baseUnitValue/1.5e-5;
                 case VolumeUnit.UsBeerBarrel: return baseUnitValue/0.1173477658;
                 case VolumeUnit.UsCustomaryCup: return baseUnitValue/0.0002365882365;
@@ -1348,12 +1241,6 @@ namespace UnitsNet
         }
 
         #endregion
-
-        /// <summary>
-        ///     Set the default unit used by ToString(). Default is CubicMeter
-        /// </summary>
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
-        public static VolumeUnit ToStringDefaultUnit { get; set; } = VolumeUnit.CubicMeter;
 
         /// <summary>
         ///     Get default string representation of value and unit.

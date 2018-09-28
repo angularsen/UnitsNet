@@ -339,28 +339,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => watt.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Power a = Power.FromWatts(1);
-            Power b = Power.FromWatts(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Power v = Power.FromWatts(1);
-            Assert.True(v.Equals(Power.FromWatts(1), Power.FromWatts(WattsTolerance)));
-            Assert.False(v.Equals(Power.Zero, Power.FromWatts(WattsTolerance)));
+            Assert.True(v.Equals(Power.FromWatts(1), WattsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Power.Zero, WattsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

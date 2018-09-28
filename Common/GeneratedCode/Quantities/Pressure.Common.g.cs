@@ -83,20 +83,10 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates the quantity with the given value in the base unit Pascal.
-        /// </summary>
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public Pressure(double pascals)
-        {
-            _value = Convert.ToDouble(pascals);
-            _unit = BaseUnit;
-        }
-
-        /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
         /// <param name="numericValue">Numeric value.</param>
-        /// <param name="unit">Unit representation.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
@@ -109,33 +99,6 @@ namespace UnitsNet
             _unit = unit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit Pascal.
-        /// </summary>
-        /// <param name="pascals">Value assuming base unit Pascal.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        Pressure(long pascals) : this(Convert.ToDouble(pascals), BaseUnit) { }
-
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        // Windows Runtime Component does not support decimal type
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit Pascal.
-        /// </summary>
-        /// <param name="pascals">Value assuming base unit Pascal.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        Pressure(decimal pascals) : this(Convert.ToDouble(pascals), BaseUnit) { }
-
         #region Properties
 
         /// <summary>
@@ -144,7 +107,7 @@ namespace UnitsNet
         public static QuantityType QuantityType => QuantityType.Pressure;
 
         /// <summary>
-        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        ///     The base unit of Pressure, which is Pascal. All conversions go via this value.
         /// </summary>
         public static PressureUnit BaseUnit => PressureUnit.Pascal;
 
@@ -320,12 +283,6 @@ namespace UnitsNet
         ///     Get Pressure in PoundsForcePerSquareInch.
         /// </summary>
         public double PoundsForcePerSquareInch => As(PressureUnit.PoundForcePerSquareInch);
-
-        /// <summary>
-        ///     Get Pressure in Psi.
-        /// </summary>
-        [System.Obsolete("Deprecated due to github issue #215, please use PoundForcePerSquareInch instead")]
-        public double Psi => As(PressureUnit.Psi);
 
         /// <summary>
         ///     Get Pressure in TechnicalAtmospheres.
@@ -810,21 +767,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Pressure from Psi.
-        /// </summary>
-        [System.Obsolete("Deprecated due to github issue #215, please use PoundForcePerSquareInch instead")]
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Pressure FromPsi(double psi)
-#else
-        public static Pressure FromPsi(QuantityValue psi)
-#endif
-        {
-            double value = (double) psi;
-            return new Pressure(value, PressureUnit.Psi);
-        }
-
-        /// <summary>
         ///     Get Pressure from TechnicalAtmospheres.
         /// </summary>
 #if WINDOWS_UWP
@@ -946,16 +888,6 @@ namespace UnitsNet
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is Pressure))
-                return false;
-
-            var objQuantity = (Pressure)obj;
-            return _value.Equals(objQuantity.AsBaseNumericType(this.Unit));
-        }
-
         /// <summary>
         ///     <para>
         ///     Compare equality to another Pressure within the given absolute or relative tolerance.
@@ -1005,20 +937,6 @@ namespace UnitsNet
             double otherValueInThisUnits = other.As(this.Unit);
 
             return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
-        }
-
-        /// <summary>
-        ///     Compare equality to another Pressure by specifying a max allowed difference.
-        ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
-        /// </summary>
-        /// <param name="other">Other quantity to compare to.</param>
-        /// <param name="maxError">Max error allowed.</param>
-        /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
-        [Obsolete("Please use the Equals(Pressure, double, ComparisonType) overload. This method will be removed in a future version.")]
-        public bool Equals(Pressure other, Pressure maxError)
-        {
-            return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
         /// <summary>
@@ -1098,7 +1016,6 @@ namespace UnitsNet
                 case PressureUnit.Pascal: return _value;
                 case PressureUnit.PoundForcePerSquareFoot: return _value*4.788025898033584e1;
                 case PressureUnit.PoundForcePerSquareInch: return _value*6.894757293168361e3;
-                case PressureUnit.Psi: return _value*6.894757293168361e3;
                 case PressureUnit.TechnicalAtmosphere: return _value*9.80680592331*1e4;
                 case PressureUnit.TonneForcePerSquareCentimeter: return _value*9.80665e7;
                 case PressureUnit.TonneForcePerSquareMeter: return _value*9.80665e3;
@@ -1150,7 +1067,6 @@ namespace UnitsNet
                 case PressureUnit.Pascal: return baseUnitValue;
                 case PressureUnit.PoundForcePerSquareFoot: return baseUnitValue/4.788025898033584e1;
                 case PressureUnit.PoundForcePerSquareInch: return baseUnitValue/6.894757293168361e3;
-                case PressureUnit.Psi: return baseUnitValue/6.894757293168361e3;
                 case PressureUnit.TechnicalAtmosphere: return baseUnitValue/(9.80680592331*1e4);
                 case PressureUnit.TonneForcePerSquareCentimeter: return baseUnitValue/9.80665e7;
                 case PressureUnit.TonneForcePerSquareMeter: return baseUnitValue/9.80665e3;
@@ -1220,12 +1136,6 @@ namespace UnitsNet
         }
 
         #endregion
-
-        /// <summary>
-        ///     Set the default unit used by ToString(). Default is Pascal
-        /// </summary>
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
-        public static PressureUnit ToStringDefaultUnit { get; set; } = PressureUnit.Pascal;
 
         /// <summary>
         ///     Get default string representation of value and unit.

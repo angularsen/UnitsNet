@@ -60,94 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Centistokes.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static KinematicViscosity? FromCentistokes(QuantityValue? centistokes)
-        {
-            return centistokes.HasValue ? FromCentistokes(centistokes.Value) : default(KinematicViscosity?);
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Decistokes.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static KinematicViscosity? FromDecistokes(QuantityValue? decistokes)
-        {
-            return decistokes.HasValue ? FromDecistokes(decistokes.Value) : default(KinematicViscosity?);
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Kilostokes.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static KinematicViscosity? FromKilostokes(QuantityValue? kilostokes)
-        {
-            return kilostokes.HasValue ? FromKilostokes(kilostokes.Value) : default(KinematicViscosity?);
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Microstokes.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static KinematicViscosity? FromMicrostokes(QuantityValue? microstokes)
-        {
-            return microstokes.HasValue ? FromMicrostokes(microstokes.Value) : default(KinematicViscosity?);
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Millistokes.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static KinematicViscosity? FromMillistokes(QuantityValue? millistokes)
-        {
-            return millistokes.HasValue ? FromMillistokes(millistokes.Value) : default(KinematicViscosity?);
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Nanostokes.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static KinematicViscosity? FromNanostokes(QuantityValue? nanostokes)
-        {
-            return nanostokes.HasValue ? FromNanostokes(nanostokes.Value) : default(KinematicViscosity?);
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable SquareMetersPerSecond.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static KinematicViscosity? FromSquareMetersPerSecond(QuantityValue? squaremeterspersecond)
-        {
-            return squaremeterspersecond.HasValue ? FromSquareMetersPerSecond(squaremeterspersecond.Value) : default(KinematicViscosity?);
-        }
-
-        /// <summary>
-        ///     Get nullable KinematicViscosity from nullable Stokes.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static KinematicViscosity? FromStokes(QuantityValue? stokes)
-        {
-            return stokes.HasValue ? FromStokes(stokes.Value) : default(KinematicViscosity?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="KinematicViscosityUnit" /> to <see cref="KinematicViscosity" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>KinematicViscosity unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static KinematicViscosity? From(QuantityValue? value, KinematicViscosityUnit fromUnit)
-        {
-            return value.HasValue ? new KinematicViscosity((double)value.Value, fromUnit) : default(KinematicViscosity?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -219,20 +131,6 @@ namespace UnitsNet
         public static bool operator >(KinematicViscosity left, KinematicViscosity right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator ==(KinematicViscosity left, KinematicViscosity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator !=(KinematicViscosity left, KinematicViscosity right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 
         #region Parsing

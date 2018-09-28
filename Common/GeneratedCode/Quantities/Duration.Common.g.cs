@@ -83,20 +83,10 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Creates the quantity with the given value in the base unit Second.
-        /// </summary>
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public Duration(double seconds)
-        {
-            _value = Convert.ToDouble(seconds);
-            _unit = BaseUnit;
-        }
-
-        /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
         /// <param name="numericValue">Numeric value.</param>
-        /// <param name="unit">Unit representation.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
         private
@@ -109,33 +99,6 @@ namespace UnitsNet
             _unit = unit;
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit Second.
-        /// </summary>
-        /// <param name="seconds">Value assuming base unit Second.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        Duration(long seconds) : this(Convert.ToDouble(seconds), BaseUnit) { }
-
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        // Windows Runtime Component does not support decimal type
-        /// <summary>
-        ///     Creates the quantity with the given value assuming the base unit Second.
-        /// </summary>
-        /// <param name="seconds">Value assuming base unit Second.</param>
-#if WINDOWS_UWP
-        private
-#else
-        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
-        public
-#endif
-        Duration(decimal seconds) : this(Convert.ToDouble(seconds), BaseUnit) { }
-
         #region Properties
 
         /// <summary>
@@ -144,7 +107,7 @@ namespace UnitsNet
         public static QuantityType QuantityType => QuantityType.Duration;
 
         /// <summary>
-        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        ///     The base unit of Duration, which is Second. All conversions go via this value.
         /// </summary>
         public static DurationUnit BaseUnit => DurationUnit.Second;
 
@@ -187,12 +150,6 @@ namespace UnitsNet
         public double Minutes => As(DurationUnit.Minute);
 
         /// <summary>
-        ///     Get Duration in Months.
-        /// </summary>
-        [System.Obsolete("Use Month30 instead, which makes it clear that this is an approximate unit based on 30 days per month. The duration of a month varies, but the Gregorian solar calendar has 365.2425/12 = 30.44 days on average.")]
-        public double Months => As(DurationUnit.Month);
-
-        /// <summary>
         ///     Get Duration in Months30.
         /// </summary>
         public double Months30 => As(DurationUnit.Month30);
@@ -211,12 +168,6 @@ namespace UnitsNet
         ///     Get Duration in Weeks.
         /// </summary>
         public double Weeks => As(DurationUnit.Week);
-
-        /// <summary>
-        ///     Get Duration in Years.
-        /// </summary>
-        [System.Obsolete("Use Year365 instead, which makes it clear that this is an approximate unit based on 365 days per year. The duration of a year varies due to corrections such as leap years, since a Gregorian solar calendar has 365.2425 days.")]
-        public double Years => As(DurationUnit.Year);
 
         /// <summary>
         ///     Get Duration in Years365.
@@ -303,21 +254,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Duration from Months.
-        /// </summary>
-        [System.Obsolete("Use Month30 instead, which makes it clear that this is an approximate unit based on 30 days per month. The duration of a month varies, but the Gregorian solar calendar has 365.2425/12 = 30.44 days on average.")]
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Duration FromMonths(double months)
-#else
-        public static Duration FromMonths(QuantityValue months)
-#endif
-        {
-            double value = (double) months;
-            return new Duration(value, DurationUnit.Month);
-        }
-
-        /// <summary>
         ///     Get Duration from Months30.
         /// </summary>
 #if WINDOWS_UWP
@@ -371,21 +307,6 @@ namespace UnitsNet
         {
             double value = (double) weeks;
             return new Duration(value, DurationUnit.Week);
-        }
-
-        /// <summary>
-        ///     Get Duration from Years.
-        /// </summary>
-        [System.Obsolete("Use Year365 instead, which makes it clear that this is an approximate unit based on 365 days per year. The duration of a year varies due to corrections such as leap years, since a Gregorian solar calendar has 365.2425 days.")]
-#if WINDOWS_UWP
-        [Windows.Foundation.Metadata.DefaultOverload]
-        public static Duration FromYears(double years)
-#else
-        public static Duration FromYears(QuantityValue years)
-#endif
-        {
-            double value = (double) years;
-            return new Duration(value, DurationUnit.Year);
         }
 
         /// <summary>
@@ -454,16 +375,6 @@ namespace UnitsNet
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public override bool Equals(object obj)
-        {
-            if(obj is null || !(obj is Duration))
-                return false;
-
-            var objQuantity = (Duration)obj;
-            return _value.Equals(objQuantity.AsBaseNumericType(this.Unit));
-        }
-
         /// <summary>
         ///     <para>
         ///     Compare equality to another Duration within the given absolute or relative tolerance.
@@ -516,20 +427,6 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Compare equality to another Duration by specifying a max allowed difference.
-        ///     Note that it is advised against specifying zero difference, due to the nature
-        ///     of floating point operations and using System.Double internally.
-        /// </summary>
-        /// <param name="other">Other quantity to compare to.</param>
-        /// <param name="maxError">Max error allowed.</param>
-        /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
-        [Obsolete("Please use the Equals(Duration, double, ComparisonType) overload. This method will be removed in a future version.")]
-        public bool Equals(Duration other, Duration maxError)
-        {
-            return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
-        }
-
-        /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
         /// <returns>A hash code for the current Duration.</returns>
@@ -579,12 +476,10 @@ namespace UnitsNet
                 case DurationUnit.Microsecond: return (_value) * 1e-6d;
                 case DurationUnit.Millisecond: return (_value) * 1e-3d;
                 case DurationUnit.Minute: return _value*60;
-                case DurationUnit.Month: return _value*30*24*3600;
                 case DurationUnit.Month30: return _value*30*24*3600;
                 case DurationUnit.Nanosecond: return (_value) * 1e-9d;
                 case DurationUnit.Second: return _value;
                 case DurationUnit.Week: return _value*7*24*3600;
-                case DurationUnit.Year: return _value*365*24*3600;
                 case DurationUnit.Year365: return _value*365*24*3600;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -605,12 +500,10 @@ namespace UnitsNet
                 case DurationUnit.Microsecond: return (baseUnitValue) / 1e-6d;
                 case DurationUnit.Millisecond: return (baseUnitValue) / 1e-3d;
                 case DurationUnit.Minute: return baseUnitValue/60;
-                case DurationUnit.Month: return baseUnitValue/(30*24*3600);
                 case DurationUnit.Month30: return baseUnitValue/(30*24*3600);
                 case DurationUnit.Nanosecond: return (baseUnitValue) / 1e-9d;
                 case DurationUnit.Second: return baseUnitValue;
                 case DurationUnit.Week: return baseUnitValue/(7*24*3600);
-                case DurationUnit.Year: return baseUnitValue/(365*24*3600);
                 case DurationUnit.Year365: return baseUnitValue/(365*24*3600);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
@@ -676,12 +569,6 @@ namespace UnitsNet
         }
 
         #endregion
-
-        /// <summary>
-        ///     Set the default unit used by ToString(). Default is Second
-        /// </summary>
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
-        public static DurationUnit ToStringDefaultUnit { get; set; } = DurationUnit.Second;
 
         /// <summary>
         ///     Get default string representation of value and unit.

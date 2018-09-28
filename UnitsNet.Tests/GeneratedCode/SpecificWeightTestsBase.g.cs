@@ -309,28 +309,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => newtonpercubicmeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            SpecificWeight a = SpecificWeight.FromNewtonsPerCubicMeter(1);
-            SpecificWeight b = SpecificWeight.FromNewtonsPerCubicMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             SpecificWeight v = SpecificWeight.FromNewtonsPerCubicMeter(1);
-            Assert.True(v.Equals(SpecificWeight.FromNewtonsPerCubicMeter(1), SpecificWeight.FromNewtonsPerCubicMeter(NewtonsPerCubicMeterTolerance)));
-            Assert.False(v.Equals(SpecificWeight.Zero, SpecificWeight.FromNewtonsPerCubicMeter(NewtonsPerCubicMeterTolerance)));
+            Assert.True(v.Equals(SpecificWeight.FromNewtonsPerCubicMeter(1), NewtonsPerCubicMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(SpecificWeight.Zero, NewtonsPerCubicMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

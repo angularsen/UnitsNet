@@ -169,28 +169,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => kilogrampermeter.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            LinearDensity a = LinearDensity.FromKilogramsPerMeter(1);
-            LinearDensity b = LinearDensity.FromKilogramsPerMeter(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             LinearDensity v = LinearDensity.FromKilogramsPerMeter(1);
-            Assert.True(v.Equals(LinearDensity.FromKilogramsPerMeter(1), LinearDensity.FromKilogramsPerMeter(KilogramsPerMeterTolerance)));
-            Assert.False(v.Equals(LinearDensity.Zero, LinearDensity.FromKilogramsPerMeter(KilogramsPerMeterTolerance)));
+            Assert.True(v.Equals(LinearDensity.FromKilogramsPerMeter(1), KilogramsPerMeterTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(LinearDensity.Zero, KilogramsPerMeterTolerance, ComparisonType.Relative));
         }
 
         [Fact]

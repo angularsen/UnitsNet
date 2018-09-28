@@ -175,19 +175,6 @@ namespace UnitsNet
         ///     Creating can be a little expensive, so it will use a static cache.
         ///     To always create, use the constructor.
         /// </summary>
-        /// <returns></returns>
-        [PublicAPI]
-        [Obsolete("Use Default property instead. This will be removed in the future.")]
-        public static UnitSystem GetCached()
-        {
-            return GetCached((CultureInfo) null);
-        }
-
-        /// <summary>
-        ///     Get or create a unit system for parsing and presenting numbers, units and abbreviations.
-        ///     Creating can be a little expensive, so it will use a static cache.
-        ///     To always create, use the constructor.
-        /// </summary>
         /// <param name="cultureName">Culture to use. If null then <see cref="CultureInfo.CurrentUICulture" /> will be used.</param>
         /// <returns></returns>
         [PublicAPI]

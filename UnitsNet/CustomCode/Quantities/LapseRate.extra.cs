@@ -35,14 +35,14 @@ namespace UnitsNet
 #if !WINDOWS_UWP
         public static Length operator /(TemperatureDelta left, LapseRate right)
         {
-            return Length.FromKilometers(left.KelvinsDelta / right.DegreesCelciusPerKilometer);
+            return Length.FromKilometers(left.Kelvins / right.DegreesCelciusPerKilometer);
         }
 
         public static TemperatureDelta operator *(Length left, LapseRate right) => right * left;
 
         public static TemperatureDelta operator *(LapseRate left, Length right)
         {
-            return TemperatureDelta.FromDegreesCelsiusDelta(left.DegreesCelciusPerKilometer * right.Kilometers);
+            return TemperatureDelta.FromDegreesCelsius(left.DegreesCelciusPerKilometer * right.Kilometers);
         }
 #endif
     }

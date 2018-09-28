@@ -188,7 +188,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             string abbrev = $"m{s}s";
 
-            UnitSystem unitSystem = UnitSystem.GetCached();
+            var unitSystem = UnitSystem.Default;
             unitSystem.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
 
             // Act
@@ -217,7 +217,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             string abbrev = $"m{s}s";
 
-            UnitSystem unitSystem = UnitSystem.GetCached();
+            var unitSystem = UnitSystem.Default;
             unitSystem.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
 
             // Act

@@ -60,40 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable SpecificVolume from nullable CubicFeetPerPound.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificVolume? FromCubicFeetPerPound(QuantityValue? cubicfeetperpound)
-        {
-            return cubicfeetperpound.HasValue ? FromCubicFeetPerPound(cubicfeetperpound.Value) : default(SpecificVolume?);
-        }
-
-        /// <summary>
-        ///     Get nullable SpecificVolume from nullable CubicMetersPerKilogram.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static SpecificVolume? FromCubicMetersPerKilogram(QuantityValue? cubicmetersperkilogram)
-        {
-            return cubicmetersperkilogram.HasValue ? FromCubicMetersPerKilogram(cubicmetersperkilogram.Value) : default(SpecificVolume?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="SpecificVolumeUnit" /> to <see cref="SpecificVolume" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>SpecificVolume unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static SpecificVolume? From(QuantityValue? value, SpecificVolumeUnit fromUnit)
-        {
-            return value.HasValue ? new SpecificVolume((double)value.Value, fromUnit) : default(SpecificVolume?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -165,20 +131,6 @@ namespace UnitsNet
         public static bool operator >(SpecificVolume left, SpecificVolume right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator ==(SpecificVolume left, SpecificVolume right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator !=(SpecificVolume left, SpecificVolume right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 
         #region Parsing

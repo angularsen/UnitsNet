@@ -60,85 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable CaloriesPerKelvin.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Entropy? FromCaloriesPerKelvin(QuantityValue? caloriesperkelvin)
-        {
-            return caloriesperkelvin.HasValue ? FromCaloriesPerKelvin(caloriesperkelvin.Value) : default(Entropy?);
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable JoulesPerDegreeCelsius.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Entropy? FromJoulesPerDegreeCelsius(QuantityValue? joulesperdegreecelsius)
-        {
-            return joulesperdegreecelsius.HasValue ? FromJoulesPerDegreeCelsius(joulesperdegreecelsius.Value) : default(Entropy?);
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable JoulesPerKelvin.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Entropy? FromJoulesPerKelvin(QuantityValue? joulesperkelvin)
-        {
-            return joulesperkelvin.HasValue ? FromJoulesPerKelvin(joulesperkelvin.Value) : default(Entropy?);
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable KilocaloriesPerKelvin.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Entropy? FromKilocaloriesPerKelvin(QuantityValue? kilocaloriesperkelvin)
-        {
-            return kilocaloriesperkelvin.HasValue ? FromKilocaloriesPerKelvin(kilocaloriesperkelvin.Value) : default(Entropy?);
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable KilojoulesPerDegreeCelsius.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Entropy? FromKilojoulesPerDegreeCelsius(QuantityValue? kilojoulesperdegreecelsius)
-        {
-            return kilojoulesperdegreecelsius.HasValue ? FromKilojoulesPerDegreeCelsius(kilojoulesperdegreecelsius.Value) : default(Entropy?);
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable KilojoulesPerKelvin.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Entropy? FromKilojoulesPerKelvin(QuantityValue? kilojoulesperkelvin)
-        {
-            return kilojoulesperkelvin.HasValue ? FromKilojoulesPerKelvin(kilojoulesperkelvin.Value) : default(Entropy?);
-        }
-
-        /// <summary>
-        ///     Get nullable Entropy from nullable MegajoulesPerKelvin.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Entropy? FromMegajoulesPerKelvin(QuantityValue? megajoulesperkelvin)
-        {
-            return megajoulesperkelvin.HasValue ? FromMegajoulesPerKelvin(megajoulesperkelvin.Value) : default(Entropy?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="EntropyUnit" /> to <see cref="Entropy" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>Entropy unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Entropy? From(QuantityValue? value, EntropyUnit fromUnit)
-        {
-            return value.HasValue ? new Entropy((double)value.Value, fromUnit) : default(Entropy?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -210,20 +131,6 @@ namespace UnitsNet
         public static bool operator >(Entropy left, Entropy right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator ==(Entropy left, Entropy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator !=(Entropy left, Entropy right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 
         #region Parsing

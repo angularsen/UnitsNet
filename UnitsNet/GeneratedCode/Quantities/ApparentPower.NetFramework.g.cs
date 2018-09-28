@@ -60,58 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable ApparentPower from nullable Gigavoltamperes.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ApparentPower? FromGigavoltamperes(QuantityValue? gigavoltamperes)
-        {
-            return gigavoltamperes.HasValue ? FromGigavoltamperes(gigavoltamperes.Value) : default(ApparentPower?);
-        }
-
-        /// <summary>
-        ///     Get nullable ApparentPower from nullable Kilovoltamperes.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ApparentPower? FromKilovoltamperes(QuantityValue? kilovoltamperes)
-        {
-            return kilovoltamperes.HasValue ? FromKilovoltamperes(kilovoltamperes.Value) : default(ApparentPower?);
-        }
-
-        /// <summary>
-        ///     Get nullable ApparentPower from nullable Megavoltamperes.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ApparentPower? FromMegavoltamperes(QuantityValue? megavoltamperes)
-        {
-            return megavoltamperes.HasValue ? FromMegavoltamperes(megavoltamperes.Value) : default(ApparentPower?);
-        }
-
-        /// <summary>
-        ///     Get nullable ApparentPower from nullable Voltamperes.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static ApparentPower? FromVoltamperes(QuantityValue? voltamperes)
-        {
-            return voltamperes.HasValue ? FromVoltamperes(voltamperes.Value) : default(ApparentPower?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="ApparentPowerUnit" /> to <see cref="ApparentPower" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>ApparentPower unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static ApparentPower? From(QuantityValue? value, ApparentPowerUnit fromUnit)
-        {
-            return value.HasValue ? new ApparentPower((double)value.Value, fromUnit) : default(ApparentPower?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -183,20 +131,6 @@ namespace UnitsNet
         public static bool operator >(ApparentPower left, ApparentPower right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator ==(ApparentPower left, ApparentPower right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator !=(ApparentPower left, ApparentPower right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 
         #region Parsing

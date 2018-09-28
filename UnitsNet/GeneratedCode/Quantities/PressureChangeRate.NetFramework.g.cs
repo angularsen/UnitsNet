@@ -60,58 +60,6 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
-
-        /// <summary>
-        ///     Get nullable PressureChangeRate from nullable AtmospheresPerSecond.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PressureChangeRate? FromAtmospheresPerSecond(QuantityValue? atmospherespersecond)
-        {
-            return atmospherespersecond.HasValue ? FromAtmospheresPerSecond(atmospherespersecond.Value) : default(PressureChangeRate?);
-        }
-
-        /// <summary>
-        ///     Get nullable PressureChangeRate from nullable KilopascalsPerSecond.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PressureChangeRate? FromKilopascalsPerSecond(QuantityValue? kilopascalspersecond)
-        {
-            return kilopascalspersecond.HasValue ? FromKilopascalsPerSecond(kilopascalspersecond.Value) : default(PressureChangeRate?);
-        }
-
-        /// <summary>
-        ///     Get nullable PressureChangeRate from nullable MegapascalsPerSecond.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PressureChangeRate? FromMegapascalsPerSecond(QuantityValue? megapascalspersecond)
-        {
-            return megapascalspersecond.HasValue ? FromMegapascalsPerSecond(megapascalspersecond.Value) : default(PressureChangeRate?);
-        }
-
-        /// <summary>
-        ///     Get nullable PressureChangeRate from nullable PascalsPerSecond.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static PressureChangeRate? FromPascalsPerSecond(QuantityValue? pascalspersecond)
-        {
-            return pascalspersecond.HasValue ? FromPascalsPerSecond(pascalspersecond.Value) : default(PressureChangeRate?);
-        }
-
-        /// <summary>
-        ///     Dynamically convert from value and unit enum <see cref="PressureChangeRateUnit" /> to <see cref="PressureChangeRate" />.
-        /// </summary>
-        /// <param name="value">Value to convert from.</param>
-        /// <param name="fromUnit">Unit to convert from.</param>
-        /// <returns>PressureChangeRate unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static PressureChangeRate? From(QuantityValue? value, PressureChangeRateUnit fromUnit)
-        {
-            return value.HasValue ? new PressureChangeRate((double)value.Value, fromUnit) : default(PressureChangeRate?);
-        }
-
-        #endregion
-
         /// <summary>
         ///     Get unit abbreviation string.
         /// </summary>
@@ -183,20 +131,6 @@ namespace UnitsNet
         public static bool operator >(PressureChangeRate left, PressureChangeRate right)
         {
             return left.Value > right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator ==(PressureChangeRate left, PressureChangeRate right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
-        }
-
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
-        public static bool operator !=(PressureChangeRate left, PressureChangeRate right)
-        {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
         }
 
         #region Parsing

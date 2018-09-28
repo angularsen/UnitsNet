@@ -44,491 +44,131 @@ namespace UnitsNet.Extensions.NumberToVolume
 {
     public static class NumberToVolumeExtensions
     {
-        #region AuTablespoon
-
         /// <inheritdoc cref="Volume.FromAuTablespoons(UnitsNet.QuantityValue)" />
         public static Volume AuTablespoons<T>(this T value) => Volume.FromAuTablespoons(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromAuTablespoons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? AuTablespoons<T>(this T? value) where T : struct => Volume.FromAuTablespoons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Centiliter
 
         /// <inheritdoc cref="Volume.FromCentiliters(UnitsNet.QuantityValue)" />
         public static Volume Centiliters<T>(this T value) => Volume.FromCentiliters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromCentiliters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? Centiliters<T>(this T? value) where T : struct => Volume.FromCentiliters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicCentimeter
-
         /// <inheritdoc cref="Volume.FromCubicCentimeters(UnitsNet.QuantityValue)" />
         public static Volume CubicCentimeters<T>(this T value) => Volume.FromCubicCentimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromCubicCentimeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? CubicCentimeters<T>(this T? value) where T : struct => Volume.FromCubicCentimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicDecimeter
 
         /// <inheritdoc cref="Volume.FromCubicDecimeters(UnitsNet.QuantityValue)" />
         public static Volume CubicDecimeters<T>(this T value) => Volume.FromCubicDecimeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromCubicDecimeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? CubicDecimeters<T>(this T? value) where T : struct => Volume.FromCubicDecimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicFoot
-
         /// <inheritdoc cref="Volume.FromCubicFeet(UnitsNet.QuantityValue)" />
         public static Volume CubicFeet<T>(this T value) => Volume.FromCubicFeet(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromCubicFeet(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? CubicFeet<T>(this T? value) where T : struct => Volume.FromCubicFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicInch
 
         /// <inheritdoc cref="Volume.FromCubicInches(UnitsNet.QuantityValue)" />
         public static Volume CubicInches<T>(this T value) => Volume.FromCubicInches(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromCubicInches(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? CubicInches<T>(this T? value) where T : struct => Volume.FromCubicInches(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicKilometer
-
         /// <inheritdoc cref="Volume.FromCubicKilometers(UnitsNet.QuantityValue)" />
         public static Volume CubicKilometers<T>(this T value) => Volume.FromCubicKilometers(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromCubicKilometers(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? CubicKilometers<T>(this T? value) where T : struct => Volume.FromCubicKilometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicMeter
 
         /// <inheritdoc cref="Volume.FromCubicMeters(UnitsNet.QuantityValue)" />
         public static Volume CubicMeters<T>(this T value) => Volume.FromCubicMeters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromCubicMeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? CubicMeters<T>(this T? value) where T : struct => Volume.FromCubicMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicMicrometer
-
         /// <inheritdoc cref="Volume.FromCubicMicrometers(UnitsNet.QuantityValue)" />
         public static Volume CubicMicrometers<T>(this T value) => Volume.FromCubicMicrometers(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromCubicMicrometers(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? CubicMicrometers<T>(this T? value) where T : struct => Volume.FromCubicMicrometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicMile
 
         /// <inheritdoc cref="Volume.FromCubicMiles(UnitsNet.QuantityValue)" />
         public static Volume CubicMiles<T>(this T value) => Volume.FromCubicMiles(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromCubicMiles(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? CubicMiles<T>(this T? value) where T : struct => Volume.FromCubicMiles(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicMillimeter
-
         /// <inheritdoc cref="Volume.FromCubicMillimeters(UnitsNet.QuantityValue)" />
         public static Volume CubicMillimeters<T>(this T value) => Volume.FromCubicMillimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromCubicMillimeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? CubicMillimeters<T>(this T? value) where T : struct => Volume.FromCubicMillimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region CubicYard
 
         /// <inheritdoc cref="Volume.FromCubicYards(UnitsNet.QuantityValue)" />
         public static Volume CubicYards<T>(this T value) => Volume.FromCubicYards(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromCubicYards(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? CubicYards<T>(this T? value) where T : struct => Volume.FromCubicYards(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Deciliter
-
         /// <inheritdoc cref="Volume.FromDeciliters(UnitsNet.QuantityValue)" />
         public static Volume Deciliters<T>(this T value) => Volume.FromDeciliters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromDeciliters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? Deciliters<T>(this T? value) where T : struct => Volume.FromDeciliters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region HectocubicFoot
 
         /// <inheritdoc cref="Volume.FromHectocubicFeet(UnitsNet.QuantityValue)" />
         public static Volume HectocubicFeet<T>(this T value) => Volume.FromHectocubicFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromHectocubicFeet(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? HectocubicFeet<T>(this T? value) where T : struct => Volume.FromHectocubicFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region HectocubicMeter
-
         /// <inheritdoc cref="Volume.FromHectocubicMeters(UnitsNet.QuantityValue)" />
         public static Volume HectocubicMeters<T>(this T value) => Volume.FromHectocubicMeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromHectocubicMeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? HectocubicMeters<T>(this T? value) where T : struct => Volume.FromHectocubicMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Hectoliter
 
         /// <inheritdoc cref="Volume.FromHectoliters(UnitsNet.QuantityValue)" />
         public static Volume Hectoliters<T>(this T value) => Volume.FromHectoliters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromHectoliters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? Hectoliters<T>(this T? value) where T : struct => Volume.FromHectoliters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region ImperialBeerBarrel
-
         /// <inheritdoc cref="Volume.FromImperialBeerBarrels(UnitsNet.QuantityValue)" />
         public static Volume ImperialBeerBarrels<T>(this T value) => Volume.FromImperialBeerBarrels(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromImperialBeerBarrels(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? ImperialBeerBarrels<T>(this T? value) where T : struct => Volume.FromImperialBeerBarrels(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region ImperialGallon
 
         /// <inheritdoc cref="Volume.FromImperialGallons(UnitsNet.QuantityValue)" />
         public static Volume ImperialGallons<T>(this T value) => Volume.FromImperialGallons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromImperialGallons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? ImperialGallons<T>(this T? value) where T : struct => Volume.FromImperialGallons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region ImperialOunce
-
         /// <inheritdoc cref="Volume.FromImperialOunces(UnitsNet.QuantityValue)" />
         public static Volume ImperialOunces<T>(this T value) => Volume.FromImperialOunces(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromImperialOunces(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? ImperialOunces<T>(this T? value) where T : struct => Volume.FromImperialOunces(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilocubicFoot
 
         /// <inheritdoc cref="Volume.FromKilocubicFeet(UnitsNet.QuantityValue)" />
         public static Volume KilocubicFeet<T>(this T value) => Volume.FromKilocubicFeet(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromKilocubicFeet(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? KilocubicFeet<T>(this T? value) where T : struct => Volume.FromKilocubicFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilocubicMeter
-
         /// <inheritdoc cref="Volume.FromKilocubicMeters(UnitsNet.QuantityValue)" />
         public static Volume KilocubicMeters<T>(this T value) => Volume.FromKilocubicMeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromKilocubicMeters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? KilocubicMeters<T>(this T? value) where T : struct => Volume.FromKilocubicMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KiloimperialGallon
 
         /// <inheritdoc cref="Volume.FromKiloimperialGallons(UnitsNet.QuantityValue)" />
         public static Volume KiloimperialGallons<T>(this T value) => Volume.FromKiloimperialGallons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromKiloimperialGallons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? KiloimperialGallons<T>(this T? value) where T : struct => Volume.FromKiloimperialGallons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region KilousGallon
-
         /// <inheritdoc cref="Volume.FromKilousGallons(UnitsNet.QuantityValue)" />
         public static Volume KilousGallons<T>(this T value) => Volume.FromKilousGallons(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromKilousGallons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? KilousGallons<T>(this T? value) where T : struct => Volume.FromKilousGallons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Liter
 
         /// <inheritdoc cref="Volume.FromLiters(UnitsNet.QuantityValue)" />
         public static Volume Liters<T>(this T value) => Volume.FromLiters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromLiters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? Liters<T>(this T? value) where T : struct => Volume.FromLiters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MegacubicFoot
-
         /// <inheritdoc cref="Volume.FromMegacubicFeet(UnitsNet.QuantityValue)" />
         public static Volume MegacubicFeet<T>(this T value) => Volume.FromMegacubicFeet(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromMegacubicFeet(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? MegacubicFeet<T>(this T? value) where T : struct => Volume.FromMegacubicFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MegaimperialGallon
 
         /// <inheritdoc cref="Volume.FromMegaimperialGallons(UnitsNet.QuantityValue)" />
         public static Volume MegaimperialGallons<T>(this T value) => Volume.FromMegaimperialGallons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromMegaimperialGallons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? MegaimperialGallons<T>(this T? value) where T : struct => Volume.FromMegaimperialGallons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MegausGallon
-
         /// <inheritdoc cref="Volume.FromMegausGallons(UnitsNet.QuantityValue)" />
         public static Volume MegausGallons<T>(this T value) => Volume.FromMegausGallons(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromMegausGallons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? MegausGallons<T>(this T? value) where T : struct => Volume.FromMegausGallons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MetricCup
 
         /// <inheritdoc cref="Volume.FromMetricCups(UnitsNet.QuantityValue)" />
         public static Volume MetricCups<T>(this T value) => Volume.FromMetricCups(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromMetricCups(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? MetricCups<T>(this T? value) where T : struct => Volume.FromMetricCups(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region MetricTeaspoon
-
         /// <inheritdoc cref="Volume.FromMetricTeaspoons(UnitsNet.QuantityValue)" />
         public static Volume MetricTeaspoons<T>(this T value) => Volume.FromMetricTeaspoons(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromMetricTeaspoons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? MetricTeaspoons<T>(this T? value) where T : struct => Volume.FromMetricTeaspoons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Microliter
 
         /// <inheritdoc cref="Volume.FromMicroliters(UnitsNet.QuantityValue)" />
         public static Volume Microliters<T>(this T value) => Volume.FromMicroliters(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromMicroliters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? Microliters<T>(this T? value) where T : struct => Volume.FromMicroliters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Milliliter
-
         /// <inheritdoc cref="Volume.FromMilliliters(UnitsNet.QuantityValue)" />
         public static Volume Milliliters<T>(this T value) => Volume.FromMilliliters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromMilliliters(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? Milliliters<T>(this T? value) where T : struct => Volume.FromMilliliters(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region OilBarrel
 
         /// <inheritdoc cref="Volume.FromOilBarrels(UnitsNet.QuantityValue)" />
         public static Volume OilBarrels<T>(this T value) => Volume.FromOilBarrels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromOilBarrels(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? OilBarrels<T>(this T? value) where T : struct => Volume.FromOilBarrels(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Tablespoon
-
-        /// <inheritdoc cref="Volume.FromTablespoons(UnitsNet.QuantityValue)" />
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
-        public static Volume Tablespoons<T>(this T value) => Volume.FromTablespoons(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromTablespoons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? Tablespoons<T>(this T? value) where T : struct => Volume.FromTablespoons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Teaspoon
-
-        /// <inheritdoc cref="Volume.FromTeaspoons(UnitsNet.QuantityValue)" />
-        [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
-        public static Volume Teaspoons<T>(this T value) => Volume.FromTeaspoons(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromTeaspoons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? Teaspoons<T>(this T? value) where T : struct => Volume.FromTeaspoons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region UkTablespoon
-
         /// <inheritdoc cref="Volume.FromUkTablespoons(UnitsNet.QuantityValue)" />
         public static Volume UkTablespoons<T>(this T value) => Volume.FromUkTablespoons(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromUkTablespoons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? UkTablespoons<T>(this T? value) where T : struct => Volume.FromUkTablespoons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region UsBeerBarrel
 
         /// <inheritdoc cref="Volume.FromUsBeerBarrels(UnitsNet.QuantityValue)" />
         public static Volume UsBeerBarrels<T>(this T value) => Volume.FromUsBeerBarrels(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromUsBeerBarrels(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? UsBeerBarrels<T>(this T? value) where T : struct => Volume.FromUsBeerBarrels(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region UsCustomaryCup
-
         /// <inheritdoc cref="Volume.FromUsCustomaryCups(UnitsNet.QuantityValue)" />
         public static Volume UsCustomaryCups<T>(this T value) => Volume.FromUsCustomaryCups(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromUsCustomaryCups(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? UsCustomaryCups<T>(this T? value) where T : struct => Volume.FromUsCustomaryCups(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region UsGallon
 
         /// <inheritdoc cref="Volume.FromUsGallons(UnitsNet.QuantityValue)" />
         public static Volume UsGallons<T>(this T value) => Volume.FromUsGallons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromUsGallons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? UsGallons<T>(this T? value) where T : struct => Volume.FromUsGallons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region UsLegalCup
-
         /// <inheritdoc cref="Volume.FromUsLegalCups(UnitsNet.QuantityValue)" />
         public static Volume UsLegalCups<T>(this T value) => Volume.FromUsLegalCups(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromUsLegalCups(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? UsLegalCups<T>(this T? value) where T : struct => Volume.FromUsLegalCups(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region UsOunce
 
         /// <inheritdoc cref="Volume.FromUsOunces(UnitsNet.QuantityValue)" />
         public static Volume UsOunces<T>(this T value) => Volume.FromUsOunces(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromUsOunces(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? UsOunces<T>(this T? value) where T : struct => Volume.FromUsOunces(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region UsPint
-
         /// <inheritdoc cref="Volume.FromUsPints(UnitsNet.QuantityValue)" />
         public static Volume UsPints<T>(this T value) => Volume.FromUsPints(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromUsPints(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? UsPints<T>(this T? value) where T : struct => Volume.FromUsPints(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region UsQuart
 
         /// <inheritdoc cref="Volume.FromUsQuarts(UnitsNet.QuantityValue)" />
         public static Volume UsQuarts<T>(this T value) => Volume.FromUsQuarts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromUsQuarts(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? UsQuarts<T>(this T? value) where T : struct => Volume.FromUsQuarts(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region UsTablespoon
-
         /// <inheritdoc cref="Volume.FromUsTablespoons(UnitsNet.QuantityValue)" />
         public static Volume UsTablespoons<T>(this T value) => Volume.FromUsTablespoons(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Volume.FromUsTablespoons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? UsTablespoons<T>(this T? value) where T : struct => Volume.FromUsTablespoons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region UsTeaspoon
-
         /// <inheritdoc cref="Volume.FromUsTeaspoons(UnitsNet.QuantityValue)" />
         public static Volume UsTeaspoons<T>(this T value) => Volume.FromUsTeaspoons(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Volume.FromUsTeaspoons(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Volume? UsTeaspoons<T>(this T? value) where T : struct => Volume.FromUsTeaspoons(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

@@ -44,27 +44,11 @@ namespace UnitsNet.Extensions.NumberToPowerRatio
 {
     public static class NumberToPowerRatioExtensions
     {
-        #region DecibelMilliwatt
-
         /// <inheritdoc cref="PowerRatio.FromDecibelMilliwatts(UnitsNet.QuantityValue)" />
         public static PowerRatio DecibelMilliwatts<T>(this T value) => PowerRatio.FromDecibelMilliwatts(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="PowerRatio.FromDecibelMilliwatts(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static PowerRatio? DecibelMilliwatts<T>(this T? value) where T : struct => PowerRatio.FromDecibelMilliwatts(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DecibelWatt
-
         /// <inheritdoc cref="PowerRatio.FromDecibelWatts(UnitsNet.QuantityValue)" />
         public static PowerRatio DecibelWatts<T>(this T value) => PowerRatio.FromDecibelWatts(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="PowerRatio.FromDecibelWatts(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static PowerRatio? DecibelWatts<T>(this T? value) where T : struct => PowerRatio.FromDecibelWatts(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

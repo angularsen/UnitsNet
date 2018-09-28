@@ -219,28 +219,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => squaremeterpersecond.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            KinematicViscosity a = KinematicViscosity.FromSquareMetersPerSecond(1);
-            KinematicViscosity b = KinematicViscosity.FromSquareMetersPerSecond(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             KinematicViscosity v = KinematicViscosity.FromSquareMetersPerSecond(1);
-            Assert.True(v.Equals(KinematicViscosity.FromSquareMetersPerSecond(1), KinematicViscosity.FromSquareMetersPerSecond(SquareMetersPerSecondTolerance)));
-            Assert.False(v.Equals(KinematicViscosity.Zero, KinematicViscosity.FromSquareMetersPerSecond(SquareMetersPerSecondTolerance)));
+            Assert.True(v.Equals(KinematicViscosity.FromSquareMetersPerSecond(1), SquareMetersPerSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(KinematicViscosity.Zero, SquareMetersPerSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]

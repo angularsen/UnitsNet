@@ -44,93 +44,29 @@ namespace UnitsNet.Extensions.NumberToTemperature
 {
     public static class NumberToTemperatureExtensions
     {
-        #region DegreeCelsius
-
         /// <inheritdoc cref="Temperature.FromDegreesCelsius(UnitsNet.QuantityValue)" />
         public static Temperature DegreesCelsius<T>(this T value) => Temperature.FromDegreesCelsius(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Temperature.FromDegreesCelsius(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Temperature? DegreesCelsius<T>(this T? value) where T : struct => Temperature.FromDegreesCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DegreeDelisle
 
         /// <inheritdoc cref="Temperature.FromDegreesDelisle(UnitsNet.QuantityValue)" />
         public static Temperature DegreesDelisle<T>(this T value) => Temperature.FromDegreesDelisle(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesDelisle(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Temperature? DegreesDelisle<T>(this T? value) where T : struct => Temperature.FromDegreesDelisle(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DegreeFahrenheit
-
         /// <inheritdoc cref="Temperature.FromDegreesFahrenheit(UnitsNet.QuantityValue)" />
         public static Temperature DegreesFahrenheit<T>(this T value) => Temperature.FromDegreesFahrenheit(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Temperature.FromDegreesFahrenheit(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Temperature? DegreesFahrenheit<T>(this T? value) where T : struct => Temperature.FromDegreesFahrenheit(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DegreeNewton
 
         /// <inheritdoc cref="Temperature.FromDegreesNewton(UnitsNet.QuantityValue)" />
         public static Temperature DegreesNewton<T>(this T value) => Temperature.FromDegreesNewton(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesNewton(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Temperature? DegreesNewton<T>(this T? value) where T : struct => Temperature.FromDegreesNewton(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DegreeRankine
-
         /// <inheritdoc cref="Temperature.FromDegreesRankine(UnitsNet.QuantityValue)" />
         public static Temperature DegreesRankine<T>(this T value) => Temperature.FromDegreesRankine(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Temperature.FromDegreesRankine(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Temperature? DegreesRankine<T>(this T? value) where T : struct => Temperature.FromDegreesRankine(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DegreeReaumur
 
         /// <inheritdoc cref="Temperature.FromDegreesReaumur(UnitsNet.QuantityValue)" />
         public static Temperature DegreesReaumur<T>(this T value) => Temperature.FromDegreesReaumur(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesReaumur(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Temperature? DegreesReaumur<T>(this T? value) where T : struct => Temperature.FromDegreesReaumur(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region DegreeRoemer
-
         /// <inheritdoc cref="Temperature.FromDegreesRoemer(UnitsNet.QuantityValue)" />
         public static Temperature DegreesRoemer<T>(this T value) => Temperature.FromDegreesRoemer(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Temperature.FromDegreesRoemer(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Temperature? DegreesRoemer<T>(this T? value) where T : struct => Temperature.FromDegreesRoemer(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
-
-        #region Kelvin
-
         /// <inheritdoc cref="Temperature.FromKelvins(UnitsNet.QuantityValue)" />
         public static Temperature Kelvins<T>(this T value) => Temperature.FromKelvins(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Temperature.FromKelvins(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Temperature? Kelvins<T>(this T? value) where T : struct => Temperature.FromKelvins(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
     }
 }

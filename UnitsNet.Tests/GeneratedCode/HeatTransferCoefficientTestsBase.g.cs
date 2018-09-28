@@ -159,28 +159,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => wattpersquaremeterkelvin.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            HeatTransferCoefficient a = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
-            HeatTransferCoefficient b = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             HeatTransferCoefficient v = HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1);
-            Assert.True(v.Equals(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1), HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(WattsPerSquareMeterKelvinTolerance)));
-            Assert.False(v.Equals(HeatTransferCoefficient.Zero, HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(WattsPerSquareMeterKelvinTolerance)));
+            Assert.True(v.Equals(HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(1), WattsPerSquareMeterKelvinTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(HeatTransferCoefficient.Zero, WattsPerSquareMeterKelvinTolerance, ComparisonType.Relative));
         }
 
         [Fact]

@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => amperepersecond.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ElectricCurrentGradient a = ElectricCurrentGradient.FromAmperesPerSecond(1);
-            ElectricCurrentGradient b = ElectricCurrentGradient.FromAmperesPerSecond(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ElectricCurrentGradient v = ElectricCurrentGradient.FromAmperesPerSecond(1);
-            Assert.True(v.Equals(ElectricCurrentGradient.FromAmperesPerSecond(1), ElectricCurrentGradient.FromAmperesPerSecond(AmperesPerSecondTolerance)));
-            Assert.False(v.Equals(ElectricCurrentGradient.Zero, ElectricCurrentGradient.FromAmperesPerSecond(AmperesPerSecondTolerance)));
+            Assert.True(v.Equals(ElectricCurrentGradient.FromAmperesPerSecond(1), AmperesPerSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ElectricCurrentGradient.Zero, AmperesPerSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]

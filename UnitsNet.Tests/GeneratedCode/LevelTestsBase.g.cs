@@ -164,28 +164,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => decibel.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            Level a = Level.FromDecibels(1);
-            Level b = Level.FromDecibels(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             Level v = Level.FromDecibels(1);
-            Assert.True(v.Equals(Level.FromDecibels(1), Level.FromDecibels(DecibelsTolerance)));
-            Assert.False(v.Equals(Level.Zero, Level.FromDecibels(DecibelsTolerance)));
+            Assert.True(v.Equals(Level.FromDecibels(1), DecibelsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Level.Zero, DecibelsTolerance, ComparisonType.Relative));
         }
 
         [Fact]

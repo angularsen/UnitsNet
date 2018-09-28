@@ -169,28 +169,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => joulepermole.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            MolarEnergy a = MolarEnergy.FromJoulesPerMole(1);
-            MolarEnergy b = MolarEnergy.FromJoulesPerMole(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             MolarEnergy v = MolarEnergy.FromJoulesPerMole(1);
-            Assert.True(v.Equals(MolarEnergy.FromJoulesPerMole(1), MolarEnergy.FromJoulesPerMole(JoulesPerMoleTolerance)));
-            Assert.False(v.Equals(MolarEnergy.Zero, MolarEnergy.FromJoulesPerMole(JoulesPerMoleTolerance)));
+            Assert.True(v.Equals(MolarEnergy.FromJoulesPerMole(1), JoulesPerMoleTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MolarEnergy.Zero, JoulesPerMoleTolerance, ComparisonType.Relative));
         }
 
         [Fact]

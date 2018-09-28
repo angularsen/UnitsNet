@@ -149,28 +149,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => tesla.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            MagneticField a = MagneticField.FromTeslas(1);
-            MagneticField b = MagneticField.FromTeslas(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             MagneticField v = MagneticField.FromTeslas(1);
-            Assert.True(v.Equals(MagneticField.FromTeslas(1), MagneticField.FromTeslas(TeslasTolerance)));
-            Assert.False(v.Equals(MagneticField.Zero, MagneticField.FromTeslas(TeslasTolerance)));
+            Assert.True(v.Equals(MagneticField.FromTeslas(1), TeslasTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MagneticField.Zero, TeslasTolerance, ComparisonType.Relative));
         }
 
         [Fact]

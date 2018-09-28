@@ -199,28 +199,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => metertothefourth.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            AreaMomentOfInertia a = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            AreaMomentOfInertia b = AreaMomentOfInertia.FromMetersToTheFourth(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             AreaMomentOfInertia v = AreaMomentOfInertia.FromMetersToTheFourth(1);
-            Assert.True(v.Equals(AreaMomentOfInertia.FromMetersToTheFourth(1), AreaMomentOfInertia.FromMetersToTheFourth(MetersToTheFourthTolerance)));
-            Assert.False(v.Equals(AreaMomentOfInertia.Zero, AreaMomentOfInertia.FromMetersToTheFourth(MetersToTheFourthTolerance)));
+            Assert.True(v.Equals(AreaMomentOfInertia.FromMetersToTheFourth(1), MetersToTheFourthTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(AreaMomentOfInertia.Zero, MetersToTheFourthTolerance, ComparisonType.Relative));
         }
 
         [Fact]

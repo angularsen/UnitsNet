@@ -60,16 +60,8 @@ namespace UnitsNet.Extensions.NumberTo$quantityName
         # We add "OmitExtensionMethod": true on all but one of the conflicting units in JSON.
         if ($unit.OmitExtensionMethod) { continue }
 @"
-        #region $($unit.SingularName)
-
         /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />$($obsoleteAttribute)
         public static $quantityName $($unit.PluralName)<T>(this T value) => $quantityName.From$($unit.PluralName)(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static $($quantityName)? $($unit.PluralName)<T>(this T? value) where T : struct => $quantityName.From$($unit.PluralName)(value == null ? (double?)null : Convert.ToDouble(value.Value));
-
-        #endregion
 
 "@; }@"
     }

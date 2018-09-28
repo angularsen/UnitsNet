@@ -169,28 +169,12 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => voltamperehour.CompareTo(null));
         }
 
-
-        [Fact]
-        public void EqualityOperators()
-        {
-            ApparentEnergy a = ApparentEnergy.FromVoltampereHours(1);
-            ApparentEnergy b = ApparentEnergy.FromVoltampereHours(2);
-
-// ReSharper disable EqualExpressionComparison
-            Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
-            Assert.False(a != a);
-// ReSharper restore EqualExpressionComparison
-        }
-
         [Fact]
         public void EqualsIsImplemented()
         {
             ApparentEnergy v = ApparentEnergy.FromVoltampereHours(1);
-            Assert.True(v.Equals(ApparentEnergy.FromVoltampereHours(1), ApparentEnergy.FromVoltampereHours(VoltampereHoursTolerance)));
-            Assert.False(v.Equals(ApparentEnergy.Zero, ApparentEnergy.FromVoltampereHours(VoltampereHoursTolerance)));
+            Assert.True(v.Equals(ApparentEnergy.FromVoltampereHours(1), VoltampereHoursTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(ApparentEnergy.Zero, VoltampereHoursTolerance, ComparisonType.Relative));
         }
 
         [Fact]
