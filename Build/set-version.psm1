@@ -107,7 +107,7 @@ function BumpSuffix([string] $oldSuffix) {
   # Example:
   # -alpha => -alpha2
   # -alpha1 => -alpha2
-  $match = [regex]::Match($oldSuffix, '^-(\w+)(\d+)?$');
+  $match = [regex]::Match($oldSuffix, '^-([a-zA-Z]+)(\d+)?$');
   $oldSuffix = $match.Groups[1].Value
   $numberGroup = $match.Groups[2]
 
