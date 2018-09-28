@@ -58,6 +58,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region CubicDecimeterPerMinute
 
         /// <inheritdoc cref="Flow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicDecimetersPerMinute<T>(this T value) => Flow.FromCubicDecimetersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
@@ -69,6 +70,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region CubicFootPerHour
 
         /// <inheritdoc cref="Flow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicFeetPerHour<T>(this T value) => Flow.FromCubicFeetPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
@@ -80,6 +82,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region CubicFootPerMinute
 
         /// <inheritdoc cref="Flow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicFeetPerMinute<T>(this T value) => Flow.FromCubicFeetPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
@@ -91,6 +94,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region CubicFootPerSecond
 
         /// <inheritdoc cref="Flow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicFeetPerSecond<T>(this T value) => Flow.FromCubicFeetPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
@@ -102,6 +106,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region CubicMeterPerHour
 
         /// <inheritdoc cref="Flow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicMetersPerHour<T>(this T value) => Flow.FromCubicMetersPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
@@ -113,6 +118,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region CubicMeterPerMinute
 
         /// <inheritdoc cref="Flow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicMetersPerMinute<T>(this T value) => Flow.FromCubicMetersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
@@ -124,6 +130,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region CubicMeterPerSecond
 
         /// <inheritdoc cref="Flow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicMetersPerSecond<T>(this T value) => Flow.FromCubicMetersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
@@ -135,6 +142,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region CubicYardPerHour
 
         /// <inheritdoc cref="Flow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicYardsPerHour<T>(this T value) => Flow.FromCubicYardsPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
@@ -146,6 +154,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region CubicYardPerMinute
 
         /// <inheritdoc cref="Flow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicYardsPerMinute<T>(this T value) => Flow.FromCubicYardsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
@@ -157,6 +166,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region CubicYardPerSecond
 
         /// <inheritdoc cref="Flow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow CubicYardsPerSecond<T>(this T value) => Flow.FromCubicYardsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
@@ -190,6 +200,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region LitersPerHour
 
         /// <inheritdoc cref="Flow.FromLitersPerHour(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow LitersPerHour<T>(this T value) => Flow.FromLitersPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromLitersPerHour(UnitsNet.QuantityValue)" />
@@ -201,6 +212,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region LitersPerMinute
 
         /// <inheritdoc cref="Flow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow LitersPerMinute<T>(this T value) => Flow.FromLitersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
@@ -212,6 +224,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region LitersPerSecond
 
         /// <inheritdoc cref="Flow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow LitersPerSecond<T>(this T value) => Flow.FromLitersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
@@ -245,6 +258,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region MillionUsGallonsPerDay
 
         /// <inheritdoc cref="Flow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow MillionUsGallonsPerDay<T>(this T value) => Flow.FromMillionUsGallonsPerDay(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
@@ -267,6 +281,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region OilBarrelsPerDay
 
         /// <inheritdoc cref="Flow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow OilBarrelsPerDay<T>(this T value) => Flow.FromOilBarrelsPerDay(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
@@ -278,6 +293,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region UsGallonsPerHour
 
         /// <inheritdoc cref="Flow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow UsGallonsPerHour<T>(this T value) => Flow.FromUsGallonsPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
@@ -289,6 +305,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region UsGallonsPerMinute
 
         /// <inheritdoc cref="Flow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow UsGallonsPerMinute<T>(this T value) => Flow.FromUsGallonsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
@@ -300,6 +317,7 @@ namespace UnitsNet.Extensions.NumberToFlow
         #region UsGallonsPerSecond
 
         /// <inheritdoc cref="Flow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         public static Flow UsGallonsPerSecond<T>(this T value) => Flow.FromUsGallonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Flow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />

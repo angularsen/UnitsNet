@@ -50,13 +50,19 @@ namespace UnitsNet.Extensions.NumberTo$quantityName
     public static class NumberTo$($quantityName)Extensions
     {
 "@; foreach ($unit in $units) {
+        $obsoleteAttribute = GetObsoleteAttribute($unit);
+        if ($obsoleteAttribute)
+        {
+            $obsoleteAttribute = "`r`n        " + $obsoleteAttribute; # apply padding to conformance with code format in this page
+        }
+
         # A few units share the exact same name across quantities, which give extension method name conflicts.
         # We add "OmitExtensionMethod": true on all but one of the conflicting units in JSON.
         if ($unit.OmitExtensionMethod) { continue }
 @"
         #region $($unit.SingularName)
 
-        /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />$($obsoleteAttribute)
         public static $quantityName $($unit.PluralName)<T>(this T value) => $quantityName.From$($unit.PluralName)(Convert.ToDouble(value));
 
         /// <inheritdoc cref="$quantityName.From$($unit.PluralName)(UnitsNet.QuantityValue)" />

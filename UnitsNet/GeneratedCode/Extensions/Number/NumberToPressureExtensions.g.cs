@@ -399,6 +399,7 @@ namespace UnitsNet.Extensions.NumberToPressure
         #region Psi
 
         /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #215, please use PoundForcePerSquareInch instead")]
         public static Pressure Psi<T>(this T value) => Pressure.FromPsi(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Pressure.FromPsi(UnitsNet.QuantityValue)" />

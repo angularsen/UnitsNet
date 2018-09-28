@@ -812,6 +812,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Psi.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #215, please use PoundForcePerSquareInch instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromPsi(double psi)

@@ -399,6 +399,7 @@ namespace UnitsNet.Extensions.NumberToVolume
         #region Tablespoon
 
         /// <inheritdoc cref="Volume.FromTablespoons(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
         public static Volume Tablespoons<T>(this T value) => Volume.FromTablespoons(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Volume.FromTablespoons(UnitsNet.QuantityValue)" />
@@ -410,6 +411,7 @@ namespace UnitsNet.Extensions.NumberToVolume
         #region Teaspoon
 
         /// <inheritdoc cref="Volume.FromTeaspoons(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
         public static Volume Teaspoons<T>(this T value) => Volume.FromTeaspoons(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Volume.FromTeaspoons(UnitsNet.QuantityValue)" />

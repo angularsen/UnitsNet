@@ -58,6 +58,7 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
         #region DegreeCelsiusDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsiusDelta(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeCelsius instead")]
         public static TemperatureDelta DegreesCelsiusDelta<T>(this T value) => TemperatureDelta.FromDegreesCelsiusDelta(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesCelsiusDelta(UnitsNet.QuantityValue)" />
@@ -80,6 +81,7 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
         #region DegreeDelisleDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisleDelta(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeDelisle instead")]
         public static TemperatureDelta DegreesDelisleDelta<T>(this T value) => TemperatureDelta.FromDegreesDelisleDelta(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesDelisleDelta(UnitsNet.QuantityValue)" />
@@ -102,6 +104,7 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
         #region DegreeFahrenheitDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheitDelta(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeFahrenheit instead")]
         public static TemperatureDelta DegreesFahrenheitDelta<T>(this T value) => TemperatureDelta.FromDegreesFahrenheitDelta(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesFahrenheitDelta(UnitsNet.QuantityValue)" />
@@ -124,6 +127,7 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
         #region DegreeNewtonDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesNewtonDelta(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeNewton instead")]
         public static TemperatureDelta DegreesNewtonDelta<T>(this T value) => TemperatureDelta.FromDegreesNewtonDelta(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesNewtonDelta(UnitsNet.QuantityValue)" />
@@ -146,6 +150,7 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
         #region DegreeRankineDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesRankineDelta(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeRankine instead")]
         public static TemperatureDelta DegreesRankineDelta<T>(this T value) => TemperatureDelta.FromDegreesRankineDelta(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesRankineDelta(UnitsNet.QuantityValue)" />
@@ -168,6 +173,7 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
         #region DegreeReaumurDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumurDelta(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeReaumur instead")]
         public static TemperatureDelta DegreesReaumurDelta<T>(this T value) => TemperatureDelta.FromDegreesReaumurDelta(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesReaumurDelta(UnitsNet.QuantityValue)" />
@@ -190,6 +196,7 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
         #region DegreeRoemerDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemerDelta(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #180, please use DegreeRoemer instead")]
         public static TemperatureDelta DegreesRoemerDelta<T>(this T value) => TemperatureDelta.FromDegreesRoemerDelta(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureDelta.FromDegreesRoemerDelta(UnitsNet.QuantityValue)" />
@@ -212,6 +219,7 @@ namespace UnitsNet.Extensions.NumberToTemperatureDelta
         #region KelvinDelta
 
         /// <inheritdoc cref="TemperatureDelta.FromKelvinsDelta(UnitsNet.QuantityValue)" />
+        [System.Obsolete("Deprecated due to github issue #180, please use Kelvin instead")]
         public static TemperatureDelta KelvinsDelta<T>(this T value) => TemperatureDelta.FromKelvinsDelta(Convert.ToDouble(value));
 
         /// <inheritdoc cref="TemperatureDelta.FromKelvinsDelta(UnitsNet.QuantityValue)" />
