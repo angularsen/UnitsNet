@@ -4408,7 +4408,7 @@ namespace UnitsNet
                 new UnitLocalization(typeof (VolumeFlowUnit),
                     new[]
                     {
-                        new CulturesForEnumValue((int) VolumeFlowUnit.CentilitersPerMinute,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.CentiliterPerMinute,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "cLPM"),
@@ -4466,78 +4466,78 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "yd³/s"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.DecilitersPerMinute,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.DeciliterPerMinute,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "dLPM"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.KilolitersPerMinute,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.KiloliterPerMinute,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kLPM"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.LitersPerHour,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.LiterPerHour,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "LPH"),
                                 new AbbreviationsForCulture("ru-RU", "л/ч"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.LitersPerMinute,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.LiterPerMinute,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "LPM"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.LitersPerSecond,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.LiterPerSecond,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "LPS"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.MicrolitersPerMinute,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.MicroliterPerMinute,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "µLPM"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.MillilitersPerMinute,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.MilliliterPerMinute,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "mLPM"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.MillionUsGallonsPerDay,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.MillionUsGallonPerDay,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MGD"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.NanolitersPerMinute,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.NanoliterPerMinute,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "nLPM"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelsPerDay,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelPerDay,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "bbl/d", "BOPD"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelsPerHour,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelPerHour,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "bbl/hr", "bph"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelsPerMinute,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelPerMinute,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "bbl/min", "bpm"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonsPerHour,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonPerHour,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "gal (U.S.)/h"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonsPerMinute,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonPerMinute,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "gal (U.S.)/min", "GPM"),
                             }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonsPerSecond,
+                        new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonPerSecond,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "gal (U.S.)/s"),

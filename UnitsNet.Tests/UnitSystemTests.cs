@@ -275,7 +275,7 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, TemperatureChangeRate.ParseUnit("\u00b5°C/s"));
             Assert.Equal(VolumeUnit.Microliter, Volume.ParseUnit("\u00b5l"));
             Assert.Equal(VolumeUnit.CubicMicrometer, Volume.ParseUnit("\u00b5m³"));
-            Assert.Equal(VolumeFlowUnit.MicrolitersPerMinute, VolumeFlow.ParseUnit("\u00b5LPM"));
+            Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, VolumeFlow.ParseUnit("\u00b5LPM"));
 
             // "\u03bc" = Lower case greek letter 'Mu' 
             Assert.Throws<UnitNotFoundException>(() => Acceleration.ParseUnit("\u03bcm/s²"));

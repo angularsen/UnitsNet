@@ -127,7 +127,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow in CentilitersPerMinute.
         /// </summary>
-        public double CentilitersPerMinute => As(VolumeFlowUnit.CentilitersPerMinute);
+        public double CentilitersPerMinute => As(VolumeFlowUnit.CentiliterPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in CubicDecimetersPerMinute.
@@ -182,77 +182,77 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow in DecilitersPerMinute.
         /// </summary>
-        public double DecilitersPerMinute => As(VolumeFlowUnit.DecilitersPerMinute);
+        public double DecilitersPerMinute => As(VolumeFlowUnit.DeciliterPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in KilolitersPerMinute.
         /// </summary>
-        public double KilolitersPerMinute => As(VolumeFlowUnit.KilolitersPerMinute);
+        public double KilolitersPerMinute => As(VolumeFlowUnit.KiloliterPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in LitersPerHour.
         /// </summary>
-        public double LitersPerHour => As(VolumeFlowUnit.LitersPerHour);
+        public double LitersPerHour => As(VolumeFlowUnit.LiterPerHour);
 
         /// <summary>
         ///     Get VolumeFlow in LitersPerMinute.
         /// </summary>
-        public double LitersPerMinute => As(VolumeFlowUnit.LitersPerMinute);
+        public double LitersPerMinute => As(VolumeFlowUnit.LiterPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in LitersPerSecond.
         /// </summary>
-        public double LitersPerSecond => As(VolumeFlowUnit.LitersPerSecond);
+        public double LitersPerSecond => As(VolumeFlowUnit.LiterPerSecond);
 
         /// <summary>
         ///     Get VolumeFlow in MicrolitersPerMinute.
         /// </summary>
-        public double MicrolitersPerMinute => As(VolumeFlowUnit.MicrolitersPerMinute);
+        public double MicrolitersPerMinute => As(VolumeFlowUnit.MicroliterPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in MillilitersPerMinute.
         /// </summary>
-        public double MillilitersPerMinute => As(VolumeFlowUnit.MillilitersPerMinute);
+        public double MillilitersPerMinute => As(VolumeFlowUnit.MilliliterPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in MillionUsGallonsPerDay.
         /// </summary>
-        public double MillionUsGallonsPerDay => As(VolumeFlowUnit.MillionUsGallonsPerDay);
+        public double MillionUsGallonsPerDay => As(VolumeFlowUnit.MillionUsGallonPerDay);
 
         /// <summary>
         ///     Get VolumeFlow in NanolitersPerMinute.
         /// </summary>
-        public double NanolitersPerMinute => As(VolumeFlowUnit.NanolitersPerMinute);
+        public double NanolitersPerMinute => As(VolumeFlowUnit.NanoliterPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in OilBarrelsPerDay.
         /// </summary>
-        public double OilBarrelsPerDay => As(VolumeFlowUnit.OilBarrelsPerDay);
+        public double OilBarrelsPerDay => As(VolumeFlowUnit.OilBarrelPerDay);
 
         /// <summary>
         ///     Get VolumeFlow in OilBarrelsPerHour.
         /// </summary>
-        public double OilBarrelsPerHour => As(VolumeFlowUnit.OilBarrelsPerHour);
+        public double OilBarrelsPerHour => As(VolumeFlowUnit.OilBarrelPerHour);
 
         /// <summary>
         ///     Get VolumeFlow in OilBarrelsPerMinute.
         /// </summary>
-        public double OilBarrelsPerMinute => As(VolumeFlowUnit.OilBarrelsPerMinute);
+        public double OilBarrelsPerMinute => As(VolumeFlowUnit.OilBarrelPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in UsGallonsPerHour.
         /// </summary>
-        public double UsGallonsPerHour => As(VolumeFlowUnit.UsGallonsPerHour);
+        public double UsGallonsPerHour => As(VolumeFlowUnit.UsGallonPerHour);
 
         /// <summary>
         ///     Get VolumeFlow in UsGallonsPerMinute.
         /// </summary>
-        public double UsGallonsPerMinute => As(VolumeFlowUnit.UsGallonsPerMinute);
+        public double UsGallonsPerMinute => As(VolumeFlowUnit.UsGallonPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in UsGallonsPerSecond.
         /// </summary>
-        public double UsGallonsPerSecond => As(VolumeFlowUnit.UsGallonsPerSecond);
+        public double UsGallonsPerSecond => As(VolumeFlowUnit.UsGallonPerSecond);
 
         #endregion
 
@@ -274,7 +274,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) centilitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.CentilitersPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.CentiliterPerMinute);
         }
 
         /// <summary>
@@ -428,7 +428,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) decilitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.DecilitersPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.DeciliterPerMinute);
         }
 
         /// <summary>
@@ -442,7 +442,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) kilolitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.KilolitersPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.KiloliterPerMinute);
         }
 
         /// <summary>
@@ -456,7 +456,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) litersperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.LitersPerHour);
+            return new VolumeFlow(value, VolumeFlowUnit.LiterPerHour);
         }
 
         /// <summary>
@@ -470,7 +470,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) litersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.LitersPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.LiterPerMinute);
         }
 
         /// <summary>
@@ -484,7 +484,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) literspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.LitersPerSecond);
+            return new VolumeFlow(value, VolumeFlowUnit.LiterPerSecond);
         }
 
         /// <summary>
@@ -498,7 +498,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) microlitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.MicrolitersPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.MicroliterPerMinute);
         }
 
         /// <summary>
@@ -512,7 +512,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) millilitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.MillilitersPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.MilliliterPerMinute);
         }
 
         /// <summary>
@@ -526,7 +526,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) millionusgallonsperday;
-            return new VolumeFlow(value, VolumeFlowUnit.MillionUsGallonsPerDay);
+            return new VolumeFlow(value, VolumeFlowUnit.MillionUsGallonPerDay);
         }
 
         /// <summary>
@@ -540,7 +540,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) nanolitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.NanolitersPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.NanoliterPerMinute);
         }
 
         /// <summary>
@@ -554,7 +554,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) oilbarrelsperday;
-            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelsPerDay);
+            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerDay);
         }
 
         /// <summary>
@@ -568,7 +568,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) oilbarrelsperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelsPerHour);
+            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerHour);
         }
 
         /// <summary>
@@ -582,7 +582,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) oilbarrelsperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelsPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerMinute);
         }
 
         /// <summary>
@@ -596,7 +596,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) usgallonsperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.UsGallonsPerHour);
+            return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerHour);
         }
 
         /// <summary>
@@ -610,7 +610,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) usgallonsperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.UsGallonsPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerMinute);
         }
 
         /// <summary>
@@ -624,7 +624,7 @@ namespace UnitsNet
 #endif
         {
             double value = (double) usgallonspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.UsGallonsPerSecond);
+            return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerSecond);
         }
 
 
@@ -775,7 +775,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case VolumeFlowUnit.CentilitersPerMinute: return (_value/60000.00000) * 1e-2d;
+                case VolumeFlowUnit.CentiliterPerMinute: return (_value/60000.00000) * 1e-2d;
                 case VolumeFlowUnit.CubicDecimeterPerMinute: return _value/60000.00000;
                 case VolumeFlowUnit.CubicFootPerHour: return _value*7.8657907199999087346816086183876e-6;
                 case VolumeFlowUnit.CubicFootPerMinute: return _value/2118.88000326;
@@ -786,21 +786,21 @@ namespace UnitsNet
                 case VolumeFlowUnit.CubicYardPerHour: return _value*2.1237634944E-4;
                 case VolumeFlowUnit.CubicYardPerMinute: return _value*0.0127425809664;
                 case VolumeFlowUnit.CubicYardPerSecond: return _value*0.764554857984;
-                case VolumeFlowUnit.DecilitersPerMinute: return (_value/60000.00000) * 1e-1d;
-                case VolumeFlowUnit.KilolitersPerMinute: return (_value/60000.00000) * 1e3d;
-                case VolumeFlowUnit.LitersPerHour: return _value/3600000.000;
-                case VolumeFlowUnit.LitersPerMinute: return _value/60000.00000;
-                case VolumeFlowUnit.LitersPerSecond: return _value/1000;
-                case VolumeFlowUnit.MicrolitersPerMinute: return (_value/60000.00000) * 1e-6d;
-                case VolumeFlowUnit.MillilitersPerMinute: return (_value/60000.00000) * 1e-3d;
-                case VolumeFlowUnit.MillionUsGallonsPerDay: return _value/22.824465227;
-                case VolumeFlowUnit.NanolitersPerMinute: return (_value/60000.00000) * 1e-9d;
-                case VolumeFlowUnit.OilBarrelsPerDay: return _value*1.8401307283333333333333333333333e-6;
-                case VolumeFlowUnit.OilBarrelsPerHour: return _value*4.41631375e-5;
-                case VolumeFlowUnit.OilBarrelsPerMinute: return _value*2.64978825e-3;
-                case VolumeFlowUnit.UsGallonsPerHour: return _value/951019.38848933424;
-                case VolumeFlowUnit.UsGallonsPerMinute: return _value/15850.323141489;
-                case VolumeFlowUnit.UsGallonsPerSecond: return _value/264.1720523581484;
+                case VolumeFlowUnit.DeciliterPerMinute: return (_value/60000.00000) * 1e-1d;
+                case VolumeFlowUnit.KiloliterPerMinute: return (_value/60000.00000) * 1e3d;
+                case VolumeFlowUnit.LiterPerHour: return _value/3600000.000;
+                case VolumeFlowUnit.LiterPerMinute: return _value/60000.00000;
+                case VolumeFlowUnit.LiterPerSecond: return _value/1000;
+                case VolumeFlowUnit.MicroliterPerMinute: return (_value/60000.00000) * 1e-6d;
+                case VolumeFlowUnit.MilliliterPerMinute: return (_value/60000.00000) * 1e-3d;
+                case VolumeFlowUnit.MillionUsGallonPerDay: return _value/22.824465227;
+                case VolumeFlowUnit.NanoliterPerMinute: return (_value/60000.00000) * 1e-9d;
+                case VolumeFlowUnit.OilBarrelPerDay: return _value*1.8401307283333333333333333333333e-6;
+                case VolumeFlowUnit.OilBarrelPerHour: return _value*4.41631375e-5;
+                case VolumeFlowUnit.OilBarrelPerMinute: return _value*2.64978825e-3;
+                case VolumeFlowUnit.UsGallonPerHour: return _value/951019.38848933424;
+                case VolumeFlowUnit.UsGallonPerMinute: return _value/15850.323141489;
+                case VolumeFlowUnit.UsGallonPerSecond: return _value/264.1720523581484;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -815,7 +815,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case VolumeFlowUnit.CentilitersPerMinute: return (baseUnitValue*60000.00000) / 1e-2d;
+                case VolumeFlowUnit.CentiliterPerMinute: return (baseUnitValue*60000.00000) / 1e-2d;
                 case VolumeFlowUnit.CubicDecimeterPerMinute: return baseUnitValue*60000.00000;
                 case VolumeFlowUnit.CubicFootPerHour: return baseUnitValue/7.8657907199999087346816086183876e-6;
                 case VolumeFlowUnit.CubicFootPerMinute: return baseUnitValue*2118.88000326;
@@ -826,21 +826,21 @@ namespace UnitsNet
                 case VolumeFlowUnit.CubicYardPerHour: return baseUnitValue/2.1237634944E-4;
                 case VolumeFlowUnit.CubicYardPerMinute: return baseUnitValue/0.0127425809664;
                 case VolumeFlowUnit.CubicYardPerSecond: return baseUnitValue/0.764554857984;
-                case VolumeFlowUnit.DecilitersPerMinute: return (baseUnitValue*60000.00000) / 1e-1d;
-                case VolumeFlowUnit.KilolitersPerMinute: return (baseUnitValue*60000.00000) / 1e3d;
-                case VolumeFlowUnit.LitersPerHour: return baseUnitValue*3600000.000;
-                case VolumeFlowUnit.LitersPerMinute: return baseUnitValue*60000.00000;
-                case VolumeFlowUnit.LitersPerSecond: return baseUnitValue*1000;
-                case VolumeFlowUnit.MicrolitersPerMinute: return (baseUnitValue*60000.00000) / 1e-6d;
-                case VolumeFlowUnit.MillilitersPerMinute: return (baseUnitValue*60000.00000) / 1e-3d;
-                case VolumeFlowUnit.MillionUsGallonsPerDay: return baseUnitValue*22.824465227;
-                case VolumeFlowUnit.NanolitersPerMinute: return (baseUnitValue*60000.00000) / 1e-9d;
-                case VolumeFlowUnit.OilBarrelsPerDay: return baseUnitValue/1.8401307283333333333333333333333e-6;
-                case VolumeFlowUnit.OilBarrelsPerHour: return baseUnitValue/4.41631375e-5;
-                case VolumeFlowUnit.OilBarrelsPerMinute: return baseUnitValue/2.64978825e-3;
-                case VolumeFlowUnit.UsGallonsPerHour: return baseUnitValue*951019.38848933424;
-                case VolumeFlowUnit.UsGallonsPerMinute: return baseUnitValue*15850.323141489;
-                case VolumeFlowUnit.UsGallonsPerSecond: return baseUnitValue*264.1720523581484;
+                case VolumeFlowUnit.DeciliterPerMinute: return (baseUnitValue*60000.00000) / 1e-1d;
+                case VolumeFlowUnit.KiloliterPerMinute: return (baseUnitValue*60000.00000) / 1e3d;
+                case VolumeFlowUnit.LiterPerHour: return baseUnitValue*3600000.000;
+                case VolumeFlowUnit.LiterPerMinute: return baseUnitValue*60000.00000;
+                case VolumeFlowUnit.LiterPerSecond: return baseUnitValue*1000;
+                case VolumeFlowUnit.MicroliterPerMinute: return (baseUnitValue*60000.00000) / 1e-6d;
+                case VolumeFlowUnit.MilliliterPerMinute: return (baseUnitValue*60000.00000) / 1e-3d;
+                case VolumeFlowUnit.MillionUsGallonPerDay: return baseUnitValue*22.824465227;
+                case VolumeFlowUnit.NanoliterPerMinute: return (baseUnitValue*60000.00000) / 1e-9d;
+                case VolumeFlowUnit.OilBarrelPerDay: return baseUnitValue/1.8401307283333333333333333333333e-6;
+                case VolumeFlowUnit.OilBarrelPerHour: return baseUnitValue/4.41631375e-5;
+                case VolumeFlowUnit.OilBarrelPerMinute: return baseUnitValue/2.64978825e-3;
+                case VolumeFlowUnit.UsGallonPerHour: return baseUnitValue*951019.38848933424;
+                case VolumeFlowUnit.UsGallonPerMinute: return baseUnitValue*15850.323141489;
+                case VolumeFlowUnit.UsGallonPerSecond: return baseUnitValue*264.1720523581484;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
