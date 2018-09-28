@@ -12,6 +12,10 @@ only_commits:
     - '**/*.ps1'
     - '**/*.psm1'
     - '**/*.bat'
+
+nuget:
+  disable_publish_on_pr: false     # enable publishing of .nupkg artifacts
+
 build_script:
 - ps: |
     #####################################
