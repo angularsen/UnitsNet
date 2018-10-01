@@ -64,6 +64,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new LinearDensity((double)0.0, LinearDensityUnit.Undefined));
+        }
+
+        [Fact]
         public void KilogramPerMeterToLinearDensityUnits()
         {
             LinearDensity kilogrampermeter = LinearDensity.FromKilogramsPerMeter(1);
@@ -196,6 +202,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(LinearDensityUnit.Undefined, LinearDensity.Units);
         }
-
     }
 }

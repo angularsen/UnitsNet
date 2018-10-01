@@ -84,6 +84,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new RotationalSpeed((double)0.0, RotationalSpeedUnit.Undefined));
+        }
+
+        [Fact]
         public void RadianPerSecondToRotationalSpeedUnits()
         {
             RotationalSpeed radianpersecond = RotationalSpeed.FromRadiansPerSecond(1);
@@ -296,6 +302,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(RotationalSpeedUnit.Undefined, RotationalSpeed.Units);
         }
-
     }
 }

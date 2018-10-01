@@ -62,6 +62,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Level((double)0.0, LevelUnit.Undefined));
+        }
+
+        [Fact]
         public void DecibelToLevelUnits()
         {
             Level decibel = Level.FromDecibels(1);
@@ -191,6 +197,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(LevelUnit.Undefined, Level.Units);
         }
-
     }
 }

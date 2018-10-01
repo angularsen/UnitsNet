@@ -102,6 +102,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Length((double)0.0, LengthUnit.Undefined));
+        }
+
+        [Fact]
         public void MeterToLengthUnits()
         {
             Length meter = Length.FromMeters(1);
@@ -386,6 +392,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(LengthUnit.Undefined, Length.Units);
         }
-
     }
 }

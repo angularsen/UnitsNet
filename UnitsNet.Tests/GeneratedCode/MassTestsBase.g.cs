@@ -100,6 +100,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Mass((double)0.0, MassUnit.Undefined));
+        }
+
+        [Fact]
         public void KilogramToMassUnits()
         {
             Mass kilogram = Mass.FromKilograms(1);
@@ -376,6 +382,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(MassUnit.Undefined, Mass.Units);
         }
-
     }
 }

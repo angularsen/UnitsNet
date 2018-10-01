@@ -80,6 +80,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ForceChangeRate((double)0.0, ForceChangeRateUnit.Undefined));
+        }
+
+        [Fact]
         public void NewtonPerSecondToForceChangeRateUnits()
         {
             ForceChangeRate newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(1);
@@ -276,6 +282,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ForceChangeRateUnit.Undefined, ForceChangeRate.Units);
         }
-
     }
 }

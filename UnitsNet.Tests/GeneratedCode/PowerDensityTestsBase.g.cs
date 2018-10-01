@@ -146,6 +146,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new PowerDensity((double)0.0, PowerDensityUnit.Undefined));
+        }
+
+        [Fact]
         public void WattPerCubicMeterToPowerDensityUnits()
         {
             PowerDensity wattpercubicmeter = PowerDensity.FromWattsPerCubicMeter(1);
@@ -606,6 +612,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(PowerDensityUnit.Undefined, PowerDensity.Units);
         }
-
     }
 }

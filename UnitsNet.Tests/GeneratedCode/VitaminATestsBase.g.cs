@@ -60,6 +60,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new VitaminA((double)0.0, VitaminAUnit.Undefined));
+        }
+
+        [Fact]
         public void InternationalUnitToVitaminAUnits()
         {
             VitaminA internationalunit = VitaminA.FromInternationalUnits(1);
@@ -176,6 +182,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(VitaminAUnit.Undefined, VitaminA.Units);
         }
-
     }
 }

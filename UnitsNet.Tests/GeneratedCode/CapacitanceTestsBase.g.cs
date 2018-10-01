@@ -60,6 +60,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Capacitance((double)0.0, CapacitanceUnit.Undefined));
+        }
+
+        [Fact]
         public void FaradToCapacitanceUnits()
         {
             Capacitance farad = Capacitance.FromFarads(1);
@@ -176,6 +182,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(CapacitanceUnit.Undefined, Capacitance.Units);
         }
-
     }
 }

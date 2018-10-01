@@ -74,6 +74,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Molarity((double)0.0, MolarityUnit.Undefined));
+        }
+
+        [Fact]
         public void MolesPerCubicMeterToMolarityUnits()
         {
             Molarity molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
@@ -246,6 +252,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(MolarityUnit.Undefined, Molarity.Units);
         }
-
     }
 }

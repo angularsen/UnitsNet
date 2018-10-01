@@ -110,6 +110,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new BitRate((decimal)0.0, BitRateUnit.Undefined));
+        }
+
+        [Fact]
         public void BitPerSecondToBitRateUnits()
         {
             BitRate bitpersecond = BitRate.FromBitsPerSecond(1);
@@ -426,6 +432,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(BitRateUnit.Undefined, BitRate.Units);
         }
-
     }
 }

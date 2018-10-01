@@ -74,6 +74,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SpecificEntropy((double)0.0, SpecificEntropyUnit.Undefined));
+        }
+
+        [Fact]
         public void JoulePerKilogramKelvinToSpecificEntropyUnits()
         {
             SpecificEntropy jouleperkilogramkelvin = SpecificEntropy.FromJoulesPerKilogramKelvin(1);
@@ -246,6 +252,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(SpecificEntropyUnit.Undefined, SpecificEntropy.Units);
         }
-
     }
 }

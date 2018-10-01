@@ -78,6 +78,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Duration((double)0.0, DurationUnit.Undefined));
+        }
+
+        [Fact]
         public void SecondToDurationUnits()
         {
             Duration second = Duration.FromSeconds(1);
@@ -266,6 +272,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(DurationUnit.Undefined, Duration.Units);
         }
-
     }
 }

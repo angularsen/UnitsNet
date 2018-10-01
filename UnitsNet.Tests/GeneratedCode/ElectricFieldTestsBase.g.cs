@@ -60,6 +60,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricField((double)0.0, ElectricFieldUnit.Undefined));
+        }
+
+        [Fact]
         public void VoltPerMeterToElectricFieldUnits()
         {
             ElectricField voltpermeter = ElectricField.FromVoltsPerMeter(1);
@@ -176,6 +182,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ElectricFieldUnit.Undefined, ElectricField.Units);
         }
-
     }
 }

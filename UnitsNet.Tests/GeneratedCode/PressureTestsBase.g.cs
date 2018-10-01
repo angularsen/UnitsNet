@@ -132,6 +132,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Pressure((double)0.0, PressureUnit.Undefined));
+        }
+
+        [Fact]
         public void PascalToPressureUnits()
         {
             Pressure pascal = Pressure.FromPascals(1);
@@ -536,6 +542,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(PressureUnit.Undefined, Pressure.Units);
         }
-
     }
 }

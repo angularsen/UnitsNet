@@ -66,6 +66,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricResistivity((double)0.0, ElectricResistivityUnit.Undefined));
+        }
+
+        [Fact]
         public void OhmMeterToElectricResistivityUnits()
         {
             ElectricResistivity ohmmeter = ElectricResistivity.FromOhmMeters(1);
@@ -206,6 +212,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ElectricResistivityUnit.Undefined, ElectricResistivity.Units);
         }
-
     }
 }

@@ -92,6 +92,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SpecificWeight((double)0.0, SpecificWeightUnit.Undefined));
+        }
+
+        [Fact]
         public void NewtonPerCubicMeterToSpecificWeightUnits()
         {
             SpecificWeight newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
@@ -336,6 +342,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(SpecificWeightUnit.Undefined, SpecificWeight.Units);
         }
-
     }
 }

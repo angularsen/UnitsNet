@@ -64,6 +64,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MolarEntropy((double)0.0, MolarEntropyUnit.Undefined));
+        }
+
+        [Fact]
         public void JoulePerMoleKelvinToMolarEntropyUnits()
         {
             MolarEntropy joulepermolekelvin = MolarEntropy.FromJoulesPerMoleKelvin(1);
@@ -196,6 +202,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(MolarEntropyUnit.Undefined, MolarEntropy.Units);
         }
-
     }
 }

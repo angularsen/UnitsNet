@@ -5,8 +5,6 @@
     $baseType = $quantity.BaseType;
     $baseUnit = $units | where { $_.SingularName -eq $quantity.BaseUnit }
     $baseUnitSingularName = $baseUnit.SingularName
-    $baseUnitPluralName = $baseUnit.PluralName
-    $baseUnitPluralNameLower = $baseUnitPluralName.ToLowerInvariant()
     $unitEnumName = "$quantityName" + "Unit"
 
     # Base dimensions
@@ -18,25 +16,6 @@
     $baseDimensionTemperature = if($baseDimensions.Θ){$baseDimensions.Θ} else{0};
     $baseDimensionAmountOfSubstance = if($baseDimensions.N){$baseDimensions.N} else{0};
     $baseDimensionLuminousIntensity = if($baseDimensions.J){$baseDimensions.J} else{0};
-
-    $convertToBaseType = switch ($baseType) {
-      "long" { "Convert.ToInt64"; break }
-      "double" { "Convert.ToDouble"; break }
-      "decimal" {  "Convert.ToDecimal"; break }
-      default { throw "Base type not supported: $baseType" }
-    }
-
-    $quantityValueType = switch ($baseType) {
-      "long" { "QuantityValue"; break }
-      "double" { "QuantityValue"; break }
-      "decimal" {  "QuantityValue"; break }
-      default { throw "Base type not supported: $baseType" }
-    }
-
-    $obsoleteEqualityIfDouble = ''
-    if ($quantity.BaseType -eq "double") {
-      $obsoleteEqualityIfDouble = '[Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]' + "`r`n        "
-    }
 
 @"
 //------------------------------------------------------------------------------
@@ -140,7 +119,7 @@ if ($obsoleteAttribute)
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
 #if WINDOWS_UWP
@@ -150,6 +129,9 @@ if ($obsoleteAttribute)
 #endif
         $quantityName($baseType numericValue, $unitEnumName unit)
         {
+            if(unit == $unitEnumName.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
             _value = numericValue;
             _unit = unit;
         }
@@ -218,7 +200,7 @@ if ($obsoleteAttribute)
         [Windows.Foundation.Metadata.DefaultOverload]
         public static $quantityName From$($unit.PluralName)(double $valueParamName)
 #else
-        public static $quantityName From$($unit.PluralName)($quantityValueType $valueParamName)
+        public static $quantityName From$($unit.PluralName)(QuantityValue $valueParamName)
 #endif
         {
             $baseType value = ($baseType) $valueParamName;
@@ -238,7 +220,7 @@ if ($obsoleteAttribute)
         [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
         public static $quantityName From(double value, $unitEnumName fromUnit)
 #else
-        public static $quantityName From($quantityValueType value, $unitEnumName fromUnit)
+        public static $quantityName From(QuantityValue value, $unitEnumName fromUnit)
 #endif
         {
             return new $quantityName(($baseType)value, fromUnit);

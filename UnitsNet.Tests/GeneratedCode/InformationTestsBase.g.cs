@@ -110,6 +110,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Information((decimal)0.0, InformationUnit.Undefined));
+        }
+
+        [Fact]
         public void BitToInformationUnits()
         {
             Information bit = Information.FromBits(1);
@@ -426,6 +432,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(InformationUnit.Undefined, Information.Units);
         }
-
     }
 }

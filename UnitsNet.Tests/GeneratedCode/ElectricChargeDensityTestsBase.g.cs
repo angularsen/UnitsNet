@@ -60,6 +60,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity((double)0.0, ElectricChargeDensityUnit.Undefined));
+        }
+
+        [Fact]
         public void CoulombPerCubicMeterToElectricChargeDensityUnits()
         {
             ElectricChargeDensity coulombpercubicmeter = ElectricChargeDensity.FromCoulombsPerCubicMeter(1);
@@ -176,6 +182,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ElectricChargeDensityUnit.Undefined, ElectricChargeDensity.Units);
         }
-
     }
 }

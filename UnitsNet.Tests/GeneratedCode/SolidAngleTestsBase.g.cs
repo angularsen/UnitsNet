@@ -60,6 +60,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SolidAngle((double)0.0, SolidAngleUnit.Undefined));
+        }
+
+        [Fact]
         public void SteradianToSolidAngleUnits()
         {
             SolidAngle steradian = SolidAngle.FromSteradians(1);
@@ -176,6 +182,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(SolidAngleUnit.Undefined, SolidAngle.Units);
         }
-
     }
 }

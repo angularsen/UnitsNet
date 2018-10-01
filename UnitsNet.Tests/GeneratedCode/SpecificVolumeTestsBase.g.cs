@@ -62,6 +62,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SpecificVolume((double)0.0, SpecificVolumeUnit.Undefined));
+        }
+
+        [Fact]
         public void CubicMeterPerKilogramToSpecificVolumeUnits()
         {
             SpecificVolume cubicmeterperkilogram = SpecificVolume.FromCubicMetersPerKilogram(1);
@@ -186,6 +192,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(SpecificVolumeUnit.Undefined, SpecificVolume.Units);
         }
-
     }
 }

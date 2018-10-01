@@ -70,6 +70,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new AreaMomentOfInertia((double)0.0, AreaMomentOfInertiaUnit.Undefined));
+        }
+
+        [Fact]
         public void MeterToTheFourthToAreaMomentOfInertiaUnits()
         {
             AreaMomentOfInertia metertothefourth = AreaMomentOfInertia.FromMetersToTheFourth(1);
@@ -226,6 +232,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(AreaMomentOfInertiaUnit.Undefined, AreaMomentOfInertia.Units);
         }
-
     }
 }

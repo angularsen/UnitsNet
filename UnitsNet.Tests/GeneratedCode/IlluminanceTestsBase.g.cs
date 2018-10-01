@@ -66,6 +66,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Illuminance((double)0.0, IlluminanceUnit.Undefined));
+        }
+
+        [Fact]
         public void LuxToIlluminanceUnits()
         {
             Illuminance lux = Illuminance.FromLux(1);
@@ -206,6 +212,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(IlluminanceUnit.Undefined, Illuminance.Units);
         }
-
     }
 }

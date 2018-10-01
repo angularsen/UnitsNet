@@ -60,6 +60,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MagneticFlux((double)0.0, MagneticFluxUnit.Undefined));
+        }
+
+        [Fact]
         public void WeberToMagneticFluxUnits()
         {
             MagneticFlux weber = MagneticFlux.FromWebers(1);
@@ -176,6 +182,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(MagneticFluxUnit.Undefined, MagneticFlux.Units);
         }
-
     }
 }

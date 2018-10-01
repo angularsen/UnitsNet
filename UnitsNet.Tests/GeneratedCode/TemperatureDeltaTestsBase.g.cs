@@ -74,6 +74,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new TemperatureDelta((double)0.0, TemperatureDeltaUnit.Undefined));
+        }
+
+        [Fact]
         public void KelvinToTemperatureDeltaUnits()
         {
             TemperatureDelta kelvin = TemperatureDelta.FromKelvins(1);
@@ -246,6 +252,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(TemperatureDeltaUnit.Undefined, TemperatureDelta.Units);
         }
-
     }
 }

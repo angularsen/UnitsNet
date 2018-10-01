@@ -60,6 +60,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new LapseRate((double)0.0, LapseRateUnit.Undefined));
+        }
+
+        [Fact]
         public void DegreeCelsiusPerKilometerToLapseRateUnits()
         {
             LapseRate degreecelsiusperkilometer = LapseRate.FromDegreesCelciusPerKilometer(1);
@@ -176,6 +182,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(LapseRateUnit.Undefined, LapseRate.Units);
         }
-
     }
 }
