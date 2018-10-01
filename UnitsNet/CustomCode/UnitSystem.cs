@@ -528,12 +528,11 @@ namespace UnitsNet
                 foreach (CulturesForEnumValue ev in localization.EnumValues)
                 {
                     int unitEnumValue = ev.Value;
-                    var usCulture = new CultureInfo("en-US");
 
                     // Fall back to US English if localization not found
-                    AbbreviationsForCulture matchingCulture =
+                    var matchingCulture =
                         ev.Cultures.FirstOrDefault(a => a.Cult.Equals(culture)) ??
-                        ev.Cultures.FirstOrDefault(a => a.Cult.Equals(usCulture));
+                        ev.Cultures.FirstOrDefault(a => a.Cult.Equals(FallbackCulture));
 
                     if (matchingCulture == null)
                         continue;
