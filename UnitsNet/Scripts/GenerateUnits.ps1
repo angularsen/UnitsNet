@@ -259,7 +259,6 @@ function Add-InheritedUnits($quantity, $quantities) {
 # Load external generator functions with same name as file
 . "$PSScriptRoot/Include-GenerateTemplates.ps1"
 . "$PSScriptRoot/Include-GenerateLogarithmicCode.ps1"
-. "$PSScriptRoot/Include-GenerateNumberExtensionsSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantityTypeSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantitySourceCodeCommon.ps1"
@@ -295,7 +294,6 @@ foreach ($quantity in $quantities) {
 
     GenerateQuantity $quantity $quantityDir
     GenerateUnitType $quantity $unitEnumDir
-    GenerateNumberExtensions $quantity $numberExtensionsDir
     GenerateUnitTestBaseClass $quantity $testsDir
     GenerateUnitTestClassIfNotExists $quantity $testsCustomCodeDir
 
