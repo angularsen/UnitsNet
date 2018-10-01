@@ -11,20 +11,18 @@ Stop littering your code with unnecessary calculations, Units.NET gives you all 
 
 ### Build Targets
 
-* .NET Standard 1.0
+* .NET Standard 2.0
 * .NET 4.0
-* .NET 3.5 Client
 * [Windows Runtime Component](https://docs.microsoft.com/en-us/windows/uwp/winrt-components/) for UWP apps (JavaScript, C++ or C#)
 
 
 ### Overview
 
-* [50+ quantities with a total of 600+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
-* [1000+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
+* [89 quantities with over 750 units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
+* [1900+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
 * Immutable structs that implement `Equatable`, `IComparable`
 * [Static typing](#static-typing) to avoid ambiguous values or units
 * [Operator overloads](#operator-overloads) for arithmetic on quantities
-* [Extension methods](#extension-methods) for short-hand creation and conversions
 * [Parse and ToString()](#culture) supports cultures and localization
 * [Example: Creating a unit converter app](#example-app)
 * [Example: WPF app using IValueConverter to parse quantities from input](#example-wpf-app-using-ivalueconverter-to-parse-quantities-from-input)
@@ -74,21 +72,6 @@ Length distance = Speed.FromKilometersPerHour(80) * TimeSpan.FromMinutes(30);
 Acceleration a1 = Speed.FromKilometersPerHour(80) / TimeSpan.FromSeconds(2);
 Acceleration a2 = Force.FromNewtons(100) / Mass.FromKilograms(20);
 RotationalSpeed r = Angle.FromDegrees(90) / TimeSpan.FromSeconds(2);
-```
-
-### <a name="extension-methods"></a>Extension Methods
-
-All units have associated extension methods for a really compact, expressive way to construct values or do arithmetic.
-```C#
-using UnitsNet.Extensions.NumberToDuration;
-using UnitsNet.Extensions.NumberToLength;
-using UnitsNet.Extensions.NumberToTimeSpan;
-
-Speed speed = 30.Kilometers() / 1.Hours(); // 30 km/h (using Duration type)
-Length distance = speed * 2.h(); // 60 km (using TimeSpan type)
-
-Acceleration stdGravity = 9.80665.MetersPerSecondSquared();
-Force weight = 80.Kilograms() * stdGravity; // 80 kilograms-force or 784.532 newtons
 ```
 
 ### <a name="culture"></a>Culture and Localization
