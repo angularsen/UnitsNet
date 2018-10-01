@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Power : IComparable, IComparable<Power>
+    public partial class Power : IComparable, IComparable<Power>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

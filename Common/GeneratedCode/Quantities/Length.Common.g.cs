@@ -52,15 +52,7 @@ namespace UnitsNet
     ///     Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class Length : IQuantity
-#else
-    public partial struct Length : IQuantity, IComparable, IComparable<Length>
-#endif
+    public partial class Length : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -600,6 +592,9 @@ namespace UnitsNet
 #endif
         int CompareTo(Length other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 

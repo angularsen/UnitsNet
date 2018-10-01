@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Power engineers measure apparent power as the magnitude of the vector sum of active and reactive power. Apparent power is the product of the root-mean-square of voltage and current.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ApparentPower : IComparable, IComparable<ApparentPower>
+    public partial class ApparentPower : IComparable, IComparable<ApparentPower>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

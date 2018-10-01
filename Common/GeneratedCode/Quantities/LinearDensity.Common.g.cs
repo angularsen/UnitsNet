@@ -52,15 +52,7 @@ namespace UnitsNet
     ///     The Linear Density, or more precisely, the linear mass density, of a substance is its mass per unit length.  The term linear density is most often used when describing the characteristics of one-dimensional objects, although linear density can also be used to describe the density of a three-dimensional quantity along one particular dimension.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class LinearDensity : IQuantity
-#else
-    public partial struct LinearDensity : IQuantity, IComparable, IComparable<LinearDensity>
-#endif
+    public partial class LinearDensity : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -239,6 +231,9 @@ namespace UnitsNet
 #endif
         int CompareTo(LinearDensity other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 

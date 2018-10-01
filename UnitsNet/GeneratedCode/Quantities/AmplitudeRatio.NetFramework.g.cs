@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     The strength of a signal expressed in decibels (dB) relative to one volt RMS.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct AmplitudeRatio : IComparable, IComparable<AmplitudeRatio>
+    public partial class AmplitudeRatio : IComparable, IComparable<AmplitudeRatio>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

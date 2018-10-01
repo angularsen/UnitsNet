@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Heat flux is the flow of energy per unit of area per unit of time
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct HeatFlux : IComparable, IComparable<HeatFlux>
+    public partial class HeatFlux : IComparable, IComparable<HeatFlux>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

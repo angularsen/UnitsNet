@@ -52,15 +52,7 @@ namespace UnitsNet
     ///     The joule, symbol J, is a derived unit of energy, work, or amount of heat in the International System of Units. It is equal to the energy transferred (or work done) when applying a force of one newton through a distance of one metre (1 newton metre or N·m), or in passing an electric current of one ampere through a resistance of one ohm for one second. Many other units of energy are included. Please do not confuse this definition of the calorie with the one colloquially used by the food industry, the large calorie, which is equivalent to 1 kcal. Thermochemical definition of the calorie is used. For BTU, the IT definition is used.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class Energy : IQuantity
-#else
-    public partial struct Energy : IQuantity, IComparable, IComparable<Energy>
-#endif
+    public partial class Energy : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -600,6 +592,9 @@ namespace UnitsNet
 #endif
         int CompareTo(Energy other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 

@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In photometry, luminous flux or luminous power is the measure of the perceived power of light.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct LuminousFlux : IComparable, IComparable<LuminousFlux>
+    public partial class LuminousFlux : IComparable, IComparable<LuminousFlux>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Pressure change rate is the ratio of the pressure change to the time during which the change occurred (value of pressure changes per unit time).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct PressureChangeRate : IComparable, IComparable<PressureChangeRate>
+    public partial class PressureChangeRate : IComparable, IComparable<PressureChangeRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

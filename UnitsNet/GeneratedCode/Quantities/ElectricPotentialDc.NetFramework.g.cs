@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     The Electric Potential of a system known to use Direct Current.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ElectricPotentialDc : IComparable, IComparable<ElectricPotentialDc>
+    public partial class ElectricPotentialDc : IComparable, IComparable<ElectricPotentialDc>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

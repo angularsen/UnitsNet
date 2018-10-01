@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Duration : IComparable, IComparable<Duration>
+    public partial class Duration : IComparable, IComparable<Duration>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

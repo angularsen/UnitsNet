@@ -52,15 +52,7 @@ namespace UnitsNet
     ///     Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class Acceleration : IQuantity
-#else
-    public partial struct Acceleration : IQuantity, IComparable, IComparable<Acceleration>
-#endif
+    public partial class Acceleration : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -429,6 +421,9 @@ namespace UnitsNet
 #endif
         int CompareTo(Acceleration other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 

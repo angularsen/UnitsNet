@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     The Electric Potential of a system known to use Alternating Current.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ElectricPotentialAc : IComparable, IComparable<ElectricPotentialAc>
+    public partial class ElectricPotentialAc : IComparable, IComparable<ElectricPotentialAc>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

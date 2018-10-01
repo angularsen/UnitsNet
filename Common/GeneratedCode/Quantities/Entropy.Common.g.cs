@@ -52,15 +52,7 @@ namespace UnitsNet
     ///     Entropy is an important concept in the branch of science known as thermodynamics. The idea of "irreversibility" is central to the understanding of entropy.  It is often said that entropy is an expression of the disorder, or randomness of a system, or of our lack of information about it. Entropy is an extensive property. It has the dimension of energy divided by temperature, which has a unit of joules per kelvin (J/K) in the International System of Units
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class Entropy : IQuantity
-#else
-    public partial struct Entropy : IQuantity, IComparable, IComparable<Entropy>
-#endif
+    public partial class Entropy : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -315,6 +307,9 @@ namespace UnitsNet
 #endif
         int CompareTo(Entropy other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 

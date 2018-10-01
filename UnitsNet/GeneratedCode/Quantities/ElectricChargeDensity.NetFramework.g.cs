@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In electromagnetism, charge density is a measure of the amount of electric charge per unit length, surface area, or volume.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ElectricChargeDensity : IComparable, IComparable<ElectricChargeDensity>
+    public partial class ElectricChargeDensity : IComparable, IComparable<ElectricChargeDensity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

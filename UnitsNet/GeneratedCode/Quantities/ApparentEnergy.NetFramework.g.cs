@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     A unit for expressing the integral of apparent power over time, equal to the product of 1 volt-ampere and 1 hour, or to 3600 joules.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ApparentEnergy : IComparable, IComparable<ApparentEnergy>
+    public partial class ApparentEnergy : IComparable, IComparable<ApparentEnergy>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

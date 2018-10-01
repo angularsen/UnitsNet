@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Capacitance is the ability of a body to store an electric charge.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Capacitance : IComparable, IComparable<Capacitance>
+    public partial class Capacitance : IComparable, IComparable<Capacitance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

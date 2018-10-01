@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In photometry, illuminance is the total luminous flux incident on a surface, per unit area.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Illuminance : IComparable, IComparable<Illuminance>
+    public partial class Illuminance : IComparable, IComparable<Illuminance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

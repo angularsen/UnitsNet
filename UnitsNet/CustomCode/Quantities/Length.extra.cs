@@ -38,7 +38,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
     public sealed partial class Length
 #else
-    public partial struct Length
+    public partial class Length
 #endif
     {
         private const double FeetToInches = 12;

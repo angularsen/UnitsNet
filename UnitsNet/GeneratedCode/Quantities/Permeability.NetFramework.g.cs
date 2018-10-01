@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In electromagnetism, permeability is the measure of the ability of a material to support the formation of a magnetic field within itself.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Permeability : IComparable, IComparable<Permeability>
+    public partial class Permeability : IComparable, IComparable<Permeability>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

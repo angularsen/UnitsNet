@@ -33,7 +33,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
     public sealed partial class Angle
 #else
-    public partial struct Angle
+    public partial class Angle
 #endif
     {
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx

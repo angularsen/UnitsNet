@@ -52,15 +52,7 @@ namespace UnitsNet
     ///     Rotational speed (sometimes called speed of revolution) is the number of complete rotations, revolutions, cycles, or turns per time unit. Rotational speed is a cyclic frequency, measured in radians per second or in hertz in the SI System by scientists, or in revolutions per minute (rpm or min-1) or revolutions per second in everyday life. The symbol for rotational speed is ω (the Greek lowercase letter "omega").
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class RotationalSpeed : IQuantity
-#else
-    public partial struct RotationalSpeed : IQuantity, IComparable, IComparable<RotationalSpeed>
-#endif
+    public partial class RotationalSpeed : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -429,6 +421,9 @@ namespace UnitsNet
 #endif
         int CompareTo(RotationalSpeed other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 

@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In physics, mass (from Greek μᾶζα "barley cake, lump [of dough]") is a property of a physical system or body, giving rise to the phenomena of the body's resistance to being accelerated by a force and the strength of its mutual gravitational attraction with other bodies. Instruments such as mass balances or scales use those phenomena to measure mass. The SI unit of mass is the kilogram (kg).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Mass : IComparable, IComparable<Mass>
+    public partial class Mass : IComparable, IComparable<Mass>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

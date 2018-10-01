@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Lapse rate is the rate at which Earth's atmospheric temperature decreases with an increase in altitude, or increases with the decrease in altitude.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct LapseRate : IComparable, IComparable<LapseRate>
+    public partial class LapseRate : IComparable, IComparable<LapseRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

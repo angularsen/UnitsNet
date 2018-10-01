@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In telecommunications and computing, bit rate is the number of bits that are conveyed or processed per unit of time.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct BitRate : IComparable, IComparable<BitRate>
+    public partial class BitRate : IComparable, IComparable<BitRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

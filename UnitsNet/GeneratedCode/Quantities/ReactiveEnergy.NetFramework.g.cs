@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     The Volt-ampere reactive hour (expressed as varh) is the reactive power of one Volt-ampere reactive produced in one hour.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ReactiveEnergy : IComparable, IComparable<ReactiveEnergy>
+    public partial class ReactiveEnergy : IComparable, IComparable<ReactiveEnergy>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

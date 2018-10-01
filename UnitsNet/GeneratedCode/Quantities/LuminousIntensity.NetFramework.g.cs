@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In photometry, luminous intensity is a measure of the wavelength-weighted power emitted by a light source in a particular direction per unit solid angle, based on the luminosity function, a standardized model of the sensitivity of the human eye.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct LuminousIntensity : IComparable, IComparable<LuminousIntensity>
+    public partial class LuminousIntensity : IComparable, IComparable<LuminousIntensity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

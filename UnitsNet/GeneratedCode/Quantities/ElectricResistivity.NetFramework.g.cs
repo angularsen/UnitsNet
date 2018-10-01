@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Electrical resistivity (also known as resistivity, specific electrical resistance, or volume resistivity) is a fundamental property that quantifies how strongly a given material opposes the flow of electric current.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ElectricResistivity : IComparable, IComparable<ElectricResistivity>
+    public partial class ElectricResistivity : IComparable, IComparable<ElectricResistivity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

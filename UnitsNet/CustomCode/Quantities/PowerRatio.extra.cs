@@ -31,7 +31,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
     public sealed partial class PowerRatio
 #else
-    public partial struct PowerRatio
+    public partial class PowerRatio
 #endif
     {
         /// <summary>
@@ -46,7 +46,6 @@ namespace UnitsNet
         public
 #endif
             PowerRatio(Power power)
-            : this()
         {
             if (power.Watts <= 0)
                 throw new ArgumentOutOfRangeException(

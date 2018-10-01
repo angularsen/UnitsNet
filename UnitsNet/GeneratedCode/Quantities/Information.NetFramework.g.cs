@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In computing and telecommunications, a unit of information is the capacity of some standard data storage system or communication channel, used to measure the capacities of other systems and channels. In information theory, units of information are also used to measure the information contents or entropy of random variables.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Information : IComparable, IComparable<Information>
+    public partial class Information : IComparable, IComparable<Information>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

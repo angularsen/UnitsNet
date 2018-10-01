@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In physics, specifically electromagnetism, the magnetic flux through a surface is the surface integral of the normal component of the magnetic field B passing through that surface.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct MagneticFlux : IComparable, IComparable<MagneticFlux>
+    public partial class MagneticFlux : IComparable, IComparable<MagneticFlux>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

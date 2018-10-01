@@ -28,7 +28,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
     public sealed partial class Torque
 #else
-    public partial struct Torque
+    public partial class Torque
 #endif
     {
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx

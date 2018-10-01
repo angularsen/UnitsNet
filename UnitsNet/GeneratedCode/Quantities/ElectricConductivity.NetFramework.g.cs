@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Electrical conductivity or specific conductance is the reciprocal of electrical resistivity, and measures a material's ability to conduct an electric current.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ElectricConductivity : IComparable, IComparable<ElectricConductivity>
+    public partial class ElectricConductivity : IComparable, IComparable<ElectricConductivity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

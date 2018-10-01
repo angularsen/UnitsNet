@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Angular acceleration is the rate of change of rotational speed.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct RotationalAcceleration : IComparable, IComparable<RotationalAcceleration>
+    public partial class RotationalAcceleration : IComparable, IComparable<RotationalAcceleration>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

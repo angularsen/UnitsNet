@@ -31,19 +31,6 @@ namespace UnitsNet.Tests
         public class ToStringTests
         {
             [Fact]
-            public void CreatedByDefaultCtor_ReturnsValueInBaseUnit()
-            {
-                // double types
-                Assert.Equal("0 kg", new Mass().ToString());
-
-                // decimal types
-                Assert.Equal("0 b", new Information().ToString());
-
-                // logarithmic types
-                Assert.Equal("0 dB", new Level().ToString());
-            }
-
-            [Fact]
             public void CreatedByCtorWithValue_ReturnsValueInBaseUnit()
             {
 #pragma warning disable 618

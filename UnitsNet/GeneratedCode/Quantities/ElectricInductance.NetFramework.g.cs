@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Inductance is a property of an electrical conductor which opposes a change in current.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ElectricInductance : IComparable, IComparable<ElectricInductance>
+    public partial class ElectricInductance : IComparable, IComparable<ElectricInductance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

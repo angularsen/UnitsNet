@@ -52,15 +52,7 @@ namespace UnitsNet
     ///     Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class MassFlow : IQuantity
-#else
-    public partial struct MassFlow : IQuantity, IComparable, IComparable<MassFlow>
-#endif
+    public partial class MassFlow : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -467,6 +459,9 @@ namespace UnitsNet
 #endif
         int CompareTo(MassFlow other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
