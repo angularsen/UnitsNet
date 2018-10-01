@@ -99,22 +99,6 @@ function GenerateQuantityType($quantities, $outDir)
     Write-Host "(OK) "
 }
 
-function GenerateNumberExtensions($quantity, $numberExtensionsDir)
-{
-    $outDir = "$numberExtensionsDir"
-    $fileName = "NumberTo$($quantity.Name)Extensions.g.cs"
-    $outFilePath = "$outDir/$fileName"
-    EnsureDirExists $outDir
-    Write-Host -NoNewline "NumberExtensions"
-
-    GenerateNumberExtensionsSourceCode $quantity | Out-File -Encoding "UTF8" -Force $outFilePath | Out-Null
-    if (!$?) {
-        Write-Host -NoNewline "(error) "
-        exit 1
-    }
-    Write-Host -NoNewline "(OK) "
-}
-
 function EnsureDirExists([String] $dirPath) {
     New-Item -ItemType Directory -Force -Path $dirPath | Out-Null
     if (!$?) {
@@ -272,7 +256,6 @@ EnsureDirExists ($quantityDir = "$PSScriptRoot/../GeneratedCode/Quantities")
 EnsureDirExists ($unitEnumDir = "$PSScriptRoot/../GeneratedCode/Units")
 EnsureDirExists ($unitSystemDir = "$PSScriptRoot/../GeneratedCode")
 EnsureDirExists ($testsDir = "$PSScriptRoot/../../UnitsNet.Tests/GeneratedCode")
-EnsureDirExists ($numberExtensionsDir = "$PSScriptRoot/../GeneratedCode/Extensions/Number")
 EnsureDirExists ($testsCustomCodeDir = "$PSScriptRoot/../../UnitsNet.Tests/CustomCode")
 
 $templatesDir = "$PSScriptRoot/../../Common/UnitDefinitions"
