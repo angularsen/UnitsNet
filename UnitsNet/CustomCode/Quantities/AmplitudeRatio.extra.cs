@@ -61,6 +61,8 @@ namespace UnitsNet
             _unit = AmplitudeRatioUnit.DecibelVolt;
         }
 
+#if !WINDOWS_UWP
+
         /// <summary>
         ///     Gets an <see cref="ElectricPotential" /> from this <see cref="AmplitudeRatio" />.
         /// </summary>
@@ -84,6 +86,8 @@ namespace UnitsNet
         {
             return AmplitudeRatio.ToPowerRatio(this, impedance);
         }
+#endif
+
 
         #region Static Methods
 

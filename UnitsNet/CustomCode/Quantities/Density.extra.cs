@@ -34,6 +34,8 @@ namespace UnitsNet
 #endif
     {
 
+ #if !WINDOWS_UWP
+
         /// <summary>
         ///     Gets <see cref="Molarity" /> from this <see cref="Density" />.
         /// </summary>
@@ -42,6 +44,8 @@ namespace UnitsNet
         {
             return Density.ToMolarity(this, molecularWeight);
         }
+
+#endif
 
         #region Static Methods
 

@@ -25,6 +25,8 @@ namespace UnitsNet
             _unit = MolarityUnit.MolesPerCubicMeter;
         }
 
+#if !WINDOWS_UWP
+
         /// <summary>
         ///     Get a <see cref="Density"/> from this <see cref="Molarity"/>.
         /// </summary>
@@ -33,6 +35,8 @@ namespace UnitsNet
         {
             return Molarity.ToDensity(this, molecularWeight);
         }
+
+#endif
 
         #region Static Methods
 

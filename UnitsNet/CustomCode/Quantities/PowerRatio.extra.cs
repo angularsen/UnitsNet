@@ -57,6 +57,8 @@ namespace UnitsNet
             _unit = PowerRatioUnit.DecibelWatt;
         }
 
+#if !WINDOWS_UWP
+
         /// <summary>
         ///     Gets a <see cref="Power" /> from this <see cref="PowerRatio" />.
         /// </summary>
@@ -79,6 +81,8 @@ namespace UnitsNet
         {
             return PowerRatio.ToAmplitudeRatio(this, impedance);
         }
+
+#endif
 
         #region Static Methods
 
