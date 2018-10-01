@@ -58,6 +58,31 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Gets a <see cref="Power" /> from this <see cref="PowerRatio" />.
+        /// </summary>
+        /// <remarks>
+        ///     Provides a nicer syntax for converting a power ratio back to a power.
+        ///     <example>
+        ///         <c>var power = powerRatio.ToPower();</c>
+        ///     </example>
+        /// </remarks>
+        public Power ToPower()
+        {
+            return PowerRatio.ToPower(this);
+        }
+
+        /// <summary>
+        ///     Gets a <see cref="AmplitudeRatio" /> from this <see cref="PowerRatio" />.
+        /// </summary>
+        /// <param name="impedance">The input impedance of the load. This is usually 50, 75 or 600 ohms.</param>
+        public AmplitudeRatio ToAmplitudeRatio(ElectricResistance impedance)
+        {
+            return PowerRatio.ToAmplitudeRatio(this, impedance);
+        }
+
+        #region Static Methods
+
+        /// <summary>
         ///     Gets a <see cref="PowerRatio" /> from a <see cref="Power" /> relative to one watt.
         /// </summary>
         /// <param name="power">The power relative to one watt.</param>
@@ -87,5 +112,7 @@ namespace UnitsNet
             // E(dBV) = 10*log10(Z(Ω)/1) + P(dBW)
             return AmplitudeRatio.FromDecibelVolts(10 * Math.Log10(impedance.Ohms / 1) + powerRatio.DecibelWatts);
         }
+
+        #endregion
     }
 }

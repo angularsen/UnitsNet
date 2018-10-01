@@ -33,6 +33,18 @@ namespace UnitsNet
     public partial struct Density
 #endif
     {
+
+        /// <summary>
+        ///     Gets <see cref="Molarity" /> from this <see cref="Density" />.
+        /// </summary>
+        /// <param name="molecularWeight"></param>
+        public Molarity ToMolarity(Mass molecularWeight)
+        {
+            return Density.ToMolarity(this, molecularWeight);
+        }
+
+        #region Static Methods
+
         /// <summary>
         ///     Get <see cref="Density" /> from <see cref="Molarity" />.
         /// </summary>
@@ -75,5 +87,7 @@ namespace UnitsNet
             return new SpecificWeight(density.KilogramsPerCubicMeter * acceleration.MetersPerSecondSquared, SpecificWeightUnit.NewtonPerCubicMeter);
         }
 #endif
+
+        #endregion
     }
 }

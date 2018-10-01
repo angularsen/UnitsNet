@@ -26,6 +26,17 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get a <see cref="Density"/> from this <see cref="Molarity"/>.
+        /// </summary>
+        /// <param name="molecularWeight"></param>
+        public Density ToDensity(Mass molecularWeight)
+        {
+            return Molarity.ToDensity(this, molecularWeight);
+        }
+
+        #region Static Methods
+
+        /// <summary>
         ///     Get <see cref="Molarity"/> from <see cref="Density"/>.
         /// </summary>
         /// <param name="density"></param>
@@ -45,5 +56,7 @@ namespace UnitsNet
         {
             return Density.FromKilogramsPerCubicMeter(molarity.MolesPerCubicMeter * molecularWeight.Kilograms);
         }
+
+        #endregion
     }
 }

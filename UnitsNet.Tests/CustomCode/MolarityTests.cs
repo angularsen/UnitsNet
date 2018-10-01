@@ -42,7 +42,6 @@
 
 using Xunit;
 using System;
-using UnitsNet.CustomCode.Extensions;
 
 namespace UnitsNet.Tests.CustomCode
 {
