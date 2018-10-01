@@ -60,9 +60,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Magnetization((double)0.0, MagnetizationUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Magnetization(double.PositiveInfinity, MagnetizationUnit.AmperePerMeter));
+            Assert.Throws<ArgumentException>(() => new Magnetization(double.NegativeInfinity, MagnetizationUnit.AmperePerMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Magnetization(double.NaN, MagnetizationUnit.AmperePerMeter));
         }
 
         [Fact]
@@ -76,6 +89,19 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, Magnetization.From(1, MagnetizationUnit.AmperePerMeter).AmperesPerMeter, AmperesPerMeterTolerance);
+        }
+
+        [Fact]
+        public void FromAmperesPerMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Magnetization.FromAmperesPerMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Magnetization.FromAmperesPerMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromAmperesPerMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Magnetization.FromAmperesPerMeter(double.NaN));
         }
 
         [Fact]

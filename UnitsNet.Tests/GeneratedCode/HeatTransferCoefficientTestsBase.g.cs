@@ -62,9 +62,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient((double)0.0, HeatTransferCoefficientUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient(double.PositiveInfinity, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
+            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient(double.NegativeInfinity, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new HeatTransferCoefficient(double.NaN, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin));
         }
 
         [Fact]
@@ -80,6 +93,19 @@ namespace UnitsNet.Tests
         {
             AssertEx.EqualTolerance(1, HeatTransferCoefficient.From(1, HeatTransferCoefficientUnit.WattPerSquareMeterCelsius).WattsPerSquareMeterCelsius, WattsPerSquareMeterCelsiusTolerance);
             AssertEx.EqualTolerance(1, HeatTransferCoefficient.From(1, HeatTransferCoefficientUnit.WattPerSquareMeterKelvin).WattsPerSquareMeterKelvin, WattsPerSquareMeterKelvinTolerance);
+        }
+
+        [Fact]
+        public void FromWattsPerSquareMeterKelvin_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromWattsPerSquareMeterKelvin_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => HeatTransferCoefficient.FromWattsPerSquareMeterKelvin(double.NaN));
         }
 
         [Fact]

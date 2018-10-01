@@ -64,9 +64,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ElectricConductance((double)0.0, ElectricConductanceUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricConductance(double.PositiveInfinity, ElectricConductanceUnit.Siemens));
+            Assert.Throws<ArgumentException>(() => new ElectricConductance(double.NegativeInfinity, ElectricConductanceUnit.Siemens));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricConductance(double.NaN, ElectricConductanceUnit.Siemens));
         }
 
         [Fact]
@@ -84,6 +97,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ElectricConductance.From(1, ElectricConductanceUnit.Microsiemens).Microsiemens, MicrosiemensTolerance);
             AssertEx.EqualTolerance(1, ElectricConductance.From(1, ElectricConductanceUnit.Millisiemens).Millisiemens, MillisiemensTolerance);
             AssertEx.EqualTolerance(1, ElectricConductance.From(1, ElectricConductanceUnit.Siemens).Siemens, SiemensTolerance);
+        }
+
+        [Fact]
+        public void FromSiemens_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricConductance.FromSiemens(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricConductance.FromSiemens(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromSiemens_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricConductance.FromSiemens(double.NaN));
         }
 
         [Fact]

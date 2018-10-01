@@ -84,9 +84,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new RotationalSpeed((double)0.0, RotationalSpeedUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new RotationalSpeed(double.PositiveInfinity, RotationalSpeedUnit.RadianPerSecond));
+            Assert.Throws<ArgumentException>(() => new RotationalSpeed(double.NegativeInfinity, RotationalSpeedUnit.RadianPerSecond));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new RotationalSpeed(double.NaN, RotationalSpeedUnit.RadianPerSecond));
         }
 
         [Fact]
@@ -124,6 +137,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.RadianPerSecond).RadiansPerSecond, RadiansPerSecondTolerance);
             AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerMinute).RevolutionsPerMinute, RevolutionsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, RotationalSpeed.From(1, RotationalSpeedUnit.RevolutionPerSecond).RevolutionsPerSecond, RevolutionsPerSecondTolerance);
+        }
+
+        [Fact]
+        public void FromRadiansPerSecond_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => RotationalSpeed.FromRadiansPerSecond(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => RotationalSpeed.FromRadiansPerSecond(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromRadiansPerSecond_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => RotationalSpeed.FromRadiansPerSecond(double.NaN));
         }
 
         [Fact]

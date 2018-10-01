@@ -102,9 +102,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Energy((double)0.0, EnergyUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Energy(double.PositiveInfinity, EnergyUnit.Joule));
+            Assert.Throws<ArgumentException>(() => new Energy(double.NegativeInfinity, EnergyUnit.Joule));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Energy(double.NaN, EnergyUnit.Joule));
         }
 
         [Fact]
@@ -160,6 +173,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.ThermImperial).ThermsImperial, ThermsImperialTolerance);
             AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.ThermUs).ThermsUs, ThermsUsTolerance);
             AssertEx.EqualTolerance(1, Energy.From(1, EnergyUnit.WattHour).WattHours, WattHoursTolerance);
+        }
+
+        [Fact]
+        public void FromJoules_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Energy.FromJoules(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Energy.FromJoules(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromJoules_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Energy.FromJoules(double.NaN));
         }
 
         [Fact]

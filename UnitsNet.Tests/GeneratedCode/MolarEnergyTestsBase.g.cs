@@ -64,9 +64,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new MolarEnergy((double)0.0, MolarEnergyUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MolarEnergy(double.PositiveInfinity, MolarEnergyUnit.JoulePerMole));
+            Assert.Throws<ArgumentException>(() => new MolarEnergy(double.NegativeInfinity, MolarEnergyUnit.JoulePerMole));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MolarEnergy(double.NaN, MolarEnergyUnit.JoulePerMole));
         }
 
         [Fact]
@@ -84,6 +97,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MolarEnergy.From(1, MolarEnergyUnit.JoulePerMole).JoulesPerMole, JoulesPerMoleTolerance);
             AssertEx.EqualTolerance(1, MolarEnergy.From(1, MolarEnergyUnit.KilojoulePerMole).KilojoulesPerMole, KilojoulesPerMoleTolerance);
             AssertEx.EqualTolerance(1, MolarEnergy.From(1, MolarEnergyUnit.MegajoulePerMole).MegajoulesPerMole, MegajoulesPerMoleTolerance);
+        }
+
+        [Fact]
+        public void FromJoulesPerMole_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MolarEnergy.FromJoulesPerMole(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MolarEnergy.FromJoulesPerMole(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromJoulesPerMole_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MolarEnergy.FromJoulesPerMole(double.NaN));
         }
 
         [Fact]

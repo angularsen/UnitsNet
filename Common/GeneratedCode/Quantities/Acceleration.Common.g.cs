@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == AccelerationUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -204,6 +206,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from CentimetersPerSecondSquared.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromCentimetersPerSecondSquared(double centimeterspersecondsquared)
@@ -218,6 +221,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from DecimetersPerSecondSquared.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromDecimetersPerSecondSquared(double decimeterspersecondsquared)
@@ -232,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from FeetPerSecondSquared.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromFeetPerSecondSquared(double feetpersecondsquared)
@@ -246,6 +251,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from InchesPerSecondSquared.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromInchesPerSecondSquared(double inchespersecondsquared)
@@ -260,6 +266,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from KilometersPerSecondSquared.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromKilometersPerSecondSquared(double kilometerspersecondsquared)
@@ -274,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from KnotsPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromKnotsPerHour(double knotsperhour)
@@ -288,6 +296,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from KnotsPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromKnotsPerMinute(double knotsperminute)
@@ -302,6 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from KnotsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromKnotsPerSecond(double knotspersecond)
@@ -316,6 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from MetersPerSecondSquared.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromMetersPerSecondSquared(double meterspersecondsquared)
@@ -330,6 +341,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from MicrometersPerSecondSquared.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromMicrometersPerSecondSquared(double micrometerspersecondsquared)
@@ -344,6 +356,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from MillimetersPerSecondSquared.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromMillimetersPerSecondSquared(double millimeterspersecondsquared)
@@ -358,6 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from NanometersPerSecondSquared.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromNanometersPerSecondSquared(double nanometerspersecondsquared)
@@ -372,6 +386,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Acceleration from StandardGravity.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Acceleration FromStandardGravity(double standardgravity)

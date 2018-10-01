@@ -64,9 +64,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Irradiation((double)0.0, IrradiationUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Irradiation(double.PositiveInfinity, IrradiationUnit.JoulePerSquareMeter));
+            Assert.Throws<ArgumentException>(() => new Irradiation(double.NegativeInfinity, IrradiationUnit.JoulePerSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Irradiation(double.NaN, IrradiationUnit.JoulePerSquareMeter));
         }
 
         [Fact]
@@ -84,6 +97,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Irradiation.From(1, IrradiationUnit.JoulePerSquareMeter).JoulesPerSquareMeter, JoulesPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, Irradiation.From(1, IrradiationUnit.KilowattHourPerSquareMeter).KilowattHoursPerSquareMeter, KilowattHoursPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, Irradiation.From(1, IrradiationUnit.WattHourPerSquareMeter).WattHoursPerSquareMeter, WattHoursPerSquareMeterTolerance);
+        }
+
+        [Fact]
+        public void FromJoulesPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Irradiation.FromJoulesPerSquareMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Irradiation.FromJoulesPerSquareMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromJoulesPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Irradiation.FromJoulesPerSquareMeter(double.NaN));
         }
 
         [Fact]

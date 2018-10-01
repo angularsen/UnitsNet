@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == MassFlowUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -214,6 +216,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from CentigramsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromCentigramsPerSecond(double centigramspersecond)
@@ -228,6 +231,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from DecagramsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromDecagramsPerSecond(double decagramspersecond)
@@ -242,6 +246,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from DecigramsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromDecigramsPerSecond(double decigramspersecond)
@@ -256,6 +261,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from GramsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromGramsPerSecond(double gramspersecond)
@@ -270,6 +276,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from HectogramsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromHectogramsPerSecond(double hectogramspersecond)
@@ -284,6 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from KilogramsPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromKilogramsPerHour(double kilogramsperhour)
@@ -298,6 +306,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from KilogramsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromKilogramsPerSecond(double kilogramspersecond)
@@ -312,6 +321,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from MegapoundsPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromMegapoundsPerHour(double megapoundsperhour)
@@ -326,6 +336,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from MicrogramsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromMicrogramsPerSecond(double microgramspersecond)
@@ -340,6 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from MilligramsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromMilligramsPerSecond(double milligramspersecond)
@@ -354,6 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from NanogramsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromNanogramsPerSecond(double nanogramspersecond)
@@ -368,6 +381,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from PoundsPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromPoundsPerHour(double poundsperhour)
@@ -382,6 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from ShortTonsPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromShortTonsPerHour(double shorttonsperhour)
@@ -396,6 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from TonnesPerDay.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromTonnesPerDay(double tonnesperday)
@@ -410,6 +426,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassFlow from TonnesPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassFlow FromTonnesPerHour(double tonnesperhour)

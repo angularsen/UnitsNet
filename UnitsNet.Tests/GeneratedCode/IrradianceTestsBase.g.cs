@@ -62,9 +62,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Irradiance((double)0.0, IrradianceUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Irradiance(double.PositiveInfinity, IrradianceUnit.WattPerSquareMeter));
+            Assert.Throws<ArgumentException>(() => new Irradiance(double.NegativeInfinity, IrradianceUnit.WattPerSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Irradiance(double.NaN, IrradianceUnit.WattPerSquareMeter));
         }
 
         [Fact]
@@ -80,6 +93,19 @@ namespace UnitsNet.Tests
         {
             AssertEx.EqualTolerance(1, Irradiance.From(1, IrradianceUnit.KilowattPerSquareMeter).KilowattsPerSquareMeter, KilowattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, Irradiance.From(1, IrradianceUnit.WattPerSquareMeter).WattsPerSquareMeter, WattsPerSquareMeterTolerance);
+        }
+
+        [Fact]
+        public void FromWattsPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Irradiance.FromWattsPerSquareMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Irradiance.FromWattsPerSquareMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromWattsPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Irradiance.FromWattsPerSquareMeter(double.NaN));
         }
 
         [Fact]

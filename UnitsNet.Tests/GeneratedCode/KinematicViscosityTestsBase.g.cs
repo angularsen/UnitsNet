@@ -74,9 +74,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new KinematicViscosity((double)0.0, KinematicViscosityUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new KinematicViscosity(double.PositiveInfinity, KinematicViscosityUnit.SquareMeterPerSecond));
+            Assert.Throws<ArgumentException>(() => new KinematicViscosity(double.NegativeInfinity, KinematicViscosityUnit.SquareMeterPerSecond));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new KinematicViscosity(double.NaN, KinematicViscosityUnit.SquareMeterPerSecond));
         }
 
         [Fact]
@@ -104,6 +117,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, KinematicViscosity.From(1, KinematicViscosityUnit.Nanostokes).Nanostokes, NanostokesTolerance);
             AssertEx.EqualTolerance(1, KinematicViscosity.From(1, KinematicViscosityUnit.SquareMeterPerSecond).SquareMetersPerSecond, SquareMetersPerSecondTolerance);
             AssertEx.EqualTolerance(1, KinematicViscosity.From(1, KinematicViscosityUnit.Stokes).Stokes, StokesTolerance);
+        }
+
+        [Fact]
+        public void FromSquareMetersPerSecond_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => KinematicViscosity.FromSquareMetersPerSecond(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => KinematicViscosity.FromSquareMetersPerSecond(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromSquareMetersPerSecond_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => KinematicViscosity.FromSquareMetersPerSecond(double.NaN));
         }
 
         [Fact]

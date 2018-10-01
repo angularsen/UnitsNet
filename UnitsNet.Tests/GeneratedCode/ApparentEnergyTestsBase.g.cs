@@ -64,9 +64,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ApparentEnergy((double)0.0, ApparentEnergyUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ApparentEnergy(double.PositiveInfinity, ApparentEnergyUnit.VoltampereHour));
+            Assert.Throws<ArgumentException>(() => new ApparentEnergy(double.NegativeInfinity, ApparentEnergyUnit.VoltampereHour));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ApparentEnergy(double.NaN, ApparentEnergyUnit.VoltampereHour));
         }
 
         [Fact]
@@ -84,6 +97,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ApparentEnergy.From(1, ApparentEnergyUnit.KilovoltampereHour).KilovoltampereHours, KilovoltampereHoursTolerance);
             AssertEx.EqualTolerance(1, ApparentEnergy.From(1, ApparentEnergyUnit.MegavoltampereHour).MegavoltampereHours, MegavoltampereHoursTolerance);
             AssertEx.EqualTolerance(1, ApparentEnergy.From(1, ApparentEnergyUnit.VoltampereHour).VoltampereHours, VoltampereHoursTolerance);
+        }
+
+        [Fact]
+        public void FromVoltampereHours_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ApparentEnergy.FromVoltampereHours(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ApparentEnergy.FromVoltampereHours(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromVoltampereHours_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ApparentEnergy.FromVoltampereHours(double.NaN));
         }
 
         [Fact]

@@ -64,9 +64,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new MolarEntropy((double)0.0, MolarEntropyUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MolarEntropy(double.PositiveInfinity, MolarEntropyUnit.JoulePerMoleKelvin));
+            Assert.Throws<ArgumentException>(() => new MolarEntropy(double.NegativeInfinity, MolarEntropyUnit.JoulePerMoleKelvin));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MolarEntropy(double.NaN, MolarEntropyUnit.JoulePerMoleKelvin));
         }
 
         [Fact]
@@ -84,6 +97,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MolarEntropy.From(1, MolarEntropyUnit.JoulePerMoleKelvin).JoulesPerMoleKelvin, JoulesPerMoleKelvinTolerance);
             AssertEx.EqualTolerance(1, MolarEntropy.From(1, MolarEntropyUnit.KilojoulePerMoleKelvin).KilojoulesPerMoleKelvin, KilojoulesPerMoleKelvinTolerance);
             AssertEx.EqualTolerance(1, MolarEntropy.From(1, MolarEntropyUnit.MegajoulePerMoleKelvin).MegajoulesPerMoleKelvin, MegajoulesPerMoleKelvinTolerance);
+        }
+
+        [Fact]
+        public void FromJoulesPerMoleKelvin_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MolarEntropy.FromJoulesPerMoleKelvin(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MolarEntropy.FromJoulesPerMoleKelvin(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromJoulesPerMoleKelvin_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MolarEntropy.FromJoulesPerMoleKelvin(double.NaN));
         }
 
         [Fact]

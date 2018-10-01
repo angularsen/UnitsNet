@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == DurationUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -189,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Days.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Duration FromDays(double days)
@@ -203,6 +206,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Hours.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Duration FromHours(double hours)
@@ -217,6 +221,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Microseconds.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Duration FromMicroseconds(double microseconds)
@@ -231,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Milliseconds.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Duration FromMilliseconds(double milliseconds)
@@ -245,6 +251,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Minutes.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Duration FromMinutes(double minutes)
@@ -259,6 +266,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Months30.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Duration FromMonths30(double months30)
@@ -273,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Nanoseconds.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Duration FromNanoseconds(double nanoseconds)
@@ -287,6 +296,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Seconds.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Duration FromSeconds(double seconds)
@@ -301,6 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Weeks.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Duration FromWeeks(double weeks)
@@ -315,6 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Duration from Years365.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Duration FromYears365(double years365)

@@ -84,9 +84,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Acceleration((double)0.0, AccelerationUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Acceleration(double.PositiveInfinity, AccelerationUnit.MeterPerSecondSquared));
+            Assert.Throws<ArgumentException>(() => new Acceleration(double.NegativeInfinity, AccelerationUnit.MeterPerSecondSquared));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Acceleration(double.NaN, AccelerationUnit.MeterPerSecondSquared));
         }
 
         [Fact]
@@ -124,6 +137,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Acceleration.From(1, AccelerationUnit.MillimeterPerSecondSquared).MillimetersPerSecondSquared, MillimetersPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(1, Acceleration.From(1, AccelerationUnit.NanometerPerSecondSquared).NanometersPerSecondSquared, NanometersPerSecondSquaredTolerance);
             AssertEx.EqualTolerance(1, Acceleration.From(1, AccelerationUnit.StandardGravity).StandardGravity, StandardGravityTolerance);
+        }
+
+        [Fact]
+        public void FromMetersPerSecondSquared_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Acceleration.FromMetersPerSecondSquared(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Acceleration.FromMetersPerSecondSquared(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromMetersPerSecondSquared_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Acceleration.FromMetersPerSecondSquared(double.NaN));
         }
 
         [Fact]

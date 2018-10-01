@@ -66,9 +66,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ElectricAdmittance((double)0.0, ElectricAdmittanceUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricAdmittance(double.PositiveInfinity, ElectricAdmittanceUnit.Siemens));
+            Assert.Throws<ArgumentException>(() => new ElectricAdmittance(double.NegativeInfinity, ElectricAdmittanceUnit.Siemens));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricAdmittance(double.NaN, ElectricAdmittanceUnit.Siemens));
         }
 
         [Fact]
@@ -88,6 +101,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ElectricAdmittance.From(1, ElectricAdmittanceUnit.Millisiemens).Millisiemens, MillisiemensTolerance);
             AssertEx.EqualTolerance(1, ElectricAdmittance.From(1, ElectricAdmittanceUnit.Nanosiemens).Nanosiemens, NanosiemensTolerance);
             AssertEx.EqualTolerance(1, ElectricAdmittance.From(1, ElectricAdmittanceUnit.Siemens).Siemens, SiemensTolerance);
+        }
+
+        [Fact]
+        public void FromSiemens_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricAdmittance.FromSiemens(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricAdmittance.FromSiemens(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromSiemens_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricAdmittance.FromSiemens(double.NaN));
         }
 
         [Fact]

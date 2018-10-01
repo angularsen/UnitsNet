@@ -86,9 +86,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Angle((double)0.0, AngleUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Angle(double.PositiveInfinity, AngleUnit.Degree));
+            Assert.Throws<ArgumentException>(() => new Angle(double.NegativeInfinity, AngleUnit.Degree));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Angle(double.NaN, AngleUnit.Degree));
         }
 
         [Fact]
@@ -128,6 +141,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Nanoradian).Nanoradians, NanoradiansTolerance);
             AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Radian).Radians, RadiansTolerance);
             AssertEx.EqualTolerance(1, Angle.From(1, AngleUnit.Revolution).Revolutions, RevolutionsTolerance);
+        }
+
+        [Fact]
+        public void FromDegrees_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Angle.FromDegrees(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Angle.FromDegrees(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromDegrees_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Angle.FromDegrees(double.NaN));
         }
 
         [Fact]

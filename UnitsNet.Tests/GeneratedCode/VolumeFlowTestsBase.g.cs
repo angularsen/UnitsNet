@@ -110,9 +110,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new VolumeFlow((double)0.0, VolumeFlowUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new VolumeFlow(double.PositiveInfinity, VolumeFlowUnit.CubicMeterPerSecond));
+            Assert.Throws<ArgumentException>(() => new VolumeFlow(double.NegativeInfinity, VolumeFlowUnit.CubicMeterPerSecond));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new VolumeFlow(double.NaN, VolumeFlowUnit.CubicMeterPerSecond));
         }
 
         [Fact]
@@ -176,6 +189,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, VolumeFlow.From(1, VolumeFlowUnit.UsGallonPerHour).UsGallonsPerHour, UsGallonsPerHourTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.From(1, VolumeFlowUnit.UsGallonPerMinute).UsGallonsPerMinute, UsGallonsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.From(1, VolumeFlowUnit.UsGallonPerSecond).UsGallonsPerSecond, UsGallonsPerSecondTolerance);
+        }
+
+        [Fact]
+        public void FromCubicMetersPerSecond_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => VolumeFlow.FromCubicMetersPerSecond(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => VolumeFlow.FromCubicMetersPerSecond(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromCubicMetersPerSecond_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => VolumeFlow.FromCubicMetersPerSecond(double.NaN));
         }
 
         [Fact]

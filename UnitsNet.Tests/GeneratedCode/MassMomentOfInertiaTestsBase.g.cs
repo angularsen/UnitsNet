@@ -110,9 +110,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new MassMomentOfInertia((double)0.0, MassMomentOfInertiaUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassMomentOfInertia(double.PositiveInfinity, MassMomentOfInertiaUnit.KilogramSquareMeter));
+            Assert.Throws<ArgumentException>(() => new MassMomentOfInertia(double.NegativeInfinity, MassMomentOfInertiaUnit.KilogramSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassMomentOfInertia(double.NaN, MassMomentOfInertiaUnit.KilogramSquareMeter));
         }
 
         [Fact]
@@ -176,6 +189,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.TonneSquareDecimeter).TonneSquareDecimeters, TonneSquareDecimetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.TonneSquareMeter).TonneSquareMeters, TonneSquareMetersTolerance);
             AssertEx.EqualTolerance(1, MassMomentOfInertia.From(1, MassMomentOfInertiaUnit.TonneSquareMilimeter).TonneSquareMilimeters, TonneSquareMilimetersTolerance);
+        }
+
+        [Fact]
+        public void FromKilogramSquareMeters_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MassMomentOfInertia.FromKilogramSquareMeters(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MassMomentOfInertia.FromKilogramSquareMeters(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromKilogramSquareMeters_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MassMomentOfInertia.FromKilogramSquareMeters(double.NaN));
         }
 
         [Fact]

@@ -66,9 +66,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ElectricResistivity((double)0.0, ElectricResistivityUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricResistivity(double.PositiveInfinity, ElectricResistivityUnit.OhmMeter));
+            Assert.Throws<ArgumentException>(() => new ElectricResistivity(double.NegativeInfinity, ElectricResistivityUnit.OhmMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricResistivity(double.NaN, ElectricResistivityUnit.OhmMeter));
         }
 
         [Fact]
@@ -88,6 +101,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.MilliohmMeter).MilliohmMeters, MilliohmMetersTolerance);
             AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.NanoohmMeter).NanoohmMeters, NanoohmMetersTolerance);
             AssertEx.EqualTolerance(1, ElectricResistivity.From(1, ElectricResistivityUnit.OhmMeter).OhmMeters, OhmMetersTolerance);
+        }
+
+        [Fact]
+        public void FromOhmMeters_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricResistivity.FromOhmMeters(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricResistivity.FromOhmMeters(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromOhmMeters_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricResistivity.FromOhmMeters(double.NaN));
         }
 
         [Fact]

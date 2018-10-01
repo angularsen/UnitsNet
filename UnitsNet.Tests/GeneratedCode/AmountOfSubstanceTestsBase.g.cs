@@ -86,9 +86,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new AmountOfSubstance((double)0.0, AmountOfSubstanceUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new AmountOfSubstance(double.PositiveInfinity, AmountOfSubstanceUnit.Mole));
+            Assert.Throws<ArgumentException>(() => new AmountOfSubstance(double.NegativeInfinity, AmountOfSubstanceUnit.Mole));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new AmountOfSubstance(double.NaN, AmountOfSubstanceUnit.Mole));
         }
 
         [Fact]
@@ -128,6 +141,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.Nanomole).Nanomoles, NanomolesTolerance);
             AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.NanopoundMole).NanopoundMoles, NanopoundMolesTolerance);
             AssertEx.EqualTolerance(1, AmountOfSubstance.From(1, AmountOfSubstanceUnit.PoundMole).PoundMoles, PoundMolesTolerance);
+        }
+
+        [Fact]
+        public void FromMoles_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => AmountOfSubstance.FromMoles(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => AmountOfSubstance.FromMoles(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromMoles_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => AmountOfSubstance.FromMoles(double.NaN));
         }
 
         [Fact]

@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == EnergyUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -249,6 +251,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from BritishThermalUnits.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromBritishThermalUnits(double britishthermalunits)
@@ -263,6 +266,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from Calories.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromCalories(double calories)
@@ -277,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from DecathermsEc.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromDecathermsEc(double decathermsec)
@@ -291,6 +296,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from DecathermsImperial.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromDecathermsImperial(double decathermsimperial)
@@ -305,6 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from DecathermsUs.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromDecathermsUs(double decathermsus)
@@ -319,6 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from ElectronVolts.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromElectronVolts(double electronvolts)
@@ -333,6 +341,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from Ergs.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromErgs(double ergs)
@@ -347,6 +356,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from FootPounds.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromFootPounds(double footpounds)
@@ -361,6 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from GigabritishThermalUnits.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromGigabritishThermalUnits(double gigabritishthermalunits)
@@ -375,6 +386,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from GigawattHours.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromGigawattHours(double gigawatthours)
@@ -389,6 +401,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from Joules.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromJoules(double joules)
@@ -403,6 +416,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from KilobritishThermalUnits.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromKilobritishThermalUnits(double kilobritishthermalunits)
@@ -417,6 +431,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from Kilocalories.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromKilocalories(double kilocalories)
@@ -431,6 +446,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from Kilojoules.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromKilojoules(double kilojoules)
@@ -445,6 +461,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from KilowattHours.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromKilowattHours(double kilowatthours)
@@ -459,6 +476,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from MegabritishThermalUnits.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromMegabritishThermalUnits(double megabritishthermalunits)
@@ -473,6 +491,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from Megajoules.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromMegajoules(double megajoules)
@@ -487,6 +506,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from MegawattHours.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromMegawattHours(double megawatthours)
@@ -501,6 +521,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from ThermsEc.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromThermsEc(double thermsec)
@@ -515,6 +536,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from ThermsImperial.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromThermsImperial(double thermsimperial)
@@ -529,6 +551,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from ThermsUs.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromThermsUs(double thermsus)
@@ -543,6 +566,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Energy from WattHours.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Energy FromWattHours(double watthours)

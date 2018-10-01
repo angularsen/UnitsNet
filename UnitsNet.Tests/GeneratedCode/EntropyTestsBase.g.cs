@@ -72,9 +72,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Entropy((double)0.0, EntropyUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Entropy(double.PositiveInfinity, EntropyUnit.JoulePerKelvin));
+            Assert.Throws<ArgumentException>(() => new Entropy(double.NegativeInfinity, EntropyUnit.JoulePerKelvin));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Entropy(double.NaN, EntropyUnit.JoulePerKelvin));
         }
 
         [Fact]
@@ -100,6 +113,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Entropy.From(1, EntropyUnit.KilojoulePerDegreeCelsius).KilojoulesPerDegreeCelsius, KilojoulesPerDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(1, Entropy.From(1, EntropyUnit.KilojoulePerKelvin).KilojoulesPerKelvin, KilojoulesPerKelvinTolerance);
             AssertEx.EqualTolerance(1, Entropy.From(1, EntropyUnit.MegajoulePerKelvin).MegajoulesPerKelvin, MegajoulesPerKelvinTolerance);
+        }
+
+        [Fact]
+        public void FromJoulesPerKelvin_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Entropy.FromJoulesPerKelvin(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Entropy.FromJoulesPerKelvin(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromJoulesPerKelvin_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Entropy.FromJoulesPerKelvin(double.NaN));
         }
 
         [Fact]

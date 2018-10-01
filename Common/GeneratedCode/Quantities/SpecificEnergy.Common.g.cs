@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == SpecificEnergyUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -179,6 +181,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from CaloriesPerGram.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEnergy FromCaloriesPerGram(double caloriespergram)
@@ -193,6 +196,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from JoulesPerKilogram.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEnergy FromJoulesPerKilogram(double joulesperkilogram)
@@ -207,6 +211,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from KilocaloriesPerGram.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEnergy FromKilocaloriesPerGram(double kilocaloriespergram)
@@ -221,6 +226,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from KilojoulesPerKilogram.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEnergy FromKilojoulesPerKilogram(double kilojoulesperkilogram)
@@ -235,6 +241,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from KilowattHoursPerKilogram.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEnergy FromKilowattHoursPerKilogram(double kilowatthoursperkilogram)
@@ -249,6 +256,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from MegajoulesPerKilogram.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEnergy FromMegajoulesPerKilogram(double megajoulesperkilogram)
@@ -263,6 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from MegawattHoursPerKilogram.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEnergy FromMegawattHoursPerKilogram(double megawatthoursperkilogram)
@@ -277,6 +286,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEnergy from WattHoursPerKilogram.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEnergy FromWattHoursPerKilogram(double watthoursperkilogram)

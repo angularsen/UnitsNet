@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -87,6 +88,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -97,7 +99,7 @@ namespace UnitsNet
             if(unit == TemperatureDeltaUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -178,6 +180,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesCelsius.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesCelsius(double degreescelsius)
@@ -192,6 +195,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesDelisle.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesDelisle(double degreesdelisle)
@@ -206,6 +210,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesFahrenheit.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesFahrenheit(double degreesfahrenheit)
@@ -220,6 +225,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesNewton.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesNewton(double degreesnewton)
@@ -234,6 +240,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesRankine.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesRankine(double degreesrankine)
@@ -248,6 +255,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesReaumur.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesReaumur(double degreesreaumur)
@@ -262,6 +270,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from DegreesRoemer.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromDegreesRoemer(double degreesroemer)
@@ -276,6 +285,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureDelta from Kelvins.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureDelta FromKelvins(double kelvins)

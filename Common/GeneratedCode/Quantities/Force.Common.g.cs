@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == ForceUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -189,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from Decanewtons.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromDecanewtons(double decanewtons)
@@ -203,6 +206,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from Dyne.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromDyne(double dyne)
@@ -217,6 +221,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from KilogramsForce.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromKilogramsForce(double kilogramsforce)
@@ -231,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from Kilonewtons.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromKilonewtons(double kilonewtons)
@@ -245,6 +251,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from KiloPonds.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromKiloPonds(double kiloponds)
@@ -259,6 +266,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from Meganewtons.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromMeganewtons(double meganewtons)
@@ -273,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from Newtons.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromNewtons(double newtons)
@@ -287,6 +296,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from Poundals.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromPoundals(double poundals)
@@ -301,6 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from PoundsForce.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromPoundsForce(double poundsforce)
@@ -315,6 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Force from TonnesForce.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Force FromTonnesForce(double tonnesforce)

@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == RotationalSpeedUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -204,6 +206,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from CentiradiansPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromCentiradiansPerSecond(double centiradianspersecond)
@@ -218,6 +221,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from DeciradiansPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromDeciradiansPerSecond(double deciradianspersecond)
@@ -232,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from DegreesPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromDegreesPerMinute(double degreesperminute)
@@ -246,6 +251,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from DegreesPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromDegreesPerSecond(double degreespersecond)
@@ -260,6 +266,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from MicrodegreesPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromMicrodegreesPerSecond(double microdegreespersecond)
@@ -274,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from MicroradiansPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromMicroradiansPerSecond(double microradianspersecond)
@@ -288,6 +296,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from MillidegreesPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromMillidegreesPerSecond(double millidegreespersecond)
@@ -302,6 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from MilliradiansPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromMilliradiansPerSecond(double milliradianspersecond)
@@ -316,6 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from NanodegreesPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromNanodegreesPerSecond(double nanodegreespersecond)
@@ -330,6 +341,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from NanoradiansPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromNanoradiansPerSecond(double nanoradianspersecond)
@@ -344,6 +356,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from RadiansPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromRadiansPerSecond(double radianspersecond)
@@ -358,6 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from RevolutionsPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromRevolutionsPerMinute(double revolutionsperminute)
@@ -372,6 +386,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalSpeed from RevolutionsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalSpeed FromRevolutionsPerSecond(double revolutionspersecond)

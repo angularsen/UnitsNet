@@ -122,9 +122,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Speed((double)0.0, SpeedUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Speed(double.PositiveInfinity, SpeedUnit.MeterPerSecond));
+            Assert.Throws<ArgumentException>(() => new Speed(double.NegativeInfinity, SpeedUnit.MeterPerSecond));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Speed(double.NaN, SpeedUnit.MeterPerSecond));
         }
 
         [Fact]
@@ -200,6 +213,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.YardPerHour).YardsPerHour, YardsPerHourTolerance);
             AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.YardPerMinute).YardsPerMinute, YardsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, Speed.From(1, SpeedUnit.YardPerSecond).YardsPerSecond, YardsPerSecondTolerance);
+        }
+
+        [Fact]
+        public void FromMetersPerSecond_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Speed.FromMetersPerSecond(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Speed.FromMetersPerSecond(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromMetersPerSecond_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Speed.FromMetersPerSecond(double.NaN));
         }
 
         [Fact]

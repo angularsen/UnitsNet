@@ -62,9 +62,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Level((double)0.0, LevelUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Level(double.PositiveInfinity, LevelUnit.Decibel));
+            Assert.Throws<ArgumentException>(() => new Level(double.NegativeInfinity, LevelUnit.Decibel));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Level(double.NaN, LevelUnit.Decibel));
         }
 
         [Fact]
@@ -80,6 +93,19 @@ namespace UnitsNet.Tests
         {
             AssertEx.EqualTolerance(1, Level.From(1, LevelUnit.Decibel).Decibels, DecibelsTolerance);
             AssertEx.EqualTolerance(1, Level.From(1, LevelUnit.Neper).Nepers, NepersTolerance);
+        }
+
+        [Fact]
+        public void FromDecibels_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromDecibels_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.NaN));
         }
 
         [Fact]

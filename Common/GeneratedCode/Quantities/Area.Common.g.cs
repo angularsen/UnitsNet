@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == AreaUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -204,6 +206,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from Acres.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Area FromAcres(double acres)
@@ -218,6 +221,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from Hectares.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Area FromHectares(double hectares)
@@ -232,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareCentimeters.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Area FromSquareCentimeters(double squarecentimeters)
@@ -246,6 +251,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareDecimeters.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Area FromSquareDecimeters(double squaredecimeters)
@@ -260,6 +266,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareFeet.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Area FromSquareFeet(double squarefeet)
@@ -274,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareInches.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Area FromSquareInches(double squareinches)
@@ -288,6 +296,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareKilometers.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Area FromSquareKilometers(double squarekilometers)
@@ -302,6 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareMeters.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Area FromSquareMeters(double squaremeters)
@@ -316,6 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareMicrometers.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Area FromSquareMicrometers(double squaremicrometers)
@@ -330,6 +341,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareMiles.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Area FromSquareMiles(double squaremiles)
@@ -344,6 +356,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareMillimeters.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Area FromSquareMillimeters(double squaremillimeters)
@@ -358,6 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from SquareYards.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Area FromSquareYards(double squareyards)
@@ -372,6 +386,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Area from UsSurveySquareFeet.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Area FromUsSurveySquareFeet(double ussurveysquarefeet)

@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == TemperatureChangeRateUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -189,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from CentidegreesCelsiusPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromCentidegreesCelsiusPerSecond(double centidegreescelsiuspersecond)
@@ -203,6 +206,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from DecadegreesCelsiusPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromDecadegreesCelsiusPerSecond(double decadegreescelsiuspersecond)
@@ -217,6 +221,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from DecidegreesCelsiusPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromDecidegreesCelsiusPerSecond(double decidegreescelsiuspersecond)
@@ -231,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from DegreesCelsiusPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromDegreesCelsiusPerMinute(double degreescelsiusperminute)
@@ -245,6 +251,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from DegreesCelsiusPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromDegreesCelsiusPerSecond(double degreescelsiuspersecond)
@@ -259,6 +266,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from HectodegreesCelsiusPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromHectodegreesCelsiusPerSecond(double hectodegreescelsiuspersecond)
@@ -273,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from KilodegreesCelsiusPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromKilodegreesCelsiusPerSecond(double kilodegreescelsiuspersecond)
@@ -287,6 +296,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from MicrodegreesCelsiusPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromMicrodegreesCelsiusPerSecond(double microdegreescelsiuspersecond)
@@ -301,6 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from MillidegreesCelsiusPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromMillidegreesCelsiusPerSecond(double millidegreescelsiuspersecond)
@@ -315,6 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get TemperatureChangeRate from NanodegreesCelsiusPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static TemperatureChangeRate FromNanodegreesCelsiusPerSecond(double nanodegreescelsiuspersecond)

@@ -98,10 +98,11 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Power((decimal)0.0, PowerUnit.Undefined));
         }
+
 
         [Fact]
         public void WattToPowerUnits()
@@ -153,6 +154,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Terawatt).Terawatts, TerawattsTolerance);
             AssertEx.EqualTolerance(1, Power.From(1, PowerUnit.Watt).Watts, WattsTolerance);
         }
+
 
         [Fact]
         public void As()

@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -87,6 +88,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -97,7 +99,7 @@ namespace UnitsNet
             if(unit == AngleUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -208,6 +210,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Arcminutes.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromArcminutes(double arcminutes)
@@ -222,6 +225,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Arcseconds.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromArcseconds(double arcseconds)
@@ -236,6 +240,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Centiradians.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromCentiradians(double centiradians)
@@ -250,6 +255,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Deciradians.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromDeciradians(double deciradians)
@@ -264,6 +270,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Degrees.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromDegrees(double degrees)
@@ -278,6 +285,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Gradians.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromGradians(double gradians)
@@ -292,6 +300,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Microdegrees.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromMicrodegrees(double microdegrees)
@@ -306,6 +315,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Microradians.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromMicroradians(double microradians)
@@ -320,6 +330,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Millidegrees.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromMillidegrees(double millidegrees)
@@ -334,6 +345,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Milliradians.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromMilliradians(double milliradians)
@@ -348,6 +360,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Nanodegrees.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromNanodegrees(double nanodegrees)
@@ -362,6 +375,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Nanoradians.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromNanoradians(double nanoradians)
@@ -376,6 +390,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Radians.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromRadians(double radians)
@@ -390,6 +405,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Angle from Revolutions.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Angle FromRevolutions(double revolutions)

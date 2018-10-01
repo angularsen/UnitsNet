@@ -74,9 +74,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Molarity((double)0.0, MolarityUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Molarity(double.PositiveInfinity, MolarityUnit.MolesPerCubicMeter));
+            Assert.Throws<ArgumentException>(() => new Molarity(double.NegativeInfinity, MolarityUnit.MolesPerCubicMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Molarity(double.NaN, MolarityUnit.MolesPerCubicMeter));
         }
 
         [Fact]
@@ -104,6 +117,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Molarity.From(1, MolarityUnit.MolesPerLiter).MolesPerLiter, MolesPerLiterTolerance);
             AssertEx.EqualTolerance(1, Molarity.From(1, MolarityUnit.NanomolesPerLiter).NanomolesPerLiter, NanomolesPerLiterTolerance);
             AssertEx.EqualTolerance(1, Molarity.From(1, MolarityUnit.PicomolesPerLiter).PicomolesPerLiter, PicomolesPerLiterTolerance);
+        }
+
+        [Fact]
+        public void FromMolesPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Molarity.FromMolesPerCubicMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Molarity.FromMolesPerCubicMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromMolesPerCubicMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Molarity.FromMolesPerCubicMeter(double.NaN));
         }
 
         [Fact]

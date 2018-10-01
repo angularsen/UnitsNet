@@ -57,7 +57,7 @@ namespace UnitsNet
 
         private QuantityValue(double val)
         {
-            _value = Guard.EnsureNotNaN(val, nameof(val));
+            _value = Guard.EnsureValidNumber(val, nameof(val));
             _valueDecimal = null;
         }
 

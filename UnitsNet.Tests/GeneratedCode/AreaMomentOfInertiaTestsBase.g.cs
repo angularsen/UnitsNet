@@ -70,9 +70,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new AreaMomentOfInertia((double)0.0, AreaMomentOfInertiaUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new AreaMomentOfInertia(double.PositiveInfinity, AreaMomentOfInertiaUnit.MeterToTheFourth));
+            Assert.Throws<ArgumentException>(() => new AreaMomentOfInertia(double.NegativeInfinity, AreaMomentOfInertiaUnit.MeterToTheFourth));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new AreaMomentOfInertia(double.NaN, AreaMomentOfInertiaUnit.MeterToTheFourth));
         }
 
         [Fact]
@@ -96,6 +109,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.InchToTheFourth).InchesToTheFourth, InchesToTheFourthTolerance);
             AssertEx.EqualTolerance(1, AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.MeterToTheFourth).MetersToTheFourth, MetersToTheFourthTolerance);
             AssertEx.EqualTolerance(1, AreaMomentOfInertia.From(1, AreaMomentOfInertiaUnit.MillimeterToTheFourth).MillimetersToTheFourth, MillimetersToTheFourthTolerance);
+        }
+
+        [Fact]
+        public void FromMetersToTheFourth_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => AreaMomentOfInertia.FromMetersToTheFourth(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => AreaMomentOfInertia.FromMetersToTheFourth(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromMetersToTheFourth_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => AreaMomentOfInertia.FromMetersToTheFourth(double.NaN));
         }
 
         [Fact]

@@ -100,9 +100,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Mass((double)0.0, MassUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Mass(double.PositiveInfinity, MassUnit.Kilogram));
+            Assert.Throws<ArgumentException>(() => new Mass(double.NegativeInfinity, MassUnit.Kilogram));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Mass(double.NaN, MassUnit.Kilogram));
         }
 
         [Fact]
@@ -156,6 +169,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.ShortTon).ShortTons, ShortTonsTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Stone).Stone, StoneTolerance);
             AssertEx.EqualTolerance(1, Mass.From(1, MassUnit.Tonne).Tonnes, TonnesTolerance);
+        }
+
+        [Fact]
+        public void FromKilograms_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Mass.FromKilograms(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Mass.FromKilograms(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromKilograms_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Mass.FromKilograms(double.NaN));
         }
 
         [Fact]

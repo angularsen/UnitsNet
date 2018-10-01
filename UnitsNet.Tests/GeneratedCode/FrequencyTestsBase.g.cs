@@ -74,9 +74,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Frequency((double)0.0, FrequencyUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Frequency(double.PositiveInfinity, FrequencyUnit.Hertz));
+            Assert.Throws<ArgumentException>(() => new Frequency(double.NegativeInfinity, FrequencyUnit.Hertz));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Frequency(double.NaN, FrequencyUnit.Hertz));
         }
 
         [Fact]
@@ -104,6 +117,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Frequency.From(1, FrequencyUnit.Megahertz).Megahertz, MegahertzTolerance);
             AssertEx.EqualTolerance(1, Frequency.From(1, FrequencyUnit.RadianPerSecond).RadiansPerSecond, RadiansPerSecondTolerance);
             AssertEx.EqualTolerance(1, Frequency.From(1, FrequencyUnit.Terahertz).Terahertz, TerahertzTolerance);
+        }
+
+        [Fact]
+        public void FromHertz_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Frequency.FromHertz(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Frequency.FromHertz(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromHertz_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Frequency.FromHertz(double.NaN));
         }
 
         [Fact]

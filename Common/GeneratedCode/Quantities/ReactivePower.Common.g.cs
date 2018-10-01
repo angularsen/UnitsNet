@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == ReactivePowerUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -159,6 +161,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ReactivePower from GigavoltamperesReactive.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ReactivePower FromGigavoltamperesReactive(double gigavoltamperesreactive)
@@ -173,6 +176,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ReactivePower from KilovoltamperesReactive.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ReactivePower FromKilovoltamperesReactive(double kilovoltamperesreactive)
@@ -187,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ReactivePower from MegavoltamperesReactive.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ReactivePower FromMegavoltamperesReactive(double megavoltamperesreactive)
@@ -201,6 +206,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ReactivePower from VoltamperesReactive.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ReactivePower FromVoltamperesReactive(double voltamperesreactive)

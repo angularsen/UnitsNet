@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == VolumeFlowUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -269,6 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from CentilitersPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCentilitersPerMinute(double centilitersperminute)
@@ -283,6 +286,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from CubicDecimetersPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicDecimetersPerMinute(double cubicdecimetersperminute)
@@ -297,6 +301,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from CubicFeetPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicFeetPerHour(double cubicfeetperhour)
@@ -311,6 +316,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from CubicFeetPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicFeetPerMinute(double cubicfeetperminute)
@@ -325,6 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from CubicFeetPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicFeetPerSecond(double cubicfeetpersecond)
@@ -339,6 +346,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from CubicMetersPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicMetersPerHour(double cubicmetersperhour)
@@ -353,6 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from CubicMetersPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicMetersPerMinute(double cubicmetersperminute)
@@ -367,6 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from CubicMetersPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicMetersPerSecond(double cubicmeterspersecond)
@@ -381,6 +391,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from CubicYardsPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicYardsPerHour(double cubicyardsperhour)
@@ -395,6 +406,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from CubicYardsPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicYardsPerMinute(double cubicyardsperminute)
@@ -409,6 +421,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from CubicYardsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicYardsPerSecond(double cubicyardspersecond)
@@ -423,6 +436,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from DecilitersPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromDecilitersPerMinute(double decilitersperminute)
@@ -437,6 +451,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from KilolitersPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromKilolitersPerMinute(double kilolitersperminute)
@@ -451,6 +466,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from LitersPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromLitersPerHour(double litersperhour)
@@ -465,6 +481,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from LitersPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromLitersPerMinute(double litersperminute)
@@ -479,6 +496,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from LitersPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromLitersPerSecond(double literspersecond)
@@ -493,6 +511,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from MicrolitersPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromMicrolitersPerMinute(double microlitersperminute)
@@ -507,6 +526,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from MillilitersPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromMillilitersPerMinute(double millilitersperminute)
@@ -521,6 +541,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from MillionUsGallonsPerDay.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromMillionUsGallonsPerDay(double millionusgallonsperday)
@@ -535,6 +556,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from NanolitersPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromNanolitersPerMinute(double nanolitersperminute)
@@ -549,6 +571,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from OilBarrelsPerDay.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromOilBarrelsPerDay(double oilbarrelsperday)
@@ -563,6 +586,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from OilBarrelsPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromOilBarrelsPerHour(double oilbarrelsperhour)
@@ -577,6 +601,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from OilBarrelsPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromOilBarrelsPerMinute(double oilbarrelsperminute)
@@ -591,6 +616,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from UsGallonsPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromUsGallonsPerHour(double usgallonsperhour)
@@ -605,6 +631,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from UsGallonsPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromUsGallonsPerMinute(double usgallonsperminute)
@@ -619,6 +646,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow from UsGallonsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromUsGallonsPerSecond(double usgallonspersecond)

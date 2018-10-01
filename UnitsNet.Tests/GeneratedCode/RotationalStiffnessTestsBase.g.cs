@@ -64,9 +64,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new RotationalStiffness((double)0.0, RotationalStiffnessUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new RotationalStiffness(double.PositiveInfinity, RotationalStiffnessUnit.NewtonMeterPerRadian));
+            Assert.Throws<ArgumentException>(() => new RotationalStiffness(double.NegativeInfinity, RotationalStiffnessUnit.NewtonMeterPerRadian));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new RotationalStiffness(double.NaN, RotationalStiffnessUnit.NewtonMeterPerRadian));
         }
 
         [Fact]
@@ -84,6 +97,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, RotationalStiffness.From(1, RotationalStiffnessUnit.KilonewtonMeterPerRadian).KilonewtonMetersPerRadian, KilonewtonMetersPerRadianTolerance);
             AssertEx.EqualTolerance(1, RotationalStiffness.From(1, RotationalStiffnessUnit.MeganewtonMeterPerRadian).MeganewtonMetersPerRadian, MeganewtonMetersPerRadianTolerance);
             AssertEx.EqualTolerance(1, RotationalStiffness.From(1, RotationalStiffnessUnit.NewtonMeterPerRadian).NewtonMetersPerRadian, NewtonMetersPerRadianTolerance);
+        }
+
+        [Fact]
+        public void FromNewtonMetersPerRadian_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => RotationalStiffness.FromNewtonMetersPerRadian(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => RotationalStiffness.FromNewtonMetersPerRadian(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromNewtonMetersPerRadian_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => RotationalStiffness.FromNewtonMetersPerRadian(double.NaN));
         }
 
         [Fact]
