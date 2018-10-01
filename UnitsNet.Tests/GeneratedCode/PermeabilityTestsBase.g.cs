@@ -60,6 +60,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Permeability((double)0.0, PermeabilityUnit.Undefined));
+        }
+
+        [Fact]
         public void HenryPerMeterToPermeabilityUnits()
         {
             Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);
@@ -176,6 +182,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(PermeabilityUnit.Undefined, Permeability.Units);
         }
-
     }
 }

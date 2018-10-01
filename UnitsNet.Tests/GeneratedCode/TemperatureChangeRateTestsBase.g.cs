@@ -78,6 +78,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new TemperatureChangeRate((double)0.0, TemperatureChangeRateUnit.Undefined));
+        }
+
+        [Fact]
         public void DegreeCelsiusPerSecondToTemperatureChangeRateUnits()
         {
             TemperatureChangeRate degreecelsiuspersecond = TemperatureChangeRate.FromDegreesCelsiusPerSecond(1);
@@ -266,6 +272,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(TemperatureChangeRateUnit.Undefined, TemperatureChangeRate.Units);
         }
-
     }
 }

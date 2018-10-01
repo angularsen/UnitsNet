@@ -60,6 +60,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricConductivity((double)0.0, ElectricConductivityUnit.Undefined));
+        }
+
+        [Fact]
         public void SiemensPerMeterToElectricConductivityUnits()
         {
             ElectricConductivity siemenspermeter = ElectricConductivity.FromSiemensPerMeter(1);
@@ -176,6 +182,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ElectricConductivityUnit.Undefined, ElectricConductivity.Units);
         }
-
     }
 }

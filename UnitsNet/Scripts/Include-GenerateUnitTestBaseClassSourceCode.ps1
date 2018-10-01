@@ -75,6 +75,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new $quantityName(($baseType)0.0, $unitEnumName.Undefined));
+        }
+
+        [Fact]
         public void $($baseUnit.SingularName)To$($quantityName)Units()
         {
             $quantityName $baseUnitVariableName = $quantityName.From$baseUnitPluralName(1);
@@ -225,7 +231,6 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain($unitEnumName.Undefined, $quantityName.Units);
         }
-
     }
 }
 "@;

@@ -122,6 +122,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Speed((double)0.0, SpeedUnit.Undefined));
+        }
+
+        [Fact]
         public void MeterPerSecondToSpeedUnits()
         {
             Speed meterpersecond = Speed.FromMetersPerSecond(1);
@@ -486,6 +492,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(SpeedUnit.Undefined, Speed.Units);
         }
-
     }
 }

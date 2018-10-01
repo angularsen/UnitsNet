@@ -76,6 +76,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ForcePerLength((double)0.0, ForcePerLengthUnit.Undefined));
+        }
+
+        [Fact]
         public void NewtonPerMeterToForcePerLengthUnits()
         {
             ForcePerLength newtonpermeter = ForcePerLength.FromNewtonsPerMeter(1);
@@ -256,6 +262,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ForcePerLengthUnit.Undefined, ForcePerLength.Units);
         }
-
     }
 }

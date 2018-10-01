@@ -68,6 +68,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ThermalResistance((double)0.0, ThermalResistanceUnit.Undefined));
+        }
+
+        [Fact]
         public void SquareMeterKelvinPerKilowattToThermalResistanceUnits()
         {
             ThermalResistance squaremeterkelvinperkilowatt = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
@@ -216,6 +222,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ThermalResistanceUnit.Undefined, ThermalResistance.Units);
         }
-
     }
 }

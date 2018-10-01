@@ -102,6 +102,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Energy((double)0.0, EnergyUnit.Undefined));
+        }
+
+        [Fact]
         public void JouleToEnergyUnits()
         {
             Energy joule = Energy.FromJoules(1);
@@ -386,6 +392,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(EnergyUnit.Undefined, Energy.Units);
         }
-
     }
 }

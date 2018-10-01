@@ -74,6 +74,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricCurrent((double)0.0, ElectricCurrentUnit.Undefined));
+        }
+
+        [Fact]
         public void AmpereToElectricCurrentUnits()
         {
             ElectricCurrent ampere = ElectricCurrent.FromAmperes(1);
@@ -246,6 +252,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ElectricCurrentUnit.Undefined, ElectricCurrent.Units);
         }
-
     }
 }

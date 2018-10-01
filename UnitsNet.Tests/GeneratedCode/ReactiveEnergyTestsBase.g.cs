@@ -64,6 +64,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ReactiveEnergy((double)0.0, ReactiveEnergyUnit.Undefined));
+        }
+
+        [Fact]
         public void VoltampereReactiveHourToReactiveEnergyUnits()
         {
             ReactiveEnergy voltamperereactivehour = ReactiveEnergy.FromVoltampereReactiveHours(1);
@@ -196,6 +202,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ReactiveEnergyUnit.Undefined, ReactiveEnergy.Units);
         }
-
     }
 }

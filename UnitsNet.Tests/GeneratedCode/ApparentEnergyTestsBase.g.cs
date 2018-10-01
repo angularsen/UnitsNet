@@ -64,6 +64,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ApparentEnergy((double)0.0, ApparentEnergyUnit.Undefined));
+        }
+
+        [Fact]
         public void VoltampereHourToApparentEnergyUnits()
         {
             ApparentEnergy voltamperehour = ApparentEnergy.FromVoltampereHours(1);
@@ -196,6 +202,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ApparentEnergyUnit.Undefined, ApparentEnergy.Units);
         }
-
     }
 }

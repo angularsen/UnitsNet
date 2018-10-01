@@ -98,6 +98,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Power((decimal)0.0, PowerUnit.Undefined));
+        }
+
+        [Fact]
         public void WattToPowerUnits()
         {
             Power watt = Power.FromWatts(1);
@@ -366,6 +372,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(PowerUnit.Undefined, Power.Units);
         }
-
     }
 }

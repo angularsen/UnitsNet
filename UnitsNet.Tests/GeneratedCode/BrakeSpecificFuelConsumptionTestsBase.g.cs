@@ -64,6 +64,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new BrakeSpecificFuelConsumption((double)0.0, BrakeSpecificFuelConsumptionUnit.Undefined));
+        }
+
+        [Fact]
         public void KilogramPerJouleToBrakeSpecificFuelConsumptionUnits()
         {
             BrakeSpecificFuelConsumption kilogramperjoule = BrakeSpecificFuelConsumption.FromKilogramsPerJoule(1);
@@ -196,6 +202,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(BrakeSpecificFuelConsumptionUnit.Undefined, BrakeSpecificFuelConsumption.Units);
         }
-
     }
 }

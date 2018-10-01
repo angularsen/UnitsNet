@@ -100,6 +100,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Torque((double)0.0, TorqueUnit.Undefined));
+        }
+
+        [Fact]
         public void NewtonMeterToTorqueUnits()
         {
             Torque newtonmeter = Torque.FromNewtonMeters(1);
@@ -376,6 +382,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(TorqueUnit.Undefined, Torque.Units);
         }
-
     }
 }

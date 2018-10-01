@@ -74,6 +74,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Frequency((double)0.0, FrequencyUnit.Undefined));
+        }
+
+        [Fact]
         public void HertzToFrequencyUnits()
         {
             Frequency hertz = Frequency.FromHertz(1);
@@ -246,6 +252,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(FrequencyUnit.Undefined, Frequency.Units);
         }
-
     }
 }

@@ -66,6 +66,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ReactivePower((double)0.0, ReactivePowerUnit.Undefined));
+        }
+
+        [Fact]
         public void VoltampereReactiveToReactivePowerUnits()
         {
             ReactivePower voltamperereactive = ReactivePower.FromVoltamperesReactive(1);
@@ -206,6 +212,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ReactivePowerUnit.Undefined, ReactivePower.Units);
         }
-
     }
 }

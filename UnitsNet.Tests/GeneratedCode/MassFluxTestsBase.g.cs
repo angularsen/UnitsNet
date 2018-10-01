@@ -62,6 +62,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassFlux((double)0.0, MassFluxUnit.Undefined));
+        }
+
+        [Fact]
         public void KilogramPerSecondPerSquareMeterToMassFluxUnits()
         {
             MassFlux kilogrampersecondpersquaremeter = MassFlux.FromKilogramsPerSecondPerSquareMeter(1);
@@ -186,6 +192,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(MassFluxUnit.Undefined, MassFlux.Units);
         }
-
     }
 }

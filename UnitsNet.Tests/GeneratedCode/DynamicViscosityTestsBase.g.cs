@@ -70,6 +70,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new DynamicViscosity((double)0.0, DynamicViscosityUnit.Undefined));
+        }
+
+        [Fact]
         public void NewtonSecondPerMeterSquaredToDynamicViscosityUnits()
         {
             DynamicViscosity newtonsecondpermetersquared = DynamicViscosity.FromNewtonSecondsPerMeterSquared(1);
@@ -226,6 +232,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(DynamicViscosityUnit.Undefined, DynamicViscosity.Units);
         }
-
     }
 }

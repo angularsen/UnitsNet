@@ -110,6 +110,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassMomentOfInertia((double)0.0, MassMomentOfInertiaUnit.Undefined));
+        }
+
+        [Fact]
         public void KilogramSquareMeterToMassMomentOfInertiaUnits()
         {
             MassMomentOfInertia kilogramsquaremeter = MassMomentOfInertia.FromKilogramSquareMeters(1);
@@ -426,6 +432,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(MassMomentOfInertiaUnit.Undefined, MassMomentOfInertia.Units);
         }
-
     }
 }

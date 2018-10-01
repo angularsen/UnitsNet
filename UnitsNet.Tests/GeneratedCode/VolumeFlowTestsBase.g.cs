@@ -110,6 +110,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new VolumeFlow((double)0.0, VolumeFlowUnit.Undefined));
+        }
+
+        [Fact]
         public void CubicMeterPerSecondToVolumeFlowUnits()
         {
             VolumeFlow cubicmeterpersecond = VolumeFlow.FromCubicMetersPerSecond(1);
@@ -426,6 +432,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(VolumeFlowUnit.Undefined, VolumeFlow.Units);
         }
-
     }
 }

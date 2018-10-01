@@ -66,6 +66,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new PressureChangeRate((double)0.0, PressureChangeRateUnit.Undefined));
+        }
+
+        [Fact]
         public void PascalPerSecondToPressureChangeRateUnits()
         {
             PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
@@ -206,6 +212,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(PressureChangeRateUnit.Undefined, PressureChangeRate.Units);
         }
-
     }
 }

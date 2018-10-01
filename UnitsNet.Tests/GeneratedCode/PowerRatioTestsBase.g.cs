@@ -62,6 +62,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new PowerRatio((double)0.0, PowerRatioUnit.Undefined));
+        }
+
+        [Fact]
         public void DecibelWattToPowerRatioUnits()
         {
             PowerRatio decibelwatt = PowerRatio.FromDecibelWatts(1);
@@ -191,6 +197,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(PowerRatioUnit.Undefined, PowerRatio.Units);
         }
-
     }
 }

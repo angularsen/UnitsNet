@@ -86,6 +86,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Angle((double)0.0, AngleUnit.Undefined));
+        }
+
+        [Fact]
         public void DegreeToAngleUnits()
         {
             Angle degree = Angle.FromDegrees(1);
@@ -306,6 +312,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(AngleUnit.Undefined, Angle.Units);
         }
-
     }
 }

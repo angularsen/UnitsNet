@@ -62,6 +62,12 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Irradiance((double)0.0, IrradianceUnit.Undefined));
+        }
+
+        [Fact]
         public void WattPerSquareMeterToIrradianceUnits()
         {
             Irradiance wattpersquaremeter = Irradiance.FromWattsPerSquareMeter(1);
@@ -186,6 +192,5 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(IrradianceUnit.Undefined, Irradiance.Units);
         }
-
     }
 }
