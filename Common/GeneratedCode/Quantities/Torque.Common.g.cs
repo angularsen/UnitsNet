@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -246,7 +246,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilogramForceCentimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromKilogramForceCentimeters(double kilogramforcecentimeters)
@@ -261,7 +261,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilogramForceMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromKilogramForceMeters(double kilogramforcemeters)
@@ -276,7 +276,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilogramForceMillimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromKilogramForceMillimeters(double kilogramforcemillimeters)
@@ -291,7 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilonewtonCentimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromKilonewtonCentimeters(double kilonewtoncentimeters)
@@ -306,7 +306,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilonewtonMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromKilonewtonMeters(double kilonewtonmeters)
@@ -321,7 +321,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilonewtonMillimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromKilonewtonMillimeters(double kilonewtonmillimeters)
@@ -336,7 +336,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilopoundForceFeet.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromKilopoundForceFeet(double kilopoundforcefeet)
@@ -351,7 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from KilopoundForceInches.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromKilopoundForceInches(double kilopoundforceinches)
@@ -366,7 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from MeganewtonCentimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromMeganewtonCentimeters(double meganewtoncentimeters)
@@ -381,7 +381,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from MeganewtonMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromMeganewtonMeters(double meganewtonmeters)
@@ -396,7 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from MeganewtonMillimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromMeganewtonMillimeters(double meganewtonmillimeters)
@@ -411,7 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from MegapoundForceFeet.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromMegapoundForceFeet(double megapoundforcefeet)
@@ -426,7 +426,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from MegapoundForceInches.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromMegapoundForceInches(double megapoundforceinches)
@@ -441,7 +441,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from NewtonCentimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromNewtonCentimeters(double newtoncentimeters)
@@ -456,7 +456,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from NewtonMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromNewtonMeters(double newtonmeters)
@@ -471,7 +471,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from NewtonMillimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromNewtonMillimeters(double newtonmillimeters)
@@ -486,7 +486,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from PoundForceFeet.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromPoundForceFeet(double poundforcefeet)
@@ -501,7 +501,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from PoundForceInches.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromPoundForceInches(double poundforceinches)
@@ -516,7 +516,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from TonneForceCentimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromTonneForceCentimeters(double tonneforcecentimeters)
@@ -531,7 +531,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from TonneForceMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromTonneForceMeters(double tonneforcemeters)
@@ -546,7 +546,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Torque from TonneForceMillimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Torque FromTonneForceMillimeters(double tonneforcemillimeters)

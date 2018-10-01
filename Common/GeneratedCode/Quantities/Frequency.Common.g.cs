@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -181,7 +181,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from CyclesPerHour.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Frequency FromCyclesPerHour(double cyclesperhour)
@@ -196,7 +196,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from CyclesPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Frequency FromCyclesPerMinute(double cyclesperminute)
@@ -211,7 +211,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from Gigahertz.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Frequency FromGigahertz(double gigahertz)
@@ -226,7 +226,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from Hertz.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Frequency FromHertz(double hertz)
@@ -241,7 +241,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from Kilohertz.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Frequency FromKilohertz(double kilohertz)
@@ -256,7 +256,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from Megahertz.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Frequency FromMegahertz(double megahertz)
@@ -271,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from RadiansPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Frequency FromRadiansPerSecond(double radianspersecond)
@@ -286,7 +286,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Frequency from Terahertz.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Frequency FromTerahertz(double terahertz)

@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -351,7 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from AuTablespoons.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromAuTablespoons(double autablespoons)
@@ -366,7 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Centiliters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromCentiliters(double centiliters)
@@ -381,7 +381,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicCentimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromCubicCentimeters(double cubiccentimeters)
@@ -396,7 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicDecimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromCubicDecimeters(double cubicdecimeters)
@@ -411,7 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicFeet.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromCubicFeet(double cubicfeet)
@@ -426,7 +426,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicInches.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromCubicInches(double cubicinches)
@@ -441,7 +441,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicKilometers.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromCubicKilometers(double cubickilometers)
@@ -456,7 +456,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromCubicMeters(double cubicmeters)
@@ -471,7 +471,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicMicrometers.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromCubicMicrometers(double cubicmicrometers)
@@ -486,7 +486,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicMiles.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromCubicMiles(double cubicmiles)
@@ -501,7 +501,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicMillimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromCubicMillimeters(double cubicmillimeters)
@@ -516,7 +516,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from CubicYards.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromCubicYards(double cubicyards)
@@ -531,7 +531,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Deciliters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromDeciliters(double deciliters)
@@ -546,7 +546,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from HectocubicFeet.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromHectocubicFeet(double hectocubicfeet)
@@ -561,7 +561,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from HectocubicMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromHectocubicMeters(double hectocubicmeters)
@@ -576,7 +576,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Hectoliters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromHectoliters(double hectoliters)
@@ -591,7 +591,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from ImperialBeerBarrels.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromImperialBeerBarrels(double imperialbeerbarrels)
@@ -606,7 +606,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from ImperialGallons.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromImperialGallons(double imperialgallons)
@@ -621,7 +621,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from ImperialOunces.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromImperialOunces(double imperialounces)
@@ -636,7 +636,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from KilocubicFeet.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromKilocubicFeet(double kilocubicfeet)
@@ -651,7 +651,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from KilocubicMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromKilocubicMeters(double kilocubicmeters)
@@ -666,7 +666,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from KiloimperialGallons.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromKiloimperialGallons(double kiloimperialgallons)
@@ -681,7 +681,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from KilousGallons.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromKilousGallons(double kilousgallons)
@@ -696,7 +696,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Liters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromLiters(double liters)
@@ -711,7 +711,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from MegacubicFeet.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromMegacubicFeet(double megacubicfeet)
@@ -726,7 +726,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from MegaimperialGallons.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromMegaimperialGallons(double megaimperialgallons)
@@ -741,7 +741,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from MegausGallons.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromMegausGallons(double megausgallons)
@@ -756,7 +756,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from MetricCups.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromMetricCups(double metriccups)
@@ -771,7 +771,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from MetricTeaspoons.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromMetricTeaspoons(double metricteaspoons)
@@ -786,7 +786,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Microliters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromMicroliters(double microliters)
@@ -801,7 +801,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Milliliters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromMilliliters(double milliliters)
@@ -816,7 +816,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from OilBarrels.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromOilBarrels(double oilbarrels)
@@ -831,7 +831,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UkTablespoons.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromUkTablespoons(double uktablespoons)
@@ -846,7 +846,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsBeerBarrels.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromUsBeerBarrels(double usbeerbarrels)
@@ -861,7 +861,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsCustomaryCups.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromUsCustomaryCups(double uscustomarycups)
@@ -876,7 +876,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsGallons.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromUsGallons(double usgallons)
@@ -891,7 +891,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsLegalCups.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromUsLegalCups(double uslegalcups)
@@ -906,7 +906,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsOunces.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromUsOunces(double usounces)
@@ -921,7 +921,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsPints.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromUsPints(double uspints)
@@ -936,7 +936,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsQuarts.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromUsQuarts(double usquarts)
@@ -951,7 +951,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsTablespoons.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromUsTablespoons(double ustablespoons)
@@ -966,7 +966,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from UsTeaspoons.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromUsTeaspoons(double usteaspoons)

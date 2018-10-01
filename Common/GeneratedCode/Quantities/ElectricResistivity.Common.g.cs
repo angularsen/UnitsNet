@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -161,7 +161,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricResistivity from MicroohmMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistivity FromMicroohmMeters(double microohmmeters)
@@ -176,7 +176,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricResistivity from MilliohmMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistivity FromMilliohmMeters(double milliohmmeters)
@@ -191,7 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricResistivity from NanoohmMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistivity FromNanoohmMeters(double nanoohmmeters)
@@ -206,7 +206,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricResistivity from OhmMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricResistivity FromOhmMeters(double ohmmeters)

@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -181,7 +181,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Amperes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCurrent FromAmperes(double amperes)
@@ -196,7 +196,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Centiamperes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCurrent FromCentiamperes(double centiamperes)
@@ -211,7 +211,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Kiloamperes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCurrent FromKiloamperes(double kiloamperes)
@@ -226,7 +226,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Megaamperes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCurrent FromMegaamperes(double megaamperes)
@@ -241,7 +241,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Microamperes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCurrent FromMicroamperes(double microamperes)
@@ -256,7 +256,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Milliamperes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCurrent FromMilliamperes(double milliamperes)
@@ -271,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Nanoamperes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCurrent FromNanoamperes(double nanoamperes)
@@ -286,7 +286,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricCurrent from Picoamperes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricCurrent FromPicoamperes(double picoamperes)

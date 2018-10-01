@@ -88,7 +88,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -270,7 +270,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Bits.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromBits(double bits)
@@ -285,7 +285,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Bytes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromBytes(double bytes)
@@ -300,7 +300,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Exabits.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromExabits(double exabits)
@@ -315,7 +315,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Exabytes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromExabytes(double exabytes)
@@ -330,7 +330,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Exbibits.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromExbibits(double exbibits)
@@ -345,7 +345,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Exbibytes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromExbibytes(double exbibytes)
@@ -360,7 +360,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Gibibits.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromGibibits(double gibibits)
@@ -375,7 +375,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Gibibytes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromGibibytes(double gibibytes)
@@ -390,7 +390,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Gigabits.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromGigabits(double gigabits)
@@ -405,7 +405,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Gigabytes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromGigabytes(double gigabytes)
@@ -420,7 +420,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Kibibits.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromKibibits(double kibibits)
@@ -435,7 +435,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Kibibytes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromKibibytes(double kibibytes)
@@ -450,7 +450,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Kilobits.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromKilobits(double kilobits)
@@ -465,7 +465,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Kilobytes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromKilobytes(double kilobytes)
@@ -480,7 +480,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Mebibits.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromMebibits(double mebibits)
@@ -495,7 +495,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Mebibytes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromMebibytes(double mebibytes)
@@ -510,7 +510,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Megabits.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromMegabits(double megabits)
@@ -525,7 +525,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Megabytes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromMegabytes(double megabytes)
@@ -540,7 +540,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Pebibits.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromPebibits(double pebibits)
@@ -555,7 +555,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Pebibytes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromPebibytes(double pebibytes)
@@ -570,7 +570,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Petabits.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromPetabits(double petabits)
@@ -585,7 +585,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Petabytes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromPetabytes(double petabytes)
@@ -600,7 +600,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Tebibits.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromTebibits(double tebibits)
@@ -615,7 +615,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Tebibytes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromTebibytes(double tebibytes)
@@ -630,7 +630,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Terabits.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromTerabits(double terabits)
@@ -645,7 +645,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Information from Terabytes.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Information FromTerabytes(double terabytes)

@@ -88,7 +88,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -270,7 +270,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from BitsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromBitsPerSecond(double bitspersecond)
@@ -285,7 +285,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from BytesPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromBytesPerSecond(double bytespersecond)
@@ -300,7 +300,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from ExabitsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromExabitsPerSecond(double exabitspersecond)
@@ -315,7 +315,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from ExabytesPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromExabytesPerSecond(double exabytespersecond)
@@ -330,7 +330,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from ExbibitsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromExbibitsPerSecond(double exbibitspersecond)
@@ -345,7 +345,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from ExbibytesPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromExbibytesPerSecond(double exbibytespersecond)
@@ -360,7 +360,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from GibibitsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromGibibitsPerSecond(double gibibitspersecond)
@@ -375,7 +375,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from GibibytesPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromGibibytesPerSecond(double gibibytespersecond)
@@ -390,7 +390,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from GigabitsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromGigabitsPerSecond(double gigabitspersecond)
@@ -405,7 +405,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from GigabytesPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromGigabytesPerSecond(double gigabytespersecond)
@@ -420,7 +420,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from KibibitsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromKibibitsPerSecond(double kibibitspersecond)
@@ -435,7 +435,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from KibibytesPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromKibibytesPerSecond(double kibibytespersecond)
@@ -450,7 +450,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from KilobitsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromKilobitsPerSecond(double kilobitspersecond)
@@ -465,7 +465,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from KilobytesPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromKilobytesPerSecond(double kilobytespersecond)
@@ -480,7 +480,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from MebibitsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromMebibitsPerSecond(double mebibitspersecond)
@@ -495,7 +495,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from MebibytesPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromMebibytesPerSecond(double mebibytespersecond)
@@ -510,7 +510,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from MegabitsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromMegabitsPerSecond(double megabitspersecond)
@@ -525,7 +525,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from MegabytesPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromMegabytesPerSecond(double megabytespersecond)
@@ -540,7 +540,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from PebibitsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromPebibitsPerSecond(double pebibitspersecond)
@@ -555,7 +555,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from PebibytesPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromPebibytesPerSecond(double pebibytespersecond)
@@ -570,7 +570,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from PetabitsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromPetabitsPerSecond(double petabitspersecond)
@@ -585,7 +585,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from PetabytesPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromPetabytesPerSecond(double petabytespersecond)
@@ -600,7 +600,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from TebibitsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromTebibitsPerSecond(double tebibitspersecond)
@@ -615,7 +615,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from TebibytesPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromTebibytesPerSecond(double tebibytespersecond)
@@ -630,7 +630,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from TerabitsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromTerabitsPerSecond(double terabitspersecond)
@@ -645,7 +645,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get BitRate from TerabytesPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static BitRate FromTerabytesPerSecond(double terabytespersecond)

@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -156,7 +156,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalStiffness from KilonewtonMetersPerRadian.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalStiffness FromKilonewtonMetersPerRadian(double kilonewtonmetersperradian)
@@ -171,7 +171,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalStiffness from MeganewtonMetersPerRadian.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalStiffness FromMeganewtonMetersPerRadian(double meganewtonmetersperradian)
@@ -186,7 +186,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get RotationalStiffness from NewtonMetersPerRadian.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static RotationalStiffness FromNewtonMetersPerRadian(double newtonmetersperradian)

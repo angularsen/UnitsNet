@@ -88,7 +88,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -170,7 +170,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Ratio from DecimalFractions.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Ratio FromDecimalFractions(double decimalfractions)
@@ -185,7 +185,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Ratio from PartsPerBillion.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Ratio FromPartsPerBillion(double partsperbillion)
@@ -200,7 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Ratio from PartsPerMillion.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Ratio FromPartsPerMillion(double partspermillion)
@@ -215,7 +215,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Ratio from PartsPerThousand.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Ratio FromPartsPerThousand(double partsperthousand)
@@ -230,7 +230,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Ratio from PartsPerTrillion.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Ratio FromPartsPerTrillion(double partspertrillion)
@@ -245,7 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Ratio from Percent.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Ratio FromPercent(double percent)

@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -186,7 +186,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from CentinewtonsPerMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromCentinewtonsPerMeter(double centinewtonspermeter)
@@ -201,7 +201,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from DecinewtonsPerMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromDecinewtonsPerMeter(double decinewtonspermeter)
@@ -216,7 +216,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from KilogramsForcePerMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromKilogramsForcePerMeter(double kilogramsforcepermeter)
@@ -231,7 +231,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from KilonewtonsPerMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromKilonewtonsPerMeter(double kilonewtonspermeter)
@@ -246,7 +246,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from MeganewtonsPerMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromMeganewtonsPerMeter(double meganewtonspermeter)
@@ -261,7 +261,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from MicronewtonsPerMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromMicronewtonsPerMeter(double micronewtonspermeter)
@@ -276,7 +276,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from MillinewtonsPerMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromMillinewtonsPerMeter(double millinewtonspermeter)
@@ -291,7 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from NanonewtonsPerMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromNanonewtonsPerMeter(double nanonewtonspermeter)
@@ -306,7 +306,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForcePerLength from NewtonsPerMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForcePerLength FromNewtonsPerMeter(double newtonspermeter)

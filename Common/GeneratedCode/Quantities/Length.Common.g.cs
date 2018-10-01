@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -251,7 +251,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Centimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromCentimeters(double centimeters)
@@ -266,7 +266,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Decimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromDecimeters(double decimeters)
@@ -281,7 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from DtpPicas.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromDtpPicas(double dtppicas)
@@ -296,7 +296,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from DtpPoints.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromDtpPoints(double dtppoints)
@@ -311,7 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Fathoms.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromFathoms(double fathoms)
@@ -326,7 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Feet.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromFeet(double feet)
@@ -341,7 +341,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Inches.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromInches(double inches)
@@ -356,7 +356,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Kilometers.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromKilometers(double kilometers)
@@ -371,7 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Meters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromMeters(double meters)
@@ -386,7 +386,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Microinches.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromMicroinches(double microinches)
@@ -401,7 +401,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Micrometers.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromMicrometers(double micrometers)
@@ -416,7 +416,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Mils.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromMils(double mils)
@@ -431,7 +431,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Miles.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromMiles(double miles)
@@ -446,7 +446,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Millimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromMillimeters(double millimeters)
@@ -461,7 +461,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Nanometers.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromNanometers(double nanometers)
@@ -476,7 +476,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from NauticalMiles.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromNauticalMiles(double nauticalmiles)
@@ -491,7 +491,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from PrinterPicas.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromPrinterPicas(double printerpicas)
@@ -506,7 +506,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from PrinterPoints.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromPrinterPoints(double printerpoints)
@@ -521,7 +521,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Shackles.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromShackles(double shackles)
@@ -536,7 +536,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Twips.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromTwips(double twips)
@@ -551,7 +551,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from UsSurveyFeet.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromUsSurveyFeet(double ussurveyfeet)
@@ -566,7 +566,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Length from Yards.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Length FromYards(double yards)

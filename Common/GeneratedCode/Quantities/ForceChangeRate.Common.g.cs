@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -196,7 +196,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from CentinewtonsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForceChangeRate FromCentinewtonsPerSecond(double centinewtonspersecond)
@@ -211,7 +211,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from DecanewtonsPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForceChangeRate FromDecanewtonsPerMinute(double decanewtonsperminute)
@@ -226,7 +226,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from DecanewtonsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForceChangeRate FromDecanewtonsPerSecond(double decanewtonspersecond)
@@ -241,7 +241,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from DecinewtonsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForceChangeRate FromDecinewtonsPerSecond(double decinewtonspersecond)
@@ -256,7 +256,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from KilonewtonsPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForceChangeRate FromKilonewtonsPerMinute(double kilonewtonsperminute)
@@ -271,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from KilonewtonsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForceChangeRate FromKilonewtonsPerSecond(double kilonewtonspersecond)
@@ -286,7 +286,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from MicronewtonsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForceChangeRate FromMicronewtonsPerSecond(double micronewtonspersecond)
@@ -301,7 +301,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from MillinewtonsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForceChangeRate FromMillinewtonsPerSecond(double millinewtonspersecond)
@@ -316,7 +316,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from NanonewtonsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForceChangeRate FromNanonewtonsPerSecond(double nanonewtonspersecond)
@@ -331,7 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from NewtonsPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForceChangeRate FromNewtonsPerMinute(double newtonsperminute)
@@ -346,7 +346,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ForceChangeRate from NewtonsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ForceChangeRate FromNewtonsPerSecond(double newtonspersecond)

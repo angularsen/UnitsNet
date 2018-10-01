@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -271,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from GramSquareCentimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromGramSquareCentimeters(double gramsquarecentimeters)
@@ -286,7 +286,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from GramSquareDecimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromGramSquareDecimeters(double gramsquaredecimeters)
@@ -301,7 +301,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from GramSquareMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromGramSquareMeters(double gramsquaremeters)
@@ -316,7 +316,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from GramSquareMillimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromGramSquareMillimeters(double gramsquaremillimeters)
@@ -331,7 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareCentimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromKilogramSquareCentimeters(double kilogramsquarecentimeters)
@@ -346,7 +346,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareDecimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromKilogramSquareDecimeters(double kilogramsquaredecimeters)
@@ -361,7 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromKilogramSquareMeters(double kilogramsquaremeters)
@@ -376,7 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilogramSquareMillimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromKilogramSquareMillimeters(double kilogramsquaremillimeters)
@@ -391,7 +391,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareCentimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromKilotonneSquareCentimeters(double kilotonnesquarecentimeters)
@@ -406,7 +406,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareDecimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromKilotonneSquareDecimeters(double kilotonnesquaredecimeters)
@@ -421,7 +421,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromKilotonneSquareMeters(double kilotonnesquaremeters)
@@ -436,7 +436,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from KilotonneSquareMilimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromKilotonneSquareMilimeters(double kilotonnesquaremilimeters)
@@ -451,7 +451,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareCentimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromMegatonneSquareCentimeters(double megatonnesquarecentimeters)
@@ -466,7 +466,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareDecimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromMegatonneSquareDecimeters(double megatonnesquaredecimeters)
@@ -481,7 +481,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromMegatonneSquareMeters(double megatonnesquaremeters)
@@ -496,7 +496,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MegatonneSquareMilimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromMegatonneSquareMilimeters(double megatonnesquaremilimeters)
@@ -511,7 +511,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareCentimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromMilligramSquareCentimeters(double milligramsquarecentimeters)
@@ -526,7 +526,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareDecimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromMilligramSquareDecimeters(double milligramsquaredecimeters)
@@ -541,7 +541,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromMilligramSquareMeters(double milligramsquaremeters)
@@ -556,7 +556,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from MilligramSquareMillimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromMilligramSquareMillimeters(double milligramsquaremillimeters)
@@ -571,7 +571,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from PoundSquareFeet.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromPoundSquareFeet(double poundsquarefeet)
@@ -586,7 +586,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from PoundSquareInches.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromPoundSquareInches(double poundsquareinches)
@@ -601,7 +601,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareCentimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromTonneSquareCentimeters(double tonnesquarecentimeters)
@@ -616,7 +616,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareDecimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromTonneSquareDecimeters(double tonnesquaredecimeters)
@@ -631,7 +631,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareMeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromTonneSquareMeters(double tonnesquaremeters)
@@ -646,7 +646,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareMilimeters.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MassMomentOfInertia FromTonneSquareMilimeters(double tonnesquaremilimeters)

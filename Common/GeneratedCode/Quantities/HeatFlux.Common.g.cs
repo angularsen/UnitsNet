@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -221,7 +221,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from BtusPerHourSquareFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromBtusPerHourSquareFoot(double btusperhoursquarefoot)
@@ -236,7 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from BtusPerMinuteSquareFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromBtusPerMinuteSquareFoot(double btusperminutesquarefoot)
@@ -251,7 +251,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from BtusPerSecondSquareFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromBtusPerSecondSquareFoot(double btuspersecondsquarefoot)
@@ -266,7 +266,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from BtusPerSecondSquareInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromBtusPerSecondSquareInch(double btuspersecondsquareinch)
@@ -281,7 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from CaloriesPerSecondSquareCentimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromCaloriesPerSecondSquareCentimeter(double caloriespersecondsquarecentimeter)
@@ -296,7 +296,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from CentiwattsPerSquareMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromCentiwattsPerSquareMeter(double centiwattspersquaremeter)
@@ -311,7 +311,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from DeciwattsPerSquareMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromDeciwattsPerSquareMeter(double deciwattspersquaremeter)
@@ -326,7 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from KilocaloriesPerHourSquareMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromKilocaloriesPerHourSquareMeter(double kilocaloriesperhoursquaremeter)
@@ -341,7 +341,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from KilocaloriesPerSecondSquareCentimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromKilocaloriesPerSecondSquareCentimeter(double kilocaloriespersecondsquarecentimeter)
@@ -356,7 +356,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from KilowattsPerSquareMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromKilowattsPerSquareMeter(double kilowattspersquaremeter)
@@ -371,7 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from MicrowattsPerSquareMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromMicrowattsPerSquareMeter(double microwattspersquaremeter)
@@ -386,7 +386,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from MilliwattsPerSquareMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromMilliwattsPerSquareMeter(double milliwattspersquaremeter)
@@ -401,7 +401,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from NanowattsPerSquareMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromNanowattsPerSquareMeter(double nanowattspersquaremeter)
@@ -416,7 +416,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from WattsPerSquareFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromWattsPerSquareFoot(double wattspersquarefoot)
@@ -431,7 +431,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from WattsPerSquareInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromWattsPerSquareInch(double wattspersquareinch)
@@ -446,7 +446,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get HeatFlux from WattsPerSquareMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static HeatFlux FromWattsPerSquareMeter(double wattspersquaremeter)

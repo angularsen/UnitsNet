@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -331,7 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from CentigramsPerDeciLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromCentigramsPerDeciLiter(double centigramsperdeciliter)
@@ -346,7 +346,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from CentigramsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromCentigramsPerLiter(double centigramsperliter)
@@ -361,7 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from CentigramsPerMilliliter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromCentigramsPerMilliliter(double centigramspermilliliter)
@@ -376,7 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from DecigramsPerDeciLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromDecigramsPerDeciLiter(double decigramsperdeciliter)
@@ -391,7 +391,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from DecigramsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromDecigramsPerLiter(double decigramsperliter)
@@ -406,7 +406,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from DecigramsPerMilliliter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromDecigramsPerMilliliter(double decigramspermilliliter)
@@ -421,7 +421,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from GramsPerCubicCentimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromGramsPerCubicCentimeter(double gramspercubiccentimeter)
@@ -436,7 +436,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from GramsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromGramsPerCubicMeter(double gramspercubicmeter)
@@ -451,7 +451,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from GramsPerCubicMillimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromGramsPerCubicMillimeter(double gramspercubicmillimeter)
@@ -466,7 +466,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from GramsPerDeciLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromGramsPerDeciLiter(double gramsperdeciliter)
@@ -481,7 +481,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from GramsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromGramsPerLiter(double gramsperliter)
@@ -496,7 +496,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from GramsPerMilliliter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromGramsPerMilliliter(double gramspermilliliter)
@@ -511,7 +511,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from KilogramsPerCubicCentimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromKilogramsPerCubicCentimeter(double kilogramspercubiccentimeter)
@@ -526,7 +526,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from KilogramsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromKilogramsPerCubicMeter(double kilogramspercubicmeter)
@@ -541,7 +541,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from KilogramsPerCubicMillimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromKilogramsPerCubicMillimeter(double kilogramspercubicmillimeter)
@@ -556,7 +556,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from KilopoundsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromKilopoundsPerCubicFoot(double kilopoundspercubicfoot)
@@ -571,7 +571,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from KilopoundsPerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromKilopoundsPerCubicInch(double kilopoundspercubicinch)
@@ -586,7 +586,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from MicrogramsPerDeciLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromMicrogramsPerDeciLiter(double microgramsperdeciliter)
@@ -601,7 +601,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from MicrogramsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromMicrogramsPerLiter(double microgramsperliter)
@@ -616,7 +616,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from MicrogramsPerMilliliter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromMicrogramsPerMilliliter(double microgramspermilliliter)
@@ -631,7 +631,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from MilligramsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromMilligramsPerCubicMeter(double milligramspercubicmeter)
@@ -646,7 +646,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from MilligramsPerDeciLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromMilligramsPerDeciLiter(double milligramsperdeciliter)
@@ -661,7 +661,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from MilligramsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromMilligramsPerLiter(double milligramsperliter)
@@ -676,7 +676,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from MilligramsPerMilliliter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromMilligramsPerMilliliter(double milligramspermilliliter)
@@ -691,7 +691,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from NanogramsPerDeciLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromNanogramsPerDeciLiter(double nanogramsperdeciliter)
@@ -706,7 +706,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from NanogramsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromNanogramsPerLiter(double nanogramsperliter)
@@ -721,7 +721,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from NanogramsPerMilliliter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromNanogramsPerMilliliter(double nanogramspermilliliter)
@@ -736,7 +736,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from PicogramsPerDeciLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromPicogramsPerDeciLiter(double picogramsperdeciliter)
@@ -751,7 +751,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from PicogramsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromPicogramsPerLiter(double picogramsperliter)
@@ -766,7 +766,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from PicogramsPerMilliliter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromPicogramsPerMilliliter(double picogramspermilliliter)
@@ -781,7 +781,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from PoundsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromPoundsPerCubicFoot(double poundspercubicfoot)
@@ -796,7 +796,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from PoundsPerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromPoundsPerCubicInch(double poundspercubicinch)
@@ -811,7 +811,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from PoundsPerImperialGallon.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromPoundsPerImperialGallon(double poundsperimperialgallon)
@@ -826,7 +826,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from PoundsPerUSGallon.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromPoundsPerUSGallon(double poundsperusgallon)
@@ -841,7 +841,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from SlugsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromSlugsPerCubicFoot(double slugspercubicfoot)
@@ -856,7 +856,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from TonnesPerCubicCentimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromTonnesPerCubicCentimeter(double tonnespercubiccentimeter)
@@ -871,7 +871,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from TonnesPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromTonnesPerCubicMeter(double tonnespercubicmeter)
@@ -886,7 +886,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Density from TonnesPerCubicMillimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Density FromTonnesPerCubicMillimeter(double tonnespercubicmillimeter)

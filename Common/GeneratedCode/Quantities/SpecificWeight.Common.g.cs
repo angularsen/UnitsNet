@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -226,7 +226,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicCentimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilogramsForcePerCubicCentimeter(double kilogramsforcepercubiccentimeter)
@@ -241,7 +241,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilogramsForcePerCubicMeter(double kilogramsforcepercubicmeter)
@@ -256,7 +256,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilogramsForcePerCubicMillimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilogramsForcePerCubicMillimeter(double kilogramsforcepercubicmillimeter)
@@ -271,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilonewtonsPerCubicCentimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilonewtonsPerCubicCentimeter(double kilonewtonspercubiccentimeter)
@@ -286,7 +286,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilonewtonsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilonewtonsPerCubicMeter(double kilonewtonspercubicmeter)
@@ -301,7 +301,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilonewtonsPerCubicMillimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilonewtonsPerCubicMillimeter(double kilonewtonspercubicmillimeter)
@@ -316,7 +316,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilopoundsForcePerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilopoundsForcePerCubicFoot(double kilopoundsforcepercubicfoot)
@@ -331,7 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from KilopoundsForcePerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromKilopoundsForcePerCubicInch(double kilopoundsforcepercubicinch)
@@ -346,7 +346,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from MeganewtonsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromMeganewtonsPerCubicMeter(double meganewtonspercubicmeter)
@@ -361,7 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from NewtonsPerCubicCentimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromNewtonsPerCubicCentimeter(double newtonspercubiccentimeter)
@@ -376,7 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from NewtonsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromNewtonsPerCubicMeter(double newtonspercubicmeter)
@@ -391,7 +391,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from NewtonsPerCubicMillimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromNewtonsPerCubicMillimeter(double newtonspercubicmillimeter)
@@ -406,7 +406,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from PoundsForcePerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromPoundsForcePerCubicFoot(double poundsforcepercubicfoot)
@@ -421,7 +421,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from PoundsForcePerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromPoundsForcePerCubicInch(double poundsforcepercubicinch)
@@ -436,7 +436,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from TonnesForcePerCubicCentimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromTonnesForcePerCubicCentimeter(double tonnesforcepercubiccentimeter)
@@ -451,7 +451,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from TonnesForcePerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromTonnesForcePerCubicMeter(double tonnesforcepercubicmeter)
@@ -466,7 +466,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificWeight from TonnesForcePerCubicMillimeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificWeight FromTonnesForcePerCubicMillimeter(double tonnesforcepercubicmillimeter)

@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -361,7 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from DecawattsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromDecawattsPerCubicFoot(double decawattspercubicfoot)
@@ -376,7 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from DecawattsPerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromDecawattsPerCubicInch(double decawattspercubicinch)
@@ -391,7 +391,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from DecawattsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromDecawattsPerCubicMeter(double decawattspercubicmeter)
@@ -406,7 +406,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from DecawattsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromDecawattsPerLiter(double decawattsperliter)
@@ -421,7 +421,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from DeciwattsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromDeciwattsPerCubicFoot(double deciwattspercubicfoot)
@@ -436,7 +436,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from DeciwattsPerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromDeciwattsPerCubicInch(double deciwattspercubicinch)
@@ -451,7 +451,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from DeciwattsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromDeciwattsPerCubicMeter(double deciwattspercubicmeter)
@@ -466,7 +466,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from DeciwattsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromDeciwattsPerLiter(double deciwattsperliter)
@@ -481,7 +481,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from GigawattsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromGigawattsPerCubicFoot(double gigawattspercubicfoot)
@@ -496,7 +496,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from GigawattsPerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromGigawattsPerCubicInch(double gigawattspercubicinch)
@@ -511,7 +511,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from GigawattsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromGigawattsPerCubicMeter(double gigawattspercubicmeter)
@@ -526,7 +526,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from GigawattsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromGigawattsPerLiter(double gigawattsperliter)
@@ -541,7 +541,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from KilowattsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromKilowattsPerCubicFoot(double kilowattspercubicfoot)
@@ -556,7 +556,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from KilowattsPerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromKilowattsPerCubicInch(double kilowattspercubicinch)
@@ -571,7 +571,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from KilowattsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromKilowattsPerCubicMeter(double kilowattspercubicmeter)
@@ -586,7 +586,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from KilowattsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromKilowattsPerLiter(double kilowattsperliter)
@@ -601,7 +601,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from MegawattsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromMegawattsPerCubicFoot(double megawattspercubicfoot)
@@ -616,7 +616,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from MegawattsPerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromMegawattsPerCubicInch(double megawattspercubicinch)
@@ -631,7 +631,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from MegawattsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromMegawattsPerCubicMeter(double megawattspercubicmeter)
@@ -646,7 +646,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from MegawattsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromMegawattsPerLiter(double megawattsperliter)
@@ -661,7 +661,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from MicrowattsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromMicrowattsPerCubicFoot(double microwattspercubicfoot)
@@ -676,7 +676,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from MicrowattsPerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromMicrowattsPerCubicInch(double microwattspercubicinch)
@@ -691,7 +691,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from MicrowattsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromMicrowattsPerCubicMeter(double microwattspercubicmeter)
@@ -706,7 +706,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from MicrowattsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromMicrowattsPerLiter(double microwattsperliter)
@@ -721,7 +721,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from MilliwattsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromMilliwattsPerCubicFoot(double milliwattspercubicfoot)
@@ -736,7 +736,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from MilliwattsPerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromMilliwattsPerCubicInch(double milliwattspercubicinch)
@@ -751,7 +751,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from MilliwattsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromMilliwattsPerCubicMeter(double milliwattspercubicmeter)
@@ -766,7 +766,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from MilliwattsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromMilliwattsPerLiter(double milliwattsperliter)
@@ -781,7 +781,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from NanowattsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromNanowattsPerCubicFoot(double nanowattspercubicfoot)
@@ -796,7 +796,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from NanowattsPerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromNanowattsPerCubicInch(double nanowattspercubicinch)
@@ -811,7 +811,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from NanowattsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromNanowattsPerCubicMeter(double nanowattspercubicmeter)
@@ -826,7 +826,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from NanowattsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromNanowattsPerLiter(double nanowattsperliter)
@@ -841,7 +841,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from PicowattsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromPicowattsPerCubicFoot(double picowattspercubicfoot)
@@ -856,7 +856,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from PicowattsPerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromPicowattsPerCubicInch(double picowattspercubicinch)
@@ -871,7 +871,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from PicowattsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromPicowattsPerCubicMeter(double picowattspercubicmeter)
@@ -886,7 +886,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from PicowattsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromPicowattsPerLiter(double picowattsperliter)
@@ -901,7 +901,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from TerawattsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromTerawattsPerCubicFoot(double terawattspercubicfoot)
@@ -916,7 +916,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from TerawattsPerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromTerawattsPerCubicInch(double terawattspercubicinch)
@@ -931,7 +931,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from TerawattsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromTerawattsPerCubicMeter(double terawattspercubicmeter)
@@ -946,7 +946,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from TerawattsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromTerawattsPerLiter(double terawattsperliter)
@@ -961,7 +961,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from WattsPerCubicFoot.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromWattsPerCubicFoot(double wattspercubicfoot)
@@ -976,7 +976,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from WattsPerCubicInch.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromWattsPerCubicInch(double wattspercubicinch)
@@ -991,7 +991,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from WattsPerCubicMeter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromWattsPerCubicMeter(double wattspercubicmeter)
@@ -1006,7 +1006,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get PowerDensity from WattsPerLiter.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static PowerDensity FromWattsPerLiter(double wattsperliter)

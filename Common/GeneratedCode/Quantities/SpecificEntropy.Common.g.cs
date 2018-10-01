@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -181,7 +181,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEntropy from CaloriesPerGramKelvin.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEntropy FromCaloriesPerGramKelvin(double caloriespergramkelvin)
@@ -196,7 +196,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEntropy from JoulesPerKilogramDegreeCelsius.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEntropy FromJoulesPerKilogramDegreeCelsius(double joulesperkilogramdegreecelsius)
@@ -211,7 +211,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEntropy from JoulesPerKilogramKelvin.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEntropy FromJoulesPerKilogramKelvin(double joulesperkilogramkelvin)
@@ -226,7 +226,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEntropy from KilocaloriesPerGramKelvin.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEntropy FromKilocaloriesPerGramKelvin(double kilocaloriespergramkelvin)
@@ -241,7 +241,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEntropy from KilojoulesPerKilogramDegreeCelsius.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEntropy FromKilojoulesPerKilogramDegreeCelsius(double kilojoulesperkilogramdegreecelsius)
@@ -256,7 +256,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEntropy from KilojoulesPerKilogramKelvin.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEntropy FromKilojoulesPerKilogramKelvin(double kilojoulesperkilogramkelvin)
@@ -271,7 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEntropy from MegajoulesPerKilogramDegreeCelsius.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEntropy FromMegajoulesPerKilogramDegreeCelsius(double megajoulesperkilogramdegreecelsius)
@@ -286,7 +286,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get SpecificEntropy from MegajoulesPerKilogramKelvin.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static SpecificEntropy FromMegajoulesPerKilogramKelvin(double megajoulesperkilogramkelvin)

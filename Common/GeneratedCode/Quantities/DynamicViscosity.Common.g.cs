@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -171,7 +171,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get DynamicViscosity from Centipoise.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static DynamicViscosity FromCentipoise(double centipoise)
@@ -186,7 +186,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get DynamicViscosity from MicropascalSeconds.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static DynamicViscosity FromMicropascalSeconds(double micropascalseconds)
@@ -201,7 +201,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get DynamicViscosity from MillipascalSeconds.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static DynamicViscosity FromMillipascalSeconds(double millipascalseconds)
@@ -216,7 +216,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get DynamicViscosity from NewtonSecondsPerMeterSquared.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static DynamicViscosity FromNewtonSecondsPerMeterSquared(double newtonsecondspermetersquared)
@@ -231,7 +231,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get DynamicViscosity from PascalSeconds.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static DynamicViscosity FromPascalSeconds(double pascalseconds)
@@ -246,7 +246,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get DynamicViscosity from Poise.
         /// </summary>
-        /// <exception cref="ArgumentException>If value is NaN or Infinity.</exception>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static DynamicViscosity FromPoise(double poise)
