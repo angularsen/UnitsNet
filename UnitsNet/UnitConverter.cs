@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -119,8 +119,11 @@ namespace UnitsNet
         {
             try
             {
-                // TODO Reimplement to avoid exceptions where possible, as Try methods are generally recommended for performance and this is cheating
+                // Re-implement this to avoid exceptions where possible, as Try methods are generally recommended for performance and this is cheating.
                 // https://msdn.microsoft.com/en-us/library/ms229009(v=vs.100).aspx
+                //
+                // Implement Try-methods without try-catch #504
+                // https://github.com/angularsen/UnitsNet/issues/504
                 result = ConvertByName(inputValue, quantityName, fromUnit, toUnit);
                 return true;
             }
@@ -201,7 +204,7 @@ namespace UnitsNet
 
             UnitSystem unitSystem = UnitSystem.GetCached(culture);
             object fromUnitValue = unitSystem.Parse(fromUnitAbbrev, unitType); // ex: ("m", LengthUnit) => LengthUnit.Meter
-            object toUnitValue = unitSystem.Parse(toUnitAbbrev, unitType); // ex:("cm", LengthUnit) => LengthUnit.Centimeter 
+            object toUnitValue = unitSystem.Parse(toUnitAbbrev, unitType); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
 
             MethodInfo fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
             object fromResult = fromMethod.Invoke(null, new[] {fromValue, fromUnitValue}); // ex: Length quantity = UnitsNet.Length.From(5, LengthUnit.Meter)
@@ -277,8 +280,11 @@ namespace UnitsNet
         {
             try
             {
-                // TODO Reimplement to avoid exceptions where possible, as Try methods are generally recommended for performance and this is cheating
+                // Re-implement this to avoid exceptions where possible, as Try methods are generally recommended for performance and this is cheating.
                 // https://msdn.microsoft.com/en-us/library/ms229009(v=vs.100).aspx
+                //
+                // Implement Try-methods without try-catch #504
+                // https://github.com/angularsen/UnitsNet/issues/504
                 result = ConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, culture);
                 return true;
             }
