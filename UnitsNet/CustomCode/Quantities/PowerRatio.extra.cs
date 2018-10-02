@@ -57,10 +57,8 @@ namespace UnitsNet
             _unit = PowerRatioUnit.DecibelWatt;
         }
 
-#if !WINDOWS_UWP
-
         /// <summary>
-        ///     Gets a <see cref="Power" /> from this <see cref="PowerRatio" />.
+        ///     Gets a <see cref="Power" /> from this <see cref="PowerRatio" /> (which is a power level relative to one watt).
         /// </summary>
         /// <remarks>
         ///     Provides a nicer syntax for converting a power ratio back to a power.
@@ -70,7 +68,8 @@ namespace UnitsNet
         /// </remarks>
         public Power ToPower()
         {
-            return PowerRatio.ToPower(this);
+            // P(W) = 1W * 10^(P(dBW)/10)
+            return Power.FromWatts(Math.Pow(10, DecibelWatts / 10));
         }
 
         /// <summary>
@@ -79,10 +78,9 @@ namespace UnitsNet
         /// <param name="impedance">The input impedance of the load. This is usually 50, 75 or 600 ohms.</param>
         public AmplitudeRatio ToAmplitudeRatio(ElectricResistance impedance)
         {
-            return PowerRatio.ToAmplitudeRatio(this, impedance);
+            // E(dBV) = 10*log10(Z(Ω)/1) + P(dBW)
+            return AmplitudeRatio.FromDecibelVolts(10 * Math.Log10(impedance.Ohms / 1) + DecibelWatts);
         }
-
-#endif
 
         #region Static Methods
 
@@ -93,28 +91,6 @@ namespace UnitsNet
         public static PowerRatio FromPower(Power power)
         {
             return new PowerRatio(power);
-        }
-
-        /// <summary>
-        ///     Gets a <see cref="Power" /> from a <see cref="PowerRatio" /> (which is a power level relative to one watt).
-        /// </summary>
-        /// <param name="powerRatio">The power level relative to one watt.</param>
-        public static Power ToPower(PowerRatio powerRatio)
-        {
-            // P(W) = 1W * 10^(P(dBW)/10)
-            return Power.FromWatts(Math.Pow(10, powerRatio.DecibelWatts / 10));
-        }
-
-        /// <summary>
-        ///     Gets a <see cref="AmplitudeRatio" /> from a <see cref="PowerRatio" />.
-        /// </summary>
-        /// <param name="powerRatio">The power ratio.</param>
-        /// <param name="impedance">The input impedance of the load. This is usually 50, 75 or 600 ohms.</param>
-        /// <remarks>http://www.maximintegrated.com/en/app-notes/index.mvp/id/808</remarks>
-        public static AmplitudeRatio ToAmplitudeRatio(PowerRatio powerRatio, ElectricResistance impedance)
-        {
-            // E(dBV) = 10*log10(Z(Ω)/1) + P(dBW)
-            return AmplitudeRatio.FromDecibelVolts(10 * Math.Log10(impedance.Ohms / 1) + powerRatio.DecibelWatts);
         }
 
         #endregion

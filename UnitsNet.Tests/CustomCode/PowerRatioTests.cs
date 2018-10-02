@@ -71,7 +71,7 @@ namespace UnitsNet.Tests.CustomCode
         public void ExpectPowerRatioConvertedCorrectly(double powerRatio, double expected)
         {
             PowerRatio pr = PowerRatio.FromDecibelWatts(powerRatio);
-            double actual = PowerRatio.ToPower(pr).Watts;
+            double actual = pr.ToPower().Watts;
             Assert.Equal(expected, actual);
         }
 

@@ -33,19 +33,14 @@ namespace UnitsNet
     public partial struct Density
 #endif
     {
-
- #if !WINDOWS_UWP
-
         /// <summary>
         ///     Gets <see cref="Molarity" /> from this <see cref="Density" />.
         /// </summary>
         /// <param name="molecularWeight"></param>
         public Molarity ToMolarity(Mass molecularWeight)
         {
-            return Density.ToMolarity(this, molecularWeight);
+            return Molarity.FromMolesPerCubicMeter(KilogramsPerCubicMeter / molecularWeight.Kilograms);
         }
-
-#endif
 
         #region Static Methods
 
@@ -59,10 +54,7 @@ namespace UnitsNet
             return new Density(molarity.MolesPerCubicMeter * molecularWeight.Kilograms, DensityUnit.KilogramPerCubicMeter);
         }
 
-        public static Molarity ToMolarity(Density density, Mass molecularWeight)
-        {
-            return Molarity.FromMolesPerCubicMeter(density.KilogramsPerCubicMeter / molecularWeight.Kilograms);
-        }
+        #endregion
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -91,7 +83,5 @@ namespace UnitsNet
             return new SpecificWeight(density.KilogramsPerCubicMeter * acceleration.MetersPerSecondSquared, SpecificWeightUnit.NewtonPerCubicMeter);
         }
 #endif
-
-        #endregion
     }
 }

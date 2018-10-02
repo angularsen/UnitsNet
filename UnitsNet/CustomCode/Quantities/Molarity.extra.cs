@@ -25,18 +25,14 @@ namespace UnitsNet
             _unit = MolarityUnit.MolesPerCubicMeter;
         }
 
-#if !WINDOWS_UWP
-
         /// <summary>
         ///     Get a <see cref="Density"/> from this <see cref="Molarity"/>.
         /// </summary>
         /// <param name="molecularWeight"></param>
         public Density ToDensity(Mass molecularWeight)
         {
-            return Molarity.ToDensity(this, molecularWeight);
+            return Density.FromKilogramsPerCubicMeter(MolesPerCubicMeter * molecularWeight.Kilograms);
         }
-
-#endif
 
         #region Static Methods
 
@@ -48,17 +44,6 @@ namespace UnitsNet
         public static Molarity FromDensity(Density density, Mass molecularWeight)
         {
             return new Molarity(density, molecularWeight);
-        }
-
-        /// <summary>
-        ///     Get <see cref="Density"/> from <see cref="Molarity"/>.
-        /// </summary>
-        /// <param name="molarity"></param>
-        /// <param name="molecularWeight"></param>
-        /// <returns></returns>
-        public static Density ToDensity(Molarity molarity, Mass molecularWeight)
-        {
-            return Density.FromKilogramsPerCubicMeter(molarity.MolesPerCubicMeter * molecularWeight.Kilograms);
         }
 
         #endregion

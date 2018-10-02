@@ -33,6 +33,17 @@ namespace UnitsNet
     public partial struct Force
 #endif
     {
+        public static Force FromPressureByArea(Pressure p, Area area)
+        {
+            double newtons = p.Pascals * area.SquareMeters;
+            return new Force(newtons, ForceUnit.Newton);
+        }
+
+        public static Force FromMassByAcceleration(Mass mass, Acceleration acceleration)
+        {
+            return new Force(mass.Kilograms * acceleration.MetersPerSecondSquared, ForceUnit.Newton);
+        }
+
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static Power operator *(Force force, Speed speed)
@@ -65,16 +76,5 @@ namespace UnitsNet
             return ForcePerLength.FromNewtonsPerMeter(force.Newtons / length.Meters);
         }
 #endif
-
-        public static Force FromPressureByArea(Pressure p, Area area)
-        {
-            double newtons = p.Pascals * area.SquareMeters;
-            return new Force(newtons, ForceUnit.Newton);
-        }
-
-        public static Force FromMassByAcceleration(Mass mass, Acceleration acceleration)
-        {
-            return new Force(mass.Kilograms * acceleration.MetersPerSecondSquared, ForceUnit.Newton);
-        }
     }
 }
