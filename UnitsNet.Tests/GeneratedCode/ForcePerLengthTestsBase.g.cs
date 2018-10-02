@@ -76,9 +76,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ForcePerLength((double)0.0, ForcePerLengthUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ForcePerLength(double.PositiveInfinity, ForcePerLengthUnit.NewtonPerMeter));
+            Assert.Throws<ArgumentException>(() => new ForcePerLength(double.NegativeInfinity, ForcePerLengthUnit.NewtonPerMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ForcePerLength(double.NaN, ForcePerLengthUnit.NewtonPerMeter));
         }
 
         [Fact]
@@ -108,6 +121,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.MillinewtonPerMeter).MillinewtonsPerMeter, MillinewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.NanonewtonPerMeter).NanonewtonsPerMeter, NanonewtonsPerMeterTolerance);
             AssertEx.EqualTolerance(1, ForcePerLength.From(1, ForcePerLengthUnit.NewtonPerMeter).NewtonsPerMeter, NewtonsPerMeterTolerance);
+        }
+
+        [Fact]
+        public void FromNewtonsPerMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ForcePerLength.FromNewtonsPerMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ForcePerLength.FromNewtonsPerMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromNewtonsPerMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ForcePerLength.FromNewtonsPerMeter(double.NaN));
         }
 
         [Fact]

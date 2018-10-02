@@ -66,9 +66,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Illuminance((double)0.0, IlluminanceUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Illuminance(double.PositiveInfinity, IlluminanceUnit.Lux));
+            Assert.Throws<ArgumentException>(() => new Illuminance(double.NegativeInfinity, IlluminanceUnit.Lux));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Illuminance(double.NaN, IlluminanceUnit.Lux));
         }
 
         [Fact]
@@ -88,6 +101,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Illuminance.From(1, IlluminanceUnit.Lux).Lux, LuxTolerance);
             AssertEx.EqualTolerance(1, Illuminance.From(1, IlluminanceUnit.Megalux).Megalux, MegaluxTolerance);
             AssertEx.EqualTolerance(1, Illuminance.From(1, IlluminanceUnit.Millilux).Millilux, MilliluxTolerance);
+        }
+
+        [Fact]
+        public void FromLux_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Illuminance.FromLux(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Illuminance.FromLux(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromLux_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Illuminance.FromLux(double.NaN));
         }
 
         [Fact]

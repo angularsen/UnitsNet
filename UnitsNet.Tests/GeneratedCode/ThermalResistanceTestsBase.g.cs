@@ -68,9 +68,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ThermalResistance((double)0.0, ThermalResistanceUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ThermalResistance(double.PositiveInfinity, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
+            Assert.Throws<ArgumentException>(() => new ThermalResistance(double.NegativeInfinity, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ThermalResistance(double.NaN, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt));
         }
 
         [Fact]
@@ -92,6 +105,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ThermalResistance.From(1, ThermalResistanceUnit.SquareCentimeterKelvinPerWatt).SquareCentimeterKelvinsPerWatt, SquareCentimeterKelvinsPerWattTolerance);
             AssertEx.EqualTolerance(1, ThermalResistance.From(1, ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt).SquareMeterDegreesCelsiusPerWatt, SquareMeterDegreesCelsiusPerWattTolerance);
             AssertEx.EqualTolerance(1, ThermalResistance.From(1, ThermalResistanceUnit.SquareMeterKelvinPerKilowatt).SquareMeterKelvinsPerKilowatt, SquareMeterKelvinsPerKilowattTolerance);
+        }
+
+        [Fact]
+        public void FromSquareMeterKelvinsPerKilowatt_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ThermalResistance.FromSquareMeterKelvinsPerKilowatt(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ThermalResistance.FromSquareMeterKelvinsPerKilowatt(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromSquareMeterKelvinsPerKilowatt_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ThermalResistance.FromSquareMeterKelvinsPerKilowatt(double.NaN));
         }
 
         [Fact]

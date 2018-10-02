@@ -62,9 +62,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ThermalConductivity((double)0.0, ThermalConductivityUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ThermalConductivity(double.PositiveInfinity, ThermalConductivityUnit.WattPerMeterKelvin));
+            Assert.Throws<ArgumentException>(() => new ThermalConductivity(double.NegativeInfinity, ThermalConductivityUnit.WattPerMeterKelvin));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ThermalConductivity(double.NaN, ThermalConductivityUnit.WattPerMeterKelvin));
         }
 
         [Fact]
@@ -80,6 +93,19 @@ namespace UnitsNet.Tests
         {
             AssertEx.EqualTolerance(1, ThermalConductivity.From(1, ThermalConductivityUnit.BtuPerHourFootFahrenheit).BtusPerHourFootFahrenheit, BtusPerHourFootFahrenheitTolerance);
             AssertEx.EqualTolerance(1, ThermalConductivity.From(1, ThermalConductivityUnit.WattPerMeterKelvin).WattsPerMeterKelvin, WattsPerMeterKelvinTolerance);
+        }
+
+        [Fact]
+        public void FromWattsPerMeterKelvin_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ThermalConductivity.FromWattsPerMeterKelvin(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ThermalConductivity.FromWattsPerMeterKelvin(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromWattsPerMeterKelvin_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ThermalConductivity.FromWattsPerMeterKelvin(double.NaN));
         }
 
         [Fact]

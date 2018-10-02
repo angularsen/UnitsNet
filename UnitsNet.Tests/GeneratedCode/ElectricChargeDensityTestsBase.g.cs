@@ -60,9 +60,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ElectricChargeDensity((double)0.0, ElectricChargeDensityUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(double.PositiveInfinity, ElectricChargeDensityUnit.CoulombPerCubicMeter));
+            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(double.NegativeInfinity, ElectricChargeDensityUnit.CoulombPerCubicMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricChargeDensity(double.NaN, ElectricChargeDensityUnit.CoulombPerCubicMeter));
         }
 
         [Fact]
@@ -76,6 +89,19 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, ElectricChargeDensity.From(1, ElectricChargeDensityUnit.CoulombPerCubicMeter).CoulombsPerCubicMeter, CoulombsPerCubicMeterTolerance);
+        }
+
+        [Fact]
+        public void FromCoulombsPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromCoulombsPerCubicMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricChargeDensity.FromCoulombsPerCubicMeter(double.NaN));
         }
 
         [Fact]

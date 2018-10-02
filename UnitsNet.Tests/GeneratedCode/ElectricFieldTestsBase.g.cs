@@ -60,9 +60,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ElectricField((double)0.0, ElectricFieldUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricField(double.PositiveInfinity, ElectricFieldUnit.VoltPerMeter));
+            Assert.Throws<ArgumentException>(() => new ElectricField(double.NegativeInfinity, ElectricFieldUnit.VoltPerMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricField(double.NaN, ElectricFieldUnit.VoltPerMeter));
         }
 
         [Fact]
@@ -76,6 +89,19 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, ElectricField.From(1, ElectricFieldUnit.VoltPerMeter).VoltsPerMeter, VoltsPerMeterTolerance);
+        }
+
+        [Fact]
+        public void FromVoltsPerMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricField.FromVoltsPerMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricField.FromVoltsPerMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromVoltsPerMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricField.FromVoltsPerMeter(double.NaN));
         }
 
         [Fact]

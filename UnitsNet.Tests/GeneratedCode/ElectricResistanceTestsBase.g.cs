@@ -66,9 +66,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ElectricResistance((double)0.0, ElectricResistanceUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricResistance(double.PositiveInfinity, ElectricResistanceUnit.Ohm));
+            Assert.Throws<ArgumentException>(() => new ElectricResistance(double.NegativeInfinity, ElectricResistanceUnit.Ohm));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricResistance(double.NaN, ElectricResistanceUnit.Ohm));
         }
 
         [Fact]
@@ -88,6 +101,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ElectricResistance.From(1, ElectricResistanceUnit.Megaohm).Megaohms, MegaohmsTolerance);
             AssertEx.EqualTolerance(1, ElectricResistance.From(1, ElectricResistanceUnit.Milliohm).Milliohms, MilliohmsTolerance);
             AssertEx.EqualTolerance(1, ElectricResistance.From(1, ElectricResistanceUnit.Ohm).Ohms, OhmsTolerance);
+        }
+
+        [Fact]
+        public void FromOhms_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricResistance.FromOhms(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricResistance.FromOhms(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromOhms_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricResistance.FromOhms(double.NaN));
         }
 
         [Fact]

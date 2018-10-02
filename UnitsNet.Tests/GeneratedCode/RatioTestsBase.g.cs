@@ -70,9 +70,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Ratio((double)0.0, RatioUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Ratio(double.PositiveInfinity, RatioUnit.DecimalFraction));
+            Assert.Throws<ArgumentException>(() => new Ratio(double.NegativeInfinity, RatioUnit.DecimalFraction));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Ratio(double.NaN, RatioUnit.DecimalFraction));
         }
 
         [Fact]
@@ -96,6 +109,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Ratio.From(1, RatioUnit.PartPerThousand).PartsPerThousand, PartsPerThousandTolerance);
             AssertEx.EqualTolerance(1, Ratio.From(1, RatioUnit.PartPerTrillion).PartsPerTrillion, PartsPerTrillionTolerance);
             AssertEx.EqualTolerance(1, Ratio.From(1, RatioUnit.Percent).Percent, PercentTolerance);
+        }
+
+        [Fact]
+        public void FromDecimalFractions_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Ratio.FromDecimalFractions(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Ratio.FromDecimalFractions(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromDecimalFractions_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Ratio.FromDecimalFractions(double.NaN));
         }
 
         [Fact]

@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == EntropyUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -174,6 +176,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Entropy from CaloriesPerKelvin.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromCaloriesPerKelvin(double caloriesperkelvin)
@@ -188,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Entropy from JoulesPerDegreeCelsius.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromJoulesPerDegreeCelsius(double joulesperdegreecelsius)
@@ -202,6 +206,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Entropy from JoulesPerKelvin.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromJoulesPerKelvin(double joulesperkelvin)
@@ -216,6 +221,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Entropy from KilocaloriesPerKelvin.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromKilocaloriesPerKelvin(double kilocaloriesperkelvin)
@@ -230,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Entropy from KilojoulesPerDegreeCelsius.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromKilojoulesPerDegreeCelsius(double kilojoulesperdegreecelsius)
@@ -244,6 +251,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Entropy from KilojoulesPerKelvin.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromKilojoulesPerKelvin(double kilojoulesperkelvin)
@@ -258,6 +266,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Entropy from MegajoulesPerKelvin.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Entropy FromMegajoulesPerKelvin(double megajoulesperkelvin)

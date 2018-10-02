@@ -60,9 +60,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new MagneticField((double)0.0, MagneticFieldUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MagneticField(double.PositiveInfinity, MagneticFieldUnit.Tesla));
+            Assert.Throws<ArgumentException>(() => new MagneticField(double.NegativeInfinity, MagneticFieldUnit.Tesla));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MagneticField(double.NaN, MagneticFieldUnit.Tesla));
         }
 
         [Fact]
@@ -76,6 +89,19 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, MagneticField.From(1, MagneticFieldUnit.Tesla).Teslas, TeslasTolerance);
+        }
+
+        [Fact]
+        public void FromTeslas_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MagneticField.FromTeslas(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MagneticField.FromTeslas(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromTeslas_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MagneticField.FromTeslas(double.NaN));
         }
 
         [Fact]

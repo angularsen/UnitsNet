@@ -60,9 +60,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new LapseRate((double)0.0, LapseRateUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new LapseRate(double.PositiveInfinity, LapseRateUnit.DegreeCelsiusPerKilometer));
+            Assert.Throws<ArgumentException>(() => new LapseRate(double.NegativeInfinity, LapseRateUnit.DegreeCelsiusPerKilometer));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new LapseRate(double.NaN, LapseRateUnit.DegreeCelsiusPerKilometer));
         }
 
         [Fact]
@@ -76,6 +89,19 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, LapseRate.From(1, LapseRateUnit.DegreeCelsiusPerKilometer).DegreesCelciusPerKilometer, DegreesCelciusPerKilometerTolerance);
+        }
+
+        [Fact]
+        public void FromDegreesCelciusPerKilometer_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => LapseRate.FromDegreesCelciusPerKilometer(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => LapseRate.FromDegreesCelciusPerKilometer(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromDegreesCelciusPerKilometer_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => LapseRate.FromDegreesCelciusPerKilometer(double.NaN));
         }
 
         [Fact]

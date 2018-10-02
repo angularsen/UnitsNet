@@ -88,9 +88,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new MassFlow((double)0.0, MassFlowUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassFlow(double.PositiveInfinity, MassFlowUnit.GramPerSecond));
+            Assert.Throws<ArgumentException>(() => new MassFlow(double.NegativeInfinity, MassFlowUnit.GramPerSecond));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassFlow(double.NaN, MassFlowUnit.GramPerSecond));
         }
 
         [Fact]
@@ -132,6 +145,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.ShortTonPerHour).ShortTonsPerHour, ShortTonsPerHourTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.TonnePerDay).TonnesPerDay, TonnesPerDayTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.TonnePerHour).TonnesPerHour, TonnesPerHourTolerance);
+        }
+
+        [Fact]
+        public void FromGramsPerSecond_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MassFlow.FromGramsPerSecond(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MassFlow.FromGramsPerSecond(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromGramsPerSecond_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MassFlow.FromGramsPerSecond(double.NaN));
         }
 
         [Fact]

@@ -90,9 +90,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new HeatFlux((double)0.0, HeatFluxUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new HeatFlux(double.PositiveInfinity, HeatFluxUnit.WattPerSquareMeter));
+            Assert.Throws<ArgumentException>(() => new HeatFlux(double.NegativeInfinity, HeatFluxUnit.WattPerSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new HeatFlux(double.NaN, HeatFluxUnit.WattPerSquareMeter));
         }
 
         [Fact]
@@ -136,6 +149,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.WattPerSquareFoot).WattsPerSquareFoot, WattsPerSquareFootTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.WattPerSquareInch).WattsPerSquareInch, WattsPerSquareInchTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.WattPerSquareMeter).WattsPerSquareMeter, WattsPerSquareMeterTolerance);
+        }
+
+        [Fact]
+        public void FromWattsPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => HeatFlux.FromWattsPerSquareMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => HeatFlux.FromWattsPerSquareMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromWattsPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => HeatFlux.FromWattsPerSquareMeter(double.NaN));
         }
 
         [Fact]

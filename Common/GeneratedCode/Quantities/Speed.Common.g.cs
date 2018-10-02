@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == SpeedUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -299,6 +301,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from CentimetersPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromCentimetersPerHour(double centimetersperhour)
@@ -313,6 +316,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from CentimetersPerMinutes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromCentimetersPerMinutes(double centimetersperminutes)
@@ -327,6 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from CentimetersPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromCentimetersPerSecond(double centimeterspersecond)
@@ -341,6 +346,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from DecimetersPerMinutes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromDecimetersPerMinutes(double decimetersperminutes)
@@ -355,6 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from DecimetersPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromDecimetersPerSecond(double decimeterspersecond)
@@ -369,6 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from FeetPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromFeetPerHour(double feetperhour)
@@ -383,6 +391,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from FeetPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromFeetPerMinute(double feetperminute)
@@ -397,6 +406,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from FeetPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromFeetPerSecond(double feetpersecond)
@@ -411,6 +421,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from InchesPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromInchesPerHour(double inchesperhour)
@@ -425,6 +436,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from InchesPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromInchesPerMinute(double inchesperminute)
@@ -439,6 +451,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from InchesPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromInchesPerSecond(double inchespersecond)
@@ -453,6 +466,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from KilometersPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromKilometersPerHour(double kilometersperhour)
@@ -467,6 +481,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from KilometersPerMinutes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromKilometersPerMinutes(double kilometersperminutes)
@@ -481,6 +496,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from KilometersPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromKilometersPerSecond(double kilometerspersecond)
@@ -495,6 +511,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from Knots.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromKnots(double knots)
@@ -509,6 +526,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MetersPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromMetersPerHour(double metersperhour)
@@ -523,6 +541,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MetersPerMinutes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromMetersPerMinutes(double metersperminutes)
@@ -537,6 +556,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MetersPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromMetersPerSecond(double meterspersecond)
@@ -551,6 +571,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MicrometersPerMinutes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromMicrometersPerMinutes(double micrometersperminutes)
@@ -565,6 +586,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MicrometersPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromMicrometersPerSecond(double micrometerspersecond)
@@ -579,6 +601,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MilesPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromMilesPerHour(double milesperhour)
@@ -593,6 +616,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MillimetersPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromMillimetersPerHour(double millimetersperhour)
@@ -607,6 +631,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MillimetersPerMinutes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromMillimetersPerMinutes(double millimetersperminutes)
@@ -621,6 +646,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from MillimetersPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromMillimetersPerSecond(double millimeterspersecond)
@@ -635,6 +661,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from NanometersPerMinutes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromNanometersPerMinutes(double nanometersperminutes)
@@ -649,6 +676,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from NanometersPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromNanometersPerSecond(double nanometerspersecond)
@@ -663,6 +691,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from UsSurveyFeetPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromUsSurveyFeetPerHour(double ussurveyfeetperhour)
@@ -677,6 +706,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from UsSurveyFeetPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromUsSurveyFeetPerMinute(double ussurveyfeetperminute)
@@ -691,6 +721,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from UsSurveyFeetPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromUsSurveyFeetPerSecond(double ussurveyfeetpersecond)
@@ -705,6 +736,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from YardsPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromYardsPerHour(double yardsperhour)
@@ -719,6 +751,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from YardsPerMinute.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromYardsPerMinute(double yardsperminute)
@@ -733,6 +766,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Speed from YardsPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Speed FromYardsPerSecond(double yardspersecond)

@@ -102,9 +102,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Length((double)0.0, LengthUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Length(double.PositiveInfinity, LengthUnit.Meter));
+            Assert.Throws<ArgumentException>(() => new Length(double.NegativeInfinity, LengthUnit.Meter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Length(double.NaN, LengthUnit.Meter));
         }
 
         [Fact]
@@ -160,6 +173,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Twip).Twips, TwipsTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.UsSurveyFoot).UsSurveyFeet, UsSurveyFeetTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Yard).Yards, YardsTolerance);
+        }
+
+        [Fact]
+        public void FromMeters_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromMeters_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.NaN));
         }
 
         [Fact]

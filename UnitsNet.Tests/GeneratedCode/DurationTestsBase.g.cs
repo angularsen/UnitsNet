@@ -78,9 +78,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Duration((double)0.0, DurationUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Duration(double.PositiveInfinity, DurationUnit.Second));
+            Assert.Throws<ArgumentException>(() => new Duration(double.NegativeInfinity, DurationUnit.Second));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Duration(double.NaN, DurationUnit.Second));
         }
 
         [Fact]
@@ -112,6 +125,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Second).Seconds, SecondsTolerance);
             AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Week).Weeks, WeeksTolerance);
             AssertEx.EqualTolerance(1, Duration.From(1, DurationUnit.Year365).Years365, Years365Tolerance);
+        }
+
+        [Fact]
+        public void FromSeconds_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Duration.FromSeconds(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Duration.FromSeconds(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromSeconds_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Duration.FromSeconds(double.NaN));
         }
 
         [Fact]

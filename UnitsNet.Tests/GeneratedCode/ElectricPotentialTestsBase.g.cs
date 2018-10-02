@@ -68,9 +68,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ElectricPotential((double)0.0, ElectricPotentialUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricPotential(double.PositiveInfinity, ElectricPotentialUnit.Volt));
+            Assert.Throws<ArgumentException>(() => new ElectricPotential(double.NegativeInfinity, ElectricPotentialUnit.Volt));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricPotential(double.NaN, ElectricPotentialUnit.Volt));
         }
 
         [Fact]
@@ -92,6 +105,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ElectricPotential.From(1, ElectricPotentialUnit.Microvolt).Microvolts, MicrovoltsTolerance);
             AssertEx.EqualTolerance(1, ElectricPotential.From(1, ElectricPotentialUnit.Millivolt).Millivolts, MillivoltsTolerance);
             AssertEx.EqualTolerance(1, ElectricPotential.From(1, ElectricPotentialUnit.Volt).Volts, VoltsTolerance);
+        }
+
+        [Fact]
+        public void FromVolts_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricPotential.FromVolts(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricPotential.FromVolts(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromVolts_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricPotential.FromVolts(double.NaN));
         }
 
         [Fact]

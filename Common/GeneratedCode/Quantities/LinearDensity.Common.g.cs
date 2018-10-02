@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == LinearDensityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -154,6 +156,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get LinearDensity from GramsPerMeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static LinearDensity FromGramsPerMeter(double gramspermeter)
@@ -168,6 +171,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get LinearDensity from KilogramsPerMeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static LinearDensity FromKilogramsPerMeter(double kilogramspermeter)
@@ -182,6 +186,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get LinearDensity from PoundsPerFoot.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static LinearDensity FromPoundsPerFoot(double poundsperfoot)

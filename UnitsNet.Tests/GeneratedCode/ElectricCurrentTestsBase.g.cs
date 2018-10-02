@@ -74,9 +74,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ElectricCurrent((double)0.0, ElectricCurrentUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricCurrent(double.PositiveInfinity, ElectricCurrentUnit.Ampere));
+            Assert.Throws<ArgumentException>(() => new ElectricCurrent(double.NegativeInfinity, ElectricCurrentUnit.Ampere));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricCurrent(double.NaN, ElectricCurrentUnit.Ampere));
         }
 
         [Fact]
@@ -104,6 +117,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ElectricCurrent.From(1, ElectricCurrentUnit.Milliampere).Milliamperes, MilliamperesTolerance);
             AssertEx.EqualTolerance(1, ElectricCurrent.From(1, ElectricCurrentUnit.Nanoampere).Nanoamperes, NanoamperesTolerance);
             AssertEx.EqualTolerance(1, ElectricCurrent.From(1, ElectricCurrentUnit.Picoampere).Picoamperes, PicoamperesTolerance);
+        }
+
+        [Fact]
+        public void FromAmperes_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricCurrent.FromAmperes(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricCurrent.FromAmperes(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromAmperes_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricCurrent.FromAmperes(double.NaN));
         }
 
         [Fact]

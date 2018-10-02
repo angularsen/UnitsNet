@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == ElectricPotentialUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -164,6 +166,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricPotential from Kilovolts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricPotential FromKilovolts(double kilovolts)
@@ -178,6 +181,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricPotential from Megavolts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricPotential FromMegavolts(double megavolts)
@@ -192,6 +196,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricPotential from Microvolts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricPotential FromMicrovolts(double microvolts)
@@ -206,6 +211,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricPotential from Millivolts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricPotential FromMillivolts(double millivolts)
@@ -220,6 +226,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get ElectricPotential from Volts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static ElectricPotential FromVolts(double volts)

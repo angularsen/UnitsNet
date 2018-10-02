@@ -78,9 +78,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Force((double)0.0, ForceUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Force(double.PositiveInfinity, ForceUnit.Newton));
+            Assert.Throws<ArgumentException>(() => new Force(double.NegativeInfinity, ForceUnit.Newton));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Force(double.NaN, ForceUnit.Newton));
         }
 
         [Fact]
@@ -112,6 +125,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Force.From(1, ForceUnit.Poundal).Poundals, PoundalsTolerance);
             AssertEx.EqualTolerance(1, Force.From(1, ForceUnit.PoundForce).PoundsForce, PoundsForceTolerance);
             AssertEx.EqualTolerance(1, Force.From(1, ForceUnit.TonneForce).TonnesForce, TonnesForceTolerance);
+        }
+
+        [Fact]
+        public void FromNewtons_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Force.FromNewtons(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Force.FromNewtons(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromNewtons_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Force.FromNewtons(double.NaN));
         }
 
         [Fact]

@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == PressureUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -324,6 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Atmospheres.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromAtmospheres(double atmospheres)
@@ -338,6 +341,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Bars.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromBars(double bars)
@@ -352,6 +356,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Centibars.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromCentibars(double centibars)
@@ -366,6 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Decapascals.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromDecapascals(double decapascals)
@@ -380,6 +386,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Decibars.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromDecibars(double decibars)
@@ -394,6 +401,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from FeetOfHead.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromFeetOfHead(double feetofhead)
@@ -408,6 +416,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Gigapascals.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromGigapascals(double gigapascals)
@@ -422,6 +431,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Hectopascals.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromHectopascals(double hectopascals)
@@ -436,6 +446,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from InchesOfMercury.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromInchesOfMercury(double inchesofmercury)
@@ -450,6 +461,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Kilobars.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromKilobars(double kilobars)
@@ -464,6 +476,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilogramsForcePerSquareCentimeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromKilogramsForcePerSquareCentimeter(double kilogramsforcepersquarecentimeter)
@@ -478,6 +491,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilogramsForcePerSquareMeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromKilogramsForcePerSquareMeter(double kilogramsforcepersquaremeter)
@@ -492,6 +506,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilogramsForcePerSquareMillimeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromKilogramsForcePerSquareMillimeter(double kilogramsforcepersquaremillimeter)
@@ -506,6 +521,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilonewtonsPerSquareCentimeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromKilonewtonsPerSquareCentimeter(double kilonewtonspersquarecentimeter)
@@ -520,6 +536,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilonewtonsPerSquareMeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromKilonewtonsPerSquareMeter(double kilonewtonspersquaremeter)
@@ -534,6 +551,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilonewtonsPerSquareMillimeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromKilonewtonsPerSquareMillimeter(double kilonewtonspersquaremillimeter)
@@ -548,6 +566,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Kilopascals.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromKilopascals(double kilopascals)
@@ -562,6 +581,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilopoundsForcePerSquareFoot.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromKilopoundsForcePerSquareFoot(double kilopoundsforcepersquarefoot)
@@ -576,6 +596,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from KilopoundsForcePerSquareInch.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromKilopoundsForcePerSquareInch(double kilopoundsforcepersquareinch)
@@ -590,6 +611,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Megabars.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromMegabars(double megabars)
@@ -604,6 +626,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from MeganewtonsPerSquareMeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromMeganewtonsPerSquareMeter(double meganewtonspersquaremeter)
@@ -618,6 +641,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Megapascals.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromMegapascals(double megapascals)
@@ -632,6 +656,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from MetersOfHead.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromMetersOfHead(double metersofhead)
@@ -646,6 +671,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Micropascals.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromMicropascals(double micropascals)
@@ -660,6 +686,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Millibars.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromMillibars(double millibars)
@@ -674,6 +701,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from MillimetersOfMercury.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromMillimetersOfMercury(double millimetersofmercury)
@@ -688,6 +716,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from NewtonsPerSquareCentimeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromNewtonsPerSquareCentimeter(double newtonspersquarecentimeter)
@@ -702,6 +731,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from NewtonsPerSquareMeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromNewtonsPerSquareMeter(double newtonspersquaremeter)
@@ -716,6 +746,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from NewtonsPerSquareMillimeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromNewtonsPerSquareMillimeter(double newtonspersquaremillimeter)
@@ -730,6 +761,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Pascals.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromPascals(double pascals)
@@ -744,6 +776,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from PoundsForcePerSquareFoot.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromPoundsForcePerSquareFoot(double poundsforcepersquarefoot)
@@ -758,6 +791,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from PoundsForcePerSquareInch.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromPoundsForcePerSquareInch(double poundsforcepersquareinch)
@@ -772,6 +806,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from TechnicalAtmospheres.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromTechnicalAtmospheres(double technicalatmospheres)
@@ -786,6 +821,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from TonnesForcePerSquareCentimeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromTonnesForcePerSquareCentimeter(double tonnesforcepersquarecentimeter)
@@ -800,6 +836,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from TonnesForcePerSquareMeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromTonnesForcePerSquareMeter(double tonnesforcepersquaremeter)
@@ -814,6 +851,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from TonnesForcePerSquareMillimeter.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromTonnesForcePerSquareMillimeter(double tonnesforcepersquaremillimeter)
@@ -828,6 +866,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Pressure from Torrs.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Pressure FromTorrs(double torrs)

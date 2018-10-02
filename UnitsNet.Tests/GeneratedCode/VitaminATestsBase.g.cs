@@ -60,9 +60,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new VitaminA((double)0.0, VitaminAUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new VitaminA(double.PositiveInfinity, VitaminAUnit.InternationalUnit));
+            Assert.Throws<ArgumentException>(() => new VitaminA(double.NegativeInfinity, VitaminAUnit.InternationalUnit));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new VitaminA(double.NaN, VitaminAUnit.InternationalUnit));
         }
 
         [Fact]
@@ -76,6 +89,19 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, VitaminA.From(1, VitaminAUnit.InternationalUnit).InternationalUnits, InternationalUnitsTolerance);
+        }
+
+        [Fact]
+        public void FromInternationalUnits_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => VitaminA.FromInternationalUnits(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => VitaminA.FromInternationalUnits(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromInternationalUnits_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => VitaminA.FromInternationalUnits(double.NaN));
         }
 
         [Fact]

@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -239,6 +241,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from BoilerHorsepower.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromBoilerHorsepower(double boilerhorsepower)
@@ -253,6 +256,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from BritishThermalUnitsPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromBritishThermalUnitsPerHour(double britishthermalunitsperhour)
@@ -267,6 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Decawatts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromDecawatts(double decawatts)
@@ -281,6 +286,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Deciwatts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromDeciwatts(double deciwatts)
@@ -295,6 +301,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from ElectricalHorsepower.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromElectricalHorsepower(double electricalhorsepower)
@@ -309,6 +316,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Femtowatts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromFemtowatts(double femtowatts)
@@ -323,6 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Gigawatts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromGigawatts(double gigawatts)
@@ -337,6 +346,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from HydraulicHorsepower.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromHydraulicHorsepower(double hydraulichorsepower)
@@ -351,6 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from KilobritishThermalUnitsPerHour.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromKilobritishThermalUnitsPerHour(double kilobritishthermalunitsperhour)
@@ -365,6 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Kilowatts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromKilowatts(double kilowatts)
@@ -379,6 +391,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from MechanicalHorsepower.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromMechanicalHorsepower(double mechanicalhorsepower)
@@ -393,6 +406,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Megawatts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromMegawatts(double megawatts)
@@ -407,6 +421,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from MetricHorsepower.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromMetricHorsepower(double metrichorsepower)
@@ -421,6 +436,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Microwatts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromMicrowatts(double microwatts)
@@ -435,6 +451,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Milliwatts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromMilliwatts(double milliwatts)
@@ -449,6 +466,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Nanowatts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromNanowatts(double nanowatts)
@@ -463,6 +481,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Petawatts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromPetawatts(double petawatts)
@@ -477,6 +496,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Picowatts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromPicowatts(double picowatts)
@@ -491,6 +511,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Terawatts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromTerawatts(double terawatts)
@@ -505,6 +526,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Power from Watts.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Power FromWatts(double watts)

@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -277,7 +277,7 @@ namespace UnitsNet.Tests
             Assert.Equal(VolumeUnit.CubicMicrometer, Volume.ParseUnit("\u00b5m³"));
             Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, VolumeFlow.ParseUnit("\u00b5LPM"));
 
-            // "\u03bc" = Lower case greek letter 'Mu' 
+            // "\u03bc" = Lower case greek letter 'Mu'
             Assert.Throws<UnitNotFoundException>(() => Acceleration.ParseUnit("\u03bcm/s²"));
             Assert.Throws<UnitNotFoundException>(() => AmplitudeRatio.ParseUnit("dB\u03bcV"));
             Assert.Throws<UnitNotFoundException>(() => Angle.ParseUnit("\u03bc°"));
@@ -328,7 +328,7 @@ namespace UnitsNet.Tests
                 .ToList();
 
             // We want to flag if any localizations are missing, but not break the build
-            // or flag an error for pull requests. For now they are not considered 
+            // or flag an error for pull requests. For now they are not considered
             // critical and it is cumbersome to have a third person review the pull request
             // and add in any translations before merging it in.
             if (unitValuesMissingAbbreviations.Any())
@@ -410,7 +410,7 @@ namespace UnitsNet.Tests
             CultureInfo oldCurrentCulture = CultureInfo.CurrentCulture;
             CultureInfo oldCurrentUICulture = CultureInfo.CurrentUICulture;
 
-            try 
+            try
             {
                 // CurrentCulture affects number formatting, such as comma or dot as decimal separator.
                 // CurrentUICulture affects localization, in this case the abbreviation.
@@ -428,7 +428,7 @@ namespace UnitsNet.Tests
                 // Assert
                 Assert.Equal("US english abbreviation for Unit1", abbreviation);
             }
-            finally 
+            finally
             {
                 CultureInfo.CurrentCulture = oldCurrentCulture;
                 CultureInfo.CurrentUICulture = oldCurrentUICulture;
@@ -442,18 +442,6 @@ namespace UnitsNet.Tests
             unitSystem.MapUnitToAbbreviation(AreaUnit.SquareMeter, "m^2");
 
             Assert.Equal("m²", unitSystem.GetDefaultAbbreviation(AreaUnit.SquareMeter));
-        }
-
-        [Fact]
-        public void NegativeInfinityFormatting()
-        {
-            Assert.Equal("-Infinity m", Length.FromMeters(double.NegativeInfinity).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture));
-        }
-
-        [Fact]
-        public void NotANumberFormatting()
-        {
-            Assert.Equal("NaN m", Length.FromMeters(double.NaN).ToString());
         }
 
         [Fact]
@@ -478,12 +466,6 @@ namespace UnitsNet.Tests
             Volume unit = Volume.Parse("1 l");
 
             Assert.Equal(Volume.FromLiters(1), unit);
-        }
-
-        [Fact]
-        public void PositiveInfinityFormatting()
-        {
-            Assert.Equal("Infinity m", Length.FromMeters(double.PositiveInfinity).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture));
         }
 
         /// <summary>

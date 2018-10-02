@@ -60,9 +60,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ElectricInductance((double)0.0, ElectricInductanceUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricInductance(double.PositiveInfinity, ElectricInductanceUnit.Henry));
+            Assert.Throws<ArgumentException>(() => new ElectricInductance(double.NegativeInfinity, ElectricInductanceUnit.Henry));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricInductance(double.NaN, ElectricInductanceUnit.Henry));
         }
 
         [Fact]
@@ -76,6 +89,19 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, ElectricInductance.From(1, ElectricInductanceUnit.Henry).Henries, HenriesTolerance);
+        }
+
+        [Fact]
+        public void FromHenries_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricInductance.FromHenries(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricInductance.FromHenries(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromHenries_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricInductance.FromHenries(double.NaN));
         }
 
         [Fact]

@@ -134,9 +134,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Density((double)0.0, DensityUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Density(double.PositiveInfinity, DensityUnit.KilogramPerCubicMeter));
+            Assert.Throws<ArgumentException>(() => new Density(double.NegativeInfinity, DensityUnit.KilogramPerCubicMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Density(double.NaN, DensityUnit.KilogramPerCubicMeter));
         }
 
         [Fact]
@@ -224,6 +237,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.TonnePerCubicCentimeter).TonnesPerCubicCentimeter, TonnesPerCubicCentimeterTolerance);
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.TonnePerCubicMeter).TonnesPerCubicMeter, TonnesPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, Density.From(1, DensityUnit.TonnePerCubicMillimeter).TonnesPerCubicMillimeter, TonnesPerCubicMillimeterTolerance);
+        }
+
+        [Fact]
+        public void FromKilogramsPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Density.FromKilogramsPerCubicMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Density.FromKilogramsPerCubicMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromKilogramsPerCubicMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Density.FromKilogramsPerCubicMeter(double.NaN));
         }
 
         [Fact]

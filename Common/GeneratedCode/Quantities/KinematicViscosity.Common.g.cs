@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == KinematicViscosityUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -179,6 +181,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Centistokes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromCentistokes(double centistokes)
@@ -193,6 +196,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Decistokes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromDecistokes(double decistokes)
@@ -207,6 +211,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Kilostokes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromKilostokes(double kilostokes)
@@ -221,6 +226,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Microstokes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromMicrostokes(double microstokes)
@@ -235,6 +241,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Millistokes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromMillistokes(double millistokes)
@@ -249,6 +256,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Nanostokes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromNanostokes(double nanostokes)
@@ -263,6 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from SquareMetersPerSecond.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromSquareMetersPerSecond(double squaremeterspersecond)
@@ -277,6 +286,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get KinematicViscosity from Stokes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static KinematicViscosity FromStokes(double stokes)

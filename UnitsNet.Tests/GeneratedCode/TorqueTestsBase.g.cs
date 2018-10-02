@@ -100,9 +100,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Torque((double)0.0, TorqueUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Torque(double.PositiveInfinity, TorqueUnit.NewtonMeter));
+            Assert.Throws<ArgumentException>(() => new Torque(double.NegativeInfinity, TorqueUnit.NewtonMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Torque(double.NaN, TorqueUnit.NewtonMeter));
         }
 
         [Fact]
@@ -156,6 +169,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Torque.From(1, TorqueUnit.TonneForceCentimeter).TonneForceCentimeters, TonneForceCentimetersTolerance);
             AssertEx.EqualTolerance(1, Torque.From(1, TorqueUnit.TonneForceMeter).TonneForceMeters, TonneForceMetersTolerance);
             AssertEx.EqualTolerance(1, Torque.From(1, TorqueUnit.TonneForceMillimeter).TonneForceMillimeters, TonneForceMillimetersTolerance);
+        }
+
+        [Fact]
+        public void FromNewtonMeters_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Torque.FromNewtonMeters(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Torque.FromNewtonMeters(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromNewtonMeters_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Torque.FromNewtonMeters(double.NaN));
         }
 
         [Fact]

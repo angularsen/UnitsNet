@@ -60,9 +60,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new SolidAngle((double)0.0, SolidAngleUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SolidAngle(double.PositiveInfinity, SolidAngleUnit.Steradian));
+            Assert.Throws<ArgumentException>(() => new SolidAngle(double.NegativeInfinity, SolidAngleUnit.Steradian));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SolidAngle(double.NaN, SolidAngleUnit.Steradian));
         }
 
         [Fact]
@@ -76,6 +89,19 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, SolidAngle.From(1, SolidAngleUnit.Steradian).Steradians, SteradiansTolerance);
+        }
+
+        [Fact]
+        public void FromSteradians_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => SolidAngle.FromSteradians(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => SolidAngle.FromSteradians(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromSteradians_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => SolidAngle.FromSteradians(double.NaN));
         }
 
         [Fact]

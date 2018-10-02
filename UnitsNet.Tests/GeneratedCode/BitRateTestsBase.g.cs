@@ -110,10 +110,11 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new BitRate((decimal)0.0, BitRateUnit.Undefined));
         }
+
 
         [Fact]
         public void BitPerSecondToBitRateUnits()
@@ -177,6 +178,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, BitRate.From(1, BitRateUnit.TerabitPerSecond).TerabitsPerSecond, TerabitsPerSecondTolerance);
             AssertEx.EqualTolerance(1, BitRate.From(1, BitRateUnit.TerabytePerSecond).TerabytesPerSecond, TerabytesPerSecondTolerance);
         }
+
 
         [Fact]
         public void As()

@@ -142,9 +142,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Volume((double)0.0, VolumeUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Volume(double.PositiveInfinity, VolumeUnit.CubicMeter));
+            Assert.Throws<ArgumentException>(() => new Volume(double.NegativeInfinity, VolumeUnit.CubicMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Volume(double.NaN, VolumeUnit.CubicMeter));
         }
 
         [Fact]
@@ -240,6 +253,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.UsQuart).UsQuarts, UsQuartsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.UsTablespoon).UsTablespoons, UsTablespoonsTolerance);
             AssertEx.EqualTolerance(1, Volume.From(1, VolumeUnit.UsTeaspoon).UsTeaspoons, UsTeaspoonsTolerance);
+        }
+
+        [Fact]
+        public void FromCubicMeters_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Volume.FromCubicMeters(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Volume.FromCubicMeters(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromCubicMeters_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Volume.FromCubicMeters(double.NaN));
         }
 
         [Fact]

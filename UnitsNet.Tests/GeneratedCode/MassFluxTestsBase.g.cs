@@ -62,9 +62,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new MassFlux((double)0.0, MassFluxUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassFlux(double.PositiveInfinity, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+            Assert.Throws<ArgumentException>(() => new MassFlux(double.NegativeInfinity, MassFluxUnit.KilogramPerSecondPerSquareMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassFlux(double.NaN, MassFluxUnit.KilogramPerSecondPerSquareMeter));
         }
 
         [Fact]
@@ -80,6 +93,19 @@ namespace UnitsNet.Tests
         {
             AssertEx.EqualTolerance(1, MassFlux.From(1, MassFluxUnit.GramPerSecondPerSquareMeter).GramsPerSecondPerSquareMeter, GramsPerSecondPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, MassFlux.From(1, MassFluxUnit.KilogramPerSecondPerSquareMeter).KilogramsPerSecondPerSquareMeter, KilogramsPerSecondPerSquareMeterTolerance);
+        }
+
+        [Fact]
+        public void FromKilogramsPerSecondPerSquareMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromKilogramsPerSecondPerSquareMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MassFlux.FromKilogramsPerSecondPerSquareMeter(double.NaN));
         }
 
         [Fact]

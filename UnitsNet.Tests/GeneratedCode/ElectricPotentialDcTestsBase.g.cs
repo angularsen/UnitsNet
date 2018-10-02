@@ -68,9 +68,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new ElectricPotentialDc((double)0.0, ElectricPotentialDcUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricPotentialDc(double.PositiveInfinity, ElectricPotentialDcUnit.VoltDc));
+            Assert.Throws<ArgumentException>(() => new ElectricPotentialDc(double.NegativeInfinity, ElectricPotentialDcUnit.VoltDc));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new ElectricPotentialDc(double.NaN, ElectricPotentialDcUnit.VoltDc));
         }
 
         [Fact]
@@ -92,6 +105,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, ElectricPotentialDc.From(1, ElectricPotentialDcUnit.MicrovoltDc).MicrovoltsDc, MicrovoltsDcTolerance);
             AssertEx.EqualTolerance(1, ElectricPotentialDc.From(1, ElectricPotentialDcUnit.MillivoltDc).MillivoltsDc, MillivoltsDcTolerance);
             AssertEx.EqualTolerance(1, ElectricPotentialDc.From(1, ElectricPotentialDcUnit.VoltDc).VoltsDc, VoltsDcTolerance);
+        }
+
+        [Fact]
+        public void FromVoltsDc_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricPotentialDc.FromVoltsDc(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => ElectricPotentialDc.FromVoltsDc(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromVoltsDc_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => ElectricPotentialDc.FromVoltsDc(double.NaN));
         }
 
         [Fact]

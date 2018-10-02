@@ -132,9 +132,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Pressure((double)0.0, PressureUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Pressure(double.PositiveInfinity, PressureUnit.Pascal));
+            Assert.Throws<ArgumentException>(() => new Pressure(double.NegativeInfinity, PressureUnit.Pascal));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Pressure(double.NaN, PressureUnit.Pascal));
         }
 
         [Fact]
@@ -220,6 +233,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.TonneForcePerSquareMeter).TonnesForcePerSquareMeter, TonnesForcePerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.TonneForcePerSquareMillimeter).TonnesForcePerSquareMillimeter, TonnesForcePerSquareMillimeterTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Torr).Torrs, TorrsTolerance);
+        }
+
+        [Fact]
+        public void FromPascals_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Pressure.FromPascals(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Pressure.FromPascals(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromPascals_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Pressure.FromPascals(double.NaN));
         }
 
         [Fact]

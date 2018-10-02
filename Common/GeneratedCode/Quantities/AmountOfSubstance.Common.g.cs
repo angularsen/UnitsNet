@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == AmountOfSubstanceUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -209,6 +211,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from Centimoles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromCentimoles(double centimoles)
@@ -223,6 +226,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from CentipoundMoles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromCentipoundMoles(double centipoundmoles)
@@ -237,6 +241,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from Decimoles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromDecimoles(double decimoles)
@@ -251,6 +256,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from DecipoundMoles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromDecipoundMoles(double decipoundmoles)
@@ -265,6 +271,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from Kilomoles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromKilomoles(double kilomoles)
@@ -279,6 +286,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from KilopoundMoles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromKilopoundMoles(double kilopoundmoles)
@@ -293,6 +301,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from Micromoles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromMicromoles(double micromoles)
@@ -307,6 +316,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from MicropoundMoles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromMicropoundMoles(double micropoundmoles)
@@ -321,6 +331,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from Millimoles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromMillimoles(double millimoles)
@@ -335,6 +346,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from MillipoundMoles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromMillipoundMoles(double millipoundmoles)
@@ -349,6 +361,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from Moles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromMoles(double moles)
@@ -363,6 +376,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from Nanomoles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromNanomoles(double nanomoles)
@@ -377,6 +391,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from NanopoundMoles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromNanopoundMoles(double nanopoundmoles)
@@ -391,6 +406,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get AmountOfSubstance from PoundMoles.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static AmountOfSubstance FromPoundMoles(double poundmoles)

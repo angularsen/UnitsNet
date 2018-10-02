@@ -60,9 +60,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new MagneticFlux((double)0.0, MagneticFluxUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MagneticFlux(double.PositiveInfinity, MagneticFluxUnit.Weber));
+            Assert.Throws<ArgumentException>(() => new MagneticFlux(double.NegativeInfinity, MagneticFluxUnit.Weber));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MagneticFlux(double.NaN, MagneticFluxUnit.Weber));
         }
 
         [Fact]
@@ -76,6 +89,19 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, MagneticFlux.From(1, MagneticFluxUnit.Weber).Webers, WebersTolerance);
+        }
+
+        [Fact]
+        public void FromWebers_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MagneticFlux.FromWebers(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MagneticFlux.FromWebers(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromWebers_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MagneticFlux.FromWebers(double.NaN));
         }
 
         [Fact]

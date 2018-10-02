@@ -74,9 +74,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Temperature((double)0.0, TemperatureUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Temperature(double.PositiveInfinity, TemperatureUnit.Kelvin));
+            Assert.Throws<ArgumentException>(() => new Temperature(double.NegativeInfinity, TemperatureUnit.Kelvin));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Temperature(double.NaN, TemperatureUnit.Kelvin));
         }
 
         [Fact]
@@ -104,6 +117,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.DegreeReaumur).DegreesReaumur, DegreesReaumurTolerance);
             AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.DegreeRoemer).DegreesRoemer, DegreesRoemerTolerance);
             AssertEx.EqualTolerance(1, Temperature.From(1, TemperatureUnit.Kelvin).Kelvins, KelvinsTolerance);
+        }
+
+        [Fact]
+        public void FromKelvins_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Temperature.FromKelvins(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Temperature.FromKelvins(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromKelvins_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Temperature.FromKelvins(double.NaN));
         }
 
         [Fact]

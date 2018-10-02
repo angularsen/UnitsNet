@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == MolarMassUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -199,6 +201,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarMass from CentigramsPerMole.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MolarMass FromCentigramsPerMole(double centigramspermole)
@@ -213,6 +216,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarMass from DecagramsPerMole.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MolarMass FromDecagramsPerMole(double decagramspermole)
@@ -227,6 +231,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarMass from DecigramsPerMole.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MolarMass FromDecigramsPerMole(double decigramspermole)
@@ -241,6 +246,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarMass from GramsPerMole.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MolarMass FromGramsPerMole(double gramspermole)
@@ -255,6 +261,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarMass from HectogramsPerMole.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MolarMass FromHectogramsPerMole(double hectogramspermole)
@@ -269,6 +276,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarMass from KilogramsPerMole.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MolarMass FromKilogramsPerMole(double kilogramspermole)
@@ -283,6 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarMass from KilopoundsPerMole.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MolarMass FromKilopoundsPerMole(double kilopoundspermole)
@@ -297,6 +306,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarMass from MegapoundsPerMole.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MolarMass FromMegapoundsPerMole(double megapoundspermole)
@@ -311,6 +321,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarMass from MicrogramsPerMole.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MolarMass FromMicrogramsPerMole(double microgramspermole)
@@ -325,6 +336,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarMass from MilligramsPerMole.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MolarMass FromMilligramsPerMole(double milligramspermole)
@@ -339,6 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarMass from NanogramsPerMole.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MolarMass FromNanogramsPerMole(double nanogramspermole)
@@ -353,6 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get MolarMass from PoundsPerMole.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static MolarMass FromPoundsPerMole(double poundspermole)

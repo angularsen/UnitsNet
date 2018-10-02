@@ -74,9 +74,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new SpecificEntropy((double)0.0, SpecificEntropyUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SpecificEntropy(double.PositiveInfinity, SpecificEntropyUnit.JoulePerKilogramKelvin));
+            Assert.Throws<ArgumentException>(() => new SpecificEntropy(double.NegativeInfinity, SpecificEntropyUnit.JoulePerKilogramKelvin));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new SpecificEntropy(double.NaN, SpecificEntropyUnit.JoulePerKilogramKelvin));
         }
 
         [Fact]
@@ -104,6 +117,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, SpecificEntropy.From(1, SpecificEntropyUnit.KilojoulePerKilogramKelvin).KilojoulesPerKilogramKelvin, KilojoulesPerKilogramKelvinTolerance);
             AssertEx.EqualTolerance(1, SpecificEntropy.From(1, SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius).MegajoulesPerKilogramDegreeCelsius, MegajoulesPerKilogramDegreeCelsiusTolerance);
             AssertEx.EqualTolerance(1, SpecificEntropy.From(1, SpecificEntropyUnit.MegajoulePerKilogramKelvin).MegajoulesPerKilogramKelvin, MegajoulesPerKilogramKelvinTolerance);
+        }
+
+        [Fact]
+        public void FromJoulesPerKilogramKelvin_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => SpecificEntropy.FromJoulesPerKilogramKelvin(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => SpecificEntropy.FromJoulesPerKilogramKelvin(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromJoulesPerKilogramKelvin_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => SpecificEntropy.FromJoulesPerKilogramKelvin(double.NaN));
         }
 
         [Fact]

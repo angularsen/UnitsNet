@@ -60,9 +60,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Permeability((double)0.0, PermeabilityUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Permeability(double.PositiveInfinity, PermeabilityUnit.HenryPerMeter));
+            Assert.Throws<ArgumentException>(() => new Permeability(double.NegativeInfinity, PermeabilityUnit.HenryPerMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Permeability(double.NaN, PermeabilityUnit.HenryPerMeter));
         }
 
         [Fact]
@@ -76,6 +89,19 @@ namespace UnitsNet.Tests
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, Permeability.From(1, PermeabilityUnit.HenryPerMeter).HenriesPerMeter, HenriesPerMeterTolerance);
+        }
+
+        [Fact]
+        public void FromHenriesPerMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Permeability.FromHenriesPerMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Permeability.FromHenriesPerMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromHenriesPerMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Permeability.FromHenriesPerMeter(double.NaN));
         }
 
         [Fact]

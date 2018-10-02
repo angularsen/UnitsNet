@@ -42,6 +42,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -88,6 +89,7 @@ namespace UnitsNet
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         private
 #else
@@ -98,7 +100,7 @@ namespace UnitsNet
             if(unit == MassUnit.Undefined)
               throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
 
-            _value = numericValue;
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
             _unit = unit;
         }
 
@@ -244,6 +246,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Centigrams.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromCentigrams(double centigrams)
@@ -258,6 +261,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Decagrams.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromDecagrams(double decagrams)
@@ -272,6 +276,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Decigrams.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromDecigrams(double decigrams)
@@ -286,6 +291,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Grams.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromGrams(double grams)
@@ -300,6 +306,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Hectograms.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromHectograms(double hectograms)
@@ -314,6 +321,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Kilograms.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromKilograms(double kilograms)
@@ -328,6 +336,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Kilopounds.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromKilopounds(double kilopounds)
@@ -342,6 +351,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Kilotonnes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromKilotonnes(double kilotonnes)
@@ -356,6 +366,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from LongHundredweight.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromLongHundredweight(double longhundredweight)
@@ -370,6 +381,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from LongTons.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromLongTons(double longtons)
@@ -384,6 +396,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Megapounds.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromMegapounds(double megapounds)
@@ -398,6 +411,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Megatonnes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromMegatonnes(double megatonnes)
@@ -412,6 +426,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Micrograms.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromMicrograms(double micrograms)
@@ -426,6 +441,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Milligrams.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromMilligrams(double milligrams)
@@ -440,6 +456,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Nanograms.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromNanograms(double nanograms)
@@ -454,6 +471,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Ounces.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromOunces(double ounces)
@@ -468,6 +486,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Pounds.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromPounds(double pounds)
@@ -482,6 +501,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from ShortHundredweight.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromShortHundredweight(double shorthundredweight)
@@ -496,6 +516,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from ShortTons.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromShortTons(double shorttons)
@@ -510,6 +531,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Stone.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromStone(double stone)
@@ -524,6 +546,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Mass from Tonnes.
         /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Mass FromTonnes(double tonnes)

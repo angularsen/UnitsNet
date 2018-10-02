@@ -82,9 +82,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new MolarMass((double)0.0, MolarMassUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MolarMass(double.PositiveInfinity, MolarMassUnit.KilogramPerMole));
+            Assert.Throws<ArgumentException>(() => new MolarMass(double.NegativeInfinity, MolarMassUnit.KilogramPerMole));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MolarMass(double.NaN, MolarMassUnit.KilogramPerMole));
         }
 
         [Fact]
@@ -120,6 +133,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MolarMass.From(1, MolarMassUnit.MilligramPerMole).MilligramsPerMole, MilligramsPerMoleTolerance);
             AssertEx.EqualTolerance(1, MolarMass.From(1, MolarMassUnit.NanogramPerMole).NanogramsPerMole, NanogramsPerMoleTolerance);
             AssertEx.EqualTolerance(1, MolarMass.From(1, MolarMassUnit.PoundPerMole).PoundsPerMole, PoundsPerMoleTolerance);
+        }
+
+        [Fact]
+        public void FromKilogramsPerMole_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MolarMass.FromKilogramsPerMole(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MolarMass.FromKilogramsPerMole(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromKilogramsPerMole_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MolarMass.FromKilogramsPerMole(double.NaN));
         }
 
         [Fact]

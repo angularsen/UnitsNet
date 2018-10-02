@@ -110,10 +110,11 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new Information((decimal)0.0, InformationUnit.Undefined));
         }
+
 
         [Fact]
         public void BitToInformationUnits()
@@ -177,6 +178,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Terabit).Terabits, TerabitsTolerance);
             AssertEx.EqualTolerance(1, Information.From(1, InformationUnit.Terabyte).Terabytes, TerabytesTolerance);
         }
+
 
         [Fact]
         public void As()

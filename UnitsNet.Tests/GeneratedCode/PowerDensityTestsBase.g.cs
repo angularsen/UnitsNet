@@ -146,9 +146,22 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
-        public void ConstructorWithUndefinedUnitThrowsArgumentException()
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
             Assert.Throws<ArgumentException>(() => new PowerDensity((double)0.0, PowerDensityUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new PowerDensity(double.PositiveInfinity, PowerDensityUnit.WattPerCubicMeter));
+            Assert.Throws<ArgumentException>(() => new PowerDensity(double.NegativeInfinity, PowerDensityUnit.WattPerCubicMeter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new PowerDensity(double.NaN, PowerDensityUnit.WattPerCubicMeter));
         }
 
         [Fact]
@@ -248,6 +261,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.WattPerCubicInch).WattsPerCubicInch, WattsPerCubicInchTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.WattPerCubicMeter).WattsPerCubicMeter, WattsPerCubicMeterTolerance);
             AssertEx.EqualTolerance(1, PowerDensity.From(1, PowerDensityUnit.WattPerLiter).WattsPerLiter, WattsPerLiterTolerance);
+        }
+
+        [Fact]
+        public void FromWattsPerCubicMeter_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => PowerDensity.FromWattsPerCubicMeter(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => PowerDensity.FromWattsPerCubicMeter(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromWattsPerCubicMeter_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => PowerDensity.FromWattsPerCubicMeter(double.NaN));
         }
 
         [Fact]
