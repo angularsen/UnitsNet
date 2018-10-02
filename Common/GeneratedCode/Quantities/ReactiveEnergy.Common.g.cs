@@ -53,15 +53,7 @@ namespace UnitsNet
     ///     The Volt-ampere reactive hour (expressed as varh) is the reactive power of one Volt-ampere reactive produced in one hour.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class ReactiveEnergy : IQuantity
-#else
-    public partial struct ReactiveEnergy : IQuantity, IComparable, IComparable<ReactiveEnergy>
-#endif
+    public partial class ReactiveEnergy : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -247,6 +239,9 @@ namespace UnitsNet
 #endif
         int CompareTo(ReactiveEnergy other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 

@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     A geometric property of an area that reflects how its points are distributed with regard to an axis.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct AreaMomentOfInertia : IComparable, IComparable<AreaMomentOfInertia>
+    public partial class AreaMomentOfInertia : IComparable, IComparable<AreaMomentOfInertia>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

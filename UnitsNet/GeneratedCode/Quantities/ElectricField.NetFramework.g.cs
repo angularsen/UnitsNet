@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     An electric field is a force field that surrounds electric charges that attracts or repels other electric charges.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ElectricField : IComparable, IComparable<ElectricField>
+    public partial class ElectricField : IComparable, IComparable<ElectricField>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

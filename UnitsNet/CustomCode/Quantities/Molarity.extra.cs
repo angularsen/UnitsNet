@@ -9,7 +9,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
     public sealed partial class Molarity
 #else
-    public partial struct Molarity
+    public partial class Molarity
 #endif
     {
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
@@ -19,7 +19,6 @@ namespace UnitsNet
         public
 #endif
             Molarity(Density density, Mass molecularWeight)
-            : this()
         {
             _value = density.KilogramsPerCubicMeter / molecularWeight.Kilograms;
             _unit = MolarityUnit.MolesPerCubicMeter;

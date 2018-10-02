@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     The number of occurrences of a repeating event per unit time.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Frequency : IComparable, IComparable<Frequency>
+    public partial class Frequency : IComparable, IComparable<Frequency>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

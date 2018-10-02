@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Angle : IComparable, IComparable<Angle>
+    public partial class Angle : IComparable, IComparable<Angle>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

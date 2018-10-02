@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In mathematics, a ratio is a relationship between two numbers of the same kind (e.g., objects, persons, students, spoonfuls, units of whatever identical dimension), usually expressed as "a to b" or a:b, sometimes expressed arithmetically as a dimensionless quotient of the two that explicitly indicates how many times the first number contains the second (not necessarily an integer).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Ratio : IComparable, IComparable<Ratio>
+    public partial class Ratio : IComparable, IComparable<Ratio>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

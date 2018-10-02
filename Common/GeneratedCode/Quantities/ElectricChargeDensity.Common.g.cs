@@ -53,15 +53,7 @@ namespace UnitsNet
     ///     In electromagnetism, charge density is a measure of the amount of electric charge per unit length, surface area, or volume.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class ElectricChargeDensity : IQuantity
-#else
-    public partial struct ElectricChargeDensity : IQuantity, IComparable, IComparable<ElectricChargeDensity>
-#endif
+    public partial class ElectricChargeDensity : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -207,6 +199,9 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricChargeDensity other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 

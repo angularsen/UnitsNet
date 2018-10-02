@@ -53,15 +53,7 @@ namespace UnitsNet
     ///     Brake specific fuel consumption (BSFC) is a measure of the fuel efficiency of any prime mover that burns fuel and produces rotational, or shaft, power. It is typically used for comparing the efficiency of internal combustion engines with a shaft output.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class BrakeSpecificFuelConsumption : IQuantity
-#else
-    public partial struct BrakeSpecificFuelConsumption : IQuantity, IComparable, IComparable<BrakeSpecificFuelConsumption>
-#endif
+    public partial class BrakeSpecificFuelConsumption : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -247,6 +239,9 @@ namespace UnitsNet
 #endif
         int CompareTo(BrakeSpecificFuelConsumption other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 

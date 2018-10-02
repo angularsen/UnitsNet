@@ -28,7 +28,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
     public sealed partial class DynamicViscosity
 #else
-    public partial struct DynamicViscosity
+    public partial class DynamicViscosity
 #endif
     {
 // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx

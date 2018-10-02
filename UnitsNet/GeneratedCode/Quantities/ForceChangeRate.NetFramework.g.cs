@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Force change rate is the ratio of the force change to the time during which the change occurred (value of force changes per unit time).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ForceChangeRate : IComparable, IComparable<ForceChangeRate>
+    public partial class ForceChangeRate : IComparable, IComparable<ForceChangeRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

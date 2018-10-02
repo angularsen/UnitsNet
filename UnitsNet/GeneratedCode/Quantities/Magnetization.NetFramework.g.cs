@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In classical electromagnetism, magnetization is the vector field that expresses the density of permanent or induced magnetic dipole moments in a magnetic material.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Magnetization : IComparable, IComparable<Magnetization>
+    public partial class Magnetization : IComparable, IComparable<Magnetization>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

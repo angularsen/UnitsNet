@@ -38,7 +38,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
     public sealed partial class Mass
 #else
-    public partial struct Mass
+    public partial class Mass
 #endif
     {
         public static Mass FromGravitationalForce(Force f)

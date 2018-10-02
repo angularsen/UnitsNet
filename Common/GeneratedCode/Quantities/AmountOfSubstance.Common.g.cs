@@ -53,15 +53,7 @@ namespace UnitsNet
     ///     Mole is the amount of substance containing Avagadro's Number (6.02 x 10 ^ 23) of real particles such as molecules,atoms, ions or radicals.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class AmountOfSubstance : IQuantity
-#else
-    public partial struct AmountOfSubstance : IQuantity, IComparable, IComparable<AmountOfSubstance>
-#endif
+    public partial class AmountOfSubstance : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -467,6 +459,9 @@ namespace UnitsNet
 #endif
         int CompareTo(AmountOfSubstance other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 

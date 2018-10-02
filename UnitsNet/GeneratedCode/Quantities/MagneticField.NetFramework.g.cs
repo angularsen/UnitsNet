@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     A magnetic field is a force field that is created by moving electric charges (electric currents) and magnetic dipoles, and exerts a force on other nearby moving charges and magnetic dipoles.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct MagneticField : IComparable, IComparable<MagneticField>
+    public partial class MagneticField : IComparable, IComparable<MagneticField>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Difference between two temperatures. The conversions are different than for Temperature.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct TemperatureDelta : IComparable, IComparable<TemperatureDelta>
+    public partial class TemperatureDelta : IComparable, IComparable<TemperatureDelta>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

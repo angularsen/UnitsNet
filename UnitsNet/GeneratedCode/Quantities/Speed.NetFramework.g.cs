@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Speed : IComparable, IComparable<Speed>
+    public partial class Speed : IComparable, IComparable<Speed>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

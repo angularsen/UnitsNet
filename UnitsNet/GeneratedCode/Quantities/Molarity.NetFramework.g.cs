@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Molar concentration, also called molarity, amount concentration or substance concentration, is a measure of the concentration of a solute in a solution, or of any chemical species, in terms of amount of substance in a given volume. 
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Molarity : IComparable, IComparable<Molarity>
+    public partial class Molarity : IComparable, IComparable<Molarity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

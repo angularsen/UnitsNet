@@ -28,7 +28,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
     public sealed partial class MassFlux
 #else
-    public partial struct MassFlux
+    public partial class MassFlux
 #endif
     {
 #if !WINDOWS_UWP

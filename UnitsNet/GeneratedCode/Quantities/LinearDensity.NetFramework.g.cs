@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     The Linear Density, or more precisely, the linear mass density, of a substance is its mass per unit length.  The term linear density is most often used when describing the characteristics of one-dimensional objects, although linear density can also be used to describe the density of a three-dimensional quantity along one particular dimension.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct LinearDensity : IComparable, IComparable<LinearDensity>
+    public partial class LinearDensity : IComparable, IComparable<LinearDensity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

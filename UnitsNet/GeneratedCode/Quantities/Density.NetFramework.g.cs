@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     The density, or more precisely, the volumetric mass density, of a substance is its mass per unit volume.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Density : IComparable, IComparable<Density>
+    public partial class Density : IComparable, IComparable<Density>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

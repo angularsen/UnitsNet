@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     The SpecificWeight, or more precisely, the volumetric weight density, of a substance is its weight per unit volume.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct SpecificWeight : IComparable, IComparable<SpecificWeight>
+    public partial class SpecificWeight : IComparable, IComparable<SpecificWeight>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

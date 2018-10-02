@@ -53,15 +53,7 @@ namespace UnitsNet
     ///     In classical electromagnetism, the electric potential (a scalar quantity denoted by Φ, ΦE or V and also called the electric field potential or the electrostatic potential) at a point is the amount of electric potential energy that a unitary point charge would have when located at that point.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class ElectricPotential : IQuantity
-#else
-    public partial struct ElectricPotential : IQuantity, IComparable, IComparable<ElectricPotential>
-#endif
+    public partial class ElectricPotential : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -287,6 +279,9 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricPotential other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 

@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     A property of body reflects how its mass is distributed with regard to an axis.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct MassMomentOfInertia : IComparable, IComparable<MassMomentOfInertia>
+    public partial class MassMomentOfInertia : IComparable, IComparable<MassMomentOfInertia>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

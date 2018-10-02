@@ -53,15 +53,7 @@ namespace UnitsNet
     ///     A unit for expressing the integral of apparent power over time, equal to the product of 1 volt-ampere and 1 hour, or to 3600 joules.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class ApparentEnergy : IQuantity
-#else
-    public partial struct ApparentEnergy : IQuantity, IComparable, IComparable<ApparentEnergy>
-#endif
+    public partial class ApparentEnergy : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -247,6 +239,9 @@ namespace UnitsNet
 #endif
         int CompareTo(ApparentEnergy other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 

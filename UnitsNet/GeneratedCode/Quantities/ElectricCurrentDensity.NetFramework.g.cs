@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In electromagnetism, current density is the electric current per unit area of cross section.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ElectricCurrentDensity : IComparable, IComparable<ElectricCurrentDensity>
+    public partial class ElectricCurrentDensity : IComparable, IComparable<ElectricCurrentDensity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

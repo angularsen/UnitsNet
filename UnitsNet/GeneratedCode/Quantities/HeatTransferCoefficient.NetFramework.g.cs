@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     The heat transfer coefficient or film coefficient, or film effectiveness, in thermodynamics and in mechanics is the proportionality constant between the heat flux and the thermodynamic driving force for the flow of heat (i.e., the temperature difference, ΔT)
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct HeatTransferCoefficient : IComparable, IComparable<HeatTransferCoefficient>
+    public partial class HeatTransferCoefficient : IComparable, IComparable<HeatTransferCoefficient>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

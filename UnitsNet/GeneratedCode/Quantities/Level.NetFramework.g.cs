@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q₀, expressed in dimensionless units.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Level : IComparable, IComparable<Level>
+    public partial class Level : IComparable, IComparable<Level>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

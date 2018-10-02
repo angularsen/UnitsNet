@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     In electromagnetism, permittivity is the measure of resistance that is encountered when forming an electric field in a particular medium.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Permittivity : IComparable, IComparable<Permittivity>
+    public partial class Permittivity : IComparable, IComparable<Permittivity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

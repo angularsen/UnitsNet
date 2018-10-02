@@ -30,7 +30,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
     public sealed partial class Density
 #else
-    public partial struct Density
+    public partial class Density
 #endif
     {
         /// <summary>

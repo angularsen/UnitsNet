@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct MassFlow : IComparable, IComparable<MassFlow>
+    public partial class MassFlow : IComparable, IComparable<MassFlow>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

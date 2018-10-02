@@ -30,7 +30,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
     public sealed partial class Force
 #else
-    public partial struct Force
+    public partial class Force
 #endif
     {
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx

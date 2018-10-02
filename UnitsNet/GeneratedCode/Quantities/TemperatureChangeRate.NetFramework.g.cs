@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Temperature change rate is the ratio of the temperature change to the time during which the change occurred (value of temperature changes per unit time).
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct TemperatureChangeRate : IComparable, IComparable<TemperatureChangeRate>
+    public partial class TemperatureChangeRate : IComparable, IComparable<TemperatureChangeRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

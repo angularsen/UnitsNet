@@ -31,7 +31,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
     public sealed partial class AmplitudeRatio
 #else
-    public partial struct AmplitudeRatio
+    public partial class AmplitudeRatio
 #endif
     {
         /// <summary>
@@ -49,7 +49,6 @@ namespace UnitsNet
         public
 #endif
             AmplitudeRatio(ElectricPotential voltage)
-            : this()
         {
             if (voltage.Volts <= 0)
                 throw new ArgumentOutOfRangeException(

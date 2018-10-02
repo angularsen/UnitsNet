@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Electric charge is the physical property of matter that causes it to experience a force when placed in an electromagnetic field.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ElectricCharge : IComparable, IComparable<ElectricCharge>
+    public partial class ElectricCharge : IComparable, IComparable<ElectricCharge>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

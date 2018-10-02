@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     The magnitude of force per unit length.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ForcePerLength : IComparable, IComparable<ForcePerLength>
+    public partial class ForcePerLength : IComparable, IComparable<ForcePerLength>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

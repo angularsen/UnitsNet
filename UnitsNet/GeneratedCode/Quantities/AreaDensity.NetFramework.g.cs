@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     The area density of a two-dimensional object is calculated as the mass per unit area.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct AreaDensity : IComparable, IComparable<AreaDensity>
+    public partial class AreaDensity : IComparable, IComparable<AreaDensity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

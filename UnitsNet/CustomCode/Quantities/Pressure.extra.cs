@@ -28,7 +28,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
     public sealed partial class Pressure
 #else
-    public partial struct Pressure
+    public partial class Pressure
 #endif
     {
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx

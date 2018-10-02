@@ -53,15 +53,7 @@ namespace UnitsNet
     ///     Inductance is a property of an electrical conductor which opposes a change in current.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class ElectricInductance : IQuantity
-#else
-    public partial struct ElectricInductance : IQuantity, IComparable, IComparable<ElectricInductance>
-#endif
+    public partial class ElectricInductance : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -207,6 +199,9 @@ namespace UnitsNet
 #endif
         int CompareTo(ElectricInductance other)
         {
+            if(other is null)
+                throw new ArgumentNullException(nameof(other));
+
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 

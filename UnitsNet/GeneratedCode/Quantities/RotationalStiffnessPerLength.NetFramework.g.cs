@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct RotationalStiffnessPerLength : IComparable, IComparable<RotationalStiffnessPerLength>
+    public partial class RotationalStiffnessPerLength : IComparable, IComparable<RotationalStiffnessPerLength>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

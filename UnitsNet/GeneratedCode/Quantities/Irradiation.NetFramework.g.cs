@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     Irradiation is the process by which an object is exposed to radiation. The exposure can originate from various sources, including natural sources.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Irradiation : IComparable, IComparable<Irradiation>
+    public partial class Irradiation : IComparable, IComparable<Irradiation>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

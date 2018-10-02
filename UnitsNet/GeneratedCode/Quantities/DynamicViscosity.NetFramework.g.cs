@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     The dynamic (shear) viscosity of a fluid expresses its resistance to shearing flows, where adjacent layers move parallel to each other with different speeds
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct DynamicViscosity : IComparable, IComparable<DynamicViscosity>
+    public partial class DynamicViscosity : IComparable, IComparable<DynamicViscosity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -52,8 +52,7 @@ namespace UnitsNet
     ///     The electrical conductance of an electrical conductor is a measure of the easeness to pass an electric current through that conductor.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct ElectricConductance : IComparable, IComparable<ElectricConductance>
+    public partial class ElectricConductance : IComparable, IComparable<ElectricConductance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
