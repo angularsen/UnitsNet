@@ -37,8 +37,8 @@ namespace UnitsNet
 
         public static Area FromCircleDiameter(Length diameter)
         {
-            var radiusInMeters = diameter.Meters / 2.0;
-            return FromCircleRadius( Length.FromMeters( radiusInMeters ) );
+            var radius = diameter / 2;
+            return FromCircleRadius(radius));
         }
 
         public static Area FromCircleRadius(Length radius)
