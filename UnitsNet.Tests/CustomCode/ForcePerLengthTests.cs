@@ -9,7 +9,6 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\UnitClasses\MyQuantity.extra.cs files to add code to generated unit classes.
-//     Add Extensions\MyQuantityExtensions.cs to decorate unit classes with new behavior.
 //     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or unit classes.
 //
 // </auto-generated>

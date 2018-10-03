@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
@@ -31,6 +33,21 @@ namespace UnitsNet
     public partial struct Area
 #endif
     {
+        #region Static Methods
+
+        public static Area FromCircleDiameter(Length diameter)
+        {
+            var radius = Length.FromMeters(diameter.Meters / 2d);
+            return FromCircleRadius(radius);
+        }
+
+        public static Area FromCircleRadius(Length radius)
+        {
+            return FromSquareMeters(Math.PI * radius.Meters * radius.Meters);
+        }
+
+        #endregion
+
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static Length operator /(Area area, Length length)
@@ -46,16 +63,6 @@ namespace UnitsNet
         public static VolumeFlow operator *(Area area, Speed speed)
         {
             return VolumeFlow.FromCubicMetersPerSecond(area.SquareMeters * speed.MetersPerSecond);
-        }
-
-        public static Area FromCircleDiameter(Length diameter)
-        {
-            return System.Math.PI * diameter * diameter / 4;
-        }
-
-        public static Area FromCircleRadius(Length radius)
-        {
-            return System.Math.PI * radius * radius;
         }
 #endif
     }

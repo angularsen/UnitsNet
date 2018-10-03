@@ -62,6 +62,34 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Gets an <see cref="ElectricPotential" /> from this <see cref="AmplitudeRatio" />.
+        /// </summary>
+        /// <remarks>
+        ///     Provides a nicer syntax for converting an amplitude ratio back to a voltage.
+        ///     <example>
+        ///         <c>var voltage = voltageRatio.ToElectricPotential();</c>
+        ///     </example>
+        /// </remarks>
+        public ElectricPotential ToElectricPotential()
+        {
+            // E(V) = 1V * 10^(E(dBV)/20)
+            return ElectricPotential.FromVolts( Math.Pow( 10, DecibelVolts / 20 ) );
+        }
+
+        /// <summary>
+        ///     Converts this <see cref="AmplitudeRatio" /> to a <see cref="PowerRatio" />.
+        /// </summary>
+        /// <param name="impedance">The input impedance of the load. This is usually 50, 75 or 600 ohms.</param>
+        /// <remarks>http://www.maximintegrated.com/en/app-notes/index.mvp/id/808</remarks>
+        public PowerRatio ToPowerRatio( ElectricResistance impedance )
+        {
+            // P(dBW) = E(dBV) - 10*log10(Z(Ω)/1)
+            return PowerRatio.FromDecibelWatts( DecibelVolts - 10 * Math.Log10( impedance.Ohms / 1 ) );
+        }
+
+        #region Static Methods
+
+        /// <summary>
         ///     Gets an <see cref="AmplitudeRatio" /> in decibels (dB) relative to 1 volt RMS from an
         ///     <see cref="ElectricPotential" />.
         /// </summary>
@@ -71,26 +99,6 @@ namespace UnitsNet
             return new AmplitudeRatio(voltage);
         }
 
-        /// <summary>
-        ///     Gets an <see cref="ElectricPotential" /> from <see cref="AmplitudeRatio" />.
-        /// </summary>
-        /// <param name="voltageRatio">The voltage ratio to convert to voltage (electric potential).</param>
-        public static ElectricPotential ToElectricPotential(AmplitudeRatio voltageRatio)
-        {
-            // E(V) = 1V * 10^(E(dBV)/20)
-            return ElectricPotential.FromVolts(Math.Pow(10, voltageRatio.DecibelVolts / 20));
-        }
-
-        /// <summary>
-        ///     Converts a <see cref="AmplitudeRatio" /> to a <see cref="PowerRatio" />.
-        /// </summary>
-        /// <param name="amplitudeRatio">The amplitude ratio to convert.</param>
-        /// <param name="impedance">The input impedance of the load. This is usually 50, 75 or 600 ohms.</param>
-        /// <remarks>http://www.maximintegrated.com/en/app-notes/index.mvp/id/808</remarks>
-        public static PowerRatio ToPowerRatio(AmplitudeRatio amplitudeRatio, ElectricResistance impedance)
-        {
-            // P(dBW) = E(dBV) - 10*log10(Z(Ω)/1)
-            return PowerRatio.FromDecibelWatts(amplitudeRatio.DecibelVolts - 10 * Math.Log10(impedance.Ohms / 1));
-        }
+        #endregion
     }
 }

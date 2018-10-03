@@ -34,6 +34,17 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
+        ///     Gets <see cref="Molarity" /> from this <see cref="Density" />.
+        /// </summary>
+        /// <param name="molecularWeight"></param>
+        public Molarity ToMolarity(Mass molecularWeight)
+        {
+            return Molarity.FromMolesPerCubicMeter(KilogramsPerCubicMeter / molecularWeight.Kilograms);
+        }
+
+        #region Static Methods
+
+        /// <summary>
         ///     Get <see cref="Density" /> from <see cref="Molarity" />.
         /// </summary>
         /// <param name="molarity"></param>
@@ -43,10 +54,7 @@ namespace UnitsNet
             return new Density(molarity.MolesPerCubicMeter * molecularWeight.Kilograms, DensityUnit.KilogramPerCubicMeter);
         }
 
-        public static Molarity ToMolarity(Density density, Mass molecularWeight)
-        {
-            return Molarity.FromMolesPerCubicMeter(density.KilogramsPerCubicMeter / molecularWeight.Kilograms);
-        }
+        #endregion
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP

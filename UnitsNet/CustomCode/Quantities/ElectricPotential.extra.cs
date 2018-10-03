@@ -19,35 +19,33 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-namespace UnitsNet.CustomCode.Extensions
+using System;
+using UnitsNet.Units;
+
+// ReSharper disable once CheckNamespace
+namespace UnitsNet
 {
-    /// <summary>
-    ///     Extension methods for <see cref="PowerRatio" />.
-    /// </summary>
-    public static class PowerRatioExtensions
+    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
+    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
+    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
+#if WINDOWS_UWP
+    public sealed partial class ElectricPotential
+#else
+    public partial struct ElectricPotential
+#endif
     {
         /// <summary>
-        ///     Gets a <see cref="Power" /> from a <see cref="PowerRatio" />.
+        ///     Gets an <see cref="AmplitudeRatio" /> in decibels (dB) relative to 1 volt RMS from this <see cref="ElectricPotential" />.
         /// </summary>
         /// <remarks>
-        ///     Provides a nicer syntax for converting a power ratio back to a power.
+        ///     Provides a nicer syntax for converting a voltage to an amplitude ratio (relative to 1 volt RMS).
         ///     <example>
-        ///         <c>var power = powerRatio.ToPower();</c>
+        ///         <c>var voltageRatio = voltage.ToAmplitudeRatio();</c>
         ///     </example>
         /// </remarks>
-        public static Power ToPower(this PowerRatio powerRatio)
+        public AmplitudeRatio ToAmplitudeRatio()
         {
-            return PowerRatio.ToPower(powerRatio);
-        }
-
-        /// <summary>
-        ///     Gets a <see cref="AmplitudeRatio" /> from a <see cref="PowerRatio" />.
-        /// </summary>
-        /// <param name="powerRatio">The power ratio.</param>
-        /// <param name="impedance">The input impedance of the load. This is usually 50, 75 or 600 ohms.</param>
-        public static AmplitudeRatio ToAmplitudeRatio(this PowerRatio powerRatio, ElectricResistance impedance)
-        {
-            return PowerRatio.ToAmplitudeRatio(powerRatio, impedance);
+            return AmplitudeRatio.FromElectricPotential(this);
         }
     }
 }

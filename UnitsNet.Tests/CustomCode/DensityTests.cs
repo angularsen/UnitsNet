@@ -20,7 +20,6 @@
 // THE SOFTWARE.
 
 using Xunit;
-using UnitsNet.CustomCode.Extensions;
 
 namespace UnitsNet.Tests.CustomCode
 {

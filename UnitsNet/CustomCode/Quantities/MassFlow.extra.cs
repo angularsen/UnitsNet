@@ -19,10 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#if !WINDOWS_UWP
 using System;
-
-#endif
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
