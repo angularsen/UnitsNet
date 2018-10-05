@@ -618,7 +618,7 @@ namespace UnitsNet
         /// </exception>
         public static RotationalSpeed Parse(string str)
         {
-            return Parse(str, null);
+            return ParseInternal(str, null);
         }
 
         /// <summary>
@@ -631,7 +631,7 @@ namespace UnitsNet
         /// </example>
         public static bool TryParse([CanBeNull] string str, out RotationalSpeed result)
         {
-            return TryParse(str, null, out result);
+            return TryParseInternal(str, null, out result);
         }
 
         /// <summary>
@@ -645,7 +645,140 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static RotationalSpeedUnit ParseUnit(string str)
         {
-            return ParseUnit(str, (IFormatProvider)null);
+            return ParseUnitInternal(str, null);
+        }
+
+        public static bool TryParseUnit(string str, out RotationalSpeedUnit unit)
+        {
+            return TryParseUnitInternal(str, null, out unit);
+        }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        internal static RotationalSpeed ParseInternal(string str, [CanBeNull] IFormatProvider provider)
+        {
+            if (str == null) throw new ArgumentNullException(nameof(str));
+
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return QuantityParser.Parse<RotationalSpeed, RotationalSpeedUnit>(str, provider,
+                delegate(string value, string unit, IFormatProvider formatProvider2)
+                {
+                    var parsedValue = double.Parse(value, formatProvider2);
+                    var parsedUnit = ParseUnitInternal(unit, formatProvider2);
+                    return From(parsedValue, parsedUnit);
+                }, (x, y) => From(x.RadiansPerSecond + y.RadiansPerSecond, BaseUnit));
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        internal static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out RotationalSpeed result)
+        {
+            result = default(RotationalSpeed);
+
+            if(string.IsNullOrWhiteSpace(str))
+                return false;
+
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return QuantityParser.TryParse<RotationalSpeed, RotationalSpeedUnit>(str, provider,
+                delegate(string value, string unit, IFormatProvider formatProvider2, out RotationalSpeed parsedRotationalSpeed )
+                {
+                    parsedRotationalSpeed = default(RotationalSpeed);
+
+                    if(!double.TryParse(value, NumberStyles.Any, formatProvider2, out var parsedValue))
+                        return false;
+
+                    if(!TryParseUnitInternal(unit, formatProvider2, out var parsedUnit))
+                        return false;
+
+                    parsedRotationalSpeed = From(parsedValue, parsedUnit);
+                    return true;
+                }, (x, y) => From(x.RadiansPerSecond + y.RadiansPerSecond, BaseUnit), out result);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        internal static RotationalSpeedUnit ParseUnitInternal(string str, IFormatProvider provider = null)
+        {
+            if (str == null) throw new ArgumentNullException(nameof(str));
+
+            var unitSystem = UnitSystem.GetCached(provider);
+            var unit = unitSystem.Parse<RotationalSpeedUnit>(str.Trim());
+
+            if (unit == RotationalSpeedUnit.Undefined)
+            {
+                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized RotationalSpeedUnit.");
+                newEx.Data["input"] = str;
+                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
+                throw newEx;
+            }
+
+            return unit;
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <param name="unit">The parsed unit if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        internal static bool TryParseUnitInternal(string str, IFormatProvider provider, out RotationalSpeedUnit unit)
+        {
+            unit = RotationalSpeedUnit.Undefined;
+
+            if(string.IsNullOrWhiteSpace(str))
+                return false;
+
+            var unitSystem = UnitSystem.GetCached(provider);
+            if(!unitSystem.TryParse<RotationalSpeedUnit>(str.Trim(), out unit))
+                return false;
+
+            if(unit == RotationalSpeedUnit.Undefined)
+                return false;
+
+            return true;
         }
 
         #endregion

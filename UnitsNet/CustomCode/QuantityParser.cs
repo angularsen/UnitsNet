@@ -31,6 +31,7 @@ using JetBrains.Annotations;
 namespace UnitsNet
 {
     internal delegate TQuantity ParseUnit<out TQuantity>(string value, string unit, IFormatProvider formatProvider = null);
+    internal delegate bool TryParseUnit<TQuantity>(string valueString, string unit, IFormatProvider formatProvider, out TQuantity value);
 
     internal static class QuantityParser
     {
@@ -44,14 +45,14 @@ namespace UnitsNet
             if (parseUnit == null) throw new ArgumentNullException(nameof(parseUnit));
             if (add == null) throw new ArgumentNullException(nameof(add));
 
-            NumberFormatInfo numFormat = formatProvider != null
+            var numFormat = formatProvider != null
                 ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
                 : NumberFormatInfo.CurrentInfo;
 
             if (numFormat == null)
                 throw new InvalidOperationException($"No number format was found for the given format provider: {formatProvider}");
 
-            string numRegex = string.Format(@"[\d., {0}{1}]*\d",
+            var numRegex = string.Format(@"[\d., {0}{1}]*\d",
                 // allows digits, dots, commas, and spaces in the quantity (must end in digit)
                 numFormat.NumberGroupSeparator, // adds provided (or current) culture's group separator
                 numFormat.NumberDecimalSeparator); // adds provided (or current) culture's decimal separator
@@ -66,7 +67,7 @@ namespace UnitsNet
 
             string unitsRegex = $"({String.Join("|", unitAbbreviations)})";
 
-            string regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
+            var regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
                 numRegex, // capture base (integral) Quantity value
                 exponentialRegex, // capture exponential (if any), end of Quantity capturing
                 @"\s?", // ignore whitespace (allows both "1kg", "1 kg")
@@ -74,7 +75,7 @@ namespace UnitsNet
                 @"(and)?,?", // allow "and" & "," separators between quantities
                 @"(?<invalid>[a-z]*)?"); // capture invalid input
 
-            List<TQuantity> quantities = ParseWithRegex(regexString, str, parseUnit, formatProvider);
+            var quantities = ParseWithRegex(regexString, str, parseUnit, formatProvider);
             if (quantities.Count == 0)
             {
                 throw new ArgumentException(
@@ -131,6 +132,88 @@ namespace UnitsNet
                 }
             }
             return converted;
+        }
+
+        [SuppressMessage("ReSharper", "UseStringInterpolation")]
+        internal static bool TryParse<TQuantity, TUnitType>([NotNull] string str,
+            [CanBeNull] IFormatProvider formatProvider,
+            [NotNull] TryParseUnit<TQuantity> parseUnit,
+            [NotNull] Func<TQuantity, TQuantity, TQuantity> add, out TQuantity value)
+        {
+            value = default(TQuantity);
+
+            if(string.IsNullOrWhiteSpace(str)) return false;
+            if(parseUnit == null) return false;
+            if(add == null) return false;
+
+            var numFormat = formatProvider != null
+                ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
+                : NumberFormatInfo.CurrentInfo;
+
+            if(numFormat == null)
+                return false;
+
+            var numRegex = string.Format(@"[\d., {0}{1}]*\d",
+                // allows digits, dots, commas, and spaces in the quantity (must end in digit)
+                numFormat.NumberGroupSeparator, // adds provided (or current) culture's group separator
+                numFormat.NumberDecimalSeparator); // adds provided (or current) culture's decimal separator
+
+            const string exponentialRegex = @"(?:[eE][-+]?\d+)?)";
+
+            string[] unitAbbreviations = UnitSystem.GetCached(formatProvider)
+                .GetAllAbbreviations(typeof(TUnitType))
+                .OrderByDescending(s => s.Length)       // Important to order by length -- if "m" is before "mm" and the input is "mm", it will match just "m" and throw invalid string error
+                .Select(Regex.Escape)                   // Escape special regex characters
+                .ToArray();
+
+            string unitsRegex = $"({String.Join("|", unitAbbreviations)})";
+
+            var regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
+                numRegex, // capture base (integral) Quantity value
+                exponentialRegex, // capture exponential (if any), end of Quantity capturing
+                @"\s?", // ignore whitespace (allows both "1kg", "1 kg")
+                $@"(?<unit>{unitsRegex})", // capture Unit by list of abbreviations
+                @"(and)?,?", // allow "and" & "," separators between quantities
+                @"(?<invalid>[a-z]*)?"); // capture invalid input
+
+            if(!TryParseWithRegex<TQuantity, TUnitType>(regexString, str, parseUnit, formatProvider, out var quantities))
+                return false;
+
+            value = quantities.Aggregate(add);
+            return true;
+        }
+
+        /// <summary>
+        ///     Parse a string given a particular regular expression.
+        /// </summary>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        private static bool TryParseWithRegex<TQuantity, TUnitType>(string regexString, string str, TryParseUnit<TQuantity> tryParseUnit,
+            IFormatProvider formatProvider, out List<TQuantity> converted )
+        {
+            converted = new List<TQuantity>();
+
+            var regex = new Regex(regexString);
+            var matches = regex.Matches(str.Trim());
+
+            foreach(Match match in matches)
+            {
+                var groups = match.Groups;
+
+                var valueString = groups["value"].Value;
+                var unitString = groups["unit"].Value;
+                if(groups["invalid"].Value != string.Empty)
+                    return false;
+
+                if((valueString == string.Empty) && (unitString == string.Empty))
+                    continue;
+
+                if(!tryParseUnit(valueString, unitString, formatProvider, out var parsed))
+                    return false;
+
+                  converted.Add(parsed);
+            }
+
+            return true;
         }
     }
 }

@@ -120,17 +120,7 @@ namespace UnitsNet
         /// </exception>
         public static Temperature Parse(string str, [CanBeNull] IFormatProvider provider)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            return QuantityParser.Parse<Temperature, TemperatureUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    double parsedValue = double.Parse(value, formatProvider2);
-                    TemperatureUnit parsedUnit = ParseUnit(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKelvins(x.Kelvins + y.Kelvins));
+            return ParseInternal(str, provider);
         }
 
         /// <summary>
@@ -139,39 +129,13 @@ namespace UnitsNet
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
         public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Temperature result)
         {
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            try
-            {
-                result = Parse(str, provider);
-                return true;
-            }
-            catch
-            {
-                result = default(Temperature);
-                return false;
-            }
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
-        public static TemperatureUnit ParseUnit(string str, [CanBeNull] string cultureName)
-        {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+            return TryParseInternal(str, provider, out result);
         }
 
         /// <summary>
@@ -186,20 +150,22 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static TemperatureUnit ParseUnit(string str, IFormatProvider provider = null)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            return ParseUnitInternal(str, provider);
+        }
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<TemperatureUnit>(str.Trim());
-
-            if (unit == TemperatureUnit.Undefined)
-            {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized TemperatureUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
-            }
-
-            return unit;
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <param name="unit">The parsed unit if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        public static bool TryParseUnit(string str, IFormatProvider provider, out TemperatureUnit unit)
+        {
+            return TryParseUnitInternal(str, provider, out unit);
         }
 
         #endregion
