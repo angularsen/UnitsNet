@@ -121,13 +121,7 @@ namespace UnitsNet
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
             IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 
-            return QuantityParser.Parse<Density, DensityUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    double parsedValue = double.Parse(value, formatProvider2);
-                    DensityUnit parsedUnit = ParseUnit(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKilogramsPerCubicMeter(x.KilogramsPerCubicMeter + y.KilogramsPerCubicMeter));
+            return ParseInternal(str, provider);
         }
 
         /// <summary>
@@ -141,16 +135,10 @@ namespace UnitsNet
         /// </example>
         public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out Density result)
         {
-            try
-            {
-                result = Parse(str, cultureName);
-                return true;
-            }
-            catch
-            {
-                result = default(Density);
-                return false;
-            }
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+
+            return TryParseInternal(str, provider, out result);
         }
 
         /// <summary>
@@ -165,35 +153,28 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static DensityUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+
+            return ParseUnitInternal(str, provider);
         }
 
         /// <summary>
-        ///     Parse a unit string.
+        ///     Try to parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <param name="unit">The parsed unit if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
         /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        internal static DensityUnit ParseUnit(string str, IFormatProvider provider = null)
+        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out DensityUnit unit)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<DensityUnit>(str.Trim());
-
-            if (unit == DensityUnit.Undefined)
-            {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized DensityUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
-            }
-
-            return unit;
+            return TryParseUnitInternal(str, provider, out unit);
         }
 
         #endregion
