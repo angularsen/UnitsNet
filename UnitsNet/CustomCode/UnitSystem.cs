@@ -28,6 +28,8 @@ using UnitsNet.I18n;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
+using AbbreviationMap = System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<int>>;
+
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
@@ -411,16 +413,13 @@ namespace UnitsNet
             bool TryParse<TUnitType>(string unitAbbreviation, out TUnitType unit)
             where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
         {
-            try
-            {
-                unit = (TUnitType) Parse(unitAbbreviation, typeof(TUnitType));
-                return true;
-            }
-            catch
-            {
-                unit = default(TUnitType);
+            unit = default(TUnitType);
+
+            if(!TryParse(unitAbbreviation, typeof(TUnitType), out var unitObj))
                 return false;
-            }
+
+            unit = (TUnitType)unitObj;
+            return true;
         }
 
         /// <summary>
@@ -433,16 +432,20 @@ namespace UnitsNet
         [PublicAPI]
         public bool TryParse(string unitAbbreviation, Type unitType, out object unit)
         {
-            try
-            {
-                unit = Parse(unitAbbreviation, unitType);
-                return true;
-            }
-            catch
-            {
-                unit = GetDefault(unitType);
+            unit = GetDefault(unitType);
+
+            if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out var abbrevToUnitValue))
                 return false;
-            }
+
+            var unitValues = abbrevToUnitValue.TryGetValue(unitAbbreviation, out var unitIntValues)
+                ? unitIntValues.Distinct().Cast<object>().ToList()
+                : new List<object>();
+
+            if(unitValues.Count != 1)
+                return false;
+
+            unit = unitValues[0];
+            return true;
         }
 
         /// <summary>
@@ -540,13 +543,6 @@ namespace UnitsNet
                     MapUnitToAbbreviation(unitEnumType, unitEnumValue, matchingCulture.Abbreviations.ToArray());
                 }
             }
-        }
-
-        /// <summary>
-        ///     Avoids having too many nested generics for code clarity
-        /// </summary>
-        private class AbbreviationMap : Dictionary<string, List<int>>
-        {
         }
 
         /// <summary>
