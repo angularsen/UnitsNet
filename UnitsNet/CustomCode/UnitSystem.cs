@@ -432,7 +432,7 @@ namespace UnitsNet
         [PublicAPI]
         public bool TryParse(string unitAbbreviation, Type unitType, out object unit)
         {
-            unit = GetDefault( unitType );
+            unit = GetDefault(unitType);
 
             if (!_unitTypeToAbbrevToUnitValue.TryGetValue(unitType, out var abbrevToUnitValue))
                 return false;
