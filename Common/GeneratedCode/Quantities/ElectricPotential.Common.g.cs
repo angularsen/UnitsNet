@@ -36,9 +36,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
@@ -500,19 +497,14 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        internal static ElectricPotential ParseInternal(string str, [CanBeNull] IFormatProvider provider)
+        private static ElectricPotential ParseInternal(string str, [CanBeNull] IFormatProvider provider)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.Parse<ElectricPotential, ElectricPotentialUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    var parsedValue = double.Parse(value, formatProvider2);
-                    var parsedUnit = ParseUnitInternal(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => From(x.Volts + y.Volts, BaseUnit));
+            return QuantityParser.Parse<ElectricPotential, ElectricPotentialUnit>(str, provider, ParseUnitInternal, From,
+                (x, y) => From(x.Volts + y.Volts, BaseUnit));
         }
 
         /// <summary>
@@ -525,7 +517,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ElectricPotential result)
+        private static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ElectricPotential result)
         {
             result = default(ElectricPotential);
 
@@ -534,20 +526,8 @@ namespace UnitsNet
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.TryParse<ElectricPotential, ElectricPotentialUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2, out ElectricPotential parsedElectricPotential )
-                {
-                    parsedElectricPotential = default(ElectricPotential);
-
-                    if(!double.TryParse(value, NumberStyles.Any, formatProvider2, out var parsedValue))
-                        return false;
-
-                    if(!TryParseUnitInternal(unit, formatProvider2, out var parsedUnit))
-                        return false;
-
-                    parsedElectricPotential = From(parsedValue, parsedUnit);
-                    return true;
-                }, (x, y) => From(x.Volts + y.Volts, BaseUnit), out result);
+            return QuantityParser.TryParse<ElectricPotential, ElectricPotentialUnit>(str, provider, TryParseUnitInternal, From,
+                (x, y) => From(x.Volts + y.Volts, BaseUnit), out result);
         }
 
         /// <summary>
@@ -560,7 +540,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        internal static ElectricPotentialUnit ParseUnitInternal(string str, IFormatProvider provider = null)
+        private static ElectricPotentialUnit ParseUnitInternal(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
@@ -588,7 +568,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseUnitInternal(string str, IFormatProvider provider, out ElectricPotentialUnit unit)
+        private static bool TryParseUnitInternal(string str, IFormatProvider provider, out ElectricPotentialUnit unit)
         {
             unit = ElectricPotentialUnit.Undefined;
 

@@ -36,9 +36,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
@@ -478,19 +475,14 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        internal static ReactivePower ParseInternal(string str, [CanBeNull] IFormatProvider provider)
+        private static ReactivePower ParseInternal(string str, [CanBeNull] IFormatProvider provider)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.Parse<ReactivePower, ReactivePowerUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    var parsedValue = double.Parse(value, formatProvider2);
-                    var parsedUnit = ParseUnitInternal(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => From(x.VoltamperesReactive + y.VoltamperesReactive, BaseUnit));
+            return QuantityParser.Parse<ReactivePower, ReactivePowerUnit>(str, provider, ParseUnitInternal, From,
+                (x, y) => From(x.VoltamperesReactive + y.VoltamperesReactive, BaseUnit));
         }
 
         /// <summary>
@@ -503,7 +495,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ReactivePower result)
+        private static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ReactivePower result)
         {
             result = default(ReactivePower);
 
@@ -512,20 +504,8 @@ namespace UnitsNet
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.TryParse<ReactivePower, ReactivePowerUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2, out ReactivePower parsedReactivePower )
-                {
-                    parsedReactivePower = default(ReactivePower);
-
-                    if(!double.TryParse(value, NumberStyles.Any, formatProvider2, out var parsedValue))
-                        return false;
-
-                    if(!TryParseUnitInternal(unit, formatProvider2, out var parsedUnit))
-                        return false;
-
-                    parsedReactivePower = From(parsedValue, parsedUnit);
-                    return true;
-                }, (x, y) => From(x.VoltamperesReactive + y.VoltamperesReactive, BaseUnit), out result);
+            return QuantityParser.TryParse<ReactivePower, ReactivePowerUnit>(str, provider, TryParseUnitInternal, From,
+                (x, y) => From(x.VoltamperesReactive + y.VoltamperesReactive, BaseUnit), out result);
         }
 
         /// <summary>
@@ -538,7 +518,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        internal static ReactivePowerUnit ParseUnitInternal(string str, IFormatProvider provider = null)
+        private static ReactivePowerUnit ParseUnitInternal(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
@@ -566,7 +546,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseUnitInternal(string str, IFormatProvider provider, out ReactivePowerUnit unit)
+        private static bool TryParseUnitInternal(string str, IFormatProvider provider, out ReactivePowerUnit unit)
         {
             unit = ReactivePowerUnit.Undefined;
 

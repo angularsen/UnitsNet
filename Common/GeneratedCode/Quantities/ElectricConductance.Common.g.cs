@@ -36,9 +36,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
@@ -456,19 +453,14 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        internal static ElectricConductance ParseInternal(string str, [CanBeNull] IFormatProvider provider)
+        private static ElectricConductance ParseInternal(string str, [CanBeNull] IFormatProvider provider)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.Parse<ElectricConductance, ElectricConductanceUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    var parsedValue = double.Parse(value, formatProvider2);
-                    var parsedUnit = ParseUnitInternal(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => From(x.Siemens + y.Siemens, BaseUnit));
+            return QuantityParser.Parse<ElectricConductance, ElectricConductanceUnit>(str, provider, ParseUnitInternal, From,
+                (x, y) => From(x.Siemens + y.Siemens, BaseUnit));
         }
 
         /// <summary>
@@ -481,7 +473,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ElectricConductance result)
+        private static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ElectricConductance result)
         {
             result = default(ElectricConductance);
 
@@ -490,20 +482,8 @@ namespace UnitsNet
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.TryParse<ElectricConductance, ElectricConductanceUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2, out ElectricConductance parsedElectricConductance )
-                {
-                    parsedElectricConductance = default(ElectricConductance);
-
-                    if(!double.TryParse(value, NumberStyles.Any, formatProvider2, out var parsedValue))
-                        return false;
-
-                    if(!TryParseUnitInternal(unit, formatProvider2, out var parsedUnit))
-                        return false;
-
-                    parsedElectricConductance = From(parsedValue, parsedUnit);
-                    return true;
-                }, (x, y) => From(x.Siemens + y.Siemens, BaseUnit), out result);
+            return QuantityParser.TryParse<ElectricConductance, ElectricConductanceUnit>(str, provider, TryParseUnitInternal, From,
+                (x, y) => From(x.Siemens + y.Siemens, BaseUnit), out result);
         }
 
         /// <summary>
@@ -516,7 +496,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        internal static ElectricConductanceUnit ParseUnitInternal(string str, IFormatProvider provider = null)
+        private static ElectricConductanceUnit ParseUnitInternal(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
@@ -544,7 +524,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseUnitInternal(string str, IFormatProvider provider, out ElectricConductanceUnit unit)
+        private static bool TryParseUnitInternal(string str, IFormatProvider provider, out ElectricConductanceUnit unit)
         {
             unit = ElectricConductanceUnit.Undefined;
 

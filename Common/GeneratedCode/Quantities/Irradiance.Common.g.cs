@@ -36,9 +36,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
@@ -434,19 +431,14 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        internal static Irradiance ParseInternal(string str, [CanBeNull] IFormatProvider provider)
+        private static Irradiance ParseInternal(string str, [CanBeNull] IFormatProvider provider)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.Parse<Irradiance, IrradianceUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    var parsedValue = double.Parse(value, formatProvider2);
-                    var parsedUnit = ParseUnitInternal(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => From(x.WattsPerSquareMeter + y.WattsPerSquareMeter, BaseUnit));
+            return QuantityParser.Parse<Irradiance, IrradianceUnit>(str, provider, ParseUnitInternal, From,
+                (x, y) => From(x.WattsPerSquareMeter + y.WattsPerSquareMeter, BaseUnit));
         }
 
         /// <summary>
@@ -459,7 +451,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Irradiance result)
+        private static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Irradiance result)
         {
             result = default(Irradiance);
 
@@ -468,20 +460,8 @@ namespace UnitsNet
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.TryParse<Irradiance, IrradianceUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2, out Irradiance parsedIrradiance )
-                {
-                    parsedIrradiance = default(Irradiance);
-
-                    if(!double.TryParse(value, NumberStyles.Any, formatProvider2, out var parsedValue))
-                        return false;
-
-                    if(!TryParseUnitInternal(unit, formatProvider2, out var parsedUnit))
-                        return false;
-
-                    parsedIrradiance = From(parsedValue, parsedUnit);
-                    return true;
-                }, (x, y) => From(x.WattsPerSquareMeter + y.WattsPerSquareMeter, BaseUnit), out result);
+            return QuantityParser.TryParse<Irradiance, IrradianceUnit>(str, provider, TryParseUnitInternal, From,
+                (x, y) => From(x.WattsPerSquareMeter + y.WattsPerSquareMeter, BaseUnit), out result);
         }
 
         /// <summary>
@@ -494,7 +474,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        internal static IrradianceUnit ParseUnitInternal(string str, IFormatProvider provider = null)
+        private static IrradianceUnit ParseUnitInternal(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
@@ -522,7 +502,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseUnitInternal(string str, IFormatProvider provider, out IrradianceUnit unit)
+        private static bool TryParseUnitInternal(string str, IFormatProvider provider, out IrradianceUnit unit)
         {
             unit = IrradianceUnit.Undefined;
 

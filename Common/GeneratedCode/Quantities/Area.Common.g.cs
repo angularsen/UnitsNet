@@ -36,9 +36,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
@@ -676,19 +673,14 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        internal static Area ParseInternal(string str, [CanBeNull] IFormatProvider provider)
+        private static Area ParseInternal(string str, [CanBeNull] IFormatProvider provider)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.Parse<Area, AreaUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    var parsedValue = double.Parse(value, formatProvider2);
-                    var parsedUnit = ParseUnitInternal(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => From(x.SquareMeters + y.SquareMeters, BaseUnit));
+            return QuantityParser.Parse<Area, AreaUnit>(str, provider, ParseUnitInternal, From,
+                (x, y) => From(x.SquareMeters + y.SquareMeters, BaseUnit));
         }
 
         /// <summary>
@@ -701,7 +693,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Area result)
+        private static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Area result)
         {
             result = default(Area);
 
@@ -710,20 +702,8 @@ namespace UnitsNet
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.TryParse<Area, AreaUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2, out Area parsedArea )
-                {
-                    parsedArea = default(Area);
-
-                    if(!double.TryParse(value, NumberStyles.Any, formatProvider2, out var parsedValue))
-                        return false;
-
-                    if(!TryParseUnitInternal(unit, formatProvider2, out var parsedUnit))
-                        return false;
-
-                    parsedArea = From(parsedValue, parsedUnit);
-                    return true;
-                }, (x, y) => From(x.SquareMeters + y.SquareMeters, BaseUnit), out result);
+            return QuantityParser.TryParse<Area, AreaUnit>(str, provider, TryParseUnitInternal, From,
+                (x, y) => From(x.SquareMeters + y.SquareMeters, BaseUnit), out result);
         }
 
         /// <summary>
@@ -736,7 +716,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        internal static AreaUnit ParseUnitInternal(string str, IFormatProvider provider = null)
+        private static AreaUnit ParseUnitInternal(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
@@ -764,7 +744,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseUnitInternal(string str, IFormatProvider provider, out AreaUnit unit)
+        private static bool TryParseUnitInternal(string str, IFormatProvider provider, out AreaUnit unit)
         {
             unit = AreaUnit.Undefined;
 
