@@ -19,6 +19,7 @@
     <AllowCrossPlatformRetargeting>false</AllowCrossPlatformRetargeting>
     <OutputPath>..\Artifacts\UnitsNet.WindowsRuntimeComponent</OutputPath>
     <NoWarn>CS1701;CS1702;CS1705;CS0618;CS0809;CS1591</NoWarn>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
