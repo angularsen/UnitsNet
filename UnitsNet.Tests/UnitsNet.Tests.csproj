@@ -4,6 +4,7 @@
     <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
     <RootNamespace>UnitsNet.Tests</RootNamespace>
     <NoWarn>CS1701;CS1702;CS1705;CS0618</NoWarn>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

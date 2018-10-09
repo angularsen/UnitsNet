@@ -70,7 +70,7 @@ namespace UnitsNet.Tests
 
         private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnitType>(string cultureName,
             IEnumerable<TUnitType> unitValues)
-            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
+            where TUnitType : Enum
         {
             UnitSystem unitSystem = UnitSystem.GetCached(GetCulture(cultureName));
 

@@ -242,7 +242,7 @@ namespace UnitsNet
         public
 #endif
             TUnitType Parse<TUnitType>(string unitAbbreviation)
-            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
+            where TUnitType : Enum
         {
             return (TUnitType) Parse(unitAbbreviation, typeof(TUnitType));
         }
@@ -297,7 +297,7 @@ namespace UnitsNet
         public
 #endif
             string GetDefaultAbbreviation<TUnitType>(TUnitType unit)
-            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
+            where TUnitType : Enum
         {
             return GetAllAbbreviations(unit).First();
         }
@@ -332,7 +332,7 @@ namespace UnitsNet
         public
 #endif
             void MapUnitToAbbreviation<TUnitType>(TUnitType unit, params string[] abbreviations)
-            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
+            where TUnitType : Enum
         {
             // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
             // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
@@ -411,7 +411,7 @@ namespace UnitsNet
         public
 #endif
             bool TryParse<TUnitType>(string unitAbbreviation, out TUnitType unit)
-            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
+            where TUnitType : Enum
         {
             unit = default(TUnitType);
 
@@ -462,7 +462,7 @@ namespace UnitsNet
         public
 #endif
             string[] GetAllAbbreviations<TUnitType>(TUnitType unit)
-            where TUnitType : /*Enum constraint hack*/ struct, IComparable, IFormattable
+            where TUnitType : Enum
         {
             Dictionary<int, List<string>> unitValueToAbbrevs;
             List<string> abbrevs;

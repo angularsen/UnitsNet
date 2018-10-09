@@ -12,6 +12,7 @@
     <DefineConstants>SIGNED</DefineConstants>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>$(MSBuildProjectDirectory)\..\UnitsNet.snk</AssemblyOriginatorKeyFile>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
 
   <!-- Signed project references, will also generate the corresponding nuget dependencies -->
