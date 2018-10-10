@@ -36,9 +36,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
@@ -566,19 +563,14 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        internal static KinematicViscosity ParseInternal(string str, [CanBeNull] IFormatProvider provider)
+        private static KinematicViscosity ParseInternal(string str, [CanBeNull] IFormatProvider provider)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.Parse<KinematicViscosity, KinematicViscosityUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    var parsedValue = double.Parse(value, formatProvider2);
-                    var parsedUnit = ParseUnitInternal(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => From(x.SquareMetersPerSecond + y.SquareMetersPerSecond, BaseUnit));
+            return QuantityParser.Parse<KinematicViscosity, KinematicViscosityUnit>(str, provider, ParseUnitInternal, From,
+                (x, y) => From(x.SquareMetersPerSecond + y.SquareMetersPerSecond, BaseUnit));
         }
 
         /// <summary>
@@ -591,7 +583,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out KinematicViscosity result)
+        private static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out KinematicViscosity result)
         {
             result = default(KinematicViscosity);
 
@@ -600,20 +592,8 @@ namespace UnitsNet
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.TryParse<KinematicViscosity, KinematicViscosityUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2, out KinematicViscosity parsedKinematicViscosity )
-                {
-                    parsedKinematicViscosity = default(KinematicViscosity);
-
-                    if(!double.TryParse(value, NumberStyles.Any, formatProvider2, out var parsedValue))
-                        return false;
-
-                    if(!TryParseUnitInternal(unit, formatProvider2, out var parsedUnit))
-                        return false;
-
-                    parsedKinematicViscosity = From(parsedValue, parsedUnit);
-                    return true;
-                }, (x, y) => From(x.SquareMetersPerSecond + y.SquareMetersPerSecond, BaseUnit), out result);
+            return QuantityParser.TryParse<KinematicViscosity, KinematicViscosityUnit>(str, provider, TryParseUnitInternal, From,
+                (x, y) => From(x.SquareMetersPerSecond + y.SquareMetersPerSecond, BaseUnit), out result);
         }
 
         /// <summary>
@@ -626,7 +606,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        internal static KinematicViscosityUnit ParseUnitInternal(string str, IFormatProvider provider = null)
+        private static KinematicViscosityUnit ParseUnitInternal(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
@@ -654,7 +634,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseUnitInternal(string str, IFormatProvider provider, out KinematicViscosityUnit unit)
+        private static bool TryParseUnitInternal(string str, IFormatProvider provider, out KinematicViscosityUnit unit)
         {
             unit = KinematicViscosityUnit.Undefined;
 

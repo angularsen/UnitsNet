@@ -36,9 +36,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
@@ -500,19 +497,14 @@ namespace UnitsNet
         ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
         ///     Units.NET exceptions from other exceptions.
         /// </exception>
-        internal static ThermalResistance ParseInternal(string str, [CanBeNull] IFormatProvider provider)
+        private static ThermalResistance ParseInternal(string str, [CanBeNull] IFormatProvider provider)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.Parse<ThermalResistance, ThermalResistanceUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    var parsedValue = double.Parse(value, formatProvider2);
-                    var parsedUnit = ParseUnitInternal(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => From(x.SquareMeterKelvinsPerKilowatt + y.SquareMeterKelvinsPerKilowatt, BaseUnit));
+            return QuantityParser.Parse<ThermalResistance, ThermalResistanceUnit>(str, provider, ParseUnitInternal, From,
+                (x, y) => From(x.SquareMeterKelvinsPerKilowatt + y.SquareMeterKelvinsPerKilowatt, BaseUnit));
         }
 
         /// <summary>
@@ -525,7 +517,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ThermalResistance result)
+        private static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out ThermalResistance result)
         {
             result = default(ThermalResistance);
 
@@ -534,20 +526,8 @@ namespace UnitsNet
 
             provider = provider ?? UnitSystem.DefaultCulture;
 
-            return QuantityParser.TryParse<ThermalResistance, ThermalResistanceUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2, out ThermalResistance parsedThermalResistance )
-                {
-                    parsedThermalResistance = default(ThermalResistance);
-
-                    if(!double.TryParse(value, NumberStyles.Any, formatProvider2, out var parsedValue))
-                        return false;
-
-                    if(!TryParseUnitInternal(unit, formatProvider2, out var parsedUnit))
-                        return false;
-
-                    parsedThermalResistance = From(parsedValue, parsedUnit);
-                    return true;
-                }, (x, y) => From(x.SquareMeterKelvinsPerKilowatt + y.SquareMeterKelvinsPerKilowatt, BaseUnit), out result);
+            return QuantityParser.TryParse<ThermalResistance, ThermalResistanceUnit>(str, provider, TryParseUnitInternal, From,
+                (x, y) => From(x.SquareMeterKelvinsPerKilowatt + y.SquareMeterKelvinsPerKilowatt, BaseUnit), out result);
         }
 
         /// <summary>
@@ -560,7 +540,7 @@ namespace UnitsNet
         /// </example>
         /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        internal static ThermalResistanceUnit ParseUnitInternal(string str, IFormatProvider provider = null)
+        private static ThermalResistanceUnit ParseUnitInternal(string str, IFormatProvider provider = null)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
@@ -588,7 +568,7 @@ namespace UnitsNet
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
-        internal static bool TryParseUnitInternal(string str, IFormatProvider provider, out ThermalResistanceUnit unit)
+        private static bool TryParseUnitInternal(string str, IFormatProvider provider, out ThermalResistanceUnit unit)
         {
             unit = ThermalResistanceUnit.Undefined;
 
