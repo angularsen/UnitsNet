@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct SolidAngle : IComparable, IComparable<SolidAngle>
+    public partial struct SolidAngle : IQuantity<SolidAngleUnit>, IComparable, IComparable<SolidAngle>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

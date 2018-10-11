@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct VitaminA : IComparable, IComparable<VitaminA>
+    public partial struct VitaminA : IQuantity<VitaminAUnit>, IComparable, IComparable<VitaminA>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

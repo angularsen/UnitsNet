@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct Duration : IComparable, IComparable<Duration>
+    public partial struct Duration : IQuantity<DurationUnit>, IComparable, IComparable<Duration>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct BrakeSpecificFuelConsumption : IComparable, IComparable<BrakeSpecificFuelConsumption>
+    public partial struct BrakeSpecificFuelConsumption : IQuantity<BrakeSpecificFuelConsumptionUnit>, IComparable, IComparable<BrakeSpecificFuelConsumption>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

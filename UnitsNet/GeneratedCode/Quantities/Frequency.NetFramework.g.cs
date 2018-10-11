@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct Frequency : IComparable, IComparable<Frequency>
+    public partial struct Frequency : IQuantity<FrequencyUnit>, IComparable, IComparable<Frequency>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

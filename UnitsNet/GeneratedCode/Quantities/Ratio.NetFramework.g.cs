@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct Ratio : IComparable, IComparable<Ratio>
+    public partial struct Ratio : IQuantity<RatioUnit>, IComparable, IComparable<Ratio>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
