@@ -569,7 +569,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<Frequency, FrequencyUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<Frequency, FrequencyUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.Hertz + y.Hertz, BaseUnit));
         }
 
@@ -592,7 +592,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<Frequency, FrequencyUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<Frequency, FrequencyUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.Hertz + y.Hertz, BaseUnit), out result);
         }
 
@@ -610,7 +610,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<FrequencyUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<FrequencyUnit>(str.Trim(), provider);
 
             if (unit == FrequencyUnit.Undefined)
             {
@@ -640,7 +640,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<FrequencyUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<FrequencyUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == FrequencyUnit.Undefined)

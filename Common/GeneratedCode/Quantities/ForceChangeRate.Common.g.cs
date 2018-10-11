@@ -635,7 +635,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<ForceChangeRate, ForceChangeRateUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<ForceChangeRate, ForceChangeRateUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.NewtonsPerSecond + y.NewtonsPerSecond, BaseUnit));
         }
 
@@ -658,7 +658,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<ForceChangeRate, ForceChangeRateUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<ForceChangeRate, ForceChangeRateUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.NewtonsPerSecond + y.NewtonsPerSecond, BaseUnit), out result);
         }
 
@@ -676,7 +676,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<ForceChangeRateUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<ForceChangeRateUnit>(str.Trim(), provider);
 
             if (unit == ForceChangeRateUnit.Undefined)
             {
@@ -706,7 +706,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<ForceChangeRateUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<ForceChangeRateUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == ForceChangeRateUnit.Undefined)

@@ -415,7 +415,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<MagneticField, MagneticFieldUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<MagneticField, MagneticFieldUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.Teslas + y.Teslas, BaseUnit));
         }
 
@@ -438,7 +438,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<MagneticField, MagneticFieldUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<MagneticField, MagneticFieldUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.Teslas + y.Teslas, BaseUnit), out result);
         }
 
@@ -456,7 +456,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<MagneticFieldUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<MagneticFieldUnit>(str.Trim(), provider);
 
             if (unit == MagneticFieldUnit.Undefined)
             {
@@ -486,7 +486,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<MagneticFieldUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<MagneticFieldUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == MagneticFieldUnit.Undefined)

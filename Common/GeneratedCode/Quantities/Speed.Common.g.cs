@@ -1097,7 +1097,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<Speed, SpeedUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<Speed, SpeedUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.MetersPerSecond + y.MetersPerSecond, BaseUnit));
         }
 
@@ -1120,7 +1120,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<Speed, SpeedUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<Speed, SpeedUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.MetersPerSecond + y.MetersPerSecond, BaseUnit), out result);
         }
 
@@ -1138,7 +1138,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<SpeedUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<SpeedUnit>(str.Trim(), provider);
 
             if (unit == SpeedUnit.Undefined)
             {
@@ -1168,7 +1168,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<SpeedUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<SpeedUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == SpeedUnit.Undefined)

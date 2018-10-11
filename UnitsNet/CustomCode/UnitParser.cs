@@ -29,8 +29,22 @@ using UnitsNet.Units;
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
-    public static class UnitParser
+    public sealed class UnitParser
     {
+        private readonly UnitAbbreviationsCache unitAbbreviationsCache;
+
+        public static UnitParser Default { get; }
+
+        public UnitParser(UnitAbbreviationsCache unitAbbreviationsCache)
+        {
+            this.unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default; ;
+        }
+
+        static UnitParser()
+        {
+            Default = new UnitParser(UnitAbbreviationsCache.Default);
+        }
+
         /// <summary>
         /// Parses a unit abbreviation for a given unit enumeration type.
         /// Example: Parse&lt;LengthUnit&gt;("km") => LengthUnit.Kilometer
@@ -45,7 +59,7 @@ namespace UnitsNet
 #else
         public
 #endif
-            static TUnitType Parse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider = null) where TUnitType : Enum
+            TUnitType Parse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider = null) where TUnitType : Enum
         {
             return (TUnitType)Parse(unitAbbreviation, typeof(TUnitType));
         }
@@ -69,9 +83,9 @@ namespace UnitsNet
 #else
         public
 #endif
-        static object Parse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider = null)
+        object Parse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider = null)
         {
-            var abbreviations = UnitAbbreviationsCache.GetUnitValueAbbreviationLookup(unitType, formatProvider);
+            var abbreviations = unitAbbreviationsCache.GetUnitValueAbbreviationLookup(unitType, formatProvider);
             if(abbreviations == null)
                 throw new UnitNotFoundException($"No abbreviations defined for unit type [{unitType}] for culture [{formatProvider}].");
 
@@ -104,7 +118,7 @@ namespace UnitsNet
 #else
         public
 #endif
-            static bool TryParse<TUnitType>(string unitAbbreviation, out TUnitType unit) where TUnitType : Enum
+            bool TryParse<TUnitType>(string unitAbbreviation, out TUnitType unit) where TUnitType : Enum
         {
             return TryParse(unitAbbreviation, null, out unit);
         }
@@ -124,7 +138,7 @@ namespace UnitsNet
 #else
         public
 #endif
-            static bool TryParse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider, out TUnitType unit) where TUnitType : Enum
+            bool TryParse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider, out TUnitType unit) where TUnitType : Enum
         {
             unit = default(TUnitType);
 
@@ -143,7 +157,7 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
         [PublicAPI]
-        public static bool TryParse(string unitAbbreviation, Type unitType, out object unit)
+        public bool TryParse(string unitAbbreviation, Type unitType, out object unit)
         {
             return TryParse(unitAbbreviation, unitType, null, out unit);
         }
@@ -162,11 +176,11 @@ namespace UnitsNet
 #else
         public
 #endif
-        static bool TryParse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider, out object unit)
+        bool TryParse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider, out object unit)
         {
             unit = GetDefault(unitType);
 
-            var abbreviations = UnitAbbreviationsCache.GetUnitValueAbbreviationLookup(unitType, formatProvider);
+            var abbreviations = unitAbbreviationsCache.GetUnitValueAbbreviationLookup(unitType, formatProvider);
             if(abbreviations == null)
                 return false;
 

@@ -965,7 +965,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<MassMomentOfInertia, MassMomentOfInertiaUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<MassMomentOfInertia, MassMomentOfInertiaUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.KilogramSquareMeters + y.KilogramSquareMeters, BaseUnit));
         }
 
@@ -988,7 +988,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<MassMomentOfInertia, MassMomentOfInertiaUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<MassMomentOfInertia, MassMomentOfInertiaUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.KilogramSquareMeters + y.KilogramSquareMeters, BaseUnit), out result);
         }
 
@@ -1006,7 +1006,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<MassMomentOfInertiaUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<MassMomentOfInertiaUnit>(str.Trim(), provider);
 
             if (unit == MassMomentOfInertiaUnit.Undefined)
             {
@@ -1036,7 +1036,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<MassMomentOfInertiaUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<MassMomentOfInertiaUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == MassMomentOfInertiaUnit.Undefined)

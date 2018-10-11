@@ -459,7 +459,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<MolarEnergy, MolarEnergyUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<MolarEnergy, MolarEnergyUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.JoulesPerMole + y.JoulesPerMole, BaseUnit));
         }
 
@@ -482,7 +482,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<MolarEnergy, MolarEnergyUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<MolarEnergy, MolarEnergyUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.JoulesPerMole + y.JoulesPerMole, BaseUnit), out result);
         }
 
@@ -500,7 +500,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<MolarEnergyUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<MolarEnergyUnit>(str.Trim(), provider);
 
             if (unit == MolarEnergyUnit.Undefined)
             {
@@ -530,7 +530,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<MolarEnergyUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<MolarEnergyUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == MolarEnergyUnit.Undefined)

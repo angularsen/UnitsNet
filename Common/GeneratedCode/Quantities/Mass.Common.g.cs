@@ -855,7 +855,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<Mass, MassUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<Mass, MassUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.Kilograms + y.Kilograms, BaseUnit));
         }
 
@@ -878,7 +878,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<Mass, MassUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<Mass, MassUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.Kilograms + y.Kilograms, BaseUnit), out result);
         }
 
@@ -896,7 +896,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<MassUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<MassUnit>(str.Trim(), provider);
 
             if (unit == MassUnit.Undefined)
             {
@@ -926,7 +926,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<MassUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<MassUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == MassUnit.Undefined)

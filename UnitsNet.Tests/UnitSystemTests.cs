@@ -77,7 +77,7 @@ namespace UnitsNet.Tests
             {
                 try
                 {
-                    UnitAbbreviationsCache.GetDefaultAbbreviation(unit);
+                    UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
                 }
                 catch
                 {
@@ -159,15 +159,18 @@ namespace UnitsNet.Tests
         [InlineData("cm^^2", AreaUnit.SquareCentimeter)]
         public void Parse_ReturnsUnitMappedByCustomAbbreviation(string customAbbreviation, AreaUnit expected)
         {
-            UnitAbbreviationsCache.MapUnitToAbbreviation(expected, customAbbreviation);
-            var actual = UnitParser.Parse<AreaUnit>(customAbbreviation);
+            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            unitAbbreviationsCache.MapUnitToAbbreviation(expected, customAbbreviation);
+
+            var parser = new UnitParser(unitAbbreviationsCache);
+            var actual = parser.Parse<AreaUnit>(customAbbreviation);
             Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void Parse_UnknownAbbreviationThrowsUnitNotFoundException()
         {
-            Assert.Throws<UnitNotFoundException>(() => UnitParser.Parse<AreaUnit>("nonexistingunit"));
+            Assert.Throws<UnitNotFoundException>(() => UnitParser.Default.Parse<AreaUnit>("nonexistingunit"));
         }
 
         [Theory]
@@ -396,7 +399,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void GetDefaultAbbreviationFallsBackToDefaultStringIfNotSpecified()
         {
-            string abbreviation = UnitAbbreviationsCache.GetDefaultAbbreviation(CustomUnit.Unit1);
+            string abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(CustomUnit.Unit1);
             Assert.Equal("(no abbreviation for CustomUnit.Unit1)", abbreviation);
         }
 
@@ -415,10 +418,12 @@ namespace UnitsNet.Tests
                 CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = zuluCulture;
 
                 var americanCulture = new CultureInfo(AmericanCultureName);
-                UnitAbbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, americanCulture, "US english abbreviation for Unit1");
+
+                var unitAbbreviationsCache = new UnitAbbreviationsCache();
+                unitAbbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, americanCulture, "US english abbreviation for Unit1");
 
                 // Act
-                string abbreviation = UnitAbbreviationsCache.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
+                string abbreviation = unitAbbreviationsCache.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
 
                 // Assert
                 Assert.Equal("US english abbreviation for Unit1", abbreviation);
@@ -434,16 +439,18 @@ namespace UnitsNet.Tests
         public void MapUnitToAbbreviation_AddCustomUnit_DoesNotOverrideDefaultAbbreviationForAlreadyMappedUnits()
         {
             var americanCulture = new CultureInfo(AmericanCultureName);
-            UnitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMeter, americanCulture, "m^2");
 
-            Assert.Equal("m²", UnitAbbreviationsCache.GetDefaultAbbreviation(AreaUnit.SquareMeter));
+            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMeter, americanCulture, "m^2");
+
+            Assert.Equal("m²", unitAbbreviationsCache.GetDefaultAbbreviation(AreaUnit.SquareMeter));
         }
 
         [Fact]
         public void Parse_AmbiguousUnitsThrowsException()
         {
             // Act 1
-            var exception1 = Assert.Throws<AmbiguousUnitParseException>(() => UnitParser.Parse<LengthUnit>("pt"));
+            var exception1 = Assert.Throws<AmbiguousUnitParseException>(() => UnitParser.Default.Parse<LengthUnit>("pt"));
 
             // Act 2
             var exception2 = Assert.Throws<AmbiguousUnitParseException>(() => Length.Parse("1 pt"));

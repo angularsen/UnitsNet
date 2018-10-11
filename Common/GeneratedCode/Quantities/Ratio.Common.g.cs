@@ -524,7 +524,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<Ratio, RatioUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<Ratio, RatioUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.DecimalFractions + y.DecimalFractions, BaseUnit));
         }
 
@@ -547,7 +547,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<Ratio, RatioUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<Ratio, RatioUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.DecimalFractions + y.DecimalFractions, BaseUnit), out result);
         }
 
@@ -565,7 +565,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<RatioUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<RatioUnit>(str.Trim(), provider);
 
             if (unit == RatioUnit.Undefined)
             {
@@ -595,7 +595,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<RatioUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<RatioUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == RatioUnit.Undefined)

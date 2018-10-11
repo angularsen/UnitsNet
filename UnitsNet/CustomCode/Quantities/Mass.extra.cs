@@ -130,8 +130,8 @@ namespace UnitsNet
             // Note that it isn't customary to use fractions - one wouldn't say "I am 11 stone and 4.5 pounds".
             // So pounds are rounded here.
 
-            var stoneUnit = UnitAbbreviationsCache.GetDefaultAbbreviation(MassUnit.Stone);
-            var poundUnit = UnitAbbreviationsCache.GetDefaultAbbreviation(MassUnit.Pound);
+            var stoneUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Stone);
+            var poundUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Pound);
 
             return string.Format(GlobalConfiguration.DefaultCulture, "{0:n0} {1} {2:n0} {3}",
                 Stone, stoneUnit, Math.Round(Pounds), poundUnit);

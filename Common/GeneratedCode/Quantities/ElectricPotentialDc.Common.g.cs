@@ -502,7 +502,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<ElectricPotentialDc, ElectricPotentialDcUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<ElectricPotentialDc, ElectricPotentialDcUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.VoltsDc + y.VoltsDc, BaseUnit));
         }
 
@@ -525,7 +525,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<ElectricPotentialDc, ElectricPotentialDcUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<ElectricPotentialDc, ElectricPotentialDcUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.VoltsDc + y.VoltsDc, BaseUnit), out result);
         }
 
@@ -543,7 +543,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<ElectricPotentialDcUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<ElectricPotentialDcUnit>(str.Trim(), provider);
 
             if (unit == ElectricPotentialDcUnit.Undefined)
             {
@@ -573,7 +573,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<ElectricPotentialDcUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<ElectricPotentialDcUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == ElectricPotentialDcUnit.Undefined)

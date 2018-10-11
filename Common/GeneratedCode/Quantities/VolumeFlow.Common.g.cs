@@ -965,7 +965,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<VolumeFlow, VolumeFlowUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<VolumeFlow, VolumeFlowUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.CubicMetersPerSecond + y.CubicMetersPerSecond, BaseUnit));
         }
 
@@ -988,7 +988,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<VolumeFlow, VolumeFlowUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<VolumeFlow, VolumeFlowUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.CubicMetersPerSecond + y.CubicMetersPerSecond, BaseUnit), out result);
         }
 
@@ -1006,7 +1006,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<VolumeFlowUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<VolumeFlowUnit>(str.Trim(), provider);
 
             if (unit == VolumeFlowUnit.Undefined)
             {
@@ -1036,7 +1036,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<VolumeFlowUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<VolumeFlowUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == VolumeFlowUnit.Undefined)

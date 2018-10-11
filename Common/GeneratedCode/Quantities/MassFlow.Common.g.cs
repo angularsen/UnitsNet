@@ -723,7 +723,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<MassFlow, MassFlowUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<MassFlow, MassFlowUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.GramsPerSecond + y.GramsPerSecond, BaseUnit));
         }
 
@@ -746,7 +746,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<MassFlow, MassFlowUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<MassFlow, MassFlowUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.GramsPerSecond + y.GramsPerSecond, BaseUnit), out result);
         }
 
@@ -764,7 +764,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<MassFlowUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<MassFlowUnit>(str.Trim(), provider);
 
             if (unit == MassFlowUnit.Undefined)
             {
@@ -794,7 +794,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<MassFlowUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<MassFlowUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == MassFlowUnit.Undefined)

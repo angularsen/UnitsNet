@@ -188,10 +188,12 @@ namespace UnitsNet.Tests.CustomCode
         {
             string abbrev = $"m{s}s";
 
-            UnitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
+            var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
 
             // Act
-            bool ok = UnitParser.TryParse(abbrev, out LengthUnit result);
+            var parser = new UnitParser(unitAbbreviationsCache);
+            bool ok = parser.TryParse(abbrev, out LengthUnit result);
 
             // Assert
             Assert.True(ok, "TryParse " + abbrev);
@@ -216,10 +218,12 @@ namespace UnitsNet.Tests.CustomCode
         {
             string abbrev = $"m{s}s";
 
-            UnitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
+            var tempCulture = (CultureInfo)(new CultureInfo("en-US").Clone());
+
+            UnitAbbreviationsCache.Default.MapUnitToAbbreviation(LengthUnit.Meter, tempCulture, abbrev );
 
             // Act
-            bool ok = Length.TryParse($"10 {abbrev}", out Length result);
+            bool ok = Length.TryParse($"10 {abbrev}", tempCulture, out Length result);
 
             // Assert
             Assert.True(ok, $"TryParse \"10 {abbrev}\"");
@@ -231,6 +235,5 @@ namespace UnitsNet.Tests.CustomCode
             var exception = Assert.ThrowsAny<Exception>(code);
             return exception.GetType().FullName;
         }
-
     }
 }

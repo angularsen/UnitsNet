@@ -76,7 +76,7 @@ namespace UnitsNet
         [UsedImplicitly]
         public static string GetAbbreviation($unitEnumName unit, [CanBeNull] IFormatProvider provider)
         {
-            return UnitAbbreviationsCache.GetDefaultAbbreviation(unit, provider);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 "@;
     if ($quantity.Logarithmic -eq $true) {

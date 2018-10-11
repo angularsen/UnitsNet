@@ -613,7 +613,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<Duration, DurationUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<Duration, DurationUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.Seconds + y.Seconds, BaseUnit));
         }
 
@@ -636,7 +636,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<Duration, DurationUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<Duration, DurationUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.Seconds + y.Seconds, BaseUnit), out result);
         }
 
@@ -654,7 +654,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<DurationUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<DurationUnit>(str.Trim(), provider);
 
             if (unit == DurationUnit.Undefined)
             {
@@ -684,7 +684,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<DurationUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<DurationUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == DurationUnit.Undefined)

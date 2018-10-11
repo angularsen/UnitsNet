@@ -437,7 +437,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<Irradiance, IrradianceUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<Irradiance, IrradianceUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.WattsPerSquareMeter + y.WattsPerSquareMeter, BaseUnit));
         }
 
@@ -460,7 +460,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<Irradiance, IrradianceUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<Irradiance, IrradianceUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.WattsPerSquareMeter + y.WattsPerSquareMeter, BaseUnit), out result);
         }
 
@@ -478,7 +478,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<IrradianceUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<IrradianceUnit>(str.Trim(), provider);
 
             if (unit == IrradianceUnit.Undefined)
             {
@@ -508,7 +508,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<IrradianceUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<IrradianceUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == IrradianceUnit.Undefined)

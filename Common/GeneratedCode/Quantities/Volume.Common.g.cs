@@ -1317,7 +1317,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<Volume, VolumeUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<Volume, VolumeUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.CubicMeters + y.CubicMeters, BaseUnit));
         }
 
@@ -1340,7 +1340,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<Volume, VolumeUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<Volume, VolumeUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.CubicMeters + y.CubicMeters, BaseUnit), out result);
         }
 
@@ -1358,7 +1358,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<VolumeUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<VolumeUnit>(str.Trim(), provider);
 
             if (unit == VolumeUnit.Undefined)
             {
@@ -1388,7 +1388,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<VolumeUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<VolumeUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == VolumeUnit.Undefined)

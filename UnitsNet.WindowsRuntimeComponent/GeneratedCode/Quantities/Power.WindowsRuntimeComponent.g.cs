@@ -83,7 +83,7 @@ namespace UnitsNet
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
             IFormatProvider provider = cultureName == null ? GlobalConfiguration.DefaultCulture : new CultureInfo(cultureName);
 
-            return UnitAbbreviationsCache.GetDefaultAbbreviation(unit, provider);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
         #region Parsing

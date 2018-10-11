@@ -64,7 +64,7 @@ namespace UnitsNet
         [UsedImplicitly]
         public static string GetAbbreviation(InformationUnit unit, [CanBeNull] IFormatProvider provider)
         {
-            return UnitAbbreviationsCache.GetDefaultAbbreviation(unit, provider);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
         #region Arithmetic Operators

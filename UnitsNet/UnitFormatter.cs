@@ -92,7 +92,7 @@ namespace UnitsNet
         public static object[] GetFormatArgs<TUnitType>(TUnitType unit, double value, [CanBeNull] IFormatProvider culture, IEnumerable<object> args)
             where TUnitType : Enum
         {
-            string abbreviation = UnitAbbreviationsCache.GetDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), culture);
+            string abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), culture);
             return new object[] {value, abbreviation}.Concat(args).ToArray();
         }
     }

@@ -415,7 +415,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<MagneticFlux, MagneticFluxUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<MagneticFlux, MagneticFluxUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.Webers + y.Webers, BaseUnit));
         }
 
@@ -438,7 +438,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<MagneticFlux, MagneticFluxUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<MagneticFlux, MagneticFluxUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.Webers + y.Webers, BaseUnit), out result);
         }
 
@@ -456,7 +456,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<MagneticFluxUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<MagneticFluxUnit>(str.Trim(), provider);
 
             if (unit == MagneticFluxUnit.Undefined)
             {
@@ -486,7 +486,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<MagneticFluxUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<MagneticFluxUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == MagneticFluxUnit.Undefined)

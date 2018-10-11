@@ -964,7 +964,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<BitRate, BitRateUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<BitRate, BitRateUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.BitsPerSecond + y.BitsPerSecond, BaseUnit));
         }
 
@@ -987,7 +987,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<BitRate, BitRateUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<BitRate, BitRateUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.BitsPerSecond + y.BitsPerSecond, BaseUnit), out result);
         }
 
@@ -1005,7 +1005,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<BitRateUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<BitRateUnit>(str.Trim(), provider);
 
             if (unit == BitRateUnit.Undefined)
             {
@@ -1035,7 +1035,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<BitRateUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<BitRateUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == BitRateUnit.Undefined)

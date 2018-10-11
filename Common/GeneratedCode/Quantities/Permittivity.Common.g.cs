@@ -415,7 +415,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<Permittivity, PermittivityUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<Permittivity, PermittivityUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.FaradsPerMeter + y.FaradsPerMeter, BaseUnit));
         }
 
@@ -438,7 +438,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<Permittivity, PermittivityUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<Permittivity, PermittivityUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.FaradsPerMeter + y.FaradsPerMeter, BaseUnit), out result);
         }
 
@@ -456,7 +456,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<PermittivityUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<PermittivityUnit>(str.Trim(), provider);
 
             if (unit == PermittivityUnit.Undefined)
             {
@@ -486,7 +486,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<PermittivityUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<PermittivityUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == PermittivityUnit.Undefined)

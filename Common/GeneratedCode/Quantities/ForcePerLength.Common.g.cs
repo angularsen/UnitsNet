@@ -591,7 +591,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<ForcePerLength, ForcePerLengthUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<ForcePerLength, ForcePerLengthUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.NewtonsPerMeter + y.NewtonsPerMeter, BaseUnit));
         }
 
@@ -614,7 +614,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<ForcePerLength, ForcePerLengthUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<ForcePerLength, ForcePerLengthUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.NewtonsPerMeter + y.NewtonsPerMeter, BaseUnit), out result);
         }
 
@@ -632,7 +632,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<ForcePerLengthUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<ForcePerLengthUnit>(str.Trim(), provider);
 
             if (unit == ForcePerLengthUnit.Undefined)
             {
@@ -662,7 +662,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<ForcePerLengthUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<ForcePerLengthUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == ForcePerLengthUnit.Undefined)

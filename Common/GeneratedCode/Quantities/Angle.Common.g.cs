@@ -700,7 +700,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<Angle, AngleUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<Angle, AngleUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.Degrees + y.Degrees, BaseUnit));
         }
 
@@ -723,7 +723,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<Angle, AngleUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<Angle, AngleUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.Degrees + y.Degrees, BaseUnit), out result);
         }
 
@@ -741,7 +741,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<AngleUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<AngleUnit>(str.Trim(), provider);
 
             if (unit == AngleUnit.Undefined)
             {
@@ -771,7 +771,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<AngleUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<AngleUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == AngleUnit.Undefined)

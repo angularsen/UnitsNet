@@ -437,7 +437,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<MassFlux, MassFluxUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<MassFlux, MassFluxUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.KilogramsPerSecondPerSquareMeter + y.KilogramsPerSecondPerSquareMeter, BaseUnit));
         }
 
@@ -460,7 +460,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<MassFlux, MassFluxUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<MassFlux, MassFluxUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.KilogramsPerSecondPerSquareMeter + y.KilogramsPerSecondPerSquareMeter, BaseUnit), out result);
         }
 
@@ -478,7 +478,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<MassFluxUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<MassFluxUnit>(str.Trim(), provider);
 
             if (unit == MassFluxUnit.Undefined)
             {
@@ -508,7 +508,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<MassFluxUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<MassFluxUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == MassFluxUnit.Undefined)

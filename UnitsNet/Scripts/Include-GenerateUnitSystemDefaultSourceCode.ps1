@@ -1,4 +1,4 @@
-function GenerateUnitSystemDefaultSourceCode($quantities)
+﻿function GenerateUnitSystemDefaultSourceCode($quantities)
 {
 @"
 //------------------------------------------------------------------------------
@@ -50,9 +50,9 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    public static partial class UnitAbbreviationsCache
+    public partial class UnitAbbreviationsCache
     {
-        private static readonly Tuple<string, Type, int, string[]>[] DefaultLocalizations
+        private static readonly Tuple<string, Type, int, string[]>[] GeneratedLocalizations
             = new Tuple<string, Type, int, string[]>[]
             {
 "@;

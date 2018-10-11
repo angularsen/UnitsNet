@@ -436,7 +436,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<Level, LevelUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<Level, LevelUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.Decibels + y.Decibels, BaseUnit));
         }
 
@@ -459,7 +459,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<Level, LevelUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<Level, LevelUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.Decibels + y.Decibels, BaseUnit), out result);
         }
 
@@ -477,7 +477,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<LevelUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<LevelUnit>(str.Trim(), provider);
 
             if (unit == LevelUnit.Undefined)
             {
@@ -507,7 +507,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<LevelUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<LevelUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == LevelUnit.Undefined)

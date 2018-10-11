@@ -459,7 +459,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<RotationalStiffness, RotationalStiffnessUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<RotationalStiffness, RotationalStiffnessUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.NewtonMetersPerRadian + y.NewtonMetersPerRadian, BaseUnit));
         }
 
@@ -482,7 +482,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<RotationalStiffness, RotationalStiffnessUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<RotationalStiffness, RotationalStiffnessUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.NewtonMetersPerRadian + y.NewtonMetersPerRadian, BaseUnit), out result);
         }
 
@@ -500,7 +500,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<RotationalStiffnessUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<RotationalStiffnessUnit>(str.Trim(), provider);
 
             if (unit == RotationalStiffnessUnit.Undefined)
             {
@@ -530,7 +530,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<RotationalStiffnessUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<RotationalStiffnessUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == RotationalStiffnessUnit.Undefined)

@@ -32,9 +32,9 @@ using UnitTypeToLookup = System.Collections.Generic.Dictionary<System.Type, Unit
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
-    public static partial class UnitAbbreviationsCache
+    public sealed partial class UnitAbbreviationsCache
     {
-        private static Dictionary<IFormatProvider, UnitTypeToLookup> looksupsForCulture;
+        private Dictionary<IFormatProvider, UnitTypeToLookup> looksupsForCulture;
 
         /// <summary>
         ///     Fallback culture used by <see cref="GetAllAbbreviations{TUnitType}" /> and <see cref="GetDefaultAbbreviation{TUnitType}" />
@@ -47,16 +47,23 @@ namespace UnitsNet
         /// </example>
         private static readonly CultureInfo FallbackCulture = new CultureInfo("en-US");
 
-        static UnitAbbreviationsCache()
+        public static UnitAbbreviationsCache Default { get; }
+
+        public UnitAbbreviationsCache()
         {
             looksupsForCulture = new Dictionary<IFormatProvider, UnitTypeToLookup>();
 
             LoadGeneratedAbbreviations();
         }
 
-        private static void LoadGeneratedAbbreviations()
+        static UnitAbbreviationsCache()
         {
-            foreach(var localization in DefaultLocalizations)
+            Default = new UnitAbbreviationsCache();
+        }
+
+        private void LoadGeneratedAbbreviations()
+        {
+            foreach(var localization in GeneratedLocalizations)
             {
                 var culture = new CultureInfo(localization.Item1);
                 MapUnitToAbbreviation(localization.Item2, localization.Item3, culture, localization.Item4);
@@ -78,7 +85,7 @@ namespace UnitsNet
 #else
         public
 #endif
-            static void MapUnitToAbbreviation<TUnitType>(TUnitType unit, params string[] abbreviations) where TUnitType : Enum
+            void MapUnitToAbbreviation<TUnitType>(TUnitType unit, params string[] abbreviations) where TUnitType : Enum
         {
             MapUnitToAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), GlobalConfiguration.DefaultCulture, abbreviations);
         }
@@ -99,7 +106,7 @@ namespace UnitsNet
 #else
         public
 #endif
-            static void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, params string[] abbreviations) where TUnitType : Enum
+            void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, params string[] abbreviations) where TUnitType : Enum
         {
             // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
             // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
@@ -126,7 +133,7 @@ namespace UnitsNet
 #else
         public
 #endif
-            static void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] params string[] abbreviations)
+            void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] params string[] abbreviations)
 		{
             if (!unitType.IsEnum())
                 throw new ArgumentException("Must be an enum type.", nameof(unitType));
@@ -163,7 +170,7 @@ namespace UnitsNet
 #else
         public
 #endif
-            static string GetDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider = null) where TUnitType : Enum
+            string GetDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider = null) where TUnitType : Enum
         {
             var unitType = typeof(TUnitType);
 
@@ -193,7 +200,7 @@ namespace UnitsNet
 #else
         public
 #endif
-        static string GetDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider = null)
+        string GetDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider = null)
         {
             var lookup = GetUnitValueAbbreviationLookup(unitType, formatProvider);
             if(lookup == null)
@@ -220,7 +227,7 @@ namespace UnitsNet
 #else
         public
 #endif
-            static string[] GetAllAbbreviations<TUnitType>(TUnitType unit, IFormatProvider formatProvider = null) where TUnitType : Enum
+            string[] GetAllAbbreviations<TUnitType>(TUnitType unit, IFormatProvider formatProvider = null) where TUnitType : Enum
         {
             return GetAllAbbreviations(typeof(TUnitType), formatProvider);
         }
@@ -238,7 +245,7 @@ namespace UnitsNet
 #else
         public
 #endif
-        static string[] GetAllAbbreviations(Type unitType, int unitValue, IFormatProvider formatProvider = null)
+        string[] GetAllAbbreviations(Type unitType, int unitValue, IFormatProvider formatProvider = null)
         {
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 
@@ -265,7 +272,7 @@ namespace UnitsNet
 #else
         public
 #endif
-        static string[] GetAllAbbreviations(Type unitType, IFormatProvider formatProvider = null)
+        string[] GetAllAbbreviations(Type unitType, IFormatProvider formatProvider = null)
         {
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 
@@ -276,7 +283,7 @@ namespace UnitsNet
             return lookup.GetAllAbbreviations();
         }
 
-        internal static UnitValueAbbreviationLookup GetUnitValueAbbreviationLookup(Type unitType, IFormatProvider formatProvider = null)
+        internal UnitValueAbbreviationLookup GetUnitValueAbbreviationLookup(Type unitType, IFormatProvider formatProvider = null)
         {
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 

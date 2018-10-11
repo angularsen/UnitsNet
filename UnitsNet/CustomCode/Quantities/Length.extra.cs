@@ -140,8 +140,8 @@ namespace UnitsNet
         {
             // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
             // So inches are rounded when converting from base units to feet/inches.
-            var footUnit = UnitAbbreviationsCache.GetDefaultAbbreviation(LengthUnit.Foot);
-            var inchUnit = UnitAbbreviationsCache.GetDefaultAbbreviation(LengthUnit.Inch);
+            var footUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Foot);
+            var inchUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Inch);
 
             return string.Format(GlobalConfiguration.DefaultCulture, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches),
                 inchUnit);

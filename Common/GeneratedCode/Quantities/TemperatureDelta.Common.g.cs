@@ -568,7 +568,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<TemperatureDelta, TemperatureDeltaUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<TemperatureDelta, TemperatureDeltaUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.Kelvins + y.Kelvins, BaseUnit));
         }
 
@@ -591,7 +591,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<TemperatureDelta, TemperatureDeltaUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<TemperatureDelta, TemperatureDeltaUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.Kelvins + y.Kelvins, BaseUnit), out result);
         }
 
@@ -609,7 +609,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<TemperatureDeltaUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<TemperatureDeltaUnit>(str.Trim(), provider);
 
             if (unit == TemperatureDeltaUnit.Undefined)
             {
@@ -639,7 +639,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<TemperatureDeltaUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<TemperatureDeltaUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == TemperatureDeltaUnit.Undefined)

@@ -459,7 +459,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<RotationalAcceleration, RotationalAccelerationUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<RotationalAcceleration, RotationalAccelerationUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.RadiansPerSecondSquared + y.RadiansPerSecondSquared, BaseUnit));
         }
 
@@ -482,7 +482,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<RotationalAcceleration, RotationalAccelerationUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<RotationalAcceleration, RotationalAccelerationUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.RadiansPerSecondSquared + y.RadiansPerSecondSquared, BaseUnit), out result);
         }
 
@@ -500,7 +500,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<RotationalAccelerationUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<RotationalAccelerationUnit>(str.Trim(), provider);
 
             if (unit == RotationalAccelerationUnit.Undefined)
             {
@@ -530,7 +530,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<RotationalAccelerationUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<RotationalAccelerationUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == RotationalAccelerationUnit.Undefined)

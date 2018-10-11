@@ -481,7 +481,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<Illuminance, IlluminanceUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<Illuminance, IlluminanceUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.Lux + y.Lux, BaseUnit));
         }
 
@@ -504,7 +504,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<Illuminance, IlluminanceUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<Illuminance, IlluminanceUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.Lux + y.Lux, BaseUnit), out result);
         }
 
@@ -522,7 +522,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<IlluminanceUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<IlluminanceUnit>(str.Trim(), provider);
 
             if (unit == IlluminanceUnit.Undefined)
             {
@@ -552,7 +552,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<IlluminanceUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<IlluminanceUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == IlluminanceUnit.Undefined)

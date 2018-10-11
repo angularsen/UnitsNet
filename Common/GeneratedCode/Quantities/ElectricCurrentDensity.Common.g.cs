@@ -415,7 +415,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<ElectricCurrentDensity, ElectricCurrentDensityUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<ElectricCurrentDensity, ElectricCurrentDensityUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.AmperesPerSquareMeter + y.AmperesPerSquareMeter, BaseUnit));
         }
 
@@ -438,7 +438,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<ElectricCurrentDensity, ElectricCurrentDensityUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<ElectricCurrentDensity, ElectricCurrentDensityUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.AmperesPerSquareMeter + y.AmperesPerSquareMeter, BaseUnit), out result);
         }
 
@@ -456,7 +456,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<ElectricCurrentDensityUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<ElectricCurrentDensityUnit>(str.Trim(), provider);
 
             if (unit == ElectricCurrentDensityUnit.Undefined)
             {
@@ -486,7 +486,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<ElectricCurrentDensityUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<ElectricCurrentDensityUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == ElectricCurrentDensityUnit.Undefined)

@@ -64,7 +64,7 @@ namespace UnitsNet
         [UsedImplicitly]
         public static string GetAbbreviation(TemperatureUnit unit, [CanBeNull] IFormatProvider provider)
         {
-            return UnitAbbreviationsCache.GetDefaultAbbreviation(unit, provider);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
         public static bool operator <=(Temperature left, Temperature right)

@@ -415,7 +415,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<LuminousFlux, LuminousFluxUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<LuminousFlux, LuminousFluxUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.Lumens + y.Lumens, BaseUnit));
         }
 
@@ -438,7 +438,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<LuminousFlux, LuminousFluxUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<LuminousFlux, LuminousFluxUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.Lumens + y.Lumens, BaseUnit), out result);
         }
 
@@ -456,7 +456,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<LuminousFluxUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<LuminousFluxUnit>(str.Trim(), provider);
 
             if (unit == LuminousFluxUnit.Undefined)
             {
@@ -486,7 +486,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<LuminousFluxUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<LuminousFluxUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == LuminousFluxUnit.Undefined)

@@ -525,7 +525,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.MetersToTheFourth + y.MetersToTheFourth, BaseUnit));
         }
 
@@ -548,7 +548,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<AreaMomentOfInertia, AreaMomentOfInertiaUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.MetersToTheFourth + y.MetersToTheFourth, BaseUnit), out result);
         }
 
@@ -566,7 +566,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Parse<AreaMomentOfInertiaUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<AreaMomentOfInertiaUnit>(str.Trim(), provider);
 
             if (unit == AreaMomentOfInertiaUnit.Undefined)
             {
@@ -596,7 +596,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.TryParse<AreaMomentOfInertiaUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<AreaMomentOfInertiaUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == AreaMomentOfInertiaUnit.Undefined)
