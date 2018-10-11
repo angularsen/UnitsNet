@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace UnitsNet
 {
     /// <summary>
@@ -42,4 +44,22 @@ namespace UnitsNet
             get;
         }
     }
+
+#if !WINDOWS_UWP
+    public interface IQuantity<UnitType> : IQuantity where UnitType : Enum
+    {
+        /// <summary>
+        ///     Convert to the unit representation <typeparamref name="UnitType"/>.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        double As(UnitType unit);
+
+        /// <summary>
+        ///     Get string representation of value and unit. Using current UI culture and two significant digits after radix.
+        /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
+        /// <returns>String representation.</returns>
+        string ToString(UnitType unit);
+    }
+#endif
 }

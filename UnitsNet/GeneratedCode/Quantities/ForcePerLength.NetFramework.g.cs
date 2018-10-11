@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct ForcePerLength : IComparable, IComparable<ForcePerLength>
+    public partial struct ForcePerLength : IQuantity<ForcePerLengthUnit>, IComparable, IComparable<ForcePerLength>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

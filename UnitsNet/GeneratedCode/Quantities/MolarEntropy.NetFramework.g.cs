@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct MolarEntropy : IComparable, IComparable<MolarEntropy>
+    public partial struct MolarEntropy : IQuantity<MolarEntropyUnit>, IComparable, IComparable<MolarEntropy>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
