@@ -188,11 +188,10 @@ namespace UnitsNet.Tests.CustomCode
         {
             string abbrev = $"m{s}s";
 
-            var unitSystem = UnitSystem.Default;
-            unitSystem.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
+            UnitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
 
             // Act
-            bool ok = unitSystem.TryParse(abbrev, out LengthUnit result);
+            bool ok = UnitParser.TryParse(abbrev, out LengthUnit result);
 
             // Assert
             Assert.True(ok, "TryParse " + abbrev);
@@ -217,8 +216,7 @@ namespace UnitsNet.Tests.CustomCode
         {
             string abbrev = $"m{s}s";
 
-            var unitSystem = UnitSystem.Default;
-            unitSystem.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
+            UnitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
 
             // Act
             bool ok = Length.TryParse($"10 {abbrev}", out Length result);

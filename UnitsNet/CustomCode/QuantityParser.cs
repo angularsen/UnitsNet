@@ -72,8 +72,7 @@ namespace UnitsNet
 
             const string exponentialRegex = @"(?:[eE][-+]?\d+)?)";
 
-            var unitAbbreviations = UnitSystem.GetCached(formatProvider)
-                .GetAllAbbreviations(typeof(TUnitType))
+            var unitAbbreviations = UnitAbbreviationsCache.GetAllAbbreviations(typeof(TUnitType))
                 .OrderByDescending(s => s.Length)       // Important to order by length -- if "m" is before "mm" and the input is "mm", it will match just "m" and throw invalid string error
                 .Select(Regex.Escape)                   // Escape special regex characters
                 .ToArray();
@@ -186,8 +185,7 @@ namespace UnitsNet
 
             const string exponentialRegex = @"(?:[eE][-+]?\d+)?)";
 
-            var unitAbbreviations = UnitSystem.GetCached(formatProvider)
-                .GetAllAbbreviations(typeof(TUnitType))
+            var unitAbbreviations = UnitAbbreviationsCache.GetAllAbbreviations(typeof(TUnitType))
                 .OrderByDescending(s => s.Length)       // Important to order by length -- if "m" is before "mm" and the input is "mm", it will match just "m" and throw invalid string error
                 .Select(Regex.Escape)                   // Escape special regex characters
                 .ToArray();
@@ -214,7 +212,7 @@ namespace UnitsNet
         /// </summary>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         private static bool TryParseWithRegex<TQuantity, TUnitType>(string regexString, string str, TryParseUnitDelegate<TUnitType> tryParseUnit,
-            QuantityFromDelegate<TQuantity, TUnitType> fromDelegate, IFormatProvider formatProvider, out List<TQuantity> converted )
+            QuantityFromDelegate<TQuantity, TUnitType> fromDelegate, IFormatProvider formatProvider, out List<TQuantity> converted)
             where TQuantity : IQuantity
             where TUnitType : Enum
         {
@@ -243,7 +241,7 @@ namespace UnitsNet
 
                 var quantity = fromDelegate(value, parsedUnit);
 
-                converted.Add( quantity );
+                converted.Add(quantity);
             }
 
             return true;

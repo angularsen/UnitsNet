@@ -35,6 +35,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnitsNet.I18n;
@@ -45,4503 +47,999 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    public sealed partial class UnitSystem
+    public static partial class UnitAbbreviationsCache
     {
-        private static readonly ReadOnlyCollection<UnitLocalization> DefaultLocalizations
-            = new ReadOnlyCollection<UnitLocalization>(new List<UnitLocalization>
+        private static readonly Tuple<string, Type, int, string[]>[] DefaultLocalizations
+            = new Tuple<string, Type, int, string[]>[]
             {
-                new UnitLocalization(typeof (AccelerationUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) AccelerationUnit.CentimeterPerSecondSquared,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cm/s²"),
-                            }),
-                        new CulturesForEnumValue((int) AccelerationUnit.DecimeterPerSecondSquared,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dm/s²"),
-                            }),
-                        new CulturesForEnumValue((int) AccelerationUnit.FootPerSecondSquared,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft/s²"),
-                            }),
-                        new CulturesForEnumValue((int) AccelerationUnit.InchPerSecondSquared,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "in/s²"),
-                            }),
-                        new CulturesForEnumValue((int) AccelerationUnit.KilometerPerSecondSquared,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "km/s²"),
-                            }),
-                        new CulturesForEnumValue((int) AccelerationUnit.KnotPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kn/h"),
-                            }),
-                        new CulturesForEnumValue((int) AccelerationUnit.KnotPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kn/min"),
-                            }),
-                        new CulturesForEnumValue((int) AccelerationUnit.KnotPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kn/s"),
-                            }),
-                        new CulturesForEnumValue((int) AccelerationUnit.MeterPerSecondSquared,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m/s²"),
-                            }),
-                        new CulturesForEnumValue((int) AccelerationUnit.MicrometerPerSecondSquared,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µm/s²"),
-                            }),
-                        new CulturesForEnumValue((int) AccelerationUnit.MillimeterPerSecondSquared,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mm/s²"),
-                            }),
-                        new CulturesForEnumValue((int) AccelerationUnit.NanometerPerSecondSquared,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nm/s²"),
-                            }),
-                        new CulturesForEnumValue((int) AccelerationUnit.StandardGravity,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (AmountOfSubstanceUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Centimole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cmol"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.CentipoundMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "clbmol"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Decimole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dmol"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.DecipoundMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dlbmol"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Kilomole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kmol"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.KilopoundMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "klbmol"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Micromole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µmol"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.MicropoundMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µlbmol"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Millimole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mmol"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.MillipoundMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mlbmol"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Mole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mol"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Nanomole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nmol"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.NanopoundMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nlbmol"),
-                            }),
-                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.PoundMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lbmol"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (AmplitudeRatioUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) AmplitudeRatioUnit.DecibelMicrovolt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dBµV"),
-                            }),
-                        new CulturesForEnumValue((int) AmplitudeRatioUnit.DecibelMillivolt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dBmV"),
-                            }),
-                        new CulturesForEnumValue((int) AmplitudeRatioUnit.DecibelUnloaded,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dBu"),
-                            }),
-                        new CulturesForEnumValue((int) AmplitudeRatioUnit.DecibelVolt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dBV"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (AngleUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) AngleUnit.Arcminute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "'", "arcmin", "amin", "min"),
-                            }),
-                        new CulturesForEnumValue((int) AngleUnit.Arcsecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "″", "arcsec", "asec", "sec"),
-                            }),
-                        new CulturesForEnumValue((int) AngleUnit.Centiradian,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "crad"),
-                                new AbbreviationsForCulture("ru-RU", "cрад"),
-                            }),
-                        new CulturesForEnumValue((int) AngleUnit.Deciradian,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "drad"),
-                                new AbbreviationsForCulture("ru-RU", "dрад"),
-                            }),
-                        new CulturesForEnumValue((int) AngleUnit.Degree,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "°", "deg"),
-                                new AbbreviationsForCulture("ru-RU", "°"),
-                            }),
-                        new CulturesForEnumValue((int) AngleUnit.Gradian,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g"),
-                                new AbbreviationsForCulture("ru-RU", "g"),
-                            }),
-                        new CulturesForEnumValue((int) AngleUnit.Microdegree,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µ°"),
-                                new AbbreviationsForCulture("ru-RU", "µ°"),
-                            }),
-                        new CulturesForEnumValue((int) AngleUnit.Microradian,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µrad"),
-                                new AbbreviationsForCulture("ru-RU", "µрад"),
-                            }),
-                        new CulturesForEnumValue((int) AngleUnit.Millidegree,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m°"),
-                                new AbbreviationsForCulture("ru-RU", "m°"),
-                            }),
-                        new CulturesForEnumValue((int) AngleUnit.Milliradian,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mrad"),
-                                new AbbreviationsForCulture("ru-RU", "mрад"),
-                            }),
-                        new CulturesForEnumValue((int) AngleUnit.Nanodegree,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "n°"),
-                                new AbbreviationsForCulture("ru-RU", "n°"),
-                            }),
-                        new CulturesForEnumValue((int) AngleUnit.Nanoradian,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nrad"),
-                                new AbbreviationsForCulture("ru-RU", "nрад"),
-                            }),
-                        new CulturesForEnumValue((int) AngleUnit.Radian,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "rad"),
-                                new AbbreviationsForCulture("ru-RU", "рад"),
-                            }),
-                        new CulturesForEnumValue((int) AngleUnit.Revolution,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "r"),
-                                new AbbreviationsForCulture("ru-RU", "r"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ApparentEnergyUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ApparentEnergyUnit.KilovoltampereHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kVAh"),
-                            }),
-                        new CulturesForEnumValue((int) ApparentEnergyUnit.MegavoltampereHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MVAh"),
-                            }),
-                        new CulturesForEnumValue((int) ApparentEnergyUnit.VoltampereHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "VAh"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ApparentPowerUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ApparentPowerUnit.Gigavoltampere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GVA"),
-                            }),
-                        new CulturesForEnumValue((int) ApparentPowerUnit.Kilovoltampere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kVA"),
-                            }),
-                        new CulturesForEnumValue((int) ApparentPowerUnit.Megavoltampere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MVA"),
-                            }),
-                        new CulturesForEnumValue((int) ApparentPowerUnit.Voltampere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "VA"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (AreaUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) AreaUnit.Acre,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ac"),
-                            }),
-                        new CulturesForEnumValue((int) AreaUnit.Hectare,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ha"),
-                            }),
-                        new CulturesForEnumValue((int) AreaUnit.SquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cm²"),
-                                new AbbreviationsForCulture("ru-RU", "см²"),
-                            }),
-                        new CulturesForEnumValue((int) AreaUnit.SquareDecimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dm²"),
-                                new AbbreviationsForCulture("ru-RU", "дм²"),
-                            }),
-                        new CulturesForEnumValue((int) AreaUnit.SquareFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft²"),
-                                new AbbreviationsForCulture("ru-RU", "фут²"),
-                            }),
-                        new CulturesForEnumValue((int) AreaUnit.SquareInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "in²"),
-                                new AbbreviationsForCulture("ru-RU", "дюйм²"),
-                            }),
-                        new CulturesForEnumValue((int) AreaUnit.SquareKilometer,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "km²"),
-                                new AbbreviationsForCulture("ru-RU", "км²"),
-                            }),
-                        new CulturesForEnumValue((int) AreaUnit.SquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m²"),
-                                new AbbreviationsForCulture("ru-RU", "м²"),
-                            }),
-                        new CulturesForEnumValue((int) AreaUnit.SquareMicrometer,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µm²"),
-                                new AbbreviationsForCulture("ru-RU", "мкм²"),
-                            }),
-                        new CulturesForEnumValue((int) AreaUnit.SquareMile,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mi²"),
-                                new AbbreviationsForCulture("ru-RU", "миля²"),
-                            }),
-                        new CulturesForEnumValue((int) AreaUnit.SquareMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mm²"),
-                                new AbbreviationsForCulture("ru-RU", "мм²"),
-                            }),
-                        new CulturesForEnumValue((int) AreaUnit.SquareYard,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yd²"),
-                                new AbbreviationsForCulture("ru-RU", "ярд²"),
-                            }),
-                        new CulturesForEnumValue((int) AreaUnit.UsSurveySquareFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft² (US)"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (AreaDensityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) AreaDensityUnit.KilogramPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg/m²"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (AreaMomentOfInertiaUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.CentimeterToTheFourth,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cm⁴", "cm^4"),
-                            }),
-                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.DecimeterToTheFourth,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dm⁴", "dm^4"),
-                            }),
-                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.FootToTheFourth,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft⁴", "ft^4"),
-                            }),
-                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.InchToTheFourth,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "in⁴", "in^4"),
-                            }),
-                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.MeterToTheFourth,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m⁴", "m^4"),
-                            }),
-                        new CulturesForEnumValue((int) AreaMomentOfInertiaUnit.MillimeterToTheFourth,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mm⁴", "mm^4"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (BitRateUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) BitRateUnit.BitPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "bit/s", "bps"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.BytePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "B/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.ExabitPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Ebit/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.ExabytePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "EB/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.ExbibitPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Eibit/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.ExbibytePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "EiB/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.GibibitPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Gibit/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.GibibytePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GiB/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.GigabitPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Gbit/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.GigabytePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GB/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.KibibitPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Kibit/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.KibibytePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "KiB/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.KilobitPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kbit/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.KilobytePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kB/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.MebibitPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mibit/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.MebibytePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MiB/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.MegabitPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mbit/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.MegabytePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MB/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.PebibitPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Pibit/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.PebibytePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "PiB/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.PetabitPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Pbit/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.PetabytePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "PB/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.TebibitPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Tibit/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.TebibytePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "TiB/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.TerabitPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Tbit/s"),
-                            }),
-                        new CulturesForEnumValue((int) BitRateUnit.TerabytePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "TB/s"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (BrakeSpecificFuelConsumptionUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g/kWh"),
-                            }),
-                        new CulturesForEnumValue((int) BrakeSpecificFuelConsumptionUnit.KilogramPerJoule,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg/J"),
-                            }),
-                        new CulturesForEnumValue((int) BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lb/hph"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (CapacitanceUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) CapacitanceUnit.Farad,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "F"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (DensityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) DensityUnit.CentigramPerDeciliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cg/dl"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.CentigramPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cg/L"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.CentigramPerMilliliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cg/ml"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.DecigramPerDeciliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dg/dl"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.DecigramPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dg/L"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.DecigramPerMilliliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dg/ml"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.GramPerCubicCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g/cm³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.GramPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g/m³"),
-                                new AbbreviationsForCulture("ru-RU", "г/м³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.GramPerCubicMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g/mm³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.GramPerDeciliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g/dl"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.GramPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g/L"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.GramPerMilliliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g/ml"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.KilogramPerCubicCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg/cm³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.KilogramPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg/m³"),
-                                new AbbreviationsForCulture("ru-RU", "kг/м³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.KilogramPerCubicMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg/mm³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.KilopoundPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kip/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.KilopoundPerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kip/in³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.MicrogramPerDeciliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µg/dl"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.MicrogramPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µg/L"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.MicrogramPerMilliliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µg/ml"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.MilligramPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mg/m³"),
-                                new AbbreviationsForCulture("ru-RU", "mг/м³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.MilligramPerDeciliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mg/dl"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.MilligramPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mg/L"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.MilligramPerMilliliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mg/ml"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.NanogramPerDeciliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ng/dl"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.NanogramPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ng/L"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.NanogramPerMilliliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ng/ml"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.PicogramPerDeciliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pg/dl"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.PicogramPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pg/L"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.PicogramPerMilliliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pg/ml"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.PoundPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lb/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.PoundPerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lb/in³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.PoundPerImperialGallon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ppg (imp.)"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.PoundPerUSGallon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ppg (U.S.)"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.SlugPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "slug/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.TonnePerCubicCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "t/cm³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.TonnePerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "t/m³"),
-                            }),
-                        new CulturesForEnumValue((int) DensityUnit.TonnePerCubicMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "t/mm³"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (DurationUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) DurationUnit.Day,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "d", "day", "days"),
-                                new AbbreviationsForCulture("ru-RU", "д"),
-                            }),
-                        new CulturesForEnumValue((int) DurationUnit.Hour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "h", "hr", "hrs", "hour", "hours"),
-                                new AbbreviationsForCulture("ru-RU", "ч"),
-                            }),
-                        new CulturesForEnumValue((int) DurationUnit.Microsecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µs"),
-                                new AbbreviationsForCulture("ru-RU", "мкс"),
-                            }),
-                        new CulturesForEnumValue((int) DurationUnit.Millisecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ms"),
-                                new AbbreviationsForCulture("ru-RU", "мс"),
-                            }),
-                        new CulturesForEnumValue((int) DurationUnit.Minute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m", "min", "minute", "minutes"),
-                                new AbbreviationsForCulture("ru-RU", "мин"),
-                            }),
-                        new CulturesForEnumValue((int) DurationUnit.Month30,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mo", "month", "months"),
-                                new AbbreviationsForCulture("ru-RU", "месяц"),
-                            }),
-                        new CulturesForEnumValue((int) DurationUnit.Nanosecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ns"),
-                                new AbbreviationsForCulture("ru-RU", "нс"),
-                            }),
-                        new CulturesForEnumValue((int) DurationUnit.Second,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "s", "sec", "secs", "second", "seconds"),
-                                new AbbreviationsForCulture("ru-RU", "с"),
-                            }),
-                        new CulturesForEnumValue((int) DurationUnit.Week,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "wk", "week", "weeks"),
-                                new AbbreviationsForCulture("ru-RU", "мин"),
-                            }),
-                        new CulturesForEnumValue((int) DurationUnit.Year365,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yr", "year", "years"),
-                                new AbbreviationsForCulture("ru-RU", "год"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (DynamicViscosityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) DynamicViscosityUnit.Centipoise,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cP"),
-                            }),
-                        new CulturesForEnumValue((int) DynamicViscosityUnit.MicropascalSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µPaS"),
-                            }),
-                        new CulturesForEnumValue((int) DynamicViscosityUnit.MillipascalSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mPaS"),
-                            }),
-                        new CulturesForEnumValue((int) DynamicViscosityUnit.NewtonSecondPerMeterSquared,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Ns/m²"),
-                            }),
-                        new CulturesForEnumValue((int) DynamicViscosityUnit.PascalSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "PaS"),
-                            }),
-                        new CulturesForEnumValue((int) DynamicViscosityUnit.Poise,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "P"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricAdmittanceUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricAdmittanceUnit.Microsiemens,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µS"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricAdmittanceUnit.Millisiemens,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mS"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricAdmittanceUnit.Nanosiemens,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nS"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricAdmittanceUnit.Siemens,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "S"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricChargeUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricChargeUnit.Coulomb,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "C"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricChargeDensityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricChargeDensityUnit.CoulombPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "C/m³"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricConductanceUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricConductanceUnit.Microsiemens,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µS"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricConductanceUnit.Millisiemens,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mS"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricConductanceUnit.Siemens,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "S"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricConductivityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricConductivityUnit.SiemensPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "S/m"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricCurrentUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricCurrentUnit.Ampere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "A"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricCurrentUnit.Centiampere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cA"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricCurrentUnit.Kiloampere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kA"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricCurrentUnit.Megaampere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MA"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricCurrentUnit.Microampere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µA"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricCurrentUnit.Milliampere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mA"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricCurrentUnit.Nanoampere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nA"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricCurrentUnit.Picoampere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pA"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricCurrentDensityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricCurrentDensityUnit.AmperePerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "A/m²"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricCurrentGradientUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricCurrentGradientUnit.AmperePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "A/s"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricFieldUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricFieldUnit.VoltPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "V/m"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricInductanceUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricInductanceUnit.Henry,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "H"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricPotentialUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricPotentialUnit.Kilovolt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kV"),
-                                new AbbreviationsForCulture("ru-RU", "kВ"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricPotentialUnit.Megavolt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MV"),
-                                new AbbreviationsForCulture("ru-RU", "MВ"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricPotentialUnit.Microvolt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µV"),
-                                new AbbreviationsForCulture("ru-RU", "µВ"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricPotentialUnit.Millivolt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mV"),
-                                new AbbreviationsForCulture("ru-RU", "mВ"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricPotentialUnit.Volt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "V"),
-                                new AbbreviationsForCulture("ru-RU", "В"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricPotentialAcUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricPotentialAcUnit.KilovoltAc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kVac"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricPotentialAcUnit.MegavoltAc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MVac"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricPotentialAcUnit.MicrovoltAc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µVac"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricPotentialAcUnit.MillivoltAc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mVac"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricPotentialAcUnit.VoltAc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Vac"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricPotentialDcUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricPotentialDcUnit.KilovoltDc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kVdc"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricPotentialDcUnit.MegavoltDc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MVdc"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricPotentialDcUnit.MicrovoltDc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µVdc"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricPotentialDcUnit.MillivoltDc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mVdc"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricPotentialDcUnit.VoltDc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Vdc"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricResistanceUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricResistanceUnit.Kiloohm,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kΩ"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricResistanceUnit.Megaohm,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MΩ"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricResistanceUnit.Milliohm,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mΩ"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricResistanceUnit.Ohm,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Ω"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ElectricResistivityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ElectricResistivityUnit.MicroohmMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µΩ·m"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricResistivityUnit.MilliohmMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mΩ·m"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricResistivityUnit.NanoohmMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nΩ·m"),
-                            }),
-                        new CulturesForEnumValue((int) ElectricResistivityUnit.OhmMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Ω·m"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (EnergyUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) EnergyUnit.BritishThermalUnit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "BTU"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.Calorie,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cal"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.DecathermEc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Dth (E.C.)"),
-                                new AbbreviationsForCulture("ru-RU", "Европейский декатерм"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.DecathermImperial,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Dth (imp.)"),
-                                new AbbreviationsForCulture("ru-RU", "Английский декатерм"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.DecathermUs,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Dth (U.S.)"),
-                                new AbbreviationsForCulture("ru-RU", "Американский декатерм"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.ElectronVolt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "eV"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.Erg,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "erg"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.FootPound,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft·lb"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.GigabritishThermalUnit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GBTU"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.GigawattHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GWh"),
-                                new AbbreviationsForCulture("en-US", "GВт/ч"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.Joule,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "J"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.KilobritishThermalUnit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kBTU"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.Kilocalorie,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kcal"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.Kilojoule,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kJ"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.KilowattHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kWh"),
-                                new AbbreviationsForCulture("en-US", "kВт/ч"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.MegabritishThermalUnit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MBTU"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.Megajoule,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MJ"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.MegawattHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MWh"),
-                                new AbbreviationsForCulture("en-US", "MВт/ч"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.ThermEc,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "th (E.C.)"),
-                                new AbbreviationsForCulture("ru-RU", "Европейский терм"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.ThermImperial,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "th (imp.)"),
-                                new AbbreviationsForCulture("ru-RU", "Английский терм"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.ThermUs,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "th (U.S.)"),
-                                new AbbreviationsForCulture("ru-RU", "Американский терм"),
-                            }),
-                        new CulturesForEnumValue((int) EnergyUnit.WattHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Wh"),
-                                new AbbreviationsForCulture("en-US", "Вт/ч"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (EntropyUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) EntropyUnit.CaloriePerKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cal/K"),
-                            }),
-                        new CulturesForEnumValue((int) EntropyUnit.JoulePerDegreeCelsius,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "J/C"),
-                            }),
-                        new CulturesForEnumValue((int) EntropyUnit.JoulePerKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "J/K"),
-                            }),
-                        new CulturesForEnumValue((int) EntropyUnit.KilocaloriePerKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kcal/K"),
-                            }),
-                        new CulturesForEnumValue((int) EntropyUnit.KilojoulePerDegreeCelsius,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kJ/C"),
-                            }),
-                        new CulturesForEnumValue((int) EntropyUnit.KilojoulePerKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kJ/K"),
-                            }),
-                        new CulturesForEnumValue((int) EntropyUnit.MegajoulePerKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MJ/K"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ForceUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ForceUnit.Decanewton,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "daN"),
-                                new AbbreviationsForCulture("ru-RU", "даН"),
-                            }),
-                        new CulturesForEnumValue((int) ForceUnit.Dyn,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dyn"),
-                                new AbbreviationsForCulture("ru-RU", "дин"),
-                            }),
-                        new CulturesForEnumValue((int) ForceUnit.KilogramForce,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kgf"),
-                                new AbbreviationsForCulture("ru-RU", "кгс"),
-                            }),
-                        new CulturesForEnumValue((int) ForceUnit.Kilonewton,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN"),
-                                new AbbreviationsForCulture("ru-RU", "кН"),
-                            }),
-                        new CulturesForEnumValue((int) ForceUnit.KiloPond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kp"),
-                                new AbbreviationsForCulture("ru-RU", "кгс"),
-                            }),
-                        new CulturesForEnumValue((int) ForceUnit.Meganewton,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MN"),
-                                new AbbreviationsForCulture("ru-RU", ""),
-                            }),
-                        new CulturesForEnumValue((int) ForceUnit.Newton,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N"),
-                                new AbbreviationsForCulture("ru-RU", "Н"),
-                            }),
-                        new CulturesForEnumValue((int) ForceUnit.Poundal,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pdl"),
-                                new AbbreviationsForCulture("ru-RU", "паундаль"),
-                            }),
-                        new CulturesForEnumValue((int) ForceUnit.PoundForce,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lbf"),
-                                new AbbreviationsForCulture("ru-RU", "фунт-сила"),
-                            }),
-                        new CulturesForEnumValue((int) ForceUnit.TonneForce,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Ton"),
-                                new AbbreviationsForCulture("ru-RU", "тс"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ForceChangeRateUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ForceChangeRateUnit.CentinewtonPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cN/s"),
-                            }),
-                        new CulturesForEnumValue((int) ForceChangeRateUnit.DecanewtonPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "daN/min"),
-                            }),
-                        new CulturesForEnumValue((int) ForceChangeRateUnit.DecanewtonPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "daN/s"),
-                            }),
-                        new CulturesForEnumValue((int) ForceChangeRateUnit.DecinewtonPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dN/s"),
-                            }),
-                        new CulturesForEnumValue((int) ForceChangeRateUnit.KilonewtonPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN/min"),
-                            }),
-                        new CulturesForEnumValue((int) ForceChangeRateUnit.KilonewtonPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN/s"),
-                            }),
-                        new CulturesForEnumValue((int) ForceChangeRateUnit.MicronewtonPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µN/s"),
-                            }),
-                        new CulturesForEnumValue((int) ForceChangeRateUnit.MillinewtonPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mN/s"),
-                            }),
-                        new CulturesForEnumValue((int) ForceChangeRateUnit.NanonewtonPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nN/s"),
-                            }),
-                        new CulturesForEnumValue((int) ForceChangeRateUnit.NewtonPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N/min"),
-                            }),
-                        new CulturesForEnumValue((int) ForceChangeRateUnit.NewtonPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N/s"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ForcePerLengthUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ForcePerLengthUnit.CentinewtonPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cN/m"),
-                            }),
-                        new CulturesForEnumValue((int) ForcePerLengthUnit.DecinewtonPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dN/m"),
-                            }),
-                        new CulturesForEnumValue((int) ForcePerLengthUnit.KilogramForcePerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kgf/m"),
-                                new AbbreviationsForCulture("ru-RU", "кгс/м"),
-                            }),
-                        new CulturesForEnumValue((int) ForcePerLengthUnit.KilonewtonPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN/m"),
-                            }),
-                        new CulturesForEnumValue((int) ForcePerLengthUnit.MeganewtonPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MN/m"),
-                            }),
-                        new CulturesForEnumValue((int) ForcePerLengthUnit.MicronewtonPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µN/m"),
-                            }),
-                        new CulturesForEnumValue((int) ForcePerLengthUnit.MillinewtonPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mN/m"),
-                            }),
-                        new CulturesForEnumValue((int) ForcePerLengthUnit.NanonewtonPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nN/m"),
-                            }),
-                        new CulturesForEnumValue((int) ForcePerLengthUnit.NewtonPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N/m"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (FrequencyUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) FrequencyUnit.CyclePerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cph"),
-                            }),
-                        new CulturesForEnumValue((int) FrequencyUnit.CyclePerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cpm"),
-                            }),
-                        new CulturesForEnumValue((int) FrequencyUnit.Gigahertz,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GHz"),
-                            }),
-                        new CulturesForEnumValue((int) FrequencyUnit.Hertz,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Hz"),
-                            }),
-                        new CulturesForEnumValue((int) FrequencyUnit.Kilohertz,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kHz"),
-                            }),
-                        new CulturesForEnumValue((int) FrequencyUnit.Megahertz,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MHz"),
-                            }),
-                        new CulturesForEnumValue((int) FrequencyUnit.RadianPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "rad/s"),
-                            }),
-                        new CulturesForEnumValue((int) FrequencyUnit.Terahertz,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "THz"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (HeatFluxUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerHourSquareFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "BTU/h·ft²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerMinuteSquareFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "BTU/min·ft²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerSecondSquareFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "BTU/s·ft²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.BtuPerSecondSquareInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "BTU/s·in²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.CaloriePerSecondSquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cal/s·cm²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.CentiwattPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cW/m²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.DeciwattPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dW/m²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.KilocaloriePerHourSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kcal/h·m²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.KilocaloriePerSecondSquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kcal/s·cm²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.KilowattPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kW/m²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.MicrowattPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µW/m²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.MilliwattPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mW/m²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.NanowattPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nW/m²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.WattPerSquareFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "W/ft²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.WattPerSquareInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "W/in²"),
-                            }),
-                        new CulturesForEnumValue((int) HeatFluxUnit.WattPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "W/m²"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (HeatTransferCoefficientUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) HeatTransferCoefficientUnit.WattPerSquareMeterCelsius,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "W/m²·°C"),
-                            }),
-                        new CulturesForEnumValue((int) HeatTransferCoefficientUnit.WattPerSquareMeterKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "W/m²·K"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (IlluminanceUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) IlluminanceUnit.Kilolux,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "klx"),
-                            }),
-                        new CulturesForEnumValue((int) IlluminanceUnit.Lux,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lx"),
-                            }),
-                        new CulturesForEnumValue((int) IlluminanceUnit.Megalux,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mlx"),
-                            }),
-                        new CulturesForEnumValue((int) IlluminanceUnit.Millilux,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mlx"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (InformationUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) InformationUnit.Bit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "b"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Byte,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "B"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Exabit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Eb"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Exabyte,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "EB"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Exbibit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Eib"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Exbibyte,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "EiB"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Gibibit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Gib"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Gibibyte,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GiB"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Gigabit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Gb"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Gigabyte,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GB"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Kibibit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Kib"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Kibibyte,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "KiB"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Kilobit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kb"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Kilobyte,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kB"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Mebibit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mib"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Mebibyte,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MiB"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Megabit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mb"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Megabyte,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MB"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Pebibit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Pib"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Pebibyte,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "PiB"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Petabit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Pb"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Petabyte,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "PB"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Tebibit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Tib"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Tebibyte,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "TiB"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Terabit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Tb"),
-                            }),
-                        new CulturesForEnumValue((int) InformationUnit.Terabyte,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "TB"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (IrradianceUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) IrradianceUnit.KilowattPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kW/m²"),
-                            }),
-                        new CulturesForEnumValue((int) IrradianceUnit.WattPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "W/m²"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (IrradiationUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) IrradiationUnit.JoulePerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "J/m²"),
-                            }),
-                        new CulturesForEnumValue((int) IrradiationUnit.KilowattHourPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kWh/m²"),
-                            }),
-                        new CulturesForEnumValue((int) IrradiationUnit.WattHourPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Wh/m²"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (KinematicViscosityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) KinematicViscosityUnit.Centistokes,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cSt"),
-                                new AbbreviationsForCulture("ru-RU", "сСт"),
-                            }),
-                        new CulturesForEnumValue((int) KinematicViscosityUnit.Decistokes,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dSt"),
-                                new AbbreviationsForCulture("ru-RU", "дСт"),
-                            }),
-                        new CulturesForEnumValue((int) KinematicViscosityUnit.Kilostokes,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kSt"),
-                                new AbbreviationsForCulture("ru-RU", "кСт"),
-                            }),
-                        new CulturesForEnumValue((int) KinematicViscosityUnit.Microstokes,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µSt"),
-                                new AbbreviationsForCulture("ru-RU", "мкСт"),
-                            }),
-                        new CulturesForEnumValue((int) KinematicViscosityUnit.Millistokes,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mSt"),
-                                new AbbreviationsForCulture("ru-RU", "мСт"),
-                            }),
-                        new CulturesForEnumValue((int) KinematicViscosityUnit.Nanostokes,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nSt"),
-                                new AbbreviationsForCulture("ru-RU", "нСт"),
-                            }),
-                        new CulturesForEnumValue((int) KinematicViscosityUnit.SquareMeterPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m²/s"),
-                                new AbbreviationsForCulture("ru-RU", "м²/с"),
-                            }),
-                        new CulturesForEnumValue((int) KinematicViscosityUnit.Stokes,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "St"),
-                                new AbbreviationsForCulture("ru-RU", "Ст"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (LapseRateUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) LapseRateUnit.DegreeCelsiusPerKilometer,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°C/km"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (LengthUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) LengthUnit.Centimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cm"),
-                                new AbbreviationsForCulture("ru-RU", "см"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Decimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dm"),
-                                new AbbreviationsForCulture("ru-RU", "дм"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.DtpPica,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pica"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.DtpPoint,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pt"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Fathom,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "fathom"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Foot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft", "'"),
-                                new AbbreviationsForCulture("ru-RU", "фут"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Inch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "in", "\""),
-                                new AbbreviationsForCulture("ru-RU", "дюйм"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Kilometer,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "km"),
-                                new AbbreviationsForCulture("ru-RU", "км"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Meter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m"),
-                                new AbbreviationsForCulture("ru-RU", "м"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Microinch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µin"),
-                                new AbbreviationsForCulture("ru-RU", "микродюйм"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Micrometer,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µm"),
-                                new AbbreviationsForCulture("ru-RU", "мкм"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Mil,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mil"),
-                                new AbbreviationsForCulture("ru-RU", "мил"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Mile,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mi"),
-                                new AbbreviationsForCulture("ru-RU", "миля"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Millimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mm"),
-                                new AbbreviationsForCulture("ru-RU", "мм"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Nanometer,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nm"),
-                                new AbbreviationsForCulture("ru-RU", "нм"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.NauticalMile,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "NM"),
-                                new AbbreviationsForCulture("ru-RU", "мил"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.PrinterPica,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pica"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.PrinterPoint,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pt"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Shackle,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "shackle"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Twip,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "twip"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.UsSurveyFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ftUS"),
-                            }),
-                        new CulturesForEnumValue((int) LengthUnit.Yard,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yd"),
-                                new AbbreviationsForCulture("ru-RU", "ярд"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (LevelUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) LevelUnit.Decibel,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dB"),
-                            }),
-                        new CulturesForEnumValue((int) LevelUnit.Neper,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Np"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (LinearDensityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) LinearDensityUnit.GramPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g/m"),
-                            }),
-                        new CulturesForEnumValue((int) LinearDensityUnit.KilogramPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg/m"),
-                            }),
-                        new CulturesForEnumValue((int) LinearDensityUnit.PoundPerFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lb/ft"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (LuminousFluxUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) LuminousFluxUnit.Lumen,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lm"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (LuminousIntensityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) LuminousIntensityUnit.Candela,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cd"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (MagneticFieldUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MagneticFieldUnit.Tesla,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "T"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (MagneticFluxUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MagneticFluxUnit.Weber,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Wb"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (MagnetizationUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MagnetizationUnit.AmperePerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "A/m"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (MassUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MassUnit.Centigram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cg"),
-                                new AbbreviationsForCulture("ru-RU", "сг"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Decagram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dag"),
-                                new AbbreviationsForCulture("ru-RU", "даг"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Decigram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dg"),
-                                new AbbreviationsForCulture("ru-RU", "дг"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Gram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g"),
-                                new AbbreviationsForCulture("ru-RU", "г"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Hectogram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "hg"),
-                                new AbbreviationsForCulture("ru-RU", "гг"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Kilogram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg"),
-                                new AbbreviationsForCulture("ru-RU", "кг"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Kilopound,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "klb"),
-                                new AbbreviationsForCulture("ru-RU", "kфунт"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Kilotonne,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kt"),
-                                new AbbreviationsForCulture("ru-RU", "кт"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.LongHundredweight,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cwt"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.LongTon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "long tn"),
-                                new AbbreviationsForCulture("ru-RU", "тонна большая"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Megapound,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mlb"),
-                                new AbbreviationsForCulture("ru-RU", "Mфунт"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Megatonne,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mt"),
-                                new AbbreviationsForCulture("ru-RU", "Мт"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Microgram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µg"),
-                                new AbbreviationsForCulture("ru-RU", "мкг"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Milligram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mg"),
-                                new AbbreviationsForCulture("ru-RU", "мг"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Nanogram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ng"),
-                                new AbbreviationsForCulture("ru-RU", "нг"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Ounce,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "oz"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Pound,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lb", "lbs", "lbm"),
-                                new AbbreviationsForCulture("ru-RU", "фунт"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.ShortHundredweight,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cwt"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.ShortTon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "short tn"),
-                                new AbbreviationsForCulture("ru-RU", "тонна малая"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Stone,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "st"),
-                            }),
-                        new CulturesForEnumValue((int) MassUnit.Tonne,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "t"),
-                                new AbbreviationsForCulture("ru-RU", "т"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (MassFlowUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MassFlowUnit.CentigramPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cg/S"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.DecagramPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dag/S"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.DecigramPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dg/S"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.GramPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g/S"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.HectogramPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "hg/S"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.KilogramPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg/h"),
-                                new AbbreviationsForCulture("ru-RU", "кг/ч"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.KilogramPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg/S"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.MegapoundPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mlb/h"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.MicrogramPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µg/S"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.MilligramPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mg/S"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.NanogramPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ng/S"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.PoundPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lb/h"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.ShortTonPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "short tn/h"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.TonnePerDay,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "t/d"),
-                            }),
-                        new CulturesForEnumValue((int) MassFlowUnit.TonnePerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "t/h"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (MassFluxUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MassFluxUnit.GramPerSecondPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g·s⁻¹·m⁻²"),
-                            }),
-                        new CulturesForEnumValue((int) MassFluxUnit.KilogramPerSecondPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg·s⁻¹·m⁻²"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (MassMomentOfInertiaUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.GramSquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g·cm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.GramSquareDecimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g·dm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.GramSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g·m²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.GramSquareMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g·mm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilogramSquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg·cm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilogramSquareDecimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg·dm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilogramSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg·m²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilogramSquareMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg·mm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilotonneSquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kt·cm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilotonneSquareDecimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kt·dm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilotonneSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kt·m²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.KilotonneSquareMilimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kt·mm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MegatonneSquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mt·cm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MegatonneSquareDecimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mt·dm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MegatonneSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mt·m²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MegatonneSquareMilimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mt·mm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MilligramSquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mg·cm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MilligramSquareDecimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mg·dm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MilligramSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mg·m²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.MilligramSquareMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mg·mm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.PoundSquareFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lb·ft²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.PoundSquareInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lb·in²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "t·cm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareDecimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "t·dm²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "t·m²"),
-                            }),
-                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareMilimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "t·mm²"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (MolarEnergyUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MolarEnergyUnit.JoulePerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "J/mol"),
-                            }),
-                        new CulturesForEnumValue((int) MolarEnergyUnit.KilojoulePerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kJ/mol"),
-                            }),
-                        new CulturesForEnumValue((int) MolarEnergyUnit.MegajoulePerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MJ/mol"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (MolarEntropyUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MolarEntropyUnit.JoulePerMoleKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "J/(mol*K)"),
-                            }),
-                        new CulturesForEnumValue((int) MolarEntropyUnit.KilojoulePerMoleKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kJ/(mol*K)"),
-                            }),
-                        new CulturesForEnumValue((int) MolarEntropyUnit.MegajoulePerMoleKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MJ/(mol*K)"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (MolarityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MolarityUnit.CentimolesPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cmol/L"),
-                            }),
-                        new CulturesForEnumValue((int) MolarityUnit.DecimolesPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dmol/L"),
-                            }),
-                        new CulturesForEnumValue((int) MolarityUnit.MicromolesPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µmol/L"),
-                            }),
-                        new CulturesForEnumValue((int) MolarityUnit.MillimolesPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mmol/L"),
-                            }),
-                        new CulturesForEnumValue((int) MolarityUnit.MolesPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mol/m³"),
-                            }),
-                        new CulturesForEnumValue((int) MolarityUnit.MolesPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mol/L"),
-                            }),
-                        new CulturesForEnumValue((int) MolarityUnit.NanomolesPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nmol/L"),
-                            }),
-                        new CulturesForEnumValue((int) MolarityUnit.PicomolesPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pmol/L"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (MolarMassUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) MolarMassUnit.CentigramPerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cg/mol"),
-                                new AbbreviationsForCulture("ru-RU", "сг/моль"),
-                            }),
-                        new CulturesForEnumValue((int) MolarMassUnit.DecagramPerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dag/mol"),
-                                new AbbreviationsForCulture("ru-RU", "даг/моль"),
-                            }),
-                        new CulturesForEnumValue((int) MolarMassUnit.DecigramPerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dg/mol"),
-                                new AbbreviationsForCulture("ru-RU", "дг/моль"),
-                            }),
-                        new CulturesForEnumValue((int) MolarMassUnit.GramPerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "g/mol"),
-                                new AbbreviationsForCulture("ru-RU", "г/моль"),
-                            }),
-                        new CulturesForEnumValue((int) MolarMassUnit.HectogramPerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "hg/mol"),
-                                new AbbreviationsForCulture("ru-RU", "гг/моль"),
-                            }),
-                        new CulturesForEnumValue((int) MolarMassUnit.KilogramPerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kg/mol"),
-                                new AbbreviationsForCulture("ru-RU", "кг/моль"),
-                            }),
-                        new CulturesForEnumValue((int) MolarMassUnit.KilopoundPerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "klb/mol"),
-                                new AbbreviationsForCulture("ru-RU", "kфунт/моль"),
-                            }),
-                        new CulturesForEnumValue((int) MolarMassUnit.MegapoundPerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mlb/mol"),
-                                new AbbreviationsForCulture("ru-RU", "Mфунт/моль"),
-                            }),
-                        new CulturesForEnumValue((int) MolarMassUnit.MicrogramPerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µg/mol"),
-                                new AbbreviationsForCulture("ru-RU", "мкг/моль"),
-                            }),
-                        new CulturesForEnumValue((int) MolarMassUnit.MilligramPerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mg/mol"),
-                                new AbbreviationsForCulture("ru-RU", "мг/моль"),
-                            }),
-                        new CulturesForEnumValue((int) MolarMassUnit.NanogramPerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ng/mol"),
-                                new AbbreviationsForCulture("ru-RU", "нг/моль"),
-                            }),
-                        new CulturesForEnumValue((int) MolarMassUnit.PoundPerMole,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lb/mol"),
-                                new AbbreviationsForCulture("ru-RU", "фунт/моль"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (PermeabilityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) PermeabilityUnit.HenryPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "H/m"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (PermittivityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) PermittivityUnit.FaradPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "F/m"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (PowerUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) PowerUnit.BoilerHorsepower,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "hp(S)"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.BritishThermalUnitPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Btu/hr"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.Decawatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "daW"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.Deciwatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dW"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.ElectricalHorsepower,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "hp(E)"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.Femtowatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "fW"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.Gigawatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GW"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.HydraulicHorsepower,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "hp(H)"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.KilobritishThermalUnitPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kBtu/hr"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.Kilowatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kW"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.MechanicalHorsepower,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "hp(I)"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.Megawatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MW"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.MetricHorsepower,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "hp(M)"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.Microwatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µW"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.Milliwatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mW"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.Nanowatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nW"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.Petawatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "PW"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.Picowatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pW"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.Terawatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "TW"),
-                            }),
-                        new CulturesForEnumValue((int) PowerUnit.Watt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "W"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (PowerDensityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) PowerDensityUnit.DecawattPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "daW/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.DecawattPerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "daW/in³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.DecawattPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "daW/m³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.DecawattPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "daW/l"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.DeciwattPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dW/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.DeciwattPerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dW/in³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.DeciwattPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dW/m³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.DeciwattPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dW/l"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.GigawattPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GW/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.GigawattPerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GW/in³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.GigawattPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GW/m³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.GigawattPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GW/l"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.KilowattPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kW/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.KilowattPerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kW/in³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.KilowattPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kW/m³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.KilowattPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kW/l"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.MegawattPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MW/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.MegawattPerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MW/in³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.MegawattPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MW/m³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.MegawattPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MW/l"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.MicrowattPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µW/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.MicrowattPerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µW/in³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.MicrowattPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µW/m³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.MicrowattPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µW/l"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.MilliwattPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mW/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.MilliwattPerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mW/in³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.MilliwattPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mW/m³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.MilliwattPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mW/l"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.NanowattPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nW/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.NanowattPerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nW/in³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.NanowattPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nW/m³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.NanowattPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nW/l"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.PicowattPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pW/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.PicowattPerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pW/in³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.PicowattPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pW/m³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.PicowattPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pW/l"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.TerawattPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "TW/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.TerawattPerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "TW/in³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.TerawattPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "TW/m³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.TerawattPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "TW/l"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.WattPerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "W/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.WattPerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "W/in³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.WattPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "W/m³"),
-                            }),
-                        new CulturesForEnumValue((int) PowerDensityUnit.WattPerLiter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "W/l"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (PowerRatioUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) PowerRatioUnit.DecibelMilliwatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dBmW", "dBm"),
-                            }),
-                        new CulturesForEnumValue((int) PowerRatioUnit.DecibelWatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dBW"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (PressureUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) PressureUnit.Atmosphere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "atm"),
-                                new AbbreviationsForCulture("ru-RU", "атм"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Bar,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "bar"),
-                                new AbbreviationsForCulture("ru-RU", "бар"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Centibar,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cbar"),
-                                new AbbreviationsForCulture("ru-RU", "cбар"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Decapascal,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "daPa"),
-                                new AbbreviationsForCulture("ru-RU", "даПа"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Decibar,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dbar"),
-                                new AbbreviationsForCulture("ru-RU", "dбар"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.FootOfHead,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft of head"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Gigapascal,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "GPa"),
-                                new AbbreviationsForCulture("ru-RU", "ГПа"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Hectopascal,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "hPa"),
-                                new AbbreviationsForCulture("ru-RU", "гПа"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.InchOfMercury,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "inHg"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Kilobar,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kbar"),
-                                new AbbreviationsForCulture("ru-RU", "kбар"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.KilogramForcePerSquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kgf/cm²"),
-                                new AbbreviationsForCulture("ru-RU", "кгс/см²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.KilogramForcePerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kgf/m²"),
-                                new AbbreviationsForCulture("ru-RU", "кгс/м²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.KilogramForcePerSquareMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kgf/mm²"),
-                                new AbbreviationsForCulture("ru-RU", "кгс/мм²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.KilonewtonPerSquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN/cm²"),
-                                new AbbreviationsForCulture("ru-RU", "кН/см²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.KilonewtonPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN/m²"),
-                                new AbbreviationsForCulture("ru-RU", "кН/м²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.KilonewtonPerSquareMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN/mm²"),
-                                new AbbreviationsForCulture("ru-RU", "кН/мм²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Kilopascal,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kPa"),
-                                new AbbreviationsForCulture("ru-RU", "кПа"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.KilopoundForcePerSquareFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kipf/ft²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.KilopoundForcePerSquareInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kipf/in²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Megabar,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mbar"),
-                                new AbbreviationsForCulture("ru-RU", "Mбар"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.MeganewtonPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MN/m²"),
-                                new AbbreviationsForCulture("ru-RU", "Мн/м²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Megapascal,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MPa"),
-                                new AbbreviationsForCulture("ru-RU", "МПа"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.MeterOfHead,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m of head"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Micropascal,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µPa"),
-                                new AbbreviationsForCulture("ru-RU", "мкПа"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Millibar,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mbar"),
-                                new AbbreviationsForCulture("ru-RU", "mбар"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.MillimeterOfMercury,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mmHg"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.NewtonPerSquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N/cm²"),
-                                new AbbreviationsForCulture("ru-RU", "Н/см²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.NewtonPerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N/m²"),
-                                new AbbreviationsForCulture("ru-RU", "Н/м²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.NewtonPerSquareMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N/mm²"),
-                                new AbbreviationsForCulture("ru-RU", "Н/мм²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Pascal,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Pa"),
-                                new AbbreviationsForCulture("ru-RU", "Па"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.PoundForcePerSquareFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lb/ft²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.PoundForcePerSquareInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "psi", "lb/in²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.TechnicalAtmosphere,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "at"),
-                                new AbbreviationsForCulture("ru-RU", "ат"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.TonneForcePerSquareCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "tf/cm²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.TonneForcePerSquareMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "tf/m²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.TonneForcePerSquareMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "tf/mm²"),
-                            }),
-                        new CulturesForEnumValue((int) PressureUnit.Torr,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "torr"),
-                                new AbbreviationsForCulture("ru-RU", "торр"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (PressureChangeRateUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) PressureChangeRateUnit.AtmospherePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "atm/s"),
-                                new AbbreviationsForCulture("ru-RU", "атм/с"),
-                            }),
-                        new CulturesForEnumValue((int) PressureChangeRateUnit.KilopascalPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kPa/s"),
-                                new AbbreviationsForCulture("ru-RU", "кПа/с"),
-                            }),
-                        new CulturesForEnumValue((int) PressureChangeRateUnit.MegapascalPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MPa/s"),
-                                new AbbreviationsForCulture("ru-RU", "МПа/с"),
-                            }),
-                        new CulturesForEnumValue((int) PressureChangeRateUnit.PascalPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Pa/s"),
-                                new AbbreviationsForCulture("ru-RU", "Па/с"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (RatioUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) RatioUnit.DecimalFraction,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", ""),
-                            }),
-                        new CulturesForEnumValue((int) RatioUnit.PartPerBillion,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ppb"),
-                            }),
-                        new CulturesForEnumValue((int) RatioUnit.PartPerMillion,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ppm"),
-                            }),
-                        new CulturesForEnumValue((int) RatioUnit.PartPerThousand,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "‰"),
-                            }),
-                        new CulturesForEnumValue((int) RatioUnit.PartPerTrillion,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ppt"),
-                            }),
-                        new CulturesForEnumValue((int) RatioUnit.Percent,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "%"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ReactiveEnergyUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ReactiveEnergyUnit.KilovoltampereReactiveHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kvarh"),
-                            }),
-                        new CulturesForEnumValue((int) ReactiveEnergyUnit.MegavoltampereReactiveHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mvarh"),
-                            }),
-                        new CulturesForEnumValue((int) ReactiveEnergyUnit.VoltampereReactiveHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "varh"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ReactivePowerUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ReactivePowerUnit.GigavoltampereReactive,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Gvar"),
-                            }),
-                        new CulturesForEnumValue((int) ReactivePowerUnit.KilovoltampereReactive,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kvar"),
-                            }),
-                        new CulturesForEnumValue((int) ReactivePowerUnit.MegavoltampereReactive,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mvar"),
-                            }),
-                        new CulturesForEnumValue((int) ReactivePowerUnit.VoltampereReactive,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "var"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (RotationalAccelerationUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) RotationalAccelerationUnit.DegreePerSecondSquared,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "°/s²", "deg/s²"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalAccelerationUnit.RadianPerSecondSquared,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "rad/s²"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalAccelerationUnit.RevolutionPerMinutePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "rpm/s"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (RotationalSpeedUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) RotationalSpeedUnit.CentiradianPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "crad/s"),
-                                new AbbreviationsForCulture("ru-RU", "cрад/с"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalSpeedUnit.DeciradianPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "drad/s"),
-                                new AbbreviationsForCulture("ru-RU", "dрад/с"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalSpeedUnit.DegreePerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "°/min", "deg/min"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalSpeedUnit.DegreePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "°/s", "deg/s"),
-                                new AbbreviationsForCulture("ru-RU", "°/с"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalSpeedUnit.MicrodegreePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µ°/s"),
-                                new AbbreviationsForCulture("ru-RU", "µ°/с"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalSpeedUnit.MicroradianPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µrad/s"),
-                                new AbbreviationsForCulture("ru-RU", "µрад/с"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalSpeedUnit.MillidegreePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m°/s"),
-                                new AbbreviationsForCulture("ru-RU", "m°/с"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalSpeedUnit.MilliradianPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mrad/s"),
-                                new AbbreviationsForCulture("ru-RU", "mрад/с"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalSpeedUnit.NanodegreePerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "n°/s"),
-                                new AbbreviationsForCulture("ru-RU", "n°/с"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalSpeedUnit.NanoradianPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nrad/s"),
-                                new AbbreviationsForCulture("ru-RU", "nрад/с"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalSpeedUnit.RadianPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "rad/s"),
-                                new AbbreviationsForCulture("ru-RU", "рад/с"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalSpeedUnit.RevolutionPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "rpm", "r/min"),
-                                new AbbreviationsForCulture("ru-RU", "об/мин"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalSpeedUnit.RevolutionPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "r/s"),
-                                new AbbreviationsForCulture("ru-RU", "об/с"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (RotationalStiffnessUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) RotationalStiffnessUnit.KilonewtonMeterPerRadian,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN·m/rad"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalStiffnessUnit.MeganewtonMeterPerRadian,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MN·m/rad"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalStiffnessUnit.NewtonMeterPerRadian,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N·m/rad", "Nm/rad"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (RotationalStiffnessPerLengthUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN·m/rad/m"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MN·m/rad/m"),
-                            }),
-                        new CulturesForEnumValue((int) RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N·m/rad/m", "Nm/rad/m"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (SolidAngleUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) SolidAngleUnit.Steradian,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "sr"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (SpecificEnergyUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) SpecificEnergyUnit.CaloriePerGram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cal/g"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEnergyUnit.JoulePerKilogram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "J/kg"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEnergyUnit.KilocaloriePerGram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kcal/g"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEnergyUnit.KilojoulePerKilogram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kJ/kg"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEnergyUnit.KilowattHourPerKilogram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kWh/kg"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEnergyUnit.MegajoulePerKilogram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MJ/kg"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEnergyUnit.MegawattHourPerKilogram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MWh/kg"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEnergyUnit.WattHourPerKilogram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Wh/kg"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (SpecificEntropyUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) SpecificEntropyUnit.CaloriePerGramKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cal/g.K"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEntropyUnit.JoulePerKilogramDegreeCelsius,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "J/kg.C"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEntropyUnit.JoulePerKilogramKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "J/kg.K"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEntropyUnit.KilocaloriePerGramKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kcal/g.K"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kJ/kg.C"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEntropyUnit.KilojoulePerKilogramKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kJ/kg.K"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MJ/kg.C"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificEntropyUnit.MegajoulePerKilogramKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MJ/kg.K"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (SpecificVolumeUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) SpecificVolumeUnit.CubicFootPerPound,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft³/lb"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificVolumeUnit.CubicMeterPerKilogram,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m³/kg"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (SpecificWeightUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) SpecificWeightUnit.KilogramForcePerCubicCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kgf/cm³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.KilogramForcePerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kgf/m³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.KilogramForcePerCubicMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kgf/mm³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.KilonewtonPerCubicCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN/cm³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.KilonewtonPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN/m³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.KilonewtonPerCubicMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN/mm³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.KilopoundForcePerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kipf/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.KilopoundForcePerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kipf/in³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.MeganewtonPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MN/m³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.NewtonPerCubicCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N/cm³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.NewtonPerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N/m³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.NewtonPerCubicMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N/mm³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.PoundForcePerCubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lbf/ft³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.PoundForcePerCubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lbf/in³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.TonneForcePerCubicCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "tf/cm³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.TonneForcePerCubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "tf/m³"),
-                            }),
-                        new CulturesForEnumValue((int) SpecificWeightUnit.TonneForcePerCubicMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "tf/mm³"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (SpeedUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) SpeedUnit.CentimeterPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cm/h"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.CentimeterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cm/min"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.CentimeterPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cm/s"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.DecimeterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dm/min"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.DecimeterPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dm/s"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.FootPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft/h"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.FootPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft/min"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.FootPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft/s"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.InchPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "in/h"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.InchPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "in/min"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.InchPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "in/s"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.KilometerPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "km/h"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.KilometerPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "km/min"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.KilometerPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "km/s"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.Knot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kn", "kt", "knot", "knots"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.MeterPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m/h"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.MeterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m/min"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.MeterPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m/s"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.MicrometerPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µm/min"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.MicrometerPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µm/s"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.MilePerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mph"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.MillimeterPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mm/h"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.MillimeterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mm/min"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.MillimeterPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mm/s"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.NanometerPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nm/min"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.NanometerPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nm/s"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.UsSurveyFootPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ftUS/h"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.UsSurveyFootPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ftUS/min"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.UsSurveyFootPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ftUS/s"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.YardPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yd/h"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.YardPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yd/min"),
-                            }),
-                        new CulturesForEnumValue((int) SpeedUnit.YardPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yd/s"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (TemperatureUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) TemperatureUnit.DegreeCelsius,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "°C"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureUnit.DegreeDelisle,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "°De"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureUnit.DegreeFahrenheit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "°F"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureUnit.DegreeNewton,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "°N"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureUnit.DegreeRankine,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "°R"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureUnit.DegreeReaumur,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "°Ré"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureUnit.DegreeRoemer,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "°Rø"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureUnit.Kelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "K"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (TemperatureChangeRateUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "c°C/s"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "da°C/s"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "d°C/s"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.DegreeCelsiusPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "°C/min"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.DegreeCelsiusPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "°C/s"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "h°C/s"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "k°C/s"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µ°C/s"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m°C/s"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "n°C/s"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (TemperatureDeltaUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeCelsius,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°C"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeDelisle,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°De"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeFahrenheit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°F"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeNewton,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°N"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeRankine,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°R"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeReaumur,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°Ré"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.DegreeRoemer,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆°Rø"),
-                            }),
-                        new CulturesForEnumValue((int) TemperatureDeltaUnit.Kelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "∆K"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ThermalConductivityUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ThermalConductivityUnit.BtuPerHourFootFahrenheit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "BTU/h·ft·°F"),
-                            }),
-                        new CulturesForEnumValue((int) ThermalConductivityUnit.WattPerMeterKelvin,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "W/m·K"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (ThermalResistanceUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Hrft²°F/Btu"),
-                            }),
-                        new CulturesForEnumValue((int) ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cm²Hr°C/kcal"),
-                            }),
-                        new CulturesForEnumValue((int) ThermalResistanceUnit.SquareCentimeterKelvinPerWatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cm²K/W"),
-                            }),
-                        new CulturesForEnumValue((int) ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m²°C/W"),
-                            }),
-                        new CulturesForEnumValue((int) ThermalResistanceUnit.SquareMeterKelvinPerKilowatt,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m²K/kW"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (TorqueUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) TorqueUnit.KilogramForceCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kgf·cm"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.KilogramForceMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kgf·m"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.KilogramForceMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kgf·mm"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.KilonewtonCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN·cm"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.KilonewtonMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN·m"),
-                                new AbbreviationsForCulture("ru-RU", "кН·м"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.KilonewtonMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kN·mm"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.KilopoundForceFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kipf·ft"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.KilopoundForceInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kipf·in"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.MeganewtonCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MN·cm"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.MeganewtonMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MN·m"),
-                                new AbbreviationsForCulture("ru-RU", ""),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.MeganewtonMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MN·mm"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.MegapoundForceFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mlbf·ft"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.MegapoundForceInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mlbf·in"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.NewtonCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N·cm"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.NewtonMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N·m"),
-                                new AbbreviationsForCulture("ru-RU", "Н·м"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.NewtonMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "N·mm"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.PoundForceFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lbf·ft"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.PoundForceInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "lbf·in"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.TonneForceCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "tf·cm"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.TonneForceMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "tf·m"),
-                            }),
-                        new CulturesForEnumValue((int) TorqueUnit.TonneForceMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "tf·mm"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (VitaminAUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) VitaminAUnit.InternationalUnit,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "IU"),
-                            }),
-                    }),
-                new UnitLocalization(typeof (VolumeUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) VolumeUnit.AuTablespoon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", ""),
-                                new AbbreviationsForCulture("ru-RU", ""),
-                                new AbbreviationsForCulture("nb-NO", ""),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.Centiliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cl"),
-                                new AbbreviationsForCulture("ru-RU", "сл"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.CubicCentimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cm³"),
-                                new AbbreviationsForCulture("ru-RU", "см³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.CubicDecimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dm³"),
-                                new AbbreviationsForCulture("ru-RU", "дм³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.CubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft³"),
-                                new AbbreviationsForCulture("ru-RU", "фут³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.CubicInch,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "in³"),
-                                new AbbreviationsForCulture("ru-RU", "дюйм³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.CubicKilometer,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "km³"),
-                                new AbbreviationsForCulture("ru-RU", "км³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.CubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m³"),
-                                new AbbreviationsForCulture("ru-RU", "м³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.CubicMicrometer,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µm³"),
-                                new AbbreviationsForCulture("ru-RU", "мкм³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.CubicMile,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mi³"),
-                                new AbbreviationsForCulture("ru-RU", "миля³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.CubicMillimeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mm³"),
-                                new AbbreviationsForCulture("ru-RU", "мм³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.CubicYard,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yd³"),
-                                new AbbreviationsForCulture("ru-RU", "ярд³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.Deciliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dl"),
-                                new AbbreviationsForCulture("ru-RU", "дл"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.HectocubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "hft³"),
-                                new AbbreviationsForCulture("ru-RU", "hфут³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.HectocubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "hm³"),
-                                new AbbreviationsForCulture("ru-RU", "hм³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.Hectoliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "hl"),
-                                new AbbreviationsForCulture("ru-RU", "гл"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.ImperialBeerBarrel,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "bl (imp.)"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.ImperialGallon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "gal (imp.)"),
-                                new AbbreviationsForCulture("ru-RU", "Английский галлон"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.ImperialOunce,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "oz (imp.)"),
-                                new AbbreviationsForCulture("ru-RU", "Английская унция"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.KilocubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kft³"),
-                                new AbbreviationsForCulture("ru-RU", "kфут³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.KilocubicMeter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "km³"),
-                                new AbbreviationsForCulture("ru-RU", "kм³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.KiloimperialGallon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kgal (imp.)"),
-                                new AbbreviationsForCulture("ru-RU", "kАнглийский галлон"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.KilousGallon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kgal (U.S.)"),
-                                new AbbreviationsForCulture("ru-RU", "kАмериканский галлон"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.Liter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "l"),
-                                new AbbreviationsForCulture("ru-RU", "л"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.MegacubicFoot,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mft³"),
-                                new AbbreviationsForCulture("ru-RU", "Mфут³"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.MegaimperialGallon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mgal (imp.)"),
-                                new AbbreviationsForCulture("ru-RU", "MАнглийский галлон"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.MegausGallon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "Mgal (U.S.)"),
-                                new AbbreviationsForCulture("ru-RU", "MАмериканский галлон"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.MetricCup,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", ""),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.MetricTeaspoon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon"),
-                                new AbbreviationsForCulture("ru-RU", ""),
-                                new AbbreviationsForCulture("nb-NO", ""),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.Microliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µl"),
-                                new AbbreviationsForCulture("ru-RU", "мкл"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.Milliliter,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ml"),
-                                new AbbreviationsForCulture("ru-RU", "мл"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.OilBarrel,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "bbl"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.UkTablespoon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", ""),
-                                new AbbreviationsForCulture("ru-RU", ""),
-                                new AbbreviationsForCulture("nb-NO", ""),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.UsBeerBarrel,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "bl (U.S.)"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.UsCustomaryCup,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", ""),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.UsGallon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "gal (U.S.)"),
-                                new AbbreviationsForCulture("ru-RU", "Американский галлон"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.UsLegalCup,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", ""),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.UsOunce,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "oz (U.S.)"),
-                                new AbbreviationsForCulture("ru-RU", "Американская унция"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.UsPint,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "pt (U.S.)"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.UsQuart,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "qt (U.S.)"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.UsTablespoon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", ""),
-                                new AbbreviationsForCulture("ru-RU", ""),
-                                new AbbreviationsForCulture("nb-NO", ""),
-                            }),
-                        new CulturesForEnumValue((int) VolumeUnit.UsTeaspoon,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", ""),
-                                new AbbreviationsForCulture("ru-RU", ""),
-                                new AbbreviationsForCulture("nb-NO", ""),
-                            }),
-                    }),
-                new UnitLocalization(typeof (VolumeFlowUnit),
-                    new[]
-                    {
-                        new CulturesForEnumValue((int) VolumeFlowUnit.CentiliterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "cLPM"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicDecimeterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dm³/min"),
-                                new AbbreviationsForCulture("ru-RU", "дм³/мин"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicFootPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft³/h", "cf/hr"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicFootPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft³/min"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicFootPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "ft³/s"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicMeterPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m³/h"),
-                                new AbbreviationsForCulture("ru-RU", "м³/ч"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicMeterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m³/min"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicMeterPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "m³/s"),
-                                new AbbreviationsForCulture("ru-RU", "м³/с"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicYardPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yd³/h"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicYardPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yd³/min"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicYardPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "yd³/s"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.DeciliterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "dLPM"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.KiloliterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "kLPM"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.LiterPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "LPH"),
-                                new AbbreviationsForCulture("ru-RU", "л/ч"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.LiterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "LPM"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.LiterPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "LPS"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.MicroliterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "µLPM"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.MilliliterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "mLPM"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.MillionUsGallonsPerDay,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "MGD"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.NanoliterPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "nLPM"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelPerDay,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "bbl/d", "BOPD"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "bbl/hr", "bph"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "bbl/min", "bpm"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonPerHour,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "gal (U.S.)/h"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonPerMinute,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "gal (U.S.)/min", "GPM"),
-                            }),
-                        new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonPerSecond,
-                            new[]
-                            {
-                                new AbbreviationsForCulture("en-US", "gal (U.S.)/s"),
-                            }),
-                    }),
-             });
+                Tuple.Create("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.CentimeterPerSecondSquared, new string[]{"cm/s²"}),
+                Tuple.Create("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.DecimeterPerSecondSquared, new string[]{"dm/s²"}),
+                Tuple.Create("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.FootPerSecondSquared, new string[]{"ft/s²"}),
+                Tuple.Create("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.InchPerSecondSquared, new string[]{"in/s²"}),
+                Tuple.Create("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.KilometerPerSecondSquared, new string[]{"km/s²"}),
+                Tuple.Create("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.KnotPerHour, new string[]{"kn/h"}),
+                Tuple.Create("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.KnotPerMinute, new string[]{"kn/min"}),
+                Tuple.Create("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.KnotPerSecond, new string[]{"kn/s"}),
+                Tuple.Create("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.MeterPerSecondSquared, new string[]{"m/s²"}),
+                Tuple.Create("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.MicrometerPerSecondSquared, new string[]{"µm/s²"}),
+                Tuple.Create("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.MillimeterPerSecondSquared, new string[]{"mm/s²"}),
+                Tuple.Create("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.NanometerPerSecondSquared, new string[]{"nm/s²"}),
+                Tuple.Create("en-US", typeof(AccelerationUnit), (int)AccelerationUnit.StandardGravity, new string[]{"g"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.Centimole, new string[]{"cmol"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.CentipoundMole, new string[]{"clbmol"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.Decimole, new string[]{"dmol"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.DecipoundMole, new string[]{"dlbmol"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.Kilomole, new string[]{"kmol"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.KilopoundMole, new string[]{"klbmol"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.Micromole, new string[]{"µmol"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.MicropoundMole, new string[]{"µlbmol"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.Millimole, new string[]{"mmol"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.MillipoundMole, new string[]{"mlbmol"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.Mole, new string[]{"mol"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.Nanomole, new string[]{"nmol"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.NanopoundMole, new string[]{"nlbmol"}),
+                Tuple.Create("en-US", typeof(AmountOfSubstanceUnit), (int)AmountOfSubstanceUnit.PoundMole, new string[]{"lbmol"}),
+                Tuple.Create("en-US", typeof(AmplitudeRatioUnit), (int)AmplitudeRatioUnit.DecibelMicrovolt, new string[]{"dBµV"}),
+                Tuple.Create("en-US", typeof(AmplitudeRatioUnit), (int)AmplitudeRatioUnit.DecibelMillivolt, new string[]{"dBmV"}),
+                Tuple.Create("en-US", typeof(AmplitudeRatioUnit), (int)AmplitudeRatioUnit.DecibelUnloaded, new string[]{"dBu"}),
+                Tuple.Create("en-US", typeof(AmplitudeRatioUnit), (int)AmplitudeRatioUnit.DecibelVolt, new string[]{"dBV"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Arcminute, new string[]{"'", "arcmin", "amin", "min"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Arcsecond, new string[]{"″", "arcsec", "asec", "sec"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Centiradian, new string[]{"crad"}),
+                Tuple.Create("ru-RU", typeof(AngleUnit), (int)AngleUnit.Centiradian, new string[]{"cрад"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Deciradian, new string[]{"drad"}),
+                Tuple.Create("ru-RU", typeof(AngleUnit), (int)AngleUnit.Deciradian, new string[]{"dрад"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Degree, new string[]{"°", "deg"}),
+                Tuple.Create("ru-RU", typeof(AngleUnit), (int)AngleUnit.Degree, new string[]{"°"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Gradian, new string[]{"g"}),
+                Tuple.Create("ru-RU", typeof(AngleUnit), (int)AngleUnit.Gradian, new string[]{"g"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Microdegree, new string[]{"µ°"}),
+                Tuple.Create("ru-RU", typeof(AngleUnit), (int)AngleUnit.Microdegree, new string[]{"µ°"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Microradian, new string[]{"µrad"}),
+                Tuple.Create("ru-RU", typeof(AngleUnit), (int)AngleUnit.Microradian, new string[]{"µрад"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Millidegree, new string[]{"m°"}),
+                Tuple.Create("ru-RU", typeof(AngleUnit), (int)AngleUnit.Millidegree, new string[]{"m°"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Milliradian, new string[]{"mrad"}),
+                Tuple.Create("ru-RU", typeof(AngleUnit), (int)AngleUnit.Milliradian, new string[]{"mрад"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Nanodegree, new string[]{"n°"}),
+                Tuple.Create("ru-RU", typeof(AngleUnit), (int)AngleUnit.Nanodegree, new string[]{"n°"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Nanoradian, new string[]{"nrad"}),
+                Tuple.Create("ru-RU", typeof(AngleUnit), (int)AngleUnit.Nanoradian, new string[]{"nрад"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Radian, new string[]{"rad"}),
+                Tuple.Create("ru-RU", typeof(AngleUnit), (int)AngleUnit.Radian, new string[]{"рад"}),
+                Tuple.Create("en-US", typeof(AngleUnit), (int)AngleUnit.Revolution, new string[]{"r"}),
+                Tuple.Create("ru-RU", typeof(AngleUnit), (int)AngleUnit.Revolution, new string[]{"r"}),
+                Tuple.Create("en-US", typeof(ApparentEnergyUnit), (int)ApparentEnergyUnit.KilovoltampereHour, new string[]{"kVAh"}),
+                Tuple.Create("en-US", typeof(ApparentEnergyUnit), (int)ApparentEnergyUnit.MegavoltampereHour, new string[]{"MVAh"}),
+                Tuple.Create("en-US", typeof(ApparentEnergyUnit), (int)ApparentEnergyUnit.VoltampereHour, new string[]{"VAh"}),
+                Tuple.Create("en-US", typeof(ApparentPowerUnit), (int)ApparentPowerUnit.Gigavoltampere, new string[]{"GVA"}),
+                Tuple.Create("en-US", typeof(ApparentPowerUnit), (int)ApparentPowerUnit.Kilovoltampere, new string[]{"kVA"}),
+                Tuple.Create("en-US", typeof(ApparentPowerUnit), (int)ApparentPowerUnit.Megavoltampere, new string[]{"MVA"}),
+                Tuple.Create("en-US", typeof(ApparentPowerUnit), (int)ApparentPowerUnit.Voltampere, new string[]{"VA"}),
+                Tuple.Create("en-US", typeof(AreaUnit), (int)AreaUnit.Acre, new string[]{"ac"}),
+                Tuple.Create("en-US", typeof(AreaUnit), (int)AreaUnit.Hectare, new string[]{"ha"}),
+                Tuple.Create("en-US", typeof(AreaUnit), (int)AreaUnit.SquareCentimeter, new string[]{"cm²"}),
+                Tuple.Create("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareCentimeter, new string[]{"см²"}),
+                Tuple.Create("en-US", typeof(AreaUnit), (int)AreaUnit.SquareDecimeter, new string[]{"dm²"}),
+                Tuple.Create("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareDecimeter, new string[]{"дм²"}),
+                Tuple.Create("en-US", typeof(AreaUnit), (int)AreaUnit.SquareFoot, new string[]{"ft²"}),
+                Tuple.Create("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareFoot, new string[]{"фут²"}),
+                Tuple.Create("en-US", typeof(AreaUnit), (int)AreaUnit.SquareInch, new string[]{"in²"}),
+                Tuple.Create("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareInch, new string[]{"дюйм²"}),
+                Tuple.Create("en-US", typeof(AreaUnit), (int)AreaUnit.SquareKilometer, new string[]{"km²"}),
+                Tuple.Create("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareKilometer, new string[]{"км²"}),
+                Tuple.Create("en-US", typeof(AreaUnit), (int)AreaUnit.SquareMeter, new string[]{"m²"}),
+                Tuple.Create("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareMeter, new string[]{"м²"}),
+                Tuple.Create("en-US", typeof(AreaUnit), (int)AreaUnit.SquareMicrometer, new string[]{"µm²"}),
+                Tuple.Create("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareMicrometer, new string[]{"мкм²"}),
+                Tuple.Create("en-US", typeof(AreaUnit), (int)AreaUnit.SquareMile, new string[]{"mi²"}),
+                Tuple.Create("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareMile, new string[]{"миля²"}),
+                Tuple.Create("en-US", typeof(AreaUnit), (int)AreaUnit.SquareMillimeter, new string[]{"mm²"}),
+                Tuple.Create("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareMillimeter, new string[]{"мм²"}),
+                Tuple.Create("en-US", typeof(AreaUnit), (int)AreaUnit.SquareYard, new string[]{"yd²"}),
+                Tuple.Create("ru-RU", typeof(AreaUnit), (int)AreaUnit.SquareYard, new string[]{"ярд²"}),
+                Tuple.Create("en-US", typeof(AreaUnit), (int)AreaUnit.UsSurveySquareFoot, new string[]{"ft² (US)"}),
+                Tuple.Create("en-US", typeof(AreaDensityUnit), (int)AreaDensityUnit.KilogramPerSquareMeter, new string[]{"kg/m²"}),
+                Tuple.Create("en-US", typeof(AreaMomentOfInertiaUnit), (int)AreaMomentOfInertiaUnit.CentimeterToTheFourth, new string[]{"cm⁴", "cm^4"}),
+                Tuple.Create("en-US", typeof(AreaMomentOfInertiaUnit), (int)AreaMomentOfInertiaUnit.DecimeterToTheFourth, new string[]{"dm⁴", "dm^4"}),
+                Tuple.Create("en-US", typeof(AreaMomentOfInertiaUnit), (int)AreaMomentOfInertiaUnit.FootToTheFourth, new string[]{"ft⁴", "ft^4"}),
+                Tuple.Create("en-US", typeof(AreaMomentOfInertiaUnit), (int)AreaMomentOfInertiaUnit.InchToTheFourth, new string[]{"in⁴", "in^4"}),
+                Tuple.Create("en-US", typeof(AreaMomentOfInertiaUnit), (int)AreaMomentOfInertiaUnit.MeterToTheFourth, new string[]{"m⁴", "m^4"}),
+                Tuple.Create("en-US", typeof(AreaMomentOfInertiaUnit), (int)AreaMomentOfInertiaUnit.MillimeterToTheFourth, new string[]{"mm⁴", "mm^4"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.BitPerSecond, new string[]{"bit/s", "bps"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.BytePerSecond, new string[]{"B/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.ExabitPerSecond, new string[]{"Ebit/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.ExabytePerSecond, new string[]{"EB/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.ExbibitPerSecond, new string[]{"Eibit/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.ExbibytePerSecond, new string[]{"EiB/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.GibibitPerSecond, new string[]{"Gibit/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.GibibytePerSecond, new string[]{"GiB/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.GigabitPerSecond, new string[]{"Gbit/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.GigabytePerSecond, new string[]{"GB/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.KibibitPerSecond, new string[]{"Kibit/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.KibibytePerSecond, new string[]{"KiB/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.KilobitPerSecond, new string[]{"kbit/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.KilobytePerSecond, new string[]{"kB/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.MebibitPerSecond, new string[]{"Mibit/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.MebibytePerSecond, new string[]{"MiB/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.MegabitPerSecond, new string[]{"Mbit/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.MegabytePerSecond, new string[]{"MB/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.PebibitPerSecond, new string[]{"Pibit/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.PebibytePerSecond, new string[]{"PiB/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.PetabitPerSecond, new string[]{"Pbit/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.PetabytePerSecond, new string[]{"PB/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.TebibitPerSecond, new string[]{"Tibit/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.TebibytePerSecond, new string[]{"TiB/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.TerabitPerSecond, new string[]{"Tbit/s"}),
+                Tuple.Create("en-US", typeof(BitRateUnit), (int)BitRateUnit.TerabytePerSecond, new string[]{"TB/s"}),
+                Tuple.Create("en-US", typeof(BrakeSpecificFuelConsumptionUnit), (int)BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, new string[]{"g/kWh"}),
+                Tuple.Create("en-US", typeof(BrakeSpecificFuelConsumptionUnit), (int)BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, new string[]{"kg/J"}),
+                Tuple.Create("en-US", typeof(BrakeSpecificFuelConsumptionUnit), (int)BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, new string[]{"lb/hph"}),
+                Tuple.Create("en-US", typeof(CapacitanceUnit), (int)CapacitanceUnit.Farad, new string[]{"F"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.CentigramPerDeciliter, new string[]{"cg/dl"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.CentigramPerLiter, new string[]{"cg/L"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.CentigramPerMilliliter, new string[]{"cg/ml"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.DecigramPerDeciliter, new string[]{"dg/dl"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.DecigramPerLiter, new string[]{"dg/L"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.DecigramPerMilliliter, new string[]{"dg/ml"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.GramPerCubicCentimeter, new string[]{"g/cm³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.GramPerCubicMeter, new string[]{"g/m³"}),
+                Tuple.Create("ru-RU", typeof(DensityUnit), (int)DensityUnit.GramPerCubicMeter, new string[]{"г/м³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.GramPerCubicMillimeter, new string[]{"g/mm³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.GramPerDeciliter, new string[]{"g/dl"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.GramPerLiter, new string[]{"g/L"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.GramPerMilliliter, new string[]{"g/ml"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.KilogramPerCubicCentimeter, new string[]{"kg/cm³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.KilogramPerCubicMeter, new string[]{"kg/m³"}),
+                Tuple.Create("ru-RU", typeof(DensityUnit), (int)DensityUnit.KilogramPerCubicMeter, new string[]{"kг/м³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.KilogramPerCubicMillimeter, new string[]{"kg/mm³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.KilopoundPerCubicFoot, new string[]{"kip/ft³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.KilopoundPerCubicInch, new string[]{"kip/in³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.MicrogramPerDeciliter, new string[]{"µg/dl"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.MicrogramPerLiter, new string[]{"µg/L"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.MicrogramPerMilliliter, new string[]{"µg/ml"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.MilligramPerCubicMeter, new string[]{"mg/m³"}),
+                Tuple.Create("ru-RU", typeof(DensityUnit), (int)DensityUnit.MilligramPerCubicMeter, new string[]{"mг/м³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.MilligramPerDeciliter, new string[]{"mg/dl"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.MilligramPerLiter, new string[]{"mg/L"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.MilligramPerMilliliter, new string[]{"mg/ml"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.NanogramPerDeciliter, new string[]{"ng/dl"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.NanogramPerLiter, new string[]{"ng/L"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.NanogramPerMilliliter, new string[]{"ng/ml"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.PicogramPerDeciliter, new string[]{"pg/dl"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.PicogramPerLiter, new string[]{"pg/L"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.PicogramPerMilliliter, new string[]{"pg/ml"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.PoundPerCubicFoot, new string[]{"lb/ft³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.PoundPerCubicInch, new string[]{"lb/in³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.PoundPerImperialGallon, new string[]{"ppg (imp.)"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.PoundPerUSGallon, new string[]{"ppg (U.S.)"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.SlugPerCubicFoot, new string[]{"slug/ft³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.TonnePerCubicCentimeter, new string[]{"t/cm³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.TonnePerCubicMeter, new string[]{"t/m³"}),
+                Tuple.Create("en-US", typeof(DensityUnit), (int)DensityUnit.TonnePerCubicMillimeter, new string[]{"t/mm³"}),
+                Tuple.Create("en-US", typeof(DurationUnit), (int)DurationUnit.Day, new string[]{"d", "day", "days"}),
+                Tuple.Create("ru-RU", typeof(DurationUnit), (int)DurationUnit.Day, new string[]{"д"}),
+                Tuple.Create("en-US", typeof(DurationUnit), (int)DurationUnit.Hour, new string[]{"h", "hr", "hrs", "hour", "hours"}),
+                Tuple.Create("ru-RU", typeof(DurationUnit), (int)DurationUnit.Hour, new string[]{"ч"}),
+                Tuple.Create("en-US", typeof(DurationUnit), (int)DurationUnit.Microsecond, new string[]{"µs"}),
+                Tuple.Create("ru-RU", typeof(DurationUnit), (int)DurationUnit.Microsecond, new string[]{"мкс"}),
+                Tuple.Create("en-US", typeof(DurationUnit), (int)DurationUnit.Millisecond, new string[]{"ms"}),
+                Tuple.Create("ru-RU", typeof(DurationUnit), (int)DurationUnit.Millisecond, new string[]{"мс"}),
+                Tuple.Create("en-US", typeof(DurationUnit), (int)DurationUnit.Minute, new string[]{"m", "min", "minute", "minutes"}),
+                Tuple.Create("ru-RU", typeof(DurationUnit), (int)DurationUnit.Minute, new string[]{"мин"}),
+                Tuple.Create("en-US", typeof(DurationUnit), (int)DurationUnit.Month30, new string[]{"mo", "month", "months"}),
+                Tuple.Create("ru-RU", typeof(DurationUnit), (int)DurationUnit.Month30, new string[]{"месяц"}),
+                Tuple.Create("en-US", typeof(DurationUnit), (int)DurationUnit.Nanosecond, new string[]{"ns"}),
+                Tuple.Create("ru-RU", typeof(DurationUnit), (int)DurationUnit.Nanosecond, new string[]{"нс"}),
+                Tuple.Create("en-US", typeof(DurationUnit), (int)DurationUnit.Second, new string[]{"s", "sec", "secs", "second", "seconds"}),
+                Tuple.Create("ru-RU", typeof(DurationUnit), (int)DurationUnit.Second, new string[]{"с"}),
+                Tuple.Create("en-US", typeof(DurationUnit), (int)DurationUnit.Week, new string[]{"wk", "week", "weeks"}),
+                Tuple.Create("ru-RU", typeof(DurationUnit), (int)DurationUnit.Week, new string[]{"мин"}),
+                Tuple.Create("en-US", typeof(DurationUnit), (int)DurationUnit.Year365, new string[]{"yr", "year", "years"}),
+                Tuple.Create("ru-RU", typeof(DurationUnit), (int)DurationUnit.Year365, new string[]{"год"}),
+                Tuple.Create("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.Centipoise, new string[]{"cP"}),
+                Tuple.Create("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.MicropascalSecond, new string[]{"µPaS"}),
+                Tuple.Create("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.MillipascalSecond, new string[]{"mPaS"}),
+                Tuple.Create("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.NewtonSecondPerMeterSquared, new string[]{"Ns/m²"}),
+                Tuple.Create("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.PascalSecond, new string[]{"PaS"}),
+                Tuple.Create("en-US", typeof(DynamicViscosityUnit), (int)DynamicViscosityUnit.Poise, new string[]{"P"}),
+                Tuple.Create("en-US", typeof(ElectricAdmittanceUnit), (int)ElectricAdmittanceUnit.Microsiemens, new string[]{"µS"}),
+                Tuple.Create("en-US", typeof(ElectricAdmittanceUnit), (int)ElectricAdmittanceUnit.Millisiemens, new string[]{"mS"}),
+                Tuple.Create("en-US", typeof(ElectricAdmittanceUnit), (int)ElectricAdmittanceUnit.Nanosiemens, new string[]{"nS"}),
+                Tuple.Create("en-US", typeof(ElectricAdmittanceUnit), (int)ElectricAdmittanceUnit.Siemens, new string[]{"S"}),
+                Tuple.Create("en-US", typeof(ElectricChargeUnit), (int)ElectricChargeUnit.Coulomb, new string[]{"C"}),
+                Tuple.Create("en-US", typeof(ElectricChargeDensityUnit), (int)ElectricChargeDensityUnit.CoulombPerCubicMeter, new string[]{"C/m³"}),
+                Tuple.Create("en-US", typeof(ElectricConductanceUnit), (int)ElectricConductanceUnit.Microsiemens, new string[]{"µS"}),
+                Tuple.Create("en-US", typeof(ElectricConductanceUnit), (int)ElectricConductanceUnit.Millisiemens, new string[]{"mS"}),
+                Tuple.Create("en-US", typeof(ElectricConductanceUnit), (int)ElectricConductanceUnit.Siemens, new string[]{"S"}),
+                Tuple.Create("en-US", typeof(ElectricConductivityUnit), (int)ElectricConductivityUnit.SiemensPerMeter, new string[]{"S/m"}),
+                Tuple.Create("en-US", typeof(ElectricCurrentUnit), (int)ElectricCurrentUnit.Ampere, new string[]{"A"}),
+                Tuple.Create("en-US", typeof(ElectricCurrentUnit), (int)ElectricCurrentUnit.Centiampere, new string[]{"cA"}),
+                Tuple.Create("en-US", typeof(ElectricCurrentUnit), (int)ElectricCurrentUnit.Kiloampere, new string[]{"kA"}),
+                Tuple.Create("en-US", typeof(ElectricCurrentUnit), (int)ElectricCurrentUnit.Megaampere, new string[]{"MA"}),
+                Tuple.Create("en-US", typeof(ElectricCurrentUnit), (int)ElectricCurrentUnit.Microampere, new string[]{"µA"}),
+                Tuple.Create("en-US", typeof(ElectricCurrentUnit), (int)ElectricCurrentUnit.Milliampere, new string[]{"mA"}),
+                Tuple.Create("en-US", typeof(ElectricCurrentUnit), (int)ElectricCurrentUnit.Nanoampere, new string[]{"nA"}),
+                Tuple.Create("en-US", typeof(ElectricCurrentUnit), (int)ElectricCurrentUnit.Picoampere, new string[]{"pA"}),
+                Tuple.Create("en-US", typeof(ElectricCurrentDensityUnit), (int)ElectricCurrentDensityUnit.AmperePerSquareMeter, new string[]{"A/m²"}),
+                Tuple.Create("en-US", typeof(ElectricCurrentGradientUnit), (int)ElectricCurrentGradientUnit.AmperePerSecond, new string[]{"A/s"}),
+                Tuple.Create("en-US", typeof(ElectricFieldUnit), (int)ElectricFieldUnit.VoltPerMeter, new string[]{"V/m"}),
+                Tuple.Create("en-US", typeof(ElectricInductanceUnit), (int)ElectricInductanceUnit.Henry, new string[]{"H"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialUnit), (int)ElectricPotentialUnit.Kilovolt, new string[]{"kV"}),
+                Tuple.Create("ru-RU", typeof(ElectricPotentialUnit), (int)ElectricPotentialUnit.Kilovolt, new string[]{"kВ"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialUnit), (int)ElectricPotentialUnit.Megavolt, new string[]{"MV"}),
+                Tuple.Create("ru-RU", typeof(ElectricPotentialUnit), (int)ElectricPotentialUnit.Megavolt, new string[]{"MВ"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialUnit), (int)ElectricPotentialUnit.Microvolt, new string[]{"µV"}),
+                Tuple.Create("ru-RU", typeof(ElectricPotentialUnit), (int)ElectricPotentialUnit.Microvolt, new string[]{"µВ"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialUnit), (int)ElectricPotentialUnit.Millivolt, new string[]{"mV"}),
+                Tuple.Create("ru-RU", typeof(ElectricPotentialUnit), (int)ElectricPotentialUnit.Millivolt, new string[]{"mВ"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialUnit), (int)ElectricPotentialUnit.Volt, new string[]{"V"}),
+                Tuple.Create("ru-RU", typeof(ElectricPotentialUnit), (int)ElectricPotentialUnit.Volt, new string[]{"В"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialAcUnit), (int)ElectricPotentialAcUnit.KilovoltAc, new string[]{"kVac"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialAcUnit), (int)ElectricPotentialAcUnit.MegavoltAc, new string[]{"MVac"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialAcUnit), (int)ElectricPotentialAcUnit.MicrovoltAc, new string[]{"µVac"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialAcUnit), (int)ElectricPotentialAcUnit.MillivoltAc, new string[]{"mVac"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialAcUnit), (int)ElectricPotentialAcUnit.VoltAc, new string[]{"Vac"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialDcUnit), (int)ElectricPotentialDcUnit.KilovoltDc, new string[]{"kVdc"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialDcUnit), (int)ElectricPotentialDcUnit.MegavoltDc, new string[]{"MVdc"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialDcUnit), (int)ElectricPotentialDcUnit.MicrovoltDc, new string[]{"µVdc"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialDcUnit), (int)ElectricPotentialDcUnit.MillivoltDc, new string[]{"mVdc"}),
+                Tuple.Create("en-US", typeof(ElectricPotentialDcUnit), (int)ElectricPotentialDcUnit.VoltDc, new string[]{"Vdc"}),
+                Tuple.Create("en-US", typeof(ElectricResistanceUnit), (int)ElectricResistanceUnit.Kiloohm, new string[]{"kΩ"}),
+                Tuple.Create("en-US", typeof(ElectricResistanceUnit), (int)ElectricResistanceUnit.Megaohm, new string[]{"MΩ"}),
+                Tuple.Create("en-US", typeof(ElectricResistanceUnit), (int)ElectricResistanceUnit.Milliohm, new string[]{"mΩ"}),
+                Tuple.Create("en-US", typeof(ElectricResistanceUnit), (int)ElectricResistanceUnit.Ohm, new string[]{"Ω"}),
+                Tuple.Create("en-US", typeof(ElectricResistivityUnit), (int)ElectricResistivityUnit.MicroohmMeter, new string[]{"µΩ·m"}),
+                Tuple.Create("en-US", typeof(ElectricResistivityUnit), (int)ElectricResistivityUnit.MilliohmMeter, new string[]{"mΩ·m"}),
+                Tuple.Create("en-US", typeof(ElectricResistivityUnit), (int)ElectricResistivityUnit.NanoohmMeter, new string[]{"nΩ·m"}),
+                Tuple.Create("en-US", typeof(ElectricResistivityUnit), (int)ElectricResistivityUnit.OhmMeter, new string[]{"Ω·m"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.BritishThermalUnit, new string[]{"BTU"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.Calorie, new string[]{"cal"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.DecathermEc, new string[]{"Dth (E.C.)"}),
+                Tuple.Create("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.DecathermEc, new string[]{"Европейский декатерм"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.DecathermImperial, new string[]{"Dth (imp.)"}),
+                Tuple.Create("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.DecathermImperial, new string[]{"Английский декатерм"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.DecathermUs, new string[]{"Dth (U.S.)"}),
+                Tuple.Create("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.DecathermUs, new string[]{"Американский декатерм"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.ElectronVolt, new string[]{"eV"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.Erg, new string[]{"erg"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.FootPound, new string[]{"ft·lb"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.GigabritishThermalUnit, new string[]{"GBTU"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.GigawattHour, new string[]{"GWh"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.GigawattHour, new string[]{"GВт/ч"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.Joule, new string[]{"J"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.KilobritishThermalUnit, new string[]{"kBTU"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.Kilocalorie, new string[]{"kcal"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.Kilojoule, new string[]{"kJ"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.KilowattHour, new string[]{"kWh"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.KilowattHour, new string[]{"kВт/ч"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.MegabritishThermalUnit, new string[]{"MBTU"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.Megajoule, new string[]{"MJ"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.MegawattHour, new string[]{"MWh"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.MegawattHour, new string[]{"MВт/ч"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.ThermEc, new string[]{"th (E.C.)"}),
+                Tuple.Create("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.ThermEc, new string[]{"Европейский терм"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.ThermImperial, new string[]{"th (imp.)"}),
+                Tuple.Create("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.ThermImperial, new string[]{"Английский терм"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.ThermUs, new string[]{"th (U.S.)"}),
+                Tuple.Create("ru-RU", typeof(EnergyUnit), (int)EnergyUnit.ThermUs, new string[]{"Американский терм"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.WattHour, new string[]{"Wh"}),
+                Tuple.Create("en-US", typeof(EnergyUnit), (int)EnergyUnit.WattHour, new string[]{"Вт/ч"}),
+                Tuple.Create("en-US", typeof(EntropyUnit), (int)EntropyUnit.CaloriePerKelvin, new string[]{"cal/K"}),
+                Tuple.Create("en-US", typeof(EntropyUnit), (int)EntropyUnit.JoulePerDegreeCelsius, new string[]{"J/C"}),
+                Tuple.Create("en-US", typeof(EntropyUnit), (int)EntropyUnit.JoulePerKelvin, new string[]{"J/K"}),
+                Tuple.Create("en-US", typeof(EntropyUnit), (int)EntropyUnit.KilocaloriePerKelvin, new string[]{"kcal/K"}),
+                Tuple.Create("en-US", typeof(EntropyUnit), (int)EntropyUnit.KilojoulePerDegreeCelsius, new string[]{"kJ/C"}),
+                Tuple.Create("en-US", typeof(EntropyUnit), (int)EntropyUnit.KilojoulePerKelvin, new string[]{"kJ/K"}),
+                Tuple.Create("en-US", typeof(EntropyUnit), (int)EntropyUnit.MegajoulePerKelvin, new string[]{"MJ/K"}),
+                Tuple.Create("en-US", typeof(ForceUnit), (int)ForceUnit.Decanewton, new string[]{"daN"}),
+                Tuple.Create("ru-RU", typeof(ForceUnit), (int)ForceUnit.Decanewton, new string[]{"даН"}),
+                Tuple.Create("en-US", typeof(ForceUnit), (int)ForceUnit.Dyn, new string[]{"dyn"}),
+                Tuple.Create("ru-RU", typeof(ForceUnit), (int)ForceUnit.Dyn, new string[]{"дин"}),
+                Tuple.Create("en-US", typeof(ForceUnit), (int)ForceUnit.KilogramForce, new string[]{"kgf"}),
+                Tuple.Create("ru-RU", typeof(ForceUnit), (int)ForceUnit.KilogramForce, new string[]{"кгс"}),
+                Tuple.Create("en-US", typeof(ForceUnit), (int)ForceUnit.Kilonewton, new string[]{"kN"}),
+                Tuple.Create("ru-RU", typeof(ForceUnit), (int)ForceUnit.Kilonewton, new string[]{"кН"}),
+                Tuple.Create("en-US", typeof(ForceUnit), (int)ForceUnit.KiloPond, new string[]{"kp"}),
+                Tuple.Create("ru-RU", typeof(ForceUnit), (int)ForceUnit.KiloPond, new string[]{"кгс"}),
+                Tuple.Create("en-US", typeof(ForceUnit), (int)ForceUnit.Meganewton, new string[]{"MN"}),
+                Tuple.Create("ru-RU", typeof(ForceUnit), (int)ForceUnit.Meganewton, new string[]{""}),
+                Tuple.Create("en-US", typeof(ForceUnit), (int)ForceUnit.Newton, new string[]{"N"}),
+                Tuple.Create("ru-RU", typeof(ForceUnit), (int)ForceUnit.Newton, new string[]{"Н"}),
+                Tuple.Create("en-US", typeof(ForceUnit), (int)ForceUnit.Poundal, new string[]{"pdl"}),
+                Tuple.Create("ru-RU", typeof(ForceUnit), (int)ForceUnit.Poundal, new string[]{"паундаль"}),
+                Tuple.Create("en-US", typeof(ForceUnit), (int)ForceUnit.PoundForce, new string[]{"lbf"}),
+                Tuple.Create("ru-RU", typeof(ForceUnit), (int)ForceUnit.PoundForce, new string[]{"фунт-сила"}),
+                Tuple.Create("en-US", typeof(ForceUnit), (int)ForceUnit.TonneForce, new string[]{"Ton"}),
+                Tuple.Create("ru-RU", typeof(ForceUnit), (int)ForceUnit.TonneForce, new string[]{"тс"}),
+                Tuple.Create("en-US", typeof(ForceChangeRateUnit), (int)ForceChangeRateUnit.CentinewtonPerSecond, new string[]{"cN/s"}),
+                Tuple.Create("en-US", typeof(ForceChangeRateUnit), (int)ForceChangeRateUnit.DecanewtonPerMinute, new string[]{"daN/min"}),
+                Tuple.Create("en-US", typeof(ForceChangeRateUnit), (int)ForceChangeRateUnit.DecanewtonPerSecond, new string[]{"daN/s"}),
+                Tuple.Create("en-US", typeof(ForceChangeRateUnit), (int)ForceChangeRateUnit.DecinewtonPerSecond, new string[]{"dN/s"}),
+                Tuple.Create("en-US", typeof(ForceChangeRateUnit), (int)ForceChangeRateUnit.KilonewtonPerMinute, new string[]{"kN/min"}),
+                Tuple.Create("en-US", typeof(ForceChangeRateUnit), (int)ForceChangeRateUnit.KilonewtonPerSecond, new string[]{"kN/s"}),
+                Tuple.Create("en-US", typeof(ForceChangeRateUnit), (int)ForceChangeRateUnit.MicronewtonPerSecond, new string[]{"µN/s"}),
+                Tuple.Create("en-US", typeof(ForceChangeRateUnit), (int)ForceChangeRateUnit.MillinewtonPerSecond, new string[]{"mN/s"}),
+                Tuple.Create("en-US", typeof(ForceChangeRateUnit), (int)ForceChangeRateUnit.NanonewtonPerSecond, new string[]{"nN/s"}),
+                Tuple.Create("en-US", typeof(ForceChangeRateUnit), (int)ForceChangeRateUnit.NewtonPerMinute, new string[]{"N/min"}),
+                Tuple.Create("en-US", typeof(ForceChangeRateUnit), (int)ForceChangeRateUnit.NewtonPerSecond, new string[]{"N/s"}),
+                Tuple.Create("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.CentinewtonPerMeter, new string[]{"cN/m"}),
+                Tuple.Create("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.DecinewtonPerMeter, new string[]{"dN/m"}),
+                Tuple.Create("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.KilogramForcePerMeter, new string[]{"kgf/m"}),
+                Tuple.Create("ru-RU", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.KilogramForcePerMeter, new string[]{"кгс/м"}),
+                Tuple.Create("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.KilonewtonPerMeter, new string[]{"kN/m"}),
+                Tuple.Create("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.MeganewtonPerMeter, new string[]{"MN/m"}),
+                Tuple.Create("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.MicronewtonPerMeter, new string[]{"µN/m"}),
+                Tuple.Create("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.MillinewtonPerMeter, new string[]{"mN/m"}),
+                Tuple.Create("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.NanonewtonPerMeter, new string[]{"nN/m"}),
+                Tuple.Create("en-US", typeof(ForcePerLengthUnit), (int)ForcePerLengthUnit.NewtonPerMeter, new string[]{"N/m"}),
+                Tuple.Create("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.CyclePerHour, new string[]{"cph"}),
+                Tuple.Create("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.CyclePerMinute, new string[]{"cpm"}),
+                Tuple.Create("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.Gigahertz, new string[]{"GHz"}),
+                Tuple.Create("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.Hertz, new string[]{"Hz"}),
+                Tuple.Create("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.Kilohertz, new string[]{"kHz"}),
+                Tuple.Create("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.Megahertz, new string[]{"MHz"}),
+                Tuple.Create("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.RadianPerSecond, new string[]{"rad/s"}),
+                Tuple.Create("en-US", typeof(FrequencyUnit), (int)FrequencyUnit.Terahertz, new string[]{"THz"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.BtuPerHourSquareFoot, new string[]{"BTU/h·ft²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.BtuPerMinuteSquareFoot, new string[]{"BTU/min·ft²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.BtuPerSecondSquareFoot, new string[]{"BTU/s·ft²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.BtuPerSecondSquareInch, new string[]{"BTU/s·in²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.CaloriePerSecondSquareCentimeter, new string[]{"cal/s·cm²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.CentiwattPerSquareMeter, new string[]{"cW/m²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.DeciwattPerSquareMeter, new string[]{"dW/m²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.KilocaloriePerHourSquareMeter, new string[]{"kcal/h·m²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.KilocaloriePerSecondSquareCentimeter, new string[]{"kcal/s·cm²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.KilowattPerSquareMeter, new string[]{"kW/m²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.MicrowattPerSquareMeter, new string[]{"µW/m²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.MilliwattPerSquareMeter, new string[]{"mW/m²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.NanowattPerSquareMeter, new string[]{"nW/m²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.WattPerSquareFoot, new string[]{"W/ft²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.WattPerSquareInch, new string[]{"W/in²"}),
+                Tuple.Create("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.WattPerSquareMeter, new string[]{"W/m²"}),
+                Tuple.Create("en-US", typeof(HeatTransferCoefficientUnit), (int)HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, new string[]{"W/m²·°C"}),
+                Tuple.Create("en-US", typeof(HeatTransferCoefficientUnit), (int)HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, new string[]{"W/m²·K"}),
+                Tuple.Create("en-US", typeof(IlluminanceUnit), (int)IlluminanceUnit.Kilolux, new string[]{"klx"}),
+                Tuple.Create("en-US", typeof(IlluminanceUnit), (int)IlluminanceUnit.Lux, new string[]{"lx"}),
+                Tuple.Create("en-US", typeof(IlluminanceUnit), (int)IlluminanceUnit.Megalux, new string[]{"Mlx"}),
+                Tuple.Create("en-US", typeof(IlluminanceUnit), (int)IlluminanceUnit.Millilux, new string[]{"mlx"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Bit, new string[]{"b"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Byte, new string[]{"B"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Exabit, new string[]{"Eb"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Exabyte, new string[]{"EB"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Exbibit, new string[]{"Eib"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Exbibyte, new string[]{"EiB"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Gibibit, new string[]{"Gib"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Gibibyte, new string[]{"GiB"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Gigabit, new string[]{"Gb"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Gigabyte, new string[]{"GB"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Kibibit, new string[]{"Kib"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Kibibyte, new string[]{"KiB"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Kilobit, new string[]{"kb"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Kilobyte, new string[]{"kB"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Mebibit, new string[]{"Mib"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Mebibyte, new string[]{"MiB"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Megabit, new string[]{"Mb"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Megabyte, new string[]{"MB"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Pebibit, new string[]{"Pib"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Pebibyte, new string[]{"PiB"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Petabit, new string[]{"Pb"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Petabyte, new string[]{"PB"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Tebibit, new string[]{"Tib"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Tebibyte, new string[]{"TiB"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Terabit, new string[]{"Tb"}),
+                Tuple.Create("en-US", typeof(InformationUnit), (int)InformationUnit.Terabyte, new string[]{"TB"}),
+                Tuple.Create("en-US", typeof(IrradianceUnit), (int)IrradianceUnit.KilowattPerSquareMeter, new string[]{"kW/m²"}),
+                Tuple.Create("en-US", typeof(IrradianceUnit), (int)IrradianceUnit.WattPerSquareMeter, new string[]{"W/m²"}),
+                Tuple.Create("en-US", typeof(IrradiationUnit), (int)IrradiationUnit.JoulePerSquareMeter, new string[]{"J/m²"}),
+                Tuple.Create("en-US", typeof(IrradiationUnit), (int)IrradiationUnit.KilowattHourPerSquareMeter, new string[]{"kWh/m²"}),
+                Tuple.Create("en-US", typeof(IrradiationUnit), (int)IrradiationUnit.WattHourPerSquareMeter, new string[]{"Wh/m²"}),
+                Tuple.Create("en-US", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Centistokes, new string[]{"cSt"}),
+                Tuple.Create("ru-RU", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Centistokes, new string[]{"сСт"}),
+                Tuple.Create("en-US", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Decistokes, new string[]{"dSt"}),
+                Tuple.Create("ru-RU", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Decistokes, new string[]{"дСт"}),
+                Tuple.Create("en-US", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Kilostokes, new string[]{"kSt"}),
+                Tuple.Create("ru-RU", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Kilostokes, new string[]{"кСт"}),
+                Tuple.Create("en-US", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Microstokes, new string[]{"µSt"}),
+                Tuple.Create("ru-RU", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Microstokes, new string[]{"мкСт"}),
+                Tuple.Create("en-US", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Millistokes, new string[]{"mSt"}),
+                Tuple.Create("ru-RU", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Millistokes, new string[]{"мСт"}),
+                Tuple.Create("en-US", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Nanostokes, new string[]{"nSt"}),
+                Tuple.Create("ru-RU", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Nanostokes, new string[]{"нСт"}),
+                Tuple.Create("en-US", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.SquareMeterPerSecond, new string[]{"m²/s"}),
+                Tuple.Create("ru-RU", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.SquareMeterPerSecond, new string[]{"м²/с"}),
+                Tuple.Create("en-US", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Stokes, new string[]{"St"}),
+                Tuple.Create("ru-RU", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Stokes, new string[]{"Ст"}),
+                Tuple.Create("en-US", typeof(LapseRateUnit), (int)LapseRateUnit.DegreeCelsiusPerKilometer, new string[]{"∆°C/km"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Centimeter, new string[]{"cm"}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.Centimeter, new string[]{"см"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Decimeter, new string[]{"dm"}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.Decimeter, new string[]{"дм"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.DtpPica, new string[]{"pica"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.DtpPoint, new string[]{"pt"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Fathom, new string[]{"fathom"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Foot, new string[]{"ft", "'"}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.Foot, new string[]{"фут"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Inch, new string[]{"in", "\""}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.Inch, new string[]{"дюйм"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Kilometer, new string[]{"km"}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.Kilometer, new string[]{"км"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Meter, new string[]{"m"}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.Meter, new string[]{"м"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Microinch, new string[]{"µin"}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.Microinch, new string[]{"микродюйм"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Micrometer, new string[]{"µm"}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.Micrometer, new string[]{"мкм"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Mil, new string[]{"mil"}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.Mil, new string[]{"мил"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Mile, new string[]{"mi"}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.Mile, new string[]{"миля"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Millimeter, new string[]{"mm"}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.Millimeter, new string[]{"мм"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Nanometer, new string[]{"nm"}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.Nanometer, new string[]{"нм"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.NauticalMile, new string[]{"NM"}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.NauticalMile, new string[]{"мил"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.PrinterPica, new string[]{"pica"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.PrinterPoint, new string[]{"pt"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Shackle, new string[]{"shackle"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Twip, new string[]{"twip"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.UsSurveyFoot, new string[]{"ftUS"}),
+                Tuple.Create("en-US", typeof(LengthUnit), (int)LengthUnit.Yard, new string[]{"yd"}),
+                Tuple.Create("ru-RU", typeof(LengthUnit), (int)LengthUnit.Yard, new string[]{"ярд"}),
+                Tuple.Create("en-US", typeof(LevelUnit), (int)LevelUnit.Decibel, new string[]{"dB"}),
+                Tuple.Create("en-US", typeof(LevelUnit), (int)LevelUnit.Neper, new string[]{"Np"}),
+                Tuple.Create("en-US", typeof(LinearDensityUnit), (int)LinearDensityUnit.GramPerMeter, new string[]{"g/m"}),
+                Tuple.Create("en-US", typeof(LinearDensityUnit), (int)LinearDensityUnit.KilogramPerMeter, new string[]{"kg/m"}),
+                Tuple.Create("en-US", typeof(LinearDensityUnit), (int)LinearDensityUnit.PoundPerFoot, new string[]{"lb/ft"}),
+                Tuple.Create("en-US", typeof(LuminousFluxUnit), (int)LuminousFluxUnit.Lumen, new string[]{"lm"}),
+                Tuple.Create("en-US", typeof(LuminousIntensityUnit), (int)LuminousIntensityUnit.Candela, new string[]{"cd"}),
+                Tuple.Create("en-US", typeof(MagneticFieldUnit), (int)MagneticFieldUnit.Tesla, new string[]{"T"}),
+                Tuple.Create("en-US", typeof(MagneticFluxUnit), (int)MagneticFluxUnit.Weber, new string[]{"Wb"}),
+                Tuple.Create("en-US", typeof(MagnetizationUnit), (int)MagnetizationUnit.AmperePerMeter, new string[]{"A/m"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Centigram, new string[]{"cg"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Centigram, new string[]{"сг"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Decagram, new string[]{"dag"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Decagram, new string[]{"даг"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Decigram, new string[]{"dg"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Decigram, new string[]{"дг"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Gram, new string[]{"g"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Gram, new string[]{"г"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Hectogram, new string[]{"hg"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Hectogram, new string[]{"гг"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Kilogram, new string[]{"kg"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Kilogram, new string[]{"кг"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Kilopound, new string[]{"klb"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Kilopound, new string[]{"kфунт"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Kilotonne, new string[]{"kt"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Kilotonne, new string[]{"кт"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.LongHundredweight, new string[]{"cwt"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.LongTon, new string[]{"long tn"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.LongTon, new string[]{"тонна большая"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Megapound, new string[]{"Mlb"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Megapound, new string[]{"Mфунт"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Megatonne, new string[]{"Mt"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Megatonne, new string[]{"Мт"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Microgram, new string[]{"µg"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Microgram, new string[]{"мкг"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Milligram, new string[]{"mg"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Milligram, new string[]{"мг"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Nanogram, new string[]{"ng"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Nanogram, new string[]{"нг"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Ounce, new string[]{"oz"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Pound, new string[]{"lb", "lbs", "lbm"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Pound, new string[]{"фунт"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.ShortHundredweight, new string[]{"cwt"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.ShortTon, new string[]{"short tn"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.ShortTon, new string[]{"тонна малая"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Stone, new string[]{"st"}),
+                Tuple.Create("en-US", typeof(MassUnit), (int)MassUnit.Tonne, new string[]{"t"}),
+                Tuple.Create("ru-RU", typeof(MassUnit), (int)MassUnit.Tonne, new string[]{"т"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.CentigramPerSecond, new string[]{"cg/S"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.DecagramPerSecond, new string[]{"dag/S"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.DecigramPerSecond, new string[]{"dg/S"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.GramPerSecond, new string[]{"g/S"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.HectogramPerSecond, new string[]{"hg/S"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.KilogramPerHour, new string[]{"kg/h"}),
+                Tuple.Create("ru-RU", typeof(MassFlowUnit), (int)MassFlowUnit.KilogramPerHour, new string[]{"кг/ч"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.KilogramPerSecond, new string[]{"kg/S"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.MegapoundPerHour, new string[]{"Mlb/h"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.MicrogramPerSecond, new string[]{"µg/S"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.MilligramPerSecond, new string[]{"mg/S"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.NanogramPerSecond, new string[]{"ng/S"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.PoundPerHour, new string[]{"lb/h"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.ShortTonPerHour, new string[]{"short tn/h"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.TonnePerDay, new string[]{"t/d"}),
+                Tuple.Create("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.TonnePerHour, new string[]{"t/h"}),
+                Tuple.Create("en-US", typeof(MassFluxUnit), (int)MassFluxUnit.GramPerSecondPerSquareMeter, new string[]{"g·s⁻¹·m⁻²"}),
+                Tuple.Create("en-US", typeof(MassFluxUnit), (int)MassFluxUnit.KilogramPerSecondPerSquareMeter, new string[]{"kg·s⁻¹·m⁻²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.GramSquareCentimeter, new string[]{"g·cm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.GramSquareDecimeter, new string[]{"g·dm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.GramSquareMeter, new string[]{"g·m²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.GramSquareMillimeter, new string[]{"g·mm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.KilogramSquareCentimeter, new string[]{"kg·cm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.KilogramSquareDecimeter, new string[]{"kg·dm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.KilogramSquareMeter, new string[]{"kg·m²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.KilogramSquareMillimeter, new string[]{"kg·mm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.KilotonneSquareCentimeter, new string[]{"kt·cm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.KilotonneSquareDecimeter, new string[]{"kt·dm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.KilotonneSquareMeter, new string[]{"kt·m²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.KilotonneSquareMilimeter, new string[]{"kt·mm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.MegatonneSquareCentimeter, new string[]{"Mt·cm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.MegatonneSquareDecimeter, new string[]{"Mt·dm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.MegatonneSquareMeter, new string[]{"Mt·m²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.MegatonneSquareMilimeter, new string[]{"Mt·mm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.MilligramSquareCentimeter, new string[]{"mg·cm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.MilligramSquareDecimeter, new string[]{"mg·dm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.MilligramSquareMeter, new string[]{"mg·m²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.MilligramSquareMillimeter, new string[]{"mg·mm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.PoundSquareFoot, new string[]{"lb·ft²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.PoundSquareInch, new string[]{"lb·in²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.TonneSquareCentimeter, new string[]{"t·cm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.TonneSquareDecimeter, new string[]{"t·dm²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.TonneSquareMeter, new string[]{"t·m²"}),
+                Tuple.Create("en-US", typeof(MassMomentOfInertiaUnit), (int)MassMomentOfInertiaUnit.TonneSquareMilimeter, new string[]{"t·mm²"}),
+                Tuple.Create("en-US", typeof(MolarEnergyUnit), (int)MolarEnergyUnit.JoulePerMole, new string[]{"J/mol"}),
+                Tuple.Create("en-US", typeof(MolarEnergyUnit), (int)MolarEnergyUnit.KilojoulePerMole, new string[]{"kJ/mol"}),
+                Tuple.Create("en-US", typeof(MolarEnergyUnit), (int)MolarEnergyUnit.MegajoulePerMole, new string[]{"MJ/mol"}),
+                Tuple.Create("en-US", typeof(MolarEntropyUnit), (int)MolarEntropyUnit.JoulePerMoleKelvin, new string[]{"J/(mol*K)"}),
+                Tuple.Create("en-US", typeof(MolarEntropyUnit), (int)MolarEntropyUnit.KilojoulePerMoleKelvin, new string[]{"kJ/(mol*K)"}),
+                Tuple.Create("en-US", typeof(MolarEntropyUnit), (int)MolarEntropyUnit.MegajoulePerMoleKelvin, new string[]{"MJ/(mol*K)"}),
+                Tuple.Create("en-US", typeof(MolarityUnit), (int)MolarityUnit.CentimolesPerLiter, new string[]{"cmol/L"}),
+                Tuple.Create("en-US", typeof(MolarityUnit), (int)MolarityUnit.DecimolesPerLiter, new string[]{"dmol/L"}),
+                Tuple.Create("en-US", typeof(MolarityUnit), (int)MolarityUnit.MicromolesPerLiter, new string[]{"µmol/L"}),
+                Tuple.Create("en-US", typeof(MolarityUnit), (int)MolarityUnit.MillimolesPerLiter, new string[]{"mmol/L"}),
+                Tuple.Create("en-US", typeof(MolarityUnit), (int)MolarityUnit.MolesPerCubicMeter, new string[]{"mol/m³"}),
+                Tuple.Create("en-US", typeof(MolarityUnit), (int)MolarityUnit.MolesPerLiter, new string[]{"mol/L"}),
+                Tuple.Create("en-US", typeof(MolarityUnit), (int)MolarityUnit.NanomolesPerLiter, new string[]{"nmol/L"}),
+                Tuple.Create("en-US", typeof(MolarityUnit), (int)MolarityUnit.PicomolesPerLiter, new string[]{"pmol/L"}),
+                Tuple.Create("en-US", typeof(MolarMassUnit), (int)MolarMassUnit.CentigramPerMole, new string[]{"cg/mol"}),
+                Tuple.Create("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.CentigramPerMole, new string[]{"сг/моль"}),
+                Tuple.Create("en-US", typeof(MolarMassUnit), (int)MolarMassUnit.DecagramPerMole, new string[]{"dag/mol"}),
+                Tuple.Create("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.DecagramPerMole, new string[]{"даг/моль"}),
+                Tuple.Create("en-US", typeof(MolarMassUnit), (int)MolarMassUnit.DecigramPerMole, new string[]{"dg/mol"}),
+                Tuple.Create("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.DecigramPerMole, new string[]{"дг/моль"}),
+                Tuple.Create("en-US", typeof(MolarMassUnit), (int)MolarMassUnit.GramPerMole, new string[]{"g/mol"}),
+                Tuple.Create("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.GramPerMole, new string[]{"г/моль"}),
+                Tuple.Create("en-US", typeof(MolarMassUnit), (int)MolarMassUnit.HectogramPerMole, new string[]{"hg/mol"}),
+                Tuple.Create("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.HectogramPerMole, new string[]{"гг/моль"}),
+                Tuple.Create("en-US", typeof(MolarMassUnit), (int)MolarMassUnit.KilogramPerMole, new string[]{"kg/mol"}),
+                Tuple.Create("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.KilogramPerMole, new string[]{"кг/моль"}),
+                Tuple.Create("en-US", typeof(MolarMassUnit), (int)MolarMassUnit.KilopoundPerMole, new string[]{"klb/mol"}),
+                Tuple.Create("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.KilopoundPerMole, new string[]{"kфунт/моль"}),
+                Tuple.Create("en-US", typeof(MolarMassUnit), (int)MolarMassUnit.MegapoundPerMole, new string[]{"Mlb/mol"}),
+                Tuple.Create("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.MegapoundPerMole, new string[]{"Mфунт/моль"}),
+                Tuple.Create("en-US", typeof(MolarMassUnit), (int)MolarMassUnit.MicrogramPerMole, new string[]{"µg/mol"}),
+                Tuple.Create("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.MicrogramPerMole, new string[]{"мкг/моль"}),
+                Tuple.Create("en-US", typeof(MolarMassUnit), (int)MolarMassUnit.MilligramPerMole, new string[]{"mg/mol"}),
+                Tuple.Create("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.MilligramPerMole, new string[]{"мг/моль"}),
+                Tuple.Create("en-US", typeof(MolarMassUnit), (int)MolarMassUnit.NanogramPerMole, new string[]{"ng/mol"}),
+                Tuple.Create("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.NanogramPerMole, new string[]{"нг/моль"}),
+                Tuple.Create("en-US", typeof(MolarMassUnit), (int)MolarMassUnit.PoundPerMole, new string[]{"lb/mol"}),
+                Tuple.Create("ru-RU", typeof(MolarMassUnit), (int)MolarMassUnit.PoundPerMole, new string[]{"фунт/моль"}),
+                Tuple.Create("en-US", typeof(PermeabilityUnit), (int)PermeabilityUnit.HenryPerMeter, new string[]{"H/m"}),
+                Tuple.Create("en-US", typeof(PermittivityUnit), (int)PermittivityUnit.FaradPerMeter, new string[]{"F/m"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.BoilerHorsepower, new string[]{"hp(S)"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.BritishThermalUnitPerHour, new string[]{"Btu/hr"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.Decawatt, new string[]{"daW"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.Deciwatt, new string[]{"dW"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.ElectricalHorsepower, new string[]{"hp(E)"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.Femtowatt, new string[]{"fW"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.Gigawatt, new string[]{"GW"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.HydraulicHorsepower, new string[]{"hp(H)"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.KilobritishThermalUnitPerHour, new string[]{"kBtu/hr"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.Kilowatt, new string[]{"kW"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.MechanicalHorsepower, new string[]{"hp(I)"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.Megawatt, new string[]{"MW"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.MetricHorsepower, new string[]{"hp(M)"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.Microwatt, new string[]{"µW"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.Milliwatt, new string[]{"mW"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.Nanowatt, new string[]{"nW"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.Petawatt, new string[]{"PW"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.Picowatt, new string[]{"pW"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.Terawatt, new string[]{"TW"}),
+                Tuple.Create("en-US", typeof(PowerUnit), (int)PowerUnit.Watt, new string[]{"W"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.DecawattPerCubicFoot, new string[]{"daW/ft³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.DecawattPerCubicInch, new string[]{"daW/in³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.DecawattPerCubicMeter, new string[]{"daW/m³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.DecawattPerLiter, new string[]{"daW/l"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.DeciwattPerCubicFoot, new string[]{"dW/ft³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.DeciwattPerCubicInch, new string[]{"dW/in³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.DeciwattPerCubicMeter, new string[]{"dW/m³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.DeciwattPerLiter, new string[]{"dW/l"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.GigawattPerCubicFoot, new string[]{"GW/ft³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.GigawattPerCubicInch, new string[]{"GW/in³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.GigawattPerCubicMeter, new string[]{"GW/m³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.GigawattPerLiter, new string[]{"GW/l"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.KilowattPerCubicFoot, new string[]{"kW/ft³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.KilowattPerCubicInch, new string[]{"kW/in³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.KilowattPerCubicMeter, new string[]{"kW/m³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.KilowattPerLiter, new string[]{"kW/l"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.MegawattPerCubicFoot, new string[]{"MW/ft³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.MegawattPerCubicInch, new string[]{"MW/in³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.MegawattPerCubicMeter, new string[]{"MW/m³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.MegawattPerLiter, new string[]{"MW/l"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.MicrowattPerCubicFoot, new string[]{"µW/ft³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.MicrowattPerCubicInch, new string[]{"µW/in³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.MicrowattPerCubicMeter, new string[]{"µW/m³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.MicrowattPerLiter, new string[]{"µW/l"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.MilliwattPerCubicFoot, new string[]{"mW/ft³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.MilliwattPerCubicInch, new string[]{"mW/in³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.MilliwattPerCubicMeter, new string[]{"mW/m³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.MilliwattPerLiter, new string[]{"mW/l"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.NanowattPerCubicFoot, new string[]{"nW/ft³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.NanowattPerCubicInch, new string[]{"nW/in³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.NanowattPerCubicMeter, new string[]{"nW/m³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.NanowattPerLiter, new string[]{"nW/l"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.PicowattPerCubicFoot, new string[]{"pW/ft³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.PicowattPerCubicInch, new string[]{"pW/in³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.PicowattPerCubicMeter, new string[]{"pW/m³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.PicowattPerLiter, new string[]{"pW/l"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.TerawattPerCubicFoot, new string[]{"TW/ft³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.TerawattPerCubicInch, new string[]{"TW/in³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.TerawattPerCubicMeter, new string[]{"TW/m³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.TerawattPerLiter, new string[]{"TW/l"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.WattPerCubicFoot, new string[]{"W/ft³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.WattPerCubicInch, new string[]{"W/in³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.WattPerCubicMeter, new string[]{"W/m³"}),
+                Tuple.Create("en-US", typeof(PowerDensityUnit), (int)PowerDensityUnit.WattPerLiter, new string[]{"W/l"}),
+                Tuple.Create("en-US", typeof(PowerRatioUnit), (int)PowerRatioUnit.DecibelMilliwatt, new string[]{"dBmW", "dBm"}),
+                Tuple.Create("en-US", typeof(PowerRatioUnit), (int)PowerRatioUnit.DecibelWatt, new string[]{"dBW"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Atmosphere, new string[]{"atm"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Atmosphere, new string[]{"атм"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Bar, new string[]{"bar"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Bar, new string[]{"бар"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Centibar, new string[]{"cbar"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Centibar, new string[]{"cбар"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Decapascal, new string[]{"daPa"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Decapascal, new string[]{"даПа"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Decibar, new string[]{"dbar"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Decibar, new string[]{"dбар"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.FootOfHead, new string[]{"ft of head"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Gigapascal, new string[]{"GPa"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Gigapascal, new string[]{"ГПа"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Hectopascal, new string[]{"hPa"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Hectopascal, new string[]{"гПа"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.InchOfMercury, new string[]{"inHg"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Kilobar, new string[]{"kbar"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Kilobar, new string[]{"kбар"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.KilogramForcePerSquareCentimeter, new string[]{"kgf/cm²"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.KilogramForcePerSquareCentimeter, new string[]{"кгс/см²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.KilogramForcePerSquareMeter, new string[]{"kgf/m²"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.KilogramForcePerSquareMeter, new string[]{"кгс/м²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.KilogramForcePerSquareMillimeter, new string[]{"kgf/mm²"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.KilogramForcePerSquareMillimeter, new string[]{"кгс/мм²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.KilonewtonPerSquareCentimeter, new string[]{"kN/cm²"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.KilonewtonPerSquareCentimeter, new string[]{"кН/см²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.KilonewtonPerSquareMeter, new string[]{"kN/m²"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.KilonewtonPerSquareMeter, new string[]{"кН/м²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.KilonewtonPerSquareMillimeter, new string[]{"kN/mm²"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.KilonewtonPerSquareMillimeter, new string[]{"кН/мм²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Kilopascal, new string[]{"kPa"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Kilopascal, new string[]{"кПа"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.KilopoundForcePerSquareFoot, new string[]{"kipf/ft²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.KilopoundForcePerSquareInch, new string[]{"kipf/in²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Megabar, new string[]{"Mbar"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Megabar, new string[]{"Mбар"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.MeganewtonPerSquareMeter, new string[]{"MN/m²"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.MeganewtonPerSquareMeter, new string[]{"Мн/м²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Megapascal, new string[]{"MPa"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Megapascal, new string[]{"МПа"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.MeterOfHead, new string[]{"m of head"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Micropascal, new string[]{"µPa"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Micropascal, new string[]{"мкПа"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Millibar, new string[]{"mbar"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Millibar, new string[]{"mбар"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.MillimeterOfMercury, new string[]{"mmHg"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.NewtonPerSquareCentimeter, new string[]{"N/cm²"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.NewtonPerSquareCentimeter, new string[]{"Н/см²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.NewtonPerSquareMeter, new string[]{"N/m²"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.NewtonPerSquareMeter, new string[]{"Н/м²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.NewtonPerSquareMillimeter, new string[]{"N/mm²"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.NewtonPerSquareMillimeter, new string[]{"Н/мм²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Pascal, new string[]{"Pa"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Pascal, new string[]{"Па"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.PoundForcePerSquareFoot, new string[]{"lb/ft²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.PoundForcePerSquareInch, new string[]{"psi", "lb/in²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.TechnicalAtmosphere, new string[]{"at"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.TechnicalAtmosphere, new string[]{"ат"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.TonneForcePerSquareCentimeter, new string[]{"tf/cm²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.TonneForcePerSquareMeter, new string[]{"tf/m²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.TonneForcePerSquareMillimeter, new string[]{"tf/mm²"}),
+                Tuple.Create("en-US", typeof(PressureUnit), (int)PressureUnit.Torr, new string[]{"torr"}),
+                Tuple.Create("ru-RU", typeof(PressureUnit), (int)PressureUnit.Torr, new string[]{"торр"}),
+                Tuple.Create("en-US", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.AtmospherePerSecond, new string[]{"atm/s"}),
+                Tuple.Create("ru-RU", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.AtmospherePerSecond, new string[]{"атм/с"}),
+                Tuple.Create("en-US", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.KilopascalPerSecond, new string[]{"kPa/s"}),
+                Tuple.Create("ru-RU", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.KilopascalPerSecond, new string[]{"кПа/с"}),
+                Tuple.Create("en-US", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.MegapascalPerSecond, new string[]{"MPa/s"}),
+                Tuple.Create("ru-RU", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.MegapascalPerSecond, new string[]{"МПа/с"}),
+                Tuple.Create("en-US", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.PascalPerSecond, new string[]{"Pa/s"}),
+                Tuple.Create("ru-RU", typeof(PressureChangeRateUnit), (int)PressureChangeRateUnit.PascalPerSecond, new string[]{"Па/с"}),
+                Tuple.Create("en-US", typeof(RatioUnit), (int)RatioUnit.DecimalFraction, new string[]{""}),
+                Tuple.Create("en-US", typeof(RatioUnit), (int)RatioUnit.PartPerBillion, new string[]{"ppb"}),
+                Tuple.Create("en-US", typeof(RatioUnit), (int)RatioUnit.PartPerMillion, new string[]{"ppm"}),
+                Tuple.Create("en-US", typeof(RatioUnit), (int)RatioUnit.PartPerThousand, new string[]{"‰"}),
+                Tuple.Create("en-US", typeof(RatioUnit), (int)RatioUnit.PartPerTrillion, new string[]{"ppt"}),
+                Tuple.Create("en-US", typeof(RatioUnit), (int)RatioUnit.Percent, new string[]{"%"}),
+                Tuple.Create("en-US", typeof(ReactiveEnergyUnit), (int)ReactiveEnergyUnit.KilovoltampereReactiveHour, new string[]{"kvarh"}),
+                Tuple.Create("en-US", typeof(ReactiveEnergyUnit), (int)ReactiveEnergyUnit.MegavoltampereReactiveHour, new string[]{"Mvarh"}),
+                Tuple.Create("en-US", typeof(ReactiveEnergyUnit), (int)ReactiveEnergyUnit.VoltampereReactiveHour, new string[]{"varh"}),
+                Tuple.Create("en-US", typeof(ReactivePowerUnit), (int)ReactivePowerUnit.GigavoltampereReactive, new string[]{"Gvar"}),
+                Tuple.Create("en-US", typeof(ReactivePowerUnit), (int)ReactivePowerUnit.KilovoltampereReactive, new string[]{"kvar"}),
+                Tuple.Create("en-US", typeof(ReactivePowerUnit), (int)ReactivePowerUnit.MegavoltampereReactive, new string[]{"Mvar"}),
+                Tuple.Create("en-US", typeof(ReactivePowerUnit), (int)ReactivePowerUnit.VoltampereReactive, new string[]{"var"}),
+                Tuple.Create("en-US", typeof(RotationalAccelerationUnit), (int)RotationalAccelerationUnit.DegreePerSecondSquared, new string[]{"°/s²", "deg/s²"}),
+                Tuple.Create("en-US", typeof(RotationalAccelerationUnit), (int)RotationalAccelerationUnit.RadianPerSecondSquared, new string[]{"rad/s²"}),
+                Tuple.Create("en-US", typeof(RotationalAccelerationUnit), (int)RotationalAccelerationUnit.RevolutionPerMinutePerSecond, new string[]{"rpm/s"}),
+                Tuple.Create("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.CentiradianPerSecond, new string[]{"crad/s"}),
+                Tuple.Create("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.CentiradianPerSecond, new string[]{"cрад/с"}),
+                Tuple.Create("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.DeciradianPerSecond, new string[]{"drad/s"}),
+                Tuple.Create("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.DeciradianPerSecond, new string[]{"dрад/с"}),
+                Tuple.Create("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.DegreePerMinute, new string[]{"°/min", "deg/min"}),
+                Tuple.Create("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.DegreePerSecond, new string[]{"°/s", "deg/s"}),
+                Tuple.Create("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.DegreePerSecond, new string[]{"°/с"}),
+                Tuple.Create("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.MicrodegreePerSecond, new string[]{"µ°/s"}),
+                Tuple.Create("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.MicrodegreePerSecond, new string[]{"µ°/с"}),
+                Tuple.Create("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.MicroradianPerSecond, new string[]{"µrad/s"}),
+                Tuple.Create("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.MicroradianPerSecond, new string[]{"µрад/с"}),
+                Tuple.Create("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.MillidegreePerSecond, new string[]{"m°/s"}),
+                Tuple.Create("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.MillidegreePerSecond, new string[]{"m°/с"}),
+                Tuple.Create("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.MilliradianPerSecond, new string[]{"mrad/s"}),
+                Tuple.Create("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.MilliradianPerSecond, new string[]{"mрад/с"}),
+                Tuple.Create("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.NanodegreePerSecond, new string[]{"n°/s"}),
+                Tuple.Create("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.NanodegreePerSecond, new string[]{"n°/с"}),
+                Tuple.Create("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.NanoradianPerSecond, new string[]{"nrad/s"}),
+                Tuple.Create("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.NanoradianPerSecond, new string[]{"nрад/с"}),
+                Tuple.Create("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.RadianPerSecond, new string[]{"rad/s"}),
+                Tuple.Create("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.RadianPerSecond, new string[]{"рад/с"}),
+                Tuple.Create("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.RevolutionPerMinute, new string[]{"rpm", "r/min"}),
+                Tuple.Create("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.RevolutionPerMinute, new string[]{"об/мин"}),
+                Tuple.Create("en-US", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.RevolutionPerSecond, new string[]{"r/s"}),
+                Tuple.Create("ru-RU", typeof(RotationalSpeedUnit), (int)RotationalSpeedUnit.RevolutionPerSecond, new string[]{"об/с"}),
+                Tuple.Create("en-US", typeof(RotationalStiffnessUnit), (int)RotationalStiffnessUnit.KilonewtonMeterPerRadian, new string[]{"kN·m/rad"}),
+                Tuple.Create("en-US", typeof(RotationalStiffnessUnit), (int)RotationalStiffnessUnit.MeganewtonMeterPerRadian, new string[]{"MN·m/rad"}),
+                Tuple.Create("en-US", typeof(RotationalStiffnessUnit), (int)RotationalStiffnessUnit.NewtonMeterPerRadian, new string[]{"N·m/rad", "Nm/rad"}),
+                Tuple.Create("en-US", typeof(RotationalStiffnessPerLengthUnit), (int)RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter, new string[]{"kN·m/rad/m"}),
+                Tuple.Create("en-US", typeof(RotationalStiffnessPerLengthUnit), (int)RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter, new string[]{"MN·m/rad/m"}),
+                Tuple.Create("en-US", typeof(RotationalStiffnessPerLengthUnit), (int)RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter, new string[]{"N·m/rad/m", "Nm/rad/m"}),
+                Tuple.Create("en-US", typeof(SolidAngleUnit), (int)SolidAngleUnit.Steradian, new string[]{"sr"}),
+                Tuple.Create("en-US", typeof(SpecificEnergyUnit), (int)SpecificEnergyUnit.CaloriePerGram, new string[]{"cal/g"}),
+                Tuple.Create("en-US", typeof(SpecificEnergyUnit), (int)SpecificEnergyUnit.JoulePerKilogram, new string[]{"J/kg"}),
+                Tuple.Create("en-US", typeof(SpecificEnergyUnit), (int)SpecificEnergyUnit.KilocaloriePerGram, new string[]{"kcal/g"}),
+                Tuple.Create("en-US", typeof(SpecificEnergyUnit), (int)SpecificEnergyUnit.KilojoulePerKilogram, new string[]{"kJ/kg"}),
+                Tuple.Create("en-US", typeof(SpecificEnergyUnit), (int)SpecificEnergyUnit.KilowattHourPerKilogram, new string[]{"kWh/kg"}),
+                Tuple.Create("en-US", typeof(SpecificEnergyUnit), (int)SpecificEnergyUnit.MegajoulePerKilogram, new string[]{"MJ/kg"}),
+                Tuple.Create("en-US", typeof(SpecificEnergyUnit), (int)SpecificEnergyUnit.MegawattHourPerKilogram, new string[]{"MWh/kg"}),
+                Tuple.Create("en-US", typeof(SpecificEnergyUnit), (int)SpecificEnergyUnit.WattHourPerKilogram, new string[]{"Wh/kg"}),
+                Tuple.Create("en-US", typeof(SpecificEntropyUnit), (int)SpecificEntropyUnit.CaloriePerGramKelvin, new string[]{"cal/g.K"}),
+                Tuple.Create("en-US", typeof(SpecificEntropyUnit), (int)SpecificEntropyUnit.JoulePerKilogramDegreeCelsius, new string[]{"J/kg.C"}),
+                Tuple.Create("en-US", typeof(SpecificEntropyUnit), (int)SpecificEntropyUnit.JoulePerKilogramKelvin, new string[]{"J/kg.K"}),
+                Tuple.Create("en-US", typeof(SpecificEntropyUnit), (int)SpecificEntropyUnit.KilocaloriePerGramKelvin, new string[]{"kcal/g.K"}),
+                Tuple.Create("en-US", typeof(SpecificEntropyUnit), (int)SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius, new string[]{"kJ/kg.C"}),
+                Tuple.Create("en-US", typeof(SpecificEntropyUnit), (int)SpecificEntropyUnit.KilojoulePerKilogramKelvin, new string[]{"kJ/kg.K"}),
+                Tuple.Create("en-US", typeof(SpecificEntropyUnit), (int)SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius, new string[]{"MJ/kg.C"}),
+                Tuple.Create("en-US", typeof(SpecificEntropyUnit), (int)SpecificEntropyUnit.MegajoulePerKilogramKelvin, new string[]{"MJ/kg.K"}),
+                Tuple.Create("en-US", typeof(SpecificVolumeUnit), (int)SpecificVolumeUnit.CubicFootPerPound, new string[]{"ft³/lb"}),
+                Tuple.Create("en-US", typeof(SpecificVolumeUnit), (int)SpecificVolumeUnit.CubicMeterPerKilogram, new string[]{"m³/kg"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.KilogramForcePerCubicCentimeter, new string[]{"kgf/cm³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.KilogramForcePerCubicMeter, new string[]{"kgf/m³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.KilogramForcePerCubicMillimeter, new string[]{"kgf/mm³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.KilonewtonPerCubicCentimeter, new string[]{"kN/cm³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.KilonewtonPerCubicMeter, new string[]{"kN/m³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.KilonewtonPerCubicMillimeter, new string[]{"kN/mm³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.KilopoundForcePerCubicFoot, new string[]{"kipf/ft³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.KilopoundForcePerCubicInch, new string[]{"kipf/in³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.MeganewtonPerCubicMeter, new string[]{"MN/m³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.NewtonPerCubicCentimeter, new string[]{"N/cm³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.NewtonPerCubicMeter, new string[]{"N/m³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.NewtonPerCubicMillimeter, new string[]{"N/mm³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.PoundForcePerCubicFoot, new string[]{"lbf/ft³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.PoundForcePerCubicInch, new string[]{"lbf/in³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.TonneForcePerCubicCentimeter, new string[]{"tf/cm³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.TonneForcePerCubicMeter, new string[]{"tf/m³"}),
+                Tuple.Create("en-US", typeof(SpecificWeightUnit), (int)SpecificWeightUnit.TonneForcePerCubicMillimeter, new string[]{"tf/mm³"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.CentimeterPerHour, new string[]{"cm/h"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.CentimeterPerMinute, new string[]{"cm/min"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.CentimeterPerSecond, new string[]{"cm/s"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.DecimeterPerMinute, new string[]{"dm/min"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.DecimeterPerSecond, new string[]{"dm/s"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.FootPerHour, new string[]{"ft/h"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.FootPerMinute, new string[]{"ft/min"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.FootPerSecond, new string[]{"ft/s"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.InchPerHour, new string[]{"in/h"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.InchPerMinute, new string[]{"in/min"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.InchPerSecond, new string[]{"in/s"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.KilometerPerHour, new string[]{"km/h"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.KilometerPerMinute, new string[]{"km/min"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.KilometerPerSecond, new string[]{"km/s"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.Knot, new string[]{"kn", "kt", "knot", "knots"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.MeterPerHour, new string[]{"m/h"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.MeterPerMinute, new string[]{"m/min"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.MeterPerSecond, new string[]{"m/s"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.MicrometerPerMinute, new string[]{"µm/min"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.MicrometerPerSecond, new string[]{"µm/s"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.MilePerHour, new string[]{"mph"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.MillimeterPerHour, new string[]{"mm/h"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.MillimeterPerMinute, new string[]{"mm/min"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.MillimeterPerSecond, new string[]{"mm/s"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.NanometerPerMinute, new string[]{"nm/min"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.NanometerPerSecond, new string[]{"nm/s"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.UsSurveyFootPerHour, new string[]{"ftUS/h"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.UsSurveyFootPerMinute, new string[]{"ftUS/min"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.UsSurveyFootPerSecond, new string[]{"ftUS/s"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.YardPerHour, new string[]{"yd/h"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.YardPerMinute, new string[]{"yd/min"}),
+                Tuple.Create("en-US", typeof(SpeedUnit), (int)SpeedUnit.YardPerSecond, new string[]{"yd/s"}),
+                Tuple.Create("en-US", typeof(TemperatureUnit), (int)TemperatureUnit.DegreeCelsius, new string[]{"°C"}),
+                Tuple.Create("en-US", typeof(TemperatureUnit), (int)TemperatureUnit.DegreeDelisle, new string[]{"°De"}),
+                Tuple.Create("en-US", typeof(TemperatureUnit), (int)TemperatureUnit.DegreeFahrenheit, new string[]{"°F"}),
+                Tuple.Create("en-US", typeof(TemperatureUnit), (int)TemperatureUnit.DegreeNewton, new string[]{"°N"}),
+                Tuple.Create("en-US", typeof(TemperatureUnit), (int)TemperatureUnit.DegreeRankine, new string[]{"°R"}),
+                Tuple.Create("en-US", typeof(TemperatureUnit), (int)TemperatureUnit.DegreeReaumur, new string[]{"°Ré"}),
+                Tuple.Create("en-US", typeof(TemperatureUnit), (int)TemperatureUnit.DegreeRoemer, new string[]{"°Rø"}),
+                Tuple.Create("en-US", typeof(TemperatureUnit), (int)TemperatureUnit.Kelvin, new string[]{"K"}),
+                Tuple.Create("en-US", typeof(TemperatureChangeRateUnit), (int)TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond, new string[]{"c°C/s"}),
+                Tuple.Create("en-US", typeof(TemperatureChangeRateUnit), (int)TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond, new string[]{"da°C/s"}),
+                Tuple.Create("en-US", typeof(TemperatureChangeRateUnit), (int)TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond, new string[]{"d°C/s"}),
+                Tuple.Create("en-US", typeof(TemperatureChangeRateUnit), (int)TemperatureChangeRateUnit.DegreeCelsiusPerMinute, new string[]{"°C/min"}),
+                Tuple.Create("en-US", typeof(TemperatureChangeRateUnit), (int)TemperatureChangeRateUnit.DegreeCelsiusPerSecond, new string[]{"°C/s"}),
+                Tuple.Create("en-US", typeof(TemperatureChangeRateUnit), (int)TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond, new string[]{"h°C/s"}),
+                Tuple.Create("en-US", typeof(TemperatureChangeRateUnit), (int)TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond, new string[]{"k°C/s"}),
+                Tuple.Create("en-US", typeof(TemperatureChangeRateUnit), (int)TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, new string[]{"µ°C/s"}),
+                Tuple.Create("en-US", typeof(TemperatureChangeRateUnit), (int)TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond, new string[]{"m°C/s"}),
+                Tuple.Create("en-US", typeof(TemperatureChangeRateUnit), (int)TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond, new string[]{"n°C/s"}),
+                Tuple.Create("en-US", typeof(TemperatureDeltaUnit), (int)TemperatureDeltaUnit.DegreeCelsius, new string[]{"∆°C"}),
+                Tuple.Create("en-US", typeof(TemperatureDeltaUnit), (int)TemperatureDeltaUnit.DegreeDelisle, new string[]{"∆°De"}),
+                Tuple.Create("en-US", typeof(TemperatureDeltaUnit), (int)TemperatureDeltaUnit.DegreeFahrenheit, new string[]{"∆°F"}),
+                Tuple.Create("en-US", typeof(TemperatureDeltaUnit), (int)TemperatureDeltaUnit.DegreeNewton, new string[]{"∆°N"}),
+                Tuple.Create("en-US", typeof(TemperatureDeltaUnit), (int)TemperatureDeltaUnit.DegreeRankine, new string[]{"∆°R"}),
+                Tuple.Create("en-US", typeof(TemperatureDeltaUnit), (int)TemperatureDeltaUnit.DegreeReaumur, new string[]{"∆°Ré"}),
+                Tuple.Create("en-US", typeof(TemperatureDeltaUnit), (int)TemperatureDeltaUnit.DegreeRoemer, new string[]{"∆°Rø"}),
+                Tuple.Create("en-US", typeof(TemperatureDeltaUnit), (int)TemperatureDeltaUnit.Kelvin, new string[]{"∆K"}),
+                Tuple.Create("en-US", typeof(ThermalConductivityUnit), (int)ThermalConductivityUnit.BtuPerHourFootFahrenheit, new string[]{"BTU/h·ft·°F"}),
+                Tuple.Create("en-US", typeof(ThermalConductivityUnit), (int)ThermalConductivityUnit.WattPerMeterKelvin, new string[]{"W/m·K"}),
+                Tuple.Create("en-US", typeof(ThermalResistanceUnit), (int)ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu, new string[]{"Hrft²°F/Btu"}),
+                Tuple.Create("en-US", typeof(ThermalResistanceUnit), (int)ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie, new string[]{"cm²Hr°C/kcal"}),
+                Tuple.Create("en-US", typeof(ThermalResistanceUnit), (int)ThermalResistanceUnit.SquareCentimeterKelvinPerWatt, new string[]{"cm²K/W"}),
+                Tuple.Create("en-US", typeof(ThermalResistanceUnit), (int)ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt, new string[]{"m²°C/W"}),
+                Tuple.Create("en-US", typeof(ThermalResistanceUnit), (int)ThermalResistanceUnit.SquareMeterKelvinPerKilowatt, new string[]{"m²K/kW"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.KilogramForceCentimeter, new string[]{"kgf·cm"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.KilogramForceMeter, new string[]{"kgf·m"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.KilogramForceMillimeter, new string[]{"kgf·mm"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.KilonewtonCentimeter, new string[]{"kN·cm"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.KilonewtonMeter, new string[]{"kN·m"}),
+                Tuple.Create("ru-RU", typeof(TorqueUnit), (int)TorqueUnit.KilonewtonMeter, new string[]{"кН·м"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.KilonewtonMillimeter, new string[]{"kN·mm"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.KilopoundForceFoot, new string[]{"kipf·ft"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.KilopoundForceInch, new string[]{"kipf·in"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.MeganewtonCentimeter, new string[]{"MN·cm"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.MeganewtonMeter, new string[]{"MN·m"}),
+                Tuple.Create("ru-RU", typeof(TorqueUnit), (int)TorqueUnit.MeganewtonMeter, new string[]{""}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.MeganewtonMillimeter, new string[]{"MN·mm"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.MegapoundForceFoot, new string[]{"Mlbf·ft"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.MegapoundForceInch, new string[]{"Mlbf·in"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.NewtonCentimeter, new string[]{"N·cm"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.NewtonMeter, new string[]{"N·m"}),
+                Tuple.Create("ru-RU", typeof(TorqueUnit), (int)TorqueUnit.NewtonMeter, new string[]{"Н·м"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.NewtonMillimeter, new string[]{"N·mm"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.PoundForceFoot, new string[]{"lbf·ft"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.PoundForceInch, new string[]{"lbf·in"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.TonneForceCentimeter, new string[]{"tf·cm"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.TonneForceMeter, new string[]{"tf·m"}),
+                Tuple.Create("en-US", typeof(TorqueUnit), (int)TorqueUnit.TonneForceMillimeter, new string[]{"tf·mm"}),
+                Tuple.Create("en-US", typeof(VitaminAUnit), (int)VitaminAUnit.InternationalUnit, new string[]{"IU"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.AuTablespoon, new string[]{""}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.AuTablespoon, new string[]{""}),
+                Tuple.Create("nb-NO", typeof(VolumeUnit), (int)VolumeUnit.AuTablespoon, new string[]{""}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.Centiliter, new string[]{"cl"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.Centiliter, new string[]{"сл"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicCentimeter, new string[]{"cm³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicCentimeter, new string[]{"см³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicDecimeter, new string[]{"dm³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicDecimeter, new string[]{"дм³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicFoot, new string[]{"ft³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicFoot, new string[]{"фут³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicInch, new string[]{"in³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicInch, new string[]{"дюйм³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicKilometer, new string[]{"km³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicKilometer, new string[]{"км³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicMeter, new string[]{"m³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicMeter, new string[]{"м³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicMicrometer, new string[]{"µm³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicMicrometer, new string[]{"мкм³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicMile, new string[]{"mi³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicMile, new string[]{"миля³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicMillimeter, new string[]{"mm³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicMillimeter, new string[]{"мм³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.CubicYard, new string[]{"yd³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.CubicYard, new string[]{"ярд³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.Deciliter, new string[]{"dl"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.Deciliter, new string[]{"дл"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.HectocubicFoot, new string[]{"hft³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.HectocubicFoot, new string[]{"hфут³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.HectocubicMeter, new string[]{"hm³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.HectocubicMeter, new string[]{"hм³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.Hectoliter, new string[]{"hl"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.Hectoliter, new string[]{"гл"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.ImperialBeerBarrel, new string[]{"bl (imp.)"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.ImperialGallon, new string[]{"gal (imp.)"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.ImperialGallon, new string[]{"Английский галлон"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.ImperialOunce, new string[]{"oz (imp.)"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.ImperialOunce, new string[]{"Английская унция"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.KilocubicFoot, new string[]{"kft³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.KilocubicFoot, new string[]{"kфут³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.KilocubicMeter, new string[]{"km³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.KilocubicMeter, new string[]{"kм³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.KiloimperialGallon, new string[]{"kgal (imp.)"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.KiloimperialGallon, new string[]{"kАнглийский галлон"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.KilousGallon, new string[]{"kgal (U.S.)"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.KilousGallon, new string[]{"kАмериканский галлон"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.Liter, new string[]{"l"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.Liter, new string[]{"л"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.MegacubicFoot, new string[]{"Mft³"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.MegacubicFoot, new string[]{"Mфут³"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.MegaimperialGallon, new string[]{"Mgal (imp.)"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.MegaimperialGallon, new string[]{"MАнглийский галлон"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.MegausGallon, new string[]{"Mgal (U.S.)"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.MegausGallon, new string[]{"MАмериканский галлон"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.MetricCup, new string[]{""}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.MetricTeaspoon, new string[]{"tsp", "t", "ts", "tspn", "t.", "ts.", "tsp.", "tspn.", "teaspoon"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.MetricTeaspoon, new string[]{""}),
+                Tuple.Create("nb-NO", typeof(VolumeUnit), (int)VolumeUnit.MetricTeaspoon, new string[]{""}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.Microliter, new string[]{"µl"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.Microliter, new string[]{"мкл"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.Milliliter, new string[]{"ml"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.Milliliter, new string[]{"мл"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.OilBarrel, new string[]{"bbl"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.UkTablespoon, new string[]{""}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.UkTablespoon, new string[]{""}),
+                Tuple.Create("nb-NO", typeof(VolumeUnit), (int)VolumeUnit.UkTablespoon, new string[]{""}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.UsBeerBarrel, new string[]{"bl (U.S.)"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.UsCustomaryCup, new string[]{""}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.UsGallon, new string[]{"gal (U.S.)"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.UsGallon, new string[]{"Американский галлон"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.UsLegalCup, new string[]{""}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.UsOunce, new string[]{"oz (U.S.)"}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.UsOunce, new string[]{"Американская унция"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.UsPint, new string[]{"pt (U.S.)"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.UsQuart, new string[]{"qt (U.S.)"}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.UsTablespoon, new string[]{""}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.UsTablespoon, new string[]{""}),
+                Tuple.Create("nb-NO", typeof(VolumeUnit), (int)VolumeUnit.UsTablespoon, new string[]{""}),
+                Tuple.Create("en-US", typeof(VolumeUnit), (int)VolumeUnit.UsTeaspoon, new string[]{""}),
+                Tuple.Create("ru-RU", typeof(VolumeUnit), (int)VolumeUnit.UsTeaspoon, new string[]{""}),
+                Tuple.Create("nb-NO", typeof(VolumeUnit), (int)VolumeUnit.UsTeaspoon, new string[]{""}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CentiliterPerMinute, new string[]{"cLPM"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicDecimeterPerMinute, new string[]{"dm³/min"}),
+                Tuple.Create("ru-RU", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicDecimeterPerMinute, new string[]{"дм³/мин"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicFootPerHour, new string[]{"ft³/h", "cf/hr"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicFootPerMinute, new string[]{"ft³/min"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicFootPerSecond, new string[]{"ft³/s"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicMeterPerHour, new string[]{"m³/h"}),
+                Tuple.Create("ru-RU", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicMeterPerHour, new string[]{"м³/ч"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicMeterPerMinute, new string[]{"m³/min"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicMeterPerSecond, new string[]{"m³/s"}),
+                Tuple.Create("ru-RU", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicMeterPerSecond, new string[]{"м³/с"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicYardPerHour, new string[]{"yd³/h"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicYardPerMinute, new string[]{"yd³/min"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.CubicYardPerSecond, new string[]{"yd³/s"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.DeciliterPerMinute, new string[]{"dLPM"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.KiloliterPerMinute, new string[]{"kLPM"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.LiterPerHour, new string[]{"LPH"}),
+                Tuple.Create("ru-RU", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.LiterPerHour, new string[]{"л/ч"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.LiterPerMinute, new string[]{"LPM"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.LiterPerSecond, new string[]{"LPS"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.MicroliterPerMinute, new string[]{"µLPM"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.MilliliterPerMinute, new string[]{"mLPM"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.MillionUsGallonsPerDay, new string[]{"MGD"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.NanoliterPerMinute, new string[]{"nLPM"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.OilBarrelPerDay, new string[]{"bbl/d", "BOPD"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.OilBarrelPerHour, new string[]{"bbl/hr", "bph"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.OilBarrelPerMinute, new string[]{"bbl/min", "bpm"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerHour, new string[]{"gal (U.S.)/h"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerMinute, new string[]{"gal (U.S.)/min", "GPM"}),
+                Tuple.Create("en-US", typeof(VolumeFlowUnit), (int)VolumeFlowUnit.UsGallonPerSecond, new string[]{"gal (U.S.)/s"}),
+            };
     }
 }

@@ -1182,7 +1182,7 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -1205,7 +1205,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
+            provider = provider ?? GlobalConfiguration.DefaultCulture;
 
             return QuantityParser.Parse<Pressure, PressureUnit>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.Pascals + y.Pascals, BaseUnit));
@@ -1215,7 +1215,7 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
@@ -1228,7 +1228,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            provider = provider ?? UnitSystem.DefaultCulture;
+            provider = provider ?? GlobalConfiguration.DefaultCulture;
 
             return QuantityParser.TryParse<Pressure, PressureUnit>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.Pascals + y.Pascals, BaseUnit), out result);
@@ -1238,7 +1238,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -1248,8 +1248,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<PressureUnit>(str.Trim());
+            var unit = UnitParser.Parse<PressureUnit>(str.Trim(), provider);
 
             if (unit == PressureUnit.Undefined)
             {
@@ -1266,7 +1265,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
@@ -1279,8 +1278,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            if(!unitSystem.TryParse<PressureUnit>(str.Trim(), out unit))
+            if(!UnitParser.TryParse<PressureUnit>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == PressureUnit.Undefined)

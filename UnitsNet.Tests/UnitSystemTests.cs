@@ -72,14 +72,12 @@ namespace UnitsNet.Tests
             IEnumerable<TUnitType> unitValues)
             where TUnitType : Enum
         {
-            UnitSystem unitSystem = UnitSystem.GetCached(GetCulture(cultureName));
-
             var unitsMissingAbbreviations = new List<TUnitType>();
-            foreach (TUnitType unit in unitValues)
+            foreach (var unit in unitValues)
             {
                 try
                 {
-                    unitSystem.GetDefaultAbbreviation(unit);
+                    UnitAbbreviationsCache.GetDefaultAbbreviation(unit);
                 }
                 catch
                 {
@@ -161,16 +159,15 @@ namespace UnitsNet.Tests
         [InlineData("cm^^2", AreaUnit.SquareCentimeter)]
         public void Parse_ReturnsUnitMappedByCustomAbbreviation(string customAbbreviation, AreaUnit expected)
         {
-            UnitSystem unitSystem = UnitSystem.Default;
-            unitSystem.MapUnitToAbbreviation(expected, customAbbreviation);
-            var actual = unitSystem.Parse<AreaUnit>(customAbbreviation);
+            UnitAbbreviationsCache.MapUnitToAbbreviation(expected, customAbbreviation);
+            var actual = UnitParser.Parse<AreaUnit>(customAbbreviation);
             Assert.Equal(expected, actual);
         }
 
         [Fact]
         public void Parse_UnknownAbbreviationThrowsUnitNotFoundException()
         {
-            Assert.Throws<UnitNotFoundException>(() => UnitSystem.Default.Parse<AreaUnit>("nonexistingunit"));
+            Assert.Throws<UnitNotFoundException>(() => UnitParser.Parse<AreaUnit>("nonexistingunit"));
         }
 
         [Theory]
@@ -302,7 +299,7 @@ namespace UnitsNet.Tests
             Assert.Throws<UnitNotFoundException>(() => TemperatureChangeRate.ParseUnit("\u03bc°C/s"));
             Assert.Throws<UnitNotFoundException>(() => Volume.ParseUnit("\u03bcl"));
             Assert.Throws<UnitNotFoundException>(() => Volume.ParseUnit("\u03bcm³"));
-            Assert.Throws<UnitNotFoundException>( () => VolumeFlow.ParseUnit( "\u03bcLPM" ) );
+            Assert.Throws<UnitNotFoundException>(() => VolumeFlow.ParseUnit("\u03bcLPM"));
         }
 
         [Theory]
@@ -399,8 +396,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void GetDefaultAbbreviationFallsBackToDefaultStringIfNotSpecified()
         {
-            UnitSystem usUnits = new UnitSystem(AmericanCultureName);
-            string abbreviation = usUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
+            string abbreviation = UnitAbbreviationsCache.GetDefaultAbbreviation(CustomUnit.Unit1);
             Assert.Equal("(no abbreviation for CustomUnit.Unit1)", abbreviation);
         }
 
@@ -416,14 +412,13 @@ namespace UnitsNet.Tests
                 // CurrentUICulture affects localization, in this case the abbreviation.
                 // Zulu (South Africa)
                 var zuluCulture = new CultureInfo("zu-ZA");
-                UnitSystem zuluUnits = UnitSystem.GetCached(zuluCulture);
                 CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = zuluCulture;
 
-                UnitSystem usUnits = UnitSystem.GetCached(AmericanCultureName);
-                usUnits.MapUnitToAbbreviation(CustomUnit.Unit1, "US english abbreviation for Unit1");
+                var americanCulture = new CultureInfo(AmericanCultureName);
+                UnitAbbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, americanCulture, "US english abbreviation for Unit1");
 
                 // Act
-                string abbreviation = zuluUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
+                string abbreviation = UnitAbbreviationsCache.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
 
                 // Assert
                 Assert.Equal("US english abbreviation for Unit1", abbreviation);
@@ -438,19 +433,17 @@ namespace UnitsNet.Tests
         [Fact]
         public void MapUnitToAbbreviation_AddCustomUnit_DoesNotOverrideDefaultAbbreviationForAlreadyMappedUnits()
         {
-            UnitSystem unitSystem = UnitSystem.GetCached(AmericanCultureName);
-            unitSystem.MapUnitToAbbreviation(AreaUnit.SquareMeter, "m^2");
+            var americanCulture = new CultureInfo(AmericanCultureName);
+            UnitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMeter, americanCulture, "m^2");
 
-            Assert.Equal("m²", unitSystem.GetDefaultAbbreviation(AreaUnit.SquareMeter));
+            Assert.Equal("m²", UnitAbbreviationsCache.GetDefaultAbbreviation(AreaUnit.SquareMeter));
         }
 
         [Fact]
         public void Parse_AmbiguousUnitsThrowsException()
         {
-            UnitSystem unitSystem = UnitSystem.Default;
-
             // Act 1
-            var exception1 = Assert.Throws<AmbiguousUnitParseException>(() => unitSystem.Parse<LengthUnit>("pt"));
+            var exception1 = Assert.Throws<AmbiguousUnitParseException>(() => UnitParser.Parse<LengthUnit>("pt"));
 
             // Act 2
             var exception2 = Assert.Throws<AmbiguousUnitParseException>(() => Length.Parse("1 pt"));

@@ -81,9 +81,9 @@ namespace UnitsNet
         public static string GetAbbreviation(ElectricPotentialAcUnit unit, [CanBeNull] string cultureName)
         {
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+            IFormatProvider provider = cultureName == null ? GlobalConfiguration.DefaultCulture : new CultureInfo(cultureName);
 
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+            return UnitAbbreviationsCache.GetDefaultAbbreviation(unit, provider);
         }
 
         #region Parsing
@@ -116,7 +116,7 @@ namespace UnitsNet
             if (str == null) throw new ArgumentNullException(nameof(str));
 
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+            IFormatProvider provider = cultureName == null ? GlobalConfiguration.DefaultCulture : new CultureInfo(cultureName);
 
             return ParseInternal(str, provider);
         }
@@ -133,7 +133,7 @@ namespace UnitsNet
         public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out ElectricPotentialAc result)
         {
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+            IFormatProvider provider = cultureName == null ? GlobalConfiguration.DefaultCulture : new CultureInfo(cultureName);
 
             return TryParseInternal(str, provider, out result);
         }
@@ -151,7 +151,7 @@ namespace UnitsNet
         public static ElectricPotentialAcUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+            IFormatProvider provider = cultureName == null ? GlobalConfiguration.DefaultCulture : new CultureInfo(cultureName);
 
             return ParseUnitInternal(str, provider);
         }
@@ -169,7 +169,7 @@ namespace UnitsNet
         public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out ElectricPotentialAcUnit unit)
         {
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+            IFormatProvider provider = cultureName == null ? GlobalConfiguration.DefaultCulture : new CultureInfo(cultureName);
 
             return TryParseUnitInternal(str, provider, out unit);
         }
@@ -219,7 +219,7 @@ namespace UnitsNet
             if (args == null) throw new ArgumentNullException(nameof(args));
 
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+            IFormatProvider provider = cultureName == null ? GlobalConfiguration.DefaultCulture : new CultureInfo(cultureName);
 
             double value = As(unit);
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
