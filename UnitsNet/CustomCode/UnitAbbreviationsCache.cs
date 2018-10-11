@@ -166,15 +166,14 @@ namespace UnitsNet
             static string GetDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider = null) where TUnitType : Enum
         {
             var unitType = typeof(TUnitType);
-            var unitValue = Convert.ToInt32(unit);
 
             var lookup = GetUnitValueAbbreviationLookup(unitType, formatProvider);
             if(lookup == null)
                 return $"(no abbreviation for {unitType.Name}.{unit})";
 
-            var abbreviations = lookup.GetAbbreviationsForUnit(unitValue);
+            var abbreviations = lookup.GetAbbreviationsForUnit(unit);
             if(abbreviations.Count == 0)
-                return formatProvider != FallbackCulture ? GetDefaultAbbreviation(unitType, unitValue, FallbackCulture) : $"(no abbreviation for {unitType.Name}.{unit})";
+                return formatProvider != FallbackCulture ? GetDefaultAbbreviation(unit, FallbackCulture) : $"(no abbreviation for {unitType.Name}.{unit})";
 
             return abbreviations.First();
         }

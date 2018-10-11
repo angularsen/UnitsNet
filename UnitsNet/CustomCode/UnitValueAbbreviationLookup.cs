@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -45,6 +46,11 @@ namespace UnitsNet
             {
                 return abbreviations;
             } ).ToArray();
+        }
+
+        internal List<string> GetAbbreviationsForUnit<UnitType>(UnitType unit) where UnitType : Enum
+        {
+            return GetAbbreviationsForUnit(Convert.ToInt32(unit));
         }
 
         internal List<string> GetAbbreviationsForUnit(int unit)
