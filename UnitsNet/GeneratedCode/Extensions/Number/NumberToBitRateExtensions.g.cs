@@ -47,884 +47,286 @@ namespace UnitsNet.Extensions.NumberToBitRate
         #region BitPerSecond
 
         /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate BitsPerSecond(this int value) => BitRate.FromBitsPerSecond(value);
+        public static BitRate BitsPerSecond<T>(this T value) => BitRate.FromBitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? BitsPerSecond(this int? value) => BitRate.FromBitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate BitsPerSecond(this long value) => BitRate.FromBitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? BitsPerSecond(this long? value) => BitRate.FromBitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate BitsPerSecond(this double value) => BitRate.FromBitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? BitsPerSecond(this double? value) => BitRate.FromBitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate BitsPerSecond(this float value) => BitRate.FromBitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? BitsPerSecond(this float? value) => BitRate.FromBitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate BitsPerSecond(this decimal value) => BitRate.FromBitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromBitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? BitsPerSecond(this decimal? value) => BitRate.FromBitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? BitsPerSecond<T>(this T? value) where T : struct => BitRate.FromBitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region BytePerSecond
 
         /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate BytesPerSecond(this int value) => BitRate.FromBytesPerSecond(value);
+        public static BitRate BytesPerSecond<T>(this T value) => BitRate.FromBytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? BytesPerSecond(this int? value) => BitRate.FromBytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate BytesPerSecond(this long value) => BitRate.FromBytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? BytesPerSecond(this long? value) => BitRate.FromBytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate BytesPerSecond(this double value) => BitRate.FromBytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? BytesPerSecond(this double? value) => BitRate.FromBytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate BytesPerSecond(this float value) => BitRate.FromBytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? BytesPerSecond(this float? value) => BitRate.FromBytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate BytesPerSecond(this decimal value) => BitRate.FromBytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromBytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? BytesPerSecond(this decimal? value) => BitRate.FromBytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? BytesPerSecond<T>(this T? value) where T : struct => BitRate.FromBytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region ExabitPerSecond
 
         /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExabitsPerSecond(this int value) => BitRate.FromExabitsPerSecond(value);
+        public static BitRate ExabitsPerSecond<T>(this T value) => BitRate.FromExabitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExabitsPerSecond(this int? value) => BitRate.FromExabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExabitsPerSecond(this long value) => BitRate.FromExabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExabitsPerSecond(this long? value) => BitRate.FromExabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExabitsPerSecond(this double value) => BitRate.FromExabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExabitsPerSecond(this double? value) => BitRate.FromExabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExabitsPerSecond(this float value) => BitRate.FromExabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExabitsPerSecond(this float? value) => BitRate.FromExabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExabitsPerSecond(this decimal value) => BitRate.FromExabitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromExabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExabitsPerSecond(this decimal? value) => BitRate.FromExabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? ExabitsPerSecond<T>(this T? value) where T : struct => BitRate.FromExabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region ExabytePerSecond
 
         /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExabytesPerSecond(this int value) => BitRate.FromExabytesPerSecond(value);
+        public static BitRate ExabytesPerSecond<T>(this T value) => BitRate.FromExabytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExabytesPerSecond(this int? value) => BitRate.FromExabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExabytesPerSecond(this long value) => BitRate.FromExabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExabytesPerSecond(this long? value) => BitRate.FromExabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExabytesPerSecond(this double value) => BitRate.FromExabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExabytesPerSecond(this double? value) => BitRate.FromExabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExabytesPerSecond(this float value) => BitRate.FromExabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExabytesPerSecond(this float? value) => BitRate.FromExabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExabytesPerSecond(this decimal value) => BitRate.FromExabytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromExabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExabytesPerSecond(this decimal? value) => BitRate.FromExabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? ExabytesPerSecond<T>(this T? value) where T : struct => BitRate.FromExabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region ExbibitPerSecond
 
         /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExbibitsPerSecond(this int value) => BitRate.FromExbibitsPerSecond(value);
+        public static BitRate ExbibitsPerSecond<T>(this T value) => BitRate.FromExbibitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExbibitsPerSecond(this int? value) => BitRate.FromExbibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExbibitsPerSecond(this long value) => BitRate.FromExbibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExbibitsPerSecond(this long? value) => BitRate.FromExbibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExbibitsPerSecond(this double value) => BitRate.FromExbibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExbibitsPerSecond(this double? value) => BitRate.FromExbibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExbibitsPerSecond(this float value) => BitRate.FromExbibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExbibitsPerSecond(this float? value) => BitRate.FromExbibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExbibitsPerSecond(this decimal value) => BitRate.FromExbibitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromExbibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExbibitsPerSecond(this decimal? value) => BitRate.FromExbibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? ExbibitsPerSecond<T>(this T? value) where T : struct => BitRate.FromExbibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region ExbibytePerSecond
 
         /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExbibytesPerSecond(this int value) => BitRate.FromExbibytesPerSecond(value);
+        public static BitRate ExbibytesPerSecond<T>(this T value) => BitRate.FromExbibytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExbibytesPerSecond(this int? value) => BitRate.FromExbibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExbibytesPerSecond(this long value) => BitRate.FromExbibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExbibytesPerSecond(this long? value) => BitRate.FromExbibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExbibytesPerSecond(this double value) => BitRate.FromExbibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExbibytesPerSecond(this double? value) => BitRate.FromExbibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExbibytesPerSecond(this float value) => BitRate.FromExbibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExbibytesPerSecond(this float? value) => BitRate.FromExbibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate ExbibytesPerSecond(this decimal value) => BitRate.FromExbibytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromExbibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? ExbibytesPerSecond(this decimal? value) => BitRate.FromExbibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? ExbibytesPerSecond<T>(this T? value) where T : struct => BitRate.FromExbibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GibibitPerSecond
 
         /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GibibitsPerSecond(this int value) => BitRate.FromGibibitsPerSecond(value);
+        public static BitRate GibibitsPerSecond<T>(this T value) => BitRate.FromGibibitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GibibitsPerSecond(this int? value) => BitRate.FromGibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GibibitsPerSecond(this long value) => BitRate.FromGibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GibibitsPerSecond(this long? value) => BitRate.FromGibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GibibitsPerSecond(this double value) => BitRate.FromGibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GibibitsPerSecond(this double? value) => BitRate.FromGibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GibibitsPerSecond(this float value) => BitRate.FromGibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GibibitsPerSecond(this float? value) => BitRate.FromGibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GibibitsPerSecond(this decimal value) => BitRate.FromGibibitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromGibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GibibitsPerSecond(this decimal? value) => BitRate.FromGibibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? GibibitsPerSecond<T>(this T? value) where T : struct => BitRate.FromGibibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GibibytePerSecond
 
         /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GibibytesPerSecond(this int value) => BitRate.FromGibibytesPerSecond(value);
+        public static BitRate GibibytesPerSecond<T>(this T value) => BitRate.FromGibibytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GibibytesPerSecond(this int? value) => BitRate.FromGibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GibibytesPerSecond(this long value) => BitRate.FromGibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GibibytesPerSecond(this long? value) => BitRate.FromGibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GibibytesPerSecond(this double value) => BitRate.FromGibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GibibytesPerSecond(this double? value) => BitRate.FromGibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GibibytesPerSecond(this float value) => BitRate.FromGibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GibibytesPerSecond(this float? value) => BitRate.FromGibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GibibytesPerSecond(this decimal value) => BitRate.FromGibibytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromGibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GibibytesPerSecond(this decimal? value) => BitRate.FromGibibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? GibibytesPerSecond<T>(this T? value) where T : struct => BitRate.FromGibibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GigabitPerSecond
 
         /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GigabitsPerSecond(this int value) => BitRate.FromGigabitsPerSecond(value);
+        public static BitRate GigabitsPerSecond<T>(this T value) => BitRate.FromGigabitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GigabitsPerSecond(this int? value) => BitRate.FromGigabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GigabitsPerSecond(this long value) => BitRate.FromGigabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GigabitsPerSecond(this long? value) => BitRate.FromGigabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GigabitsPerSecond(this double value) => BitRate.FromGigabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GigabitsPerSecond(this double? value) => BitRate.FromGigabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GigabitsPerSecond(this float value) => BitRate.FromGigabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GigabitsPerSecond(this float? value) => BitRate.FromGigabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GigabitsPerSecond(this decimal value) => BitRate.FromGigabitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromGigabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GigabitsPerSecond(this decimal? value) => BitRate.FromGigabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? GigabitsPerSecond<T>(this T? value) where T : struct => BitRate.FromGigabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GigabytePerSecond
 
         /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GigabytesPerSecond(this int value) => BitRate.FromGigabytesPerSecond(value);
+        public static BitRate GigabytesPerSecond<T>(this T value) => BitRate.FromGigabytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GigabytesPerSecond(this int? value) => BitRate.FromGigabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GigabytesPerSecond(this long value) => BitRate.FromGigabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GigabytesPerSecond(this long? value) => BitRate.FromGigabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GigabytesPerSecond(this double value) => BitRate.FromGigabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GigabytesPerSecond(this double? value) => BitRate.FromGigabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GigabytesPerSecond(this float value) => BitRate.FromGigabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GigabytesPerSecond(this float? value) => BitRate.FromGigabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate GigabytesPerSecond(this decimal value) => BitRate.FromGigabytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromGigabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? GigabytesPerSecond(this decimal? value) => BitRate.FromGigabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? GigabytesPerSecond<T>(this T? value) where T : struct => BitRate.FromGigabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KibibitPerSecond
 
         /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KibibitsPerSecond(this int value) => BitRate.FromKibibitsPerSecond(value);
+        public static BitRate KibibitsPerSecond<T>(this T value) => BitRate.FromKibibitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KibibitsPerSecond(this int? value) => BitRate.FromKibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KibibitsPerSecond(this long value) => BitRate.FromKibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KibibitsPerSecond(this long? value) => BitRate.FromKibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KibibitsPerSecond(this double value) => BitRate.FromKibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KibibitsPerSecond(this double? value) => BitRate.FromKibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KibibitsPerSecond(this float value) => BitRate.FromKibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KibibitsPerSecond(this float? value) => BitRate.FromKibibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KibibitsPerSecond(this decimal value) => BitRate.FromKibibitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromKibibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KibibitsPerSecond(this decimal? value) => BitRate.FromKibibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? KibibitsPerSecond<T>(this T? value) where T : struct => BitRate.FromKibibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KibibytePerSecond
 
         /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KibibytesPerSecond(this int value) => BitRate.FromKibibytesPerSecond(value);
+        public static BitRate KibibytesPerSecond<T>(this T value) => BitRate.FromKibibytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KibibytesPerSecond(this int? value) => BitRate.FromKibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KibibytesPerSecond(this long value) => BitRate.FromKibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KibibytesPerSecond(this long? value) => BitRate.FromKibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KibibytesPerSecond(this double value) => BitRate.FromKibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KibibytesPerSecond(this double? value) => BitRate.FromKibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KibibytesPerSecond(this float value) => BitRate.FromKibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KibibytesPerSecond(this float? value) => BitRate.FromKibibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KibibytesPerSecond(this decimal value) => BitRate.FromKibibytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromKibibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KibibytesPerSecond(this decimal? value) => BitRate.FromKibibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? KibibytesPerSecond<T>(this T? value) where T : struct => BitRate.FromKibibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilobitPerSecond
 
         /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KilobitsPerSecond(this int value) => BitRate.FromKilobitsPerSecond(value);
+        public static BitRate KilobitsPerSecond<T>(this T value) => BitRate.FromKilobitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KilobitsPerSecond(this int? value) => BitRate.FromKilobitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KilobitsPerSecond(this long value) => BitRate.FromKilobitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KilobitsPerSecond(this long? value) => BitRate.FromKilobitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KilobitsPerSecond(this double value) => BitRate.FromKilobitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KilobitsPerSecond(this double? value) => BitRate.FromKilobitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KilobitsPerSecond(this float value) => BitRate.FromKilobitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KilobitsPerSecond(this float? value) => BitRate.FromKilobitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KilobitsPerSecond(this decimal value) => BitRate.FromKilobitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromKilobitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KilobitsPerSecond(this decimal? value) => BitRate.FromKilobitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? KilobitsPerSecond<T>(this T? value) where T : struct => BitRate.FromKilobitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilobytePerSecond
 
         /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KilobytesPerSecond(this int value) => BitRate.FromKilobytesPerSecond(value);
+        public static BitRate KilobytesPerSecond<T>(this T value) => BitRate.FromKilobytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KilobytesPerSecond(this int? value) => BitRate.FromKilobytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KilobytesPerSecond(this long value) => BitRate.FromKilobytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KilobytesPerSecond(this long? value) => BitRate.FromKilobytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KilobytesPerSecond(this double value) => BitRate.FromKilobytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KilobytesPerSecond(this double? value) => BitRate.FromKilobytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KilobytesPerSecond(this float value) => BitRate.FromKilobytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KilobytesPerSecond(this float? value) => BitRate.FromKilobytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate KilobytesPerSecond(this decimal value) => BitRate.FromKilobytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromKilobytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? KilobytesPerSecond(this decimal? value) => BitRate.FromKilobytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? KilobytesPerSecond<T>(this T? value) where T : struct => BitRate.FromKilobytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MebibitPerSecond
 
         /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MebibitsPerSecond(this int value) => BitRate.FromMebibitsPerSecond(value);
+        public static BitRate MebibitsPerSecond<T>(this T value) => BitRate.FromMebibitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MebibitsPerSecond(this int? value) => BitRate.FromMebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MebibitsPerSecond(this long value) => BitRate.FromMebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MebibitsPerSecond(this long? value) => BitRate.FromMebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MebibitsPerSecond(this double value) => BitRate.FromMebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MebibitsPerSecond(this double? value) => BitRate.FromMebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MebibitsPerSecond(this float value) => BitRate.FromMebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MebibitsPerSecond(this float? value) => BitRate.FromMebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MebibitsPerSecond(this decimal value) => BitRate.FromMebibitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromMebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MebibitsPerSecond(this decimal? value) => BitRate.FromMebibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? MebibitsPerSecond<T>(this T? value) where T : struct => BitRate.FromMebibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MebibytePerSecond
 
         /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MebibytesPerSecond(this int value) => BitRate.FromMebibytesPerSecond(value);
+        public static BitRate MebibytesPerSecond<T>(this T value) => BitRate.FromMebibytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MebibytesPerSecond(this int? value) => BitRate.FromMebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MebibytesPerSecond(this long value) => BitRate.FromMebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MebibytesPerSecond(this long? value) => BitRate.FromMebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MebibytesPerSecond(this double value) => BitRate.FromMebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MebibytesPerSecond(this double? value) => BitRate.FromMebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MebibytesPerSecond(this float value) => BitRate.FromMebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MebibytesPerSecond(this float? value) => BitRate.FromMebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MebibytesPerSecond(this decimal value) => BitRate.FromMebibytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromMebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MebibytesPerSecond(this decimal? value) => BitRate.FromMebibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? MebibytesPerSecond<T>(this T? value) where T : struct => BitRate.FromMebibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegabitPerSecond
 
         /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MegabitsPerSecond(this int value) => BitRate.FromMegabitsPerSecond(value);
+        public static BitRate MegabitsPerSecond<T>(this T value) => BitRate.FromMegabitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MegabitsPerSecond(this int? value) => BitRate.FromMegabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MegabitsPerSecond(this long value) => BitRate.FromMegabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MegabitsPerSecond(this long? value) => BitRate.FromMegabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MegabitsPerSecond(this double value) => BitRate.FromMegabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MegabitsPerSecond(this double? value) => BitRate.FromMegabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MegabitsPerSecond(this float value) => BitRate.FromMegabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MegabitsPerSecond(this float? value) => BitRate.FromMegabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MegabitsPerSecond(this decimal value) => BitRate.FromMegabitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromMegabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MegabitsPerSecond(this decimal? value) => BitRate.FromMegabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? MegabitsPerSecond<T>(this T? value) where T : struct => BitRate.FromMegabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegabytePerSecond
 
         /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MegabytesPerSecond(this int value) => BitRate.FromMegabytesPerSecond(value);
+        public static BitRate MegabytesPerSecond<T>(this T value) => BitRate.FromMegabytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MegabytesPerSecond(this int? value) => BitRate.FromMegabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MegabytesPerSecond(this long value) => BitRate.FromMegabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MegabytesPerSecond(this long? value) => BitRate.FromMegabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MegabytesPerSecond(this double value) => BitRate.FromMegabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MegabytesPerSecond(this double? value) => BitRate.FromMegabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MegabytesPerSecond(this float value) => BitRate.FromMegabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MegabytesPerSecond(this float? value) => BitRate.FromMegabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate MegabytesPerSecond(this decimal value) => BitRate.FromMegabytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromMegabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? MegabytesPerSecond(this decimal? value) => BitRate.FromMegabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? MegabytesPerSecond<T>(this T? value) where T : struct => BitRate.FromMegabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PebibitPerSecond
 
         /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PebibitsPerSecond(this int value) => BitRate.FromPebibitsPerSecond(value);
+        public static BitRate PebibitsPerSecond<T>(this T value) => BitRate.FromPebibitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PebibitsPerSecond(this int? value) => BitRate.FromPebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PebibitsPerSecond(this long value) => BitRate.FromPebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PebibitsPerSecond(this long? value) => BitRate.FromPebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PebibitsPerSecond(this double value) => BitRate.FromPebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PebibitsPerSecond(this double? value) => BitRate.FromPebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PebibitsPerSecond(this float value) => BitRate.FromPebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PebibitsPerSecond(this float? value) => BitRate.FromPebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PebibitsPerSecond(this decimal value) => BitRate.FromPebibitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromPebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PebibitsPerSecond(this decimal? value) => BitRate.FromPebibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? PebibitsPerSecond<T>(this T? value) where T : struct => BitRate.FromPebibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PebibytePerSecond
 
         /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PebibytesPerSecond(this int value) => BitRate.FromPebibytesPerSecond(value);
+        public static BitRate PebibytesPerSecond<T>(this T value) => BitRate.FromPebibytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PebibytesPerSecond(this int? value) => BitRate.FromPebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PebibytesPerSecond(this long value) => BitRate.FromPebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PebibytesPerSecond(this long? value) => BitRate.FromPebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PebibytesPerSecond(this double value) => BitRate.FromPebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PebibytesPerSecond(this double? value) => BitRate.FromPebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PebibytesPerSecond(this float value) => BitRate.FromPebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PebibytesPerSecond(this float? value) => BitRate.FromPebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PebibytesPerSecond(this decimal value) => BitRate.FromPebibytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromPebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PebibytesPerSecond(this decimal? value) => BitRate.FromPebibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? PebibytesPerSecond<T>(this T? value) where T : struct => BitRate.FromPebibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PetabitPerSecond
 
         /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PetabitsPerSecond(this int value) => BitRate.FromPetabitsPerSecond(value);
+        public static BitRate PetabitsPerSecond<T>(this T value) => BitRate.FromPetabitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PetabitsPerSecond(this int? value) => BitRate.FromPetabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PetabitsPerSecond(this long value) => BitRate.FromPetabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PetabitsPerSecond(this long? value) => BitRate.FromPetabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PetabitsPerSecond(this double value) => BitRate.FromPetabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PetabitsPerSecond(this double? value) => BitRate.FromPetabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PetabitsPerSecond(this float value) => BitRate.FromPetabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PetabitsPerSecond(this float? value) => BitRate.FromPetabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PetabitsPerSecond(this decimal value) => BitRate.FromPetabitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromPetabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PetabitsPerSecond(this decimal? value) => BitRate.FromPetabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? PetabitsPerSecond<T>(this T? value) where T : struct => BitRate.FromPetabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PetabytePerSecond
 
         /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PetabytesPerSecond(this int value) => BitRate.FromPetabytesPerSecond(value);
+        public static BitRate PetabytesPerSecond<T>(this T value) => BitRate.FromPetabytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PetabytesPerSecond(this int? value) => BitRate.FromPetabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PetabytesPerSecond(this long value) => BitRate.FromPetabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PetabytesPerSecond(this long? value) => BitRate.FromPetabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PetabytesPerSecond(this double value) => BitRate.FromPetabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PetabytesPerSecond(this double? value) => BitRate.FromPetabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PetabytesPerSecond(this float value) => BitRate.FromPetabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PetabytesPerSecond(this float? value) => BitRate.FromPetabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate PetabytesPerSecond(this decimal value) => BitRate.FromPetabytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromPetabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? PetabytesPerSecond(this decimal? value) => BitRate.FromPetabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? PetabytesPerSecond<T>(this T? value) where T : struct => BitRate.FromPetabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region TebibitPerSecond
 
         /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TebibitsPerSecond(this int value) => BitRate.FromTebibitsPerSecond(value);
+        public static BitRate TebibitsPerSecond<T>(this T value) => BitRate.FromTebibitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TebibitsPerSecond(this int? value) => BitRate.FromTebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TebibitsPerSecond(this long value) => BitRate.FromTebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TebibitsPerSecond(this long? value) => BitRate.FromTebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TebibitsPerSecond(this double value) => BitRate.FromTebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TebibitsPerSecond(this double? value) => BitRate.FromTebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TebibitsPerSecond(this float value) => BitRate.FromTebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TebibitsPerSecond(this float? value) => BitRate.FromTebibitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TebibitsPerSecond(this decimal value) => BitRate.FromTebibitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromTebibitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TebibitsPerSecond(this decimal? value) => BitRate.FromTebibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? TebibitsPerSecond<T>(this T? value) where T : struct => BitRate.FromTebibitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region TebibytePerSecond
 
         /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TebibytesPerSecond(this int value) => BitRate.FromTebibytesPerSecond(value);
+        public static BitRate TebibytesPerSecond<T>(this T value) => BitRate.FromTebibytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TebibytesPerSecond(this int? value) => BitRate.FromTebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TebibytesPerSecond(this long value) => BitRate.FromTebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TebibytesPerSecond(this long? value) => BitRate.FromTebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TebibytesPerSecond(this double value) => BitRate.FromTebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TebibytesPerSecond(this double? value) => BitRate.FromTebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TebibytesPerSecond(this float value) => BitRate.FromTebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TebibytesPerSecond(this float? value) => BitRate.FromTebibytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TebibytesPerSecond(this decimal value) => BitRate.FromTebibytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromTebibytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TebibytesPerSecond(this decimal? value) => BitRate.FromTebibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? TebibytesPerSecond<T>(this T? value) where T : struct => BitRate.FromTebibytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region TerabitPerSecond
 
         /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TerabitsPerSecond(this int value) => BitRate.FromTerabitsPerSecond(value);
+        public static BitRate TerabitsPerSecond<T>(this T value) => BitRate.FromTerabitsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TerabitsPerSecond(this int? value) => BitRate.FromTerabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TerabitsPerSecond(this long value) => BitRate.FromTerabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TerabitsPerSecond(this long? value) => BitRate.FromTerabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TerabitsPerSecond(this double value) => BitRate.FromTerabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TerabitsPerSecond(this double? value) => BitRate.FromTerabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TerabitsPerSecond(this float value) => BitRate.FromTerabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TerabitsPerSecond(this float? value) => BitRate.FromTerabitsPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TerabitsPerSecond(this decimal value) => BitRate.FromTerabitsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromTerabitsPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TerabitsPerSecond(this decimal? value) => BitRate.FromTerabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? TerabitsPerSecond<T>(this T? value) where T : struct => BitRate.FromTerabitsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region TerabytePerSecond
 
         /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TerabytesPerSecond(this int value) => BitRate.FromTerabytesPerSecond(value);
+        public static BitRate TerabytesPerSecond<T>(this T value) => BitRate.FromTerabytesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TerabytesPerSecond(this int? value) => BitRate.FromTerabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TerabytesPerSecond(this long value) => BitRate.FromTerabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TerabytesPerSecond(this long? value) => BitRate.FromTerabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TerabytesPerSecond(this double value) => BitRate.FromTerabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TerabytesPerSecond(this double? value) => BitRate.FromTerabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TerabytesPerSecond(this float value) => BitRate.FromTerabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TerabytesPerSecond(this float? value) => BitRate.FromTerabytesPerSecond(value);
-
-        /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate TerabytesPerSecond(this decimal value) => BitRate.FromTerabytesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="BitRate.FromTerabytesPerSecond(UnitsNet.QuantityValue)" />
-        public static BitRate? TerabytesPerSecond(this decimal? value) => BitRate.FromTerabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static BitRate? TerabytesPerSecond<T>(this T? value) where T : struct => BitRate.FromTerabytesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

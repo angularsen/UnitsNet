@@ -47,68 +47,22 @@ namespace UnitsNet.Extensions.NumberToSpecificVolume
         #region CubicFootPerPound
 
         /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicFeetPerPound(this int value) => SpecificVolume.FromCubicFeetPerPound(value);
+        public static SpecificVolume CubicFeetPerPound<T>(this T value) => SpecificVolume.FromCubicFeetPerPound(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicFeetPerPound(this int? value) => SpecificVolume.FromCubicFeetPerPound(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicFeetPerPound(this long value) => SpecificVolume.FromCubicFeetPerPound(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicFeetPerPound(this long? value) => SpecificVolume.FromCubicFeetPerPound(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicFeetPerPound(this double value) => SpecificVolume.FromCubicFeetPerPound(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicFeetPerPound(this double? value) => SpecificVolume.FromCubicFeetPerPound(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicFeetPerPound(this float value) => SpecificVolume.FromCubicFeetPerPound(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicFeetPerPound(this float? value) => SpecificVolume.FromCubicFeetPerPound(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicFeetPerPound(this decimal value) => SpecificVolume.FromCubicFeetPerPound(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicFeetPerPound(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicFeetPerPound(this decimal? value) => SpecificVolume.FromCubicFeetPerPound(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static SpecificVolume? CubicFeetPerPound<T>(this T? value) where T : struct => SpecificVolume.FromCubicFeetPerPound(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CubicMeterPerKilogram
 
         /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicMetersPerKilogram(this int value) => SpecificVolume.FromCubicMetersPerKilogram(value);
+        public static SpecificVolume CubicMetersPerKilogram<T>(this T value) => SpecificVolume.FromCubicMetersPerKilogram(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicMetersPerKilogram(this int? value) => SpecificVolume.FromCubicMetersPerKilogram(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicMetersPerKilogram(this long value) => SpecificVolume.FromCubicMetersPerKilogram(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicMetersPerKilogram(this long? value) => SpecificVolume.FromCubicMetersPerKilogram(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicMetersPerKilogram(this double value) => SpecificVolume.FromCubicMetersPerKilogram(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicMetersPerKilogram(this double? value) => SpecificVolume.FromCubicMetersPerKilogram(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicMetersPerKilogram(this float value) => SpecificVolume.FromCubicMetersPerKilogram(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicMetersPerKilogram(this float? value) => SpecificVolume.FromCubicMetersPerKilogram(value);
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
-        public static SpecificVolume CubicMetersPerKilogram(this decimal value) => SpecificVolume.FromCubicMetersPerKilogram(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="SpecificVolume.FromCubicMetersPerKilogram(UnitsNet.QuantityValue)" />
-        public static SpecificVolume? CubicMetersPerKilogram(this decimal? value) => SpecificVolume.FromCubicMetersPerKilogram(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static SpecificVolume? CubicMetersPerKilogram<T>(this T? value) where T : struct => SpecificVolume.FromCubicMetersPerKilogram(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

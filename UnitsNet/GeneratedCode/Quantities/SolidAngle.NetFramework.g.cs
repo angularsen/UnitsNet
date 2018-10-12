@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SolidAngle from nullable Steradians.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SolidAngle? FromSteradians(QuantityValue? steradians)
         {
             return steradians.HasValue ? FromSteradians(steradians.Value) : default(SolidAngle?);
@@ -76,6 +77,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SolidAngle unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SolidAngle? From(QuantityValue? value, SolidAngleUnit fromUnit)
         {
             return value.HasValue ? new SolidAngle((double)value.Value, fromUnit) : default(SolidAngle?);
@@ -233,6 +235,22 @@ namespace UnitsNet
                 result = default(SolidAngle);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static SolidAngleUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

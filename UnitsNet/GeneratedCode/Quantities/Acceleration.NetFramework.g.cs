@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Acceleration from nullable CentimetersPerSecondSquared.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Acceleration? FromCentimetersPerSecondSquared(QuantityValue? centimeterspersecondsquared)
         {
             return centimeterspersecondsquared.HasValue ? FromCentimetersPerSecondSquared(centimeterspersecondsquared.Value) : default(Acceleration?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Acceleration from nullable DecimetersPerSecondSquared.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Acceleration? FromDecimetersPerSecondSquared(QuantityValue? decimeterspersecondsquared)
         {
             return decimeterspersecondsquared.HasValue ? FromDecimetersPerSecondSquared(decimeterspersecondsquared.Value) : default(Acceleration?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Acceleration from nullable FeetPerSecondSquared.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Acceleration? FromFeetPerSecondSquared(QuantityValue? feetpersecondsquared)
         {
             return feetpersecondsquared.HasValue ? FromFeetPerSecondSquared(feetpersecondsquared.Value) : default(Acceleration?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Acceleration from nullable InchesPerSecondSquared.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Acceleration? FromInchesPerSecondSquared(QuantityValue? inchespersecondsquared)
         {
             return inchespersecondsquared.HasValue ? FromInchesPerSecondSquared(inchespersecondsquared.Value) : default(Acceleration?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Acceleration from nullable KilometersPerSecondSquared.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Acceleration? FromKilometersPerSecondSquared(QuantityValue? kilometerspersecondsquared)
         {
             return kilometerspersecondsquared.HasValue ? FromKilometersPerSecondSquared(kilometerspersecondsquared.Value) : default(Acceleration?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Acceleration from nullable KnotsPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Acceleration? FromKnotsPerHour(QuantityValue? knotsperhour)
         {
             return knotsperhour.HasValue ? FromKnotsPerHour(knotsperhour.Value) : default(Acceleration?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Acceleration from nullable KnotsPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Acceleration? FromKnotsPerMinute(QuantityValue? knotsperminute)
         {
             return knotsperminute.HasValue ? FromKnotsPerMinute(knotsperminute.Value) : default(Acceleration?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Acceleration from nullable KnotsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Acceleration? FromKnotsPerSecond(QuantityValue? knotspersecond)
         {
             return knotspersecond.HasValue ? FromKnotsPerSecond(knotspersecond.Value) : default(Acceleration?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Acceleration from nullable MetersPerSecondSquared.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Acceleration? FromMetersPerSecondSquared(QuantityValue? meterspersecondsquared)
         {
             return meterspersecondsquared.HasValue ? FromMetersPerSecondSquared(meterspersecondsquared.Value) : default(Acceleration?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Acceleration from nullable MicrometersPerSecondSquared.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Acceleration? FromMicrometersPerSecondSquared(QuantityValue? micrometerspersecondsquared)
         {
             return micrometerspersecondsquared.HasValue ? FromMicrometersPerSecondSquared(micrometerspersecondsquared.Value) : default(Acceleration?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Acceleration from nullable MillimetersPerSecondSquared.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Acceleration? FromMillimetersPerSecondSquared(QuantityValue? millimeterspersecondsquared)
         {
             return millimeterspersecondsquared.HasValue ? FromMillimetersPerSecondSquared(millimeterspersecondsquared.Value) : default(Acceleration?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Acceleration from nullable NanometersPerSecondSquared.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Acceleration? FromNanometersPerSecondSquared(QuantityValue? nanometerspersecondsquared)
         {
             return nanometerspersecondsquared.HasValue ? FromNanometersPerSecondSquared(nanometerspersecondsquared.Value) : default(Acceleration?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Acceleration from nullable StandardGravity.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Acceleration? FromStandardGravity(QuantityValue? standardgravity)
         {
             return standardgravity.HasValue ? FromStandardGravity(standardgravity.Value) : default(Acceleration?);
@@ -172,6 +185,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Acceleration unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Acceleration? From(QuantityValue? value, AccelerationUnit fromUnit)
         {
             return value.HasValue ? new Acceleration((double)value.Value, fromUnit) : default(Acceleration?);
@@ -329,6 +343,22 @@ namespace UnitsNet
                 result = default(Acceleration);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static AccelerationUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

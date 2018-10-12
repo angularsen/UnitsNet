@@ -47,34 +47,11 @@ namespace UnitsNet.Extensions.NumberToLuminousFlux
         #region Lumen
 
         /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
-        public static LuminousFlux Lumens(this int value) => LuminousFlux.FromLumens(value);
+        public static LuminousFlux Lumens<T>(this T value) => LuminousFlux.FromLumens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
-        public static LuminousFlux? Lumens(this int? value) => LuminousFlux.FromLumens(value);
-
-        /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
-        public static LuminousFlux Lumens(this long value) => LuminousFlux.FromLumens(value);
-
-        /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
-        public static LuminousFlux? Lumens(this long? value) => LuminousFlux.FromLumens(value);
-
-        /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
-        public static LuminousFlux Lumens(this double value) => LuminousFlux.FromLumens(value);
-
-        /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
-        public static LuminousFlux? Lumens(this double? value) => LuminousFlux.FromLumens(value);
-
-        /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
-        public static LuminousFlux Lumens(this float value) => LuminousFlux.FromLumens(value);
-
-        /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
-        public static LuminousFlux? Lumens(this float? value) => LuminousFlux.FromLumens(value);
-
-        /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
-        public static LuminousFlux Lumens(this decimal value) => LuminousFlux.FromLumens(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="LuminousFlux.FromLumens(UnitsNet.QuantityValue)" />
-        public static LuminousFlux? Lumens(this decimal? value) => LuminousFlux.FromLumens(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static LuminousFlux? Lumens<T>(this T? value) where T : struct => LuminousFlux.FromLumens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

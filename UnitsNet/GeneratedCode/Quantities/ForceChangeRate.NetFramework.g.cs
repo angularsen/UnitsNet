@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable CentinewtonsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForceChangeRate? FromCentinewtonsPerSecond(QuantityValue? centinewtonspersecond)
         {
             return centinewtonspersecond.HasValue ? FromCentinewtonsPerSecond(centinewtonspersecond.Value) : default(ForceChangeRate?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable DecanewtonsPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForceChangeRate? FromDecanewtonsPerMinute(QuantityValue? decanewtonsperminute)
         {
             return decanewtonsperminute.HasValue ? FromDecanewtonsPerMinute(decanewtonsperminute.Value) : default(ForceChangeRate?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable DecanewtonsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForceChangeRate? FromDecanewtonsPerSecond(QuantityValue? decanewtonspersecond)
         {
             return decanewtonspersecond.HasValue ? FromDecanewtonsPerSecond(decanewtonspersecond.Value) : default(ForceChangeRate?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable DecinewtonsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForceChangeRate? FromDecinewtonsPerSecond(QuantityValue? decinewtonspersecond)
         {
             return decinewtonspersecond.HasValue ? FromDecinewtonsPerSecond(decinewtonspersecond.Value) : default(ForceChangeRate?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable KilonewtonsPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForceChangeRate? FromKilonewtonsPerMinute(QuantityValue? kilonewtonsperminute)
         {
             return kilonewtonsperminute.HasValue ? FromKilonewtonsPerMinute(kilonewtonsperminute.Value) : default(ForceChangeRate?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable KilonewtonsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForceChangeRate? FromKilonewtonsPerSecond(QuantityValue? kilonewtonspersecond)
         {
             return kilonewtonspersecond.HasValue ? FromKilonewtonsPerSecond(kilonewtonspersecond.Value) : default(ForceChangeRate?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable MicronewtonsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForceChangeRate? FromMicronewtonsPerSecond(QuantityValue? micronewtonspersecond)
         {
             return micronewtonspersecond.HasValue ? FromMicronewtonsPerSecond(micronewtonspersecond.Value) : default(ForceChangeRate?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable MillinewtonsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForceChangeRate? FromMillinewtonsPerSecond(QuantityValue? millinewtonspersecond)
         {
             return millinewtonspersecond.HasValue ? FromMillinewtonsPerSecond(millinewtonspersecond.Value) : default(ForceChangeRate?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable NanonewtonsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForceChangeRate? FromNanonewtonsPerSecond(QuantityValue? nanonewtonspersecond)
         {
             return nanonewtonspersecond.HasValue ? FromNanonewtonsPerSecond(nanonewtonspersecond.Value) : default(ForceChangeRate?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable NewtonsPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForceChangeRate? FromNewtonsPerMinute(QuantityValue? newtonsperminute)
         {
             return newtonsperminute.HasValue ? FromNewtonsPerMinute(newtonsperminute.Value) : default(ForceChangeRate?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ForceChangeRate from nullable NewtonsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ForceChangeRate? FromNewtonsPerSecond(QuantityValue? newtonspersecond)
         {
             return newtonspersecond.HasValue ? FromNewtonsPerSecond(newtonspersecond.Value) : default(ForceChangeRate?);
@@ -156,6 +167,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ForceChangeRate unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ForceChangeRate? From(QuantityValue? value, ForceChangeRateUnit fromUnit)
         {
             return value.HasValue ? new ForceChangeRate((double)value.Value, fromUnit) : default(ForceChangeRate?);
@@ -313,6 +325,22 @@ namespace UnitsNet
                 result = default(ForceChangeRate);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static ForceChangeRateUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

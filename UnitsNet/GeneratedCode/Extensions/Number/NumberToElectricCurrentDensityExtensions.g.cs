@@ -47,34 +47,11 @@ namespace UnitsNet.Extensions.NumberToElectricCurrentDensity
         #region AmperePerSquareMeter
 
         /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentDensity AmperesPerSquareMeter(this int value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
+        public static ElectricCurrentDensity AmperesPerSquareMeter<T>(this T value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentDensity? AmperesPerSquareMeter(this int? value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
-
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentDensity AmperesPerSquareMeter(this long value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
-
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentDensity? AmperesPerSquareMeter(this long? value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
-
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentDensity AmperesPerSquareMeter(this double value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
-
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentDensity? AmperesPerSquareMeter(this double? value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
-
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentDensity AmperesPerSquareMeter(this float value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
-
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentDensity? AmperesPerSquareMeter(this float? value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value);
-
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentDensity AmperesPerSquareMeter(this decimal value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricCurrentDensity.FromAmperesPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentDensity? AmperesPerSquareMeter(this decimal? value) => ElectricCurrentDensity.FromAmperesPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricCurrentDensity? AmperesPerSquareMeter<T>(this T? value) where T : struct => ElectricCurrentDensity.FromAmperesPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

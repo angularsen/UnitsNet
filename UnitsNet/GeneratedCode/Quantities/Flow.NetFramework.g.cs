@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable CentilitersPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromCentilitersPerMinute(QuantityValue? centilitersperminute)
         {
             return centilitersperminute.HasValue ? FromCentilitersPerMinute(centilitersperminute.Value) : default(Flow?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable CubicDecimetersPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromCubicDecimetersPerMinute(QuantityValue? cubicdecimetersperminute)
         {
             return cubicdecimetersperminute.HasValue ? FromCubicDecimetersPerMinute(cubicdecimetersperminute.Value) : default(Flow?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable CubicFeetPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromCubicFeetPerHour(QuantityValue? cubicfeetperhour)
         {
             return cubicfeetperhour.HasValue ? FromCubicFeetPerHour(cubicfeetperhour.Value) : default(Flow?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable CubicFeetPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromCubicFeetPerMinute(QuantityValue? cubicfeetperminute)
         {
             return cubicfeetperminute.HasValue ? FromCubicFeetPerMinute(cubicfeetperminute.Value) : default(Flow?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable CubicFeetPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromCubicFeetPerSecond(QuantityValue? cubicfeetpersecond)
         {
             return cubicfeetpersecond.HasValue ? FromCubicFeetPerSecond(cubicfeetpersecond.Value) : default(Flow?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable CubicMetersPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromCubicMetersPerHour(QuantityValue? cubicmetersperhour)
         {
             return cubicmetersperhour.HasValue ? FromCubicMetersPerHour(cubicmetersperhour.Value) : default(Flow?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable CubicMetersPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromCubicMetersPerMinute(QuantityValue? cubicmetersperminute)
         {
             return cubicmetersperminute.HasValue ? FromCubicMetersPerMinute(cubicmetersperminute.Value) : default(Flow?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable CubicMetersPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromCubicMetersPerSecond(QuantityValue? cubicmeterspersecond)
         {
             return cubicmeterspersecond.HasValue ? FromCubicMetersPerSecond(cubicmeterspersecond.Value) : default(Flow?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable CubicYardsPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromCubicYardsPerHour(QuantityValue? cubicyardsperhour)
         {
             return cubicyardsperhour.HasValue ? FromCubicYardsPerHour(cubicyardsperhour.Value) : default(Flow?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable CubicYardsPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromCubicYardsPerMinute(QuantityValue? cubicyardsperminute)
         {
             return cubicyardsperminute.HasValue ? FromCubicYardsPerMinute(cubicyardsperminute.Value) : default(Flow?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable CubicYardsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromCubicYardsPerSecond(QuantityValue? cubicyardspersecond)
         {
             return cubicyardspersecond.HasValue ? FromCubicYardsPerSecond(cubicyardspersecond.Value) : default(Flow?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable DecilitersPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromDecilitersPerMinute(QuantityValue? decilitersperminute)
         {
             return decilitersperminute.HasValue ? FromDecilitersPerMinute(decilitersperminute.Value) : default(Flow?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable KilolitersPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromKilolitersPerMinute(QuantityValue? kilolitersperminute)
         {
             return kilolitersperminute.HasValue ? FromKilolitersPerMinute(kilolitersperminute.Value) : default(Flow?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable LitersPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromLitersPerHour(QuantityValue? litersperhour)
         {
             return litersperhour.HasValue ? FromLitersPerHour(litersperhour.Value) : default(Flow?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable LitersPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromLitersPerMinute(QuantityValue? litersperminute)
         {
             return litersperminute.HasValue ? FromLitersPerMinute(litersperminute.Value) : default(Flow?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable LitersPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromLitersPerSecond(QuantityValue? literspersecond)
         {
             return literspersecond.HasValue ? FromLitersPerSecond(literspersecond.Value) : default(Flow?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable MicrolitersPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromMicrolitersPerMinute(QuantityValue? microlitersperminute)
         {
             return microlitersperminute.HasValue ? FromMicrolitersPerMinute(microlitersperminute.Value) : default(Flow?);
@@ -201,6 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable MillilitersPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromMillilitersPerMinute(QuantityValue? millilitersperminute)
         {
             return millilitersperminute.HasValue ? FromMillilitersPerMinute(millilitersperminute.Value) : default(Flow?);
@@ -209,6 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable MillionUsGallonsPerDay.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromMillionUsGallonsPerDay(QuantityValue? millionusgallonsperday)
         {
             return millionusgallonsperday.HasValue ? FromMillionUsGallonsPerDay(millionusgallonsperday.Value) : default(Flow?);
@@ -217,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable NanolitersPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromNanolitersPerMinute(QuantityValue? nanolitersperminute)
         {
             return nanolitersperminute.HasValue ? FromNanolitersPerMinute(nanolitersperminute.Value) : default(Flow?);
@@ -225,6 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable OilBarrelsPerDay.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromOilBarrelsPerDay(QuantityValue? oilbarrelsperday)
         {
             return oilbarrelsperday.HasValue ? FromOilBarrelsPerDay(oilbarrelsperday.Value) : default(Flow?);
@@ -233,6 +254,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable UsGallonsPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromUsGallonsPerHour(QuantityValue? usgallonsperhour)
         {
             return usgallonsperhour.HasValue ? FromUsGallonsPerHour(usgallonsperhour.Value) : default(Flow?);
@@ -241,6 +263,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable UsGallonsPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromUsGallonsPerMinute(QuantityValue? usgallonsperminute)
         {
             return usgallonsperminute.HasValue ? FromUsGallonsPerMinute(usgallonsperminute.Value) : default(Flow?);
@@ -249,6 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Flow from nullable UsGallonsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Flow? FromUsGallonsPerSecond(QuantityValue? usgallonspersecond)
         {
             return usgallonspersecond.HasValue ? FromUsGallonsPerSecond(usgallonspersecond.Value) : default(Flow?);
@@ -260,6 +284,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Flow unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Flow? From(QuantityValue? value, FlowUnit fromUnit)
         {
             return value.HasValue ? new Flow((double)value.Value, fromUnit) : default(Flow?);
@@ -417,6 +442,22 @@ namespace UnitsNet
                 result = default(Flow);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static FlowUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

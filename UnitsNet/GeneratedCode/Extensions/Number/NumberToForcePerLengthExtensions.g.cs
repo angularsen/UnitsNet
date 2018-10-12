@@ -47,306 +47,99 @@ namespace UnitsNet.Extensions.NumberToForcePerLength
         #region CentinewtonPerMeter
 
         /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength CentinewtonsPerMeter(this int value) => ForcePerLength.FromCentinewtonsPerMeter(value);
+        public static ForcePerLength CentinewtonsPerMeter<T>(this T value) => ForcePerLength.FromCentinewtonsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? CentinewtonsPerMeter(this int? value) => ForcePerLength.FromCentinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength CentinewtonsPerMeter(this long value) => ForcePerLength.FromCentinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? CentinewtonsPerMeter(this long? value) => ForcePerLength.FromCentinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength CentinewtonsPerMeter(this double value) => ForcePerLength.FromCentinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? CentinewtonsPerMeter(this double? value) => ForcePerLength.FromCentinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength CentinewtonsPerMeter(this float value) => ForcePerLength.FromCentinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? CentinewtonsPerMeter(this float? value) => ForcePerLength.FromCentinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength CentinewtonsPerMeter(this decimal value) => ForcePerLength.FromCentinewtonsPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForcePerLength.FromCentinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? CentinewtonsPerMeter(this decimal? value) => ForcePerLength.FromCentinewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ForcePerLength? CentinewtonsPerMeter<T>(this T? value) where T : struct => ForcePerLength.FromCentinewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecinewtonPerMeter
 
         /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength DecinewtonsPerMeter(this int value) => ForcePerLength.FromDecinewtonsPerMeter(value);
+        public static ForcePerLength DecinewtonsPerMeter<T>(this T value) => ForcePerLength.FromDecinewtonsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? DecinewtonsPerMeter(this int? value) => ForcePerLength.FromDecinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength DecinewtonsPerMeter(this long value) => ForcePerLength.FromDecinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? DecinewtonsPerMeter(this long? value) => ForcePerLength.FromDecinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength DecinewtonsPerMeter(this double value) => ForcePerLength.FromDecinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? DecinewtonsPerMeter(this double? value) => ForcePerLength.FromDecinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength DecinewtonsPerMeter(this float value) => ForcePerLength.FromDecinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? DecinewtonsPerMeter(this float? value) => ForcePerLength.FromDecinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength DecinewtonsPerMeter(this decimal value) => ForcePerLength.FromDecinewtonsPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForcePerLength.FromDecinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? DecinewtonsPerMeter(this decimal? value) => ForcePerLength.FromDecinewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ForcePerLength? DecinewtonsPerMeter<T>(this T? value) where T : struct => ForcePerLength.FromDecinewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramForcePerMeter
 
         /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilogramsForcePerMeter(this int value) => ForcePerLength.FromKilogramsForcePerMeter(value);
+        public static ForcePerLength KilogramsForcePerMeter<T>(this T value) => ForcePerLength.FromKilogramsForcePerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? KilogramsForcePerMeter(this int? value) => ForcePerLength.FromKilogramsForcePerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilogramsForcePerMeter(this long value) => ForcePerLength.FromKilogramsForcePerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? KilogramsForcePerMeter(this long? value) => ForcePerLength.FromKilogramsForcePerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilogramsForcePerMeter(this double value) => ForcePerLength.FromKilogramsForcePerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? KilogramsForcePerMeter(this double? value) => ForcePerLength.FromKilogramsForcePerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilogramsForcePerMeter(this float value) => ForcePerLength.FromKilogramsForcePerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? KilogramsForcePerMeter(this float? value) => ForcePerLength.FromKilogramsForcePerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilogramsForcePerMeter(this decimal value) => ForcePerLength.FromKilogramsForcePerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForcePerLength.FromKilogramsForcePerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? KilogramsForcePerMeter(this decimal? value) => ForcePerLength.FromKilogramsForcePerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ForcePerLength? KilogramsForcePerMeter<T>(this T? value) where T : struct => ForcePerLength.FromKilogramsForcePerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilonewtonPerMeter
 
         /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilonewtonsPerMeter(this int value) => ForcePerLength.FromKilonewtonsPerMeter(value);
+        public static ForcePerLength KilonewtonsPerMeter<T>(this T value) => ForcePerLength.FromKilonewtonsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? KilonewtonsPerMeter(this int? value) => ForcePerLength.FromKilonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilonewtonsPerMeter(this long value) => ForcePerLength.FromKilonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? KilonewtonsPerMeter(this long? value) => ForcePerLength.FromKilonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilonewtonsPerMeter(this double value) => ForcePerLength.FromKilonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? KilonewtonsPerMeter(this double? value) => ForcePerLength.FromKilonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilonewtonsPerMeter(this float value) => ForcePerLength.FromKilonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? KilonewtonsPerMeter(this float? value) => ForcePerLength.FromKilonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength KilonewtonsPerMeter(this decimal value) => ForcePerLength.FromKilonewtonsPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForcePerLength.FromKilonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? KilonewtonsPerMeter(this decimal? value) => ForcePerLength.FromKilonewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ForcePerLength? KilonewtonsPerMeter<T>(this T? value) where T : struct => ForcePerLength.FromKilonewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MeganewtonPerMeter
 
         /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MeganewtonsPerMeter(this int value) => ForcePerLength.FromMeganewtonsPerMeter(value);
+        public static ForcePerLength MeganewtonsPerMeter<T>(this T value) => ForcePerLength.FromMeganewtonsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MeganewtonsPerMeter(this int? value) => ForcePerLength.FromMeganewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MeganewtonsPerMeter(this long value) => ForcePerLength.FromMeganewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MeganewtonsPerMeter(this long? value) => ForcePerLength.FromMeganewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MeganewtonsPerMeter(this double value) => ForcePerLength.FromMeganewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MeganewtonsPerMeter(this double? value) => ForcePerLength.FromMeganewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MeganewtonsPerMeter(this float value) => ForcePerLength.FromMeganewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MeganewtonsPerMeter(this float? value) => ForcePerLength.FromMeganewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MeganewtonsPerMeter(this decimal value) => ForcePerLength.FromMeganewtonsPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForcePerLength.FromMeganewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MeganewtonsPerMeter(this decimal? value) => ForcePerLength.FromMeganewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ForcePerLength? MeganewtonsPerMeter<T>(this T? value) where T : struct => ForcePerLength.FromMeganewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicronewtonPerMeter
 
         /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MicronewtonsPerMeter(this int value) => ForcePerLength.FromMicronewtonsPerMeter(value);
+        public static ForcePerLength MicronewtonsPerMeter<T>(this T value) => ForcePerLength.FromMicronewtonsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MicronewtonsPerMeter(this int? value) => ForcePerLength.FromMicronewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MicronewtonsPerMeter(this long value) => ForcePerLength.FromMicronewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MicronewtonsPerMeter(this long? value) => ForcePerLength.FromMicronewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MicronewtonsPerMeter(this double value) => ForcePerLength.FromMicronewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MicronewtonsPerMeter(this double? value) => ForcePerLength.FromMicronewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MicronewtonsPerMeter(this float value) => ForcePerLength.FromMicronewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MicronewtonsPerMeter(this float? value) => ForcePerLength.FromMicronewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MicronewtonsPerMeter(this decimal value) => ForcePerLength.FromMicronewtonsPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForcePerLength.FromMicronewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MicronewtonsPerMeter(this decimal? value) => ForcePerLength.FromMicronewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ForcePerLength? MicronewtonsPerMeter<T>(this T? value) where T : struct => ForcePerLength.FromMicronewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillinewtonPerMeter
 
         /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MillinewtonsPerMeter(this int value) => ForcePerLength.FromMillinewtonsPerMeter(value);
+        public static ForcePerLength MillinewtonsPerMeter<T>(this T value) => ForcePerLength.FromMillinewtonsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MillinewtonsPerMeter(this int? value) => ForcePerLength.FromMillinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MillinewtonsPerMeter(this long value) => ForcePerLength.FromMillinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MillinewtonsPerMeter(this long? value) => ForcePerLength.FromMillinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MillinewtonsPerMeter(this double value) => ForcePerLength.FromMillinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MillinewtonsPerMeter(this double? value) => ForcePerLength.FromMillinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MillinewtonsPerMeter(this float value) => ForcePerLength.FromMillinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MillinewtonsPerMeter(this float? value) => ForcePerLength.FromMillinewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength MillinewtonsPerMeter(this decimal value) => ForcePerLength.FromMillinewtonsPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForcePerLength.FromMillinewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? MillinewtonsPerMeter(this decimal? value) => ForcePerLength.FromMillinewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ForcePerLength? MillinewtonsPerMeter<T>(this T? value) where T : struct => ForcePerLength.FromMillinewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanonewtonPerMeter
 
         /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NanonewtonsPerMeter(this int value) => ForcePerLength.FromNanonewtonsPerMeter(value);
+        public static ForcePerLength NanonewtonsPerMeter<T>(this T value) => ForcePerLength.FromNanonewtonsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? NanonewtonsPerMeter(this int? value) => ForcePerLength.FromNanonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NanonewtonsPerMeter(this long value) => ForcePerLength.FromNanonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? NanonewtonsPerMeter(this long? value) => ForcePerLength.FromNanonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NanonewtonsPerMeter(this double value) => ForcePerLength.FromNanonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? NanonewtonsPerMeter(this double? value) => ForcePerLength.FromNanonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NanonewtonsPerMeter(this float value) => ForcePerLength.FromNanonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? NanonewtonsPerMeter(this float? value) => ForcePerLength.FromNanonewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NanonewtonsPerMeter(this decimal value) => ForcePerLength.FromNanonewtonsPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForcePerLength.FromNanonewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? NanonewtonsPerMeter(this decimal? value) => ForcePerLength.FromNanonewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ForcePerLength? NanonewtonsPerMeter<T>(this T? value) where T : struct => ForcePerLength.FromNanonewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NewtonPerMeter
 
         /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NewtonsPerMeter(this int value) => ForcePerLength.FromNewtonsPerMeter(value);
+        public static ForcePerLength NewtonsPerMeter<T>(this T value) => ForcePerLength.FromNewtonsPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? NewtonsPerMeter(this int? value) => ForcePerLength.FromNewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NewtonsPerMeter(this long value) => ForcePerLength.FromNewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? NewtonsPerMeter(this long? value) => ForcePerLength.FromNewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NewtonsPerMeter(this double value) => ForcePerLength.FromNewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? NewtonsPerMeter(this double? value) => ForcePerLength.FromNewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NewtonsPerMeter(this float value) => ForcePerLength.FromNewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? NewtonsPerMeter(this float? value) => ForcePerLength.FromNewtonsPerMeter(value);
-
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength NewtonsPerMeter(this decimal value) => ForcePerLength.FromNewtonsPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ForcePerLength.FromNewtonsPerMeter(UnitsNet.QuantityValue)" />
-        public static ForcePerLength? NewtonsPerMeter(this decimal? value) => ForcePerLength.FromNewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ForcePerLength? NewtonsPerMeter<T>(this T? value) where T : struct => ForcePerLength.FromNewtonsPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

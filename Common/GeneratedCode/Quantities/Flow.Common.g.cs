@@ -52,6 +52,7 @@ namespace UnitsNet
     ///     In physics and engineering, in particular fluid dynamics and hydrometry, the volumetric flow rate, (also known as volume flow rate, rate of fluid flow or volume velocity) is the volume of fluid which passes through a given surface per unit time. The SI unit is m³/s (cubic meters per second). In US Customary Units and British Imperial Units, volumetric flow rate is often expressed as ft³/s (cubic feet per second). It is usually represented by the symbol Q.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+    [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
@@ -325,6 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicDecimetersPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicDecimetersPerMinute(double cubicdecimetersperminute)
@@ -339,6 +341,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicFeetPerHour.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicFeetPerHour(double cubicfeetperhour)
@@ -353,6 +356,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicFeetPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicFeetPerMinute(double cubicfeetperminute)
@@ -367,6 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicFeetPerSecond.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicFeetPerSecond(double cubicfeetpersecond)
@@ -381,6 +386,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicMetersPerHour.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicMetersPerHour(double cubicmetersperhour)
@@ -395,6 +401,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicMetersPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicMetersPerMinute(double cubicmetersperminute)
@@ -409,6 +416,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicMetersPerSecond.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicMetersPerSecond(double cubicmeterspersecond)
@@ -423,6 +431,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicYardsPerHour.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicYardsPerHour(double cubicyardsperhour)
@@ -437,6 +446,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicYardsPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicYardsPerMinute(double cubicyardsperminute)
@@ -451,6 +461,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from CubicYardsPerSecond.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromCubicYardsPerSecond(double cubicyardspersecond)
@@ -493,6 +504,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from LitersPerHour.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromLitersPerHour(double litersperhour)
@@ -507,6 +519,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from LitersPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromLitersPerMinute(double litersperminute)
@@ -521,6 +534,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from LitersPerSecond.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromLitersPerSecond(double literspersecond)
@@ -563,6 +577,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from MillionUsGallonsPerDay.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromMillionUsGallonsPerDay(double millionusgallonsperday)
@@ -591,6 +606,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from OilBarrelsPerDay.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromOilBarrelsPerDay(double oilbarrelsperday)
@@ -605,6 +621,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from UsGallonsPerHour.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromUsGallonsPerHour(double usgallonsperhour)
@@ -619,6 +636,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from UsGallonsPerMinute.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromUsGallonsPerMinute(double usgallonsperminute)
@@ -633,6 +651,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Flow from UsGallonsPerSecond.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Flow FromUsGallonsPerSecond(double usgallonspersecond)
@@ -939,22 +958,6 @@ namespace UnitsNet
         public static FlowUnit ParseUnit(string str)
         {
             return ParseUnit(str, (IFormatProvider)null);
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
-        public static FlowUnit ParseUnit(string str, [CanBeNull] string cultureName)
-        {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         #endregion

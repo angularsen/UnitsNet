@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Illuminance from nullable Kilolux.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Illuminance? FromKilolux(QuantityValue? kilolux)
         {
             return kilolux.HasValue ? FromKilolux(kilolux.Value) : default(Illuminance?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Illuminance from nullable Lux.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Illuminance? FromLux(QuantityValue? lux)
         {
             return lux.HasValue ? FromLux(lux.Value) : default(Illuminance?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Illuminance from nullable Megalux.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Illuminance? FromMegalux(QuantityValue? megalux)
         {
             return megalux.HasValue ? FromMegalux(megalux.Value) : default(Illuminance?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Illuminance from nullable Millilux.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Illuminance? FromMillilux(QuantityValue? millilux)
         {
             return millilux.HasValue ? FromMillilux(millilux.Value) : default(Illuminance?);
@@ -100,6 +104,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Illuminance unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Illuminance? From(QuantityValue? value, IlluminanceUnit fromUnit)
         {
             return value.HasValue ? new Illuminance((double)value.Value, fromUnit) : default(Illuminance?);
@@ -257,6 +262,22 @@ namespace UnitsNet
                 result = default(Illuminance);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static IlluminanceUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

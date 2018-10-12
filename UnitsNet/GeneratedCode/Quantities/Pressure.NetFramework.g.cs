@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Atmospheres.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromAtmospheres(QuantityValue? atmospheres)
         {
             return atmospheres.HasValue ? FromAtmospheres(atmospheres.Value) : default(Pressure?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Bars.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromBars(QuantityValue? bars)
         {
             return bars.HasValue ? FromBars(bars.Value) : default(Pressure?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Centibars.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromCentibars(QuantityValue? centibars)
         {
             return centibars.HasValue ? FromCentibars(centibars.Value) : default(Pressure?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Decapascals.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromDecapascals(QuantityValue? decapascals)
         {
             return decapascals.HasValue ? FromDecapascals(decapascals.Value) : default(Pressure?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Decibars.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromDecibars(QuantityValue? decibars)
         {
             return decibars.HasValue ? FromDecibars(decibars.Value) : default(Pressure?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable FeetOfHead.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromFeetOfHead(QuantityValue? feetofhead)
         {
             return feetofhead.HasValue ? FromFeetOfHead(feetofhead.Value) : default(Pressure?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Gigapascals.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromGigapascals(QuantityValue? gigapascals)
         {
             return gigapascals.HasValue ? FromGigapascals(gigapascals.Value) : default(Pressure?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Hectopascals.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromHectopascals(QuantityValue? hectopascals)
         {
             return hectopascals.HasValue ? FromHectopascals(hectopascals.Value) : default(Pressure?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable InchesOfMercury.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromInchesOfMercury(QuantityValue? inchesofmercury)
         {
             return inchesofmercury.HasValue ? FromInchesOfMercury(inchesofmercury.Value) : default(Pressure?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Kilobars.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromKilobars(QuantityValue? kilobars)
         {
             return kilobars.HasValue ? FromKilobars(kilobars.Value) : default(Pressure?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable KilogramsForcePerSquareCentimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromKilogramsForcePerSquareCentimeter(QuantityValue? kilogramsforcepersquarecentimeter)
         {
             return kilogramsforcepersquarecentimeter.HasValue ? FromKilogramsForcePerSquareCentimeter(kilogramsforcepersquarecentimeter.Value) : default(Pressure?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable KilogramsForcePerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromKilogramsForcePerSquareMeter(QuantityValue? kilogramsforcepersquaremeter)
         {
             return kilogramsforcepersquaremeter.HasValue ? FromKilogramsForcePerSquareMeter(kilogramsforcepersquaremeter.Value) : default(Pressure?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable KilogramsForcePerSquareMillimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromKilogramsForcePerSquareMillimeter(QuantityValue? kilogramsforcepersquaremillimeter)
         {
             return kilogramsforcepersquaremillimeter.HasValue ? FromKilogramsForcePerSquareMillimeter(kilogramsforcepersquaremillimeter.Value) : default(Pressure?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable KilonewtonsPerSquareCentimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromKilonewtonsPerSquareCentimeter(QuantityValue? kilonewtonspersquarecentimeter)
         {
             return kilonewtonspersquarecentimeter.HasValue ? FromKilonewtonsPerSquareCentimeter(kilonewtonspersquarecentimeter.Value) : default(Pressure?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable KilonewtonsPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromKilonewtonsPerSquareMeter(QuantityValue? kilonewtonspersquaremeter)
         {
             return kilonewtonspersquaremeter.HasValue ? FromKilonewtonsPerSquareMeter(kilonewtonspersquaremeter.Value) : default(Pressure?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable KilonewtonsPerSquareMillimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromKilonewtonsPerSquareMillimeter(QuantityValue? kilonewtonspersquaremillimeter)
         {
             return kilonewtonspersquaremillimeter.HasValue ? FromKilonewtonsPerSquareMillimeter(kilonewtonspersquaremillimeter.Value) : default(Pressure?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Kilopascals.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromKilopascals(QuantityValue? kilopascals)
         {
             return kilopascals.HasValue ? FromKilopascals(kilopascals.Value) : default(Pressure?);
@@ -201,6 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable KilopoundsForcePerSquareFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromKilopoundsForcePerSquareFoot(QuantityValue? kilopoundsforcepersquarefoot)
         {
             return kilopoundsforcepersquarefoot.HasValue ? FromKilopoundsForcePerSquareFoot(kilopoundsforcepersquarefoot.Value) : default(Pressure?);
@@ -209,6 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable KilopoundsForcePerSquareInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromKilopoundsForcePerSquareInch(QuantityValue? kilopoundsforcepersquareinch)
         {
             return kilopoundsforcepersquareinch.HasValue ? FromKilopoundsForcePerSquareInch(kilopoundsforcepersquareinch.Value) : default(Pressure?);
@@ -217,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Megabars.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromMegabars(QuantityValue? megabars)
         {
             return megabars.HasValue ? FromMegabars(megabars.Value) : default(Pressure?);
@@ -225,6 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable MeganewtonsPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromMeganewtonsPerSquareMeter(QuantityValue? meganewtonspersquaremeter)
         {
             return meganewtonspersquaremeter.HasValue ? FromMeganewtonsPerSquareMeter(meganewtonspersquaremeter.Value) : default(Pressure?);
@@ -233,6 +254,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Megapascals.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromMegapascals(QuantityValue? megapascals)
         {
             return megapascals.HasValue ? FromMegapascals(megapascals.Value) : default(Pressure?);
@@ -241,6 +263,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable MetersOfHead.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromMetersOfHead(QuantityValue? metersofhead)
         {
             return metersofhead.HasValue ? FromMetersOfHead(metersofhead.Value) : default(Pressure?);
@@ -249,6 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Micropascals.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromMicropascals(QuantityValue? micropascals)
         {
             return micropascals.HasValue ? FromMicropascals(micropascals.Value) : default(Pressure?);
@@ -257,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Millibars.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromMillibars(QuantityValue? millibars)
         {
             return millibars.HasValue ? FromMillibars(millibars.Value) : default(Pressure?);
@@ -265,6 +290,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable MillimetersOfMercury.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromMillimetersOfMercury(QuantityValue? millimetersofmercury)
         {
             return millimetersofmercury.HasValue ? FromMillimetersOfMercury(millimetersofmercury.Value) : default(Pressure?);
@@ -273,6 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable NewtonsPerSquareCentimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromNewtonsPerSquareCentimeter(QuantityValue? newtonspersquarecentimeter)
         {
             return newtonspersquarecentimeter.HasValue ? FromNewtonsPerSquareCentimeter(newtonspersquarecentimeter.Value) : default(Pressure?);
@@ -281,6 +308,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable NewtonsPerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromNewtonsPerSquareMeter(QuantityValue? newtonspersquaremeter)
         {
             return newtonspersquaremeter.HasValue ? FromNewtonsPerSquareMeter(newtonspersquaremeter.Value) : default(Pressure?);
@@ -289,6 +317,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable NewtonsPerSquareMillimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromNewtonsPerSquareMillimeter(QuantityValue? newtonspersquaremillimeter)
         {
             return newtonspersquaremillimeter.HasValue ? FromNewtonsPerSquareMillimeter(newtonspersquaremillimeter.Value) : default(Pressure?);
@@ -297,6 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Pascals.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromPascals(QuantityValue? pascals)
         {
             return pascals.HasValue ? FromPascals(pascals.Value) : default(Pressure?);
@@ -305,6 +335,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable PoundsForcePerSquareFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromPoundsForcePerSquareFoot(QuantityValue? poundsforcepersquarefoot)
         {
             return poundsforcepersquarefoot.HasValue ? FromPoundsForcePerSquareFoot(poundsforcepersquarefoot.Value) : default(Pressure?);
@@ -313,6 +344,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable PoundsForcePerSquareInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromPoundsForcePerSquareInch(QuantityValue? poundsforcepersquareinch)
         {
             return poundsforcepersquareinch.HasValue ? FromPoundsForcePerSquareInch(poundsforcepersquareinch.Value) : default(Pressure?);
@@ -321,6 +353,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Psi.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromPsi(QuantityValue? psi)
         {
             return psi.HasValue ? FromPsi(psi.Value) : default(Pressure?);
@@ -329,6 +362,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable TechnicalAtmospheres.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromTechnicalAtmospheres(QuantityValue? technicalatmospheres)
         {
             return technicalatmospheres.HasValue ? FromTechnicalAtmospheres(technicalatmospheres.Value) : default(Pressure?);
@@ -337,6 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable TonnesForcePerSquareCentimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromTonnesForcePerSquareCentimeter(QuantityValue? tonnesforcepersquarecentimeter)
         {
             return tonnesforcepersquarecentimeter.HasValue ? FromTonnesForcePerSquareCentimeter(tonnesforcepersquarecentimeter.Value) : default(Pressure?);
@@ -345,6 +380,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable TonnesForcePerSquareMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromTonnesForcePerSquareMeter(QuantityValue? tonnesforcepersquaremeter)
         {
             return tonnesforcepersquaremeter.HasValue ? FromTonnesForcePerSquareMeter(tonnesforcepersquaremeter.Value) : default(Pressure?);
@@ -353,6 +389,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable TonnesForcePerSquareMillimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromTonnesForcePerSquareMillimeter(QuantityValue? tonnesforcepersquaremillimeter)
         {
             return tonnesforcepersquaremillimeter.HasValue ? FromTonnesForcePerSquareMillimeter(tonnesforcepersquaremillimeter.Value) : default(Pressure?);
@@ -361,6 +398,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Pressure from nullable Torrs.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Pressure? FromTorrs(QuantityValue? torrs)
         {
             return torrs.HasValue ? FromTorrs(torrs.Value) : default(Pressure?);
@@ -372,6 +410,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Pressure unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? From(QuantityValue? value, PressureUnit fromUnit)
         {
             return value.HasValue ? new Pressure((double)value.Value, fromUnit) : default(Pressure?);
@@ -529,6 +568,22 @@ namespace UnitsNet
                 result = default(Pressure);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static PressureUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

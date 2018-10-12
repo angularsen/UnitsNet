@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ApparentPower from nullable Gigavoltamperes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ApparentPower? FromGigavoltamperes(QuantityValue? gigavoltamperes)
         {
             return gigavoltamperes.HasValue ? FromGigavoltamperes(gigavoltamperes.Value) : default(ApparentPower?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ApparentPower from nullable Kilovoltamperes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ApparentPower? FromKilovoltamperes(QuantityValue? kilovoltamperes)
         {
             return kilovoltamperes.HasValue ? FromKilovoltamperes(kilovoltamperes.Value) : default(ApparentPower?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ApparentPower from nullable Megavoltamperes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ApparentPower? FromMegavoltamperes(QuantityValue? megavoltamperes)
         {
             return megavoltamperes.HasValue ? FromMegavoltamperes(megavoltamperes.Value) : default(ApparentPower?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ApparentPower from nullable Voltamperes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ApparentPower? FromVoltamperes(QuantityValue? voltamperes)
         {
             return voltamperes.HasValue ? FromVoltamperes(voltamperes.Value) : default(ApparentPower?);
@@ -100,6 +104,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ApparentPower unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ApparentPower? From(QuantityValue? value, ApparentPowerUnit fromUnit)
         {
             return value.HasValue ? new ApparentPower((double)value.Value, fromUnit) : default(ApparentPower?);
@@ -257,6 +262,22 @@ namespace UnitsNet
                 result = default(ApparentPower);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static ApparentPowerUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

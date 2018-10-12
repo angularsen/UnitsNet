@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable CaloriesPerGram.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEnergy? FromCaloriesPerGram(QuantityValue? caloriespergram)
         {
             return caloriespergram.HasValue ? FromCaloriesPerGram(caloriespergram.Value) : default(SpecificEnergy?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable JoulesPerKilogram.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEnergy? FromJoulesPerKilogram(QuantityValue? joulesperkilogram)
         {
             return joulesperkilogram.HasValue ? FromJoulesPerKilogram(joulesperkilogram.Value) : default(SpecificEnergy?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable KilocaloriesPerGram.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEnergy? FromKilocaloriesPerGram(QuantityValue? kilocaloriespergram)
         {
             return kilocaloriespergram.HasValue ? FromKilocaloriesPerGram(kilocaloriespergram.Value) : default(SpecificEnergy?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable KilojoulesPerKilogram.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEnergy? FromKilojoulesPerKilogram(QuantityValue? kilojoulesperkilogram)
         {
             return kilojoulesperkilogram.HasValue ? FromKilojoulesPerKilogram(kilojoulesperkilogram.Value) : default(SpecificEnergy?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable KilowattHoursPerKilogram.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEnergy? FromKilowattHoursPerKilogram(QuantityValue? kilowatthoursperkilogram)
         {
             return kilowatthoursperkilogram.HasValue ? FromKilowattHoursPerKilogram(kilowatthoursperkilogram.Value) : default(SpecificEnergy?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable MegajoulesPerKilogram.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEnergy? FromMegajoulesPerKilogram(QuantityValue? megajoulesperkilogram)
         {
             return megajoulesperkilogram.HasValue ? FromMegajoulesPerKilogram(megajoulesperkilogram.Value) : default(SpecificEnergy?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable MegawattHoursPerKilogram.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEnergy? FromMegawattHoursPerKilogram(QuantityValue? megawatthoursperkilogram)
         {
             return megawatthoursperkilogram.HasValue ? FromMegawattHoursPerKilogram(megawatthoursperkilogram.Value) : default(SpecificEnergy?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEnergy from nullable WattHoursPerKilogram.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEnergy? FromWattHoursPerKilogram(QuantityValue? watthoursperkilogram)
         {
             return watthoursperkilogram.HasValue ? FromWattHoursPerKilogram(watthoursperkilogram.Value) : default(SpecificEnergy?);
@@ -132,6 +140,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificEnergy unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificEnergy? From(QuantityValue? value, SpecificEnergyUnit fromUnit)
         {
             return value.HasValue ? new SpecificEnergy((double)value.Value, fromUnit) : default(SpecificEnergy?);
@@ -289,6 +298,22 @@ namespace UnitsNet
                 result = default(SpecificEnergy);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static SpecificEnergyUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

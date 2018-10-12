@@ -47,34 +47,11 @@ namespace UnitsNet.Extensions.NumberToSolidAngle
         #region Steradian
 
         /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
-        public static SolidAngle Steradians(this int value) => SolidAngle.FromSteradians(value);
+        public static SolidAngle Steradians<T>(this T value) => SolidAngle.FromSteradians(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
-        public static SolidAngle? Steradians(this int? value) => SolidAngle.FromSteradians(value);
-
-        /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
-        public static SolidAngle Steradians(this long value) => SolidAngle.FromSteradians(value);
-
-        /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
-        public static SolidAngle? Steradians(this long? value) => SolidAngle.FromSteradians(value);
-
-        /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
-        public static SolidAngle Steradians(this double value) => SolidAngle.FromSteradians(value);
-
-        /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
-        public static SolidAngle? Steradians(this double? value) => SolidAngle.FromSteradians(value);
-
-        /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
-        public static SolidAngle Steradians(this float value) => SolidAngle.FromSteradians(value);
-
-        /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
-        public static SolidAngle? Steradians(this float? value) => SolidAngle.FromSteradians(value);
-
-        /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
-        public static SolidAngle Steradians(this decimal value) => SolidAngle.FromSteradians(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="SolidAngle.FromSteradians(UnitsNet.QuantityValue)" />
-        public static SolidAngle? Steradians(this decimal? value) => SolidAngle.FromSteradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static SolidAngle? Steradians<T>(this T? value) where T : struct => SolidAngle.FromSteradians(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

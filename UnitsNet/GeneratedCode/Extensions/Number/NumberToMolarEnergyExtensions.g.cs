@@ -47,102 +47,33 @@ namespace UnitsNet.Extensions.NumberToMolarEnergy
         #region JoulePerMole
 
         /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy JoulesPerMole(this int value) => MolarEnergy.FromJoulesPerMole(value);
+        public static MolarEnergy JoulesPerMole<T>(this T value) => MolarEnergy.FromJoulesPerMole(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? JoulesPerMole(this int? value) => MolarEnergy.FromJoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy JoulesPerMole(this long value) => MolarEnergy.FromJoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? JoulesPerMole(this long? value) => MolarEnergy.FromJoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy JoulesPerMole(this double value) => MolarEnergy.FromJoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? JoulesPerMole(this double? value) => MolarEnergy.FromJoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy JoulesPerMole(this float value) => MolarEnergy.FromJoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? JoulesPerMole(this float? value) => MolarEnergy.FromJoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy JoulesPerMole(this decimal value) => MolarEnergy.FromJoulesPerMole(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MolarEnergy.FromJoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? JoulesPerMole(this decimal? value) => MolarEnergy.FromJoulesPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MolarEnergy? JoulesPerMole<T>(this T? value) where T : struct => MolarEnergy.FromJoulesPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilojoulePerMole
 
         /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy KilojoulesPerMole(this int value) => MolarEnergy.FromKilojoulesPerMole(value);
+        public static MolarEnergy KilojoulesPerMole<T>(this T value) => MolarEnergy.FromKilojoulesPerMole(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? KilojoulesPerMole(this int? value) => MolarEnergy.FromKilojoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy KilojoulesPerMole(this long value) => MolarEnergy.FromKilojoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? KilojoulesPerMole(this long? value) => MolarEnergy.FromKilojoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy KilojoulesPerMole(this double value) => MolarEnergy.FromKilojoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? KilojoulesPerMole(this double? value) => MolarEnergy.FromKilojoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy KilojoulesPerMole(this float value) => MolarEnergy.FromKilojoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? KilojoulesPerMole(this float? value) => MolarEnergy.FromKilojoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy KilojoulesPerMole(this decimal value) => MolarEnergy.FromKilojoulesPerMole(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MolarEnergy.FromKilojoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? KilojoulesPerMole(this decimal? value) => MolarEnergy.FromKilojoulesPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MolarEnergy? KilojoulesPerMole<T>(this T? value) where T : struct => MolarEnergy.FromKilojoulesPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegajoulePerMole
 
         /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy MegajoulesPerMole(this int value) => MolarEnergy.FromMegajoulesPerMole(value);
+        public static MolarEnergy MegajoulesPerMole<T>(this T value) => MolarEnergy.FromMegajoulesPerMole(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? MegajoulesPerMole(this int? value) => MolarEnergy.FromMegajoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy MegajoulesPerMole(this long value) => MolarEnergy.FromMegajoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? MegajoulesPerMole(this long? value) => MolarEnergy.FromMegajoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy MegajoulesPerMole(this double value) => MolarEnergy.FromMegajoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? MegajoulesPerMole(this double? value) => MolarEnergy.FromMegajoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy MegajoulesPerMole(this float value) => MolarEnergy.FromMegajoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? MegajoulesPerMole(this float? value) => MolarEnergy.FromMegajoulesPerMole(value);
-
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy MegajoulesPerMole(this decimal value) => MolarEnergy.FromMegajoulesPerMole(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MolarEnergy.FromMegajoulesPerMole(UnitsNet.QuantityValue)" />
-        public static MolarEnergy? MegajoulesPerMole(this decimal? value) => MolarEnergy.FromMegajoulesPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MolarEnergy? MegajoulesPerMole<T>(this T? value) where T : struct => MolarEnergy.FromMegajoulesPerMole(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

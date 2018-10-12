@@ -89,10 +89,17 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
+"@;
+$obsoleteAttribute = GetObsoleteAttribute($quantity);
+if ($obsoleteAttribute)
+{
+    $obsoleteAttribute = "`r`n    " + $obsoleteAttribute; # apply padding to conformance with code format in this section
+}
+@"
     /// <summary>
     ///     $($quantity.XmlDoc)
     /// </summary>
-    // ReSharper disable once PartialTypeWithSinglePart
+    // ReSharper disable once PartialTypeWithSinglePart$($obsoleteAttribute)
 
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
@@ -234,10 +241,16 @@ namespace UnitsNet
         public static $quantityName Zero => new $quantityName(0, BaseUnit);
 
 "@; foreach ($unit in $units) {
-        $valueParamName = $unit.PluralName.ToLowerInvariant();@"
+        $valueParamName = $unit.PluralName.ToLowerInvariant();
+        $obsoleteAttribute = GetObsoleteAttribute($unit);
+        if ($obsoleteAttribute)
+        {
+            $obsoleteAttribute = "`r`n        " + $obsoleteAttribute; # apply padding to conformance with code format in this page
+        }
+@"
         /// <summary>
         ///     Get $quantityName from $($unit.PluralName).
-        /// </summary>
+        /// </summary>$($obsoleteAttribute)
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static $quantityName From$($unit.PluralName)(double $valueParamName)
@@ -504,22 +517,6 @@ namespace UnitsNet
         public static $unitEnumName ParseUnit(string str)
         {
             return ParseUnit(str, (IFormatProvider)null);
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
-        public static $unitEnumName ParseUnit(string str, [CanBeNull] string cultureName)
-        {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         #endregion

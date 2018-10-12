@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Days.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Duration? FromDays(QuantityValue? days)
         {
             return days.HasValue ? FromDays(days.Value) : default(Duration?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Hours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Duration? FromHours(QuantityValue? hours)
         {
             return hours.HasValue ? FromHours(hours.Value) : default(Duration?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Microseconds.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Duration? FromMicroseconds(QuantityValue? microseconds)
         {
             return microseconds.HasValue ? FromMicroseconds(microseconds.Value) : default(Duration?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Milliseconds.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Duration? FromMilliseconds(QuantityValue? milliseconds)
         {
             return milliseconds.HasValue ? FromMilliseconds(milliseconds.Value) : default(Duration?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Minutes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Duration? FromMinutes(QuantityValue? minutes)
         {
             return minutes.HasValue ? FromMinutes(minutes.Value) : default(Duration?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Months.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Duration? FromMonths(QuantityValue? months)
         {
             return months.HasValue ? FromMonths(months.Value) : default(Duration?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Months30.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Duration? FromMonths30(QuantityValue? months30)
         {
             return months30.HasValue ? FromMonths30(months30.Value) : default(Duration?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Nanoseconds.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Duration? FromNanoseconds(QuantityValue? nanoseconds)
         {
             return nanoseconds.HasValue ? FromNanoseconds(nanoseconds.Value) : default(Duration?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Seconds.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Duration? FromSeconds(QuantityValue? seconds)
         {
             return seconds.HasValue ? FromSeconds(seconds.Value) : default(Duration?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Weeks.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Duration? FromWeeks(QuantityValue? weeks)
         {
             return weeks.HasValue ? FromWeeks(weeks.Value) : default(Duration?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Years.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Duration? FromYears(QuantityValue? years)
         {
             return years.HasValue ? FromYears(years.Value) : default(Duration?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Duration from nullable Years365.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Duration? FromYears365(QuantityValue? years365)
         {
             return years365.HasValue ? FromYears365(years365.Value) : default(Duration?);
@@ -164,6 +176,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Duration unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Duration? From(QuantityValue? value, DurationUnit fromUnit)
         {
             return value.HasValue ? new Duration((double)value.Value, fromUnit) : default(Duration?);
@@ -321,6 +334,22 @@ namespace UnitsNet
                 result = default(Duration);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static DurationUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

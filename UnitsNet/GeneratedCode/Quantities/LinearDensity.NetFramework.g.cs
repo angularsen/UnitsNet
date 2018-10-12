@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable LinearDensity from nullable GramsPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static LinearDensity? FromGramsPerMeter(QuantityValue? gramspermeter)
         {
             return gramspermeter.HasValue ? FromGramsPerMeter(gramspermeter.Value) : default(LinearDensity?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable LinearDensity from nullable KilogramsPerMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static LinearDensity? FromKilogramsPerMeter(QuantityValue? kilogramspermeter)
         {
             return kilogramspermeter.HasValue ? FromKilogramsPerMeter(kilogramspermeter.Value) : default(LinearDensity?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable LinearDensity from nullable PoundsPerFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static LinearDensity? FromPoundsPerFoot(QuantityValue? poundsperfoot)
         {
             return poundsperfoot.HasValue ? FromPoundsPerFoot(poundsperfoot.Value) : default(LinearDensity?);
@@ -92,6 +95,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>LinearDensity unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static LinearDensity? From(QuantityValue? value, LinearDensityUnit fromUnit)
         {
             return value.HasValue ? new LinearDensity((double)value.Value, fromUnit) : default(LinearDensity?);
@@ -249,6 +253,22 @@ namespace UnitsNet
                 result = default(LinearDensity);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static LinearDensityUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

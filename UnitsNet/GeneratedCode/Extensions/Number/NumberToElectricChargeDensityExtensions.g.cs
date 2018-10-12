@@ -47,34 +47,11 @@ namespace UnitsNet.Extensions.NumberToElectricChargeDensity
         #region CoulombPerCubicMeter
 
         /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static ElectricChargeDensity CoulombsPerCubicMeter(this int value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
+        public static ElectricChargeDensity CoulombsPerCubicMeter<T>(this T value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static ElectricChargeDensity? CoulombsPerCubicMeter(this int? value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
-
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static ElectricChargeDensity CoulombsPerCubicMeter(this long value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
-
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static ElectricChargeDensity? CoulombsPerCubicMeter(this long? value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
-
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static ElectricChargeDensity CoulombsPerCubicMeter(this double value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
-
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static ElectricChargeDensity? CoulombsPerCubicMeter(this double? value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
-
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static ElectricChargeDensity CoulombsPerCubicMeter(this float value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
-
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static ElectricChargeDensity? CoulombsPerCubicMeter(this float? value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value);
-
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static ElectricChargeDensity CoulombsPerCubicMeter(this decimal value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricChargeDensity.FromCoulombsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static ElectricChargeDensity? CoulombsPerCubicMeter(this decimal? value) => ElectricChargeDensity.FromCoulombsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricChargeDensity? CoulombsPerCubicMeter<T>(this T? value) where T : struct => ElectricChargeDensity.FromCoulombsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

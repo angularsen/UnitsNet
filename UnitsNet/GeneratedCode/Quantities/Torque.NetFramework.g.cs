@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilogramForceCentimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromKilogramForceCentimeters(QuantityValue? kilogramforcecentimeters)
         {
             return kilogramforcecentimeters.HasValue ? FromKilogramForceCentimeters(kilogramforcecentimeters.Value) : default(Torque?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilogramForceMeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromKilogramForceMeters(QuantityValue? kilogramforcemeters)
         {
             return kilogramforcemeters.HasValue ? FromKilogramForceMeters(kilogramforcemeters.Value) : default(Torque?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilogramForceMillimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromKilogramForceMillimeters(QuantityValue? kilogramforcemillimeters)
         {
             return kilogramforcemillimeters.HasValue ? FromKilogramForceMillimeters(kilogramforcemillimeters.Value) : default(Torque?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilonewtonCentimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromKilonewtonCentimeters(QuantityValue? kilonewtoncentimeters)
         {
             return kilonewtoncentimeters.HasValue ? FromKilonewtonCentimeters(kilonewtoncentimeters.Value) : default(Torque?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilonewtonMeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromKilonewtonMeters(QuantityValue? kilonewtonmeters)
         {
             return kilonewtonmeters.HasValue ? FromKilonewtonMeters(kilonewtonmeters.Value) : default(Torque?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilonewtonMillimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromKilonewtonMillimeters(QuantityValue? kilonewtonmillimeters)
         {
             return kilonewtonmillimeters.HasValue ? FromKilonewtonMillimeters(kilonewtonmillimeters.Value) : default(Torque?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilopoundForceFeet.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromKilopoundForceFeet(QuantityValue? kilopoundforcefeet)
         {
             return kilopoundforcefeet.HasValue ? FromKilopoundForceFeet(kilopoundforcefeet.Value) : default(Torque?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable KilopoundForceInches.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromKilopoundForceInches(QuantityValue? kilopoundforceinches)
         {
             return kilopoundforceinches.HasValue ? FromKilopoundForceInches(kilopoundforceinches.Value) : default(Torque?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable MeganewtonCentimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromMeganewtonCentimeters(QuantityValue? meganewtoncentimeters)
         {
             return meganewtoncentimeters.HasValue ? FromMeganewtonCentimeters(meganewtoncentimeters.Value) : default(Torque?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable MeganewtonMeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromMeganewtonMeters(QuantityValue? meganewtonmeters)
         {
             return meganewtonmeters.HasValue ? FromMeganewtonMeters(meganewtonmeters.Value) : default(Torque?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable MeganewtonMillimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromMeganewtonMillimeters(QuantityValue? meganewtonmillimeters)
         {
             return meganewtonmillimeters.HasValue ? FromMeganewtonMillimeters(meganewtonmillimeters.Value) : default(Torque?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable MegapoundForceFeet.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromMegapoundForceFeet(QuantityValue? megapoundforcefeet)
         {
             return megapoundforcefeet.HasValue ? FromMegapoundForceFeet(megapoundforcefeet.Value) : default(Torque?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable MegapoundForceInches.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromMegapoundForceInches(QuantityValue? megapoundforceinches)
         {
             return megapoundforceinches.HasValue ? FromMegapoundForceInches(megapoundforceinches.Value) : default(Torque?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable NewtonCentimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromNewtonCentimeters(QuantityValue? newtoncentimeters)
         {
             return newtoncentimeters.HasValue ? FromNewtonCentimeters(newtoncentimeters.Value) : default(Torque?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable NewtonMeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromNewtonMeters(QuantityValue? newtonmeters)
         {
             return newtonmeters.HasValue ? FromNewtonMeters(newtonmeters.Value) : default(Torque?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable NewtonMillimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromNewtonMillimeters(QuantityValue? newtonmillimeters)
         {
             return newtonmillimeters.HasValue ? FromNewtonMillimeters(newtonmillimeters.Value) : default(Torque?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable PoundForceFeet.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromPoundForceFeet(QuantityValue? poundforcefeet)
         {
             return poundforcefeet.HasValue ? FromPoundForceFeet(poundforcefeet.Value) : default(Torque?);
@@ -201,6 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable PoundForceInches.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromPoundForceInches(QuantityValue? poundforceinches)
         {
             return poundforceinches.HasValue ? FromPoundForceInches(poundforceinches.Value) : default(Torque?);
@@ -209,6 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable TonneForceCentimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromTonneForceCentimeters(QuantityValue? tonneforcecentimeters)
         {
             return tonneforcecentimeters.HasValue ? FromTonneForceCentimeters(tonneforcecentimeters.Value) : default(Torque?);
@@ -217,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable TonneForceMeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromTonneForceMeters(QuantityValue? tonneforcemeters)
         {
             return tonneforcemeters.HasValue ? FromTonneForceMeters(tonneforcemeters.Value) : default(Torque?);
@@ -225,6 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Torque from nullable TonneForceMillimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Torque? FromTonneForceMillimeters(QuantityValue? tonneforcemillimeters)
         {
             return tonneforcemillimeters.HasValue ? FromTonneForceMillimeters(tonneforcemillimeters.Value) : default(Torque?);
@@ -236,6 +257,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Torque unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Torque? From(QuantityValue? value, TorqueUnit fromUnit)
         {
             return value.HasValue ? new Torque((double)value.Value, fromUnit) : default(Torque?);
@@ -393,6 +415,22 @@ namespace UnitsNet
                 result = default(Torque);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static TorqueUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

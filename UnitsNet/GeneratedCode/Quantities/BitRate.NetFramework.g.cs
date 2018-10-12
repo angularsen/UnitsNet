@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable BitsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromBitsPerSecond(QuantityValue? bitspersecond)
         {
             return bitspersecond.HasValue ? FromBitsPerSecond(bitspersecond.Value) : default(BitRate?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable BytesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromBytesPerSecond(QuantityValue? bytespersecond)
         {
             return bytespersecond.HasValue ? FromBytesPerSecond(bytespersecond.Value) : default(BitRate?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable ExabitsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromExabitsPerSecond(QuantityValue? exabitspersecond)
         {
             return exabitspersecond.HasValue ? FromExabitsPerSecond(exabitspersecond.Value) : default(BitRate?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable ExabytesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromExabytesPerSecond(QuantityValue? exabytespersecond)
         {
             return exabytespersecond.HasValue ? FromExabytesPerSecond(exabytespersecond.Value) : default(BitRate?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable ExbibitsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromExbibitsPerSecond(QuantityValue? exbibitspersecond)
         {
             return exbibitspersecond.HasValue ? FromExbibitsPerSecond(exbibitspersecond.Value) : default(BitRate?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable ExbibytesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromExbibytesPerSecond(QuantityValue? exbibytespersecond)
         {
             return exbibytespersecond.HasValue ? FromExbibytesPerSecond(exbibytespersecond.Value) : default(BitRate?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable GibibitsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromGibibitsPerSecond(QuantityValue? gibibitspersecond)
         {
             return gibibitspersecond.HasValue ? FromGibibitsPerSecond(gibibitspersecond.Value) : default(BitRate?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable GibibytesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromGibibytesPerSecond(QuantityValue? gibibytespersecond)
         {
             return gibibytespersecond.HasValue ? FromGibibytesPerSecond(gibibytespersecond.Value) : default(BitRate?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable GigabitsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromGigabitsPerSecond(QuantityValue? gigabitspersecond)
         {
             return gigabitspersecond.HasValue ? FromGigabitsPerSecond(gigabitspersecond.Value) : default(BitRate?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable GigabytesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromGigabytesPerSecond(QuantityValue? gigabytespersecond)
         {
             return gigabytespersecond.HasValue ? FromGigabytesPerSecond(gigabytespersecond.Value) : default(BitRate?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable KibibitsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromKibibitsPerSecond(QuantityValue? kibibitspersecond)
         {
             return kibibitspersecond.HasValue ? FromKibibitsPerSecond(kibibitspersecond.Value) : default(BitRate?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable KibibytesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromKibibytesPerSecond(QuantityValue? kibibytespersecond)
         {
             return kibibytespersecond.HasValue ? FromKibibytesPerSecond(kibibytespersecond.Value) : default(BitRate?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable KilobitsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromKilobitsPerSecond(QuantityValue? kilobitspersecond)
         {
             return kilobitspersecond.HasValue ? FromKilobitsPerSecond(kilobitspersecond.Value) : default(BitRate?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable KilobytesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromKilobytesPerSecond(QuantityValue? kilobytespersecond)
         {
             return kilobytespersecond.HasValue ? FromKilobytesPerSecond(kilobytespersecond.Value) : default(BitRate?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable MebibitsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromMebibitsPerSecond(QuantityValue? mebibitspersecond)
         {
             return mebibitspersecond.HasValue ? FromMebibitsPerSecond(mebibitspersecond.Value) : default(BitRate?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable MebibytesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromMebibytesPerSecond(QuantityValue? mebibytespersecond)
         {
             return mebibytespersecond.HasValue ? FromMebibytesPerSecond(mebibytespersecond.Value) : default(BitRate?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable MegabitsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromMegabitsPerSecond(QuantityValue? megabitspersecond)
         {
             return megabitspersecond.HasValue ? FromMegabitsPerSecond(megabitspersecond.Value) : default(BitRate?);
@@ -201,6 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable MegabytesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromMegabytesPerSecond(QuantityValue? megabytespersecond)
         {
             return megabytespersecond.HasValue ? FromMegabytesPerSecond(megabytespersecond.Value) : default(BitRate?);
@@ -209,6 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable PebibitsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromPebibitsPerSecond(QuantityValue? pebibitspersecond)
         {
             return pebibitspersecond.HasValue ? FromPebibitsPerSecond(pebibitspersecond.Value) : default(BitRate?);
@@ -217,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable PebibytesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromPebibytesPerSecond(QuantityValue? pebibytespersecond)
         {
             return pebibytespersecond.HasValue ? FromPebibytesPerSecond(pebibytespersecond.Value) : default(BitRate?);
@@ -225,6 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable PetabitsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromPetabitsPerSecond(QuantityValue? petabitspersecond)
         {
             return petabitspersecond.HasValue ? FromPetabitsPerSecond(petabitspersecond.Value) : default(BitRate?);
@@ -233,6 +254,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable PetabytesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromPetabytesPerSecond(QuantityValue? petabytespersecond)
         {
             return petabytespersecond.HasValue ? FromPetabytesPerSecond(petabytespersecond.Value) : default(BitRate?);
@@ -241,6 +263,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable TebibitsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromTebibitsPerSecond(QuantityValue? tebibitspersecond)
         {
             return tebibitspersecond.HasValue ? FromTebibitsPerSecond(tebibitspersecond.Value) : default(BitRate?);
@@ -249,6 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable TebibytesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromTebibytesPerSecond(QuantityValue? tebibytespersecond)
         {
             return tebibytespersecond.HasValue ? FromTebibytesPerSecond(tebibytespersecond.Value) : default(BitRate?);
@@ -257,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable TerabitsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromTerabitsPerSecond(QuantityValue? terabitspersecond)
         {
             return terabitspersecond.HasValue ? FromTerabitsPerSecond(terabitspersecond.Value) : default(BitRate?);
@@ -265,6 +290,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable BitRate from nullable TerabytesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static BitRate? FromTerabytesPerSecond(QuantityValue? terabytespersecond)
         {
             return terabytespersecond.HasValue ? FromTerabytesPerSecond(terabytespersecond.Value) : default(BitRate?);
@@ -276,6 +302,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>BitRate unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static BitRate? From(QuantityValue? value, BitRateUnit fromUnit)
         {
             return value.HasValue ? new BitRate((decimal)value.Value, fromUnit) : default(BitRate?);
@@ -431,6 +458,22 @@ namespace UnitsNet
                 result = default(BitRate);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static BitRateUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ReactiveEnergy from nullable KilovoltampereReactiveHours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ReactiveEnergy? FromKilovoltampereReactiveHours(QuantityValue? kilovoltamperereactivehours)
         {
             return kilovoltamperereactivehours.HasValue ? FromKilovoltampereReactiveHours(kilovoltamperereactivehours.Value) : default(ReactiveEnergy?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ReactiveEnergy from nullable MegavoltampereReactiveHours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ReactiveEnergy? FromMegavoltampereReactiveHours(QuantityValue? megavoltamperereactivehours)
         {
             return megavoltamperereactivehours.HasValue ? FromMegavoltampereReactiveHours(megavoltamperereactivehours.Value) : default(ReactiveEnergy?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ReactiveEnergy from nullable VoltampereReactiveHours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ReactiveEnergy? FromVoltampereReactiveHours(QuantityValue? voltamperereactivehours)
         {
             return voltamperereactivehours.HasValue ? FromVoltampereReactiveHours(voltamperereactivehours.Value) : default(ReactiveEnergy?);
@@ -92,6 +95,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ReactiveEnergy unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ReactiveEnergy? From(QuantityValue? value, ReactiveEnergyUnit fromUnit)
         {
             return value.HasValue ? new ReactiveEnergy((double)value.Value, fromUnit) : default(ReactiveEnergy?);
@@ -249,6 +253,22 @@ namespace UnitsNet
                 result = default(ReactiveEnergy);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static ReactiveEnergyUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

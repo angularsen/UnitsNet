@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEntropy from nullable CaloriesPerGramKelvin.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEntropy? FromCaloriesPerGramKelvin(QuantityValue? caloriespergramkelvin)
         {
             return caloriespergramkelvin.HasValue ? FromCaloriesPerGramKelvin(caloriespergramkelvin.Value) : default(SpecificEntropy?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEntropy from nullable JoulesPerKilogramDegreeCelsius.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEntropy? FromJoulesPerKilogramDegreeCelsius(QuantityValue? joulesperkilogramdegreecelsius)
         {
             return joulesperkilogramdegreecelsius.HasValue ? FromJoulesPerKilogramDegreeCelsius(joulesperkilogramdegreecelsius.Value) : default(SpecificEntropy?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEntropy from nullable JoulesPerKilogramKelvin.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEntropy? FromJoulesPerKilogramKelvin(QuantityValue? joulesperkilogramkelvin)
         {
             return joulesperkilogramkelvin.HasValue ? FromJoulesPerKilogramKelvin(joulesperkilogramkelvin.Value) : default(SpecificEntropy?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEntropy from nullable KilocaloriesPerGramKelvin.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEntropy? FromKilocaloriesPerGramKelvin(QuantityValue? kilocaloriespergramkelvin)
         {
             return kilocaloriespergramkelvin.HasValue ? FromKilocaloriesPerGramKelvin(kilocaloriespergramkelvin.Value) : default(SpecificEntropy?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEntropy from nullable KilojoulesPerKilogramDegreeCelsius.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEntropy? FromKilojoulesPerKilogramDegreeCelsius(QuantityValue? kilojoulesperkilogramdegreecelsius)
         {
             return kilojoulesperkilogramdegreecelsius.HasValue ? FromKilojoulesPerKilogramDegreeCelsius(kilojoulesperkilogramdegreecelsius.Value) : default(SpecificEntropy?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEntropy from nullable KilojoulesPerKilogramKelvin.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEntropy? FromKilojoulesPerKilogramKelvin(QuantityValue? kilojoulesperkilogramkelvin)
         {
             return kilojoulesperkilogramkelvin.HasValue ? FromKilojoulesPerKilogramKelvin(kilojoulesperkilogramkelvin.Value) : default(SpecificEntropy?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEntropy from nullable MegajoulesPerKilogramDegreeCelsius.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEntropy? FromMegajoulesPerKilogramDegreeCelsius(QuantityValue? megajoulesperkilogramdegreecelsius)
         {
             return megajoulesperkilogramdegreecelsius.HasValue ? FromMegajoulesPerKilogramDegreeCelsius(megajoulesperkilogramdegreecelsius.Value) : default(SpecificEntropy?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable SpecificEntropy from nullable MegajoulesPerKilogramKelvin.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static SpecificEntropy? FromMegajoulesPerKilogramKelvin(QuantityValue? megajoulesperkilogramkelvin)
         {
             return megajoulesperkilogramkelvin.HasValue ? FromMegajoulesPerKilogramKelvin(megajoulesperkilogramkelvin.Value) : default(SpecificEntropy?);
@@ -132,6 +140,7 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>SpecificEntropy unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static SpecificEntropy? From(QuantityValue? value, SpecificEntropyUnit fromUnit)
         {
             return value.HasValue ? new SpecificEntropy((double)value.Value, fromUnit) : default(SpecificEntropy?);
@@ -289,6 +298,22 @@ namespace UnitsNet
                 result = default(SpecificEntropy);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static SpecificEntropyUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

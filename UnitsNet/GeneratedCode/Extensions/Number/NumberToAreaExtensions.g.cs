@@ -47,442 +47,143 @@ namespace UnitsNet.Extensions.NumberToArea
         #region Acre
 
         /// <inheritdoc cref="Area.FromAcres(UnitsNet.QuantityValue)" />
-        public static Area Acres(this int value) => Area.FromAcres(value);
+        public static Area Acres<T>(this T value) => Area.FromAcres(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromAcres(UnitsNet.QuantityValue)" />
-        public static Area? Acres(this int? value) => Area.FromAcres(value);
-
-        /// <inheritdoc cref="Area.FromAcres(UnitsNet.QuantityValue)" />
-        public static Area Acres(this long value) => Area.FromAcres(value);
-
-        /// <inheritdoc cref="Area.FromAcres(UnitsNet.QuantityValue)" />
-        public static Area? Acres(this long? value) => Area.FromAcres(value);
-
-        /// <inheritdoc cref="Area.FromAcres(UnitsNet.QuantityValue)" />
-        public static Area Acres(this double value) => Area.FromAcres(value);
-
-        /// <inheritdoc cref="Area.FromAcres(UnitsNet.QuantityValue)" />
-        public static Area? Acres(this double? value) => Area.FromAcres(value);
-
-        /// <inheritdoc cref="Area.FromAcres(UnitsNet.QuantityValue)" />
-        public static Area Acres(this float value) => Area.FromAcres(value);
-
-        /// <inheritdoc cref="Area.FromAcres(UnitsNet.QuantityValue)" />
-        public static Area? Acres(this float? value) => Area.FromAcres(value);
-
-        /// <inheritdoc cref="Area.FromAcres(UnitsNet.QuantityValue)" />
-        public static Area Acres(this decimal value) => Area.FromAcres(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromAcres(UnitsNet.QuantityValue)" />
-        public static Area? Acres(this decimal? value) => Area.FromAcres(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Area? Acres<T>(this T? value) where T : struct => Area.FromAcres(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Hectare
 
         /// <inheritdoc cref="Area.FromHectares(UnitsNet.QuantityValue)" />
-        public static Area Hectares(this int value) => Area.FromHectares(value);
+        public static Area Hectares<T>(this T value) => Area.FromHectares(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromHectares(UnitsNet.QuantityValue)" />
-        public static Area? Hectares(this int? value) => Area.FromHectares(value);
-
-        /// <inheritdoc cref="Area.FromHectares(UnitsNet.QuantityValue)" />
-        public static Area Hectares(this long value) => Area.FromHectares(value);
-
-        /// <inheritdoc cref="Area.FromHectares(UnitsNet.QuantityValue)" />
-        public static Area? Hectares(this long? value) => Area.FromHectares(value);
-
-        /// <inheritdoc cref="Area.FromHectares(UnitsNet.QuantityValue)" />
-        public static Area Hectares(this double value) => Area.FromHectares(value);
-
-        /// <inheritdoc cref="Area.FromHectares(UnitsNet.QuantityValue)" />
-        public static Area? Hectares(this double? value) => Area.FromHectares(value);
-
-        /// <inheritdoc cref="Area.FromHectares(UnitsNet.QuantityValue)" />
-        public static Area Hectares(this float value) => Area.FromHectares(value);
-
-        /// <inheritdoc cref="Area.FromHectares(UnitsNet.QuantityValue)" />
-        public static Area? Hectares(this float? value) => Area.FromHectares(value);
-
-        /// <inheritdoc cref="Area.FromHectares(UnitsNet.QuantityValue)" />
-        public static Area Hectares(this decimal value) => Area.FromHectares(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromHectares(UnitsNet.QuantityValue)" />
-        public static Area? Hectares(this decimal? value) => Area.FromHectares(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Area? Hectares<T>(this T? value) where T : struct => Area.FromHectares(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region SquareCentimeter
 
         /// <inheritdoc cref="Area.FromSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareCentimeters(this int value) => Area.FromSquareCentimeters(value);
+        public static Area SquareCentimeters<T>(this T value) => Area.FromSquareCentimeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareCentimeters(this int? value) => Area.FromSquareCentimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareCentimeters(this long value) => Area.FromSquareCentimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareCentimeters(this long? value) => Area.FromSquareCentimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareCentimeters(this double value) => Area.FromSquareCentimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareCentimeters(this double? value) => Area.FromSquareCentimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareCentimeters(this float value) => Area.FromSquareCentimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareCentimeters(this float? value) => Area.FromSquareCentimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareCentimeters(this decimal value) => Area.FromSquareCentimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromSquareCentimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareCentimeters(this decimal? value) => Area.FromSquareCentimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Area? SquareCentimeters<T>(this T? value) where T : struct => Area.FromSquareCentimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region SquareDecimeter
 
         /// <inheritdoc cref="Area.FromSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareDecimeters(this int value) => Area.FromSquareDecimeters(value);
+        public static Area SquareDecimeters<T>(this T value) => Area.FromSquareDecimeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareDecimeters(this int? value) => Area.FromSquareDecimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareDecimeters(this long value) => Area.FromSquareDecimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareDecimeters(this long? value) => Area.FromSquareDecimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareDecimeters(this double value) => Area.FromSquareDecimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareDecimeters(this double? value) => Area.FromSquareDecimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareDecimeters(this float value) => Area.FromSquareDecimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareDecimeters(this float? value) => Area.FromSquareDecimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareDecimeters(this decimal value) => Area.FromSquareDecimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromSquareDecimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareDecimeters(this decimal? value) => Area.FromSquareDecimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Area? SquareDecimeters<T>(this T? value) where T : struct => Area.FromSquareDecimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region SquareFoot
 
         /// <inheritdoc cref="Area.FromSquareFeet(UnitsNet.QuantityValue)" />
-        public static Area SquareFeet(this int value) => Area.FromSquareFeet(value);
+        public static Area SquareFeet<T>(this T value) => Area.FromSquareFeet(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareFeet(UnitsNet.QuantityValue)" />
-        public static Area? SquareFeet(this int? value) => Area.FromSquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareFeet(UnitsNet.QuantityValue)" />
-        public static Area SquareFeet(this long value) => Area.FromSquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareFeet(UnitsNet.QuantityValue)" />
-        public static Area? SquareFeet(this long? value) => Area.FromSquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareFeet(UnitsNet.QuantityValue)" />
-        public static Area SquareFeet(this double value) => Area.FromSquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareFeet(UnitsNet.QuantityValue)" />
-        public static Area? SquareFeet(this double? value) => Area.FromSquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareFeet(UnitsNet.QuantityValue)" />
-        public static Area SquareFeet(this float value) => Area.FromSquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareFeet(UnitsNet.QuantityValue)" />
-        public static Area? SquareFeet(this float? value) => Area.FromSquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromSquareFeet(UnitsNet.QuantityValue)" />
-        public static Area SquareFeet(this decimal value) => Area.FromSquareFeet(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromSquareFeet(UnitsNet.QuantityValue)" />
-        public static Area? SquareFeet(this decimal? value) => Area.FromSquareFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Area? SquareFeet<T>(this T? value) where T : struct => Area.FromSquareFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region SquareInch
 
         /// <inheritdoc cref="Area.FromSquareInches(UnitsNet.QuantityValue)" />
-        public static Area SquareInches(this int value) => Area.FromSquareInches(value);
+        public static Area SquareInches<T>(this T value) => Area.FromSquareInches(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareInches(UnitsNet.QuantityValue)" />
-        public static Area? SquareInches(this int? value) => Area.FromSquareInches(value);
-
-        /// <inheritdoc cref="Area.FromSquareInches(UnitsNet.QuantityValue)" />
-        public static Area SquareInches(this long value) => Area.FromSquareInches(value);
-
-        /// <inheritdoc cref="Area.FromSquareInches(UnitsNet.QuantityValue)" />
-        public static Area? SquareInches(this long? value) => Area.FromSquareInches(value);
-
-        /// <inheritdoc cref="Area.FromSquareInches(UnitsNet.QuantityValue)" />
-        public static Area SquareInches(this double value) => Area.FromSquareInches(value);
-
-        /// <inheritdoc cref="Area.FromSquareInches(UnitsNet.QuantityValue)" />
-        public static Area? SquareInches(this double? value) => Area.FromSquareInches(value);
-
-        /// <inheritdoc cref="Area.FromSquareInches(UnitsNet.QuantityValue)" />
-        public static Area SquareInches(this float value) => Area.FromSquareInches(value);
-
-        /// <inheritdoc cref="Area.FromSquareInches(UnitsNet.QuantityValue)" />
-        public static Area? SquareInches(this float? value) => Area.FromSquareInches(value);
-
-        /// <inheritdoc cref="Area.FromSquareInches(UnitsNet.QuantityValue)" />
-        public static Area SquareInches(this decimal value) => Area.FromSquareInches(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromSquareInches(UnitsNet.QuantityValue)" />
-        public static Area? SquareInches(this decimal? value) => Area.FromSquareInches(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Area? SquareInches<T>(this T? value) where T : struct => Area.FromSquareInches(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region SquareKilometer
 
         /// <inheritdoc cref="Area.FromSquareKilometers(UnitsNet.QuantityValue)" />
-        public static Area SquareKilometers(this int value) => Area.FromSquareKilometers(value);
+        public static Area SquareKilometers<T>(this T value) => Area.FromSquareKilometers(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareKilometers(UnitsNet.QuantityValue)" />
-        public static Area? SquareKilometers(this int? value) => Area.FromSquareKilometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareKilometers(UnitsNet.QuantityValue)" />
-        public static Area SquareKilometers(this long value) => Area.FromSquareKilometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareKilometers(UnitsNet.QuantityValue)" />
-        public static Area? SquareKilometers(this long? value) => Area.FromSquareKilometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareKilometers(UnitsNet.QuantityValue)" />
-        public static Area SquareKilometers(this double value) => Area.FromSquareKilometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareKilometers(UnitsNet.QuantityValue)" />
-        public static Area? SquareKilometers(this double? value) => Area.FromSquareKilometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareKilometers(UnitsNet.QuantityValue)" />
-        public static Area SquareKilometers(this float value) => Area.FromSquareKilometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareKilometers(UnitsNet.QuantityValue)" />
-        public static Area? SquareKilometers(this float? value) => Area.FromSquareKilometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareKilometers(UnitsNet.QuantityValue)" />
-        public static Area SquareKilometers(this decimal value) => Area.FromSquareKilometers(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromSquareKilometers(UnitsNet.QuantityValue)" />
-        public static Area? SquareKilometers(this decimal? value) => Area.FromSquareKilometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Area? SquareKilometers<T>(this T? value) where T : struct => Area.FromSquareKilometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region SquareMeter
 
         /// <inheritdoc cref="Area.FromSquareMeters(UnitsNet.QuantityValue)" />
-        public static Area SquareMeters(this int value) => Area.FromSquareMeters(value);
+        public static Area SquareMeters<T>(this T value) => Area.FromSquareMeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareMeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareMeters(this int? value) => Area.FromSquareMeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMeters(UnitsNet.QuantityValue)" />
-        public static Area SquareMeters(this long value) => Area.FromSquareMeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareMeters(this long? value) => Area.FromSquareMeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMeters(UnitsNet.QuantityValue)" />
-        public static Area SquareMeters(this double value) => Area.FromSquareMeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareMeters(this double? value) => Area.FromSquareMeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMeters(UnitsNet.QuantityValue)" />
-        public static Area SquareMeters(this float value) => Area.FromSquareMeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareMeters(this float? value) => Area.FromSquareMeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMeters(UnitsNet.QuantityValue)" />
-        public static Area SquareMeters(this decimal value) => Area.FromSquareMeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromSquareMeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareMeters(this decimal? value) => Area.FromSquareMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Area? SquareMeters<T>(this T? value) where T : struct => Area.FromSquareMeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region SquareMicrometer
 
         /// <inheritdoc cref="Area.FromSquareMicrometers(UnitsNet.QuantityValue)" />
-        public static Area SquareMicrometers(this int value) => Area.FromSquareMicrometers(value);
+        public static Area SquareMicrometers<T>(this T value) => Area.FromSquareMicrometers(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareMicrometers(UnitsNet.QuantityValue)" />
-        public static Area? SquareMicrometers(this int? value) => Area.FromSquareMicrometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareMicrometers(UnitsNet.QuantityValue)" />
-        public static Area SquareMicrometers(this long value) => Area.FromSquareMicrometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareMicrometers(UnitsNet.QuantityValue)" />
-        public static Area? SquareMicrometers(this long? value) => Area.FromSquareMicrometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareMicrometers(UnitsNet.QuantityValue)" />
-        public static Area SquareMicrometers(this double value) => Area.FromSquareMicrometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareMicrometers(UnitsNet.QuantityValue)" />
-        public static Area? SquareMicrometers(this double? value) => Area.FromSquareMicrometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareMicrometers(UnitsNet.QuantityValue)" />
-        public static Area SquareMicrometers(this float value) => Area.FromSquareMicrometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareMicrometers(UnitsNet.QuantityValue)" />
-        public static Area? SquareMicrometers(this float? value) => Area.FromSquareMicrometers(value);
-
-        /// <inheritdoc cref="Area.FromSquareMicrometers(UnitsNet.QuantityValue)" />
-        public static Area SquareMicrometers(this decimal value) => Area.FromSquareMicrometers(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromSquareMicrometers(UnitsNet.QuantityValue)" />
-        public static Area? SquareMicrometers(this decimal? value) => Area.FromSquareMicrometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Area? SquareMicrometers<T>(this T? value) where T : struct => Area.FromSquareMicrometers(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region SquareMile
 
         /// <inheritdoc cref="Area.FromSquareMiles(UnitsNet.QuantityValue)" />
-        public static Area SquareMiles(this int value) => Area.FromSquareMiles(value);
+        public static Area SquareMiles<T>(this T value) => Area.FromSquareMiles(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareMiles(UnitsNet.QuantityValue)" />
-        public static Area? SquareMiles(this int? value) => Area.FromSquareMiles(value);
-
-        /// <inheritdoc cref="Area.FromSquareMiles(UnitsNet.QuantityValue)" />
-        public static Area SquareMiles(this long value) => Area.FromSquareMiles(value);
-
-        /// <inheritdoc cref="Area.FromSquareMiles(UnitsNet.QuantityValue)" />
-        public static Area? SquareMiles(this long? value) => Area.FromSquareMiles(value);
-
-        /// <inheritdoc cref="Area.FromSquareMiles(UnitsNet.QuantityValue)" />
-        public static Area SquareMiles(this double value) => Area.FromSquareMiles(value);
-
-        /// <inheritdoc cref="Area.FromSquareMiles(UnitsNet.QuantityValue)" />
-        public static Area? SquareMiles(this double? value) => Area.FromSquareMiles(value);
-
-        /// <inheritdoc cref="Area.FromSquareMiles(UnitsNet.QuantityValue)" />
-        public static Area SquareMiles(this float value) => Area.FromSquareMiles(value);
-
-        /// <inheritdoc cref="Area.FromSquareMiles(UnitsNet.QuantityValue)" />
-        public static Area? SquareMiles(this float? value) => Area.FromSquareMiles(value);
-
-        /// <inheritdoc cref="Area.FromSquareMiles(UnitsNet.QuantityValue)" />
-        public static Area SquareMiles(this decimal value) => Area.FromSquareMiles(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromSquareMiles(UnitsNet.QuantityValue)" />
-        public static Area? SquareMiles(this decimal? value) => Area.FromSquareMiles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Area? SquareMiles<T>(this T? value) where T : struct => Area.FromSquareMiles(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region SquareMillimeter
 
         /// <inheritdoc cref="Area.FromSquareMillimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareMillimeters(this int value) => Area.FromSquareMillimeters(value);
+        public static Area SquareMillimeters<T>(this T value) => Area.FromSquareMillimeters(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareMillimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareMillimeters(this int? value) => Area.FromSquareMillimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMillimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareMillimeters(this long value) => Area.FromSquareMillimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMillimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareMillimeters(this long? value) => Area.FromSquareMillimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMillimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareMillimeters(this double value) => Area.FromSquareMillimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMillimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareMillimeters(this double? value) => Area.FromSquareMillimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMillimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareMillimeters(this float value) => Area.FromSquareMillimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMillimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareMillimeters(this float? value) => Area.FromSquareMillimeters(value);
-
-        /// <inheritdoc cref="Area.FromSquareMillimeters(UnitsNet.QuantityValue)" />
-        public static Area SquareMillimeters(this decimal value) => Area.FromSquareMillimeters(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromSquareMillimeters(UnitsNet.QuantityValue)" />
-        public static Area? SquareMillimeters(this decimal? value) => Area.FromSquareMillimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Area? SquareMillimeters<T>(this T? value) where T : struct => Area.FromSquareMillimeters(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region SquareYard
 
         /// <inheritdoc cref="Area.FromSquareYards(UnitsNet.QuantityValue)" />
-        public static Area SquareYards(this int value) => Area.FromSquareYards(value);
+        public static Area SquareYards<T>(this T value) => Area.FromSquareYards(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromSquareYards(UnitsNet.QuantityValue)" />
-        public static Area? SquareYards(this int? value) => Area.FromSquareYards(value);
-
-        /// <inheritdoc cref="Area.FromSquareYards(UnitsNet.QuantityValue)" />
-        public static Area SquareYards(this long value) => Area.FromSquareYards(value);
-
-        /// <inheritdoc cref="Area.FromSquareYards(UnitsNet.QuantityValue)" />
-        public static Area? SquareYards(this long? value) => Area.FromSquareYards(value);
-
-        /// <inheritdoc cref="Area.FromSquareYards(UnitsNet.QuantityValue)" />
-        public static Area SquareYards(this double value) => Area.FromSquareYards(value);
-
-        /// <inheritdoc cref="Area.FromSquareYards(UnitsNet.QuantityValue)" />
-        public static Area? SquareYards(this double? value) => Area.FromSquareYards(value);
-
-        /// <inheritdoc cref="Area.FromSquareYards(UnitsNet.QuantityValue)" />
-        public static Area SquareYards(this float value) => Area.FromSquareYards(value);
-
-        /// <inheritdoc cref="Area.FromSquareYards(UnitsNet.QuantityValue)" />
-        public static Area? SquareYards(this float? value) => Area.FromSquareYards(value);
-
-        /// <inheritdoc cref="Area.FromSquareYards(UnitsNet.QuantityValue)" />
-        public static Area SquareYards(this decimal value) => Area.FromSquareYards(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromSquareYards(UnitsNet.QuantityValue)" />
-        public static Area? SquareYards(this decimal? value) => Area.FromSquareYards(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Area? SquareYards<T>(this T? value) where T : struct => Area.FromSquareYards(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region UsSurveySquareFoot
 
         /// <inheritdoc cref="Area.FromUsSurveySquareFeet(UnitsNet.QuantityValue)" />
-        public static Area UsSurveySquareFeet(this int value) => Area.FromUsSurveySquareFeet(value);
+        public static Area UsSurveySquareFeet<T>(this T value) => Area.FromUsSurveySquareFeet(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Area.FromUsSurveySquareFeet(UnitsNet.QuantityValue)" />
-        public static Area? UsSurveySquareFeet(this int? value) => Area.FromUsSurveySquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(UnitsNet.QuantityValue)" />
-        public static Area UsSurveySquareFeet(this long value) => Area.FromUsSurveySquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(UnitsNet.QuantityValue)" />
-        public static Area? UsSurveySquareFeet(this long? value) => Area.FromUsSurveySquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(UnitsNet.QuantityValue)" />
-        public static Area UsSurveySquareFeet(this double value) => Area.FromUsSurveySquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(UnitsNet.QuantityValue)" />
-        public static Area? UsSurveySquareFeet(this double? value) => Area.FromUsSurveySquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(UnitsNet.QuantityValue)" />
-        public static Area UsSurveySquareFeet(this float value) => Area.FromUsSurveySquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(UnitsNet.QuantityValue)" />
-        public static Area? UsSurveySquareFeet(this float? value) => Area.FromUsSurveySquareFeet(value);
-
-        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(UnitsNet.QuantityValue)" />
-        public static Area UsSurveySquareFeet(this decimal value) => Area.FromUsSurveySquareFeet(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Area.FromUsSurveySquareFeet(UnitsNet.QuantityValue)" />
-        public static Area? UsSurveySquareFeet(this decimal? value) => Area.FromUsSurveySquareFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Area? UsSurveySquareFeet<T>(this T? value) where T : struct => Area.FromUsSurveySquareFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

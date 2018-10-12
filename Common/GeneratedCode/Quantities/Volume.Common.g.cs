@@ -843,6 +843,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Tablespoons.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #134, please use UsTablespoon instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromTablespoons(double tablespoons)
@@ -857,6 +858,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get Volume from Teaspoons.
         /// </summary>
+        [System.Obsolete("Deprecated due to github issue #134, please use UsTeaspoon instead")]
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static Volume FromTeaspoons(double teaspoons)
@@ -1343,22 +1345,6 @@ namespace UnitsNet
         public static VolumeUnit ParseUnit(string str)
         {
             return ParseUnit(str, (IFormatProvider)null);
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
-        public static VolumeUnit ParseUnit(string str, [CanBeNull] string cultureName)
-        {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         #endregion

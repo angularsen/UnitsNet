@@ -47,34 +47,11 @@ namespace UnitsNet.Extensions.NumberToCapacitance
         #region Farad
 
         /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
-        public static Capacitance Farads(this int value) => Capacitance.FromFarads(value);
+        public static Capacitance Farads<T>(this T value) => Capacitance.FromFarads(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
-        public static Capacitance? Farads(this int? value) => Capacitance.FromFarads(value);
-
-        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
-        public static Capacitance Farads(this long value) => Capacitance.FromFarads(value);
-
-        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
-        public static Capacitance? Farads(this long? value) => Capacitance.FromFarads(value);
-
-        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
-        public static Capacitance Farads(this double value) => Capacitance.FromFarads(value);
-
-        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
-        public static Capacitance? Farads(this double? value) => Capacitance.FromFarads(value);
-
-        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
-        public static Capacitance Farads(this float value) => Capacitance.FromFarads(value);
-
-        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
-        public static Capacitance? Farads(this float? value) => Capacitance.FromFarads(value);
-
-        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
-        public static Capacitance Farads(this decimal value) => Capacitance.FromFarads(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Capacitance.FromFarads(UnitsNet.QuantityValue)" />
-        public static Capacitance? Farads(this decimal? value) => Capacitance.FromFarads(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Capacitance? Farads<T>(this T? value) where T : struct => Capacitance.FromFarads(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
