@@ -242,5 +242,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(AmplitudeRatioUnit.Undefined, AmplitudeRatio.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(AmplitudeRatioUnit)).Cast<AmplitudeRatioUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == AmplitudeRatioUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

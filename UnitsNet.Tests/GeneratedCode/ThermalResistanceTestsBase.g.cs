@@ -247,5 +247,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ThermalResistanceUnit.Undefined, ThermalResistance.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(ThermalResistanceUnit)).Cast<ThermalResistanceUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == ThermalResistanceUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

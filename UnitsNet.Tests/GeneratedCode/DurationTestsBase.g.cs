@@ -297,5 +297,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(DurationUnit.Undefined, Duration.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(DurationUnit)).Cast<DurationUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == DurationUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

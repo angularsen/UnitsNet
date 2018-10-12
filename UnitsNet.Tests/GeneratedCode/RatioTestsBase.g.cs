@@ -257,5 +257,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(RatioUnit.Undefined, Ratio.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(RatioUnit)).Cast<RatioUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == RatioUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

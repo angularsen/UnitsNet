@@ -257,5 +257,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(DynamicViscosityUnit.Undefined, DynamicViscosity.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(DynamicViscosityUnit)).Cast<DynamicViscosityUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == DynamicViscosityUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

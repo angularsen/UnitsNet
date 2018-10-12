@@ -567,5 +567,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(PressureUnit.Undefined, Pressure.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(PressureUnit)).Cast<PressureUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == PressureUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

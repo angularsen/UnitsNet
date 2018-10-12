@@ -367,5 +367,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(SpecificWeightUnit.Undefined, SpecificWeight.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(SpecificWeightUnit)).Cast<SpecificWeightUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == SpecificWeightUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

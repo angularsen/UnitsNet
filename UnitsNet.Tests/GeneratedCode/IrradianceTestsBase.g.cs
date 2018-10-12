@@ -217,5 +217,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(IrradianceUnit.Undefined, Irradiance.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(IrradianceUnit)).Cast<IrradianceUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == IrradianceUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

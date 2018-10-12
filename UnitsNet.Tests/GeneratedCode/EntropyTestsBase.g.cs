@@ -267,5 +267,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(EntropyUnit.Undefined, Entropy.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(EntropyUnit)).Cast<EntropyUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == EntropyUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

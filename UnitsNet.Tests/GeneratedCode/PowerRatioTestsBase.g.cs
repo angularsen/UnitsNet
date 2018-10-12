@@ -222,5 +222,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(PowerRatioUnit.Undefined, PowerRatio.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(PowerRatioUnit)).Cast<PowerRatioUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == PowerRatioUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

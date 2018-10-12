@@ -68,28 +68,6 @@ namespace UnitsNet.Tests
             // ReSharper restore UnusedMember.Local
         }
 
-        private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnitType>(string cultureName,
-            IEnumerable<TUnitType> unitValues)
-            where TUnitType : Enum
-        {
-            var culture = GetCulture(cultureName);
-            var unitsMissingAbbreviations = new List<TUnitType>();
-
-            foreach(var unit in unitValues)
-            {
-                try
-                {
-                    UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, culture);
-                }
-                catch
-                {
-                    unitsMissingAbbreviations.Add(unit);
-                }
-            }
-
-            return unitsMissingAbbreviations.Cast<object>();
-        }
-
         // These cultures all use a comma for the radix point
         [Theory]
         [InlineData("de-DE")]
@@ -230,43 +208,6 @@ namespace UnitsNet.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Theory]
-        [InlineData("en-US")]
-        [InlineData("nb-NO")]
-        [InlineData("ru-RU")]
-        public void AllUnitAbbreviationsImplemented(string cultureName)
-        {
-            List<object> unitValuesMissingAbbreviations = new List<object>()
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AngleUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AreaUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<DurationUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ElectricPotentialUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ForceUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<LengthUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<MassUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<PressureUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<RotationalSpeedUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<SpeedUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TemperatureUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TorqueUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<VolumeUnit>()))
-                .ToList();
-
-            // We want to flag if any localizations are missing, but not break the build
-            // or flag an error for pull requests. For now they are not considered
-            // critical and it is cumbersome to have a third person review the pull request
-            // and add in any translations before merging it in.
-            if (unitValuesMissingAbbreviations.Any())
-            {
-                string unitsWithNoAbbrev = string.Join(", ",
-                    unitValuesMissingAbbreviations.Select(unitValue => unitValue.GetType().Name + "." + unitValue).ToArray());
-
-                string message = "Units missing abbreviations: " + unitsWithNoAbbrev;
-                _output.WriteLine(message);
-            }
-            Assert.Empty(unitValuesMissingAbbreviations);
-        }
-
         [Fact]
         public void AllUnitsImplementToStringForInvariantCulture()
         {
@@ -322,11 +263,10 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void GetDefaultAbbreviationFallsBackToDefaultStringIfNotSpecified()
+        public void GetDefaultAbbreviationThrowsNotImplementedExceptionIfNoneExist()
         {
             var unitAbbreviationCache = new UnitAbbreviationsCache();
-            string abbreviation = unitAbbreviationCache.GetDefaultAbbreviation(CustomUnit.Unit1, AmericanCulture);
-            Assert.Equal("(no abbreviation for CustomUnit.Unit1)", abbreviation);
+            Assert.Throws<NotImplementedException>(() => unitAbbreviationCache.GetDefaultAbbreviation(CustomUnit.Unit1));
         }
 
         [Fact]

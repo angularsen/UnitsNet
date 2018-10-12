@@ -175,11 +175,21 @@ namespace UnitsNet
             var unitType = typeof(TUnitType);
 
             if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
-                return formatProvider != FallbackCulture ? GetDefaultAbbreviation(unit, FallbackCulture) : $"(no abbreviation for {unitType.Name}.{unit})";
+            {
+                if(formatProvider != FallbackCulture)
+                    return GetDefaultAbbreviation(unit, FallbackCulture);
+                else
+                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{unit}");
+            }
 
             var abbreviations = lookup.GetAbbreviationsForUnit(unit);
             if(abbreviations.Count == 0)
-                return formatProvider != FallbackCulture ? GetDefaultAbbreviation(unit, FallbackCulture) : $"(no abbreviation for {unitType.Name}.{unit})";
+            {
+                if(formatProvider != FallbackCulture)
+                    return GetDefaultAbbreviation(unit, FallbackCulture);
+                else
+                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name}.{unit}");
+            }
 
             return abbreviations.First();
         }
@@ -202,11 +212,21 @@ namespace UnitsNet
         string GetDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider = null)
         {
             if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
-                return formatProvider != FallbackCulture ? GetDefaultAbbreviation(unitType, unitValue, FallbackCulture) : $"(no abbreviation for {unitType.Name} with numeric value {unitValue})";
+            {
+                if(formatProvider != FallbackCulture)
+                    return GetDefaultAbbreviation(unitType, unitValue, FallbackCulture);
+                else
+                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
+            }
 
             var abbreviations = lookup.GetAbbreviationsForUnit(unitValue);
             if(abbreviations.Count == 0)
-                return formatProvider != FallbackCulture ? GetDefaultAbbreviation(unitType, unitValue, FallbackCulture) : $"(no abbreviation for {unitType.Name} with numeric value {unitValue})";
+            {
+                if(formatProvider != FallbackCulture)
+                    return GetDefaultAbbreviation(unitType, unitValue, FallbackCulture);
+                else
+                    throw new NotImplementedException($"No abbreviation is specified for {unitType.Name} with numeric value {unitValue}.");
+            }
 
             return abbreviations.First();
         }

@@ -237,5 +237,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ReactivePowerUnit.Undefined, ReactivePower.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(ReactivePowerUnit)).Cast<ReactivePowerUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == ReactivePowerUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }
