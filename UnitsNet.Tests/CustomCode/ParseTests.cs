@@ -21,8 +21,8 @@
 
 using System;
 using System.Globalization;
-using Xunit;
 using UnitsNet.Units;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -33,7 +33,7 @@ namespace UnitsNet.Tests.CustomCode
     ///     reasonable to assume that testing one unit class would cover
     ///     all of them. Obviously, that can change in the future.
     /// </remarks>
-    [Collection(nameof(UnitSystemFixture))]
+    [Collection(nameof(UnitAbbreviationsCacheFixture))]
     public class ParseTests
     {
         [Theory]
