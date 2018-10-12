@@ -134,6 +134,30 @@
           "Abbreviations": [ "lb·in²" ]
         }
       ]
+    },
+    {
+      "SingularName": "SlugSquareFoot",
+      "PluralName": "SlugSquareFeet",
+      "FromUnitToBaseFunc": "x*1.3558179619",
+      "FromBaseToUnitFunc": "x/1.3558179619",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slug·ft²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "SlugSquareInch",
+      "PluralName": "SlugSquareInches",
+      "FromUnitToBaseFunc": "x*9.41540242e-3",
+      "FromBaseToUnitFunc": "x/9.41540242e-3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slug·in²" ]
+        }
+      ]
     }
   ]
 }

@@ -261,6 +261,24 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable SlugSquareFeet.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static MassMomentOfInertia? FromSlugSquareFeet(QuantityValue? slugsquarefeet)
+        {
+            return slugsquarefeet.HasValue ? FromSlugSquareFeet(slugsquarefeet.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassMomentOfInertia from nullable SlugSquareInches.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static MassMomentOfInertia? FromSlugSquareInches(QuantityValue? slugsquareinches)
+        {
+            return slugsquareinches.HasValue ? FromSlugSquareInches(slugsquareinches.Value) : default(MassMomentOfInertia?);
+        }
+
+        /// <summary>
         ///     Get nullable MassMomentOfInertia from nullable TonneSquareCentimeters.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]

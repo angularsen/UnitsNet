@@ -286,6 +286,28 @@ namespace UnitsNet.Extensions.NumberToMassMomentOfInertia
 
         #endregion
 
+        #region SlugSquareFoot
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia SlugSquareFeet<T>(this T value) => MassMomentOfInertia.FromSlugSquareFeet(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareFeet(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassMomentOfInertia? SlugSquareFeet<T>(this T? value) where T : struct => MassMomentOfInertia.FromSlugSquareFeet(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region SlugSquareInch
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(UnitsNet.QuantityValue)" />
+        public static MassMomentOfInertia SlugSquareInches<T>(this T value) => MassMomentOfInertia.FromSlugSquareInches(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassMomentOfInertia.FromSlugSquareInches(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassMomentOfInertia? SlugSquareInches<T>(this T? value) where T : struct => MassMomentOfInertia.FromSlugSquareInches(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region TonneSquareCentimeter
 
         /// <inheritdoc cref="MassMomentOfInertia.FromTonneSquareCentimeters(UnitsNet.QuantityValue)" />
