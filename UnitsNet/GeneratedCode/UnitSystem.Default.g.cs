@@ -2265,6 +2265,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "short tn"),
                                 new AbbreviationsForCulture("ru-RU", "тонна малая"),
                             }),
+                        new CulturesForEnumValue((int) MassUnit.Slug,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "slug"),
+                            }),
                         new CulturesForEnumValue((int) MassUnit.Stone,
                             new[]
                             {
@@ -2483,6 +2488,16 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "lb·in²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.SlugSquareFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "slug·ft²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.SlugSquareInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "slug·in²"),
                             }),
                         new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareCentimeter,
                             new[]
