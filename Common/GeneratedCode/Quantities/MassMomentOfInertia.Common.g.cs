@@ -896,8 +896,8 @@ namespace UnitsNet
                 case MassMomentOfInertiaUnit.MilligramSquareMillimeter: return (_value/1e9) * 1e-3d;
                 case MassMomentOfInertiaUnit.PoundSquareFoot: return _value*4.21401101e-2;
                 case MassMomentOfInertiaUnit.PoundSquareInch: return _value*2.9263965e-4;
-                case MassMomentOfInertiaUnit.SlugSquareFoot: return _value*1.35583;
-                case MassMomentOfInertiaUnit.SlugSquareInch: return _value*9.41548e-3;
+                case MassMomentOfInertiaUnit.SlugSquareFoot: return _value*1.3558179619;
+                case MassMomentOfInertiaUnit.SlugSquareInch: return _value*9.41540242e-3;
                 case MassMomentOfInertiaUnit.TonneSquareCentimeter: return _value/1e1;
                 case MassMomentOfInertiaUnit.TonneSquareDecimeter: return _value/1e-1;
                 case MassMomentOfInertiaUnit.TonneSquareMeter: return _value/1e-3;
@@ -938,8 +938,8 @@ namespace UnitsNet
                 case MassMomentOfInertiaUnit.MilligramSquareMillimeter: return (baseUnitValue*1e9) / 1e-3d;
                 case MassMomentOfInertiaUnit.PoundSquareFoot: return baseUnitValue/4.21401101e-2;
                 case MassMomentOfInertiaUnit.PoundSquareInch: return baseUnitValue/2.9263965e-4;
-                case MassMomentOfInertiaUnit.SlugSquareFoot: return baseUnitValue/1.35583;
-                case MassMomentOfInertiaUnit.SlugSquareInch: return baseUnitValue/9.41548e-3;
+                case MassMomentOfInertiaUnit.SlugSquareFoot: return baseUnitValue/1.3558179619;
+                case MassMomentOfInertiaUnit.SlugSquareInch: return baseUnitValue/9.41540242e-3;
                 case MassMomentOfInertiaUnit.TonneSquareCentimeter: return baseUnitValue*1e1;
                 case MassMomentOfInertiaUnit.TonneSquareDecimeter: return baseUnitValue*1e-1;
                 case MassMomentOfInertiaUnit.TonneSquareMeter: return baseUnitValue*1e-3;

@@ -256,34 +256,11 @@ namespace UnitsNet.Extensions.NumberToMass
         #region Slug
 
         /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
-        public static Mass Slugs(this int value) => Mass.FromSlugs(value);
+        public static Mass Slugs<T>(this T value) => Mass.FromSlugs(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
-        public static Mass? Slugs(this int? value) => Mass.FromSlugs(value);
-
-        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
-        public static Mass Slugs(this long value) => Mass.FromSlugs(value);
-
-        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
-        public static Mass? Slugs(this long? value) => Mass.FromSlugs(value);
-
-        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
-        public static Mass Slugs(this double value) => Mass.FromSlugs(value);
-
-        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
-        public static Mass? Slugs(this double? value) => Mass.FromSlugs(value);
-
-        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
-        public static Mass Slugs(this float value) => Mass.FromSlugs(value);
-
-        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
-        public static Mass? Slugs(this float? value) => Mass.FromSlugs(value);
-
-        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
-        public static Mass Slugs(this decimal value) => Mass.FromSlugs(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Mass.FromSlugs(UnitsNet.QuantityValue)" />
-        public static Mass? Slugs(this decimal? value) => Mass.FromSlugs(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Mass? Slugs<T>(this T? value) where T : struct => Mass.FromSlugs(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
