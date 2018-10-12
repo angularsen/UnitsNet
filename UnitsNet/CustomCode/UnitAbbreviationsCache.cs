@@ -174,9 +174,8 @@ namespace UnitsNet
         {
             var unitType = typeof(TUnitType);
 
-            var lookup = GetUnitValueAbbreviationLookup(unitType, formatProvider);
-            if(lookup == null)
-                return formatProvider != FallbackCulture ? GetDefaultAbbreviation( unit, FallbackCulture ) : $"(no abbreviation for {unitType.Name}.{unit})";
+            if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
+                return formatProvider != FallbackCulture ? GetDefaultAbbreviation(unit, FallbackCulture) : $"(no abbreviation for {unitType.Name}.{unit})";
 
             var abbreviations = lookup.GetAbbreviationsForUnit(unit);
             if(abbreviations.Count == 0)
@@ -202,9 +201,8 @@ namespace UnitsNet
 #endif
         string GetDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider = null)
         {
-            var lookup = GetUnitValueAbbreviationLookup(unitType, formatProvider);
-            if(lookup == null)
-                return formatProvider != FallbackCulture ? GetDefaultAbbreviation( unitType, unitValue, FallbackCulture ) : $"(no abbreviation for {unitType.Name} with numeric value {unitValue})";
+            if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
+                return formatProvider != FallbackCulture ? GetDefaultAbbreviation(unitType, unitValue, FallbackCulture) : $"(no abbreviation for {unitType.Name} with numeric value {unitValue})";
 
             var abbreviations = lookup.GetAbbreviationsForUnit(unitValue);
             if(abbreviations.Count == 0)
@@ -249,8 +247,7 @@ namespace UnitsNet
         {
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 
-            var lookup = GetUnitValueAbbreviationLookup(unitType, formatProvider);
-            if(lookup == null)
+            if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
                 return formatProvider != FallbackCulture ? GetAllAbbreviations(unitType, unitValue, FallbackCulture) : new string[] { };
 
             var abbreviations = lookup.GetAbbreviationsForUnit(unitValue);
@@ -276,24 +273,25 @@ namespace UnitsNet
         {
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 
-            var lookup = GetUnitValueAbbreviationLookup(unitType, formatProvider);
-            if(lookup == null)
+            if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
                 return formatProvider != FallbackCulture ? GetAllAbbreviations(unitType, FallbackCulture) : new string[] { };
 
             return lookup.GetAllAbbreviations();
         }
 
-        internal UnitValueAbbreviationLookup GetUnitValueAbbreviationLookup(Type unitType, IFormatProvider formatProvider = null)
+        internal bool TryGetUnitValueAbbreviationLookup(Type unitType, IFormatProvider formatProvider, out UnitValueAbbreviationLookup unitToAbbreviations)
         {
+            unitToAbbreviations = null;
+
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 
             if(!looksupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
-                return formatProvider != FallbackCulture ? GetUnitValueAbbreviationLookup(unitType, FallbackCulture) : null;
+                return formatProvider != FallbackCulture ? TryGetUnitValueAbbreviationLookup(unitType, FallbackCulture, out unitToAbbreviations) : false;
 
-            if(!quantitiesForProvider.TryGetValue(unitType, out var unitToAbbreviations))
-                return formatProvider != FallbackCulture ? GetUnitValueAbbreviationLookup(unitType, FallbackCulture) : null;
+            if(!quantitiesForProvider.TryGetValue(unitType, out unitToAbbreviations))
+                return formatProvider != FallbackCulture ? TryGetUnitValueAbbreviationLookup(unitType, FallbackCulture, out unitToAbbreviations) : false;
 
-            return unitToAbbreviations;
+            return true;
         }
     }
 }

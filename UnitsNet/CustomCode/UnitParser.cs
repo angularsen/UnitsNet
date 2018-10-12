@@ -85,8 +85,7 @@ namespace UnitsNet
 #endif
         object Parse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider = null)
         {
-            var abbreviations = unitAbbreviationsCache.GetUnitValueAbbreviationLookup(unitType, formatProvider);
-            if(abbreviations == null)
+            if(!unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 throw new UnitNotFoundException($"No abbreviations defined for unit type [{unitType}] for culture [{formatProvider}].");
 
             var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation);
@@ -180,8 +179,7 @@ namespace UnitsNet
         {
             unit = GetDefault(unitType);
 
-            var abbreviations = unitAbbreviationsCache.GetUnitValueAbbreviationLookup(unitType, formatProvider);
-            if(abbreviations == null)
+            if(!unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 return false;
 
             var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation);
