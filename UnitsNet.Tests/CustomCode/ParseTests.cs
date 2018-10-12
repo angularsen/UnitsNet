@@ -189,11 +189,9 @@ namespace UnitsNet.Tests.CustomCode
         {
             string abbrev = $"m{s}s";
 
-            //var unitAbbreviationsCache = new UnitAbbreviationsCache();
             UnitAbbreviationsCache.Default.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
 
             // Act
-            //var parser = new UnitParser(unitAbbreviationsCache);
             bool ok = UnitParser.Default.TryParse(abbrev, out LengthUnit result);
 
             // Assert

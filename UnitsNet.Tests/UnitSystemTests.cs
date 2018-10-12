@@ -161,10 +161,8 @@ namespace UnitsNet.Tests
         [InlineData("cm^^2", AreaUnit.SquareCentimeter)]
         public void Parse_ReturnsUnitMappedByCustomAbbreviation(string customAbbreviation, AreaUnit expected)
         {
-            //var unitAbbreviationsCache = new UnitAbbreviationsCache();
             UnitAbbreviationsCache.Default.MapUnitToAbbreviation(expected, customAbbreviation);
 
-            //var parser = new UnitParser(unitAbbreviationsCache);
             var actual = UnitParser.Default.Parse<AreaUnit>(customAbbreviation);
             Assert.Equal(expected, actual);
         }
