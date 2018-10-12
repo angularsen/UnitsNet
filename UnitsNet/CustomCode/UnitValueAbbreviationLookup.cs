@@ -45,7 +45,7 @@ namespace UnitsNet
             return unitToAbbreviationMap.Values.SelectMany((abbreviations) =>
             {
                 return abbreviations;
-            } ).ToArray();
+            } ).Distinct().ToArray();
         }
 
         internal List<string> GetAbbreviationsForUnit<UnitType>(UnitType unit) where UnitType : Enum
@@ -58,7 +58,7 @@ namespace UnitsNet
             if(!unitToAbbreviationMap.TryGetValue(unit, out var abbreviations))
                 unitToAbbreviationMap[unit] = abbreviations = new List<string>();
 
-            return abbreviations;
+            return abbreviations.Distinct().ToList();
         }
 
         internal List<int> GetUnitsForAbbreviation(string abbreviation)
@@ -66,19 +66,19 @@ namespace UnitsNet
             if(!abbreviationToUnitMap.TryGetValue(abbreviation, out var units))
                 abbreviationToUnitMap[abbreviation] = units = new List<int>();
 
-            return units;
+            return units.Distinct().ToList();
         }
 
         internal void Add(int unit, string abbreviation)
         {
-            if(!unitToAbbreviationMap.TryGetValue(unit, out var abbreviations))
-                abbreviations = unitToAbbreviationMap[unit] = new List<string>();
+            if(!unitToAbbreviationMap.TryGetValue(unit, out var abbreviationsForUnit))
+                abbreviationsForUnit = unitToAbbreviationMap[unit] = new List<string>();
 
-            if(!abbreviationToUnitMap.TryGetValue(abbreviation, out var units))
-                abbreviationToUnitMap[abbreviation] = units = new List<int>();
+            if(!abbreviationToUnitMap.TryGetValue(abbreviation, out var unitsForAbbreviation))
+                abbreviationToUnitMap[abbreviation] = unitsForAbbreviation = new List<int>();
 
-            abbreviations.Add(abbreviation);
-            units.Add(unit);
+            abbreviationsForUnit.Add(abbreviation);
+            unitsForAbbreviation.Add(unit);
         }
     }
 }

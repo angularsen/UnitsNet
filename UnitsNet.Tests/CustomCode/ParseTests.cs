@@ -33,6 +33,7 @@ namespace UnitsNet.Tests.CustomCode
     ///     reasonable to assume that testing one unit class would cover
     ///     all of them. Obviously, that can change in the future.
     /// </remarks>
+    [Collection(nameof(UnitSystemFixture))]
     public class ParseTests
     {
         [Theory]
@@ -188,12 +189,12 @@ namespace UnitsNet.Tests.CustomCode
         {
             string abbrev = $"m{s}s";
 
-            var unitAbbreviationsCache = new UnitAbbreviationsCache();
-            unitAbbreviationsCache.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
+            //var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            UnitAbbreviationsCache.Default.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
 
             // Act
-            var parser = new UnitParser(unitAbbreviationsCache);
-            bool ok = parser.TryParse(abbrev, out LengthUnit result);
+            //var parser = new UnitParser(unitAbbreviationsCache);
+            bool ok = UnitParser.Default.TryParse(abbrev, out LengthUnit result);
 
             // Assert
             Assert.True(ok, "TryParse " + abbrev);
@@ -218,12 +219,10 @@ namespace UnitsNet.Tests.CustomCode
         {
             string abbrev = $"m{s}s";
 
-            var tempCulture = (CultureInfo)(new CultureInfo("en-US").Clone());
-
-            UnitAbbreviationsCache.Default.MapUnitToAbbreviation(LengthUnit.Meter, tempCulture, abbrev );
+            UnitAbbreviationsCache.Default.MapUnitToAbbreviation(LengthUnit.Meter, abbrev );
 
             // Act
-            bool ok = Length.TryParse($"10 {abbrev}", tempCulture, out Length result);
+            var ok = Length.TryParse($"10 {abbrev}", out var result);
 
             // Assert
             Assert.True(ok, $"TryParse \"10 {abbrev}\"");

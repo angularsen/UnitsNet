@@ -176,7 +176,7 @@ namespace UnitsNet
 
             var lookup = GetUnitValueAbbreviationLookup(unitType, formatProvider);
             if(lookup == null)
-                return $"(no abbreviation for {unitType.Name}.{unit})";
+                return formatProvider != FallbackCulture ? GetDefaultAbbreviation( unit, FallbackCulture ) : $"(no abbreviation for {unitType.Name}.{unit})";
 
             var abbreviations = lookup.GetAbbreviationsForUnit(unit);
             if(abbreviations.Count == 0)
@@ -204,7 +204,7 @@ namespace UnitsNet
         {
             var lookup = GetUnitValueAbbreviationLookup(unitType, formatProvider);
             if(lookup == null)
-                return $"(no abbreviation for {unitType.Name} with numeric value {unitValue})";
+                return formatProvider != FallbackCulture ? GetDefaultAbbreviation( unitType, unitValue, FallbackCulture ) : $"(no abbreviation for {unitType.Name} with numeric value {unitValue})";
 
             var abbreviations = lookup.GetAbbreviationsForUnit(unitValue);
             if(abbreviations.Count == 0)

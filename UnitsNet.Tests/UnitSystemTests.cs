@@ -72,12 +72,14 @@ namespace UnitsNet.Tests
             IEnumerable<TUnitType> unitValues)
             where TUnitType : Enum
         {
+            var culture = GetCulture(cultureName);
             var unitsMissingAbbreviations = new List<TUnitType>();
-            foreach (var unit in unitValues)
+
+            foreach(var unit in unitValues)
             {
                 try
                 {
-                    UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+                    UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, culture);
                 }
                 catch
                 {
@@ -159,11 +161,11 @@ namespace UnitsNet.Tests
         [InlineData("cm^^2", AreaUnit.SquareCentimeter)]
         public void Parse_ReturnsUnitMappedByCustomAbbreviation(string customAbbreviation, AreaUnit expected)
         {
-            var unitAbbreviationsCache = new UnitAbbreviationsCache();
-            unitAbbreviationsCache.MapUnitToAbbreviation(expected, customAbbreviation);
+            //var unitAbbreviationsCache = new UnitAbbreviationsCache();
+            UnitAbbreviationsCache.Default.MapUnitToAbbreviation(expected, customAbbreviation);
 
-            var parser = new UnitParser(unitAbbreviationsCache);
-            var actual = parser.Parse<AreaUnit>(customAbbreviation);
+            //var parser = new UnitParser(unitAbbreviationsCache);
+            var actual = UnitParser.Default.Parse<AreaUnit>(customAbbreviation);
             Assert.Equal(expected, actual);
         }
 
@@ -399,15 +401,16 @@ namespace UnitsNet.Tests
         [Fact]
         public void GetDefaultAbbreviationFallsBackToDefaultStringIfNotSpecified()
         {
-            string abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(CustomUnit.Unit1);
+            var unitAbbreviationCache = new UnitAbbreviationsCache();
+            string abbreviation = unitAbbreviationCache.GetDefaultAbbreviation(CustomUnit.Unit1, AmericanCulture);
             Assert.Equal("(no abbreviation for CustomUnit.Unit1)", abbreviation);
         }
 
         [Fact]
         public void GetDefaultAbbreviationFallsBackToUsEnglishCulture()
         {
-            CultureInfo oldCurrentCulture = CultureInfo.CurrentCulture;
-            CultureInfo oldCurrentUICulture = CultureInfo.CurrentUICulture;
+            var oldCurrentCulture = CultureInfo.CurrentCulture;
+            var oldCurrentUICulture = CultureInfo.CurrentUICulture;
 
             try
             {
@@ -417,13 +420,10 @@ namespace UnitsNet.Tests
                 var zuluCulture = new CultureInfo("zu-ZA");
                 CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = zuluCulture;
 
-                var americanCulture = new CultureInfo(AmericanCultureName);
-
-                var unitAbbreviationsCache = new UnitAbbreviationsCache();
-                unitAbbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, americanCulture, "US english abbreviation for Unit1");
+                UnitAbbreviationsCache.Default.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
 
                 // Act
-                string abbreviation = unitAbbreviationsCache.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
+                string abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
 
                 // Assert
                 Assert.Equal("US english abbreviation for Unit1", abbreviation);
@@ -438,12 +438,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void MapUnitToAbbreviation_AddCustomUnit_DoesNotOverrideDefaultAbbreviationForAlreadyMappedUnits()
         {
-            var americanCulture = new CultureInfo(AmericanCultureName);
+            UnitAbbreviationsCache.Default.MapUnitToAbbreviation(AreaUnit.SquareMeter, AmericanCulture, "m^2");
 
-            var unitAbbreviationsCache = new UnitAbbreviationsCache();
-            unitAbbreviationsCache.MapUnitToAbbreviation(AreaUnit.SquareMeter, americanCulture, "m^2");
-
-            Assert.Equal("m²", unitAbbreviationsCache.GetDefaultAbbreviation(AreaUnit.SquareMeter));
+            Assert.Equal("m²", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(AreaUnit.SquareMeter));
         }
 
         [Fact]
@@ -463,7 +460,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Parse_UnambiguousUnitsDoesNotThrow()
         {
-            Volume unit = Volume.Parse("1 l");
+            var unit = Volume.Parse("1 l");
 
             Assert.Equal(Volume.FromLiters(1), unit);
         }
