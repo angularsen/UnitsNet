@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct TemperatureDelta : IComparable, IComparable<TemperatureDelta>
+    public partial struct TemperatureDelta : IQuantity<TemperatureDeltaUnit>, IComparable, IComparable<TemperatureDelta>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

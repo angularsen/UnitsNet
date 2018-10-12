@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct AreaMomentOfInertia : IComparable, IComparable<AreaMomentOfInertia>
+    public partial struct AreaMomentOfInertia : IQuantity<AreaMomentOfInertiaUnit>, IComparable, IComparable<AreaMomentOfInertia>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

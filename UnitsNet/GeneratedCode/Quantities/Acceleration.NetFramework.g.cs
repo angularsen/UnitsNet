@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct Acceleration : IComparable, IComparable<Acceleration>
+    public partial struct Acceleration : IQuantity<AccelerationUnit>, IComparable, IComparable<Acceleration>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

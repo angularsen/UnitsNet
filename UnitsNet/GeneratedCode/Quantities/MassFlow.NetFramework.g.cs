@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct MassFlow : IComparable, IComparable<MassFlow>
+    public partial struct MassFlow : IQuantity<MassFlowUnit>, IComparable, IComparable<MassFlow>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

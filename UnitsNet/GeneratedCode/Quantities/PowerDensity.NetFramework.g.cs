@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct PowerDensity : IComparable, IComparable<PowerDensity>
+    public partial struct PowerDensity : IQuantity<PowerDensityUnit>, IComparable, IComparable<PowerDensity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct Permeability : IComparable, IComparable<Permeability>
+    public partial struct Permeability : IQuantity<PermeabilityUnit>, IComparable, IComparable<Permeability>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

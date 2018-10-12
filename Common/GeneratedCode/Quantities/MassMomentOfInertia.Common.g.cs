@@ -236,6 +236,16 @@ namespace UnitsNet
         public double PoundSquareInches => As(MassMomentOfInertiaUnit.PoundSquareInch);
 
         /// <summary>
+        ///     Get MassMomentOfInertia in SlugSquareFeet.
+        /// </summary>
+        public double SlugSquareFeet => As(MassMomentOfInertiaUnit.SlugSquareFoot);
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in SlugSquareInches.
+        /// </summary>
+        public double SlugSquareInches => As(MassMomentOfInertiaUnit.SlugSquareInch);
+
+        /// <summary>
         ///     Get MassMomentOfInertia in TonneSquareCentimeters.
         /// </summary>
         public double TonneSquareCentimeters => As(MassMomentOfInertiaUnit.TonneSquareCentimeter);
@@ -595,6 +605,36 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get MassMomentOfInertia from SlugSquareFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassMomentOfInertia FromSlugSquareFeet(double slugsquarefeet)
+#else
+        public static MassMomentOfInertia FromSlugSquareFeet(QuantityValue slugsquarefeet)
+#endif
+        {
+            double value = (double) slugsquarefeet;
+            return new MassMomentOfInertia(value, MassMomentOfInertiaUnit.SlugSquareFoot);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from SlugSquareInches.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassMomentOfInertia FromSlugSquareInches(double slugsquareinches)
+#else
+        public static MassMomentOfInertia FromSlugSquareInches(QuantityValue slugsquareinches)
+#endif
+        {
+            double value = (double) slugsquareinches;
+            return new MassMomentOfInertia(value, MassMomentOfInertiaUnit.SlugSquareInch);
+        }
+
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareCentimeters.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -824,6 +864,8 @@ namespace UnitsNet
                 case MassMomentOfInertiaUnit.MilligramSquareMillimeter: return (_value/1e9) * 1e-3d;
                 case MassMomentOfInertiaUnit.PoundSquareFoot: return _value*4.21401101e-2;
                 case MassMomentOfInertiaUnit.PoundSquareInch: return _value*2.9263965e-4;
+                case MassMomentOfInertiaUnit.SlugSquareFoot: return _value*1.3558179619;
+                case MassMomentOfInertiaUnit.SlugSquareInch: return _value*9.41540242e-3;
                 case MassMomentOfInertiaUnit.TonneSquareCentimeter: return _value/1e1;
                 case MassMomentOfInertiaUnit.TonneSquareDecimeter: return _value/1e-1;
                 case MassMomentOfInertiaUnit.TonneSquareMeter: return _value/1e-3;
@@ -864,6 +906,8 @@ namespace UnitsNet
                 case MassMomentOfInertiaUnit.MilligramSquareMillimeter: return (baseUnitValue*1e9) / 1e-3d;
                 case MassMomentOfInertiaUnit.PoundSquareFoot: return baseUnitValue/4.21401101e-2;
                 case MassMomentOfInertiaUnit.PoundSquareInch: return baseUnitValue/2.9263965e-4;
+                case MassMomentOfInertiaUnit.SlugSquareFoot: return baseUnitValue/1.3558179619;
+                case MassMomentOfInertiaUnit.SlugSquareInch: return baseUnitValue/9.41540242e-3;
                 case MassMomentOfInertiaUnit.TonneSquareCentimeter: return baseUnitValue*1e1;
                 case MassMomentOfInertiaUnit.TonneSquareDecimeter: return baseUnitValue*1e-1;
                 case MassMomentOfInertiaUnit.TonneSquareMeter: return baseUnitValue*1e-3;

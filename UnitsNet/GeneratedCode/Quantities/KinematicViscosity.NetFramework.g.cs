@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct KinematicViscosity : IComparable, IComparable<KinematicViscosity>
+    public partial struct KinematicViscosity : IQuantity<KinematicViscosityUnit>, IComparable, IComparable<KinematicViscosity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

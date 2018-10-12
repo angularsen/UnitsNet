@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct RotationalStiffness : IComparable, IComparable<RotationalStiffness>
+    public partial struct RotationalStiffness : IQuantity<RotationalStiffnessUnit>, IComparable, IComparable<RotationalStiffness>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

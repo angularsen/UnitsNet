@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct Capacitance : IComparable, IComparable<Capacitance>
+    public partial struct Capacitance : IQuantity<CapacitanceUnit>, IComparable, IComparable<Capacitance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

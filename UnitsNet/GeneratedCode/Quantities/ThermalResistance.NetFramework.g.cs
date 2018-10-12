@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct ThermalResistance : IComparable, IComparable<ThermalResistance>
+    public partial struct ThermalResistance : IQuantity<ThermalResistanceUnit>, IComparable, IComparable<ThermalResistance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

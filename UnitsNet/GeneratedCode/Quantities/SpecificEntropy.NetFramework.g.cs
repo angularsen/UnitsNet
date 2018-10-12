@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct SpecificEntropy : IComparable, IComparable<SpecificEntropy>
+    public partial struct SpecificEntropy : IQuantity<SpecificEntropyUnit>, IComparable, IComparable<SpecificEntropy>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

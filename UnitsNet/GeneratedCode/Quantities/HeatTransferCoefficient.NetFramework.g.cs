@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct HeatTransferCoefficient : IComparable, IComparable<HeatTransferCoefficient>
+    public partial struct HeatTransferCoefficient : IQuantity<HeatTransferCoefficientUnit>, IComparable, IComparable<HeatTransferCoefficient>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

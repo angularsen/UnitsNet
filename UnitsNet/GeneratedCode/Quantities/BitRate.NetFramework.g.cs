@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct BitRate : IComparable, IComparable<BitRate>
+    public partial struct BitRate : IQuantity<BitRateUnit>, IComparable, IComparable<BitRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

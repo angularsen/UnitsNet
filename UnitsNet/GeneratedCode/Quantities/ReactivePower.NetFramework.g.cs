@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct ReactivePower : IComparable, IComparable<ReactivePower>
+    public partial struct ReactivePower : IQuantity<ReactivePowerUnit>, IComparable, IComparable<ReactivePower>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.

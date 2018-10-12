@@ -48,7 +48,7 @@ namespace UnitsNet
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
 
-    public partial struct Volume : IComparable, IComparable<Volume>
+    public partial struct Volume : IQuantity<VolumeUnit>, IComparable, IComparable<Volume>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
