@@ -283,10 +283,11 @@ namespace UnitsNet.Tests
                 var zuluCulture = new CultureInfo("zu-ZA");
                 CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = zuluCulture;
 
-                UnitAbbreviationsCache.Default.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
+                var abbreviationsCache = new UnitAbbreviationsCache();
+                abbreviationsCache.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
 
                 // Act
-                string abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
+                string abbreviation = abbreviationsCache.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
 
                 // Assert
                 Assert.Equal("US english abbreviation for Unit1", abbreviation);
@@ -301,9 +302,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void MapUnitToAbbreviation_AddCustomUnit_DoesNotOverrideDefaultAbbreviationForAlreadyMappedUnits()
         {
-            UnitAbbreviationsCache.Default.MapUnitToAbbreviation(AreaUnit.SquareMeter, AmericanCulture, "m^2");
+            var cache = new UnitAbbreviationsCache();
+            cache.MapUnitToAbbreviation(AreaUnit.SquareMeter, AmericanCulture, "m^2");
 
-            Assert.Equal("m²", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(AreaUnit.SquareMeter));
+            Assert.Equal("m²", cache.GetDefaultAbbreviation(AreaUnit.SquareMeter));
         }
 
         /// <summary>
