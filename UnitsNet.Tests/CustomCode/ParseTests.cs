@@ -38,6 +38,7 @@ namespace UnitsNet.Tests.CustomCode
     {
         [Theory]
         [InlineData("1km", 1000)]
+        [InlineData(" 1km ", 1000)] // Check that it also trims string
         [InlineData("1 km", 1000)]
         [InlineData("1e-3 km", 1)]
         [InlineData("5.5 m", 5.5)]
@@ -51,11 +52,11 @@ namespace UnitsNet.Tests.CustomCode
 
         [Theory]
         [InlineData(null, typeof(ArgumentNullException))] // Can't parse null.
-        [InlineData("1", typeof(ArgumentException))] // No unit abbreviation.
-        [InlineData("km", typeof(UnitsNetException))] // No value, wrong measurement type.
-        [InlineData("1 kg", typeof(UnitsNetException))] // Wrong measurement type.
-        [InlineData("1ft monkey 1in", typeof(UnitsNetException))] // Invalid separator between two valid measurements.
-        [InlineData("1ft 1invalid", typeof(UnitsNetException))] // Valid 
+        [InlineData("1", typeof(FormatException))] // No unit abbreviation.
+        [InlineData("km", typeof(FormatException))] // No value, wrong measurement type.
+        [InlineData("1 kg", typeof(FormatException))] // Wrong measurement type.
+        [InlineData("1ft monkey 1in", typeof(FormatException))] // Invalid separator between two valid measurements.
+        [InlineData("1ft 1invalid", typeof(FormatException))] // Valid
         public void ParseLength_InvalidString_USEnglish_ThrowsException(string s, Type expectedExceptionType)
         {
             var usEnglish = new CultureInfo("en-US");
@@ -71,20 +72,24 @@ namespace UnitsNet.Tests.CustomCode
         {
             var numberFormat = (NumberFormatInfo) CultureInfo.InvariantCulture.NumberFormat.Clone();
             numberFormat.NumberGroupSeparator = " ";
+            numberFormat.CurrencyGroupSeparator = " ";
             numberFormat.NumberDecimalSeparator = ".";
+            numberFormat.CurrencyDecimalSeparator = ".";
 
             double actual = Length.Parse(s, numberFormat).Meters;
             Assert.Equal(expected, actual);
         }
 
         [Theory]
-        [InlineData("500.005.050,001 m", typeof(UnitsNetException))]
+        [InlineData("500.005.050,001 m", typeof(FormatException))]
         // quantity doesn't match number format
         public void ParseWithCultureUsingSpaceAsThousandSeparators_ThrowsExceptionOnInvalidString(string s, Type expectedExceptionType)
         {
             var numberFormat = (NumberFormatInfo) CultureInfo.InvariantCulture.NumberFormat.Clone();
             numberFormat.NumberGroupSeparator = " ";
+            numberFormat.CurrencyGroupSeparator = " ";
             numberFormat.NumberDecimalSeparator = ".";
+            numberFormat.CurrencyDecimalSeparator = ".";
 
             Assert.Throws(expectedExceptionType, () => Length.Parse(s, numberFormat));
         }
@@ -98,7 +103,9 @@ namespace UnitsNet.Tests.CustomCode
         {
             var numberFormat = (NumberFormatInfo) CultureInfo.InvariantCulture.NumberFormat.Clone();
             numberFormat.NumberGroupSeparator = ".";
+            numberFormat.CurrencyGroupSeparator = ".";
             numberFormat.NumberDecimalSeparator = ",";
+            numberFormat.CurrencyDecimalSeparator = ",";
 
             double actual = Length.Parse(s, numberFormat).Meters;
             Assert.Equal(expected, actual);
@@ -112,12 +119,14 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
-        [InlineData("500 005 m", typeof(UnitsNetException))] // Quantity doesn't match number format.
+        [InlineData("500 005 m", typeof(FormatException))] // Quantity doesn't match number format.
         public void ParseWithCultureUsingDotAsThousandSeparators_ThrowsExceptionOnInvalidString(string s, Type expectedExceptionType)
         {
             var numberFormat = (NumberFormatInfo) CultureInfo.InvariantCulture.NumberFormat.Clone();
             numberFormat.NumberGroupSeparator = ".";
+            numberFormat.CurrencyGroupSeparator = ".";
             numberFormat.NumberDecimalSeparator = ",";
+            numberFormat.CurrencyDecimalSeparator = ",";
 
             Assert.Throws(expectedExceptionType, () => Length.Parse(s, numberFormat));
         }
@@ -142,7 +151,7 @@ namespace UnitsNet.Tests.CustomCode
 
         [Theory]
         [InlineData("1 m", true)]
-        [InlineData("1 m 50 cm", true)]
+        [InlineData("1 m 50 cm", false)]
         [InlineData("2 kg", false)]
         [InlineData(null, false)]
         [InlineData("foo", false)]

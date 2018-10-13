@@ -479,8 +479,7 @@ if ($obsoleteAttribute)
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<$quantityName, $unitEnumName>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.$baseUnitPluralName + y.$baseUnitPluralName, BaseUnit));
+            return QuantityParser.Default.Parse<$quantityName, $unitEnumName>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -502,8 +501,7 @@ if ($obsoleteAttribute)
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<$quantityName, $unitEnumName>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.$baseUnitPluralName + y.$baseUnitPluralName, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<$quantityName, $unitEnumName>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -520,7 +518,7 @@ if ($obsoleteAttribute)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<$unitEnumName>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<$unitEnumName>(str, provider);
 
             if (unit == $unitEnumName.Undefined)
             {
@@ -550,7 +548,7 @@ if ($obsoleteAttribute)
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<$unitEnumName>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<$unitEnumName>(str, provider, out unit))
                 return false;
 
             if(unit == $unitEnumName.Undefined)

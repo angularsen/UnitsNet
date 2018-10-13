@@ -107,8 +107,9 @@ namespace UnitsNet
             if (TryParseInternal(str, formatProvider, out result))
                 return true;
 
-            string footRegex = QuantityParser.CreateRegexPatternForUnit(LengthUnit.Foot, formatProvider, matchEntireString: false);
-            string inchRegex = QuantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, formatProvider, matchEntireString: false);
+            var quantityParser = QuantityParser.Default;
+            string footRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Foot, formatProvider, matchEntireString: false);
+            string inchRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, formatProvider, matchEntireString: false);
 
             // Match entire string exactly
             string pattern = $@"^(?<feet>{footRegex})\s?(?<inches>{inchRegex})$";
