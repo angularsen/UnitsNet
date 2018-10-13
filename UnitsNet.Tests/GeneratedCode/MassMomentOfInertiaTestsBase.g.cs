@@ -477,5 +477,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(MassMomentOfInertiaUnit.Undefined, MassMomentOfInertia.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == MassMomentOfInertiaUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

@@ -433,5 +433,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(BitRateUnit.Undefined, BitRate.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == BitRateUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

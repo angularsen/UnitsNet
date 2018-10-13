@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using UnitsNet.InternalHelpers;
@@ -227,9 +228,10 @@ namespace UnitsNet
             if(!TryGetUnitType(quantityName, out var unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
 
-            var unitSystem = UnitSystem.GetCached(culture);
-            var fromUnitValue = unitSystem.Parse(fromUnitAbbrev, unitType); // ex: ("m", LengthUnit) => LengthUnit.Meter
-            var toUnitValue = unitSystem.Parse(toUnitAbbrev, unitType); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
+            var cultureInfo = string.IsNullOrWhiteSpace(culture)? GlobalConfiguration.DefaultCulture : new CultureInfo(culture);
+
+            var fromUnitValue = UnitParser.Default.Parse(fromUnitAbbrev, unitType, cultureInfo); // ex: ("m", LengthUnit) => LengthUnit.Meter
+            var toUnitValue = UnitParser.Default.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
 
             var fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
             var fromResult = fromMethod.Invoke(null, new[] {fromValue, fromUnitValue}); // ex: Length quantity = UnitsNet.Length.From(5, LengthUnit.Meter)
@@ -311,12 +313,12 @@ namespace UnitsNet
             if(!TryGetUnitType(quantityName, out var unitType))
                 return false;
 
-            var unitSystem = UnitSystem.GetCached(culture);
+            var cultureInfo = string.IsNullOrWhiteSpace(culture)? GlobalConfiguration.DefaultCulture : new CultureInfo(culture);
 
-            if(!unitSystem.TryParse(fromUnitAbbrev, unitType, out var fromUnitValue)) // ex: ("m", LengthUnit) => LengthUnit.Meter
+            if(!UnitParser.Default.TryParse(fromUnitAbbrev, unitType, cultureInfo, out var fromUnitValue)) // ex: ("m", LengthUnit) => LengthUnit.Meter
                 return false;
 
-            if(!unitSystem.TryParse(toUnitAbbrev, unitType, out var toUnitValue)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
+            if(!UnitParser.Default.TryParse(toUnitAbbrev, unitType, cultureInfo, out var toUnitValue)) // ex:("cm", LengthUnit) => LengthUnit.Centimeter
                 return false;
 
             var fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)

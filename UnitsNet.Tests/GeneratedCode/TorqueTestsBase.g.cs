@@ -407,5 +407,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(TorqueUnit.Undefined, Torque.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(TorqueUnit)).Cast<TorqueUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == TorqueUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

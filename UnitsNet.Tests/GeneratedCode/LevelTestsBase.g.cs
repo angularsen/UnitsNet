@@ -222,5 +222,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(LevelUnit.Undefined, Level.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == LevelUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

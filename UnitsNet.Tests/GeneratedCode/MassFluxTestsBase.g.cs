@@ -217,5 +217,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(MassFluxUnit.Undefined, MassFlux.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(MassFluxUnit)).Cast<MassFluxUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == MassFluxUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

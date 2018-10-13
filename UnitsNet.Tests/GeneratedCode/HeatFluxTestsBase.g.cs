@@ -357,5 +357,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(HeatFluxUnit.Undefined, HeatFlux.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(HeatFluxUnit)).Cast<HeatFluxUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == HeatFluxUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

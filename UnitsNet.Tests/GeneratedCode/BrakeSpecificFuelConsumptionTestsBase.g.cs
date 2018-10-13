@@ -227,5 +227,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(BrakeSpecificFuelConsumptionUnit.Undefined, BrakeSpecificFuelConsumption.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(BrakeSpecificFuelConsumptionUnit)).Cast<BrakeSpecificFuelConsumptionUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == BrakeSpecificFuelConsumptionUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

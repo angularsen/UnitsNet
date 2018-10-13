@@ -217,5 +217,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ThermalConductivityUnit.Undefined, ThermalConductivity.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(ThermalConductivityUnit)).Cast<ThermalConductivityUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == ThermalConductivityUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

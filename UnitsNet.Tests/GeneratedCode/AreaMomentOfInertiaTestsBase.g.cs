@@ -257,5 +257,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(AreaMomentOfInertiaUnit.Undefined, AreaMomentOfInertia.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(AreaMomentOfInertiaUnit)).Cast<AreaMomentOfInertiaUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == AreaMomentOfInertiaUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

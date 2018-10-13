@@ -25,7 +25,7 @@ using Xunit;
 
 namespace UnitsNet.Tests
 {
-    [Collection(nameof(UnitSystemFixture))]
+    [Collection(nameof(UnitAbbreviationsCacheFixture))]
     public partial class QuantityTests
     {
         public class ToStringTests
@@ -79,10 +79,10 @@ namespace UnitsNet.Tests
             [Fact]
             public void ReturnsTheOriginalValueAndUnit()
             {
-                var oldCulture = UnitSystem.DefaultCulture;
+                var oldCulture = GlobalConfiguration.DefaultCulture;
                 try
                 {
-                    UnitSystem.DefaultCulture = CultureInfo.InvariantCulture;
+                    GlobalConfiguration.DefaultCulture = CultureInfo.InvariantCulture;
                     Assert.Equal("5 kg", Mass.FromKilograms(5).ToString());
                     Assert.Equal("5,000 g", Mass.FromGrams(5000).ToString());
                     Assert.Equal("1e-04 long tn", Mass.FromLongTons(1e-4).ToString());
@@ -95,17 +95,17 @@ namespace UnitsNet.Tests
                 }
                 finally
                 {
-                    UnitSystem.DefaultCulture = oldCulture;
+                    GlobalConfiguration.DefaultCulture = oldCulture;
                 }
             }
 
             [Fact]
             public void ConvertsToTheGivenUnit()
             {
-                var oldCulture = UnitSystem.DefaultCulture;
+                var oldCulture = GlobalConfiguration.DefaultCulture;
                 try
                 {
-                    UnitSystem.DefaultCulture = CultureInfo.InvariantCulture;
+                    GlobalConfiguration.DefaultCulture = CultureInfo.InvariantCulture;
                     Assert.Equal("5,000 g", Mass.FromKilograms(5).ToString(MassUnit.Gram));
                     Assert.Equal("5 kg", Mass.FromGrams(5000).ToString(MassUnit.Kilogram));
                     Assert.Equal("0.05 m", Length.FromCentimeters(5).ToString(LengthUnit.Meter));
@@ -113,41 +113,41 @@ namespace UnitsNet.Tests
                 }
                 finally
                 {
-                    UnitSystem.DefaultCulture = oldCulture;
+                    GlobalConfiguration.DefaultCulture = oldCulture;
                 }
             }
 
             [Fact]
             public void FormatsNumberUsingGivenCulture()
             {
-                var oldCulture = UnitSystem.DefaultCulture;
+                var oldCulture = GlobalConfiguration.DefaultCulture;
                 try
                 {
-                    UnitSystem.DefaultCulture = CultureInfo.InvariantCulture;
+                    GlobalConfiguration.DefaultCulture = CultureInfo.InvariantCulture;
                     Assert.Equal("0.05 m", Length.FromCentimeters(5).ToString(LengthUnit.Meter, null));
                     Assert.Equal("0.05 m", Length.FromCentimeters(5).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture));
                     Assert.Equal("0,05 m", Length.FromCentimeters(5).ToString(LengthUnit.Meter, new CultureInfo("nb-NO")));
                 }
                 finally
                 {
-                    UnitSystem.DefaultCulture = oldCulture;
+                    GlobalConfiguration.DefaultCulture = oldCulture;
                 }
             }
 
             [Fact]
             public void FormatsNumberUsingGivenDigitsAfterRadix()
             {
-                var oldCulture = UnitSystem.DefaultCulture;
+                var oldCulture = GlobalConfiguration.DefaultCulture;
                 try
                 {
-                    UnitSystem.DefaultCulture = CultureInfo.InvariantCulture;
+                    GlobalConfiguration.DefaultCulture = CultureInfo.InvariantCulture;
                     Assert.Equal("0.05 m", Length.FromCentimeters(5).ToString(LengthUnit.Meter, null, 4));
                     Assert.Equal("1.97 in", Length.FromCentimeters(5).ToString(LengthUnit.Inch, null, 2));
                     Assert.Equal("1.9685 in", Length.FromCentimeters(5).ToString(LengthUnit.Inch, null, 4));
                 }
                 finally
                 {
-                    UnitSystem.DefaultCulture = oldCulture;
+                    GlobalConfiguration.DefaultCulture = oldCulture;
                 }
             }
         }

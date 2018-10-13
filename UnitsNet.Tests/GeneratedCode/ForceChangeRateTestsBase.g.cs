@@ -307,5 +307,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ForceChangeRateUnit.Undefined, ForceChangeRate.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(ForceChangeRateUnit)).Cast<ForceChangeRateUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == ForceChangeRateUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

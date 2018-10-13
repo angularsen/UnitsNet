@@ -207,5 +207,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ElectricCurrentDensityUnit.Undefined, ElectricCurrentDensity.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(ElectricCurrentDensityUnit)).Cast<ElectricCurrentDensityUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == ElectricCurrentDensityUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

@@ -327,5 +327,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(RotationalSpeedUnit.Undefined, RotationalSpeed.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(RotationalSpeedUnit)).Cast<RotationalSpeedUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == RotationalSpeedUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

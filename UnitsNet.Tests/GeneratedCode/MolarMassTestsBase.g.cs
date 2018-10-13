@@ -317,5 +317,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(MolarMassUnit.Undefined, MolarMass.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(MolarMassUnit)).Cast<MolarMassUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == MolarMassUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

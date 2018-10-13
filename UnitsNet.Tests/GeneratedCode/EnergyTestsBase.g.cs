@@ -417,5 +417,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(EnergyUnit.Undefined, Energy.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == EnergyUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

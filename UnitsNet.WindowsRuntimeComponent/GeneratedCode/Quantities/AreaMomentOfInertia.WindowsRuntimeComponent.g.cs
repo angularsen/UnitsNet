@@ -75,15 +75,15 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>Unit abbreviation string.</returns>
         [UsedImplicitly]
         public static string GetAbbreviation(AreaMomentOfInertiaUnit unit, [CanBeNull] string cultureName)
         {
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+            IFormatProvider provider = cultureName == null ? GlobalConfiguration.DefaultCulture : new CultureInfo(cultureName);
 
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
         #region Parsing
@@ -92,7 +92,7 @@ namespace UnitsNet
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -116,7 +116,7 @@ namespace UnitsNet
             if (str == null) throw new ArgumentNullException(nameof(str));
 
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+            IFormatProvider provider = cultureName == null ? GlobalConfiguration.DefaultCulture : new CultureInfo(cultureName);
 
             return ParseInternal(str, provider);
         }
@@ -125,7 +125,7 @@ namespace UnitsNet
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
@@ -133,7 +133,7 @@ namespace UnitsNet
         public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out AreaMomentOfInertia result)
         {
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+            IFormatProvider provider = cultureName == null ? GlobalConfiguration.DefaultCulture : new CultureInfo(cultureName);
 
             return TryParseInternal(str, provider, out result);
         }
@@ -142,7 +142,7 @@ namespace UnitsNet
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -151,7 +151,7 @@ namespace UnitsNet
         public static AreaMomentOfInertiaUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+            IFormatProvider provider = cultureName == null ? GlobalConfiguration.DefaultCulture : new CultureInfo(cultureName);
 
             return ParseUnitInternal(str, provider);
         }
@@ -160,7 +160,7 @@ namespace UnitsNet
         ///     Try to parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
@@ -169,7 +169,7 @@ namespace UnitsNet
         public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out AreaMomentOfInertiaUnit unit)
         {
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+            IFormatProvider provider = cultureName == null ? GlobalConfiguration.DefaultCulture : new CultureInfo(cultureName);
 
             return TryParseUnitInternal(str, provider, out unit);
         }
@@ -182,7 +182,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>String representation.</returns>
         public string ToString(AreaMomentOfInertiaUnit unit, [CanBeNull] string cultureName)
         {
@@ -193,7 +193,7 @@ namespace UnitsNet
         ///     Get string representation of value and unit.
         /// </summary>
         /// <param name="unit">Unit representation to use.</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
         [UsedImplicitly]
@@ -207,7 +207,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
@@ -219,7 +219,7 @@ namespace UnitsNet
             if (args == null) throw new ArgumentNullException(nameof(args));
 
             // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+            IFormatProvider provider = cultureName == null ? GlobalConfiguration.DefaultCulture : new CultureInfo(cultureName);
 
             double value = As(unit);
             object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);

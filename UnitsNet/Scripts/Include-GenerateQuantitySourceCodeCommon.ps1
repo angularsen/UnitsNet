@@ -454,7 +454,7 @@ if ($obsoleteAttribute)
         ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
         /// <example>
         ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
         /// </example>
@@ -477,9 +477,9 @@ if ($obsoleteAttribute)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
+            provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Parse<$quantityName, $unitEnumName>(str, provider, ParseUnitInternal, From,
+            return QuantityParser.Default.Parse<$quantityName, $unitEnumName>(str, provider, ParseUnitInternal, From,
                 (x, y) => From(x.$baseUnitPluralName + y.$baseUnitPluralName, BaseUnit));
         }
 
@@ -487,7 +487,7 @@ if ($obsoleteAttribute)
         ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
         /// <param name="result">Resulting unit quantity if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
@@ -500,9 +500,9 @@ if ($obsoleteAttribute)
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            provider = provider ?? UnitSystem.DefaultCulture;
+            provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.TryParse<$quantityName, $unitEnumName>(str, provider, TryParseUnitInternal, From,
+            return QuantityParser.Default.TryParse<$quantityName, $unitEnumName>(str, provider, TryParseUnitInternal, From,
                 (x, y) => From(x.$baseUnitPluralName + y.$baseUnitPluralName, BaseUnit), out result);
         }
 
@@ -510,7 +510,7 @@ if ($obsoleteAttribute)
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
         /// <example>
         ///     Length.ParseUnit("m", new CultureInfo("en-US"));
         /// </example>
@@ -520,8 +520,7 @@ if ($obsoleteAttribute)
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<$unitEnumName>(str.Trim());
+            var unit = UnitParser.Default.Parse<$unitEnumName>(str.Trim(), provider);
 
             if (unit == $unitEnumName.Undefined)
             {
@@ -538,7 +537,7 @@ if ($obsoleteAttribute)
         ///     Parse a unit string.
         /// </summary>
         /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
         /// <param name="unit">The parsed unit if successful.</param>
         /// <returns>True if successful, otherwise false.</returns>
         /// <example>
@@ -551,8 +550,7 @@ if ($obsoleteAttribute)
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            if(!unitSystem.TryParse<$unitEnumName>(str.Trim(), out unit))
+            if(!UnitParser.Default.TryParse<$unitEnumName>(str.Trim(), provider, out unit))
                 return false;
 
             if(unit == $unitEnumName.Undefined)

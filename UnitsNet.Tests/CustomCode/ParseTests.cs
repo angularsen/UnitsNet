@@ -21,8 +21,8 @@
 
 using System;
 using System.Globalization;
-using Xunit;
 using UnitsNet.Units;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -33,6 +33,7 @@ namespace UnitsNet.Tests.CustomCode
     ///     reasonable to assume that testing one unit class would cover
     ///     all of them. Obviously, that can change in the future.
     /// </remarks>
+    [Collection(nameof(UnitAbbreviationsCacheFixture))]
     public class ParseTests
     {
         [Theory]
@@ -49,17 +50,16 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
-        [InlineData(null, "System.ArgumentNullException")] // Can't parse null.
-        [InlineData("1", "System.ArgumentException")] // No unit abbreviation.
-        [InlineData("km", "UnitsNet.UnitsNetException")] // No value, wrong measurement type.
-        [InlineData("1 kg", "UnitsNet.UnitsNetException")] // Wrong measurement type.
-        [InlineData("1ft monkey 1in", "UnitsNet.UnitsNetException")] // Invalid separator between two valid measurements.
-        [InlineData("1ft 1invalid", "UnitsNet.UnitsNetException")] // Valid 
-        public void ParseLength_InvalidString_USEnglish_ThrowsException(string s, string expected)
+        [InlineData(null, typeof(ArgumentNullException))] // Can't parse null.
+        [InlineData("1", typeof(ArgumentException))] // No unit abbreviation.
+        [InlineData("km", typeof(UnitsNetException))] // No value, wrong measurement type.
+        [InlineData("1 kg", typeof(UnitsNetException))] // Wrong measurement type.
+        [InlineData("1ft monkey 1in", typeof(UnitsNetException))] // Invalid separator between two valid measurements.
+        [InlineData("1ft 1invalid", typeof(UnitsNetException))] // Valid 
+        public void ParseLength_InvalidString_USEnglish_ThrowsException(string s, Type expectedExceptionType)
         {
-            CultureInfo usEnglish = new CultureInfo("en-US");
-            string actual = AssertExceptionAndGetFullTypeName(() => Length.Parse(s, usEnglish));
-            Assert.Equal(expected, actual);
+            var usEnglish = new CultureInfo("en-US");
+            Assert.Throws(expectedExceptionType, () => Length.Parse(s, usEnglish));
         }
 
         [Theory]
@@ -92,16 +92,15 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
-        [InlineData("500.005.050,001 m", "UnitsNet.UnitsNetException")]
+        [InlineData("500.005.050,001 m", typeof(UnitsNetException))]
         // quantity doesn't match number format
-        public void ParseWithCultureUsingSpaceAsThousandSeparators_ThrowsExceptionOnInvalidString(string s, string expected)
+        public void ParseWithCultureUsingSpaceAsThousandSeparators_ThrowsExceptionOnInvalidString(string s, Type expectedExceptionType)
         {
             var numberFormat = (NumberFormatInfo) CultureInfo.InvariantCulture.NumberFormat.Clone();
             numberFormat.NumberGroupSeparator = " ";
             numberFormat.NumberDecimalSeparator = ".";
 
-            string actual = AssertExceptionAndGetFullTypeName(() => Length.Parse(s, numberFormat));
-            Assert.Equal(expected, actual);
+            Assert.Throws(expectedExceptionType, () => Length.Parse(s, numberFormat));
         }
 
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -127,15 +126,14 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
-        [InlineData("500 005 m", "UnitsNet.UnitsNetException")] // Quantity doesn't match number format.
-        public void ParseWithCultureUsingDotAsThousandSeparators_ThrowsExceptionOnInvalidString(string s, string expected)
+        [InlineData("500 005 m", typeof(UnitsNetException))] // Quantity doesn't match number format.
+        public void ParseWithCultureUsingDotAsThousandSeparators_ThrowsExceptionOnInvalidString(string s, Type expectedExceptionType)
         {
             var numberFormat = (NumberFormatInfo) CultureInfo.InvariantCulture.NumberFormat.Clone();
             numberFormat.NumberGroupSeparator = ".";
             numberFormat.NumberDecimalSeparator = ",";
 
-            string actual = AssertExceptionAndGetFullTypeName(() => Length.Parse(s, numberFormat));
-            Assert.Equal(expected, actual);
+            Assert.Throws(expectedExceptionType, () => Length.Parse(s, numberFormat));
         }
 
         [Theory]
@@ -148,13 +146,12 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Theory]
-        [InlineData("kg", "UnitsNet.UnitNotFoundException")]
-        [InlineData(null, "System.ArgumentNullException")]
-        public void ParseLengthUnitUsEnglish_ThrowsExceptionOnInvalidString(string s, string expected)
+        [InlineData("kg", typeof(UnitNotFoundException))]
+        [InlineData(null, typeof(ArgumentNullException))]
+        public void ParseLengthUnitUsEnglish_ThrowsExceptionOnInvalidString(string s, Type expectedExceptionType)
         {
-            CultureInfo usEnglish = new CultureInfo("en-US");
-            string actual = AssertExceptionAndGetFullTypeName(() => Length.ParseUnit(s, usEnglish));
-            Assert.Equal(expected, actual);
+            var usEnglish = new CultureInfo("en-US");
+            Assert.Throws(expectedExceptionType, () => Length.ParseUnit(s, usEnglish));
         }
 
         [Theory]
@@ -188,11 +185,10 @@ namespace UnitsNet.Tests.CustomCode
         {
             string abbrev = $"m{s}s";
 
-            var unitSystem = UnitSystem.Default;
-            unitSystem.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
+            UnitAbbreviationsCache.Default.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
 
             // Act
-            bool ok = unitSystem.TryParse(abbrev, out LengthUnit result);
+            bool ok = UnitParser.Default.TryParse(abbrev, out LengthUnit result);
 
             // Assert
             Assert.True(ok, "TryParse " + abbrev);
@@ -217,22 +213,14 @@ namespace UnitsNet.Tests.CustomCode
         {
             string abbrev = $"m{s}s";
 
-            var unitSystem = UnitSystem.Default;
-            unitSystem.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
+            UnitAbbreviationsCache.Default.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
 
             // Act
-            bool ok = Length.TryParse($"10 {abbrev}", out Length result);
+            var ok = Length.TryParse($"10 {abbrev}", out var result);
 
             // Assert
             Assert.True(ok, $"TryParse \"10 {abbrev}\"");
             Assert.Equal(10, result.Meters);
         }
-
-        private static string AssertExceptionAndGetFullTypeName(Action code)
-        {
-            var exception = Assert.ThrowsAny<Exception>(code);
-            return exception.GetType().FullName;
-        }
-
     }
 }

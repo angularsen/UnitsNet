@@ -207,5 +207,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(PermeabilityUnit.Undefined, Permeability.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(PermeabilityUnit)).Cast<PermeabilityUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == PermeabilityUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

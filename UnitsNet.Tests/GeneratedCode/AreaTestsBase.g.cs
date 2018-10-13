@@ -327,5 +327,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(AreaUnit.Undefined, Area.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(AreaUnit)).Cast<AreaUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == AreaUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

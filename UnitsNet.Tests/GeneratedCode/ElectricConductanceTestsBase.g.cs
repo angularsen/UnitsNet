@@ -227,5 +227,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(ElectricConductanceUnit.Undefined, ElectricConductance.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(ElectricConductanceUnit)).Cast<ElectricConductanceUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == ElectricConductanceUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

@@ -277,5 +277,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(MolarityUnit.Undefined, Molarity.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(MolarityUnit)).Cast<MolarityUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == MolarityUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

@@ -21,16 +21,16 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Xunit;
-using UnitsNet.Units;
-using Xunit.Abstractions;
 using System.Globalization;
+using System.Linq;
+using UnitsNet.Units;
+using Xunit;
+using Xunit.Abstractions;
 
 namespace UnitsNet.Tests
 {
-    [Collection(nameof(UnitSystemFixture))]
-    public class UnitSystemTests
+    [Collection(nameof(UnitAbbreviationsCacheFixture))]
+    public class UnitAbbreviationsCacheTests
     {
         private readonly ITestOutputHelper _output;
         private const string AmericanCultureName = "en-US";
@@ -41,7 +41,7 @@ namespace UnitsNet.Tests
         private static readonly IFormatProvider NorwegianCulture = new CultureInfo(NorwegianCultureName);
         private static readonly IFormatProvider RussianCulture = new CultureInfo(RussianCultureName);
 
-        public UnitSystemTests(ITestOutputHelper output)
+        public UnitAbbreviationsCacheTests(ITestOutputHelper output)
         {
             _output = output;
         }
@@ -66,28 +66,6 @@ namespace UnitsNet.Tests
             Unit1,
             Unit2
             // ReSharper restore UnusedMember.Local
-        }
-
-        private static IEnumerable<object> GetUnitTypesWithMissingAbbreviations<TUnitType>(string cultureName,
-            IEnumerable<TUnitType> unitValues)
-            where TUnitType : Enum
-        {
-            UnitSystem unitSystem = UnitSystem.GetCached(GetCulture(cultureName));
-
-            var unitsMissingAbbreviations = new List<TUnitType>();
-            foreach (TUnitType unit in unitValues)
-            {
-                try
-                {
-                    unitSystem.GetDefaultAbbreviation(unit);
-                }
-                catch
-                {
-                    unitsMissingAbbreviations.Add(unit);
-                }
-            }
-
-            return unitsMissingAbbreviations.Cast<object>();
         }
 
         // These cultures all use a comma for the radix point
@@ -154,23 +132,6 @@ namespace UnitsNet.Tests
         public void DecimalPointDigitGroupingCultureFormatting(string culture)
         {
             Assert.Equal("1.111 m", Length.FromMeters(1111).ToString(LengthUnit.Meter, GetCulture(culture)));
-        }
-
-        [Theory]
-        [InlineData("m^^2", AreaUnit.SquareMeter)]
-        [InlineData("cm^^2", AreaUnit.SquareCentimeter)]
-        public void Parse_ReturnsUnitMappedByCustomAbbreviation(string customAbbreviation, AreaUnit expected)
-        {
-            UnitSystem unitSystem = UnitSystem.Default;
-            unitSystem.MapUnitToAbbreviation(expected, customAbbreviation);
-            var actual = unitSystem.Parse<AreaUnit>(customAbbreviation);
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void Parse_UnknownAbbreviationThrowsUnitNotFoundException()
-        {
-            Assert.Throws<UnitNotFoundException>(() => UnitSystem.Default.Parse<AreaUnit>("nonexistingunit"));
         }
 
         [Theory]
@@ -248,101 +209,6 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ShouldUseCorrectMicroSign()
-        {
-            // "\u00b5" = Micro sign
-            Assert.Equal(AccelerationUnit.MicrometerPerSecondSquared, Acceleration.ParseUnit("\u00b5m/s²"));
-            Assert.Equal(AmplitudeRatioUnit.DecibelMicrovolt, AmplitudeRatio.ParseUnit("dB\u00b5V"));
-            Assert.Equal(AngleUnit.Microdegree, Angle.ParseUnit("\u00b5°"));
-            Assert.Equal(AngleUnit.Microradian, Angle.ParseUnit("\u00b5rad"));
-            Assert.Equal(AreaUnit.SquareMicrometer, Area.ParseUnit("\u00b5m²"));
-            Assert.Equal(DurationUnit.Microsecond, Duration.ParseUnit("\u00b5s"));
-            Assert.Equal(ElectricCurrentUnit.Microampere, ElectricCurrent.ParseUnit("\u00b5A"));
-            Assert.Equal(ElectricPotentialUnit.Microvolt, ElectricPotential.ParseUnit("\u00b5V"));
-            Assert.Equal(ForceChangeRateUnit.MicronewtonPerSecond, ForceChangeRate.ParseUnit("\u00b5N/s"));
-            Assert.Equal(ForcePerLengthUnit.MicronewtonPerMeter, ForcePerLength.ParseUnit("\u00b5N/m"));
-            Assert.Equal(KinematicViscosityUnit.Microstokes, KinematicViscosity.ParseUnit("\u00b5St"));
-            Assert.Equal(LengthUnit.Microinch, Length.ParseUnit("\u00b5in"));
-            Assert.Equal(LengthUnit.Micrometer, Length.ParseUnit("\u00b5m"));
-            Assert.Equal(MassFlowUnit.MicrogramPerSecond, MassFlow.ParseUnit("\u00b5g/S"));
-            Assert.Equal(MassUnit.Microgram, Mass.ParseUnit("\u00b5g"));
-            Assert.Equal(PowerUnit.Microwatt, Power.ParseUnit("\u00b5W"));
-            Assert.Equal(PressureUnit.Micropascal, Pressure.ParseUnit("\u00b5Pa"));
-            Assert.Equal(RotationalSpeedUnit.MicrodegreePerSecond, RotationalSpeed.ParseUnit("\u00b5°/s"));
-            Assert.Equal(RotationalSpeedUnit.MicroradianPerSecond, RotationalSpeed.ParseUnit("\u00b5rad/s"));
-            Assert.Equal(SpeedUnit.MicrometerPerMinute, Speed.ParseUnit("\u00b5m/min"));
-            Assert.Equal(SpeedUnit.MicrometerPerSecond, Speed.ParseUnit("\u00b5m/s"));
-            Assert.Equal(TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond, TemperatureChangeRate.ParseUnit("\u00b5°C/s"));
-            Assert.Equal(VolumeUnit.Microliter, Volume.ParseUnit("\u00b5l"));
-            Assert.Equal(VolumeUnit.CubicMicrometer, Volume.ParseUnit("\u00b5m³"));
-            Assert.Equal(VolumeFlowUnit.MicroliterPerMinute, VolumeFlow.ParseUnit("\u00b5LPM"));
-
-            // "\u03bc" = Lower case greek letter 'Mu'
-            Assert.Throws<UnitNotFoundException>(() => Acceleration.ParseUnit("\u03bcm/s²"));
-            Assert.Throws<UnitNotFoundException>(() => AmplitudeRatio.ParseUnit("dB\u03bcV"));
-            Assert.Throws<UnitNotFoundException>(() => Angle.ParseUnit("\u03bc°"));
-            Assert.Throws<UnitNotFoundException>(() => Angle.ParseUnit("\u03bcrad"));
-            Assert.Throws<UnitNotFoundException>(() => Area.ParseUnit("\u03bcm²"));
-            Assert.Throws<UnitNotFoundException>(() => Duration.ParseUnit("\u03bcs"));
-            Assert.Throws<UnitNotFoundException>(() => ElectricCurrent.ParseUnit("\u03bcA"));
-            Assert.Throws<UnitNotFoundException>(() => ElectricPotential.ParseUnit("\u03bcV"));
-            Assert.Throws<UnitNotFoundException>(() => ForceChangeRate.ParseUnit("\u03bcN/s"));
-            Assert.Throws<UnitNotFoundException>(() => ForcePerLength.ParseUnit("\u03bcN/m"));
-            Assert.Throws<UnitNotFoundException>(() => KinematicViscosity.ParseUnit("\u03bcSt"));
-            Assert.Throws<UnitNotFoundException>(() => Length.ParseUnit("\u03bcin"));
-            Assert.Throws<UnitNotFoundException>(() => Length.ParseUnit("\u03bcm"));
-            Assert.Throws<UnitNotFoundException>(() => MassFlow.ParseUnit("\u03bcg/S"));
-            Assert.Throws<UnitNotFoundException>(() => Mass.ParseUnit("\u03bcg"));
-            Assert.Throws<UnitNotFoundException>(() => Power.ParseUnit("\u03bcW"));
-            Assert.Throws<UnitNotFoundException>(() => Pressure.ParseUnit("\u03bcPa"));
-            Assert.Throws<UnitNotFoundException>(() => RotationalSpeed.ParseUnit("\u03bc°/s"));
-            Assert.Throws<UnitNotFoundException>(() => RotationalSpeed.ParseUnit("\u03bcrad/s"));
-            Assert.Throws<UnitNotFoundException>(() => Speed.ParseUnit("\u03bcm/min"));
-            Assert.Throws<UnitNotFoundException>(() => Speed.ParseUnit("\u03bcm/s"));
-            Assert.Throws<UnitNotFoundException>(() => TemperatureChangeRate.ParseUnit("\u03bc°C/s"));
-            Assert.Throws<UnitNotFoundException>(() => Volume.ParseUnit("\u03bcl"));
-            Assert.Throws<UnitNotFoundException>(() => Volume.ParseUnit("\u03bcm³"));
-            Assert.Throws<UnitNotFoundException>( () => VolumeFlow.ParseUnit( "\u03bcLPM" ) );
-        }
-
-        [Theory]
-        [InlineData("en-US")]
-        [InlineData("nb-NO")]
-        [InlineData("ru-RU")]
-        public void AllUnitAbbreviationsImplemented(string cultureName)
-        {
-            List<object> unitValuesMissingAbbreviations = new List<object>()
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AngleUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<AreaUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<DurationUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ElectricPotentialUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<ForceUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<LengthUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<MassUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<PressureUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<RotationalSpeedUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<SpeedUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TemperatureUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<TorqueUnit>()))
-                .Concat(GetUnitTypesWithMissingAbbreviations(cultureName, EnumUtils.GetEnumValues<VolumeUnit>()))
-                .ToList();
-
-            // We want to flag if any localizations are missing, but not break the build
-            // or flag an error for pull requests. For now they are not considered
-            // critical and it is cumbersome to have a third person review the pull request
-            // and add in any translations before merging it in.
-            if (unitValuesMissingAbbreviations.Any())
-            {
-                string unitsWithNoAbbrev = string.Join(", ",
-                    unitValuesMissingAbbreviations.Select(unitValue => unitValue.GetType().Name + "." + unitValue).ToArray());
-
-                string message = "Units missing abbreviations: " + unitsWithNoAbbrev;
-                _output.WriteLine(message);
-            }
-            Assert.Empty(unitValuesMissingAbbreviations);
-        }
-
-        [Fact]
         public void AllUnitsImplementToStringForInvariantCulture()
         {
             Assert.Equal("1 °", Angle.FromDegrees(1).ToString());
@@ -397,18 +263,17 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void GetDefaultAbbreviationFallsBackToDefaultStringIfNotSpecified()
+        public void GetDefaultAbbreviationThrowsNotImplementedExceptionIfNoneExist()
         {
-            UnitSystem usUnits = new UnitSystem(AmericanCultureName);
-            string abbreviation = usUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
-            Assert.Equal("(no abbreviation for CustomUnit.Unit1)", abbreviation);
+            var unitAbbreviationCache = new UnitAbbreviationsCache();
+            Assert.Throws<NotImplementedException>(() => unitAbbreviationCache.GetDefaultAbbreviation(CustomUnit.Unit1));
         }
 
         [Fact]
         public void GetDefaultAbbreviationFallsBackToUsEnglishCulture()
         {
-            CultureInfo oldCurrentCulture = CultureInfo.CurrentCulture;
-            CultureInfo oldCurrentUICulture = CultureInfo.CurrentUICulture;
+            var oldCurrentCulture = CultureInfo.CurrentCulture;
+            var oldCurrentUICulture = CultureInfo.CurrentUICulture;
 
             try
             {
@@ -416,14 +281,12 @@ namespace UnitsNet.Tests
                 // CurrentUICulture affects localization, in this case the abbreviation.
                 // Zulu (South Africa)
                 var zuluCulture = new CultureInfo("zu-ZA");
-                UnitSystem zuluUnits = UnitSystem.GetCached(zuluCulture);
                 CultureInfo.CurrentCulture = CultureInfo.CurrentUICulture = zuluCulture;
 
-                UnitSystem usUnits = UnitSystem.GetCached(AmericanCultureName);
-                usUnits.MapUnitToAbbreviation(CustomUnit.Unit1, "US english abbreviation for Unit1");
+                UnitAbbreviationsCache.Default.MapUnitToAbbreviation(CustomUnit.Unit1, AmericanCulture, "US english abbreviation for Unit1");
 
                 // Act
-                string abbreviation = zuluUnits.GetDefaultAbbreviation(CustomUnit.Unit1);
+                string abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(CustomUnit.Unit1, zuluCulture);
 
                 // Assert
                 Assert.Equal("US english abbreviation for Unit1", abbreviation);
@@ -438,34 +301,9 @@ namespace UnitsNet.Tests
         [Fact]
         public void MapUnitToAbbreviation_AddCustomUnit_DoesNotOverrideDefaultAbbreviationForAlreadyMappedUnits()
         {
-            UnitSystem unitSystem = UnitSystem.GetCached(AmericanCultureName);
-            unitSystem.MapUnitToAbbreviation(AreaUnit.SquareMeter, "m^2");
+            UnitAbbreviationsCache.Default.MapUnitToAbbreviation(AreaUnit.SquareMeter, AmericanCulture, "m^2");
 
-            Assert.Equal("m²", unitSystem.GetDefaultAbbreviation(AreaUnit.SquareMeter));
-        }
-
-        [Fact]
-        public void Parse_AmbiguousUnitsThrowsException()
-        {
-            UnitSystem unitSystem = UnitSystem.Default;
-
-            // Act 1
-            var exception1 = Assert.Throws<AmbiguousUnitParseException>(() => unitSystem.Parse<LengthUnit>("pt"));
-
-            // Act 2
-            var exception2 = Assert.Throws<AmbiguousUnitParseException>(() => Length.Parse("1 pt"));
-
-            // Assert
-            Assert.Equal("Cannot parse \"pt\" since it could be either of these: DtpPoint, PrinterPoint", exception1.Message);
-            Assert.Equal("Cannot parse \"pt\" since it could be either of these: DtpPoint, PrinterPoint", exception2.Message);
-        }
-
-        [Fact]
-        public void Parse_UnambiguousUnitsDoesNotThrow()
-        {
-            Volume unit = Volume.Parse("1 l");
-
-            Assert.Equal(Volume.FromLiters(1), unit);
+            Assert.Equal("m²", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(AreaUnit.SquareMeter));
         }
 
         /// <summary>

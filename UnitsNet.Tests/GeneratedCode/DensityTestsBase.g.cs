@@ -577,5 +577,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(DensityUnit.Undefined, Density.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == DensityUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

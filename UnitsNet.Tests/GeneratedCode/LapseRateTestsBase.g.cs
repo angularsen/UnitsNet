@@ -207,5 +207,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(LapseRateUnit.Undefined, LapseRate.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(LapseRateUnit)).Cast<LapseRateUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == LapseRateUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

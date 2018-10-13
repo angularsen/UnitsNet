@@ -457,5 +457,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(VolumeFlowUnit.Undefined, VolumeFlow.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(VolumeFlowUnit)).Cast<VolumeFlowUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == VolumeFlowUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

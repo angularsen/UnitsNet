@@ -130,11 +130,10 @@ namespace UnitsNet
             // Note that it isn't customary to use fractions - one wouldn't say "I am 11 stone and 4.5 pounds".
             // So pounds are rounded here.
 
-            UnitSystem unitSystem = UnitSystem.GetCached(cultureInfo);
-            string stoneUnit = unitSystem.GetDefaultAbbreviation(MassUnit.Stone);
-            string poundUnit = unitSystem.GetDefaultAbbreviation(MassUnit.Pound);
+            var stoneUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Stone);
+            var poundUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Pound);
 
-            return string.Format(unitSystem.Culture, "{0:n0} {1} {2:n0} {3}",
+            return string.Format(GlobalConfiguration.DefaultCulture, "{0:n0} {1} {2:n0} {3}",
                 Stone, stoneUnit, Math.Round(Pounds), poundUnit);
         }
     }

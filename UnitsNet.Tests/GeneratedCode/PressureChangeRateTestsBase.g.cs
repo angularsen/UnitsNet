@@ -237,5 +237,18 @@ namespace UnitsNet.Tests
         {
             Assert.DoesNotContain(PressureChangeRateUnit.Undefined, PressureChangeRate.Units);
         }
+
+        [Fact]
+        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(PressureChangeRateUnit)).Cast<PressureChangeRateUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == PressureChangeRateUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
     }
 }

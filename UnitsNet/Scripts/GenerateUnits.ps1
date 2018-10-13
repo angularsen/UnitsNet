@@ -75,8 +75,8 @@ function GenerateUnitType($quantity, $outDir)
 
 function GenerateUnitSystemDefault($quantities, $outDir)
 {
-    Write-Host -NoNewline "UnitSystem.Default.g.cs: "
-    $outFileName = "$outDir/UnitSystem.Default.g.cs"
+    Write-Host -NoNewline "UnitAbbreviationsCache.g.cs: "
+    $outFileName = "$outDir/UnitAbbreviationsCache.g.cs"
 
     GenerateUnitSystemDefaultSourceCode $quantities | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
     if (!$?) {
