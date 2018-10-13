@@ -114,7 +114,7 @@ namespace UnitsNet
             // Match entire string exactly
             string pattern = $@"^(?<feet>{footRegex})\s?(?<inches>{inchRegex})$";
 
-            var match = new Regex(pattern, RegexOptions.Singleline).Match(str);
+            var match = new Regex(pattern, RegexOptions.Singleline).Match(str.Trim());
             if (!match.Success) return false;
 
             var feetGroup = match.Groups["feet"];
