@@ -36,6 +36,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
@@ -51,7 +52,7 @@ namespace UnitsNet
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-    public sealed partial class Length
+    public sealed partial class Length : IQuantity
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -288,8 +289,8 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>Unit abbreviation string.</returns>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static string GetAbbreviation(LengthUnit unit, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
@@ -669,6 +670,8 @@ namespace UnitsNet
         /// </example>
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out LengthUnit unit)
+        {
+            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             return TryParseUnitInternal(str, provider, out unit);
         }
 
@@ -717,7 +720,7 @@ namespace UnitsNet
         /// </example>
         private static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Length result)
         {
-            result = default(Length);
+            result = default;
 
             if(string.IsNullOrWhiteSpace(str))
                 return false;
@@ -784,26 +787,6 @@ namespace UnitsNet
         #endregion
 
         #region Equality / IComparable
-
-        public static bool operator <=(Length left, Length right)
-        {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >=(Length left, Length right)
-        {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator <(Length left, Length right)
-        {
-            return left.Value < right.AsBaseNumericType(left.Unit);
-        }
-
-        public static bool operator >(Length left, Length right)
-        {
-            return left.Value > right.AsBaseNumericType(left.Unit);
-        }
 
         public int CompareTo(object obj)
         {
@@ -1009,7 +992,7 @@ namespace UnitsNet
         /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString(LengthUnit unit, [CanBeNull] string cultureName)
         {
-            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
+            var provider = cultureName;
             return ToString(unit, provider, 2);
         }
 
@@ -1022,6 +1005,7 @@ namespace UnitsNet
         /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString(LengthUnit unit, [CanBeNull] string cultureName, int significantDigitsAfterRadix)
         {
+            var provider = cultureName;
             double value = As(unit);
             string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
             return ToString(unit, provider, format);
@@ -1037,6 +1021,7 @@ namespace UnitsNet
         /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString(LengthUnit unit, [CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)
         {
+            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
@@ -1048,6 +1033,7 @@ namespace UnitsNet
         }
 
         #endregion
+
         private static IFormatProvider GetFormatProviderFromCultureName([CanBeNull] string cultureName)
         {
             return cultureName != null ? new CultureInfo(cultureName) : (IFormatProvider)null;

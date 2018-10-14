@@ -67,6 +67,7 @@ function GenerateQuantitySourceCodeNetFramework([Quantity]$quantity, [string]$ta
 // THE SOFTWARE.
 
 using System;
+using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
@@ -94,7 +95,7 @@ if ($obsoleteAttribute)
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-    public sealed partial class $quantityName
+    public sealed partial class $quantityName : IQuantity
 "@; } else {@"
     public partial struct $quantityName : IQuantity<$unitEnumName>, IComparable, IComparable<$quantityName>
 "@; }@"
@@ -193,7 +194,7 @@ if ($obsoleteAttribute)
         /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString($unitEnumName unit, [CanBeNull] string cultureName)
         {
-            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
+            var provider = cultureName;
 "@; } else {@"
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString($unitEnumName unit, [CanBeNull] IFormatProvider provider)
@@ -213,6 +214,7 @@ if ($obsoleteAttribute)
         /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString($unitEnumName unit, [CanBeNull] string cultureName, int significantDigitsAfterRadix)
         {
+            var provider = cultureName;
 "@; } else {@"
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString($unitEnumName unit, [CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
@@ -235,6 +237,7 @@ if ($obsoleteAttribute)
         /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString($unitEnumName unit, [CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)
         {
+            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
 "@; } else {@"
         /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public string ToString($unitEnumName unit, [CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
@@ -252,6 +255,7 @@ if ($obsoleteAttribute)
 
         #endregion
 "@; if ($wrc) {@"
+
         private static IFormatProvider GetFormatProviderFromCultureName([CanBeNull] string cultureName)
         {
             return cultureName != null ? new CultureInfo(cultureName) : (IFormatProvider)null;
@@ -403,14 +407,15 @@ function GenerateStaticMethods([GeneratorArgs]$genArgs)
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>Unit abbreviation string.</returns>
 "@; # Windows Runtime Component does not support IFormatProvider type
 if ($wrc) {@"
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static string GetAbbreviation($unitEnumName unit, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
 "@; } else {@"
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static string GetAbbreviation($unitEnumName unit, [CanBeNull] IFormatProvider provider)
         {
 "@; }@"
@@ -646,6 +651,8 @@ if ($wrc) {@"
 if ($wrc) {@"
         /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out $unitEnumName unit)
+        {
+            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
 "@; } else {@"
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider provider, out $unitEnumName unit)
@@ -699,7 +706,7 @@ if ($wrc) {@"
         /// </example>
         private static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out $quantityName result)
         {
-            result = default($quantityName);
+            result = default;
 
             if(string.IsNullOrWhiteSpace(str))
                 return false;
@@ -891,6 +898,8 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
 
         #region Equality / IComparable
 
+"@; # Windows Runtime Component does not support operator overloads
+    if (-not $wrc) {@"
         public static bool operator <=($quantityName left, $quantityName right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
@@ -911,6 +920,7 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+"@; }@"
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));

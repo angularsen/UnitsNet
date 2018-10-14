@@ -36,6 +36,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
@@ -274,8 +275,8 @@ namespace UnitsNet
         ///     Get unit abbreviation string.
         /// </summary>
         /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>Unit abbreviation string.</returns>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static string GetAbbreviation(LengthUnit unit, [CanBeNull] IFormatProvider provider)
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
@@ -676,7 +677,7 @@ namespace UnitsNet
         /// </example>
         private static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Length result)
         {
-            result = default(Length);
+            result = default;
 
             if(string.IsNullOrWhiteSpace(str))
                 return false;
