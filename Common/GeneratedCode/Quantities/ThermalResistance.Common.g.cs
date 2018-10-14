@@ -503,8 +503,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<ThermalResistance, ThermalResistanceUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.SquareMeterKelvinsPerKilowatt + y.SquareMeterKelvinsPerKilowatt, BaseUnit));
+            return QuantityParser.Default.Parse<ThermalResistance, ThermalResistanceUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -526,8 +525,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<ThermalResistance, ThermalResistanceUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.SquareMeterKelvinsPerKilowatt + y.SquareMeterKelvinsPerKilowatt, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<ThermalResistance, ThermalResistanceUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -544,7 +542,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<ThermalResistanceUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<ThermalResistanceUnit>(str, provider);
 
             if (unit == ThermalResistanceUnit.Undefined)
             {
@@ -574,7 +572,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<ThermalResistanceUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<ThermalResistanceUnit>(str, provider, out unit))
                 return false;
 
             if(unit == ThermalResistanceUnit.Undefined)

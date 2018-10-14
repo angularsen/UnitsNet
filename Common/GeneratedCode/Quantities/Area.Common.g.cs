@@ -679,8 +679,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<Area, AreaUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.SquareMeters + y.SquareMeters, BaseUnit));
+            return QuantityParser.Default.Parse<Area, AreaUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -702,8 +701,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<Area, AreaUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.SquareMeters + y.SquareMeters, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<Area, AreaUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -720,7 +718,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<AreaUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<AreaUnit>(str, provider);
 
             if (unit == AreaUnit.Undefined)
             {
@@ -750,7 +748,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<AreaUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<AreaUnit>(str, provider, out unit))
                 return false;
 
             if(unit == AreaUnit.Undefined)

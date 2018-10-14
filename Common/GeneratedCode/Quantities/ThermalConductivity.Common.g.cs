@@ -437,8 +437,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<ThermalConductivity, ThermalConductivityUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.WattsPerMeterKelvin + y.WattsPerMeterKelvin, BaseUnit));
+            return QuantityParser.Default.Parse<ThermalConductivity, ThermalConductivityUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -460,8 +459,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<ThermalConductivity, ThermalConductivityUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.WattsPerMeterKelvin + y.WattsPerMeterKelvin, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<ThermalConductivity, ThermalConductivityUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -478,7 +476,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<ThermalConductivityUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<ThermalConductivityUnit>(str, provider);
 
             if (unit == ThermalConductivityUnit.Undefined)
             {
@@ -508,7 +506,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<ThermalConductivityUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<ThermalConductivityUnit>(str, provider, out unit))
                 return false;
 
             if(unit == ThermalConductivityUnit.Undefined)

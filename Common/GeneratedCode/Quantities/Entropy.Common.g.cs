@@ -547,8 +547,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<Entropy, EntropyUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.JoulesPerKelvin + y.JoulesPerKelvin, BaseUnit));
+            return QuantityParser.Default.Parse<Entropy, EntropyUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -570,8 +569,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<Entropy, EntropyUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.JoulesPerKelvin + y.JoulesPerKelvin, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<Entropy, EntropyUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -588,7 +586,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<EntropyUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<EntropyUnit>(str, provider);
 
             if (unit == EntropyUnit.Undefined)
             {
@@ -618,7 +616,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<EntropyUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<EntropyUnit>(str, provider, out unit))
                 return false;
 
             if(unit == EntropyUnit.Undefined)

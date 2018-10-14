@@ -964,8 +964,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<Information, InformationUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.Bits + y.Bits, BaseUnit));
+            return QuantityParser.Default.Parse<Information, InformationUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -987,8 +986,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<Information, InformationUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.Bits + y.Bits, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<Information, InformationUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -1005,7 +1003,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<InformationUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<InformationUnit>(str, provider);
 
             if (unit == InformationUnit.Undefined)
             {
@@ -1035,7 +1033,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<InformationUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<InformationUnit>(str, provider, out unit))
                 return false;
 
             if(unit == InformationUnit.Undefined)

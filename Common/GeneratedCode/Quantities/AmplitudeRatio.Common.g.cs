@@ -480,8 +480,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<AmplitudeRatio, AmplitudeRatioUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.DecibelVolts + y.DecibelVolts, BaseUnit));
+            return QuantityParser.Default.Parse<AmplitudeRatio, AmplitudeRatioUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -503,8 +502,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<AmplitudeRatio, AmplitudeRatioUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.DecibelVolts + y.DecibelVolts, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<AmplitudeRatio, AmplitudeRatioUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -521,7 +519,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<AmplitudeRatioUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<AmplitudeRatioUnit>(str, provider);
 
             if (unit == AmplitudeRatioUnit.Undefined)
             {
@@ -551,7 +549,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<AmplitudeRatioUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<AmplitudeRatioUnit>(str, provider, out unit))
                 return false;
 
             if(unit == AmplitudeRatioUnit.Undefined)

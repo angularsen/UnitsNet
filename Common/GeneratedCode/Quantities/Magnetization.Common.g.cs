@@ -415,8 +415,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<Magnetization, MagnetizationUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.AmperesPerMeter + y.AmperesPerMeter, BaseUnit));
+            return QuantityParser.Default.Parse<Magnetization, MagnetizationUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -438,8 +437,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<Magnetization, MagnetizationUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.AmperesPerMeter + y.AmperesPerMeter, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<Magnetization, MagnetizationUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -456,7 +454,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<MagnetizationUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<MagnetizationUnit>(str, provider);
 
             if (unit == MagnetizationUnit.Undefined)
             {
@@ -486,7 +484,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<MagnetizationUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<MagnetizationUnit>(str, provider, out unit))
                 return false;
 
             if(unit == MagnetizationUnit.Undefined)

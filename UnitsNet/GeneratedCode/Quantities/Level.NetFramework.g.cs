@@ -47,43 +47,9 @@ namespace UnitsNet
     ///     Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q₀, expressed in dimensionless units.
     /// </summary>
     // ReSharper disable once PartialTypeWithSinglePart
+
     public partial struct Level : IQuantity<LevelUnit>, IComparable, IComparable<Level>
     {
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        private readonly double _value;
-
-        /// <summary>
-        ///     The unit this quantity was constructed with.
-        /// </summary>
-        private readonly LevelUnit? _unit;
-
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
-        public LevelUnit Unit => _unit.GetValueOrDefault(BaseUnit);
-
-        static Level()
-        {
-        }
-
-        /// <summary>
-        ///     Creates the quantity with the given numeric value and unit.
-        /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public Level(double numericValue, LevelUnit unit)
-        {
-            if(unit == LevelUnit.Undefined)
-              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
-
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = unit;
-        }
-
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
@@ -100,43 +66,6 @@ namespace UnitsNet
         {
             return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
-
-        #region Properties
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public static QuantityType QuantityType => QuantityType.Level;
-
-        /// <summary>
-        ///     The base unit of Level, which is Decibel. All conversions go via this value.
-        /// </summary>
-        public static LevelUnit BaseUnit => LevelUnit.Decibel;
-
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public static BaseDimensions BaseDimensions
-        {
-            get;
-        }
-
-        /// <summary>
-        ///     All units of measurement for the Level quantity.
-        /// </summary>
-        public static LevelUnit[] Units { get; } = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>().Except(new LevelUnit[]{ LevelUnit.Undefined }).ToArray();
-
-        /// <summary>
-        ///     Get Level in Decibels.
-        /// </summary>
-        public double Decibels => As(LevelUnit.Decibel);
-
-        /// <summary>
-        ///     Get Level in Nepers.
-        /// </summary>
-        public double Nepers => As(LevelUnit.Neper);
-
-        #endregion
 
         #region Logarithmic Arithmetic Operators
 

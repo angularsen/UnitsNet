@@ -1207,8 +1207,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<Pressure, PressureUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.Pascals + y.Pascals, BaseUnit));
+            return QuantityParser.Default.Parse<Pressure, PressureUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -1230,8 +1229,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<Pressure, PressureUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.Pascals + y.Pascals, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<Pressure, PressureUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -1248,7 +1246,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<PressureUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<PressureUnit>(str, provider);
 
             if (unit == PressureUnit.Undefined)
             {
@@ -1278,7 +1276,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<PressureUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<PressureUnit>(str, provider, out unit))
                 return false;
 
             if(unit == PressureUnit.Undefined)
