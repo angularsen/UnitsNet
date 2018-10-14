@@ -20,7 +20,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
@@ -31,13 +30,13 @@ namespace UnitsNet
 {
     public sealed class UnitParser
     {
-        private readonly UnitAbbreviationsCache unitAbbreviationsCache;
+        private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
 
         public static UnitParser Default { get; }
 
         public UnitParser(UnitAbbreviationsCache unitAbbreviationsCache)
         {
-            this.unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default; ;
+            _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
         }
 
         static UnitParser()
@@ -76,7 +75,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
-        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbrevation.</exception>
+        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         [PublicAPI]
 #if WINDOWS_UWP
         internal
@@ -85,7 +84,7 @@ namespace UnitsNet
 #endif
         object Parse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider = null)
         {
-            if(!unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
+            if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 throw new UnitNotFoundException($"No abbreviations defined for unit type [{unitType}] for culture [{formatProvider}].");
 
             var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation);
@@ -139,7 +138,7 @@ namespace UnitsNet
 #endif
             bool TryParse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider, out TUnitType unit) where TUnitType : Enum
         {
-            unit = default(TUnitType);
+            unit = default;
 
             if(!TryParse(unitAbbreviation, typeof(TUnitType), formatProvider, out var unitObj))
                 return false;
@@ -179,7 +178,7 @@ namespace UnitsNet
         {
             unit = GetDefault(unitType);
 
-            if(!unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
+            if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 return false;
 
             var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation);

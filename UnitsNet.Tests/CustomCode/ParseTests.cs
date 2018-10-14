@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -60,20 +60,6 @@ namespace UnitsNet.Tests.CustomCode
         {
             var usEnglish = new CultureInfo("en-US");
             Assert.Throws(expectedExceptionType, () => Length.Parse(s, usEnglish));
-        }
-
-        [Theory]
-        [InlineData("1 ft 1 in", 13)]
-        [InlineData("1ft 1in", 13)]
-        [InlineData("1' 1\"", 13)]
-        [InlineData("1'1\"", 13)]
-        [InlineData("1ft1in", 13)]
-        [InlineData("1ft and 1in", 13)]
-        public void ParseLength_FeetInchesString_USEnglish(string s, double expected)
-        {
-            CultureInfo usEnglish = new CultureInfo("en-US");
-            double actual = Length.Parse(s, usEnglish).Inches;
-            Assert.Equal(expected, actual);
         }
 
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
@@ -165,62 +151,6 @@ namespace UnitsNet.Tests.CustomCode
             CultureInfo usEnglish = new CultureInfo("en-US");
             bool actual = Length.TryParse(s, usEnglish, out Length _);
             Assert.Equal(expected, actual);
-        }
-
-        [Theory]
-        [InlineData("!")]
-        [InlineData("@")]
-        [InlineData("#")]
-        [InlineData("$")]
-        [InlineData("%")]
-        [InlineData("^")]
-        [InlineData("&")]
-        [InlineData("*")]
-        [InlineData("-")]
-        [InlineData("_")]
-        [InlineData("?")]
-        [InlineData("123")]
-        [InlineData(" ")]
-        public void TryParseLengthUnitAbbreviationSpecialCharacters(string s)
-        {
-            string abbrev = $"m{s}s";
-
-            UnitAbbreviationsCache.Default.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
-
-            // Act
-            bool ok = UnitParser.Default.TryParse(abbrev, out LengthUnit result);
-
-            // Assert
-            Assert.True(ok, "TryParse " + abbrev);
-            Assert.Equal(LengthUnit.Meter, result);
-        }
-
-        [Theory]
-        [InlineData("!")]
-        [InlineData("@")]
-        [InlineData("#")]
-        [InlineData("$")]
-        [InlineData("%")]
-        [InlineData("^")]
-        [InlineData("&")]
-        [InlineData("*")]
-        [InlineData("-")]
-        [InlineData("_")]
-        [InlineData("?")]
-        [InlineData("123")]
-        [InlineData(" ")]
-        public void TryParseLengthSpecialCharacters(string s)
-        {
-            string abbrev = $"m{s}s";
-
-            UnitAbbreviationsCache.Default.MapUnitToAbbreviation(LengthUnit.Meter, abbrev);
-
-            // Act
-            var ok = Length.TryParse($"10 {abbrev}", out var result);
-
-            // Assert
-            Assert.True(ok, $"TryParse \"10 {abbrev}\"");
-            Assert.Equal(10, result.Meters);
         }
     }
 }
