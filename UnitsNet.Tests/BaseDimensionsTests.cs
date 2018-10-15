@@ -38,10 +38,10 @@ namespace UnitsNet.Tests
         public void InequalityOperatorsWorkAsExpected()
         {
             var baseDimensions1 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
-            var baseDimensions2 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
+            var baseDimensions2 = new BaseDimensions(7, 6, 5, 4, 3, 2, 1);
 
-            Assert.False(baseDimensions1 != baseDimensions2);
-            Assert.False(baseDimensions2 != baseDimensions1);
+            Assert.True(baseDimensions1 != baseDimensions2);
+            Assert.True(baseDimensions2 != baseDimensions1);
 
             Assert.True(baseDimensions1 != null);
             Assert.True(null != baseDimensions1);
