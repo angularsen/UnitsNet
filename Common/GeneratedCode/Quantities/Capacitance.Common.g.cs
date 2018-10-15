@@ -415,8 +415,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<Capacitance, CapacitanceUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.Farads + y.Farads, BaseUnit));
+            return QuantityParser.Default.Parse<Capacitance, CapacitanceUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -438,8 +437,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<Capacitance, CapacitanceUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.Farads + y.Farads, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<Capacitance, CapacitanceUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -456,7 +454,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<CapacitanceUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<CapacitanceUnit>(str, provider);
 
             if (unit == CapacitanceUnit.Undefined)
             {
@@ -486,7 +484,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<CapacitanceUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<CapacitanceUnit>(str, provider, out unit))
                 return false;
 
             if(unit == CapacitanceUnit.Undefined)

@@ -415,8 +415,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<AreaDensity, AreaDensityUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.KilogramsPerSquareMeter + y.KilogramsPerSquareMeter, BaseUnit));
+            return QuantityParser.Default.Parse<AreaDensity, AreaDensityUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -438,8 +437,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<AreaDensity, AreaDensityUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.KilogramsPerSquareMeter + y.KilogramsPerSquareMeter, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<AreaDensity, AreaDensityUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -456,7 +454,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<AreaDensityUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<AreaDensityUnit>(str, provider);
 
             if (unit == AreaDensityUnit.Undefined)
             {
@@ -486,7 +484,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<AreaDensityUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<AreaDensityUnit>(str, provider, out unit))
                 return false;
 
             if(unit == AreaDensityUnit.Undefined)

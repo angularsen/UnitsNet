@@ -613,8 +613,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<TemperatureChangeRate, TemperatureChangeRateUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.DegreesCelsiusPerSecond + y.DegreesCelsiusPerSecond, BaseUnit));
+            return QuantityParser.Default.Parse<TemperatureChangeRate, TemperatureChangeRateUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -636,8 +635,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<TemperatureChangeRate, TemperatureChangeRateUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.DegreesCelsiusPerSecond + y.DegreesCelsiusPerSecond, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<TemperatureChangeRate, TemperatureChangeRateUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -654,7 +652,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<TemperatureChangeRateUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<TemperatureChangeRateUnit>(str, provider);
 
             if (unit == TemperatureChangeRateUnit.Undefined)
             {
@@ -684,7 +682,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<TemperatureChangeRateUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<TemperatureChangeRateUnit>(str, provider, out unit))
                 return false;
 
             if(unit == TemperatureChangeRateUnit.Undefined)

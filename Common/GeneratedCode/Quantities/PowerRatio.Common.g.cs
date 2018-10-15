@@ -436,8 +436,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<PowerRatio, PowerRatioUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.DecibelWatts + y.DecibelWatts, BaseUnit));
+            return QuantityParser.Default.Parse<PowerRatio, PowerRatioUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -459,8 +458,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<PowerRatio, PowerRatioUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.DecibelWatts + y.DecibelWatts, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<PowerRatio, PowerRatioUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -477,7 +475,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<PowerRatioUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<PowerRatioUnit>(str, provider);
 
             if (unit == PowerRatioUnit.Undefined)
             {
@@ -507,7 +505,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<PowerRatioUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<PowerRatioUnit>(str, provider, out unit))
                 return false;
 
             if(unit == PowerRatioUnit.Undefined)

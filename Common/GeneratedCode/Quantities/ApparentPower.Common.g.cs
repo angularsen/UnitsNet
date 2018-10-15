@@ -481,8 +481,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<ApparentPower, ApparentPowerUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.Voltamperes + y.Voltamperes, BaseUnit));
+            return QuantityParser.Default.Parse<ApparentPower, ApparentPowerUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -504,8 +503,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<ApparentPower, ApparentPowerUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.Voltamperes + y.Voltamperes, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<ApparentPower, ApparentPowerUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -522,7 +520,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<ApparentPowerUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<ApparentPowerUnit>(str, provider);
 
             if (unit == ApparentPowerUnit.Undefined)
             {
@@ -552,7 +550,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<ApparentPowerUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<ApparentPowerUnit>(str, provider, out unit))
                 return false;
 
             if(unit == ApparentPowerUnit.Undefined)

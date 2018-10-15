@@ -569,8 +569,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<SpecificEnergy, SpecificEnergyUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.JoulesPerKilogram + y.JoulesPerKilogram, BaseUnit));
+            return QuantityParser.Default.Parse<SpecificEnergy, SpecificEnergyUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -592,8 +591,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<SpecificEnergy, SpecificEnergyUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.JoulesPerKilogram + y.JoulesPerKilogram, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<SpecificEnergy, SpecificEnergyUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -610,7 +608,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<SpecificEnergyUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<SpecificEnergyUnit>(str, provider);
 
             if (unit == SpecificEnergyUnit.Undefined)
             {
@@ -640,7 +638,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<SpecificEnergyUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<SpecificEnergyUnit>(str, provider, out unit))
                 return false;
 
             if(unit == SpecificEnergyUnit.Undefined)

@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -68,6 +69,67 @@ namespace UnitsNet
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
+
+        /// <summary>
+        /// Special parsing of feet/inches strings, commonly used.
+        /// 2 feet 4 inches is sometimes denoted as 2′−4″, 2′ 4″, 2′4″, 2 ft 4 in.
+        /// The apostrophe can be ′ and '.
+        /// The double prime can be ″ and ".
+        /// https://en.wikipedia.org/wiki/Foot_(unit)
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="formatProvider">Optionally specify the culture format numbers and localize unit abbreviations. Defaults to thread's culture.</param>
+        /// <returns>Parsed length.</returns>
+        public static Length ParseFeetInches(string str, IFormatProvider formatProvider = null)
+        {
+            if (!TryParseFeetInches(str, out Length result, formatProvider))
+            {
+                // A bit lazy, but I didn't want to duplicate this edge case implementation just to get more narrow exception descriptions.
+                throw new FormatException("Unable to parse feet and inches. Expected format \"2' 4\"\" or \"2 ft 4 in\". Whitespace is optional.");
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Special parsing of feet/inches strings, commonly used.
+        /// 2 feet 4 inches is sometimes denoted as 2′−4″, 2′ 4″, 2′4″, 2 ft 4 in.
+        /// The apostrophe can be ′ and '.
+        /// The double prime can be ″ and ".
+        /// https://en.wikipedia.org/wiki/Foot_(unit)
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="result">Parsed length.</param>
+        /// <param name="formatProvider">Optionally specify the culture format numbers and localize unit abbreviations. Defaults to thread's culture.</param>
+        public static bool TryParseFeetInches(string str, out Length result, IFormatProvider formatProvider = null)
+        {
+            // This succeeds if only feet or inches are given, not both
+            if (TryParseInternal(str, formatProvider, out result))
+                return true;
+
+            var quantityParser = QuantityParser.Default;
+            string footRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Foot, formatProvider, matchEntireString: false);
+            string inchRegex = quantityParser.CreateRegexPatternForUnit(LengthUnit.Inch, formatProvider, matchEntireString: false);
+
+            // Match entire string exactly
+            string pattern = $@"^(?<feet>{footRegex})\s?(?<inches>{inchRegex})$";
+
+            var match = new Regex(pattern, RegexOptions.Singleline).Match(str.Trim());
+            if (!match.Success) return false;
+
+            var feetGroup = match.Groups["feet"];
+            var inchesGroup = match.Groups["inches"];
+            if (TryParseInternal(feetGroup.Value, formatProvider, out Length feet) &&
+                TryParseInternal(inchesGroup.Value, formatProvider, out Length inches))
+            {
+                result = feet + inches;
+                return true;
+            }
+
+            result = default;
+            return false;
+        }
+
         public static Speed operator /(Length length, TimeSpan timeSpan)
         {
             return Speed.FromMetersPerSecond(length.Meters/timeSpan.TotalSeconds);

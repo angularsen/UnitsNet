@@ -459,8 +459,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<ElectricConductance, ElectricConductanceUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.Siemens + y.Siemens, BaseUnit));
+            return QuantityParser.Default.Parse<ElectricConductance, ElectricConductanceUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -482,8 +481,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<ElectricConductance, ElectricConductanceUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.Siemens + y.Siemens, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<ElectricConductance, ElectricConductanceUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
@@ -500,7 +498,7 @@ namespace UnitsNet
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
 
-            var unit = UnitParser.Default.Parse<ElectricConductanceUnit>(str.Trim(), provider);
+            var unit = UnitParser.Default.Parse<ElectricConductanceUnit>(str, provider);
 
             if (unit == ElectricConductanceUnit.Undefined)
             {
@@ -530,7 +528,7 @@ namespace UnitsNet
             if(string.IsNullOrWhiteSpace(str))
                 return false;
 
-            if(!UnitParser.Default.TryParse<ElectricConductanceUnit>(str.Trim(), provider, out unit))
+            if(!UnitParser.Default.TryParse<ElectricConductanceUnit>(str, provider, out unit))
                 return false;
 
             if(unit == ElectricConductanceUnit.Undefined)
