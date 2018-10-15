@@ -611,7 +611,7 @@ namespace UnitsNet
             return QuantityParser.Default.Parse<Information, InformationUnit>(
                 str,
                 provider,
-                ParseUnitInternal,
+                UnitParser.Default.Parse<InformationUnit>,
                 From);
         }
 
@@ -643,7 +643,7 @@ namespace UnitsNet
             return QuantityParser.Default.TryParse<Information, InformationUnit>(
                 str,
                 provider,
-                TryParseUnitInternal,
+                UnitParser.Default.TryParse<InformationUnit>,
                 From,
                 out result);
         }
@@ -659,7 +659,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static InformationUnit ParseUnit(string str)
         {
-            return ParseUnitInternal(str, null);
+            return ParseUnit(str, null);
         }
 
         /// <summary>
@@ -674,12 +674,12 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static InformationUnit ParseUnit(string str, IFormatProvider provider = null)
         {
-            return ParseUnitInternal(str, provider);
+            return UnitParser.Default.Parse<InformationUnit>(str, provider);
         }
 
         public static bool TryParseUnit(string str, out InformationUnit unit)
         {
-            return TryParseUnitInternal(str, null, out unit);
+            return TryParseUnit(str, null, out unit);
         }
 
         /// <summary>
@@ -694,60 +694,7 @@ namespace UnitsNet
         /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         public static bool TryParseUnit(string str, IFormatProvider provider, out InformationUnit unit)
         {
-            return TryParseUnitInternal(str, provider, out unit);
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private static InformationUnit ParseUnitInternal(string str, IFormatProvider provider = null)
-        {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-
-            var unit = UnitParser.Default.Parse<InformationUnit>(str.Trim(), provider);
-
-            if (unit == InformationUnit.Undefined)
-            {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized InformationUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
-            }
-
-            return unit;
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
-        /// <param name="unit">The parsed unit if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        private static bool TryParseUnitInternal(string str, IFormatProvider provider, out InformationUnit unit)
-        {
-            unit = InformationUnit.Undefined;
-
-            if(string.IsNullOrWhiteSpace(str))
-                return false;
-
-            if(!UnitParser.Default.TryParse<InformationUnit>(str.Trim(), provider, out unit))
-                return false;
-
-            if(unit == InformationUnit.Undefined)
-                return false;
-
-            return true;
+            return UnitParser.Default.TryParse<InformationUnit>(str, provider, out unit);
         }
 
         #endregion

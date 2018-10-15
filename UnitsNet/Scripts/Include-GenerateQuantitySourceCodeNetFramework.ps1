@@ -560,7 +560,7 @@ if ($wrc) {@"
             return QuantityParser.Default.Parse<$quantityName, $unitEnumName>(
                 str,
                 provider,
-                ParseUnitInternal,
+                UnitParser.Default.Parse<$unitEnumName>,
                 From);
         }
 
@@ -600,7 +600,7 @@ if ($wrc) {@"
             return QuantityParser.Default.TryParse<$quantityName, $unitEnumName>(
                 str,
                 provider,
-                TryParseUnitInternal,
+                UnitParser.Default.TryParse<$unitEnumName>,
                 From,
                 out result);
         }
@@ -616,7 +616,7 @@ if ($wrc) {@"
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static $unitEnumName ParseUnit(string str)
         {
-            return ParseUnitInternal(str, null);
+            return ParseUnit(str, null);
         }
 
         /// <summary>
@@ -639,12 +639,12 @@ if ($wrc) {@"
         public static $unitEnumName ParseUnit(string str, IFormatProvider provider = null)
         {
 "@; }@"
-            return ParseUnitInternal(str, provider);
+            return UnitParser.Default.Parse<$unitEnumName>(str, provider);
         }
 
         public static bool TryParseUnit(string str, out $unitEnumName unit)
         {
-            return TryParseUnitInternal(str, null, out unit);
+            return TryParseUnit(str, null, out unit);
         }
 
         /// <summary>
@@ -667,60 +667,7 @@ if ($wrc) {@"
         public static bool TryParseUnit(string str, IFormatProvider provider, out $unitEnumName unit)
         {
 "@; }@"
-            return TryParseUnitInternal(str, provider, out unit);
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private static $unitEnumName ParseUnitInternal(string str, IFormatProvider provider = null)
-        {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-
-            var unit = UnitParser.Default.Parse<$unitEnumName>(str.Trim(), provider);
-
-            if (unit == $unitEnumName.Undefined)
-            {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized $unitEnumName.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
-            }
-
-            return unit;
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
-        /// <param name="unit">The parsed unit if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        private static bool TryParseUnitInternal(string str, IFormatProvider provider, out $unitEnumName unit)
-        {
-            unit = $unitEnumName.Undefined;
-
-            if(string.IsNullOrWhiteSpace(str))
-                return false;
-
-            if(!UnitParser.Default.TryParse<$unitEnumName>(str.Trim(), provider, out unit))
-                return false;
-
-            if(unit == $unitEnumName.Undefined)
-                return false;
-
-            return true;
+            return UnitParser.Default.TryParse<$unitEnumName>(str, provider, out unit);
         }
 
         #endregion

@@ -295,7 +295,7 @@ namespace UnitsNet
             return QuantityParser.Default.Parse<Level, LevelUnit>(
                 str,
                 provider,
-                ParseUnitInternal,
+                UnitParser.Default.Parse<LevelUnit>,
                 From);
         }
 
@@ -328,7 +328,7 @@ namespace UnitsNet
             return QuantityParser.Default.TryParse<Level, LevelUnit>(
                 str,
                 provider,
-                TryParseUnitInternal,
+                UnitParser.Default.TryParse<LevelUnit>,
                 From,
                 out result);
         }
@@ -344,7 +344,7 @@ namespace UnitsNet
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static LevelUnit ParseUnit(string str)
         {
-            return ParseUnitInternal(str, null);
+            return ParseUnit(str, null);
         }
 
         /// <summary>
@@ -360,12 +360,12 @@ namespace UnitsNet
         public static LevelUnit ParseUnit(string str, [CanBeNull] string cultureName)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return ParseUnitInternal(str, provider);
+            return UnitParser.Default.Parse<LevelUnit>(str, provider);
         }
 
         public static bool TryParseUnit(string str, out LevelUnit unit)
         {
-            return TryParseUnitInternal(str, null, out unit);
+            return TryParseUnit(str, null, out unit);
         }
 
         /// <summary>
@@ -381,60 +381,7 @@ namespace UnitsNet
         public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out LevelUnit unit)
         {
             IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return TryParseUnitInternal(str, provider, out unit);
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private static LevelUnit ParseUnitInternal(string str, IFormatProvider provider = null)
-        {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-
-            var unit = UnitParser.Default.Parse<LevelUnit>(str.Trim(), provider);
-
-            if (unit == LevelUnit.Undefined)
-            {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized LevelUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
-            }
-
-            return unit;
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
-        /// <param name="unit">The parsed unit if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        private static bool TryParseUnitInternal(string str, IFormatProvider provider, out LevelUnit unit)
-        {
-            unit = LevelUnit.Undefined;
-
-            if(string.IsNullOrWhiteSpace(str))
-                return false;
-
-            if(!UnitParser.Default.TryParse<LevelUnit>(str.Trim(), provider, out unit))
-                return false;
-
-            if(unit == LevelUnit.Undefined)
-                return false;
-
-            return true;
+            return UnitParser.Default.TryParse<LevelUnit>(str, provider, out unit);
         }
 
         #endregion
