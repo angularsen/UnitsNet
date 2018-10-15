@@ -104,7 +104,7 @@ namespace UnitsNet
         public static bool TryParseFeetInches(string str, out Length result, IFormatProvider formatProvider = null)
         {
             // This succeeds if only feet or inches are given, not both
-            if (TryParseInternal(str, formatProvider, out result))
+            if (TryParse(str, formatProvider, out result))
                 return true;
 
             var quantityParser = QuantityParser.Default;
@@ -119,8 +119,8 @@ namespace UnitsNet
 
             var feetGroup = match.Groups["feet"];
             var inchesGroup = match.Groups["inches"];
-            if (TryParseInternal(feetGroup.Value, formatProvider, out Length feet) &&
-                TryParseInternal(inchesGroup.Value, formatProvider, out Length inches))
+            if (TryParse(feetGroup.Value, formatProvider, out Length feet) &&
+                TryParse(inchesGroup.Value, formatProvider, out Length inches))
             {
                 result = feet + inches;
                 return true;
