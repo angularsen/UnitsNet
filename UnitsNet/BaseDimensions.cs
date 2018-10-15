@@ -107,6 +107,7 @@ namespace UnitsNet
         }
 
 #if !WINDOWS_UWP
+
         /// <summary>
         /// Check if two dimensions are equal.
         /// </summary>
@@ -150,6 +151,7 @@ namespace UnitsNet
         {
             return left.Divide(right);
         }
+
 #endif
 
         /// <inheritdoc />
