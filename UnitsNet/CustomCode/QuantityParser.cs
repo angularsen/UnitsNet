@@ -72,6 +72,7 @@ namespace UnitsNet
             where TUnitType : Enum
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
+            str = str.Trim();
 
             var numFormat = formatProvider != null
                 ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
@@ -103,6 +104,7 @@ namespace UnitsNet
             result = default;
 
             if(string.IsNullOrWhiteSpace(str)) return false;
+            str = str.Trim();
 
             var numFormat = formatProvider != null
                 ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
@@ -183,7 +185,7 @@ namespace UnitsNet
 
         private static bool ExtractValueAndUnit(Regex regex, string str, out string valueString, out string unitString)
         {
-            var match = regex.Match(str.Trim());
+            var match = regex.Match(str);
             var groups = match.Groups;
 
             var valueGroup = groups["value"];
