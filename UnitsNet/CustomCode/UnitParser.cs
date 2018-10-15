@@ -82,12 +82,15 @@ namespace UnitsNet
 #else
         public
 #endif
-        object Parse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider = null)
+        object Parse([NotNull] string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider = null)
         {
+            if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
+            unitAbbreviation = unitAbbreviation.Trim();
+
             if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 throw new UnitNotFoundException($"No abbreviations defined for unit type [{unitType}] for culture [{formatProvider}].");
 
-            var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation.Trim());
+            var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation);
 
             switch (unitIntValues.Count)
             {
@@ -176,12 +179,19 @@ namespace UnitsNet
 #endif
         bool TryParse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider, out object unit)
         {
+            if (unitAbbreviation == null)
+            {
+                unit = default;
+                return false;
+            }
+
+            unitAbbreviation = unitAbbreviation.Trim();
             unit = GetDefault(unitType);
 
             if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 return false;
 
-            var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation.Trim());
+            var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation);
             if(unitIntValues.Count != 1)
                 return false;
 

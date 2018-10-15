@@ -80,8 +80,9 @@ namespace UnitsNet
         /// <param name="str"></param>
         /// <param name="formatProvider">Optionally specify the culture format numbers and localize unit abbreviations. Defaults to thread's culture.</param>
         /// <returns>Parsed length.</returns>
-        public static Length ParseFeetInches(string str, IFormatProvider formatProvider = null)
+        public static Length ParseFeetInches([NotNull] string str, IFormatProvider formatProvider = null)
         {
+            if (str == null) throw new ArgumentNullException(nameof(str));
             if (!TryParseFeetInches(str, out Length result, formatProvider))
             {
                 // A bit lazy, but I didn't want to duplicate this edge case implementation just to get more narrow exception descriptions.
@@ -101,10 +102,18 @@ namespace UnitsNet
         /// <param name="str"></param>
         /// <param name="result">Parsed length.</param>
         /// <param name="formatProvider">Optionally specify the culture format numbers and localize unit abbreviations. Defaults to thread's culture.</param>
-        public static bool TryParseFeetInches(string str, out Length result, IFormatProvider formatProvider = null)
+        public static bool TryParseFeetInches([CanBeNull] string str, out Length result, IFormatProvider formatProvider = null)
         {
+            if (str == null)
+            {
+                result = default;
+                return false;
+            }
+
+            str = str.Trim();
+
             // This succeeds if only feet or inches are given, not both
-            if (TryParseInternal(str, formatProvider, out result))
+            if (TryParse(str, formatProvider, out result))
                 return true;
 
             var quantityParser = QuantityParser.Default;
@@ -114,13 +123,13 @@ namespace UnitsNet
             // Match entire string exactly
             string pattern = $@"^(?<feet>{footRegex})\s?(?<inches>{inchRegex})$";
 
-            var match = new Regex(pattern, RegexOptions.Singleline).Match(str.Trim());
+            var match = new Regex(pattern, RegexOptions.Singleline).Match(str);
             if (!match.Success) return false;
 
             var feetGroup = match.Groups["feet"];
             var inchesGroup = match.Groups["inches"];
-            if (TryParseInternal(feetGroup.Value, formatProvider, out Length feet) &&
-                TryParseInternal(inchesGroup.Value, formatProvider, out Length inches))
+            if (TryParse(feetGroup.Value, formatProvider, out Length feet) &&
+                TryParse(inchesGroup.Value, formatProvider, out Length inches))
             {
                 result = feet + inches;
                 return true;

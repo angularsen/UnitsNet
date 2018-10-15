@@ -30,8 +30,6 @@ using JetBrains.Annotations;
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
-    internal delegate TUnitType ParseUnitDelegate<out TUnitType>(string unitString, IFormatProvider formatProvider) where TUnitType : Enum;
-    internal delegate bool TryParseUnitDelegate<TUnitType>(string unitString, IFormatProvider formatProvider, out TUnitType unit) where TUnitType : Enum;
 
 #if !WINDOWS_UWP
     internal delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
@@ -51,12 +49,14 @@ namespace UnitsNet
         private const NumberStyles ParseNumberStyles = NumberStyles.Number | NumberStyles.Float | NumberStyles.AllowExponent;
 
         private readonly UnitAbbreviationsCache _unitAbbreviationsCache;
+        private UnitParser _unitParser;
 
         public static QuantityParser Default { get; }
 
         public QuantityParser(UnitAbbreviationsCache unitAbbreviationsCache)
         {
             _unitAbbreviationsCache = unitAbbreviationsCache ?? UnitAbbreviationsCache.Default;
+            _unitParser = new UnitParser(_unitAbbreviationsCache);
         }
 
         static QuantityParser()
@@ -67,13 +67,12 @@ namespace UnitsNet
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
         internal TQuantity Parse<TQuantity, TUnitType>([NotNull] string str,
             [CanBeNull] IFormatProvider formatProvider,
-            [NotNull] ParseUnitDelegate<TUnitType> parseUnit,
             [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate)
             where TQuantity : IQuantity
             where TUnitType : Enum
         {
             if (str == null) throw new ArgumentNullException(nameof(str));
-            if (parseUnit == null) throw new ArgumentNullException(nameof(parseUnit));
+            str = str.Trim();
 
             var numFormat = formatProvider != null
                 ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
@@ -91,13 +90,12 @@ namespace UnitsNet
                 throw ex;
             }
 
-            return ParseWithRegex(valueString, unitString, parseUnit, fromDelegate, formatProvider);
+            return ParseWithRegex(valueString, unitString, fromDelegate, formatProvider);
         }
 
         [SuppressMessage("ReSharper", "UseStringInterpolation")]
         internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
             [CanBeNull] IFormatProvider formatProvider,
-            [NotNull] TryParseUnitDelegate<TUnitType> parseUnit,
             [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             out TQuantity result)
             where TQuantity : IQuantity
@@ -106,6 +104,7 @@ namespace UnitsNet
             result = default;
 
             if(string.IsNullOrWhiteSpace(str)) return false;
+            str = str.Trim();
 
             var numFormat = formatProvider != null
                 ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
@@ -119,7 +118,7 @@ namespace UnitsNet
             if (!ExtractValueAndUnit(regex, str, out var valueString, out var unitString))
                 return false;
 
-            return TryParseWithRegex(valueString, unitString, parseUnit, fromDelegate, formatProvider, out result);
+            return TryParseWithRegex(valueString, unitString, fromDelegate, formatProvider, out result);
         }
 
         internal string CreateRegexPatternForUnit<TUnitType>(
@@ -148,16 +147,15 @@ namespace UnitsNet
         ///     Parse a string given a particular regular expression.
         /// </summary>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private static TQuantity ParseWithRegex<TQuantity, TUnitType>(string valueString,
+        private TQuantity ParseWithRegex<TQuantity, TUnitType>(string valueString,
             string unitString,
-            ParseUnitDelegate<TUnitType> parseUnit,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             IFormatProvider formatProvider)
             where TQuantity : IQuantity
             where TUnitType : Enum
         {
             var value = double.Parse(valueString, ParseNumberStyles, formatProvider);
-            var parsedUnit = parseUnit(unitString, formatProvider);
+            var parsedUnit = _unitParser.Parse<TUnitType>(unitString, formatProvider);
             return fromDelegate(value, parsedUnit);
         }
 
@@ -165,9 +163,8 @@ namespace UnitsNet
         ///     Parse a string given a particular regular expression.
         /// </summary>
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private static bool TryParseWithRegex<TQuantity, TUnitType>(string valueString,
+        private bool TryParseWithRegex<TQuantity, TUnitType>(string valueString,
             string unitString,
-            TryParseUnitDelegate<TUnitType> tryParseUnit,
             QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
             IFormatProvider formatProvider,
             out TQuantity result)
@@ -177,10 +174,10 @@ namespace UnitsNet
             result = default;
 
             if (!double.TryParse(valueString, ParseNumberStyles, formatProvider, out var value))
-                return false;
+                    return false;
 
-            if (!tryParseUnit(unitString, formatProvider, out var parsedUnit))
-                return false;
+            if (!_unitParser.TryParse<TUnitType>(unitString, formatProvider, out var parsedUnit))
+                    return false;
 
             result = fromDelegate(value, parsedUnit);
             return true;
@@ -188,7 +185,7 @@ namespace UnitsNet
 
         private static bool ExtractValueAndUnit(Regex regex, string str, out string valueString, out string unitString)
         {
-            var match = regex.Match(str.Trim());
+            var match = regex.Match(str);
             var groups = match.Groups;
 
             var valueGroup = groups["value"];
