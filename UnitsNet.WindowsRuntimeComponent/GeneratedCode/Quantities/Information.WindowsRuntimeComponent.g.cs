@@ -655,7 +655,6 @@ namespace UnitsNet
             return QuantityParser.Default.Parse<Information, InformationUnit>(
                 str,
                 provider,
-                UnitParser.Default.Parse<InformationUnit>,
                 From);
         }
 
@@ -688,7 +687,6 @@ namespace UnitsNet
             return QuantityParser.Default.TryParse<Information, InformationUnit>(
                 str,
                 provider,
-                UnitParser.Default.TryParse<InformationUnit>,
                 From,
                 out result);
         }

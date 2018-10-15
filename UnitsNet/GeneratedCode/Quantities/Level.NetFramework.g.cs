@@ -275,7 +275,6 @@ namespace UnitsNet
             return QuantityParser.Default.Parse<Level, LevelUnit>(
                 str,
                 provider,
-                UnitParser.Default.Parse<LevelUnit>,
                 From);
         }
 
@@ -307,7 +306,6 @@ namespace UnitsNet
             return QuantityParser.Default.TryParse<Level, LevelUnit>(
                 str,
                 provider,
-                UnitParser.Default.TryParse<LevelUnit>,
                 From,
                 out result);
         }

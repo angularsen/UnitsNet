@@ -595,7 +595,6 @@ namespace UnitsNet
             return QuantityParser.Default.Parse<Length, LengthUnit>(
                 str,
                 provider,
-                UnitParser.Default.Parse<LengthUnit>,
                 From);
         }
 
@@ -628,7 +627,6 @@ namespace UnitsNet
             return QuantityParser.Default.TryParse<Length, LengthUnit>(
                 str,
                 provider,
-                UnitParser.Default.TryParse<LengthUnit>,
                 From,
                 out result);
         }

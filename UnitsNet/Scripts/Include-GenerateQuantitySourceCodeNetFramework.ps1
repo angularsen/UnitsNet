@@ -560,7 +560,6 @@ if ($wrc) {@"
             return QuantityParser.Default.Parse<$quantityName, $unitEnumName>(
                 str,
                 provider,
-                UnitParser.Default.Parse<$unitEnumName>,
                 From);
         }
 
@@ -600,7 +599,6 @@ if ($wrc) {@"
             return QuantityParser.Default.TryParse<$quantityName, $unitEnumName>(
                 str,
                 provider,
-                UnitParser.Default.TryParse<$unitEnumName>,
                 From,
                 out result);
         }
