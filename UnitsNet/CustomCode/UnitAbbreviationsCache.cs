@@ -34,10 +34,10 @@ namespace UnitsNet
 {
     public sealed partial class UnitAbbreviationsCache
     {
-        private Dictionary<IFormatProvider, UnitTypeToLookup> looksupsForCulture;
+        private readonly Dictionary<IFormatProvider, UnitTypeToLookup> _lookupsForCulture;
 
         /// <summary>
-        ///     Fallback culture used by <see cref="GetAllAbbreviations{TUnitType}" /> and <see cref="GetDefaultAbbreviation{TUnitType}" />
+        ///     Fallback culture used by <see cref="GetUnitAbbreviations{TUnitType}" /> and <see cref="GetDefaultAbbreviation{TUnitType}" />
         ///     if no abbreviations are found with a given culture.
         /// </summary>
         /// <example>
@@ -51,7 +51,7 @@ namespace UnitsNet
 
         public UnitAbbreviationsCache()
         {
-            looksupsForCulture = new Dictionary<IFormatProvider, UnitTypeToLookup>();
+            _lookupsForCulture = new Dictionary<IFormatProvider, UnitTypeToLookup>();
 
             LoadGeneratedAbbreviations();
         }
@@ -143,8 +143,8 @@ namespace UnitsNet
 
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 
-            if(!looksupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
-                quantitiesForProvider = looksupsForCulture[formatProvider] = new UnitTypeToLookup();
+            if(!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
+                quantitiesForProvider = _lookupsForCulture[formatProvider] = new UnitTypeToLookup();
 
             if(!quantitiesForProvider.TryGetValue(unitType, out var unitToAbbreviations))
                 unitToAbbreviations = quantitiesForProvider[unitType] = new UnitValueAbbreviationLookup();
@@ -245,9 +245,9 @@ namespace UnitsNet
 #else
         public
 #endif
-            string[] GetAllAbbreviations<TUnitType>(TUnitType unit, IFormatProvider formatProvider = null) where TUnitType : Enum
+            string[] GetUnitAbbreviations<TUnitType>(TUnitType unit, IFormatProvider formatProvider = null) where TUnitType : Enum
         {
-            return GetAllAbbreviations(typeof(TUnitType), formatProvider);
+            return GetUnitAbbreviations(typeof(TUnitType), Convert.ToInt32(unit), formatProvider);
         }
 
         /// <summary>
@@ -263,24 +263,24 @@ namespace UnitsNet
 #else
         public
 #endif
-        string[] GetAllAbbreviations(Type unitType, int unitValue, IFormatProvider formatProvider = null)
+        string[] GetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider formatProvider = null)
         {
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 
             if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
-                return formatProvider != FallbackCulture ? GetAllAbbreviations(unitType, unitValue, FallbackCulture) : new string[] { };
+                return formatProvider != FallbackCulture ? GetUnitAbbreviations(unitType, unitValue, FallbackCulture) : new string[] { };
 
             var abbreviations = lookup.GetAbbreviationsForUnit(unitValue);
             if(abbreviations.Count == 0)
-                return formatProvider != FallbackCulture ? GetAllAbbreviations(unitType, unitValue, FallbackCulture) : new string[] { };
+                return formatProvider != FallbackCulture ? GetUnitAbbreviations(unitType, unitValue, FallbackCulture) : new string[] { };
 
             return abbreviations.ToArray();
         }
 
         /// <summary>
-        ///     Get all abbreviations for unit.
+        ///     Get all abbreviations for all units of a quantity.
         /// </summary>
-        /// <param name="unitType">Enum type for unit.</param>
+        /// <param name="unitEnumType">Enum type for unit.</param>
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
         [PublicAPI]
@@ -289,14 +289,14 @@ namespace UnitsNet
 #else
         public
 #endif
-        string[] GetAllAbbreviations(Type unitType, IFormatProvider formatProvider = null)
+        string[] GetAllUnitAbbreviationsForQuantity(Type unitEnumType, IFormatProvider formatProvider = null)
         {
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 
-            if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
-                return formatProvider != FallbackCulture ? GetAllAbbreviations(unitType, FallbackCulture) : new string[] { };
+            if(!TryGetUnitValueAbbreviationLookup(unitEnumType, formatProvider, out var lookup))
+                return formatProvider != FallbackCulture ? GetAllUnitAbbreviationsForQuantity(unitEnumType, FallbackCulture) : new string[] { };
 
-            return lookup.GetAllAbbreviations();
+            return lookup.GetAllUnitAbbreviationsForQuantity();
         }
 
         internal bool TryGetUnitValueAbbreviationLookup(Type unitType, IFormatProvider formatProvider, out UnitValueAbbreviationLookup unitToAbbreviations)
@@ -305,7 +305,7 @@ namespace UnitsNet
 
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 
-            if(!looksupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
+            if(!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
                 return formatProvider != FallbackCulture ? TryGetUnitValueAbbreviationLookup(unitType, FallbackCulture, out unitToAbbreviations) : false;
 
             if(!quantitiesForProvider.TryGetValue(unitType, out unitToAbbreviations))

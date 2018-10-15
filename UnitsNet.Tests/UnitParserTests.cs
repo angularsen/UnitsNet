@@ -48,7 +48,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ShouldUseCorrectMicroSign()
+        public void ParseUnit_ShouldUseCorrectMicroSign()
         {
             // "\u00b5" = Micro sign
             Assert.Equal(AccelerationUnit.MicrometerPerSecondSquared, Acceleration.ParseUnit("\u00b5m/s²"));
@@ -117,14 +117,6 @@ namespace UnitsNet.Tests
             // Assert
             Assert.Equal("Cannot parse \"pt\" since it could be either of these: DtpPoint, PrinterPoint", exception1.Message);
             Assert.Equal("Cannot parse \"pt\" since it could be either of these: DtpPoint, PrinterPoint", exception2.Message);
-        }
-
-        [Fact]
-        public void Parse_UnambiguousUnitsDoesNotThrow()
-        {
-            var unit = Volume.Parse("1 l");
-
-            Assert.Equal(Volume.FromLiters(1), unit);
         }
     }
 }

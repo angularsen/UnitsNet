@@ -87,7 +87,7 @@ namespace UnitsNet
             if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 throw new UnitNotFoundException($"No abbreviations defined for unit type [{unitType}] for culture [{formatProvider}].");
 
-            var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation);
+            var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation.Trim());
 
             switch (unitIntValues.Count)
             {
@@ -181,7 +181,7 @@ namespace UnitsNet
             if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 return false;
 
-            var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation);
+            var unitIntValues = abbreviations.GetUnitsForAbbreviation(unitAbbreviation.Trim());
             if(unitIntValues.Count != 1)
                 return false;
 

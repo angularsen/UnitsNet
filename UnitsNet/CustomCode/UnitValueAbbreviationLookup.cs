@@ -40,7 +40,7 @@ namespace UnitsNet
             abbreviationToUnitMap = new AbbreviationToUnitMap();
         }
 
-        internal string[] GetAllAbbreviations()
+        internal string[] GetAllUnitAbbreviationsForQuantity()
         {
             return unitToAbbreviationMap.Values.SelectMany((abbreviations) =>
             {
