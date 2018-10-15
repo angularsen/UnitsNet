@@ -47,29 +47,21 @@ namespace UnitsNet
             if(obj is null || !(obj is BaseDimensions))
                 return false;
 
-            var baseDimensionsObj = (BaseDimensions)obj;
+            var other = (BaseDimensions)obj;
 
-            return Length == baseDimensionsObj.Length &&
-                Mass == baseDimensionsObj.Mass &&
-                Time == baseDimensionsObj.Time &&
-                Current == baseDimensionsObj.Current &&
-                Temperature == baseDimensionsObj.Temperature &&
-                Amount == baseDimensionsObj.Amount &&
-                LuminousIntensity == baseDimensionsObj.LuminousIntensity;
+            return Length == other.Length &&
+                Mass == other.Mass &&
+                Time == other.Time &&
+                Current == other.Current &&
+                Temperature == other.Temperature &&
+                Amount == other.Amount &&
+                LuminousIntensity == other.LuminousIntensity;
         }
 
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            int hash = 17;
-            hash = hash * 23 + Length;
-            hash = hash * 23 + Mass;
-            hash = hash * 23 + Time;
-            hash = hash * 23 + Current;
-            hash = hash * 23 + Temperature;
-            hash = hash * 23 + Amount;
-            hash = hash * 23 + LuminousIntensity;
-            return hash;
+            return new {Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity}.GetHashCode();
         }
 
         /// <summary>
@@ -79,6 +71,9 @@ namespace UnitsNet
         /// <returns>Resulting dimensions.</returns>
         public BaseDimensions Multiply(BaseDimensions right)
         {
+            if(right is null)
+                throw new ArgumentNullException(nameof(right));
+
             return new BaseDimensions(
                 Length + right.Length,
                 Mass + right.Mass,
@@ -96,6 +91,9 @@ namespace UnitsNet
         /// <returns>Resulting dimensions.</returns>
         public BaseDimensions Divide(BaseDimensions right)
         {
+            if(right is null)
+                throw new ArgumentNullException(nameof(right));
+
             return new BaseDimensions(
                 Length - right.Length,
                 Mass - right.Mass,
@@ -137,6 +135,11 @@ namespace UnitsNet
         /// <returns>Resulting dimensions.</returns>
         public static BaseDimensions operator *(BaseDimensions left, BaseDimensions right)
         {
+            if(left is null)
+                throw new ArgumentNullException(nameof(left));
+            else if(right is null)
+                throw new ArgumentNullException(nameof(right));
+
             return left.Multiply(right);
         }
 
@@ -148,6 +151,11 @@ namespace UnitsNet
         /// <returns>Resulting dimensions.</returns>
         public static BaseDimensions operator /(BaseDimensions left, BaseDimensions right)
         {
+            if(left is null)
+                throw new ArgumentNullException(nameof(left));
+            else if(right is null)
+                throw new ArgumentNullException(nameof(right));
+
             return left.Divide(right);
         }
 #endif
@@ -168,16 +176,16 @@ namespace UnitsNet
             return sb.ToString();
         }
 
-        private static void AppendDimensionString( StringBuilder sb, string name, int value )
+        private static void AppendDimensionString(StringBuilder sb, string name, int value)
         {
-            var absoluteValue = Math.Abs( value );
+            var absoluteValue = Math.Abs(value);
 
-            if( absoluteValue > 0 )
+            if(absoluteValue > 0)
             {
-                sb.AppendFormat( "[{0}]", name );
+                sb.AppendFormat("[{0}]", name);
 
-                if( absoluteValue > 1 )
-                    sb.AppendFormat( "^{0}", value );
+                if(absoluteValue > 1)
+                    sb.AppendFormat("^{0}", value);
             }
         }
 
