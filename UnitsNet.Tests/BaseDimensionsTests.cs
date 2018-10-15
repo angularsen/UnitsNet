@@ -1,17 +1,83 @@
-﻿using Xunit;
+﻿using System;
+using System.Collections.Generic;
+using Xunit;
 
 namespace UnitsNet.Tests
 {
     public class BaseDimensionsTests
     {
         [Fact]
-        public void EqualityWorksAsExpected()
+        public void EqualsWorksAsExpected()
         {
             var baseDimensions1 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
             var baseDimensions2 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
 
             Assert.True(baseDimensions1.Equals(baseDimensions2));
             Assert.True(baseDimensions2.Equals(baseDimensions1));
+
+            Assert.False(baseDimensions1.Equals(null));
+        }
+
+        [Fact]
+        public void EqualityOperatorsWorkAsExpected()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
+            var baseDimensions2 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
+
+            Assert.True(baseDimensions1 == baseDimensions2);
+            Assert.True(baseDimensions2 == baseDimensions1);
+
+            Assert.False(baseDimensions1 == null);
+            Assert.False(null == baseDimensions1);
+
+            Assert.False(baseDimensions2 == null);
+            Assert.False(null == baseDimensions2);
+        }
+
+        [Fact]
+        public void InequalityOperatorsWorkAsExpected()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
+            var baseDimensions2 = new BaseDimensions(7, 6, 5, 4, 3, 2, 1);
+
+            Assert.True(baseDimensions1 != baseDimensions2);
+            Assert.True(baseDimensions2 != baseDimensions1);
+
+            Assert.True(baseDimensions1 != null);
+            Assert.True(null != baseDimensions1);
+
+            Assert.True(baseDimensions2 != null);
+            Assert.True(null != baseDimensions2);
+        }
+
+        [Fact]
+        public void MultiplyThrowsExceptionIfPassedNull()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+            Assert.Throws<ArgumentNullException>(() => baseDimensions1.Multiply(null));
+        }
+
+        [Fact]
+        public void DivideThrowsExceptionIfPassedNull()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+            Assert.Throws<ArgumentNullException>(() => baseDimensions1.Divide(null));
+        }
+
+        [Fact]
+        public void MultiplyOperatorThrowsExceptionWithNull()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+            Assert.Throws<ArgumentNullException>(() => baseDimensions1 / null);
+            Assert.Throws<ArgumentNullException>(() => null / baseDimensions1);
+        }
+
+        [Fact]
+        public void DivideOperatorThrowsExceptionWithNull()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+            Assert.Throws<ArgumentNullException>(() => baseDimensions1 * null);
+            Assert.Throws<ArgumentNullException>(() => null * baseDimensions1);
         }
 
         [Fact]
@@ -574,6 +640,28 @@ namespace UnitsNet.Tests
         public void CheckToStringUsingMolarEntropy()
         {
             Assert.Equal("[Length]^2[Mass][Time]^-2[Temperature][Amount]", MolarEntropy.BaseDimensions.ToString());
+        }
+
+        [Fact]
+        public void GetHashCodeWorksProperly()
+        {
+            var baseDimensions1 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
+            var baseDimensions2 = new BaseDimensions(7, 6, 5, 4, 3, 2, 1);
+            var baseDimensions3 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
+
+            var hashSet = new HashSet<BaseDimensions>();
+
+            hashSet.Add(baseDimensions1);
+            Assert.True(hashSet.Contains(baseDimensions1));
+
+            hashSet.Add(baseDimensions2);
+            Assert.True(hashSet.Contains(baseDimensions2));
+
+            // Should be the same as baseDimensions1
+            Assert.True(hashSet.Contains(baseDimensions3));
+
+            Assert.True(baseDimensions1.GetHashCode() != baseDimensions2.GetHashCode());
+            Assert.True(baseDimensions1.GetHashCode() == baseDimensions3.GetHashCode());
         }
     }
 }
