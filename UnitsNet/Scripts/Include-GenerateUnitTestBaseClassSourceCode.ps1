@@ -1,12 +1,14 @@
-﻿function GenerateUnitTestBaseClassSourceCode($quantity)
+﻿using module ".\Types.psm1"
+function GenerateUnitTestBaseClassSourceCode([Quantity]$quantity)
 {
-    $quantityName = $quantity.Name;
-    $baseType = $quantity.BaseType;
-    $units = $quantity.Units;
-    $baseUnit = $units | where { $_.SingularName -eq $quantity.BaseUnit }
+    $quantityName = $quantity.Name
+    $units = $quantity.Units
+    $valueType = $quantity.BaseType
+    [Unit]$baseUnit = $units | where { $_.SingularName -eq $quantity.BaseUnit } | Select-Object -First 1
+    $baseUnitSingularName = $baseUnit.SingularName
     $baseUnitPluralName = $baseUnit.PluralName
-    $baseUnitVariableName = $baseUnit.SingularName.ToLowerInvariant();
-    $unitEnumName = "$($quantityName)Unit";
+    $baseUnitVariableName = $baseUnitSingularName.ToLowerInvariant()
+    $unitEnumName = "$quantityName" + "Unit"
 
 @"
 //------------------------------------------------------------------------------
@@ -76,7 +78,7 @@ namespace UnitsNet.Tests
         [Fact]
         public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
         {
-            Assert.Throws<ArgumentException>(() => new $quantityName(($baseType)0.0, $unitEnumName.Undefined));
+            Assert.Throws<ArgumentException>(() => new $quantityName(($valueType)0.0, $unitEnumName.Undefined));
         }
 
 "@; if ($quantity.BaseType -eq "double") {@"
