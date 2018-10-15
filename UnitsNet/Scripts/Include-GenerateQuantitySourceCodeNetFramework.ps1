@@ -690,8 +690,7 @@ if ($wrc) {@"
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<$quantityName, $unitEnumName>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.$baseUnitPluralName + y.$baseUnitPluralName, BaseUnit));
+            return QuantityParser.Default.Parse<$quantityName, $unitEnumName>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -713,8 +712,7 @@ if ($wrc) {@"
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<$quantityName, $unitEnumName>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.$baseUnitPluralName + y.$baseUnitPluralName, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<$quantityName, $unitEnumName>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>

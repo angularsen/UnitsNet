@@ -717,8 +717,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<Information, InformationUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.Bits + y.Bits, BaseUnit));
+            return QuantityParser.Default.Parse<Information, InformationUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -740,8 +739,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<Information, InformationUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.Bits + y.Bits, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<Information, InformationUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>

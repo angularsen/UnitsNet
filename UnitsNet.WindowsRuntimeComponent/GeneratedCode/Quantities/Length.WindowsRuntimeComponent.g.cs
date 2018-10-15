@@ -704,8 +704,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.Parse<Length, LengthUnit>(str, provider, ParseUnitInternal, From,
-                (x, y) => From(x.Meters + y.Meters, BaseUnit));
+            return QuantityParser.Default.Parse<Length, LengthUnit>(str, provider, ParseUnitInternal, From);
         }
 
         /// <summary>
@@ -727,8 +726,7 @@ namespace UnitsNet
 
             provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            return QuantityParser.Default.TryParse<Length, LengthUnit>(str, provider, TryParseUnitInternal, From,
-                (x, y) => From(x.Meters + y.Meters, BaseUnit), out result);
+            return QuantityParser.Default.TryParse<Length, LengthUnit>(str, provider, TryParseUnitInternal, From, out result);
         }
 
         /// <summary>
