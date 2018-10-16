@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using UnitsNet.Units;
 using Xunit;
 
@@ -27,7 +28,7 @@ namespace UnitsNet.Tests
     public class BaseUnitsTests
     {
         [Fact]
-        public void Constructor()
+        public void ConstructorSetsUnitsProperly()
         {
             var baseUnits = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
                 ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
@@ -39,6 +40,88 @@ namespace UnitsNet.Tests
             Assert.Equal(TemperatureUnit.Kelvin, baseUnits.Temperature);
             Assert.Equal(AmountOfSubstanceUnit.Mole, baseUnits.Amount);
             Assert.Equal(LuminousIntensityUnit.Candela, baseUnits.LuminousIntensity);
+        }
+
+        [Theory]
+        [InlineData(LengthUnit.Undefined, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela)]
+        [InlineData(LengthUnit.Meter, MassUnit.Undefined, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela)]
+        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Undefined, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela)]
+        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Undefined, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela)]
+        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela)]
+        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Candela)]
+        [InlineData(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second, ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined)]
+        public void ConstructorThrowsExceptionWithUndefinedUnits(LengthUnit length, MassUnit mass, DurationUnit time, ElectricCurrentUnit current,
+            TemperatureUnit temperature, AmountOfSubstanceUnit amount, LuminousIntensityUnit luminousIntensity)
+        {
+            var baseUnits = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+
+            Assert.Throws<ArgumentException>(() => new BaseUnits(length, mass, time, current, temperature, amount, luminousIntensity));
+        }
+
+        [Fact]
+        public void EqualsObjectIsImplementedCorrectly()
+        {
+            var baseUnits1 = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+
+            var baseUnits2 = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+
+            Assert.True(baseUnits1.Equals((object)baseUnits2));
+            Assert.False(baseUnits1.Equals("Some object."));
+            Assert.False(baseUnits1.Equals((IFormatProvider)null));
+        }
+
+        [Fact]
+        public void EqualsBaseUnitsIsImplementedCorrectly()
+        {
+            var baseUnits1 = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+
+            var baseUnits2 = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+
+            Assert.True(baseUnits1.Equals(baseUnits2));
+            Assert.True(baseUnits2.Equals(baseUnits1));
+            Assert.False(baseUnits1.Equals(null));
+        }
+
+        [Fact]
+        public void EqualityOperatorIsImplementedCorrectly()
+        {
+            var baseUnits1 = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+
+            var baseUnits2 = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+
+            Assert.True(baseUnits1 == baseUnits2);
+            Assert.False(baseUnits1 == null);
+            Assert.False(null == baseUnits1);
+        }
+
+        [Fact]
+        public void InequalityOperatorIsImplementedCorrectly()
+        {
+            var baseUnits1 = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+
+            var baseUnits2 = new BaseUnits(LengthUnit.Foot, MassUnit.Pound, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.DegreeFahrenheit, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+
+            Assert.True(baseUnits1 != baseUnits2);
+            Assert.True(baseUnits1 != null);
+            Assert.True(null != baseUnits1);
+        }
+
+        [Fact]
+        public void ToStringGivesExpectedResult()
+        {
+            var baseUnits1 = new BaseUnits(LengthUnit.Meter, MassUnit.Kilogram, DurationUnit.Second,
+                ElectricCurrentUnit.Ampere, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Candela);
+
+            Assert.Equal("[Length]: m, [Mass]: kg, [Time]: s, [Current]: A, [Temperature]: K, [Amount]: mol, [LuminousIntensity]: cd", baseUnits1.ToString());
         }
     }
 }

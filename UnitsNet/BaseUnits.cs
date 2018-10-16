@@ -26,27 +26,39 @@ using UnitsNet.Units;
 namespace UnitsNet
 {
     /// <summary>
-    ///     Represents the base units for a quantity or 
+    ///     Represents the base units for a quantity. All quantities, both base and derived, can be
+    ///     represented by a combination of these seven base units.
     /// </summary>
-    public sealed class BaseUnits
+    public sealed class BaseUnits : IEquatable<BaseUnits>
     {
-        /// <inheritdoc />
+        /// <summary>
+        /// Creates an instance of if the base units class that represents the base units for a quantity.
+        /// All quantities, both base and derived, can be represented by a combination of these seven base units.
+        /// </summary>
+        /// <param name="length">The length unit (L).</param>
+        /// <param name="mass">The mass unit (M).</param>
+        /// <param name="time">The time unit (T).</param>
+        /// <param name="current">The electric current unit (I).</param>
+        /// <param name="temperature">The temperature unit (Θ).</param>
+        /// <param name="amount">The amount of substance unit (N).</param>
+        /// <param name="luminousIntensity">The luminous intensity unit (J).</param>
+        /// <exception cref="ArgumentException">Throws an ArgumentException if any of the units are undefined.</exception>
         public BaseUnits(LengthUnit length, MassUnit mass, DurationUnit time, ElectricCurrentUnit current,
             TemperatureUnit temperature, AmountOfSubstanceUnit amount, LuminousIntensityUnit luminousIntensity)
         {
             if(length == LengthUnit.Undefined)
                 throw new ArgumentException("The given length unit is undefined.", nameof(length));
-            else if(mass == MassUnit.Undefined)
+            if(mass == MassUnit.Undefined)
                 throw new ArgumentException("The given mass unit is undefined.", nameof(mass));
-            else if(time == DurationUnit.Undefined)
+            if(time == DurationUnit.Undefined)
                 throw new ArgumentException("The given time unit is undefined.", nameof(time));
-            else if(current == ElectricCurrentUnit.Undefined)
+            if(current == ElectricCurrentUnit.Undefined)
                 throw new ArgumentException("The given electric current unit is undefined.", nameof(current));
-            else if(temperature == TemperatureUnit.Undefined)
+            if(temperature == TemperatureUnit.Undefined)
                 throw new ArgumentException("The given temperature unit is undefined.", nameof(temperature));
-            else if(amount == AmountOfSubstanceUnit.Undefined)
+            if(amount == AmountOfSubstanceUnit.Undefined)
                 throw new ArgumentException("The given amount of substance unit is undefined.", nameof(amount));
-            else if(luminousIntensity == LuminousIntensityUnit.Undefined)
+            if(luminousIntensity == LuminousIntensityUnit.Undefined)
                 throw new ArgumentException("The given luminous intensity unit is undefined.", nameof(luminousIntensity));
 
             Length = length;
@@ -64,7 +76,18 @@ namespace UnitsNet
             if(obj is null || !(obj is BaseUnits))
                 return false;
 
-            var other = (BaseUnits)obj;
+            return Equals((BaseUnits)obj);
+        }
+
+        /// <summary>
+        /// Checks if all of the base units are equal to another instance's.
+        /// </summary>
+        /// <param name="other">The other instance to check if equal to.</param>
+        /// <returns>True if equal, otherwise false.</returns>
+        public bool Equals(BaseUnits other)
+        {
+            if(other is null)
+                return false;
 
             return Length == other.Length &&
                 Mass == other.Mass &&
@@ -84,22 +107,24 @@ namespace UnitsNet
 #if !WINDOWS_UWP
 
         /// <summary>
-        /// Check if two dimensions are equal.
+        /// Checks if this instance is equal to another.
         /// </summary>
-        /// <param name="left">Left.</param>
-        /// <param name="right">Right.</param>
-        /// <returns>True if equal.</returns>
+        /// <param name="left">The left instance.</param>
+        /// <param name="right">The right instance.</param>
+        /// <returns>True if equal, otherwise false.</returns>
+        /// <seealso cref="Equals(BaseUnits)"/>
         public static bool operator ==(BaseUnits left, BaseUnits right)
         {
             return left?.Equals(right) == true;
         }
 
         /// <summary>
-        /// Check if two dimensions are unequal.
+        /// Checks if this instance is not equal to another.
         /// </summary>
-        /// <param name="left">Left.</param>
-        /// <param name="right">Right.</param>
-        /// <returns>True if not equal.</returns>
+        /// <param name="left">The left instance.</param>
+        /// <param name="right">The right instance.</param>
+        /// <returns>True if not equal, otherwise false.</returns>
+        /// <seealso cref="Equals(BaseUnits)"/>
         public static bool operator !=(BaseUnits left, BaseUnits right)
         {
             return !(left == right);
@@ -112,13 +137,13 @@ namespace UnitsNet
         {
             var sb = new StringBuilder();
 
-            sb.AppendFormat("[Length]: {0} ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Length));
-            sb.AppendFormat("[Mass]: {0} ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Mass));
-            sb.AppendFormat("[Time]: {0} ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Time));
-            sb.AppendFormat("[Current]: {0} ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Current));
-            sb.AppendFormat("[Temperature]: {0} ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Temperature));
-            sb.AppendFormat("[Amount]: {0} ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Amount));
-            sb.AppendFormat("[LuminousIntensity]: {0} ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LuminousIntensity));
+            sb.AppendFormat("[Length]: {0}, ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Length));
+            sb.AppendFormat("[Mass]: {0}, ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Mass));
+            sb.AppendFormat("[Time]: {0}, ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Time));
+            sb.AppendFormat("[Current]: {0}, ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Current));
+            sb.AppendFormat("[Temperature]: {0}, ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Temperature));
+            sb.AppendFormat("[Amount]: {0}, ", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(Amount));
+            sb.AppendFormat("[LuminousIntensity]: {0}", UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LuminousIntensity));
 
             return sb.ToString();
         }
