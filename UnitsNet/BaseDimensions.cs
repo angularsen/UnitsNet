@@ -21,6 +21,7 @@
 
 using System;
 using System.Text;
+using System.Linq;
 
 namespace UnitsNet
 {
@@ -39,6 +40,26 @@ namespace UnitsNet
             Temperature = temperature;
             Amount = amount;
             LuminousIntensity = luminousIntensity;
+        }
+
+        /// <summary>
+        /// Checks if the dimensions represent a base quantity.
+        /// </summary>
+        /// <returns>True if the dimensions represent a base quantity, otherwise false.</returns>
+        public bool IsBaseQuantity()
+        {
+            var dimensionsArray = new int[]{Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity};
+            bool onlyOneEqualsOne = dimensionsArray.Where(dimension => dimension == 1).Take(2).Count() == 1;
+            return onlyOneEqualsOne;
+        }
+
+        /// <summary>
+        /// Checks the dimensions represent a derived quantity.
+        /// </summary>
+        /// <returns>True if the dimensions represent a derived quantity, otherwise false.</returns>
+        public bool IsDerivedQuantity()
+        {
+            return !IsBaseQuantity();
         }
 
         /// <inheritdoc />
@@ -105,6 +126,7 @@ namespace UnitsNet
         }
 
 #if !WINDOWS_UWP
+
         /// <summary>
         /// Check if two dimensions are equal.
         /// </summary>
@@ -113,7 +135,7 @@ namespace UnitsNet
         /// <returns>True if equal.</returns>
         public static bool operator ==(BaseDimensions left, BaseDimensions right)
         {
-            return left?.Equals(right) == true;
+            return left is null ? right is null : left.Equals(right);
         }
 
         /// <summary>
@@ -158,6 +180,7 @@ namespace UnitsNet
 
             return left.Divide(right);
         }
+
 #endif
 
         /// <inheritdoc />
