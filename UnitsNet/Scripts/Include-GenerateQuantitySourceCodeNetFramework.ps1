@@ -521,7 +521,7 @@ function GenerateStaticParseMethods([GeneratorArgs]$genArgs)
         /// </exception>
         public static $quantityName Parse(string str)
         {
-            return ParseInternal(str, null);
+            return Parse(str, null);
         }
 
         /// <summary>
@@ -557,7 +557,10 @@ if ($wrc) {@"
         public static $quantityName Parse(string str, [CanBeNull] IFormatProvider provider)
         {
 "@; }@"
-            return ParseInternal(str, provider);
+            return QuantityParser.Default.Parse<$quantityName, $unitEnumName>(
+                str,
+                provider,
+                From);
         }
 
         /// <summary>
@@ -570,7 +573,7 @@ if ($wrc) {@"
         /// </example>
         public static bool TryParse([CanBeNull] string str, out $quantityName result)
         {
-            return TryParseInternal(str, null, out result);
+            return TryParse(str, null, out result);
         }
 
         /// <summary>
@@ -593,7 +596,11 @@ if ($wrc) {@"
         public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out $quantityName result)
         {
 "@; }@"
-            return TryParseInternal(str, provider, out result);
+            return QuantityParser.Default.TryParse<$quantityName, $unitEnumName>(
+                str,
+                provider,
+                From,
+                out result);
         }
 
         /// <summary>
@@ -607,7 +614,7 @@ if ($wrc) {@"
         /// <exception cref="UnitsNetException">Error parsing string.</exception>
         public static $unitEnumName ParseUnit(string str)
         {
-            return ParseUnitInternal(str, null);
+            return ParseUnit(str, null);
         }
 
         /// <summary>
@@ -630,12 +637,12 @@ if ($wrc) {@"
         public static $unitEnumName ParseUnit(string str, IFormatProvider provider = null)
         {
 "@; }@"
-            return ParseUnitInternal(str, provider);
+            return UnitParser.Default.Parse<$unitEnumName>(str, provider);
         }
 
         public static bool TryParseUnit(string str, out $unitEnumName unit)
         {
-            return TryParseUnitInternal(str, null, out unit);
+            return TryParseUnit(str, null, out unit);
         }
 
         /// <summary>
@@ -658,114 +665,7 @@ if ($wrc) {@"
         public static bool TryParseUnit(string str, IFormatProvider provider, out $unitEnumName unit)
         {
 "@; }@"
-            return TryParseUnitInternal(str, provider, out unit);
-        }
-
-        /// <summary>
-        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="ArgumentException">
-        ///     Expected string to have one or two pairs of quantity and unit in the format
-        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
-        /// </exception>
-        /// <exception cref="AmbiguousUnitParseException">
-        ///     More than one unit is represented by the specified unit abbreviation.
-        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
-        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
-        /// </exception>
-        /// <exception cref="UnitsNetException">
-        ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-        ///     Units.NET exceptions from other exceptions.
-        /// </exception>
-        private static $quantityName ParseInternal(string str, [CanBeNull] IFormatProvider provider)
-        {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-
-            provider = provider ?? GlobalConfiguration.DefaultCulture;
-
-            return QuantityParser.Default.Parse<$quantityName, $unitEnumName>(str, provider, ParseUnitInternal, From);
-        }
-
-        /// <summary>
-        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
-        /// <param name="result">Resulting unit quantity if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        private static bool TryParseInternal([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out $quantityName result)
-        {
-            result = default;
-
-            if(string.IsNullOrWhiteSpace(str))
-                return false;
-
-            provider = provider ?? GlobalConfiguration.DefaultCulture;
-
-            return QuantityParser.Default.TryParse<$quantityName, $unitEnumName>(str, provider, TryParseUnitInternal, From, out result);
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        private static $unitEnumName ParseUnitInternal(string str, IFormatProvider provider = null)
-        {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-
-            var unit = UnitParser.Default.Parse<$unitEnumName>(str.Trim(), provider);
-
-            if (unit == $unitEnumName.Undefined)
-            {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized $unitEnumName.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
-            }
-
-            return unit;
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" />.</param>
-        /// <param name="unit">The parsed unit if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        private static bool TryParseUnitInternal(string str, IFormatProvider provider, out $unitEnumName unit)
-        {
-            unit = $unitEnumName.Undefined;
-
-            if(string.IsNullOrWhiteSpace(str))
-                return false;
-
-            if(!UnitParser.Default.TryParse<$unitEnumName>(str.Trim(), provider, out unit))
-                return false;
-
-            if(unit == $unitEnumName.Undefined)
-                return false;
-
-            return true;
+            return UnitParser.Default.TryParse<$unitEnumName>(str, provider, out unit);
         }
 
         #endregion
