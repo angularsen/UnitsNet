@@ -28,13 +28,13 @@ namespace UnitsNet.Tests
         [InlineData(0, 0, 0, 0, 1, 0, 0)]
         [InlineData(0, 0, 0, 0, 0, 1, 0)]
         [InlineData(0, 0, 0, 0, 0, 0, 1)]
-        public void IsBaseImplementedSuccessfully(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
+        public void IsBaseQuantityImplementedProperly(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
         {
             var baseDimensions = new BaseDimensions(length, mass, time, current, temperature, amount, luminousIntensity);
             var derivedDimensions = new BaseDimensions(length * 2, mass * 2, time * 2, current * 2, temperature * 2, amount * 2, luminousIntensity * 2);
 
-            Assert.True(baseDimensions.IsBase());
-            Assert.False(derivedDimensions.IsBase());
+            Assert.True(baseDimensions.IsBaseQuantity());
+            Assert.False(derivedDimensions.IsBaseQuantity());
         }
 
         [Theory]
@@ -45,13 +45,13 @@ namespace UnitsNet.Tests
         [InlineData(0, 0, 0, 0, 2, 0, 0)]
         [InlineData(0, 0, 0, 0, 0, 2, 0)]
         [InlineData(0, 0, 0, 0, 0, 0, 2)]
-        public void IsDerivedImplementedSuccessfully(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
+        public void IsDerivedQuantityImplementedProperly(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
         {
             var baseDimensions = new BaseDimensions(length / 2, mass / 2, time / 2, current / 2, temperature / 2, amount / 2, luminousIntensity / 2);
             var derivedDimensions = new BaseDimensions(length, mass, time, current, temperature, amount, luminousIntensity);
 
-            Assert.False(baseDimensions.IsDerived());
-            Assert.True(derivedDimensions.IsDerived());
+            Assert.False(baseDimensions.IsDerivedQuantity());
+            Assert.True(derivedDimensions.IsDerivedQuantity());
         }
 
         [Fact]

@@ -42,16 +42,24 @@ namespace UnitsNet
             LuminousIntensity = luminousIntensity;
         }
 
-        public bool IsBase()
+        /// <summary>
+        /// Checks if the dimensions represent a base quantity.
+        /// </summary>
+        /// <returns>True if the dimensions represent a base quantity, otherwise false.</returns>
+        public bool IsBaseQuantity()
         {
             var dimensionsArray = new int[]{Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity};
             bool onlyOneEqualsOne = dimensionsArray.Where(dimension => dimension == 1).Take(2).Count() == 1;
             return onlyOneEqualsOne;
         }
 
-        public bool IsDerived()
+        /// <summary>
+        /// Checks the dimensions represent a derived quantity.
+        /// </summary>
+        /// <returns>True if the dimensions represent a derived quantity, otherwise false.</returns>
+        public bool IsDerivedQuantity()
         {
-            return !IsBase();
+            return !IsBaseQuantity();
         }
 
         /// <inheritdoc />
