@@ -89,7 +89,7 @@ namespace UnitsNet
         /// <seealso cref="Equals(UnitSystem)"/>
         public static bool operator ==(UnitSystem left, UnitSystem right)
         {
-            return left?.Equals(right) == true;
+            return left is null ? right is null : left.Equals(right);
         }
 
         /// <summary>

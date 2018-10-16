@@ -106,7 +106,7 @@ namespace UnitsNet
         /// <seealso cref="Equals(BaseUnits)"/>
         public static bool operator ==(BaseUnits left, BaseUnits right)
         {
-            return left?.Equals(right) == true;
+            return left is null ? right is null : left.Equals(right);
         }
 
         /// <summary>

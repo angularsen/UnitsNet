@@ -80,6 +80,11 @@ namespace UnitsNet.Tests
 
             Assert.False(baseDimensions2 == null);
             Assert.False(null == baseDimensions2);
+
+            BaseDimensions nullBaseDimensions1 = null;
+            BaseDimensions nullBaseDimensions2 = null;
+
+            Assert.True(nullBaseDimensions1 == nullBaseDimensions2);
         }
 
         [Fact]

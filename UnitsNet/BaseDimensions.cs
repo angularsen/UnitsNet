@@ -127,7 +127,7 @@ namespace UnitsNet
         /// <returns>True if equal.</returns>
         public static bool operator ==(BaseDimensions left, BaseDimensions right)
         {
-            return left?.Equals(right) == true;
+            return left is null ? right is null : left.Equals(right);
         }
 
         /// <summary>

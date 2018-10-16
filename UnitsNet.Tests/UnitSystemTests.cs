@@ -119,6 +119,11 @@ namespace UnitsNet.Tests
 
             Assert.False(unitSystem1 == null);
             Assert.False(null == unitSystem1);
+
+            UnitSystem nullUnitSystem1 = null;
+            UnitSystem nullUnitSystem2 = null;
+
+            Assert.True(nullUnitSystem1 == nullUnitSystem2);
         }
 
         [Fact]
