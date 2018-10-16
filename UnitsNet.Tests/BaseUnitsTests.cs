@@ -129,6 +129,11 @@ namespace UnitsNet.Tests
 
             Assert.True(baseUnits1 != null);
             Assert.True(null != baseUnits1);
+
+            BaseUnits nullBaseUnits1 = null;
+            BaseUnits nullBaseUnits2 = null;
+
+            Assert.False(nullBaseUnits1 != nullBaseUnits2);
         }
 
         [Fact]
