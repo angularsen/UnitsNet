@@ -25,11 +25,15 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
+#if !WINDOWS_UWP
+    public sealed partial class BaseUnits : IEquatable<BaseUnits> { }
+#endif
+
     /// <summary>
     ///     Represents the base units for a quantity. All quantities, both base and derived, can be
     ///     represented by a combination of these seven base units.
     /// </summary>
-    public sealed class BaseUnits : IEquatable<BaseUnits>
+    public sealed partial class BaseUnits
     {
         /// <summary>
         /// Creates an instance of if the base units class that represents the base units for a quantity.
@@ -42,25 +46,9 @@ namespace UnitsNet
         /// <param name="temperature">The temperature unit (Θ).</param>
         /// <param name="amount">The amount of substance unit (N).</param>
         /// <param name="luminousIntensity">The luminous intensity unit (J).</param>
-        /// <exception cref="ArgumentException">Throws an ArgumentException if any of the units are undefined.</exception>
         public BaseUnits(LengthUnit length, MassUnit mass, DurationUnit time, ElectricCurrentUnit current,
             TemperatureUnit temperature, AmountOfSubstanceUnit amount, LuminousIntensityUnit luminousIntensity)
         {
-            if(length == LengthUnit.Undefined)
-                throw new ArgumentException("The given length unit is undefined.", nameof(length));
-            if(mass == MassUnit.Undefined)
-                throw new ArgumentException("The given mass unit is undefined.", nameof(mass));
-            if(time == DurationUnit.Undefined)
-                throw new ArgumentException("The given time unit is undefined.", nameof(time));
-            if(current == ElectricCurrentUnit.Undefined)
-                throw new ArgumentException("The given electric current unit is undefined.", nameof(current));
-            if(temperature == TemperatureUnit.Undefined)
-                throw new ArgumentException("The given temperature unit is undefined.", nameof(temperature));
-            if(amount == AmountOfSubstanceUnit.Undefined)
-                throw new ArgumentException("The given amount of substance unit is undefined.", nameof(amount));
-            if(luminousIntensity == LuminousIntensityUnit.Undefined)
-                throw new ArgumentException("The given luminous intensity unit is undefined.", nameof(luminousIntensity));
-
             Length = length;
             Mass = mass;
             Time = time;
@@ -84,6 +72,9 @@ namespace UnitsNet
         /// </summary>
         /// <param name="other">The other instance to check if equal to.</param>
         /// <returns>True if equal, otherwise false.</returns>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+#endif
         public bool Equals(BaseUnits other)
         {
             if(other is null)
