@@ -21,6 +21,7 @@
 
 using System;
 using System.Text;
+using System.Linq;
 
 namespace UnitsNet
 {
@@ -39,6 +40,18 @@ namespace UnitsNet
             Temperature = temperature;
             Amount = amount;
             LuminousIntensity = luminousIntensity;
+        }
+
+        public bool IsBase()
+        {
+            var dimensionsArray = new int[]{Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity};
+            bool onlyOneEqualsOne = dimensionsArray.Where(dimension => dimension == 1).Take(2).Count() == 1;
+            return onlyOneEqualsOne;
+        }
+
+        public bool IsDerived()
+        {
+            return !IsBase();
         }
 
         /// <inheritdoc />

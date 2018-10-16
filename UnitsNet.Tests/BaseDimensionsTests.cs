@@ -5,7 +5,55 @@ namespace UnitsNet.Tests
     public class BaseDimensionsTests
     {
         [Fact]
-        public void EqualityWorksAsExpected()
+        public void ConstructorImplementedCorrectly()
+        {
+            var baseDimensions = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
+
+            Assert.True(baseDimensions.Length == 1);
+            Assert.True(baseDimensions.Mass == 2);
+            Assert.True(baseDimensions.Time == 3);
+            Assert.True(baseDimensions.Current == 4);
+            Assert.True(baseDimensions.Temperature == 5);
+            Assert.True(baseDimensions.Amount == 6);
+            Assert.True(baseDimensions.LuminousIntensity == 7);
+        }
+
+        [Theory]
+        [InlineData(1, 0, 0, 0, 0, 0, 0)]
+        [InlineData(0, 1, 0, 0, 0, 0, 0)]
+        [InlineData(0, 0, 1, 0, 0, 0, 0)]
+        [InlineData(0, 0, 0, 1, 0, 0, 0)]
+        [InlineData(0, 0, 0, 0, 1, 0, 0)]
+        [InlineData(0, 0, 0, 0, 0, 1, 0)]
+        [InlineData(0, 0, 0, 0, 0, 0, 1)]
+        public void IsBaseImplementedSuccessfully(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
+        {
+            var baseDimensions = new BaseDimensions(length, mass, time, current, temperature, amount, luminousIntensity);
+            var derivedDimensions = new BaseDimensions(length * 2, mass * 2, time * 2, current * 2, temperature * 2, amount * 2, luminousIntensity * 2);
+
+            Assert.True(baseDimensions.IsBase());
+            Assert.False(derivedDimensions.IsBase());
+        }
+
+        [Theory]
+        [InlineData(2, 0, 0, 0, 0, 0, 0)]
+        [InlineData(0, 2, 0, 0, 0, 0, 0)]
+        [InlineData(0, 0, 2, 0, 0, 0, 0)]
+        [InlineData(0, 0, 0, 2, 0, 0, 0)]
+        [InlineData(0, 0, 0, 0, 2, 0, 0)]
+        [InlineData(0, 0, 0, 0, 0, 2, 0)]
+        [InlineData(0, 0, 0, 0, 0, 0, 2)]
+        public void IsDerivedImplementedSuccessfully(int length, int mass, int time, int current, int temperature, int amount, int luminousIntensity)
+        {
+            var baseDimensions = new BaseDimensions(length / 2, mass / 2, time / 2, current / 2, temperature / 2, amount / 2, luminousIntensity / 2);
+            var derivedDimensions = new BaseDimensions(length, mass, time, current, temperature, amount, luminousIntensity);
+
+            Assert.False(baseDimensions.IsDerived());
+            Assert.True(derivedDimensions.IsDerived());
+        }
+
+        [Fact]
+        public void EqualsWorksAsExpected()
         {
             var baseDimensions1 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
             var baseDimensions2 = new BaseDimensions(1, 2, 3, 4, 5, 6, 7);
