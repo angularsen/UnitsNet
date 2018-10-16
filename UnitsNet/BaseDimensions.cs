@@ -41,6 +41,35 @@ namespace UnitsNet
             LuminousIntensity = luminousIntensity;
         }
 
+        /// <summary>
+        /// Checks if this base dimensions object represents a base quantity.
+        /// </summary>
+        /// <returns>True if this object represents a base quantity, otherwise false.</returns>
+        public bool IsBase()
+        {
+            var dimensionsArray = new int[]{Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity};
+            bool onlyOneEqualsOne = dimensionsArray.Where(dimension => dimension == 1).Take(2).Count() == 1;
+            return onlyOneEqualsOne;
+        }
+
+        /// <summary>
+        /// Checks if this base dimensions object represents a derived quantity.
+        /// </summary>
+        /// <returns>True if this object represents a derived quantity, otherwise false.</returns>
+        public bool IsDerived()
+        {
+            return !IsBase() && !IsDimensionless();
+        }
+
+        /// <summary>
+        /// Checks if this base dimensions object represents a dimensionless quantity.
+        /// </summary>
+        /// <returns>True if this object represents a dimensionless quantity, otherwise false.</returns>
+        public bool IsDimensionless()
+        {
+            return this == Dimensionless;
+        }
+
         /// <inheritdoc />
         public override bool Equals(object obj)
         {
@@ -223,5 +252,7 @@ namespace UnitsNet
         /// Gets the luminous intensity dimensions (J).
         /// </summary>
         public int LuminousIntensity{ get; }
+
+        public static BaseDimensions Dimensionless { get; } = new BaseDimensions(0, 0, 0, 0, 0, 0, 0);
     }
 }

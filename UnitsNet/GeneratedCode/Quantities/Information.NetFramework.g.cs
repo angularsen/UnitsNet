@@ -63,7 +63,7 @@ namespace UnitsNet
 
         static Information()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 0);
+            BaseDimensions = BaseDimensions.Dimensionless;
         }
 
         /// <summary>
