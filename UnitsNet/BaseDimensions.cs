@@ -256,6 +256,9 @@ namespace UnitsNet
         /// </summary>
         public int LuminousIntensity{ get; }
 
+        /// <summary>
+        /// Represents a dimensionless (unitless) quantity.
+        /// </summary>
         public static BaseDimensions Dimensionless { get; } = new BaseDimensions(0, 0, 0, 0, 0, 0, 0);
     }
 }
