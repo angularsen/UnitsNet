@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
+using UnitsNet.Quantities;
 using UnitsNet.Units;
 using Xunit;
 

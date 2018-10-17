@@ -22,6 +22,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using UnitsNet.Quantities;
 using Xunit;
 
 namespace UnitsNet.Tests

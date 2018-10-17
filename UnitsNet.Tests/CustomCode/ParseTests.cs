@@ -21,6 +21,7 @@
 
 using System;
 using System.Globalization;
+using UnitsNet.Quantities;
 using UnitsNet.Units;
 using Xunit;
 

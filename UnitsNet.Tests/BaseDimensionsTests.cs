@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnitsNet.Quantities;
 using Xunit;
 
 namespace UnitsNet.Tests

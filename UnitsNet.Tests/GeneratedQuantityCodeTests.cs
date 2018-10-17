@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using UnitsNet.Quantities;
+using Xunit;
 
 namespace UnitsNet.Tests
 {

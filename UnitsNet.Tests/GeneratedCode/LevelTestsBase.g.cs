@@ -37,6 +37,7 @@
 
 using System;
 using System.Linq;
+using UnitsNet.Quantities;
 using UnitsNet.Units;
 using Xunit;
 

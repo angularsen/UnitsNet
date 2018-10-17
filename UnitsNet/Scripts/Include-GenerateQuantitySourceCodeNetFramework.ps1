@@ -77,7 +77,7 @@ using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
-namespace UnitsNet
+namespace UnitsNet.Quantities
 {
 "@;
 $obsoleteAttribute = GetObsoleteAttribute($quantity);
