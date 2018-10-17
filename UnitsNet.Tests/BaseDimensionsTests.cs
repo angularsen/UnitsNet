@@ -734,6 +734,9 @@ namespace UnitsNet.Tests
             Assert.True(BaseDimensions.Dimensionless.IsDimensionless());
             Assert.True(new BaseDimensions(0, 0, 0, 0, 0, 0, 0).IsDimensionless());
 
+            Assert.False(BaseDimensions.Dimensionless.IsBaseQuantity());
+            Assert.False(BaseDimensions.Dimensionless.IsDerivedQuantity());
+
             // Example case
             Assert.True(Level.BaseDimensions.IsDimensionless());
         }
