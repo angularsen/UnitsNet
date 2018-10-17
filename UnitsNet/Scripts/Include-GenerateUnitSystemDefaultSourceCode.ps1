@@ -39,10 +39,6 @@
 // THE SOFTWARE.
 
 using System;
-using System.Globalization;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using UnitsNet.I18n;
 using UnitsNet.Units;
 
 // ReSharper disable RedundantCommaInArrayInitializer
@@ -52,8 +48,8 @@ namespace UnitsNet
 {
     public partial class UnitAbbreviationsCache
     {
-        private static readonly Tuple<string, Type, int, string[]>[] GeneratedLocalizations
-            = new Tuple<string, Type, int, string[]>[]
+        private static readonly (string CultureName, Type UnitType, int UnitValue, string[] UnitAbbreviations)[] GeneratedLocalizations
+            = new []
             {
 "@;
     foreach ($quantity in $quantities) 
@@ -70,7 +66,7 @@ namespace UnitsNet
                 $cultureName = $localization.Culture;
                 $abbreviationParams = $localization.Abbreviations -join '", "'
 @"
-                Tuple.Create(`"$cultureName`", typeof($unitEnumName), (int)$unitEnumName.$enumValue, new string[]{`"$abbreviationParams`"}),
+                (`"$cultureName`", typeof($unitEnumName), (int)$unitEnumName.$enumValue, new string[]{`"$abbreviationParams`"}),
 "@;
             }
         }
