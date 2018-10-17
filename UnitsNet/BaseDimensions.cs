@@ -21,6 +21,7 @@
 
 using System;
 using System.Text;
+using System.Linq;
 
 namespace UnitsNet
 {
@@ -42,10 +43,10 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Checks if this base dimensions object represents a base quantity.
+        /// Checks if the dimensions represent a base quantity.
         /// </summary>
-        /// <returns>True if this object represents a base quantity, otherwise false.</returns>
-        public bool IsBase()
+        /// <returns>True if the dimensions represent a base quantity, otherwise false.</returns>
+        public bool IsBaseQuantity()
         {
             var dimensionsArray = new int[]{Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity};
             bool onlyOneEqualsOne = dimensionsArray.Where(dimension => dimension == 1).Take(2).Count() == 1;
@@ -53,14 +54,14 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Checks if this base dimensions object represents a derived quantity.
+        /// Checks if the dimensions represent a derived quantity.
         /// </summary>
-        /// <returns>True if this object represents a derived quantity, otherwise false.</returns>
-        public bool IsDerived()
+        /// <returns>True if the dimensions represent a derived quantity, otherwise false.</returns>
+        public bool IsDerivedQuantity()
         {
-            return !IsBase() && !IsDimensionless();
+            return !IsBaseQuantity() && !IsDimensionless();
         }
-
+        
         /// <summary>
         /// Checks if this base dimensions object represents a dimensionless quantity.
         /// </summary>
@@ -134,6 +135,7 @@ namespace UnitsNet
         }
 
 #if !WINDOWS_UWP
+
         /// <summary>
         /// Check if two dimensions are equal.
         /// </summary>
@@ -142,7 +144,7 @@ namespace UnitsNet
         /// <returns>True if equal.</returns>
         public static bool operator ==(BaseDimensions left, BaseDimensions right)
         {
-            return left?.Equals(right) == true;
+            return left is null ? right is null : left.Equals(right);
         }
 
         /// <summary>
@@ -187,6 +189,7 @@ namespace UnitsNet
 
             return left.Divide(right);
         }
+
 #endif
 
         /// <inheritdoc />
