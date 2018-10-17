@@ -224,7 +224,7 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void AllUnitsHaveAtLeastOneAbbreviationSpecified()
+        public void HasAtLeastOneAbbreviationSpecified()
         {
             var units = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>();
             foreach(var unit in units)
@@ -234,6 +234,12 @@ namespace UnitsNet.Tests
 
                 var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
             }
+        }
+
+        [Fact]
+        public void BaseDimensionsShouldNeverBeNull()
+        {
+            Assert.False(Level.BaseDimensions is null);
         }
     }
 }

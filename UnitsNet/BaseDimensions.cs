@@ -54,12 +54,21 @@ namespace UnitsNet
         }
 
         /// <summary>
-        /// Checks the dimensions represent a derived quantity.
+        /// Checks if the dimensions represent a derived quantity.
         /// </summary>
         /// <returns>True if the dimensions represent a derived quantity, otherwise false.</returns>
         public bool IsDerivedQuantity()
         {
-            return !IsBaseQuantity();
+            return !IsBaseQuantity() && !IsDimensionless();
+        }
+        
+        /// <summary>
+        /// Checks if this base dimensions object represents a dimensionless quantity.
+        /// </summary>
+        /// <returns>True if this object represents a dimensionless quantity, otherwise false.</returns>
+        public bool IsDimensionless()
+        {
+            return this == Dimensionless;
         }
 
         /// <inheritdoc />
@@ -246,5 +255,10 @@ namespace UnitsNet
         /// Gets the luminous intensity dimensions (J).
         /// </summary>
         public int LuminousIntensity{ get; }
+
+        /// <summary>
+        /// Represents a dimensionless (unitless) quantity.
+        /// </summary>
+        public static BaseDimensions Dimensionless { get; } = new BaseDimensions(0, 0, 0, 0, 0, 0, 0);
     }
 }

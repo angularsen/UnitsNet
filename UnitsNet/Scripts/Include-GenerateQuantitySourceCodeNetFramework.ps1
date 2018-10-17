@@ -19,7 +19,9 @@ function GenerateQuantitySourceCodeNetFramework([Quantity]$quantity, [string]$ta
     $unitEnumName = "$quantityName" + "Unit"
     $wrc = $target -eq "WindowsRuntimeComponent"
     $privateAccessModifierIfWrc = if ($wrc) { "private" } else { "public" }
+
     $baseDimensions = $quantity.BaseDimensions;
+    $isDimensionless = $baseDimensions -eq $null -or ( $baseDimensions.Length -eq 0 -and $baseDimensions.Mass -eq 0 -and $baseDimensions.Time -eq 0 -and $baseDimensions.ElectricCurrent -eq 0 -and $baseDimensions.Temperature -eq 0 -and $baseDimensions.AmountOfSubstance -eq 0 -and $baseDimensions.LuminousIntensity -eq 0 )
 
     [GeneratorArgs]$genArgs = New-Object GeneratorArgs -Property @{
       Quantity = $quantity;
@@ -112,10 +114,15 @@ if ($obsoleteAttribute)
 
         static $quantityName()
         {
-"@; if($baseDimensions)
+"@; if($isDimensionless)
+    {@"
+            BaseDimensions = BaseDimensions.Dimensionless;
+"@; }
+    else
     {@"
             BaseDimensions = new BaseDimensions($($baseDimensions.Length), $($baseDimensions.Mass), $($baseDimensions.Time), $($baseDimensions.ElectricCurrent), $($baseDimensions.Temperature), $($baseDimensions.AmountOfSubstance), $($baseDimensions.LuminousIntensity));
-"@; }@"
+"@; }
+@"
         }
 "@; # Windows Runtime Component requires a default constructor
     if ($wrc) {@"

@@ -66,7 +66,7 @@ namespace UnitsNet
 
         static Level()
         {
-            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 0);
+            BaseDimensions = BaseDimensions.Dimensionless;
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Decibel.
