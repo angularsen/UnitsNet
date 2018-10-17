@@ -723,13 +723,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void DimensionLessPropertyIsCorrect()
+        public void DimensionlessPropertyIsCorrect()
         {
             Assert.True(BaseDimensions.Dimensionless == new BaseDimensions(0, 0, 0, 0, 0, 0, 0));
         }
 
         [Fact]
-        public void IsDimensionLessMethodImplementedCorrectly()
+        public void IsDimensionlessMethodImplementedCorrectly()
         {
             Assert.True(BaseDimensions.Dimensionless.IsDimensionless());
             Assert.True(new BaseDimensions(0, 0, 0, 0, 0, 0, 0).IsDimensionless());
