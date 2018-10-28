@@ -269,6 +269,11 @@ namespace UnitsNet
         public double KiloimperialGallons => As(VolumeUnit.KiloimperialGallon);
 
         /// <summary>
+        ///     Get Volume in Kiloliters.
+        /// </summary>
+        public double Kiloliters => As(VolumeUnit.Kiloliter);
+
+        /// <summary>
         ///     Get Volume in KilousGallons.
         /// </summary>
         public double KilousGallons => As(VolumeUnit.KilousGallon);
@@ -692,6 +697,20 @@ namespace UnitsNet
         {
             double value = (double) kiloimperialgallons;
             return new Volume(value, VolumeUnit.KiloimperialGallon);
+        }
+
+        /// <summary>
+        ///     Get Volume from Kiloliters.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Volume FromKiloliters(double kiloliters)
+#else
+        public static Volume FromKiloliters(QuantityValue kiloliters)
+#endif
+        {
+            double value = (double) kiloliters;
+            return new Volume(value, VolumeUnit.Kiloliter);
         }
 
         /// <summary>
@@ -1221,6 +1240,7 @@ namespace UnitsNet
                 case VolumeUnit.KilocubicFoot: return (_value*0.0283168) * 1e3d;
                 case VolumeUnit.KilocubicMeter: return (_value) * 1e3d;
                 case VolumeUnit.KiloimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e3d;
+                case VolumeUnit.Kiloliter: return (_value/1e3) * 1e3d;
                 case VolumeUnit.KilousGallon: return (_value*0.00378541) * 1e3d;
                 case VolumeUnit.Liter: return _value/1e3;
                 case VolumeUnit.MegacubicFoot: return (_value*0.0283168) * 1e6d;
@@ -1279,6 +1299,7 @@ namespace UnitsNet
                 case VolumeUnit.KilocubicFoot: return (baseUnitValue/0.0283168) / 1e3d;
                 case VolumeUnit.KilocubicMeter: return (baseUnitValue) / 1e3d;
                 case VolumeUnit.KiloimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e3d;
+                case VolumeUnit.Kiloliter: return (baseUnitValue*1e3) / 1e3d;
                 case VolumeUnit.KilousGallon: return (baseUnitValue/0.00378541) / 1e3d;
                 case VolumeUnit.Liter: return baseUnitValue*1e3;
                 case VolumeUnit.MegacubicFoot: return (baseUnitValue/0.0283168) / 1e6d;

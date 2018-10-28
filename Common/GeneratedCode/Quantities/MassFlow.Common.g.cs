@@ -199,6 +199,11 @@ namespace UnitsNet
         public double MegapoundsPerHour => As(MassFlowUnit.MegapoundPerHour);
 
         /// <summary>
+        ///     Get MassFlow in MegapoundsPerMinute.
+        /// </summary>
+        public double MegapoundsPerMinute => As(MassFlowUnit.MegapoundPerMinute);
+
+        /// <summary>
         ///     Get MassFlow in MicrogramsPerSecond.
         /// </summary>
         public double MicrogramsPerSecond => As(MassFlowUnit.MicrogramPerSecond);
@@ -217,6 +222,11 @@ namespace UnitsNet
         ///     Get MassFlow in PoundsPerHour.
         /// </summary>
         public double PoundsPerHour => As(MassFlowUnit.PoundPerHour);
+
+        /// <summary>
+        ///     Get MassFlow in PoundsPerMinute.
+        /// </summary>
+        public double PoundsPerMinute => As(MassFlowUnit.PoundPerMinute);
 
         /// <summary>
         ///     Get MassFlow in ShortTonsPerHour.
@@ -352,6 +362,20 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get MassFlow from MegapoundsPerMinute.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromMegapoundsPerMinute(double megapoundsperminute)
+#else
+        public static MassFlow FromMegapoundsPerMinute(QuantityValue megapoundsperminute)
+#endif
+        {
+            double value = (double) megapoundsperminute;
+            return new MassFlow(value, MassFlowUnit.MegapoundPerMinute);
+        }
+
+        /// <summary>
         ///     Get MassFlow from MicrogramsPerSecond.
         /// </summary>
 #if WINDOWS_UWP
@@ -405,6 +429,20 @@ namespace UnitsNet
         {
             double value = (double) poundsperhour;
             return new MassFlow(value, MassFlowUnit.PoundPerHour);
+        }
+
+        /// <summary>
+        ///     Get MassFlow from PoundsPerMinute.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromPoundsPerMinute(double poundsperminute)
+#else
+        public static MassFlow FromPoundsPerMinute(QuantityValue poundsperminute)
+#endif
+        {
+            double value = (double) poundsperminute;
+            return new MassFlow(value, MassFlowUnit.PoundPerMinute);
         }
 
         /// <summary>
@@ -654,10 +692,12 @@ namespace UnitsNet
                 case MassFlowUnit.KilogramPerHour: return _value/3.6;
                 case MassFlowUnit.KilogramPerSecond: return (_value) * 1e3d;
                 case MassFlowUnit.MegapoundPerHour: return (_value/7.93664) * 1e6d;
+                case MassFlowUnit.MegapoundPerMinute: return (_value/0.132277) * 1e6d;
                 case MassFlowUnit.MicrogramPerSecond: return (_value) * 1e-6d;
                 case MassFlowUnit.MilligramPerSecond: return (_value) * 1e-3d;
                 case MassFlowUnit.NanogramPerSecond: return (_value) * 1e-9d;
                 case MassFlowUnit.PoundPerHour: return _value/7.93664;
+                case MassFlowUnit.PoundPerMinute: return _value/0.132277;
                 case MassFlowUnit.ShortTonPerHour: return _value*251.9957611;
                 case MassFlowUnit.TonnePerDay: return _value/0.0864000;
                 case MassFlowUnit.TonnePerHour: return 1000*_value/3.6;
@@ -683,10 +723,12 @@ namespace UnitsNet
                 case MassFlowUnit.KilogramPerHour: return baseUnitValue*3.6;
                 case MassFlowUnit.KilogramPerSecond: return (baseUnitValue) / 1e3d;
                 case MassFlowUnit.MegapoundPerHour: return (baseUnitValue*7.93664) / 1e6d;
+                case MassFlowUnit.MegapoundPerMinute: return (baseUnitValue*0.132277) / 1e6d;
                 case MassFlowUnit.MicrogramPerSecond: return (baseUnitValue) / 1e-6d;
                 case MassFlowUnit.MilligramPerSecond: return (baseUnitValue) / 1e-3d;
                 case MassFlowUnit.NanogramPerSecond: return (baseUnitValue) / 1e-9d;
                 case MassFlowUnit.PoundPerHour: return baseUnitValue*7.93664;
+                case MassFlowUnit.PoundPerMinute: return baseUnitValue*0.132277;
                 case MassFlowUnit.ShortTonPerHour: return baseUnitValue/251.9957611;
                 case MassFlowUnit.TonnePerDay: return baseUnitValue*0.0864000;
                 case MassFlowUnit.TonnePerHour: return baseUnitValue*3.6/1000;

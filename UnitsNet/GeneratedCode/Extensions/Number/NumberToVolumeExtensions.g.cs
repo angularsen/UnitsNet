@@ -792,6 +792,40 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         #endregion
 
+        #region Kiloliter
+
+        /// <inheritdoc cref="Volume.FromKiloliters(UnitsNet.QuantityValue)" />
+        public static Volume Kiloliters(this int value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(UnitsNet.QuantityValue)" />
+        public static Volume? Kiloliters(this int? value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(UnitsNet.QuantityValue)" />
+        public static Volume Kiloliters(this long value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(UnitsNet.QuantityValue)" />
+        public static Volume? Kiloliters(this long? value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(UnitsNet.QuantityValue)" />
+        public static Volume Kiloliters(this double value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(UnitsNet.QuantityValue)" />
+        public static Volume? Kiloliters(this double? value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(UnitsNet.QuantityValue)" />
+        public static Volume Kiloliters(this float value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(UnitsNet.QuantityValue)" />
+        public static Volume? Kiloliters(this float? value) => Volume.FromKiloliters(value);
+
+        /// <inheritdoc cref="Volume.FromKiloliters(UnitsNet.QuantityValue)" />
+        public static Volume Kiloliters(this decimal value) => Volume.FromKiloliters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromKiloliters(UnitsNet.QuantityValue)" />
+        public static Volume? Kiloliters(this decimal? value) => Volume.FromKiloliters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region KilousGallon
 
         /// <inheritdoc cref="Volume.FromKilousGallons(UnitsNet.QuantityValue)" />

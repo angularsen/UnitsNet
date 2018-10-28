@@ -316,6 +316,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         #endregion
 
+        #region MegapoundPerMinute
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow MegapoundsPerMinute(this int value) => MassFlow.FromMegapoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow? MegapoundsPerMinute(this int? value) => MassFlow.FromMegapoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow MegapoundsPerMinute(this long value) => MassFlow.FromMegapoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow? MegapoundsPerMinute(this long? value) => MassFlow.FromMegapoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow MegapoundsPerMinute(this double value) => MassFlow.FromMegapoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow? MegapoundsPerMinute(this double? value) => MassFlow.FromMegapoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow MegapoundsPerMinute(this float value) => MassFlow.FromMegapoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow? MegapoundsPerMinute(this float? value) => MassFlow.FromMegapoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow MegapoundsPerMinute(this decimal value) => MassFlow.FromMegapoundsPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow? MegapoundsPerMinute(this decimal? value) => MassFlow.FromMegapoundsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region MicrogramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(UnitsNet.QuantityValue)" />
@@ -449,6 +483,40 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         /// <inheritdoc cref="MassFlow.FromPoundsPerHour(UnitsNet.QuantityValue)" />
         public static MassFlow? PoundsPerHour(this decimal? value) => MassFlow.FromPoundsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region PoundPerMinute
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow PoundsPerMinute(this int value) => MassFlow.FromPoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow? PoundsPerMinute(this int? value) => MassFlow.FromPoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow PoundsPerMinute(this long value) => MassFlow.FromPoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow? PoundsPerMinute(this long? value) => MassFlow.FromPoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow PoundsPerMinute(this double value) => MassFlow.FromPoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow? PoundsPerMinute(this double? value) => MassFlow.FromPoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow PoundsPerMinute(this float value) => MassFlow.FromPoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow? PoundsPerMinute(this float? value) => MassFlow.FromPoundsPerMinute(value);
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow PoundsPerMinute(this decimal value) => MassFlow.FromPoundsPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow? PoundsPerMinute(this decimal? value) => MassFlow.FromPoundsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
