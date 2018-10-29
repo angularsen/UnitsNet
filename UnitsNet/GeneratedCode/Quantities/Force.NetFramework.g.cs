@@ -117,12 +117,39 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Force from nullable Micronewtons.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Force? FromMicronewtons(QuantityValue? micronewtons)
+        {
+            return micronewtons.HasValue ? FromMicronewtons(micronewtons.Value) : default(Force?);
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable Millinewtons.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Force? FromMillinewtons(QuantityValue? millinewtons)
+        {
+            return millinewtons.HasValue ? FromMillinewtons(millinewtons.Value) : default(Force?);
+        }
+
+        /// <summary>
         ///     Get nullable Force from nullable Newtons.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Force? FromNewtons(QuantityValue? newtons)
         {
             return newtons.HasValue ? FromNewtons(newtons.Value) : default(Force?);
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable OuncesForce.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Force? FromOuncesForce(QuantityValue? ouncesforce)
+        {
+            return ouncesforce.HasValue ? FromOuncesForce(ouncesforce.Value) : default(Force?);
         }
 
         /// <summary>
