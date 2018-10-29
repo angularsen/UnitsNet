@@ -207,9 +207,9 @@ namespace UnitsNet
         public double Newtons => As(ForceUnit.Newton);
 
         /// <summary>
-        ///     Get Force in OuncesForce.
+        ///     Get Force in OunceForce.
         /// </summary>
-        public double OuncesForce => As(ForceUnit.OunceForce);
+        public double OunceForce => As(ForceUnit.OunceForce);
 
         /// <summary>
         ///     Get Force in Poundals.
@@ -362,16 +362,16 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get Force from OuncesForce.
+        ///     Get Force from OunceForce.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static Force FromOuncesForce(double ouncesforce)
+        public static Force FromOunceForce(double ounceforce)
 #else
-        public static Force FromOuncesForce(QuantityValue ouncesforce)
+        public static Force FromOunceForce(QuantityValue ounceforce)
 #endif
         {
-            double value = (double) ouncesforce;
+            double value = (double) ounceforce;
             return new Force(value, ForceUnit.OunceForce);
         }
 

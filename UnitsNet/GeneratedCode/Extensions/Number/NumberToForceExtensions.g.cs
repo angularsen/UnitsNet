@@ -145,12 +145,12 @@ namespace UnitsNet.Extensions.NumberToForce
 
         #region OunceForce
 
-        /// <inheritdoc cref="Force.FromOuncesForce(UnitsNet.QuantityValue)" />
-        public static Force OuncesForce<T>(this T value) => Force.FromOuncesForce(Convert.ToDouble(value));
+        /// <inheritdoc cref="Force.FromOunceForce(UnitsNet.QuantityValue)" />
+        public static Force OunceForce<T>(this T value) => Force.FromOunceForce(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="Force.FromOuncesForce(UnitsNet.QuantityValue)" />
+        /// <inheritdoc cref="Force.FromOunceForce(UnitsNet.QuantityValue)" />
         [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Force? OuncesForce<T>(this T? value) where T : struct => Force.FromOuncesForce(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        public static Force? OunceForce<T>(this T? value) where T : struct => Force.FromOunceForce(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

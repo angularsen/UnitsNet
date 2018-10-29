@@ -62,7 +62,7 @@ namespace UnitsNet.Tests
         protected abstract double MicronewtonsInOneNewton { get; }
         protected abstract double MillinewtonsInOneNewton { get; }
         protected abstract double NewtonsInOneNewton { get; }
-        protected abstract double OuncesForceInOneNewton { get; }
+        protected abstract double OunceForceInOneNewton { get; }
         protected abstract double PoundalsInOneNewton { get; }
         protected abstract double PoundsForceInOneNewton { get; }
         protected abstract double TonnesForceInOneNewton { get; }
@@ -77,7 +77,7 @@ namespace UnitsNet.Tests
         protected virtual double MicronewtonsTolerance { get { return 1e-5; } }
         protected virtual double MillinewtonsTolerance { get { return 1e-5; } }
         protected virtual double NewtonsTolerance { get { return 1e-5; } }
-        protected virtual double OuncesForceTolerance { get { return 1e-5; } }
+        protected virtual double OunceForceTolerance { get { return 1e-5; } }
         protected virtual double PoundalsTolerance { get { return 1e-5; } }
         protected virtual double PoundsForceTolerance { get { return 1e-5; } }
         protected virtual double TonnesForceTolerance { get { return 1e-5; } }
@@ -96,7 +96,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MicronewtonsInOneNewton, newton.Micronewtons, MicronewtonsTolerance);
             AssertEx.EqualTolerance(MillinewtonsInOneNewton, newton.Millinewtons, MillinewtonsTolerance);
             AssertEx.EqualTolerance(NewtonsInOneNewton, newton.Newtons, NewtonsTolerance);
-            AssertEx.EqualTolerance(OuncesForceInOneNewton, newton.OuncesForce, OuncesForceTolerance);
+            AssertEx.EqualTolerance(OunceForceInOneNewton, newton.OunceForce, OunceForceTolerance);
             AssertEx.EqualTolerance(PoundalsInOneNewton, newton.Poundals, PoundalsTolerance);
             AssertEx.EqualTolerance(PoundsForceInOneNewton, newton.PoundsForce, PoundsForceTolerance);
             AssertEx.EqualTolerance(TonnesForceInOneNewton, newton.TonnesForce, TonnesForceTolerance);
@@ -114,7 +114,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Force.From(1, ForceUnit.Micronewton).Micronewtons, MicronewtonsTolerance);
             AssertEx.EqualTolerance(1, Force.From(1, ForceUnit.Millinewton).Millinewtons, MillinewtonsTolerance);
             AssertEx.EqualTolerance(1, Force.From(1, ForceUnit.Newton).Newtons, NewtonsTolerance);
-            AssertEx.EqualTolerance(1, Force.From(1, ForceUnit.OunceForce).OuncesForce, OuncesForceTolerance);
+            AssertEx.EqualTolerance(1, Force.From(1, ForceUnit.OunceForce).OunceForce, OunceForceTolerance);
             AssertEx.EqualTolerance(1, Force.From(1, ForceUnit.Poundal).Poundals, PoundalsTolerance);
             AssertEx.EqualTolerance(1, Force.From(1, ForceUnit.PoundForce).PoundsForce, PoundsForceTolerance);
             AssertEx.EqualTolerance(1, Force.From(1, ForceUnit.TonneForce).TonnesForce, TonnesForceTolerance);
@@ -133,7 +133,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MicronewtonsInOneNewton, newton.As(ForceUnit.Micronewton), MicronewtonsTolerance);
             AssertEx.EqualTolerance(MillinewtonsInOneNewton, newton.As(ForceUnit.Millinewton), MillinewtonsTolerance);
             AssertEx.EqualTolerance(NewtonsInOneNewton, newton.As(ForceUnit.Newton), NewtonsTolerance);
-            AssertEx.EqualTolerance(OuncesForceInOneNewton, newton.As(ForceUnit.OunceForce), OuncesForceTolerance);
+            AssertEx.EqualTolerance(OunceForceInOneNewton, newton.As(ForceUnit.OunceForce), OunceForceTolerance);
             AssertEx.EqualTolerance(PoundalsInOneNewton, newton.As(ForceUnit.Poundal), PoundalsTolerance);
             AssertEx.EqualTolerance(PoundsForceInOneNewton, newton.As(ForceUnit.PoundForce), PoundsForceTolerance);
             AssertEx.EqualTolerance(TonnesForceInOneNewton, newton.As(ForceUnit.TonneForce), TonnesForceTolerance);
@@ -181,7 +181,7 @@ namespace UnitsNet.Tests
             Assert.Equal(ForceUnit.Newton, newtonQuantity.Unit);
 
             var ounceforceQuantity = newton.ToUnit(ForceUnit.OunceForce);
-            AssertEx.EqualTolerance(OuncesForceInOneNewton, (double)ounceforceQuantity.Value, OuncesForceTolerance);
+            AssertEx.EqualTolerance(OunceForceInOneNewton, (double)ounceforceQuantity.Value, OunceForceTolerance);
             Assert.Equal(ForceUnit.OunceForce, ounceforceQuantity.Unit);
 
             var poundalQuantity = newton.ToUnit(ForceUnit.Poundal);
@@ -210,7 +210,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Force.FromMicronewtons(newton.Micronewtons).Newtons, MicronewtonsTolerance);
             AssertEx.EqualTolerance(1, Force.FromMillinewtons(newton.Millinewtons).Newtons, MillinewtonsTolerance);
             AssertEx.EqualTolerance(1, Force.FromNewtons(newton.Newtons).Newtons, NewtonsTolerance);
-            AssertEx.EqualTolerance(1, Force.FromOuncesForce(newton.OuncesForce).Newtons, OuncesForceTolerance);
+            AssertEx.EqualTolerance(1, Force.FromOunceForce(newton.OunceForce).Newtons, OunceForceTolerance);
             AssertEx.EqualTolerance(1, Force.FromPoundals(newton.Poundals).Newtons, PoundalsTolerance);
             AssertEx.EqualTolerance(1, Force.FromPoundsForce(newton.PoundsForce).Newtons, PoundsForceTolerance);
             AssertEx.EqualTolerance(1, Force.FromTonnesForce(newton.TonnesForce).Newtons, TonnesForceTolerance);

@@ -1579,7 +1579,7 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) ForceUnit.OunceForce,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "oz·f", "ozf"),
+                                new AbbreviationsForCulture("en-US", "ozf"),
                             }),
                         new CulturesForEnumValue((int) ForceUnit.Poundal,
                             new[]

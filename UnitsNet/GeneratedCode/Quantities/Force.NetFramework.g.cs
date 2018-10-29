@@ -144,12 +144,12 @@ namespace UnitsNet
         }
 
         /// <summary>
-        ///     Get nullable Force from nullable OuncesForce.
+        ///     Get nullable Force from nullable OunceForce.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Force? FromOuncesForce(QuantityValue? ouncesforce)
+        public static Force? FromOunceForce(QuantityValue? ounceforce)
         {
-            return ouncesforce.HasValue ? FromOuncesForce(ouncesforce.Value) : default(Force?);
+            return ounceforce.HasValue ? FromOunceForce(ounceforce.Value) : default(Force?);
         }
 
         /// <summary>
