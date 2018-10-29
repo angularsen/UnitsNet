@@ -2,6 +2,9 @@
   <Import Project="UnitsNet.Serialization.JsonNet.Common.props" />
   <PropertyGroup>
     <LangVersion>7.3</LangVersion>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../UnitsNet.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>false</DelaySign>
   </PropertyGroup>
 
   <!-- Unsigned project references, will also generate the corresponding nuget dependencies -->
