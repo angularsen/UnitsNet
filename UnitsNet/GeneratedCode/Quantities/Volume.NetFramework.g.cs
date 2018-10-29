@@ -261,6 +261,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Volume from nullable Kiloliters.
+        /// </summary>
+        public static Volume? FromKiloliters(QuantityValue? kiloliters)
+        {
+            return kiloliters.HasValue ? FromKiloliters(kiloliters.Value) : default(Volume?);
+        }
+
+        /// <summary>
         ///     Get nullable Volume from nullable KilousGallons.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
