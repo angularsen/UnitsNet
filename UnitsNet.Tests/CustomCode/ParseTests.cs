@@ -41,6 +41,7 @@ namespace UnitsNet.Tests.CustomCode
         [InlineData("1e-3 km", 1)]
         [InlineData("5.5 m", 5.5)]
         [InlineData("500,005 m", 500005)]
+        [InlineData("NaN m", double.NaN)]
         public void ParseLengthToMetersUsEnglish(string s, double expected)
         {
             CultureInfo usEnglish = new CultureInfo("en-US");

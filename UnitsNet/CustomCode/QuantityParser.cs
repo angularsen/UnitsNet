@@ -63,7 +63,7 @@ namespace UnitsNet
             
             string unitsRegex = $"({String.Join("|", unitAbbreviations)})";
 
-            string regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
+            string regexString = string.Format(@"(?:\s*(?<value>(?:[-+]?{0}{1}|NaN){2}{3})?{4}{5}",
                 numRegex, // capture base (integral) Quantity value
                 exponentialRegex, // capture exponential (if any), end of Quantity capturing
                 @"\s?", // ignore whitespace (allows both "1kg", "1 kg")
