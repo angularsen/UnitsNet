@@ -97,6 +97,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillibarsInOnePascal => 1e-2;
 
+        protected override double MicrobarsInOnePascal => 1.0e1;
+
         protected override double MillimetersOfMercuryInOnePascal => 7.50061561302643e-3;
 
         protected override double InchesOfMercuryInOnePascal => 2.95299830714159e-4;

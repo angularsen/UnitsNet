@@ -47,7 +47,7 @@
       "PluralName": "Bars",
       "FromUnitToBaseFunc": "x*1e5",
       "FromBaseToUnitFunc": "x/1e5",
-      "Prefixes": [ "Milli", "Centi", "Deci", "Kilo", "Mega" ],
+      "Prefixes": [ "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",

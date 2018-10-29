@@ -69,6 +69,7 @@ namespace UnitsNet.Units
         MeganewtonPerSquareMeter,
         Megapascal,
         MeterOfHead,
+        Microbar,
         Micropascal,
         Millibar,
         MillimeterOfMercury,

@@ -308,6 +308,17 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         #endregion
 
+        #region Microbar
+
+        /// <inheritdoc cref="Pressure.FromMicrobars(UnitsNet.QuantityValue)" />
+        public static Pressure Microbars<T>(this T value) => Pressure.FromMicrobars(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromMicrobars(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Pressure? Microbars<T>(this T? value) where T : struct => Pressure.FromMicrobars(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Micropascal
 
         /// <inheritdoc cref="Pressure.FromMicropascals(UnitsNet.QuantityValue)" />

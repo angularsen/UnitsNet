@@ -282,6 +282,11 @@ namespace UnitsNet
         public double MetersOfHead => As(PressureUnit.MeterOfHead);
 
         /// <summary>
+        ///     Get Pressure in Microbars.
+        /// </summary>
+        public double Microbars => As(PressureUnit.Microbar);
+
+        /// <summary>
         ///     Get Pressure in Micropascals.
         /// </summary>
         public double Micropascals => As(PressureUnit.Micropascal);
@@ -708,6 +713,20 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure from Microbars.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Pressure FromMicrobars(double microbars)
+#else
+        public static Pressure FromMicrobars(QuantityValue microbars)
+#endif
+        {
+            double value = (double) microbars;
+            return new Pressure(value, PressureUnit.Microbar);
+        }
+
+        /// <summary>
         ///     Get Pressure from Micropascals.
         /// </summary>
 #if WINDOWS_UWP
@@ -1128,6 +1147,7 @@ namespace UnitsNet
                 case PressureUnit.MeganewtonPerSquareMeter: return (_value) * 1e6d;
                 case PressureUnit.Megapascal: return (_value) * 1e6d;
                 case PressureUnit.MeterOfHead: return _value*9804.139432;
+                case PressureUnit.Microbar: return (_value*1e5) * 1e-6d;
                 case PressureUnit.Micropascal: return (_value) * 1e-6d;
                 case PressureUnit.Millibar: return (_value*1e5) * 1e-3d;
                 case PressureUnit.MillimeterOfMercury: return _value/7.50061561302643e-3;
@@ -1182,6 +1202,7 @@ namespace UnitsNet
                 case PressureUnit.MeganewtonPerSquareMeter: return (baseUnitValue) / 1e6d;
                 case PressureUnit.Megapascal: return (baseUnitValue) / 1e6d;
                 case PressureUnit.MeterOfHead: return baseUnitValue*0.0001019977334;
+                case PressureUnit.Microbar: return (baseUnitValue/1e5) / 1e-6d;
                 case PressureUnit.Micropascal: return (baseUnitValue) / 1e-6d;
                 case PressureUnit.Millibar: return (baseUnitValue/1e5) / 1e-3d;
                 case PressureUnit.MillimeterOfMercury: return baseUnitValue*7.50061561302643e-3;

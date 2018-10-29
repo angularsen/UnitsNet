@@ -3320,6 +3320,12 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "m of head"),
                             }),
+                        new CulturesForEnumValue((int) PressureUnit.Microbar,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µbar"),
+                                new AbbreviationsForCulture("ru-RU", "µбар"),
+                            }),
                         new CulturesForEnumValue((int) PressureUnit.Micropascal,
                             new[]
                             {

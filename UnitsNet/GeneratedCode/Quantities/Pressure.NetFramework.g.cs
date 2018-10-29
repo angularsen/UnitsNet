@@ -279,6 +279,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Pressure from nullable Microbars.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Pressure? FromMicrobars(QuantityValue? microbars)
+        {
+            return microbars.HasValue ? FromMicrobars(microbars.Value) : default(Pressure?);
+        }
+
+        /// <summary>
         ///     Get nullable Pressure from nullable Micropascals.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
