@@ -99,6 +99,17 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         #endregion
 
+        #region DynePerSquareCentimeter
+
+        /// <inheritdoc cref="Pressure.FromDynesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        public static Pressure DynesPerSquareCentimeter<T>(this T value) => Pressure.FromDynesPerSquareCentimeter(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromDynesPerSquareCentimeter(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Pressure? DynesPerSquareCentimeter<T>(this T? value) where T : struct => Pressure.FromDynesPerSquareCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region FootOfHead
 
         /// <inheritdoc cref="Pressure.FromFeetOfHead(UnitsNet.QuantityValue)" />
@@ -393,6 +404,17 @@ namespace UnitsNet.Extensions.NumberToPressure
         /// <inheritdoc cref="Pressure.FromPoundsForcePerSquareInch(UnitsNet.QuantityValue)" />
         [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Pressure? PoundsForcePerSquareInch<T>(this T? value) where T : struct => Pressure.FromPoundsForcePerSquareInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region PoundPerInchSecondSquared
+
+        /// <inheritdoc cref="Pressure.FromPoundsPerInchSecondSquared(UnitsNet.QuantityValue)" />
+        public static Pressure PoundsPerInchSecondSquared<T>(this T value) => Pressure.FromPoundsPerInchSecondSquared(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromPoundsPerInchSecondSquared(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Pressure? PoundsPerInchSecondSquared<T>(this T? value) where T : struct => Pressure.FromPoundsPerInchSecondSquared(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

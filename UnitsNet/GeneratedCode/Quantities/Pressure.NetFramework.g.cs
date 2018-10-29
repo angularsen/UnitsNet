@@ -108,6 +108,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Pressure from nullable DynesPerSquareCentimeter.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Pressure? FromDynesPerSquareCentimeter(QuantityValue? dynespersquarecentimeter)
+        {
+            return dynespersquarecentimeter.HasValue ? FromDynesPerSquareCentimeter(dynespersquarecentimeter.Value) : default(Pressure?);
+        }
+
+        /// <summary>
         ///     Get nullable Pressure from nullable FeetOfHead.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
@@ -348,6 +357,15 @@ namespace UnitsNet
         public static Pressure? FromPoundsForcePerSquareInch(QuantityValue? poundsforcepersquareinch)
         {
             return poundsforcepersquareinch.HasValue ? FromPoundsForcePerSquareInch(poundsforcepersquareinch.Value) : default(Pressure?);
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable PoundsPerInchSecondSquared.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Pressure? FromPoundsPerInchSecondSquared(QuantityValue? poundsperinchsecondsquared)
+        {
+            return poundsperinchsecondsquared.HasValue ? FromPoundsPerInchSecondSquared(poundsperinchsecondsquared.Value) : default(Pressure?);
         }
 
         /// <summary>

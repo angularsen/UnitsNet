@@ -58,6 +58,7 @@ namespace UnitsNet.Tests
         protected abstract double CentibarsInOnePascal { get; }
         protected abstract double DecapascalsInOnePascal { get; }
         protected abstract double DecibarsInOnePascal { get; }
+        protected abstract double DynesPerSquareCentimeterInOnePascal { get; }
         protected abstract double FeetOfHeadInOnePascal { get; }
         protected abstract double GigapascalsInOnePascal { get; }
         protected abstract double HectopascalsInOnePascal { get; }
@@ -85,6 +86,7 @@ namespace UnitsNet.Tests
         protected abstract double PascalsInOnePascal { get; }
         protected abstract double PoundsForcePerSquareFootInOnePascal { get; }
         protected abstract double PoundsForcePerSquareInchInOnePascal { get; }
+        protected abstract double PoundsPerInchSecondSquaredInOnePascal { get; }
         protected abstract double PsiInOnePascal { get; }
         protected abstract double TechnicalAtmospheresInOnePascal { get; }
         protected abstract double TonnesForcePerSquareCentimeterInOnePascal { get; }
@@ -98,6 +100,7 @@ namespace UnitsNet.Tests
         protected virtual double CentibarsTolerance { get { return 1e-5; } }
         protected virtual double DecapascalsTolerance { get { return 1e-5; } }
         protected virtual double DecibarsTolerance { get { return 1e-5; } }
+        protected virtual double DynesPerSquareCentimeterTolerance { get { return 1e-5; } }
         protected virtual double FeetOfHeadTolerance { get { return 1e-5; } }
         protected virtual double GigapascalsTolerance { get { return 1e-5; } }
         protected virtual double HectopascalsTolerance { get { return 1e-5; } }
@@ -125,6 +128,7 @@ namespace UnitsNet.Tests
         protected virtual double PascalsTolerance { get { return 1e-5; } }
         protected virtual double PoundsForcePerSquareFootTolerance { get { return 1e-5; } }
         protected virtual double PoundsForcePerSquareInchTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerInchSecondSquaredTolerance { get { return 1e-5; } }
         protected virtual double PsiTolerance { get { return 1e-5; } }
         protected virtual double TechnicalAtmospheresTolerance { get { return 1e-5; } }
         protected virtual double TonnesForcePerSquareCentimeterTolerance { get { return 1e-5; } }
@@ -142,6 +146,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CentibarsInOnePascal, pascal.Centibars, CentibarsTolerance);
             AssertEx.EqualTolerance(DecapascalsInOnePascal, pascal.Decapascals, DecapascalsTolerance);
             AssertEx.EqualTolerance(DecibarsInOnePascal, pascal.Decibars, DecibarsTolerance);
+            AssertEx.EqualTolerance(DynesPerSquareCentimeterInOnePascal, pascal.DynesPerSquareCentimeter, DynesPerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(FeetOfHeadInOnePascal, pascal.FeetOfHead, FeetOfHeadTolerance);
             AssertEx.EqualTolerance(GigapascalsInOnePascal, pascal.Gigapascals, GigapascalsTolerance);
             AssertEx.EqualTolerance(HectopascalsInOnePascal, pascal.Hectopascals, HectopascalsTolerance);
@@ -169,6 +174,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PascalsInOnePascal, pascal.Pascals, PascalsTolerance);
             AssertEx.EqualTolerance(PoundsForcePerSquareFootInOnePascal, pascal.PoundsForcePerSquareFoot, PoundsForcePerSquareFootTolerance);
             AssertEx.EqualTolerance(PoundsForcePerSquareInchInOnePascal, pascal.PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
+            AssertEx.EqualTolerance(PoundsPerInchSecondSquaredInOnePascal, pascal.PoundsPerInchSecondSquared, PoundsPerInchSecondSquaredTolerance);
             AssertEx.EqualTolerance(PsiInOnePascal, pascal.Psi, PsiTolerance);
             AssertEx.EqualTolerance(TechnicalAtmospheresInOnePascal, pascal.TechnicalAtmospheres, TechnicalAtmospheresTolerance);
             AssertEx.EqualTolerance(TonnesForcePerSquareCentimeterInOnePascal, pascal.TonnesForcePerSquareCentimeter, TonnesForcePerSquareCentimeterTolerance);
@@ -185,6 +191,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Centibar).Centibars, CentibarsTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Decapascal).Decapascals, DecapascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Decibar).Decibars, DecibarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.DynePerSquareCentimeter).DynesPerSquareCentimeter, DynesPerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.FootOfHead).FeetOfHead, FeetOfHeadTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Gigapascal).Gigapascals, GigapascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Hectopascal).Hectopascals, HectopascalsTolerance);
@@ -212,6 +219,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Pascal).Pascals, PascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.PoundForcePerSquareFoot).PoundsForcePerSquareFoot, PoundsForcePerSquareFootTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.PoundForcePerSquareInch).PoundsForcePerSquareInch, PoundsForcePerSquareInchTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.PoundPerInchSecondSquared).PoundsPerInchSecondSquared, PoundsPerInchSecondSquaredTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Psi).Psi, PsiTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.TechnicalAtmosphere).TechnicalAtmospheres, TechnicalAtmospheresTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.TonneForcePerSquareCentimeter).TonnesForcePerSquareCentimeter, TonnesForcePerSquareCentimeterTolerance);
@@ -229,6 +237,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CentibarsInOnePascal, pascal.As(PressureUnit.Centibar), CentibarsTolerance);
             AssertEx.EqualTolerance(DecapascalsInOnePascal, pascal.As(PressureUnit.Decapascal), DecapascalsTolerance);
             AssertEx.EqualTolerance(DecibarsInOnePascal, pascal.As(PressureUnit.Decibar), DecibarsTolerance);
+            AssertEx.EqualTolerance(DynesPerSquareCentimeterInOnePascal, pascal.As(PressureUnit.DynePerSquareCentimeter), DynesPerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(FeetOfHeadInOnePascal, pascal.As(PressureUnit.FootOfHead), FeetOfHeadTolerance);
             AssertEx.EqualTolerance(GigapascalsInOnePascal, pascal.As(PressureUnit.Gigapascal), GigapascalsTolerance);
             AssertEx.EqualTolerance(HectopascalsInOnePascal, pascal.As(PressureUnit.Hectopascal), HectopascalsTolerance);
@@ -256,6 +265,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PascalsInOnePascal, pascal.As(PressureUnit.Pascal), PascalsTolerance);
             AssertEx.EqualTolerance(PoundsForcePerSquareFootInOnePascal, pascal.As(PressureUnit.PoundForcePerSquareFoot), PoundsForcePerSquareFootTolerance);
             AssertEx.EqualTolerance(PoundsForcePerSquareInchInOnePascal, pascal.As(PressureUnit.PoundForcePerSquareInch), PoundsForcePerSquareInchTolerance);
+            AssertEx.EqualTolerance(PoundsPerInchSecondSquaredInOnePascal, pascal.As(PressureUnit.PoundPerInchSecondSquared), PoundsPerInchSecondSquaredTolerance);
             AssertEx.EqualTolerance(PsiInOnePascal, pascal.As(PressureUnit.Psi), PsiTolerance);
             AssertEx.EqualTolerance(TechnicalAtmospheresInOnePascal, pascal.As(PressureUnit.TechnicalAtmosphere), TechnicalAtmospheresTolerance);
             AssertEx.EqualTolerance(TonnesForcePerSquareCentimeterInOnePascal, pascal.As(PressureUnit.TonneForcePerSquareCentimeter), TonnesForcePerSquareCentimeterTolerance);
@@ -288,6 +298,10 @@ namespace UnitsNet.Tests
             var decibarQuantity = pascal.ToUnit(PressureUnit.Decibar);
             AssertEx.EqualTolerance(DecibarsInOnePascal, (double)decibarQuantity.Value, DecibarsTolerance);
             Assert.Equal(PressureUnit.Decibar, decibarQuantity.Unit);
+
+            var dynepersquarecentimeterQuantity = pascal.ToUnit(PressureUnit.DynePerSquareCentimeter);
+            AssertEx.EqualTolerance(DynesPerSquareCentimeterInOnePascal, (double)dynepersquarecentimeterQuantity.Value, DynesPerSquareCentimeterTolerance);
+            Assert.Equal(PressureUnit.DynePerSquareCentimeter, dynepersquarecentimeterQuantity.Unit);
 
             var footofheadQuantity = pascal.ToUnit(PressureUnit.FootOfHead);
             AssertEx.EqualTolerance(FeetOfHeadInOnePascal, (double)footofheadQuantity.Value, FeetOfHeadTolerance);
@@ -397,6 +411,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(PoundsForcePerSquareInchInOnePascal, (double)poundforcepersquareinchQuantity.Value, PoundsForcePerSquareInchTolerance);
             Assert.Equal(PressureUnit.PoundForcePerSquareInch, poundforcepersquareinchQuantity.Unit);
 
+            var poundperinchsecondsquaredQuantity = pascal.ToUnit(PressureUnit.PoundPerInchSecondSquared);
+            AssertEx.EqualTolerance(PoundsPerInchSecondSquaredInOnePascal, (double)poundperinchsecondsquaredQuantity.Value, PoundsPerInchSecondSquaredTolerance);
+            Assert.Equal(PressureUnit.PoundPerInchSecondSquared, poundperinchsecondsquaredQuantity.Unit);
+
             var psiQuantity = pascal.ToUnit(PressureUnit.Psi);
             AssertEx.EqualTolerance(PsiInOnePascal, (double)psiQuantity.Value, PsiTolerance);
             Assert.Equal(PressureUnit.Psi, psiQuantity.Unit);
@@ -431,6 +449,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.FromCentibars(pascal.Centibars).Pascals, CentibarsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromDecapascals(pascal.Decapascals).Pascals, DecapascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromDecibars(pascal.Decibars).Pascals, DecibarsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromDynesPerSquareCentimeter(pascal.DynesPerSquareCentimeter).Pascals, DynesPerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromFeetOfHead(pascal.FeetOfHead).Pascals, FeetOfHeadTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromGigapascals(pascal.Gigapascals).Pascals, GigapascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromHectopascals(pascal.Hectopascals).Pascals, HectopascalsTolerance);
@@ -458,6 +477,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.FromPascals(pascal.Pascals).Pascals, PascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromPoundsForcePerSquareFoot(pascal.PoundsForcePerSquareFoot).Pascals, PoundsForcePerSquareFootTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromPoundsForcePerSquareInch(pascal.PoundsForcePerSquareInch).Pascals, PoundsForcePerSquareInchTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromPoundsPerInchSecondSquared(pascal.PoundsPerInchSecondSquared).Pascals, PoundsPerInchSecondSquaredTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromPsi(pascal.Psi).Pascals, PsiTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromTechnicalAtmospheres(pascal.TechnicalAtmospheres).Pascals, TechnicalAtmospheresTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromTonnesForcePerSquareCentimeter(pascal.TonnesForcePerSquareCentimeter).Pascals, TonnesForcePerSquareCentimeterTolerance);

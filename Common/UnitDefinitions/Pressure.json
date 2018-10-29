@@ -321,6 +321,30 @@
           "Abbreviations": [ "inHg" ]
         }
       ]
+    },
+    {
+      "SingularName": "DynePerSquareCentimeter",
+      "PluralName": "DynesPerSquareCentimeter",
+      "FromUnitToBaseFunc": "x*1.0e-1",
+      "FromBaseToUnitFunc": "x/1.0e-1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "dyn/cm²" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerInchSecondSquared",
+      "PluralName": "PoundsPerInchSecondSquared",
+      "FromUnitToBaseFunc": "x*1.785796732283465e1",
+      "FromBaseToUnitFunc": "x/1.785796732283465e1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbm/(in·s²)", "lb/(in·s²)" ]
+        }
+      ]
     }
   ]
 }

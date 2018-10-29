@@ -3212,6 +3212,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "dbar"),
                                 new AbbreviationsForCulture("ru-RU", "dбар"),
                             }),
+                        new CulturesForEnumValue((int) PressureUnit.DynePerSquareCentimeter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "dyn/cm²"),
+                            }),
                         new CulturesForEnumValue((int) PressureUnit.FootOfHead,
                             new[]
                             {
@@ -3365,6 +3370,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "psi", "lb/in²"),
+                            }),
+                        new CulturesForEnumValue((int) PressureUnit.PoundPerInchSecondSquared,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "lbm/(in·s²)", "lb/(in·s²)"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.Psi,
                             new[]

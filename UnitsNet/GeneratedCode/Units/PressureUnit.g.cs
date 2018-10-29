@@ -50,6 +50,7 @@ namespace UnitsNet.Units
         Centibar,
         Decapascal,
         Decibar,
+        DynePerSquareCentimeter,
         FootOfHead,
         Gigapascal,
         Hectopascal,
@@ -77,6 +78,7 @@ namespace UnitsNet.Units
         Pascal,
         PoundForcePerSquareFoot,
         PoundForcePerSquareInch,
+        PoundPerInchSecondSquared,
         [System.Obsolete("Deprecated due to github issue #215, please use PoundForcePerSquareInch instead")]
         Psi,
         TechnicalAtmosphere,

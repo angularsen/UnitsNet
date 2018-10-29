@@ -187,6 +187,11 @@ namespace UnitsNet
         public double Decibars => As(PressureUnit.Decibar);
 
         /// <summary>
+        ///     Get Pressure in DynesPerSquareCentimeter.
+        /// </summary>
+        public double DynesPerSquareCentimeter => As(PressureUnit.DynePerSquareCentimeter);
+
+        /// <summary>
         ///     Get Pressure in FeetOfHead.
         /// </summary>
         public double FeetOfHead => As(PressureUnit.FootOfHead);
@@ -322,6 +327,11 @@ namespace UnitsNet
         public double PoundsForcePerSquareInch => As(PressureUnit.PoundForcePerSquareInch);
 
         /// <summary>
+        ///     Get Pressure in PoundsPerInchSecondSquared.
+        /// </summary>
+        public double PoundsPerInchSecondSquared => As(PressureUnit.PoundPerInchSecondSquared);
+
+        /// <summary>
         ///     Get Pressure in Psi.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #215, please use PoundForcePerSquareInch instead")]
@@ -429,6 +439,20 @@ namespace UnitsNet
         {
             double value = (double) decibars;
             return new Pressure(value, PressureUnit.Decibar);
+        }
+
+        /// <summary>
+        ///     Get Pressure from DynesPerSquareCentimeter.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Pressure FromDynesPerSquareCentimeter(double dynespersquarecentimeter)
+#else
+        public static Pressure FromDynesPerSquareCentimeter(QuantityValue dynespersquarecentimeter)
+#endif
+        {
+            double value = (double) dynespersquarecentimeter;
+            return new Pressure(value, PressureUnit.DynePerSquareCentimeter);
         }
 
         /// <summary>
@@ -810,6 +834,20 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure from PoundsPerInchSecondSquared.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Pressure FromPoundsPerInchSecondSquared(double poundsperinchsecondsquared)
+#else
+        public static Pressure FromPoundsPerInchSecondSquared(QuantityValue poundsperinchsecondsquared)
+#endif
+        {
+            double value = (double) poundsperinchsecondsquared;
+            return new Pressure(value, PressureUnit.PoundPerInchSecondSquared);
+        }
+
+        /// <summary>
         ///     Get Pressure from Psi.
         /// </summary>
         [System.Obsolete("Deprecated due to github issue #215, please use PoundForcePerSquareInch instead")]
@@ -1071,6 +1109,7 @@ namespace UnitsNet
                 case PressureUnit.Centibar: return (_value*1e5) * 1e-2d;
                 case PressureUnit.Decapascal: return (_value) * 1e1d;
                 case PressureUnit.Decibar: return (_value*1e5) * 1e-1d;
+                case PressureUnit.DynePerSquareCentimeter: return _value*1.0e-1;
                 case PressureUnit.FootOfHead: return _value*2989.0669;
                 case PressureUnit.Gigapascal: return (_value) * 1e9d;
                 case PressureUnit.Hectopascal: return (_value) * 1e2d;
@@ -1098,6 +1137,7 @@ namespace UnitsNet
                 case PressureUnit.Pascal: return _value;
                 case PressureUnit.PoundForcePerSquareFoot: return _value*4.788025898033584e1;
                 case PressureUnit.PoundForcePerSquareInch: return _value*6.894757293168361e3;
+                case PressureUnit.PoundPerInchSecondSquared: return _value*1.785796732283465e1;
                 case PressureUnit.Psi: return _value*6.894757293168361e3;
                 case PressureUnit.TechnicalAtmosphere: return _value*9.80680592331*1e4;
                 case PressureUnit.TonneForcePerSquareCentimeter: return _value*9.80665e7;
@@ -1123,6 +1163,7 @@ namespace UnitsNet
                 case PressureUnit.Centibar: return (baseUnitValue/1e5) / 1e-2d;
                 case PressureUnit.Decapascal: return (baseUnitValue) / 1e1d;
                 case PressureUnit.Decibar: return (baseUnitValue/1e5) / 1e-1d;
+                case PressureUnit.DynePerSquareCentimeter: return baseUnitValue/1.0e-1;
                 case PressureUnit.FootOfHead: return baseUnitValue*0.000334552565551;
                 case PressureUnit.Gigapascal: return (baseUnitValue) / 1e9d;
                 case PressureUnit.Hectopascal: return (baseUnitValue) / 1e2d;
@@ -1150,6 +1191,7 @@ namespace UnitsNet
                 case PressureUnit.Pascal: return baseUnitValue;
                 case PressureUnit.PoundForcePerSquareFoot: return baseUnitValue/4.788025898033584e1;
                 case PressureUnit.PoundForcePerSquareInch: return baseUnitValue/6.894757293168361e3;
+                case PressureUnit.PoundPerInchSecondSquared: return baseUnitValue/1.785796732283465e1;
                 case PressureUnit.Psi: return baseUnitValue/6.894757293168361e3;
                 case PressureUnit.TechnicalAtmosphere: return baseUnitValue/(9.80680592331*1e4);
                 case PressureUnit.TonneForcePerSquareCentimeter: return baseUnitValue/9.80665e7;
