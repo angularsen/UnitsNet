@@ -47,34 +47,11 @@ namespace UnitsNet.Extensions.NumberToElectricConductivity
         #region SiemensPerMeter
 
         /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricConductivity SiemensPerMeter(this int value) => ElectricConductivity.FromSiemensPerMeter(value);
+        public static ElectricConductivity SiemensPerMeter<T>(this T value) => ElectricConductivity.FromSiemensPerMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricConductivity? SiemensPerMeter(this int? value) => ElectricConductivity.FromSiemensPerMeter(value);
-
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricConductivity SiemensPerMeter(this long value) => ElectricConductivity.FromSiemensPerMeter(value);
-
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricConductivity? SiemensPerMeter(this long? value) => ElectricConductivity.FromSiemensPerMeter(value);
-
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricConductivity SiemensPerMeter(this double value) => ElectricConductivity.FromSiemensPerMeter(value);
-
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricConductivity? SiemensPerMeter(this double? value) => ElectricConductivity.FromSiemensPerMeter(value);
-
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricConductivity SiemensPerMeter(this float value) => ElectricConductivity.FromSiemensPerMeter(value);
-
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricConductivity? SiemensPerMeter(this float? value) => ElectricConductivity.FromSiemensPerMeter(value);
-
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricConductivity SiemensPerMeter(this decimal value) => ElectricConductivity.FromSiemensPerMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricConductivity.FromSiemensPerMeter(UnitsNet.QuantityValue)" />
-        public static ElectricConductivity? SiemensPerMeter(this decimal? value) => ElectricConductivity.FromSiemensPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricConductivity? SiemensPerMeter<T>(this T? value) where T : struct => ElectricConductivity.FromSiemensPerMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

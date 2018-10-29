@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -215,5 +216,12 @@ namespace UnitsNet.Tests
             ElectricResistance ohm = ElectricResistance.FromOhms(1);
             Assert.False(ohm.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ElectricResistanceUnit.Undefined, ElectricResistance.Units);
+        }
+
     }
 }

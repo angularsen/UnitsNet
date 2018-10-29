@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Amperes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricCurrent? FromAmperes(QuantityValue? amperes)
         {
             return amperes.HasValue ? FromAmperes(amperes.Value) : default(ElectricCurrent?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Centiamperes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricCurrent? FromCentiamperes(QuantityValue? centiamperes)
         {
             return centiamperes.HasValue ? FromCentiamperes(centiamperes.Value) : default(ElectricCurrent?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Kiloamperes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricCurrent? FromKiloamperes(QuantityValue? kiloamperes)
         {
             return kiloamperes.HasValue ? FromKiloamperes(kiloamperes.Value) : default(ElectricCurrent?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Megaamperes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricCurrent? FromMegaamperes(QuantityValue? megaamperes)
         {
             return megaamperes.HasValue ? FromMegaamperes(megaamperes.Value) : default(ElectricCurrent?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Microamperes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricCurrent? FromMicroamperes(QuantityValue? microamperes)
         {
             return microamperes.HasValue ? FromMicroamperes(microamperes.Value) : default(ElectricCurrent?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Milliamperes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricCurrent? FromMilliamperes(QuantityValue? milliamperes)
         {
             return milliamperes.HasValue ? FromMilliamperes(milliamperes.Value) : default(ElectricCurrent?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Nanoamperes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricCurrent? FromNanoamperes(QuantityValue? nanoamperes)
         {
             return nanoamperes.HasValue ? FromNanoamperes(nanoamperes.Value) : default(ElectricCurrent?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricCurrent from nullable Picoamperes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricCurrent? FromPicoamperes(QuantityValue? picoamperes)
         {
             return picoamperes.HasValue ? FromPicoamperes(picoamperes.Value) : default(ElectricCurrent?);
@@ -132,12 +140,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricCurrent unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricCurrent? From(QuantityValue? value, ElectricCurrentUnit fromUnit)
         {
             return value.HasValue ? new ElectricCurrent((double)value.Value, fromUnit) : default(ElectricCurrent?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(ElectricCurrentUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -275,6 +298,22 @@ namespace UnitsNet
                 result = default(ElectricCurrent);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static ElectricCurrentUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

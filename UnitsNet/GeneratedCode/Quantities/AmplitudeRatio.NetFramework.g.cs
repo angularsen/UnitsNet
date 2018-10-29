@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelMicrovolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmplitudeRatio? FromDecibelMicrovolts(QuantityValue? decibelmicrovolts)
         {
             return decibelmicrovolts.HasValue ? FromDecibelMicrovolts(decibelmicrovolts.Value) : default(AmplitudeRatio?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelMillivolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmplitudeRatio? FromDecibelMillivolts(QuantityValue? decibelmillivolts)
         {
             return decibelmillivolts.HasValue ? FromDecibelMillivolts(decibelmillivolts.Value) : default(AmplitudeRatio?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelsUnloaded.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmplitudeRatio? FromDecibelsUnloaded(QuantityValue? decibelsunloaded)
         {
             return decibelsunloaded.HasValue ? FromDecibelsUnloaded(decibelsunloaded.Value) : default(AmplitudeRatio?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable AmplitudeRatio from nullable DecibelVolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static AmplitudeRatio? FromDecibelVolts(QuantityValue? decibelvolts)
         {
             return decibelvolts.HasValue ? FromDecibelVolts(decibelvolts.Value) : default(AmplitudeRatio?);
@@ -100,12 +104,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AmplitudeRatio unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static AmplitudeRatio? From(QuantityValue? value, AmplitudeRatioUnit fromUnit)
         {
             return value.HasValue ? new AmplitudeRatio((double)value.Value, fromUnit) : default(AmplitudeRatio?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(AmplitudeRatioUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Logarithmic Arithmetic Operators
 
@@ -251,6 +270,22 @@ namespace UnitsNet
                 result = default(AmplitudeRatio);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static AmplitudeRatioUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

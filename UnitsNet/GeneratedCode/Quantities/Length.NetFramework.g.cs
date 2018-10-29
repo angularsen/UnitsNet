@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Centimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromCentimeters(QuantityValue? centimeters)
         {
             return centimeters.HasValue ? FromCentimeters(centimeters.Value) : default(Length?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Decimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromDecimeters(QuantityValue? decimeters)
         {
             return decimeters.HasValue ? FromDecimeters(decimeters.Value) : default(Length?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable DtpPicas.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromDtpPicas(QuantityValue? dtppicas)
         {
             return dtppicas.HasValue ? FromDtpPicas(dtppicas.Value) : default(Length?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable DtpPoints.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromDtpPoints(QuantityValue? dtppoints)
         {
             return dtppoints.HasValue ? FromDtpPoints(dtppoints.Value) : default(Length?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Fathoms.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromFathoms(QuantityValue? fathoms)
         {
             return fathoms.HasValue ? FromFathoms(fathoms.Value) : default(Length?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Feet.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromFeet(QuantityValue? feet)
         {
             return feet.HasValue ? FromFeet(feet.Value) : default(Length?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Inches.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromInches(QuantityValue? inches)
         {
             return inches.HasValue ? FromInches(inches.Value) : default(Length?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Kilometers.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromKilometers(QuantityValue? kilometers)
         {
             return kilometers.HasValue ? FromKilometers(kilometers.Value) : default(Length?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Meters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromMeters(QuantityValue? meters)
         {
             return meters.HasValue ? FromMeters(meters.Value) : default(Length?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Microinches.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromMicroinches(QuantityValue? microinches)
         {
             return microinches.HasValue ? FromMicroinches(microinches.Value) : default(Length?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Micrometers.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromMicrometers(QuantityValue? micrometers)
         {
             return micrometers.HasValue ? FromMicrometers(micrometers.Value) : default(Length?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Mils.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromMils(QuantityValue? mils)
         {
             return mils.HasValue ? FromMils(mils.Value) : default(Length?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Miles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromMiles(QuantityValue? miles)
         {
             return miles.HasValue ? FromMiles(miles.Value) : default(Length?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Millimeters.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromMillimeters(QuantityValue? millimeters)
         {
             return millimeters.HasValue ? FromMillimeters(millimeters.Value) : default(Length?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Nanometers.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromNanometers(QuantityValue? nanometers)
         {
             return nanometers.HasValue ? FromNanometers(nanometers.Value) : default(Length?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable NauticalMiles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromNauticalMiles(QuantityValue? nauticalmiles)
         {
             return nauticalmiles.HasValue ? FromNauticalMiles(nauticalmiles.Value) : default(Length?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable PrinterPicas.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromPrinterPicas(QuantityValue? printerpicas)
         {
             return printerpicas.HasValue ? FromPrinterPicas(printerpicas.Value) : default(Length?);
@@ -201,6 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable PrinterPoints.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromPrinterPoints(QuantityValue? printerpoints)
         {
             return printerpoints.HasValue ? FromPrinterPoints(printerpoints.Value) : default(Length?);
@@ -209,6 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Shackles.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromShackles(QuantityValue? shackles)
         {
             return shackles.HasValue ? FromShackles(shackles.Value) : default(Length?);
@@ -217,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Twips.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromTwips(QuantityValue? twips)
         {
             return twips.HasValue ? FromTwips(twips.Value) : default(Length?);
@@ -225,6 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable UsSurveyFeet.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromUsSurveyFeet(QuantityValue? ussurveyfeet)
         {
             return ussurveyfeet.HasValue ? FromUsSurveyFeet(ussurveyfeet.Value) : default(Length?);
@@ -233,6 +254,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Length from nullable Yards.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Length? FromYards(QuantityValue? yards)
         {
             return yards.HasValue ? FromYards(yards.Value) : default(Length?);
@@ -244,12 +266,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Length unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Length? From(QuantityValue? value, LengthUnit fromUnit)
         {
             return value.HasValue ? new Length((double)value.Value, fromUnit) : default(Length?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(LengthUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -387,6 +424,22 @@ namespace UnitsNet
                 result = default(Length);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static LengthUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

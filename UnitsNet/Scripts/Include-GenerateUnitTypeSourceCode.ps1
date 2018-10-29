@@ -1,4 +1,4 @@
-function GenerateUnitTypeSourceCode($quantity) {
+﻿function GenerateUnitTypeSourceCode($quantity) {
     $quantityName = $quantity.Name;
     $units = $quantity.Units;
     $unitEnumName = "$($quantityName)Unit";
@@ -44,6 +44,9 @@ function GenerateUnitTypeSourceCode($quantity) {
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
+    // Disable missing XML comment warnings for the generated unit enums.
+    #pragma warning disable 1591
+
     public enum $unitEnumName
     {
         Undefined = 0,
@@ -65,6 +68,8 @@ namespace UnitsNet.Units
         $($unit.SingularName),
 "@; }@"
     }
+
+    #pragma warning restore 1591
 }
 "@;
 }

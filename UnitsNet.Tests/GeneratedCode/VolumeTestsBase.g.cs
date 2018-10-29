@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -625,5 +626,12 @@ namespace UnitsNet.Tests
             Volume cubicmeter = Volume.FromCubicMeters(1);
             Assert.False(cubicmeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(VolumeUnit.Undefined, Volume.Units);
+        }
+
     }
 }

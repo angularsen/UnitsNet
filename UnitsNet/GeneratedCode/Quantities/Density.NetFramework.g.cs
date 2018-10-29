@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable CentigramsPerDeciLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromCentigramsPerDeciLiter(QuantityValue? centigramsperdeciliter)
         {
             return centigramsperdeciliter.HasValue ? FromCentigramsPerDeciLiter(centigramsperdeciliter.Value) : default(Density?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable CentigramsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromCentigramsPerLiter(QuantityValue? centigramsperliter)
         {
             return centigramsperliter.HasValue ? FromCentigramsPerLiter(centigramsperliter.Value) : default(Density?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable CentigramsPerMilliliter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromCentigramsPerMilliliter(QuantityValue? centigramspermilliliter)
         {
             return centigramspermilliliter.HasValue ? FromCentigramsPerMilliliter(centigramspermilliliter.Value) : default(Density?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable DecigramsPerDeciLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromDecigramsPerDeciLiter(QuantityValue? decigramsperdeciliter)
         {
             return decigramsperdeciliter.HasValue ? FromDecigramsPerDeciLiter(decigramsperdeciliter.Value) : default(Density?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable DecigramsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromDecigramsPerLiter(QuantityValue? decigramsperliter)
         {
             return decigramsperliter.HasValue ? FromDecigramsPerLiter(decigramsperliter.Value) : default(Density?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable DecigramsPerMilliliter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromDecigramsPerMilliliter(QuantityValue? decigramspermilliliter)
         {
             return decigramspermilliliter.HasValue ? FromDecigramsPerMilliliter(decigramspermilliliter.Value) : default(Density?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable GramsPerCubicCentimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromGramsPerCubicCentimeter(QuantityValue? gramspercubiccentimeter)
         {
             return gramspercubiccentimeter.HasValue ? FromGramsPerCubicCentimeter(gramspercubiccentimeter.Value) : default(Density?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable GramsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromGramsPerCubicMeter(QuantityValue? gramspercubicmeter)
         {
             return gramspercubicmeter.HasValue ? FromGramsPerCubicMeter(gramspercubicmeter.Value) : default(Density?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable GramsPerCubicMillimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromGramsPerCubicMillimeter(QuantityValue? gramspercubicmillimeter)
         {
             return gramspercubicmillimeter.HasValue ? FromGramsPerCubicMillimeter(gramspercubicmillimeter.Value) : default(Density?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable GramsPerDeciLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromGramsPerDeciLiter(QuantityValue? gramsperdeciliter)
         {
             return gramsperdeciliter.HasValue ? FromGramsPerDeciLiter(gramsperdeciliter.Value) : default(Density?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable GramsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromGramsPerLiter(QuantityValue? gramsperliter)
         {
             return gramsperliter.HasValue ? FromGramsPerLiter(gramsperliter.Value) : default(Density?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable GramsPerMilliliter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromGramsPerMilliliter(QuantityValue? gramspermilliliter)
         {
             return gramspermilliliter.HasValue ? FromGramsPerMilliliter(gramspermilliliter.Value) : default(Density?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable KilogramsPerCubicCentimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromKilogramsPerCubicCentimeter(QuantityValue? kilogramspercubiccentimeter)
         {
             return kilogramspercubiccentimeter.HasValue ? FromKilogramsPerCubicCentimeter(kilogramspercubiccentimeter.Value) : default(Density?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable KilogramsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromKilogramsPerCubicMeter(QuantityValue? kilogramspercubicmeter)
         {
             return kilogramspercubicmeter.HasValue ? FromKilogramsPerCubicMeter(kilogramspercubicmeter.Value) : default(Density?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable KilogramsPerCubicMillimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromKilogramsPerCubicMillimeter(QuantityValue? kilogramspercubicmillimeter)
         {
             return kilogramspercubicmillimeter.HasValue ? FromKilogramsPerCubicMillimeter(kilogramspercubicmillimeter.Value) : default(Density?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable KilopoundsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromKilopoundsPerCubicFoot(QuantityValue? kilopoundspercubicfoot)
         {
             return kilopoundspercubicfoot.HasValue ? FromKilopoundsPerCubicFoot(kilopoundspercubicfoot.Value) : default(Density?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable KilopoundsPerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromKilopoundsPerCubicInch(QuantityValue? kilopoundspercubicinch)
         {
             return kilopoundspercubicinch.HasValue ? FromKilopoundsPerCubicInch(kilopoundspercubicinch.Value) : default(Density?);
@@ -201,6 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable MicrogramsPerDeciLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromMicrogramsPerDeciLiter(QuantityValue? microgramsperdeciliter)
         {
             return microgramsperdeciliter.HasValue ? FromMicrogramsPerDeciLiter(microgramsperdeciliter.Value) : default(Density?);
@@ -209,6 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable MicrogramsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromMicrogramsPerLiter(QuantityValue? microgramsperliter)
         {
             return microgramsperliter.HasValue ? FromMicrogramsPerLiter(microgramsperliter.Value) : default(Density?);
@@ -217,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable MicrogramsPerMilliliter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromMicrogramsPerMilliliter(QuantityValue? microgramspermilliliter)
         {
             return microgramspermilliliter.HasValue ? FromMicrogramsPerMilliliter(microgramspermilliliter.Value) : default(Density?);
@@ -225,6 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable MilligramsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromMilligramsPerCubicMeter(QuantityValue? milligramspercubicmeter)
         {
             return milligramspercubicmeter.HasValue ? FromMilligramsPerCubicMeter(milligramspercubicmeter.Value) : default(Density?);
@@ -233,6 +254,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable MilligramsPerDeciLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromMilligramsPerDeciLiter(QuantityValue? milligramsperdeciliter)
         {
             return milligramsperdeciliter.HasValue ? FromMilligramsPerDeciLiter(milligramsperdeciliter.Value) : default(Density?);
@@ -241,6 +263,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable MilligramsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromMilligramsPerLiter(QuantityValue? milligramsperliter)
         {
             return milligramsperliter.HasValue ? FromMilligramsPerLiter(milligramsperliter.Value) : default(Density?);
@@ -249,6 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable MilligramsPerMilliliter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromMilligramsPerMilliliter(QuantityValue? milligramspermilliliter)
         {
             return milligramspermilliliter.HasValue ? FromMilligramsPerMilliliter(milligramspermilliliter.Value) : default(Density?);
@@ -257,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable NanogramsPerDeciLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromNanogramsPerDeciLiter(QuantityValue? nanogramsperdeciliter)
         {
             return nanogramsperdeciliter.HasValue ? FromNanogramsPerDeciLiter(nanogramsperdeciliter.Value) : default(Density?);
@@ -265,6 +290,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable NanogramsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromNanogramsPerLiter(QuantityValue? nanogramsperliter)
         {
             return nanogramsperliter.HasValue ? FromNanogramsPerLiter(nanogramsperliter.Value) : default(Density?);
@@ -273,6 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable NanogramsPerMilliliter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromNanogramsPerMilliliter(QuantityValue? nanogramspermilliliter)
         {
             return nanogramspermilliliter.HasValue ? FromNanogramsPerMilliliter(nanogramspermilliliter.Value) : default(Density?);
@@ -281,6 +308,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable PicogramsPerDeciLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromPicogramsPerDeciLiter(QuantityValue? picogramsperdeciliter)
         {
             return picogramsperdeciliter.HasValue ? FromPicogramsPerDeciLiter(picogramsperdeciliter.Value) : default(Density?);
@@ -289,6 +317,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable PicogramsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromPicogramsPerLiter(QuantityValue? picogramsperliter)
         {
             return picogramsperliter.HasValue ? FromPicogramsPerLiter(picogramsperliter.Value) : default(Density?);
@@ -297,6 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable PicogramsPerMilliliter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromPicogramsPerMilliliter(QuantityValue? picogramspermilliliter)
         {
             return picogramspermilliliter.HasValue ? FromPicogramsPerMilliliter(picogramspermilliliter.Value) : default(Density?);
@@ -305,6 +335,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable PoundsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromPoundsPerCubicFoot(QuantityValue? poundspercubicfoot)
         {
             return poundspercubicfoot.HasValue ? FromPoundsPerCubicFoot(poundspercubicfoot.Value) : default(Density?);
@@ -313,6 +344,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable PoundsPerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromPoundsPerCubicInch(QuantityValue? poundspercubicinch)
         {
             return poundspercubicinch.HasValue ? FromPoundsPerCubicInch(poundspercubicinch.Value) : default(Density?);
@@ -321,6 +353,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable PoundsPerImperialGallon.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromPoundsPerImperialGallon(QuantityValue? poundsperimperialgallon)
         {
             return poundsperimperialgallon.HasValue ? FromPoundsPerImperialGallon(poundsperimperialgallon.Value) : default(Density?);
@@ -329,6 +362,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable PoundsPerUSGallon.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromPoundsPerUSGallon(QuantityValue? poundsperusgallon)
         {
             return poundsperusgallon.HasValue ? FromPoundsPerUSGallon(poundsperusgallon.Value) : default(Density?);
@@ -337,6 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable SlugsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromSlugsPerCubicFoot(QuantityValue? slugspercubicfoot)
         {
             return slugspercubicfoot.HasValue ? FromSlugsPerCubicFoot(slugspercubicfoot.Value) : default(Density?);
@@ -345,6 +380,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable TonnesPerCubicCentimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromTonnesPerCubicCentimeter(QuantityValue? tonnespercubiccentimeter)
         {
             return tonnespercubiccentimeter.HasValue ? FromTonnesPerCubicCentimeter(tonnespercubiccentimeter.Value) : default(Density?);
@@ -353,6 +389,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable TonnesPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromTonnesPerCubicMeter(QuantityValue? tonnespercubicmeter)
         {
             return tonnespercubicmeter.HasValue ? FromTonnesPerCubicMeter(tonnespercubicmeter.Value) : default(Density?);
@@ -361,6 +398,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Density from nullable TonnesPerCubicMillimeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Density? FromTonnesPerCubicMillimeter(QuantityValue? tonnespercubicmillimeter)
         {
             return tonnespercubicmillimeter.HasValue ? FromTonnesPerCubicMillimeter(tonnespercubicmillimeter.Value) : default(Density?);
@@ -372,12 +410,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Density unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Density? From(QuantityValue? value, DensityUnit fromUnit)
         {
             return value.HasValue ? new Density((double)value.Value, fromUnit) : default(Density?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(DensityUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -515,6 +568,22 @@ namespace UnitsNet
                 result = default(Density);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static DensityUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -185,5 +186,12 @@ namespace UnitsNet.Tests
             Permeability henrypermeter = Permeability.FromHenriesPerMeter(1);
             Assert.False(henrypermeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(PermeabilityUnit.Undefined, Permeability.Units);
+        }
+
     }
 }

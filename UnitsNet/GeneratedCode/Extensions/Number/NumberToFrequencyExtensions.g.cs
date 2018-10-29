@@ -47,238 +47,77 @@ namespace UnitsNet.Extensions.NumberToFrequency
         #region CyclePerHour
 
         /// <inheritdoc cref="Frequency.FromCyclesPerHour(UnitsNet.QuantityValue)" />
-        public static Frequency CyclesPerHour(this int value) => Frequency.FromCyclesPerHour(value);
+        public static Frequency CyclesPerHour<T>(this T value) => Frequency.FromCyclesPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Frequency.FromCyclesPerHour(UnitsNet.QuantityValue)" />
-        public static Frequency? CyclesPerHour(this int? value) => Frequency.FromCyclesPerHour(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerHour(UnitsNet.QuantityValue)" />
-        public static Frequency CyclesPerHour(this long value) => Frequency.FromCyclesPerHour(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerHour(UnitsNet.QuantityValue)" />
-        public static Frequency? CyclesPerHour(this long? value) => Frequency.FromCyclesPerHour(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerHour(UnitsNet.QuantityValue)" />
-        public static Frequency CyclesPerHour(this double value) => Frequency.FromCyclesPerHour(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerHour(UnitsNet.QuantityValue)" />
-        public static Frequency? CyclesPerHour(this double? value) => Frequency.FromCyclesPerHour(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerHour(UnitsNet.QuantityValue)" />
-        public static Frequency CyclesPerHour(this float value) => Frequency.FromCyclesPerHour(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerHour(UnitsNet.QuantityValue)" />
-        public static Frequency? CyclesPerHour(this float? value) => Frequency.FromCyclesPerHour(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerHour(UnitsNet.QuantityValue)" />
-        public static Frequency CyclesPerHour(this decimal value) => Frequency.FromCyclesPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerHour(UnitsNet.QuantityValue)" />
-        public static Frequency? CyclesPerHour(this decimal? value) => Frequency.FromCyclesPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Frequency? CyclesPerHour<T>(this T? value) where T : struct => Frequency.FromCyclesPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CyclePerMinute
 
         /// <inheritdoc cref="Frequency.FromCyclesPerMinute(UnitsNet.QuantityValue)" />
-        public static Frequency CyclesPerMinute(this int value) => Frequency.FromCyclesPerMinute(value);
+        public static Frequency CyclesPerMinute<T>(this T value) => Frequency.FromCyclesPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Frequency.FromCyclesPerMinute(UnitsNet.QuantityValue)" />
-        public static Frequency? CyclesPerMinute(this int? value) => Frequency.FromCyclesPerMinute(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerMinute(UnitsNet.QuantityValue)" />
-        public static Frequency CyclesPerMinute(this long value) => Frequency.FromCyclesPerMinute(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerMinute(UnitsNet.QuantityValue)" />
-        public static Frequency? CyclesPerMinute(this long? value) => Frequency.FromCyclesPerMinute(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerMinute(UnitsNet.QuantityValue)" />
-        public static Frequency CyclesPerMinute(this double value) => Frequency.FromCyclesPerMinute(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerMinute(UnitsNet.QuantityValue)" />
-        public static Frequency? CyclesPerMinute(this double? value) => Frequency.FromCyclesPerMinute(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerMinute(UnitsNet.QuantityValue)" />
-        public static Frequency CyclesPerMinute(this float value) => Frequency.FromCyclesPerMinute(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerMinute(UnitsNet.QuantityValue)" />
-        public static Frequency? CyclesPerMinute(this float? value) => Frequency.FromCyclesPerMinute(value);
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerMinute(UnitsNet.QuantityValue)" />
-        public static Frequency CyclesPerMinute(this decimal value) => Frequency.FromCyclesPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Frequency.FromCyclesPerMinute(UnitsNet.QuantityValue)" />
-        public static Frequency? CyclesPerMinute(this decimal? value) => Frequency.FromCyclesPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Frequency? CyclesPerMinute<T>(this T? value) where T : struct => Frequency.FromCyclesPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Gigahertz
 
         /// <inheritdoc cref="Frequency.FromGigahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Gigahertz(this int value) => Frequency.FromGigahertz(value);
+        public static Frequency Gigahertz<T>(this T value) => Frequency.FromGigahertz(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Frequency.FromGigahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Gigahertz(this int? value) => Frequency.FromGigahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromGigahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Gigahertz(this long value) => Frequency.FromGigahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromGigahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Gigahertz(this long? value) => Frequency.FromGigahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromGigahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Gigahertz(this double value) => Frequency.FromGigahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromGigahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Gigahertz(this double? value) => Frequency.FromGigahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromGigahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Gigahertz(this float value) => Frequency.FromGigahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromGigahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Gigahertz(this float? value) => Frequency.FromGigahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromGigahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Gigahertz(this decimal value) => Frequency.FromGigahertz(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Frequency.FromGigahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Gigahertz(this decimal? value) => Frequency.FromGigahertz(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Frequency? Gigahertz<T>(this T? value) where T : struct => Frequency.FromGigahertz(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Hertz
 
         /// <inheritdoc cref="Frequency.FromHertz(UnitsNet.QuantityValue)" />
-        public static Frequency Hertz(this int value) => Frequency.FromHertz(value);
+        public static Frequency Hertz<T>(this T value) => Frequency.FromHertz(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Frequency.FromHertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Hertz(this int? value) => Frequency.FromHertz(value);
-
-        /// <inheritdoc cref="Frequency.FromHertz(UnitsNet.QuantityValue)" />
-        public static Frequency Hertz(this long value) => Frequency.FromHertz(value);
-
-        /// <inheritdoc cref="Frequency.FromHertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Hertz(this long? value) => Frequency.FromHertz(value);
-
-        /// <inheritdoc cref="Frequency.FromHertz(UnitsNet.QuantityValue)" />
-        public static Frequency Hertz(this double value) => Frequency.FromHertz(value);
-
-        /// <inheritdoc cref="Frequency.FromHertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Hertz(this double? value) => Frequency.FromHertz(value);
-
-        /// <inheritdoc cref="Frequency.FromHertz(UnitsNet.QuantityValue)" />
-        public static Frequency Hertz(this float value) => Frequency.FromHertz(value);
-
-        /// <inheritdoc cref="Frequency.FromHertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Hertz(this float? value) => Frequency.FromHertz(value);
-
-        /// <inheritdoc cref="Frequency.FromHertz(UnitsNet.QuantityValue)" />
-        public static Frequency Hertz(this decimal value) => Frequency.FromHertz(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Frequency.FromHertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Hertz(this decimal? value) => Frequency.FromHertz(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Frequency? Hertz<T>(this T? value) where T : struct => Frequency.FromHertz(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Kilohertz
 
         /// <inheritdoc cref="Frequency.FromKilohertz(UnitsNet.QuantityValue)" />
-        public static Frequency Kilohertz(this int value) => Frequency.FromKilohertz(value);
+        public static Frequency Kilohertz<T>(this T value) => Frequency.FromKilohertz(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Frequency.FromKilohertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Kilohertz(this int? value) => Frequency.FromKilohertz(value);
-
-        /// <inheritdoc cref="Frequency.FromKilohertz(UnitsNet.QuantityValue)" />
-        public static Frequency Kilohertz(this long value) => Frequency.FromKilohertz(value);
-
-        /// <inheritdoc cref="Frequency.FromKilohertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Kilohertz(this long? value) => Frequency.FromKilohertz(value);
-
-        /// <inheritdoc cref="Frequency.FromKilohertz(UnitsNet.QuantityValue)" />
-        public static Frequency Kilohertz(this double value) => Frequency.FromKilohertz(value);
-
-        /// <inheritdoc cref="Frequency.FromKilohertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Kilohertz(this double? value) => Frequency.FromKilohertz(value);
-
-        /// <inheritdoc cref="Frequency.FromKilohertz(UnitsNet.QuantityValue)" />
-        public static Frequency Kilohertz(this float value) => Frequency.FromKilohertz(value);
-
-        /// <inheritdoc cref="Frequency.FromKilohertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Kilohertz(this float? value) => Frequency.FromKilohertz(value);
-
-        /// <inheritdoc cref="Frequency.FromKilohertz(UnitsNet.QuantityValue)" />
-        public static Frequency Kilohertz(this decimal value) => Frequency.FromKilohertz(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Frequency.FromKilohertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Kilohertz(this decimal? value) => Frequency.FromKilohertz(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Frequency? Kilohertz<T>(this T? value) where T : struct => Frequency.FromKilohertz(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Megahertz
 
         /// <inheritdoc cref="Frequency.FromMegahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Megahertz(this int value) => Frequency.FromMegahertz(value);
+        public static Frequency Megahertz<T>(this T value) => Frequency.FromMegahertz(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Frequency.FromMegahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Megahertz(this int? value) => Frequency.FromMegahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromMegahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Megahertz(this long value) => Frequency.FromMegahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromMegahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Megahertz(this long? value) => Frequency.FromMegahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromMegahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Megahertz(this double value) => Frequency.FromMegahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromMegahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Megahertz(this double? value) => Frequency.FromMegahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromMegahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Megahertz(this float value) => Frequency.FromMegahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromMegahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Megahertz(this float? value) => Frequency.FromMegahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromMegahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Megahertz(this decimal value) => Frequency.FromMegahertz(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Frequency.FromMegahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Megahertz(this decimal? value) => Frequency.FromMegahertz(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Frequency? Megahertz<T>(this T? value) where T : struct => Frequency.FromMegahertz(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Terahertz
 
         /// <inheritdoc cref="Frequency.FromTerahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Terahertz(this int value) => Frequency.FromTerahertz(value);
+        public static Frequency Terahertz<T>(this T value) => Frequency.FromTerahertz(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Frequency.FromTerahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Terahertz(this int? value) => Frequency.FromTerahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromTerahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Terahertz(this long value) => Frequency.FromTerahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromTerahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Terahertz(this long? value) => Frequency.FromTerahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromTerahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Terahertz(this double value) => Frequency.FromTerahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromTerahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Terahertz(this double? value) => Frequency.FromTerahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromTerahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Terahertz(this float value) => Frequency.FromTerahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromTerahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Terahertz(this float? value) => Frequency.FromTerahertz(value);
-
-        /// <inheritdoc cref="Frequency.FromTerahertz(UnitsNet.QuantityValue)" />
-        public static Frequency Terahertz(this decimal value) => Frequency.FromTerahertz(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Frequency.FromTerahertz(UnitsNet.QuantityValue)" />
-        public static Frequency? Terahertz(this decimal? value) => Frequency.FromTerahertz(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Frequency? Terahertz<T>(this T? value) where T : struct => Frequency.FromTerahertz(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

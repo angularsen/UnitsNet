@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -345,5 +346,12 @@ namespace UnitsNet.Tests
             MassFlow grampersecond = MassFlow.FromGramsPerSecond(1);
             Assert.False(grampersecond.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(MassFlowUnit.Undefined, MassFlow.Units);
+        }
+
     }
 }

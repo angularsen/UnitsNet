@@ -74,6 +74,10 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundSquareInchesInOneKilogramSquareMeter => 1 / 2.9263965e-4;
 
+        protected override double SlugSquareFeetInOneKilogramSquareMeter => 1 / 1.3558179619;
+
+        protected override double SlugSquareInchesInOneKilogramSquareMeter => 1 / 9.41540242e-3;
+
         protected override double KilotonneSquareCentimetersInOneKilogramSquareMeter => 1e-2;
 
         protected override double KilotonneSquareDecimetersInOneKilogramSquareMeter => 1e-4;

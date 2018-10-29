@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -385,5 +386,12 @@ namespace UnitsNet.Tests
             Torque newtonmeter = Torque.FromNewtonMeters(1);
             Assert.False(newtonmeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(TorqueUnit.Undefined, Torque.Units);
+        }
+
     }
 }

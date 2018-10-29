@@ -47,272 +47,88 @@ namespace UnitsNet.Extensions.NumberToSpecificEntropy
         #region CaloriePerGramKelvin
 
         /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy CaloriesPerGramKelvin(this int value) => SpecificEntropy.FromCaloriesPerGramKelvin(value);
+        public static SpecificEntropy CaloriesPerGramKelvin<T>(this T value) => SpecificEntropy.FromCaloriesPerGramKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? CaloriesPerGramKelvin(this int? value) => SpecificEntropy.FromCaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy CaloriesPerGramKelvin(this long value) => SpecificEntropy.FromCaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? CaloriesPerGramKelvin(this long? value) => SpecificEntropy.FromCaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy CaloriesPerGramKelvin(this double value) => SpecificEntropy.FromCaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? CaloriesPerGramKelvin(this double? value) => SpecificEntropy.FromCaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy CaloriesPerGramKelvin(this float value) => SpecificEntropy.FromCaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? CaloriesPerGramKelvin(this float? value) => SpecificEntropy.FromCaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy CaloriesPerGramKelvin(this decimal value) => SpecificEntropy.FromCaloriesPerGramKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="SpecificEntropy.FromCaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? CaloriesPerGramKelvin(this decimal? value) => SpecificEntropy.FromCaloriesPerGramKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static SpecificEntropy? CaloriesPerGramKelvin<T>(this T? value) where T : struct => SpecificEntropy.FromCaloriesPerGramKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region JoulePerKilogramDegreeCelsius
 
         /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy JoulesPerKilogramDegreeCelsius(this int value) => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(value);
+        public static SpecificEntropy JoulesPerKilogramDegreeCelsius<T>(this T value) => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? JoulesPerKilogramDegreeCelsius(this int? value) => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy JoulesPerKilogramDegreeCelsius(this long value) => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? JoulesPerKilogramDegreeCelsius(this long? value) => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy JoulesPerKilogramDegreeCelsius(this double value) => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? JoulesPerKilogramDegreeCelsius(this double? value) => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy JoulesPerKilogramDegreeCelsius(this float value) => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? JoulesPerKilogramDegreeCelsius(this float? value) => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy JoulesPerKilogramDegreeCelsius(this decimal value) => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? JoulesPerKilogramDegreeCelsius(this decimal? value) => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static SpecificEntropy? JoulesPerKilogramDegreeCelsius<T>(this T? value) where T : struct => SpecificEntropy.FromJoulesPerKilogramDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region JoulePerKilogramKelvin
 
         /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy JoulesPerKilogramKelvin(this int value) => SpecificEntropy.FromJoulesPerKilogramKelvin(value);
+        public static SpecificEntropy JoulesPerKilogramKelvin<T>(this T value) => SpecificEntropy.FromJoulesPerKilogramKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? JoulesPerKilogramKelvin(this int? value) => SpecificEntropy.FromJoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy JoulesPerKilogramKelvin(this long value) => SpecificEntropy.FromJoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? JoulesPerKilogramKelvin(this long? value) => SpecificEntropy.FromJoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy JoulesPerKilogramKelvin(this double value) => SpecificEntropy.FromJoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? JoulesPerKilogramKelvin(this double? value) => SpecificEntropy.FromJoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy JoulesPerKilogramKelvin(this float value) => SpecificEntropy.FromJoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? JoulesPerKilogramKelvin(this float? value) => SpecificEntropy.FromJoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy JoulesPerKilogramKelvin(this decimal value) => SpecificEntropy.FromJoulesPerKilogramKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="SpecificEntropy.FromJoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? JoulesPerKilogramKelvin(this decimal? value) => SpecificEntropy.FromJoulesPerKilogramKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static SpecificEntropy? JoulesPerKilogramKelvin<T>(this T? value) where T : struct => SpecificEntropy.FromJoulesPerKilogramKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilocaloriePerGramKelvin
 
         /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilocaloriesPerGramKelvin(this int value) => SpecificEntropy.FromKilocaloriesPerGramKelvin(value);
+        public static SpecificEntropy KilocaloriesPerGramKelvin<T>(this T value) => SpecificEntropy.FromKilocaloriesPerGramKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilocaloriesPerGramKelvin(this int? value) => SpecificEntropy.FromKilocaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilocaloriesPerGramKelvin(this long value) => SpecificEntropy.FromKilocaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilocaloriesPerGramKelvin(this long? value) => SpecificEntropy.FromKilocaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilocaloriesPerGramKelvin(this double value) => SpecificEntropy.FromKilocaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilocaloriesPerGramKelvin(this double? value) => SpecificEntropy.FromKilocaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilocaloriesPerGramKelvin(this float value) => SpecificEntropy.FromKilocaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilocaloriesPerGramKelvin(this float? value) => SpecificEntropy.FromKilocaloriesPerGramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilocaloriesPerGramKelvin(this decimal value) => SpecificEntropy.FromKilocaloriesPerGramKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilocaloriesPerGramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilocaloriesPerGramKelvin(this decimal? value) => SpecificEntropy.FromKilocaloriesPerGramKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static SpecificEntropy? KilocaloriesPerGramKelvin<T>(this T? value) where T : struct => SpecificEntropy.FromKilocaloriesPerGramKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilojoulePerKilogramDegreeCelsius
 
         /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilojoulesPerKilogramDegreeCelsius(this int value) => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(value);
+        public static SpecificEntropy KilojoulesPerKilogramDegreeCelsius<T>(this T value) => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilojoulesPerKilogramDegreeCelsius(this int? value) => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilojoulesPerKilogramDegreeCelsius(this long value) => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilojoulesPerKilogramDegreeCelsius(this long? value) => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilojoulesPerKilogramDegreeCelsius(this double value) => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilojoulesPerKilogramDegreeCelsius(this double? value) => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilojoulesPerKilogramDegreeCelsius(this float value) => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilojoulesPerKilogramDegreeCelsius(this float? value) => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilojoulesPerKilogramDegreeCelsius(this decimal value) => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilojoulesPerKilogramDegreeCelsius(this decimal? value) => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static SpecificEntropy? KilojoulesPerKilogramDegreeCelsius<T>(this T? value) where T : struct => SpecificEntropy.FromKilojoulesPerKilogramDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilojoulePerKilogramKelvin
 
         /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilojoulesPerKilogramKelvin(this int value) => SpecificEntropy.FromKilojoulesPerKilogramKelvin(value);
+        public static SpecificEntropy KilojoulesPerKilogramKelvin<T>(this T value) => SpecificEntropy.FromKilojoulesPerKilogramKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilojoulesPerKilogramKelvin(this int? value) => SpecificEntropy.FromKilojoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilojoulesPerKilogramKelvin(this long value) => SpecificEntropy.FromKilojoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilojoulesPerKilogramKelvin(this long? value) => SpecificEntropy.FromKilojoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilojoulesPerKilogramKelvin(this double value) => SpecificEntropy.FromKilojoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilojoulesPerKilogramKelvin(this double? value) => SpecificEntropy.FromKilojoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilojoulesPerKilogramKelvin(this float value) => SpecificEntropy.FromKilojoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilojoulesPerKilogramKelvin(this float? value) => SpecificEntropy.FromKilojoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy KilojoulesPerKilogramKelvin(this decimal value) => SpecificEntropy.FromKilojoulesPerKilogramKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="SpecificEntropy.FromKilojoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? KilojoulesPerKilogramKelvin(this decimal? value) => SpecificEntropy.FromKilojoulesPerKilogramKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static SpecificEntropy? KilojoulesPerKilogramKelvin<T>(this T? value) where T : struct => SpecificEntropy.FromKilojoulesPerKilogramKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegajoulePerKilogramDegreeCelsius
 
         /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy MegajoulesPerKilogramDegreeCelsius(this int value) => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(value);
+        public static SpecificEntropy MegajoulesPerKilogramDegreeCelsius<T>(this T value) => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? MegajoulesPerKilogramDegreeCelsius(this int? value) => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy MegajoulesPerKilogramDegreeCelsius(this long value) => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? MegajoulesPerKilogramDegreeCelsius(this long? value) => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy MegajoulesPerKilogramDegreeCelsius(this double value) => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? MegajoulesPerKilogramDegreeCelsius(this double? value) => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy MegajoulesPerKilogramDegreeCelsius(this float value) => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? MegajoulesPerKilogramDegreeCelsius(this float? value) => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy MegajoulesPerKilogramDegreeCelsius(this decimal value) => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? MegajoulesPerKilogramDegreeCelsius(this decimal? value) => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static SpecificEntropy? MegajoulesPerKilogramDegreeCelsius<T>(this T? value) where T : struct => SpecificEntropy.FromMegajoulesPerKilogramDegreeCelsius(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegajoulePerKilogramKelvin
 
         /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy MegajoulesPerKilogramKelvin(this int value) => SpecificEntropy.FromMegajoulesPerKilogramKelvin(value);
+        public static SpecificEntropy MegajoulesPerKilogramKelvin<T>(this T value) => SpecificEntropy.FromMegajoulesPerKilogramKelvin(Convert.ToDouble(value));
 
         /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? MegajoulesPerKilogramKelvin(this int? value) => SpecificEntropy.FromMegajoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy MegajoulesPerKilogramKelvin(this long value) => SpecificEntropy.FromMegajoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? MegajoulesPerKilogramKelvin(this long? value) => SpecificEntropy.FromMegajoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy MegajoulesPerKilogramKelvin(this double value) => SpecificEntropy.FromMegajoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? MegajoulesPerKilogramKelvin(this double? value) => SpecificEntropy.FromMegajoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy MegajoulesPerKilogramKelvin(this float value) => SpecificEntropy.FromMegajoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? MegajoulesPerKilogramKelvin(this float? value) => SpecificEntropy.FromMegajoulesPerKilogramKelvin(value);
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy MegajoulesPerKilogramKelvin(this decimal value) => SpecificEntropy.FromMegajoulesPerKilogramKelvin(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="SpecificEntropy.FromMegajoulesPerKilogramKelvin(UnitsNet.QuantityValue)" />
-        public static SpecificEntropy? MegajoulesPerKilogramKelvin(this decimal? value) => SpecificEntropy.FromMegajoulesPerKilogramKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static SpecificEntropy? MegajoulesPerKilogramKelvin<T>(this T? value) where T : struct => SpecificEntropy.FromMegajoulesPerKilogramKelvin(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

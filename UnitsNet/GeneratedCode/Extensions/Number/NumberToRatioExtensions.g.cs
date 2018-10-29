@@ -47,204 +47,66 @@ namespace UnitsNet.Extensions.NumberToRatio
         #region DecimalFraction
 
         /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
-        public static Ratio DecimalFractions(this int value) => Ratio.FromDecimalFractions(value);
+        public static Ratio DecimalFractions<T>(this T value) => Ratio.FromDecimalFractions(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
-        public static Ratio? DecimalFractions(this int? value) => Ratio.FromDecimalFractions(value);
-
-        /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
-        public static Ratio DecimalFractions(this long value) => Ratio.FromDecimalFractions(value);
-
-        /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
-        public static Ratio? DecimalFractions(this long? value) => Ratio.FromDecimalFractions(value);
-
-        /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
-        public static Ratio DecimalFractions(this double value) => Ratio.FromDecimalFractions(value);
-
-        /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
-        public static Ratio? DecimalFractions(this double? value) => Ratio.FromDecimalFractions(value);
-
-        /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
-        public static Ratio DecimalFractions(this float value) => Ratio.FromDecimalFractions(value);
-
-        /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
-        public static Ratio? DecimalFractions(this float? value) => Ratio.FromDecimalFractions(value);
-
-        /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
-        public static Ratio DecimalFractions(this decimal value) => Ratio.FromDecimalFractions(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Ratio.FromDecimalFractions(UnitsNet.QuantityValue)" />
-        public static Ratio? DecimalFractions(this decimal? value) => Ratio.FromDecimalFractions(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Ratio? DecimalFractions<T>(this T? value) where T : struct => Ratio.FromDecimalFractions(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PartPerBillion
 
         /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerBillion(this int value) => Ratio.FromPartsPerBillion(value);
+        public static Ratio PartsPerBillion<T>(this T value) => Ratio.FromPartsPerBillion(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerBillion(this int? value) => Ratio.FromPartsPerBillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerBillion(this long value) => Ratio.FromPartsPerBillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerBillion(this long? value) => Ratio.FromPartsPerBillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerBillion(this double value) => Ratio.FromPartsPerBillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerBillion(this double? value) => Ratio.FromPartsPerBillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerBillion(this float value) => Ratio.FromPartsPerBillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerBillion(this float? value) => Ratio.FromPartsPerBillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerBillion(this decimal value) => Ratio.FromPartsPerBillion(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Ratio.FromPartsPerBillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerBillion(this decimal? value) => Ratio.FromPartsPerBillion(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Ratio? PartsPerBillion<T>(this T? value) where T : struct => Ratio.FromPartsPerBillion(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PartPerMillion
 
         /// <inheritdoc cref="Ratio.FromPartsPerMillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerMillion(this int value) => Ratio.FromPartsPerMillion(value);
+        public static Ratio PartsPerMillion<T>(this T value) => Ratio.FromPartsPerMillion(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Ratio.FromPartsPerMillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerMillion(this int? value) => Ratio.FromPartsPerMillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerMillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerMillion(this long value) => Ratio.FromPartsPerMillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerMillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerMillion(this long? value) => Ratio.FromPartsPerMillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerMillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerMillion(this double value) => Ratio.FromPartsPerMillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerMillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerMillion(this double? value) => Ratio.FromPartsPerMillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerMillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerMillion(this float value) => Ratio.FromPartsPerMillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerMillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerMillion(this float? value) => Ratio.FromPartsPerMillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerMillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerMillion(this decimal value) => Ratio.FromPartsPerMillion(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Ratio.FromPartsPerMillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerMillion(this decimal? value) => Ratio.FromPartsPerMillion(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Ratio? PartsPerMillion<T>(this T? value) where T : struct => Ratio.FromPartsPerMillion(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PartPerThousand
 
         /// <inheritdoc cref="Ratio.FromPartsPerThousand(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerThousand(this int value) => Ratio.FromPartsPerThousand(value);
+        public static Ratio PartsPerThousand<T>(this T value) => Ratio.FromPartsPerThousand(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Ratio.FromPartsPerThousand(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerThousand(this int? value) => Ratio.FromPartsPerThousand(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerThousand(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerThousand(this long value) => Ratio.FromPartsPerThousand(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerThousand(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerThousand(this long? value) => Ratio.FromPartsPerThousand(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerThousand(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerThousand(this double value) => Ratio.FromPartsPerThousand(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerThousand(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerThousand(this double? value) => Ratio.FromPartsPerThousand(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerThousand(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerThousand(this float value) => Ratio.FromPartsPerThousand(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerThousand(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerThousand(this float? value) => Ratio.FromPartsPerThousand(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerThousand(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerThousand(this decimal value) => Ratio.FromPartsPerThousand(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Ratio.FromPartsPerThousand(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerThousand(this decimal? value) => Ratio.FromPartsPerThousand(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Ratio? PartsPerThousand<T>(this T? value) where T : struct => Ratio.FromPartsPerThousand(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PartPerTrillion
 
         /// <inheritdoc cref="Ratio.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerTrillion(this int value) => Ratio.FromPartsPerTrillion(value);
+        public static Ratio PartsPerTrillion<T>(this T value) => Ratio.FromPartsPerTrillion(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Ratio.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerTrillion(this int? value) => Ratio.FromPartsPerTrillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerTrillion(this long value) => Ratio.FromPartsPerTrillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerTrillion(this long? value) => Ratio.FromPartsPerTrillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerTrillion(this double value) => Ratio.FromPartsPerTrillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerTrillion(this double? value) => Ratio.FromPartsPerTrillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerTrillion(this float value) => Ratio.FromPartsPerTrillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerTrillion(this float? value) => Ratio.FromPartsPerTrillion(value);
-
-        /// <inheritdoc cref="Ratio.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
-        public static Ratio PartsPerTrillion(this decimal value) => Ratio.FromPartsPerTrillion(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Ratio.FromPartsPerTrillion(UnitsNet.QuantityValue)" />
-        public static Ratio? PartsPerTrillion(this decimal? value) => Ratio.FromPartsPerTrillion(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Ratio? PartsPerTrillion<T>(this T? value) where T : struct => Ratio.FromPartsPerTrillion(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Percent
 
         /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
-        public static Ratio Percent(this int value) => Ratio.FromPercent(value);
+        public static Ratio Percent<T>(this T value) => Ratio.FromPercent(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
-        public static Ratio? Percent(this int? value) => Ratio.FromPercent(value);
-
-        /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
-        public static Ratio Percent(this long value) => Ratio.FromPercent(value);
-
-        /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
-        public static Ratio? Percent(this long? value) => Ratio.FromPercent(value);
-
-        /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
-        public static Ratio Percent(this double value) => Ratio.FromPercent(value);
-
-        /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
-        public static Ratio? Percent(this double? value) => Ratio.FromPercent(value);
-
-        /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
-        public static Ratio Percent(this float value) => Ratio.FromPercent(value);
-
-        /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
-        public static Ratio? Percent(this float? value) => Ratio.FromPercent(value);
-
-        /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
-        public static Ratio Percent(this decimal value) => Ratio.FromPercent(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Ratio.FromPercent(UnitsNet.QuantityValue)" />
-        public static Ratio? Percent(this decimal? value) => Ratio.FromPercent(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Ratio? Percent<T>(this T? value) where T : struct => Ratio.FromPercent(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

@@ -47,102 +47,33 @@ namespace UnitsNet.Extensions.NumberToElectricConductance
         #region Microsiemens
 
         /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Microsiemens(this int value) => ElectricConductance.FromMicrosiemens(value);
+        public static ElectricConductance Microsiemens<T>(this T value) => ElectricConductance.FromMicrosiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Microsiemens(this int? value) => ElectricConductance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Microsiemens(this long value) => ElectricConductance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Microsiemens(this long? value) => ElectricConductance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Microsiemens(this double value) => ElectricConductance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Microsiemens(this double? value) => ElectricConductance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Microsiemens(this float value) => ElectricConductance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Microsiemens(this float? value) => ElectricConductance.FromMicrosiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Microsiemens(this decimal value) => ElectricConductance.FromMicrosiemens(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricConductance.FromMicrosiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Microsiemens(this decimal? value) => ElectricConductance.FromMicrosiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricConductance? Microsiemens<T>(this T? value) where T : struct => ElectricConductance.FromMicrosiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Millisiemens
 
         /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Millisiemens(this int value) => ElectricConductance.FromMillisiemens(value);
+        public static ElectricConductance Millisiemens<T>(this T value) => ElectricConductance.FromMillisiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Millisiemens(this int? value) => ElectricConductance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Millisiemens(this long value) => ElectricConductance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Millisiemens(this long? value) => ElectricConductance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Millisiemens(this double value) => ElectricConductance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Millisiemens(this double? value) => ElectricConductance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Millisiemens(this float value) => ElectricConductance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Millisiemens(this float? value) => ElectricConductance.FromMillisiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Millisiemens(this decimal value) => ElectricConductance.FromMillisiemens(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricConductance.FromMillisiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Millisiemens(this decimal? value) => ElectricConductance.FromMillisiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricConductance? Millisiemens<T>(this T? value) where T : struct => ElectricConductance.FromMillisiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Siemens
 
         /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Siemens(this int value) => ElectricConductance.FromSiemens(value);
+        public static ElectricConductance Siemens<T>(this T value) => ElectricConductance.FromSiemens(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Siemens(this int? value) => ElectricConductance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Siemens(this long value) => ElectricConductance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Siemens(this long? value) => ElectricConductance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Siemens(this double value) => ElectricConductance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Siemens(this double? value) => ElectricConductance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Siemens(this float value) => ElectricConductance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Siemens(this float? value) => ElectricConductance.FromSiemens(value);
-
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance Siemens(this decimal value) => ElectricConductance.FromSiemens(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricConductance.FromSiemens(UnitsNet.QuantityValue)" />
-        public static ElectricConductance? Siemens(this decimal? value) => ElectricConductance.FromSiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricConductance? Siemens<T>(this T? value) where T : struct => ElectricConductance.FromSiemens(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

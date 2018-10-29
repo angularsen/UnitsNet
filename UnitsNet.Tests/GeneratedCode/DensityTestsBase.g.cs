@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -555,5 +556,12 @@ namespace UnitsNet.Tests
             Density kilogrampercubicmeter = Density.FromKilogramsPerCubicMeter(1);
             Assert.False(kilogrampercubicmeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(DensityUnit.Undefined, Density.Units);
+        }
+
     }
 }

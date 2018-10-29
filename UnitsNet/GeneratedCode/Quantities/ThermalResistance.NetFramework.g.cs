@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ThermalResistance from nullable HourSquareFeetDegreesFahrenheitPerBtu.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ThermalResistance? FromHourSquareFeetDegreesFahrenheitPerBtu(QuantityValue? hoursquarefeetdegreesfahrenheitperbtu)
         {
             return hoursquarefeetdegreesfahrenheitperbtu.HasValue ? FromHourSquareFeetDegreesFahrenheitPerBtu(hoursquarefeetdegreesfahrenheitperbtu.Value) : default(ThermalResistance?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ThermalResistance from nullable SquareCentimeterHourDegreesCelsiusPerKilocalorie.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ThermalResistance? FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(QuantityValue? squarecentimeterhourdegreescelsiusperkilocalorie)
         {
             return squarecentimeterhourdegreescelsiusperkilocalorie.HasValue ? FromSquareCentimeterHourDegreesCelsiusPerKilocalorie(squarecentimeterhourdegreescelsiusperkilocalorie.Value) : default(ThermalResistance?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ThermalResistance from nullable SquareCentimeterKelvinsPerWatt.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ThermalResistance? FromSquareCentimeterKelvinsPerWatt(QuantityValue? squarecentimeterkelvinsperwatt)
         {
             return squarecentimeterkelvinsperwatt.HasValue ? FromSquareCentimeterKelvinsPerWatt(squarecentimeterkelvinsperwatt.Value) : default(ThermalResistance?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ThermalResistance from nullable SquareMeterDegreesCelsiusPerWatt.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ThermalResistance? FromSquareMeterDegreesCelsiusPerWatt(QuantityValue? squaremeterdegreescelsiusperwatt)
         {
             return squaremeterdegreescelsiusperwatt.HasValue ? FromSquareMeterDegreesCelsiusPerWatt(squaremeterdegreescelsiusperwatt.Value) : default(ThermalResistance?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ThermalResistance from nullable SquareMeterKelvinsPerKilowatt.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ThermalResistance? FromSquareMeterKelvinsPerKilowatt(QuantityValue? squaremeterkelvinsperkilowatt)
         {
             return squaremeterkelvinsperkilowatt.HasValue ? FromSquareMeterKelvinsPerKilowatt(squaremeterkelvinsperkilowatt.Value) : default(ThermalResistance?);
@@ -108,12 +113,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ThermalResistance unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ThermalResistance? From(QuantityValue? value, ThermalResistanceUnit fromUnit)
         {
             return value.HasValue ? new ThermalResistance((double)value.Value, fromUnit) : default(ThermalResistance?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(ThermalResistanceUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -251,6 +271,22 @@ namespace UnitsNet
                 result = default(ThermalResistance);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static ThermalResistanceUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

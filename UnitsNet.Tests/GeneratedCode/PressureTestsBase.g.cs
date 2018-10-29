@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -555,5 +556,12 @@ namespace UnitsNet.Tests
             Pressure pascal = Pressure.FromPascals(1);
             Assert.False(pascal.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(PressureUnit.Undefined, Pressure.Units);
+        }
+
     }
 }

@@ -82,6 +82,9 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
         }
 
+        /// <summary>
+        ///     Creates the quantity with the given value in the base unit KilogramSquareMeter.
+        /// </summary>
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public MassMomentOfInertia(double kilogramsquaremeters)
         {
@@ -98,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         MassMomentOfInertia(double numericValue, MassMomentOfInertiaUnit unit)
         {
@@ -156,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the MassMomentOfInertia quantity.
         /// </summary>
-        public static MassMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>().ToArray();
+        public static MassMomentOfInertiaUnit[] Units { get; } = Enum.GetValues(typeof(MassMomentOfInertiaUnit)).Cast<MassMomentOfInertiaUnit>().Except(new MassMomentOfInertiaUnit[]{ MassMomentOfInertiaUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get MassMomentOfInertia in GramSquareCentimeters.
@@ -269,6 +272,16 @@ namespace UnitsNet
         public double PoundSquareInches => As(MassMomentOfInertiaUnit.PoundSquareInch);
 
         /// <summary>
+        ///     Get MassMomentOfInertia in SlugSquareFeet.
+        /// </summary>
+        public double SlugSquareFeet => As(MassMomentOfInertiaUnit.SlugSquareFoot);
+
+        /// <summary>
+        ///     Get MassMomentOfInertia in SlugSquareInches.
+        /// </summary>
+        public double SlugSquareInches => As(MassMomentOfInertiaUnit.SlugSquareInch);
+
+        /// <summary>
         ///     Get MassMomentOfInertia in TonneSquareCentimeters.
         /// </summary>
         public double TonneSquareCentimeters => As(MassMomentOfInertiaUnit.TonneSquareCentimeter);
@@ -292,6 +305,9 @@ namespace UnitsNet
 
         #region Static
 
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramSquareMeter.
+        /// </summary>
         public static MassMomentOfInertia Zero => new MassMomentOfInertia(0, BaseUnit);
 
         /// <summary>
@@ -603,6 +619,34 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get MassMomentOfInertia from SlugSquareFeet.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassMomentOfInertia FromSlugSquareFeet(double slugsquarefeet)
+#else
+        public static MassMomentOfInertia FromSlugSquareFeet(QuantityValue slugsquarefeet)
+#endif
+        {
+            double value = (double) slugsquarefeet;
+            return new MassMomentOfInertia(value, MassMomentOfInertiaUnit.SlugSquareFoot);
+        }
+
+        /// <summary>
+        ///     Get MassMomentOfInertia from SlugSquareInches.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassMomentOfInertia FromSlugSquareInches(double slugsquareinches)
+#else
+        public static MassMomentOfInertia FromSlugSquareInches(QuantityValue slugsquareinches)
+#endif
+        {
+            double value = (double) slugsquareinches;
+            return new MassMomentOfInertia(value, MassMomentOfInertiaUnit.SlugSquareInch);
+        }
+
+        /// <summary>
         ///     Get MassMomentOfInertia from TonneSquareCentimeters.
         /// </summary>
 #if WINDOWS_UWP
@@ -685,35 +729,6 @@ namespace UnitsNet
         public static string GetAbbreviation(MassMomentOfInertiaUnit unit)
         {
             return GetAbbreviation(unit, null);
-        }
-
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-#if WINDOWS_UWP
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-#else
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-#endif
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(
-          MassMomentOfInertiaUnit unit,
-#if WINDOWS_UWP
-          [CanBeNull] string cultureName)
-#else
-          [CanBeNull] IFormatProvider provider)
-#endif
-        {
-#if WINDOWS_UWP
-            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
-#else
-            provider = provider ?? UnitSystem.DefaultCulture;
-#endif
-
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -814,6 +829,10 @@ namespace UnitsNet
             return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current MassMomentOfInertia.</returns>
         public override int GetHashCode()
         {
             return new { Value, Unit }.GetHashCode();
@@ -877,6 +896,8 @@ namespace UnitsNet
                 case MassMomentOfInertiaUnit.MilligramSquareMillimeter: return (_value/1e9) * 1e-3d;
                 case MassMomentOfInertiaUnit.PoundSquareFoot: return _value*4.21401101e-2;
                 case MassMomentOfInertiaUnit.PoundSquareInch: return _value*2.9263965e-4;
+                case MassMomentOfInertiaUnit.SlugSquareFoot: return _value*1.3558179619;
+                case MassMomentOfInertiaUnit.SlugSquareInch: return _value*9.41540242e-3;
                 case MassMomentOfInertiaUnit.TonneSquareCentimeter: return _value/1e1;
                 case MassMomentOfInertiaUnit.TonneSquareDecimeter: return _value/1e-1;
                 case MassMomentOfInertiaUnit.TonneSquareMeter: return _value/1e-3;
@@ -917,6 +938,8 @@ namespace UnitsNet
                 case MassMomentOfInertiaUnit.MilligramSquareMillimeter: return (baseUnitValue*1e9) / 1e-3d;
                 case MassMomentOfInertiaUnit.PoundSquareFoot: return baseUnitValue/4.21401101e-2;
                 case MassMomentOfInertiaUnit.PoundSquareInch: return baseUnitValue/2.9263965e-4;
+                case MassMomentOfInertiaUnit.SlugSquareFoot: return baseUnitValue/1.3558179619;
+                case MassMomentOfInertiaUnit.SlugSquareInch: return baseUnitValue/9.41540242e-3;
                 case MassMomentOfInertiaUnit.TonneSquareCentimeter: return baseUnitValue*1e1;
                 case MassMomentOfInertiaUnit.TonneSquareDecimeter: return baseUnitValue*1e-1;
                 case MassMomentOfInertiaUnit.TonneSquareMeter: return baseUnitValue*1e-3;
@@ -984,28 +1007,12 @@ namespace UnitsNet
             return ParseUnit(str, (IFormatProvider)null);
         }
 
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
-        public static MassMomentOfInertiaUnit ParseUnit(string str, [CanBeNull] string cultureName)
-        {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
-        }
-
         #endregion
 
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is KilogramSquareMeter
         /// </summary>
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         public static MassMomentOfInertiaUnit ToStringDefaultUnit { get; set; } = MassMomentOfInertiaUnit.KilogramSquareMeter;
 
         /// <summary>

@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -195,5 +196,12 @@ namespace UnitsNet.Tests
             ThermalConductivity wattpermeterkelvin = ThermalConductivity.FromWattsPerMeterKelvin(1);
             Assert.False(wattpermeterkelvin.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ThermalConductivityUnit.Undefined, ThermalConductivity.Units);
+        }
+
     }
 }

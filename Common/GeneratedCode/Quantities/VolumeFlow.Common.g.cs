@@ -82,6 +82,9 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
         }
 
+        /// <summary>
+        ///     Creates the quantity with the given value in the base unit CubicMeterPerSecond.
+        /// </summary>
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public VolumeFlow(double cubicmeterspersecond)
         {
@@ -98,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         VolumeFlow(double numericValue, VolumeFlowUnit unit)
         {
@@ -156,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the VolumeFlow quantity.
         /// </summary>
-        public static VolumeFlowUnit[] Units { get; } = Enum.GetValues(typeof(VolumeFlowUnit)).Cast<VolumeFlowUnit>().ToArray();
+        public static VolumeFlowUnit[] Units { get; } = Enum.GetValues(typeof(VolumeFlowUnit)).Cast<VolumeFlowUnit>().Except(new VolumeFlowUnit[]{ VolumeFlowUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get VolumeFlow in CentilitersPerMinute.
@@ -264,6 +267,16 @@ namespace UnitsNet
         public double OilBarrelsPerDay => As(VolumeFlowUnit.OilBarrelsPerDay);
 
         /// <summary>
+        ///     Get VolumeFlow in OilBarrelsPerHour.
+        /// </summary>
+        public double OilBarrelsPerHour => As(VolumeFlowUnit.OilBarrelsPerHour);
+
+        /// <summary>
+        ///     Get VolumeFlow in OilBarrelsPerMinute.
+        /// </summary>
+        public double OilBarrelsPerMinute => As(VolumeFlowUnit.OilBarrelsPerMinute);
+
+        /// <summary>
         ///     Get VolumeFlow in UsGallonsPerHour.
         /// </summary>
         public double UsGallonsPerHour => As(VolumeFlowUnit.UsGallonsPerHour);
@@ -282,6 +295,9 @@ namespace UnitsNet
 
         #region Static
 
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerSecond.
+        /// </summary>
         public static VolumeFlow Zero => new VolumeFlow(0, BaseUnit);
 
         /// <summary>
@@ -579,6 +595,34 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get VolumeFlow from OilBarrelsPerHour.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static VolumeFlow FromOilBarrelsPerHour(double oilbarrelsperhour)
+#else
+        public static VolumeFlow FromOilBarrelsPerHour(QuantityValue oilbarrelsperhour)
+#endif
+        {
+            double value = (double) oilbarrelsperhour;
+            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelsPerHour);
+        }
+
+        /// <summary>
+        ///     Get VolumeFlow from OilBarrelsPerMinute.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static VolumeFlow FromOilBarrelsPerMinute(double oilbarrelsperminute)
+#else
+        public static VolumeFlow FromOilBarrelsPerMinute(QuantityValue oilbarrelsperminute)
+#endif
+        {
+            double value = (double) oilbarrelsperminute;
+            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelsPerMinute);
+        }
+
+        /// <summary>
         ///     Get VolumeFlow from UsGallonsPerHour.
         /// </summary>
 #if WINDOWS_UWP
@@ -647,35 +691,6 @@ namespace UnitsNet
         public static string GetAbbreviation(VolumeFlowUnit unit)
         {
             return GetAbbreviation(unit, null);
-        }
-
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-#if WINDOWS_UWP
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-#else
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-#endif
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(
-          VolumeFlowUnit unit,
-#if WINDOWS_UWP
-          [CanBeNull] string cultureName)
-#else
-          [CanBeNull] IFormatProvider provider)
-#endif
-        {
-#if WINDOWS_UWP
-            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
-#else
-            provider = provider ?? UnitSystem.DefaultCulture;
-#endif
-
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -776,6 +791,10 @@ namespace UnitsNet
             return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current VolumeFlow.</returns>
         public override int GetHashCode()
         {
             return new { Value, Unit }.GetHashCode();
@@ -838,6 +857,8 @@ namespace UnitsNet
                 case VolumeFlowUnit.MillionUsGallonsPerDay: return _value/22.824465227;
                 case VolumeFlowUnit.NanolitersPerMinute: return (_value/60000.00000) * 1e-9d;
                 case VolumeFlowUnit.OilBarrelsPerDay: return _value*1.8401307283333333333333333333333e-6;
+                case VolumeFlowUnit.OilBarrelsPerHour: return _value*4.41631375e-5;
+                case VolumeFlowUnit.OilBarrelsPerMinute: return _value*2.64978825e-3;
                 case VolumeFlowUnit.UsGallonsPerHour: return _value/951019.38848933424;
                 case VolumeFlowUnit.UsGallonsPerMinute: return _value/15850.323141489;
                 case VolumeFlowUnit.UsGallonsPerSecond: return _value/264.1720523581484;
@@ -876,6 +897,8 @@ namespace UnitsNet
                 case VolumeFlowUnit.MillionUsGallonsPerDay: return baseUnitValue*22.824465227;
                 case VolumeFlowUnit.NanolitersPerMinute: return (baseUnitValue*60000.00000) / 1e-9d;
                 case VolumeFlowUnit.OilBarrelsPerDay: return baseUnitValue/1.8401307283333333333333333333333e-6;
+                case VolumeFlowUnit.OilBarrelsPerHour: return baseUnitValue/4.41631375e-5;
+                case VolumeFlowUnit.OilBarrelsPerMinute: return baseUnitValue/2.64978825e-3;
                 case VolumeFlowUnit.UsGallonsPerHour: return baseUnitValue*951019.38848933424;
                 case VolumeFlowUnit.UsGallonsPerMinute: return baseUnitValue*15850.323141489;
                 case VolumeFlowUnit.UsGallonsPerSecond: return baseUnitValue*264.1720523581484;
@@ -942,28 +965,12 @@ namespace UnitsNet
             return ParseUnit(str, (IFormatProvider)null);
         }
 
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
-        public static VolumeFlowUnit ParseUnit(string str, [CanBeNull] string cultureName)
-        {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
-        }
-
         #endregion
 
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is CubicMeterPerSecond
         /// </summary>
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         public static VolumeFlowUnit ToStringDefaultUnit { get; set; } = VolumeFlowUnit.CubicMeterPerSecond;
 
         /// <summary>

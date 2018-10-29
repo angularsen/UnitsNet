@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -200,5 +201,12 @@ namespace UnitsNet.Tests
             Level decibel = Level.FromDecibels(1);
             Assert.False(decibel.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(LevelUnit.Undefined, Level.Units);
+        }
+
     }
 }

@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Arcminutes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromArcminutes(QuantityValue? arcminutes)
         {
             return arcminutes.HasValue ? FromArcminutes(arcminutes.Value) : default(Angle?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Arcseconds.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromArcseconds(QuantityValue? arcseconds)
         {
             return arcseconds.HasValue ? FromArcseconds(arcseconds.Value) : default(Angle?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Centiradians.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromCentiradians(QuantityValue? centiradians)
         {
             return centiradians.HasValue ? FromCentiradians(centiradians.Value) : default(Angle?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Deciradians.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromDeciradians(QuantityValue? deciradians)
         {
             return deciradians.HasValue ? FromDeciradians(deciradians.Value) : default(Angle?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Degrees.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromDegrees(QuantityValue? degrees)
         {
             return degrees.HasValue ? FromDegrees(degrees.Value) : default(Angle?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Gradians.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromGradians(QuantityValue? gradians)
         {
             return gradians.HasValue ? FromGradians(gradians.Value) : default(Angle?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Microdegrees.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromMicrodegrees(QuantityValue? microdegrees)
         {
             return microdegrees.HasValue ? FromMicrodegrees(microdegrees.Value) : default(Angle?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Microradians.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromMicroradians(QuantityValue? microradians)
         {
             return microradians.HasValue ? FromMicroradians(microradians.Value) : default(Angle?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Millidegrees.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromMillidegrees(QuantityValue? millidegrees)
         {
             return millidegrees.HasValue ? FromMillidegrees(millidegrees.Value) : default(Angle?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Milliradians.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromMilliradians(QuantityValue? milliradians)
         {
             return milliradians.HasValue ? FromMilliradians(milliradians.Value) : default(Angle?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Nanodegrees.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromNanodegrees(QuantityValue? nanodegrees)
         {
             return nanodegrees.HasValue ? FromNanodegrees(nanodegrees.Value) : default(Angle?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Nanoradians.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromNanoradians(QuantityValue? nanoradians)
         {
             return nanoradians.HasValue ? FromNanoradians(nanoradians.Value) : default(Angle?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Radians.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromRadians(QuantityValue? radians)
         {
             return radians.HasValue ? FromRadians(radians.Value) : default(Angle?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Angle from nullable Revolutions.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Angle? FromRevolutions(QuantityValue? revolutions)
         {
             return revolutions.HasValue ? FromRevolutions(revolutions.Value) : default(Angle?);
@@ -180,12 +194,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Angle unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Angle? From(QuantityValue? value, AngleUnit fromUnit)
         {
             return value.HasValue ? new Angle((double)value.Value, fromUnit) : default(Angle?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(AngleUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -323,6 +352,22 @@ namespace UnitsNet
                 result = default(Angle);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static AngleUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

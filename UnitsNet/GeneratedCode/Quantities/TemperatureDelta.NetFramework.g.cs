@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesCelsius.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesCelsius(QuantityValue? degreescelsius)
         {
             return degreescelsius.HasValue ? FromDegreesCelsius(degreescelsius.Value) : default(TemperatureDelta?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesCelsiusDelta.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesCelsiusDelta(QuantityValue? degreescelsiusdelta)
         {
             return degreescelsiusdelta.HasValue ? FromDegreesCelsiusDelta(degreescelsiusdelta.Value) : default(TemperatureDelta?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesDelisle.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesDelisle(QuantityValue? degreesdelisle)
         {
             return degreesdelisle.HasValue ? FromDegreesDelisle(degreesdelisle.Value) : default(TemperatureDelta?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesDelisleDelta.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesDelisleDelta(QuantityValue? degreesdelisledelta)
         {
             return degreesdelisledelta.HasValue ? FromDegreesDelisleDelta(degreesdelisledelta.Value) : default(TemperatureDelta?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesFahrenheit.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesFahrenheit(QuantityValue? degreesfahrenheit)
         {
             return degreesfahrenheit.HasValue ? FromDegreesFahrenheit(degreesfahrenheit.Value) : default(TemperatureDelta?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesFahrenheitDelta.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesFahrenheitDelta(QuantityValue? degreesfahrenheitdelta)
         {
             return degreesfahrenheitdelta.HasValue ? FromDegreesFahrenheitDelta(degreesfahrenheitdelta.Value) : default(TemperatureDelta?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesNewton.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesNewton(QuantityValue? degreesnewton)
         {
             return degreesnewton.HasValue ? FromDegreesNewton(degreesnewton.Value) : default(TemperatureDelta?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesNewtonDelta.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesNewtonDelta(QuantityValue? degreesnewtondelta)
         {
             return degreesnewtondelta.HasValue ? FromDegreesNewtonDelta(degreesnewtondelta.Value) : default(TemperatureDelta?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesRankine.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesRankine(QuantityValue? degreesrankine)
         {
             return degreesrankine.HasValue ? FromDegreesRankine(degreesrankine.Value) : default(TemperatureDelta?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesRankineDelta.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesRankineDelta(QuantityValue? degreesrankinedelta)
         {
             return degreesrankinedelta.HasValue ? FromDegreesRankineDelta(degreesrankinedelta.Value) : default(TemperatureDelta?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesReaumur.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesReaumur(QuantityValue? degreesreaumur)
         {
             return degreesreaumur.HasValue ? FromDegreesReaumur(degreesreaumur.Value) : default(TemperatureDelta?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesReaumurDelta.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesReaumurDelta(QuantityValue? degreesreaumurdelta)
         {
             return degreesreaumurdelta.HasValue ? FromDegreesReaumurDelta(degreesreaumurdelta.Value) : default(TemperatureDelta?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesRoemer.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesRoemer(QuantityValue? degreesroemer)
         {
             return degreesroemer.HasValue ? FromDegreesRoemer(degreesroemer.Value) : default(TemperatureDelta?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable DegreesRoemerDelta.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromDegreesRoemerDelta(QuantityValue? degreesroemerdelta)
         {
             return degreesroemerdelta.HasValue ? FromDegreesRoemerDelta(degreesroemerdelta.Value) : default(TemperatureDelta?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable Kelvins.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromKelvins(QuantityValue? kelvins)
         {
             return kelvins.HasValue ? FromKelvins(kelvins.Value) : default(TemperatureDelta?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureDelta from nullable KelvinsDelta.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureDelta? FromKelvinsDelta(QuantityValue? kelvinsdelta)
         {
             return kelvinsdelta.HasValue ? FromKelvinsDelta(kelvinsdelta.Value) : default(TemperatureDelta?);
@@ -196,12 +212,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>TemperatureDelta unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static TemperatureDelta? From(QuantityValue? value, TemperatureDeltaUnit fromUnit)
         {
             return value.HasValue ? new TemperatureDelta((double)value.Value, fromUnit) : default(TemperatureDelta?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(TemperatureDeltaUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -339,6 +370,22 @@ namespace UnitsNet
                 result = default(TemperatureDelta);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static TemperatureDeltaUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

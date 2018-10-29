@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -225,5 +226,12 @@ namespace UnitsNet.Tests
             ThermalResistance squaremeterkelvinperkilowatt = ThermalResistance.FromSquareMeterKelvinsPerKilowatt(1);
             Assert.False(squaremeterkelvinperkilowatt.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ThermalResistanceUnit.Undefined, ThermalResistance.Units);
+        }
+
     }
 }

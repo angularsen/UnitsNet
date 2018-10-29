@@ -104,7 +104,7 @@
     <Compile Include="..\Common\**\*.cs;" Exclude="**\obj\**">
       <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Compile>
-    <None Include="..\Common\**\*" Exclude="**\obj\**">
+    <None Include="..\Common\**\*" Exclude="**\obj\**;**\*.cs">
       <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </None>
     <Compile Include="..\UnitsNet\**\*.cs;" Exclude="**\AssemblyInfo.cs;**\*NetFramework*.cs;**\obj\**">

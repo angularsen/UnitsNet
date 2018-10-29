@@ -47,34 +47,11 @@ namespace UnitsNet.Extensions.NumberToElectricInductance
         #region Henry
 
         /// <inheritdoc cref="ElectricInductance.FromHenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance Henries(this int value) => ElectricInductance.FromHenries(value);
+        public static ElectricInductance Henries<T>(this T value) => ElectricInductance.FromHenries(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricInductance.FromHenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance? Henries(this int? value) => ElectricInductance.FromHenries(value);
-
-        /// <inheritdoc cref="ElectricInductance.FromHenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance Henries(this long value) => ElectricInductance.FromHenries(value);
-
-        /// <inheritdoc cref="ElectricInductance.FromHenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance? Henries(this long? value) => ElectricInductance.FromHenries(value);
-
-        /// <inheritdoc cref="ElectricInductance.FromHenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance Henries(this double value) => ElectricInductance.FromHenries(value);
-
-        /// <inheritdoc cref="ElectricInductance.FromHenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance? Henries(this double? value) => ElectricInductance.FromHenries(value);
-
-        /// <inheritdoc cref="ElectricInductance.FromHenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance Henries(this float value) => ElectricInductance.FromHenries(value);
-
-        /// <inheritdoc cref="ElectricInductance.FromHenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance? Henries(this float? value) => ElectricInductance.FromHenries(value);
-
-        /// <inheritdoc cref="ElectricInductance.FromHenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance Henries(this decimal value) => ElectricInductance.FromHenries(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricInductance.FromHenries(UnitsNet.QuantityValue)" />
-        public static ElectricInductance? Henries(this decimal? value) => ElectricInductance.FromHenries(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricInductance? Henries<T>(this T? value) where T : struct => ElectricInductance.FromHenries(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

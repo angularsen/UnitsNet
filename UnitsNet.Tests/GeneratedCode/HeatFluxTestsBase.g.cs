@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -335,5 +336,12 @@ namespace UnitsNet.Tests
             HeatFlux wattpersquaremeter = HeatFlux.FromWattsPerSquareMeter(1);
             Assert.False(wattpersquaremeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(HeatFluxUnit.Undefined, HeatFlux.Units);
+        }
+
     }
 }

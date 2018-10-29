@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -495,5 +496,12 @@ namespace UnitsNet.Tests
             Speed meterpersecond = Speed.FromMetersPerSecond(1);
             Assert.False(meterpersecond.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(SpeedUnit.Undefined, Speed.Units);
+        }
+
     }
 }

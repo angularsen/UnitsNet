@@ -48,6 +48,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -234,6 +235,13 @@ namespace UnitsNet.Tests
             $quantityName $baseUnitVariableName = $quantityName.From$baseUnitPluralName(1);
             Assert.False($baseUnitVariableName.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain($unitEnumName.Undefined, $quantityName.Units);
+        }
+
     }
 }
 "@;

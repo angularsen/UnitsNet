@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -205,5 +206,12 @@ namespace UnitsNet.Tests
             Irradiation joulepersquaremeter = Irradiation.FromJoulesPerSquareMeter(1);
             Assert.False(joulepersquaremeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(IrradiationUnit.Undefined, Irradiation.Units);
+        }
+
     }
 }

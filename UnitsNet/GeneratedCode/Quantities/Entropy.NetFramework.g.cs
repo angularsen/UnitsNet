@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable CaloriesPerKelvin.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Entropy? FromCaloriesPerKelvin(QuantityValue? caloriesperkelvin)
         {
             return caloriesperkelvin.HasValue ? FromCaloriesPerKelvin(caloriesperkelvin.Value) : default(Entropy?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable JoulesPerDegreeCelsius.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Entropy? FromJoulesPerDegreeCelsius(QuantityValue? joulesperdegreecelsius)
         {
             return joulesperdegreecelsius.HasValue ? FromJoulesPerDegreeCelsius(joulesperdegreecelsius.Value) : default(Entropy?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable JoulesPerKelvin.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Entropy? FromJoulesPerKelvin(QuantityValue? joulesperkelvin)
         {
             return joulesperkelvin.HasValue ? FromJoulesPerKelvin(joulesperkelvin.Value) : default(Entropy?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable KilocaloriesPerKelvin.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Entropy? FromKilocaloriesPerKelvin(QuantityValue? kilocaloriesperkelvin)
         {
             return kilocaloriesperkelvin.HasValue ? FromKilocaloriesPerKelvin(kilocaloriesperkelvin.Value) : default(Entropy?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable KilojoulesPerDegreeCelsius.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Entropy? FromKilojoulesPerDegreeCelsius(QuantityValue? kilojoulesperdegreecelsius)
         {
             return kilojoulesperdegreecelsius.HasValue ? FromKilojoulesPerDegreeCelsius(kilojoulesperdegreecelsius.Value) : default(Entropy?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable KilojoulesPerKelvin.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Entropy? FromKilojoulesPerKelvin(QuantityValue? kilojoulesperkelvin)
         {
             return kilojoulesperkelvin.HasValue ? FromKilojoulesPerKelvin(kilojoulesperkelvin.Value) : default(Entropy?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Entropy from nullable MegajoulesPerKelvin.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Entropy? FromMegajoulesPerKelvin(QuantityValue? megajoulesperkelvin)
         {
             return megajoulesperkelvin.HasValue ? FromMegajoulesPerKelvin(megajoulesperkelvin.Value) : default(Entropy?);
@@ -124,12 +131,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Entropy unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Entropy? From(QuantityValue? value, EntropyUnit fromUnit)
         {
             return value.HasValue ? new Entropy((double)value.Value, fromUnit) : default(Entropy?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(EntropyUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -267,6 +289,22 @@ namespace UnitsNet
                 result = default(Entropy);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static EntropyUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

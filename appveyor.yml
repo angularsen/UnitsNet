@@ -45,11 +45,11 @@ artifacts:
 - path: 'Artifacts\NuGet\*.nupkg' # find all NuGet packages recursively
 environment:
   api_key:
-    secure: Onn5DCtRxwNADYG8i4snNuUOE5qhUsUSv5unaY5SMLv4l2FbRnIUlbdVw02s39Xk
+    secure: NlJ+D6kXfgU6RgRuf9okylLDENp8DA3tTRSC6UHBNbRS9ZAvRrC3Z0++Mr5VtGvz
 deploy:
 - provider: NuGet
   api_key:
-    secure: Onn5DCtRxwNADYG8i4snNuUOE5qhUsUSv5unaY5SMLv4l2FbRnIUlbdVw02s39Xk
+    secure: NlJ+D6kXfgU6RgRuf9okylLDENp8DA3tTRSC6UHBNbRS9ZAvRrC3Z0++Mr5VtGvz
   skip_symbols: false
   on:
     branch: master

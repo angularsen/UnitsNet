@@ -39,6 +39,9 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
+    // Disable missing XML comment warnings for the generated unit enums.
+    #pragma warning disable 1591
+
     public enum FlowUnit
     {
         Undefined = 0,
@@ -85,4 +88,6 @@ namespace UnitsNet.Units
         [System.Obsolete("Deprecated due to github issue #363, please use VolumeFlow instead")]
         UsGallonsPerSecond,
     }
+
+    #pragma warning restore 1591
 }

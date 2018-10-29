@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -185,5 +186,12 @@ namespace UnitsNet.Tests
             MagneticFlux weber = MagneticFlux.FromWebers(1);
             Assert.False(weber.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(MagneticFluxUnit.Undefined, MagneticFlux.Units);
+        }
+
     }
 }

@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable DynamicViscosity from nullable Centipoise.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static DynamicViscosity? FromCentipoise(QuantityValue? centipoise)
         {
             return centipoise.HasValue ? FromCentipoise(centipoise.Value) : default(DynamicViscosity?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable DynamicViscosity from nullable MicropascalSeconds.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static DynamicViscosity? FromMicropascalSeconds(QuantityValue? micropascalseconds)
         {
             return micropascalseconds.HasValue ? FromMicropascalSeconds(micropascalseconds.Value) : default(DynamicViscosity?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable DynamicViscosity from nullable MillipascalSeconds.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static DynamicViscosity? FromMillipascalSeconds(QuantityValue? millipascalseconds)
         {
             return millipascalseconds.HasValue ? FromMillipascalSeconds(millipascalseconds.Value) : default(DynamicViscosity?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable DynamicViscosity from nullable NewtonSecondsPerMeterSquared.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static DynamicViscosity? FromNewtonSecondsPerMeterSquared(QuantityValue? newtonsecondspermetersquared)
         {
             return newtonsecondspermetersquared.HasValue ? FromNewtonSecondsPerMeterSquared(newtonsecondspermetersquared.Value) : default(DynamicViscosity?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable DynamicViscosity from nullable PascalSeconds.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static DynamicViscosity? FromPascalSeconds(QuantityValue? pascalseconds)
         {
             return pascalseconds.HasValue ? FromPascalSeconds(pascalseconds.Value) : default(DynamicViscosity?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable DynamicViscosity from nullable Poise.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static DynamicViscosity? FromPoise(QuantityValue? poise)
         {
             return poise.HasValue ? FromPoise(poise.Value) : default(DynamicViscosity?);
@@ -116,12 +122,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>DynamicViscosity unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static DynamicViscosity? From(QuantityValue? value, DynamicViscosityUnit fromUnit)
         {
             return value.HasValue ? new DynamicViscosity((double)value.Value, fromUnit) : default(DynamicViscosity?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(DynamicViscosityUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -259,6 +280,22 @@ namespace UnitsNet
                 result = default(DynamicViscosity);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static DynamicViscosityUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

@@ -47,34 +47,11 @@ namespace UnitsNet.Extensions.NumberToVitaminA
         #region InternationalUnit
 
         /// <inheritdoc cref="VitaminA.FromInternationalUnits(UnitsNet.QuantityValue)" />
-        public static VitaminA InternationalUnits(this int value) => VitaminA.FromInternationalUnits(value);
+        public static VitaminA InternationalUnits<T>(this T value) => VitaminA.FromInternationalUnits(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VitaminA.FromInternationalUnits(UnitsNet.QuantityValue)" />
-        public static VitaminA? InternationalUnits(this int? value) => VitaminA.FromInternationalUnits(value);
-
-        /// <inheritdoc cref="VitaminA.FromInternationalUnits(UnitsNet.QuantityValue)" />
-        public static VitaminA InternationalUnits(this long value) => VitaminA.FromInternationalUnits(value);
-
-        /// <inheritdoc cref="VitaminA.FromInternationalUnits(UnitsNet.QuantityValue)" />
-        public static VitaminA? InternationalUnits(this long? value) => VitaminA.FromInternationalUnits(value);
-
-        /// <inheritdoc cref="VitaminA.FromInternationalUnits(UnitsNet.QuantityValue)" />
-        public static VitaminA InternationalUnits(this double value) => VitaminA.FromInternationalUnits(value);
-
-        /// <inheritdoc cref="VitaminA.FromInternationalUnits(UnitsNet.QuantityValue)" />
-        public static VitaminA? InternationalUnits(this double? value) => VitaminA.FromInternationalUnits(value);
-
-        /// <inheritdoc cref="VitaminA.FromInternationalUnits(UnitsNet.QuantityValue)" />
-        public static VitaminA InternationalUnits(this float value) => VitaminA.FromInternationalUnits(value);
-
-        /// <inheritdoc cref="VitaminA.FromInternationalUnits(UnitsNet.QuantityValue)" />
-        public static VitaminA? InternationalUnits(this float? value) => VitaminA.FromInternationalUnits(value);
-
-        /// <inheritdoc cref="VitaminA.FromInternationalUnits(UnitsNet.QuantityValue)" />
-        public static VitaminA InternationalUnits(this decimal value) => VitaminA.FromInternationalUnits(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VitaminA.FromInternationalUnits(UnitsNet.QuantityValue)" />
-        public static VitaminA? InternationalUnits(this decimal? value) => VitaminA.FromInternationalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VitaminA? InternationalUnits<T>(this T? value) where T : struct => VitaminA.FromInternationalUnits(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

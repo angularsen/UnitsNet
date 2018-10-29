@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -185,5 +186,12 @@ namespace UnitsNet.Tests
             LuminousFlux lumen = LuminousFlux.FromLumens(1);
             Assert.False(lumen.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(LuminousFluxUnit.Undefined, LuminousFlux.Units);
+        }
+
     }
 }

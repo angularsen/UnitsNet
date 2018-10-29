@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -225,5 +226,12 @@ namespace UnitsNet.Tests
             ElectricPotential volt = ElectricPotential.FromVolts(1);
             Assert.False(volt.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ElectricPotentialUnit.Undefined, ElectricPotential.Units);
+        }
+
     }
 }

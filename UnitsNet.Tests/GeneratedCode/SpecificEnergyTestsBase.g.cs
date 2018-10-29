@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -255,5 +256,12 @@ namespace UnitsNet.Tests
             SpecificEnergy jouleperkilogram = SpecificEnergy.FromJoulesPerKilogram(1);
             Assert.False(jouleperkilogram.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(SpecificEnergyUnit.Undefined, SpecificEnergy.Units);
+        }
+
     }
 }

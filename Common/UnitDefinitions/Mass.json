@@ -111,6 +111,20 @@
       ]
     },
     {
+      "SingularName": "Slug",
+      "PluralName": "Slugs",
+      "FromUnitToBaseFunc": "x/6.852176556196105e-2",
+      "FromBaseToUnitFunc": "x*6.852176556196105e-2",
+      "XmlDocSummary": "The slug (abbreviation slug) is a unit of mass that is accelerated by 1 ft/s² when a force of one pound (lbf) is exerted on it.",
+      "XmlDocRemarks": "http://en.wikipedia.org/wiki/Slug_(unit)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "slug" ]
+        }
+      ]
+    },
+    {
       "SingularName": "Stone",
       "PluralName": "Stone",
       "FromUnitToBaseFunc": "x/0.1574731728702698",

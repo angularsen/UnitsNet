@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -265,5 +266,12 @@ namespace UnitsNet.Tests
             ForcePerLength newtonpermeter = ForcePerLength.FromNewtonsPerMeter(1);
             Assert.False(newtonpermeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ForcePerLengthUnit.Undefined, ForcePerLength.Units);
+        }
+
     }
 }
