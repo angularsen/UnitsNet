@@ -63,11 +63,31 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
-        // Windows Runtime Component requires a default constructor
+        /// <summary>
+        ///     Creates the quantity with a value of 0 in the base unit Second.
+        /// </summary>
+        /// <remarks>
+        ///     Windows Runtime Component requires a default constructor.
+        /// </remarks>
         public Duration()
         {
             _value = 0;
             _unit = BaseUnit;
+        }
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(DurationUnit unit, [CanBeNull] string cultureName)
+        {
+            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
+            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #region Parsing
@@ -132,6 +152,21 @@ namespace UnitsNet
                 result = default(Duration);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static DurationUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -185,5 +186,12 @@ namespace UnitsNet.Tests
             ElectricCharge coulomb = ElectricCharge.FromCoulombs(1);
             Assert.False(coulomb.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ElectricChargeUnit.Undefined, ElectricCharge.Units);
+        }
+
     }
 }

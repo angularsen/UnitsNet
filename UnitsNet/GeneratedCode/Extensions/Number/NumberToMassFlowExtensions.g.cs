@@ -47,510 +47,165 @@ namespace UnitsNet.Extensions.NumberToMassFlow
         #region CentigramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow CentigramsPerSecond(this int value) => MassFlow.FromCentigramsPerSecond(value);
+        public static MassFlow CentigramsPerSecond<T>(this T value) => MassFlow.FromCentigramsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? CentigramsPerSecond(this int? value) => MassFlow.FromCentigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow CentigramsPerSecond(this long value) => MassFlow.FromCentigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? CentigramsPerSecond(this long? value) => MassFlow.FromCentigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow CentigramsPerSecond(this double value) => MassFlow.FromCentigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? CentigramsPerSecond(this double? value) => MassFlow.FromCentigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow CentigramsPerSecond(this float value) => MassFlow.FromCentigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? CentigramsPerSecond(this float? value) => MassFlow.FromCentigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow CentigramsPerSecond(this decimal value) => MassFlow.FromCentigramsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromCentigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? CentigramsPerSecond(this decimal? value) => MassFlow.FromCentigramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? CentigramsPerSecond<T>(this T? value) where T : struct => MassFlow.FromCentigramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecagramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow DecagramsPerSecond(this int value) => MassFlow.FromDecagramsPerSecond(value);
+        public static MassFlow DecagramsPerSecond<T>(this T value) => MassFlow.FromDecagramsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? DecagramsPerSecond(this int? value) => MassFlow.FromDecagramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow DecagramsPerSecond(this long value) => MassFlow.FromDecagramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? DecagramsPerSecond(this long? value) => MassFlow.FromDecagramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow DecagramsPerSecond(this double value) => MassFlow.FromDecagramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? DecagramsPerSecond(this double? value) => MassFlow.FromDecagramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow DecagramsPerSecond(this float value) => MassFlow.FromDecagramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? DecagramsPerSecond(this float? value) => MassFlow.FromDecagramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow DecagramsPerSecond(this decimal value) => MassFlow.FromDecagramsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromDecagramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? DecagramsPerSecond(this decimal? value) => MassFlow.FromDecagramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? DecagramsPerSecond<T>(this T? value) where T : struct => MassFlow.FromDecagramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecigramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow DecigramsPerSecond(this int value) => MassFlow.FromDecigramsPerSecond(value);
+        public static MassFlow DecigramsPerSecond<T>(this T value) => MassFlow.FromDecigramsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? DecigramsPerSecond(this int? value) => MassFlow.FromDecigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow DecigramsPerSecond(this long value) => MassFlow.FromDecigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? DecigramsPerSecond(this long? value) => MassFlow.FromDecigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow DecigramsPerSecond(this double value) => MassFlow.FromDecigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? DecigramsPerSecond(this double? value) => MassFlow.FromDecigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow DecigramsPerSecond(this float value) => MassFlow.FromDecigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? DecigramsPerSecond(this float? value) => MassFlow.FromDecigramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow DecigramsPerSecond(this decimal value) => MassFlow.FromDecigramsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromDecigramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? DecigramsPerSecond(this decimal? value) => MassFlow.FromDecigramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? DecigramsPerSecond<T>(this T? value) where T : struct => MassFlow.FromDecigramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromGramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow GramsPerSecond(this int value) => MassFlow.FromGramsPerSecond(value);
+        public static MassFlow GramsPerSecond<T>(this T value) => MassFlow.FromGramsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromGramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? GramsPerSecond(this int? value) => MassFlow.FromGramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromGramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow GramsPerSecond(this long value) => MassFlow.FromGramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromGramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? GramsPerSecond(this long? value) => MassFlow.FromGramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromGramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow GramsPerSecond(this double value) => MassFlow.FromGramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromGramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? GramsPerSecond(this double? value) => MassFlow.FromGramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromGramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow GramsPerSecond(this float value) => MassFlow.FromGramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromGramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? GramsPerSecond(this float? value) => MassFlow.FromGramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromGramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow GramsPerSecond(this decimal value) => MassFlow.FromGramsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromGramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? GramsPerSecond(this decimal? value) => MassFlow.FromGramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? GramsPerSecond<T>(this T? value) where T : struct => MassFlow.FromGramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region HectogramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow HectogramsPerSecond(this int value) => MassFlow.FromHectogramsPerSecond(value);
+        public static MassFlow HectogramsPerSecond<T>(this T value) => MassFlow.FromHectogramsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? HectogramsPerSecond(this int? value) => MassFlow.FromHectogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow HectogramsPerSecond(this long value) => MassFlow.FromHectogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? HectogramsPerSecond(this long? value) => MassFlow.FromHectogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow HectogramsPerSecond(this double value) => MassFlow.FromHectogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? HectogramsPerSecond(this double? value) => MassFlow.FromHectogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow HectogramsPerSecond(this float value) => MassFlow.FromHectogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? HectogramsPerSecond(this float? value) => MassFlow.FromHectogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow HectogramsPerSecond(this decimal value) => MassFlow.FromHectogramsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromHectogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? HectogramsPerSecond(this decimal? value) => MassFlow.FromHectogramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? HectogramsPerSecond<T>(this T? value) where T : struct => MassFlow.FromHectogramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramPerHour
 
         /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow KilogramsPerHour(this int value) => MassFlow.FromKilogramsPerHour(value);
+        public static MassFlow KilogramsPerHour<T>(this T value) => MassFlow.FromKilogramsPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? KilogramsPerHour(this int? value) => MassFlow.FromKilogramsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow KilogramsPerHour(this long value) => MassFlow.FromKilogramsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? KilogramsPerHour(this long? value) => MassFlow.FromKilogramsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow KilogramsPerHour(this double value) => MassFlow.FromKilogramsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? KilogramsPerHour(this double? value) => MassFlow.FromKilogramsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow KilogramsPerHour(this float value) => MassFlow.FromKilogramsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? KilogramsPerHour(this float? value) => MassFlow.FromKilogramsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow KilogramsPerHour(this decimal value) => MassFlow.FromKilogramsPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? KilogramsPerHour(this decimal? value) => MassFlow.FromKilogramsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? KilogramsPerHour<T>(this T? value) where T : struct => MassFlow.FromKilogramsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow KilogramsPerSecond(this int value) => MassFlow.FromKilogramsPerSecond(value);
+        public static MassFlow KilogramsPerSecond<T>(this T value) => MassFlow.FromKilogramsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? KilogramsPerSecond(this int? value) => MassFlow.FromKilogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow KilogramsPerSecond(this long value) => MassFlow.FromKilogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? KilogramsPerSecond(this long? value) => MassFlow.FromKilogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow KilogramsPerSecond(this double value) => MassFlow.FromKilogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? KilogramsPerSecond(this double? value) => MassFlow.FromKilogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow KilogramsPerSecond(this float value) => MassFlow.FromKilogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? KilogramsPerSecond(this float? value) => MassFlow.FromKilogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow KilogramsPerSecond(this decimal value) => MassFlow.FromKilogramsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? KilogramsPerSecond(this decimal? value) => MassFlow.FromKilogramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? KilogramsPerSecond<T>(this T? value) where T : struct => MassFlow.FromKilogramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegapoundPerHour
 
         /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow MegapoundsPerHour(this int value) => MassFlow.FromMegapoundsPerHour(value);
+        public static MassFlow MegapoundsPerHour<T>(this T value) => MassFlow.FromMegapoundsPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? MegapoundsPerHour(this int? value) => MassFlow.FromMegapoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow MegapoundsPerHour(this long value) => MassFlow.FromMegapoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? MegapoundsPerHour(this long? value) => MassFlow.FromMegapoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow MegapoundsPerHour(this double value) => MassFlow.FromMegapoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? MegapoundsPerHour(this double? value) => MassFlow.FromMegapoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow MegapoundsPerHour(this float value) => MassFlow.FromMegapoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? MegapoundsPerHour(this float? value) => MassFlow.FromMegapoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow MegapoundsPerHour(this decimal value) => MassFlow.FromMegapoundsPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? MegapoundsPerHour(this decimal? value) => MassFlow.FromMegapoundsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? MegapoundsPerHour<T>(this T? value) where T : struct => MassFlow.FromMegapoundsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicrogramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow MicrogramsPerSecond(this int value) => MassFlow.FromMicrogramsPerSecond(value);
+        public static MassFlow MicrogramsPerSecond<T>(this T value) => MassFlow.FromMicrogramsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? MicrogramsPerSecond(this int? value) => MassFlow.FromMicrogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow MicrogramsPerSecond(this long value) => MassFlow.FromMicrogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? MicrogramsPerSecond(this long? value) => MassFlow.FromMicrogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow MicrogramsPerSecond(this double value) => MassFlow.FromMicrogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? MicrogramsPerSecond(this double? value) => MassFlow.FromMicrogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow MicrogramsPerSecond(this float value) => MassFlow.FromMicrogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? MicrogramsPerSecond(this float? value) => MassFlow.FromMicrogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow MicrogramsPerSecond(this decimal value) => MassFlow.FromMicrogramsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromMicrogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? MicrogramsPerSecond(this decimal? value) => MassFlow.FromMicrogramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? MicrogramsPerSecond<T>(this T? value) where T : struct => MassFlow.FromMicrogramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MilligramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow MilligramsPerSecond(this int value) => MassFlow.FromMilligramsPerSecond(value);
+        public static MassFlow MilligramsPerSecond<T>(this T value) => MassFlow.FromMilligramsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? MilligramsPerSecond(this int? value) => MassFlow.FromMilligramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow MilligramsPerSecond(this long value) => MassFlow.FromMilligramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? MilligramsPerSecond(this long? value) => MassFlow.FromMilligramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow MilligramsPerSecond(this double value) => MassFlow.FromMilligramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? MilligramsPerSecond(this double? value) => MassFlow.FromMilligramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow MilligramsPerSecond(this float value) => MassFlow.FromMilligramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? MilligramsPerSecond(this float? value) => MassFlow.FromMilligramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow MilligramsPerSecond(this decimal value) => MassFlow.FromMilligramsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromMilligramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? MilligramsPerSecond(this decimal? value) => MassFlow.FromMilligramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? MilligramsPerSecond<T>(this T? value) where T : struct => MassFlow.FromMilligramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanogramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow NanogramsPerSecond(this int value) => MassFlow.FromNanogramsPerSecond(value);
+        public static MassFlow NanogramsPerSecond<T>(this T value) => MassFlow.FromNanogramsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? NanogramsPerSecond(this int? value) => MassFlow.FromNanogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow NanogramsPerSecond(this long value) => MassFlow.FromNanogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? NanogramsPerSecond(this long? value) => MassFlow.FromNanogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow NanogramsPerSecond(this double value) => MassFlow.FromNanogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? NanogramsPerSecond(this double? value) => MassFlow.FromNanogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow NanogramsPerSecond(this float value) => MassFlow.FromNanogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? NanogramsPerSecond(this float? value) => MassFlow.FromNanogramsPerSecond(value);
-
-        /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow NanogramsPerSecond(this decimal value) => MassFlow.FromNanogramsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromNanogramsPerSecond(UnitsNet.QuantityValue)" />
-        public static MassFlow? NanogramsPerSecond(this decimal? value) => MassFlow.FromNanogramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? NanogramsPerSecond<T>(this T? value) where T : struct => MassFlow.FromNanogramsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PoundPerHour
 
         /// <inheritdoc cref="MassFlow.FromPoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow PoundsPerHour(this int value) => MassFlow.FromPoundsPerHour(value);
+        public static MassFlow PoundsPerHour<T>(this T value) => MassFlow.FromPoundsPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromPoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? PoundsPerHour(this int? value) => MassFlow.FromPoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow PoundsPerHour(this long value) => MassFlow.FromPoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? PoundsPerHour(this long? value) => MassFlow.FromPoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow PoundsPerHour(this double value) => MassFlow.FromPoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? PoundsPerHour(this double? value) => MassFlow.FromPoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow PoundsPerHour(this float value) => MassFlow.FromPoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? PoundsPerHour(this float? value) => MassFlow.FromPoundsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow PoundsPerHour(this decimal value) => MassFlow.FromPoundsPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? PoundsPerHour(this decimal? value) => MassFlow.FromPoundsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? PoundsPerHour<T>(this T? value) where T : struct => MassFlow.FromPoundsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region ShortTonPerHour
 
         /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow ShortTonsPerHour(this int value) => MassFlow.FromShortTonsPerHour(value);
+        public static MassFlow ShortTonsPerHour<T>(this T value) => MassFlow.FromShortTonsPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? ShortTonsPerHour(this int? value) => MassFlow.FromShortTonsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow ShortTonsPerHour(this long value) => MassFlow.FromShortTonsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? ShortTonsPerHour(this long? value) => MassFlow.FromShortTonsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow ShortTonsPerHour(this double value) => MassFlow.FromShortTonsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? ShortTonsPerHour(this double? value) => MassFlow.FromShortTonsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow ShortTonsPerHour(this float value) => MassFlow.FromShortTonsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? ShortTonsPerHour(this float? value) => MassFlow.FromShortTonsPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow ShortTonsPerHour(this decimal value) => MassFlow.FromShortTonsPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromShortTonsPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? ShortTonsPerHour(this decimal? value) => MassFlow.FromShortTonsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? ShortTonsPerHour<T>(this T? value) where T : struct => MassFlow.FromShortTonsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region TonnePerDay
 
         /// <inheritdoc cref="MassFlow.FromTonnesPerDay(UnitsNet.QuantityValue)" />
-        public static MassFlow TonnesPerDay(this int value) => MassFlow.FromTonnesPerDay(value);
+        public static MassFlow TonnesPerDay<T>(this T value) => MassFlow.FromTonnesPerDay(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromTonnesPerDay(UnitsNet.QuantityValue)" />
-        public static MassFlow? TonnesPerDay(this int? value) => MassFlow.FromTonnesPerDay(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerDay(UnitsNet.QuantityValue)" />
-        public static MassFlow TonnesPerDay(this long value) => MassFlow.FromTonnesPerDay(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerDay(UnitsNet.QuantityValue)" />
-        public static MassFlow? TonnesPerDay(this long? value) => MassFlow.FromTonnesPerDay(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerDay(UnitsNet.QuantityValue)" />
-        public static MassFlow TonnesPerDay(this double value) => MassFlow.FromTonnesPerDay(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerDay(UnitsNet.QuantityValue)" />
-        public static MassFlow? TonnesPerDay(this double? value) => MassFlow.FromTonnesPerDay(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerDay(UnitsNet.QuantityValue)" />
-        public static MassFlow TonnesPerDay(this float value) => MassFlow.FromTonnesPerDay(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerDay(UnitsNet.QuantityValue)" />
-        public static MassFlow? TonnesPerDay(this float? value) => MassFlow.FromTonnesPerDay(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerDay(UnitsNet.QuantityValue)" />
-        public static MassFlow TonnesPerDay(this decimal value) => MassFlow.FromTonnesPerDay(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerDay(UnitsNet.QuantityValue)" />
-        public static MassFlow? TonnesPerDay(this decimal? value) => MassFlow.FromTonnesPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? TonnesPerDay<T>(this T? value) where T : struct => MassFlow.FromTonnesPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region TonnePerHour
 
         /// <inheritdoc cref="MassFlow.FromTonnesPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow TonnesPerHour(this int value) => MassFlow.FromTonnesPerHour(value);
+        public static MassFlow TonnesPerHour<T>(this T value) => MassFlow.FromTonnesPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromTonnesPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? TonnesPerHour(this int? value) => MassFlow.FromTonnesPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow TonnesPerHour(this long value) => MassFlow.FromTonnesPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? TonnesPerHour(this long? value) => MassFlow.FromTonnesPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow TonnesPerHour(this double value) => MassFlow.FromTonnesPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? TonnesPerHour(this double? value) => MassFlow.FromTonnesPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow TonnesPerHour(this float value) => MassFlow.FromTonnesPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? TonnesPerHour(this float? value) => MassFlow.FromTonnesPerHour(value);
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow TonnesPerHour(this decimal value) => MassFlow.FromTonnesPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromTonnesPerHour(UnitsNet.QuantityValue)" />
-        public static MassFlow? TonnesPerHour(this decimal? value) => MassFlow.FromTonnesPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? TonnesPerHour<T>(this T? value) where T : struct => MassFlow.FromTonnesPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

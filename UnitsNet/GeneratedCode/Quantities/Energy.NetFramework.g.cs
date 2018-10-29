@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable BritishThermalUnits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromBritishThermalUnits(QuantityValue? britishthermalunits)
         {
             return britishthermalunits.HasValue ? FromBritishThermalUnits(britishthermalunits.Value) : default(Energy?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable Calories.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromCalories(QuantityValue? calories)
         {
             return calories.HasValue ? FromCalories(calories.Value) : default(Energy?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable DecathermsEc.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromDecathermsEc(QuantityValue? decathermsec)
         {
             return decathermsec.HasValue ? FromDecathermsEc(decathermsec.Value) : default(Energy?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable DecathermsImperial.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromDecathermsImperial(QuantityValue? decathermsimperial)
         {
             return decathermsimperial.HasValue ? FromDecathermsImperial(decathermsimperial.Value) : default(Energy?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable DecathermsUs.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromDecathermsUs(QuantityValue? decathermsus)
         {
             return decathermsus.HasValue ? FromDecathermsUs(decathermsus.Value) : default(Energy?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable ElectronVolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromElectronVolts(QuantityValue? electronvolts)
         {
             return electronvolts.HasValue ? FromElectronVolts(electronvolts.Value) : default(Energy?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable Ergs.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromErgs(QuantityValue? ergs)
         {
             return ergs.HasValue ? FromErgs(ergs.Value) : default(Energy?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable FootPounds.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromFootPounds(QuantityValue? footpounds)
         {
             return footpounds.HasValue ? FromFootPounds(footpounds.Value) : default(Energy?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable GigabritishThermalUnits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromGigabritishThermalUnits(QuantityValue? gigabritishthermalunits)
         {
             return gigabritishthermalunits.HasValue ? FromGigabritishThermalUnits(gigabritishthermalunits.Value) : default(Energy?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable GigawattHours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromGigawattHours(QuantityValue? gigawatthours)
         {
             return gigawatthours.HasValue ? FromGigawattHours(gigawatthours.Value) : default(Energy?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable Joules.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromJoules(QuantityValue? joules)
         {
             return joules.HasValue ? FromJoules(joules.Value) : default(Energy?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable KilobritishThermalUnits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromKilobritishThermalUnits(QuantityValue? kilobritishthermalunits)
         {
             return kilobritishthermalunits.HasValue ? FromKilobritishThermalUnits(kilobritishthermalunits.Value) : default(Energy?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable Kilocalories.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromKilocalories(QuantityValue? kilocalories)
         {
             return kilocalories.HasValue ? FromKilocalories(kilocalories.Value) : default(Energy?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable Kilojoules.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromKilojoules(QuantityValue? kilojoules)
         {
             return kilojoules.HasValue ? FromKilojoules(kilojoules.Value) : default(Energy?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable KilowattHours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromKilowattHours(QuantityValue? kilowatthours)
         {
             return kilowatthours.HasValue ? FromKilowattHours(kilowatthours.Value) : default(Energy?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable MegabritishThermalUnits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromMegabritishThermalUnits(QuantityValue? megabritishthermalunits)
         {
             return megabritishthermalunits.HasValue ? FromMegabritishThermalUnits(megabritishthermalunits.Value) : default(Energy?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable Megajoules.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromMegajoules(QuantityValue? megajoules)
         {
             return megajoules.HasValue ? FromMegajoules(megajoules.Value) : default(Energy?);
@@ -201,6 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable MegawattHours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromMegawattHours(QuantityValue? megawatthours)
         {
             return megawatthours.HasValue ? FromMegawattHours(megawatthours.Value) : default(Energy?);
@@ -209,6 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable ThermsEc.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromThermsEc(QuantityValue? thermsec)
         {
             return thermsec.HasValue ? FromThermsEc(thermsec.Value) : default(Energy?);
@@ -217,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable ThermsImperial.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromThermsImperial(QuantityValue? thermsimperial)
         {
             return thermsimperial.HasValue ? FromThermsImperial(thermsimperial.Value) : default(Energy?);
@@ -225,6 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable ThermsUs.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromThermsUs(QuantityValue? thermsus)
         {
             return thermsus.HasValue ? FromThermsUs(thermsus.Value) : default(Energy?);
@@ -233,6 +254,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Energy from nullable WattHours.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Energy? FromWattHours(QuantityValue? watthours)
         {
             return watthours.HasValue ? FromWattHours(watthours.Value) : default(Energy?);
@@ -244,12 +266,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Energy unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Energy? From(QuantityValue? value, EnergyUnit fromUnit)
         {
             return value.HasValue ? new Energy((double)value.Value, fromUnit) : default(Energy?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(EnergyUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -387,6 +424,22 @@ namespace UnitsNet
                 result = default(Energy);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static EnergyUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

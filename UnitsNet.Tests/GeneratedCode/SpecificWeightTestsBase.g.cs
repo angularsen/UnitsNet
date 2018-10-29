@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -345,5 +346,12 @@ namespace UnitsNet.Tests
             SpecificWeight newtonpercubicmeter = SpecificWeight.FromNewtonsPerCubicMeter(1);
             Assert.False(newtonpercubicmeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(SpecificWeightUnit.Undefined, SpecificWeight.Units);
+        }
+
     }
 }

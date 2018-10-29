@@ -44,7 +44,7 @@ namespace UnitsNet
         ///     Absolute tolerance is defined as the maximum allowable absolute difference between <paramref name="referenceValue"/> and
         ///     <paramref name="otherValue"/> as a fixed number.
         ///     <example>
-        ///     In this example, the two values will be equal if abs(<paramref name="referenceValue"/> - <paramref name="otherValue"/>) <= 0.01
+        ///     In this example, the two values will be equal if abs(<paramref name="referenceValue"/> - <paramref name="otherValue"/>) &lt;= 0.01
         ///     <code>
         ///     Equals(a, b, 0.01, ComparisonType.Absolute);
         ///     </code>
@@ -102,10 +102,10 @@ namespace UnitsNet
         /// <summary>
         ///     Checks if two values are equal with a given absolute tolerance.
         ///     <para>
-        ///     Absolute tolerance is defined as the maximum allowable absolute difference between <paramref name="referenceValue"/> and
-        ///     <paramref name="otherValue"/> as a fixed number.
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between <paramref name="value1"/> and
+        ///     <paramref name="value2"/> as a fixed number.
         ///     <example>
-        ///     In this example, the two values will be equal if abs(<paramref name="referenceValue"/> - <paramref name="otherValue"/>) <= 0.01
+        ///     In this example, the two values will be equal if abs(<paramref name="value1"/> - <paramref name="value2"/>) &lt;= 0.01
         ///     <code>
         ///     Equals(a, b, 0.01, ComparisonType.Absolute);
         ///     </code>

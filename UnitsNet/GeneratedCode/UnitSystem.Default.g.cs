@@ -2406,6 +2406,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "short tn"),
                                 new AbbreviationsForCulture("ru-RU", "тонна малая"),
                             }),
+                        new CulturesForEnumValue((int) MassUnit.Slug,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "slug"),
+                            }),
                         new CulturesForEnumValue((int) MassUnit.Stone,
                             new[]
                             {
@@ -2624,6 +2629,16 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "lb·in²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.SlugSquareFoot,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "slug·ft²"),
+                            }),
+                        new CulturesForEnumValue((int) MassMomentOfInertiaUnit.SlugSquareInch,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "slug·in²"),
                             }),
                         new CulturesForEnumValue((int) MassMomentOfInertiaUnit.TonneSquareCentimeter,
                             new[]
@@ -3728,6 +3743,11 @@ namespace UnitsNet
                 new UnitLocalization(typeof (SpecificVolumeUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) SpecificVolumeUnit.CubicFootPerPound,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "ft³/lb"),
+                            }),
                         new CulturesForEnumValue((int) SpecificVolumeUnit.CubicMeterPerKilogram,
                             new[]
                             {
@@ -4711,6 +4731,16 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "bbl/d", "BOPD"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelsPerHour,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "bbl/hr", "bph"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.OilBarrelsPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "bbl/min", "bpm"),
                             }),
                         new CulturesForEnumValue((int) VolumeFlowUnit.UsGallonsPerHour,
                             new[]

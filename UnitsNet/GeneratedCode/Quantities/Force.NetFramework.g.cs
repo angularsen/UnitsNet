@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Force from nullable Decanewtons.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Force? FromDecanewtons(QuantityValue? decanewtons)
         {
             return decanewtons.HasValue ? FromDecanewtons(decanewtons.Value) : default(Force?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Force from nullable Dyne.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Force? FromDyne(QuantityValue? dyne)
         {
             return dyne.HasValue ? FromDyne(dyne.Value) : default(Force?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Force from nullable KilogramsForce.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Force? FromKilogramsForce(QuantityValue? kilogramsforce)
         {
             return kilogramsforce.HasValue ? FromKilogramsForce(kilogramsforce.Value) : default(Force?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Force from nullable Kilonewtons.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Force? FromKilonewtons(QuantityValue? kilonewtons)
         {
             return kilonewtons.HasValue ? FromKilonewtons(kilonewtons.Value) : default(Force?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Force from nullable KiloPonds.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Force? FromKiloPonds(QuantityValue? kiloponds)
         {
             return kiloponds.HasValue ? FromKiloPonds(kiloponds.Value) : default(Force?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Force from nullable Meganewtons.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Force? FromMeganewtons(QuantityValue? meganewtons)
         {
             return meganewtons.HasValue ? FromMeganewtons(meganewtons.Value) : default(Force?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Force from nullable Newtons.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Force? FromNewtons(QuantityValue? newtons)
         {
             return newtons.HasValue ? FromNewtons(newtons.Value) : default(Force?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Force from nullable Poundals.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Force? FromPoundals(QuantityValue? poundals)
         {
             return poundals.HasValue ? FromPoundals(poundals.Value) : default(Force?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Force from nullable PoundsForce.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Force? FromPoundsForce(QuantityValue? poundsforce)
         {
             return poundsforce.HasValue ? FromPoundsForce(poundsforce.Value) : default(Force?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Force from nullable TonnesForce.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Force? FromTonnesForce(QuantityValue? tonnesforce)
         {
             return tonnesforce.HasValue ? FromTonnesForce(tonnesforce.Value) : default(Force?);
@@ -148,12 +158,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Force unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Force? From(QuantityValue? value, ForceUnit fromUnit)
         {
             return value.HasValue ? new Force((double)value.Value, fromUnit) : default(Force?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(ForceUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -291,6 +316,22 @@ namespace UnitsNet
                 result = default(Force);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static ForceUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

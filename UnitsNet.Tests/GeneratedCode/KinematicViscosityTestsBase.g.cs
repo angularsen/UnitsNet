@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -255,5 +256,12 @@ namespace UnitsNet.Tests
             KinematicViscosity squaremeterpersecond = KinematicViscosity.FromSquareMetersPerSecond(1);
             Assert.False(squaremeterpersecond.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(KinematicViscosityUnit.Undefined, KinematicViscosity.Units);
+        }
+
     }
 }

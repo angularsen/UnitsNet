@@ -47,170 +47,55 @@ namespace UnitsNet.Extensions.NumberToElectricPotentialAc
         #region KilovoltAc
 
         /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc KilovoltsAc(this int value) => ElectricPotentialAc.FromKilovoltsAc(value);
+        public static ElectricPotentialAc KilovoltsAc<T>(this T value) => ElectricPotentialAc.FromKilovoltsAc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? KilovoltsAc(this int? value) => ElectricPotentialAc.FromKilovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc KilovoltsAc(this long value) => ElectricPotentialAc.FromKilovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? KilovoltsAc(this long? value) => ElectricPotentialAc.FromKilovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc KilovoltsAc(this double value) => ElectricPotentialAc.FromKilovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? KilovoltsAc(this double? value) => ElectricPotentialAc.FromKilovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc KilovoltsAc(this float value) => ElectricPotentialAc.FromKilovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? KilovoltsAc(this float? value) => ElectricPotentialAc.FromKilovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc KilovoltsAc(this decimal value) => ElectricPotentialAc.FromKilovoltsAc(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromKilovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? KilovoltsAc(this decimal? value) => ElectricPotentialAc.FromKilovoltsAc(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricPotentialAc? KilovoltsAc<T>(this T? value) where T : struct => ElectricPotentialAc.FromKilovoltsAc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MegavoltAc
 
         /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MegavoltsAc(this int value) => ElectricPotentialAc.FromMegavoltsAc(value);
+        public static ElectricPotentialAc MegavoltsAc<T>(this T value) => ElectricPotentialAc.FromMegavoltsAc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MegavoltsAc(this int? value) => ElectricPotentialAc.FromMegavoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MegavoltsAc(this long value) => ElectricPotentialAc.FromMegavoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MegavoltsAc(this long? value) => ElectricPotentialAc.FromMegavoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MegavoltsAc(this double value) => ElectricPotentialAc.FromMegavoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MegavoltsAc(this double? value) => ElectricPotentialAc.FromMegavoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MegavoltsAc(this float value) => ElectricPotentialAc.FromMegavoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MegavoltsAc(this float? value) => ElectricPotentialAc.FromMegavoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MegavoltsAc(this decimal value) => ElectricPotentialAc.FromMegavoltsAc(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMegavoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MegavoltsAc(this decimal? value) => ElectricPotentialAc.FromMegavoltsAc(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricPotentialAc? MegavoltsAc<T>(this T? value) where T : struct => ElectricPotentialAc.FromMegavoltsAc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicrovoltAc
 
         /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MicrovoltsAc(this int value) => ElectricPotentialAc.FromMicrovoltsAc(value);
+        public static ElectricPotentialAc MicrovoltsAc<T>(this T value) => ElectricPotentialAc.FromMicrovoltsAc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MicrovoltsAc(this int? value) => ElectricPotentialAc.FromMicrovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MicrovoltsAc(this long value) => ElectricPotentialAc.FromMicrovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MicrovoltsAc(this long? value) => ElectricPotentialAc.FromMicrovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MicrovoltsAc(this double value) => ElectricPotentialAc.FromMicrovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MicrovoltsAc(this double? value) => ElectricPotentialAc.FromMicrovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MicrovoltsAc(this float value) => ElectricPotentialAc.FromMicrovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MicrovoltsAc(this float? value) => ElectricPotentialAc.FromMicrovoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MicrovoltsAc(this decimal value) => ElectricPotentialAc.FromMicrovoltsAc(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMicrovoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MicrovoltsAc(this decimal? value) => ElectricPotentialAc.FromMicrovoltsAc(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricPotentialAc? MicrovoltsAc<T>(this T? value) where T : struct => ElectricPotentialAc.FromMicrovoltsAc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillivoltAc
 
         /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MillivoltsAc(this int value) => ElectricPotentialAc.FromMillivoltsAc(value);
+        public static ElectricPotentialAc MillivoltsAc<T>(this T value) => ElectricPotentialAc.FromMillivoltsAc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MillivoltsAc(this int? value) => ElectricPotentialAc.FromMillivoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MillivoltsAc(this long value) => ElectricPotentialAc.FromMillivoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MillivoltsAc(this long? value) => ElectricPotentialAc.FromMillivoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MillivoltsAc(this double value) => ElectricPotentialAc.FromMillivoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MillivoltsAc(this double? value) => ElectricPotentialAc.FromMillivoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MillivoltsAc(this float value) => ElectricPotentialAc.FromMillivoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MillivoltsAc(this float? value) => ElectricPotentialAc.FromMillivoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc MillivoltsAc(this decimal value) => ElectricPotentialAc.FromMillivoltsAc(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromMillivoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? MillivoltsAc(this decimal? value) => ElectricPotentialAc.FromMillivoltsAc(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricPotentialAc? MillivoltsAc<T>(this T? value) where T : struct => ElectricPotentialAc.FromMillivoltsAc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region VoltAc
 
         /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc VoltsAc(this int value) => ElectricPotentialAc.FromVoltsAc(value);
+        public static ElectricPotentialAc VoltsAc<T>(this T value) => ElectricPotentialAc.FromVoltsAc(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? VoltsAc(this int? value) => ElectricPotentialAc.FromVoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc VoltsAc(this long value) => ElectricPotentialAc.FromVoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? VoltsAc(this long? value) => ElectricPotentialAc.FromVoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc VoltsAc(this double value) => ElectricPotentialAc.FromVoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? VoltsAc(this double? value) => ElectricPotentialAc.FromVoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc VoltsAc(this float value) => ElectricPotentialAc.FromVoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? VoltsAc(this float? value) => ElectricPotentialAc.FromVoltsAc(value);
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc VoltsAc(this decimal value) => ElectricPotentialAc.FromVoltsAc(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricPotentialAc.FromVoltsAc(UnitsNet.QuantityValue)" />
-        public static ElectricPotentialAc? VoltsAc(this decimal? value) => ElectricPotentialAc.FromVoltsAc(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricPotentialAc? VoltsAc<T>(this T? value) where T : struct => ElectricPotentialAc.FromVoltsAc(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

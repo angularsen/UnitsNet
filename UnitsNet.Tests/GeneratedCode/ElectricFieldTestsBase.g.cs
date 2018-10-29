@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -185,5 +186,12 @@ namespace UnitsNet.Tests
             ElectricField voltpermeter = ElectricField.FromVoltsPerMeter(1);
             Assert.False(voltpermeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ElectricFieldUnit.Undefined, ElectricField.Units);
+        }
+
     }
 }

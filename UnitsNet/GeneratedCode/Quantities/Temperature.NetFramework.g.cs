@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesCelsius.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesCelsius(QuantityValue? degreescelsius)
         {
             return degreescelsius.HasValue ? FromDegreesCelsius(degreescelsius.Value) : default(Temperature?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesDelisle.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesDelisle(QuantityValue? degreesdelisle)
         {
             return degreesdelisle.HasValue ? FromDegreesDelisle(degreesdelisle.Value) : default(Temperature?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesFahrenheit.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesFahrenheit(QuantityValue? degreesfahrenheit)
         {
             return degreesfahrenheit.HasValue ? FromDegreesFahrenheit(degreesfahrenheit.Value) : default(Temperature?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesNewton.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesNewton(QuantityValue? degreesnewton)
         {
             return degreesnewton.HasValue ? FromDegreesNewton(degreesnewton.Value) : default(Temperature?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesRankine.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesRankine(QuantityValue? degreesrankine)
         {
             return degreesrankine.HasValue ? FromDegreesRankine(degreesrankine.Value) : default(Temperature?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesReaumur.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesReaumur(QuantityValue? degreesreaumur)
         {
             return degreesreaumur.HasValue ? FromDegreesReaumur(degreesreaumur.Value) : default(Temperature?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable DegreesRoemer.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromDegreesRoemer(QuantityValue? degreesroemer)
         {
             return degreesroemer.HasValue ? FromDegreesRoemer(degreesroemer.Value) : default(Temperature?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Temperature from nullable Kelvins.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Temperature? FromKelvins(QuantityValue? kelvins)
         {
             return kelvins.HasValue ? FromKelvins(kelvins.Value) : default(Temperature?);
@@ -132,12 +140,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Temperature unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Temperature? From(QuantityValue? value, TemperatureUnit fromUnit)
         {
             return value.HasValue ? new Temperature((double)value.Value, fromUnit) : default(Temperature?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(TemperatureUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         public static bool operator <=(Temperature left, Temperature right)
         {
@@ -236,6 +259,22 @@ namespace UnitsNet
                 result = default(Temperature);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static TemperatureUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

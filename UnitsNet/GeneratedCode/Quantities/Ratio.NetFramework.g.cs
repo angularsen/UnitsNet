@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable DecimalFractions.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Ratio? FromDecimalFractions(QuantityValue? decimalfractions)
         {
             return decimalfractions.HasValue ? FromDecimalFractions(decimalfractions.Value) : default(Ratio?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable PartsPerBillion.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Ratio? FromPartsPerBillion(QuantityValue? partsperbillion)
         {
             return partsperbillion.HasValue ? FromPartsPerBillion(partsperbillion.Value) : default(Ratio?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable PartsPerMillion.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Ratio? FromPartsPerMillion(QuantityValue? partspermillion)
         {
             return partspermillion.HasValue ? FromPartsPerMillion(partspermillion.Value) : default(Ratio?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable PartsPerThousand.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Ratio? FromPartsPerThousand(QuantityValue? partsperthousand)
         {
             return partsperthousand.HasValue ? FromPartsPerThousand(partsperthousand.Value) : default(Ratio?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable PartsPerTrillion.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Ratio? FromPartsPerTrillion(QuantityValue? partspertrillion)
         {
             return partspertrillion.HasValue ? FromPartsPerTrillion(partspertrillion.Value) : default(Ratio?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Ratio from nullable Percent.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Ratio? FromPercent(QuantityValue? percent)
         {
             return percent.HasValue ? FromPercent(percent.Value) : default(Ratio?);
@@ -116,12 +122,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Ratio unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Ratio? From(QuantityValue? value, RatioUnit fromUnit)
         {
             return value.HasValue ? new Ratio((double)value.Value, fromUnit) : default(Ratio?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(RatioUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -259,6 +280,22 @@ namespace UnitsNet
                 result = default(Ratio);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static RatioUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

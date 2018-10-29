@@ -82,6 +82,9 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
         }
 
+        /// <summary>
+        ///     Creates the quantity with the given value in the base unit Kilogram.
+        /// </summary>
         [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
         public Mass(double kilograms)
         {
@@ -98,7 +101,7 @@ namespace UnitsNet
 #if WINDOWS_UWP
         private
 #else
-        public 
+        public
 #endif
         Mass(double numericValue, MassUnit unit)
         {
@@ -156,7 +159,7 @@ namespace UnitsNet
         /// <summary>
         ///     All units of measurement for the Mass quantity.
         /// </summary>
-        public static MassUnit[] Units { get; } = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().ToArray();
+        public static MassUnit[] Units { get; } = Enum.GetValues(typeof(MassUnit)).Cast<MassUnit>().Except(new MassUnit[]{ MassUnit.Undefined }).ToArray();
 
         /// <summary>
         ///     Get Mass in Centigrams.
@@ -254,6 +257,11 @@ namespace UnitsNet
         public double ShortTons => As(MassUnit.ShortTon);
 
         /// <summary>
+        ///     Get Mass in Slugs.
+        /// </summary>
+        public double Slugs => As(MassUnit.Slug);
+
+        /// <summary>
         ///     Get Mass in Stone.
         /// </summary>
         public double Stone => As(MassUnit.Stone);
@@ -267,6 +275,9 @@ namespace UnitsNet
 
         #region Static
 
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit Kilogram.
+        /// </summary>
         public static Mass Zero => new Mass(0, BaseUnit);
 
         /// <summary>
@@ -536,6 +547,20 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Mass from Slugs.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Mass FromSlugs(double slugs)
+#else
+        public static Mass FromSlugs(QuantityValue slugs)
+#endif
+        {
+            double value = (double) slugs;
+            return new Mass(value, MassUnit.Slug);
+        }
+
+        /// <summary>
         ///     Get Mass from Stone.
         /// </summary>
 #if WINDOWS_UWP
@@ -590,35 +615,6 @@ namespace UnitsNet
         public static string GetAbbreviation(MassUnit unit)
         {
             return GetAbbreviation(unit, null);
-        }
-
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-#if WINDOWS_UWP
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-#else
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-#endif
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(
-          MassUnit unit,
-#if WINDOWS_UWP
-          [CanBeNull] string cultureName)
-#else
-          [CanBeNull] IFormatProvider provider)
-#endif
-        {
-#if WINDOWS_UWP
-            // Windows Runtime Component does not support CultureInfo and IFormatProvider types, so we use culture name for public methods: https://msdn.microsoft.com/en-us/library/br230301.aspx
-            IFormatProvider provider = cultureName == null ? UnitSystem.DefaultCulture : new CultureInfo(cultureName);
-#else
-            provider = provider ?? UnitSystem.DefaultCulture;
-#endif
-
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
         }
 
         #endregion
@@ -719,6 +715,10 @@ namespace UnitsNet
             return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
         }
 
+        /// <summary>
+        ///     Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A hash code for the current Mass.</returns>
         public override int GetHashCode()
         {
             return new { Value, Unit }.GetHashCode();
@@ -779,6 +779,7 @@ namespace UnitsNet
                 case MassUnit.Pound: return _value*0.45359237;
                 case MassUnit.ShortHundredweight: return _value/0.022046226218487758;
                 case MassUnit.ShortTon: return _value*9.0718474e2;
+                case MassUnit.Slug: return _value/6.852176556196105e-2;
                 case MassUnit.Stone: return _value/0.1574731728702698;
                 case MassUnit.Tonne: return _value*1e3;
                 default:
@@ -814,6 +815,7 @@ namespace UnitsNet
                 case MassUnit.Pound: return baseUnitValue/0.45359237;
                 case MassUnit.ShortHundredweight: return baseUnitValue*0.022046226218487758;
                 case MassUnit.ShortTon: return baseUnitValue/9.0718474e2;
+                case MassUnit.Slug: return baseUnitValue*6.852176556196105e-2;
                 case MassUnit.Stone: return baseUnitValue*0.1574731728702698;
                 case MassUnit.Tonne: return baseUnitValue/1e3;
                 default:
@@ -879,28 +881,12 @@ namespace UnitsNet
             return ParseUnit(str, (IFormatProvider)null);
         }
 
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from other .NET targets.")]
-        public static MassUnit ParseUnit(string str, [CanBeNull] string cultureName)
-        {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
-        }
-
         #endregion
 
-        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         /// <summary>
         ///     Set the default unit used by ToString(). Default is Kilogram
         /// </summary>
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
         public static MassUnit ToStringDefaultUnit { get; set; } = MassUnit.Kilogram;
 
         /// <summary>

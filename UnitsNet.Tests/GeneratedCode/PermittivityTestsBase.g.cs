@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -185,5 +186,12 @@ namespace UnitsNet.Tests
             Permittivity faradpermeter = Permittivity.FromFaradsPerMeter(1);
             Assert.False(faradpermeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(PermittivityUnit.Undefined, Permittivity.Units);
+        }
+
     }
 }

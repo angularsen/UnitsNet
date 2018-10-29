@@ -47,68 +47,22 @@ namespace UnitsNet.Extensions.NumberToMassFlux
         #region GramPerSecondPerSquareMeter
 
         /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux GramsPerSecondPerSquareMeter(this int value) => MassFlux.FromGramsPerSecondPerSquareMeter(value);
+        public static MassFlux GramsPerSecondPerSquareMeter<T>(this T value) => MassFlux.FromGramsPerSecondPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux? GramsPerSecondPerSquareMeter(this int? value) => MassFlux.FromGramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux GramsPerSecondPerSquareMeter(this long value) => MassFlux.FromGramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux? GramsPerSecondPerSquareMeter(this long? value) => MassFlux.FromGramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux GramsPerSecondPerSquareMeter(this double value) => MassFlux.FromGramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux? GramsPerSecondPerSquareMeter(this double? value) => MassFlux.FromGramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux GramsPerSecondPerSquareMeter(this float value) => MassFlux.FromGramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux? GramsPerSecondPerSquareMeter(this float? value) => MassFlux.FromGramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux GramsPerSecondPerSquareMeter(this decimal value) => MassFlux.FromGramsPerSecondPerSquareMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlux.FromGramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux? GramsPerSecondPerSquareMeter(this decimal? value) => MassFlux.FromGramsPerSecondPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlux? GramsPerSecondPerSquareMeter<T>(this T? value) where T : struct => MassFlux.FromGramsPerSecondPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramPerSecondPerSquareMeter
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux KilogramsPerSecondPerSquareMeter(this int value) => MassFlux.FromKilogramsPerSecondPerSquareMeter(value);
+        public static MassFlux KilogramsPerSecondPerSquareMeter<T>(this T value) => MassFlux.FromKilogramsPerSecondPerSquareMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux? KilogramsPerSecondPerSquareMeter(this int? value) => MassFlux.FromKilogramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux KilogramsPerSecondPerSquareMeter(this long value) => MassFlux.FromKilogramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux? KilogramsPerSecondPerSquareMeter(this long? value) => MassFlux.FromKilogramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux KilogramsPerSecondPerSquareMeter(this double value) => MassFlux.FromKilogramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux? KilogramsPerSecondPerSquareMeter(this double? value) => MassFlux.FromKilogramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux KilogramsPerSecondPerSquareMeter(this float value) => MassFlux.FromKilogramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux? KilogramsPerSecondPerSquareMeter(this float? value) => MassFlux.FromKilogramsPerSecondPerSquareMeter(value);
-
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux KilogramsPerSecondPerSquareMeter(this decimal value) => MassFlux.FromKilogramsPerSecondPerSquareMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlux.FromKilogramsPerSecondPerSquareMeter(UnitsNet.QuantityValue)" />
-        public static MassFlux? KilogramsPerSecondPerSquareMeter(this decimal? value) => MassFlux.FromKilogramsPerSecondPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlux? KilogramsPerSecondPerSquareMeter<T>(this T? value) where T : struct => MassFlux.FromKilogramsPerSecondPerSquareMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

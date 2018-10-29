@@ -47,136 +47,44 @@ namespace UnitsNet.Extensions.NumberToIlluminance
         #region Kilolux
 
         /// <inheritdoc cref="Illuminance.FromKilolux(UnitsNet.QuantityValue)" />
-        public static Illuminance Kilolux(this int value) => Illuminance.FromKilolux(value);
+        public static Illuminance Kilolux<T>(this T value) => Illuminance.FromKilolux(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Illuminance.FromKilolux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Kilolux(this int? value) => Illuminance.FromKilolux(value);
-
-        /// <inheritdoc cref="Illuminance.FromKilolux(UnitsNet.QuantityValue)" />
-        public static Illuminance Kilolux(this long value) => Illuminance.FromKilolux(value);
-
-        /// <inheritdoc cref="Illuminance.FromKilolux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Kilolux(this long? value) => Illuminance.FromKilolux(value);
-
-        /// <inheritdoc cref="Illuminance.FromKilolux(UnitsNet.QuantityValue)" />
-        public static Illuminance Kilolux(this double value) => Illuminance.FromKilolux(value);
-
-        /// <inheritdoc cref="Illuminance.FromKilolux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Kilolux(this double? value) => Illuminance.FromKilolux(value);
-
-        /// <inheritdoc cref="Illuminance.FromKilolux(UnitsNet.QuantityValue)" />
-        public static Illuminance Kilolux(this float value) => Illuminance.FromKilolux(value);
-
-        /// <inheritdoc cref="Illuminance.FromKilolux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Kilolux(this float? value) => Illuminance.FromKilolux(value);
-
-        /// <inheritdoc cref="Illuminance.FromKilolux(UnitsNet.QuantityValue)" />
-        public static Illuminance Kilolux(this decimal value) => Illuminance.FromKilolux(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Illuminance.FromKilolux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Kilolux(this decimal? value) => Illuminance.FromKilolux(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Illuminance? Kilolux<T>(this T? value) where T : struct => Illuminance.FromKilolux(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Lux
 
         /// <inheritdoc cref="Illuminance.FromLux(UnitsNet.QuantityValue)" />
-        public static Illuminance Lux(this int value) => Illuminance.FromLux(value);
+        public static Illuminance Lux<T>(this T value) => Illuminance.FromLux(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Illuminance.FromLux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Lux(this int? value) => Illuminance.FromLux(value);
-
-        /// <inheritdoc cref="Illuminance.FromLux(UnitsNet.QuantityValue)" />
-        public static Illuminance Lux(this long value) => Illuminance.FromLux(value);
-
-        /// <inheritdoc cref="Illuminance.FromLux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Lux(this long? value) => Illuminance.FromLux(value);
-
-        /// <inheritdoc cref="Illuminance.FromLux(UnitsNet.QuantityValue)" />
-        public static Illuminance Lux(this double value) => Illuminance.FromLux(value);
-
-        /// <inheritdoc cref="Illuminance.FromLux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Lux(this double? value) => Illuminance.FromLux(value);
-
-        /// <inheritdoc cref="Illuminance.FromLux(UnitsNet.QuantityValue)" />
-        public static Illuminance Lux(this float value) => Illuminance.FromLux(value);
-
-        /// <inheritdoc cref="Illuminance.FromLux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Lux(this float? value) => Illuminance.FromLux(value);
-
-        /// <inheritdoc cref="Illuminance.FromLux(UnitsNet.QuantityValue)" />
-        public static Illuminance Lux(this decimal value) => Illuminance.FromLux(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Illuminance.FromLux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Lux(this decimal? value) => Illuminance.FromLux(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Illuminance? Lux<T>(this T? value) where T : struct => Illuminance.FromLux(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Megalux
 
         /// <inheritdoc cref="Illuminance.FromMegalux(UnitsNet.QuantityValue)" />
-        public static Illuminance Megalux(this int value) => Illuminance.FromMegalux(value);
+        public static Illuminance Megalux<T>(this T value) => Illuminance.FromMegalux(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Illuminance.FromMegalux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Megalux(this int? value) => Illuminance.FromMegalux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMegalux(UnitsNet.QuantityValue)" />
-        public static Illuminance Megalux(this long value) => Illuminance.FromMegalux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMegalux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Megalux(this long? value) => Illuminance.FromMegalux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMegalux(UnitsNet.QuantityValue)" />
-        public static Illuminance Megalux(this double value) => Illuminance.FromMegalux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMegalux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Megalux(this double? value) => Illuminance.FromMegalux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMegalux(UnitsNet.QuantityValue)" />
-        public static Illuminance Megalux(this float value) => Illuminance.FromMegalux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMegalux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Megalux(this float? value) => Illuminance.FromMegalux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMegalux(UnitsNet.QuantityValue)" />
-        public static Illuminance Megalux(this decimal value) => Illuminance.FromMegalux(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Illuminance.FromMegalux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Megalux(this decimal? value) => Illuminance.FromMegalux(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Illuminance? Megalux<T>(this T? value) where T : struct => Illuminance.FromMegalux(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Millilux
 
         /// <inheritdoc cref="Illuminance.FromMillilux(UnitsNet.QuantityValue)" />
-        public static Illuminance Millilux(this int value) => Illuminance.FromMillilux(value);
+        public static Illuminance Millilux<T>(this T value) => Illuminance.FromMillilux(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Illuminance.FromMillilux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Millilux(this int? value) => Illuminance.FromMillilux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMillilux(UnitsNet.QuantityValue)" />
-        public static Illuminance Millilux(this long value) => Illuminance.FromMillilux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMillilux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Millilux(this long? value) => Illuminance.FromMillilux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMillilux(UnitsNet.QuantityValue)" />
-        public static Illuminance Millilux(this double value) => Illuminance.FromMillilux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMillilux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Millilux(this double? value) => Illuminance.FromMillilux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMillilux(UnitsNet.QuantityValue)" />
-        public static Illuminance Millilux(this float value) => Illuminance.FromMillilux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMillilux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Millilux(this float? value) => Illuminance.FromMillilux(value);
-
-        /// <inheritdoc cref="Illuminance.FromMillilux(UnitsNet.QuantityValue)" />
-        public static Illuminance Millilux(this decimal value) => Illuminance.FromMillilux(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Illuminance.FromMillilux(UnitsNet.QuantityValue)" />
-        public static Illuminance? Millilux(this decimal? value) => Illuminance.FromMillilux(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Illuminance? Millilux<T>(this T? value) where T : struct => Illuminance.FromMillilux(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

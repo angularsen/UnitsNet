@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable CentidegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromCentidegreesCelsiusPerSecond(QuantityValue? centidegreescelsiuspersecond)
         {
             return centidegreescelsiuspersecond.HasValue ? FromCentidegreesCelsiusPerSecond(centidegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable DecadegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromDecadegreesCelsiusPerSecond(QuantityValue? decadegreescelsiuspersecond)
         {
             return decadegreescelsiuspersecond.HasValue ? FromDecadegreesCelsiusPerSecond(decadegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable DecidegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromDecidegreesCelsiusPerSecond(QuantityValue? decidegreescelsiuspersecond)
         {
             return decidegreescelsiuspersecond.HasValue ? FromDecidegreesCelsiusPerSecond(decidegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromDegreesCelsiusPerMinute(QuantityValue? degreescelsiusperminute)
         {
             return degreescelsiusperminute.HasValue ? FromDegreesCelsiusPerMinute(degreescelsiusperminute.Value) : default(TemperatureChangeRate?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable DegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromDegreesCelsiusPerSecond(QuantityValue? degreescelsiuspersecond)
         {
             return degreescelsiuspersecond.HasValue ? FromDegreesCelsiusPerSecond(degreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable HectodegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromHectodegreesCelsiusPerSecond(QuantityValue? hectodegreescelsiuspersecond)
         {
             return hectodegreescelsiuspersecond.HasValue ? FromHectodegreesCelsiusPerSecond(hectodegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable KilodegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromKilodegreesCelsiusPerSecond(QuantityValue? kilodegreescelsiuspersecond)
         {
             return kilodegreescelsiuspersecond.HasValue ? FromKilodegreesCelsiusPerSecond(kilodegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable MicrodegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromMicrodegreesCelsiusPerSecond(QuantityValue? microdegreescelsiuspersecond)
         {
             return microdegreescelsiuspersecond.HasValue ? FromMicrodegreesCelsiusPerSecond(microdegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable MillidegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromMillidegreesCelsiusPerSecond(QuantityValue? millidegreescelsiuspersecond)
         {
             return millidegreescelsiuspersecond.HasValue ? FromMillidegreesCelsiusPerSecond(millidegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable TemperatureChangeRate from nullable NanodegreesCelsiusPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static TemperatureChangeRate? FromNanodegreesCelsiusPerSecond(QuantityValue? nanodegreescelsiuspersecond)
         {
             return nanodegreescelsiuspersecond.HasValue ? FromNanodegreesCelsiusPerSecond(nanodegreescelsiuspersecond.Value) : default(TemperatureChangeRate?);
@@ -148,12 +158,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>TemperatureChangeRate unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static TemperatureChangeRate? From(QuantityValue? value, TemperatureChangeRateUnit fromUnit)
         {
             return value.HasValue ? new TemperatureChangeRate((double)value.Value, fromUnit) : default(TemperatureChangeRate?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(TemperatureChangeRateUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -291,6 +316,22 @@ namespace UnitsNet
                 result = default(TemperatureChangeRate);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static TemperatureChangeRateUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

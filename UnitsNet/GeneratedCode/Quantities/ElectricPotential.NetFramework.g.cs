@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotential from nullable Kilovolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricPotential? FromKilovolts(QuantityValue? kilovolts)
         {
             return kilovolts.HasValue ? FromKilovolts(kilovolts.Value) : default(ElectricPotential?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotential from nullable Megavolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricPotential? FromMegavolts(QuantityValue? megavolts)
         {
             return megavolts.HasValue ? FromMegavolts(megavolts.Value) : default(ElectricPotential?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotential from nullable Microvolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricPotential? FromMicrovolts(QuantityValue? microvolts)
         {
             return microvolts.HasValue ? FromMicrovolts(microvolts.Value) : default(ElectricPotential?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotential from nullable Millivolts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricPotential? FromMillivolts(QuantityValue? millivolts)
         {
             return millivolts.HasValue ? FromMillivolts(millivolts.Value) : default(ElectricPotential?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable ElectricPotential from nullable Volts.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static ElectricPotential? FromVolts(QuantityValue? volts)
         {
             return volts.HasValue ? FromVolts(volts.Value) : default(ElectricPotential?);
@@ -108,12 +113,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>ElectricPotential unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static ElectricPotential? From(QuantityValue? value, ElectricPotentialUnit fromUnit)
         {
             return value.HasValue ? new ElectricPotential((double)value.Value, fromUnit) : default(ElectricPotential?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(ElectricPotentialUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -251,6 +271,22 @@ namespace UnitsNet
                 result = default(ElectricPotential);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static ElectricPotentialUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

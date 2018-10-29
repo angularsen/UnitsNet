@@ -47,1292 +47,418 @@ namespace UnitsNet.Extensions.NumberToDensity
         #region CentigramPerDeciliter
 
         /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerDeciLiter(this int value) => Density.FromCentigramsPerDeciLiter(value);
+        public static Density CentigramsPerDeciLiter<T>(this T value) => Density.FromCentigramsPerDeciLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerDeciLiter(this int? value) => Density.FromCentigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerDeciLiter(this long value) => Density.FromCentigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerDeciLiter(this long? value) => Density.FromCentigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerDeciLiter(this double value) => Density.FromCentigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerDeciLiter(this double? value) => Density.FromCentigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerDeciLiter(this float value) => Density.FromCentigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerDeciLiter(this float? value) => Density.FromCentigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerDeciLiter(this decimal value) => Density.FromCentigramsPerDeciLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromCentigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerDeciLiter(this decimal? value) => Density.FromCentigramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? CentigramsPerDeciLiter<T>(this T? value) where T : struct => Density.FromCentigramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CentigramPerLiter
 
         /// <inheritdoc cref="Density.FromCentigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerLiter(this int value) => Density.FromCentigramsPerLiter(value);
+        public static Density CentigramsPerLiter<T>(this T value) => Density.FromCentigramsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromCentigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerLiter(this int? value) => Density.FromCentigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerLiter(this long value) => Density.FromCentigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerLiter(this long? value) => Density.FromCentigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerLiter(this double value) => Density.FromCentigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerLiter(this double? value) => Density.FromCentigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerLiter(this float value) => Density.FromCentigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerLiter(this float? value) => Density.FromCentigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerLiter(this decimal value) => Density.FromCentigramsPerLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromCentigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerLiter(this decimal? value) => Density.FromCentigramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? CentigramsPerLiter<T>(this T? value) where T : struct => Density.FromCentigramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CentigramPerMilliliter
 
         /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerMilliliter(this int value) => Density.FromCentigramsPerMilliliter(value);
+        public static Density CentigramsPerMilliliter<T>(this T value) => Density.FromCentigramsPerMilliliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerMilliliter(this int? value) => Density.FromCentigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerMilliliter(this long value) => Density.FromCentigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerMilliliter(this long? value) => Density.FromCentigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerMilliliter(this double value) => Density.FromCentigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerMilliliter(this double? value) => Density.FromCentigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerMilliliter(this float value) => Density.FromCentigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerMilliliter(this float? value) => Density.FromCentigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density CentigramsPerMilliliter(this decimal value) => Density.FromCentigramsPerMilliliter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromCentigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? CentigramsPerMilliliter(this decimal? value) => Density.FromCentigramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? CentigramsPerMilliliter<T>(this T? value) where T : struct => Density.FromCentigramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecigramPerDeciliter
 
         /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerDeciLiter(this int value) => Density.FromDecigramsPerDeciLiter(value);
+        public static Density DecigramsPerDeciLiter<T>(this T value) => Density.FromDecigramsPerDeciLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerDeciLiter(this int? value) => Density.FromDecigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerDeciLiter(this long value) => Density.FromDecigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerDeciLiter(this long? value) => Density.FromDecigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerDeciLiter(this double value) => Density.FromDecigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerDeciLiter(this double? value) => Density.FromDecigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerDeciLiter(this float value) => Density.FromDecigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerDeciLiter(this float? value) => Density.FromDecigramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerDeciLiter(this decimal value) => Density.FromDecigramsPerDeciLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromDecigramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerDeciLiter(this decimal? value) => Density.FromDecigramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? DecigramsPerDeciLiter<T>(this T? value) where T : struct => Density.FromDecigramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecigramPerLiter
 
         /// <inheritdoc cref="Density.FromDecigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerLiter(this int value) => Density.FromDecigramsPerLiter(value);
+        public static Density DecigramsPerLiter<T>(this T value) => Density.FromDecigramsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromDecigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerLiter(this int? value) => Density.FromDecigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerLiter(this long value) => Density.FromDecigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerLiter(this long? value) => Density.FromDecigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerLiter(this double value) => Density.FromDecigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerLiter(this double? value) => Density.FromDecigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerLiter(this float value) => Density.FromDecigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerLiter(this float? value) => Density.FromDecigramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerLiter(this decimal value) => Density.FromDecigramsPerLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromDecigramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerLiter(this decimal? value) => Density.FromDecigramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? DecigramsPerLiter<T>(this T? value) where T : struct => Density.FromDecigramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecigramPerMilliliter
 
         /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerMilliliter(this int value) => Density.FromDecigramsPerMilliliter(value);
+        public static Density DecigramsPerMilliliter<T>(this T value) => Density.FromDecigramsPerMilliliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerMilliliter(this int? value) => Density.FromDecigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerMilliliter(this long value) => Density.FromDecigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerMilliliter(this long? value) => Density.FromDecigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerMilliliter(this double value) => Density.FromDecigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerMilliliter(this double? value) => Density.FromDecigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerMilliliter(this float value) => Density.FromDecigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerMilliliter(this float? value) => Density.FromDecigramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density DecigramsPerMilliliter(this decimal value) => Density.FromDecigramsPerMilliliter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromDecigramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? DecigramsPerMilliliter(this decimal? value) => Density.FromDecigramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? DecigramsPerMilliliter<T>(this T? value) where T : struct => Density.FromDecigramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GramPerCubicCentimeter
 
         /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicCentimeter(this int value) => Density.FromGramsPerCubicCentimeter(value);
+        public static Density GramsPerCubicCentimeter<T>(this T value) => Density.FromGramsPerCubicCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicCentimeter(this int? value) => Density.FromGramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicCentimeter(this long value) => Density.FromGramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicCentimeter(this long? value) => Density.FromGramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicCentimeter(this double value) => Density.FromGramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicCentimeter(this double? value) => Density.FromGramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicCentimeter(this float value) => Density.FromGramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicCentimeter(this float? value) => Density.FromGramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicCentimeter(this decimal value) => Density.FromGramsPerCubicCentimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicCentimeter(this decimal? value) => Density.FromGramsPerCubicCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? GramsPerCubicCentimeter<T>(this T? value) where T : struct => Density.FromGramsPerCubicCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GramPerCubicMeter
 
         /// <inheritdoc cref="Density.FromGramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicMeter(this int value) => Density.FromGramsPerCubicMeter(value);
+        public static Density GramsPerCubicMeter<T>(this T value) => Density.FromGramsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromGramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicMeter(this int? value) => Density.FromGramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicMeter(this long value) => Density.FromGramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicMeter(this long? value) => Density.FromGramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicMeter(this double value) => Density.FromGramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicMeter(this double? value) => Density.FromGramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicMeter(this float value) => Density.FromGramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicMeter(this float? value) => Density.FromGramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicMeter(this decimal value) => Density.FromGramsPerCubicMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicMeter(this decimal? value) => Density.FromGramsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? GramsPerCubicMeter<T>(this T? value) where T : struct => Density.FromGramsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GramPerCubicMillimeter
 
         /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicMillimeter(this int value) => Density.FromGramsPerCubicMillimeter(value);
+        public static Density GramsPerCubicMillimeter<T>(this T value) => Density.FromGramsPerCubicMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicMillimeter(this int? value) => Density.FromGramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicMillimeter(this long value) => Density.FromGramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicMillimeter(this long? value) => Density.FromGramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicMillimeter(this double value) => Density.FromGramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicMillimeter(this double? value) => Density.FromGramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicMillimeter(this float value) => Density.FromGramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicMillimeter(this float? value) => Density.FromGramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerCubicMillimeter(this decimal value) => Density.FromGramsPerCubicMillimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromGramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerCubicMillimeter(this decimal? value) => Density.FromGramsPerCubicMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? GramsPerCubicMillimeter<T>(this T? value) where T : struct => Density.FromGramsPerCubicMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GramPerDeciliter
 
         /// <inheritdoc cref="Density.FromGramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerDeciLiter(this int value) => Density.FromGramsPerDeciLiter(value);
+        public static Density GramsPerDeciLiter<T>(this T value) => Density.FromGramsPerDeciLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromGramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerDeciLiter(this int? value) => Density.FromGramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerDeciLiter(this long value) => Density.FromGramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerDeciLiter(this long? value) => Density.FromGramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerDeciLiter(this double value) => Density.FromGramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerDeciLiter(this double? value) => Density.FromGramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerDeciLiter(this float value) => Density.FromGramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerDeciLiter(this float? value) => Density.FromGramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerDeciLiter(this decimal value) => Density.FromGramsPerDeciLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromGramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerDeciLiter(this decimal? value) => Density.FromGramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? GramsPerDeciLiter<T>(this T? value) where T : struct => Density.FromGramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GramPerLiter
 
         /// <inheritdoc cref="Density.FromGramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerLiter(this int value) => Density.FromGramsPerLiter(value);
+        public static Density GramsPerLiter<T>(this T value) => Density.FromGramsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromGramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerLiter(this int? value) => Density.FromGramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerLiter(this long value) => Density.FromGramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerLiter(this long? value) => Density.FromGramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerLiter(this double value) => Density.FromGramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerLiter(this double? value) => Density.FromGramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerLiter(this float value) => Density.FromGramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerLiter(this float? value) => Density.FromGramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerLiter(this decimal value) => Density.FromGramsPerLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromGramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerLiter(this decimal? value) => Density.FromGramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? GramsPerLiter<T>(this T? value) where T : struct => Density.FromGramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region GramPerMilliliter
 
         /// <inheritdoc cref="Density.FromGramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerMilliliter(this int value) => Density.FromGramsPerMilliliter(value);
+        public static Density GramsPerMilliliter<T>(this T value) => Density.FromGramsPerMilliliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromGramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerMilliliter(this int? value) => Density.FromGramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerMilliliter(this long value) => Density.FromGramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerMilliliter(this long? value) => Density.FromGramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerMilliliter(this double value) => Density.FromGramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerMilliliter(this double? value) => Density.FromGramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerMilliliter(this float value) => Density.FromGramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerMilliliter(this float? value) => Density.FromGramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromGramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density GramsPerMilliliter(this decimal value) => Density.FromGramsPerMilliliter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromGramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? GramsPerMilliliter(this decimal? value) => Density.FromGramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? GramsPerMilliliter<T>(this T? value) where T : struct => Density.FromGramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramPerCubicCentimeter
 
         /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicCentimeter(this int value) => Density.FromKilogramsPerCubicCentimeter(value);
+        public static Density KilogramsPerCubicCentimeter<T>(this T value) => Density.FromKilogramsPerCubicCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicCentimeter(this int? value) => Density.FromKilogramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicCentimeter(this long value) => Density.FromKilogramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicCentimeter(this long? value) => Density.FromKilogramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicCentimeter(this double value) => Density.FromKilogramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicCentimeter(this double? value) => Density.FromKilogramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicCentimeter(this float value) => Density.FromKilogramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicCentimeter(this float? value) => Density.FromKilogramsPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicCentimeter(this decimal value) => Density.FromKilogramsPerCubicCentimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicCentimeter(this decimal? value) => Density.FromKilogramsPerCubicCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? KilogramsPerCubicCentimeter<T>(this T? value) where T : struct => Density.FromKilogramsPerCubicCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramPerCubicMeter
 
         /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicMeter(this int value) => Density.FromKilogramsPerCubicMeter(value);
+        public static Density KilogramsPerCubicMeter<T>(this T value) => Density.FromKilogramsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicMeter(this int? value) => Density.FromKilogramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicMeter(this long value) => Density.FromKilogramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicMeter(this long? value) => Density.FromKilogramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicMeter(this double value) => Density.FromKilogramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicMeter(this double? value) => Density.FromKilogramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicMeter(this float value) => Density.FromKilogramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicMeter(this float? value) => Density.FromKilogramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicMeter(this decimal value) => Density.FromKilogramsPerCubicMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicMeter(this decimal? value) => Density.FromKilogramsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? KilogramsPerCubicMeter<T>(this T? value) where T : struct => Density.FromKilogramsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilogramPerCubicMillimeter
 
         /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicMillimeter(this int value) => Density.FromKilogramsPerCubicMillimeter(value);
+        public static Density KilogramsPerCubicMillimeter<T>(this T value) => Density.FromKilogramsPerCubicMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicMillimeter(this int? value) => Density.FromKilogramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicMillimeter(this long value) => Density.FromKilogramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicMillimeter(this long? value) => Density.FromKilogramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicMillimeter(this double value) => Density.FromKilogramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicMillimeter(this double? value) => Density.FromKilogramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicMillimeter(this float value) => Density.FromKilogramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicMillimeter(this float? value) => Density.FromKilogramsPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density KilogramsPerCubicMillimeter(this decimal value) => Density.FromKilogramsPerCubicMillimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromKilogramsPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? KilogramsPerCubicMillimeter(this decimal? value) => Density.FromKilogramsPerCubicMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? KilogramsPerCubicMillimeter<T>(this T? value) where T : struct => Density.FromKilogramsPerCubicMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilopoundPerCubicFoot
 
         /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density KilopoundsPerCubicFoot(this int value) => Density.FromKilopoundsPerCubicFoot(value);
+        public static Density KilopoundsPerCubicFoot<T>(this T value) => Density.FromKilopoundsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? KilopoundsPerCubicFoot(this int? value) => Density.FromKilopoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density KilopoundsPerCubicFoot(this long value) => Density.FromKilopoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? KilopoundsPerCubicFoot(this long? value) => Density.FromKilopoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density KilopoundsPerCubicFoot(this double value) => Density.FromKilopoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? KilopoundsPerCubicFoot(this double? value) => Density.FromKilopoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density KilopoundsPerCubicFoot(this float value) => Density.FromKilopoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? KilopoundsPerCubicFoot(this float? value) => Density.FromKilopoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density KilopoundsPerCubicFoot(this decimal value) => Density.FromKilopoundsPerCubicFoot(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? KilopoundsPerCubicFoot(this decimal? value) => Density.FromKilopoundsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? KilopoundsPerCubicFoot<T>(this T? value) where T : struct => Density.FromKilopoundsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilopoundPerCubicInch
 
         /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density KilopoundsPerCubicInch(this int value) => Density.FromKilopoundsPerCubicInch(value);
+        public static Density KilopoundsPerCubicInch<T>(this T value) => Density.FromKilopoundsPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density? KilopoundsPerCubicInch(this int? value) => Density.FromKilopoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density KilopoundsPerCubicInch(this long value) => Density.FromKilopoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density? KilopoundsPerCubicInch(this long? value) => Density.FromKilopoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density KilopoundsPerCubicInch(this double value) => Density.FromKilopoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density? KilopoundsPerCubicInch(this double? value) => Density.FromKilopoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density KilopoundsPerCubicInch(this float value) => Density.FromKilopoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density? KilopoundsPerCubicInch(this float? value) => Density.FromKilopoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density KilopoundsPerCubicInch(this decimal value) => Density.FromKilopoundsPerCubicInch(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromKilopoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density? KilopoundsPerCubicInch(this decimal? value) => Density.FromKilopoundsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? KilopoundsPerCubicInch<T>(this T? value) where T : struct => Density.FromKilopoundsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicrogramPerDeciliter
 
         /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerDeciLiter(this int value) => Density.FromMicrogramsPerDeciLiter(value);
+        public static Density MicrogramsPerDeciLiter<T>(this T value) => Density.FromMicrogramsPerDeciLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerDeciLiter(this int? value) => Density.FromMicrogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerDeciLiter(this long value) => Density.FromMicrogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerDeciLiter(this long? value) => Density.FromMicrogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerDeciLiter(this double value) => Density.FromMicrogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerDeciLiter(this double? value) => Density.FromMicrogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerDeciLiter(this float value) => Density.FromMicrogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerDeciLiter(this float? value) => Density.FromMicrogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerDeciLiter(this decimal value) => Density.FromMicrogramsPerDeciLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerDeciLiter(this decimal? value) => Density.FromMicrogramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? MicrogramsPerDeciLiter<T>(this T? value) where T : struct => Density.FromMicrogramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicrogramPerLiter
 
         /// <inheritdoc cref="Density.FromMicrogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerLiter(this int value) => Density.FromMicrogramsPerLiter(value);
+        public static Density MicrogramsPerLiter<T>(this T value) => Density.FromMicrogramsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromMicrogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerLiter(this int? value) => Density.FromMicrogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerLiter(this long value) => Density.FromMicrogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerLiter(this long? value) => Density.FromMicrogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerLiter(this double value) => Density.FromMicrogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerLiter(this double? value) => Density.FromMicrogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerLiter(this float value) => Density.FromMicrogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerLiter(this float? value) => Density.FromMicrogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerLiter(this decimal value) => Density.FromMicrogramsPerLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerLiter(this decimal? value) => Density.FromMicrogramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? MicrogramsPerLiter<T>(this T? value) where T : struct => Density.FromMicrogramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicrogramPerMilliliter
 
         /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerMilliliter(this int value) => Density.FromMicrogramsPerMilliliter(value);
+        public static Density MicrogramsPerMilliliter<T>(this T value) => Density.FromMicrogramsPerMilliliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerMilliliter(this int? value) => Density.FromMicrogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerMilliliter(this long value) => Density.FromMicrogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerMilliliter(this long? value) => Density.FromMicrogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerMilliliter(this double value) => Density.FromMicrogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerMilliliter(this double? value) => Density.FromMicrogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerMilliliter(this float value) => Density.FromMicrogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerMilliliter(this float? value) => Density.FromMicrogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density MicrogramsPerMilliliter(this decimal value) => Density.FromMicrogramsPerMilliliter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromMicrogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? MicrogramsPerMilliliter(this decimal? value) => Density.FromMicrogramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? MicrogramsPerMilliliter<T>(this T? value) where T : struct => Density.FromMicrogramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MilligramPerCubicMeter
 
         /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerCubicMeter(this int value) => Density.FromMilligramsPerCubicMeter(value);
+        public static Density MilligramsPerCubicMeter<T>(this T value) => Density.FromMilligramsPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerCubicMeter(this int? value) => Density.FromMilligramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerCubicMeter(this long value) => Density.FromMilligramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerCubicMeter(this long? value) => Density.FromMilligramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerCubicMeter(this double value) => Density.FromMilligramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerCubicMeter(this double? value) => Density.FromMilligramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerCubicMeter(this float value) => Density.FromMilligramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerCubicMeter(this float? value) => Density.FromMilligramsPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerCubicMeter(this decimal value) => Density.FromMilligramsPerCubicMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromMilligramsPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerCubicMeter(this decimal? value) => Density.FromMilligramsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? MilligramsPerCubicMeter<T>(this T? value) where T : struct => Density.FromMilligramsPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MilligramPerDeciliter
 
         /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerDeciLiter(this int value) => Density.FromMilligramsPerDeciLiter(value);
+        public static Density MilligramsPerDeciLiter<T>(this T value) => Density.FromMilligramsPerDeciLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerDeciLiter(this int? value) => Density.FromMilligramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerDeciLiter(this long value) => Density.FromMilligramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerDeciLiter(this long? value) => Density.FromMilligramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerDeciLiter(this double value) => Density.FromMilligramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerDeciLiter(this double? value) => Density.FromMilligramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerDeciLiter(this float value) => Density.FromMilligramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerDeciLiter(this float? value) => Density.FromMilligramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerDeciLiter(this decimal value) => Density.FromMilligramsPerDeciLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromMilligramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerDeciLiter(this decimal? value) => Density.FromMilligramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? MilligramsPerDeciLiter<T>(this T? value) where T : struct => Density.FromMilligramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MilligramPerLiter
 
         /// <inheritdoc cref="Density.FromMilligramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerLiter(this int value) => Density.FromMilligramsPerLiter(value);
+        public static Density MilligramsPerLiter<T>(this T value) => Density.FromMilligramsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromMilligramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerLiter(this int? value) => Density.FromMilligramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerLiter(this long value) => Density.FromMilligramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerLiter(this long? value) => Density.FromMilligramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerLiter(this double value) => Density.FromMilligramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerLiter(this double? value) => Density.FromMilligramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerLiter(this float value) => Density.FromMilligramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerLiter(this float? value) => Density.FromMilligramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerLiter(this decimal value) => Density.FromMilligramsPerLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromMilligramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerLiter(this decimal? value) => Density.FromMilligramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? MilligramsPerLiter<T>(this T? value) where T : struct => Density.FromMilligramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MilligramPerMilliliter
 
         /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerMilliliter(this int value) => Density.FromMilligramsPerMilliliter(value);
+        public static Density MilligramsPerMilliliter<T>(this T value) => Density.FromMilligramsPerMilliliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerMilliliter(this int? value) => Density.FromMilligramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerMilliliter(this long value) => Density.FromMilligramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerMilliliter(this long? value) => Density.FromMilligramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerMilliliter(this double value) => Density.FromMilligramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerMilliliter(this double? value) => Density.FromMilligramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerMilliliter(this float value) => Density.FromMilligramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerMilliliter(this float? value) => Density.FromMilligramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density MilligramsPerMilliliter(this decimal value) => Density.FromMilligramsPerMilliliter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromMilligramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? MilligramsPerMilliliter(this decimal? value) => Density.FromMilligramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? MilligramsPerMilliliter<T>(this T? value) where T : struct => Density.FromMilligramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanogramPerDeciliter
 
         /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerDeciLiter(this int value) => Density.FromNanogramsPerDeciLiter(value);
+        public static Density NanogramsPerDeciLiter<T>(this T value) => Density.FromNanogramsPerDeciLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerDeciLiter(this int? value) => Density.FromNanogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerDeciLiter(this long value) => Density.FromNanogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerDeciLiter(this long? value) => Density.FromNanogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerDeciLiter(this double value) => Density.FromNanogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerDeciLiter(this double? value) => Density.FromNanogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerDeciLiter(this float value) => Density.FromNanogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerDeciLiter(this float? value) => Density.FromNanogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerDeciLiter(this decimal value) => Density.FromNanogramsPerDeciLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromNanogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerDeciLiter(this decimal? value) => Density.FromNanogramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? NanogramsPerDeciLiter<T>(this T? value) where T : struct => Density.FromNanogramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanogramPerLiter
 
         /// <inheritdoc cref="Density.FromNanogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerLiter(this int value) => Density.FromNanogramsPerLiter(value);
+        public static Density NanogramsPerLiter<T>(this T value) => Density.FromNanogramsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromNanogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerLiter(this int? value) => Density.FromNanogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerLiter(this long value) => Density.FromNanogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerLiter(this long? value) => Density.FromNanogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerLiter(this double value) => Density.FromNanogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerLiter(this double? value) => Density.FromNanogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerLiter(this float value) => Density.FromNanogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerLiter(this float? value) => Density.FromNanogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerLiter(this decimal value) => Density.FromNanogramsPerLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromNanogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerLiter(this decimal? value) => Density.FromNanogramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? NanogramsPerLiter<T>(this T? value) where T : struct => Density.FromNanogramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanogramPerMilliliter
 
         /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerMilliliter(this int value) => Density.FromNanogramsPerMilliliter(value);
+        public static Density NanogramsPerMilliliter<T>(this T value) => Density.FromNanogramsPerMilliliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerMilliliter(this int? value) => Density.FromNanogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerMilliliter(this long value) => Density.FromNanogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerMilliliter(this long? value) => Density.FromNanogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerMilliliter(this double value) => Density.FromNanogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerMilliliter(this double? value) => Density.FromNanogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerMilliliter(this float value) => Density.FromNanogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerMilliliter(this float? value) => Density.FromNanogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density NanogramsPerMilliliter(this decimal value) => Density.FromNanogramsPerMilliliter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromNanogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? NanogramsPerMilliliter(this decimal? value) => Density.FromNanogramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? NanogramsPerMilliliter<T>(this T? value) where T : struct => Density.FromNanogramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PicogramPerDeciliter
 
         /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerDeciLiter(this int value) => Density.FromPicogramsPerDeciLiter(value);
+        public static Density PicogramsPerDeciLiter<T>(this T value) => Density.FromPicogramsPerDeciLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerDeciLiter(this int? value) => Density.FromPicogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerDeciLiter(this long value) => Density.FromPicogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerDeciLiter(this long? value) => Density.FromPicogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerDeciLiter(this double value) => Density.FromPicogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerDeciLiter(this double? value) => Density.FromPicogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerDeciLiter(this float value) => Density.FromPicogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerDeciLiter(this float? value) => Density.FromPicogramsPerDeciLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerDeciLiter(this decimal value) => Density.FromPicogramsPerDeciLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromPicogramsPerDeciLiter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerDeciLiter(this decimal? value) => Density.FromPicogramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? PicogramsPerDeciLiter<T>(this T? value) where T : struct => Density.FromPicogramsPerDeciLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PicogramPerLiter
 
         /// <inheritdoc cref="Density.FromPicogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerLiter(this int value) => Density.FromPicogramsPerLiter(value);
+        public static Density PicogramsPerLiter<T>(this T value) => Density.FromPicogramsPerLiter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromPicogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerLiter(this int? value) => Density.FromPicogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerLiter(this long value) => Density.FromPicogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerLiter(this long? value) => Density.FromPicogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerLiter(this double value) => Density.FromPicogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerLiter(this double? value) => Density.FromPicogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerLiter(this float value) => Density.FromPicogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerLiter(this float? value) => Density.FromPicogramsPerLiter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerLiter(this decimal value) => Density.FromPicogramsPerLiter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromPicogramsPerLiter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerLiter(this decimal? value) => Density.FromPicogramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? PicogramsPerLiter<T>(this T? value) where T : struct => Density.FromPicogramsPerLiter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PicogramPerMilliliter
 
         /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerMilliliter(this int value) => Density.FromPicogramsPerMilliliter(value);
+        public static Density PicogramsPerMilliliter<T>(this T value) => Density.FromPicogramsPerMilliliter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerMilliliter(this int? value) => Density.FromPicogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerMilliliter(this long value) => Density.FromPicogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerMilliliter(this long? value) => Density.FromPicogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerMilliliter(this double value) => Density.FromPicogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerMilliliter(this double? value) => Density.FromPicogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerMilliliter(this float value) => Density.FromPicogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerMilliliter(this float? value) => Density.FromPicogramsPerMilliliter(value);
-
-        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density PicogramsPerMilliliter(this decimal value) => Density.FromPicogramsPerMilliliter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromPicogramsPerMilliliter(UnitsNet.QuantityValue)" />
-        public static Density? PicogramsPerMilliliter(this decimal? value) => Density.FromPicogramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? PicogramsPerMilliliter<T>(this T? value) where T : struct => Density.FromPicogramsPerMilliliter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PoundPerCubicFoot
 
         /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerCubicFoot(this int value) => Density.FromPoundsPerCubicFoot(value);
+        public static Density PoundsPerCubicFoot<T>(this T value) => Density.FromPoundsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerCubicFoot(this int? value) => Density.FromPoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerCubicFoot(this long value) => Density.FromPoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerCubicFoot(this long? value) => Density.FromPoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerCubicFoot(this double value) => Density.FromPoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerCubicFoot(this double? value) => Density.FromPoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerCubicFoot(this float value) => Density.FromPoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerCubicFoot(this float? value) => Density.FromPoundsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerCubicFoot(this decimal value) => Density.FromPoundsPerCubicFoot(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerCubicFoot(this decimal? value) => Density.FromPoundsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? PoundsPerCubicFoot<T>(this T? value) where T : struct => Density.FromPoundsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PoundPerCubicInch
 
         /// <inheritdoc cref="Density.FromPoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerCubicInch(this int value) => Density.FromPoundsPerCubicInch(value);
+        public static Density PoundsPerCubicInch<T>(this T value) => Density.FromPoundsPerCubicInch(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromPoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerCubicInch(this int? value) => Density.FromPoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerCubicInch(this long value) => Density.FromPoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerCubicInch(this long? value) => Density.FromPoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerCubicInch(this double value) => Density.FromPoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerCubicInch(this double? value) => Density.FromPoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerCubicInch(this float value) => Density.FromPoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerCubicInch(this float? value) => Density.FromPoundsPerCubicInch(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerCubicInch(this decimal value) => Density.FromPoundsPerCubicInch(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromPoundsPerCubicInch(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerCubicInch(this decimal? value) => Density.FromPoundsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? PoundsPerCubicInch<T>(this T? value) where T : struct => Density.FromPoundsPerCubicInch(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PoundPerImperialGallon
 
         /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerImperialGallon(this int value) => Density.FromPoundsPerImperialGallon(value);
+        public static Density PoundsPerImperialGallon<T>(this T value) => Density.FromPoundsPerImperialGallon(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerImperialGallon(this int? value) => Density.FromPoundsPerImperialGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerImperialGallon(this long value) => Density.FromPoundsPerImperialGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerImperialGallon(this long? value) => Density.FromPoundsPerImperialGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerImperialGallon(this double value) => Density.FromPoundsPerImperialGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerImperialGallon(this double? value) => Density.FromPoundsPerImperialGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerImperialGallon(this float value) => Density.FromPoundsPerImperialGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerImperialGallon(this float? value) => Density.FromPoundsPerImperialGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerImperialGallon(this decimal value) => Density.FromPoundsPerImperialGallon(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromPoundsPerImperialGallon(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerImperialGallon(this decimal? value) => Density.FromPoundsPerImperialGallon(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? PoundsPerImperialGallon<T>(this T? value) where T : struct => Density.FromPoundsPerImperialGallon(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region PoundPerUSGallon
 
         /// <inheritdoc cref="Density.FromPoundsPerUSGallon(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerUSGallon(this int value) => Density.FromPoundsPerUSGallon(value);
+        public static Density PoundsPerUSGallon<T>(this T value) => Density.FromPoundsPerUSGallon(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromPoundsPerUSGallon(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerUSGallon(this int? value) => Density.FromPoundsPerUSGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerUSGallon(this long value) => Density.FromPoundsPerUSGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerUSGallon(this long? value) => Density.FromPoundsPerUSGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerUSGallon(this double value) => Density.FromPoundsPerUSGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerUSGallon(this double? value) => Density.FromPoundsPerUSGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerUSGallon(this float value) => Density.FromPoundsPerUSGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerUSGallon(this float? value) => Density.FromPoundsPerUSGallon(value);
-
-        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(UnitsNet.QuantityValue)" />
-        public static Density PoundsPerUSGallon(this decimal value) => Density.FromPoundsPerUSGallon(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromPoundsPerUSGallon(UnitsNet.QuantityValue)" />
-        public static Density? PoundsPerUSGallon(this decimal? value) => Density.FromPoundsPerUSGallon(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? PoundsPerUSGallon<T>(this T? value) where T : struct => Density.FromPoundsPerUSGallon(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region SlugPerCubicFoot
 
         /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density SlugsPerCubicFoot(this int value) => Density.FromSlugsPerCubicFoot(value);
+        public static Density SlugsPerCubicFoot<T>(this T value) => Density.FromSlugsPerCubicFoot(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? SlugsPerCubicFoot(this int? value) => Density.FromSlugsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density SlugsPerCubicFoot(this long value) => Density.FromSlugsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? SlugsPerCubicFoot(this long? value) => Density.FromSlugsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density SlugsPerCubicFoot(this double value) => Density.FromSlugsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? SlugsPerCubicFoot(this double? value) => Density.FromSlugsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density SlugsPerCubicFoot(this float value) => Density.FromSlugsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? SlugsPerCubicFoot(this float? value) => Density.FromSlugsPerCubicFoot(value);
-
-        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density SlugsPerCubicFoot(this decimal value) => Density.FromSlugsPerCubicFoot(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromSlugsPerCubicFoot(UnitsNet.QuantityValue)" />
-        public static Density? SlugsPerCubicFoot(this decimal? value) => Density.FromSlugsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? SlugsPerCubicFoot<T>(this T? value) where T : struct => Density.FromSlugsPerCubicFoot(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region TonnePerCubicCentimeter
 
         /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicCentimeter(this int value) => Density.FromTonnesPerCubicCentimeter(value);
+        public static Density TonnesPerCubicCentimeter<T>(this T value) => Density.FromTonnesPerCubicCentimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicCentimeter(this int? value) => Density.FromTonnesPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicCentimeter(this long value) => Density.FromTonnesPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicCentimeter(this long? value) => Density.FromTonnesPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicCentimeter(this double value) => Density.FromTonnesPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicCentimeter(this double? value) => Density.FromTonnesPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicCentimeter(this float value) => Density.FromTonnesPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicCentimeter(this float? value) => Density.FromTonnesPerCubicCentimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicCentimeter(this decimal value) => Density.FromTonnesPerCubicCentimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicCentimeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicCentimeter(this decimal? value) => Density.FromTonnesPerCubicCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? TonnesPerCubicCentimeter<T>(this T? value) where T : struct => Density.FromTonnesPerCubicCentimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region TonnePerCubicMeter
 
         /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicMeter(this int value) => Density.FromTonnesPerCubicMeter(value);
+        public static Density TonnesPerCubicMeter<T>(this T value) => Density.FromTonnesPerCubicMeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicMeter(this int? value) => Density.FromTonnesPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicMeter(this long value) => Density.FromTonnesPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicMeter(this long? value) => Density.FromTonnesPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicMeter(this double value) => Density.FromTonnesPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicMeter(this double? value) => Density.FromTonnesPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicMeter(this float value) => Density.FromTonnesPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicMeter(this float? value) => Density.FromTonnesPerCubicMeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicMeter(this decimal value) => Density.FromTonnesPerCubicMeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicMeter(this decimal? value) => Density.FromTonnesPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? TonnesPerCubicMeter<T>(this T? value) where T : struct => Density.FromTonnesPerCubicMeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region TonnePerCubicMillimeter
 
         /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicMillimeter(this int value) => Density.FromTonnesPerCubicMillimeter(value);
+        public static Density TonnesPerCubicMillimeter<T>(this T value) => Density.FromTonnesPerCubicMillimeter(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicMillimeter(this int? value) => Density.FromTonnesPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicMillimeter(this long value) => Density.FromTonnesPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicMillimeter(this long? value) => Density.FromTonnesPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicMillimeter(this double value) => Density.FromTonnesPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicMillimeter(this double? value) => Density.FromTonnesPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicMillimeter(this float value) => Density.FromTonnesPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicMillimeter(this float? value) => Density.FromTonnesPerCubicMillimeter(value);
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density TonnesPerCubicMillimeter(this decimal value) => Density.FromTonnesPerCubicMillimeter(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Density.FromTonnesPerCubicMillimeter(UnitsNet.QuantityValue)" />
-        public static Density? TonnesPerCubicMillimeter(this decimal? value) => Density.FromTonnesPerCubicMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Density? TonnesPerCubicMillimeter<T>(this T? value) where T : struct => Density.FromTonnesPerCubicMillimeter(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -255,5 +256,12 @@ namespace UnitsNet.Tests
             Molarity molespercubicmeter = Molarity.FromMolesPerCubicMeter(1);
             Assert.False(molespercubicmeter.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(MolarityUnit.Undefined, Molarity.Units);
+        }
+
     }
 }

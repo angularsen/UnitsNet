@@ -92,6 +92,10 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double UsGallonsPerSecondInOneCubicMeterPerSecond => 2.64172052358148E2;
 
+        protected override double OilBarrelsPerHourInOneCubicMeterPerSecond => 2.26431877E4;
+
+        protected override double OilBarrelsPerMinuteInOneCubicMeterPerSecond => 3.77388865E2;
+
         [Theory]
         [InlineData(20, 2, 40)]
         [InlineData(20, 62, 1240)]

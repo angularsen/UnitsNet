@@ -47,1088 +47,352 @@ namespace UnitsNet.Extensions.NumberToSpeed
         #region CentimeterPerHour
 
         /// <inheritdoc cref="Speed.FromCentimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerHour(this int value) => Speed.FromCentimetersPerHour(value);
+        public static Speed CentimetersPerHour<T>(this T value) => Speed.FromCentimetersPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromCentimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerHour(this int? value) => Speed.FromCentimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerHour(this long value) => Speed.FromCentimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerHour(this long? value) => Speed.FromCentimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerHour(this double value) => Speed.FromCentimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerHour(this double? value) => Speed.FromCentimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerHour(this float value) => Speed.FromCentimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerHour(this float? value) => Speed.FromCentimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerHour(this decimal value) => Speed.FromCentimetersPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerHour(this decimal? value) => Speed.FromCentimetersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? CentimetersPerHour<T>(this T? value) where T : struct => Speed.FromCentimetersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CentimeterPerMinute
 
         /// <inheritdoc cref="Speed.FromCentimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerMinutes(this int value) => Speed.FromCentimetersPerMinutes(value);
+        public static Speed CentimetersPerMinutes<T>(this T value) => Speed.FromCentimetersPerMinutes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromCentimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerMinutes(this int? value) => Speed.FromCentimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerMinutes(this long value) => Speed.FromCentimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerMinutes(this long? value) => Speed.FromCentimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerMinutes(this double value) => Speed.FromCentimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerMinutes(this double? value) => Speed.FromCentimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerMinutes(this float value) => Speed.FromCentimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerMinutes(this float? value) => Speed.FromCentimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerMinutes(this decimal value) => Speed.FromCentimetersPerMinutes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerMinutes(this decimal? value) => Speed.FromCentimetersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? CentimetersPerMinutes<T>(this T? value) where T : struct => Speed.FromCentimetersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CentimeterPerSecond
 
         /// <inheritdoc cref="Speed.FromCentimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerSecond(this int value) => Speed.FromCentimetersPerSecond(value);
+        public static Speed CentimetersPerSecond<T>(this T value) => Speed.FromCentimetersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromCentimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerSecond(this int? value) => Speed.FromCentimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerSecond(this long value) => Speed.FromCentimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerSecond(this long? value) => Speed.FromCentimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerSecond(this double value) => Speed.FromCentimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerSecond(this double? value) => Speed.FromCentimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerSecond(this float value) => Speed.FromCentimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerSecond(this float? value) => Speed.FromCentimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed CentimetersPerSecond(this decimal value) => Speed.FromCentimetersPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromCentimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? CentimetersPerSecond(this decimal? value) => Speed.FromCentimetersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? CentimetersPerSecond<T>(this T? value) where T : struct => Speed.FromCentimetersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecimeterPerMinute
 
         /// <inheritdoc cref="Speed.FromDecimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed DecimetersPerMinutes(this int value) => Speed.FromDecimetersPerMinutes(value);
+        public static Speed DecimetersPerMinutes<T>(this T value) => Speed.FromDecimetersPerMinutes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromDecimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? DecimetersPerMinutes(this int? value) => Speed.FromDecimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed DecimetersPerMinutes(this long value) => Speed.FromDecimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? DecimetersPerMinutes(this long? value) => Speed.FromDecimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed DecimetersPerMinutes(this double value) => Speed.FromDecimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? DecimetersPerMinutes(this double? value) => Speed.FromDecimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed DecimetersPerMinutes(this float value) => Speed.FromDecimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? DecimetersPerMinutes(this float? value) => Speed.FromDecimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed DecimetersPerMinutes(this decimal value) => Speed.FromDecimetersPerMinutes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? DecimetersPerMinutes(this decimal? value) => Speed.FromDecimetersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? DecimetersPerMinutes<T>(this T? value) where T : struct => Speed.FromDecimetersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecimeterPerSecond
 
         /// <inheritdoc cref="Speed.FromDecimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed DecimetersPerSecond(this int value) => Speed.FromDecimetersPerSecond(value);
+        public static Speed DecimetersPerSecond<T>(this T value) => Speed.FromDecimetersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromDecimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? DecimetersPerSecond(this int? value) => Speed.FromDecimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed DecimetersPerSecond(this long value) => Speed.FromDecimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? DecimetersPerSecond(this long? value) => Speed.FromDecimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed DecimetersPerSecond(this double value) => Speed.FromDecimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? DecimetersPerSecond(this double? value) => Speed.FromDecimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed DecimetersPerSecond(this float value) => Speed.FromDecimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? DecimetersPerSecond(this float? value) => Speed.FromDecimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed DecimetersPerSecond(this decimal value) => Speed.FromDecimetersPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromDecimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? DecimetersPerSecond(this decimal? value) => Speed.FromDecimetersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? DecimetersPerSecond<T>(this T? value) where T : struct => Speed.FromDecimetersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region FootPerHour
 
         /// <inheritdoc cref="Speed.FromFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerHour(this int value) => Speed.FromFeetPerHour(value);
+        public static Speed FeetPerHour<T>(this T value) => Speed.FromFeetPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerHour(this int? value) => Speed.FromFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerHour(this long value) => Speed.FromFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerHour(this long? value) => Speed.FromFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerHour(this double value) => Speed.FromFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerHour(this double? value) => Speed.FromFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerHour(this float value) => Speed.FromFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerHour(this float? value) => Speed.FromFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerHour(this decimal value) => Speed.FromFeetPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerHour(this decimal? value) => Speed.FromFeetPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? FeetPerHour<T>(this T? value) where T : struct => Speed.FromFeetPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region FootPerMinute
 
         /// <inheritdoc cref="Speed.FromFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerMinute(this int value) => Speed.FromFeetPerMinute(value);
+        public static Speed FeetPerMinute<T>(this T value) => Speed.FromFeetPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerMinute(this int? value) => Speed.FromFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerMinute(this long value) => Speed.FromFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerMinute(this long? value) => Speed.FromFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerMinute(this double value) => Speed.FromFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerMinute(this double? value) => Speed.FromFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerMinute(this float value) => Speed.FromFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerMinute(this float? value) => Speed.FromFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerMinute(this decimal value) => Speed.FromFeetPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerMinute(this decimal? value) => Speed.FromFeetPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? FeetPerMinute<T>(this T? value) where T : struct => Speed.FromFeetPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region FootPerSecond
 
         /// <inheritdoc cref="Speed.FromFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerSecond(this int value) => Speed.FromFeetPerSecond(value);
+        public static Speed FeetPerSecond<T>(this T value) => Speed.FromFeetPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerSecond(this int? value) => Speed.FromFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerSecond(this long value) => Speed.FromFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerSecond(this long? value) => Speed.FromFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerSecond(this double value) => Speed.FromFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerSecond(this double? value) => Speed.FromFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerSecond(this float value) => Speed.FromFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerSecond(this float? value) => Speed.FromFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed FeetPerSecond(this decimal value) => Speed.FromFeetPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? FeetPerSecond(this decimal? value) => Speed.FromFeetPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? FeetPerSecond<T>(this T? value) where T : struct => Speed.FromFeetPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region InchPerHour
 
         /// <inheritdoc cref="Speed.FromInchesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerHour(this int value) => Speed.FromInchesPerHour(value);
+        public static Speed InchesPerHour<T>(this T value) => Speed.FromInchesPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromInchesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerHour(this int? value) => Speed.FromInchesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerHour(this long value) => Speed.FromInchesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerHour(this long? value) => Speed.FromInchesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerHour(this double value) => Speed.FromInchesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerHour(this double? value) => Speed.FromInchesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerHour(this float value) => Speed.FromInchesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerHour(this float? value) => Speed.FromInchesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerHour(this decimal value) => Speed.FromInchesPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromInchesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerHour(this decimal? value) => Speed.FromInchesPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? InchesPerHour<T>(this T? value) where T : struct => Speed.FromInchesPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region InchPerMinute
 
         /// <inheritdoc cref="Speed.FromInchesPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerMinute(this int value) => Speed.FromInchesPerMinute(value);
+        public static Speed InchesPerMinute<T>(this T value) => Speed.FromInchesPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromInchesPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerMinute(this int? value) => Speed.FromInchesPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerMinute(this long value) => Speed.FromInchesPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerMinute(this long? value) => Speed.FromInchesPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerMinute(this double value) => Speed.FromInchesPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerMinute(this double? value) => Speed.FromInchesPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerMinute(this float value) => Speed.FromInchesPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerMinute(this float? value) => Speed.FromInchesPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerMinute(this decimal value) => Speed.FromInchesPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromInchesPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerMinute(this decimal? value) => Speed.FromInchesPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? InchesPerMinute<T>(this T? value) where T : struct => Speed.FromInchesPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region InchPerSecond
 
         /// <inheritdoc cref="Speed.FromInchesPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerSecond(this int value) => Speed.FromInchesPerSecond(value);
+        public static Speed InchesPerSecond<T>(this T value) => Speed.FromInchesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromInchesPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerSecond(this int? value) => Speed.FromInchesPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerSecond(this long value) => Speed.FromInchesPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerSecond(this long? value) => Speed.FromInchesPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerSecond(this double value) => Speed.FromInchesPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerSecond(this double? value) => Speed.FromInchesPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerSecond(this float value) => Speed.FromInchesPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerSecond(this float? value) => Speed.FromInchesPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromInchesPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed InchesPerSecond(this decimal value) => Speed.FromInchesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromInchesPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? InchesPerSecond(this decimal? value) => Speed.FromInchesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? InchesPerSecond<T>(this T? value) where T : struct => Speed.FromInchesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilometerPerHour
 
         /// <inheritdoc cref="Speed.FromKilometersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerHour(this int value) => Speed.FromKilometersPerHour(value);
+        public static Speed KilometersPerHour<T>(this T value) => Speed.FromKilometersPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromKilometersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerHour(this int? value) => Speed.FromKilometersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerHour(this long value) => Speed.FromKilometersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerHour(this long? value) => Speed.FromKilometersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerHour(this double value) => Speed.FromKilometersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerHour(this double? value) => Speed.FromKilometersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerHour(this float value) => Speed.FromKilometersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerHour(this float? value) => Speed.FromKilometersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerHour(this decimal value) => Speed.FromKilometersPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromKilometersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerHour(this decimal? value) => Speed.FromKilometersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? KilometersPerHour<T>(this T? value) where T : struct => Speed.FromKilometersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilometerPerMinute
 
         /// <inheritdoc cref="Speed.FromKilometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerMinutes(this int value) => Speed.FromKilometersPerMinutes(value);
+        public static Speed KilometersPerMinutes<T>(this T value) => Speed.FromKilometersPerMinutes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromKilometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerMinutes(this int? value) => Speed.FromKilometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerMinutes(this long value) => Speed.FromKilometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerMinutes(this long? value) => Speed.FromKilometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerMinutes(this double value) => Speed.FromKilometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerMinutes(this double? value) => Speed.FromKilometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerMinutes(this float value) => Speed.FromKilometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerMinutes(this float? value) => Speed.FromKilometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerMinutes(this decimal value) => Speed.FromKilometersPerMinutes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromKilometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerMinutes(this decimal? value) => Speed.FromKilometersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? KilometersPerMinutes<T>(this T? value) where T : struct => Speed.FromKilometersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilometerPerSecond
 
         /// <inheritdoc cref="Speed.FromKilometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerSecond(this int value) => Speed.FromKilometersPerSecond(value);
+        public static Speed KilometersPerSecond<T>(this T value) => Speed.FromKilometersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromKilometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerSecond(this int? value) => Speed.FromKilometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerSecond(this long value) => Speed.FromKilometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerSecond(this long? value) => Speed.FromKilometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerSecond(this double value) => Speed.FromKilometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerSecond(this double? value) => Speed.FromKilometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerSecond(this float value) => Speed.FromKilometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerSecond(this float? value) => Speed.FromKilometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromKilometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed KilometersPerSecond(this decimal value) => Speed.FromKilometersPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromKilometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? KilometersPerSecond(this decimal? value) => Speed.FromKilometersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? KilometersPerSecond<T>(this T? value) where T : struct => Speed.FromKilometersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region Knot
 
         /// <inheritdoc cref="Speed.FromKnots(UnitsNet.QuantityValue)" />
-        public static Speed Knots(this int value) => Speed.FromKnots(value);
+        public static Speed Knots<T>(this T value) => Speed.FromKnots(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromKnots(UnitsNet.QuantityValue)" />
-        public static Speed? Knots(this int? value) => Speed.FromKnots(value);
-
-        /// <inheritdoc cref="Speed.FromKnots(UnitsNet.QuantityValue)" />
-        public static Speed Knots(this long value) => Speed.FromKnots(value);
-
-        /// <inheritdoc cref="Speed.FromKnots(UnitsNet.QuantityValue)" />
-        public static Speed? Knots(this long? value) => Speed.FromKnots(value);
-
-        /// <inheritdoc cref="Speed.FromKnots(UnitsNet.QuantityValue)" />
-        public static Speed Knots(this double value) => Speed.FromKnots(value);
-
-        /// <inheritdoc cref="Speed.FromKnots(UnitsNet.QuantityValue)" />
-        public static Speed? Knots(this double? value) => Speed.FromKnots(value);
-
-        /// <inheritdoc cref="Speed.FromKnots(UnitsNet.QuantityValue)" />
-        public static Speed Knots(this float value) => Speed.FromKnots(value);
-
-        /// <inheritdoc cref="Speed.FromKnots(UnitsNet.QuantityValue)" />
-        public static Speed? Knots(this float? value) => Speed.FromKnots(value);
-
-        /// <inheritdoc cref="Speed.FromKnots(UnitsNet.QuantityValue)" />
-        public static Speed Knots(this decimal value) => Speed.FromKnots(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromKnots(UnitsNet.QuantityValue)" />
-        public static Speed? Knots(this decimal? value) => Speed.FromKnots(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? Knots<T>(this T? value) where T : struct => Speed.FromKnots(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MeterPerHour
 
         /// <inheritdoc cref="Speed.FromMetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerHour(this int value) => Speed.FromMetersPerHour(value);
+        public static Speed MetersPerHour<T>(this T value) => Speed.FromMetersPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromMetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerHour(this int? value) => Speed.FromMetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerHour(this long value) => Speed.FromMetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerHour(this long? value) => Speed.FromMetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerHour(this double value) => Speed.FromMetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerHour(this double? value) => Speed.FromMetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerHour(this float value) => Speed.FromMetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerHour(this float? value) => Speed.FromMetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerHour(this decimal value) => Speed.FromMetersPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromMetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerHour(this decimal? value) => Speed.FromMetersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? MetersPerHour<T>(this T? value) where T : struct => Speed.FromMetersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MeterPerMinute
 
         /// <inheritdoc cref="Speed.FromMetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerMinutes(this int value) => Speed.FromMetersPerMinutes(value);
+        public static Speed MetersPerMinutes<T>(this T value) => Speed.FromMetersPerMinutes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromMetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerMinutes(this int? value) => Speed.FromMetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerMinutes(this long value) => Speed.FromMetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerMinutes(this long? value) => Speed.FromMetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerMinutes(this double value) => Speed.FromMetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerMinutes(this double? value) => Speed.FromMetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerMinutes(this float value) => Speed.FromMetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerMinutes(this float? value) => Speed.FromMetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerMinutes(this decimal value) => Speed.FromMetersPerMinutes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromMetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerMinutes(this decimal? value) => Speed.FromMetersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? MetersPerMinutes<T>(this T? value) where T : struct => Speed.FromMetersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MeterPerSecond
 
         /// <inheritdoc cref="Speed.FromMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerSecond(this int value) => Speed.FromMetersPerSecond(value);
+        public static Speed MetersPerSecond<T>(this T value) => Speed.FromMetersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerSecond(this int? value) => Speed.FromMetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerSecond(this long value) => Speed.FromMetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerSecond(this long? value) => Speed.FromMetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerSecond(this double value) => Speed.FromMetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerSecond(this double? value) => Speed.FromMetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerSecond(this float value) => Speed.FromMetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerSecond(this float? value) => Speed.FromMetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MetersPerSecond(this decimal value) => Speed.FromMetersPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MetersPerSecond(this decimal? value) => Speed.FromMetersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? MetersPerSecond<T>(this T? value) where T : struct => Speed.FromMetersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicrometerPerMinute
 
         /// <inheritdoc cref="Speed.FromMicrometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MicrometersPerMinutes(this int value) => Speed.FromMicrometersPerMinutes(value);
+        public static Speed MicrometersPerMinutes<T>(this T value) => Speed.FromMicrometersPerMinutes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromMicrometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MicrometersPerMinutes(this int? value) => Speed.FromMicrometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MicrometersPerMinutes(this long value) => Speed.FromMicrometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MicrometersPerMinutes(this long? value) => Speed.FromMicrometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MicrometersPerMinutes(this double value) => Speed.FromMicrometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MicrometersPerMinutes(this double? value) => Speed.FromMicrometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MicrometersPerMinutes(this float value) => Speed.FromMicrometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MicrometersPerMinutes(this float? value) => Speed.FromMicrometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MicrometersPerMinutes(this decimal value) => Speed.FromMicrometersPerMinutes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MicrometersPerMinutes(this decimal? value) => Speed.FromMicrometersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? MicrometersPerMinutes<T>(this T? value) where T : struct => Speed.FromMicrometersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicrometerPerSecond
 
         /// <inheritdoc cref="Speed.FromMicrometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MicrometersPerSecond(this int value) => Speed.FromMicrometersPerSecond(value);
+        public static Speed MicrometersPerSecond<T>(this T value) => Speed.FromMicrometersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromMicrometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MicrometersPerSecond(this int? value) => Speed.FromMicrometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MicrometersPerSecond(this long value) => Speed.FromMicrometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MicrometersPerSecond(this long? value) => Speed.FromMicrometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MicrometersPerSecond(this double value) => Speed.FromMicrometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MicrometersPerSecond(this double? value) => Speed.FromMicrometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MicrometersPerSecond(this float value) => Speed.FromMicrometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MicrometersPerSecond(this float? value) => Speed.FromMicrometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MicrometersPerSecond(this decimal value) => Speed.FromMicrometersPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromMicrometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MicrometersPerSecond(this decimal? value) => Speed.FromMicrometersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? MicrometersPerSecond<T>(this T? value) where T : struct => Speed.FromMicrometersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MilePerHour
 
         /// <inheritdoc cref="Speed.FromMilesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MilesPerHour(this int value) => Speed.FromMilesPerHour(value);
+        public static Speed MilesPerHour<T>(this T value) => Speed.FromMilesPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromMilesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MilesPerHour(this int? value) => Speed.FromMilesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMilesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MilesPerHour(this long value) => Speed.FromMilesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMilesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MilesPerHour(this long? value) => Speed.FromMilesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMilesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MilesPerHour(this double value) => Speed.FromMilesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMilesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MilesPerHour(this double? value) => Speed.FromMilesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMilesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MilesPerHour(this float value) => Speed.FromMilesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMilesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MilesPerHour(this float? value) => Speed.FromMilesPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMilesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MilesPerHour(this decimal value) => Speed.FromMilesPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromMilesPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MilesPerHour(this decimal? value) => Speed.FromMilesPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? MilesPerHour<T>(this T? value) where T : struct => Speed.FromMilesPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillimeterPerHour
 
         /// <inheritdoc cref="Speed.FromMillimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerHour(this int value) => Speed.FromMillimetersPerHour(value);
+        public static Speed MillimetersPerHour<T>(this T value) => Speed.FromMillimetersPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromMillimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerHour(this int? value) => Speed.FromMillimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerHour(this long value) => Speed.FromMillimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerHour(this long? value) => Speed.FromMillimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerHour(this double value) => Speed.FromMillimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerHour(this double? value) => Speed.FromMillimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerHour(this float value) => Speed.FromMillimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerHour(this float? value) => Speed.FromMillimetersPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerHour(this decimal value) => Speed.FromMillimetersPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerHour(this decimal? value) => Speed.FromMillimetersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? MillimetersPerHour<T>(this T? value) where T : struct => Speed.FromMillimetersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillimeterPerMinute
 
         /// <inheritdoc cref="Speed.FromMillimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerMinutes(this int value) => Speed.FromMillimetersPerMinutes(value);
+        public static Speed MillimetersPerMinutes<T>(this T value) => Speed.FromMillimetersPerMinutes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromMillimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerMinutes(this int? value) => Speed.FromMillimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerMinutes(this long value) => Speed.FromMillimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerMinutes(this long? value) => Speed.FromMillimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerMinutes(this double value) => Speed.FromMillimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerMinutes(this double? value) => Speed.FromMillimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerMinutes(this float value) => Speed.FromMillimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerMinutes(this float? value) => Speed.FromMillimetersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerMinutes(this decimal value) => Speed.FromMillimetersPerMinutes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerMinutes(this decimal? value) => Speed.FromMillimetersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? MillimetersPerMinutes<T>(this T? value) where T : struct => Speed.FromMillimetersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillimeterPerSecond
 
         /// <inheritdoc cref="Speed.FromMillimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerSecond(this int value) => Speed.FromMillimetersPerSecond(value);
+        public static Speed MillimetersPerSecond<T>(this T value) => Speed.FromMillimetersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromMillimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerSecond(this int? value) => Speed.FromMillimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerSecond(this long value) => Speed.FromMillimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerSecond(this long? value) => Speed.FromMillimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerSecond(this double value) => Speed.FromMillimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerSecond(this double? value) => Speed.FromMillimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerSecond(this float value) => Speed.FromMillimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerSecond(this float? value) => Speed.FromMillimetersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed MillimetersPerSecond(this decimal value) => Speed.FromMillimetersPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromMillimetersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? MillimetersPerSecond(this decimal? value) => Speed.FromMillimetersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? MillimetersPerSecond<T>(this T? value) where T : struct => Speed.FromMillimetersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanometerPerMinute
 
         /// <inheritdoc cref="Speed.FromNanometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed NanometersPerMinutes(this int value) => Speed.FromNanometersPerMinutes(value);
+        public static Speed NanometersPerMinutes<T>(this T value) => Speed.FromNanometersPerMinutes(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromNanometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? NanometersPerMinutes(this int? value) => Speed.FromNanometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed NanometersPerMinutes(this long value) => Speed.FromNanometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? NanometersPerMinutes(this long? value) => Speed.FromNanometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed NanometersPerMinutes(this double value) => Speed.FromNanometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? NanometersPerMinutes(this double? value) => Speed.FromNanometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed NanometersPerMinutes(this float value) => Speed.FromNanometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? NanometersPerMinutes(this float? value) => Speed.FromNanometersPerMinutes(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed NanometersPerMinutes(this decimal value) => Speed.FromNanometersPerMinutes(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromNanometersPerMinutes(UnitsNet.QuantityValue)" />
-        public static Speed? NanometersPerMinutes(this decimal? value) => Speed.FromNanometersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? NanometersPerMinutes<T>(this T? value) where T : struct => Speed.FromNanometersPerMinutes(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanometerPerSecond
 
         /// <inheritdoc cref="Speed.FromNanometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed NanometersPerSecond(this int value) => Speed.FromNanometersPerSecond(value);
+        public static Speed NanometersPerSecond<T>(this T value) => Speed.FromNanometersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromNanometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? NanometersPerSecond(this int? value) => Speed.FromNanometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed NanometersPerSecond(this long value) => Speed.FromNanometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? NanometersPerSecond(this long? value) => Speed.FromNanometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed NanometersPerSecond(this double value) => Speed.FromNanometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? NanometersPerSecond(this double? value) => Speed.FromNanometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed NanometersPerSecond(this float value) => Speed.FromNanometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? NanometersPerSecond(this float? value) => Speed.FromNanometersPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromNanometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed NanometersPerSecond(this decimal value) => Speed.FromNanometersPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromNanometersPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? NanometersPerSecond(this decimal? value) => Speed.FromNanometersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? NanometersPerSecond<T>(this T? value) where T : struct => Speed.FromNanometersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region UsSurveyFootPerHour
 
         /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerHour(this int value) => Speed.FromUsSurveyFeetPerHour(value);
+        public static Speed UsSurveyFeetPerHour<T>(this T value) => Speed.FromUsSurveyFeetPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerHour(this int? value) => Speed.FromUsSurveyFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerHour(this long value) => Speed.FromUsSurveyFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerHour(this long? value) => Speed.FromUsSurveyFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerHour(this double value) => Speed.FromUsSurveyFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerHour(this double? value) => Speed.FromUsSurveyFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerHour(this float value) => Speed.FromUsSurveyFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerHour(this float? value) => Speed.FromUsSurveyFeetPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerHour(this decimal value) => Speed.FromUsSurveyFeetPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerHour(this decimal? value) => Speed.FromUsSurveyFeetPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? UsSurveyFeetPerHour<T>(this T? value) where T : struct => Speed.FromUsSurveyFeetPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region UsSurveyFootPerMinute
 
         /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerMinute(this int value) => Speed.FromUsSurveyFeetPerMinute(value);
+        public static Speed UsSurveyFeetPerMinute<T>(this T value) => Speed.FromUsSurveyFeetPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerMinute(this int? value) => Speed.FromUsSurveyFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerMinute(this long value) => Speed.FromUsSurveyFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerMinute(this long? value) => Speed.FromUsSurveyFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerMinute(this double value) => Speed.FromUsSurveyFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerMinute(this double? value) => Speed.FromUsSurveyFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerMinute(this float value) => Speed.FromUsSurveyFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerMinute(this float? value) => Speed.FromUsSurveyFeetPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerMinute(this decimal value) => Speed.FromUsSurveyFeetPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerMinute(this decimal? value) => Speed.FromUsSurveyFeetPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? UsSurveyFeetPerMinute<T>(this T? value) where T : struct => Speed.FromUsSurveyFeetPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region UsSurveyFootPerSecond
 
         /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerSecond(this int value) => Speed.FromUsSurveyFeetPerSecond(value);
+        public static Speed UsSurveyFeetPerSecond<T>(this T value) => Speed.FromUsSurveyFeetPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerSecond(this int? value) => Speed.FromUsSurveyFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerSecond(this long value) => Speed.FromUsSurveyFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerSecond(this long? value) => Speed.FromUsSurveyFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerSecond(this double value) => Speed.FromUsSurveyFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerSecond(this double? value) => Speed.FromUsSurveyFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerSecond(this float value) => Speed.FromUsSurveyFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerSecond(this float? value) => Speed.FromUsSurveyFeetPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed UsSurveyFeetPerSecond(this decimal value) => Speed.FromUsSurveyFeetPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromUsSurveyFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? UsSurveyFeetPerSecond(this decimal? value) => Speed.FromUsSurveyFeetPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? UsSurveyFeetPerSecond<T>(this T? value) where T : struct => Speed.FromUsSurveyFeetPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region YardPerHour
 
         /// <inheritdoc cref="Speed.FromYardsPerHour(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerHour(this int value) => Speed.FromYardsPerHour(value);
+        public static Speed YardsPerHour<T>(this T value) => Speed.FromYardsPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromYardsPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerHour(this int? value) => Speed.FromYardsPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerHour(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerHour(this long value) => Speed.FromYardsPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerHour(this long? value) => Speed.FromYardsPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerHour(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerHour(this double value) => Speed.FromYardsPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerHour(this double? value) => Speed.FromYardsPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerHour(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerHour(this float value) => Speed.FromYardsPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerHour(this float? value) => Speed.FromYardsPerHour(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerHour(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerHour(this decimal value) => Speed.FromYardsPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromYardsPerHour(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerHour(this decimal? value) => Speed.FromYardsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? YardsPerHour<T>(this T? value) where T : struct => Speed.FromYardsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region YardPerMinute
 
         /// <inheritdoc cref="Speed.FromYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerMinute(this int value) => Speed.FromYardsPerMinute(value);
+        public static Speed YardsPerMinute<T>(this T value) => Speed.FromYardsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerMinute(this int? value) => Speed.FromYardsPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerMinute(this long value) => Speed.FromYardsPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerMinute(this long? value) => Speed.FromYardsPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerMinute(this double value) => Speed.FromYardsPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerMinute(this double? value) => Speed.FromYardsPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerMinute(this float value) => Speed.FromYardsPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerMinute(this float? value) => Speed.FromYardsPerMinute(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerMinute(this decimal value) => Speed.FromYardsPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerMinute(this decimal? value) => Speed.FromYardsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? YardsPerMinute<T>(this T? value) where T : struct => Speed.FromYardsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region YardPerSecond
 
         /// <inheritdoc cref="Speed.FromYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerSecond(this int value) => Speed.FromYardsPerSecond(value);
+        public static Speed YardsPerSecond<T>(this T value) => Speed.FromYardsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="Speed.FromYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerSecond(this int? value) => Speed.FromYardsPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerSecond(this long value) => Speed.FromYardsPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerSecond(this long? value) => Speed.FromYardsPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerSecond(this double value) => Speed.FromYardsPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerSecond(this double? value) => Speed.FromYardsPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerSecond(this float value) => Speed.FromYardsPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerSecond(this float? value) => Speed.FromYardsPerSecond(value);
-
-        /// <inheritdoc cref="Speed.FromYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed YardsPerSecond(this decimal value) => Speed.FromYardsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="Speed.FromYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static Speed? YardsPerSecond(this decimal? value) => Speed.FromYardsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Speed? YardsPerSecond<T>(this T? value) where T : struct => Speed.FromYardsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

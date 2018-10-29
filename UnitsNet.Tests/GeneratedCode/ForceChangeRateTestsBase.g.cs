@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -285,5 +286,12 @@ namespace UnitsNet.Tests
             ForceChangeRate newtonpersecond = ForceChangeRate.FromNewtonsPerSecond(1);
             Assert.False(newtonpersecond.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(ForceChangeRateUnit.Undefined, ForceChangeRate.Units);
+        }
+
     }
 }

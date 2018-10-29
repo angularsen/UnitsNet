@@ -239,6 +239,30 @@
           "Abbreviations": [ "bbl/d", "BOPD" ]
         }
       ]
+    },
+    {
+      "SingularName": "OilBarrelsPerMinute",
+      "PluralName": "OilBarrelsPerMinute",
+      "FromUnitToBaseFunc": "x*2.64978825e-3",
+      "FromBaseToUnitFunc": "x/2.64978825e-3",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bbl/min", "bpm" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OilBarrelsPerHour",
+      "PluralName": "OilBarrelsPerHour",
+      "FromUnitToBaseFunc": "x*4.41631375e-5",
+      "FromBaseToUnitFunc": "x/4.41631375e-5",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "bbl/hr", "bph" ]
+        }
+      ]
     }
   ]
 }

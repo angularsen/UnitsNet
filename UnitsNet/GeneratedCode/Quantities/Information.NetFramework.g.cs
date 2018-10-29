@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Bits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromBits(QuantityValue? bits)
         {
             return bits.HasValue ? FromBits(bits.Value) : default(Information?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Bytes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromBytes(QuantityValue? bytes)
         {
             return bytes.HasValue ? FromBytes(bytes.Value) : default(Information?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Exabits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromExabits(QuantityValue? exabits)
         {
             return exabits.HasValue ? FromExabits(exabits.Value) : default(Information?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Exabytes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromExabytes(QuantityValue? exabytes)
         {
             return exabytes.HasValue ? FromExabytes(exabytes.Value) : default(Information?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Exbibits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromExbibits(QuantityValue? exbibits)
         {
             return exbibits.HasValue ? FromExbibits(exbibits.Value) : default(Information?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Exbibytes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromExbibytes(QuantityValue? exbibytes)
         {
             return exbibytes.HasValue ? FromExbibytes(exbibytes.Value) : default(Information?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Gibibits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromGibibits(QuantityValue? gibibits)
         {
             return gibibits.HasValue ? FromGibibits(gibibits.Value) : default(Information?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Gibibytes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromGibibytes(QuantityValue? gibibytes)
         {
             return gibibytes.HasValue ? FromGibibytes(gibibytes.Value) : default(Information?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Gigabits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromGigabits(QuantityValue? gigabits)
         {
             return gigabits.HasValue ? FromGigabits(gigabits.Value) : default(Information?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Gigabytes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromGigabytes(QuantityValue? gigabytes)
         {
             return gigabytes.HasValue ? FromGigabytes(gigabytes.Value) : default(Information?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Kibibits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromKibibits(QuantityValue? kibibits)
         {
             return kibibits.HasValue ? FromKibibits(kibibits.Value) : default(Information?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Kibibytes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromKibibytes(QuantityValue? kibibytes)
         {
             return kibibytes.HasValue ? FromKibibytes(kibibytes.Value) : default(Information?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Kilobits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromKilobits(QuantityValue? kilobits)
         {
             return kilobits.HasValue ? FromKilobits(kilobits.Value) : default(Information?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Kilobytes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromKilobytes(QuantityValue? kilobytes)
         {
             return kilobytes.HasValue ? FromKilobytes(kilobytes.Value) : default(Information?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Mebibits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromMebibits(QuantityValue? mebibits)
         {
             return mebibits.HasValue ? FromMebibits(mebibits.Value) : default(Information?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Mebibytes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromMebibytes(QuantityValue? mebibytes)
         {
             return mebibytes.HasValue ? FromMebibytes(mebibytes.Value) : default(Information?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Megabits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromMegabits(QuantityValue? megabits)
         {
             return megabits.HasValue ? FromMegabits(megabits.Value) : default(Information?);
@@ -201,6 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Megabytes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromMegabytes(QuantityValue? megabytes)
         {
             return megabytes.HasValue ? FromMegabytes(megabytes.Value) : default(Information?);
@@ -209,6 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Pebibits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromPebibits(QuantityValue? pebibits)
         {
             return pebibits.HasValue ? FromPebibits(pebibits.Value) : default(Information?);
@@ -217,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Pebibytes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromPebibytes(QuantityValue? pebibytes)
         {
             return pebibytes.HasValue ? FromPebibytes(pebibytes.Value) : default(Information?);
@@ -225,6 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Petabits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromPetabits(QuantityValue? petabits)
         {
             return petabits.HasValue ? FromPetabits(petabits.Value) : default(Information?);
@@ -233,6 +254,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Petabytes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromPetabytes(QuantityValue? petabytes)
         {
             return petabytes.HasValue ? FromPetabytes(petabytes.Value) : default(Information?);
@@ -241,6 +263,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Tebibits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromTebibits(QuantityValue? tebibits)
         {
             return tebibits.HasValue ? FromTebibits(tebibits.Value) : default(Information?);
@@ -249,6 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Tebibytes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromTebibytes(QuantityValue? tebibytes)
         {
             return tebibytes.HasValue ? FromTebibytes(tebibytes.Value) : default(Information?);
@@ -257,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Terabits.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromTerabits(QuantityValue? terabits)
         {
             return terabits.HasValue ? FromTerabits(terabits.Value) : default(Information?);
@@ -265,6 +290,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable Information from nullable Terabytes.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Information? FromTerabytes(QuantityValue? terabytes)
         {
             return terabytes.HasValue ? FromTerabytes(terabytes.Value) : default(Information?);
@@ -276,12 +302,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Information unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Information? From(QuantityValue? value, InformationUnit fromUnit)
         {
             return value.HasValue ? new Information((decimal)value.Value, fromUnit) : default(Information?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(InformationUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -417,6 +458,22 @@ namespace UnitsNet
                 result = default(Information);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static InformationUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

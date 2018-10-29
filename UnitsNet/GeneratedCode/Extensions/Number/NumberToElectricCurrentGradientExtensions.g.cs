@@ -47,34 +47,11 @@ namespace UnitsNet.Extensions.NumberToElectricCurrentGradient
         #region AmperePerSecond
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient AmperesPerSecond(this int value) => ElectricCurrentGradient.FromAmperesPerSecond(value);
+        public static ElectricCurrentGradient AmperesPerSecond<T>(this T value) => ElectricCurrentGradient.FromAmperesPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient? AmperesPerSecond(this int? value) => ElectricCurrentGradient.FromAmperesPerSecond(value);
-
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient AmperesPerSecond(this long value) => ElectricCurrentGradient.FromAmperesPerSecond(value);
-
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient? AmperesPerSecond(this long? value) => ElectricCurrentGradient.FromAmperesPerSecond(value);
-
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient AmperesPerSecond(this double value) => ElectricCurrentGradient.FromAmperesPerSecond(value);
-
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient? AmperesPerSecond(this double? value) => ElectricCurrentGradient.FromAmperesPerSecond(value);
-
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient AmperesPerSecond(this float value) => ElectricCurrentGradient.FromAmperesPerSecond(value);
-
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient? AmperesPerSecond(this float? value) => ElectricCurrentGradient.FromAmperesPerSecond(value);
-
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient AmperesPerSecond(this decimal value) => ElectricCurrentGradient.FromAmperesPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="ElectricCurrentGradient.FromAmperesPerSecond(UnitsNet.QuantityValue)" />
-        public static ElectricCurrentGradient? AmperesPerSecond(this decimal? value) => ElectricCurrentGradient.FromAmperesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricCurrentGradient? AmperesPerSecond<T>(this T? value) where T : struct => ElectricCurrentGradient.FromAmperesPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

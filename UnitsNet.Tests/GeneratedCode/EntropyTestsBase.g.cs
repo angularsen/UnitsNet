@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -245,5 +246,12 @@ namespace UnitsNet.Tests
             Entropy jouleperkelvin = Entropy.FromJoulesPerKelvin(1);
             Assert.False(jouleperkelvin.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(EntropyUnit.Undefined, Entropy.Units);
+        }
+
     }
 }

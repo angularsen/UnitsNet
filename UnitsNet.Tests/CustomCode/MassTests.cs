@@ -62,6 +62,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ShortTonsInOneKilogram => 1.102311310924388e-3;
 
+        protected override double SlugsInOneKilogram => 6.852176556196105e-2;
+
         protected override double StoneInOneKilogram => 0.1574731728702698;
 
         protected override double TonnesInOneKilogram => 1E-3;

@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -215,5 +216,12 @@ namespace UnitsNet.Tests
             PressureChangeRate pascalpersecond = PressureChangeRate.FromPascalsPerSecond(1);
             Assert.False(pascalpersecond.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(PressureChangeRateUnit.Undefined, PressureChangeRate.Units);
+        }
+
     }
 }

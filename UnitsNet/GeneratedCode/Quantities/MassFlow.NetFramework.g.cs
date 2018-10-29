@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable CentigramsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromCentigramsPerSecond(QuantityValue? centigramspersecond)
         {
             return centigramspersecond.HasValue ? FromCentigramsPerSecond(centigramspersecond.Value) : default(MassFlow?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable DecagramsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromDecagramsPerSecond(QuantityValue? decagramspersecond)
         {
             return decagramspersecond.HasValue ? FromDecagramsPerSecond(decagramspersecond.Value) : default(MassFlow?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable DecigramsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromDecigramsPerSecond(QuantityValue? decigramspersecond)
         {
             return decigramspersecond.HasValue ? FromDecigramsPerSecond(decigramspersecond.Value) : default(MassFlow?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable GramsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromGramsPerSecond(QuantityValue? gramspersecond)
         {
             return gramspersecond.HasValue ? FromGramsPerSecond(gramspersecond.Value) : default(MassFlow?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable HectogramsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromHectogramsPerSecond(QuantityValue? hectogramspersecond)
         {
             return hectogramspersecond.HasValue ? FromHectogramsPerSecond(hectogramspersecond.Value) : default(MassFlow?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable KilogramsPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromKilogramsPerHour(QuantityValue? kilogramsperhour)
         {
             return kilogramsperhour.HasValue ? FromKilogramsPerHour(kilogramsperhour.Value) : default(MassFlow?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable KilogramsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromKilogramsPerSecond(QuantityValue? kilogramspersecond)
         {
             return kilogramspersecond.HasValue ? FromKilogramsPerSecond(kilogramspersecond.Value) : default(MassFlow?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable MegapoundsPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromMegapoundsPerHour(QuantityValue? megapoundsperhour)
         {
             return megapoundsperhour.HasValue ? FromMegapoundsPerHour(megapoundsperhour.Value) : default(MassFlow?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable MicrogramsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromMicrogramsPerSecond(QuantityValue? microgramspersecond)
         {
             return microgramspersecond.HasValue ? FromMicrogramsPerSecond(microgramspersecond.Value) : default(MassFlow?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable MilligramsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromMilligramsPerSecond(QuantityValue? milligramspersecond)
         {
             return milligramspersecond.HasValue ? FromMilligramsPerSecond(milligramspersecond.Value) : default(MassFlow?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable NanogramsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromNanogramsPerSecond(QuantityValue? nanogramspersecond)
         {
             return nanogramspersecond.HasValue ? FromNanogramsPerSecond(nanogramspersecond.Value) : default(MassFlow?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable PoundsPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromPoundsPerHour(QuantityValue? poundsperhour)
         {
             return poundsperhour.HasValue ? FromPoundsPerHour(poundsperhour.Value) : default(MassFlow?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable ShortTonsPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromShortTonsPerHour(QuantityValue? shorttonsperhour)
         {
             return shorttonsperhour.HasValue ? FromShortTonsPerHour(shorttonsperhour.Value) : default(MassFlow?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable TonnesPerDay.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromTonnesPerDay(QuantityValue? tonnesperday)
         {
             return tonnesperday.HasValue ? FromTonnesPerDay(tonnesperday.Value) : default(MassFlow?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable TonnesPerHour.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromTonnesPerHour(QuantityValue? tonnesperhour)
         {
             return tonnesperhour.HasValue ? FromTonnesPerHour(tonnesperhour.Value) : default(MassFlow?);
@@ -188,12 +203,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>MassFlow unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static MassFlow? From(QuantityValue? value, MassFlowUnit fromUnit)
         {
             return value.HasValue ? new MassFlow((double)value.Value, fromUnit) : default(MassFlow?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(MassFlowUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -331,6 +361,22 @@ namespace UnitsNet
                 result = default(MassFlow);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static MassFlowUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

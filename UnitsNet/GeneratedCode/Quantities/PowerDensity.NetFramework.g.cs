@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable DecawattsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromDecawattsPerCubicFoot(QuantityValue? decawattspercubicfoot)
         {
             return decawattspercubicfoot.HasValue ? FromDecawattsPerCubicFoot(decawattspercubicfoot.Value) : default(PowerDensity?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable DecawattsPerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromDecawattsPerCubicInch(QuantityValue? decawattspercubicinch)
         {
             return decawattspercubicinch.HasValue ? FromDecawattsPerCubicInch(decawattspercubicinch.Value) : default(PowerDensity?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable DecawattsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromDecawattsPerCubicMeter(QuantityValue? decawattspercubicmeter)
         {
             return decawattspercubicmeter.HasValue ? FromDecawattsPerCubicMeter(decawattspercubicmeter.Value) : default(PowerDensity?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable DecawattsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromDecawattsPerLiter(QuantityValue? decawattsperliter)
         {
             return decawattsperliter.HasValue ? FromDecawattsPerLiter(decawattsperliter.Value) : default(PowerDensity?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable DeciwattsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromDeciwattsPerCubicFoot(QuantityValue? deciwattspercubicfoot)
         {
             return deciwattspercubicfoot.HasValue ? FromDeciwattsPerCubicFoot(deciwattspercubicfoot.Value) : default(PowerDensity?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable DeciwattsPerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromDeciwattsPerCubicInch(QuantityValue? deciwattspercubicinch)
         {
             return deciwattspercubicinch.HasValue ? FromDeciwattsPerCubicInch(deciwattspercubicinch.Value) : default(PowerDensity?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable DeciwattsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromDeciwattsPerCubicMeter(QuantityValue? deciwattspercubicmeter)
         {
             return deciwattspercubicmeter.HasValue ? FromDeciwattsPerCubicMeter(deciwattspercubicmeter.Value) : default(PowerDensity?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable DeciwattsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromDeciwattsPerLiter(QuantityValue? deciwattsperliter)
         {
             return deciwattsperliter.HasValue ? FromDeciwattsPerLiter(deciwattsperliter.Value) : default(PowerDensity?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable GigawattsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromGigawattsPerCubicFoot(QuantityValue? gigawattspercubicfoot)
         {
             return gigawattspercubicfoot.HasValue ? FromGigawattsPerCubicFoot(gigawattspercubicfoot.Value) : default(PowerDensity?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable GigawattsPerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromGigawattsPerCubicInch(QuantityValue? gigawattspercubicinch)
         {
             return gigawattspercubicinch.HasValue ? FromGigawattsPerCubicInch(gigawattspercubicinch.Value) : default(PowerDensity?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable GigawattsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromGigawattsPerCubicMeter(QuantityValue? gigawattspercubicmeter)
         {
             return gigawattspercubicmeter.HasValue ? FromGigawattsPerCubicMeter(gigawattspercubicmeter.Value) : default(PowerDensity?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable GigawattsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromGigawattsPerLiter(QuantityValue? gigawattsperliter)
         {
             return gigawattsperliter.HasValue ? FromGigawattsPerLiter(gigawattsperliter.Value) : default(PowerDensity?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable KilowattsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromKilowattsPerCubicFoot(QuantityValue? kilowattspercubicfoot)
         {
             return kilowattspercubicfoot.HasValue ? FromKilowattsPerCubicFoot(kilowattspercubicfoot.Value) : default(PowerDensity?);
@@ -169,6 +182,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable KilowattsPerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromKilowattsPerCubicInch(QuantityValue? kilowattspercubicinch)
         {
             return kilowattspercubicinch.HasValue ? FromKilowattsPerCubicInch(kilowattspercubicinch.Value) : default(PowerDensity?);
@@ -177,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable KilowattsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromKilowattsPerCubicMeter(QuantityValue? kilowattspercubicmeter)
         {
             return kilowattspercubicmeter.HasValue ? FromKilowattsPerCubicMeter(kilowattspercubicmeter.Value) : default(PowerDensity?);
@@ -185,6 +200,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable KilowattsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromKilowattsPerLiter(QuantityValue? kilowattsperliter)
         {
             return kilowattsperliter.HasValue ? FromKilowattsPerLiter(kilowattsperliter.Value) : default(PowerDensity?);
@@ -193,6 +209,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable MegawattsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromMegawattsPerCubicFoot(QuantityValue? megawattspercubicfoot)
         {
             return megawattspercubicfoot.HasValue ? FromMegawattsPerCubicFoot(megawattspercubicfoot.Value) : default(PowerDensity?);
@@ -201,6 +218,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable MegawattsPerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromMegawattsPerCubicInch(QuantityValue? megawattspercubicinch)
         {
             return megawattspercubicinch.HasValue ? FromMegawattsPerCubicInch(megawattspercubicinch.Value) : default(PowerDensity?);
@@ -209,6 +227,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable MegawattsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromMegawattsPerCubicMeter(QuantityValue? megawattspercubicmeter)
         {
             return megawattspercubicmeter.HasValue ? FromMegawattsPerCubicMeter(megawattspercubicmeter.Value) : default(PowerDensity?);
@@ -217,6 +236,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable MegawattsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromMegawattsPerLiter(QuantityValue? megawattsperliter)
         {
             return megawattsperliter.HasValue ? FromMegawattsPerLiter(megawattsperliter.Value) : default(PowerDensity?);
@@ -225,6 +245,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable MicrowattsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromMicrowattsPerCubicFoot(QuantityValue? microwattspercubicfoot)
         {
             return microwattspercubicfoot.HasValue ? FromMicrowattsPerCubicFoot(microwattspercubicfoot.Value) : default(PowerDensity?);
@@ -233,6 +254,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable MicrowattsPerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromMicrowattsPerCubicInch(QuantityValue? microwattspercubicinch)
         {
             return microwattspercubicinch.HasValue ? FromMicrowattsPerCubicInch(microwattspercubicinch.Value) : default(PowerDensity?);
@@ -241,6 +263,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable MicrowattsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromMicrowattsPerCubicMeter(QuantityValue? microwattspercubicmeter)
         {
             return microwattspercubicmeter.HasValue ? FromMicrowattsPerCubicMeter(microwattspercubicmeter.Value) : default(PowerDensity?);
@@ -249,6 +272,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable MicrowattsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromMicrowattsPerLiter(QuantityValue? microwattsperliter)
         {
             return microwattsperliter.HasValue ? FromMicrowattsPerLiter(microwattsperliter.Value) : default(PowerDensity?);
@@ -257,6 +281,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable MilliwattsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromMilliwattsPerCubicFoot(QuantityValue? milliwattspercubicfoot)
         {
             return milliwattspercubicfoot.HasValue ? FromMilliwattsPerCubicFoot(milliwattspercubicfoot.Value) : default(PowerDensity?);
@@ -265,6 +290,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable MilliwattsPerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromMilliwattsPerCubicInch(QuantityValue? milliwattspercubicinch)
         {
             return milliwattspercubicinch.HasValue ? FromMilliwattsPerCubicInch(milliwattspercubicinch.Value) : default(PowerDensity?);
@@ -273,6 +299,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable MilliwattsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromMilliwattsPerCubicMeter(QuantityValue? milliwattspercubicmeter)
         {
             return milliwattspercubicmeter.HasValue ? FromMilliwattsPerCubicMeter(milliwattspercubicmeter.Value) : default(PowerDensity?);
@@ -281,6 +308,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable MilliwattsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromMilliwattsPerLiter(QuantityValue? milliwattsperliter)
         {
             return milliwattsperliter.HasValue ? FromMilliwattsPerLiter(milliwattsperliter.Value) : default(PowerDensity?);
@@ -289,6 +317,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable NanowattsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromNanowattsPerCubicFoot(QuantityValue? nanowattspercubicfoot)
         {
             return nanowattspercubicfoot.HasValue ? FromNanowattsPerCubicFoot(nanowattspercubicfoot.Value) : default(PowerDensity?);
@@ -297,6 +326,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable NanowattsPerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromNanowattsPerCubicInch(QuantityValue? nanowattspercubicinch)
         {
             return nanowattspercubicinch.HasValue ? FromNanowattsPerCubicInch(nanowattspercubicinch.Value) : default(PowerDensity?);
@@ -305,6 +335,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable NanowattsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromNanowattsPerCubicMeter(QuantityValue? nanowattspercubicmeter)
         {
             return nanowattspercubicmeter.HasValue ? FromNanowattsPerCubicMeter(nanowattspercubicmeter.Value) : default(PowerDensity?);
@@ -313,6 +344,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable NanowattsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromNanowattsPerLiter(QuantityValue? nanowattsperliter)
         {
             return nanowattsperliter.HasValue ? FromNanowattsPerLiter(nanowattsperliter.Value) : default(PowerDensity?);
@@ -321,6 +353,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable PicowattsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromPicowattsPerCubicFoot(QuantityValue? picowattspercubicfoot)
         {
             return picowattspercubicfoot.HasValue ? FromPicowattsPerCubicFoot(picowattspercubicfoot.Value) : default(PowerDensity?);
@@ -329,6 +362,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable PicowattsPerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromPicowattsPerCubicInch(QuantityValue? picowattspercubicinch)
         {
             return picowattspercubicinch.HasValue ? FromPicowattsPerCubicInch(picowattspercubicinch.Value) : default(PowerDensity?);
@@ -337,6 +371,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable PicowattsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromPicowattsPerCubicMeter(QuantityValue? picowattspercubicmeter)
         {
             return picowattspercubicmeter.HasValue ? FromPicowattsPerCubicMeter(picowattspercubicmeter.Value) : default(PowerDensity?);
@@ -345,6 +380,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable PicowattsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromPicowattsPerLiter(QuantityValue? picowattsperliter)
         {
             return picowattsperliter.HasValue ? FromPicowattsPerLiter(picowattsperliter.Value) : default(PowerDensity?);
@@ -353,6 +389,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable TerawattsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromTerawattsPerCubicFoot(QuantityValue? terawattspercubicfoot)
         {
             return terawattspercubicfoot.HasValue ? FromTerawattsPerCubicFoot(terawattspercubicfoot.Value) : default(PowerDensity?);
@@ -361,6 +398,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable TerawattsPerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromTerawattsPerCubicInch(QuantityValue? terawattspercubicinch)
         {
             return terawattspercubicinch.HasValue ? FromTerawattsPerCubicInch(terawattspercubicinch.Value) : default(PowerDensity?);
@@ -369,6 +407,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable TerawattsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromTerawattsPerCubicMeter(QuantityValue? terawattspercubicmeter)
         {
             return terawattspercubicmeter.HasValue ? FromTerawattsPerCubicMeter(terawattspercubicmeter.Value) : default(PowerDensity?);
@@ -377,6 +416,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable TerawattsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromTerawattsPerLiter(QuantityValue? terawattsperliter)
         {
             return terawattsperliter.HasValue ? FromTerawattsPerLiter(terawattsperliter.Value) : default(PowerDensity?);
@@ -385,6 +425,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable WattsPerCubicFoot.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromWattsPerCubicFoot(QuantityValue? wattspercubicfoot)
         {
             return wattspercubicfoot.HasValue ? FromWattsPerCubicFoot(wattspercubicfoot.Value) : default(PowerDensity?);
@@ -393,6 +434,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable WattsPerCubicInch.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromWattsPerCubicInch(QuantityValue? wattspercubicinch)
         {
             return wattspercubicinch.HasValue ? FromWattsPerCubicInch(wattspercubicinch.Value) : default(PowerDensity?);
@@ -401,6 +443,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable WattsPerCubicMeter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromWattsPerCubicMeter(QuantityValue? wattspercubicmeter)
         {
             return wattspercubicmeter.HasValue ? FromWattsPerCubicMeter(wattspercubicmeter.Value) : default(PowerDensity?);
@@ -409,6 +452,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable PowerDensity from nullable WattsPerLiter.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static PowerDensity? FromWattsPerLiter(QuantityValue? wattsperliter)
         {
             return wattsperliter.HasValue ? FromWattsPerLiter(wattsperliter.Value) : default(PowerDensity?);
@@ -420,12 +464,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>PowerDensity unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static PowerDensity? From(QuantityValue? value, PowerDensityUnit fromUnit)
         {
             return value.HasValue ? new PowerDensity((double)value.Value, fromUnit) : default(PowerDensity?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(PowerDensityUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -563,6 +622,22 @@ namespace UnitsNet
                 result = default(PowerDensity);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static PowerDensityUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -185,5 +186,12 @@ namespace UnitsNet.Tests
             LuminousIntensity candela = LuminousIntensity.FromCandela(1);
             Assert.False(candela.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(LuminousIntensityUnit.Undefined, LuminousIntensity.Units);
+        }
+
     }
 }

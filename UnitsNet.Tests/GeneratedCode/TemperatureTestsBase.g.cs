@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -243,5 +244,12 @@ namespace UnitsNet.Tests
             Temperature kelvin = Temperature.FromKelvins(1);
             Assert.False(kelvin.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(TemperatureUnit.Undefined, Temperature.Units);
+        }
+
     }
 }

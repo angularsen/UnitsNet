@@ -37,6 +37,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -315,5 +316,12 @@ namespace UnitsNet.Tests
             Angle degree = Angle.FromDegrees(1);
             Assert.False(degree.Equals(null));
         }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(AngleUnit.Undefined, Angle.Units);
+        }
+
     }
 }

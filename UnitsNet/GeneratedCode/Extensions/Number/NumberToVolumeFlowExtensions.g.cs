@@ -47,816 +47,286 @@ namespace UnitsNet.Extensions.NumberToVolumeFlow
         #region CentilitersPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CentilitersPerMinute(this int value) => VolumeFlow.FromCentilitersPerMinute(value);
+        public static VolumeFlow CentilitersPerMinute<T>(this T value) => VolumeFlow.FromCentilitersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CentilitersPerMinute(this int? value) => VolumeFlow.FromCentilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CentilitersPerMinute(this long value) => VolumeFlow.FromCentilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CentilitersPerMinute(this long? value) => VolumeFlow.FromCentilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CentilitersPerMinute(this double value) => VolumeFlow.FromCentilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CentilitersPerMinute(this double? value) => VolumeFlow.FromCentilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CentilitersPerMinute(this float value) => VolumeFlow.FromCentilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CentilitersPerMinute(this float? value) => VolumeFlow.FromCentilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CentilitersPerMinute(this decimal value) => VolumeFlow.FromCentilitersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromCentilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CentilitersPerMinute(this decimal? value) => VolumeFlow.FromCentilitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? CentilitersPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromCentilitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CubicDecimeterPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicDecimetersPerMinute(this int value) => VolumeFlow.FromCubicDecimetersPerMinute(value);
+        public static VolumeFlow CubicDecimetersPerMinute<T>(this T value) => VolumeFlow.FromCubicDecimetersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicDecimetersPerMinute(this int? value) => VolumeFlow.FromCubicDecimetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicDecimetersPerMinute(this long value) => VolumeFlow.FromCubicDecimetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicDecimetersPerMinute(this long? value) => VolumeFlow.FromCubicDecimetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicDecimetersPerMinute(this double value) => VolumeFlow.FromCubicDecimetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicDecimetersPerMinute(this double? value) => VolumeFlow.FromCubicDecimetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicDecimetersPerMinute(this float value) => VolumeFlow.FromCubicDecimetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicDecimetersPerMinute(this float? value) => VolumeFlow.FromCubicDecimetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicDecimetersPerMinute(this decimal value) => VolumeFlow.FromCubicDecimetersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicDecimetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicDecimetersPerMinute(this decimal? value) => VolumeFlow.FromCubicDecimetersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? CubicDecimetersPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromCubicDecimetersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CubicFootPerHour
 
         /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerHour(this int value) => VolumeFlow.FromCubicFeetPerHour(value);
+        public static VolumeFlow CubicFeetPerHour<T>(this T value) => VolumeFlow.FromCubicFeetPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerHour(this int? value) => VolumeFlow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerHour(this long value) => VolumeFlow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerHour(this long? value) => VolumeFlow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerHour(this double value) => VolumeFlow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerHour(this double? value) => VolumeFlow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerHour(this float value) => VolumeFlow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerHour(this float? value) => VolumeFlow.FromCubicFeetPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerHour(this decimal value) => VolumeFlow.FromCubicFeetPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerHour(this decimal? value) => VolumeFlow.FromCubicFeetPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? CubicFeetPerHour<T>(this T? value) where T : struct => VolumeFlow.FromCubicFeetPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CubicFootPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerMinute(this int value) => VolumeFlow.FromCubicFeetPerMinute(value);
+        public static VolumeFlow CubicFeetPerMinute<T>(this T value) => VolumeFlow.FromCubicFeetPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerMinute(this int? value) => VolumeFlow.FromCubicFeetPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerMinute(this long value) => VolumeFlow.FromCubicFeetPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerMinute(this long? value) => VolumeFlow.FromCubicFeetPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerMinute(this double value) => VolumeFlow.FromCubicFeetPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerMinute(this double? value) => VolumeFlow.FromCubicFeetPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerMinute(this float value) => VolumeFlow.FromCubicFeetPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerMinute(this float? value) => VolumeFlow.FromCubicFeetPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerMinute(this decimal value) => VolumeFlow.FromCubicFeetPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerMinute(this decimal? value) => VolumeFlow.FromCubicFeetPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? CubicFeetPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromCubicFeetPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CubicFootPerSecond
 
         /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerSecond(this int value) => VolumeFlow.FromCubicFeetPerSecond(value);
+        public static VolumeFlow CubicFeetPerSecond<T>(this T value) => VolumeFlow.FromCubicFeetPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerSecond(this int? value) => VolumeFlow.FromCubicFeetPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerSecond(this long value) => VolumeFlow.FromCubicFeetPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerSecond(this long? value) => VolumeFlow.FromCubicFeetPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerSecond(this double value) => VolumeFlow.FromCubicFeetPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerSecond(this double? value) => VolumeFlow.FromCubicFeetPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerSecond(this float value) => VolumeFlow.FromCubicFeetPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerSecond(this float? value) => VolumeFlow.FromCubicFeetPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicFeetPerSecond(this decimal value) => VolumeFlow.FromCubicFeetPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicFeetPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicFeetPerSecond(this decimal? value) => VolumeFlow.FromCubicFeetPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? CubicFeetPerSecond<T>(this T? value) where T : struct => VolumeFlow.FromCubicFeetPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CubicMeterPerHour
 
         /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerHour(this int value) => VolumeFlow.FromCubicMetersPerHour(value);
+        public static VolumeFlow CubicMetersPerHour<T>(this T value) => VolumeFlow.FromCubicMetersPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerHour(this int? value) => VolumeFlow.FromCubicMetersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerHour(this long value) => VolumeFlow.FromCubicMetersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerHour(this long? value) => VolumeFlow.FromCubicMetersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerHour(this double value) => VolumeFlow.FromCubicMetersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerHour(this double? value) => VolumeFlow.FromCubicMetersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerHour(this float value) => VolumeFlow.FromCubicMetersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerHour(this float? value) => VolumeFlow.FromCubicMetersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerHour(this decimal value) => VolumeFlow.FromCubicMetersPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerHour(this decimal? value) => VolumeFlow.FromCubicMetersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? CubicMetersPerHour<T>(this T? value) where T : struct => VolumeFlow.FromCubicMetersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CubicMeterPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerMinute(this int value) => VolumeFlow.FromCubicMetersPerMinute(value);
+        public static VolumeFlow CubicMetersPerMinute<T>(this T value) => VolumeFlow.FromCubicMetersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerMinute(this int? value) => VolumeFlow.FromCubicMetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerMinute(this long value) => VolumeFlow.FromCubicMetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerMinute(this long? value) => VolumeFlow.FromCubicMetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerMinute(this double value) => VolumeFlow.FromCubicMetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerMinute(this double? value) => VolumeFlow.FromCubicMetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerMinute(this float value) => VolumeFlow.FromCubicMetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerMinute(this float? value) => VolumeFlow.FromCubicMetersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerMinute(this decimal value) => VolumeFlow.FromCubicMetersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerMinute(this decimal? value) => VolumeFlow.FromCubicMetersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? CubicMetersPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromCubicMetersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CubicMeterPerSecond
 
         /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerSecond(this int value) => VolumeFlow.FromCubicMetersPerSecond(value);
+        public static VolumeFlow CubicMetersPerSecond<T>(this T value) => VolumeFlow.FromCubicMetersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerSecond(this int? value) => VolumeFlow.FromCubicMetersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerSecond(this long value) => VolumeFlow.FromCubicMetersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerSecond(this long? value) => VolumeFlow.FromCubicMetersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerSecond(this double value) => VolumeFlow.FromCubicMetersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerSecond(this double? value) => VolumeFlow.FromCubicMetersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerSecond(this float value) => VolumeFlow.FromCubicMetersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerSecond(this float? value) => VolumeFlow.FromCubicMetersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicMetersPerSecond(this decimal value) => VolumeFlow.FromCubicMetersPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicMetersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicMetersPerSecond(this decimal? value) => VolumeFlow.FromCubicMetersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? CubicMetersPerSecond<T>(this T? value) where T : struct => VolumeFlow.FromCubicMetersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CubicYardPerHour
 
         /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerHour(this int value) => VolumeFlow.FromCubicYardsPerHour(value);
+        public static VolumeFlow CubicYardsPerHour<T>(this T value) => VolumeFlow.FromCubicYardsPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerHour(this int? value) => VolumeFlow.FromCubicYardsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerHour(this long value) => VolumeFlow.FromCubicYardsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerHour(this long? value) => VolumeFlow.FromCubicYardsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerHour(this double value) => VolumeFlow.FromCubicYardsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerHour(this double? value) => VolumeFlow.FromCubicYardsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerHour(this float value) => VolumeFlow.FromCubicYardsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerHour(this float? value) => VolumeFlow.FromCubicYardsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerHour(this decimal value) => VolumeFlow.FromCubicYardsPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerHour(this decimal? value) => VolumeFlow.FromCubicYardsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? CubicYardsPerHour<T>(this T? value) where T : struct => VolumeFlow.FromCubicYardsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CubicYardPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerMinute(this int value) => VolumeFlow.FromCubicYardsPerMinute(value);
+        public static VolumeFlow CubicYardsPerMinute<T>(this T value) => VolumeFlow.FromCubicYardsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerMinute(this int? value) => VolumeFlow.FromCubicYardsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerMinute(this long value) => VolumeFlow.FromCubicYardsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerMinute(this long? value) => VolumeFlow.FromCubicYardsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerMinute(this double value) => VolumeFlow.FromCubicYardsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerMinute(this double? value) => VolumeFlow.FromCubicYardsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerMinute(this float value) => VolumeFlow.FromCubicYardsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerMinute(this float? value) => VolumeFlow.FromCubicYardsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerMinute(this decimal value) => VolumeFlow.FromCubicYardsPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerMinute(this decimal? value) => VolumeFlow.FromCubicYardsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? CubicYardsPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromCubicYardsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region CubicYardPerSecond
 
         /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerSecond(this int value) => VolumeFlow.FromCubicYardsPerSecond(value);
+        public static VolumeFlow CubicYardsPerSecond<T>(this T value) => VolumeFlow.FromCubicYardsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerSecond(this int? value) => VolumeFlow.FromCubicYardsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerSecond(this long value) => VolumeFlow.FromCubicYardsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerSecond(this long? value) => VolumeFlow.FromCubicYardsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerSecond(this double value) => VolumeFlow.FromCubicYardsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerSecond(this double? value) => VolumeFlow.FromCubicYardsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerSecond(this float value) => VolumeFlow.FromCubicYardsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerSecond(this float? value) => VolumeFlow.FromCubicYardsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow CubicYardsPerSecond(this decimal value) => VolumeFlow.FromCubicYardsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? CubicYardsPerSecond(this decimal? value) => VolumeFlow.FromCubicYardsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? CubicYardsPerSecond<T>(this T? value) where T : struct => VolumeFlow.FromCubicYardsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region DecilitersPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow DecilitersPerMinute(this int value) => VolumeFlow.FromDecilitersPerMinute(value);
+        public static VolumeFlow DecilitersPerMinute<T>(this T value) => VolumeFlow.FromDecilitersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? DecilitersPerMinute(this int? value) => VolumeFlow.FromDecilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow DecilitersPerMinute(this long value) => VolumeFlow.FromDecilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? DecilitersPerMinute(this long? value) => VolumeFlow.FromDecilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow DecilitersPerMinute(this double value) => VolumeFlow.FromDecilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? DecilitersPerMinute(this double? value) => VolumeFlow.FromDecilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow DecilitersPerMinute(this float value) => VolumeFlow.FromDecilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? DecilitersPerMinute(this float? value) => VolumeFlow.FromDecilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow DecilitersPerMinute(this decimal value) => VolumeFlow.FromDecilitersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromDecilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? DecilitersPerMinute(this decimal? value) => VolumeFlow.FromDecilitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? DecilitersPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromDecilitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region KilolitersPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow KilolitersPerMinute(this int value) => VolumeFlow.FromKilolitersPerMinute(value);
+        public static VolumeFlow KilolitersPerMinute<T>(this T value) => VolumeFlow.FromKilolitersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? KilolitersPerMinute(this int? value) => VolumeFlow.FromKilolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow KilolitersPerMinute(this long value) => VolumeFlow.FromKilolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? KilolitersPerMinute(this long? value) => VolumeFlow.FromKilolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow KilolitersPerMinute(this double value) => VolumeFlow.FromKilolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? KilolitersPerMinute(this double? value) => VolumeFlow.FromKilolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow KilolitersPerMinute(this float value) => VolumeFlow.FromKilolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? KilolitersPerMinute(this float? value) => VolumeFlow.FromKilolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow KilolitersPerMinute(this decimal value) => VolumeFlow.FromKilolitersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromKilolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? KilolitersPerMinute(this decimal? value) => VolumeFlow.FromKilolitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? KilolitersPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromKilolitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region LitersPerHour
 
         /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerHour(this int value) => VolumeFlow.FromLitersPerHour(value);
+        public static VolumeFlow LitersPerHour<T>(this T value) => VolumeFlow.FromLitersPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerHour(this int? value) => VolumeFlow.FromLitersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerHour(this long value) => VolumeFlow.FromLitersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerHour(this long? value) => VolumeFlow.FromLitersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerHour(this double value) => VolumeFlow.FromLitersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerHour(this double? value) => VolumeFlow.FromLitersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerHour(this float value) => VolumeFlow.FromLitersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerHour(this float? value) => VolumeFlow.FromLitersPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerHour(this decimal value) => VolumeFlow.FromLitersPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerHour(this decimal? value) => VolumeFlow.FromLitersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? LitersPerHour<T>(this T? value) where T : struct => VolumeFlow.FromLitersPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region LitersPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerMinute(this int value) => VolumeFlow.FromLitersPerMinute(value);
+        public static VolumeFlow LitersPerMinute<T>(this T value) => VolumeFlow.FromLitersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerMinute(this int? value) => VolumeFlow.FromLitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerMinute(this long value) => VolumeFlow.FromLitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerMinute(this long? value) => VolumeFlow.FromLitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerMinute(this double value) => VolumeFlow.FromLitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerMinute(this double? value) => VolumeFlow.FromLitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerMinute(this float value) => VolumeFlow.FromLitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerMinute(this float? value) => VolumeFlow.FromLitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerMinute(this decimal value) => VolumeFlow.FromLitersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerMinute(this decimal? value) => VolumeFlow.FromLitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? LitersPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromLitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region LitersPerSecond
 
         /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerSecond(this int value) => VolumeFlow.FromLitersPerSecond(value);
+        public static VolumeFlow LitersPerSecond<T>(this T value) => VolumeFlow.FromLitersPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerSecond(this int? value) => VolumeFlow.FromLitersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerSecond(this long value) => VolumeFlow.FromLitersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerSecond(this long? value) => VolumeFlow.FromLitersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerSecond(this double value) => VolumeFlow.FromLitersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerSecond(this double? value) => VolumeFlow.FromLitersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerSecond(this float value) => VolumeFlow.FromLitersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerSecond(this float? value) => VolumeFlow.FromLitersPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow LitersPerSecond(this decimal value) => VolumeFlow.FromLitersPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromLitersPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? LitersPerSecond(this decimal? value) => VolumeFlow.FromLitersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? LitersPerSecond<T>(this T? value) where T : struct => VolumeFlow.FromLitersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MicrolitersPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MicrolitersPerMinute(this int value) => VolumeFlow.FromMicrolitersPerMinute(value);
+        public static VolumeFlow MicrolitersPerMinute<T>(this T value) => VolumeFlow.FromMicrolitersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MicrolitersPerMinute(this int? value) => VolumeFlow.FromMicrolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MicrolitersPerMinute(this long value) => VolumeFlow.FromMicrolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MicrolitersPerMinute(this long? value) => VolumeFlow.FromMicrolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MicrolitersPerMinute(this double value) => VolumeFlow.FromMicrolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MicrolitersPerMinute(this double? value) => VolumeFlow.FromMicrolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MicrolitersPerMinute(this float value) => VolumeFlow.FromMicrolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MicrolitersPerMinute(this float? value) => VolumeFlow.FromMicrolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MicrolitersPerMinute(this decimal value) => VolumeFlow.FromMicrolitersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromMicrolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MicrolitersPerMinute(this decimal? value) => VolumeFlow.FromMicrolitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? MicrolitersPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromMicrolitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillilitersPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MillilitersPerMinute(this int value) => VolumeFlow.FromMillilitersPerMinute(value);
+        public static VolumeFlow MillilitersPerMinute<T>(this T value) => VolumeFlow.FromMillilitersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MillilitersPerMinute(this int? value) => VolumeFlow.FromMillilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MillilitersPerMinute(this long value) => VolumeFlow.FromMillilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MillilitersPerMinute(this long? value) => VolumeFlow.FromMillilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MillilitersPerMinute(this double value) => VolumeFlow.FromMillilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MillilitersPerMinute(this double? value) => VolumeFlow.FromMillilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MillilitersPerMinute(this float value) => VolumeFlow.FromMillilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MillilitersPerMinute(this float? value) => VolumeFlow.FromMillilitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MillilitersPerMinute(this decimal value) => VolumeFlow.FromMillilitersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromMillilitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MillilitersPerMinute(this decimal? value) => VolumeFlow.FromMillilitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? MillilitersPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromMillilitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MillionUsGallonsPerDay
 
         /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MillionUsGallonsPerDay(this int value) => VolumeFlow.FromMillionUsGallonsPerDay(value);
+        public static VolumeFlow MillionUsGallonsPerDay<T>(this T value) => VolumeFlow.FromMillionUsGallonsPerDay(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MillionUsGallonsPerDay(this int? value) => VolumeFlow.FromMillionUsGallonsPerDay(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MillionUsGallonsPerDay(this long value) => VolumeFlow.FromMillionUsGallonsPerDay(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MillionUsGallonsPerDay(this long? value) => VolumeFlow.FromMillionUsGallonsPerDay(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MillionUsGallonsPerDay(this double value) => VolumeFlow.FromMillionUsGallonsPerDay(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MillionUsGallonsPerDay(this double? value) => VolumeFlow.FromMillionUsGallonsPerDay(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MillionUsGallonsPerDay(this float value) => VolumeFlow.FromMillionUsGallonsPerDay(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MillionUsGallonsPerDay(this float? value) => VolumeFlow.FromMillionUsGallonsPerDay(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow MillionUsGallonsPerDay(this decimal value) => VolumeFlow.FromMillionUsGallonsPerDay(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromMillionUsGallonsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? MillionUsGallonsPerDay(this decimal? value) => VolumeFlow.FromMillionUsGallonsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? MillionUsGallonsPerDay<T>(this T? value) where T : struct => VolumeFlow.FromMillionUsGallonsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NanolitersPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow NanolitersPerMinute(this int value) => VolumeFlow.FromNanolitersPerMinute(value);
+        public static VolumeFlow NanolitersPerMinute<T>(this T value) => VolumeFlow.FromNanolitersPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? NanolitersPerMinute(this int? value) => VolumeFlow.FromNanolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow NanolitersPerMinute(this long value) => VolumeFlow.FromNanolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? NanolitersPerMinute(this long? value) => VolumeFlow.FromNanolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow NanolitersPerMinute(this double value) => VolumeFlow.FromNanolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? NanolitersPerMinute(this double? value) => VolumeFlow.FromNanolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow NanolitersPerMinute(this float value) => VolumeFlow.FromNanolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? NanolitersPerMinute(this float? value) => VolumeFlow.FromNanolitersPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow NanolitersPerMinute(this decimal value) => VolumeFlow.FromNanolitersPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromNanolitersPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? NanolitersPerMinute(this decimal? value) => VolumeFlow.FromNanolitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? NanolitersPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromNanolitersPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region OilBarrelsPerDay
 
         /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow OilBarrelsPerDay(this int value) => VolumeFlow.FromOilBarrelsPerDay(value);
+        public static VolumeFlow OilBarrelsPerDay<T>(this T value) => VolumeFlow.FromOilBarrelsPerDay(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? OilBarrelsPerDay(this int? value) => VolumeFlow.FromOilBarrelsPerDay(value);
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? OilBarrelsPerDay<T>(this T? value) where T : struct => VolumeFlow.FromOilBarrelsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
-        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow OilBarrelsPerDay(this long value) => VolumeFlow.FromOilBarrelsPerDay(value);
+        #endregion
 
-        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? OilBarrelsPerDay(this long? value) => VolumeFlow.FromOilBarrelsPerDay(value);
+        #region OilBarrelsPerHour
 
-        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow OilBarrelsPerDay(this double value) => VolumeFlow.FromOilBarrelsPerDay(value);
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(UnitsNet.QuantityValue)" />
+        public static VolumeFlow OilBarrelsPerHour<T>(this T value) => VolumeFlow.FromOilBarrelsPerHour(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? OilBarrelsPerDay(this double? value) => VolumeFlow.FromOilBarrelsPerDay(value);
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerHour(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? OilBarrelsPerHour<T>(this T? value) where T : struct => VolumeFlow.FromOilBarrelsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
-        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow OilBarrelsPerDay(this float value) => VolumeFlow.FromOilBarrelsPerDay(value);
+        #endregion
 
-        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? OilBarrelsPerDay(this float? value) => VolumeFlow.FromOilBarrelsPerDay(value);
+        #region OilBarrelsPerMinute
 
-        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow OilBarrelsPerDay(this decimal value) => VolumeFlow.FromOilBarrelsPerDay(Convert.ToDouble(value));
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow OilBarrelsPerMinute<T>(this T value) => VolumeFlow.FromOilBarrelsPerMinute(Convert.ToDouble(value));
 
-        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerDay(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? OilBarrelsPerDay(this decimal? value) => VolumeFlow.FromOilBarrelsPerDay(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        /// <inheritdoc cref="VolumeFlow.FromOilBarrelsPerMinute(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? OilBarrelsPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromOilBarrelsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region UsGallonsPerHour
 
         /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerHour(this int value) => VolumeFlow.FromUsGallonsPerHour(value);
+        public static VolumeFlow UsGallonsPerHour<T>(this T value) => VolumeFlow.FromUsGallonsPerHour(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerHour(this int? value) => VolumeFlow.FromUsGallonsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerHour(this long value) => VolumeFlow.FromUsGallonsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerHour(this long? value) => VolumeFlow.FromUsGallonsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerHour(this double value) => VolumeFlow.FromUsGallonsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerHour(this double? value) => VolumeFlow.FromUsGallonsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerHour(this float value) => VolumeFlow.FromUsGallonsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerHour(this float? value) => VolumeFlow.FromUsGallonsPerHour(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerHour(this decimal value) => VolumeFlow.FromUsGallonsPerHour(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerHour(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerHour(this decimal? value) => VolumeFlow.FromUsGallonsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? UsGallonsPerHour<T>(this T? value) where T : struct => VolumeFlow.FromUsGallonsPerHour(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region UsGallonsPerMinute
 
         /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerMinute(this int value) => VolumeFlow.FromUsGallonsPerMinute(value);
+        public static VolumeFlow UsGallonsPerMinute<T>(this T value) => VolumeFlow.FromUsGallonsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerMinute(this int? value) => VolumeFlow.FromUsGallonsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerMinute(this long value) => VolumeFlow.FromUsGallonsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerMinute(this long? value) => VolumeFlow.FromUsGallonsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerMinute(this double value) => VolumeFlow.FromUsGallonsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerMinute(this double? value) => VolumeFlow.FromUsGallonsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerMinute(this float value) => VolumeFlow.FromUsGallonsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerMinute(this float? value) => VolumeFlow.FromUsGallonsPerMinute(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerMinute(this decimal value) => VolumeFlow.FromUsGallonsPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerMinute(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerMinute(this decimal? value) => VolumeFlow.FromUsGallonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? UsGallonsPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromUsGallonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region UsGallonsPerSecond
 
         /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerSecond(this int value) => VolumeFlow.FromUsGallonsPerSecond(value);
+        public static VolumeFlow UsGallonsPerSecond<T>(this T value) => VolumeFlow.FromUsGallonsPerSecond(Convert.ToDouble(value));
 
         /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerSecond(this int? value) => VolumeFlow.FromUsGallonsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerSecond(this long value) => VolumeFlow.FromUsGallonsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerSecond(this long? value) => VolumeFlow.FromUsGallonsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerSecond(this double value) => VolumeFlow.FromUsGallonsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerSecond(this double? value) => VolumeFlow.FromUsGallonsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerSecond(this float value) => VolumeFlow.FromUsGallonsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerSecond(this float? value) => VolumeFlow.FromUsGallonsPerSecond(value);
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow UsGallonsPerSecond(this decimal value) => VolumeFlow.FromUsGallonsPerSecond(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="VolumeFlow.FromUsGallonsPerSecond(UnitsNet.QuantityValue)" />
-        public static VolumeFlow? UsGallonsPerSecond(this decimal? value) => VolumeFlow.FromUsGallonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? UsGallonsPerSecond<T>(this T? value) where T : struct => VolumeFlow.FromUsGallonsPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

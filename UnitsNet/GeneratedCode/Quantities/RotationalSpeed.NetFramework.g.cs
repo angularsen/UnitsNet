@@ -65,6 +65,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalSpeed from nullable CentiradiansPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalSpeed? FromCentiradiansPerSecond(QuantityValue? centiradianspersecond)
         {
             return centiradianspersecond.HasValue ? FromCentiradiansPerSecond(centiradianspersecond.Value) : default(RotationalSpeed?);
@@ -73,6 +74,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalSpeed from nullable DeciradiansPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalSpeed? FromDeciradiansPerSecond(QuantityValue? deciradianspersecond)
         {
             return deciradianspersecond.HasValue ? FromDeciradiansPerSecond(deciradianspersecond.Value) : default(RotationalSpeed?);
@@ -81,6 +83,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalSpeed from nullable DegreesPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalSpeed? FromDegreesPerMinute(QuantityValue? degreesperminute)
         {
             return degreesperminute.HasValue ? FromDegreesPerMinute(degreesperminute.Value) : default(RotationalSpeed?);
@@ -89,6 +92,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalSpeed from nullable DegreesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalSpeed? FromDegreesPerSecond(QuantityValue? degreespersecond)
         {
             return degreespersecond.HasValue ? FromDegreesPerSecond(degreespersecond.Value) : default(RotationalSpeed?);
@@ -97,6 +101,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalSpeed from nullable MicrodegreesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalSpeed? FromMicrodegreesPerSecond(QuantityValue? microdegreespersecond)
         {
             return microdegreespersecond.HasValue ? FromMicrodegreesPerSecond(microdegreespersecond.Value) : default(RotationalSpeed?);
@@ -105,6 +110,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalSpeed from nullable MicroradiansPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalSpeed? FromMicroradiansPerSecond(QuantityValue? microradianspersecond)
         {
             return microradianspersecond.HasValue ? FromMicroradiansPerSecond(microradianspersecond.Value) : default(RotationalSpeed?);
@@ -113,6 +119,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalSpeed from nullable MillidegreesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalSpeed? FromMillidegreesPerSecond(QuantityValue? millidegreespersecond)
         {
             return millidegreespersecond.HasValue ? FromMillidegreesPerSecond(millidegreespersecond.Value) : default(RotationalSpeed?);
@@ -121,6 +128,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalSpeed from nullable MilliradiansPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalSpeed? FromMilliradiansPerSecond(QuantityValue? milliradianspersecond)
         {
             return milliradianspersecond.HasValue ? FromMilliradiansPerSecond(milliradianspersecond.Value) : default(RotationalSpeed?);
@@ -129,6 +137,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalSpeed from nullable NanodegreesPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalSpeed? FromNanodegreesPerSecond(QuantityValue? nanodegreespersecond)
         {
             return nanodegreespersecond.HasValue ? FromNanodegreesPerSecond(nanodegreespersecond.Value) : default(RotationalSpeed?);
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalSpeed from nullable NanoradiansPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalSpeed? FromNanoradiansPerSecond(QuantityValue? nanoradianspersecond)
         {
             return nanoradianspersecond.HasValue ? FromNanoradiansPerSecond(nanoradianspersecond.Value) : default(RotationalSpeed?);
@@ -145,6 +155,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalSpeed from nullable RadiansPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalSpeed? FromRadiansPerSecond(QuantityValue? radianspersecond)
         {
             return radianspersecond.HasValue ? FromRadiansPerSecond(radianspersecond.Value) : default(RotationalSpeed?);
@@ -153,6 +164,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalSpeed from nullable RevolutionsPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalSpeed? FromRevolutionsPerMinute(QuantityValue? revolutionsperminute)
         {
             return revolutionsperminute.HasValue ? FromRevolutionsPerMinute(revolutionsperminute.Value) : default(RotationalSpeed?);
@@ -161,6 +173,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable RotationalSpeed from nullable RevolutionsPerSecond.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static RotationalSpeed? FromRevolutionsPerSecond(QuantityValue? revolutionspersecond)
         {
             return revolutionspersecond.HasValue ? FromRevolutionsPerSecond(revolutionspersecond.Value) : default(RotationalSpeed?);
@@ -172,12 +185,27 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>RotationalSpeed unit value.</returns>
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static RotationalSpeed? From(QuantityValue? value, RotationalSpeedUnit fromUnit)
         {
             return value.HasValue ? new RotationalSpeed((double)value.Value, fromUnit) : default(RotationalSpeed?);
         }
 
         #endregion
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(RotationalSpeedUnit unit, [CanBeNull] IFormatProvider provider)
+        {
+            provider = provider ?? UnitSystem.DefaultCulture;
+
+            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        }
 
         #region Arithmetic Operators
 
@@ -315,6 +343,22 @@ namespace UnitsNet
                 result = default(RotationalSpeed);
                 return false;
             }
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
+        public static RotationalSpeedUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        {
+            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
         }
 
         /// <summary>

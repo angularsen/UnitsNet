@@ -47,102 +47,33 @@ namespace UnitsNet.Extensions.NumberToRotationalStiffness
         #region KilonewtonMeterPerRadian
 
         /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness KilonewtonMetersPerRadian(this int value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
+        public static RotationalStiffness KilonewtonMetersPerRadian<T>(this T value) => RotationalStiffness.FromKilonewtonMetersPerRadian(Convert.ToDouble(value));
 
         /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? KilonewtonMetersPerRadian(this int? value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness KilonewtonMetersPerRadian(this long value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? KilonewtonMetersPerRadian(this long? value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness KilonewtonMetersPerRadian(this double value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? KilonewtonMetersPerRadian(this double? value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness KilonewtonMetersPerRadian(this float value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? KilonewtonMetersPerRadian(this float? value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness KilonewtonMetersPerRadian(this decimal value) => RotationalStiffness.FromKilonewtonMetersPerRadian(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="RotationalStiffness.FromKilonewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? KilonewtonMetersPerRadian(this decimal? value) => RotationalStiffness.FromKilonewtonMetersPerRadian(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static RotationalStiffness? KilonewtonMetersPerRadian<T>(this T? value) where T : struct => RotationalStiffness.FromKilonewtonMetersPerRadian(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region MeganewtonMeterPerRadian
 
         /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness MeganewtonMetersPerRadian(this int value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
+        public static RotationalStiffness MeganewtonMetersPerRadian<T>(this T value) => RotationalStiffness.FromMeganewtonMetersPerRadian(Convert.ToDouble(value));
 
         /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? MeganewtonMetersPerRadian(this int? value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness MeganewtonMetersPerRadian(this long value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? MeganewtonMetersPerRadian(this long? value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness MeganewtonMetersPerRadian(this double value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? MeganewtonMetersPerRadian(this double? value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness MeganewtonMetersPerRadian(this float value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? MeganewtonMetersPerRadian(this float? value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness MeganewtonMetersPerRadian(this decimal value) => RotationalStiffness.FromMeganewtonMetersPerRadian(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="RotationalStiffness.FromMeganewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? MeganewtonMetersPerRadian(this decimal? value) => RotationalStiffness.FromMeganewtonMetersPerRadian(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static RotationalStiffness? MeganewtonMetersPerRadian<T>(this T? value) where T : struct => RotationalStiffness.FromMeganewtonMetersPerRadian(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
         #region NewtonMeterPerRadian
 
         /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness NewtonMetersPerRadian(this int value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
+        public static RotationalStiffness NewtonMetersPerRadian<T>(this T value) => RotationalStiffness.FromNewtonMetersPerRadian(Convert.ToDouble(value));
 
         /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? NewtonMetersPerRadian(this int? value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness NewtonMetersPerRadian(this long value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? NewtonMetersPerRadian(this long? value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness NewtonMetersPerRadian(this double value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? NewtonMetersPerRadian(this double? value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness NewtonMetersPerRadian(this float value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? NewtonMetersPerRadian(this float? value) => RotationalStiffness.FromNewtonMetersPerRadian(value);
-
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness NewtonMetersPerRadian(this decimal value) => RotationalStiffness.FromNewtonMetersPerRadian(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="RotationalStiffness.FromNewtonMetersPerRadian(UnitsNet.QuantityValue)" />
-        public static RotationalStiffness? NewtonMetersPerRadian(this decimal? value) => RotationalStiffness.FromNewtonMetersPerRadian(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static RotationalStiffness? NewtonMetersPerRadian<T>(this T? value) where T : struct => RotationalStiffness.FromNewtonMetersPerRadian(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
