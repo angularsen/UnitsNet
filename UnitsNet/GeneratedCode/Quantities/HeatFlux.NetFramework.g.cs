@@ -180,6 +180,24 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable HeatFlux from nullable PoundsForcePerFootSecond.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static HeatFlux? FromPoundsForcePerFootSecond(QuantityValue? poundsforceperfootsecond)
+        {
+            return poundsforceperfootsecond.HasValue ? FromPoundsForcePerFootSecond(poundsforceperfootsecond.Value) : default(HeatFlux?);
+        }
+
+        /// <summary>
+        ///     Get nullable HeatFlux from nullable PoundsPerSecondCubed.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static HeatFlux? FromPoundsPerSecondCubed(QuantityValue? poundspersecondcubed)
+        {
+            return poundspersecondcubed.HasValue ? FromPoundsPerSecondCubed(poundspersecondcubed.Value) : default(HeatFlux?);
+        }
+
+        /// <summary>
         ///     Get nullable HeatFlux from nullable WattsPerSquareFoot.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]

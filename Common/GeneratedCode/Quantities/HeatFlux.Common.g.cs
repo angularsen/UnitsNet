@@ -227,6 +227,16 @@ namespace UnitsNet
         public double NanowattsPerSquareMeter => As(HeatFluxUnit.NanowattPerSquareMeter);
 
         /// <summary>
+        ///     Get HeatFlux in PoundsForcePerFootSecond.
+        /// </summary>
+        public double PoundsForcePerFootSecond => As(HeatFluxUnit.PoundForcePerFootSecond);
+
+        /// <summary>
+        ///     Get HeatFlux in PoundsPerSecondCubed.
+        /// </summary>
+        public double PoundsPerSecondCubed => As(HeatFluxUnit.PoundPerSecondCubed);
+
+        /// <summary>
         ///     Get HeatFlux in WattsPerSquareFoot.
         /// </summary>
         public double WattsPerSquareFoot => As(HeatFluxUnit.WattPerSquareFoot);
@@ -430,6 +440,34 @@ namespace UnitsNet
         {
             double value = (double) nanowattspersquaremeter;
             return new HeatFlux(value, HeatFluxUnit.NanowattPerSquareMeter);
+        }
+
+        /// <summary>
+        ///     Get HeatFlux from PoundsForcePerFootSecond.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static HeatFlux FromPoundsForcePerFootSecond(double poundsforceperfootsecond)
+#else
+        public static HeatFlux FromPoundsForcePerFootSecond(QuantityValue poundsforceperfootsecond)
+#endif
+        {
+            double value = (double) poundsforceperfootsecond;
+            return new HeatFlux(value, HeatFluxUnit.PoundForcePerFootSecond);
+        }
+
+        /// <summary>
+        ///     Get HeatFlux from PoundsPerSecondCubed.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static HeatFlux FromPoundsPerSecondCubed(double poundspersecondcubed)
+#else
+        public static HeatFlux FromPoundsPerSecondCubed(QuantityValue poundspersecondcubed)
+#endif
+        {
+            double value = (double) poundspersecondcubed;
+            return new HeatFlux(value, HeatFluxUnit.PoundPerSecondCubed);
         }
 
         /// <summary>
@@ -659,6 +697,8 @@ namespace UnitsNet
                 case HeatFluxUnit.MicrowattPerSquareMeter: return (_value) * 1e-6d;
                 case HeatFluxUnit.MilliwattPerSquareMeter: return (_value) * 1e-3d;
                 case HeatFluxUnit.NanowattPerSquareMeter: return (_value) * 1e-9d;
+                case HeatFluxUnit.PoundForcePerFootSecond: return _value*1.459390293720636e1;
+                case HeatFluxUnit.PoundPerSecondCubed: return _value*4.5359237e-1;
                 case HeatFluxUnit.WattPerSquareFoot: return _value*1.07639e1;
                 case HeatFluxUnit.WattPerSquareInch: return _value*1.5500031e3;
                 case HeatFluxUnit.WattPerSquareMeter: return _value;
@@ -689,6 +729,8 @@ namespace UnitsNet
                 case HeatFluxUnit.MicrowattPerSquareMeter: return (baseUnitValue) / 1e-6d;
                 case HeatFluxUnit.MilliwattPerSquareMeter: return (baseUnitValue) / 1e-3d;
                 case HeatFluxUnit.NanowattPerSquareMeter: return (baseUnitValue) / 1e-9d;
+                case HeatFluxUnit.PoundForcePerFootSecond: return baseUnitValue/1.459390293720636e1;
+                case HeatFluxUnit.PoundPerSecondCubed: return baseUnitValue/4.5359237e-1;
                 case HeatFluxUnit.WattPerSquareFoot: return baseUnitValue/1.07639e1;
                 case HeatFluxUnit.WattPerSquareInch: return baseUnitValue/1.5500031e3;
                 case HeatFluxUnit.WattPerSquareMeter: return baseUnitValue;

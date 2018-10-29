@@ -66,6 +66,8 @@ namespace UnitsNet.Tests
         protected abstract double MicrowattsPerSquareMeterInOneWattPerSquareMeter { get; }
         protected abstract double MilliwattsPerSquareMeterInOneWattPerSquareMeter { get; }
         protected abstract double NanowattsPerSquareMeterInOneWattPerSquareMeter { get; }
+        protected abstract double PoundsForcePerFootSecondInOneWattPerSquareMeter { get; }
+        protected abstract double PoundsPerSecondCubedInOneWattPerSquareMeter { get; }
         protected abstract double WattsPerSquareFootInOneWattPerSquareMeter { get; }
         protected abstract double WattsPerSquareInchInOneWattPerSquareMeter { get; }
         protected abstract double WattsPerSquareMeterInOneWattPerSquareMeter { get; }
@@ -84,6 +86,8 @@ namespace UnitsNet.Tests
         protected virtual double MicrowattsPerSquareMeterTolerance { get { return 1e-5; } }
         protected virtual double MilliwattsPerSquareMeterTolerance { get { return 1e-5; } }
         protected virtual double NanowattsPerSquareMeterTolerance { get { return 1e-5; } }
+        protected virtual double PoundsForcePerFootSecondTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerSecondCubedTolerance { get { return 1e-5; } }
         protected virtual double WattsPerSquareFootTolerance { get { return 1e-5; } }
         protected virtual double WattsPerSquareInchTolerance { get { return 1e-5; } }
         protected virtual double WattsPerSquareMeterTolerance { get { return 1e-5; } }
@@ -106,6 +110,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MicrowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.MicrowattsPerSquareMeter, MicrowattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(MilliwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.MilliwattsPerSquareMeter, MilliwattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(NanowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.NanowattsPerSquareMeter, NanowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerFootSecondInOneWattPerSquareMeter, wattpersquaremeter.PoundsForcePerFootSecond, PoundsForcePerFootSecondTolerance);
+            AssertEx.EqualTolerance(PoundsPerSecondCubedInOneWattPerSquareMeter, wattpersquaremeter.PoundsPerSecondCubed, PoundsPerSecondCubedTolerance);
             AssertEx.EqualTolerance(WattsPerSquareFootInOneWattPerSquareMeter, wattpersquaremeter.WattsPerSquareFoot, WattsPerSquareFootTolerance);
             AssertEx.EqualTolerance(WattsPerSquareInchInOneWattPerSquareMeter, wattpersquaremeter.WattsPerSquareInch, WattsPerSquareInchTolerance);
             AssertEx.EqualTolerance(WattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.WattsPerSquareMeter, WattsPerSquareMeterTolerance);
@@ -127,6 +133,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.MicrowattPerSquareMeter).MicrowattsPerSquareMeter, MicrowattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.MilliwattPerSquareMeter).MilliwattsPerSquareMeter, MilliwattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.NanowattPerSquareMeter).NanowattsPerSquareMeter, NanowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.PoundForcePerFootSecond).PoundsForcePerFootSecond, PoundsForcePerFootSecondTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.PoundPerSecondCubed).PoundsPerSecondCubed, PoundsPerSecondCubedTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.WattPerSquareFoot).WattsPerSquareFoot, WattsPerSquareFootTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.WattPerSquareInch).WattsPerSquareInch, WattsPerSquareInchTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.From(1, HeatFluxUnit.WattPerSquareMeter).WattsPerSquareMeter, WattsPerSquareMeterTolerance);
@@ -149,6 +157,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MicrowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.MicrowattPerSquareMeter), MicrowattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(MilliwattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.MilliwattPerSquareMeter), MilliwattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(NanowattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.NanowattPerSquareMeter), NanowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(PoundsForcePerFootSecondInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.PoundForcePerFootSecond), PoundsForcePerFootSecondTolerance);
+            AssertEx.EqualTolerance(PoundsPerSecondCubedInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.PoundPerSecondCubed), PoundsPerSecondCubedTolerance);
             AssertEx.EqualTolerance(WattsPerSquareFootInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.WattPerSquareFoot), WattsPerSquareFootTolerance);
             AssertEx.EqualTolerance(WattsPerSquareInchInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.WattPerSquareInch), WattsPerSquareInchTolerance);
             AssertEx.EqualTolerance(WattsPerSquareMeterInOneWattPerSquareMeter, wattpersquaremeter.As(HeatFluxUnit.WattPerSquareMeter), WattsPerSquareMeterTolerance);
@@ -211,6 +221,14 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(NanowattsPerSquareMeterInOneWattPerSquareMeter, (double)nanowattpersquaremeterQuantity.Value, NanowattsPerSquareMeterTolerance);
             Assert.Equal(HeatFluxUnit.NanowattPerSquareMeter, nanowattpersquaremeterQuantity.Unit);
 
+            var poundforceperfootsecondQuantity = wattpersquaremeter.ToUnit(HeatFluxUnit.PoundForcePerFootSecond);
+            AssertEx.EqualTolerance(PoundsForcePerFootSecondInOneWattPerSquareMeter, (double)poundforceperfootsecondQuantity.Value, PoundsForcePerFootSecondTolerance);
+            Assert.Equal(HeatFluxUnit.PoundForcePerFootSecond, poundforceperfootsecondQuantity.Unit);
+
+            var poundpersecondcubedQuantity = wattpersquaremeter.ToUnit(HeatFluxUnit.PoundPerSecondCubed);
+            AssertEx.EqualTolerance(PoundsPerSecondCubedInOneWattPerSquareMeter, (double)poundpersecondcubedQuantity.Value, PoundsPerSecondCubedTolerance);
+            Assert.Equal(HeatFluxUnit.PoundPerSecondCubed, poundpersecondcubedQuantity.Unit);
+
             var wattpersquarefootQuantity = wattpersquaremeter.ToUnit(HeatFluxUnit.WattPerSquareFoot);
             AssertEx.EqualTolerance(WattsPerSquareFootInOneWattPerSquareMeter, (double)wattpersquarefootQuantity.Value, WattsPerSquareFootTolerance);
             Assert.Equal(HeatFluxUnit.WattPerSquareFoot, wattpersquarefootQuantity.Unit);
@@ -241,6 +259,8 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, HeatFlux.FromMicrowattsPerSquareMeter(wattpersquaremeter.MicrowattsPerSquareMeter).WattsPerSquareMeter, MicrowattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.FromMilliwattsPerSquareMeter(wattpersquaremeter.MilliwattsPerSquareMeter).WattsPerSquareMeter, MilliwattsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.FromNanowattsPerSquareMeter(wattpersquaremeter.NanowattsPerSquareMeter).WattsPerSquareMeter, NanowattsPerSquareMeterTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.FromPoundsForcePerFootSecond(wattpersquaremeter.PoundsForcePerFootSecond).WattsPerSquareMeter, PoundsForcePerFootSecondTolerance);
+            AssertEx.EqualTolerance(1, HeatFlux.FromPoundsPerSecondCubed(wattpersquaremeter.PoundsPerSecondCubed).WattsPerSquareMeter, PoundsPerSecondCubedTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.FromWattsPerSquareFoot(wattpersquaremeter.WattsPerSquareFoot).WattsPerSquareMeter, WattsPerSquareFootTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.FromWattsPerSquareInch(wattpersquaremeter.WattsPerSquareInch).WattsPerSquareMeter, WattsPerSquareInchTolerance);
             AssertEx.EqualTolerance(1, HeatFlux.FromWattsPerSquareMeter(wattpersquaremeter.WattsPerSquareMeter).WattsPerSquareMeter, WattsPerSquareMeterTolerance);
