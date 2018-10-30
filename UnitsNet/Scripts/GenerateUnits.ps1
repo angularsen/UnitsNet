@@ -172,7 +172,7 @@ function Add-PrefixUnits {
             foreach ($localization in $unit.Localization){
                 if($localization.AbbreviationsWithPrefixes.Count -gt 0){
                     if($unit.Prefixes.Count -ne $localization.AbbreviationsWithPrefixes.Count){
-                        Write-Error "The prefix count ($($unit.Prefixes.Count)) does not match the abbreviations with prefixes count ($($unit.Localization.AbbreviationsWithPrefixes.Count)) for $($quantity.Name).$($unit.SingularName)" -ErrorAction Stop
+                        Write-Error "The prefix count ($($unit.Prefixes.Count)) does not match the abbreviations with prefixes count ($($localization.AbbreviationsWithPrefixes.Count)) for $($quantity.Name).$($unit.SingularName)" -ErrorAction Stop
                     }
                 }
             }
