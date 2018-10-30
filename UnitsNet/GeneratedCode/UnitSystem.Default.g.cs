@@ -631,6 +631,25 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "F"),
                             }),
                     }),
+                new UnitLocalization(typeof (CoefficientOfThermalExpansionUnit),
+                    new[]
+                    {
+                        new CulturesForEnumValue((int) CoefficientOfThermalExpansionUnit.InverseCelsius,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "°C⁻¹"),
+                            }),
+                        new CulturesForEnumValue((int) CoefficientOfThermalExpansionUnit.InverseFahrenheit,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "°F⁻¹"),
+                            }),
+                        new CulturesForEnumValue((int) CoefficientOfThermalExpansionUnit.InverseKelvin,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "K⁻¹"),
+                            }),
+                    }),
                 new UnitLocalization(typeof (DensityUnit),
                     new[]
                     {
