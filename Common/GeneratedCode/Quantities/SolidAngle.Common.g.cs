@@ -321,7 +321,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current SolidAngle.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(SolidAngle), Value, Unit }.GetHashCode();
         }
 
         #endregion

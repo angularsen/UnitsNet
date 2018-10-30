@@ -360,7 +360,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current RotationalAcceleration.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(RotationalAcceleration), Value, Unit }.GetHashCode();
         }
 
         #endregion

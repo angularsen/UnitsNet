@@ -398,7 +398,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricPotential.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(ElectricPotential), Value, Unit }.GetHashCode();
         }
 
         #endregion

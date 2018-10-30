@@ -795,7 +795,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current BitRate.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(BitRate), Value, Unit }.GetHashCode();
         }
 
         #endregion

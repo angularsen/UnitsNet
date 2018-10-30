@@ -622,7 +622,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current TemperatureDelta.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(TemperatureDelta), Value, Unit }.GetHashCode();
         }
 
         #endregion

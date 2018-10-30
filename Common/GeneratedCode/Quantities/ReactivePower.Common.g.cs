@@ -379,7 +379,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ReactivePower.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(ReactivePower), Value, Unit }.GetHashCode();
         }
 
         #endregion

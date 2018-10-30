@@ -322,7 +322,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Permeability.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Permeability), Value, Unit }.GetHashCode();
         }
 
         #endregion

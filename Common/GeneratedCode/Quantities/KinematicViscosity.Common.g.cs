@@ -455,7 +455,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current KinematicViscosity.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(KinematicViscosity), Value, Unit }.GetHashCode();
         }
 
         #endregion

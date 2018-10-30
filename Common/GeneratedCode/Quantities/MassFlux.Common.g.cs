@@ -341,7 +341,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current MassFlux.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(MassFlux), Value, Unit }.GetHashCode();
         }
 
         #endregion

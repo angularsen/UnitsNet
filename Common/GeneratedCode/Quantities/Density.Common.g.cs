@@ -1025,7 +1025,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Density.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Density), Value, Unit }.GetHashCode();
         }
 
         #endregion

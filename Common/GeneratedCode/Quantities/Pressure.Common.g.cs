@@ -1084,7 +1084,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Pressure.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Pressure), Value, Unit }.GetHashCode();
         }
 
         #endregion

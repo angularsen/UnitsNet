@@ -607,7 +607,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current HeatFlux.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(HeatFlux), Value, Unit }.GetHashCode();
         }
 
         #endregion

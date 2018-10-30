@@ -395,7 +395,7 @@ if ($obsoleteAttribute)
         /// <returns>A hash code for the current $quantityName.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof($quantityName), Value, Unit }.GetHashCode();
         }
 
         #endregion

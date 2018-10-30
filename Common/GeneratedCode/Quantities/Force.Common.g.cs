@@ -550,7 +550,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Force.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Force), Value, Unit }.GetHashCode();
         }
 
         #endregion

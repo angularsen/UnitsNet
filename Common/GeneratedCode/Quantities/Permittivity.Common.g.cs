@@ -322,7 +322,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Permittivity.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Permittivity), Value, Unit }.GetHashCode();
         }
 
         #endregion
