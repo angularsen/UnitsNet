@@ -455,7 +455,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current SpecificEntropy.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(SpecificEntropy), Value, Unit }.GetHashCode();
         }
 
         #endregion

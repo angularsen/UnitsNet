@@ -512,7 +512,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ForceChangeRate.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(ForceChangeRate), Value, Unit }.GetHashCode();
         }
 
         #endregion

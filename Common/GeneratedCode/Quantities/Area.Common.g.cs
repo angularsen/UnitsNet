@@ -550,7 +550,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Area.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Area), Value, Unit }.GetHashCode();
         }
 
         #endregion

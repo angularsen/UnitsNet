@@ -341,7 +341,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current SpecificVolume.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(SpecificVolume), Value, Unit }.GetHashCode();
         }
 
         #endregion

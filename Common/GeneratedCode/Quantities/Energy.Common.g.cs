@@ -721,7 +721,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Energy.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Energy), Value, Unit }.GetHashCode();
         }
 
         #endregion

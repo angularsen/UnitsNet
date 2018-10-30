@@ -436,7 +436,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Entropy.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Entropy), Value, Unit }.GetHashCode();
         }
 
         #endregion

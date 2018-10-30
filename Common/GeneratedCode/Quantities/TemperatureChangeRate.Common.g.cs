@@ -493,7 +493,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current TemperatureChangeRate.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(TemperatureChangeRate), Value, Unit }.GetHashCode();
         }
 
         #endregion

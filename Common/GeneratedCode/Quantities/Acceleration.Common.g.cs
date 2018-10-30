@@ -550,7 +550,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Acceleration.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Acceleration), Value, Unit }.GetHashCode();
         }
 
         #endregion

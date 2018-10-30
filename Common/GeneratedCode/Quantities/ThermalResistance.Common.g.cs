@@ -398,7 +398,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ThermalResistance.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(ThermalResistance), Value, Unit }.GetHashCode();
         }
 
         #endregion

@@ -911,7 +911,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Speed.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Speed), Value, Unit }.GetHashCode();
         }
 
         #endregion

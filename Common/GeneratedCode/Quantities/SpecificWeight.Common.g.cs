@@ -626,7 +626,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current SpecificWeight.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(SpecificWeight), Value, Unit }.GetHashCode();
         }
 
         #endregion

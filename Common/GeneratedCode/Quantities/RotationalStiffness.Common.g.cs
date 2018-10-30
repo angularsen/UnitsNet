@@ -360,7 +360,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current RotationalStiffness.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(RotationalStiffness), Value, Unit }.GetHashCode();
         }
 
         #endregion

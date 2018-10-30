@@ -568,7 +568,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Angle.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Angle), Value, Unit }.GetHashCode();
         }
 
         #endregion

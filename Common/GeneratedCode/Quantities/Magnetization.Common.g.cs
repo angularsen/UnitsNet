@@ -322,7 +322,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Magnetization.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Magnetization), Value, Unit }.GetHashCode();
         }
 
         #endregion

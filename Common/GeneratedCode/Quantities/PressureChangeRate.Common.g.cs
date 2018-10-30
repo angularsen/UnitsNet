@@ -379,7 +379,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current PressureChangeRate.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(PressureChangeRate), Value, Unit }.GetHashCode();
         }
 
         #endregion

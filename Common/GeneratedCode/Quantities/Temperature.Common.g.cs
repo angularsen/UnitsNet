@@ -455,7 +455,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Temperature.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Temperature), Value, Unit }.GetHashCode();
         }
 
         #endregion

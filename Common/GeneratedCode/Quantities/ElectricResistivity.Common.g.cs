@@ -379,7 +379,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ElectricResistivity.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(ElectricResistivity), Value, Unit }.GetHashCode();
         }
 
         #endregion

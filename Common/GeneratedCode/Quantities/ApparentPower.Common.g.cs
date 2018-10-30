@@ -379,7 +379,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ApparentPower.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(ApparentPower), Value, Unit }.GetHashCode();
         }
 
         #endregion

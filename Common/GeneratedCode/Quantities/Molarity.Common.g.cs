@@ -455,7 +455,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Molarity.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Molarity), Value, Unit }.GetHashCode();
         }
 
         #endregion

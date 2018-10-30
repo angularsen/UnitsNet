@@ -474,7 +474,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current ForcePerLength.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(ForcePerLength), Value, Unit }.GetHashCode();
         }
 
         #endregion

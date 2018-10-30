@@ -379,7 +379,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Illuminance.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Illuminance), Value, Unit }.GetHashCode();
         }
 
         #endregion

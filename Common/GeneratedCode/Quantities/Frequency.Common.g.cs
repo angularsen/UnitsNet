@@ -455,7 +455,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Frequency.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Frequency), Value, Unit }.GetHashCode();
         }
 
         #endregion
