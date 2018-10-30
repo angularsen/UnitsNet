@@ -35,7 +35,7 @@
 
     $obsoleteEqualityIfDouble = ''
     if ($quantity.BaseType -eq "double") {
-      $obsoleteEqualityIfDouble = '[Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]' + "`r`n        "
+      $obsoleteEqualityIfDouble = "[Obsolete(`"It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.`")]`r`n        "
     }
 
 @"
