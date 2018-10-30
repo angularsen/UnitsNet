@@ -70,7 +70,7 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Н" ],
-          "AbbreviationsWithPrefixes": [ "мкН", "мН", "даН", "кН" ]
+          "AbbreviationsWithPrefixes": [ "мкН", "мН", "даН", "кН", "МН" ]
         }
       ]
     },
