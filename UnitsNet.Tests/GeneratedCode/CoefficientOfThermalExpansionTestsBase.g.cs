@@ -53,13 +53,13 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class CoefficientOfThermalExpansionTestsBase
     {
-        protected abstract double InverseCelsiusInOneInverseKelvin { get; }
-        protected abstract double InverseFahrenheitInOneInverseKelvin { get; }
+        protected abstract double InverseDegreeCelsiusInOneInverseKelvin { get; }
+        protected abstract double InverseDegreeFahrenheitInOneInverseKelvin { get; }
         protected abstract double InverseKelvinInOneInverseKelvin { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
-        protected virtual double InverseCelsiusTolerance { get { return 1e-5; } }
-        protected virtual double InverseFahrenheitTolerance { get { return 1e-5; } }
+        protected virtual double InverseDegreeCelsiusTolerance { get { return 1e-5; } }
+        protected virtual double InverseDegreeFahrenheitTolerance { get { return 1e-5; } }
         protected virtual double InverseKelvinTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -67,16 +67,16 @@ namespace UnitsNet.Tests
         public void InverseKelvinToCoefficientOfThermalExpansionUnits()
         {
             CoefficientOfThermalExpansion inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
-            AssertEx.EqualTolerance(InverseCelsiusInOneInverseKelvin, inversekelvin.InverseCelsius, InverseCelsiusTolerance);
-            AssertEx.EqualTolerance(InverseFahrenheitInOneInverseKelvin, inversekelvin.InverseFahrenheit, InverseFahrenheitTolerance);
+            AssertEx.EqualTolerance(InverseDegreeCelsiusInOneInverseKelvin, inversekelvin.InverseDegreeCelsius, InverseDegreeCelsiusTolerance);
+            AssertEx.EqualTolerance(InverseDegreeFahrenheitInOneInverseKelvin, inversekelvin.InverseDegreeFahrenheit, InverseDegreeFahrenheitTolerance);
             AssertEx.EqualTolerance(InverseKelvinInOneInverseKelvin, inversekelvin.InverseKelvin, InverseKelvinTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
-            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.InverseCelsius).InverseCelsius, InverseCelsiusTolerance);
-            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.InverseFahrenheit).InverseFahrenheit, InverseFahrenheitTolerance);
+            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius).InverseDegreeCelsius, InverseDegreeCelsiusTolerance);
+            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit).InverseDegreeFahrenheit, InverseDegreeFahrenheitTolerance);
             AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.From(1, CoefficientOfThermalExpansionUnit.InverseKelvin).InverseKelvin, InverseKelvinTolerance);
         }
 
@@ -84,8 +84,8 @@ namespace UnitsNet.Tests
         public void As()
         {
             var inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
-            AssertEx.EqualTolerance(InverseCelsiusInOneInverseKelvin, inversekelvin.As(CoefficientOfThermalExpansionUnit.InverseCelsius), InverseCelsiusTolerance);
-            AssertEx.EqualTolerance(InverseFahrenheitInOneInverseKelvin, inversekelvin.As(CoefficientOfThermalExpansionUnit.InverseFahrenheit), InverseFahrenheitTolerance);
+            AssertEx.EqualTolerance(InverseDegreeCelsiusInOneInverseKelvin, inversekelvin.As(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius), InverseDegreeCelsiusTolerance);
+            AssertEx.EqualTolerance(InverseDegreeFahrenheitInOneInverseKelvin, inversekelvin.As(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit), InverseDegreeFahrenheitTolerance);
             AssertEx.EqualTolerance(InverseKelvinInOneInverseKelvin, inversekelvin.As(CoefficientOfThermalExpansionUnit.InverseKelvin), InverseKelvinTolerance);
         }
 
@@ -94,13 +94,13 @@ namespace UnitsNet.Tests
         {
             var inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
 
-            var inversecelsiusQuantity = inversekelvin.ToUnit(CoefficientOfThermalExpansionUnit.InverseCelsius);
-            AssertEx.EqualTolerance(InverseCelsiusInOneInverseKelvin, (double)inversecelsiusQuantity.Value, InverseCelsiusTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseCelsius, inversecelsiusQuantity.Unit);
+            var inversedegreecelsiusQuantity = inversekelvin.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
+            AssertEx.EqualTolerance(InverseDegreeCelsiusInOneInverseKelvin, (double)inversedegreecelsiusQuantity.Value, InverseDegreeCelsiusTolerance);
+            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, inversedegreecelsiusQuantity.Unit);
 
-            var inversefahrenheitQuantity = inversekelvin.ToUnit(CoefficientOfThermalExpansionUnit.InverseFahrenheit);
-            AssertEx.EqualTolerance(InverseFahrenheitInOneInverseKelvin, (double)inversefahrenheitQuantity.Value, InverseFahrenheitTolerance);
-            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseFahrenheit, inversefahrenheitQuantity.Unit);
+            var inversedegreefahrenheitQuantity = inversekelvin.ToUnit(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
+            AssertEx.EqualTolerance(InverseDegreeFahrenheitInOneInverseKelvin, (double)inversedegreefahrenheitQuantity.Value, InverseDegreeFahrenheitTolerance);
+            Assert.Equal(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, inversedegreefahrenheitQuantity.Unit);
 
             var inversekelvinQuantity = inversekelvin.ToUnit(CoefficientOfThermalExpansionUnit.InverseKelvin);
             AssertEx.EqualTolerance(InverseKelvinInOneInverseKelvin, (double)inversekelvinQuantity.Value, InverseKelvinTolerance);
@@ -111,8 +111,8 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             CoefficientOfThermalExpansion inversekelvin = CoefficientOfThermalExpansion.FromInverseKelvin(1);
-            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromInverseCelsius(inversekelvin.InverseCelsius).InverseKelvin, InverseCelsiusTolerance);
-            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromInverseFahrenheit(inversekelvin.InverseFahrenheit).InverseKelvin, InverseFahrenheitTolerance);
+            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromInverseDegreeCelsius(inversekelvin.InverseDegreeCelsius).InverseKelvin, InverseDegreeCelsiusTolerance);
+            AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromInverseDegreeFahrenheit(inversekelvin.InverseDegreeFahrenheit).InverseKelvin, InverseDegreeFahrenheitTolerance);
             AssertEx.EqualTolerance(1, CoefficientOfThermalExpansion.FromInverseKelvin(inversekelvin.InverseKelvin).InverseKelvin, InverseKelvinTolerance);
         }
 

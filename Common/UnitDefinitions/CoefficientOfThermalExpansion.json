@@ -14,31 +14,31 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "K⁻¹" ]
+          "Abbreviations": [ "K⁻¹", "1/K" ]
         }
       ]
     },
     {
-      "SingularName": "InverseCelsius",
-      "PluralName": "InverseCelsius",
+      "SingularName": "InverseDegreeCelsius",
+      "PluralName": "InverseDegreeCelsius",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°C⁻¹" ]
+          "Abbreviations": [ "°C⁻¹", "1/°C" ]
         }
       ]
     },
     {
-      "SingularName": "InverseFahrenheit",
-      "PluralName": "InverseFahrenheit",
+      "SingularName": "InverseDegreeFahrenheit",
+      "PluralName": "InverseDegreeFahrenheit",
       "FromUnitToBaseFunc": "x*5/9",
       "FromBaseToUnitFunc": "x*9/5",
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "°F⁻¹" ]
+          "Abbreviations": [ "°F⁻¹", "1/°F" ]
         }
       ]
     }

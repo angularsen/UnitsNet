@@ -63,21 +63,21 @@ namespace UnitsNet
         #region Nullable From Methods
 
         /// <summary>
-        ///     Get nullable CoefficientOfThermalExpansion from nullable InverseCelsius.
+        ///     Get nullable CoefficientOfThermalExpansion from nullable InverseDegreeCelsius.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static CoefficientOfThermalExpansion? FromInverseCelsius(QuantityValue? inversecelsius)
+        public static CoefficientOfThermalExpansion? FromInverseDegreeCelsius(QuantityValue? inversedegreecelsius)
         {
-            return inversecelsius.HasValue ? FromInverseCelsius(inversecelsius.Value) : default(CoefficientOfThermalExpansion?);
+            return inversedegreecelsius.HasValue ? FromInverseDegreeCelsius(inversedegreecelsius.Value) : default(CoefficientOfThermalExpansion?);
         }
 
         /// <summary>
-        ///     Get nullable CoefficientOfThermalExpansion from nullable InverseFahrenheit.
+        ///     Get nullable CoefficientOfThermalExpansion from nullable InverseDegreeFahrenheit.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static CoefficientOfThermalExpansion? FromInverseFahrenheit(QuantityValue? inversefahrenheit)
+        public static CoefficientOfThermalExpansion? FromInverseDegreeFahrenheit(QuantityValue? inversedegreefahrenheit)
         {
-            return inversefahrenheit.HasValue ? FromInverseFahrenheit(inversefahrenheit.Value) : default(CoefficientOfThermalExpansion?);
+            return inversedegreefahrenheit.HasValue ? FromInverseDegreeFahrenheit(inversedegreefahrenheit.Value) : default(CoefficientOfThermalExpansion?);
         }
 
         /// <summary>

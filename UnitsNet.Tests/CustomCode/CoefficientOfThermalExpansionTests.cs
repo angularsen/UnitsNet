@@ -46,9 +46,9 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class CoefficientOfThermalExpansionTests : CoefficientOfThermalExpansionTestsBase
     {
-        protected override double InverseCelsiusInOneInverseKelvin => 1.0;
+        protected override double InverseDegreeCelsiusInOneInverseKelvin => 1.0;
 
-        protected override double InverseFahrenheitInOneInverseKelvin => 1.8;
+        protected override double InverseDegreeFahrenheitInOneInverseKelvin => 1.8;
 
         protected override double InverseKelvinInOneInverseKelvin => 1.0;
     }

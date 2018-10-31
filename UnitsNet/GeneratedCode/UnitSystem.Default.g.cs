@@ -634,20 +634,20 @@ namespace UnitsNet
                 new UnitLocalization(typeof (CoefficientOfThermalExpansionUnit),
                     new[]
                     {
-                        new CulturesForEnumValue((int) CoefficientOfThermalExpansionUnit.InverseCelsius,
+                        new CulturesForEnumValue((int) CoefficientOfThermalExpansionUnit.InverseDegreeCelsius,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "°C⁻¹"),
+                                new AbbreviationsForCulture("en-US", "°C⁻¹", "1/°C"),
                             }),
-                        new CulturesForEnumValue((int) CoefficientOfThermalExpansionUnit.InverseFahrenheit,
+                        new CulturesForEnumValue((int) CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "°F⁻¹"),
+                                new AbbreviationsForCulture("en-US", "°F⁻¹", "1/°F"),
                             }),
                         new CulturesForEnumValue((int) CoefficientOfThermalExpansionUnit.InverseKelvin,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "K⁻¹"),
+                                new AbbreviationsForCulture("en-US", "K⁻¹", "1/K"),
                             }),
                     }),
                 new UnitLocalization(typeof (DensityUnit),

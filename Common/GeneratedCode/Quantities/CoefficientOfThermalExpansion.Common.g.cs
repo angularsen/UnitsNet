@@ -162,14 +162,14 @@ namespace UnitsNet
         public static CoefficientOfThermalExpansionUnit[] Units { get; } = Enum.GetValues(typeof(CoefficientOfThermalExpansionUnit)).Cast<CoefficientOfThermalExpansionUnit>().Except(new CoefficientOfThermalExpansionUnit[]{ CoefficientOfThermalExpansionUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion in InverseCelsius.
+        ///     Get CoefficientOfThermalExpansion in InverseDegreeCelsius.
         /// </summary>
-        public double InverseCelsius => As(CoefficientOfThermalExpansionUnit.InverseCelsius);
+        public double InverseDegreeCelsius => As(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
 
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion in InverseFahrenheit.
+        ///     Get CoefficientOfThermalExpansion in InverseDegreeFahrenheit.
         /// </summary>
-        public double InverseFahrenheit => As(CoefficientOfThermalExpansionUnit.InverseFahrenheit);
+        public double InverseDegreeFahrenheit => As(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
 
         /// <summary>
         ///     Get CoefficientOfThermalExpansion in InverseKelvin.
@@ -186,31 +186,31 @@ namespace UnitsNet
         public static CoefficientOfThermalExpansion Zero => new CoefficientOfThermalExpansion(0, BaseUnit);
 
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion from InverseCelsius.
+        ///     Get CoefficientOfThermalExpansion from InverseDegreeCelsius.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static CoefficientOfThermalExpansion FromInverseCelsius(double inversecelsius)
+        public static CoefficientOfThermalExpansion FromInverseDegreeCelsius(double inversedegreecelsius)
 #else
-        public static CoefficientOfThermalExpansion FromInverseCelsius(QuantityValue inversecelsius)
+        public static CoefficientOfThermalExpansion FromInverseDegreeCelsius(QuantityValue inversedegreecelsius)
 #endif
         {
-            double value = (double) inversecelsius;
-            return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.InverseCelsius);
+            double value = (double) inversedegreecelsius;
+            return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
         }
 
         /// <summary>
-        ///     Get CoefficientOfThermalExpansion from InverseFahrenheit.
+        ///     Get CoefficientOfThermalExpansion from InverseDegreeFahrenheit.
         /// </summary>
 #if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-        public static CoefficientOfThermalExpansion FromInverseFahrenheit(double inversefahrenheit)
+        public static CoefficientOfThermalExpansion FromInverseDegreeFahrenheit(double inversedegreefahrenheit)
 #else
-        public static CoefficientOfThermalExpansion FromInverseFahrenheit(QuantityValue inversefahrenheit)
+        public static CoefficientOfThermalExpansion FromInverseDegreeFahrenheit(QuantityValue inversedegreefahrenheit)
 #endif
         {
-            double value = (double) inversefahrenheit;
-            return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.InverseFahrenheit);
+            double value = (double) inversedegreefahrenheit;
+            return new CoefficientOfThermalExpansion(value, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
         }
 
         /// <summary>
@@ -399,8 +399,8 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case CoefficientOfThermalExpansionUnit.InverseCelsius: return _value;
-                case CoefficientOfThermalExpansionUnit.InverseFahrenheit: return _value*5/9;
+                case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return _value;
+                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return _value*5/9;
                 case CoefficientOfThermalExpansionUnit.InverseKelvin: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -416,8 +416,8 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case CoefficientOfThermalExpansionUnit.InverseCelsius: return baseUnitValue;
-                case CoefficientOfThermalExpansionUnit.InverseFahrenheit: return baseUnitValue*9/5;
+                case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return baseUnitValue;
+                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return baseUnitValue*9/5;
                 case CoefficientOfThermalExpansionUnit.InverseKelvin: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
