@@ -1526,7 +1526,7 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "daN"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "даН"),
                             }),
                         new CulturesForEnumValue((int) ForceUnit.Dyn,
                             new[]
@@ -1544,7 +1544,7 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kN"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "кН"),
                             }),
                         new CulturesForEnumValue((int) ForceUnit.KiloPond,
                             new[]
@@ -1556,19 +1556,19 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MN"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "МН"),
                             }),
                         new CulturesForEnumValue((int) ForceUnit.Micronewton,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "µN"),
-                                new AbbreviationsForCulture("ru-RU", "даН"),
+                                new AbbreviationsForCulture("ru-RU", "мкН"),
                             }),
                         new CulturesForEnumValue((int) ForceUnit.Millinewton,
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "mN"),
-                                new AbbreviationsForCulture("ru-RU", "кН"),
+                                new AbbreviationsForCulture("ru-RU", "мН"),
                             }),
                         new CulturesForEnumValue((int) ForceUnit.Newton,
                             new[]
@@ -4318,7 +4318,7 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "MN·m"),
-                                new AbbreviationsForCulture("ru-RU", ""),
+                                new AbbreviationsForCulture("ru-RU", "МН·м"),
                             }),
                         new CulturesForEnumValue((int) TorqueUnit.MeganewtonMillimeter,
                             new[]
