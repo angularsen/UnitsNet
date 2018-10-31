@@ -94,9 +94,15 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillibarsInOnePascal => 1e-2;
 
+        protected override double MicrobarsInOnePascal => 1.0e1;
+
         protected override double MillimetersOfMercuryInOnePascal => 7.50061561302643e-3;
 
         protected override double InchesOfMercuryInOnePascal => 2.95299830714159e-4;
+
+        protected override double DynesPerSquareCentimeterInOnePascal => 1.0e1;
+
+        protected override double PoundsPerInchSecondSquaredInOnePascal => 5.599741459495891e-2;
 
         [Fact]
         public void AreaTimesPressureEqualsForce()

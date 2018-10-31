@@ -61,7 +61,7 @@
       "PluralName": "Newtons",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Deca", "Kilo", "Mega" ],
+      "Prefixes": [ "Micro", "Milli", "Deca", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
@@ -70,7 +70,7 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Н" ],
-          "AbbreviationsWithPrefixes": [ "даН", "кН" ]
+          "AbbreviationsWithPrefixes": [ "мкН", "мН", "даН", "кН", "МН" ]
         }
       ]
     },
@@ -119,6 +119,18 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "фунт-сила" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OunceForce",
+      "PluralName": "OunceForce",
+      "FromUnitToBaseFunc": "x*2.780138509537812e-1",
+      "FromBaseToUnitFunc": "x/2.780138509537812e-1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "ozf" ]
         }
       ]
     }

@@ -48,7 +48,7 @@
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Н·м" ],
-          "AbbreviationsWithPrefixes": [ "кН·м" ]
+          "AbbreviationsWithPrefixes": [ "кН·м", "МН·м" ]
         }
       ]
     },

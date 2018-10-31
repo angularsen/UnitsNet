@@ -129,6 +129,14 @@ function Add-PrefixUnits {
 
         foreach ($unit in $quantity.Units)
         {
+            foreach ($localization in $unit.Localization){
+                if($localization.AbbreviationsWithPrefixes.Count -gt 0){
+                    if($unit.Prefixes.Count -ne $localization.AbbreviationsWithPrefixes.Count){
+                        Write-Error "The prefix count ($($unit.Prefixes.Count)) does not match the abbreviations with prefixes count ($($localization.AbbreviationsWithPrefixes.Count)) for $($quantity.Name).$($unit.SingularName)" -ErrorAction Stop
+                    }
+                }
+            }
+
             $prefixIndex = 0
             foreach ($prefix in $unit.Prefixes)
             {
@@ -175,6 +183,7 @@ function Add-PrefixUnits {
                     PluralName=$prefix + $(ToCamelCase $unit.PluralName)
                     FromUnitToBaseFunc="("+$unit.FromUnitToBaseFunc+") * $prefixFactor"
                     FromBaseToUnitFunc="("+$unit.FromBaseToUnitFunc+") / $prefixFactor"
+
                     Localization=$unit.Localization | % {
                         $abbrev = $prefixAbbreviation + $_.Abbreviations[0]
                         if ($_.AbbreviationsWithPrefixes) {

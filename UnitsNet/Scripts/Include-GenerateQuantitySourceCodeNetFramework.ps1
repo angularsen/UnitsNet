@@ -899,7 +899,7 @@ $accessModifier = if ($wrc) { "internal" } else { "public" } @"
         /// <returns>A hash code for the current $quantityName.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { QuantityType, Value, Unit }.GetHashCode();
         }
 
         #endregion
