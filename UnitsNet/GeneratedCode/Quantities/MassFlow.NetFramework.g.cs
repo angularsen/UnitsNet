@@ -135,6 +135,14 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable MassFlow from nullable MegapoundsPerMinute.
+        /// </summary>
+        public static MassFlow? FromMegapoundsPerMinute(QuantityValue? megapoundsperminute)
+        {
+            return megapoundsperminute.HasValue ? FromMegapoundsPerMinute(megapoundsperminute.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
         ///     Get nullable MassFlow from nullable MicrogramsPerSecond.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
@@ -168,6 +176,14 @@ namespace UnitsNet
         public static MassFlow? FromPoundsPerHour(QuantityValue? poundsperhour)
         {
             return poundsperhour.HasValue ? FromPoundsPerHour(poundsperhour.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable PoundsPerMinute.
+        /// </summary>
+        public static MassFlow? FromPoundsPerMinute(QuantityValue? poundsperminute)
+        {
+            return poundsperminute.HasValue ? FromPoundsPerMinute(poundsperminute.Value) : default(MassFlow?);
         }
 
         /// <summary>

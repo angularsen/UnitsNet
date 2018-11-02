@@ -61,6 +61,19 @@
         }
       ]
     },
+      {
+      "SingularName": "PoundPerMinute",
+      "PluralName": "PoundsPerMinute",
+      "FromUnitToBaseFunc": "x/0.132277",
+      "FromBaseToUnitFunc": "x*0.132277",
+      "Prefixes": [ "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/min" ]
+        }
+      ]
+    },
     {
       "SingularName": "TonnePerDay",
       "PluralName": "TonnesPerDay",

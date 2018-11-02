@@ -2484,6 +2484,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "Mlb/h"),
                             }),
+                        new CulturesForEnumValue((int) MassFlowUnit.MegapoundPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mlb/min"),
+                            }),
                         new CulturesForEnumValue((int) MassFlowUnit.MicrogramPerSecond,
                             new[]
                             {
@@ -2503,6 +2508,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "lb/h"),
+                            }),
+                        new CulturesForEnumValue((int) MassFlowUnit.PoundPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "lb/min"),
                             }),
                         new CulturesForEnumValue((int) MassFlowUnit.ShortTonPerHour,
                             new[]
@@ -4520,6 +4530,12 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "kgal (imp.)"),
                                 new AbbreviationsForCulture("ru-RU", "kАнглийский галлон"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeUnit.Kiloliter,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kl"),
+                                new AbbreviationsForCulture("ru-RU", "кл"),
                             }),
                         new CulturesForEnumValue((int) VolumeUnit.KilousGallon,
                             new[]
