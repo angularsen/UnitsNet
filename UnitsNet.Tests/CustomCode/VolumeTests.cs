@@ -64,6 +64,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilousGallonsInOneCubicMeter => 2.6417217e-1;
 
         protected override double LitersInOneCubicMeter => 1E3;
+        protected override double KilolitersInOneCubicMeter => 1;
+
         protected override double MegacubicFeetInOneCubicMeter => 3.531472e-5;
         protected override double MegaimperialGallonsInOneCubicMeter => 2.1996924e-4;
         protected override double MegausGallonsInOneCubicMeter => 2.6417217e-4;

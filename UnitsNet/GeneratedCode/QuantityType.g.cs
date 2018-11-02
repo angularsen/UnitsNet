@@ -60,6 +60,7 @@ namespace UnitsNet
         BitRate,
         BrakeSpecificFuelConsumption,
         Capacitance,
+        CoefficientOfThermalExpansion,
         Density,
         Duration,
         DynamicViscosity,
