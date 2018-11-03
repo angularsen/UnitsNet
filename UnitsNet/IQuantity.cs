@@ -27,7 +27,7 @@ namespace UnitsNet
     /// <summary>
     ///     Represents a quantity.
     /// </summary>
-    public interface IQuantity
+    public partial interface IQuantity
     {
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -48,6 +48,66 @@ namespace UnitsNet
 
 #if !WINDOWS_UWP
 
+    public partial interface IQuantity
+    {
+        /// <summary>
+        ///     Get string representation of value and unit. Using two significant digits after radix.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        string ToString([CanBeNull] IFormatProvider provider);
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix);
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args);
+    }
+
+#else
+
+    public partial interface IQuantity
+    {
+        /// <summary>
+        ///     Get string representation of value and unit. Using two significant digits after radix.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        string ToString([CanBeNull] string cultureName);
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        string ToString(string cultureName, int significantDigitsAfterRadix);
+
+        /// <summary>
+        ///     Get string representation of value and unit.
+        /// </summary>
+        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
+        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
+        /// <returns>String representation.</returns>
+        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args);
+    }
+
+#endif
+
+#if !WINDOWS_UWP
+
     public interface IQuantity<UnitType> : IQuantity where UnitType : Enum
     {
         /// <summary>
@@ -55,40 +115,6 @@ namespace UnitsNet
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
         double As(UnitType unit);
-
-        /// <summary>
-        ///     Get string representation of value and unit. Using current UI culture and two significant digits after radix.
-        /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <returns>String representation.</returns>
-        string ToString(UnitType unit);
-
-        /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
-        /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        string ToString(UnitType unit, [CanBeNull] IFormatProvider provider);
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        string ToString(UnitType unit, [CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix);
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        string ToString(UnitType unit, [CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args);
 
         /// <summary>
         ///     The unit this quantity was constructed with or the BaseUnit if the default constructor was used.

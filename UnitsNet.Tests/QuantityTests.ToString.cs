@@ -106,10 +106,10 @@ namespace UnitsNet.Tests
                 try
                 {
                     GlobalConfiguration.DefaultCulture = CultureInfo.InvariantCulture;
-                    Assert.Equal("5,000 g", Mass.FromKilograms(5).ToString(MassUnit.Gram));
-                    Assert.Equal("5 kg", Mass.FromGrams(5000).ToString(MassUnit.Kilogram));
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToString(LengthUnit.Meter));
-                    Assert.Equal("1.97 in", Length.FromCentimeters(5).ToString(LengthUnit.Inch));
+                    Assert.Equal("5,000 g", Mass.FromKilograms(5).ToUnit(MassUnit.Gram).ToString());
+                    Assert.Equal("5 kg", Mass.FromGrams(5000).ToUnit(MassUnit.Kilogram).ToString());
+                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString());
+                    Assert.Equal("1.97 in", Length.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString());
                 }
                 finally
                 {
@@ -124,9 +124,9 @@ namespace UnitsNet.Tests
                 try
                 {
                     GlobalConfiguration.DefaultCulture = CultureInfo.InvariantCulture;
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToString(LengthUnit.Meter, null));
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToString(LengthUnit.Meter, CultureInfo.InvariantCulture));
-                    Assert.Equal("0,05 m", Length.FromCentimeters(5).ToString(LengthUnit.Meter, new CultureInfo("nb-NO")));
+                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(null));
+                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(CultureInfo.InvariantCulture));
+                    Assert.Equal("0,05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(new CultureInfo("nb-NO")));
                 }
                 finally
                 {
@@ -141,9 +141,9 @@ namespace UnitsNet.Tests
                 try
                 {
                     GlobalConfiguration.DefaultCulture = CultureInfo.InvariantCulture;
-                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToString(LengthUnit.Meter, null, 4));
-                    Assert.Equal("1.97 in", Length.FromCentimeters(5).ToString(LengthUnit.Inch, null, 2));
-                    Assert.Equal("1.9685 in", Length.FromCentimeters(5).ToString(LengthUnit.Inch, null, 4));
+                    Assert.Equal("0.05 m", Length.FromCentimeters(5).ToUnit(LengthUnit.Meter).ToString(null, 4));
+                    Assert.Equal("1.97 in", Length.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString(null, 2));
+                    Assert.Equal("1.9685 in", Length.FromCentimeters(5).ToUnit(LengthUnit.Inch).ToString(null, 4));
                 }
                 finally
                 {
