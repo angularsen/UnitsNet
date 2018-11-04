@@ -286,6 +286,17 @@ namespace UnitsNet.Extensions.NumberToVolume
 
         #endregion
 
+        #region Kiloliter
+
+        /// <inheritdoc cref="Volume.FromKiloliters(UnitsNet.QuantityValue)" />
+        public static Volume Kiloliters<T>(this T value) => Volume.FromKiloliters(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Volume.FromKiloliters(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Volume? Kiloliters<T>(this T? value) where T : struct => Volume.FromKiloliters(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region KilousGallon
 
         /// <inheritdoc cref="Volume.FromKilousGallons(UnitsNet.QuantityValue)" />
