@@ -125,7 +125,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbf/(ft·s)", "lb/(ft·s)" ]
+          "Abbreviations": [ "lbf/(ft·s)" ]
         }
       ]
     },
@@ -137,7 +137,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "lbm/s³", "lb/s³" ]
+          "Abbreviations": [ "lb/s³", "lbm/s³" ]
         }
       ]
     }

@@ -1843,12 +1843,12 @@ namespace UnitsNet
                         new CulturesForEnumValue((int) HeatFluxUnit.PoundForcePerFootSecond,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "lbf/(ft·s)", "lb/(ft·s)"),
+                                new AbbreviationsForCulture("en-US", "lbf/(ft·s)"),
                             }),
                         new CulturesForEnumValue((int) HeatFluxUnit.PoundPerSecondCubed,
                             new[]
                             {
-                                new AbbreviationsForCulture("en-US", "lbm/s³", "lb/s³"),
+                                new AbbreviationsForCulture("en-US", "lb/s³", "lbm/s³"),
                             }),
                         new CulturesForEnumValue((int) HeatFluxUnit.WattPerSquareFoot,
                             new[]
