@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -44,46 +44,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double DegreesRoemerInOneKelvin => -135.378750000;
 
         protected override double KelvinsInOneKelvin => 1;
-
-        [SuppressMessage("ReSharper", "ImpureMethodCallOnReadonlyValueField",
-            Justification = "R# incorrectly identifies method as impure, due to internal method calls.")]
-        [Theory]
-        [InlineData(TemperatureUnit.DegreeCelsius, 10, 1, "10 °C")]
-        [InlineData(TemperatureUnit.DegreeCelsius, 10, 5, "2 °C")]
-        [InlineData(TemperatureUnit.DegreeCelsius, 10, -10, "-1 °C")]
-        [InlineData(TemperatureUnit.DegreeFahrenheit, 10, 1, "10 °F")]
-        [InlineData(TemperatureUnit.DegreeFahrenheit, 10, 5, "2 °F")]
-        [InlineData(TemperatureUnit.DegreeFahrenheit, 10, -10, "-1 °F")]
-        public void DividedByTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int divisor, string expected)
-        {
-            Temperature temperature = Temperature.From(temperatureVal, unit);
-
-            // Act
-            Temperature resultTemp = temperature.Divide(divisor, unit);
-
-            string actual = resultTemp.ToUnit(unit).ToString(CultureInfo.InvariantCulture, "{0:0} {1}");
-            Assert.Equal(expected, actual);
-        }
-
-        [SuppressMessage("ReSharper", "ImpureMethodCallOnReadonlyValueField",
-            Justification = "R# incorrectly identifies method as impure, due to internal method calls.")]
-        [Theory]
-        [InlineData(TemperatureUnit.DegreeCelsius, 10, 0, "0 °C")]
-        [InlineData(TemperatureUnit.DegreeCelsius, 10, 5, "50 °C")]
-        [InlineData(TemperatureUnit.DegreeCelsius, 10, -5, "-50 °C")]
-        [InlineData(TemperatureUnit.DegreeFahrenheit, 10, 0, "0 °F")]
-        [InlineData(TemperatureUnit.DegreeFahrenheit, 10, 5, "50 °F")]
-        [InlineData(TemperatureUnit.DegreeFahrenheit, 10, -5, "-50 °F")]
-        public void MultiplyByTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int factor, string expected)
-        {
-            Temperature temperature = Temperature.From(temperatureVal, unit);
-
-            // Act
-            Temperature resultTemp = temperature.Multiply(factor, unit);
-
-            string actual = resultTemp.ToUnit(unit).ToString(CultureInfo.InvariantCulture, "{0:0} {1}");
-            Assert.Equal(expected, actual);
-        }
 
         [Theory]
         [InlineData(TemperatureUnit.DegreeCelsius, -10, 0, "-10 °C")]
@@ -140,6 +100,25 @@ namespace UnitsNet.Tests.CustomCode
 
             string actual = resultTemp.ToUnit(unit).ToString(CultureInfo.InvariantCulture, "{0:0} {1}");
             Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(TemperatureUnit.DegreeCelsius, 30, 20, "10 ∆°C")]
+        [InlineData(TemperatureUnit.DegreeCelsius, 20, 30, "-10 ∆°C")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, 30, 20, "10 ∆°F")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, 20, 30, "-10 ∆°F")]
+        [InlineData(TemperatureUnit.Kelvin, 30, 20, "10 ∆K")]
+        [InlineData(TemperatureUnit.Kelvin, 20, 30, "-10 ∆K")]
+        public void ToDelta_ReturnsDeltaOfTwoTemperaturesInSameUnit(TemperatureUnit unit, int value, int otherValue, string expected)
+        {
+            Temperature temperature = Temperature.From(value, unit);
+            Temperature otherTemperature = Temperature.From(otherValue, unit);
+
+            // Act
+            var delta = temperature.ToDelta(otherTemperature);
+
+            // Assert
+            Assert.Equal(expected, delta.ToString(CultureInfo.InvariantCulture, "{0:0} {1}"));
         }
     }
 }
