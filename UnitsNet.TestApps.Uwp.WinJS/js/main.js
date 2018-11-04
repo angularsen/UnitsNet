@@ -43,7 +43,7 @@
 
         var t = UnitsNet.Temperature.fromDegreesCelsius(100);
         var unit = UnitsNet.Units.TemperatureUnit;
-        document.getElementById('label').innerHTML = t.toString(unit.degreeCelsius) + ' = ' + t.toString(unit.degreeFahrenheit) + ' = ' + t.toString(unit.kelvin);
+        document.getElementById('label').innerHTML = t.toUnit(unit.degreeCelsius).toString() + ' = ' + t.toUnit(unit.degreeFahrenheit).toString() + ' = ' + t.toUnit(unit.kelvin).toString();
 
 
 		isFirstActivation = false;

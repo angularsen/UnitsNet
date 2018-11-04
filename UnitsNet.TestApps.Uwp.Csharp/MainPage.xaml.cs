@@ -19,9 +19,9 @@ namespace UWP
             InitializeComponent();
 
             // Test some variations, From() constructors, Parse(), As()
-            string celsius = Temperature.FromDegreesCelsius(100).ToString(TemperatureUnit.DegreeCelsius);
-            string fahrenheit = Temperature.Parse("100 °C").ToString(TemperatureUnit.DegreeFahrenheit);
-            string kelvin = Temperature.FromDegreesCelsius(Temperature.Parse(fahrenheit).As(TemperatureUnit.DegreeCelsius)).ToString(TemperatureUnit.Kelvin);
+            string celsius = Temperature.FromDegreesCelsius(100).ToUnit(TemperatureUnit.DegreeCelsius).ToString();
+            string fahrenheit = Temperature.Parse("100 °C").ToUnit(TemperatureUnit.DegreeFahrenheit).ToString();
+            string kelvin = Temperature.FromDegreesCelsius(Temperature.Parse(fahrenheit).As(TemperatureUnit.DegreeCelsius)).ToUnit(TemperatureUnit.Kelvin).ToString();
 
             // Arithmetic operators not allowed in WinRT Components, but SHOULD be allowed in UWP C# apps
             // new Temperature(5) + new Temperature(6)
