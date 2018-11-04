@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.6",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "6.1.9",
     "UnitsNet.WindowsRuntimeComponent": "3.64.0"
   },
   "frameworks": {
