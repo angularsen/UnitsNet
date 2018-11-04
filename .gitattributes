@@ -21,7 +21,8 @@
 *.vcxitems   text eol=crlf
 
 # C#
-*.cs     diff=csharp
+*.cs    diff=csharp
+*.g.cs  linguist-generated
 
 # Powershell
 *.ps1    text  eol=crlf
