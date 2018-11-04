@@ -20,6 +20,9 @@
 // THE SOFTWARE.
 
 // ReSharper disable once CheckNamespace
+
+using UnitsNet.Units;
+
 namespace UnitsNet
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
@@ -46,6 +49,21 @@ namespace UnitsNet
         public static SpecificEnergy operator *(TemperatureDelta temperatureDelta, SpecificEntropy specificEntropy)
         {
             return specificEntropy * temperatureDelta;
+        }
+
+        /// <summary>
+        ///     Subtract two temperatures to get a <see cref="TemperatureDelta"/> in <paramref name="left"/>'s unit, which you can later convert to any temperature unit.
+        ///     This is useful since Celsius, Fahrenheit and Kelvins don't share a common zero point on the scale and normal subtraction
+        ///     would operate on Kelvins and likely give an unexpected result.
+        ///     Example:
+        ///     double deltaCelsius = TemperatureDelta.FromTemperatures(celsius30, celsius20).DegreesCelsius; // 10 C
+        ///     double wrongDeltaCelsius = (celsius30 - celsius20).DegreesCelsius; // 303.15 K - 293.15 K = 10 K = -263.15 degrees Celsius
+        /// </summary>
+        /// <returns>A temperature delta.</returns>
+        public static TemperatureDelta FromTemperatures(Temperature left, Temperature right)
+        {
+            // TemperatureDeltaUnit enum has identical values to TemperatureUnit, so we can simply cast between them
+            return new TemperatureDelta(left.Value - right.As(left.Unit), (TemperatureDeltaUnit)left.Unit);
         }
 #endif
     }
