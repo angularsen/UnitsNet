@@ -76,14 +76,6 @@
     <Content Include="project.json" />
     <None Include="UnitsNet.TestApps.Uwp.WinJS_TemporaryKey.pfx" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="UnitsNet">
-      <HintPath>..\packages\UnitsNet.WindowsRuntimeComponent.3.64.0\lib\uap10.0\UnitsNet.winmd</HintPath>
-      <IsWinMDFile>true</IsWinMDFile>
-      <CopyLocal>True</CopyLocal>
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <!-- To modify your build process, add your task inside one of the targets below then uncomment
        that target and the DisableFastUpToDateCheck PropertyGroup.
