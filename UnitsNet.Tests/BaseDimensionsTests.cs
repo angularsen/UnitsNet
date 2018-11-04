@@ -710,13 +710,13 @@ namespace UnitsNet.Tests
             var hashSet = new HashSet<BaseDimensions>();
 
             hashSet.Add(baseDimensions1);
-            Assert.True(hashSet.Contains(baseDimensions1));
+            Assert.Contains(baseDimensions1, hashSet);
 
             hashSet.Add(baseDimensions2);
-            Assert.True(hashSet.Contains(baseDimensions2));
+            Assert.Contains(baseDimensions2, hashSet);
 
             // Should be the same as baseDimensions1
-            Assert.True(hashSet.Contains(baseDimensions3));
+            Assert.Contains(baseDimensions3, hashSet);
 
             Assert.True(baseDimensions1.GetHashCode() != baseDimensions2.GetHashCode());
             Assert.True(baseDimensions1.GetHashCode() == baseDimensions3.GetHashCode());
