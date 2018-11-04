@@ -4,7 +4,7 @@
     "UnitsNet.WindowsRuntimeComponent": "3.40.0"
   },
   "frameworks": {
-    "uap10.0.10240": {}
+    "uap10.0.16299": {}
   },
   "runtimes": {
     "win10-arm": {},
