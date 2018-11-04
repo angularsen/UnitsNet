@@ -21,6 +21,7 @@
   <!-- Assembly and msbuild properties -->
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion> <!-- Should reflect major part of Version -->
     <RootNamespace>UnitsNet.Serialization.JsonNet</RootNamespace>
     <NoWarn>CS1701;CS1702;CS1705;CS0618</NoWarn>
   </PropertyGroup>
