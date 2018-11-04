@@ -135,6 +135,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable MassFlow from nullable MegapoundsPerMinute.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static MassFlow? FromMegapoundsPerMinute(QuantityValue? megapoundsperminute)
+        {
+            return megapoundsperminute.HasValue ? FromMegapoundsPerMinute(megapoundsperminute.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
         ///     Get nullable MassFlow from nullable MicrogramsPerSecond.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
@@ -168,6 +177,15 @@ namespace UnitsNet
         public static MassFlow? FromPoundsPerHour(QuantityValue? poundsperhour)
         {
             return poundsperhour.HasValue ? FromPoundsPerHour(poundsperhour.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
+        ///     Get nullable MassFlow from nullable PoundsPerMinute.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static MassFlow? FromPoundsPerMinute(QuantityValue? poundsperminute)
+        {
+            return poundsperminute.HasValue ? FromPoundsPerMinute(poundsperminute.Value) : default(MassFlow?);
         }
 
         /// <summary>
@@ -284,14 +302,14 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(MassFlow, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator ==(MassFlow left, MassFlow right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(MassFlow, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator !=(MassFlow left, MassFlow right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator

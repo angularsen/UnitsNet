@@ -795,7 +795,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Information.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Information), Value, Unit }.GetHashCode();
         }
 
         #endregion

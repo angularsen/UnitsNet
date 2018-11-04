@@ -117,12 +117,39 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Force from nullable Micronewtons.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Force? FromMicronewtons(QuantityValue? micronewtons)
+        {
+            return micronewtons.HasValue ? FromMicronewtons(micronewtons.Value) : default(Force?);
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable Millinewtons.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Force? FromMillinewtons(QuantityValue? millinewtons)
+        {
+            return millinewtons.HasValue ? FromMillinewtons(millinewtons.Value) : default(Force?);
+        }
+
+        /// <summary>
         ///     Get nullable Force from nullable Newtons.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static Force? FromNewtons(QuantityValue? newtons)
         {
             return newtons.HasValue ? FromNewtons(newtons.Value) : default(Force?);
+        }
+
+        /// <summary>
+        ///     Get nullable Force from nullable OunceForce.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Force? FromOunceForce(QuantityValue? ounceforce)
+        {
+            return ounceforce.HasValue ? FromOunceForce(ounceforce.Value) : default(Force?);
         }
 
         /// <summary>
@@ -239,14 +266,14 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Force, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator ==(Force left, Force right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Force, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator !=(Force left, Force right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator

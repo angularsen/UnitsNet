@@ -108,6 +108,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Pressure from nullable DynesPerSquareCentimeter.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Pressure? FromDynesPerSquareCentimeter(QuantityValue? dynespersquarecentimeter)
+        {
+            return dynespersquarecentimeter.HasValue ? FromDynesPerSquareCentimeter(dynespersquarecentimeter.Value) : default(Pressure?);
+        }
+
+        /// <summary>
         ///     Get nullable Pressure from nullable FeetOfHead.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
@@ -270,6 +279,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Pressure from nullable Microbars.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Pressure? FromMicrobars(QuantityValue? microbars)
+        {
+            return microbars.HasValue ? FromMicrobars(microbars.Value) : default(Pressure?);
+        }
+
+        /// <summary>
         ///     Get nullable Pressure from nullable Micropascals.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
@@ -348,6 +366,15 @@ namespace UnitsNet
         public static Pressure? FromPoundsForcePerSquareInch(QuantityValue? poundsforcepersquareinch)
         {
             return poundsforcepersquareinch.HasValue ? FromPoundsForcePerSquareInch(poundsforcepersquareinch.Value) : default(Pressure?);
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable PoundsPerInchSecondSquared.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Pressure? FromPoundsPerInchSecondSquared(QuantityValue? poundsperinchsecondsquared)
+        {
+            return poundsperinchsecondsquared.HasValue ? FromPoundsPerInchSecondSquared(poundsperinchsecondsquared.Value) : default(Pressure?);
         }
 
         /// <summary>
@@ -491,14 +518,14 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Pressure, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator ==(Pressure left, Pressure right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             return left.Value == right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(other, maxError) to provide the max allowed error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Pressure, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public static bool operator !=(Pressure left, Pressure right)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator

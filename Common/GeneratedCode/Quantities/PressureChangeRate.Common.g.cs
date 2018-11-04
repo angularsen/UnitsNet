@@ -298,7 +298,7 @@ namespace UnitsNet
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(PressureChangeRate, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is PressureChangeRate))
@@ -379,7 +379,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current PressureChangeRate.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(PressureChangeRate), Value, Unit }.GetHashCode();
         }
 
         #endregion

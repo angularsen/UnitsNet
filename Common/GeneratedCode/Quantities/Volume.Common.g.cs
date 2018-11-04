@@ -272,6 +272,11 @@ namespace UnitsNet
         public double KiloimperialGallons => As(VolumeUnit.KiloimperialGallon);
 
         /// <summary>
+        ///     Get Volume in Kiloliters.
+        /// </summary>
+        public double Kiloliters => As(VolumeUnit.Kiloliter);
+
+        /// <summary>
         ///     Get Volume in KilousGallons.
         /// </summary>
         public double KilousGallons => As(VolumeUnit.KilousGallon);
@@ -701,6 +706,20 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Volume from Kiloliters.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Volume FromKiloliters(double kiloliters)
+#else
+        public static Volume FromKiloliters(QuantityValue kiloliters)
+#endif
+        {
+            double value = (double) kiloliters;
+            return new Volume(value, VolumeUnit.Kiloliter);
+        }
+
+        /// <summary>
         ///     Get Volume from KilousGallons.
         /// </summary>
 #if WINDOWS_UWP
@@ -1062,7 +1081,7 @@ namespace UnitsNet
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Volume, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Volume))
@@ -1143,7 +1162,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Volume.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Volume), Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -1204,6 +1223,7 @@ namespace UnitsNet
                 case VolumeUnit.KilocubicFoot: return (_value*0.0283168) * 1e3d;
                 case VolumeUnit.KilocubicMeter: return (_value) * 1e3d;
                 case VolumeUnit.KiloimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e3d;
+                case VolumeUnit.Kiloliter: return (_value/1e3) * 1e3d;
                 case VolumeUnit.KilousGallon: return (_value*0.00378541) * 1e3d;
                 case VolumeUnit.Liter: return _value/1e3;
                 case VolumeUnit.MegacubicFoot: return (_value*0.0283168) * 1e6d;
@@ -1262,6 +1282,7 @@ namespace UnitsNet
                 case VolumeUnit.KilocubicFoot: return (baseUnitValue/0.0283168) / 1e3d;
                 case VolumeUnit.KilocubicMeter: return (baseUnitValue) / 1e3d;
                 case VolumeUnit.KiloimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e3d;
+                case VolumeUnit.Kiloliter: return (baseUnitValue*1e3) / 1e3d;
                 case VolumeUnit.KilousGallon: return (baseUnitValue/0.00378541) / 1e3d;
                 case VolumeUnit.Liter: return baseUnitValue*1e3;
                 case VolumeUnit.MegacubicFoot: return (baseUnitValue/0.0283168) / 1e6d;
