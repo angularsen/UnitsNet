@@ -58,6 +58,8 @@ namespace UnitsNet.Units
         MicrowattPerSquareMeter,
         MilliwattPerSquareMeter,
         NanowattPerSquareMeter,
+        PoundForcePerFootSecond,
+        PoundPerSecondCubed,
         WattPerSquareFoot,
         WattPerSquareInch,
         WattPerSquareMeter,

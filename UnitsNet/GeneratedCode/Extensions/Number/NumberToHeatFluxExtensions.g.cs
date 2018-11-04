@@ -187,6 +187,28 @@ namespace UnitsNet.Extensions.NumberToHeatFlux
 
         #endregion
 
+        #region PoundForcePerFootSecond
+
+        /// <inheritdoc cref="HeatFlux.FromPoundsForcePerFootSecond(UnitsNet.QuantityValue)" />
+        public static HeatFlux PoundsForcePerFootSecond<T>(this T value) => HeatFlux.FromPoundsForcePerFootSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="HeatFlux.FromPoundsForcePerFootSecond(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static HeatFlux? PoundsForcePerFootSecond<T>(this T? value) where T : struct => HeatFlux.FromPoundsForcePerFootSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region PoundPerSecondCubed
+
+        /// <inheritdoc cref="HeatFlux.FromPoundsPerSecondCubed(UnitsNet.QuantityValue)" />
+        public static HeatFlux PoundsPerSecondCubed<T>(this T value) => HeatFlux.FromPoundsPerSecondCubed(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="HeatFlux.FromPoundsPerSecondCubed(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static HeatFlux? PoundsPerSecondCubed<T>(this T? value) where T : struct => HeatFlux.FromPoundsPerSecondCubed(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region WattPerSquareFoot
 
         /// <inheritdoc cref="HeatFlux.FromWattsPerSquareFoot(UnitsNet.QuantityValue)" />
