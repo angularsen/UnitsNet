@@ -66,6 +66,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Subtract two temperatures to get a <see cref="TemperatureDelta"/> in this temperature's unit, which you can later convert to any temperature unit.
+        ///     This is useful since Celsius, Fahrenheit and Kelvins don't share a common zero point on the scale and normal subtraction
+        ///     would operate on Kelvins and likely give an unexpected result.
+        ///     Example:
+        ///     double deltaCelsius = celsius30.ToDelta(celsius20).DegreesCelsius; // 10 C
+        ///     double wrongDeltaCelsius = (celsius30 - celsius20).DegreesCelsius; // 303.15 K - 293.15 K = 10 K = -263.15 degrees Celsius
+        /// </summary>
+        /// <returns>A temperature delta.</returns>
+        public TemperatureDelta ToDelta(Temperature other) => TemperatureDelta.FromTemperatures(this, other);
 #endif
     }
 }
