@@ -89,9 +89,7 @@ function Start-Tests {
 function Start-PackNugets {
   $projectPaths = @(
     "UnitsNet\UnitsNet.csproj",
-    "UnitsNet\UnitsNet.Signed.csproj",
-    "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj",
-    "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Signed.csproj"
+    "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj"
     )
 
   write-host -foreground blue "Pack nugets...`n---"
