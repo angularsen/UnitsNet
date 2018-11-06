@@ -42,7 +42,7 @@ function GenerateQuantitySourceCodeNetFramework([Quantity]$quantity, [string]$ta
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
