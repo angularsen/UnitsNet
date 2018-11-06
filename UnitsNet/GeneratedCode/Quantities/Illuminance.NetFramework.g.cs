@@ -44,7 +44,7 @@ using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
-namespace UnitsNet
+namespace UnitsNet.Quantities
 {
     /// <summary>
     ///     In photometry, illuminance is the total luminous flux incident on a surface, per unit area.

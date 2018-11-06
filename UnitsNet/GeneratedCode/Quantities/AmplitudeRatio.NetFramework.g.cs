@@ -44,7 +44,7 @@ using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
-namespace UnitsNet
+namespace UnitsNet.Quantities
 {
     /// <summary>
     ///     The strength of a signal expressed in decibels (dB) relative to one volt RMS.

@@ -44,7 +44,7 @@ using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
-namespace UnitsNet
+namespace UnitsNet.Quantities
 {
     /// <summary>
     ///     A geometric property of an area that reflects how its points are distributed with regard to an axis.

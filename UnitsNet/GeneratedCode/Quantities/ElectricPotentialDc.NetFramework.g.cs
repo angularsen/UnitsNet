@@ -44,7 +44,7 @@ using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
-namespace UnitsNet
+namespace UnitsNet.Quantities
 {
     /// <summary>
     ///     The Electric Potential of a system known to use Direct Current.

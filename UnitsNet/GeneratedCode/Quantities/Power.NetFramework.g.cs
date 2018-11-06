@@ -44,7 +44,7 @@ using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
-namespace UnitsNet
+namespace UnitsNet.Quantities
 {
     /// <summary>
     ///     In physics, power is the rate of doing work. It is equivalent to an amount of energy consumed per unit time.

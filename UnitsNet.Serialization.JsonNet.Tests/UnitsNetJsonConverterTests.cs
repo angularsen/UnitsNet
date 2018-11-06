@@ -21,6 +21,7 @@
 
 using System;
 using Newtonsoft.Json;
+using UnitsNet.Quantities;
 using Xunit;
 
 namespace UnitsNet.Serialization.JsonNet.Tests

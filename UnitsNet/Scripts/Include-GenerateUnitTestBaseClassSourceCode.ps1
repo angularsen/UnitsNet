@@ -50,6 +50,7 @@ function GenerateUnitTestBaseClassSourceCode([Quantity]$quantity)
 
 using System;
 using System.Linq;
+using UnitsNet.Quantities;
 using UnitsNet.Units;
 using Xunit;
 

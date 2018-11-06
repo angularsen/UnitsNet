@@ -21,6 +21,7 @@
 
 using Xunit;
 using UnitsNet.Units;
+using UnitsNet.Quantities;
 
 namespace UnitsNet.Tests.CustomCode
 {

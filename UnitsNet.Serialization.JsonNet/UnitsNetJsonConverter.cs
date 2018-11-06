@@ -66,7 +66,7 @@ namespace UnitsNet.Serialization.JsonNet
             {
                 return reader.Value;
             }
-            object obj = TryDeserializeIComparable(reader, serializer);
+            var obj = TryDeserializeIComparable(reader, serializer);
             // A null System.Nullable value or a comparable type was deserialized so return this
             if (!(obj is ValueUnit vu))
             {
@@ -74,20 +74,20 @@ namespace UnitsNet.Serialization.JsonNet
             }
 
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
-            string unitEnumTypeName = vu.Unit.Split('.')[0];
-            string unitEnumValue = vu.Unit.Split('.')[1];
+            var unitEnumTypeName = vu.Unit.Split('.')[0];
+            var unitEnumValue = vu.Unit.Split('.')[1];
 
             // "MassUnit" => "Mass"
-            string quantityTypeName = unitEnumTypeName.Substring(0, unitEnumTypeName.Length - "Unit".Length);
+            var quantityTypeName = unitEnumTypeName.Substring(0, unitEnumTypeName.Length - "Unit".Length);
 
             // "UnitsNet.Units.MassUnit,UnitsNet"
-            string unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
+            var unitEnumTypeAssemblyQualifiedName = "UnitsNet.Units." + unitEnumTypeName + ",UnitsNet";
 
             // "UnitsNet.Mass,UnitsNet"
-            string quantityTypeAssemblyQualifiedName = "UnitsNet." + quantityTypeName + ",UnitsNet";
+            var quantityTypeAssemblyQualifiedName = "UnitsNet.Quantities." + quantityTypeName + ",UnitsNet";
 
             // -- see http://stackoverflow.com/a/6465096/1256096 for details
-            Type unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
+            var unitEnumType = Type.GetType(unitEnumTypeAssemblyQualifiedName);
             if (unitEnumType == null)
             {
                 var ex = new UnitsNetException("Unable to find enum type.");
@@ -95,7 +95,7 @@ namespace UnitsNet.Serialization.JsonNet
                 throw ex;
             }
 
-            Type quantityType = Type.GetType(quantityTypeAssemblyQualifiedName);
+            var quantityType = Type.GetType(quantityTypeAssemblyQualifiedName);
             if (quantityType == null)
             {
                 var ex = new UnitsNetException("Unable to find unit type.");
@@ -103,8 +103,8 @@ namespace UnitsNet.Serialization.JsonNet
                 throw ex;
             }
 
-            double value = vu.Value;
-            object unitValue = Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
+            var value = vu.Value;
+            var unitValue = Enum.Parse(unitEnumType, unitEnumValue); // Ex: MassUnit.Kilogram
 
             return CreateQuantity(quantityType, value, unitValue);
         }
@@ -121,12 +121,12 @@ namespace UnitsNet.Serialization.JsonNet
             // We want the non-nullable return type, example candidates if quantity type is Mass:
             // double Mass.From(double, MassUnit)
             // double? Mass.From(double?, MassUnit)
-            MethodInfo notNullableFromMethod = quantityType
+            var notNullableFromMethod = quantityType
                 .GetDeclaredMethods()
                 .Single(m => m.Name == "From" && Nullable.GetUnderlyingType(m.ReturnType) == null);
 
             // Of type QuantityValue
-            object quantityValue = GetFromMethodValueArgument(notNullableFromMethod, value);
+            var quantityValue = GetFromMethodValueArgument(notNullableFromMethod, value);
 
             // Ex: Mass.From(55, MassUnit.Gram)
             // See ValueUnit about precision loss for quantities using decimal type.
@@ -143,7 +143,7 @@ namespace UnitsNet.Serialization.JsonNet
         /// <returns></returns>
         private static object GetFromMethodValueArgument(MethodInfo fromMethod, double value)
         {
-            Type valueParameterType = fromMethod.GetParameters()[0].ParameterType;
+            var valueParameterType = fromMethod.GetParameters()[0].ParameterType;
             if (valueParameterType == typeof(QuantityValue))
             {
                 // We use this type that takes implicit cast from all number types to avoid explosion of method overloads that take a numeric value.
@@ -156,10 +156,10 @@ namespace UnitsNet.Serialization.JsonNet
 
         private static object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
         {
-            JToken token = JToken.Load(reader);
+            var token = JToken.Load(reader);
             if (!token.HasValues || token[nameof(ValueUnit.Unit)] == null || token[nameof(ValueUnit.Value)] == null)
             {
-                JsonSerializer localSerializer = new JsonSerializer()
+                var localSerializer = new JsonSerializer()
                 {
                     TypeNameHandling = serializer.TypeNameHandling,
                 };
@@ -184,23 +184,23 @@ namespace UnitsNet.Serialization.JsonNet
         /// <exception cref="UnitsNetException">Can't serialize 'null' value.</exception>
         public override void WriteJson(JsonWriter writer, object obj, JsonSerializer serializer)
         {
-            Type quantityType = obj.GetType();
+            var quantityType = obj.GetType();
 
             // ValueUnit should be written as usual (but read in a custom way)
             if(quantityType == typeof(ValueUnit))
             {
-                JsonSerializer localSerializer = new JsonSerializer()
+                var localSerializer = new JsonSerializer()
                 {
                     TypeNameHandling = serializer.TypeNameHandling,
                 };
-                JToken t = JToken.FromObject(obj, localSerializer);
+                var t = JToken.FromObject(obj, localSerializer);
 
                 t.WriteTo(writer);
                 return;
             }
 
-            object quantityValue = GetValueOfQuantity(obj, quantityType); // double or decimal value
-            string quantityUnitName = GetUnitFullNameOfQuantity(obj, quantityType); // Example: "MassUnit.Kilogram"
+            var quantityValue = GetValueOfQuantity(obj, quantityType); // double or decimal value
+            var quantityUnitName = GetUnitFullNameOfQuantity(obj, quantityType); // Example: "MassUnit.Kilogram"
 
             serializer.Serialize(writer, new ValueUnit
             {
@@ -219,25 +219,26 @@ namespace UnitsNet.Serialization.JsonNet
         private static string GetUnitFullNameOfQuantity(object obj, Type quantityType)
         {
             // Get value of Unit property
-            PropertyInfo unitProperty = quantityType.GetProperty("Unit");
-            Enum quantityUnit = (Enum) unitProperty.GetValue(obj, null); // MassUnit.Kilogram
+            var unitProperty = quantityType.GetProperty("Unit");
+            var quantityUnit = (Enum) unitProperty.GetValue(obj, null); // MassUnit.Kilogram
 
-            Type unitType = quantityUnit.GetType(); // MassUnit
+            var unitType = quantityUnit.GetType(); // MassUnit
             return $"{unitType.Name}.{quantityUnit}"; // "MassUnit.Kilogram"
         }
 
         private static object GetValueOfQuantity(object value, Type quantityType)
         {
-            FieldInfo valueField = GetPrivateInstanceField(quantityType, ValueFieldName);
+            var valueField = GetPrivateInstanceField(quantityType, ValueFieldName);
 
             // See ValueUnit about precision loss for quantities using decimal type.
-            object quantityValue = valueField.GetValue(value);
+            var quantityValue = valueField.GetValue(value);
             return quantityValue;
         }
 
         private static FieldInfo GetPrivateInstanceField(Type quantityType, string fieldName)
         {
             FieldInfo baseValueField;
+
             try
             {
                 baseValueField = quantityType
@@ -302,7 +303,7 @@ namespace UnitsNet.Serialization.JsonNet
             }
 
             return objectType.Namespace != null &&
-                (objectType.Namespace.Equals(nameof(UnitsNet)) ||
+                (objectType.Namespace.Equals("UnitsNet.Quantities") ||
                 objectType == typeof(ValueUnit) ||
                 // All unit types implement IComparable
                 objectType == typeof(IComparable));

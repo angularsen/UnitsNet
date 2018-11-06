@@ -31,7 +31,7 @@ using Culture=System.IFormatProvider;
 #endif
 
 // ReSharper disable once CheckNamespace
-namespace UnitsNet
+namespace UnitsNet.Quantities
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.

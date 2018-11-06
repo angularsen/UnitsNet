@@ -24,12 +24,12 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using UnitsNet.InternalHelpers;
+using UnitsNet.Quantities;
 using UnitsNet.Units;
+
 #if WINDOWS_UWP
-using Culture = System.String;
 using FromValue = System.Double;
 #else
-using Culture = System.IFormatProvider;
 using FromValue = UnitsNet.QuantityValue;
 #endif
 

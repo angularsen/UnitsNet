@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using UnitsNet.Quantities;
 using UnitsNet.Units;
 using Xunit;
 using Xunit.Abstractions;
