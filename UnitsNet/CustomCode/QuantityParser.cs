@@ -32,20 +32,12 @@ namespace UnitsNet
 {
     internal delegate TQuantity ParseUnit<out TQuantity>(string value, string unit, IFormatProvider formatProvider = null);
 
-    internal static class QuantityParser
+    public static class QuantityParser
     {
-        [SuppressMessage("ReSharper", "UseStringInterpolation")]
-        internal static TQuantity Parse<TQuantity, TUnitType>([NotNull] string str,
-            [CanBeNull] IFormatProvider formatProvider,
-            [NotNull] ParseUnit<TQuantity> parseUnit,
-            [NotNull] Func<TQuantity, TQuantity, TQuantity> add)
+        public static string GetRegexString(IFormatProvider formatProvider, Type unitType)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
-            if (parseUnit == null) throw new ArgumentNullException(nameof(parseUnit));
-            if (add == null) throw new ArgumentNullException(nameof(add));
-
             NumberFormatInfo numFormat = formatProvider != null
-                ? (NumberFormatInfo) formatProvider.GetFormat(typeof(NumberFormatInfo))
+                ? (NumberFormatInfo)formatProvider.GetFormat(typeof(NumberFormatInfo))
                 : NumberFormatInfo.CurrentInfo;
 
             string numRegex = string.Format(@"[\d., {0}{1}]*\d",
@@ -56,20 +48,33 @@ namespace UnitsNet
             const string exponentialRegex = @"(?:[eE][-+]?\d+)?)";
 
             string[] unitAbbreviations = UnitSystem.GetCached(formatProvider)
-                .GetAllAbbreviations(typeof(TUnitType))
+                .GetAllAbbreviations(unitType)
                 .OrderByDescending(s => s.Length)       // Important to order by length -- if "m" is before "mm" and the input is "mm", it will match just "m" and throw invalid string error
                 .Select(Regex.Escape)                   // Escape special regex characters
                 .ToArray();
-            
+
             string unitsRegex = $"({String.Join("|", unitAbbreviations)})";
 
-            string regexString = string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
+            return string.Format(@"(?:\s*(?<value>[-+]?{0}{1}{2}{3})?{4}{5}",
                 numRegex, // capture base (integral) Quantity value
                 exponentialRegex, // capture exponential (if any), end of Quantity capturing
                 @"\s?", // ignore whitespace (allows both "1kg", "1 kg")
                 $@"(?<unit>{unitsRegex})", // capture Unit by list of abbreviations
                 @"(and)?,?", // allow "and" & "," separators between quantities
                 @"(?<invalid>[a-z]*)?"); // capture invalid input
+        }
+
+        [SuppressMessage("ReSharper", "UseStringInterpolation")]
+        internal static TQuantity Parse<TQuantity, TUnitType>([NotNull] string str,
+            [CanBeNull] IFormatProvider formatProvider,
+            [NotNull] ParseUnit<TQuantity> parseUnit,
+            [NotNull] Func<TQuantity, TQuantity, TQuantity> add)
+        {
+            if (str == null) throw new ArgumentNullException(nameof(str));
+            if (parseUnit == null) throw new ArgumentNullException(nameof(parseUnit));
+            if (add == null) throw new ArgumentNullException(nameof(add));
+
+            string regexString = GetRegexString(formatProvider, typeof(TUnitType));
 
             List<TQuantity> quantities = ParseWithRegex(regexString, str, parseUnit, formatProvider);
             if (quantities.Count == 0)

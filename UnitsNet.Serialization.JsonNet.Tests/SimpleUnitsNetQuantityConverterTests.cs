@@ -7,8 +7,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
     public class UnitsNetQuantityTypeJsonConverterTests
     {
         private readonly JsonSerializerSettings _jsonSerializerSettings;
-
         private readonly JsonSerializerSettings _jsonSerializerSettingsUnits;
+        private readonly JsonSerializerSettings _jsonSerializerSettingsResolve;
 
         protected UnitsNetQuantityTypeJsonConverterTests()
         {
@@ -17,6 +17,9 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
             _jsonSerializerSettingsUnits = new JsonSerializerSettings { Formatting = Formatting.Indented };
             _jsonSerializerSettingsUnits.Converters.Add(new SimpleUnitsNetJsonConverter(LengthUnit.Centimeter));
+
+            _jsonSerializerSettingsResolve =  new JsonSerializerSettings { Formatting = Formatting.Indented };
+            _jsonSerializerSettingsResolve.Converters.Add(new SimpleUnitsNetJsonConverter(null, new[] { LengthUnit.DtpPoint.ToString() }));
         }
 
         private string SerializeObject(object obj)
@@ -32,6 +35,11 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         private T DeserializeObject<T>(string json)
         {
             return JsonConvert.DeserializeObject<T>(json, _jsonSerializerSettings);
+        }
+
+        private T DeserializeObjectResolve<T>(string json)
+        {
+            return JsonConvert.DeserializeObject<T>(json, _jsonSerializerSettingsResolve);
         }
 
         public class SerializeQuantityType : UnitsNetQuantityTypeJsonConverterTests
@@ -85,6 +93,17 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             {
                 Mass m = Mass.FromGrams(5e3);
                 string expectedValue = "\"5,000 g\"";
+
+                string json = SerializeObject(m);
+
+                Assert.Equal(expectedValue, json);
+            }
+
+            [Fact]
+            public void Ratio_SerializeDecimalFraction()
+            {
+                Ratio m = Ratio.FromDecimalFractions(3e-1);
+                string expectedValue = "\"0.3 \"";
 
                 string json = SerializeObject(m);
 
@@ -161,6 +180,17 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             }
 
             [Fact]
+            public void Length_DeserializePoint()
+            {
+                Length l = Length.FromDtpPoints(5e-1);
+                string json = SerializeObject(l);
+
+                Length deserializedTestObj = DeserializeObjectResolve<Length>(json);
+
+                Assert.Equal(l, deserializedTestObj);
+            }
+
+            [Fact]
             public void Mass_DeserializeKilograms()
             {
                 Mass m = Mass.FromKilograms(5e-1);
@@ -180,6 +210,17 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 Mass deserializedTestObj = DeserializeObject<Mass>(json);
 
                 Assert.Equal(m, deserializedTestObj);
+            }
+
+            [Fact]
+            public void Ratio_DeserializeDecimalFraction()
+            {
+                Ratio r = Ratio.FromDecimalFractions(0.5);
+                string json = SerializeObject(r);
+
+                Ratio deserializedTestObj = DeserializeObject<Ratio>(json);
+
+                Assert.Equal(r, deserializedTestObj);
             }
         }
 
