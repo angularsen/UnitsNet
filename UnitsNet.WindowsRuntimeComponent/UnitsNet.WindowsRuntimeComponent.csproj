@@ -20,7 +20,13 @@
     <OutputPath>..\Artifacts\UnitsNet.WindowsRuntimeComponent</OutputPath>
     <NoWarn>CS1701;CS1702;CS1705;CS0618;CS0809;CS1591</NoWarn>
     <LangVersion>7.3</LangVersion>
+
+    <!-- SourceLink -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
@@ -210,6 +216,7 @@
     <PackageReference Include="JetBrains.Annotations">
       <Version>11.1.0</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All"/>
     <PackageReference Include="System.ValueTuple">
       <Version>4.5.0</Version>
     </PackageReference>
