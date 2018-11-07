@@ -34,7 +34,13 @@ namespace UnitsNet
 
     public static class QuantityParser
     {
-        public static string GetRegexString(IFormatProvider formatProvider, Type unitType)
+
+        public static string GetRegexString([NotNull]Type unitType)
+        {
+            return GetRegexString(unitType, null);
+        }
+
+        private static string GetRegexString([NotNull]Type unitType, [CanBeNull] IFormatProvider formatProvider)
         {
             NumberFormatInfo numFormat = formatProvider != null
                 ? (NumberFormatInfo)formatProvider.GetFormat(typeof(NumberFormatInfo))
@@ -74,7 +80,7 @@ namespace UnitsNet
             if (parseUnit == null) throw new ArgumentNullException(nameof(parseUnit));
             if (add == null) throw new ArgumentNullException(nameof(add));
 
-            string regexString = GetRegexString(formatProvider, typeof(TUnitType));
+            string regexString = GetRegexString(typeof(TUnitType), formatProvider);
 
             List<TQuantity> quantities = ParseWithRegex(regexString, str, parseUnit, formatProvider);
             if (quantities.Count == 0)

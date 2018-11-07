@@ -49,7 +49,7 @@ namespace UnitsNet.Serialization.JsonNet
                     // If overrides provided try to recover
                     // First get the unit type
                     var unitType = objectType.GetPropety("Unit").PropertyType;
-                    var regex = new Regex(QuantityParser.GetRegexString(null, unitType));
+                    var regex = new Regex(QuantityParser.GetRegexString(unitType));
 
                     string value = (string)reader.Value;
 
