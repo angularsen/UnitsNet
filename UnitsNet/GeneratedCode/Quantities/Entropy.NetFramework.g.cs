@@ -9,7 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Entropy is an important concept in the branch of science known as thermodynamics. The idea of "irreversibility" is central to the understanding of entropy.  It is often said that entropy is an expression of the disorder, or randomness of a system, or of our lack of information about it. Entropy is an extensive property. It has the dimension of energy divided by temperature, which has a unit of joules per kelvin (J/K) in the International System of Units
     /// </summary>
-    public partial struct Entropy : IQuantity<EntropyUnit>, IComparable, IComparable<Entropy>
+    public partial struct Entropy : IQuantity<EntropyUnit>, IEquatable<Entropy>, IComparable, IComparable<Entropy>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -492,18 +492,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(Entropy left, Entropy right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Entropy left, Entropy right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Entropy)) throw new ArgumentException("Expected type Entropy.", nameof(obj));
+            if(!(obj is Entropy objEntropy)) throw new ArgumentException("Expected type Entropy.", nameof(obj));
 
-            return CompareTo((Entropy)obj);
+            return CompareTo(objEntropy);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Entropy other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Entropy objEntropy))
+                return false;
+
+            return Equals(objEntropy);
+        }
+
+        public bool Equals(Entropy other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

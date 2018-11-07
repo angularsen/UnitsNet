@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Level is the logarithm of the ratio of a quantity Q to a reference value of that quantity, Q₀, expressed in dimensionless units.
     /// </summary>
-    public partial struct Level : IQuantity<LevelUnit>, IComparable, IComparable<Level>
+    public partial struct Level : IQuantity<LevelUnit>, IEquatable<Level>, IComparable, IComparable<Level>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -430,18 +430,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(Level left, Level right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Level left, Level right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Level)) throw new ArgumentException("Expected type Level.", nameof(obj));
+            if(!(obj is Level objLevel)) throw new ArgumentException("Expected type Level.", nameof(obj));
 
-            return CompareTo((Level)obj);
+            return CompareTo(objLevel);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Level other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Level objLevel))
+                return false;
+
+            return Equals(objLevel);
+        }
+
+        public bool Equals(Level other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

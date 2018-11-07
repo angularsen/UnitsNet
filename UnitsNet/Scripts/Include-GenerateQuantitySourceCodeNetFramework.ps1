@@ -99,7 +99,7 @@ if ($obsoleteAttribute)
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
     public sealed partial class $quantityName : IQuantity
 "@; } else {@"
-    public partial struct $quantityName : IQuantity<$unitEnumName>, IComparable, IComparable<$quantityName>
+    public partial struct $quantityName : IQuantity<$unitEnumName>, IEquatable<$quantityName>, IComparable, IComparable<$quantityName>
 "@; }@"
     {
         /// <summary>
@@ -812,13 +812,23 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==($quantityName left, $quantityName right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=($quantityName left, $quantityName right)	
+        {
+            return !(left == right);
+        }
+
 "@; }@"
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is $quantityName)) throw new ArgumentException("Expected type $quantityName.", nameof(obj));
+            if(!(obj is $quantityName obj$quantityName)) throw new ArgumentException("Expected type $quantityName.", nameof(obj));
 
-            return CompareTo(($quantityName)obj);
+            return CompareTo(obj$quantityName);
         }
 
 "@; # Windows Runtime Component does not support overloads with same number of parameters
@@ -827,6 +837,23 @@ $accessModifier = if ($wrc) { "internal" } else { "public" } @"
         $accessModifier int CompareTo($quantityName other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+"@;
+ if ($wrc) {@"
+        [Windows.Foundation.Metadata.DefaultOverload]
+"@; }@"
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is $quantityName obj$quantityName))
+                return false;
+
+            return Equals(obj$quantityName);
+        }
+
+        public bool Equals($quantityName other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

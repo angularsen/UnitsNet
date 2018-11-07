@@ -9,7 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Heat Transfer Coefficient or Thermal conductivity - indicates a materials ability to conduct heat.
     /// </summary>
-    public partial struct ThermalResistance : IQuantity<ThermalResistanceUnit>, IComparable, IComparable<ThermalResistance>
+    public partial struct ThermalResistance : IQuantity<ThermalResistanceUnit>, IEquatable<ThermalResistance>, IComparable, IComparable<ThermalResistance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -464,18 +464,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(ThermalResistance left, ThermalResistance right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ThermalResistance left, ThermalResistance right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ThermalResistance)) throw new ArgumentException("Expected type ThermalResistance.", nameof(obj));
+            if(!(obj is ThermalResistance objThermalResistance)) throw new ArgumentException("Expected type ThermalResistance.", nameof(obj));
 
-            return CompareTo((ThermalResistance)obj);
+            return CompareTo(objThermalResistance);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ThermalResistance other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is ThermalResistance objThermalResistance))
+                return false;
+
+            return Equals(objThermalResistance);
+        }
+
+        public bool Equals(ThermalResistance other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

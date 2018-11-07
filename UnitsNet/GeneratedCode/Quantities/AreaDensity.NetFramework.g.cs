@@ -9,7 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     The area density of a two-dimensional object is calculated as the mass per unit area.
     /// </summary>
-    public partial struct AreaDensity : IQuantity<AreaDensityUnit>, IComparable, IComparable<AreaDensity>
+    public partial struct AreaDensity : IQuantity<AreaDensityUnit>, IEquatable<AreaDensity>, IComparable, IComparable<AreaDensity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -408,18 +408,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(AreaDensity left, AreaDensity right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(AreaDensity left, AreaDensity right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is AreaDensity)) throw new ArgumentException("Expected type AreaDensity.", nameof(obj));
+            if(!(obj is AreaDensity objAreaDensity)) throw new ArgumentException("Expected type AreaDensity.", nameof(obj));
 
-            return CompareTo((AreaDensity)obj);
+            return CompareTo(objAreaDensity);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(AreaDensity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is AreaDensity objAreaDensity))
+                return false;
+
+            return Equals(objAreaDensity);
+        }
+
+        public bool Equals(AreaDensity other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

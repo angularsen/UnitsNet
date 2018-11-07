@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Many different units of length have been used around the world. The main units in modern use are U.S. customary units in the United States and the Metric system elsewhere. British Imperial units are still used for some purposes in the United Kingdom and some other countries. The metric system is sub-divided into SI and non-SI units.
     /// </summary>
-    public partial struct Length : IQuantity<LengthUnit>, IComparable, IComparable<Length>
+    public partial struct Length : IQuantity<LengthUnit>, IEquatable<Length>, IComparable, IComparable<Length>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -702,18 +702,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(Length left, Length right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Length left, Length right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Length)) throw new ArgumentException("Expected type Length.", nameof(obj));
+            if(!(obj is Length objLength)) throw new ArgumentException("Expected type Length.", nameof(obj));
 
-            return CompareTo((Length)obj);
+            return CompareTo(objLength);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Length other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Length objLength))
+                return false;
+
+            return Equals(objLength);
+        }
+
+        public bool Equals(Length other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

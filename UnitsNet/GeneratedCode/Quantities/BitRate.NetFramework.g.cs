@@ -9,7 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Bit_rate
     /// </remarks>
-    public partial struct BitRate : IQuantity<BitRateUnit>, IComparable, IComparable<BitRate>
+    public partial struct BitRate : IQuantity<BitRateUnit>, IEquatable<BitRate>, IComparable, IComparable<BitRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -761,18 +761,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(BitRate left, BitRate right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(BitRate left, BitRate right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is BitRate)) throw new ArgumentException("Expected type BitRate.", nameof(obj));
+            if(!(obj is BitRate objBitRate)) throw new ArgumentException("Expected type BitRate.", nameof(obj));
 
-            return CompareTo((BitRate)obj);
+            return CompareTo(objBitRate);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(BitRate other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is BitRate objBitRate))
+                return false;
+
+            return Equals(objBitRate);
+        }
+
+        public bool Equals(BitRate other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

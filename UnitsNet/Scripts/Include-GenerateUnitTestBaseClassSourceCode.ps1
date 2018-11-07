@@ -236,9 +236,40 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void EqualityOperators()
+        {
+            var a = $quantityName.From$baseUnitPluralName(1);
+            var b = $quantityName.From$baseUnitPluralName(2);
+
+ // ReSharper disable EqualExpressionComparison
+
+            Assert.True(a == a);
+            Assert.False(a != a);
+
+            Assert.True(a != b);
+            Assert.False(a == b);
+
+            Assert.False(a == null);
+            Assert.False(null == a);
+
+// ReSharper restore EqualExpressionComparison
+        }
+
+        [Fact]
         public void EqualsIsImplemented()
         {
-            $quantityName v = $quantityName.From$baseUnitPluralName(1);
+            var a = $quantityName.From$baseUnitPluralName(1);
+            var b = $quantityName.From$baseUnitPluralName(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void EqualsRelativeToleranceIsImplemented()
+        {
+            var v = $quantityName.From$baseUnitPluralName(1);
             Assert.True(v.Equals($quantityName.From$baseUnitPluralName(1), $($baseUnitPluralName)Tolerance, ComparisonType.Relative));
             Assert.False(v.Equals($quantityName.Zero, $($baseUnitPluralName)Tolerance, ComparisonType.Relative));
         }
