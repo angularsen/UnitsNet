@@ -46,6 +46,30 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KelvinsInOneKelvin => 1;
 
         [Theory]
+        [InlineData(TemperatureUnit.DegreeCelsius, 10, 20, "303.15 °C")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, 100, 100, "659.67 °F")]
+        [InlineData(TemperatureUnit.Kelvin, 50, 100, "150 K")]
+        public void TemperaturePlusTemperatureEqualsTemperatureAddedInKelvins(TemperatureUnit unit, int left, int right, string expected)
+        {
+            var leftTemp = Temperature.From(left, unit);
+            var rightTemp = Temperature.From(right, unit);
+            Assert.Equal(expected, (leftTemp + rightTemp).ToString());
+        }
+
+        [Theory]
+        [InlineData(TemperatureUnit.DegreeCelsius, 30, 20, "-263.15 °C")]
+        [InlineData(TemperatureUnit.DegreeCelsius, 30, 30, "-273.15 °C")]
+        [InlineData(TemperatureUnit.DegreeFahrenheit, 100, 70, "-429.67 °F")]
+        [InlineData(TemperatureUnit.Kelvin, 300, 200, "100 K")]
+        [InlineData(TemperatureUnit.Kelvin, 200, 300, "-100 K")]
+        public void TemperatureMinusTemperatureEqualsTemperatureSubtractedInKelvins(TemperatureUnit unit, int left, int right, string expected)
+        {
+            var leftTemp = Temperature.From(left, unit);
+            var rightTemp = Temperature.From(right, unit);
+            Assert.Equal(expected, (leftTemp - rightTemp).ToString());
+        }
+
+        [Theory]
         [InlineData(TemperatureUnit.DegreeCelsius, -10, 0, "-10 °C")]
         [InlineData(TemperatureUnit.DegreeCelsius, -10, 10, "0 °C")]
         [InlineData(TemperatureUnit.DegreeCelsius, -10, 20, "10 °C")]
