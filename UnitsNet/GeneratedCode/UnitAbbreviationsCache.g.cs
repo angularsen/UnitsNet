@@ -398,6 +398,8 @@ namespace UnitsNet
                 ("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.MicrowattPerSquareMeter, new string[]{"µW/m²"}),
                 ("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.MilliwattPerSquareMeter, new string[]{"mW/m²"}),
                 ("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.NanowattPerSquareMeter, new string[]{"nW/m²"}),
+                ("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.PoundForcePerFootSecond, new string[]{"lbf/(ft·s)"}),
+                ("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.PoundPerSecondCubed, new string[]{"lb/s³", "lbm/s³"}),
                 ("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.WattPerSquareFoot, new string[]{"W/ft²"}),
                 ("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.WattPerSquareInch, new string[]{"W/in²"}),
                 ("en-US", typeof(HeatFluxUnit), (int)HeatFluxUnit.WattPerSquareMeter, new string[]{"W/m²"}),
