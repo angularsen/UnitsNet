@@ -412,12 +412,12 @@ namespace UnitsNet
 
         public static ElectricPotentialAc operator +(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return new ElectricPotentialAc(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricPotentialAc operator -(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return new ElectricPotentialAc(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricPotentialAc operator *(double left, ElectricPotentialAc right)
@@ -464,12 +464,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ElectricPotentialAc left, ElectricPotentialAc right)	
+        public static bool operator ==(ElectricPotentialAc left, ElectricPotentialAc right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ElectricPotentialAc left, ElectricPotentialAc right)	
+        public static bool operator !=(ElectricPotentialAc left, ElectricPotentialAc right)
         {
             return !(left == right);
         }

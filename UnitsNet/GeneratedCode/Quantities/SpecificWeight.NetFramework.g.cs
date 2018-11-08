@@ -583,12 +583,12 @@ namespace UnitsNet
 
         public static SpecificWeight operator +(SpecificWeight left, SpecificWeight right)
         {
-            return new SpecificWeight(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static SpecificWeight operator -(SpecificWeight left, SpecificWeight right)
         {
-            return new SpecificWeight(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static SpecificWeight operator *(double left, SpecificWeight right)
@@ -635,12 +635,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(SpecificWeight left, SpecificWeight right)	
+        public static bool operator ==(SpecificWeight left, SpecificWeight right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(SpecificWeight left, SpecificWeight right)	
+        public static bool operator !=(SpecificWeight left, SpecificWeight right)
         {
             return !(left == right);
         }

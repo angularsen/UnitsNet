@@ -359,12 +359,12 @@ namespace UnitsNet
 
         public static Magnetization operator +(Magnetization left, Magnetization right)
         {
-            return new Magnetization(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Magnetization operator -(Magnetization left, Magnetization right)
         {
-            return new Magnetization(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Magnetization operator *(double left, Magnetization right)
@@ -411,12 +411,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Magnetization left, Magnetization right)	
+        public static bool operator ==(Magnetization left, Magnetization right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Magnetization left, Magnetization right)	
+        public static bool operator !=(Magnetization left, Magnetization right)
         {
             return !(left == right);
         }

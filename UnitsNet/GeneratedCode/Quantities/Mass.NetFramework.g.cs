@@ -650,12 +650,12 @@ namespace UnitsNet
 
         public static Mass operator +(Mass left, Mass right)
         {
-            return new Mass(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Mass operator -(Mass left, Mass right)
         {
-            return new Mass(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Mass operator *(double left, Mass right)
@@ -702,12 +702,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Mass left, Mass right)	
+        public static bool operator ==(Mass left, Mass right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Mass left, Mass right)	
+        public static bool operator !=(Mass left, Mass right)
         {
             return !(left == right);
         }

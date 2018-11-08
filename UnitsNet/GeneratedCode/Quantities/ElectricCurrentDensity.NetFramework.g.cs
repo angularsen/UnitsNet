@@ -359,12 +359,12 @@ namespace UnitsNet
 
         public static ElectricCurrentDensity operator +(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return new ElectricCurrentDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricCurrentDensity operator -(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
-            return new ElectricCurrentDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricCurrentDensity operator *(double left, ElectricCurrentDensity right)
@@ -411,12 +411,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ElectricCurrentDensity left, ElectricCurrentDensity right)	
+        public static bool operator ==(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ElectricCurrentDensity left, ElectricCurrentDensity right)	
+        public static bool operator !=(ElectricCurrentDensity left, ElectricCurrentDensity right)
         {
             return !(left == right);
         }

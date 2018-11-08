@@ -430,12 +430,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(PowerRatio left, PowerRatio right)	
+        public static bool operator ==(PowerRatio left, PowerRatio right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(PowerRatio left, PowerRatio right)	
+        public static bool operator !=(PowerRatio left, PowerRatio right)
         {
             return !(left == right);
         }

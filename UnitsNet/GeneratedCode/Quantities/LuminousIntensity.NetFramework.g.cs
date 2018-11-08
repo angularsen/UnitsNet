@@ -359,12 +359,12 @@ namespace UnitsNet
 
         public static LuminousIntensity operator +(LuminousIntensity left, LuminousIntensity right)
         {
-            return new LuminousIntensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static LuminousIntensity operator -(LuminousIntensity left, LuminousIntensity right)
         {
-            return new LuminousIntensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static LuminousIntensity operator *(double left, LuminousIntensity right)
@@ -411,12 +411,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(LuminousIntensity left, LuminousIntensity right)	
+        public static bool operator ==(LuminousIntensity left, LuminousIntensity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(LuminousIntensity left, LuminousIntensity right)	
+        public static bool operator !=(LuminousIntensity left, LuminousIntensity right)
         {
             return !(left == right);
         }

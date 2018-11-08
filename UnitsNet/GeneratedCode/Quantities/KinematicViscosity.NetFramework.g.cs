@@ -457,12 +457,12 @@ namespace UnitsNet
 
         public static KinematicViscosity operator +(KinematicViscosity left, KinematicViscosity right)
         {
-            return new KinematicViscosity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static KinematicViscosity operator -(KinematicViscosity left, KinematicViscosity right)
         {
-            return new KinematicViscosity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static KinematicViscosity operator *(double left, KinematicViscosity right)
@@ -509,12 +509,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(KinematicViscosity left, KinematicViscosity right)	
+        public static bool operator ==(KinematicViscosity left, KinematicViscosity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(KinematicViscosity left, KinematicViscosity right)	
+        public static bool operator !=(KinematicViscosity left, KinematicViscosity right)
         {
             return !(left == right);
         }

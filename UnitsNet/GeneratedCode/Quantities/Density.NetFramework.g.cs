@@ -877,12 +877,12 @@ namespace UnitsNet
 
         public static Density operator +(Density left, Density right)
         {
-            return new Density(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Density operator -(Density left, Density right)
         {
-            return new Density(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Density operator *(double left, Density right)
@@ -929,12 +929,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Density left, Density right)	
+        public static bool operator ==(Density left, Density right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Density left, Density right)	
+        public static bool operator !=(Density left, Density right)
         {
             return !(left == right);
         }

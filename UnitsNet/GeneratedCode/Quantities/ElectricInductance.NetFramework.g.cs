@@ -359,12 +359,12 @@ namespace UnitsNet
 
         public static ElectricInductance operator +(ElectricInductance left, ElectricInductance right)
         {
-            return new ElectricInductance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricInductance operator -(ElectricInductance left, ElectricInductance right)
         {
-            return new ElectricInductance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricInductance operator *(double left, ElectricInductance right)
@@ -411,12 +411,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ElectricInductance left, ElectricInductance right)	
+        public static bool operator ==(ElectricInductance left, ElectricInductance right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ElectricInductance left, ElectricInductance right)	
+        public static bool operator !=(ElectricInductance left, ElectricInductance right)
         {
             return !(left == right);
         }

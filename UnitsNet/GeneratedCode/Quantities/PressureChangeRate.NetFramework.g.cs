@@ -398,12 +398,12 @@ namespace UnitsNet
 
         public static PressureChangeRate operator +(PressureChangeRate left, PressureChangeRate right)
         {
-            return new PressureChangeRate(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static PressureChangeRate operator -(PressureChangeRate left, PressureChangeRate right)
         {
-            return new PressureChangeRate(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static PressureChangeRate operator *(double left, PressureChangeRate right)
@@ -450,12 +450,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(PressureChangeRate left, PressureChangeRate right)	
+        public static bool operator ==(PressureChangeRate left, PressureChangeRate right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(PressureChangeRate left, PressureChangeRate right)	
+        public static bool operator !=(PressureChangeRate left, PressureChangeRate right)
         {
             return !(left == right);
         }

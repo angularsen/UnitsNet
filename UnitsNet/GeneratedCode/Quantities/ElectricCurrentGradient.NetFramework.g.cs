@@ -356,12 +356,12 @@ namespace UnitsNet
 
         public static ElectricCurrentGradient operator +(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
-            return new ElectricCurrentGradient(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricCurrentGradient operator -(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
-            return new ElectricCurrentGradient(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricCurrentGradient operator *(double left, ElectricCurrentGradient right)
@@ -408,12 +408,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ElectricCurrentGradient left, ElectricCurrentGradient right)	
+        public static bool operator ==(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ElectricCurrentGradient left, ElectricCurrentGradient right)	
+        public static bool operator !=(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return !(left == right);
         }

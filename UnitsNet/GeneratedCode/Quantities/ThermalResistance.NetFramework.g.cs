@@ -412,12 +412,12 @@ namespace UnitsNet
 
         public static ThermalResistance operator +(ThermalResistance left, ThermalResistance right)
         {
-            return new ThermalResistance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ThermalResistance operator -(ThermalResistance left, ThermalResistance right)
         {
-            return new ThermalResistance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ThermalResistance operator *(double left, ThermalResistance right)
@@ -464,12 +464,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ThermalResistance left, ThermalResistance right)	
+        public static bool operator ==(ThermalResistance left, ThermalResistance right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ThermalResistance left, ThermalResistance right)	
+        public static bool operator !=(ThermalResistance left, ThermalResistance right)
         {
             return !(left == right);
         }

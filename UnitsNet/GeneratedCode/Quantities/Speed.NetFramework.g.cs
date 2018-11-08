@@ -790,12 +790,12 @@ namespace UnitsNet
 
         public static Speed operator +(Speed left, Speed right)
         {
-            return new Speed(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Speed operator -(Speed left, Speed right)
         {
-            return new Speed(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Speed operator *(double left, Speed right)
@@ -842,12 +842,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Speed left, Speed right)	
+        public static bool operator ==(Speed left, Speed right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Speed left, Speed right)	
+        public static bool operator !=(Speed left, Speed right)
         {
             return !(left == right);
         }

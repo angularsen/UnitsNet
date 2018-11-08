@@ -594,12 +594,12 @@ namespace UnitsNet
 
         public static HeatFlux operator +(HeatFlux left, HeatFlux right)
         {
-            return new HeatFlux(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static HeatFlux operator -(HeatFlux left, HeatFlux right)
         {
-            return new HeatFlux(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static HeatFlux operator *(double left, HeatFlux right)
@@ -646,12 +646,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(HeatFlux left, HeatFlux right)	
+        public static bool operator ==(HeatFlux left, HeatFlux right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(HeatFlux left, HeatFlux right)	
+        public static bool operator !=(HeatFlux left, HeatFlux right)
         {
             return !(left == right);
         }

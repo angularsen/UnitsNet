@@ -650,12 +650,12 @@ namespace UnitsNet
 
         public static Length operator +(Length left, Length right)
         {
-            return new Length(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Length operator -(Length left, Length right)
         {
-            return new Length(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Length operator *(double left, Length right)
@@ -702,12 +702,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Length left, Length right)	
+        public static bool operator ==(Length left, Length right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Length left, Length right)	
+        public static bool operator !=(Length left, Length right)
         {
             return !(left == right);
         }

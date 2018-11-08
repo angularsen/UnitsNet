@@ -429,12 +429,12 @@ namespace UnitsNet
 
         public static DynamicViscosity operator +(DynamicViscosity left, DynamicViscosity right)
         {
-            return new DynamicViscosity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static DynamicViscosity operator -(DynamicViscosity left, DynamicViscosity right)
         {
-            return new DynamicViscosity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static DynamicViscosity operator *(double left, DynamicViscosity right)
@@ -481,12 +481,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(DynamicViscosity left, DynamicViscosity right)	
+        public static bool operator ==(DynamicViscosity left, DynamicViscosity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(DynamicViscosity left, DynamicViscosity right)	
+        public static bool operator !=(DynamicViscosity left, DynamicViscosity right)
         {
             return !(left == right);
         }

@@ -370,12 +370,12 @@ namespace UnitsNet
 
         public static SpecificVolume operator +(SpecificVolume left, SpecificVolume right)
         {
-            return new SpecificVolume(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static SpecificVolume operator -(SpecificVolume left, SpecificVolume right)
         {
-            return new SpecificVolume(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static SpecificVolume operator *(double left, SpecificVolume right)
@@ -422,12 +422,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(SpecificVolume left, SpecificVolume right)	
+        public static bool operator ==(SpecificVolume left, SpecificVolume right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(SpecificVolume left, SpecificVolume right)	
+        public static bool operator !=(SpecificVolume left, SpecificVolume right)
         {
             return !(left == right);
         }

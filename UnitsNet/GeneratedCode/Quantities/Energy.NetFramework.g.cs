@@ -650,12 +650,12 @@ namespace UnitsNet
 
         public static Energy operator +(Energy left, Energy right)
         {
-            return new Energy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Energy operator -(Energy left, Energy right)
         {
-            return new Energy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Energy operator *(double left, Energy right)
@@ -702,12 +702,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Energy left, Energy right)	
+        public static bool operator ==(Energy left, Energy right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Energy left, Energy right)	
+        public static bool operator !=(Energy left, Energy right)
         {
             return !(left == right);
         }

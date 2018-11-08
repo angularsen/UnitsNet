@@ -370,12 +370,12 @@ namespace UnitsNet
 
         public static Irradiance operator +(Irradiance left, Irradiance right)
         {
-            return new Irradiance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Irradiance operator -(Irradiance left, Irradiance right)
         {
-            return new Irradiance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Irradiance operator *(double left, Irradiance right)
@@ -422,12 +422,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Irradiance left, Irradiance right)	
+        public static bool operator ==(Irradiance left, Irradiance right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Irradiance left, Irradiance right)	
+        public static bool operator !=(Irradiance left, Irradiance right)
         {
             return !(left == right);
         }

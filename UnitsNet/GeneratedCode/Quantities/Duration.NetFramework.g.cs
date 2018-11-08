@@ -482,12 +482,12 @@ namespace UnitsNet
 
         public static Duration operator +(Duration left, Duration right)
         {
-            return new Duration(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Duration operator -(Duration left, Duration right)
         {
-            return new Duration(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Duration operator *(double left, Duration right)
@@ -534,12 +534,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Duration left, Duration right)	
+        public static bool operator ==(Duration left, Duration right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Duration left, Duration right)	
+        public static bool operator !=(Duration left, Duration right)
         {
             return !(left == right);
         }

@@ -706,12 +706,12 @@ namespace UnitsNet
 
         public static VolumeFlow operator +(VolumeFlow left, VolumeFlow right)
         {
-            return new VolumeFlow(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static VolumeFlow operator -(VolumeFlow left, VolumeFlow right)
         {
-            return new VolumeFlow(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static VolumeFlow operator *(double left, VolumeFlow right)
@@ -758,12 +758,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(VolumeFlow left, VolumeFlow right)	
+        public static bool operator ==(VolumeFlow left, VolumeFlow right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(VolumeFlow left, VolumeFlow right)	
+        public static bool operator !=(VolumeFlow left, VolumeFlow right)
         {
             return !(left == right);
         }

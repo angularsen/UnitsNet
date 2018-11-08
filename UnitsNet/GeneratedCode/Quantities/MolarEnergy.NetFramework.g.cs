@@ -384,12 +384,12 @@ namespace UnitsNet
 
         public static MolarEnergy operator +(MolarEnergy left, MolarEnergy right)
         {
-            return new MolarEnergy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MolarEnergy operator -(MolarEnergy left, MolarEnergy right)
         {
-            return new MolarEnergy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MolarEnergy operator *(double left, MolarEnergy right)
@@ -436,12 +436,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(MolarEnergy left, MolarEnergy right)	
+        public static bool operator ==(MolarEnergy left, MolarEnergy right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(MolarEnergy left, MolarEnergy right)	
+        public static bool operator !=(MolarEnergy left, MolarEnergy right)
         {
             return !(left == right);
         }

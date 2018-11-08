@@ -440,12 +440,12 @@ namespace UnitsNet
 
         public static Entropy operator +(Entropy left, Entropy right)
         {
-            return new Entropy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Entropy operator -(Entropy left, Entropy right)
         {
-            return new Entropy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Entropy operator *(double left, Entropy right)
@@ -492,12 +492,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Entropy left, Entropy right)	
+        public static bool operator ==(Entropy left, Entropy right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Entropy left, Entropy right)	
+        public static bool operator !=(Entropy left, Entropy right)
         {
             return !(left == right);
         }

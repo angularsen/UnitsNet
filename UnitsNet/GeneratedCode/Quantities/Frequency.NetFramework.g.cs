@@ -454,12 +454,12 @@ namespace UnitsNet
 
         public static Frequency operator +(Frequency left, Frequency right)
         {
-            return new Frequency(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Frequency operator -(Frequency left, Frequency right)
         {
-            return new Frequency(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Frequency operator *(double left, Frequency right)
@@ -506,12 +506,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Frequency left, Frequency right)	
+        public static bool operator ==(Frequency left, Frequency right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Frequency left, Frequency right)	
+        public static bool operator !=(Frequency left, Frequency right)
         {
             return !(left == right);
         }

@@ -384,12 +384,12 @@ namespace UnitsNet
 
         public static RotationalStiffness operator +(RotationalStiffness left, RotationalStiffness right)
         {
-            return new RotationalStiffness(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static RotationalStiffness operator -(RotationalStiffness left, RotationalStiffness right)
         {
-            return new RotationalStiffness(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static RotationalStiffness operator *(double left, RotationalStiffness right)
@@ -436,12 +436,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(RotationalStiffness left, RotationalStiffness right)	
+        public static bool operator ==(RotationalStiffness left, RotationalStiffness right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(RotationalStiffness left, RotationalStiffness right)	
+        public static bool operator !=(RotationalStiffness left, RotationalStiffness right)
         {
             return !(left == right);
         }

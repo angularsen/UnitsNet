@@ -359,12 +359,12 @@ namespace UnitsNet
 
         public static MagneticFlux operator +(MagneticFlux left, MagneticFlux right)
         {
-            return new MagneticFlux(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MagneticFlux operator -(MagneticFlux left, MagneticFlux right)
         {
-            return new MagneticFlux(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MagneticFlux operator *(double left, MagneticFlux right)
@@ -411,12 +411,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(MagneticFlux left, MagneticFlux right)	
+        public static bool operator ==(MagneticFlux left, MagneticFlux right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(MagneticFlux left, MagneticFlux right)	
+        public static bool operator !=(MagneticFlux left, MagneticFlux right)
         {
             return !(left == right);
         }

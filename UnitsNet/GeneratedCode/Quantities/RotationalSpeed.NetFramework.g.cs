@@ -524,12 +524,12 @@ namespace UnitsNet
 
         public static RotationalSpeed operator +(RotationalSpeed left, RotationalSpeed right)
         {
-            return new RotationalSpeed(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static RotationalSpeed operator -(RotationalSpeed left, RotationalSpeed right)
         {
-            return new RotationalSpeed(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static RotationalSpeed operator *(double left, RotationalSpeed right)
@@ -576,12 +576,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(RotationalSpeed left, RotationalSpeed right)	
+        public static bool operator ==(RotationalSpeed left, RotationalSpeed right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(RotationalSpeed left, RotationalSpeed right)	
+        public static bool operator !=(RotationalSpeed left, RotationalSpeed right)
         {
             return !(left == right);
         }

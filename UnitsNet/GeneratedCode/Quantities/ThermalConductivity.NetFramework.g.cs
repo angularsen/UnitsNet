@@ -373,12 +373,12 @@ namespace UnitsNet
 
         public static ThermalConductivity operator +(ThermalConductivity left, ThermalConductivity right)
         {
-            return new ThermalConductivity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ThermalConductivity operator -(ThermalConductivity left, ThermalConductivity right)
         {
-            return new ThermalConductivity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ThermalConductivity operator *(double left, ThermalConductivity right)
@@ -425,12 +425,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ThermalConductivity left, ThermalConductivity right)	
+        public static bool operator ==(ThermalConductivity left, ThermalConductivity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ThermalConductivity left, ThermalConductivity right)	
+        public static bool operator !=(ThermalConductivity left, ThermalConductivity right)
         {
             return !(left == right);
         }

@@ -426,12 +426,12 @@ namespace UnitsNet
 
         public static AreaMomentOfInertia operator +(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
-            return new AreaMomentOfInertia(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static AreaMomentOfInertia operator -(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
-            return new AreaMomentOfInertia(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static AreaMomentOfInertia operator *(double left, AreaMomentOfInertia right)
@@ -478,12 +478,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(AreaMomentOfInertia left, AreaMomentOfInertia right)	
+        public static bool operator ==(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(AreaMomentOfInertia left, AreaMomentOfInertia right)	
+        public static bool operator !=(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
             return !(left == right);
         }

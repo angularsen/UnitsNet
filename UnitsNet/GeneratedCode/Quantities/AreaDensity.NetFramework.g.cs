@@ -356,12 +356,12 @@ namespace UnitsNet
 
         public static AreaDensity operator +(AreaDensity left, AreaDensity right)
         {
-            return new AreaDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static AreaDensity operator -(AreaDensity left, AreaDensity right)
         {
-            return new AreaDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static AreaDensity operator *(double left, AreaDensity right)
@@ -408,12 +408,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(AreaDensity left, AreaDensity right)	
+        public static bool operator ==(AreaDensity left, AreaDensity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(AreaDensity left, AreaDensity right)	
+        public static bool operator !=(AreaDensity left, AreaDensity right)
         {
             return !(left == right);
         }

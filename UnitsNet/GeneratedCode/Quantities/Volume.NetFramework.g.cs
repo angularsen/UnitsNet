@@ -944,12 +944,12 @@ namespace UnitsNet
 
         public static Volume operator +(Volume left, Volume right)
         {
-            return new Volume(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Volume operator -(Volume left, Volume right)
         {
-            return new Volume(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Volume operator *(double left, Volume right)
@@ -996,12 +996,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Volume left, Volume right)	
+        public static bool operator ==(Volume left, Volume right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Volume left, Volume right)	
+        public static bool operator !=(Volume left, Volume right)
         {
             return !(left == right);
         }

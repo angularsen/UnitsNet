@@ -384,12 +384,12 @@ namespace UnitsNet
 
         public static ApparentEnergy operator +(ApparentEnergy left, ApparentEnergy right)
         {
-            return new ApparentEnergy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ApparentEnergy operator -(ApparentEnergy left, ApparentEnergy right)
         {
-            return new ApparentEnergy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ApparentEnergy operator *(double left, ApparentEnergy right)
@@ -436,12 +436,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ApparentEnergy left, ApparentEnergy right)	
+        public static bool operator ==(ApparentEnergy left, ApparentEnergy right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ApparentEnergy left, ApparentEnergy right)	
+        public static bool operator !=(ApparentEnergy left, ApparentEnergy right)
         {
             return !(left == right);
         }

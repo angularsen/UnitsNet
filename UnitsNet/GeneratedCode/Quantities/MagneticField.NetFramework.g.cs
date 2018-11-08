@@ -359,12 +359,12 @@ namespace UnitsNet
 
         public static MagneticField operator +(MagneticField left, MagneticField right)
         {
-            return new MagneticField(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MagneticField operator -(MagneticField left, MagneticField right)
         {
-            return new MagneticField(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MagneticField operator *(double left, MagneticField right)
@@ -411,12 +411,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(MagneticField left, MagneticField right)	
+        public static bool operator ==(MagneticField left, MagneticField right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(MagneticField left, MagneticField right)	
+        public static bool operator !=(MagneticField left, MagneticField right)
         {
             return !(left == right);
         }

@@ -458,12 +458,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(AmplitudeRatio left, AmplitudeRatio right)	
+        public static bool operator ==(AmplitudeRatio left, AmplitudeRatio right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(AmplitudeRatio left, AmplitudeRatio right)	
+        public static bool operator !=(AmplitudeRatio left, AmplitudeRatio right)
         {
             return !(left == right);
         }

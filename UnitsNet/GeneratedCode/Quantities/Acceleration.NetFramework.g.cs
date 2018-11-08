@@ -524,12 +524,12 @@ namespace UnitsNet
 
         public static Acceleration operator +(Acceleration left, Acceleration right)
         {
-            return new Acceleration(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Acceleration operator -(Acceleration left, Acceleration right)
         {
-            return new Acceleration(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Acceleration operator *(double left, Acceleration right)
@@ -576,12 +576,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Acceleration left, Acceleration right)	
+        public static bool operator ==(Acceleration left, Acceleration right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Acceleration left, Acceleration right)	
+        public static bool operator !=(Acceleration left, Acceleration right)
         {
             return !(left == right);
         }

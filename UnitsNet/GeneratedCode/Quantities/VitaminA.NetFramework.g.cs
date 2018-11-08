@@ -356,12 +356,12 @@ namespace UnitsNet
 
         public static VitaminA operator +(VitaminA left, VitaminA right)
         {
-            return new VitaminA(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static VitaminA operator -(VitaminA left, VitaminA right)
         {
-            return new VitaminA(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static VitaminA operator *(double left, VitaminA right)
@@ -408,12 +408,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(VitaminA left, VitaminA right)	
+        public static bool operator ==(VitaminA left, VitaminA right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(VitaminA left, VitaminA right)	
+        public static bool operator !=(VitaminA left, VitaminA right)
         {
             return !(left == right);
         }

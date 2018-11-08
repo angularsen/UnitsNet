@@ -370,12 +370,12 @@ namespace UnitsNet
 
         public static HeatTransferCoefficient operator +(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
-            return new HeatTransferCoefficient(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static HeatTransferCoefficient operator -(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
-            return new HeatTransferCoefficient(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static HeatTransferCoefficient operator *(double left, HeatTransferCoefficient right)
@@ -422,12 +422,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(HeatTransferCoefficient left, HeatTransferCoefficient right)	
+        public static bool operator ==(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(HeatTransferCoefficient left, HeatTransferCoefficient right)	
+        public static bool operator !=(HeatTransferCoefficient left, HeatTransferCoefficient right)
         {
             return !(left == right);
         }

@@ -538,12 +538,12 @@ namespace UnitsNet
 
         public static Angle operator +(Angle left, Angle right)
         {
-            return new Angle(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Angle operator -(Angle left, Angle right)
         {
-            return new Angle(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Angle operator *(double left, Angle right)
@@ -590,12 +590,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Angle left, Angle right)	
+        public static bool operator ==(Angle left, Angle right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Angle left, Angle right)	
+        public static bool operator !=(Angle left, Angle right)
         {
             return !(left == right);
         }

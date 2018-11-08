@@ -384,12 +384,12 @@ namespace UnitsNet
 
         public static BrakeSpecificFuelConsumption operator +(BrakeSpecificFuelConsumption left, BrakeSpecificFuelConsumption right)
         {
-            return new BrakeSpecificFuelConsumption(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static BrakeSpecificFuelConsumption operator -(BrakeSpecificFuelConsumption left, BrakeSpecificFuelConsumption right)
         {
-            return new BrakeSpecificFuelConsumption(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static BrakeSpecificFuelConsumption operator *(double left, BrakeSpecificFuelConsumption right)
@@ -436,12 +436,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(BrakeSpecificFuelConsumption left, BrakeSpecificFuelConsumption right)	
+        public static bool operator ==(BrakeSpecificFuelConsumption left, BrakeSpecificFuelConsumption right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(BrakeSpecificFuelConsumption left, BrakeSpecificFuelConsumption right)	
+        public static bool operator !=(BrakeSpecificFuelConsumption left, BrakeSpecificFuelConsumption right)
         {
             return !(left == right);
         }

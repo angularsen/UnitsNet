@@ -538,12 +538,12 @@ namespace UnitsNet
 
         public static AmountOfSubstance operator +(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return new AmountOfSubstance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static AmountOfSubstance operator -(AmountOfSubstance left, AmountOfSubstance right)
         {
-            return new AmountOfSubstance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static AmountOfSubstance operator *(double left, AmountOfSubstance right)
@@ -590,12 +590,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(AmountOfSubstance left, AmountOfSubstance right)	
+        public static bool operator ==(AmountOfSubstance left, AmountOfSubstance right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(AmountOfSubstance left, AmountOfSubstance right)	
+        public static bool operator !=(AmountOfSubstance left, AmountOfSubstance right)
         {
             return !(left == right);
         }

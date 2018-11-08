@@ -734,12 +734,12 @@ namespace UnitsNet
 
         public static MassMomentOfInertia operator +(MassMomentOfInertia left, MassMomentOfInertia right)
         {
-            return new MassMomentOfInertia(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MassMomentOfInertia operator -(MassMomentOfInertia left, MassMomentOfInertia right)
         {
-            return new MassMomentOfInertia(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MassMomentOfInertia operator *(double left, MassMomentOfInertia right)
@@ -786,12 +786,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(MassMomentOfInertia left, MassMomentOfInertia right)	
+        public static bool operator ==(MassMomentOfInertia left, MassMomentOfInertia right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(MassMomentOfInertia left, MassMomentOfInertia right)	
+        public static bool operator !=(MassMomentOfInertia left, MassMomentOfInertia right)
         {
             return !(left == right);
         }
