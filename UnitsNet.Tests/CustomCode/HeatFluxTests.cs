@@ -62,8 +62,10 @@ namespace UnitsNet.Tests.CustomCode
         protected override double WattsPerSquareFootInOneWattPerSquareMeter => 9.290304e-2;
         protected override double WattsPerSquareInchInOneWattPerSquareMeter => 6.4516e-4;
         protected override double WattsPerSquareMeterInOneWattPerSquareMeter => 1;
+        protected override double PoundsForcePerFootSecondInOneWattPerSquareMeter => 6.852176585679176e-2;
+        protected override double PoundsPerSecondCubedInOneWattPerSquareMeter => 2.204622621848776;
 
-        [Fact]
+        [ Fact]
         public void PowerDividedByAreaEqualsHeatFlux()
         {
            HeatFlux heatFlux = Power.FromWatts(12) / Area.FromSquareMeters(3);
