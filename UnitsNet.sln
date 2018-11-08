@@ -7,10 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet", "UnitsNet\UnitsN
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet", "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj", "{FB696BFE-B303-4EBD-A0E6-4A7B19DE429B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.Signed", "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Signed.csproj", "{7798DBCF-DD59-4CAD-A754-FB7DCC6BD312}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Signed", "UnitsNet\UnitsNet.Signed.csproj", "{21C1AFDC-354E-4D97-947B-2DB63C529E6E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Serialization.JsonNet.Tests", "UnitsNet.Serialization.JsonNet.Tests\UnitsNet.Serialization.JsonNet.Tests.csproj", "{FFEEDF44-F32D-4D92-A75E-487CB0582EB1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitsNet.Tests", "UnitsNet.Tests\UnitsNet.Tests.csproj", "{0E3B7567-5DF2-44BD-88DB-CCF050D3F943}"
@@ -31,14 +27,6 @@ Global
 		{FB696BFE-B303-4EBD-A0E6-4A7B19DE429B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB696BFE-B303-4EBD-A0E6-4A7B19DE429B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB696BFE-B303-4EBD-A0E6-4A7B19DE429B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7798DBCF-DD59-4CAD-A754-FB7DCC6BD312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7798DBCF-DD59-4CAD-A754-FB7DCC6BD312}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7798DBCF-DD59-4CAD-A754-FB7DCC6BD312}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7798DBCF-DD59-4CAD-A754-FB7DCC6BD312}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21C1AFDC-354E-4D97-947B-2DB63C529E6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21C1AFDC-354E-4D97-947B-2DB63C529E6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21C1AFDC-354E-4D97-947B-2DB63C529E6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21C1AFDC-354E-4D97-947B-2DB63C529E6E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FFEEDF44-F32D-4D92-A75E-487CB0582EB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FFEEDF44-F32D-4D92-A75E-487CB0582EB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFEEDF44-F32D-4D92-A75E-487CB0582EB1}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -5,8 +5,8 @@ skip_commits:
    - docs/*
    - '**/*.md'
 
-# fetch repository as zip archive, not doing any git operations on it
-shallow_clone: true
+# Only fetch the latest commits to reduce time to download on agent, but support pushes containing multiple commits
+clone_depth: 50
 
 # build cache to preserve files/folders between builds
 cache:

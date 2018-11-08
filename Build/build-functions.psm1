@@ -89,9 +89,7 @@ function Start-Tests {
 function Start-PackNugets {
   $projectPaths = @(
     "UnitsNet\UnitsNet.csproj",
-    "UnitsNet\UnitsNet.Signed.csproj",
-    "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj",
-    "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Signed.csproj"
+    "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj"
     )
 
   write-host -foreground blue "Pack nugets...`n---"
@@ -101,7 +99,7 @@ function Start-PackNugets {
   }
 
   write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using nuget.exe instead"
-  & $nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir" -Symbols
+  & $nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
 
   write-host -foreground blue "Pack nugets...END`n"
 }

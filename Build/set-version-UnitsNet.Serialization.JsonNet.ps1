@@ -48,12 +48,12 @@ Import-Module "$PSScriptRoot\set-version.psm1"
 
 $root = Resolve-Path "$PSScriptRoot\.."
 $paramSet = $PsCmdlet.ParameterSetName
-$commonPropsFile = "$root\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Common.props"
-$versionFiles = @($commonPropsFile)
+$projFile = "$root\UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj"
+$versionFiles = @($projFile)
 $projectName = "JsonNet"
 
 # Use UnitsNet.Common.props version as base if bumping major/minor/patch
-$newVersion = Get-NewProjectVersion $commonPropsFile $paramSet $setVersion $bumpVersion
+$newVersion = Get-NewProjectVersion $projFile $paramSet $setVersion $bumpVersion
 
-Set-ProjectVersion $commonPropsFile $newVersion
+Set-ProjectVersion $projFile $newVersion
 Invoke-CommitAndTagVersion $projectName $versionFiles $newVersion

@@ -43,8 +43,10 @@ function Invoke-CommitAndTagVersion(
 }
 
 function Set-ProjectVersion([string] $file, [string] $version) {
-  Write-Host "$file -> $version"
+  $assemblyVersion = $version  -replace "(\d+)(?:\.\d+)+.*", '$1.0.0.0'
+  Write-Host "$file -> $version (AssemblyVersion $assemblyVersion)"
   (Get-Content $file) -replace '<Version>.*?</Version>', "<Version>$version</Version>" | Set-Content $file
+  (Get-Content $file) -replace '<AssemblyVersion>.*?</AssemblyVersion>', "<AssemblyVersion>$assemblyVersion</AssemblyVersion>" | Set-Content $file
 }
 
 function Set-AssemblyInfoVersion([string] $file, [string] $version) {
