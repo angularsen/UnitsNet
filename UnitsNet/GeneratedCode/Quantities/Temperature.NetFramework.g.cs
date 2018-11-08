@@ -454,12 +454,12 @@ namespace UnitsNet
 
         public static Temperature operator +(Temperature left, Temperature right)
         {
-            return new Temperature(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Temperature operator -(Temperature left, Temperature right)
         {
-            return new Temperature(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Temperature operator *(double left, Temperature right)
@@ -506,12 +506,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Temperature left, Temperature right)	
+        public static bool operator ==(Temperature left, Temperature right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Temperature left, Temperature right)	
+        public static bool operator !=(Temperature left, Temperature right)
         {
             return !(left == right);
         }
