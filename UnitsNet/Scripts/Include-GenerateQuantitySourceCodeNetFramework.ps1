@@ -750,12 +750,12 @@ function GenerateArithmeticOperators([GeneratorArgs]$genArgs)
 
         public static $quantityName operator +($quantityName left, $quantityName right)
         {
-            return new $quantityName(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static $quantityName operator -($quantityName left, $quantityName right)
         {
-            return new $quantityName(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static $quantityName operator *($valueType left, $quantityName right)
@@ -812,12 +812,12 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==($quantityName left, $quantityName right)	
+        public static bool operator ==($quantityName left, $quantityName right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=($quantityName left, $quantityName right)	
+        public static bool operator !=($quantityName left, $quantityName right)
         {
             return !(left == right);
         }
