@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     In computing and telecommunications, a unit of information is the capacity of some standard data storage system or communication channel, used to measure the capacities of other systems and channels. In information theory, units of information are also used to measure the information contents or entropy of random variables.
     /// </summary>
-    public partial struct Information : IQuantity<InformationUnit>, IComparable, IComparable<Information>
+    public partial struct Information : IQuantity<InformationUnit>, IEquatable<Information>, IComparable, IComparable<Information>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -758,18 +758,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(Information left, Information right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Information left, Information right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Information)) throw new ArgumentException("Expected type Information.", nameof(obj));
+            if(!(obj is Information objInformation)) throw new ArgumentException("Expected type Information.", nameof(obj));
 
-            return CompareTo((Information)obj);
+            return CompareTo(objInformation);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Information other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Information objInformation))
+                return false;
+
+            return Equals(objInformation);
+        }
+
+        public bool Equals(Information other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

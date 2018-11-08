@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     In thermodynamics, the specific volume of a substance is the ratio of the substance's volume to its mass. It is the reciprocal of density and an intrinsic property of matter as well.
     /// </summary>
-    public partial struct SpecificVolume : IQuantity<SpecificVolumeUnit>, IComparable, IComparable<SpecificVolume>
+    public partial struct SpecificVolume : IQuantity<SpecificVolumeUnit>, IEquatable<SpecificVolume>, IComparable, IComparable<SpecificVolume>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -422,18 +422,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(SpecificVolume left, SpecificVolume right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(SpecificVolume left, SpecificVolume right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is SpecificVolume)) throw new ArgumentException("Expected type SpecificVolume.", nameof(obj));
+            if(!(obj is SpecificVolume objSpecificVolume)) throw new ArgumentException("Expected type SpecificVolume.", nameof(obj));
 
-            return CompareTo((SpecificVolume)obj);
+            return CompareTo(objSpecificVolume);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(SpecificVolume other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is SpecificVolume objSpecificVolume))
+                return false;
+
+            return Equals(objSpecificVolume);
+        }
+
+        public bool Equals(SpecificVolume other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

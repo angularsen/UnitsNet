@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Electric admittance is a measure of how easily a circuit or device will allow a current to flow. It is defined as the inverse of impedance. The SI unit of admittance is the siemens (symbol S).
     /// </summary>
-    public partial struct ElectricAdmittance : IQuantity<ElectricAdmittanceUnit>, IComparable, IComparable<ElectricAdmittance>
+    public partial struct ElectricAdmittance : IQuantity<ElectricAdmittanceUnit>, IEquatable<ElectricAdmittance>, IComparable, IComparable<ElectricAdmittance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -450,18 +450,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(ElectricAdmittance left, ElectricAdmittance right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ElectricAdmittance left, ElectricAdmittance right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricAdmittance)) throw new ArgumentException("Expected type ElectricAdmittance.", nameof(obj));
+            if(!(obj is ElectricAdmittance objElectricAdmittance)) throw new ArgumentException("Expected type ElectricAdmittance.", nameof(obj));
 
-            return CompareTo((ElectricAdmittance)obj);
+            return CompareTo(objElectricAdmittance);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ElectricAdmittance other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is ElectricAdmittance objElectricAdmittance))
+                return false;
+
+            return Equals(objElectricAdmittance);
+        }
+
+        public bool Equals(ElectricAdmittance other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

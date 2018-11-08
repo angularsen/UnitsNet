@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Heat flux is the flow of energy per unit of area per unit of time
     /// </summary>
-    public partial struct HeatFlux : IQuantity<HeatFluxUnit>, IComparable, IComparable<HeatFlux>
+    public partial struct HeatFlux : IQuantity<HeatFluxUnit>, IEquatable<HeatFlux>, IComparable, IComparable<HeatFlux>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -618,18 +618,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(HeatFlux left, HeatFlux right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(HeatFlux left, HeatFlux right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is HeatFlux)) throw new ArgumentException("Expected type HeatFlux.", nameof(obj));
+            if(!(obj is HeatFlux objHeatFlux)) throw new ArgumentException("Expected type HeatFlux.", nameof(obj));
 
-            return CompareTo((HeatFlux)obj);
+            return CompareTo(objHeatFlux);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(HeatFlux other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is HeatFlux objHeatFlux))
+                return false;
+
+            return Equals(objHeatFlux);
+        }
+
+        public bool Equals(HeatFlux other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

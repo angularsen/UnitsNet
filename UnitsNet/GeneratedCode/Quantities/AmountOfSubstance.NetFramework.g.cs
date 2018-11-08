@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Mole is the amount of substance containing Avagadro's Number (6.02 x 10 ^ 23) of real particles such as molecules,atoms, ions or radicals.
     /// </summary>
-    public partial struct AmountOfSubstance : IQuantity<AmountOfSubstanceUnit>, IComparable, IComparable<AmountOfSubstance>
+    public partial struct AmountOfSubstance : IQuantity<AmountOfSubstanceUnit>, IEquatable<AmountOfSubstance>, IComparable, IComparable<AmountOfSubstance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -590,18 +590,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(AmountOfSubstance left, AmountOfSubstance right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(AmountOfSubstance left, AmountOfSubstance right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is AmountOfSubstance)) throw new ArgumentException("Expected type AmountOfSubstance.", nameof(obj));
+            if(!(obj is AmountOfSubstance objAmountOfSubstance)) throw new ArgumentException("Expected type AmountOfSubstance.", nameof(obj));
 
-            return CompareTo((AmountOfSubstance)obj);
+            return CompareTo(objAmountOfSubstance);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(AmountOfSubstance other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is AmountOfSubstance objAmountOfSubstance))
+                return false;
+
+            return Equals(objAmountOfSubstance);
+        }
+
+        public bool Equals(AmountOfSubstance other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

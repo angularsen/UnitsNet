@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     An electric current is a flow of electric charge. In electric circuits this charge is often carried by moving electrons in a wire. It can also be carried by ions in an electrolyte, or by both ions and electrons such as in a plasma.
     /// </summary>
-    public partial struct ElectricCurrent : IQuantity<ElectricCurrentUnit>, IComparable, IComparable<ElectricCurrent>
+    public partial struct ElectricCurrent : IQuantity<ElectricCurrentUnit>, IEquatable<ElectricCurrent>, IComparable, IComparable<ElectricCurrent>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -506,18 +506,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(ElectricCurrent left, ElectricCurrent right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ElectricCurrent left, ElectricCurrent right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricCurrent)) throw new ArgumentException("Expected type ElectricCurrent.", nameof(obj));
+            if(!(obj is ElectricCurrent objElectricCurrent)) throw new ArgumentException("Expected type ElectricCurrent.", nameof(obj));
 
-            return CompareTo((ElectricCurrent)obj);
+            return CompareTo(objElectricCurrent);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ElectricCurrent other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is ElectricCurrent objElectricCurrent))
+                return false;
+
+            return Equals(objElectricCurrent);
+        }
+
+        public bool Equals(ElectricCurrent other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

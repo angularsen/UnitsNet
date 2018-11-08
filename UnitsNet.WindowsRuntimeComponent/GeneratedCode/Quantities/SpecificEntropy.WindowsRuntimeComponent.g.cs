@@ -479,15 +479,29 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is SpecificEntropy)) throw new ArgumentException("Expected type SpecificEntropy.", nameof(obj));
+            if(!(obj is SpecificEntropy objSpecificEntropy)) throw new ArgumentException("Expected type SpecificEntropy.", nameof(obj));
 
-            return CompareTo((SpecificEntropy)obj);
+            return CompareTo(objSpecificEntropy);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(SpecificEntropy other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is SpecificEntropy objSpecificEntropy))
+                return false;
+
+            return Equals(objSpecificEntropy);
+        }
+
+        public bool Equals(SpecificEntropy other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Force change rate is the ratio of the force change to the time during which the change occurred (value of force changes per unit time).
     /// </summary>
-    public partial struct ForceChangeRate : IQuantity<ForceChangeRateUnit>, IComparable, IComparable<ForceChangeRate>
+    public partial struct ForceChangeRate : IQuantity<ForceChangeRateUnit>, IEquatable<ForceChangeRate>, IComparable, IComparable<ForceChangeRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -548,18 +548,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(ForceChangeRate left, ForceChangeRate right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ForceChangeRate left, ForceChangeRate right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ForceChangeRate)) throw new ArgumentException("Expected type ForceChangeRate.", nameof(obj));
+            if(!(obj is ForceChangeRate objForceChangeRate)) throw new ArgumentException("Expected type ForceChangeRate.", nameof(obj));
 
-            return CompareTo((ForceChangeRate)obj);
+            return CompareTo(objForceChangeRate);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ForceChangeRate other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is ForceChangeRate objForceChangeRate))
+                return false;
+
+            return Equals(objForceChangeRate);
+        }
+
+        public bool Equals(ForceChangeRate other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

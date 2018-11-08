@@ -479,15 +479,29 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricCurrent)) throw new ArgumentException("Expected type ElectricCurrent.", nameof(obj));
+            if(!(obj is ElectricCurrent objElectricCurrent)) throw new ArgumentException("Expected type ElectricCurrent.", nameof(obj));
 
-            return CompareTo((ElectricCurrent)obj);
+            return CompareTo(objElectricCurrent);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(ElectricCurrent other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is ElectricCurrent objElectricCurrent))
+                return false;
+
+            return Equals(objElectricCurrent);
+        }
+
+        public bool Equals(ElectricCurrent other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

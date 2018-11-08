@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Vitamin A: 1 IU is the biological equivalent of 0.3 µg retinol, or of 0.6 µg beta-carotene.
     /// </summary>
-    public partial struct VitaminA : IQuantity<VitaminAUnit>, IComparable, IComparable<VitaminA>
+    public partial struct VitaminA : IQuantity<VitaminAUnit>, IEquatable<VitaminA>, IComparable, IComparable<VitaminA>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -408,18 +408,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(VitaminA left, VitaminA right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(VitaminA left, VitaminA right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is VitaminA)) throw new ArgumentException("Expected type VitaminA.", nameof(obj));
+            if(!(obj is VitaminA objVitaminA)) throw new ArgumentException("Expected type VitaminA.", nameof(obj));
 
-            return CompareTo((VitaminA)obj);
+            return CompareTo(objVitaminA);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(VitaminA other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is VitaminA objVitaminA))
+                return false;
+
+            return Equals(objVitaminA);
+        }
+
+        public bool Equals(VitaminA other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

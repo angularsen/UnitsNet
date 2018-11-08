@@ -52,7 +52,7 @@ namespace UnitsNet
     /// <remarks>
     ///     http://en.wikipedia.org/wiki/Viscosity
     /// </remarks>
-    public partial struct KinematicViscosity : IQuantity<KinematicViscosityUnit>, IComparable, IComparable<KinematicViscosity>
+    public partial struct KinematicViscosity : IQuantity<KinematicViscosityUnit>, IEquatable<KinematicViscosity>, IComparable, IComparable<KinematicViscosity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -509,18 +509,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(KinematicViscosity left, KinematicViscosity right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(KinematicViscosity left, KinematicViscosity right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is KinematicViscosity)) throw new ArgumentException("Expected type KinematicViscosity.", nameof(obj));
+            if(!(obj is KinematicViscosity objKinematicViscosity)) throw new ArgumentException("Expected type KinematicViscosity.", nameof(obj));
 
-            return CompareTo((KinematicViscosity)obj);
+            return CompareTo(objKinematicViscosity);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(KinematicViscosity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is KinematicViscosity objKinematicViscosity))
+                return false;
+
+            return Equals(objKinematicViscosity);
+        }
+
+        public bool Equals(KinematicViscosity other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

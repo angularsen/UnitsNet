@@ -377,15 +377,29 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Capacitance)) throw new ArgumentException("Expected type Capacitance.", nameof(obj));
+            if(!(obj is Capacitance objCapacitance)) throw new ArgumentException("Expected type Capacitance.", nameof(obj));
 
-            return CompareTo((Capacitance)obj);
+            return CompareTo(objCapacitance);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(Capacitance other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Capacitance objCapacitance))
+                return false;
+
+            return Equals(objCapacitance);
+        }
+
+        public bool Equals(Capacitance other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

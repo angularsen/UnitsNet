@@ -52,7 +52,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Capacitance
     /// </remarks>
-    public partial struct Capacitance : IQuantity<CapacitanceUnit>, IComparable, IComparable<Capacitance>
+    public partial struct Capacitance : IQuantity<CapacitanceUnit>, IEquatable<Capacitance>, IComparable, IComparable<Capacitance>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -411,18 +411,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(Capacitance left, Capacitance right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Capacitance left, Capacitance right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Capacitance)) throw new ArgumentException("Expected type Capacitance.", nameof(obj));
+            if(!(obj is Capacitance objCapacitance)) throw new ArgumentException("Expected type Capacitance.", nameof(obj));
 
-            return CompareTo((Capacitance)obj);
+            return CompareTo(objCapacitance);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Capacitance other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Capacitance objCapacitance))
+                return false;
+
+            return Equals(objCapacitance);
+        }
+
+        public bool Equals(Capacitance other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

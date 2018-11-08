@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Pressure change rate is the ratio of the pressure change to the time during which the change occurred (value of pressure changes per unit time).
     /// </summary>
-    public partial struct PressureChangeRate : IQuantity<PressureChangeRateUnit>, IComparable, IComparable<PressureChangeRate>
+    public partial struct PressureChangeRate : IQuantity<PressureChangeRateUnit>, IEquatable<PressureChangeRate>, IComparable, IComparable<PressureChangeRate>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -450,18 +450,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(PressureChangeRate left, PressureChangeRate right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(PressureChangeRate left, PressureChangeRate right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is PressureChangeRate)) throw new ArgumentException("Expected type PressureChangeRate.", nameof(obj));
+            if(!(obj is PressureChangeRate objPressureChangeRate)) throw new ArgumentException("Expected type PressureChangeRate.", nameof(obj));
 
-            return CompareTo((PressureChangeRate)obj);
+            return CompareTo(objPressureChangeRate);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(PressureChangeRate other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is PressureChangeRate objPressureChangeRate))
+                return false;
+
+            return Equals(objPressureChangeRate);
+        }
+
+        public bool Equals(PressureChangeRate other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Molar energy is the amount of energy stored in 1 mole of a substance.
     /// </summary>
-    public partial struct MolarEnergy : IQuantity<MolarEnergyUnit>, IComparable, IComparable<MolarEnergy>
+    public partial struct MolarEnergy : IQuantity<MolarEnergyUnit>, IEquatable<MolarEnergy>, IComparable, IComparable<MolarEnergy>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -436,18 +436,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(MolarEnergy left, MolarEnergy right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(MolarEnergy left, MolarEnergy right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MolarEnergy)) throw new ArgumentException("Expected type MolarEnergy.", nameof(obj));
+            if(!(obj is MolarEnergy objMolarEnergy)) throw new ArgumentException("Expected type MolarEnergy.", nameof(obj));
 
-            return CompareTo((MolarEnergy)obj);
+            return CompareTo(objMolarEnergy);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(MolarEnergy other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is MolarEnergy objMolarEnergy))
+                return false;
+
+            return Equals(objMolarEnergy);
+        }
+
+        public bool Equals(MolarEnergy other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

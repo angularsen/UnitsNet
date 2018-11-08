@@ -689,15 +689,29 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Length)) throw new ArgumentException("Expected type Length.", nameof(obj));
+            if(!(obj is Length objLength)) throw new ArgumentException("Expected type Length.", nameof(obj));
 
-            return CompareTo((Length)obj);
+            return CompareTo(objLength);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(Length other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Length objLength))
+                return false;
+
+            return Equals(objLength);
+        }
+
+        public bool Equals(Length other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

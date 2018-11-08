@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Power engineers measure apparent power as the magnitude of the vector sum of active and reactive power. Apparent power is the product of the root-mean-square of voltage and current.
     /// </summary>
-    public partial struct ApparentPower : IQuantity<ApparentPowerUnit>, IComparable, IComparable<ApparentPower>
+    public partial struct ApparentPower : IQuantity<ApparentPowerUnit>, IEquatable<ApparentPower>, IComparable, IComparable<ApparentPower>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -450,18 +450,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(ApparentPower left, ApparentPower right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ApparentPower left, ApparentPower right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ApparentPower)) throw new ArgumentException("Expected type ApparentPower.", nameof(obj));
+            if(!(obj is ApparentPower objApparentPower)) throw new ArgumentException("Expected type ApparentPower.", nameof(obj));
 
-            return CompareTo((ApparentPower)obj);
+            return CompareTo(objApparentPower);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ApparentPower other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is ApparentPower objApparentPower))
+                return false;
+
+            return Equals(objApparentPower);
+        }
+
+        public bool Equals(ApparentPower other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Rotational speed (sometimes called speed of revolution) is the number of complete rotations, revolutions, cycles, or turns per time unit. Rotational speed is a cyclic frequency, measured in radians per second or in hertz in the SI System by scientists, or in revolutions per minute (rpm or min-1) or revolutions per second in everyday life. The symbol for rotational speed is ω (the Greek lowercase letter "omega").
     /// </summary>
-    public partial struct RotationalSpeed : IQuantity<RotationalSpeedUnit>, IComparable, IComparable<RotationalSpeed>
+    public partial struct RotationalSpeed : IQuantity<RotationalSpeedUnit>, IEquatable<RotationalSpeed>, IComparable, IComparable<RotationalSpeed>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -576,18 +576,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(RotationalSpeed left, RotationalSpeed right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(RotationalSpeed left, RotationalSpeed right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is RotationalSpeed)) throw new ArgumentException("Expected type RotationalSpeed.", nameof(obj));
+            if(!(obj is RotationalSpeed objRotationalSpeed)) throw new ArgumentException("Expected type RotationalSpeed.", nameof(obj));
 
-            return CompareTo((RotationalSpeed)obj);
+            return CompareTo(objRotationalSpeed);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(RotationalSpeed other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is RotationalSpeed objRotationalSpeed))
+                return false;
+
+            return Equals(objRotationalSpeed);
+        }
+
+        public bool Equals(RotationalSpeed other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

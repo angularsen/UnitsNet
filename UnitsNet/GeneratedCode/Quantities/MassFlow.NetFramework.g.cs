@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Mass flow is the ratio of the mass change to the time during which the change occurred (value of mass changes per unit time).
     /// </summary>
-    public partial struct MassFlow : IQuantity<MassFlowUnit>, IComparable, IComparable<MassFlow>
+    public partial struct MassFlow : IQuantity<MassFlowUnit>, IEquatable<MassFlow>, IComparable, IComparable<MassFlow>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -632,18 +632,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(MassFlow left, MassFlow right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(MassFlow left, MassFlow right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MassFlow)) throw new ArgumentException("Expected type MassFlow.", nameof(obj));
+            if(!(obj is MassFlow objMassFlow)) throw new ArgumentException("Expected type MassFlow.", nameof(obj));
 
-            return CompareTo((MassFlow)obj);
+            return CompareTo(objMassFlow);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(MassFlow other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is MassFlow objMassFlow))
+                return false;
+
+            return Equals(objMassFlow);
+        }
+
+        public bool Equals(MassFlow other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

@@ -391,9 +391,40 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void EqualityOperators()
+        {
+            var a = Length.FromMeters(1);
+            var b = Length.FromMeters(2);
+
+ // ReSharper disable EqualExpressionComparison
+
+            Assert.True(a == a);
+            Assert.False(a != a);
+
+            Assert.True(a != b);
+            Assert.False(a == b);
+
+            Assert.False(a == null);
+            Assert.False(null == a);
+
+// ReSharper restore EqualExpressionComparison
+        }
+
+        [Fact]
         public void EqualsIsImplemented()
         {
-            Length v = Length.FromMeters(1);
+            var a = Length.FromMeters(1);
+            var b = Length.FromMeters(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void EqualsRelativeToleranceIsImplemented()
+        {
+            var v = Length.FromMeters(1);
             Assert.True(v.Equals(Length.FromMeters(1), MetersTolerance, ComparisonType.Relative));
             Assert.False(v.Equals(Length.Zero, MetersTolerance, ComparisonType.Relative));
         }

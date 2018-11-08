@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     In electromagnetism, the current gradient describes how the current changes in time.
     /// </summary>
-    public partial struct ElectricCurrentGradient : IQuantity<ElectricCurrentGradientUnit>, IComparable, IComparable<ElectricCurrentGradient>
+    public partial struct ElectricCurrentGradient : IQuantity<ElectricCurrentGradientUnit>, IEquatable<ElectricCurrentGradient>, IComparable, IComparable<ElectricCurrentGradient>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -408,18 +408,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(ElectricCurrentGradient left, ElectricCurrentGradient right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ElectricCurrentGradient left, ElectricCurrentGradient right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricCurrentGradient)) throw new ArgumentException("Expected type ElectricCurrentGradient.", nameof(obj));
+            if(!(obj is ElectricCurrentGradient objElectricCurrentGradient)) throw new ArgumentException("Expected type ElectricCurrentGradient.", nameof(obj));
 
-            return CompareTo((ElectricCurrentGradient)obj);
+            return CompareTo(objElectricCurrentGradient);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ElectricCurrentGradient other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is ElectricCurrentGradient objElectricCurrentGradient))
+                return false;
+
+            return Equals(objElectricCurrentGradient);
+        }
+
+        public bool Equals(ElectricCurrentGradient other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

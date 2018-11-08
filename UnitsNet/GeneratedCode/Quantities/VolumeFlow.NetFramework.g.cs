@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     In physics and engineering, in particular fluid dynamics and hydrometry, the volumetric flow rate, (also known as volume flow rate, rate of fluid flow or volume velocity) is the volume of fluid which passes through a given surface per unit time. The SI unit is m³/s (cubic meters per second). In US Customary Units and British Imperial Units, volumetric flow rate is often expressed as ft³/s (cubic feet per second). It is usually represented by the symbol Q.
     /// </summary>
-    public partial struct VolumeFlow : IQuantity<VolumeFlowUnit>, IComparable, IComparable<VolumeFlow>
+    public partial struct VolumeFlow : IQuantity<VolumeFlowUnit>, IEquatable<VolumeFlow>, IComparable, IComparable<VolumeFlow>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -758,18 +758,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(VolumeFlow left, VolumeFlow right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(VolumeFlow left, VolumeFlow right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is VolumeFlow)) throw new ArgumentException("Expected type VolumeFlow.", nameof(obj));
+            if(!(obj is VolumeFlow objVolumeFlow)) throw new ArgumentException("Expected type VolumeFlow.", nameof(obj));
 
-            return CompareTo((VolumeFlow)obj);
+            return CompareTo(objVolumeFlow);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(VolumeFlow other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is VolumeFlow objVolumeFlow))
+                return false;
+
+            return Equals(objVolumeFlow);
+        }
+
+        public bool Equals(VolumeFlow other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

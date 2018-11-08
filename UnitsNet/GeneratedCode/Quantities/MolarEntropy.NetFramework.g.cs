@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Molar entropy is amount of energy required to increase temperature of 1 mole substance by 1 Kelvin.
     /// </summary>
-    public partial struct MolarEntropy : IQuantity<MolarEntropyUnit>, IComparable, IComparable<MolarEntropy>
+    public partial struct MolarEntropy : IQuantity<MolarEntropyUnit>, IEquatable<MolarEntropy>, IComparable, IComparable<MolarEntropy>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -436,18 +436,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(MolarEntropy left, MolarEntropy right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(MolarEntropy left, MolarEntropy right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MolarEntropy)) throw new ArgumentException("Expected type MolarEntropy.", nameof(obj));
+            if(!(obj is MolarEntropy objMolarEntropy)) throw new ArgumentException("Expected type MolarEntropy.", nameof(obj));
 
-            return CompareTo((MolarEntropy)obj);
+            return CompareTo(objMolarEntropy);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(MolarEntropy other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is MolarEntropy objMolarEntropy))
+                return false;
+
+            return Equals(objMolarEntropy);
+        }
+
+        public bool Equals(MolarEntropy other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

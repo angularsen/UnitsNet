@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.
     /// </summary>
-    public partial struct Speed : IQuantity<SpeedUnit>, IComparable, IComparable<Speed>
+    public partial struct Speed : IQuantity<SpeedUnit>, IEquatable<Speed>, IComparable, IComparable<Speed>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -842,18 +842,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(Speed left, Speed right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Speed left, Speed right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Speed)) throw new ArgumentException("Expected type Speed.", nameof(obj));
+            if(!(obj is Speed objSpeed)) throw new ArgumentException("Expected type Speed.", nameof(obj));
 
-            return CompareTo((Speed)obj);
+            return CompareTo(objSpeed);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Speed other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Speed objSpeed))
+                return false;
+
+            return Equals(objSpeed);
+        }
+
+        public bool Equals(Speed other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

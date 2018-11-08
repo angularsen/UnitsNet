@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Brake specific fuel consumption (BSFC) is a measure of the fuel efficiency of any prime mover that burns fuel and produces rotational, or shaft, power. It is typically used for comparing the efficiency of internal combustion engines with a shaft output.
     /// </summary>
-    public partial struct BrakeSpecificFuelConsumption : IQuantity<BrakeSpecificFuelConsumptionUnit>, IComparable, IComparable<BrakeSpecificFuelConsumption>
+    public partial struct BrakeSpecificFuelConsumption : IQuantity<BrakeSpecificFuelConsumptionUnit>, IEquatable<BrakeSpecificFuelConsumption>, IComparable, IComparable<BrakeSpecificFuelConsumption>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -436,18 +436,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(BrakeSpecificFuelConsumption left, BrakeSpecificFuelConsumption right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(BrakeSpecificFuelConsumption left, BrakeSpecificFuelConsumption right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is BrakeSpecificFuelConsumption)) throw new ArgumentException("Expected type BrakeSpecificFuelConsumption.", nameof(obj));
+            if(!(obj is BrakeSpecificFuelConsumption objBrakeSpecificFuelConsumption)) throw new ArgumentException("Expected type BrakeSpecificFuelConsumption.", nameof(obj));
 
-            return CompareTo((BrakeSpecificFuelConsumption)obj);
+            return CompareTo(objBrakeSpecificFuelConsumption);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(BrakeSpecificFuelConsumption other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is BrakeSpecificFuelConsumption objBrakeSpecificFuelConsumption))
+                return false;
+
+            return Equals(objBrakeSpecificFuelConsumption);
+        }
+
+        public bool Equals(BrakeSpecificFuelConsumption other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

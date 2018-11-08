@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Specific entropy is an amount of energy required to raise temperature of a substance by 1 Kelvin per unit mass.
     /// </summary>
-    public partial struct SpecificEntropy : IQuantity<SpecificEntropyUnit>, IComparable, IComparable<SpecificEntropy>
+    public partial struct SpecificEntropy : IQuantity<SpecificEntropyUnit>, IEquatable<SpecificEntropy>, IComparable, IComparable<SpecificEntropy>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -506,18 +506,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(SpecificEntropy left, SpecificEntropy right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(SpecificEntropy left, SpecificEntropy right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is SpecificEntropy)) throw new ArgumentException("Expected type SpecificEntropy.", nameof(obj));
+            if(!(obj is SpecificEntropy objSpecificEntropy)) throw new ArgumentException("Expected type SpecificEntropy.", nameof(obj));
 
-            return CompareTo((SpecificEntropy)obj);
+            return CompareTo(objSpecificEntropy);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(SpecificEntropy other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is SpecificEntropy objSpecificEntropy))
+                return false;
+
+            return Equals(objSpecificEntropy);
+        }
+
+        public bool Equals(SpecificEntropy other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

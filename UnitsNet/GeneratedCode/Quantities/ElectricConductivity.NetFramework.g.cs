@@ -52,7 +52,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Electrical_resistivity_and_conductivity
     /// </remarks>
-    public partial struct ElectricConductivity : IQuantity<ElectricConductivityUnit>, IComparable, IComparable<ElectricConductivity>
+    public partial struct ElectricConductivity : IQuantity<ElectricConductivityUnit>, IEquatable<ElectricConductivity>, IComparable, IComparable<ElectricConductivity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -411,18 +411,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(ElectricConductivity left, ElectricConductivity right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ElectricConductivity left, ElectricConductivity right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricConductivity)) throw new ArgumentException("Expected type ElectricConductivity.", nameof(obj));
+            if(!(obj is ElectricConductivity objElectricConductivity)) throw new ArgumentException("Expected type ElectricConductivity.", nameof(obj));
 
-            return CompareTo((ElectricConductivity)obj);
+            return CompareTo(objElectricConductivity);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ElectricConductivity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is ElectricConductivity objElectricConductivity))
+                return false;
+
+            return Equals(objElectricConductivity);
+        }
+
+        public bool Equals(ElectricConductivity other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

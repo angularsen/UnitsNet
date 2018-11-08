@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     In physics, mass (from Greek μᾶζα "barley cake, lump [of dough]") is a property of a physical system or body, giving rise to the phenomena of the body's resistance to being accelerated by a force and the strength of its mutual gravitational attraction with other bodies. Instruments such as mass balances or scales use those phenomena to measure mass. The SI unit of mass is the kilogram (kg).
     /// </summary>
-    public partial struct Mass : IQuantity<MassUnit>, IComparable, IComparable<Mass>
+    public partial struct Mass : IQuantity<MassUnit>, IEquatable<Mass>, IComparable, IComparable<Mass>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -702,18 +702,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(Mass left, Mass right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Mass left, Mass right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Mass)) throw new ArgumentException("Expected type Mass.", nameof(obj));
+            if(!(obj is Mass objMass)) throw new ArgumentException("Expected type Mass.", nameof(obj));
 
-            return CompareTo((Mass)obj);
+            return CompareTo(objMass);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Mass other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Mass objMass))
+                return false;
+
+            return Equals(objMass);
+        }
+
+        public bool Equals(Mass other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

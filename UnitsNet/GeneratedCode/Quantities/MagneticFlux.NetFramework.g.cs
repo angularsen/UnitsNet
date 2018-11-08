@@ -52,7 +52,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Magnetic_flux
     /// </remarks>
-    public partial struct MagneticFlux : IQuantity<MagneticFluxUnit>, IComparable, IComparable<MagneticFlux>
+    public partial struct MagneticFlux : IQuantity<MagneticFluxUnit>, IEquatable<MagneticFlux>, IComparable, IComparable<MagneticFlux>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -411,18 +411,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(MagneticFlux left, MagneticFlux right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(MagneticFlux left, MagneticFlux right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MagneticFlux)) throw new ArgumentException("Expected type MagneticFlux.", nameof(obj));
+            if(!(obj is MagneticFlux objMagneticFlux)) throw new ArgumentException("Expected type MagneticFlux.", nameof(obj));
 
-            return CompareTo((MagneticFlux)obj);
+            return CompareTo(objMagneticFlux);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(MagneticFlux other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is MagneticFlux objMagneticFlux))
+                return false;
+
+            return Equals(objMagneticFlux);
+        }
+
+        public bool Equals(MagneticFlux other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

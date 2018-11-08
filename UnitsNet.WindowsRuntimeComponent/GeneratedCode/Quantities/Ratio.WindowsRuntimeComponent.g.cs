@@ -449,15 +449,29 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Ratio)) throw new ArgumentException("Expected type Ratio.", nameof(obj));
+            if(!(obj is Ratio objRatio)) throw new ArgumentException("Expected type Ratio.", nameof(obj));
 
-            return CompareTo((Ratio)obj);
+            return CompareTo(objRatio);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(Ratio other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Ratio objRatio))
+                return false;
+
+            return Equals(objRatio);
+        }
+
+        public bool Equals(Ratio other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

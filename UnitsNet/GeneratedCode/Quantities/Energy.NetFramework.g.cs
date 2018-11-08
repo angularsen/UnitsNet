@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     The joule, symbol J, is a derived unit of energy, work, or amount of heat in the International System of Units. It is equal to the energy transferred (or work done) when applying a force of one newton through a distance of one metre (1 newton metre or N·m), or in passing an electric current of one ampere through a resistance of one ohm for one second. Many other units of energy are included. Please do not confuse this definition of the calorie with the one colloquially used by the food industry, the large calorie, which is equivalent to 1 kcal. Thermochemical definition of the calorie is used. For BTU, the IT definition is used.
     /// </summary>
-    public partial struct Energy : IQuantity<EnergyUnit>, IComparable, IComparable<Energy>
+    public partial struct Energy : IQuantity<EnergyUnit>, IEquatable<Energy>, IComparable, IComparable<Energy>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -702,18 +702,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(Energy left, Energy right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Energy left, Energy right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Energy)) throw new ArgumentException("Expected type Energy.", nameof(obj));
+            if(!(obj is Energy objEnergy)) throw new ArgumentException("Expected type Energy.", nameof(obj));
 
-            return CompareTo((Energy)obj);
+            return CompareTo(objEnergy);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Energy other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Energy objEnergy))
+                return false;
+
+            return Equals(objEnergy);
+        }
+
+        public bool Equals(Energy other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

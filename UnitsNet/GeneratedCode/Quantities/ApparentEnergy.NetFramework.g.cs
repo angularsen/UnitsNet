@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     A unit for expressing the integral of apparent power over time, equal to the product of 1 volt-ampere and 1 hour, or to 3600 joules.
     /// </summary>
-    public partial struct ApparentEnergy : IQuantity<ApparentEnergyUnit>, IComparable, IComparable<ApparentEnergy>
+    public partial struct ApparentEnergy : IQuantity<ApparentEnergyUnit>, IEquatable<ApparentEnergy>, IComparable, IComparable<ApparentEnergy>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -436,18 +436,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(ApparentEnergy left, ApparentEnergy right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ApparentEnergy left, ApparentEnergy right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ApparentEnergy)) throw new ArgumentException("Expected type ApparentEnergy.", nameof(obj));
+            if(!(obj is ApparentEnergy objApparentEnergy)) throw new ArgumentException("Expected type ApparentEnergy.", nameof(obj));
 
-            return CompareTo((ApparentEnergy)obj);
+            return CompareTo(objApparentEnergy);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ApparentEnergy other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is ApparentEnergy objApparentEnergy))
+                return false;
+
+            return Equals(objApparentEnergy);
+        }
+
+        public bool Equals(ApparentEnergy other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

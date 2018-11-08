@@ -52,7 +52,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Magnetic_field
     /// </remarks>
-    public partial struct MagneticField : IQuantity<MagneticFieldUnit>, IComparable, IComparable<MagneticField>
+    public partial struct MagneticField : IQuantity<MagneticFieldUnit>, IEquatable<MagneticField>, IComparable, IComparable<MagneticField>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -411,18 +411,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(MagneticField left, MagneticField right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(MagneticField left, MagneticField right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is MagneticField)) throw new ArgumentException("Expected type MagneticField.", nameof(obj));
+            if(!(obj is MagneticField objMagneticField)) throw new ArgumentException("Expected type MagneticField.", nameof(obj));
 
-            return CompareTo((MagneticField)obj);
+            return CompareTo(objMagneticField);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(MagneticField other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is MagneticField objMagneticField))
+                return false;
+
+            return Equals(objMagneticField);
+        }
+
+        public bool Equals(MagneticField other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

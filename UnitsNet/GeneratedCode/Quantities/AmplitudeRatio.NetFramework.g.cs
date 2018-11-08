@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     The strength of a signal expressed in decibels (dB) relative to one volt RMS.
     /// </summary>
-    public partial struct AmplitudeRatio : IQuantity<AmplitudeRatioUnit>, IComparable, IComparable<AmplitudeRatio>
+    public partial struct AmplitudeRatio : IQuantity<AmplitudeRatioUnit>, IEquatable<AmplitudeRatio>, IComparable, IComparable<AmplitudeRatio>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -458,18 +458,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(AmplitudeRatio left, AmplitudeRatio right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(AmplitudeRatio left, AmplitudeRatio right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is AmplitudeRatio)) throw new ArgumentException("Expected type AmplitudeRatio.", nameof(obj));
+            if(!(obj is AmplitudeRatio objAmplitudeRatio)) throw new ArgumentException("Expected type AmplitudeRatio.", nameof(obj));
 
-            return CompareTo((AmplitudeRatio)obj);
+            return CompareTo(objAmplitudeRatio);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(AmplitudeRatio other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is AmplitudeRatio objAmplitudeRatio))
+                return false;
+
+            return Equals(objAmplitudeRatio);
+        }
+
+        public bool Equals(AmplitudeRatio other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Pressure (symbol: P or p) is the ratio of force to the area over which that force is distributed. Pressure is force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure (also spelled gage pressure)[a] is the pressure relative to the local atmospheric or ambient pressure. Pressure is measured in any unit of force divided by any unit of area. The SI unit of pressure is the newton per square metre, which is called the pascal (Pa) after the seventeenth-century philosopher and scientist Blaise Pascal. A pressure of 1 Pa is small; it approximately equals the pressure exerted by a dollar bill resting flat on a table. Everyday pressures are often stated in kilopascals (1 kPa = 1000 Pa).
     /// </summary>
-    public partial struct Pressure : IQuantity<PressureUnit>, IComparable, IComparable<Pressure>
+    public partial struct Pressure : IQuantity<PressureUnit>, IEquatable<Pressure>, IComparable, IComparable<Pressure>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -954,18 +954,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(Pressure left, Pressure right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Pressure left, Pressure right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Pressure)) throw new ArgumentException("Expected type Pressure.", nameof(obj));
+            if(!(obj is Pressure objPressure)) throw new ArgumentException("Expected type Pressure.", nameof(obj));
 
-            return CompareTo((Pressure)obj);
+            return CompareTo(objPressure);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Pressure other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Pressure objPressure))
+                return false;
+
+            return Equals(objPressure);
+        }
+
+        public bool Equals(Pressure other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

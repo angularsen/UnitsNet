@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Time is a dimension in which events can be ordered from the past through the present into the future, and also the measure of durations of events and the intervals between them.
     /// </summary>
-    public partial struct Duration : IQuantity<DurationUnit>, IComparable, IComparable<Duration>
+    public partial struct Duration : IQuantity<DurationUnit>, IEquatable<Duration>, IComparable, IComparable<Duration>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -534,18 +534,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(Duration left, Duration right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Duration left, Duration right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Duration)) throw new ArgumentException("Expected type Duration.", nameof(obj));
+            if(!(obj is Duration objDuration)) throw new ArgumentException("Expected type Duration.", nameof(obj));
 
-            return CompareTo((Duration)obj);
+            return CompareTo(objDuration);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Duration other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Duration objDuration))
+                return false;
+
+            return Equals(objDuration);
+        }
+
+        public bool Equals(Duration other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

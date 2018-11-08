@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     The Electric Potential of a system known to use Direct Current.
     /// </summary>
-    public partial struct ElectricPotentialDc : IQuantity<ElectricPotentialDcUnit>, IComparable, IComparable<ElectricPotentialDc>
+    public partial struct ElectricPotentialDc : IQuantity<ElectricPotentialDcUnit>, IEquatable<ElectricPotentialDc>, IComparable, IComparable<ElectricPotentialDc>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -464,18 +464,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(ElectricPotentialDc left, ElectricPotentialDc right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ElectricPotentialDc left, ElectricPotentialDc right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is ElectricPotentialDc)) throw new ArgumentException("Expected type ElectricPotentialDc.", nameof(obj));
+            if(!(obj is ElectricPotentialDc objElectricPotentialDc)) throw new ArgumentException("Expected type ElectricPotentialDc.", nameof(obj));
 
-            return CompareTo((ElectricPotentialDc)obj);
+            return CompareTo(objElectricPotentialDc);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ElectricPotentialDc other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is ElectricPotentialDc objElectricPotentialDc))
+                return false;
+
+            return Equals(objElectricPotentialDc);
+        }
+
+        public bool Equals(ElectricPotentialDc other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

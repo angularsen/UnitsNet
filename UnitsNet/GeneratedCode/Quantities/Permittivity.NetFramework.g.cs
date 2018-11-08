@@ -52,7 +52,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Permittivity
     /// </remarks>
-    public partial struct Permittivity : IQuantity<PermittivityUnit>, IComparable, IComparable<Permittivity>
+    public partial struct Permittivity : IQuantity<PermittivityUnit>, IEquatable<Permittivity>, IComparable, IComparable<Permittivity>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -411,18 +411,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(Permittivity left, Permittivity right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Permittivity left, Permittivity right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is Permittivity)) throw new ArgumentException("Expected type Permittivity.", nameof(obj));
+            if(!(obj is Permittivity objPermittivity)) throw new ArgumentException("Expected type Permittivity.", nameof(obj));
 
-            return CompareTo((Permittivity)obj);
+            return CompareTo(objPermittivity);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Permittivity other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Permittivity objPermittivity))
+                return false;
+
+            return Equals(objPermittivity);
+        }
+
+        public bool Equals(Permittivity other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

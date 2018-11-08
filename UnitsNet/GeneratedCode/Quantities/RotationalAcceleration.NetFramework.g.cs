@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Angular acceleration is the rate of change of rotational speed.
     /// </summary>
-    public partial struct RotationalAcceleration : IQuantity<RotationalAccelerationUnit>, IComparable, IComparable<RotationalAcceleration>
+    public partial struct RotationalAcceleration : IQuantity<RotationalAccelerationUnit>, IEquatable<RotationalAcceleration>, IComparable, IComparable<RotationalAcceleration>
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -436,18 +436,41 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
+        public static bool operator ==(RotationalAcceleration left, RotationalAcceleration right)	
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(RotationalAcceleration left, RotationalAcceleration right)	
+        {
+            return !(left == right);
+        }
+
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is RotationalAcceleration)) throw new ArgumentException("Expected type RotationalAcceleration.", nameof(obj));
+            if(!(obj is RotationalAcceleration objRotationalAcceleration)) throw new ArgumentException("Expected type RotationalAcceleration.", nameof(obj));
 
-            return CompareTo((RotationalAcceleration)obj);
+            return CompareTo(objRotationalAcceleration);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(RotationalAcceleration other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is RotationalAcceleration objRotationalAcceleration))
+                return false;
+
+            return Equals(objRotationalAcceleration);
+        }
+
+        public bool Equals(RotationalAcceleration other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>

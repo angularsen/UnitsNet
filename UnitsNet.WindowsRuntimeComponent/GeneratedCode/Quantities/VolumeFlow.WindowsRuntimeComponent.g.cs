@@ -749,15 +749,29 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is VolumeFlow)) throw new ArgumentException("Expected type VolumeFlow.", nameof(obj));
+            if(!(obj is VolumeFlow objVolumeFlow)) throw new ArgumentException("Expected type VolumeFlow.", nameof(obj));
 
-            return CompareTo((VolumeFlow)obj);
+            return CompareTo(objVolumeFlow);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(VolumeFlow other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
+
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is VolumeFlow objVolumeFlow))
+                return false;
+
+            return Equals(objVolumeFlow);
+        }
+
+        public bool Equals(VolumeFlow other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
