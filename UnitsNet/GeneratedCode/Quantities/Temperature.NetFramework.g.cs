@@ -445,6 +445,45 @@ namespace UnitsNet
 
         #endregion
 
+        #region Arithmetic Operators
+
+        public static Temperature operator -(Temperature right)
+        {
+            return new Temperature(-right.Value, right.Unit);
+        }
+
+        public static Temperature operator +(Temperature left, Temperature right)
+        {
+            return new Temperature(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Temperature operator -(Temperature left, Temperature right)
+        {
+            return new Temperature(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+        }
+
+        public static Temperature operator *(double left, Temperature right)
+        {
+            return new Temperature(left * right.Value, right.Unit);
+        }
+
+        public static Temperature operator *(Temperature left, double right)
+        {
+            return new Temperature(left.Value * right, left.Unit);
+        }
+
+        public static Temperature operator /(Temperature left, double right)
+        {
+            return new Temperature(left.Value / right, left.Unit);
+        }
+
+        public static double operator /(Temperature left, Temperature right)
+        {
+            return left.Kelvins / right.Kelvins;
+        }
+
+        #endregion
+
         #region Equality / IComparable
 
         public static bool operator <=(Temperature left, Temperature right)
