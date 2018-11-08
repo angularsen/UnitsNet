@@ -26,6 +26,7 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnitsNet.Serialization.JsonNet.Internal;
+using UnitsNet.Units;
 
 namespace UnitsNet.Serialization.JsonNet
 {
