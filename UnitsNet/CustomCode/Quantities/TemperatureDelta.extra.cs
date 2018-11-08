@@ -21,6 +21,7 @@
 
 // ReSharper disable once CheckNamespace
 
+using System;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -62,8 +63,19 @@ namespace UnitsNet
         /// <returns>A temperature delta.</returns>
         public static TemperatureDelta FromTemperatures(Temperature left, Temperature right)
         {
-            // TemperatureDeltaUnit enum has identical values to TemperatureUnit, so we can simply cast between them
-            return new TemperatureDelta(left.Value - right.As(left.Unit), (TemperatureDeltaUnit)left.Unit);
+            TemperatureDeltaUnit deltaUnit = ToDeltaUnit(left.Unit);
+            return new TemperatureDelta(left.Value - right.As(left.Unit), deltaUnit);
+        }
+
+        /// <summary>
+        /// Converts a temperature unit to a temperature delta unit.
+        /// They share the exact same unit names, but are of different enum types and have slightly different semantic meaning.
+        /// </summary>
+        /// <param name="temperatureUnit">Temperature unit.</param>
+        /// <returns>Equivalent temperature delta unit.</returns>
+        public static TemperatureDeltaUnit ToDeltaUnit(TemperatureUnit temperatureUnit)
+        {
+            return (TemperatureDeltaUnit)Enum.Parse(typeof(TemperatureDeltaUnit), temperatureUnit.ToString());
         }
 #endif
     }
