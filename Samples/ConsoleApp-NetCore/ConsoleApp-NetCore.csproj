@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="UnitsNet" Version="3.45.0" />
+    <PackageReference Include="UnitsNet" Version="3.108.0" />
   </ItemGroup>
 
 </Project>
