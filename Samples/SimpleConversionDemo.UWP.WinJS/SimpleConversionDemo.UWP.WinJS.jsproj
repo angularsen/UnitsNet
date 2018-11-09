@@ -52,7 +52,8 @@
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>$(VersionNumberMajor).$(VersionNumberMinor)</MinimumVisualStudioVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>UnitsNet.TestApps.Uwp.WinJS_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>SimpleConversionDemo.UWP.WinJS_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>233FD264CDB1D145E2BAA90728A41382699F2046</PackageCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
@@ -74,7 +75,7 @@
     <Content Include="lib\winjs-4.0.1\css\ui-dark.css" />
     <Content Include="lib\winjs-4.0.1\fonts\Symbols.ttf" />
     <Content Include="project.json" />
-    <None Include="UnitsNet.TestApps.Uwp.WinJS_TemporaryKey.pfx" />
+    <None Include="SimpleConversionDemo.UWP.WinJS_TemporaryKey.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <!-- To modify your build process, add your task inside one of the targets below then uncomment
