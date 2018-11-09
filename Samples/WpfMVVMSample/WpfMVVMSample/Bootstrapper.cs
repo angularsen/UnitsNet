@@ -1,13 +1,9 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.Unity;
-using Prism.Unity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Prism.Unity;
 using System.Windows;
-using WpfMVVMSample.Converters;
+using CommonServiceLocator;
+using Unity;
+using Unity.Lifetime;
+using Unity.ServiceLocation;
 using WpfMVVMSample.Settings;
 
 namespace WpfMVVMSample
