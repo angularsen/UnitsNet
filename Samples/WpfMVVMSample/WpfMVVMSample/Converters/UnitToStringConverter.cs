@@ -28,14 +28,19 @@ namespace WpfMVVMSample.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var unitType = value.GetType();
-            var unitEnumType = unitType.GetProperty("BaseUnit").PropertyType;
+            var quantityType = value.GetType();
+            var unitEnumType = quantityType.GetProperty("BaseUnit").PropertyType;
             var unitEnumValue = _settings.GetDefaultUnit(unitEnumType);
             var significantDigits = _settings.SignificantDigits;
 
-            var result = unitType
-                    .GetMethod("ToString", new[] { unitEnumType, typeof(IFormatProvider), typeof(int) })
-                    .Invoke(value, new object[] { unitEnumValue, null, significantDigits });
+            var quantityInUnit =
+                quantityType
+                    .GetMethod("ToUnit", new[] {unitEnumType})
+                    .Invoke(value, new[] {unitEnumValue});
+
+            var result = quantityType
+                .GetMethod("ToString", new[] {typeof(IFormatProvider), typeof(int)})
+                .Invoke(quantityInUnit, new object[] {null, significantDigits});
 
             return result;
         }
@@ -68,6 +73,7 @@ namespace WpfMVVMSample.Converters
                 .GetMethod("From", new[] { typeof(QuantityValue), unitEnumType })
                 .Invoke(null, new object[] { (QuantityValue)number, unitEnumValue });
         }
+
         private static object ParseUnit(object value, Type targetType)
         {
             return targetType
