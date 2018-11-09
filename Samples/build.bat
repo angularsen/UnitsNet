@@ -9,5 +9,5 @@ for /f "usebackq tokens=*" %%i in (`%vswhere% -latest -products * -requires Micr
 echo %vswhere%
 
 if exist "%InstallDir%\MSBuild\15.0\Bin\MSBuild.exe" (
-  "%InstallDir%\MSBuild\15.0\Bin\MSBuild.exe" %*
+  "%InstallDir%\MSBuild\15.0\Bin\MSBuild.exe" -verbosity:minimal %*
 )
