@@ -116,7 +116,7 @@ Example:
 
 ### <a name="example-app"></a>Example: Creating a dynamic unit converter app
 [Source code](https://github.com/angularsen/UnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>
-[Download](https://github.com/angularsen/UnitsNet/releases/tag/UnitConverterWpf%2F2018-02-04) (release 2018-02-04 for Windows)
+[Download](https://github.com/angularsen/UnitsNet/releases/tag/UnitConverterWpf%2F2018-11-09) (release 2018-11-09 for Windows)
 
 ![image](https://user-images.githubusercontent.com/787816/34920961-9b697004-f97b-11e7-9e9a-51ff7142969b.png)
 
