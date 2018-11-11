@@ -61,4 +61,4 @@ deploy:
     secure: NlJ+D6kXfgU6RgRuf9okylLDENp8DA3tTRSC6UHBNbRS9ZAvRrC3Z0++Mr5VtGvz
   skip_symbols: false
   on:
-    branch: release/v4
+    branch: v4
