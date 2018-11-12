@@ -201,6 +201,18 @@
       ]
     },
     {
+      "SingularName": "KilousGallonsPerMinute",
+      "PluralName": "KilousGallonsPerMinute",
+      "FromUnitToBaseFunc": "x/15850323.141489",
+      "FromBaseToUnitFunc": "x*15850323.141489",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kgal (U.S.)/min", "KGPM" ]
+        }
+      ]
+    },
+    {
       "SingularName": "UsGallonsPerHour",
       "PluralName": "UsGallonsPerHour",
       "FromUnitToBaseFunc": "x/951019.38848933424",

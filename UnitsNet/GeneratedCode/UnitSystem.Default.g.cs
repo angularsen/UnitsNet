@@ -2457,6 +2457,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "kg/h"),
                                 new AbbreviationsForCulture("ru-RU", "кг/ч"),
                             }),
+                        new CulturesForEnumValue((int) MassFlowUnit.KilogramPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kg/min"),
+                                new AbbreviationsForCulture("ru-RU", "кг/мин"),
+                            }),
                         new CulturesForEnumValue((int) MassFlowUnit.KilogramPerSecond,
                             new[]
                             {
@@ -4706,6 +4712,11 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "kLPM"),
+                            }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.KilousGallonsPerMinute,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "kgal (U.S.)/min", "KGPM"),
                             }),
                         new CulturesForEnumValue((int) VolumeFlowUnit.LitersPerHour,
                             new[]

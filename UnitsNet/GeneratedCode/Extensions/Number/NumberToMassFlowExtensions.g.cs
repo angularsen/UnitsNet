@@ -110,6 +110,17 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         #endregion
 
+        #region KilogramPerMinute
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow KilogramsPerMinute<T>(this T value) => MassFlow.FromKilogramsPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerMinute(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? KilogramsPerMinute<T>(this T? value) where T : struct => MassFlow.FromKilogramsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region KilogramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(UnitsNet.QuantityValue)" />
@@ -135,34 +146,11 @@ namespace UnitsNet.Extensions.NumberToMassFlow
         #region MegapoundPerMinute
 
         /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow MegapoundsPerMinute(this int value) => MassFlow.FromMegapoundsPerMinute(value);
+        public static MassFlow MegapoundsPerMinute<T>(this T value) => MassFlow.FromMegapoundsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow? MegapoundsPerMinute(this int? value) => MassFlow.FromMegapoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow MegapoundsPerMinute(this long value) => MassFlow.FromMegapoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow? MegapoundsPerMinute(this long? value) => MassFlow.FromMegapoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow MegapoundsPerMinute(this double value) => MassFlow.FromMegapoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow? MegapoundsPerMinute(this double? value) => MassFlow.FromMegapoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow MegapoundsPerMinute(this float value) => MassFlow.FromMegapoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow? MegapoundsPerMinute(this float? value) => MassFlow.FromMegapoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow MegapoundsPerMinute(this decimal value) => MassFlow.FromMegapoundsPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromMegapoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow? MegapoundsPerMinute(this decimal? value) => MassFlow.FromMegapoundsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? MegapoundsPerMinute<T>(this T? value) where T : struct => MassFlow.FromMegapoundsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
@@ -213,34 +201,11 @@ namespace UnitsNet.Extensions.NumberToMassFlow
         #region PoundPerMinute
 
         /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow PoundsPerMinute(this int value) => MassFlow.FromPoundsPerMinute(value);
+        public static MassFlow PoundsPerMinute<T>(this T value) => MassFlow.FromPoundsPerMinute(Convert.ToDouble(value));
 
         /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow? PoundsPerMinute(this int? value) => MassFlow.FromPoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow PoundsPerMinute(this long value) => MassFlow.FromPoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow? PoundsPerMinute(this long? value) => MassFlow.FromPoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow PoundsPerMinute(this double value) => MassFlow.FromPoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow? PoundsPerMinute(this double? value) => MassFlow.FromPoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow PoundsPerMinute(this float value) => MassFlow.FromPoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow? PoundsPerMinute(this float? value) => MassFlow.FromPoundsPerMinute(value);
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow PoundsPerMinute(this decimal value) => MassFlow.FromPoundsPerMinute(Convert.ToDouble(value));
-
-        /// <inheritdoc cref="MassFlow.FromPoundsPerMinute(UnitsNet.QuantityValue)" />
-        public static MassFlow? PoundsPerMinute(this decimal? value) => MassFlow.FromPoundsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? PoundsPerMinute<T>(this T? value) where T : struct => MassFlow.FromPoundsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 

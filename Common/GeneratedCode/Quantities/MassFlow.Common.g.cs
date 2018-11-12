@@ -192,6 +192,11 @@ namespace UnitsNet
         public double KilogramsPerHour => As(MassFlowUnit.KilogramPerHour);
 
         /// <summary>
+        ///     Get MassFlow in KilogramsPerMinute.
+        /// </summary>
+        public double KilogramsPerMinute => As(MassFlowUnit.KilogramPerMinute);
+
+        /// <summary>
         ///     Get MassFlow in KilogramsPerSecond.
         /// </summary>
         public double KilogramsPerSecond => As(MassFlowUnit.KilogramPerSecond);
@@ -337,6 +342,20 @@ namespace UnitsNet
         {
             double value = (double) kilogramsperhour;
             return new MassFlow(value, MassFlowUnit.KilogramPerHour);
+        }
+
+        /// <summary>
+        ///     Get MassFlow from KilogramsPerMinute.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromKilogramsPerMinute(double kilogramsperminute)
+#else
+        public static MassFlow FromKilogramsPerMinute(QuantityValue kilogramsperminute)
+#endif
+        {
+            double value = (double) kilogramsperminute;
+            return new MassFlow(value, MassFlowUnit.KilogramPerMinute);
         }
 
         /// <summary>
@@ -671,6 +690,7 @@ namespace UnitsNet
                 case MassFlowUnit.GramPerSecond: return _value;
                 case MassFlowUnit.HectogramPerSecond: return (_value) * 1e2d;
                 case MassFlowUnit.KilogramPerHour: return _value/3.6;
+                case MassFlowUnit.KilogramPerMinute: return _value/0.01666667;
                 case MassFlowUnit.KilogramPerSecond: return (_value) * 1e3d;
                 case MassFlowUnit.MegapoundPerHour: return (_value/7.93664) * 1e6d;
                 case MassFlowUnit.MegapoundPerMinute: return (_value/0.132277) * 1e6d;
@@ -702,6 +722,7 @@ namespace UnitsNet
                 case MassFlowUnit.GramPerSecond: return baseUnitValue;
                 case MassFlowUnit.HectogramPerSecond: return (baseUnitValue) / 1e2d;
                 case MassFlowUnit.KilogramPerHour: return baseUnitValue*3.6;
+                case MassFlowUnit.KilogramPerMinute: return baseUnitValue*0.01666667;
                 case MassFlowUnit.KilogramPerSecond: return (baseUnitValue) / 1e3d;
                 case MassFlowUnit.MegapoundPerHour: return (baseUnitValue*7.93664) / 1e6d;
                 case MassFlowUnit.MegapoundPerMinute: return (baseUnitValue*0.132277) / 1e6d;

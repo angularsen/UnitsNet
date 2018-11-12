@@ -37,6 +37,22 @@
       ]
     },
     {
+      "SingularName": "KilogramPerMinute",
+      "PluralName": "KilogramsPerMinute",
+      "FromUnitToBaseFunc": "x/0.01666667",
+      "FromBaseToUnitFunc": "x*0.01666667",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "kg/min" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "кг/мин" ]
+        }
+      ]
+    },
+    {
       "SingularName": "TonnePerHour",
       "PluralName": "TonnesPerHour",
       "FromUnitToBaseFunc": "1000*x/3.6",

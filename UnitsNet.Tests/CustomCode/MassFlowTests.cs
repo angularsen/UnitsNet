@@ -60,6 +60,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MegapoundsPerMinuteInOneGramPerSecond => 0.132277e-6;
 
+        protected override double KilogramsPerMinuteInOneGramPerSecond => 0.01666667e-3;
+
         [Fact]
         public void DurationTimesMassFlowEqualsMass()
         {

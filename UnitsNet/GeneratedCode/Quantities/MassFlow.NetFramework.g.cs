@@ -117,6 +117,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable MassFlow from nullable KilogramsPerMinute.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static MassFlow? FromKilogramsPerMinute(QuantityValue? kilogramsperminute)
+        {
+            return kilogramsperminute.HasValue ? FromKilogramsPerMinute(kilogramsperminute.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
         ///     Get nullable MassFlow from nullable KilogramsPerSecond.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
@@ -137,6 +146,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable MegapoundsPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromMegapoundsPerMinute(QuantityValue? megapoundsperminute)
         {
             return megapoundsperminute.HasValue ? FromMegapoundsPerMinute(megapoundsperminute.Value) : default(MassFlow?);
@@ -181,6 +191,7 @@ namespace UnitsNet
         /// <summary>
         ///     Get nullable MassFlow from nullable PoundsPerMinute.
         /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
         public static MassFlow? FromPoundsPerMinute(QuantityValue? poundsperminute)
         {
             return poundsperminute.HasValue ? FromPoundsPerMinute(poundsperminute.Value) : default(MassFlow?);

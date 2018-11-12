@@ -180,6 +180,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable VolumeFlow from nullable KilousGallonsPerMinute.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static VolumeFlow? FromKilousGallonsPerMinute(QuantityValue? kilousgallonsperminute)
+        {
+            return kilousgallonsperminute.HasValue ? FromKilousGallonsPerMinute(kilousgallonsperminute.Value) : default(VolumeFlow?);
+        }
+
+        /// <summary>
         ///     Get nullable VolumeFlow from nullable LitersPerHour.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]

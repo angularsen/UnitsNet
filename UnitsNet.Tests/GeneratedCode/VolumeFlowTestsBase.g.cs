@@ -66,6 +66,7 @@ namespace UnitsNet.Tests
         protected abstract double CubicYardsPerSecondInOneCubicMeterPerSecond { get; }
         protected abstract double DecilitersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double KilolitersPerMinuteInOneCubicMeterPerSecond { get; }
+        protected abstract double KilousGallonsPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double LitersPerHourInOneCubicMeterPerSecond { get; }
         protected abstract double LitersPerMinuteInOneCubicMeterPerSecond { get; }
         protected abstract double LitersPerSecondInOneCubicMeterPerSecond { get; }
@@ -94,6 +95,7 @@ namespace UnitsNet.Tests
         protected virtual double CubicYardsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double DecilitersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double KilolitersPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double KilousGallonsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double LitersPerHourTolerance { get { return 1e-5; } }
         protected virtual double LitersPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double LitersPerSecondTolerance { get { return 1e-5; } }
@@ -126,6 +128,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CubicYardsPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.CubicYardsPerSecond, CubicYardsPerSecondTolerance);
             AssertEx.EqualTolerance(DecilitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.DecilitersPerMinute, DecilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(KilolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.KilolitersPerMinute, KilolitersPerMinuteTolerance);
+            AssertEx.EqualTolerance(KilousGallonsPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.KilousGallonsPerMinute, KilousGallonsPerMinuteTolerance);
             AssertEx.EqualTolerance(LitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.LitersPerHour, LitersPerHourTolerance);
             AssertEx.EqualTolerance(LitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.LitersPerMinute, LitersPerMinuteTolerance);
             AssertEx.EqualTolerance(LitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.LitersPerSecond, LitersPerSecondTolerance);
@@ -157,6 +160,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, VolumeFlow.From(1, VolumeFlowUnit.CubicYardPerSecond).CubicYardsPerSecond, CubicYardsPerSecondTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.From(1, VolumeFlowUnit.DecilitersPerMinute).DecilitersPerMinute, DecilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.From(1, VolumeFlowUnit.KilolitersPerMinute).KilolitersPerMinute, KilolitersPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, VolumeFlow.From(1, VolumeFlowUnit.KilousGallonsPerMinute).KilousGallonsPerMinute, KilousGallonsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.From(1, VolumeFlowUnit.LitersPerHour).LitersPerHour, LitersPerHourTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.From(1, VolumeFlowUnit.LitersPerMinute).LitersPerMinute, LitersPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.From(1, VolumeFlowUnit.LitersPerSecond).LitersPerSecond, LitersPerSecondTolerance);
@@ -189,6 +193,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(CubicYardsPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.CubicYardPerSecond), CubicYardsPerSecondTolerance);
             AssertEx.EqualTolerance(DecilitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.DecilitersPerMinute), DecilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(KilolitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.KilolitersPerMinute), KilolitersPerMinuteTolerance);
+            AssertEx.EqualTolerance(KilousGallonsPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.KilousGallonsPerMinute), KilousGallonsPerMinuteTolerance);
             AssertEx.EqualTolerance(LitersPerHourInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.LitersPerHour), LitersPerHourTolerance);
             AssertEx.EqualTolerance(LitersPerMinuteInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.LitersPerMinute), LitersPerMinuteTolerance);
             AssertEx.EqualTolerance(LitersPerSecondInOneCubicMeterPerSecond, cubicmeterpersecond.As(VolumeFlowUnit.LitersPerSecond), LitersPerSecondTolerance);
@@ -261,6 +266,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(KilolitersPerMinuteInOneCubicMeterPerSecond, (double)kilolitersperminuteQuantity.Value, KilolitersPerMinuteTolerance);
             Assert.Equal(VolumeFlowUnit.KilolitersPerMinute, kilolitersperminuteQuantity.Unit);
 
+            var kilousgallonsperminuteQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.KilousGallonsPerMinute);
+            AssertEx.EqualTolerance(KilousGallonsPerMinuteInOneCubicMeterPerSecond, (double)kilousgallonsperminuteQuantity.Value, KilousGallonsPerMinuteTolerance);
+            Assert.Equal(VolumeFlowUnit.KilousGallonsPerMinute, kilousgallonsperminuteQuantity.Unit);
+
             var litersperhourQuantity = cubicmeterpersecond.ToUnit(VolumeFlowUnit.LitersPerHour);
             AssertEx.EqualTolerance(LitersPerHourInOneCubicMeterPerSecond, (double)litersperhourQuantity.Value, LitersPerHourTolerance);
             Assert.Equal(VolumeFlowUnit.LitersPerHour, litersperhourQuantity.Unit);
@@ -331,6 +340,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, VolumeFlow.FromCubicYardsPerSecond(cubicmeterpersecond.CubicYardsPerSecond).CubicMetersPerSecond, CubicYardsPerSecondTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromDecilitersPerMinute(cubicmeterpersecond.DecilitersPerMinute).CubicMetersPerSecond, DecilitersPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromKilolitersPerMinute(cubicmeterpersecond.KilolitersPerMinute).CubicMetersPerSecond, KilolitersPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, VolumeFlow.FromKilousGallonsPerMinute(cubicmeterpersecond.KilousGallonsPerMinute).CubicMetersPerSecond, KilousGallonsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromLitersPerHour(cubicmeterpersecond.LitersPerHour).CubicMetersPerSecond, LitersPerHourTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromLitersPerMinute(cubicmeterpersecond.LitersPerMinute).CubicMetersPerSecond, LitersPerMinuteTolerance);
             AssertEx.EqualTolerance(1, VolumeFlow.FromLitersPerSecond(cubicmeterpersecond.LitersPerSecond).CubicMetersPerSecond, LitersPerSecondTolerance);
