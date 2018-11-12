@@ -4,7 +4,8 @@
   <!-- Override some NuGet package properties -->
   <PropertyGroup>
     <PackageId>UnitsNet.Signed</PackageId>
-    <Title>Units.NET (signed)</Title>
+    <Title>Units.NET (signed) - DEPRECATED</Title>
+    <Description>DEPRECATED! Use UnitsNet 4.0.0 or later instead, which is now signed. This package will be unlisted sometime later. Get all the common units of measurement and the conversions between them. It is light-weight and thoroughly tested.</Description>
   </PropertyGroup>
 
   <!-- Enable strong name signing -->

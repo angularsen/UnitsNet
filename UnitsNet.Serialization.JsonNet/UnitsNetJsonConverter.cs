@@ -25,8 +25,7 @@ using System.Reflection;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UnitsNet.InternalHelpers;
-using UnitsNet.Units;
+using UnitsNet.Serialization.JsonNet.Internal;
 
 namespace UnitsNet.Serialization.JsonNet
 {
@@ -222,7 +221,7 @@ namespace UnitsNet.Serialization.JsonNet
         private static string GetUnitFullNameOfQuantity(object obj, Type quantityType)
         {
             // Get value of Unit property
-            PropertyInfo unitProperty = quantityType.GetPropety("Unit");
+            PropertyInfo unitProperty = quantityType.GetProperty("Unit");
             Enum quantityUnit = (Enum) unitProperty.GetValue(obj, null); // MassUnit.Kilogram
 
             Type unitType = quantityUnit.GetType(); // MassUnit
@@ -289,7 +288,7 @@ namespace UnitsNet.Serialization.JsonNet
             public double Value { get; [UsedImplicitly] set; }
         }
 
-#region Can Convert
+        #region Can Convert
 
         /// <summary>
         ///     Determines whether this instance can convert the specified object type.
@@ -332,6 +331,7 @@ namespace UnitsNet.Serialization.JsonNet
             return objectType.FullName != null && objectType.FullName.Contains(nameof(UnitsNet) + ".");
         }
 
-#endregion
+        #endregion
+
     }
 }

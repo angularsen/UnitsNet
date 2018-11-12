@@ -192,9 +192,24 @@ namespace UnitsNet
         public double Meganewtons => As(ForceUnit.Meganewton);
 
         /// <summary>
+        ///     Get Force in Micronewtons.
+        /// </summary>
+        public double Micronewtons => As(ForceUnit.Micronewton);
+
+        /// <summary>
+        ///     Get Force in Millinewtons.
+        /// </summary>
+        public double Millinewtons => As(ForceUnit.Millinewton);
+
+        /// <summary>
         ///     Get Force in Newtons.
         /// </summary>
         public double Newtons => As(ForceUnit.Newton);
+
+        /// <summary>
+        ///     Get Force in OunceForce.
+        /// </summary>
+        public double OunceForce => As(ForceUnit.OunceForce);
 
         /// <summary>
         ///     Get Force in Poundals.
@@ -305,6 +320,34 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Force from Micronewtons.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Force FromMicronewtons(double micronewtons)
+#else
+        public static Force FromMicronewtons(QuantityValue micronewtons)
+#endif
+        {
+            double value = (double) micronewtons;
+            return new Force(value, ForceUnit.Micronewton);
+        }
+
+        /// <summary>
+        ///     Get Force from Millinewtons.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Force FromMillinewtons(double millinewtons)
+#else
+        public static Force FromMillinewtons(QuantityValue millinewtons)
+#endif
+        {
+            double value = (double) millinewtons;
+            return new Force(value, ForceUnit.Millinewton);
+        }
+
+        /// <summary>
         ///     Get Force from Newtons.
         /// </summary>
 #if WINDOWS_UWP
@@ -316,6 +359,20 @@ namespace UnitsNet
         {
             double value = (double) newtons;
             return new Force(value, ForceUnit.Newton);
+        }
+
+        /// <summary>
+        ///     Get Force from OunceForce.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Force FromOunceForce(double ounceforce)
+#else
+        public static Force FromOunceForce(QuantityValue ounceforce)
+#endif
+        {
+            double value = (double) ounceforce;
+            return new Force(value, ForceUnit.OunceForce);
         }
 
         /// <summary>
@@ -412,7 +469,7 @@ namespace UnitsNet
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals($quantityName, double, ComparisonType) to provide the max allowed absolute or relative error.")]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Force, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)
         {
             if(obj is null || !(obj is Force))
@@ -493,7 +550,7 @@ namespace UnitsNet
         /// <returns>A hash code for the current Force.</returns>
         public override int GetHashCode()
         {
-            return new { Value, Unit }.GetHashCode();
+            return new { type = typeof(Force), Value, Unit }.GetHashCode();
         }
 
         #endregion
@@ -538,7 +595,10 @@ namespace UnitsNet
                 case ForceUnit.Kilonewton: return (_value) * 1e3d;
                 case ForceUnit.KiloPond: return _value*9.80665002864;
                 case ForceUnit.Meganewton: return (_value) * 1e6d;
+                case ForceUnit.Micronewton: return (_value) * 1e-6d;
+                case ForceUnit.Millinewton: return (_value) * 1e-3d;
                 case ForceUnit.Newton: return _value;
+                case ForceUnit.OunceForce: return _value*2.780138509537812e-1;
                 case ForceUnit.Poundal: return _value*0.13825502798973041652092282466083;
                 case ForceUnit.PoundForce: return _value*4.4482216152605095551842641431421;
                 case ForceUnit.TonneForce: return _value*9.80665002864e3;
@@ -562,7 +622,10 @@ namespace UnitsNet
                 case ForceUnit.Kilonewton: return (baseUnitValue) / 1e3d;
                 case ForceUnit.KiloPond: return baseUnitValue/9.80665002864;
                 case ForceUnit.Meganewton: return (baseUnitValue) / 1e6d;
+                case ForceUnit.Micronewton: return (baseUnitValue) / 1e-6d;
+                case ForceUnit.Millinewton: return (baseUnitValue) / 1e-3d;
                 case ForceUnit.Newton: return baseUnitValue;
+                case ForceUnit.OunceForce: return baseUnitValue/2.780138509537812e-1;
                 case ForceUnit.Poundal: return baseUnitValue/0.13825502798973041652092282466083;
                 case ForceUnit.PoundForce: return baseUnitValue/4.4482216152605095551842641431421;
                 case ForceUnit.TonneForce: return baseUnitValue/9.80665002864e3;

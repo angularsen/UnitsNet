@@ -110,6 +110,28 @@ namespace UnitsNet.Extensions.NumberToForce
 
         #endregion
 
+        #region Micronewton
+
+        /// <inheritdoc cref="Force.FromMicronewtons(UnitsNet.QuantityValue)" />
+        public static Force Micronewtons<T>(this T value) => Force.FromMicronewtons(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Force.FromMicronewtons(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Force? Micronewtons<T>(this T? value) where T : struct => Force.FromMicronewtons(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Millinewton
+
+        /// <inheritdoc cref="Force.FromMillinewtons(UnitsNet.QuantityValue)" />
+        public static Force Millinewtons<T>(this T value) => Force.FromMillinewtons(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Force.FromMillinewtons(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Force? Millinewtons<T>(this T? value) where T : struct => Force.FromMillinewtons(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Newton
 
         /// <inheritdoc cref="Force.FromNewtons(UnitsNet.QuantityValue)" />
@@ -118,6 +140,17 @@ namespace UnitsNet.Extensions.NumberToForce
         /// <inheritdoc cref="Force.FromNewtons(UnitsNet.QuantityValue)" />
         [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
         public static Force? Newtons<T>(this T? value) where T : struct => Force.FromNewtons(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region OunceForce
+
+        /// <inheritdoc cref="Force.FromOunceForce(UnitsNet.QuantityValue)" />
+        public static Force OunceForce<T>(this T value) => Force.FromOunceForce(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Force.FromOunceForce(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Force? OunceForce<T>(this T? value) where T : struct => Force.FromOunceForce(value == null ? (double?)null : Convert.ToDouble(value.Value));
 
         #endregion
 
