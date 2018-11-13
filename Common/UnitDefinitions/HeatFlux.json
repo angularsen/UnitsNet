@@ -116,6 +116,30 @@
           "Abbreviations": [ "kcal/h·m²" ]
         }
       ]
+    },
+    {
+      "SingularName": "PoundForcePerFootSecond",
+      "PluralName": "PoundsForcePerFootSecond",
+      "FromUnitToBaseFunc": "x*1.459390293720636e1",
+      "FromBaseToUnitFunc": "x/1.459390293720636e1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lbf/(ft·s)" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerSecondCubed",
+      "PluralName": "PoundsPerSecondCubed",
+      "FromUnitToBaseFunc": "x*4.5359237e-1",
+      "FromBaseToUnitFunc": "x/4.5359237e-1",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/s³", "lbm/s³" ]
+        }
+      ]
     }
   ]
 }
