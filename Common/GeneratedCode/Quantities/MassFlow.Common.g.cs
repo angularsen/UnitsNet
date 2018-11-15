@@ -690,7 +690,7 @@ namespace UnitsNet
                 case MassFlowUnit.GramPerSecond: return _value;
                 case MassFlowUnit.HectogramPerSecond: return (_value) * 1e2d;
                 case MassFlowUnit.KilogramPerHour: return _value/3.6;
-                case MassFlowUnit.KilogramPerMinute: return _value/0.01666667;
+                case MassFlowUnit.KilogramPerMinute: return _value/0.06;
                 case MassFlowUnit.KilogramPerSecond: return (_value) * 1e3d;
                 case MassFlowUnit.MegapoundPerHour: return (_value/7.93664) * 1e6d;
                 case MassFlowUnit.MegapoundPerMinute: return (_value/0.132277) * 1e6d;
@@ -722,7 +722,7 @@ namespace UnitsNet
                 case MassFlowUnit.GramPerSecond: return baseUnitValue;
                 case MassFlowUnit.HectogramPerSecond: return (baseUnitValue) / 1e2d;
                 case MassFlowUnit.KilogramPerHour: return baseUnitValue*3.6;
-                case MassFlowUnit.KilogramPerMinute: return baseUnitValue*0.01666667;
+                case MassFlowUnit.KilogramPerMinute: return baseUnitValue*0.06;
                 case MassFlowUnit.KilogramPerSecond: return (baseUnitValue) / 1e3d;
                 case MassFlowUnit.MegapoundPerHour: return (baseUnitValue*7.93664) / 1e6d;
                 case MassFlowUnit.MegapoundPerMinute: return (baseUnitValue*0.132277) / 1e6d;

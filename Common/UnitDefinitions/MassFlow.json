@@ -39,8 +39,8 @@
     {
       "SingularName": "KilogramPerMinute",
       "PluralName": "KilogramsPerMinute",
-      "FromUnitToBaseFunc": "x/0.01666667",
-      "FromBaseToUnitFunc": "x*0.01666667",
+      "FromUnitToBaseFunc": "x/0.06",
+      "FromBaseToUnitFunc": "x*0.06",
       "Localization": [
         {
           "Culture": "en-US",

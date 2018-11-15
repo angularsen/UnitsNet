@@ -203,8 +203,8 @@
     {
       "SingularName": "KilousGallonsPerMinute",
       "PluralName": "KilousGallonsPerMinute",
-      "FromUnitToBaseFunc": "x/15850323.141489",
-      "FromBaseToUnitFunc": "x*15850323.141489",
+      "FromUnitToBaseFunc": "x/15.850323141489",
+      "FromBaseToUnitFunc": "x*15.850323141489",
       "Localization": [
         {
           "Culture": "en-US",
