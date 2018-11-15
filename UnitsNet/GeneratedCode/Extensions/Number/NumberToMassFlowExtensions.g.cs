@@ -110,6 +110,17 @@ namespace UnitsNet.Extensions.NumberToMassFlow
 
         #endregion
 
+        #region KilogramPerMinute
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerMinute(UnitsNet.QuantityValue)" />
+        public static MassFlow KilogramsPerMinute<T>(this T value) => MassFlow.FromKilogramsPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MassFlow.FromKilogramsPerMinute(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MassFlow? KilogramsPerMinute<T>(this T? value) where T : struct => MassFlow.FromKilogramsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region KilogramPerSecond
 
         /// <inheritdoc cref="MassFlow.FromKilogramsPerSecond(UnitsNet.QuantityValue)" />

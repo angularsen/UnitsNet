@@ -117,6 +117,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable MassFlow from nullable KilogramsPerMinute.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static MassFlow? FromKilogramsPerMinute(QuantityValue? kilogramsperminute)
+        {
+            return kilogramsperminute.HasValue ? FromKilogramsPerMinute(kilogramsperminute.Value) : default(MassFlow?);
+        }
+
+        /// <summary>
         ///     Get nullable MassFlow from nullable KilogramsPerSecond.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]

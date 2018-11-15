@@ -187,6 +187,17 @@ namespace UnitsNet.Extensions.NumberToVolumeFlow
 
         #endregion
 
+        #region KilousGallonsPerMinute
+
+        /// <inheritdoc cref="VolumeFlow.FromKilousGallonsPerMinute(UnitsNet.QuantityValue)" />
+        public static VolumeFlow KilousGallonsPerMinute<T>(this T value) => VolumeFlow.FromKilousGallonsPerMinute(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromKilousGallonsPerMinute(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? KilousGallonsPerMinute<T>(this T? value) where T : struct => VolumeFlow.FromKilousGallonsPerMinute(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region LitersPerHour
 
         /// <inheritdoc cref="VolumeFlow.FromLitersPerHour(UnitsNet.QuantityValue)" />
