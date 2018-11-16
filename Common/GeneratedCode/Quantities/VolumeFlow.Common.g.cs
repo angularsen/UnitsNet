@@ -9,7 +9,8 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
+//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -36,11 +37,12 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
-using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
@@ -49,10 +51,16 @@ namespace UnitsNet
     /// <summary>
     ///     In physics and engineering, in particular fluid dynamics and hydrometry, the volumetric flow rate, (also known as volume flow rate, rate of fluid flow or volume velocity) is the volume of fluid which passes through a given surface per unit time. The SI unit is m³/s (cubic meters per second). In US Customary Units and British Imperial Units, volumetric flow rate is often expressed as ft³/s (cubic feet per second). It is usually represented by the symbol Q.
     /// </summary>
+    // ReSharper disable once PartialTypeWithSinglePart
+
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
+#if WINDOWS_UWP
     public sealed partial class VolumeFlow : IQuantity
+#else
+    public partial struct VolumeFlow : IQuantity, IComparable, IComparable<VolumeFlow>
+#endif
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -64,59 +72,71 @@ namespace UnitsNet
         /// </summary>
         private readonly VolumeFlowUnit? _unit;
 
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public VolumeFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
         static VolumeFlow()
         {
             BaseDimensions = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
         }
+
         /// <summary>
-        ///     Creates the quantity with a value of 0 in the base unit CubicMeterPerSecond.
+        ///     Creates the quantity with the given value in the base unit CubicMeterPerSecond.
         /// </summary>
-        /// <remarks>
-        ///     Windows Runtime Component requires a default constructor.
-        /// </remarks>
-        public VolumeFlow()
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
+        public VolumeFlow(double cubicmeterspersecond)
         {
-            _value = 0;
+            _value = Convert.ToDouble(cubicmeterspersecond);
             _unit = BaseUnit;
         }
 
         /// <summary>
         ///     Creates the quantity with the given numeric value and unit.
         /// </summary>
-        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
-        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <param name="numericValue">Numeric value.</param>
+        /// <param name="unit">Unit representation.</param>
         /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        private VolumeFlow(double numericValue, VolumeFlowUnit unit)
+#if WINDOWS_UWP
+        private
+#else
+        public
+#endif
+        VolumeFlow(double numericValue, VolumeFlowUnit unit)
         {
-            if(unit == VolumeFlowUnit.Undefined)
-              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
-
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _value = numericValue;
             _unit = unit;
         }
 
-        #region Static Properties
-
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
+        ///     Creates the quantity with the given value assuming the base unit CubicMeterPerSecond.
         /// </summary>
-        public static BaseDimensions BaseDimensions { get; }
+        /// <param name="cubicmeterspersecond">Value assuming base unit CubicMeterPerSecond.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
+        public
+#endif
+        VolumeFlow(long cubicmeterspersecond) : this(Convert.ToDouble(cubicmeterspersecond), BaseUnit) { }
 
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        // Windows Runtime Component does not support decimal type
         /// <summary>
-        ///     The base unit of VolumeFlow, which is CubicMeterPerSecond. All conversions go via this value.
+        ///     Creates the quantity with the given value assuming the base unit CubicMeterPerSecond.
         /// </summary>
-        public static VolumeFlowUnit BaseUnit => VolumeFlowUnit.CubicMeterPerSecond;
+        /// <param name="cubicmeterspersecond">Value assuming base unit CubicMeterPerSecond.</param>
+#if WINDOWS_UWP
+        private
+#else
+        [Obsolete("Use the constructor that takes a unit parameter. This constructor will be removed in a future version.")]
+        public
+#endif
+        VolumeFlow(decimal cubicmeterspersecond) : this(Convert.ToDouble(cubicmeterspersecond), BaseUnit) { }
 
-        /// <summary>
-        /// Represents the largest possible value of VolumeFlow
-        /// </summary>
-        public static VolumeFlow MaxValue => new VolumeFlow(double.MaxValue, BaseUnit);
-
-        /// <summary>
-        /// Represents the smallest possible value of VolumeFlow
-        /// </summary>
-        public static VolumeFlow MinValue => new VolumeFlow(double.MinValue, BaseUnit);
+        #region Properties
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -124,47 +144,27 @@ namespace UnitsNet
         public static QuantityType QuantityType => QuantityType.VolumeFlow;
 
         /// <summary>
+        ///     The base unit representation of this quantity for the numeric value stored internally. All conversions go via this value.
+        /// </summary>
+        public static VolumeFlowUnit BaseUnit => VolumeFlowUnit.CubicMeterPerSecond;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions
+        {
+            get;
+        }
+
+        /// <summary>
         ///     All units of measurement for the VolumeFlow quantity.
         /// </summary>
         public static VolumeFlowUnit[] Units { get; } = Enum.GetValues(typeof(VolumeFlowUnit)).Cast<VolumeFlowUnit>().Except(new VolumeFlowUnit[]{ VolumeFlowUnit.Undefined }).ToArray();
 
         /// <summary>
-        ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerSecond.
-        /// </summary>
-        public static VolumeFlow Zero => new VolumeFlow(0, BaseUnit);
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        ///     The numeric value this quantity was constructed with.
-        /// </summary>
-        public double Value => Convert.ToDouble(_value);
-
-        /// <summary>
-        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
-        /// </summary>
-        public VolumeFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
-
-        /// <summary>
-        ///     The <see cref="QuantityType" /> of this quantity.
-        /// </summary>
-        public QuantityType Type => VolumeFlow.QuantityType;
-
-        /// <summary>
-        ///     The <see cref="BaseDimensions" /> of this quantity.
-        /// </summary>
-        public BaseDimensions Dimensions => VolumeFlow.BaseDimensions;
-
-        #endregion
-
-        #region Conversion Properties
-
-        /// <summary>
         ///     Get VolumeFlow in CentilitersPerMinute.
         /// </summary>
-        public double CentilitersPerMinute => As(VolumeFlowUnit.CentiliterPerMinute);
+        public double CentilitersPerMinute => As(VolumeFlowUnit.CentilitersPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in CubicDecimetersPerMinute.
@@ -219,12 +219,12 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow in DecilitersPerMinute.
         /// </summary>
-        public double DecilitersPerMinute => As(VolumeFlowUnit.DeciliterPerMinute);
+        public double DecilitersPerMinute => As(VolumeFlowUnit.DecilitersPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in KilolitersPerMinute.
         /// </summary>
-        public double KilolitersPerMinute => As(VolumeFlowUnit.KiloliterPerMinute);
+        public double KilolitersPerMinute => As(VolumeFlowUnit.KilolitersPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in KilousGallonsPerMinute.
@@ -234,27 +234,27 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow in LitersPerHour.
         /// </summary>
-        public double LitersPerHour => As(VolumeFlowUnit.LiterPerHour);
+        public double LitersPerHour => As(VolumeFlowUnit.LitersPerHour);
 
         /// <summary>
         ///     Get VolumeFlow in LitersPerMinute.
         /// </summary>
-        public double LitersPerMinute => As(VolumeFlowUnit.LiterPerMinute);
+        public double LitersPerMinute => As(VolumeFlowUnit.LitersPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in LitersPerSecond.
         /// </summary>
-        public double LitersPerSecond => As(VolumeFlowUnit.LiterPerSecond);
+        public double LitersPerSecond => As(VolumeFlowUnit.LitersPerSecond);
 
         /// <summary>
         ///     Get VolumeFlow in MicrolitersPerMinute.
         /// </summary>
-        public double MicrolitersPerMinute => As(VolumeFlowUnit.MicroliterPerMinute);
+        public double MicrolitersPerMinute => As(VolumeFlowUnit.MicrolitersPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in MillilitersPerMinute.
         /// </summary>
-        public double MillilitersPerMinute => As(VolumeFlowUnit.MilliliterPerMinute);
+        public double MillilitersPerMinute => As(VolumeFlowUnit.MillilitersPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in MillionUsGallonsPerDay.
@@ -264,338 +264,425 @@ namespace UnitsNet
         /// <summary>
         ///     Get VolumeFlow in NanolitersPerMinute.
         /// </summary>
-        public double NanolitersPerMinute => As(VolumeFlowUnit.NanoliterPerMinute);
+        public double NanolitersPerMinute => As(VolumeFlowUnit.NanolitersPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in OilBarrelsPerDay.
         /// </summary>
-        public double OilBarrelsPerDay => As(VolumeFlowUnit.OilBarrelPerDay);
+        public double OilBarrelsPerDay => As(VolumeFlowUnit.OilBarrelsPerDay);
 
         /// <summary>
         ///     Get VolumeFlow in OilBarrelsPerHour.
         /// </summary>
-        public double OilBarrelsPerHour => As(VolumeFlowUnit.OilBarrelPerHour);
+        public double OilBarrelsPerHour => As(VolumeFlowUnit.OilBarrelsPerHour);
 
         /// <summary>
         ///     Get VolumeFlow in OilBarrelsPerMinute.
         /// </summary>
-        public double OilBarrelsPerMinute => As(VolumeFlowUnit.OilBarrelPerMinute);
+        public double OilBarrelsPerMinute => As(VolumeFlowUnit.OilBarrelsPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in UsGallonsPerHour.
         /// </summary>
-        public double UsGallonsPerHour => As(VolumeFlowUnit.UsGallonPerHour);
+        public double UsGallonsPerHour => As(VolumeFlowUnit.UsGallonsPerHour);
 
         /// <summary>
         ///     Get VolumeFlow in UsGallonsPerMinute.
         /// </summary>
-        public double UsGallonsPerMinute => As(VolumeFlowUnit.UsGallonPerMinute);
+        public double UsGallonsPerMinute => As(VolumeFlowUnit.UsGallonsPerMinute);
 
         /// <summary>
         ///     Get VolumeFlow in UsGallonsPerSecond.
         /// </summary>
-        public double UsGallonsPerSecond => As(VolumeFlowUnit.UsGallonPerSecond);
+        public double UsGallonsPerSecond => As(VolumeFlowUnit.UsGallonsPerSecond);
 
         #endregion
 
-        #region Static Methods
+        #region Static
 
         /// <summary>
-        ///     Get unit abbreviation string.
+        ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerSecond.
         /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <returns>Unit abbreviation string.</returns>
-        public static string GetAbbreviation(VolumeFlowUnit unit)
-        {
-            return GetAbbreviation(unit, null);
-        }
-
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <returns>Unit abbreviation string.</returns>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static string GetAbbreviation(VolumeFlowUnit unit, [CanBeNull] string cultureName)
-        {
-            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
-        }
-
-        #endregion
-
-        #region Static Factory Methods
+        public static VolumeFlow Zero => new VolumeFlow(0, BaseUnit);
 
         /// <summary>
         ///     Get VolumeFlow from CentilitersPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCentilitersPerMinute(double centilitersperminute)
+#else
+        public static VolumeFlow FromCentilitersPerMinute(QuantityValue centilitersperminute)
+#endif
         {
             double value = (double) centilitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.CentiliterPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.CentilitersPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from CubicDecimetersPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicDecimetersPerMinute(double cubicdecimetersperminute)
+#else
+        public static VolumeFlow FromCubicDecimetersPerMinute(QuantityValue cubicdecimetersperminute)
+#endif
         {
             double value = (double) cubicdecimetersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.CubicDecimeterPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from CubicFeetPerHour.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicFeetPerHour(double cubicfeetperhour)
+#else
+        public static VolumeFlow FromCubicFeetPerHour(QuantityValue cubicfeetperhour)
+#endif
         {
             double value = (double) cubicfeetperhour;
             return new VolumeFlow(value, VolumeFlowUnit.CubicFootPerHour);
         }
+
         /// <summary>
         ///     Get VolumeFlow from CubicFeetPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicFeetPerMinute(double cubicfeetperminute)
+#else
+        public static VolumeFlow FromCubicFeetPerMinute(QuantityValue cubicfeetperminute)
+#endif
         {
             double value = (double) cubicfeetperminute;
             return new VolumeFlow(value, VolumeFlowUnit.CubicFootPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from CubicFeetPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicFeetPerSecond(double cubicfeetpersecond)
+#else
+        public static VolumeFlow FromCubicFeetPerSecond(QuantityValue cubicfeetpersecond)
+#endif
         {
             double value = (double) cubicfeetpersecond;
             return new VolumeFlow(value, VolumeFlowUnit.CubicFootPerSecond);
         }
+
         /// <summary>
         ///     Get VolumeFlow from CubicMetersPerHour.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicMetersPerHour(double cubicmetersperhour)
+#else
+        public static VolumeFlow FromCubicMetersPerHour(QuantityValue cubicmetersperhour)
+#endif
         {
             double value = (double) cubicmetersperhour;
             return new VolumeFlow(value, VolumeFlowUnit.CubicMeterPerHour);
         }
+
         /// <summary>
         ///     Get VolumeFlow from CubicMetersPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicMetersPerMinute(double cubicmetersperminute)
+#else
+        public static VolumeFlow FromCubicMetersPerMinute(QuantityValue cubicmetersperminute)
+#endif
         {
             double value = (double) cubicmetersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.CubicMeterPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from CubicMetersPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicMetersPerSecond(double cubicmeterspersecond)
+#else
+        public static VolumeFlow FromCubicMetersPerSecond(QuantityValue cubicmeterspersecond)
+#endif
         {
             double value = (double) cubicmeterspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.CubicMeterPerSecond);
         }
+
         /// <summary>
         ///     Get VolumeFlow from CubicYardsPerHour.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicYardsPerHour(double cubicyardsperhour)
+#else
+        public static VolumeFlow FromCubicYardsPerHour(QuantityValue cubicyardsperhour)
+#endif
         {
             double value = (double) cubicyardsperhour;
             return new VolumeFlow(value, VolumeFlowUnit.CubicYardPerHour);
         }
+
         /// <summary>
         ///     Get VolumeFlow from CubicYardsPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicYardsPerMinute(double cubicyardsperminute)
+#else
+        public static VolumeFlow FromCubicYardsPerMinute(QuantityValue cubicyardsperminute)
+#endif
         {
             double value = (double) cubicyardsperminute;
             return new VolumeFlow(value, VolumeFlowUnit.CubicYardPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from CubicYardsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromCubicYardsPerSecond(double cubicyardspersecond)
+#else
+        public static VolumeFlow FromCubicYardsPerSecond(QuantityValue cubicyardspersecond)
+#endif
         {
             double value = (double) cubicyardspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.CubicYardPerSecond);
         }
+
         /// <summary>
         ///     Get VolumeFlow from DecilitersPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromDecilitersPerMinute(double decilitersperminute)
+#else
+        public static VolumeFlow FromDecilitersPerMinute(QuantityValue decilitersperminute)
+#endif
         {
             double value = (double) decilitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.DeciliterPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.DecilitersPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from KilolitersPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromKilolitersPerMinute(double kilolitersperminute)
+#else
+        public static VolumeFlow FromKilolitersPerMinute(QuantityValue kilolitersperminute)
+#endif
         {
             double value = (double) kilolitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.KiloliterPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.KilolitersPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from KilousGallonsPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromKilousGallonsPerMinute(double kilousgallonsperminute)
+#else
+        public static VolumeFlow FromKilousGallonsPerMinute(QuantityValue kilousgallonsperminute)
+#endif
         {
             double value = (double) kilousgallonsperminute;
             return new VolumeFlow(value, VolumeFlowUnit.KilousGallonsPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from LitersPerHour.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromLitersPerHour(double litersperhour)
+#else
+        public static VolumeFlow FromLitersPerHour(QuantityValue litersperhour)
+#endif
         {
             double value = (double) litersperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.LiterPerHour);
+            return new VolumeFlow(value, VolumeFlowUnit.LitersPerHour);
         }
+
         /// <summary>
         ///     Get VolumeFlow from LitersPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromLitersPerMinute(double litersperminute)
+#else
+        public static VolumeFlow FromLitersPerMinute(QuantityValue litersperminute)
+#endif
         {
             double value = (double) litersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.LiterPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.LitersPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from LitersPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromLitersPerSecond(double literspersecond)
+#else
+        public static VolumeFlow FromLitersPerSecond(QuantityValue literspersecond)
+#endif
         {
             double value = (double) literspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.LiterPerSecond);
+            return new VolumeFlow(value, VolumeFlowUnit.LitersPerSecond);
         }
+
         /// <summary>
         ///     Get VolumeFlow from MicrolitersPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromMicrolitersPerMinute(double microlitersperminute)
+#else
+        public static VolumeFlow FromMicrolitersPerMinute(QuantityValue microlitersperminute)
+#endif
         {
             double value = (double) microlitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.MicroliterPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.MicrolitersPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from MillilitersPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromMillilitersPerMinute(double millilitersperminute)
+#else
+        public static VolumeFlow FromMillilitersPerMinute(QuantityValue millilitersperminute)
+#endif
         {
             double value = (double) millilitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.MilliliterPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.MillilitersPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from MillionUsGallonsPerDay.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromMillionUsGallonsPerDay(double millionusgallonsperday)
+#else
+        public static VolumeFlow FromMillionUsGallonsPerDay(QuantityValue millionusgallonsperday)
+#endif
         {
             double value = (double) millionusgallonsperday;
             return new VolumeFlow(value, VolumeFlowUnit.MillionUsGallonsPerDay);
         }
+
         /// <summary>
         ///     Get VolumeFlow from NanolitersPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromNanolitersPerMinute(double nanolitersperminute)
+#else
+        public static VolumeFlow FromNanolitersPerMinute(QuantityValue nanolitersperminute)
+#endif
         {
             double value = (double) nanolitersperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.NanoliterPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.NanolitersPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from OilBarrelsPerDay.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromOilBarrelsPerDay(double oilbarrelsperday)
+#else
+        public static VolumeFlow FromOilBarrelsPerDay(QuantityValue oilbarrelsperday)
+#endif
         {
             double value = (double) oilbarrelsperday;
-            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerDay);
+            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelsPerDay);
         }
+
         /// <summary>
         ///     Get VolumeFlow from OilBarrelsPerHour.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromOilBarrelsPerHour(double oilbarrelsperhour)
+#else
+        public static VolumeFlow FromOilBarrelsPerHour(QuantityValue oilbarrelsperhour)
+#endif
         {
             double value = (double) oilbarrelsperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerHour);
+            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelsPerHour);
         }
+
         /// <summary>
         ///     Get VolumeFlow from OilBarrelsPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromOilBarrelsPerMinute(double oilbarrelsperminute)
+#else
+        public static VolumeFlow FromOilBarrelsPerMinute(QuantityValue oilbarrelsperminute)
+#endif
         {
             double value = (double) oilbarrelsperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.OilBarrelsPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from UsGallonsPerHour.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromUsGallonsPerHour(double usgallonsperhour)
+#else
+        public static VolumeFlow FromUsGallonsPerHour(QuantityValue usgallonsperhour)
+#endif
         {
             double value = (double) usgallonsperhour;
-            return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerHour);
+            return new VolumeFlow(value, VolumeFlowUnit.UsGallonsPerHour);
         }
+
         /// <summary>
         ///     Get VolumeFlow from UsGallonsPerMinute.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromUsGallonsPerMinute(double usgallonsperminute)
+#else
+        public static VolumeFlow FromUsGallonsPerMinute(QuantityValue usgallonsperminute)
+#endif
         {
             double value = (double) usgallonsperminute;
-            return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerMinute);
+            return new VolumeFlow(value, VolumeFlowUnit.UsGallonsPerMinute);
         }
+
         /// <summary>
         ///     Get VolumeFlow from UsGallonsPerSecond.
         /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
         public static VolumeFlow FromUsGallonsPerSecond(double usgallonspersecond)
+#else
+        public static VolumeFlow FromUsGallonsPerSecond(QuantityValue usgallonspersecond)
+#endif
         {
             double value = (double) usgallonspersecond;
-            return new VolumeFlow(value, VolumeFlowUnit.UsGallonPerSecond);
+            return new VolumeFlow(value, VolumeFlowUnit.UsGallonsPerSecond);
         }
+
 
         /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="VolumeFlowUnit" /> to <see cref="VolumeFlow" />.
@@ -603,158 +690,26 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>VolumeFlow unit value.</returns>
+#if WINDOWS_UWP
         // Fix name conflict with parameter "value"
         [return: System.Runtime.InteropServices.WindowsRuntime.ReturnValueName("returnValue")]
         public static VolumeFlow From(double value, VolumeFlowUnit fromUnit)
+#else
+        public static VolumeFlow From(QuantityValue value, VolumeFlowUnit fromUnit)
+#endif
         {
             return new VolumeFlow((double)value, fromUnit);
         }
 
-        #endregion
-
-        #region Static Parse Methods
-
         /// <summary>
-        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        ///     Get unit abbreviation string.
         /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="ArgumentException">
-        ///     Expected string to have one or two pairs of quantity and unit in the format
-        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
-        /// </exception>
-        /// <exception cref="AmbiguousUnitParseException">
-        ///     More than one unit is represented by the specified unit abbreviation.
-        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
-        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
-        /// </exception>
-        /// <exception cref="UnitsNetException">
-        ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-        ///     Units.NET exceptions from other exceptions.
-        /// </exception>
-        public static VolumeFlow Parse(string str)
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        [UsedImplicitly]
+        public static string GetAbbreviation(VolumeFlowUnit unit)
         {
-            return Parse(str, null);
-        }
-
-        /// <summary>
-        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="ArgumentException">
-        ///     Expected string to have one or two pairs of quantity and unit in the format
-        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
-        /// </exception>
-        /// <exception cref="AmbiguousUnitParseException">
-        ///     More than one unit is represented by the specified unit abbreviation.
-        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
-        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
-        /// </exception>
-        /// <exception cref="UnitsNetException">
-        ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-        ///     Units.NET exceptions from other exceptions.
-        /// </exception>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static VolumeFlow Parse(string str, [CanBeNull] string cultureName)
-        {
-            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.Parse<VolumeFlow, VolumeFlowUnit>(
-                str,
-                provider,
-                From);
-        }
-
-        /// <summary>
-        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="result">Resulting unit quantity if successful.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        public static bool TryParse([CanBeNull] string str, out VolumeFlow result)
-        {
-            return TryParse(str, null, out result);
-        }
-
-        /// <summary>
-        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="result">Resulting unit quantity if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] string cultureName, out VolumeFlow result)
-        {
-            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return QuantityParser.Default.TryParse<VolumeFlow, VolumeFlowUnit>(
-                str,
-                provider,
-                From,
-                out result);
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static VolumeFlowUnit ParseUnit(string str)
-        {
-            return ParseUnit(str, null);
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static VolumeFlowUnit ParseUnit(string str, [CanBeNull] string cultureName)
-        {
-            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.Parse<VolumeFlowUnit>(str, provider);
-        }
-
-        public static bool TryParseUnit(string str, out VolumeFlowUnit unit)
-        {
-            return TryParseUnit(str, null, out unit);
-        }
-
-        /// <summary>
-        ///     Parse a unit string.
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="unit">The parsed unit if successful.</param>
-        /// <returns>True if successful, otherwise false.</returns>
-        /// <example>
-        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public static bool TryParseUnit(string str, [CanBeNull] string cultureName, out VolumeFlowUnit unit)
-        {
-            IFormatProvider provider = GetFormatProviderFromCultureName(cultureName);
-            return UnitParser.Default.TryParse<VolumeFlowUnit>(str, provider, out unit);
+            return GetAbbreviation(unit, null);
         }
 
         #endregion
@@ -764,29 +719,30 @@ namespace UnitsNet
         public int CompareTo(object obj)
         {
             if(obj is null) throw new ArgumentNullException(nameof(obj));
-            if(!(obj is VolumeFlow objVolumeFlow)) throw new ArgumentException("Expected type VolumeFlow.", nameof(obj));
+            if(!(obj is VolumeFlow)) throw new ArgumentException("Expected type VolumeFlow.", nameof(obj));
 
-            return CompareTo(objVolumeFlow);
+            return CompareTo((VolumeFlow)obj);
         }
 
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-        internal int CompareTo(VolumeFlow other)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        int CompareTo(VolumeFlow other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
-        [Windows.Foundation.Metadata.DefaultOverload]
+        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(VolumeFlow, double, ComparisonType) to provide the max allowed absolute or relative error.")]
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is VolumeFlow objVolumeFlow))
+            if(obj is null || !(obj is VolumeFlow))
                 return false;
 
-            return Equals(objVolumeFlow);
-        }
-
-        public bool Equals(VolumeFlow other)
-        {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            var objQuantity = (VolumeFlow)obj;
+            return _value.Equals(objQuantity.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
@@ -841,17 +797,31 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Compare equality to another VolumeFlow by specifying a max allowed difference.
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        /// </summary>
+        /// <param name="other">Other quantity to compare to.</param>
+        /// <param name="maxError">Max error allowed.</param>
+        /// <returns>True if the difference between the two values is not greater than the specified max.</returns>
+        [Obsolete("Please use the Equals(VolumeFlow, double, ComparisonType) overload. This method will be removed in a future version.")]
+        public bool Equals(VolumeFlow other, VolumeFlow maxError)
+        {
+            return Math.Abs(_value - other.AsBaseNumericType(this.Unit)) <= maxError.AsBaseNumericType(this.Unit);
+        }
+
+        /// <summary>
         ///     Returns the hash code for this instance.
         /// </summary>
         /// <returns>A hash code for the current VolumeFlow.</returns>
         public override int GetHashCode()
         {
-            return new { QuantityType, Value, Unit }.GetHashCode();
+            return new { type = typeof(VolumeFlow), Value, Unit }.GetHashCode();
         }
 
         #endregion
 
-        #region Conversion Methods
+        #region Conversion
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
@@ -885,7 +855,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
-                case VolumeFlowUnit.CentiliterPerMinute: return (_value/60000.00000) * 1e-2d;
+                case VolumeFlowUnit.CentilitersPerMinute: return (_value/60000.00000) * 1e-2d;
                 case VolumeFlowUnit.CubicDecimeterPerMinute: return _value/60000.00000;
                 case VolumeFlowUnit.CubicFootPerHour: return _value*7.8657907199999087346816086183876e-6;
                 case VolumeFlowUnit.CubicFootPerMinute: return _value/2118.88000326;
@@ -896,22 +866,22 @@ namespace UnitsNet
                 case VolumeFlowUnit.CubicYardPerHour: return _value*2.1237634944E-4;
                 case VolumeFlowUnit.CubicYardPerMinute: return _value*0.0127425809664;
                 case VolumeFlowUnit.CubicYardPerSecond: return _value*0.764554857984;
-                case VolumeFlowUnit.DeciliterPerMinute: return (_value/60000.00000) * 1e-1d;
-                case VolumeFlowUnit.KiloliterPerMinute: return (_value/60000.00000) * 1e3d;
+                case VolumeFlowUnit.DecilitersPerMinute: return (_value/60000.00000) * 1e-1d;
+                case VolumeFlowUnit.KilolitersPerMinute: return (_value/60000.00000) * 1e3d;
                 case VolumeFlowUnit.KilousGallonsPerMinute: return _value/15.850323141489;
-                case VolumeFlowUnit.LiterPerHour: return _value/3600000.000;
-                case VolumeFlowUnit.LiterPerMinute: return _value/60000.00000;
-                case VolumeFlowUnit.LiterPerSecond: return _value/1000;
-                case VolumeFlowUnit.MicroliterPerMinute: return (_value/60000.00000) * 1e-6d;
-                case VolumeFlowUnit.MilliliterPerMinute: return (_value/60000.00000) * 1e-3d;
+                case VolumeFlowUnit.LitersPerHour: return _value/3600000.000;
+                case VolumeFlowUnit.LitersPerMinute: return _value/60000.00000;
+                case VolumeFlowUnit.LitersPerSecond: return _value/1000;
+                case VolumeFlowUnit.MicrolitersPerMinute: return (_value/60000.00000) * 1e-6d;
+                case VolumeFlowUnit.MillilitersPerMinute: return (_value/60000.00000) * 1e-3d;
                 case VolumeFlowUnit.MillionUsGallonsPerDay: return _value/22.824465227;
-                case VolumeFlowUnit.NanoliterPerMinute: return (_value/60000.00000) * 1e-9d;
-                case VolumeFlowUnit.OilBarrelPerDay: return _value*1.8401307283333333333333333333333e-6;
-                case VolumeFlowUnit.OilBarrelPerHour: return _value*4.41631375e-5;
-                case VolumeFlowUnit.OilBarrelPerMinute: return _value*2.64978825e-3;
-                case VolumeFlowUnit.UsGallonPerHour: return _value/951019.38848933424;
-                case VolumeFlowUnit.UsGallonPerMinute: return _value/15850.323141489;
-                case VolumeFlowUnit.UsGallonPerSecond: return _value/264.1720523581484;
+                case VolumeFlowUnit.NanolitersPerMinute: return (_value/60000.00000) * 1e-9d;
+                case VolumeFlowUnit.OilBarrelsPerDay: return _value*1.8401307283333333333333333333333e-6;
+                case VolumeFlowUnit.OilBarrelsPerHour: return _value*4.41631375e-5;
+                case VolumeFlowUnit.OilBarrelsPerMinute: return _value*2.64978825e-3;
+                case VolumeFlowUnit.UsGallonsPerHour: return _value/951019.38848933424;
+                case VolumeFlowUnit.UsGallonsPerMinute: return _value/15850.323141489;
+                case VolumeFlowUnit.UsGallonsPerSecond: return _value/264.1720523581484;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -926,7 +896,7 @@ namespace UnitsNet
 
             switch(unit)
             {
-                case VolumeFlowUnit.CentiliterPerMinute: return (baseUnitValue*60000.00000) / 1e-2d;
+                case VolumeFlowUnit.CentilitersPerMinute: return (baseUnitValue*60000.00000) / 1e-2d;
                 case VolumeFlowUnit.CubicDecimeterPerMinute: return baseUnitValue*60000.00000;
                 case VolumeFlowUnit.CubicFootPerHour: return baseUnitValue/7.8657907199999087346816086183876e-6;
                 case VolumeFlowUnit.CubicFootPerMinute: return baseUnitValue*2118.88000326;
@@ -937,22 +907,22 @@ namespace UnitsNet
                 case VolumeFlowUnit.CubicYardPerHour: return baseUnitValue/2.1237634944E-4;
                 case VolumeFlowUnit.CubicYardPerMinute: return baseUnitValue/0.0127425809664;
                 case VolumeFlowUnit.CubicYardPerSecond: return baseUnitValue/0.764554857984;
-                case VolumeFlowUnit.DeciliterPerMinute: return (baseUnitValue*60000.00000) / 1e-1d;
-                case VolumeFlowUnit.KiloliterPerMinute: return (baseUnitValue*60000.00000) / 1e3d;
+                case VolumeFlowUnit.DecilitersPerMinute: return (baseUnitValue*60000.00000) / 1e-1d;
+                case VolumeFlowUnit.KilolitersPerMinute: return (baseUnitValue*60000.00000) / 1e3d;
                 case VolumeFlowUnit.KilousGallonsPerMinute: return baseUnitValue*15.850323141489;
-                case VolumeFlowUnit.LiterPerHour: return baseUnitValue*3600000.000;
-                case VolumeFlowUnit.LiterPerMinute: return baseUnitValue*60000.00000;
-                case VolumeFlowUnit.LiterPerSecond: return baseUnitValue*1000;
-                case VolumeFlowUnit.MicroliterPerMinute: return (baseUnitValue*60000.00000) / 1e-6d;
-                case VolumeFlowUnit.MilliliterPerMinute: return (baseUnitValue*60000.00000) / 1e-3d;
+                case VolumeFlowUnit.LitersPerHour: return baseUnitValue*3600000.000;
+                case VolumeFlowUnit.LitersPerMinute: return baseUnitValue*60000.00000;
+                case VolumeFlowUnit.LitersPerSecond: return baseUnitValue*1000;
+                case VolumeFlowUnit.MicrolitersPerMinute: return (baseUnitValue*60000.00000) / 1e-6d;
+                case VolumeFlowUnit.MillilitersPerMinute: return (baseUnitValue*60000.00000) / 1e-3d;
                 case VolumeFlowUnit.MillionUsGallonsPerDay: return baseUnitValue*22.824465227;
-                case VolumeFlowUnit.NanoliterPerMinute: return (baseUnitValue*60000.00000) / 1e-9d;
-                case VolumeFlowUnit.OilBarrelPerDay: return baseUnitValue/1.8401307283333333333333333333333e-6;
-                case VolumeFlowUnit.OilBarrelPerHour: return baseUnitValue/4.41631375e-5;
-                case VolumeFlowUnit.OilBarrelPerMinute: return baseUnitValue/2.64978825e-3;
-                case VolumeFlowUnit.UsGallonPerHour: return baseUnitValue*951019.38848933424;
-                case VolumeFlowUnit.UsGallonPerMinute: return baseUnitValue*15850.323141489;
-                case VolumeFlowUnit.UsGallonPerSecond: return baseUnitValue*264.1720523581484;
+                case VolumeFlowUnit.NanolitersPerMinute: return (baseUnitValue*60000.00000) / 1e-9d;
+                case VolumeFlowUnit.OilBarrelsPerDay: return baseUnitValue/1.8401307283333333333333333333333e-6;
+                case VolumeFlowUnit.OilBarrelsPerHour: return baseUnitValue/4.41631375e-5;
+                case VolumeFlowUnit.OilBarrelsPerMinute: return baseUnitValue/2.64978825e-3;
+                case VolumeFlowUnit.UsGallonsPerHour: return baseUnitValue*951019.38848933424;
+                case VolumeFlowUnit.UsGallonsPerMinute: return baseUnitValue*15850.323141489;
+                case VolumeFlowUnit.UsGallonsPerSecond: return baseUnitValue*264.1720523581484;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
@@ -960,7 +930,69 @@ namespace UnitsNet
 
         #endregion
 
-        #region ToString Methods
+        #region Parsing
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        public static VolumeFlow Parse(string str)
+        {
+            return Parse(str, null);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        public static bool TryParse([CanBeNull] string str, out VolumeFlow result)
+        {
+            return TryParse(str, null, out result);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static VolumeFlowUnit ParseUnit(string str)
+        {
+            return ParseUnit(str, (IFormatProvider)null);
+        }
+
+        #endregion
+
+        /// <summary>
+        ///     Set the default unit used by ToString(). Default is CubicMeterPerSecond
+        /// </summary>
+        [Obsolete("This is no longer used since we will instead use the quantity's Unit value as default.")]
+        public static VolumeFlowUnit ToStringDefaultUnit { get; set; } = VolumeFlowUnit.CubicMeterPerSecond;
 
         /// <summary>
         ///     Get default string representation of value and unit.
@@ -968,59 +1000,37 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(null);
+            return ToString(Unit);
         }
 
         /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
+        ///     Get string representation of value and unit. Using current UI culture and two significant digits after radix.
         /// </summary>
+        /// <param name="unit">Unit representation to use.</param>
         /// <returns>String representation.</returns>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public string ToString([CanBeNull] string cultureName)
+        public string ToString(VolumeFlowUnit unit)
         {
-            var provider = cultureName;
-            return ToString(provider, 2);
+            return ToString(unit, null, 2);
         }
 
         /// <summary>
-        ///     Get string representation of value and unit.
+        /// Represents the largest possible value of VolumeFlow
         /// </summary>
-        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public string ToString(string cultureName, int significantDigitsAfterRadix)
-        {
-            var provider = cultureName;
-            var value = Convert.ToDouble(Value);
-            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(provider, format);
-        }
+        public static VolumeFlow MaxValue => new VolumeFlow(double.MaxValue, BaseUnit);
 
         /// <summary>
-        ///     Get string representation of value and unit.
+        /// Represents the smallest possible value of VolumeFlow
         /// </summary>
-        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        public string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args)
-        {
-            var provider = GetFormatProviderFromCultureName(cultureName);
-            if (format == null) throw new ArgumentNullException(nameof(format));
-            if (args == null) throw new ArgumentNullException(nameof(args));
+        public static VolumeFlow MinValue => new VolumeFlow(double.MinValue, BaseUnit);
 
-            provider = provider ?? GlobalConfiguration.DefaultCulture;
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public QuantityType Type => VolumeFlow.QuantityType;
 
-            var value = Convert.ToDouble(Value);
-            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
-            return string.Format(provider, format, formatArgs);
-        }
-
-        #endregion
-
-        private static IFormatProvider GetFormatProviderFromCultureName([CanBeNull] string cultureName)
-        {
-            return cultureName != null ? new CultureInfo(cultureName) : (IFormatProvider)null;
-        }
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => VolumeFlow.BaseDimensions;
     }
 }

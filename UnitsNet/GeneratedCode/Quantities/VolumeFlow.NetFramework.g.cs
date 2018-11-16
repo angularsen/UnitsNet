@@ -213,6 +213,11 @@ namespace UnitsNet
         public double KilolitersPerMinute => As(VolumeFlowUnit.KiloliterPerMinute);
 
         /// <summary>
+        ///     Get VolumeFlow in KilousGallonsPerMinute.
+        /// </summary>
+        public double KilousGallonsPerMinute => As(VolumeFlowUnit.KilousGallonsPerMinute);
+
+        /// <summary>
         ///     Get VolumeFlow in LitersPerHour.
         /// </summary>
         public double LitersPerHour => As(VolumeFlowUnit.LiterPerHour);
@@ -422,6 +427,15 @@ namespace UnitsNet
         {
             double value = (double) kilolitersperminute;
             return new VolumeFlow(value, VolumeFlowUnit.KiloliterPerMinute);
+        }
+        /// <summary>
+        ///     Get VolumeFlow from KilousGallonsPerMinute.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static VolumeFlow FromKilousGallonsPerMinute(QuantityValue kilousgallonsperminute)
+        {
+            double value = (double) kilousgallonsperminute;
+            return new VolumeFlow(value, VolumeFlowUnit.KilousGallonsPerMinute);
         }
         /// <summary>
         ///     Get VolumeFlow from LitersPerHour.
@@ -904,6 +918,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.CubicYardPerSecond: return _value*0.764554857984;
                 case VolumeFlowUnit.DeciliterPerMinute: return (_value/60000.00000) * 1e-1d;
                 case VolumeFlowUnit.KiloliterPerMinute: return (_value/60000.00000) * 1e3d;
+                case VolumeFlowUnit.KilousGallonsPerMinute: return _value/15.850323141489;
                 case VolumeFlowUnit.LiterPerHour: return _value/3600000.000;
                 case VolumeFlowUnit.LiterPerMinute: return _value/60000.00000;
                 case VolumeFlowUnit.LiterPerSecond: return _value/1000;
@@ -944,6 +959,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.CubicYardPerSecond: return baseUnitValue/0.764554857984;
                 case VolumeFlowUnit.DeciliterPerMinute: return (baseUnitValue*60000.00000) / 1e-1d;
                 case VolumeFlowUnit.KiloliterPerMinute: return (baseUnitValue*60000.00000) / 1e3d;
+                case VolumeFlowUnit.KilousGallonsPerMinute: return baseUnitValue*15.850323141489;
                 case VolumeFlowUnit.LiterPerHour: return baseUnitValue*3600000.000;
                 case VolumeFlowUnit.LiterPerMinute: return baseUnitValue*60000.00000;
                 case VolumeFlowUnit.LiterPerSecond: return baseUnitValue*1000;

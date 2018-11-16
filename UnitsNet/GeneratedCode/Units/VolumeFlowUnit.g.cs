@@ -57,6 +57,7 @@ namespace UnitsNet.Units
         CubicYardPerSecond,
         DeciliterPerMinute,
         KiloliterPerMinute,
+        KilousGallonsPerMinute,
         LiterPerHour,
         LiterPerMinute,
         LiterPerSecond,

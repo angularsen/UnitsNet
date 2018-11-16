@@ -50,6 +50,7 @@ namespace UnitsNet.Units
         GramPerSecond,
         HectogramPerSecond,
         KilogramPerHour,
+        KilogramPerMinute,
         KilogramPerSecond,
         MegapoundPerHour,
         MegapoundPerMinute,
