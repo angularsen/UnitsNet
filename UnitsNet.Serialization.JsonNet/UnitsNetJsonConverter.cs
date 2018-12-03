@@ -69,11 +69,38 @@ namespace UnitsNet.Serialization.JsonNet
             }
             object obj = TryDeserializeIComparable(reader, serializer);
             // A null System.Nullable value or a comparable type was deserialized so return this
-            if (!(obj is ValueUnit vu))
+            if (!(obj is ValueUnit) && !(obj is Array))
             {
                 return obj;
             }
 
+            if (obj is Array)
+            {
+                object[] values = (object[]) obj;
+
+                List<object> results = new List<object>();
+                
+                foreach (var value in values)
+                {
+                    object result = ParseValueUnit(value as ValueUnit);
+                    results.Add(result);
+                }
+                
+                Type unitType = objectType.GetElementType();
+                Array typedArray = Array.CreateInstance(unitType, results.Count);
+
+                Array.Copy(results.ToArray(), typedArray, results.Count);
+
+                return typedArray;
+            }
+            else
+            {
+                return ParseValueUnit(obj as ValueUnit);
+            }
+        }
+
+        private static object ParseValueUnit(ValueUnit vu)
+        {
             // "MassUnit.Kilogram" => "MassUnit" and "Kilogram"
             string unitEnumTypeName = vu.Unit.Split('.')[0];
             string unitEnumValue = vu.Unit.Split('.')[1];
@@ -160,6 +187,27 @@ namespace UnitsNet.Serialization.JsonNet
         private static object TryDeserializeIComparable(JsonReader reader, JsonSerializer serializer)
         {
             JToken token = JToken.Load(reader);
+
+            if (token is JArray)
+            {
+                List<object> results = new List<object>();
+
+                foreach (var item in token.Children())
+                {
+                    results.Add(TryDeserializeIComparable(item, serializer));
+                }
+
+                return results.ToArray();
+            }
+            else
+            {
+                return TryDeserializeIComparable(token, serializer);
+            }
+            
+        }
+
+        private static object TryDeserializeIComparable(JToken token, JsonSerializer serializer)
+        {
             if (!token.HasValues || token[nameof(ValueUnit.Unit)] == null || token[nameof(ValueUnit.Value)] == null)
             {
                 JsonSerializer localSerializer = new JsonSerializer()

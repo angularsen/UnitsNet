@@ -160,6 +160,17 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 Assert.Equal(expectedJson, json);
             }
+
+            [Fact]
+            public void EmptyArrayValue_ExpectJsonArray()
+            {
+                Frequency[] testObj = new Frequency[0];
+
+                string expectedJson = "[]";
+
+                string json = SerializeObject(testObj);
+                Assert.Equal(expectedJson, json);
+            }
         }
 
         public class Deserialize : UnitsNetJsonConverterTests
@@ -339,6 +350,37 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 Assert.Equal(Power.FromWatts(19), deserializedTestObject.Value2);
                 Assert.Equal(typeof(ComparableClass), deserializedTestObject.Value3.GetType());
                 Assert.Equal(testObjWithIComparable.Value3, deserializedTestObject.Value3);
+            }
+
+            [Fact]
+            public void ArrayOfUnits_ExpectCorrectlyDeserialized()
+            {
+                Frequency[] expected = new Frequency[] { Frequency.FromHertz(10), Frequency.FromHertz(10) };
+
+                string json = "[\n" +
+                                      "  {\n" +
+                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                      "    \"Value\": 10.0\n" +
+                                      "  },\n" +
+                                      "  {\n" +
+                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                      "    \"Value\": 10.0\n" +
+                                      "  }\n" +
+                                      "]";
+
+                Frequency[] result  = DeserializeObject<Frequency[]>(json);
+
+                Assert.Equal(expected, result);
+            }
+
+            [Fact]
+            public void EmptyArray_ExpectCorreclyDeserialized()
+            {
+                string json = "[]";
+
+                Frequency[] result = DeserializeObject<Frequency[]>(json);
+
+                Assert.Empty(result);
             }
 
             private static JsonSerializerSettings CreateJsonSerializerSettings()
