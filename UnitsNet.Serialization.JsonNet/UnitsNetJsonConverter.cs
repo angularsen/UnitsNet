@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
@@ -201,6 +202,29 @@ namespace UnitsNet.Serialization.JsonNet
                 return;
             }
 
+            // Check if we're dealing with an array of units
+            if (quantityType.IsArray)
+            {
+                // Get the unit type of the units in the array
+                quantityType = quantityType.GetElementType();
+
+                Array values = (Array) obj;
+
+                object[] quantityValues = GetValuesOfQuantity(values, quantityType);
+
+                List<ValueUnit> results = new List<ValueUnit>();
+
+                for (int i = 0; i < quantityValues.Length; i++)
+                {
+                    string name = GetUnitFullNameOfQuantity(values.GetValue(i), quantityType);
+                    results.Add(new ValueUnit(){ Value = Convert.ToDouble(quantityValues[i]), Unit = name});
+                }
+
+                serializer.Serialize(writer, results);
+
+                return;
+            }
+
             object quantityValue = GetValueOfQuantity(obj, quantityType); // double or decimal value
             string quantityUnitName = GetUnitFullNameOfQuantity(obj, quantityType); // Example: "MassUnit.Kilogram"
 
@@ -210,6 +234,7 @@ namespace UnitsNet.Serialization.JsonNet
                 Value = Convert.ToDouble(quantityValue),
                 Unit = quantityUnitName
             });
+           
         }
 
         /// <summary>
@@ -227,6 +252,7 @@ namespace UnitsNet.Serialization.JsonNet
             Type unitType = quantityUnit.GetType(); // MassUnit
             return $"{unitType.Name}.{quantityUnit}"; // "MassUnit.Kilogram"
         }
+        
 
         private static object GetValueOfQuantity(object value, Type quantityType)
         {
@@ -237,6 +263,21 @@ namespace UnitsNet.Serialization.JsonNet
             // loss of precision
             object quantityValue = valueField.GetValue(value);
             return quantityValue;
+        }
+
+        private static object[] GetValuesOfQuantity(Array values, Type quantityType)
+        {
+            var valueField = GetPrivateInstanceField(quantityType, ValueFieldName);
+
+            var results = new List<object>();
+
+            foreach (object value in values)
+            {
+                object quantityValue = valueField.GetValue(value);
+                results.Add(quantityValue);
+            }
+
+            return results.ToArray();
         }
 
         private static FieldInfo GetPrivateInstanceField(Type quantityType, string fieldName)

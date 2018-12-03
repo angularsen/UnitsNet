@@ -98,7 +98,8 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 var testObj = new TestObj
                 {
                     NullableFrequency = Frequency.FromHertz(10),
-                    NonNullableFrequency = Frequency.FromHertz(10)
+                    NonNullableFrequency = Frequency.FromHertz(10),
+                    
                 };
                 // Ugly manually formatted JSON string is used because string literals with newlines are rendered differently
                 //  on the build server (i.e. the build server uses '\r' instead of '\n')
@@ -136,6 +137,62 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 var expectedJson = "{\n  \"Unit\": \"RatioUnit.PartPerThousand\",\n  \"Value\": 250.0\n}";
 
                 string json = SerializeObject(ratio);
+
+                Assert.Equal(expectedJson, json);
+            }
+
+            [Fact]
+            public void ArrayValue_ExpectJsonArray()
+            {
+                var testObj = new TestObjWithArrayOfUnits()
+                {
+                    ArrayOfFrequencies = new Frequency[] { Frequency.FromGigahertz(1), Frequency.FromHertz(20), Frequency.FromMegahertz(0.5) }
+
+                };
+
+                string expectedJson = "{\n" +
+                                      "  \"ArrayOfFrequencies\": [\n" +
+                                      "    {\n" +
+                                      "      \"Unit\": \"FrequencyUnit.Gigahertz\",\n" +
+                                      "      \"Value\": 1.0\n" +
+                                      "    },\n" +
+                                      "    {\n" +
+                                      "      \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                      "      \"Value\": 20.0\n" +
+                                      "    },\n" +
+                                      "    {\n" +
+                                      "      \"Unit\": \"FrequencyUnit.Megahertz\",\n" +
+                                      "      \"Value\": 0.5\n" +
+                                      "    }\n" +
+                                      "  ]\n" +
+                                      "}";
+
+                string json = SerializeObject(testObj);
+
+                Assert.Equal(expectedJson, json);
+            }
+
+            [Fact]
+            public void UnitsArray_ExpectJsonArray()
+            {
+                Frequency[] values = new Frequency[] {Frequency.FromGigahertz(1), Frequency.FromHertz(20), Frequency.FromMegahertz(0.5)};
+
+                string expectedJson = "[\n" +
+                                      "  {\n" +
+                                      "    \"Unit\": \"FrequencyUnit.Gigahertz\",\n" +
+                                      "    \"Value\": 1.0\n" +
+                                      "  },\n" +
+                                      "  {\n" +
+                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                      "    \"Value\": 20.0\n" +
+                                      "  },\n" +
+                                      "  {\n" +
+                                      "    \"Unit\": \"FrequencyUnit.Megahertz\",\n" +
+                                      "    \"Value\": 0.5\n" +
+                                      "  }\n" +
+                                      "]";
+
+                string json = SerializeObject(values);
 
                 Assert.Equal(expectedJson, json);
             }
@@ -336,6 +393,11 @@ namespace UnitsNet.Serialization.JsonNet.Tests
         {
             public Frequency? NullableFrequency { get; set; }
             public Frequency NonNullableFrequency { get; set; }
+        }
+
+        private class TestObjWithArrayOfUnits
+        {
+            public Frequency[] ArrayOfFrequencies { get; set; }
         }
 
         private class TestObjWithValueAndUnit : IComparable
