@@ -139,6 +139,27 @@ namespace UnitsNet.Serialization.JsonNet.Tests
 
                 Assert.Equal(expectedJson, json);
             }
+
+            [Fact]
+            public void ArrayValue_ExpectJsonArray()
+            {
+                Frequency[] testObj = new Frequency[] { Frequency.FromHertz(10), Frequency.FromHertz(10) };
+
+                string expectedJson = "[\n" +
+                                      "  {\n" +
+                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                      "    \"Value\": 10.0\n" +
+                                      "  },\n" +
+                                      "  {\n" +
+                                      "    \"Unit\": \"FrequencyUnit.Hertz\",\n" +
+                                      "    \"Value\": 10.0\n" +
+                                      "  }\n" +
+                                      "]";
+
+                string json = SerializeObject(testObj);
+
+                Assert.Equal(expectedJson, json);
+            }
         }
 
         public class Deserialize : UnitsNetJsonConverterTests

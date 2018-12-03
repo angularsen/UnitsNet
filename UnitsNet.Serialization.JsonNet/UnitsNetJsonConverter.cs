@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
@@ -201,15 +202,42 @@ namespace UnitsNet.Serialization.JsonNet
                 return;
             }
 
-            object quantityValue = GetValueOfQuantity(obj, quantityType); // double or decimal value
-            string quantityUnitName = GetUnitFullNameOfQuantity(obj, quantityType); // Example: "MassUnit.Kilogram"
-
-            serializer.Serialize(writer, new ValueUnit
+            if (quantityType.IsArray)
             {
-                // TODO Should we serialize long, decimal and long differently?
-                Value = Convert.ToDouble(quantityValue),
-                Unit = quantityUnitName
-            });
+                Type elementType = quantityType.GetElementType();
+                Array values = (Array) obj;
+
+                List<ValueUnit> results = new List<ValueUnit>();
+
+                foreach (object value in values)
+                {
+                    object quantityValue = GetValueOfQuantity(value, elementType); // double or decimal value
+                    string quantityUnitName = GetUnitFullNameOfQuantity(value, elementType); // Example: "MassUnit.Kilogram"
+
+                    results.Add(new ValueUnit()
+                    {
+                        // TODO Should we serialize long, decimal and long differently?
+                        Value = Convert.ToDouble(quantityValue),
+                        Unit = quantityUnitName
+                    });
+                }
+
+                serializer.Serialize(writer, results);
+            }
+            else
+            {
+                object quantityValue = GetValueOfQuantity(obj, quantityType); // double or decimal value
+                string quantityUnitName = GetUnitFullNameOfQuantity(obj, quantityType); // Example: "MassUnit.Kilogram"
+
+                serializer.Serialize(writer, new ValueUnit
+                {
+                    // TODO Should we serialize long, decimal and long differently?
+                    Value = Convert.ToDouble(quantityValue),
+                    Unit = quantityUnitName
+                });
+            }
+
+            
         }
 
         /// <summary>
