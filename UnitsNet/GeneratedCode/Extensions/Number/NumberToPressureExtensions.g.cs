@@ -352,6 +352,17 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         #endregion
 
+        #region Millipascal
+
+        /// <inheritdoc cref="Pressure.FromMillipascals(UnitsNet.QuantityValue)" />
+        public static Pressure Millipascals<T>(this T value) => Pressure.FromMillipascals(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromMillipascals(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Pressure? Millipascals<T>(this T? value) where T : struct => Pressure.FromMillipascals(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region NewtonPerSquareCentimeter
 
         /// <inheritdoc cref="Pressure.FromNewtonsPerSquareCentimeter(UnitsNet.QuantityValue)" />

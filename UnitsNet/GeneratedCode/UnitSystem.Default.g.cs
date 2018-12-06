@@ -3460,6 +3460,12 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "mmHg"),
                             }),
+                        new CulturesForEnumValue((int) PressureUnit.Millipascal,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mPa"),
+                                new AbbreviationsForCulture("ru-RU", "ммПа"),
+                            }),
                         new CulturesForEnumValue((int) PressureUnit.NewtonPerSquareCentimeter,
                             new[]
                             {

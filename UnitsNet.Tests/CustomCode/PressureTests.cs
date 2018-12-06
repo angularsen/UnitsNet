@@ -107,6 +107,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsPerInchSecondSquaredInOnePascal => 5.599741459495891e-2;
 
+        protected override double MillipascalsInOnePascal => 1e3;
+
         [Fact]
         public void AreaTimesPressureEqualsForce()
         {
