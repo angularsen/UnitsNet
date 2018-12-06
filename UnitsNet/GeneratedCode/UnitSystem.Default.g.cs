@@ -2314,6 +2314,21 @@ namespace UnitsNet
                 new UnitLocalization(typeof (MagneticFieldUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) MagneticFieldUnit.Microtesla,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µT"),
+                            }),
+                        new CulturesForEnumValue((int) MagneticFieldUnit.Millitesla,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mT"),
+                            }),
+                        new CulturesForEnumValue((int) MagneticFieldUnit.Nanotesla,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nT"),
+                            }),
                         new CulturesForEnumValue((int) MagneticFieldUnit.Tesla,
                             new[]
                             {

@@ -162,6 +162,21 @@ namespace UnitsNet
         public static MagneticFieldUnit[] Units { get; } = Enum.GetValues(typeof(MagneticFieldUnit)).Cast<MagneticFieldUnit>().Except(new MagneticFieldUnit[]{ MagneticFieldUnit.Undefined }).ToArray();
 
         /// <summary>
+        ///     Get MagneticField in Microteslas.
+        /// </summary>
+        public double Microteslas => As(MagneticFieldUnit.Microtesla);
+
+        /// <summary>
+        ///     Get MagneticField in Milliteslas.
+        /// </summary>
+        public double Milliteslas => As(MagneticFieldUnit.Millitesla);
+
+        /// <summary>
+        ///     Get MagneticField in Nanoteslas.
+        /// </summary>
+        public double Nanoteslas => As(MagneticFieldUnit.Nanotesla);
+
+        /// <summary>
         ///     Get MagneticField in Teslas.
         /// </summary>
         public double Teslas => As(MagneticFieldUnit.Tesla);
@@ -174,6 +189,48 @@ namespace UnitsNet
         ///     Gets an instance of this quantity with a value of 0 in the base unit Tesla.
         /// </summary>
         public static MagneticField Zero => new MagneticField(0, BaseUnit);
+
+        /// <summary>
+        ///     Get MagneticField from Microteslas.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MagneticField FromMicroteslas(double microteslas)
+#else
+        public static MagneticField FromMicroteslas(QuantityValue microteslas)
+#endif
+        {
+            double value = (double) microteslas;
+            return new MagneticField(value, MagneticFieldUnit.Microtesla);
+        }
+
+        /// <summary>
+        ///     Get MagneticField from Milliteslas.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MagneticField FromMilliteslas(double milliteslas)
+#else
+        public static MagneticField FromMilliteslas(QuantityValue milliteslas)
+#endif
+        {
+            double value = (double) milliteslas;
+            return new MagneticField(value, MagneticFieldUnit.Millitesla);
+        }
+
+        /// <summary>
+        ///     Get MagneticField from Nanoteslas.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MagneticField FromNanoteslas(double nanoteslas)
+#else
+        public static MagneticField FromNanoteslas(QuantityValue nanoteslas)
+#endif
+        {
+            double value = (double) nanoteslas;
+            return new MagneticField(value, MagneticFieldUnit.Nanotesla);
+        }
 
         /// <summary>
         ///     Get MagneticField from Teslas.
@@ -361,6 +418,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case MagneticFieldUnit.Microtesla: return (_value) * 1e-6d;
+                case MagneticFieldUnit.Millitesla: return (_value) * 1e-3d;
+                case MagneticFieldUnit.Nanotesla: return (_value) * 1e-9d;
                 case MagneticFieldUnit.Tesla: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -376,6 +436,9 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case MagneticFieldUnit.Microtesla: return (baseUnitValue) / 1e-6d;
+                case MagneticFieldUnit.Millitesla: return (baseUnitValue) / 1e-3d;
+                case MagneticFieldUnit.Nanotesla: return (baseUnitValue) / 1e-9d;
                 case MagneticFieldUnit.Tesla: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");

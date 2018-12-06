@@ -44,6 +44,39 @@ namespace UnitsNet.Extensions.NumberToMagneticField
 {
     public static class NumberToMagneticFieldExtensions
     {
+        #region Microtesla
+
+        /// <inheritdoc cref="MagneticField.FromMicroteslas(UnitsNet.QuantityValue)" />
+        public static MagneticField Microteslas<T>(this T value) => MagneticField.FromMicroteslas(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MagneticField.FromMicroteslas(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MagneticField? Microteslas<T>(this T? value) where T : struct => MagneticField.FromMicroteslas(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Millitesla
+
+        /// <inheritdoc cref="MagneticField.FromMilliteslas(UnitsNet.QuantityValue)" />
+        public static MagneticField Milliteslas<T>(this T value) => MagneticField.FromMilliteslas(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MagneticField.FromMilliteslas(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MagneticField? Milliteslas<T>(this T? value) where T : struct => MagneticField.FromMilliteslas(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Nanotesla
+
+        /// <inheritdoc cref="MagneticField.FromNanoteslas(UnitsNet.QuantityValue)" />
+        public static MagneticField Nanoteslas<T>(this T value) => MagneticField.FromNanoteslas(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="MagneticField.FromNanoteslas(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static MagneticField? Nanoteslas<T>(this T? value) where T : struct => MagneticField.FromNanoteslas(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Tesla
 
         /// <inheritdoc cref="MagneticField.FromTeslas(UnitsNet.QuantityValue)" />

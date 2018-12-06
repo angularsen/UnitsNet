@@ -63,6 +63,33 @@ namespace UnitsNet
         #region Nullable From Methods
 
         /// <summary>
+        ///     Get nullable MagneticField from nullable Microteslas.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static MagneticField? FromMicroteslas(QuantityValue? microteslas)
+        {
+            return microteslas.HasValue ? FromMicroteslas(microteslas.Value) : default(MagneticField?);
+        }
+
+        /// <summary>
+        ///     Get nullable MagneticField from nullable Milliteslas.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static MagneticField? FromMilliteslas(QuantityValue? milliteslas)
+        {
+            return milliteslas.HasValue ? FromMilliteslas(milliteslas.Value) : default(MagneticField?);
+        }
+
+        /// <summary>
+        ///     Get nullable MagneticField from nullable Nanoteslas.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static MagneticField? FromNanoteslas(QuantityValue? nanoteslas)
+        {
+            return nanoteslas.HasValue ? FromNanoteslas(nanoteslas.Value) : default(MagneticField?);
+        }
+
+        /// <summary>
         ///     Get nullable MagneticField from nullable Teslas.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
