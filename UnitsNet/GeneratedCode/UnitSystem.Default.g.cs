@@ -1237,6 +1237,11 @@ namespace UnitsNet
                 new UnitLocalization(typeof (ElectricResistanceUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) ElectricResistanceUnit.Gigaohm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GΩ"),
+                            }),
                         new CulturesForEnumValue((int) ElectricResistanceUnit.Kiloohm,
                             new[]
                             {
