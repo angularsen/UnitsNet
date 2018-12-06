@@ -54,9 +54,15 @@ namespace UnitsNet.Tests
     public abstract partial class ElectricInductanceTestsBase
     {
         protected abstract double HenriesInOneHenry { get; }
+        protected abstract double MicrohenriesInOneHenry { get; }
+        protected abstract double MillihenriesInOneHenry { get; }
+        protected abstract double NanohenriesInOneHenry { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double HenriesTolerance { get { return 1e-5; } }
+        protected virtual double MicrohenriesTolerance { get { return 1e-5; } }
+        protected virtual double MillihenriesTolerance { get { return 1e-5; } }
+        protected virtual double NanohenriesTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -64,12 +70,18 @@ namespace UnitsNet.Tests
         {
             ElectricInductance henry = ElectricInductance.FromHenries(1);
             AssertEx.EqualTolerance(HenriesInOneHenry, henry.Henries, HenriesTolerance);
+            AssertEx.EqualTolerance(MicrohenriesInOneHenry, henry.Microhenries, MicrohenriesTolerance);
+            AssertEx.EqualTolerance(MillihenriesInOneHenry, henry.Millihenries, MillihenriesTolerance);
+            AssertEx.EqualTolerance(NanohenriesInOneHenry, henry.Nanohenries, NanohenriesTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, ElectricInductance.From(1, ElectricInductanceUnit.Henry).Henries, HenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance.From(1, ElectricInductanceUnit.Microhenry).Microhenries, MicrohenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance.From(1, ElectricInductanceUnit.Millihenry).Millihenries, MillihenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance.From(1, ElectricInductanceUnit.Nanohenry).Nanohenries, NanohenriesTolerance);
         }
 
         [Fact]
@@ -77,6 +89,9 @@ namespace UnitsNet.Tests
         {
             var henry = ElectricInductance.FromHenries(1);
             AssertEx.EqualTolerance(HenriesInOneHenry, henry.As(ElectricInductanceUnit.Henry), HenriesTolerance);
+            AssertEx.EqualTolerance(MicrohenriesInOneHenry, henry.As(ElectricInductanceUnit.Microhenry), MicrohenriesTolerance);
+            AssertEx.EqualTolerance(MillihenriesInOneHenry, henry.As(ElectricInductanceUnit.Millihenry), MillihenriesTolerance);
+            AssertEx.EqualTolerance(NanohenriesInOneHenry, henry.As(ElectricInductanceUnit.Nanohenry), NanohenriesTolerance);
         }
 
         [Fact]
@@ -87,6 +102,18 @@ namespace UnitsNet.Tests
             var henryQuantity = henry.ToUnit(ElectricInductanceUnit.Henry);
             AssertEx.EqualTolerance(HenriesInOneHenry, (double)henryQuantity.Value, HenriesTolerance);
             Assert.Equal(ElectricInductanceUnit.Henry, henryQuantity.Unit);
+
+            var microhenryQuantity = henry.ToUnit(ElectricInductanceUnit.Microhenry);
+            AssertEx.EqualTolerance(MicrohenriesInOneHenry, (double)microhenryQuantity.Value, MicrohenriesTolerance);
+            Assert.Equal(ElectricInductanceUnit.Microhenry, microhenryQuantity.Unit);
+
+            var millihenryQuantity = henry.ToUnit(ElectricInductanceUnit.Millihenry);
+            AssertEx.EqualTolerance(MillihenriesInOneHenry, (double)millihenryQuantity.Value, MillihenriesTolerance);
+            Assert.Equal(ElectricInductanceUnit.Millihenry, millihenryQuantity.Unit);
+
+            var nanohenryQuantity = henry.ToUnit(ElectricInductanceUnit.Nanohenry);
+            AssertEx.EqualTolerance(NanohenriesInOneHenry, (double)nanohenryQuantity.Value, NanohenriesTolerance);
+            Assert.Equal(ElectricInductanceUnit.Nanohenry, nanohenryQuantity.Unit);
         }
 
         [Fact]
@@ -94,6 +121,9 @@ namespace UnitsNet.Tests
         {
             ElectricInductance henry = ElectricInductance.FromHenries(1);
             AssertEx.EqualTolerance(1, ElectricInductance.FromHenries(henry.Henries).Henries, HenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance.FromMicrohenries(henry.Microhenries).Henries, MicrohenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance.FromMillihenries(henry.Millihenries).Henries, MillihenriesTolerance);
+            AssertEx.EqualTolerance(1, ElectricInductance.FromNanohenries(henry.Nanohenries).Henries, NanohenriesTolerance);
         }
 
         [Fact]

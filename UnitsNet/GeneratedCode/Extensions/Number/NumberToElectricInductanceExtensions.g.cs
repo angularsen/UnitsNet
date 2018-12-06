@@ -55,6 +55,39 @@ namespace UnitsNet.Extensions.NumberToElectricInductance
 
         #endregion
 
+        #region Microhenry
+
+        /// <inheritdoc cref="ElectricInductance.FromMicrohenries(UnitsNet.QuantityValue)" />
+        public static ElectricInductance Microhenries<T>(this T value) => ElectricInductance.FromMicrohenries(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricInductance.FromMicrohenries(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricInductance? Microhenries<T>(this T? value) where T : struct => ElectricInductance.FromMicrohenries(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Millihenry
+
+        /// <inheritdoc cref="ElectricInductance.FromMillihenries(UnitsNet.QuantityValue)" />
+        public static ElectricInductance Millihenries<T>(this T value) => ElectricInductance.FromMillihenries(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricInductance.FromMillihenries(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricInductance? Millihenries<T>(this T? value) where T : struct => ElectricInductance.FromMillihenries(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Nanohenry
+
+        /// <inheritdoc cref="ElectricInductance.FromNanohenries(UnitsNet.QuantityValue)" />
+        public static ElectricInductance Nanohenries<T>(this T value) => ElectricInductance.FromNanohenries(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricInductance.FromNanohenries(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricInductance? Nanohenries<T>(this T? value) where T : struct => ElectricInductance.FromNanohenries(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
     }
 }
 #endif

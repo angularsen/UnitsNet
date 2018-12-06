@@ -1106,6 +1106,21 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "H"),
                             }),
+                        new CulturesForEnumValue((int) ElectricInductanceUnit.Microhenry,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µH"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricInductanceUnit.Millihenry,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mH"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricInductanceUnit.Nanohenry,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nH"),
+                            }),
                     }),
                 new UnitLocalization(typeof (ElectricPotentialUnit),
                     new[]

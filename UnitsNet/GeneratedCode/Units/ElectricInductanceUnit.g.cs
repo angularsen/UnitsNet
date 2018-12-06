@@ -46,6 +46,9 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         Henry,
+        Microhenry,
+        Millihenry,
+        Nanohenry,
     }
 
     #pragma warning restore 1591
