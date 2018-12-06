@@ -110,6 +110,17 @@ namespace UnitsNet.Extensions.NumberToAmountOfSubstance
 
         #endregion
 
+        #region Megamole
+
+        /// <inheritdoc cref="AmountOfSubstance.FromMegamoles(UnitsNet.QuantityValue)" />
+        public static AmountOfSubstance Megamoles<T>(this T value) => AmountOfSubstance.FromMegamoles(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="AmountOfSubstance.FromMegamoles(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static AmountOfSubstance? Megamoles<T>(this T? value) where T : struct => AmountOfSubstance.FromMegamoles(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Micromole
 
         /// <inheritdoc cref="AmountOfSubstance.FromMicromoles(UnitsNet.QuantityValue)" />

@@ -117,6 +117,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable AmountOfSubstance from nullable Megamoles.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static AmountOfSubstance? FromMegamoles(QuantityValue? megamoles)
+        {
+            return megamoles.HasValue ? FromMegamoles(megamoles.Value) : default(AmountOfSubstance?);
+        }
+
+        /// <summary>
         ///     Get nullable AmountOfSubstance from nullable Micromoles.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]

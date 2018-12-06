@@ -153,6 +153,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "klbmol"),
                             }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Megamole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mmol"),
+                            }),
                         new CulturesForEnumValue((int) AmountOfSubstanceUnit.Micromole,
                             new[]
                             {
