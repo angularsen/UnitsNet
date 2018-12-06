@@ -630,6 +630,26 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "F"),
                             }),
+                        new CulturesForEnumValue((int) CapacitanceUnit.Microfarad,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µF"),
+                            }),
+                        new CulturesForEnumValue((int) CapacitanceUnit.Millifarad,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mF"),
+                            }),
+                        new CulturesForEnumValue((int) CapacitanceUnit.Nanofarad,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nF"),
+                            }),
+                        new CulturesForEnumValue((int) CapacitanceUnit.Picofarad,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pF"),
+                            }),
                     }),
                 new UnitLocalization(typeof (CoefficientOfThermalExpansionUnit),
                     new[]

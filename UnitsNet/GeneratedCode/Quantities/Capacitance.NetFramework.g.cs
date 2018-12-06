@@ -72,6 +72,42 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Capacitance from nullable Microfarads.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Capacitance? FromMicrofarads(QuantityValue? microfarads)
+        {
+            return microfarads.HasValue ? FromMicrofarads(microfarads.Value) : default(Capacitance?);
+        }
+
+        /// <summary>
+        ///     Get nullable Capacitance from nullable Millifarads.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Capacitance? FromMillifarads(QuantityValue? millifarads)
+        {
+            return millifarads.HasValue ? FromMillifarads(millifarads.Value) : default(Capacitance?);
+        }
+
+        /// <summary>
+        ///     Get nullable Capacitance from nullable Nanofarads.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Capacitance? FromNanofarads(QuantityValue? nanofarads)
+        {
+            return nanofarads.HasValue ? FromNanofarads(nanofarads.Value) : default(Capacitance?);
+        }
+
+        /// <summary>
+        ///     Get nullable Capacitance from nullable Picofarads.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Capacitance? FromPicofarads(QuantityValue? picofarads)
+        {
+            return picofarads.HasValue ? FromPicofarads(picofarads.Value) : default(Capacitance?);
+        }
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="CapacitanceUnit" /> to <see cref="Capacitance" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

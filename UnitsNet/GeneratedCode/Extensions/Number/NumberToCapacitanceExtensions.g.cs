@@ -55,6 +55,50 @@ namespace UnitsNet.Extensions.NumberToCapacitance
 
         #endregion
 
+        #region Microfarad
+
+        /// <inheritdoc cref="Capacitance.FromMicrofarads(UnitsNet.QuantityValue)" />
+        public static Capacitance Microfarads<T>(this T value) => Capacitance.FromMicrofarads(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Capacitance.FromMicrofarads(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Capacitance? Microfarads<T>(this T? value) where T : struct => Capacitance.FromMicrofarads(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Millifarad
+
+        /// <inheritdoc cref="Capacitance.FromMillifarads(UnitsNet.QuantityValue)" />
+        public static Capacitance Millifarads<T>(this T value) => Capacitance.FromMillifarads(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Capacitance.FromMillifarads(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Capacitance? Millifarads<T>(this T? value) where T : struct => Capacitance.FromMillifarads(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Nanofarad
+
+        /// <inheritdoc cref="Capacitance.FromNanofarads(UnitsNet.QuantityValue)" />
+        public static Capacitance Nanofarads<T>(this T value) => Capacitance.FromNanofarads(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Capacitance.FromNanofarads(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Capacitance? Nanofarads<T>(this T? value) where T : struct => Capacitance.FromNanofarads(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
+        #region Picofarad
+
+        /// <inheritdoc cref="Capacitance.FromPicofarads(UnitsNet.QuantityValue)" />
+        public static Capacitance Picofarads<T>(this T value) => Capacitance.FromPicofarads(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Capacitance.FromPicofarads(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static Capacitance? Picofarads<T>(this T? value) where T : struct => Capacitance.FromPicofarads(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
     }
 }
 #endif
