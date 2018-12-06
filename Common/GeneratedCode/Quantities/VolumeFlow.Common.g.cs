@@ -202,6 +202,11 @@ namespace UnitsNet
         public double CubicMetersPerSecond => As(VolumeFlowUnit.CubicMeterPerSecond);
 
         /// <summary>
+        ///     Get VolumeFlow in CubicMilliMetersPerSecond.
+        /// </summary>
+        public double CubicMilliMetersPerSecond => As(VolumeFlowUnit.CubicMilliMeterPerSecond);
+
+        /// <summary>
         ///     Get VolumeFlow in CubicYardsPerHour.
         /// </summary>
         public double CubicYardsPerHour => As(VolumeFlowUnit.CubicYardPerHour);
@@ -415,6 +420,20 @@ namespace UnitsNet
         {
             double value = (double) cubicmeterspersecond;
             return new VolumeFlow(value, VolumeFlowUnit.CubicMeterPerSecond);
+        }
+
+        /// <summary>
+        ///     Get VolumeFlow from CubicMilliMetersPerSecond.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static VolumeFlow FromCubicMilliMetersPerSecond(double cubicmillimeterspersecond)
+#else
+        public static VolumeFlow FromCubicMilliMetersPerSecond(QuantityValue cubicmillimeterspersecond)
+#endif
+        {
+            double value = (double) cubicmillimeterspersecond;
+            return new VolumeFlow(value, VolumeFlowUnit.CubicMilliMeterPerSecond);
         }
 
         /// <summary>
@@ -863,6 +882,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.CubicMeterPerHour: return _value/3600;
                 case VolumeFlowUnit.CubicMeterPerMinute: return _value/60;
                 case VolumeFlowUnit.CubicMeterPerSecond: return _value;
+                case VolumeFlowUnit.CubicMilliMeterPerSecond: return _value*1e9;
                 case VolumeFlowUnit.CubicYardPerHour: return _value*2.1237634944E-4;
                 case VolumeFlowUnit.CubicYardPerMinute: return _value*0.0127425809664;
                 case VolumeFlowUnit.CubicYardPerSecond: return _value*0.764554857984;
@@ -904,6 +924,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.CubicMeterPerHour: return baseUnitValue*3600;
                 case VolumeFlowUnit.CubicMeterPerMinute: return baseUnitValue*60;
                 case VolumeFlowUnit.CubicMeterPerSecond: return baseUnitValue;
+                case VolumeFlowUnit.CubicMilliMeterPerSecond: return baseUnitValue/1e9;
                 case VolumeFlowUnit.CubicYardPerHour: return baseUnitValue/2.1237634944E-4;
                 case VolumeFlowUnit.CubicYardPerMinute: return baseUnitValue/0.0127425809664;
                 case VolumeFlowUnit.CubicYardPerSecond: return baseUnitValue/0.764554857984;

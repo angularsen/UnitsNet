@@ -275,6 +275,22 @@
           "Abbreviations": [ "bbl/hr", "bph" ]
         }
       ]
+    },
+	{
+      "SingularName": "CubicMilliMeterPerSecond",
+      "PluralName": "CubicMilliMetersPerSecond",
+      "FromUnitToBaseFunc": "x*1e9",
+      "FromBaseToUnitFunc": "x/1e9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "mm³/s" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "мм³/с" ]
+        }
+      ]
     }
   ]
 }

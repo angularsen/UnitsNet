@@ -135,6 +135,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable VolumeFlow from nullable CubicMilliMetersPerSecond.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static VolumeFlow? FromCubicMilliMetersPerSecond(QuantityValue? cubicmillimeterspersecond)
+        {
+            return cubicmillimeterspersecond.HasValue ? FromCubicMilliMetersPerSecond(cubicmillimeterspersecond.Value) : default(VolumeFlow?);
+        }
+
+        /// <summary>
         ///     Get nullable VolumeFlow from nullable CubicYardsPerHour.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]

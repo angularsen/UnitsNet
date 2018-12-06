@@ -132,6 +132,17 @@ namespace UnitsNet.Extensions.NumberToVolumeFlow
 
         #endregion
 
+        #region CubicMilliMeterPerSecond
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicMilliMetersPerSecond(UnitsNet.QuantityValue)" />
+        public static VolumeFlow CubicMilliMetersPerSecond<T>(this T value) => VolumeFlow.FromCubicMilliMetersPerSecond(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="VolumeFlow.FromCubicMilliMetersPerSecond(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static VolumeFlow? CubicMilliMetersPerSecond<T>(this T? value) where T : struct => VolumeFlow.FromCubicMilliMetersPerSecond(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region CubicYardPerHour
 
         /// <inheritdoc cref="VolumeFlow.FromCubicYardsPerHour(UnitsNet.QuantityValue)" />
