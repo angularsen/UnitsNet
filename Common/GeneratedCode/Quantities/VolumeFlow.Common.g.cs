@@ -882,7 +882,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.CubicMeterPerHour: return _value/3600;
                 case VolumeFlowUnit.CubicMeterPerMinute: return _value/60;
                 case VolumeFlowUnit.CubicMeterPerSecond: return _value;
-                case VolumeFlowUnit.CubicMilliMeterPerSecond: return _value*1e9;
+                case VolumeFlowUnit.CubicMilliMeterPerSecond: return _value*1e-9;
                 case VolumeFlowUnit.CubicYardPerHour: return _value*2.1237634944E-4;
                 case VolumeFlowUnit.CubicYardPerMinute: return _value*0.0127425809664;
                 case VolumeFlowUnit.CubicYardPerSecond: return _value*0.764554857984;
@@ -924,7 +924,7 @@ namespace UnitsNet
                 case VolumeFlowUnit.CubicMeterPerHour: return baseUnitValue*3600;
                 case VolumeFlowUnit.CubicMeterPerMinute: return baseUnitValue*60;
                 case VolumeFlowUnit.CubicMeterPerSecond: return baseUnitValue;
-                case VolumeFlowUnit.CubicMilliMeterPerSecond: return baseUnitValue/1e9;
+                case VolumeFlowUnit.CubicMilliMeterPerSecond: return baseUnitValue/1e-9;
                 case VolumeFlowUnit.CubicYardPerHour: return baseUnitValue/2.1237634944E-4;
                 case VolumeFlowUnit.CubicYardPerMinute: return baseUnitValue/0.0127425809664;
                 case VolumeFlowUnit.CubicYardPerSecond: return baseUnitValue/0.764554857984;
