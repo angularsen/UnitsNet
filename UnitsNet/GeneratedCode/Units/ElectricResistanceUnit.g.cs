@@ -45,6 +45,7 @@ namespace UnitsNet.Units
     public enum ElectricResistanceUnit
     {
         Undefined = 0,
+        Gigaohm,
         Kiloohm,
         Megaohm,
         Milliohm,

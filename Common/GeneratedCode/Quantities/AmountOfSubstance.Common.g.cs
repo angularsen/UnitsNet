@@ -192,6 +192,11 @@ namespace UnitsNet
         public double KilopoundMoles => As(AmountOfSubstanceUnit.KilopoundMole);
 
         /// <summary>
+        ///     Get AmountOfSubstance in Megamoles.
+        /// </summary>
+        public double Megamoles => As(AmountOfSubstanceUnit.Megamole);
+
+        /// <summary>
         ///     Get AmountOfSubstance in Micromoles.
         /// </summary>
         public double Micromoles => As(AmountOfSubstanceUnit.Micromole);
@@ -322,6 +327,20 @@ namespace UnitsNet
         {
             double value = (double) kilopoundmoles;
             return new AmountOfSubstance(value, AmountOfSubstanceUnit.KilopoundMole);
+        }
+
+        /// <summary>
+        ///     Get AmountOfSubstance from Megamoles.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static AmountOfSubstance FromMegamoles(double megamoles)
+#else
+        public static AmountOfSubstance FromMegamoles(QuantityValue megamoles)
+#endif
+        {
+            double value = (double) megamoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Megamole);
         }
 
         /// <summary>
@@ -614,6 +633,7 @@ namespace UnitsNet
                 case AmountOfSubstanceUnit.DecipoundMole: return (_value*453.59237) * 1e-1d;
                 case AmountOfSubstanceUnit.Kilomole: return (_value) * 1e3d;
                 case AmountOfSubstanceUnit.KilopoundMole: return (_value*453.59237) * 1e3d;
+                case AmountOfSubstanceUnit.Megamole: return (_value) * 1e6d;
                 case AmountOfSubstanceUnit.Micromole: return (_value) * 1e-6d;
                 case AmountOfSubstanceUnit.MicropoundMole: return (_value*453.59237) * 1e-6d;
                 case AmountOfSubstanceUnit.Millimole: return (_value) * 1e-3d;
@@ -642,6 +662,7 @@ namespace UnitsNet
                 case AmountOfSubstanceUnit.DecipoundMole: return (baseUnitValue/453.59237) / 1e-1d;
                 case AmountOfSubstanceUnit.Kilomole: return (baseUnitValue) / 1e3d;
                 case AmountOfSubstanceUnit.KilopoundMole: return (baseUnitValue/453.59237) / 1e3d;
+                case AmountOfSubstanceUnit.Megamole: return (baseUnitValue) / 1e6d;
                 case AmountOfSubstanceUnit.Micromole: return (baseUnitValue) / 1e-6d;
                 case AmountOfSubstanceUnit.MicropoundMole: return (baseUnitValue/453.59237) / 1e-6d;
                 case AmountOfSubstanceUnit.Millimole: return (baseUnitValue) / 1e-3d;

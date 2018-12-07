@@ -63,6 +63,15 @@ namespace UnitsNet
         #region Nullable From Methods
 
         /// <summary>
+        ///     Get nullable ElectricResistance from nullable Gigaohms.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static ElectricResistance? FromGigaohms(QuantityValue? gigaohms)
+        {
+            return gigaohms.HasValue ? FromGigaohms(gigaohms.Value) : default(ElectricResistance?);
+        }
+
+        /// <summary>
         ///     Get nullable ElectricResistance from nullable Kiloohms.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]

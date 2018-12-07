@@ -53,9 +53,15 @@ namespace UnitsNet.Tests
 // ReSharper disable once PartialTypeWithSinglePart
     public abstract partial class MagneticFieldTestsBase
     {
+        protected abstract double MicroteslasInOneTesla { get; }
+        protected abstract double MilliteslasInOneTesla { get; }
+        protected abstract double NanoteslasInOneTesla { get; }
         protected abstract double TeslasInOneTesla { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
+        protected virtual double MicroteslasTolerance { get { return 1e-5; } }
+        protected virtual double MilliteslasTolerance { get { return 1e-5; } }
+        protected virtual double NanoteslasTolerance { get { return 1e-5; } }
         protected virtual double TeslasTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
@@ -63,12 +69,18 @@ namespace UnitsNet.Tests
         public void TeslaToMagneticFieldUnits()
         {
             MagneticField tesla = MagneticField.FromTeslas(1);
+            AssertEx.EqualTolerance(MicroteslasInOneTesla, tesla.Microteslas, MicroteslasTolerance);
+            AssertEx.EqualTolerance(MilliteslasInOneTesla, tesla.Milliteslas, MilliteslasTolerance);
+            AssertEx.EqualTolerance(NanoteslasInOneTesla, tesla.Nanoteslas, NanoteslasTolerance);
             AssertEx.EqualTolerance(TeslasInOneTesla, tesla.Teslas, TeslasTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
+            AssertEx.EqualTolerance(1, MagneticField.From(1, MagneticFieldUnit.Microtesla).Microteslas, MicroteslasTolerance);
+            AssertEx.EqualTolerance(1, MagneticField.From(1, MagneticFieldUnit.Millitesla).Milliteslas, MilliteslasTolerance);
+            AssertEx.EqualTolerance(1, MagneticField.From(1, MagneticFieldUnit.Nanotesla).Nanoteslas, NanoteslasTolerance);
             AssertEx.EqualTolerance(1, MagneticField.From(1, MagneticFieldUnit.Tesla).Teslas, TeslasTolerance);
         }
 
@@ -76,6 +88,9 @@ namespace UnitsNet.Tests
         public void As()
         {
             var tesla = MagneticField.FromTeslas(1);
+            AssertEx.EqualTolerance(MicroteslasInOneTesla, tesla.As(MagneticFieldUnit.Microtesla), MicroteslasTolerance);
+            AssertEx.EqualTolerance(MilliteslasInOneTesla, tesla.As(MagneticFieldUnit.Millitesla), MilliteslasTolerance);
+            AssertEx.EqualTolerance(NanoteslasInOneTesla, tesla.As(MagneticFieldUnit.Nanotesla), NanoteslasTolerance);
             AssertEx.EqualTolerance(TeslasInOneTesla, tesla.As(MagneticFieldUnit.Tesla), TeslasTolerance);
         }
 
@@ -83,6 +98,18 @@ namespace UnitsNet.Tests
         public void ToUnit()
         {
             var tesla = MagneticField.FromTeslas(1);
+
+            var microteslaQuantity = tesla.ToUnit(MagneticFieldUnit.Microtesla);
+            AssertEx.EqualTolerance(MicroteslasInOneTesla, (double)microteslaQuantity.Value, MicroteslasTolerance);
+            Assert.Equal(MagneticFieldUnit.Microtesla, microteslaQuantity.Unit);
+
+            var milliteslaQuantity = tesla.ToUnit(MagneticFieldUnit.Millitesla);
+            AssertEx.EqualTolerance(MilliteslasInOneTesla, (double)milliteslaQuantity.Value, MilliteslasTolerance);
+            Assert.Equal(MagneticFieldUnit.Millitesla, milliteslaQuantity.Unit);
+
+            var nanoteslaQuantity = tesla.ToUnit(MagneticFieldUnit.Nanotesla);
+            AssertEx.EqualTolerance(NanoteslasInOneTesla, (double)nanoteslaQuantity.Value, NanoteslasTolerance);
+            Assert.Equal(MagneticFieldUnit.Nanotesla, nanoteslaQuantity.Unit);
 
             var teslaQuantity = tesla.ToUnit(MagneticFieldUnit.Tesla);
             AssertEx.EqualTolerance(TeslasInOneTesla, (double)teslaQuantity.Value, TeslasTolerance);
@@ -93,6 +120,9 @@ namespace UnitsNet.Tests
         public void ConversionRoundTrip()
         {
             MagneticField tesla = MagneticField.FromTeslas(1);
+            AssertEx.EqualTolerance(1, MagneticField.FromMicroteslas(tesla.Microteslas).Teslas, MicroteslasTolerance);
+            AssertEx.EqualTolerance(1, MagneticField.FromMilliteslas(tesla.Milliteslas).Teslas, MilliteslasTolerance);
+            AssertEx.EqualTolerance(1, MagneticField.FromNanoteslas(tesla.Nanoteslas).Teslas, NanoteslasTolerance);
             AssertEx.EqualTolerance(1, MagneticField.FromTeslas(tesla.Teslas).Teslas, TeslasTolerance);
         }
 

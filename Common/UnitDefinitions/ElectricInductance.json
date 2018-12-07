@@ -15,6 +15,7 @@
       "PluralName": "Henries",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+	  "Prefixes": [ "Nano", "Micro", "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",

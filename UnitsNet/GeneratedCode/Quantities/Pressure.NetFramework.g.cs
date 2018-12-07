@@ -315,6 +315,15 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable Pressure from nullable Millipascals.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static Pressure? FromMillipascals(QuantityValue? millipascals)
+        {
+            return millipascals.HasValue ? FromMillipascals(millipascals.Value) : default(Pressure?);
+        }
+
+        /// <summary>
         ///     Get nullable Pressure from nullable NewtonsPerSquareCentimeter.
         /// </summary>
         [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]

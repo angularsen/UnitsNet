@@ -54,9 +54,17 @@ namespace UnitsNet.Tests
     public abstract partial class CapacitanceTestsBase
     {
         protected abstract double FaradsInOneFarad { get; }
+        protected abstract double MicrofaradsInOneFarad { get; }
+        protected abstract double MillifaradsInOneFarad { get; }
+        protected abstract double NanofaradsInOneFarad { get; }
+        protected abstract double PicofaradsInOneFarad { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double FaradsTolerance { get { return 1e-5; } }
+        protected virtual double MicrofaradsTolerance { get { return 1e-5; } }
+        protected virtual double MillifaradsTolerance { get { return 1e-5; } }
+        protected virtual double NanofaradsTolerance { get { return 1e-5; } }
+        protected virtual double PicofaradsTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
@@ -64,12 +72,20 @@ namespace UnitsNet.Tests
         {
             Capacitance farad = Capacitance.FromFarads(1);
             AssertEx.EqualTolerance(FaradsInOneFarad, farad.Farads, FaradsTolerance);
+            AssertEx.EqualTolerance(MicrofaradsInOneFarad, farad.Microfarads, MicrofaradsTolerance);
+            AssertEx.EqualTolerance(MillifaradsInOneFarad, farad.Millifarads, MillifaradsTolerance);
+            AssertEx.EqualTolerance(NanofaradsInOneFarad, farad.Nanofarads, NanofaradsTolerance);
+            AssertEx.EqualTolerance(PicofaradsInOneFarad, farad.Picofarads, PicofaradsTolerance);
         }
 
         [Fact]
         public void FromValueAndUnit()
         {
             AssertEx.EqualTolerance(1, Capacitance.From(1, CapacitanceUnit.Farad).Farads, FaradsTolerance);
+            AssertEx.EqualTolerance(1, Capacitance.From(1, CapacitanceUnit.Microfarad).Microfarads, MicrofaradsTolerance);
+            AssertEx.EqualTolerance(1, Capacitance.From(1, CapacitanceUnit.Millifarad).Millifarads, MillifaradsTolerance);
+            AssertEx.EqualTolerance(1, Capacitance.From(1, CapacitanceUnit.Nanofarad).Nanofarads, NanofaradsTolerance);
+            AssertEx.EqualTolerance(1, Capacitance.From(1, CapacitanceUnit.Picofarad).Picofarads, PicofaradsTolerance);
         }
 
         [Fact]
@@ -77,6 +93,10 @@ namespace UnitsNet.Tests
         {
             var farad = Capacitance.FromFarads(1);
             AssertEx.EqualTolerance(FaradsInOneFarad, farad.As(CapacitanceUnit.Farad), FaradsTolerance);
+            AssertEx.EqualTolerance(MicrofaradsInOneFarad, farad.As(CapacitanceUnit.Microfarad), MicrofaradsTolerance);
+            AssertEx.EqualTolerance(MillifaradsInOneFarad, farad.As(CapacitanceUnit.Millifarad), MillifaradsTolerance);
+            AssertEx.EqualTolerance(NanofaradsInOneFarad, farad.As(CapacitanceUnit.Nanofarad), NanofaradsTolerance);
+            AssertEx.EqualTolerance(PicofaradsInOneFarad, farad.As(CapacitanceUnit.Picofarad), PicofaradsTolerance);
         }
 
         [Fact]
@@ -87,6 +107,22 @@ namespace UnitsNet.Tests
             var faradQuantity = farad.ToUnit(CapacitanceUnit.Farad);
             AssertEx.EqualTolerance(FaradsInOneFarad, (double)faradQuantity.Value, FaradsTolerance);
             Assert.Equal(CapacitanceUnit.Farad, faradQuantity.Unit);
+
+            var microfaradQuantity = farad.ToUnit(CapacitanceUnit.Microfarad);
+            AssertEx.EqualTolerance(MicrofaradsInOneFarad, (double)microfaradQuantity.Value, MicrofaradsTolerance);
+            Assert.Equal(CapacitanceUnit.Microfarad, microfaradQuantity.Unit);
+
+            var millifaradQuantity = farad.ToUnit(CapacitanceUnit.Millifarad);
+            AssertEx.EqualTolerance(MillifaradsInOneFarad, (double)millifaradQuantity.Value, MillifaradsTolerance);
+            Assert.Equal(CapacitanceUnit.Millifarad, millifaradQuantity.Unit);
+
+            var nanofaradQuantity = farad.ToUnit(CapacitanceUnit.Nanofarad);
+            AssertEx.EqualTolerance(NanofaradsInOneFarad, (double)nanofaradQuantity.Value, NanofaradsTolerance);
+            Assert.Equal(CapacitanceUnit.Nanofarad, nanofaradQuantity.Unit);
+
+            var picofaradQuantity = farad.ToUnit(CapacitanceUnit.Picofarad);
+            AssertEx.EqualTolerance(PicofaradsInOneFarad, (double)picofaradQuantity.Value, PicofaradsTolerance);
+            Assert.Equal(CapacitanceUnit.Picofarad, picofaradQuantity.Unit);
         }
 
         [Fact]
@@ -94,6 +130,10 @@ namespace UnitsNet.Tests
         {
             Capacitance farad = Capacitance.FromFarads(1);
             AssertEx.EqualTolerance(1, Capacitance.FromFarads(farad.Farads).Farads, FaradsTolerance);
+            AssertEx.EqualTolerance(1, Capacitance.FromMicrofarads(farad.Microfarads).Farads, MicrofaradsTolerance);
+            AssertEx.EqualTolerance(1, Capacitance.FromMillifarads(farad.Millifarads).Farads, MillifaradsTolerance);
+            AssertEx.EqualTolerance(1, Capacitance.FromNanofarads(farad.Nanofarads).Farads, NanofaradsTolerance);
+            AssertEx.EqualTolerance(1, Capacitance.FromPicofarads(farad.Picofarads).Farads, PicofaradsTolerance);
         }
 
         [Fact]

@@ -72,6 +72,33 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get nullable ElectricInductance from nullable Microhenries.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static ElectricInductance? FromMicrohenries(QuantityValue? microhenries)
+        {
+            return microhenries.HasValue ? FromMicrohenries(microhenries.Value) : default(ElectricInductance?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricInductance from nullable Millihenries.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static ElectricInductance? FromMillihenries(QuantityValue? millihenries)
+        {
+            return millihenries.HasValue ? FromMillihenries(millihenries.Value) : default(ElectricInductance?);
+        }
+
+        /// <summary>
+        ///     Get nullable ElectricInductance from nullable Nanohenries.
+        /// </summary>
+        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
+        public static ElectricInductance? FromNanohenries(QuantityValue? nanohenries)
+        {
+            return nanohenries.HasValue ? FromNanohenries(nanohenries.Value) : default(ElectricInductance?);
+        }
+
+        /// <summary>
         ///     Dynamically convert from value and unit enum <see cref="ElectricInductanceUnit" /> to <see cref="ElectricInductance" />.
         /// </summary>
         /// <param name="value">Value to convert from.</param>

@@ -81,6 +81,7 @@ namespace UnitsNet.Tests
         protected abstract double MicropascalsInOnePascal { get; }
         protected abstract double MillibarsInOnePascal { get; }
         protected abstract double MillimetersOfMercuryInOnePascal { get; }
+        protected abstract double MillipascalsInOnePascal { get; }
         protected abstract double NewtonsPerSquareCentimeterInOnePascal { get; }
         protected abstract double NewtonsPerSquareMeterInOnePascal { get; }
         protected abstract double NewtonsPerSquareMillimeterInOnePascal { get; }
@@ -124,6 +125,7 @@ namespace UnitsNet.Tests
         protected virtual double MicropascalsTolerance { get { return 1e-5; } }
         protected virtual double MillibarsTolerance { get { return 1e-5; } }
         protected virtual double MillimetersOfMercuryTolerance { get { return 1e-5; } }
+        protected virtual double MillipascalsTolerance { get { return 1e-5; } }
         protected virtual double NewtonsPerSquareCentimeterTolerance { get { return 1e-5; } }
         protected virtual double NewtonsPerSquareMeterTolerance { get { return 1e-5; } }
         protected virtual double NewtonsPerSquareMillimeterTolerance { get { return 1e-5; } }
@@ -171,6 +173,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MicropascalsInOnePascal, pascal.Micropascals, MicropascalsTolerance);
             AssertEx.EqualTolerance(MillibarsInOnePascal, pascal.Millibars, MillibarsTolerance);
             AssertEx.EqualTolerance(MillimetersOfMercuryInOnePascal, pascal.MillimetersOfMercury, MillimetersOfMercuryTolerance);
+            AssertEx.EqualTolerance(MillipascalsInOnePascal, pascal.Millipascals, MillipascalsTolerance);
             AssertEx.EqualTolerance(NewtonsPerSquareCentimeterInOnePascal, pascal.NewtonsPerSquareCentimeter, NewtonsPerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerSquareMeterInOnePascal, pascal.NewtonsPerSquareMeter, NewtonsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerSquareMillimeterInOnePascal, pascal.NewtonsPerSquareMillimeter, NewtonsPerSquareMillimeterTolerance);
@@ -217,6 +220,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Micropascal).Micropascals, MicropascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Millibar).Millibars, MillibarsTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.MillimeterOfMercury).MillimetersOfMercury, MillimetersOfMercuryTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Millipascal).Millipascals, MillipascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.NewtonPerSquareCentimeter).NewtonsPerSquareCentimeter, NewtonsPerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.NewtonPerSquareMeter).NewtonsPerSquareMeter, NewtonsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.NewtonPerSquareMillimeter).NewtonsPerSquareMillimeter, NewtonsPerSquareMillimeterTolerance);
@@ -264,6 +268,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MicropascalsInOnePascal, pascal.As(PressureUnit.Micropascal), MicropascalsTolerance);
             AssertEx.EqualTolerance(MillibarsInOnePascal, pascal.As(PressureUnit.Millibar), MillibarsTolerance);
             AssertEx.EqualTolerance(MillimetersOfMercuryInOnePascal, pascal.As(PressureUnit.MillimeterOfMercury), MillimetersOfMercuryTolerance);
+            AssertEx.EqualTolerance(MillipascalsInOnePascal, pascal.As(PressureUnit.Millipascal), MillipascalsTolerance);
             AssertEx.EqualTolerance(NewtonsPerSquareCentimeterInOnePascal, pascal.As(PressureUnit.NewtonPerSquareCentimeter), NewtonsPerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerSquareMeterInOnePascal, pascal.As(PressureUnit.NewtonPerSquareMeter), NewtonsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(NewtonsPerSquareMillimeterInOnePascal, pascal.As(PressureUnit.NewtonPerSquareMillimeter), NewtonsPerSquareMillimeterTolerance);
@@ -396,6 +401,10 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(MillimetersOfMercuryInOnePascal, (double)millimeterofmercuryQuantity.Value, MillimetersOfMercuryTolerance);
             Assert.Equal(PressureUnit.MillimeterOfMercury, millimeterofmercuryQuantity.Unit);
 
+            var millipascalQuantity = pascal.ToUnit(PressureUnit.Millipascal);
+            AssertEx.EqualTolerance(MillipascalsInOnePascal, (double)millipascalQuantity.Value, MillipascalsTolerance);
+            Assert.Equal(PressureUnit.Millipascal, millipascalQuantity.Unit);
+
             var newtonpersquarecentimeterQuantity = pascal.ToUnit(PressureUnit.NewtonPerSquareCentimeter);
             AssertEx.EqualTolerance(NewtonsPerSquareCentimeterInOnePascal, (double)newtonpersquarecentimeterQuantity.Value, NewtonsPerSquareCentimeterTolerance);
             Assert.Equal(PressureUnit.NewtonPerSquareCentimeter, newtonpersquarecentimeterQuantity.Unit);
@@ -481,6 +490,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.FromMicropascals(pascal.Micropascals).Pascals, MicropascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromMillibars(pascal.Millibars).Pascals, MillibarsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromMillimetersOfMercury(pascal.MillimetersOfMercury).Pascals, MillimetersOfMercuryTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromMillipascals(pascal.Millipascals).Pascals, MillipascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromNewtonsPerSquareCentimeter(pascal.NewtonsPerSquareCentimeter).Pascals, NewtonsPerSquareCentimeterTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromNewtonsPerSquareMeter(pascal.NewtonsPerSquareMeter).Pascals, NewtonsPerSquareMeterTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromNewtonsPerSquareMillimeter(pascal.NewtonsPerSquareMillimeter).Pascals, NewtonsPerSquareMillimeterTolerance);

@@ -153,6 +153,11 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "klbmol"),
                             }),
+                        new CulturesForEnumValue((int) AmountOfSubstanceUnit.Megamole,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "Mmol"),
+                            }),
                         new CulturesForEnumValue((int) AmountOfSubstanceUnit.Micromole,
                             new[]
                             {
@@ -630,6 +635,26 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "F"),
                             }),
+                        new CulturesForEnumValue((int) CapacitanceUnit.Microfarad,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µF"),
+                            }),
+                        new CulturesForEnumValue((int) CapacitanceUnit.Millifarad,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mF"),
+                            }),
+                        new CulturesForEnumValue((int) CapacitanceUnit.Nanofarad,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nF"),
+                            }),
+                        new CulturesForEnumValue((int) CapacitanceUnit.Picofarad,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "pF"),
+                            }),
                     }),
                 new UnitLocalization(typeof (CoefficientOfThermalExpansionUnit),
                     new[]
@@ -1106,6 +1131,21 @@ namespace UnitsNet
                             {
                                 new AbbreviationsForCulture("en-US", "H"),
                             }),
+                        new CulturesForEnumValue((int) ElectricInductanceUnit.Microhenry,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µH"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricInductanceUnit.Millihenry,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mH"),
+                            }),
+                        new CulturesForEnumValue((int) ElectricInductanceUnit.Nanohenry,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nH"),
+                            }),
                     }),
                 new UnitLocalization(typeof (ElectricPotentialUnit),
                     new[]
@@ -1202,6 +1242,11 @@ namespace UnitsNet
                 new UnitLocalization(typeof (ElectricResistanceUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) ElectricResistanceUnit.Gigaohm,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "GΩ"),
+                            }),
                         new CulturesForEnumValue((int) ElectricResistanceUnit.Kiloohm,
                             new[]
                             {
@@ -2314,6 +2359,21 @@ namespace UnitsNet
                 new UnitLocalization(typeof (MagneticFieldUnit),
                     new[]
                     {
+                        new CulturesForEnumValue((int) MagneticFieldUnit.Microtesla,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "µT"),
+                            }),
+                        new CulturesForEnumValue((int) MagneticFieldUnit.Millitesla,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mT"),
+                            }),
+                        new CulturesForEnumValue((int) MagneticFieldUnit.Nanotesla,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "nT"),
+                            }),
                         new CulturesForEnumValue((int) MagneticFieldUnit.Tesla,
                             new[]
                             {
@@ -3404,6 +3464,12 @@ namespace UnitsNet
                             new[]
                             {
                                 new AbbreviationsForCulture("en-US", "mmHg"),
+                            }),
+                        new CulturesForEnumValue((int) PressureUnit.Millipascal,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mPa"),
+                                new AbbreviationsForCulture("ru-RU", "ммПа"),
                             }),
                         new CulturesForEnumValue((int) PressureUnit.NewtonPerSquareCentimeter,
                             new[]

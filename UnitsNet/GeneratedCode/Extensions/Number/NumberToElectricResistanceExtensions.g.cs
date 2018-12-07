@@ -44,6 +44,17 @@ namespace UnitsNet.Extensions.NumberToElectricResistance
 {
     public static class NumberToElectricResistanceExtensions
     {
+        #region Gigaohm
+
+        /// <inheritdoc cref="ElectricResistance.FromGigaohms(UnitsNet.QuantityValue)" />
+        public static ElectricResistance Gigaohms<T>(this T value) => ElectricResistance.FromGigaohms(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="ElectricResistance.FromGigaohms(UnitsNet.QuantityValue)" />
+        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
+        public static ElectricResistance? Gigaohms<T>(this T? value) where T : struct => ElectricResistance.FromGigaohms(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region Kiloohm
 
         /// <inheritdoc cref="ElectricResistance.FromKiloohms(UnitsNet.QuantityValue)" />

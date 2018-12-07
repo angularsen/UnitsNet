@@ -302,6 +302,11 @@ namespace UnitsNet
         public double MillimetersOfMercury => As(PressureUnit.MillimeterOfMercury);
 
         /// <summary>
+        ///     Get Pressure in Millipascals.
+        /// </summary>
+        public double Millipascals => As(PressureUnit.Millipascal);
+
+        /// <summary>
         ///     Get Pressure in NewtonsPerSquareCentimeter.
         /// </summary>
         public double NewtonsPerSquareCentimeter => As(PressureUnit.NewtonPerSquareCentimeter);
@@ -769,6 +774,20 @@ namespace UnitsNet
         }
 
         /// <summary>
+        ///     Get Pressure from Millipascals.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Pressure FromMillipascals(double millipascals)
+#else
+        public static Pressure FromMillipascals(QuantityValue millipascals)
+#endif
+        {
+            double value = (double) millipascals;
+            return new Pressure(value, PressureUnit.Millipascal);
+        }
+
+        /// <summary>
         ///     Get Pressure from NewtonsPerSquareCentimeter.
         /// </summary>
 #if WINDOWS_UWP
@@ -1151,6 +1170,7 @@ namespace UnitsNet
                 case PressureUnit.Micropascal: return (_value) * 1e-6d;
                 case PressureUnit.Millibar: return (_value*1e5) * 1e-3d;
                 case PressureUnit.MillimeterOfMercury: return _value/7.50061561302643e-3;
+                case PressureUnit.Millipascal: return (_value) * 1e-3d;
                 case PressureUnit.NewtonPerSquareCentimeter: return _value*1e4;
                 case PressureUnit.NewtonPerSquareMeter: return _value;
                 case PressureUnit.NewtonPerSquareMillimeter: return _value*1e6;
@@ -1206,6 +1226,7 @@ namespace UnitsNet
                 case PressureUnit.Micropascal: return (baseUnitValue) / 1e-6d;
                 case PressureUnit.Millibar: return (baseUnitValue/1e5) / 1e-3d;
                 case PressureUnit.MillimeterOfMercury: return baseUnitValue*7.50061561302643e-3;
+                case PressureUnit.Millipascal: return (baseUnitValue) / 1e-3d;
                 case PressureUnit.NewtonPerSquareCentimeter: return baseUnitValue/1e4;
                 case PressureUnit.NewtonPerSquareMeter: return baseUnitValue;
                 case PressureUnit.NewtonPerSquareMillimeter: return baseUnitValue/1e6;
