@@ -277,8 +277,8 @@
       ]
     },
 	{
-      "SingularName": "CubicMilliMeterPerSecond",
-      "PluralName": "CubicMilliMetersPerSecond",
+      "SingularName": "CubicMillimeterPerSecond",
+      "PluralName": "CubicMillimetersPerSecond",
       "FromUnitToBaseFunc": "x*1e-9",
       "FromBaseToUnitFunc": "x/1e-9",
       "Localization": [

@@ -53,7 +53,7 @@ namespace UnitsNet.Units
         CubicMeterPerHour,
         CubicMeterPerMinute,
         CubicMeterPerSecond,
-        CubicMilliMeterPerSecond,
+        CubicMillimeterPerSecond,
         CubicYardPerHour,
         CubicYardPerMinute,
         CubicYardPerSecond,
