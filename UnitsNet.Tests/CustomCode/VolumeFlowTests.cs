@@ -98,6 +98,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilousGallonsPerMinuteInOneCubicMeterPerSecond => 1.5850323141489e1;
 
+        protected override double CubicMillimetersPerSecondInOneCubicMeterPerSecond => 1e9;
+
         [Theory]
         [InlineData(20, 2, 40)]
         [InlineData(20, 62, 1240)]

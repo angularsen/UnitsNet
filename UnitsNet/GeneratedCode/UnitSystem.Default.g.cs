@@ -4816,6 +4816,12 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "m³/s"),
                                 new AbbreviationsForCulture("ru-RU", "м³/с"),
                             }),
+                        new CulturesForEnumValue((int) VolumeFlowUnit.CubicMillimeterPerSecond,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "mm³/s"),
+                                new AbbreviationsForCulture("ru-RU", "мм³/с"),
+                            }),
                         new CulturesForEnumValue((int) VolumeFlowUnit.CubicYardPerHour,
                             new[]
                             {
