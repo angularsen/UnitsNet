@@ -169,6 +169,21 @@ namespace UnitsNet
         /// </summary>
         public double Henries => As(ElectricInductanceUnit.Henry);
 
+        /// <summary>
+        ///     Get ElectricInductance in Microhenries.
+        /// </summary>
+        public double Microhenries => As(ElectricInductanceUnit.Microhenry);
+
+        /// <summary>
+        ///     Get ElectricInductance in Millihenries.
+        /// </summary>
+        public double Millihenries => As(ElectricInductanceUnit.Millihenry);
+
+        /// <summary>
+        ///     Get ElectricInductance in Nanohenries.
+        /// </summary>
+        public double Nanohenries => As(ElectricInductanceUnit.Nanohenry);
+
         #endregion
 
         #region Static Methods
@@ -208,6 +223,36 @@ namespace UnitsNet
         {
             double value = (double) henries;
             return new ElectricInductance(value, ElectricInductanceUnit.Henry);
+        }
+        /// <summary>
+        ///     Get ElectricInductance from Microhenries.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricInductance FromMicrohenries(double microhenries)
+        {
+            double value = (double) microhenries;
+            return new ElectricInductance(value, ElectricInductanceUnit.Microhenry);
+        }
+        /// <summary>
+        ///     Get ElectricInductance from Millihenries.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricInductance FromMillihenries(double millihenries)
+        {
+            double value = (double) millihenries;
+            return new ElectricInductance(value, ElectricInductanceUnit.Millihenry);
+        }
+        /// <summary>
+        ///     Get ElectricInductance from Nanohenries.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricInductance FromNanohenries(double nanohenries)
+        {
+            double value = (double) nanohenries;
+            return new ElectricInductance(value, ElectricInductanceUnit.Nanohenry);
         }
 
         /// <summary>
@@ -499,6 +544,9 @@ namespace UnitsNet
             switch(Unit)
             {
                 case ElectricInductanceUnit.Henry: return _value;
+                case ElectricInductanceUnit.Microhenry: return (_value) * 1e-6d;
+                case ElectricInductanceUnit.Millihenry: return (_value) * 1e-3d;
+                case ElectricInductanceUnit.Nanohenry: return (_value) * 1e-9d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -514,6 +562,9 @@ namespace UnitsNet
             switch(unit)
             {
                 case ElectricInductanceUnit.Henry: return baseUnitValue;
+                case ElectricInductanceUnit.Microhenry: return (baseUnitValue) / 1e-6d;
+                case ElectricInductanceUnit.Millihenry: return (baseUnitValue) / 1e-3d;
+                case ElectricInductanceUnit.Nanohenry: return (baseUnitValue) / 1e-9d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

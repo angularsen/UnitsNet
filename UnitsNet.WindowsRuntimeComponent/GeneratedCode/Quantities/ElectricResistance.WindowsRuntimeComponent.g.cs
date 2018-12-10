@@ -162,6 +162,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get ElectricResistance in Gigaohms.
+        /// </summary>
+        public double Gigaohms => As(ElectricResistanceUnit.Gigaohm);
+
+        /// <summary>
         ///     Get ElectricResistance in Kiloohms.
         /// </summary>
         public double Kiloohms => As(ElectricResistanceUnit.Kiloohm);
@@ -211,6 +216,16 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get ElectricResistance from Gigaohms.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static ElectricResistance FromGigaohms(double gigaohms)
+        {
+            double value = (double) gigaohms;
+            return new ElectricResistance(value, ElectricResistanceUnit.Gigaohm);
+        }
         /// <summary>
         ///     Get ElectricResistance from Kiloohms.
         /// </summary>
@@ -540,6 +555,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case ElectricResistanceUnit.Gigaohm: return (_value) * 1e9d;
                 case ElectricResistanceUnit.Kiloohm: return (_value) * 1e3d;
                 case ElectricResistanceUnit.Megaohm: return (_value) * 1e6d;
                 case ElectricResistanceUnit.Milliohm: return (_value) * 1e-3d;
@@ -558,6 +574,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case ElectricResistanceUnit.Gigaohm: return (baseUnitValue) / 1e9d;
                 case ElectricResistanceUnit.Kiloohm: return (baseUnitValue) / 1e3d;
                 case ElectricResistanceUnit.Megaohm: return (baseUnitValue) / 1e6d;
                 case ElectricResistanceUnit.Milliohm: return (baseUnitValue) / 1e-3d;

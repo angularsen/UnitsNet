@@ -13,16 +13,16 @@
       "PluralName": "Pascals",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Micro", "Deca", "Hecto", "Kilo", "Mega", "Giga" ],
+      "Prefixes": [ "Micro", "Milli", "Deca", "Hecto", "Kilo", "Mega", "Giga" ],
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "Pa" ]
+          "Abbreviations": [ "Pa" ] 
         },
         {
           "Culture": "ru-RU",
           "Abbreviations": [ "Па" ],
-          "AbbreviationsWithPrefixes": [ "мкПа", "даПа", "гПа", "кПа", "МПа", "ГПа" ]
+          "AbbreviationsWithPrefixes": [ "мкПа", "ммПа", "даПа", "гПа", "кПа", "МПа", "ГПа" ]
         }
       ]
     },

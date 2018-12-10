@@ -58,5 +58,6 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanomolesInOneMole => 1e9;
         protected override double NanopoundMolesInOneMole => 0.002204622621848776 * 1e9;
         protected override double PoundMolesInOneMole => 0.002204622621848776;
+        protected override double MegamolesInOneMole => 1e-6;
     }
 }

@@ -169,6 +169,26 @@ namespace UnitsNet
         /// </summary>
         public double Farads => As(CapacitanceUnit.Farad);
 
+        /// <summary>
+        ///     Get Capacitance in Microfarads.
+        /// </summary>
+        public double Microfarads => As(CapacitanceUnit.Microfarad);
+
+        /// <summary>
+        ///     Get Capacitance in Millifarads.
+        /// </summary>
+        public double Millifarads => As(CapacitanceUnit.Millifarad);
+
+        /// <summary>
+        ///     Get Capacitance in Nanofarads.
+        /// </summary>
+        public double Nanofarads => As(CapacitanceUnit.Nanofarad);
+
+        /// <summary>
+        ///     Get Capacitance in Picofarads.
+        /// </summary>
+        public double Picofarads => As(CapacitanceUnit.Picofarad);
+
         #endregion
 
         #region Static Methods
@@ -208,6 +228,46 @@ namespace UnitsNet
         {
             double value = (double) farads;
             return new Capacitance(value, CapacitanceUnit.Farad);
+        }
+        /// <summary>
+        ///     Get Capacitance from Microfarads.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Capacitance FromMicrofarads(double microfarads)
+        {
+            double value = (double) microfarads;
+            return new Capacitance(value, CapacitanceUnit.Microfarad);
+        }
+        /// <summary>
+        ///     Get Capacitance from Millifarads.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Capacitance FromMillifarads(double millifarads)
+        {
+            double value = (double) millifarads;
+            return new Capacitance(value, CapacitanceUnit.Millifarad);
+        }
+        /// <summary>
+        ///     Get Capacitance from Nanofarads.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Capacitance FromNanofarads(double nanofarads)
+        {
+            double value = (double) nanofarads;
+            return new Capacitance(value, CapacitanceUnit.Nanofarad);
+        }
+        /// <summary>
+        ///     Get Capacitance from Picofarads.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Capacitance FromPicofarads(double picofarads)
+        {
+            double value = (double) picofarads;
+            return new Capacitance(value, CapacitanceUnit.Picofarad);
         }
 
         /// <summary>
@@ -499,6 +559,10 @@ namespace UnitsNet
             switch(Unit)
             {
                 case CapacitanceUnit.Farad: return _value;
+                case CapacitanceUnit.Microfarad: return (_value) * 1e-6d;
+                case CapacitanceUnit.Millifarad: return (_value) * 1e-3d;
+                case CapacitanceUnit.Nanofarad: return (_value) * 1e-9d;
+                case CapacitanceUnit.Picofarad: return (_value) * 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -514,6 +578,10 @@ namespace UnitsNet
             switch(unit)
             {
                 case CapacitanceUnit.Farad: return baseUnitValue;
+                case CapacitanceUnit.Microfarad: return (baseUnitValue) / 1e-6d;
+                case CapacitanceUnit.Millifarad: return (baseUnitValue) / 1e-3d;
+                case CapacitanceUnit.Nanofarad: return (baseUnitValue) / 1e-9d;
+                case CapacitanceUnit.Picofarad: return (baseUnitValue) / 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

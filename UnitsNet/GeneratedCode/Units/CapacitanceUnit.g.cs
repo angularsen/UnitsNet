@@ -45,6 +45,10 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         Farad,
+        Microfarad,
+        Millifarad,
+        Nanofarad,
+        Picofarad,
     }
 
     #pragma warning restore 1591

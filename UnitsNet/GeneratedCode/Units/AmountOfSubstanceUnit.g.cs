@@ -50,6 +50,7 @@ namespace UnitsNet.Units
         DecipoundMole,
         Kilomole,
         KilopoundMole,
+        Megamole,
         Micromole,
         MicropoundMole,
         Millimole,

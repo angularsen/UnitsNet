@@ -165,6 +165,21 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get MagneticField in Microteslas.
+        /// </summary>
+        public double Microteslas => As(MagneticFieldUnit.Microtesla);
+
+        /// <summary>
+        ///     Get MagneticField in Milliteslas.
+        /// </summary>
+        public double Milliteslas => As(MagneticFieldUnit.Millitesla);
+
+        /// <summary>
+        ///     Get MagneticField in Nanoteslas.
+        /// </summary>
+        public double Nanoteslas => As(MagneticFieldUnit.Nanotesla);
+
+        /// <summary>
         ///     Get MagneticField in Teslas.
         /// </summary>
         public double Teslas => As(MagneticFieldUnit.Tesla);
@@ -199,6 +214,36 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get MagneticField from Microteslas.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MagneticField FromMicroteslas(double microteslas)
+        {
+            double value = (double) microteslas;
+            return new MagneticField(value, MagneticFieldUnit.Microtesla);
+        }
+        /// <summary>
+        ///     Get MagneticField from Milliteslas.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MagneticField FromMilliteslas(double milliteslas)
+        {
+            double value = (double) milliteslas;
+            return new MagneticField(value, MagneticFieldUnit.Millitesla);
+        }
+        /// <summary>
+        ///     Get MagneticField from Nanoteslas.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MagneticField FromNanoteslas(double nanoteslas)
+        {
+            double value = (double) nanoteslas;
+            return new MagneticField(value, MagneticFieldUnit.Nanotesla);
+        }
         /// <summary>
         ///     Get MagneticField from Teslas.
         /// </summary>
@@ -498,6 +543,9 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case MagneticFieldUnit.Microtesla: return (_value) * 1e-6d;
+                case MagneticFieldUnit.Millitesla: return (_value) * 1e-3d;
+                case MagneticFieldUnit.Nanotesla: return (_value) * 1e-9d;
                 case MagneticFieldUnit.Tesla: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -513,6 +561,9 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case MagneticFieldUnit.Microtesla: return (baseUnitValue) / 1e-6d;
+                case MagneticFieldUnit.Millitesla: return (baseUnitValue) / 1e-3d;
+                case MagneticFieldUnit.Nanotesla: return (baseUnitValue) / 1e-9d;
                 case MagneticFieldUnit.Tesla: return baseUnitValue;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
