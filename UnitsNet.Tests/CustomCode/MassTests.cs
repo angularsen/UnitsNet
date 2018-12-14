@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -105,6 +106,22 @@ namespace UnitsNet.Tests.CustomCode
         {
             Force force = Mass.FromKilograms(18)*Acceleration.FromMetersPerSecondSquared(3);
             Assert.Equal(force, Force.FromNewtons(54));
+        }
+
+        [Fact]
+        public void NegativeMassToStonePoundsReturnsCorrectValues()
+        {
+            var negativeMass = Mass.FromPounds(-1.0);
+            var stonePounds = negativeMass.StonePounds;
+
+            Assert.Equal(0, stonePounds.Stone);
+            Assert.Equal(-1.0, stonePounds.Pounds);
+
+            negativeMass = Mass.FromPounds(-25.0);
+            stonePounds = negativeMass.StonePounds;
+
+            Assert.Equal(-1.0, stonePounds.Stone);
+            Assert.Equal(-11.0, stonePounds.Pounds);
         }
     }
 }
