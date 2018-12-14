@@ -153,5 +153,21 @@ namespace UnitsNet.Tests.CustomCode
         {
             Assert.Equal(double.MinValue, Length.MinValue.Meters);
         }
+
+        [Fact]
+        public void NegativeLengthToStonePoundsReturnsCorrectValues()
+        {
+            var negativeLength = Length.FromInches(-1.0);
+            var feetInches = negativeLength.FeetInches;
+
+            Assert.Equal(0, feetInches.Feet);
+            Assert.Equal(-1.0, feetInches.Inches);
+
+            negativeLength = Length.FromInches(-25.0);
+            feetInches = negativeLength.FeetInches;
+
+            Assert.Equal(-2.0, feetInches.Feet);
+            Assert.Equal(-1.0, feetInches.Inches);
+        }
     }
 }

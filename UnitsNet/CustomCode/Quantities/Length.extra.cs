@@ -42,7 +42,7 @@ namespace UnitsNet
     public partial struct Length
 #endif
     {
-        private const double FeetToInches = 12;
+        private const double InchesInOneFoot = 12;
 
         /// <summary>
         ///     Converts the length to a customary feet/inches combination.
@@ -51,11 +51,11 @@ namespace UnitsNet
         {
             get
             {
-                double totalInches = Inches;
-                double wholeFeet = Math.Floor(totalInches/FeetToInches);
-                double inches = totalInches%FeetToInches;
+                var inInches = Inches;
+                var feet = Math.Truncate(inInches / InchesInOneFoot);
+                var inches = inInches % InchesInOneFoot;
 
-                return new FeetInches(wholeFeet, inches);
+                return new FeetInches(feet, inches);
             }
         }
 
@@ -64,7 +64,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromFeetInches(double feet, double inches)
         {
-            return FromInches(FeetToInches*feet + inches);
+            return FromInches(InchesInOneFoot*feet + inches);
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
