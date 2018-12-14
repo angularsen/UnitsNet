@@ -41,7 +41,7 @@ namespace UnitsNet
     public partial struct Length
 #endif
     {
-        private const double FeetToInches = 12;
+        private const double InchesInOneFoot = 12;
 
         /// <summary>
         ///     Converts the length to a customary feet/inches combination.
@@ -50,11 +50,11 @@ namespace UnitsNet
         {
             get
             {
-                double totalInches = Inches;
-                double wholeFeet = Math.Floor(totalInches/FeetToInches);
-                double inches = totalInches%FeetToInches;
+                var inInches = Inches;
+                var feet = Math.Truncate(inInches / InchesInOneFoot);
+                var inches = inInches % InchesInOneFoot;
 
-                return new FeetInches(wholeFeet, inches);
+                return new FeetInches(feet, inches);
             }
         }
 
@@ -63,7 +63,7 @@ namespace UnitsNet
         /// </summary>
         public static Length FromFeetInches(double feet, double inches)
         {
-            return FromInches(FeetToInches*feet + inches);
+            return FromInches(InchesInOneFoot*feet + inches);
         }
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
@@ -140,9 +140,9 @@ namespace UnitsNet
         {
             // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
             // So inches are rounded when converting from base units to feet/inches.
-            UnitSystem unitSystem = UnitSystem.GetCached(cultureInfo);
-            string footUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Foot);
-            string inchUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Inch);
+            var unitSystem = UnitSystem.GetCached(cultureInfo);
+            var footUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Foot);
+            var inchUnit = unitSystem.GetDefaultAbbreviation(LengthUnit.Inch);
 
             return string.Format(unitSystem.Culture, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches),
                 inchUnit);
