@@ -18,8 +18,8 @@ Stop littering your code with unnecessary calculations, Units.NET gives you all 
 
 ### Overview
 
-* [89 quantities with over 750 units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
-* [1900+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
+* [90 quantities with 800+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
+* [2500+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
 * Immutable structs that implement `Equatable`, `IComparable`
 * [Static typing](#static-typing) to avoid ambiguous values or units
 * [Operator overloads](#operator-overloads) for arithmetic on quantities
