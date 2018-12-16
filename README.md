@@ -8,6 +8,8 @@ Everyone have written their share of trivial conversions - or less obvious ones 
 
 Stop littering your code with unnecessary calculations, Units.NET gives you all the common units of measurement and the conversions between them. It is lightweight and thoroughly tested.
 
+### Upgrading from 3.x to 4.x?
+See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgrading-from-3.x-to-4.x).
 
 ### Build Targets
 
@@ -24,6 +26,7 @@ Stop littering your code with unnecessary calculations, Units.NET gives you all 
 * [Static typing](#static-typing) to avoid ambiguous values or units
 * [Operator overloads](#operator-overloads) for arithmetic on quantities
 * [Parse and ToString()](#culture) supports cultures and localization
+* [Dynamically parsing and converting](#dynamic-parsing) quantities and units
 * [Example: Creating a unit converter app](#example-app)
 * [Example: WPF app using IValueConverter to parse quantities from input](#example-wpf-app-using-ivalueconverter-to-parse-quantities-from-input)
 * [Precision and accuracy](#precision)
@@ -119,7 +122,7 @@ Unfortunately there is no built-in way to avoid this, either you need to ensure 
 Example:
 `Length.Parse("1 pt")` throws `AmbiguousUnitParseException` with message `Cannot parse "pt" since it could be either of these: DtpPoint, PrinterPoint`.
 
-### Dynamically Parsing and Converting Quantities
+### <a name="dynamic-parsing"></a>Dynamically Parsing and Converting Quantities
 Sometimes you need to work with quantities and units at runtime, such as parsing user input.
 There are three classes to help with this:
 - [UnitParser](UnitsNet/CustomCode/UnitParser.cs) for parsing unit abbreviation strings like `cm` to `LengthUnit.Centimeter`
