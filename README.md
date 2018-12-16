@@ -44,19 +44,25 @@ Run the following command in the [Package Manager Console](http://docs.nuget.org
 ### <a name="static-typing"></a>Static Typing
 
 ```C#
-// Convert to the unit of choice - when you need it
-Mass weight = GetPersonWeight();
-Console.WriteLine("You weigh {0:0.#} kg.", weight.Kilograms);
-
-// Avoid confusing conversions, such as between weight (force) and mass
-double weightNewtons = weight.Newtons; // No such thing
-
-// Some popular conversions
+// Construct            
 Length meter = Length.FromMeters(1);
-double cm = meter.Centimeters; // 100
-double yards = meter.Yards; // 1.09361
-double feet = meter.Feet; // 3.28084
-double inches = meter.Inches; // 39.3701
+Length twoMeters = new Length(2, LengthUnit.Meter);
+          
+// Convert
+double cm = meter.Centimeters;         // 100
+double yards = meter.Yards;            // 1.09361
+double feet = meter.Feet;              // 3.28084
+double inches = meter.Inches;          // 39.3701
+
+// Pass quantity types instead of values to avoid conversion mistakes and communicate intent
+string PrintPersonWeight(Mass weight)
+{
+    // No such thing! Weight in this context is Mass, not Force.
+    double weightNewtons = weight.Newtons; 
+    
+    // Convert to the unit of choice - when you need it
+    return $"You weigh {weight.Kilograms:F1} kg.";
+}
 ```
 
 ### <a name="operator-overloads"></a>Operator Overloads
@@ -87,23 +93,23 @@ var usEnglish = new CultureInfo("en-US");
 var russian = new CultureInfo("ru-RU");
 var oneKg = Mass.FromKilograms(1);
 
-// Honors Thread.CurrentUICulture
-Thread.CurrentUICulture = russian;
+// ToString() uses CurrentUICulture for abbreviation language and CurrentCulture for number formatting
+Thread.CurrentThread.CurrentUICulture = russian;
 string kgRu = oneKg.ToString(); // "1 кг"
 
-// ToString() with specific culture and string format pattern
-string mgUs = oneKg.ToString(MassUnit.Milligram, usEnglish, "{1} {0:0.00}"); // "mg 1.00"
-string mgRu = oneKg.ToString(MassUnit.Milligram, russian, "{1} {0:0.00}"); // "мг 1,00"
+// ToString() with specific culture and custom string format pattern
+string mgUs = oneKg.ToUnit(MassUnit.Milligram).ToString(usEnglish, "unit: {1}, value: {0:F2}"); // "unit: mg, value: 1.00"
+string mgRu = oneKg.ToUnit(MassUnit.Milligram).ToString(russian, "unit: {1}, value: {0:F2}"); // "unit: мг, value: 1,00"
 
 // Parse measurement from string
-Mass kg = Mass.Parse(usEnglish, "1.0 kg");
+Mass kg = Mass.Parse("1.0 kg", usEnglish);
 
 // Parse unit from string, a unit can have multiple abbreviations
-RotationalSpeedUnit rpm1 == RotationalSpeed.ParseUnit("rpm"); // RotationalSpeedUnit.RevolutionPerMinute
-RotationalSpeedUnit rpm2 == RotationalSpeed.ParseUnit("r/min");  // RotationalSpeedUnit.RevolutionPerMinute
+RotationalSpeedUnit rpm1 = RotationalSpeed.ParseUnit("rpm"); // RotationalSpeedUnit.RevolutionPerMinute
+RotationalSpeedUnit rpm2 = RotationalSpeed.ParseUnit("r/min");  // RotationalSpeedUnit.RevolutionPerMinute
 
-// Get default abbreviation for a unit
-string abbrevKg = Mass.GetAbbreviation(MassUnit.Kilogram); // "kg"
+// Get default abbreviation for a unit, the first if more than one is defined in Length.json for Kilogram unit
+string kgAbbreviation = Mass.GetAbbreviation(MassUnit.Kilogram); // "kg"
 ```
 
 #### Gotcha: AmbiguousUnitParseException
@@ -112,6 +118,14 @@ Unfortunately there is no built-in way to avoid this, either you need to ensure 
 
 Example:
 `Length.Parse("1 pt")` throws `AmbiguousUnitParseException` with message `Cannot parse "pt" since it could be either of these: DtpPoint, PrinterPoint`.
+
+### Dynamically Parsing Quantities and Units
+Sometimes you need to work with quantities and units at runtime, such as parsing user input.
+There are three classes to help with this:
+
+```c#
+
+```
 
 
 ### <a name="example-app"></a>Example: Creating a dynamic unit converter app
@@ -140,10 +154,6 @@ LengthUnit[] lengthUnits = Length.Units;
 double inputValue; // Obtain from textbox
 LengthUnit fromUnit, toUnit; // Obtain from ListBox selections
 double resultValue = Length.From(inputValue, fromUnit).As(toUnit);
-
-// Alternatively, you can also convert using string representations of units
-double centimeters = UnitConverter.ConvertByName(5, "Length", "Meter", "Centimeter"); // 500
-double centimeters2 = UnitConverter.ConvertByAbbreviation(5, "Length", "m", "cm"); // 500
 ```
 
 ### Example: WPF app using IValueConverter to parse quantities from input
