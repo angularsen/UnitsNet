@@ -359,12 +359,12 @@ namespace UnitsNet
 
         public static ElectricChargeDensity operator +(ElectricChargeDensity left, ElectricChargeDensity right)
         {
-            return new ElectricChargeDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricChargeDensity operator -(ElectricChargeDensity left, ElectricChargeDensity right)
         {
-            return new ElectricChargeDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricChargeDensity operator *(double left, ElectricChargeDensity right)
@@ -411,12 +411,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ElectricChargeDensity left, ElectricChargeDensity right)	
+        public static bool operator ==(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ElectricChargeDensity left, ElectricChargeDensity right)	
+        public static bool operator !=(ElectricChargeDensity left, ElectricChargeDensity right)
         {
             return !(left == right);
         }

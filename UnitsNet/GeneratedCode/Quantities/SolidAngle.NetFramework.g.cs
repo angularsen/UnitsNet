@@ -359,12 +359,12 @@ namespace UnitsNet
 
         public static SolidAngle operator +(SolidAngle left, SolidAngle right)
         {
-            return new SolidAngle(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static SolidAngle operator -(SolidAngle left, SolidAngle right)
         {
-            return new SolidAngle(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static SolidAngle operator *(double left, SolidAngle right)
@@ -411,12 +411,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(SolidAngle left, SolidAngle right)	
+        public static bool operator ==(SolidAngle left, SolidAngle right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(SolidAngle left, SolidAngle right)	
+        public static bool operator !=(SolidAngle left, SolidAngle right)
         {
             return !(left == right);
         }

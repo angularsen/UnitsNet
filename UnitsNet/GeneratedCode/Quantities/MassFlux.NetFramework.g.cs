@@ -370,12 +370,12 @@ namespace UnitsNet
 
         public static MassFlux operator +(MassFlux left, MassFlux right)
         {
-            return new MassFlux(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MassFlux operator -(MassFlux left, MassFlux right)
         {
-            return new MassFlux(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MassFlux operator *(double left, MassFlux right)
@@ -422,12 +422,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(MassFlux left, MassFlux right)	
+        public static bool operator ==(MassFlux left, MassFlux right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(MassFlux left, MassFlux right)	
+        public static bool operator !=(MassFlux left, MassFlux right)
         {
             return !(left == right);
         }

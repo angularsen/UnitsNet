@@ -709,12 +709,12 @@ namespace UnitsNet
 
         public static BitRate operator +(BitRate left, BitRate right)
         {
-            return new BitRate(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static BitRate operator -(BitRate left, BitRate right)
         {
-            return new BitRate(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static BitRate operator *(decimal left, BitRate right)
@@ -761,12 +761,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(BitRate left, BitRate right)	
+        public static bool operator ==(BitRate left, BitRate right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(BitRate left, BitRate right)	
+        public static bool operator !=(BitRate left, BitRate right)
         {
             return !(left == right);
         }

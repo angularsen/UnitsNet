@@ -958,12 +958,12 @@ namespace UnitsNet
 
         public static PowerDensity operator +(PowerDensity left, PowerDensity right)
         {
-            return new PowerDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static PowerDensity operator -(PowerDensity left, PowerDensity right)
         {
-            return new PowerDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static PowerDensity operator *(double left, PowerDensity right)
@@ -1010,12 +1010,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(PowerDensity left, PowerDensity right)	
+        public static bool operator ==(PowerDensity left, PowerDensity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(PowerDensity left, PowerDensity right)	
+        public static bool operator !=(PowerDensity left, PowerDensity right)
         {
             return !(left == right);
         }

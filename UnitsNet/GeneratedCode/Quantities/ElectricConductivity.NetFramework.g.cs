@@ -359,12 +359,12 @@ namespace UnitsNet
 
         public static ElectricConductivity operator +(ElectricConductivity left, ElectricConductivity right)
         {
-            return new ElectricConductivity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricConductivity operator -(ElectricConductivity left, ElectricConductivity right)
         {
-            return new ElectricConductivity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricConductivity operator *(double left, ElectricConductivity right)
@@ -411,12 +411,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ElectricConductivity left, ElectricConductivity right)	
+        public static bool operator ==(ElectricConductivity left, ElectricConductivity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ElectricConductivity left, ElectricConductivity right)	
+        public static bool operator !=(ElectricConductivity left, ElectricConductivity right)
         {
             return !(left == right);
         }

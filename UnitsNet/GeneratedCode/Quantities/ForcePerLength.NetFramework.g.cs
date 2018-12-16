@@ -468,12 +468,12 @@ namespace UnitsNet
 
         public static ForcePerLength operator +(ForcePerLength left, ForcePerLength right)
         {
-            return new ForcePerLength(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ForcePerLength operator -(ForcePerLength left, ForcePerLength right)
         {
-            return new ForcePerLength(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ForcePerLength operator *(double left, ForcePerLength right)
@@ -520,12 +520,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ForcePerLength left, ForcePerLength right)	
+        public static bool operator ==(ForcePerLength left, ForcePerLength right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ForcePerLength left, ForcePerLength right)	
+        public static bool operator !=(ForcePerLength left, ForcePerLength right)
         {
             return !(left == right);
         }

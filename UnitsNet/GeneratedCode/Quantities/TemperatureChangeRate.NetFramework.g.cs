@@ -482,12 +482,12 @@ namespace UnitsNet
 
         public static TemperatureChangeRate operator +(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return new TemperatureChangeRate(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static TemperatureChangeRate operator -(TemperatureChangeRate left, TemperatureChangeRate right)
         {
-            return new TemperatureChangeRate(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static TemperatureChangeRate operator *(double left, TemperatureChangeRate right)
@@ -534,12 +534,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(TemperatureChangeRate left, TemperatureChangeRate right)	
+        public static bool operator ==(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(TemperatureChangeRate left, TemperatureChangeRate right)	
+        public static bool operator !=(TemperatureChangeRate left, TemperatureChangeRate right)
         {
             return !(left == right);
         }

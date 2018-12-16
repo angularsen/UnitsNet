@@ -706,12 +706,12 @@ namespace UnitsNet
 
         public static Information operator +(Information left, Information right)
         {
-            return new Information(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Information operator -(Information left, Information right)
         {
-            return new Information(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Information operator *(decimal left, Information right)
@@ -758,12 +758,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Information left, Information right)	
+        public static bool operator ==(Information left, Information right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Information left, Information right)	
+        public static bool operator !=(Information left, Information right)
         {
             return !(left == right);
         }

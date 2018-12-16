@@ -359,12 +359,12 @@ namespace UnitsNet
 
         public static LuminousFlux operator +(LuminousFlux left, LuminousFlux right)
         {
-            return new LuminousFlux(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static LuminousFlux operator -(LuminousFlux left, LuminousFlux right)
         {
-            return new LuminousFlux(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static LuminousFlux operator *(double left, LuminousFlux right)
@@ -411,12 +411,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(LuminousFlux left, LuminousFlux right)	
+        public static bool operator ==(LuminousFlux left, LuminousFlux right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(LuminousFlux left, LuminousFlux right)	
+        public static bool operator !=(LuminousFlux left, LuminousFlux right)
         {
             return !(left == right);
         }

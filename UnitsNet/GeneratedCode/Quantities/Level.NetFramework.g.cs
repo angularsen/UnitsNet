@@ -430,12 +430,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Level left, Level right)	
+        public static bool operator ==(Level left, Level right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Level left, Level right)	
+        public static bool operator !=(Level left, Level right)
         {
             return !(left == right);
         }

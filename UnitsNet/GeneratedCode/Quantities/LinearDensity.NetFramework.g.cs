@@ -387,12 +387,12 @@ namespace UnitsNet
 
         public static LinearDensity operator +(LinearDensity left, LinearDensity right)
         {
-            return new LinearDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static LinearDensity operator -(LinearDensity left, LinearDensity right)
         {
-            return new LinearDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static LinearDensity operator *(double left, LinearDensity right)
@@ -439,12 +439,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(LinearDensity left, LinearDensity right)	
+        public static bool operator ==(LinearDensity left, LinearDensity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(LinearDensity left, LinearDensity right)	
+        public static bool operator !=(LinearDensity left, LinearDensity right)
         {
             return !(left == right);
         }

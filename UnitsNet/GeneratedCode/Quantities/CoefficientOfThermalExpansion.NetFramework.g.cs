@@ -384,12 +384,12 @@ namespace UnitsNet
 
         public static CoefficientOfThermalExpansion operator +(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)
         {
-            return new CoefficientOfThermalExpansion(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static CoefficientOfThermalExpansion operator -(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)
         {
-            return new CoefficientOfThermalExpansion(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static CoefficientOfThermalExpansion operator *(double left, CoefficientOfThermalExpansion right)
@@ -436,12 +436,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)	
+        public static bool operator ==(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)	
+        public static bool operator !=(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)
         {
             return !(left == right);
         }

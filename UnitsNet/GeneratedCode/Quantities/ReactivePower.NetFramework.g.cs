@@ -398,12 +398,12 @@ namespace UnitsNet
 
         public static ReactivePower operator +(ReactivePower left, ReactivePower right)
         {
-            return new ReactivePower(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ReactivePower operator -(ReactivePower left, ReactivePower right)
         {
-            return new ReactivePower(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ReactivePower operator *(double left, ReactivePower right)
@@ -450,12 +450,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ReactivePower left, ReactivePower right)	
+        public static bool operator ==(ReactivePower left, ReactivePower right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ReactivePower left, ReactivePower right)	
+        public static bool operator !=(ReactivePower left, ReactivePower right)
         {
             return !(left == right);
         }

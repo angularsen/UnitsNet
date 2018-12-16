@@ -356,12 +356,12 @@ namespace UnitsNet
 
         public static LapseRate operator +(LapseRate left, LapseRate right)
         {
-            return new LapseRate(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static LapseRate operator -(LapseRate left, LapseRate right)
         {
-            return new LapseRate(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static LapseRate operator *(double left, LapseRate right)
@@ -408,12 +408,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(LapseRate left, LapseRate right)	
+        public static bool operator ==(LapseRate left, LapseRate right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(LapseRate left, LapseRate right)	
+        public static bool operator !=(LapseRate left, LapseRate right)
         {
             return !(left == right);
         }

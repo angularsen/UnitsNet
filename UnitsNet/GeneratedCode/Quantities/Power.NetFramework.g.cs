@@ -622,12 +622,12 @@ namespace UnitsNet
 
         public static Power operator +(Power left, Power right)
         {
-            return new Power(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Power operator -(Power left, Power right)
         {
-            return new Power(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Power operator *(decimal left, Power right)
@@ -674,12 +674,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Power left, Power right)	
+        public static bool operator ==(Power left, Power right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Power left, Power right)	
+        public static bool operator !=(Power left, Power right)
         {
             return !(left == right);
         }

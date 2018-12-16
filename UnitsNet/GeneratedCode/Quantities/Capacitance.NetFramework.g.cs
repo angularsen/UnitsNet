@@ -415,12 +415,12 @@ namespace UnitsNet
 
         public static Capacitance operator +(Capacitance left, Capacitance right)
         {
-            return new Capacitance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Capacitance operator -(Capacitance left, Capacitance right)
         {
-            return new Capacitance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Capacitance operator *(double left, Capacitance right)
@@ -467,12 +467,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Capacitance left, Capacitance right)	
+        public static bool operator ==(Capacitance left, Capacitance right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Capacitance left, Capacitance right)	
+        public static bool operator !=(Capacitance left, Capacitance right)
         {
             return !(left == right);
         }

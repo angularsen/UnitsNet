@@ -524,12 +524,12 @@ namespace UnitsNet
 
         public static Area operator +(Area left, Area right)
         {
-            return new Area(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Area operator -(Area left, Area right)
         {
-            return new Area(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Area operator *(double left, Area right)
@@ -576,12 +576,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Area left, Area right)	
+        public static bool operator ==(Area left, Area right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Area left, Area right)	
+        public static bool operator !=(Area left, Area right)
         {
             return !(left == right);
         }

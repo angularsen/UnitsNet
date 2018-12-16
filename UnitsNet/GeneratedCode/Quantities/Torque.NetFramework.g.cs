@@ -636,12 +636,12 @@ namespace UnitsNet
 
         public static Torque operator +(Torque left, Torque right)
         {
-            return new Torque(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Torque operator -(Torque left, Torque right)
         {
-            return new Torque(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Torque operator *(double left, Torque right)
@@ -688,12 +688,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Torque left, Torque right)	
+        public static bool operator ==(Torque left, Torque right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Torque left, Torque right)	
+        public static bool operator !=(Torque left, Torque right)
         {
             return !(left == right);
         }

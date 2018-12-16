@@ -384,12 +384,12 @@ namespace UnitsNet
 
         public static MolarEntropy operator +(MolarEntropy left, MolarEntropy right)
         {
-            return new MolarEntropy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MolarEntropy operator -(MolarEntropy left, MolarEntropy right)
         {
-            return new MolarEntropy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MolarEntropy operator *(double left, MolarEntropy right)
@@ -436,12 +436,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(MolarEntropy left, MolarEntropy right)	
+        public static bool operator ==(MolarEntropy left, MolarEntropy right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(MolarEntropy left, MolarEntropy right)	
+        public static bool operator !=(MolarEntropy left, MolarEntropy right)
         {
             return !(left == right);
         }

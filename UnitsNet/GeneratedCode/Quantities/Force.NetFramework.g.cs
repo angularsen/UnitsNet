@@ -524,12 +524,12 @@ namespace UnitsNet
 
         public static Force operator +(Force left, Force right)
         {
-            return new Force(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Force operator -(Force left, Force right)
         {
-            return new Force(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Force operator *(double left, Force right)
@@ -576,12 +576,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Force left, Force right)	
+        public static bool operator ==(Force left, Force right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Force left, Force right)	
+        public static bool operator !=(Force left, Force right)
         {
             return !(left == right);
         }

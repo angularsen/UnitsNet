@@ -594,12 +594,12 @@ namespace UnitsNet
 
         public static MassFlow operator +(MassFlow left, MassFlow right)
         {
-            return new MassFlow(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MassFlow operator -(MassFlow left, MassFlow right)
         {
-            return new MassFlow(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static MassFlow operator *(double left, MassFlow right)
@@ -646,12 +646,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(MassFlow left, MassFlow right)	
+        public static bool operator ==(MassFlow left, MassFlow right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(MassFlow left, MassFlow right)	
+        public static bool operator !=(MassFlow left, MassFlow right)
         {
             return !(left == right);
         }

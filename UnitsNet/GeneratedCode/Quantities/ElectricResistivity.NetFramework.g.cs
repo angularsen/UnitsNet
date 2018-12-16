@@ -401,12 +401,12 @@ namespace UnitsNet
 
         public static ElectricResistivity operator +(ElectricResistivity left, ElectricResistivity right)
         {
-            return new ElectricResistivity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricResistivity operator -(ElectricResistivity left, ElectricResistivity right)
         {
-            return new ElectricResistivity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricResistivity operator *(double left, ElectricResistivity right)
@@ -453,12 +453,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ElectricResistivity left, ElectricResistivity right)	
+        public static bool operator ==(ElectricResistivity left, ElectricResistivity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ElectricResistivity left, ElectricResistivity right)	
+        public static bool operator !=(ElectricResistivity left, ElectricResistivity right)
         {
             return !(left == right);
         }

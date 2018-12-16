@@ -359,12 +359,12 @@ namespace UnitsNet
 
         public static Permeability operator +(Permeability left, Permeability right)
         {
-            return new Permeability(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Permeability operator -(Permeability left, Permeability right)
         {
-            return new Permeability(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static Permeability operator *(double left, Permeability right)
@@ -411,12 +411,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Permeability left, Permeability right)	
+        public static bool operator ==(Permeability left, Permeability right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Permeability left, Permeability right)	
+        public static bool operator !=(Permeability left, Permeability right)
         {
             return !(left == right);
         }

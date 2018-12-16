@@ -384,12 +384,12 @@ namespace UnitsNet
 
         public static ReactiveEnergy operator +(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return new ReactiveEnergy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ReactiveEnergy operator -(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return new ReactiveEnergy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ReactiveEnergy operator *(double left, ReactiveEnergy right)
@@ -436,12 +436,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ReactiveEnergy left, ReactiveEnergy right)	
+        public static bool operator ==(ReactiveEnergy left, ReactiveEnergy right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ReactiveEnergy left, ReactiveEnergy right)	
+        public static bool operator !=(ReactiveEnergy left, ReactiveEnergy right)
         {
             return !(left == right);
         }

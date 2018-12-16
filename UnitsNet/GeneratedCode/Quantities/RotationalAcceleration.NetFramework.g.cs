@@ -384,12 +384,12 @@ namespace UnitsNet
 
         public static RotationalAcceleration operator +(RotationalAcceleration left, RotationalAcceleration right)
         {
-            return new RotationalAcceleration(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static RotationalAcceleration operator -(RotationalAcceleration left, RotationalAcceleration right)
         {
-            return new RotationalAcceleration(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static RotationalAcceleration operator *(double left, RotationalAcceleration right)
@@ -436,12 +436,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(RotationalAcceleration left, RotationalAcceleration right)	
+        public static bool operator ==(RotationalAcceleration left, RotationalAcceleration right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(RotationalAcceleration left, RotationalAcceleration right)	
+        public static bool operator !=(RotationalAcceleration left, RotationalAcceleration right)
         {
             return !(left == right);
         }

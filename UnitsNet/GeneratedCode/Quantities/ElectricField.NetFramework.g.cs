@@ -359,12 +359,12 @@ namespace UnitsNet
 
         public static ElectricField operator +(ElectricField left, ElectricField right)
         {
-            return new ElectricField(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() + right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricField operator -(ElectricField left, ElectricField right)
         {
-            return new ElectricField(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return From(left.AsBaseUnit() - right.AsBaseUnit(), BaseUnit).ToUnit(left.Unit);
         }
 
         public static ElectricField operator *(double left, ElectricField right)
@@ -411,12 +411,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ElectricField left, ElectricField right)	
+        public static bool operator ==(ElectricField left, ElectricField right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ElectricField left, ElectricField right)	
+        public static bool operator !=(ElectricField left, ElectricField right)
         {
             return !(left == right);
         }
