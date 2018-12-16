@@ -119,14 +119,29 @@ Unfortunately there is no built-in way to avoid this, either you need to ensure 
 Example:
 `Length.Parse("1 pt")` throws `AmbiguousUnitParseException` with message `Cannot parse "pt" since it could be either of these: DtpPoint, PrinterPoint`.
 
-### Dynamically Parsing Quantities and Units
+### Dynamically Parsing and Converting Quantities
 Sometimes you need to work with quantities and units at runtime, such as parsing user input.
 There are three classes to help with this:
+- [UnitParser]() for parsing unit abbreviation strings like `cm` to `LengthUnit.Centimeter`
+- [UnitAbbreviationsCache]() for looking up unit abbreviations like `cm` given type `LengthUnit` and value `1` (`Centimeter`)
+- [UnitConverter]() for converting values given a quantity name `Length`, a value `1` and from/to unit names `Centimeter` and `Meter`
 
 ```c#
+// This type was perhaps selected by the user in GUI from a list of units
+Type lengthUnitType = typeof(LengthUnit); // Selected by user in GUI from a list of units
 
+// Parse units dynamically
+UnitParser parser = UnitParser.Default;
+int fromUnitValue = (int)parser.Parse("cm", lengthUnitType); // LengthUnit.Centimeter == 1
+
+// Get unit abbreviations dynamically
+var cache = UnitAbbreviationsCache.Default;
+string fromUnitAbbreviation = cache.GetDefaultAbbreviation(lengthUnitType, 1); // "cm"
+
+double centimeters = UnitConverter.ConvertByName(1, "Length", "Meter", "Centimeter"); // 100
 ```
 
+For more examples on dynamic parsing and conversion, see the unit conversion applications below.
 
 ### <a name="example-app"></a>Example: Creating a dynamic unit converter app
 [Source code](https://github.com/angularsen/UnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>
