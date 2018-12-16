@@ -9,8 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -94,6 +93,25 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassFlow((double)0.0, MassFlowUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassFlow(double.PositiveInfinity, MassFlowUnit.GramPerSecond));
+            Assert.Throws<ArgumentException>(() => new MassFlow(double.NegativeInfinity, MassFlowUnit.GramPerSecond));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassFlow(double.NaN, MassFlowUnit.GramPerSecond));
+        }
+
+        [Fact]
         public void GramPerSecondToMassFlowUnits()
         {
             MassFlow grampersecond = MassFlow.FromGramsPerSecond(1);
@@ -138,6 +156,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.ShortTonPerHour).ShortTonsPerHour, ShortTonsPerHourTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.TonnePerDay).TonnesPerDay, TonnesPerDayTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.TonnePerHour).TonnesPerHour, TonnesPerHourTolerance);
+        }
+
+        [Fact]
+        public void FromGramsPerSecond_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MassFlow.FromGramsPerSecond(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MassFlow.FromGramsPerSecond(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromGramsPerSecond_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MassFlow.FromGramsPerSecond(double.NaN));
         }
 
         [Fact]
@@ -319,28 +350,43 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => grampersecond.CompareTo(null));
         }
 
-
         [Fact]
         public void EqualityOperators()
         {
-            MassFlow a = MassFlow.FromGramsPerSecond(1);
-            MassFlow b = MassFlow.FromGramsPerSecond(2);
+            var a = MassFlow.FromGramsPerSecond(1);
+            var b = MassFlow.FromGramsPerSecond(2);
 
-// ReSharper disable EqualExpressionComparison
+ // ReSharper disable EqualExpressionComparison
+
             Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
             Assert.False(a != a);
+
+            Assert.True(a != b);
+            Assert.False(a == b);
+
+            Assert.False(a == null);
+            Assert.False(null == a);
+
 // ReSharper restore EqualExpressionComparison
         }
 
         [Fact]
         public void EqualsIsImplemented()
         {
-            MassFlow v = MassFlow.FromGramsPerSecond(1);
-            Assert.True(v.Equals(MassFlow.FromGramsPerSecond(1), MassFlow.FromGramsPerSecond(GramsPerSecondTolerance)));
-            Assert.False(v.Equals(MassFlow.Zero, MassFlow.FromGramsPerSecond(GramsPerSecondTolerance)));
+            var a = MassFlow.FromGramsPerSecond(1);
+            var b = MassFlow.FromGramsPerSecond(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void EqualsRelativeToleranceIsImplemented()
+        {
+            var v = MassFlow.FromGramsPerSecond(1);
+            Assert.True(v.Equals(MassFlow.FromGramsPerSecond(1), GramsPerSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MassFlow.Zero, GramsPerSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -363,5 +409,23 @@ namespace UnitsNet.Tests
             Assert.DoesNotContain(MassFlowUnit.Undefined, MassFlow.Units);
         }
 
+        [Fact]
+        public void HasAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == MassFlowUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
+
+        [Fact]
+        public void BaseDimensionsShouldNeverBeNull()
+        {
+            Assert.False(MassFlow.BaseDimensions is null);
+        }
     }
 }

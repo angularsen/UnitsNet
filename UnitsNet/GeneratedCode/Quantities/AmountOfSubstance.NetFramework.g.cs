@@ -9,8 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -37,12 +36,11 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
+using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
@@ -51,150 +49,342 @@ namespace UnitsNet
     /// <summary>
     ///     Mole is the amount of substance containing Avagadro's Number (6.02 x 10 ^ 23) of real particles such as molecules,atoms, ions or radicals.
     /// </summary>
-    // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct AmountOfSubstance : IComparable, IComparable<AmountOfSubstance>
+    public partial struct AmountOfSubstance : IQuantity<AmountOfSubstanceUnit>, IEquatable<AmountOfSubstance>, IComparable, IComparable<AmountOfSubstance>
     {
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly AmountOfSubstanceUnit? _unit;
+
+        static AmountOfSubstance()
+        {
+            BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
+        }
+
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public AmountOfSubstance(double numericValue, AmountOfSubstanceUnit unit)
+        {
+            if(unit == AmountOfSubstanceUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = unit;
+        }
+
+        #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions { get; }
+
+        /// <summary>
+        ///     The base unit of AmountOfSubstance, which is Mole. All conversions go via this value.
+        /// </summary>
+        public static AmountOfSubstanceUnit BaseUnit => AmountOfSubstanceUnit.Mole;
+
+        /// <summary>
+        /// Represents the largest possible value of AmountOfSubstance
+        /// </summary>
+        public static AmountOfSubstance MaxValue => new AmountOfSubstance(double.MaxValue, BaseUnit);
+
+        /// <summary>
+        /// Represents the smallest possible value of AmountOfSubstance
+        /// </summary>
+        public static AmountOfSubstance MinValue => new AmountOfSubstance(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType => QuantityType.AmountOfSubstance;
+
+        /// <summary>
+        ///     All units of measurement for the AmountOfSubstance quantity.
+        /// </summary>
+        public static AmountOfSubstanceUnit[] Units { get; } = Enum.GetValues(typeof(AmountOfSubstanceUnit)).Cast<AmountOfSubstanceUnit>().Except(new AmountOfSubstanceUnit[]{ AmountOfSubstanceUnit.Undefined }).ToArray();
+
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit Mole.
+        /// </summary>
+        public static AmountOfSubstance Zero => new AmountOfSubstance(0, BaseUnit);
+
+        #endregion
+
+        #region Properties
+
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public AmountOfSubstanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Centimoles.
+        ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromCentimoles(QuantityValue? centimoles)
+        public QuantityType Type => AmountOfSubstance.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => AmountOfSubstance.BaseDimensions;
+
+        #endregion
+
+        #region Conversion Properties
+
+        /// <summary>
+        ///     Get AmountOfSubstance in Centimoles.
+        /// </summary>
+        public double Centimoles => As(AmountOfSubstanceUnit.Centimole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in CentipoundMoles.
+        /// </summary>
+        public double CentipoundMoles => As(AmountOfSubstanceUnit.CentipoundMole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in Decimoles.
+        /// </summary>
+        public double Decimoles => As(AmountOfSubstanceUnit.Decimole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in DecipoundMoles.
+        /// </summary>
+        public double DecipoundMoles => As(AmountOfSubstanceUnit.DecipoundMole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in Kilomoles.
+        /// </summary>
+        public double Kilomoles => As(AmountOfSubstanceUnit.Kilomole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in KilopoundMoles.
+        /// </summary>
+        public double KilopoundMoles => As(AmountOfSubstanceUnit.KilopoundMole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in Megamoles.
+        /// </summary>
+        public double Megamoles => As(AmountOfSubstanceUnit.Megamole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in Micromoles.
+        /// </summary>
+        public double Micromoles => As(AmountOfSubstanceUnit.Micromole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in MicropoundMoles.
+        /// </summary>
+        public double MicropoundMoles => As(AmountOfSubstanceUnit.MicropoundMole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in Millimoles.
+        /// </summary>
+        public double Millimoles => As(AmountOfSubstanceUnit.Millimole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in MillipoundMoles.
+        /// </summary>
+        public double MillipoundMoles => As(AmountOfSubstanceUnit.MillipoundMole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in Moles.
+        /// </summary>
+        public double Moles => As(AmountOfSubstanceUnit.Mole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in Nanomoles.
+        /// </summary>
+        public double Nanomoles => As(AmountOfSubstanceUnit.Nanomole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in NanopoundMoles.
+        /// </summary>
+        public double NanopoundMoles => As(AmountOfSubstanceUnit.NanopoundMole);
+
+        /// <summary>
+        ///     Get AmountOfSubstance in PoundMoles.
+        /// </summary>
+        public double PoundMoles => As(AmountOfSubstanceUnit.PoundMole);
+
+        #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        public static string GetAbbreviation(AmountOfSubstanceUnit unit)
         {
-            return centimoles.HasValue ? FromCentimoles(centimoles.Value) : default(AmountOfSubstance?);
+            return GetAbbreviation(unit, null);
         }
 
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable CentipoundMoles.
+        ///     Get unit abbreviation string.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromCentipoundMoles(QuantityValue? centipoundmoles)
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static string GetAbbreviation(AmountOfSubstanceUnit unit, [CanBeNull] IFormatProvider provider)
         {
-            return centipoundmoles.HasValue ? FromCentipoundMoles(centipoundmoles.Value) : default(AmountOfSubstance?);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
-        /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Decimoles.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromDecimoles(QuantityValue? decimoles)
-        {
-            return decimoles.HasValue ? FromDecimoles(decimoles.Value) : default(AmountOfSubstance?);
-        }
+        #endregion
+
+        #region Static Factory Methods
 
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable DecipoundMoles.
+        ///     Get AmountOfSubstance from Centimoles.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromDecipoundMoles(QuantityValue? decipoundmoles)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromCentimoles(QuantityValue centimoles)
         {
-            return decipoundmoles.HasValue ? FromDecipoundMoles(decipoundmoles.Value) : default(AmountOfSubstance?);
+            double value = (double) centimoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Centimole);
         }
-
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Kilomoles.
+        ///     Get AmountOfSubstance from CentipoundMoles.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromKilomoles(QuantityValue? kilomoles)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromCentipoundMoles(QuantityValue centipoundmoles)
         {
-            return kilomoles.HasValue ? FromKilomoles(kilomoles.Value) : default(AmountOfSubstance?);
+            double value = (double) centipoundmoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.CentipoundMole);
         }
-
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable KilopoundMoles.
+        ///     Get AmountOfSubstance from Decimoles.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromKilopoundMoles(QuantityValue? kilopoundmoles)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromDecimoles(QuantityValue decimoles)
         {
-            return kilopoundmoles.HasValue ? FromKilopoundMoles(kilopoundmoles.Value) : default(AmountOfSubstance?);
+            double value = (double) decimoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Decimole);
         }
-
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Megamoles.
+        ///     Get AmountOfSubstance from DecipoundMoles.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromMegamoles(QuantityValue? megamoles)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromDecipoundMoles(QuantityValue decipoundmoles)
         {
-            return megamoles.HasValue ? FromMegamoles(megamoles.Value) : default(AmountOfSubstance?);
+            double value = (double) decipoundmoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.DecipoundMole);
         }
-
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Micromoles.
+        ///     Get AmountOfSubstance from Kilomoles.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromMicromoles(QuantityValue? micromoles)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromKilomoles(QuantityValue kilomoles)
         {
-            return micromoles.HasValue ? FromMicromoles(micromoles.Value) : default(AmountOfSubstance?);
+            double value = (double) kilomoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Kilomole);
         }
-
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable MicropoundMoles.
+        ///     Get AmountOfSubstance from KilopoundMoles.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromMicropoundMoles(QuantityValue? micropoundmoles)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromKilopoundMoles(QuantityValue kilopoundmoles)
         {
-            return micropoundmoles.HasValue ? FromMicropoundMoles(micropoundmoles.Value) : default(AmountOfSubstance?);
+            double value = (double) kilopoundmoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.KilopoundMole);
         }
-
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Millimoles.
+        ///     Get AmountOfSubstance from Megamoles.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromMillimoles(QuantityValue? millimoles)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromMegamoles(QuantityValue megamoles)
         {
-            return millimoles.HasValue ? FromMillimoles(millimoles.Value) : default(AmountOfSubstance?);
+            double value = (double) megamoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Megamole);
         }
-
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable MillipoundMoles.
+        ///     Get AmountOfSubstance from Micromoles.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromMillipoundMoles(QuantityValue? millipoundmoles)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromMicromoles(QuantityValue micromoles)
         {
-            return millipoundmoles.HasValue ? FromMillipoundMoles(millipoundmoles.Value) : default(AmountOfSubstance?);
+            double value = (double) micromoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Micromole);
         }
-
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Moles.
+        ///     Get AmountOfSubstance from MicropoundMoles.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromMoles(QuantityValue? moles)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromMicropoundMoles(QuantityValue micropoundmoles)
         {
-            return moles.HasValue ? FromMoles(moles.Value) : default(AmountOfSubstance?);
+            double value = (double) micropoundmoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.MicropoundMole);
         }
-
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable Nanomoles.
+        ///     Get AmountOfSubstance from Millimoles.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromNanomoles(QuantityValue? nanomoles)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromMillimoles(QuantityValue millimoles)
         {
-            return nanomoles.HasValue ? FromNanomoles(nanomoles.Value) : default(AmountOfSubstance?);
+            double value = (double) millimoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Millimole);
         }
-
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable NanopoundMoles.
+        ///     Get AmountOfSubstance from MillipoundMoles.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromNanopoundMoles(QuantityValue? nanopoundmoles)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromMillipoundMoles(QuantityValue millipoundmoles)
         {
-            return nanopoundmoles.HasValue ? FromNanopoundMoles(nanopoundmoles.Value) : default(AmountOfSubstance?);
+            double value = (double) millipoundmoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.MillipoundMole);
         }
-
         /// <summary>
-        ///     Get nullable AmountOfSubstance from nullable PoundMoles.
+        ///     Get AmountOfSubstance from Moles.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static AmountOfSubstance? FromPoundMoles(QuantityValue? poundmoles)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromMoles(QuantityValue moles)
         {
-            return poundmoles.HasValue ? FromPoundMoles(poundmoles.Value) : default(AmountOfSubstance?);
+            double value = (double) moles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Mole);
+        }
+        /// <summary>
+        ///     Get AmountOfSubstance from Nanomoles.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromNanomoles(QuantityValue nanomoles)
+        {
+            double value = (double) nanomoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.Nanomole);
+        }
+        /// <summary>
+        ///     Get AmountOfSubstance from NanopoundMoles.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromNanopoundMoles(QuantityValue nanopoundmoles)
+        {
+            double value = (double) nanopoundmoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.NanopoundMole);
+        }
+        /// <summary>
+        ///     Get AmountOfSubstance from PoundMoles.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static AmountOfSubstance FromPoundMoles(QuantityValue poundmoles)
+        {
+            double value = (double) poundmoles;
+            return new AmountOfSubstance(value, AmountOfSubstanceUnit.PoundMole);
         }
 
         /// <summary>
@@ -203,27 +393,155 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>AmountOfSubstance unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static AmountOfSubstance? From(QuantityValue? value, AmountOfSubstanceUnit fromUnit)
+        public static AmountOfSubstance From(QuantityValue value, AmountOfSubstanceUnit fromUnit)
         {
-            return value.HasValue ? new AmountOfSubstance((double)value.Value, fromUnit) : default(AmountOfSubstance?);
+            return new AmountOfSubstance((double)value, fromUnit);
         }
 
         #endregion
 
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(AmountOfSubstanceUnit unit, [CanBeNull] IFormatProvider provider)
-        {
-            provider = provider ?? UnitSystem.DefaultCulture;
+        #region Static Parse Methods
 
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        public static AmountOfSubstance Parse(string str)
+        {
+            return Parse(str, null);
         }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static AmountOfSubstance Parse(string str, [CanBeNull] IFormatProvider provider)
+        {
+            return QuantityParser.Default.Parse<AmountOfSubstance, AmountOfSubstanceUnit>(
+                str,
+                provider,
+                From);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        public static bool TryParse([CanBeNull] string str, out AmountOfSubstance result)
+        {
+            return TryParse(str, null, out result);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out AmountOfSubstance result)
+        {
+            return QuantityParser.Default.TryParse<AmountOfSubstance, AmountOfSubstanceUnit>(
+                str,
+                provider,
+                From,
+                out result);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static AmountOfSubstanceUnit ParseUnit(string str)
+        {
+            return ParseUnit(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static AmountOfSubstanceUnit ParseUnit(string str, IFormatProvider provider = null)
+        {
+            return UnitParser.Default.Parse<AmountOfSubstanceUnit>(str, provider);
+        }
+
+        public static bool TryParseUnit(string str, out AmountOfSubstanceUnit unit)
+        {
+            return TryParseUnit(str, null, out unit);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="unit">The parsed unit if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static bool TryParseUnit(string str, IFormatProvider provider, out AmountOfSubstanceUnit unit)
+        {
+            return UnitParser.Default.TryParse<AmountOfSubstanceUnit>(str, provider, out unit);
+        }
+
+        #endregion
 
         #region Arithmetic Operators
 
@@ -264,6 +582,8 @@ namespace UnitsNet
 
         #endregion
 
+        #region Equality / IComparable
+
         public static bool operator <=(AmountOfSubstance left, AmountOfSubstance right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
@@ -284,127 +604,186 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(AmountOfSubstance, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(AmountOfSubstance left, AmountOfSubstance right)
+        public static bool operator ==(AmountOfSubstance left, AmountOfSubstance right)	
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
+            return left.Equals(right);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(AmountOfSubstance, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(AmountOfSubstance left, AmountOfSubstance right)
+        public static bool operator !=(AmountOfSubstance left, AmountOfSubstance right)	
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
+            return !(left == right);
         }
 
-        #region Parsing
-
-        /// <summary>
-        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="ArgumentException">
-        ///     Expected string to have one or two pairs of quantity and unit in the format
-        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
-        /// </exception>
-        /// <exception cref="AmbiguousUnitParseException">
-        ///     More than one unit is represented by the specified unit abbreviation.
-        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
-        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
-        /// </exception>
-        /// <exception cref="UnitsNetException">
-        ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-        ///     Units.NET exceptions from other exceptions.
-        /// </exception>
-        public static AmountOfSubstance Parse(string str, [CanBeNull] IFormatProvider provider)
+        public int CompareTo(object obj)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            if(obj is null) throw new ArgumentNullException(nameof(obj));
+            if(!(obj is AmountOfSubstance objAmountOfSubstance)) throw new ArgumentException("Expected type AmountOfSubstance.", nameof(obj));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            return QuantityParser.Parse<AmountOfSubstance, AmountOfSubstanceUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    double parsedValue = double.Parse(value, formatProvider2);
-                    AmountOfSubstanceUnit parsedUnit = ParseUnit(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => FromMoles(x.Moles + y.Moles));
+            return CompareTo(objAmountOfSubstance);
         }
 
-        /// <summary>
-        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="result">Resulting unit quantity if successful.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out AmountOfSubstance result)
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        public int CompareTo(AmountOfSubstance other)
         {
-            provider = provider ?? UnitSystem.DefaultCulture;
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
 
-            try
-            {
-                result = Parse(str, provider);
-                return true;
-            }
-            catch
-            {
-                result = default(AmountOfSubstance);
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is AmountOfSubstance objAmountOfSubstance))
                 return false;
-            }
+
+            return Equals(objAmountOfSubstance);
+        }
+
+        public bool Equals(AmountOfSubstance other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
-        ///     Parse a unit string.
+        ///     <para>
+        ///     Compare equality to another AmountOfSubstance within the given absolute or relative tolerance.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
+        ///     this quantity's value to be considered equal.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        ///     </para>
         /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
-        public static AmountOfSubstanceUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(AmountOfSubstance other, double tolerance, ComparisonType comparisonType)
         {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
+
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
-        ///     Parse a unit string.
+        ///     Returns the hash code for this instance.
         /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static AmountOfSubstanceUnit ParseUnit(string str, IFormatProvider provider = null)
+        /// <returns>A hash code for the current AmountOfSubstance.</returns>
+        public override int GetHashCode()
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            return new { QuantityType, Value, Unit }.GetHashCode();
+        }
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<AmountOfSubstanceUnit>(str.Trim());
+        #endregion
 
-            if (unit == AmountOfSubstanceUnit.Undefined)
+        #region Conversion Methods
+
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(AmountOfSubstanceUnit unit)
+        {
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts this AmountOfSubstance to another AmountOfSubstance with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A AmountOfSubstance with the specified unit.</returns>
+        public AmountOfSubstance ToUnit(AmountOfSubstanceUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new AmountOfSubstance(convertedValue, unit);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized AmountOfSubstanceUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
+                case AmountOfSubstanceUnit.Centimole: return (_value) * 1e-2d;
+                case AmountOfSubstanceUnit.CentipoundMole: return (_value*453.59237) * 1e-2d;
+                case AmountOfSubstanceUnit.Decimole: return (_value) * 1e-1d;
+                case AmountOfSubstanceUnit.DecipoundMole: return (_value*453.59237) * 1e-1d;
+                case AmountOfSubstanceUnit.Kilomole: return (_value) * 1e3d;
+                case AmountOfSubstanceUnit.KilopoundMole: return (_value*453.59237) * 1e3d;
+                case AmountOfSubstanceUnit.Megamole: return (_value) * 1e6d;
+                case AmountOfSubstanceUnit.Micromole: return (_value) * 1e-6d;
+                case AmountOfSubstanceUnit.MicropoundMole: return (_value*453.59237) * 1e-6d;
+                case AmountOfSubstanceUnit.Millimole: return (_value) * 1e-3d;
+                case AmountOfSubstanceUnit.MillipoundMole: return (_value*453.59237) * 1e-3d;
+                case AmountOfSubstanceUnit.Mole: return _value;
+                case AmountOfSubstanceUnit.Nanomole: return (_value) * 1e-9d;
+                case AmountOfSubstanceUnit.NanopoundMole: return (_value*453.59237) * 1e-9d;
+                case AmountOfSubstanceUnit.PoundMole: return _value*453.59237;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            return unit;
+        private double AsBaseNumericType(AmountOfSubstanceUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
+
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
+            {
+                case AmountOfSubstanceUnit.Centimole: return (baseUnitValue) / 1e-2d;
+                case AmountOfSubstanceUnit.CentipoundMole: return (baseUnitValue/453.59237) / 1e-2d;
+                case AmountOfSubstanceUnit.Decimole: return (baseUnitValue) / 1e-1d;
+                case AmountOfSubstanceUnit.DecipoundMole: return (baseUnitValue/453.59237) / 1e-1d;
+                case AmountOfSubstanceUnit.Kilomole: return (baseUnitValue) / 1e3d;
+                case AmountOfSubstanceUnit.KilopoundMole: return (baseUnitValue/453.59237) / 1e3d;
+                case AmountOfSubstanceUnit.Megamole: return (baseUnitValue) / 1e6d;
+                case AmountOfSubstanceUnit.Micromole: return (baseUnitValue) / 1e-6d;
+                case AmountOfSubstanceUnit.MicropoundMole: return (baseUnitValue/453.59237) / 1e-6d;
+                case AmountOfSubstanceUnit.Millimole: return (baseUnitValue) / 1e-3d;
+                case AmountOfSubstanceUnit.MillipoundMole: return (baseUnitValue/453.59237) / 1e-3d;
+                case AmountOfSubstanceUnit.Mole: return baseUnitValue;
+                case AmountOfSubstanceUnit.Nanomole: return (baseUnitValue) / 1e-9d;
+                case AmountOfSubstanceUnit.NanopoundMole: return (baseUnitValue/453.59237) / 1e-9d;
+                case AmountOfSubstanceUnit.PoundMole: return baseUnitValue/453.59237;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         #endregion
@@ -412,52 +791,57 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
+        ///     Get default string representation of value and unit.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        public override string ToString()
+        {
+            return ToString(null);
+        }
+
+        /// <summary>
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <returns>String representation.</returns>
-        public string ToString(AmountOfSubstanceUnit unit, [CanBeNull] IFormatProvider provider)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider)
         {
-            return ToString(unit, provider, 2);
+            return ToString(provider, 2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(AmountOfSubstanceUnit unit, [CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
-            double value = As(unit);
-            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, provider, format);
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(AmountOfSubstanceUnit unit, [CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
+            provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
         }
 
         #endregion
+
     }
 }

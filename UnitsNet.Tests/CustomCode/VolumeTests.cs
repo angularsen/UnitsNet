@@ -77,24 +77,16 @@ namespace UnitsNet.Tests.CustomCode
         protected override double AuTablespoonsInOneCubicMeter => 50000;
 
         protected override double UsTablespoonsInOneCubicMeter => 67628.0454;
-        
-        protected override double TablespoonsInOneCubicMeter => 67628.0454;
-
-        protected override double TablespoonsTolerance => 1E-4;
 
         protected override double MetricTeaspoonsInOneCubicMeter => 200000;
 
         protected override double UsTeaspoonsInOneCubicMeter => 202884.13621105801;
-
-        protected override double TeaspoonsInOneCubicMeter => 202884.13621105801;
 
         protected override double ImperialBeerBarrelsInOneCubicMeter => 6.1102568972;
 
         protected override double UkTablespoonsInOneCubicMeter => 66666.6666667;
 
         protected override double UsBeerBarrelsInOneCubicMeter => 8.5216790723083;
-
-        protected override double TeaspoonsTolerance => 1E-3;
 
         protected override double UsGallonsInOneCubicMeter => 264.17217;
         

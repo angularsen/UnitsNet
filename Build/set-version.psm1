@@ -43,11 +43,15 @@ function Invoke-CommitAndTagVersion(
 }
 
 function Set-ProjectVersion([string] $file, [string] $version) {
-  Write-Host "$file -> $version"
+  $assemblyVersion = $version  -replace "(\d+)(?:\.\d+)+.*", '$1.0.0.0'
+  Write-Host "$file -> $version (AssemblyVersion $assemblyVersion)"
   (Get-Content $file) -replace '<Version>.*?</Version>', "<Version>$version</Version>" | Set-Content $file
+  (Get-Content $file) -replace '<AssemblyVersion>.*?</AssemblyVersion>', "<AssemblyVersion>$assemblyVersion</AssemblyVersion>" | Set-Content $file
 }
 
 function Set-AssemblyInfoVersion([string] $file, [string] $version) {
+  # Strip out any suffix: "4.0.0-alpha1" => "4.0.0"
+  $version = $version.Split('-')[0]
   Write-Host "$file -> $version"
   (Get-Content $file) -replace 'Assembly(File)?Version\(".*?"\)', "Assembly`$1Version(`"$version`")" | Set-Content $file
 }
@@ -107,7 +111,7 @@ function BumpSuffix([string] $oldSuffix) {
   # Example:
   # -alpha => -alpha2
   # -alpha1 => -alpha2
-  $match = [regex]::Match($oldSuffix, '^-(\w+)(\d+)?$');
+  $match = [regex]::Match($oldSuffix, '^-([a-zA-Z]+)(\d+)?$');
   $oldSuffix = $match.Groups[1].Value
   $numberGroup = $match.Groups[2]
 

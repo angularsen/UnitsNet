@@ -9,8 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -37,12 +36,11 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
+using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
@@ -51,213 +49,440 @@ namespace UnitsNet
     /// <summary>
     ///     The joule, symbol J, is a derived unit of energy, work, or amount of heat in the International System of Units. It is equal to the energy transferred (or work done) when applying a force of one newton through a distance of one metre (1 newton metre or N·m), or in passing an electric current of one ampere through a resistance of one ohm for one second. Many other units of energy are included. Please do not confuse this definition of the calorie with the one colloquially used by the food industry, the large calorie, which is equivalent to 1 kcal. Thermochemical definition of the calorie is used. For BTU, the IT definition is used.
     /// </summary>
-    // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Energy : IComparable, IComparable<Energy>
+    public partial struct Energy : IQuantity<EnergyUnit>, IEquatable<Energy>, IComparable, IComparable<Energy>
     {
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly EnergyUnit? _unit;
+
+        static Energy()
+        {
+            BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
+        }
+
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public Energy(double numericValue, EnergyUnit unit)
+        {
+            if(unit == EnergyUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = unit;
+        }
+
+        #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions { get; }
+
+        /// <summary>
+        ///     The base unit of Energy, which is Joule. All conversions go via this value.
+        /// </summary>
+        public static EnergyUnit BaseUnit => EnergyUnit.Joule;
+
+        /// <summary>
+        /// Represents the largest possible value of Energy
+        /// </summary>
+        public static Energy MaxValue => new Energy(double.MaxValue, BaseUnit);
+
+        /// <summary>
+        /// Represents the smallest possible value of Energy
+        /// </summary>
+        public static Energy MinValue => new Energy(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType => QuantityType.Energy;
+
+        /// <summary>
+        ///     All units of measurement for the Energy quantity.
+        /// </summary>
+        public static EnergyUnit[] Units { get; } = Enum.GetValues(typeof(EnergyUnit)).Cast<EnergyUnit>().Except(new EnergyUnit[]{ EnergyUnit.Undefined }).ToArray();
+
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit Joule.
+        /// </summary>
+        public static Energy Zero => new Energy(0, BaseUnit);
+
+        #endregion
+
+        #region Properties
+
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public EnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <summary>
-        ///     Get nullable Energy from nullable BritishThermalUnits.
+        ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromBritishThermalUnits(QuantityValue? britishthermalunits)
+        public QuantityType Type => Energy.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Energy.BaseDimensions;
+
+        #endregion
+
+        #region Conversion Properties
+
+        /// <summary>
+        ///     Get Energy in BritishThermalUnits.
+        /// </summary>
+        public double BritishThermalUnits => As(EnergyUnit.BritishThermalUnit);
+
+        /// <summary>
+        ///     Get Energy in Calories.
+        /// </summary>
+        public double Calories => As(EnergyUnit.Calorie);
+
+        /// <summary>
+        ///     Get Energy in DecathermsEc.
+        /// </summary>
+        public double DecathermsEc => As(EnergyUnit.DecathermEc);
+
+        /// <summary>
+        ///     Get Energy in DecathermsImperial.
+        /// </summary>
+        public double DecathermsImperial => As(EnergyUnit.DecathermImperial);
+
+        /// <summary>
+        ///     Get Energy in DecathermsUs.
+        /// </summary>
+        public double DecathermsUs => As(EnergyUnit.DecathermUs);
+
+        /// <summary>
+        ///     Get Energy in ElectronVolts.
+        /// </summary>
+        public double ElectronVolts => As(EnergyUnit.ElectronVolt);
+
+        /// <summary>
+        ///     Get Energy in Ergs.
+        /// </summary>
+        public double Ergs => As(EnergyUnit.Erg);
+
+        /// <summary>
+        ///     Get Energy in FootPounds.
+        /// </summary>
+        public double FootPounds => As(EnergyUnit.FootPound);
+
+        /// <summary>
+        ///     Get Energy in GigabritishThermalUnits.
+        /// </summary>
+        public double GigabritishThermalUnits => As(EnergyUnit.GigabritishThermalUnit);
+
+        /// <summary>
+        ///     Get Energy in GigawattHours.
+        /// </summary>
+        public double GigawattHours => As(EnergyUnit.GigawattHour);
+
+        /// <summary>
+        ///     Get Energy in Joules.
+        /// </summary>
+        public double Joules => As(EnergyUnit.Joule);
+
+        /// <summary>
+        ///     Get Energy in KilobritishThermalUnits.
+        /// </summary>
+        public double KilobritishThermalUnits => As(EnergyUnit.KilobritishThermalUnit);
+
+        /// <summary>
+        ///     Get Energy in Kilocalories.
+        /// </summary>
+        public double Kilocalories => As(EnergyUnit.Kilocalorie);
+
+        /// <summary>
+        ///     Get Energy in Kilojoules.
+        /// </summary>
+        public double Kilojoules => As(EnergyUnit.Kilojoule);
+
+        /// <summary>
+        ///     Get Energy in KilowattHours.
+        /// </summary>
+        public double KilowattHours => As(EnergyUnit.KilowattHour);
+
+        /// <summary>
+        ///     Get Energy in MegabritishThermalUnits.
+        /// </summary>
+        public double MegabritishThermalUnits => As(EnergyUnit.MegabritishThermalUnit);
+
+        /// <summary>
+        ///     Get Energy in Megajoules.
+        /// </summary>
+        public double Megajoules => As(EnergyUnit.Megajoule);
+
+        /// <summary>
+        ///     Get Energy in MegawattHours.
+        /// </summary>
+        public double MegawattHours => As(EnergyUnit.MegawattHour);
+
+        /// <summary>
+        ///     Get Energy in ThermsEc.
+        /// </summary>
+        public double ThermsEc => As(EnergyUnit.ThermEc);
+
+        /// <summary>
+        ///     Get Energy in ThermsImperial.
+        /// </summary>
+        public double ThermsImperial => As(EnergyUnit.ThermImperial);
+
+        /// <summary>
+        ///     Get Energy in ThermsUs.
+        /// </summary>
+        public double ThermsUs => As(EnergyUnit.ThermUs);
+
+        /// <summary>
+        ///     Get Energy in WattHours.
+        /// </summary>
+        public double WattHours => As(EnergyUnit.WattHour);
+
+        #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        public static string GetAbbreviation(EnergyUnit unit)
         {
-            return britishthermalunits.HasValue ? FromBritishThermalUnits(britishthermalunits.Value) : default(Energy?);
+            return GetAbbreviation(unit, null);
         }
 
         /// <summary>
-        ///     Get nullable Energy from nullable Calories.
+        ///     Get unit abbreviation string.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromCalories(QuantityValue? calories)
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static string GetAbbreviation(EnergyUnit unit, [CanBeNull] IFormatProvider provider)
         {
-            return calories.HasValue ? FromCalories(calories.Value) : default(Energy?);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
-        /// <summary>
-        ///     Get nullable Energy from nullable DecathermsEc.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromDecathermsEc(QuantityValue? decathermsec)
-        {
-            return decathermsec.HasValue ? FromDecathermsEc(decathermsec.Value) : default(Energy?);
-        }
+        #endregion
+
+        #region Static Factory Methods
 
         /// <summary>
-        ///     Get nullable Energy from nullable DecathermsImperial.
+        ///     Get Energy from BritishThermalUnits.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromDecathermsImperial(QuantityValue? decathermsimperial)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromBritishThermalUnits(QuantityValue britishthermalunits)
         {
-            return decathermsimperial.HasValue ? FromDecathermsImperial(decathermsimperial.Value) : default(Energy?);
+            double value = (double) britishthermalunits;
+            return new Energy(value, EnergyUnit.BritishThermalUnit);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable DecathermsUs.
+        ///     Get Energy from Calories.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromDecathermsUs(QuantityValue? decathermsus)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromCalories(QuantityValue calories)
         {
-            return decathermsus.HasValue ? FromDecathermsUs(decathermsus.Value) : default(Energy?);
+            double value = (double) calories;
+            return new Energy(value, EnergyUnit.Calorie);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable ElectronVolts.
+        ///     Get Energy from DecathermsEc.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromElectronVolts(QuantityValue? electronvolts)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromDecathermsEc(QuantityValue decathermsec)
         {
-            return electronvolts.HasValue ? FromElectronVolts(electronvolts.Value) : default(Energy?);
+            double value = (double) decathermsec;
+            return new Energy(value, EnergyUnit.DecathermEc);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable Ergs.
+        ///     Get Energy from DecathermsImperial.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromErgs(QuantityValue? ergs)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromDecathermsImperial(QuantityValue decathermsimperial)
         {
-            return ergs.HasValue ? FromErgs(ergs.Value) : default(Energy?);
+            double value = (double) decathermsimperial;
+            return new Energy(value, EnergyUnit.DecathermImperial);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable FootPounds.
+        ///     Get Energy from DecathermsUs.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromFootPounds(QuantityValue? footpounds)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromDecathermsUs(QuantityValue decathermsus)
         {
-            return footpounds.HasValue ? FromFootPounds(footpounds.Value) : default(Energy?);
+            double value = (double) decathermsus;
+            return new Energy(value, EnergyUnit.DecathermUs);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable GigabritishThermalUnits.
+        ///     Get Energy from ElectronVolts.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromGigabritishThermalUnits(QuantityValue? gigabritishthermalunits)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromElectronVolts(QuantityValue electronvolts)
         {
-            return gigabritishthermalunits.HasValue ? FromGigabritishThermalUnits(gigabritishthermalunits.Value) : default(Energy?);
+            double value = (double) electronvolts;
+            return new Energy(value, EnergyUnit.ElectronVolt);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable GigawattHours.
+        ///     Get Energy from Ergs.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromGigawattHours(QuantityValue? gigawatthours)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromErgs(QuantityValue ergs)
         {
-            return gigawatthours.HasValue ? FromGigawattHours(gigawatthours.Value) : default(Energy?);
+            double value = (double) ergs;
+            return new Energy(value, EnergyUnit.Erg);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable Joules.
+        ///     Get Energy from FootPounds.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromJoules(QuantityValue? joules)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromFootPounds(QuantityValue footpounds)
         {
-            return joules.HasValue ? FromJoules(joules.Value) : default(Energy?);
+            double value = (double) footpounds;
+            return new Energy(value, EnergyUnit.FootPound);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable KilobritishThermalUnits.
+        ///     Get Energy from GigabritishThermalUnits.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromKilobritishThermalUnits(QuantityValue? kilobritishthermalunits)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromGigabritishThermalUnits(QuantityValue gigabritishthermalunits)
         {
-            return kilobritishthermalunits.HasValue ? FromKilobritishThermalUnits(kilobritishthermalunits.Value) : default(Energy?);
+            double value = (double) gigabritishthermalunits;
+            return new Energy(value, EnergyUnit.GigabritishThermalUnit);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable Kilocalories.
+        ///     Get Energy from GigawattHours.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromKilocalories(QuantityValue? kilocalories)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromGigawattHours(QuantityValue gigawatthours)
         {
-            return kilocalories.HasValue ? FromKilocalories(kilocalories.Value) : default(Energy?);
+            double value = (double) gigawatthours;
+            return new Energy(value, EnergyUnit.GigawattHour);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable Kilojoules.
+        ///     Get Energy from Joules.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromKilojoules(QuantityValue? kilojoules)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromJoules(QuantityValue joules)
         {
-            return kilojoules.HasValue ? FromKilojoules(kilojoules.Value) : default(Energy?);
+            double value = (double) joules;
+            return new Energy(value, EnergyUnit.Joule);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable KilowattHours.
+        ///     Get Energy from KilobritishThermalUnits.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromKilowattHours(QuantityValue? kilowatthours)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromKilobritishThermalUnits(QuantityValue kilobritishthermalunits)
         {
-            return kilowatthours.HasValue ? FromKilowattHours(kilowatthours.Value) : default(Energy?);
+            double value = (double) kilobritishthermalunits;
+            return new Energy(value, EnergyUnit.KilobritishThermalUnit);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable MegabritishThermalUnits.
+        ///     Get Energy from Kilocalories.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromMegabritishThermalUnits(QuantityValue? megabritishthermalunits)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromKilocalories(QuantityValue kilocalories)
         {
-            return megabritishthermalunits.HasValue ? FromMegabritishThermalUnits(megabritishthermalunits.Value) : default(Energy?);
+            double value = (double) kilocalories;
+            return new Energy(value, EnergyUnit.Kilocalorie);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable Megajoules.
+        ///     Get Energy from Kilojoules.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromMegajoules(QuantityValue? megajoules)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromKilojoules(QuantityValue kilojoules)
         {
-            return megajoules.HasValue ? FromMegajoules(megajoules.Value) : default(Energy?);
+            double value = (double) kilojoules;
+            return new Energy(value, EnergyUnit.Kilojoule);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable MegawattHours.
+        ///     Get Energy from KilowattHours.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromMegawattHours(QuantityValue? megawatthours)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromKilowattHours(QuantityValue kilowatthours)
         {
-            return megawatthours.HasValue ? FromMegawattHours(megawatthours.Value) : default(Energy?);
+            double value = (double) kilowatthours;
+            return new Energy(value, EnergyUnit.KilowattHour);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable ThermsEc.
+        ///     Get Energy from MegabritishThermalUnits.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromThermsEc(QuantityValue? thermsec)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromMegabritishThermalUnits(QuantityValue megabritishthermalunits)
         {
-            return thermsec.HasValue ? FromThermsEc(thermsec.Value) : default(Energy?);
+            double value = (double) megabritishthermalunits;
+            return new Energy(value, EnergyUnit.MegabritishThermalUnit);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable ThermsImperial.
+        ///     Get Energy from Megajoules.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromThermsImperial(QuantityValue? thermsimperial)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromMegajoules(QuantityValue megajoules)
         {
-            return thermsimperial.HasValue ? FromThermsImperial(thermsimperial.Value) : default(Energy?);
+            double value = (double) megajoules;
+            return new Energy(value, EnergyUnit.Megajoule);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable ThermsUs.
+        ///     Get Energy from MegawattHours.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromThermsUs(QuantityValue? thermsus)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromMegawattHours(QuantityValue megawatthours)
         {
-            return thermsus.HasValue ? FromThermsUs(thermsus.Value) : default(Energy?);
+            double value = (double) megawatthours;
+            return new Energy(value, EnergyUnit.MegawattHour);
         }
-
         /// <summary>
-        ///     Get nullable Energy from nullable WattHours.
+        ///     Get Energy from ThermsEc.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Energy? FromWattHours(QuantityValue? watthours)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromThermsEc(QuantityValue thermsec)
         {
-            return watthours.HasValue ? FromWattHours(watthours.Value) : default(Energy?);
+            double value = (double) thermsec;
+            return new Energy(value, EnergyUnit.ThermEc);
+        }
+        /// <summary>
+        ///     Get Energy from ThermsImperial.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromThermsImperial(QuantityValue thermsimperial)
+        {
+            double value = (double) thermsimperial;
+            return new Energy(value, EnergyUnit.ThermImperial);
+        }
+        /// <summary>
+        ///     Get Energy from ThermsUs.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromThermsUs(QuantityValue thermsus)
+        {
+            double value = (double) thermsus;
+            return new Energy(value, EnergyUnit.ThermUs);
+        }
+        /// <summary>
+        ///     Get Energy from WattHours.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Energy FromWattHours(QuantityValue watthours)
+        {
+            double value = (double) watthours;
+            return new Energy(value, EnergyUnit.WattHour);
         }
 
         /// <summary>
@@ -266,27 +491,155 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Energy unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Energy? From(QuantityValue? value, EnergyUnit fromUnit)
+        public static Energy From(QuantityValue value, EnergyUnit fromUnit)
         {
-            return value.HasValue ? new Energy((double)value.Value, fromUnit) : default(Energy?);
+            return new Energy((double)value, fromUnit);
         }
 
         #endregion
 
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(EnergyUnit unit, [CanBeNull] IFormatProvider provider)
-        {
-            provider = provider ?? UnitSystem.DefaultCulture;
+        #region Static Parse Methods
 
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        public static Energy Parse(string str)
+        {
+            return Parse(str, null);
         }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static Energy Parse(string str, [CanBeNull] IFormatProvider provider)
+        {
+            return QuantityParser.Default.Parse<Energy, EnergyUnit>(
+                str,
+                provider,
+                From);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        public static bool TryParse([CanBeNull] string str, out Energy result)
+        {
+            return TryParse(str, null, out result);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Energy result)
+        {
+            return QuantityParser.Default.TryParse<Energy, EnergyUnit>(
+                str,
+                provider,
+                From,
+                out result);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static EnergyUnit ParseUnit(string str)
+        {
+            return ParseUnit(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static EnergyUnit ParseUnit(string str, IFormatProvider provider = null)
+        {
+            return UnitParser.Default.Parse<EnergyUnit>(str, provider);
+        }
+
+        public static bool TryParseUnit(string str, out EnergyUnit unit)
+        {
+            return TryParseUnit(str, null, out unit);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="unit">The parsed unit if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static bool TryParseUnit(string str, IFormatProvider provider, out EnergyUnit unit)
+        {
+            return UnitParser.Default.TryParse<EnergyUnit>(str, provider, out unit);
+        }
+
+        #endregion
 
         #region Arithmetic Operators
 
@@ -327,6 +680,8 @@ namespace UnitsNet
 
         #endregion
 
+        #region Equality / IComparable
+
         public static bool operator <=(Energy left, Energy right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
@@ -347,127 +702,200 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Energy, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(Energy left, Energy right)
+        public static bool operator ==(Energy left, Energy right)	
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
+            return left.Equals(right);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Energy, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(Energy left, Energy right)
+        public static bool operator !=(Energy left, Energy right)	
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
+            return !(left == right);
         }
 
-        #region Parsing
-
-        /// <summary>
-        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="ArgumentException">
-        ///     Expected string to have one or two pairs of quantity and unit in the format
-        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
-        /// </exception>
-        /// <exception cref="AmbiguousUnitParseException">
-        ///     More than one unit is represented by the specified unit abbreviation.
-        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
-        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
-        /// </exception>
-        /// <exception cref="UnitsNetException">
-        ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-        ///     Units.NET exceptions from other exceptions.
-        /// </exception>
-        public static Energy Parse(string str, [CanBeNull] IFormatProvider provider)
+        public int CompareTo(object obj)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            if(obj is null) throw new ArgumentNullException(nameof(obj));
+            if(!(obj is Energy objEnergy)) throw new ArgumentException("Expected type Energy.", nameof(obj));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            return QuantityParser.Parse<Energy, EnergyUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    double parsedValue = double.Parse(value, formatProvider2);
-                    EnergyUnit parsedUnit = ParseUnit(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => FromJoules(x.Joules + y.Joules));
+            return CompareTo(objEnergy);
         }
 
-        /// <summary>
-        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="result">Resulting unit quantity if successful.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Energy result)
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        public int CompareTo(Energy other)
         {
-            provider = provider ?? UnitSystem.DefaultCulture;
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
 
-            try
-            {
-                result = Parse(str, provider);
-                return true;
-            }
-            catch
-            {
-                result = default(Energy);
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Energy objEnergy))
                 return false;
-            }
+
+            return Equals(objEnergy);
+        }
+
+        public bool Equals(Energy other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
-        ///     Parse a unit string.
+        ///     <para>
+        ///     Compare equality to another Energy within the given absolute or relative tolerance.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
+        ///     this quantity's value to be considered equal.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        ///     </para>
         /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
-        public static EnergyUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(Energy other, double tolerance, ComparisonType comparisonType)
         {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
+
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
-        ///     Parse a unit string.
+        ///     Returns the hash code for this instance.
         /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static EnergyUnit ParseUnit(string str, IFormatProvider provider = null)
+        /// <returns>A hash code for the current Energy.</returns>
+        public override int GetHashCode()
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            return new { QuantityType, Value, Unit }.GetHashCode();
+        }
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<EnergyUnit>(str.Trim());
+        #endregion
 
-            if (unit == EnergyUnit.Undefined)
+        #region Conversion Methods
+
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(EnergyUnit unit)
+        {
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts this Energy to another Energy with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Energy with the specified unit.</returns>
+        public Energy ToUnit(EnergyUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Energy(convertedValue, unit);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized EnergyUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
+                case EnergyUnit.BritishThermalUnit: return _value*1055.05585262;
+                case EnergyUnit.Calorie: return _value*4.184;
+                case EnergyUnit.DecathermEc: return (_value*1.05505585262e8) * 1e1d;
+                case EnergyUnit.DecathermImperial: return (_value*1.05505585257348e8) * 1e1d;
+                case EnergyUnit.DecathermUs: return (_value*1.054804e8) * 1e1d;
+                case EnergyUnit.ElectronVolt: return _value*1.602176565e-19;
+                case EnergyUnit.Erg: return _value*1e-7;
+                case EnergyUnit.FootPound: return _value*1.355817948;
+                case EnergyUnit.GigabritishThermalUnit: return (_value*1055.05585262) * 1e9d;
+                case EnergyUnit.GigawattHour: return (_value*3600d) * 1e9d;
+                case EnergyUnit.Joule: return _value;
+                case EnergyUnit.KilobritishThermalUnit: return (_value*1055.05585262) * 1e3d;
+                case EnergyUnit.Kilocalorie: return (_value*4.184) * 1e3d;
+                case EnergyUnit.Kilojoule: return (_value) * 1e3d;
+                case EnergyUnit.KilowattHour: return (_value*3600d) * 1e3d;
+                case EnergyUnit.MegabritishThermalUnit: return (_value*1055.05585262) * 1e6d;
+                case EnergyUnit.Megajoule: return (_value) * 1e6d;
+                case EnergyUnit.MegawattHour: return (_value*3600d) * 1e6d;
+                case EnergyUnit.ThermEc: return _value*1.05505585262e8;
+                case EnergyUnit.ThermImperial: return _value*1.05505585257348e8;
+                case EnergyUnit.ThermUs: return _value*1.054804e8;
+                case EnergyUnit.WattHour: return _value*3600d;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            return unit;
+        private double AsBaseNumericType(EnergyUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
+
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
+            {
+                case EnergyUnit.BritishThermalUnit: return baseUnitValue/1055.05585262;
+                case EnergyUnit.Calorie: return baseUnitValue/4.184;
+                case EnergyUnit.DecathermEc: return (baseUnitValue/1.05505585262e8) / 1e1d;
+                case EnergyUnit.DecathermImperial: return (baseUnitValue/1.05505585257348e8) / 1e1d;
+                case EnergyUnit.DecathermUs: return (baseUnitValue/1.054804e8) / 1e1d;
+                case EnergyUnit.ElectronVolt: return baseUnitValue/1.602176565e-19;
+                case EnergyUnit.Erg: return baseUnitValue/1e-7;
+                case EnergyUnit.FootPound: return baseUnitValue/1.355817948;
+                case EnergyUnit.GigabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e9d;
+                case EnergyUnit.GigawattHour: return (baseUnitValue/3600d) / 1e9d;
+                case EnergyUnit.Joule: return baseUnitValue;
+                case EnergyUnit.KilobritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e3d;
+                case EnergyUnit.Kilocalorie: return (baseUnitValue/4.184) / 1e3d;
+                case EnergyUnit.Kilojoule: return (baseUnitValue) / 1e3d;
+                case EnergyUnit.KilowattHour: return (baseUnitValue/3600d) / 1e3d;
+                case EnergyUnit.MegabritishThermalUnit: return (baseUnitValue/1055.05585262) / 1e6d;
+                case EnergyUnit.Megajoule: return (baseUnitValue) / 1e6d;
+                case EnergyUnit.MegawattHour: return (baseUnitValue/3600d) / 1e6d;
+                case EnergyUnit.ThermEc: return baseUnitValue/1.05505585262e8;
+                case EnergyUnit.ThermImperial: return baseUnitValue/1.05505585257348e8;
+                case EnergyUnit.ThermUs: return baseUnitValue/1.054804e8;
+                case EnergyUnit.WattHour: return baseUnitValue/3600d;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         #endregion
@@ -475,52 +903,57 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
+        ///     Get default string representation of value and unit.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        public override string ToString()
+        {
+            return ToString(null);
+        }
+
+        /// <summary>
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <returns>String representation.</returns>
-        public string ToString(EnergyUnit unit, [CanBeNull] IFormatProvider provider)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider)
         {
-            return ToString(unit, provider, 2);
+            return ToString(provider, 2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(EnergyUnit unit, [CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
-            double value = As(unit);
-            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, provider, format);
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(EnergyUnit unit, [CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
+            provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
         }
 
         #endregion
+
     }
 }

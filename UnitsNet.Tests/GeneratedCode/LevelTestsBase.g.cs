@@ -9,8 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -62,6 +61,25 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Level((double)0.0, LevelUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Level(double.PositiveInfinity, LevelUnit.Decibel));
+            Assert.Throws<ArgumentException>(() => new Level(double.NegativeInfinity, LevelUnit.Decibel));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Level(double.NaN, LevelUnit.Decibel));
+        }
+
+        [Fact]
         public void DecibelToLevelUnits()
         {
             Level decibel = Level.FromDecibels(1);
@@ -74,6 +92,19 @@ namespace UnitsNet.Tests
         {
             AssertEx.EqualTolerance(1, Level.From(1, LevelUnit.Decibel).Decibels, DecibelsTolerance);
             AssertEx.EqualTolerance(1, Level.From(1, LevelUnit.Neper).Nepers, NepersTolerance);
+        }
+
+        [Fact]
+        public void FromDecibels_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromDecibels_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Level.FromDecibels(double.NaN));
         }
 
         [Fact]
@@ -164,28 +195,43 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => decibel.CompareTo(null));
         }
 
-
         [Fact]
         public void EqualityOperators()
         {
-            Level a = Level.FromDecibels(1);
-            Level b = Level.FromDecibels(2);
+            var a = Level.FromDecibels(1);
+            var b = Level.FromDecibels(2);
 
-// ReSharper disable EqualExpressionComparison
+ // ReSharper disable EqualExpressionComparison
+
             Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
             Assert.False(a != a);
+
+            Assert.True(a != b);
+            Assert.False(a == b);
+
+            Assert.False(a == null);
+            Assert.False(null == a);
+
 // ReSharper restore EqualExpressionComparison
         }
 
         [Fact]
         public void EqualsIsImplemented()
         {
-            Level v = Level.FromDecibels(1);
-            Assert.True(v.Equals(Level.FromDecibels(1), Level.FromDecibels(DecibelsTolerance)));
-            Assert.False(v.Equals(Level.Zero, Level.FromDecibels(DecibelsTolerance)));
+            var a = Level.FromDecibels(1);
+            var b = Level.FromDecibels(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void EqualsRelativeToleranceIsImplemented()
+        {
+            var v = Level.FromDecibels(1);
+            Assert.True(v.Equals(Level.FromDecibels(1), DecibelsTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Level.Zero, DecibelsTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -208,5 +254,23 @@ namespace UnitsNet.Tests
             Assert.DoesNotContain(LevelUnit.Undefined, Level.Units);
         }
 
+        [Fact]
+        public void HasAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(LevelUnit)).Cast<LevelUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == LevelUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
+
+        [Fact]
+        public void BaseDimensionsShouldNeverBeNull()
+        {
+            Assert.False(Level.BaseDimensions is null);
+        }
     }
 }

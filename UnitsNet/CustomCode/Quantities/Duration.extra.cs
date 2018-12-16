@@ -33,6 +33,19 @@ namespace UnitsNet
     public partial struct Duration
 #endif
     {
+        /// <summary>
+        ///     Convert a Duration to a TimeSpan.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">Throws if the TimeSpan can't represent the Duration exactly </exception>
+        /// <returns>The TimeSpan with the same time as the duration</returns>
+        public TimeSpan ToTimeSpan()
+        {
+            if( Seconds > TimeSpan.MaxValue.TotalSeconds ||
+                Seconds < TimeSpan.MinValue.TotalSeconds )
+                throw new ArgumentOutOfRangeException( nameof( Duration ), "The duration is too large or small to fit in a TimeSpan" );
+            return TimeSpan.FromSeconds( Seconds );
+        }
+
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static DateTime operator +(DateTime time, Duration duration)
@@ -75,16 +88,6 @@ namespace UnitsNet
             return duration.Seconds >= timeSpan.TotalSeconds;
         }
 
-        public static bool operator ==(Duration duration, TimeSpan timeSpan)
-        {
-            return duration.Seconds == timeSpan.TotalSeconds;
-        }
-
-        public static bool operator !=(Duration duration, TimeSpan timeSpan)
-        {
-            return duration.Seconds != timeSpan.TotalSeconds;
-        }
-
         public static bool operator <(TimeSpan timeSpan, Duration duration)
         {
             return timeSpan.TotalSeconds < duration.Seconds;
@@ -105,33 +108,10 @@ namespace UnitsNet
             return timeSpan.TotalSeconds >= duration.Seconds;
         }
 
-        public static bool operator ==(TimeSpan timeSpan, Duration duration)
-        {
-            return timeSpan.TotalSeconds == duration.Seconds;
-        }
-
-        public static bool operator !=(TimeSpan timeSpan, Duration duration)
-        {
-            return timeSpan.TotalSeconds != duration.Seconds;
-        }
-
         public static Volume operator *(Duration duration, VolumeFlow volumeFlow)
         {
             return Volume.FromCubicMeters(volumeFlow.CubicMetersPerSecond * duration.Seconds);
         }
 #endif
-
-        /// <summary>
-        ///     Convert a Duration to a TimeSpan.
-        /// </summary>
-        /// <exception cref="ArgumentOutOfRangeException">Throws if the TimeSpan can't represent the Duration exactly </exception>
-        /// <returns>The TimeSpan with the same time as the duration</returns>
-        public TimeSpan ToTimeSpan()
-        {
-            if (Seconds > TimeSpan.MaxValue.TotalSeconds ||
-                Seconds < TimeSpan.MinValue.TotalSeconds)
-                throw new ArgumentOutOfRangeException(nameof(Duration), "The duration is too large or small to fit in a TimeSpan");
-            return TimeSpan.FromSeconds(Seconds);
-        }
     }
 }

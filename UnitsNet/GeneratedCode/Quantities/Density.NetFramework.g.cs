@@ -9,8 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -37,12 +36,11 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
+using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
@@ -51,357 +49,667 @@ namespace UnitsNet
     /// <summary>
     ///     The density, or more precisely, the volumetric mass density, of a substance is its mass per unit volume.
     /// </summary>
-    // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Density : IComparable, IComparable<Density>
+    /// <remarks>
+    ///     http://en.wikipedia.org/wiki/Density
+    /// </remarks>
+    public partial struct Density : IQuantity<DensityUnit>, IEquatable<Density>, IComparable, IComparable<Density>
     {
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly DensityUnit? _unit;
+
+        static Density()
+        {
+            BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
+        }
+
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public Density(double numericValue, DensityUnit unit)
+        {
+            if(unit == DensityUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = unit;
+        }
+
+        #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions { get; }
+
+        /// <summary>
+        ///     The base unit of Density, which is KilogramPerCubicMeter. All conversions go via this value.
+        /// </summary>
+        public static DensityUnit BaseUnit => DensityUnit.KilogramPerCubicMeter;
+
+        /// <summary>
+        /// Represents the largest possible value of Density
+        /// </summary>
+        public static Density MaxValue => new Density(double.MaxValue, BaseUnit);
+
+        /// <summary>
+        /// Represents the smallest possible value of Density
+        /// </summary>
+        public static Density MinValue => new Density(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType => QuantityType.Density;
+
+        /// <summary>
+        ///     All units of measurement for the Density quantity.
+        /// </summary>
+        public static DensityUnit[] Units { get; } = Enum.GetValues(typeof(DensityUnit)).Cast<DensityUnit>().Except(new DensityUnit[]{ DensityUnit.Undefined }).ToArray();
+
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerCubicMeter.
+        /// </summary>
+        public static Density Zero => new Density(0, BaseUnit);
+
+        #endregion
+
+        #region Properties
+
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public DensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <summary>
-        ///     Get nullable Density from nullable CentigramsPerDeciLiter.
+        ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromCentigramsPerDeciLiter(QuantityValue? centigramsperdeciliter)
+        public QuantityType Type => Density.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Density.BaseDimensions;
+
+        #endregion
+
+        #region Conversion Properties
+
+        /// <summary>
+        ///     Get Density in CentigramsPerDeciLiter.
+        /// </summary>
+        public double CentigramsPerDeciLiter => As(DensityUnit.CentigramPerDeciliter);
+
+        /// <summary>
+        ///     Get Density in CentigramsPerLiter.
+        /// </summary>
+        public double CentigramsPerLiter => As(DensityUnit.CentigramPerLiter);
+
+        /// <summary>
+        ///     Get Density in CentigramsPerMilliliter.
+        /// </summary>
+        public double CentigramsPerMilliliter => As(DensityUnit.CentigramPerMilliliter);
+
+        /// <summary>
+        ///     Get Density in DecigramsPerDeciLiter.
+        /// </summary>
+        public double DecigramsPerDeciLiter => As(DensityUnit.DecigramPerDeciliter);
+
+        /// <summary>
+        ///     Get Density in DecigramsPerLiter.
+        /// </summary>
+        public double DecigramsPerLiter => As(DensityUnit.DecigramPerLiter);
+
+        /// <summary>
+        ///     Get Density in DecigramsPerMilliliter.
+        /// </summary>
+        public double DecigramsPerMilliliter => As(DensityUnit.DecigramPerMilliliter);
+
+        /// <summary>
+        ///     Get Density in GramsPerCubicCentimeter.
+        /// </summary>
+        public double GramsPerCubicCentimeter => As(DensityUnit.GramPerCubicCentimeter);
+
+        /// <summary>
+        ///     Get Density in GramsPerCubicMeter.
+        /// </summary>
+        public double GramsPerCubicMeter => As(DensityUnit.GramPerCubicMeter);
+
+        /// <summary>
+        ///     Get Density in GramsPerCubicMillimeter.
+        /// </summary>
+        public double GramsPerCubicMillimeter => As(DensityUnit.GramPerCubicMillimeter);
+
+        /// <summary>
+        ///     Get Density in GramsPerDeciLiter.
+        /// </summary>
+        public double GramsPerDeciLiter => As(DensityUnit.GramPerDeciliter);
+
+        /// <summary>
+        ///     Get Density in GramsPerLiter.
+        /// </summary>
+        public double GramsPerLiter => As(DensityUnit.GramPerLiter);
+
+        /// <summary>
+        ///     Get Density in GramsPerMilliliter.
+        /// </summary>
+        public double GramsPerMilliliter => As(DensityUnit.GramPerMilliliter);
+
+        /// <summary>
+        ///     Get Density in KilogramsPerCubicCentimeter.
+        /// </summary>
+        public double KilogramsPerCubicCentimeter => As(DensityUnit.KilogramPerCubicCentimeter);
+
+        /// <summary>
+        ///     Get Density in KilogramsPerCubicMeter.
+        /// </summary>
+        public double KilogramsPerCubicMeter => As(DensityUnit.KilogramPerCubicMeter);
+
+        /// <summary>
+        ///     Get Density in KilogramsPerCubicMillimeter.
+        /// </summary>
+        public double KilogramsPerCubicMillimeter => As(DensityUnit.KilogramPerCubicMillimeter);
+
+        /// <summary>
+        ///     Get Density in KilopoundsPerCubicFoot.
+        /// </summary>
+        public double KilopoundsPerCubicFoot => As(DensityUnit.KilopoundPerCubicFoot);
+
+        /// <summary>
+        ///     Get Density in KilopoundsPerCubicInch.
+        /// </summary>
+        public double KilopoundsPerCubicInch => As(DensityUnit.KilopoundPerCubicInch);
+
+        /// <summary>
+        ///     Get Density in MicrogramsPerDeciLiter.
+        /// </summary>
+        public double MicrogramsPerDeciLiter => As(DensityUnit.MicrogramPerDeciliter);
+
+        /// <summary>
+        ///     Get Density in MicrogramsPerLiter.
+        /// </summary>
+        public double MicrogramsPerLiter => As(DensityUnit.MicrogramPerLiter);
+
+        /// <summary>
+        ///     Get Density in MicrogramsPerMilliliter.
+        /// </summary>
+        public double MicrogramsPerMilliliter => As(DensityUnit.MicrogramPerMilliliter);
+
+        /// <summary>
+        ///     Get Density in MilligramsPerCubicMeter.
+        /// </summary>
+        public double MilligramsPerCubicMeter => As(DensityUnit.MilligramPerCubicMeter);
+
+        /// <summary>
+        ///     Get Density in MilligramsPerDeciLiter.
+        /// </summary>
+        public double MilligramsPerDeciLiter => As(DensityUnit.MilligramPerDeciliter);
+
+        /// <summary>
+        ///     Get Density in MilligramsPerLiter.
+        /// </summary>
+        public double MilligramsPerLiter => As(DensityUnit.MilligramPerLiter);
+
+        /// <summary>
+        ///     Get Density in MilligramsPerMilliliter.
+        /// </summary>
+        public double MilligramsPerMilliliter => As(DensityUnit.MilligramPerMilliliter);
+
+        /// <summary>
+        ///     Get Density in NanogramsPerDeciLiter.
+        /// </summary>
+        public double NanogramsPerDeciLiter => As(DensityUnit.NanogramPerDeciliter);
+
+        /// <summary>
+        ///     Get Density in NanogramsPerLiter.
+        /// </summary>
+        public double NanogramsPerLiter => As(DensityUnit.NanogramPerLiter);
+
+        /// <summary>
+        ///     Get Density in NanogramsPerMilliliter.
+        /// </summary>
+        public double NanogramsPerMilliliter => As(DensityUnit.NanogramPerMilliliter);
+
+        /// <summary>
+        ///     Get Density in PicogramsPerDeciLiter.
+        /// </summary>
+        public double PicogramsPerDeciLiter => As(DensityUnit.PicogramPerDeciliter);
+
+        /// <summary>
+        ///     Get Density in PicogramsPerLiter.
+        /// </summary>
+        public double PicogramsPerLiter => As(DensityUnit.PicogramPerLiter);
+
+        /// <summary>
+        ///     Get Density in PicogramsPerMilliliter.
+        /// </summary>
+        public double PicogramsPerMilliliter => As(DensityUnit.PicogramPerMilliliter);
+
+        /// <summary>
+        ///     Get Density in PoundsPerCubicFoot.
+        /// </summary>
+        public double PoundsPerCubicFoot => As(DensityUnit.PoundPerCubicFoot);
+
+        /// <summary>
+        ///     Get Density in PoundsPerCubicInch.
+        /// </summary>
+        public double PoundsPerCubicInch => As(DensityUnit.PoundPerCubicInch);
+
+        /// <summary>
+        ///     Get Density in PoundsPerImperialGallon.
+        /// </summary>
+        public double PoundsPerImperialGallon => As(DensityUnit.PoundPerImperialGallon);
+
+        /// <summary>
+        ///     Get Density in PoundsPerUSGallon.
+        /// </summary>
+        public double PoundsPerUSGallon => As(DensityUnit.PoundPerUSGallon);
+
+        /// <summary>
+        ///     Get Density in SlugsPerCubicFoot.
+        /// </summary>
+        public double SlugsPerCubicFoot => As(DensityUnit.SlugPerCubicFoot);
+
+        /// <summary>
+        ///     Get Density in TonnesPerCubicCentimeter.
+        /// </summary>
+        public double TonnesPerCubicCentimeter => As(DensityUnit.TonnePerCubicCentimeter);
+
+        /// <summary>
+        ///     Get Density in TonnesPerCubicMeter.
+        /// </summary>
+        public double TonnesPerCubicMeter => As(DensityUnit.TonnePerCubicMeter);
+
+        /// <summary>
+        ///     Get Density in TonnesPerCubicMillimeter.
+        /// </summary>
+        public double TonnesPerCubicMillimeter => As(DensityUnit.TonnePerCubicMillimeter);
+
+        #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        public static string GetAbbreviation(DensityUnit unit)
         {
-            return centigramsperdeciliter.HasValue ? FromCentigramsPerDeciLiter(centigramsperdeciliter.Value) : default(Density?);
+            return GetAbbreviation(unit, null);
         }
 
         /// <summary>
-        ///     Get nullable Density from nullable CentigramsPerLiter.
+        ///     Get unit abbreviation string.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromCentigramsPerLiter(QuantityValue? centigramsperliter)
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static string GetAbbreviation(DensityUnit unit, [CanBeNull] IFormatProvider provider)
         {
-            return centigramsperliter.HasValue ? FromCentigramsPerLiter(centigramsperliter.Value) : default(Density?);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
-        /// <summary>
-        ///     Get nullable Density from nullable CentigramsPerMilliliter.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromCentigramsPerMilliliter(QuantityValue? centigramspermilliliter)
-        {
-            return centigramspermilliliter.HasValue ? FromCentigramsPerMilliliter(centigramspermilliliter.Value) : default(Density?);
-        }
+        #endregion
+
+        #region Static Factory Methods
 
         /// <summary>
-        ///     Get nullable Density from nullable DecigramsPerDeciLiter.
+        ///     Get Density from CentigramsPerDeciLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromDecigramsPerDeciLiter(QuantityValue? decigramsperdeciliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromCentigramsPerDeciLiter(QuantityValue centigramsperdeciliter)
         {
-            return decigramsperdeciliter.HasValue ? FromDecigramsPerDeciLiter(decigramsperdeciliter.Value) : default(Density?);
+            double value = (double) centigramsperdeciliter;
+            return new Density(value, DensityUnit.CentigramPerDeciliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable DecigramsPerLiter.
+        ///     Get Density from CentigramsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromDecigramsPerLiter(QuantityValue? decigramsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromCentigramsPerLiter(QuantityValue centigramsperliter)
         {
-            return decigramsperliter.HasValue ? FromDecigramsPerLiter(decigramsperliter.Value) : default(Density?);
+            double value = (double) centigramsperliter;
+            return new Density(value, DensityUnit.CentigramPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable DecigramsPerMilliliter.
+        ///     Get Density from CentigramsPerMilliliter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromDecigramsPerMilliliter(QuantityValue? decigramspermilliliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromCentigramsPerMilliliter(QuantityValue centigramspermilliliter)
         {
-            return decigramspermilliliter.HasValue ? FromDecigramsPerMilliliter(decigramspermilliliter.Value) : default(Density?);
+            double value = (double) centigramspermilliliter;
+            return new Density(value, DensityUnit.CentigramPerMilliliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable GramsPerCubicCentimeter.
+        ///     Get Density from DecigramsPerDeciLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromGramsPerCubicCentimeter(QuantityValue? gramspercubiccentimeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromDecigramsPerDeciLiter(QuantityValue decigramsperdeciliter)
         {
-            return gramspercubiccentimeter.HasValue ? FromGramsPerCubicCentimeter(gramspercubiccentimeter.Value) : default(Density?);
+            double value = (double) decigramsperdeciliter;
+            return new Density(value, DensityUnit.DecigramPerDeciliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable GramsPerCubicMeter.
+        ///     Get Density from DecigramsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromGramsPerCubicMeter(QuantityValue? gramspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromDecigramsPerLiter(QuantityValue decigramsperliter)
         {
-            return gramspercubicmeter.HasValue ? FromGramsPerCubicMeter(gramspercubicmeter.Value) : default(Density?);
+            double value = (double) decigramsperliter;
+            return new Density(value, DensityUnit.DecigramPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable GramsPerCubicMillimeter.
+        ///     Get Density from DecigramsPerMilliliter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromGramsPerCubicMillimeter(QuantityValue? gramspercubicmillimeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromDecigramsPerMilliliter(QuantityValue decigramspermilliliter)
         {
-            return gramspercubicmillimeter.HasValue ? FromGramsPerCubicMillimeter(gramspercubicmillimeter.Value) : default(Density?);
+            double value = (double) decigramspermilliliter;
+            return new Density(value, DensityUnit.DecigramPerMilliliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable GramsPerDeciLiter.
+        ///     Get Density from GramsPerCubicCentimeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromGramsPerDeciLiter(QuantityValue? gramsperdeciliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromGramsPerCubicCentimeter(QuantityValue gramspercubiccentimeter)
         {
-            return gramsperdeciliter.HasValue ? FromGramsPerDeciLiter(gramsperdeciliter.Value) : default(Density?);
+            double value = (double) gramspercubiccentimeter;
+            return new Density(value, DensityUnit.GramPerCubicCentimeter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable GramsPerLiter.
+        ///     Get Density from GramsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromGramsPerLiter(QuantityValue? gramsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromGramsPerCubicMeter(QuantityValue gramspercubicmeter)
         {
-            return gramsperliter.HasValue ? FromGramsPerLiter(gramsperliter.Value) : default(Density?);
+            double value = (double) gramspercubicmeter;
+            return new Density(value, DensityUnit.GramPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable GramsPerMilliliter.
+        ///     Get Density from GramsPerCubicMillimeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromGramsPerMilliliter(QuantityValue? gramspermilliliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromGramsPerCubicMillimeter(QuantityValue gramspercubicmillimeter)
         {
-            return gramspermilliliter.HasValue ? FromGramsPerMilliliter(gramspermilliliter.Value) : default(Density?);
+            double value = (double) gramspercubicmillimeter;
+            return new Density(value, DensityUnit.GramPerCubicMillimeter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable KilogramsPerCubicCentimeter.
+        ///     Get Density from GramsPerDeciLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromKilogramsPerCubicCentimeter(QuantityValue? kilogramspercubiccentimeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromGramsPerDeciLiter(QuantityValue gramsperdeciliter)
         {
-            return kilogramspercubiccentimeter.HasValue ? FromKilogramsPerCubicCentimeter(kilogramspercubiccentimeter.Value) : default(Density?);
+            double value = (double) gramsperdeciliter;
+            return new Density(value, DensityUnit.GramPerDeciliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable KilogramsPerCubicMeter.
+        ///     Get Density from GramsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromKilogramsPerCubicMeter(QuantityValue? kilogramspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromGramsPerLiter(QuantityValue gramsperliter)
         {
-            return kilogramspercubicmeter.HasValue ? FromKilogramsPerCubicMeter(kilogramspercubicmeter.Value) : default(Density?);
+            double value = (double) gramsperliter;
+            return new Density(value, DensityUnit.GramPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable KilogramsPerCubicMillimeter.
+        ///     Get Density from GramsPerMilliliter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromKilogramsPerCubicMillimeter(QuantityValue? kilogramspercubicmillimeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromGramsPerMilliliter(QuantityValue gramspermilliliter)
         {
-            return kilogramspercubicmillimeter.HasValue ? FromKilogramsPerCubicMillimeter(kilogramspercubicmillimeter.Value) : default(Density?);
+            double value = (double) gramspermilliliter;
+            return new Density(value, DensityUnit.GramPerMilliliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable KilopoundsPerCubicFoot.
+        ///     Get Density from KilogramsPerCubicCentimeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromKilopoundsPerCubicFoot(QuantityValue? kilopoundspercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromKilogramsPerCubicCentimeter(QuantityValue kilogramspercubiccentimeter)
         {
-            return kilopoundspercubicfoot.HasValue ? FromKilopoundsPerCubicFoot(kilopoundspercubicfoot.Value) : default(Density?);
+            double value = (double) kilogramspercubiccentimeter;
+            return new Density(value, DensityUnit.KilogramPerCubicCentimeter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable KilopoundsPerCubicInch.
+        ///     Get Density from KilogramsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromKilopoundsPerCubicInch(QuantityValue? kilopoundspercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromKilogramsPerCubicMeter(QuantityValue kilogramspercubicmeter)
         {
-            return kilopoundspercubicinch.HasValue ? FromKilopoundsPerCubicInch(kilopoundspercubicinch.Value) : default(Density?);
+            double value = (double) kilogramspercubicmeter;
+            return new Density(value, DensityUnit.KilogramPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable MicrogramsPerDeciLiter.
+        ///     Get Density from KilogramsPerCubicMillimeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromMicrogramsPerDeciLiter(QuantityValue? microgramsperdeciliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromKilogramsPerCubicMillimeter(QuantityValue kilogramspercubicmillimeter)
         {
-            return microgramsperdeciliter.HasValue ? FromMicrogramsPerDeciLiter(microgramsperdeciliter.Value) : default(Density?);
+            double value = (double) kilogramspercubicmillimeter;
+            return new Density(value, DensityUnit.KilogramPerCubicMillimeter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable MicrogramsPerLiter.
+        ///     Get Density from KilopoundsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromMicrogramsPerLiter(QuantityValue? microgramsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromKilopoundsPerCubicFoot(QuantityValue kilopoundspercubicfoot)
         {
-            return microgramsperliter.HasValue ? FromMicrogramsPerLiter(microgramsperliter.Value) : default(Density?);
+            double value = (double) kilopoundspercubicfoot;
+            return new Density(value, DensityUnit.KilopoundPerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable MicrogramsPerMilliliter.
+        ///     Get Density from KilopoundsPerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromMicrogramsPerMilliliter(QuantityValue? microgramspermilliliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromKilopoundsPerCubicInch(QuantityValue kilopoundspercubicinch)
         {
-            return microgramspermilliliter.HasValue ? FromMicrogramsPerMilliliter(microgramspermilliliter.Value) : default(Density?);
+            double value = (double) kilopoundspercubicinch;
+            return new Density(value, DensityUnit.KilopoundPerCubicInch);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable MilligramsPerCubicMeter.
+        ///     Get Density from MicrogramsPerDeciLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromMilligramsPerCubicMeter(QuantityValue? milligramspercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromMicrogramsPerDeciLiter(QuantityValue microgramsperdeciliter)
         {
-            return milligramspercubicmeter.HasValue ? FromMilligramsPerCubicMeter(milligramspercubicmeter.Value) : default(Density?);
+            double value = (double) microgramsperdeciliter;
+            return new Density(value, DensityUnit.MicrogramPerDeciliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable MilligramsPerDeciLiter.
+        ///     Get Density from MicrogramsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromMilligramsPerDeciLiter(QuantityValue? milligramsperdeciliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromMicrogramsPerLiter(QuantityValue microgramsperliter)
         {
-            return milligramsperdeciliter.HasValue ? FromMilligramsPerDeciLiter(milligramsperdeciliter.Value) : default(Density?);
+            double value = (double) microgramsperliter;
+            return new Density(value, DensityUnit.MicrogramPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable MilligramsPerLiter.
+        ///     Get Density from MicrogramsPerMilliliter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromMilligramsPerLiter(QuantityValue? milligramsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromMicrogramsPerMilliliter(QuantityValue microgramspermilliliter)
         {
-            return milligramsperliter.HasValue ? FromMilligramsPerLiter(milligramsperliter.Value) : default(Density?);
+            double value = (double) microgramspermilliliter;
+            return new Density(value, DensityUnit.MicrogramPerMilliliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable MilligramsPerMilliliter.
+        ///     Get Density from MilligramsPerCubicMeter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromMilligramsPerMilliliter(QuantityValue? milligramspermilliliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromMilligramsPerCubicMeter(QuantityValue milligramspercubicmeter)
         {
-            return milligramspermilliliter.HasValue ? FromMilligramsPerMilliliter(milligramspermilliliter.Value) : default(Density?);
+            double value = (double) milligramspercubicmeter;
+            return new Density(value, DensityUnit.MilligramPerCubicMeter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable NanogramsPerDeciLiter.
+        ///     Get Density from MilligramsPerDeciLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromNanogramsPerDeciLiter(QuantityValue? nanogramsperdeciliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromMilligramsPerDeciLiter(QuantityValue milligramsperdeciliter)
         {
-            return nanogramsperdeciliter.HasValue ? FromNanogramsPerDeciLiter(nanogramsperdeciliter.Value) : default(Density?);
+            double value = (double) milligramsperdeciliter;
+            return new Density(value, DensityUnit.MilligramPerDeciliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable NanogramsPerLiter.
+        ///     Get Density from MilligramsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromNanogramsPerLiter(QuantityValue? nanogramsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromMilligramsPerLiter(QuantityValue milligramsperliter)
         {
-            return nanogramsperliter.HasValue ? FromNanogramsPerLiter(nanogramsperliter.Value) : default(Density?);
+            double value = (double) milligramsperliter;
+            return new Density(value, DensityUnit.MilligramPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable NanogramsPerMilliliter.
+        ///     Get Density from MilligramsPerMilliliter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromNanogramsPerMilliliter(QuantityValue? nanogramspermilliliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromMilligramsPerMilliliter(QuantityValue milligramspermilliliter)
         {
-            return nanogramspermilliliter.HasValue ? FromNanogramsPerMilliliter(nanogramspermilliliter.Value) : default(Density?);
+            double value = (double) milligramspermilliliter;
+            return new Density(value, DensityUnit.MilligramPerMilliliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable PicogramsPerDeciLiter.
+        ///     Get Density from NanogramsPerDeciLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromPicogramsPerDeciLiter(QuantityValue? picogramsperdeciliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromNanogramsPerDeciLiter(QuantityValue nanogramsperdeciliter)
         {
-            return picogramsperdeciliter.HasValue ? FromPicogramsPerDeciLiter(picogramsperdeciliter.Value) : default(Density?);
+            double value = (double) nanogramsperdeciliter;
+            return new Density(value, DensityUnit.NanogramPerDeciliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable PicogramsPerLiter.
+        ///     Get Density from NanogramsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromPicogramsPerLiter(QuantityValue? picogramsperliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromNanogramsPerLiter(QuantityValue nanogramsperliter)
         {
-            return picogramsperliter.HasValue ? FromPicogramsPerLiter(picogramsperliter.Value) : default(Density?);
+            double value = (double) nanogramsperliter;
+            return new Density(value, DensityUnit.NanogramPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable PicogramsPerMilliliter.
+        ///     Get Density from NanogramsPerMilliliter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromPicogramsPerMilliliter(QuantityValue? picogramspermilliliter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromNanogramsPerMilliliter(QuantityValue nanogramspermilliliter)
         {
-            return picogramspermilliliter.HasValue ? FromPicogramsPerMilliliter(picogramspermilliliter.Value) : default(Density?);
+            double value = (double) nanogramspermilliliter;
+            return new Density(value, DensityUnit.NanogramPerMilliliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable PoundsPerCubicFoot.
+        ///     Get Density from PicogramsPerDeciLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromPoundsPerCubicFoot(QuantityValue? poundspercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromPicogramsPerDeciLiter(QuantityValue picogramsperdeciliter)
         {
-            return poundspercubicfoot.HasValue ? FromPoundsPerCubicFoot(poundspercubicfoot.Value) : default(Density?);
+            double value = (double) picogramsperdeciliter;
+            return new Density(value, DensityUnit.PicogramPerDeciliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable PoundsPerCubicInch.
+        ///     Get Density from PicogramsPerLiter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromPoundsPerCubicInch(QuantityValue? poundspercubicinch)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromPicogramsPerLiter(QuantityValue picogramsperliter)
         {
-            return poundspercubicinch.HasValue ? FromPoundsPerCubicInch(poundspercubicinch.Value) : default(Density?);
+            double value = (double) picogramsperliter;
+            return new Density(value, DensityUnit.PicogramPerLiter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable PoundsPerImperialGallon.
+        ///     Get Density from PicogramsPerMilliliter.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromPoundsPerImperialGallon(QuantityValue? poundsperimperialgallon)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromPicogramsPerMilliliter(QuantityValue picogramspermilliliter)
         {
-            return poundsperimperialgallon.HasValue ? FromPoundsPerImperialGallon(poundsperimperialgallon.Value) : default(Density?);
+            double value = (double) picogramspermilliliter;
+            return new Density(value, DensityUnit.PicogramPerMilliliter);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable PoundsPerUSGallon.
+        ///     Get Density from PoundsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromPoundsPerUSGallon(QuantityValue? poundsperusgallon)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromPoundsPerCubicFoot(QuantityValue poundspercubicfoot)
         {
-            return poundsperusgallon.HasValue ? FromPoundsPerUSGallon(poundsperusgallon.Value) : default(Density?);
+            double value = (double) poundspercubicfoot;
+            return new Density(value, DensityUnit.PoundPerCubicFoot);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable SlugsPerCubicFoot.
+        ///     Get Density from PoundsPerCubicInch.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromSlugsPerCubicFoot(QuantityValue? slugspercubicfoot)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromPoundsPerCubicInch(QuantityValue poundspercubicinch)
         {
-            return slugspercubicfoot.HasValue ? FromSlugsPerCubicFoot(slugspercubicfoot.Value) : default(Density?);
+            double value = (double) poundspercubicinch;
+            return new Density(value, DensityUnit.PoundPerCubicInch);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable TonnesPerCubicCentimeter.
+        ///     Get Density from PoundsPerImperialGallon.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromTonnesPerCubicCentimeter(QuantityValue? tonnespercubiccentimeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromPoundsPerImperialGallon(QuantityValue poundsperimperialgallon)
         {
-            return tonnespercubiccentimeter.HasValue ? FromTonnesPerCubicCentimeter(tonnespercubiccentimeter.Value) : default(Density?);
+            double value = (double) poundsperimperialgallon;
+            return new Density(value, DensityUnit.PoundPerImperialGallon);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable TonnesPerCubicMeter.
+        ///     Get Density from PoundsPerUSGallon.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromTonnesPerCubicMeter(QuantityValue? tonnespercubicmeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromPoundsPerUSGallon(QuantityValue poundsperusgallon)
         {
-            return tonnespercubicmeter.HasValue ? FromTonnesPerCubicMeter(tonnespercubicmeter.Value) : default(Density?);
+            double value = (double) poundsperusgallon;
+            return new Density(value, DensityUnit.PoundPerUSGallon);
         }
-
         /// <summary>
-        ///     Get nullable Density from nullable TonnesPerCubicMillimeter.
+        ///     Get Density from SlugsPerCubicFoot.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Density? FromTonnesPerCubicMillimeter(QuantityValue? tonnespercubicmillimeter)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromSlugsPerCubicFoot(QuantityValue slugspercubicfoot)
         {
-            return tonnespercubicmillimeter.HasValue ? FromTonnesPerCubicMillimeter(tonnespercubicmillimeter.Value) : default(Density?);
+            double value = (double) slugspercubicfoot;
+            return new Density(value, DensityUnit.SlugPerCubicFoot);
+        }
+        /// <summary>
+        ///     Get Density from TonnesPerCubicCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromTonnesPerCubicCentimeter(QuantityValue tonnespercubiccentimeter)
+        {
+            double value = (double) tonnespercubiccentimeter;
+            return new Density(value, DensityUnit.TonnePerCubicCentimeter);
+        }
+        /// <summary>
+        ///     Get Density from TonnesPerCubicMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromTonnesPerCubicMeter(QuantityValue tonnespercubicmeter)
+        {
+            double value = (double) tonnespercubicmeter;
+            return new Density(value, DensityUnit.TonnePerCubicMeter);
+        }
+        /// <summary>
+        ///     Get Density from TonnesPerCubicMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromTonnesPerCubicMillimeter(QuantityValue tonnespercubicmillimeter)
+        {
+            double value = (double) tonnespercubicmillimeter;
+            return new Density(value, DensityUnit.TonnePerCubicMillimeter);
         }
 
         /// <summary>
@@ -410,27 +718,155 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Density unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Density? From(QuantityValue? value, DensityUnit fromUnit)
+        public static Density From(QuantityValue value, DensityUnit fromUnit)
         {
-            return value.HasValue ? new Density((double)value.Value, fromUnit) : default(Density?);
+            return new Density((double)value, fromUnit);
         }
 
         #endregion
 
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(DensityUnit unit, [CanBeNull] IFormatProvider provider)
-        {
-            provider = provider ?? UnitSystem.DefaultCulture;
+        #region Static Parse Methods
 
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        public static Density Parse(string str)
+        {
+            return Parse(str, null);
         }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static Density Parse(string str, [CanBeNull] IFormatProvider provider)
+        {
+            return QuantityParser.Default.Parse<Density, DensityUnit>(
+                str,
+                provider,
+                From);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        public static bool TryParse([CanBeNull] string str, out Density result)
+        {
+            return TryParse(str, null, out result);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Density result)
+        {
+            return QuantityParser.Default.TryParse<Density, DensityUnit>(
+                str,
+                provider,
+                From,
+                out result);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static DensityUnit ParseUnit(string str)
+        {
+            return ParseUnit(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static DensityUnit ParseUnit(string str, IFormatProvider provider = null)
+        {
+            return UnitParser.Default.Parse<DensityUnit>(str, provider);
+        }
+
+        public static bool TryParseUnit(string str, out DensityUnit unit)
+        {
+            return TryParseUnit(str, null, out unit);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="unit">The parsed unit if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static bool TryParseUnit(string str, IFormatProvider provider, out DensityUnit unit)
+        {
+            return UnitParser.Default.TryParse<DensityUnit>(str, provider, out unit);
+        }
+
+        #endregion
 
         #region Arithmetic Operators
 
@@ -471,6 +907,8 @@ namespace UnitsNet
 
         #endregion
 
+        #region Equality / IComparable
+
         public static bool operator <=(Density left, Density right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
@@ -491,127 +929,232 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Density, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(Density left, Density right)
+        public static bool operator ==(Density left, Density right)	
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
+            return left.Equals(right);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Density, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(Density left, Density right)
+        public static bool operator !=(Density left, Density right)	
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
+            return !(left == right);
         }
 
-        #region Parsing
-
-        /// <summary>
-        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="ArgumentException">
-        ///     Expected string to have one or two pairs of quantity and unit in the format
-        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
-        /// </exception>
-        /// <exception cref="AmbiguousUnitParseException">
-        ///     More than one unit is represented by the specified unit abbreviation.
-        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
-        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
-        /// </exception>
-        /// <exception cref="UnitsNetException">
-        ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-        ///     Units.NET exceptions from other exceptions.
-        /// </exception>
-        public static Density Parse(string str, [CanBeNull] IFormatProvider provider)
+        public int CompareTo(object obj)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            if(obj is null) throw new ArgumentNullException(nameof(obj));
+            if(!(obj is Density objDensity)) throw new ArgumentException("Expected type Density.", nameof(obj));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            return QuantityParser.Parse<Density, DensityUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    double parsedValue = double.Parse(value, formatProvider2);
-                    DensityUnit parsedUnit = ParseUnit(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => FromKilogramsPerCubicMeter(x.KilogramsPerCubicMeter + y.KilogramsPerCubicMeter));
+            return CompareTo(objDensity);
         }
 
-        /// <summary>
-        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="result">Resulting unit quantity if successful.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Density result)
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        public int CompareTo(Density other)
         {
-            provider = provider ?? UnitSystem.DefaultCulture;
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
 
-            try
-            {
-                result = Parse(str, provider);
-                return true;
-            }
-            catch
-            {
-                result = default(Density);
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Density objDensity))
                 return false;
-            }
+
+            return Equals(objDensity);
+        }
+
+        public bool Equals(Density other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
-        ///     Parse a unit string.
+        ///     <para>
+        ///     Compare equality to another Density within the given absolute or relative tolerance.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
+        ///     this quantity's value to be considered equal.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        ///     </para>
         /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
-        public static DensityUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(Density other, double tolerance, ComparisonType comparisonType)
         {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
+
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
-        ///     Parse a unit string.
+        ///     Returns the hash code for this instance.
         /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static DensityUnit ParseUnit(string str, IFormatProvider provider = null)
+        /// <returns>A hash code for the current Density.</returns>
+        public override int GetHashCode()
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            return new { QuantityType, Value, Unit }.GetHashCode();
+        }
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<DensityUnit>(str.Trim());
+        #endregion
 
-            if (unit == DensityUnit.Undefined)
+        #region Conversion Methods
+
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(DensityUnit unit)
+        {
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts this Density to another Density with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Density with the specified unit.</returns>
+        public Density ToUnit(DensityUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Density(convertedValue, unit);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized DensityUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
+                case DensityUnit.CentigramPerDeciliter: return (_value/1e-1) * 1e-2d;
+                case DensityUnit.CentigramPerLiter: return (_value/1) * 1e-2d;
+                case DensityUnit.CentigramPerMilliliter: return (_value/1e-3) * 1e-2d;
+                case DensityUnit.DecigramPerDeciliter: return (_value/1e-1) * 1e-1d;
+                case DensityUnit.DecigramPerLiter: return (_value/1) * 1e-1d;
+                case DensityUnit.DecigramPerMilliliter: return (_value/1e-3) * 1e-1d;
+                case DensityUnit.GramPerCubicCentimeter: return _value/1e-3;
+                case DensityUnit.GramPerCubicMeter: return _value/1e3;
+                case DensityUnit.GramPerCubicMillimeter: return _value/1e-6;
+                case DensityUnit.GramPerDeciliter: return _value/1e-1;
+                case DensityUnit.GramPerLiter: return _value/1;
+                case DensityUnit.GramPerMilliliter: return _value/1e-3;
+                case DensityUnit.KilogramPerCubicCentimeter: return (_value/1e-3) * 1e3d;
+                case DensityUnit.KilogramPerCubicMeter: return (_value/1e3) * 1e3d;
+                case DensityUnit.KilogramPerCubicMillimeter: return (_value/1e-6) * 1e3d;
+                case DensityUnit.KilopoundPerCubicFoot: return (_value/0.062427961) * 1e3d;
+                case DensityUnit.KilopoundPerCubicInch: return (_value/3.6127298147753e-5) * 1e3d;
+                case DensityUnit.MicrogramPerDeciliter: return (_value/1e-1) * 1e-6d;
+                case DensityUnit.MicrogramPerLiter: return (_value/1) * 1e-6d;
+                case DensityUnit.MicrogramPerMilliliter: return (_value/1e-3) * 1e-6d;
+                case DensityUnit.MilligramPerCubicMeter: return (_value/1e3) * 1e-3d;
+                case DensityUnit.MilligramPerDeciliter: return (_value/1e-1) * 1e-3d;
+                case DensityUnit.MilligramPerLiter: return (_value/1) * 1e-3d;
+                case DensityUnit.MilligramPerMilliliter: return (_value/1e-3) * 1e-3d;
+                case DensityUnit.NanogramPerDeciliter: return (_value/1e-1) * 1e-9d;
+                case DensityUnit.NanogramPerLiter: return (_value/1) * 1e-9d;
+                case DensityUnit.NanogramPerMilliliter: return (_value/1e-3) * 1e-9d;
+                case DensityUnit.PicogramPerDeciliter: return (_value/1e-1) * 1e-12d;
+                case DensityUnit.PicogramPerLiter: return (_value/1) * 1e-12d;
+                case DensityUnit.PicogramPerMilliliter: return (_value/1e-3) * 1e-12d;
+                case DensityUnit.PoundPerCubicFoot: return _value/0.062427961;
+                case DensityUnit.PoundPerCubicInch: return _value/3.6127298147753e-5;
+                case DensityUnit.PoundPerImperialGallon: return _value*9.9776398e1;
+                case DensityUnit.PoundPerUSGallon: return _value*1.19826427e2;
+                case DensityUnit.SlugPerCubicFoot: return _value*515.378818;
+                case DensityUnit.TonnePerCubicCentimeter: return _value/1e-9;
+                case DensityUnit.TonnePerCubicMeter: return _value/0.001;
+                case DensityUnit.TonnePerCubicMillimeter: return _value/1e-12;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            return unit;
+        private double AsBaseNumericType(DensityUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
+
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
+            {
+                case DensityUnit.CentigramPerDeciliter: return (baseUnitValue*1e-1) / 1e-2d;
+                case DensityUnit.CentigramPerLiter: return (baseUnitValue*1) / 1e-2d;
+                case DensityUnit.CentigramPerMilliliter: return (baseUnitValue*1e-3) / 1e-2d;
+                case DensityUnit.DecigramPerDeciliter: return (baseUnitValue*1e-1) / 1e-1d;
+                case DensityUnit.DecigramPerLiter: return (baseUnitValue*1) / 1e-1d;
+                case DensityUnit.DecigramPerMilliliter: return (baseUnitValue*1e-3) / 1e-1d;
+                case DensityUnit.GramPerCubicCentimeter: return baseUnitValue*1e-3;
+                case DensityUnit.GramPerCubicMeter: return baseUnitValue*1e3;
+                case DensityUnit.GramPerCubicMillimeter: return baseUnitValue*1e-6;
+                case DensityUnit.GramPerDeciliter: return baseUnitValue*1e-1;
+                case DensityUnit.GramPerLiter: return baseUnitValue*1;
+                case DensityUnit.GramPerMilliliter: return baseUnitValue*1e-3;
+                case DensityUnit.KilogramPerCubicCentimeter: return (baseUnitValue*1e-3) / 1e3d;
+                case DensityUnit.KilogramPerCubicMeter: return (baseUnitValue*1e3) / 1e3d;
+                case DensityUnit.KilogramPerCubicMillimeter: return (baseUnitValue*1e-6) / 1e3d;
+                case DensityUnit.KilopoundPerCubicFoot: return (baseUnitValue*0.062427961) / 1e3d;
+                case DensityUnit.KilopoundPerCubicInch: return (baseUnitValue*3.6127298147753e-5) / 1e3d;
+                case DensityUnit.MicrogramPerDeciliter: return (baseUnitValue*1e-1) / 1e-6d;
+                case DensityUnit.MicrogramPerLiter: return (baseUnitValue*1) / 1e-6d;
+                case DensityUnit.MicrogramPerMilliliter: return (baseUnitValue*1e-3) / 1e-6d;
+                case DensityUnit.MilligramPerCubicMeter: return (baseUnitValue*1e3) / 1e-3d;
+                case DensityUnit.MilligramPerDeciliter: return (baseUnitValue*1e-1) / 1e-3d;
+                case DensityUnit.MilligramPerLiter: return (baseUnitValue*1) / 1e-3d;
+                case DensityUnit.MilligramPerMilliliter: return (baseUnitValue*1e-3) / 1e-3d;
+                case DensityUnit.NanogramPerDeciliter: return (baseUnitValue*1e-1) / 1e-9d;
+                case DensityUnit.NanogramPerLiter: return (baseUnitValue*1) / 1e-9d;
+                case DensityUnit.NanogramPerMilliliter: return (baseUnitValue*1e-3) / 1e-9d;
+                case DensityUnit.PicogramPerDeciliter: return (baseUnitValue*1e-1) / 1e-12d;
+                case DensityUnit.PicogramPerLiter: return (baseUnitValue*1) / 1e-12d;
+                case DensityUnit.PicogramPerMilliliter: return (baseUnitValue*1e-3) / 1e-12d;
+                case DensityUnit.PoundPerCubicFoot: return baseUnitValue*0.062427961;
+                case DensityUnit.PoundPerCubicInch: return baseUnitValue*3.6127298147753e-5;
+                case DensityUnit.PoundPerImperialGallon: return baseUnitValue/9.9776398e1;
+                case DensityUnit.PoundPerUSGallon: return baseUnitValue/1.19826427e2;
+                case DensityUnit.SlugPerCubicFoot: return baseUnitValue*0.00194032033;
+                case DensityUnit.TonnePerCubicCentimeter: return baseUnitValue*1e-9;
+                case DensityUnit.TonnePerCubicMeter: return baseUnitValue*0.001;
+                case DensityUnit.TonnePerCubicMillimeter: return baseUnitValue*1e-12;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         #endregion
@@ -619,52 +1162,57 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
+        ///     Get default string representation of value and unit.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        public override string ToString()
+        {
+            return ToString(null);
+        }
+
+        /// <summary>
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <returns>String representation.</returns>
-        public string ToString(DensityUnit unit, [CanBeNull] IFormatProvider provider)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider)
         {
-            return ToString(unit, provider, 2);
+            return ToString(provider, 2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(DensityUnit unit, [CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
-            double value = As(unit);
-            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, provider, format);
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(DensityUnit unit, [CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
+            provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
         }
 
         #endregion
+
     }
 }

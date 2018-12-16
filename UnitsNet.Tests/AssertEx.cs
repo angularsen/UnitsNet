@@ -12,7 +12,7 @@ namespace UnitsNet.Tests
         {
             if(comparisonType == ComparisonType.Relative)
             {
-                bool areEqual = UnitsNet.Comparison.EqualsRelative(expected, actual, tolerance);
+                bool areEqual = Comparison.EqualsRelative(expected, actual, tolerance);
 
                 double difference = Math.Abs(expected - actual);
                 double relativeDifference = difference / expected;
@@ -21,7 +21,7 @@ namespace UnitsNet.Tests
             }
             else if( comparisonType == ComparisonType.Absolute )
             {
-                bool areEqual = UnitsNet.Comparison.EqualsAbsolute(expected, actual, tolerance);
+                bool areEqual = Comparison.EqualsAbsolute(expected, actual, tolerance);
                 Assert.True( areEqual, $"Values are not equal within absolute tolerance: {tolerance}\nExpected: {expected}\nActual: {actual}\nDiff: {actual - expected:e}" );
             }
         }

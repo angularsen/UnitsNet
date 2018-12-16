@@ -9,8 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -37,12 +36,11 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
+using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
@@ -51,132 +49,314 @@ namespace UnitsNet
     /// <summary>
     ///     Acceleration, in physics, is the rate at which the velocity of an object changes over time. An object's acceleration is the net result of any and all forces acting on the object, as described by Newton's Second Law. The SI unit for acceleration is the Meter per second squared (m/s²). Accelerations are vector quantities (they have magnitude and direction) and add according to the parallelogram law. As a vector, the calculated net force is equal to the product of the object's mass (a scalar quantity) and the acceleration.
     /// </summary>
-    // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Acceleration : IComparable, IComparable<Acceleration>
+    public partial struct Acceleration : IQuantity<AccelerationUnit>, IEquatable<Acceleration>, IComparable, IComparable<Acceleration>
     {
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly AccelerationUnit? _unit;
+
+        static Acceleration()
+        {
+            BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
+        }
+
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public Acceleration(double numericValue, AccelerationUnit unit)
+        {
+            if(unit == AccelerationUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = unit;
+        }
+
+        #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions { get; }
+
+        /// <summary>
+        ///     The base unit of Acceleration, which is MeterPerSecondSquared. All conversions go via this value.
+        /// </summary>
+        public static AccelerationUnit BaseUnit => AccelerationUnit.MeterPerSecondSquared;
+
+        /// <summary>
+        /// Represents the largest possible value of Acceleration
+        /// </summary>
+        public static Acceleration MaxValue => new Acceleration(double.MaxValue, BaseUnit);
+
+        /// <summary>
+        /// Represents the smallest possible value of Acceleration
+        /// </summary>
+        public static Acceleration MinValue => new Acceleration(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType => QuantityType.Acceleration;
+
+        /// <summary>
+        ///     All units of measurement for the Acceleration quantity.
+        /// </summary>
+        public static AccelerationUnit[] Units { get; } = Enum.GetValues(typeof(AccelerationUnit)).Cast<AccelerationUnit>().Except(new AccelerationUnit[]{ AccelerationUnit.Undefined }).ToArray();
+
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecondSquared.
+        /// </summary>
+        public static Acceleration Zero => new Acceleration(0, BaseUnit);
+
+        #endregion
+
+        #region Properties
+
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public AccelerationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable CentimetersPerSecondSquared.
+        ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Acceleration? FromCentimetersPerSecondSquared(QuantityValue? centimeterspersecondsquared)
+        public QuantityType Type => Acceleration.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Acceleration.BaseDimensions;
+
+        #endregion
+
+        #region Conversion Properties
+
+        /// <summary>
+        ///     Get Acceleration in CentimetersPerSecondSquared.
+        /// </summary>
+        public double CentimetersPerSecondSquared => As(AccelerationUnit.CentimeterPerSecondSquared);
+
+        /// <summary>
+        ///     Get Acceleration in DecimetersPerSecondSquared.
+        /// </summary>
+        public double DecimetersPerSecondSquared => As(AccelerationUnit.DecimeterPerSecondSquared);
+
+        /// <summary>
+        ///     Get Acceleration in FeetPerSecondSquared.
+        /// </summary>
+        public double FeetPerSecondSquared => As(AccelerationUnit.FootPerSecondSquared);
+
+        /// <summary>
+        ///     Get Acceleration in InchesPerSecondSquared.
+        /// </summary>
+        public double InchesPerSecondSquared => As(AccelerationUnit.InchPerSecondSquared);
+
+        /// <summary>
+        ///     Get Acceleration in KilometersPerSecondSquared.
+        /// </summary>
+        public double KilometersPerSecondSquared => As(AccelerationUnit.KilometerPerSecondSquared);
+
+        /// <summary>
+        ///     Get Acceleration in KnotsPerHour.
+        /// </summary>
+        public double KnotsPerHour => As(AccelerationUnit.KnotPerHour);
+
+        /// <summary>
+        ///     Get Acceleration in KnotsPerMinute.
+        /// </summary>
+        public double KnotsPerMinute => As(AccelerationUnit.KnotPerMinute);
+
+        /// <summary>
+        ///     Get Acceleration in KnotsPerSecond.
+        /// </summary>
+        public double KnotsPerSecond => As(AccelerationUnit.KnotPerSecond);
+
+        /// <summary>
+        ///     Get Acceleration in MetersPerSecondSquared.
+        /// </summary>
+        public double MetersPerSecondSquared => As(AccelerationUnit.MeterPerSecondSquared);
+
+        /// <summary>
+        ///     Get Acceleration in MicrometersPerSecondSquared.
+        /// </summary>
+        public double MicrometersPerSecondSquared => As(AccelerationUnit.MicrometerPerSecondSquared);
+
+        /// <summary>
+        ///     Get Acceleration in MillimetersPerSecondSquared.
+        /// </summary>
+        public double MillimetersPerSecondSquared => As(AccelerationUnit.MillimeterPerSecondSquared);
+
+        /// <summary>
+        ///     Get Acceleration in NanometersPerSecondSquared.
+        /// </summary>
+        public double NanometersPerSecondSquared => As(AccelerationUnit.NanometerPerSecondSquared);
+
+        /// <summary>
+        ///     Get Acceleration in StandardGravity.
+        /// </summary>
+        public double StandardGravity => As(AccelerationUnit.StandardGravity);
+
+        #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        public static string GetAbbreviation(AccelerationUnit unit)
         {
-            return centimeterspersecondsquared.HasValue ? FromCentimetersPerSecondSquared(centimeterspersecondsquared.Value) : default(Acceleration?);
+            return GetAbbreviation(unit, null);
         }
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable DecimetersPerSecondSquared.
+        ///     Get unit abbreviation string.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Acceleration? FromDecimetersPerSecondSquared(QuantityValue? decimeterspersecondsquared)
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static string GetAbbreviation(AccelerationUnit unit, [CanBeNull] IFormatProvider provider)
         {
-            return decimeterspersecondsquared.HasValue ? FromDecimetersPerSecondSquared(decimeterspersecondsquared.Value) : default(Acceleration?);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
-        /// <summary>
-        ///     Get nullable Acceleration from nullable FeetPerSecondSquared.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Acceleration? FromFeetPerSecondSquared(QuantityValue? feetpersecondsquared)
-        {
-            return feetpersecondsquared.HasValue ? FromFeetPerSecondSquared(feetpersecondsquared.Value) : default(Acceleration?);
-        }
+        #endregion
+
+        #region Static Factory Methods
 
         /// <summary>
-        ///     Get nullable Acceleration from nullable InchesPerSecondSquared.
+        ///     Get Acceleration from CentimetersPerSecondSquared.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Acceleration? FromInchesPerSecondSquared(QuantityValue? inchespersecondsquared)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromCentimetersPerSecondSquared(QuantityValue centimeterspersecondsquared)
         {
-            return inchespersecondsquared.HasValue ? FromInchesPerSecondSquared(inchespersecondsquared.Value) : default(Acceleration?);
+            double value = (double) centimeterspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.CentimeterPerSecondSquared);
         }
-
         /// <summary>
-        ///     Get nullable Acceleration from nullable KilometersPerSecondSquared.
+        ///     Get Acceleration from DecimetersPerSecondSquared.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Acceleration? FromKilometersPerSecondSquared(QuantityValue? kilometerspersecondsquared)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromDecimetersPerSecondSquared(QuantityValue decimeterspersecondsquared)
         {
-            return kilometerspersecondsquared.HasValue ? FromKilometersPerSecondSquared(kilometerspersecondsquared.Value) : default(Acceleration?);
+            double value = (double) decimeterspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.DecimeterPerSecondSquared);
         }
-
         /// <summary>
-        ///     Get nullable Acceleration from nullable KnotsPerHour.
+        ///     Get Acceleration from FeetPerSecondSquared.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Acceleration? FromKnotsPerHour(QuantityValue? knotsperhour)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromFeetPerSecondSquared(QuantityValue feetpersecondsquared)
         {
-            return knotsperhour.HasValue ? FromKnotsPerHour(knotsperhour.Value) : default(Acceleration?);
+            double value = (double) feetpersecondsquared;
+            return new Acceleration(value, AccelerationUnit.FootPerSecondSquared);
         }
-
         /// <summary>
-        ///     Get nullable Acceleration from nullable KnotsPerMinute.
+        ///     Get Acceleration from InchesPerSecondSquared.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Acceleration? FromKnotsPerMinute(QuantityValue? knotsperminute)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromInchesPerSecondSquared(QuantityValue inchespersecondsquared)
         {
-            return knotsperminute.HasValue ? FromKnotsPerMinute(knotsperminute.Value) : default(Acceleration?);
+            double value = (double) inchespersecondsquared;
+            return new Acceleration(value, AccelerationUnit.InchPerSecondSquared);
         }
-
         /// <summary>
-        ///     Get nullable Acceleration from nullable KnotsPerSecond.
+        ///     Get Acceleration from KilometersPerSecondSquared.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Acceleration? FromKnotsPerSecond(QuantityValue? knotspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromKilometersPerSecondSquared(QuantityValue kilometerspersecondsquared)
         {
-            return knotspersecond.HasValue ? FromKnotsPerSecond(knotspersecond.Value) : default(Acceleration?);
+            double value = (double) kilometerspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.KilometerPerSecondSquared);
         }
-
         /// <summary>
-        ///     Get nullable Acceleration from nullable MetersPerSecondSquared.
+        ///     Get Acceleration from KnotsPerHour.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Acceleration? FromMetersPerSecondSquared(QuantityValue? meterspersecondsquared)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromKnotsPerHour(QuantityValue knotsperhour)
         {
-            return meterspersecondsquared.HasValue ? FromMetersPerSecondSquared(meterspersecondsquared.Value) : default(Acceleration?);
+            double value = (double) knotsperhour;
+            return new Acceleration(value, AccelerationUnit.KnotPerHour);
         }
-
         /// <summary>
-        ///     Get nullable Acceleration from nullable MicrometersPerSecondSquared.
+        ///     Get Acceleration from KnotsPerMinute.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Acceleration? FromMicrometersPerSecondSquared(QuantityValue? micrometerspersecondsquared)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromKnotsPerMinute(QuantityValue knotsperminute)
         {
-            return micrometerspersecondsquared.HasValue ? FromMicrometersPerSecondSquared(micrometerspersecondsquared.Value) : default(Acceleration?);
+            double value = (double) knotsperminute;
+            return new Acceleration(value, AccelerationUnit.KnotPerMinute);
         }
-
         /// <summary>
-        ///     Get nullable Acceleration from nullable MillimetersPerSecondSquared.
+        ///     Get Acceleration from KnotsPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Acceleration? FromMillimetersPerSecondSquared(QuantityValue? millimeterspersecondsquared)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromKnotsPerSecond(QuantityValue knotspersecond)
         {
-            return millimeterspersecondsquared.HasValue ? FromMillimetersPerSecondSquared(millimeterspersecondsquared.Value) : default(Acceleration?);
+            double value = (double) knotspersecond;
+            return new Acceleration(value, AccelerationUnit.KnotPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable Acceleration from nullable NanometersPerSecondSquared.
+        ///     Get Acceleration from MetersPerSecondSquared.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Acceleration? FromNanometersPerSecondSquared(QuantityValue? nanometerspersecondsquared)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromMetersPerSecondSquared(QuantityValue meterspersecondsquared)
         {
-            return nanometerspersecondsquared.HasValue ? FromNanometersPerSecondSquared(nanometerspersecondsquared.Value) : default(Acceleration?);
+            double value = (double) meterspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.MeterPerSecondSquared);
         }
-
         /// <summary>
-        ///     Get nullable Acceleration from nullable StandardGravity.
+        ///     Get Acceleration from MicrometersPerSecondSquared.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Acceleration? FromStandardGravity(QuantityValue? standardgravity)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromMicrometersPerSecondSquared(QuantityValue micrometerspersecondsquared)
         {
-            return standardgravity.HasValue ? FromStandardGravity(standardgravity.Value) : default(Acceleration?);
+            double value = (double) micrometerspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.MicrometerPerSecondSquared);
+        }
+        /// <summary>
+        ///     Get Acceleration from MillimetersPerSecondSquared.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromMillimetersPerSecondSquared(QuantityValue millimeterspersecondsquared)
+        {
+            double value = (double) millimeterspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.MillimeterPerSecondSquared);
+        }
+        /// <summary>
+        ///     Get Acceleration from NanometersPerSecondSquared.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromNanometersPerSecondSquared(QuantityValue nanometerspersecondsquared)
+        {
+            double value = (double) nanometerspersecondsquared;
+            return new Acceleration(value, AccelerationUnit.NanometerPerSecondSquared);
+        }
+        /// <summary>
+        ///     Get Acceleration from StandardGravity.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Acceleration FromStandardGravity(QuantityValue standardgravity)
+        {
+            double value = (double) standardgravity;
+            return new Acceleration(value, AccelerationUnit.StandardGravity);
         }
 
         /// <summary>
@@ -185,27 +365,155 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Acceleration unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Acceleration? From(QuantityValue? value, AccelerationUnit fromUnit)
+        public static Acceleration From(QuantityValue value, AccelerationUnit fromUnit)
         {
-            return value.HasValue ? new Acceleration((double)value.Value, fromUnit) : default(Acceleration?);
+            return new Acceleration((double)value, fromUnit);
         }
 
         #endregion
 
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(AccelerationUnit unit, [CanBeNull] IFormatProvider provider)
-        {
-            provider = provider ?? UnitSystem.DefaultCulture;
+        #region Static Parse Methods
 
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        public static Acceleration Parse(string str)
+        {
+            return Parse(str, null);
         }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static Acceleration Parse(string str, [CanBeNull] IFormatProvider provider)
+        {
+            return QuantityParser.Default.Parse<Acceleration, AccelerationUnit>(
+                str,
+                provider,
+                From);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        public static bool TryParse([CanBeNull] string str, out Acceleration result)
+        {
+            return TryParse(str, null, out result);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Acceleration result)
+        {
+            return QuantityParser.Default.TryParse<Acceleration, AccelerationUnit>(
+                str,
+                provider,
+                From,
+                out result);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static AccelerationUnit ParseUnit(string str)
+        {
+            return ParseUnit(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static AccelerationUnit ParseUnit(string str, IFormatProvider provider = null)
+        {
+            return UnitParser.Default.Parse<AccelerationUnit>(str, provider);
+        }
+
+        public static bool TryParseUnit(string str, out AccelerationUnit unit)
+        {
+            return TryParseUnit(str, null, out unit);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="unit">The parsed unit if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static bool TryParseUnit(string str, IFormatProvider provider, out AccelerationUnit unit)
+        {
+            return UnitParser.Default.TryParse<AccelerationUnit>(str, provider, out unit);
+        }
+
+        #endregion
 
         #region Arithmetic Operators
 
@@ -246,6 +554,8 @@ namespace UnitsNet
 
         #endregion
 
+        #region Equality / IComparable
+
         public static bool operator <=(Acceleration left, Acceleration right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
@@ -266,127 +576,182 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Acceleration, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(Acceleration left, Acceleration right)
+        public static bool operator ==(Acceleration left, Acceleration right)	
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
+            return left.Equals(right);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Acceleration, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(Acceleration left, Acceleration right)
+        public static bool operator !=(Acceleration left, Acceleration right)	
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
+            return !(left == right);
         }
 
-        #region Parsing
-
-        /// <summary>
-        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="ArgumentException">
-        ///     Expected string to have one or two pairs of quantity and unit in the format
-        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
-        /// </exception>
-        /// <exception cref="AmbiguousUnitParseException">
-        ///     More than one unit is represented by the specified unit abbreviation.
-        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
-        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
-        /// </exception>
-        /// <exception cref="UnitsNetException">
-        ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-        ///     Units.NET exceptions from other exceptions.
-        /// </exception>
-        public static Acceleration Parse(string str, [CanBeNull] IFormatProvider provider)
+        public int CompareTo(object obj)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            if(obj is null) throw new ArgumentNullException(nameof(obj));
+            if(!(obj is Acceleration objAcceleration)) throw new ArgumentException("Expected type Acceleration.", nameof(obj));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            return QuantityParser.Parse<Acceleration, AccelerationUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    double parsedValue = double.Parse(value, formatProvider2);
-                    AccelerationUnit parsedUnit = ParseUnit(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => FromMetersPerSecondSquared(x.MetersPerSecondSquared + y.MetersPerSecondSquared));
+            return CompareTo(objAcceleration);
         }
 
-        /// <summary>
-        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="result">Resulting unit quantity if successful.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Acceleration result)
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        public int CompareTo(Acceleration other)
         {
-            provider = provider ?? UnitSystem.DefaultCulture;
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
 
-            try
-            {
-                result = Parse(str, provider);
-                return true;
-            }
-            catch
-            {
-                result = default(Acceleration);
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Acceleration objAcceleration))
                 return false;
-            }
+
+            return Equals(objAcceleration);
+        }
+
+        public bool Equals(Acceleration other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
-        ///     Parse a unit string.
+        ///     <para>
+        ///     Compare equality to another Acceleration within the given absolute or relative tolerance.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
+        ///     this quantity's value to be considered equal.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        ///     </para>
         /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
-        public static AccelerationUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(Acceleration other, double tolerance, ComparisonType comparisonType)
         {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
+
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
-        ///     Parse a unit string.
+        ///     Returns the hash code for this instance.
         /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static AccelerationUnit ParseUnit(string str, IFormatProvider provider = null)
+        /// <returns>A hash code for the current Acceleration.</returns>
+        public override int GetHashCode()
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            return new { QuantityType, Value, Unit }.GetHashCode();
+        }
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<AccelerationUnit>(str.Trim());
+        #endregion
 
-            if (unit == AccelerationUnit.Undefined)
+        #region Conversion Methods
+
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(AccelerationUnit unit)
+        {
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts this Acceleration to another Acceleration with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Acceleration with the specified unit.</returns>
+        public Acceleration ToUnit(AccelerationUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Acceleration(convertedValue, unit);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized AccelerationUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
+                case AccelerationUnit.CentimeterPerSecondSquared: return (_value) * 1e-2d;
+                case AccelerationUnit.DecimeterPerSecondSquared: return (_value) * 1e-1d;
+                case AccelerationUnit.FootPerSecondSquared: return _value*0.304800;
+                case AccelerationUnit.InchPerSecondSquared: return _value*0.0254;
+                case AccelerationUnit.KilometerPerSecondSquared: return (_value) * 1e3d;
+                case AccelerationUnit.KnotPerHour: return _value*0.5144444444444/3600;
+                case AccelerationUnit.KnotPerMinute: return _value*0.5144444444444/60;
+                case AccelerationUnit.KnotPerSecond: return _value*0.5144444444444;
+                case AccelerationUnit.MeterPerSecondSquared: return _value;
+                case AccelerationUnit.MicrometerPerSecondSquared: return (_value) * 1e-6d;
+                case AccelerationUnit.MillimeterPerSecondSquared: return (_value) * 1e-3d;
+                case AccelerationUnit.NanometerPerSecondSquared: return (_value) * 1e-9d;
+                case AccelerationUnit.StandardGravity: return _value*9.80665;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            return unit;
+        private double AsBaseNumericType(AccelerationUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
+
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
+            {
+                case AccelerationUnit.CentimeterPerSecondSquared: return (baseUnitValue) / 1e-2d;
+                case AccelerationUnit.DecimeterPerSecondSquared: return (baseUnitValue) / 1e-1d;
+                case AccelerationUnit.FootPerSecondSquared: return baseUnitValue/0.304800;
+                case AccelerationUnit.InchPerSecondSquared: return baseUnitValue/0.0254;
+                case AccelerationUnit.KilometerPerSecondSquared: return (baseUnitValue) / 1e3d;
+                case AccelerationUnit.KnotPerHour: return baseUnitValue/0.5144444444444*3600;
+                case AccelerationUnit.KnotPerMinute: return baseUnitValue/0.5144444444444*60;
+                case AccelerationUnit.KnotPerSecond: return baseUnitValue/0.5144444444444;
+                case AccelerationUnit.MeterPerSecondSquared: return baseUnitValue;
+                case AccelerationUnit.MicrometerPerSecondSquared: return (baseUnitValue) / 1e-6d;
+                case AccelerationUnit.MillimeterPerSecondSquared: return (baseUnitValue) / 1e-3d;
+                case AccelerationUnit.NanometerPerSecondSquared: return (baseUnitValue) / 1e-9d;
+                case AccelerationUnit.StandardGravity: return baseUnitValue/9.80665;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         #endregion
@@ -394,52 +759,57 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
+        ///     Get default string representation of value and unit.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        public override string ToString()
+        {
+            return ToString(null);
+        }
+
+        /// <summary>
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <returns>String representation.</returns>
-        public string ToString(AccelerationUnit unit, [CanBeNull] IFormatProvider provider)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider)
         {
-            return ToString(unit, provider, 2);
+            return ToString(provider, 2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(AccelerationUnit unit, [CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
-            double value = As(unit);
-            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, provider, format);
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(AccelerationUnit unit, [CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
+            provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
         }
 
         #endregion
+
     }
 }

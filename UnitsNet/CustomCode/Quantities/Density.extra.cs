@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
+
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
@@ -32,19 +34,27 @@ namespace UnitsNet
 #endif
     {
         /// <summary>
+        ///     Gets <see cref="Molarity" /> from this <see cref="Density" />.
+        /// </summary>
+        /// <param name="molecularWeight"></param>
+        public Molarity ToMolarity(Mass molecularWeight)
+        {
+            return Molarity.FromMolesPerCubicMeter(KilogramsPerCubicMeter / molecularWeight.Kilograms);
+        }
+
+        #region Static Methods
+
+        /// <summary>
         ///     Get <see cref="Density" /> from <see cref="Molarity" />.
         /// </summary>
         /// <param name="molarity"></param>
         /// <param name="molecularWeight"></param>
         public static Density FromMolarity(Molarity molarity, Mass molecularWeight)
         {
-            return new Density(molarity.MolesPerCubicMeter * molecularWeight.Kilograms);
+            return new Density(molarity.MolesPerCubicMeter * molecularWeight.Kilograms, DensityUnit.KilogramPerCubicMeter);
         }
 
-        public static Molarity ToMolarity(Density density, Mass molecularWeight)
-        {
-            return Molarity.FromMolesPerCubicMeter(density.KilogramsPerCubicMeter / molecularWeight.Kilograms);
-        }
+        #endregion
 
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
@@ -70,7 +80,7 @@ namespace UnitsNet
 
         public static SpecificWeight operator *(Density density, Acceleration acceleration)
         {
-            return new SpecificWeight(density.KilogramsPerCubicMeter * acceleration.MetersPerSecondSquared, UnitsNet.Units.SpecificWeightUnit.NewtonPerCubicMeter);
+            return new SpecificWeight(density.KilogramsPerCubicMeter * acceleration.MetersPerSecondSquared, SpecificWeightUnit.NewtonPerCubicMeter);
         }
 #endif
     }

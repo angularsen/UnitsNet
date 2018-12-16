@@ -64,7 +64,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "ft", "'" ]
+          "Abbreviations": [ "ft", "'", "′" ]
         },
         {
           "Culture": "ru-RU",
@@ -92,7 +92,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "in", "\\\"" ]
+          "Abbreviations": [ "in", "\\\"", "″" ]
         },
         {
           "Culture": "ru-RU",

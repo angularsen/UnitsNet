@@ -28,7 +28,14 @@ function Update-GeneratedCode {
 
 function Start-Build([boolean] $skipUWP = $false) {
   write-host -foreground blue "Start-Build...`n---"
-  dotnet build --configuration Release "$root\UnitsNet.sln"
+
+  $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.msbuild.log"
+
+  $appVeyorLoggerDll = "C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+  $appVeyorLoggerNetCoreDll = "C:\Program Files\AppVeyor\BuildAgent\dotnetcore\Appveyor.MSBuildLogger.dll"
+  $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerNetCoreDll") { "/logger:$appVeyorLoggerNetCoreDll" } else { "" }
+
+  dotnet build --configuration Release "$root\UnitsNet.sln" $fileLoggerArg $appVeyorLoggerArg
   if ($lastexitcode -ne 0) { exit 1 }
 
   if ($skipUWP -eq $true)
@@ -37,11 +44,14 @@ function Start-Build([boolean] $skipUWP = $false) {
   }
   else
   {
+    $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.WindowsRuntimeComponent.msbuild.log"
+    $appVeyorLoggerArg = if (Test-Path "$appVeyorLoggerDll") { "/logger:$appVeyorLoggerDll" } else { "" }
+
     # dontnet CLI does not support WindowsRuntimeComponent project type yet
     # msbuild does not auto-restore nugets for this project type
     write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using MSBuild15 instead"
     & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release /t:restore
-    & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release
+    & "$msbuild" "$root\UnitsNet.WindowsRuntimeComponent.sln" /verbosity:minimal /p:Configuration=Release $fileLoggerArg $appVeyorLoggerArg
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
@@ -56,7 +66,7 @@ function Start-Tests {
     )
 
   # Parent dir must exist before xunit tries to write files to it
-  new-item -type directory $testReportDir 1> $null
+  new-item -type directory -force $testReportDir 1> $null
 
   write-host -foreground blue "Run tests...`n---"
   foreach ($projectPath in $projectPaths) {
@@ -68,7 +78,7 @@ function Start-Tests {
     # https://github.com/xunit/xunit/issues/1216
     push-location $projectDir
     # -nobuild  <-- this gives an error, but might want to use this to avoid extra builds
-    dotnet xunit -configuration Release -framework netcoreapp1.1 -xml $reportFile -nobuild
+    dotnet xunit -configuration Release -framework netcoreapp2.0 -xml $reportFile -nobuild
     if ($lastexitcode -ne 0) { exit 1 }
     pop-location
   }
@@ -79,9 +89,7 @@ function Start-Tests {
 function Start-PackNugets {
   $projectPaths = @(
     "UnitsNet\UnitsNet.csproj",
-    "UnitsNet\UnitsNet.Signed.csproj",
-    "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj",
-    "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.Signed.csproj"
+    "UnitsNet.Serialization.JsonNet\UnitsNet.Serialization.JsonNet.csproj"
     )
 
   write-host -foreground blue "Pack nugets...`n---"
@@ -91,7 +99,7 @@ function Start-PackNugets {
   }
 
   write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using nuget.exe instead"
-  & $nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir" -Symbols
+  & $nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
 
   write-host -foreground blue "Pack nugets...END`n"
 }

@@ -12,7 +12,6 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
 //     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
@@ -52,14 +51,14 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void TemperatureDeltaDividedByLapseRateEqualsLength()
         {
-            Length length = TemperatureDelta.FromDegreesCelsiusDelta(50) / LapseRate.FromDegreesCelciusPerKilometer(5);
+            Length length = TemperatureDelta.FromDegreesCelsius(50) / LapseRate.FromDegreesCelciusPerKilometer(5);
             Assert.Equal(length, Length.FromKilometers(10));
         }
 
         [Fact]
         public void TemperatureDeltaDividedByLengthEqualsLapseRate()
         {
-            LapseRate lapseRate = TemperatureDelta.FromDegreesCelsiusDelta(50) / Length.FromKilometers(10);
+            LapseRate lapseRate = TemperatureDelta.FromDegreesCelsius(50) / Length.FromKilometers(10);
             Assert.Equal(lapseRate, LapseRate.FromDegreesCelciusPerKilometer(5));
         }
 
@@ -67,14 +66,14 @@ namespace UnitsNet.Tests.CustomCode
         public void LengthMultipliedByLapseRateEqualsTemperatureDelta()
         {
             TemperatureDelta temperatureDelta = Length.FromKilometers(10) * LapseRate.FromDegreesCelciusPerKilometer(5);
-            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsiusDelta(50));
+            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsius(50));
         }
 
         [Fact]
         public void LapseRateMultipliedByLengthEqualsTemperatureDelta()
         {
             TemperatureDelta temperatureDelta = LapseRate.FromDegreesCelciusPerKilometer(5) * Length.FromKilometers(10);
-            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsiusDelta(50));
+            Assert.Equal(temperatureDelta, TemperatureDelta.FromDegreesCelsius(50));
         }
     }
 }

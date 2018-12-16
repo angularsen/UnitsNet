@@ -19,10 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#if !WINDOWS_UWP
 using System;
-
-#endif
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
@@ -36,6 +33,20 @@ namespace UnitsNet
     public partial struct Power
 #endif
     {
+        /// <summary>
+        ///     Gets a <see cref="PowerRatio" /> from this <see cref="Power" /> relative to one watt.
+        /// </summary>
+        /// <remarks>
+        ///     Provides a nicer syntax for converting a power to a power ratio (relative to 1 watt).
+        ///     <example>
+        ///         <c>var powerRatio = power.ToPowerRatio();</c>
+        ///     </example>
+        /// </remarks>
+        public PowerRatio ToPowerRatio()
+        {
+            return PowerRatio.FromPower(this);
+        }
+
         // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
 #if !WINDOWS_UWP
         public static Energy operator *(Power power, TimeSpan time)

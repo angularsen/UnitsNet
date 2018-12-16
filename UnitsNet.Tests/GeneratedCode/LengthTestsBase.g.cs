@@ -9,8 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -102,6 +101,25 @@ namespace UnitsNet.Tests
 // ReSharper restore VirtualMemberNeverOverriden.Global
 
         [Fact]
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Length((double)0.0, LengthUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Length(double.PositiveInfinity, LengthUnit.Meter));
+            Assert.Throws<ArgumentException>(() => new Length(double.NegativeInfinity, LengthUnit.Meter));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new Length(double.NaN, LengthUnit.Meter));
+        }
+
+        [Fact]
         public void MeterToLengthUnits()
         {
             Length meter = Length.FromMeters(1);
@@ -154,6 +172,19 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Twip).Twips, TwipsTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.UsSurveyFoot).UsSurveyFeet, UsSurveyFeetTolerance);
             AssertEx.EqualTolerance(1, Length.From(1, LengthUnit.Yard).Yards, YardsTolerance);
+        }
+
+        [Fact]
+        public void FromMeters_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromMeters_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => Length.FromMeters(double.NaN));
         }
 
         [Fact]
@@ -359,28 +390,43 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => meter.CompareTo(null));
         }
 
-
         [Fact]
         public void EqualityOperators()
         {
-            Length a = Length.FromMeters(1);
-            Length b = Length.FromMeters(2);
+            var a = Length.FromMeters(1);
+            var b = Length.FromMeters(2);
 
-// ReSharper disable EqualExpressionComparison
+ // ReSharper disable EqualExpressionComparison
+
             Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
             Assert.False(a != a);
+
+            Assert.True(a != b);
+            Assert.False(a == b);
+
+            Assert.False(a == null);
+            Assert.False(null == a);
+
 // ReSharper restore EqualExpressionComparison
         }
 
         [Fact]
         public void EqualsIsImplemented()
         {
-            Length v = Length.FromMeters(1);
-            Assert.True(v.Equals(Length.FromMeters(1), Length.FromMeters(MetersTolerance)));
-            Assert.False(v.Equals(Length.Zero, Length.FromMeters(MetersTolerance)));
+            var a = Length.FromMeters(1);
+            var b = Length.FromMeters(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void EqualsRelativeToleranceIsImplemented()
+        {
+            var v = Length.FromMeters(1);
+            Assert.True(v.Equals(Length.FromMeters(1), MetersTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(Length.Zero, MetersTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -403,5 +449,23 @@ namespace UnitsNet.Tests
             Assert.DoesNotContain(LengthUnit.Undefined, Length.Units);
         }
 
+        [Fact]
+        public void HasAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(LengthUnit)).Cast<LengthUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == LengthUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
+
+        [Fact]
+        public void BaseDimensionsShouldNeverBeNull()
+        {
+            Assert.False(Length.BaseDimensions is null);
+        }
     }
 }

@@ -9,8 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -37,12 +36,11 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
+using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
@@ -51,303 +49,580 @@ namespace UnitsNet
     /// <summary>
     ///     In everyday use and in kinematics, the speed of an object is the magnitude of its velocity (the rate of change of its position); it is thus a scalar quantity.[1] The average speed of an object in an interval of time is the distance travelled by the object divided by the duration of the interval;[2] the instantaneous speed is the limit of the average speed as the duration of the time interval approaches zero.
     /// </summary>
-    // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct Speed : IComparable, IComparable<Speed>
+    public partial struct Speed : IQuantity<SpeedUnit>, IEquatable<Speed>, IComparable, IComparable<Speed>
     {
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+        private readonly double _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly SpeedUnit? _unit;
+
+        static Speed()
+        {
+            BaseDimensions = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
+        }
+
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public Speed(double numericValue, SpeedUnit unit)
+        {
+            if(unit == SpeedUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = unit;
+        }
+
+        #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions { get; }
+
+        /// <summary>
+        ///     The base unit of Speed, which is MeterPerSecond. All conversions go via this value.
+        /// </summary>
+        public static SpeedUnit BaseUnit => SpeedUnit.MeterPerSecond;
+
+        /// <summary>
+        /// Represents the largest possible value of Speed
+        /// </summary>
+        public static Speed MaxValue => new Speed(double.MaxValue, BaseUnit);
+
+        /// <summary>
+        /// Represents the smallest possible value of Speed
+        /// </summary>
+        public static Speed MinValue => new Speed(double.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType => QuantityType.Speed;
+
+        /// <summary>
+        ///     All units of measurement for the Speed quantity.
+        /// </summary>
+        public static SpeedUnit[] Units { get; } = Enum.GetValues(typeof(SpeedUnit)).Cast<SpeedUnit>().Except(new SpeedUnit[]{ SpeedUnit.Undefined }).ToArray();
+
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecond.
+        /// </summary>
+        public static Speed Zero => new Speed(0, BaseUnit);
+
+        #endregion
+
+        #region Properties
+
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public double Value => _value;
 
-        #region Nullable From Methods
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public SpeedUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <summary>
-        ///     Get nullable Speed from nullable CentimetersPerHour.
+        ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromCentimetersPerHour(QuantityValue? centimetersperhour)
+        public QuantityType Type => Speed.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => Speed.BaseDimensions;
+
+        #endregion
+
+        #region Conversion Properties
+
+        /// <summary>
+        ///     Get Speed in CentimetersPerHour.
+        /// </summary>
+        public double CentimetersPerHour => As(SpeedUnit.CentimeterPerHour);
+
+        /// <summary>
+        ///     Get Speed in CentimetersPerMinutes.
+        /// </summary>
+        public double CentimetersPerMinutes => As(SpeedUnit.CentimeterPerMinute);
+
+        /// <summary>
+        ///     Get Speed in CentimetersPerSecond.
+        /// </summary>
+        public double CentimetersPerSecond => As(SpeedUnit.CentimeterPerSecond);
+
+        /// <summary>
+        ///     Get Speed in DecimetersPerMinutes.
+        /// </summary>
+        public double DecimetersPerMinutes => As(SpeedUnit.DecimeterPerMinute);
+
+        /// <summary>
+        ///     Get Speed in DecimetersPerSecond.
+        /// </summary>
+        public double DecimetersPerSecond => As(SpeedUnit.DecimeterPerSecond);
+
+        /// <summary>
+        ///     Get Speed in FeetPerHour.
+        /// </summary>
+        public double FeetPerHour => As(SpeedUnit.FootPerHour);
+
+        /// <summary>
+        ///     Get Speed in FeetPerMinute.
+        /// </summary>
+        public double FeetPerMinute => As(SpeedUnit.FootPerMinute);
+
+        /// <summary>
+        ///     Get Speed in FeetPerSecond.
+        /// </summary>
+        public double FeetPerSecond => As(SpeedUnit.FootPerSecond);
+
+        /// <summary>
+        ///     Get Speed in InchesPerHour.
+        /// </summary>
+        public double InchesPerHour => As(SpeedUnit.InchPerHour);
+
+        /// <summary>
+        ///     Get Speed in InchesPerMinute.
+        /// </summary>
+        public double InchesPerMinute => As(SpeedUnit.InchPerMinute);
+
+        /// <summary>
+        ///     Get Speed in InchesPerSecond.
+        /// </summary>
+        public double InchesPerSecond => As(SpeedUnit.InchPerSecond);
+
+        /// <summary>
+        ///     Get Speed in KilometersPerHour.
+        /// </summary>
+        public double KilometersPerHour => As(SpeedUnit.KilometerPerHour);
+
+        /// <summary>
+        ///     Get Speed in KilometersPerMinutes.
+        /// </summary>
+        public double KilometersPerMinutes => As(SpeedUnit.KilometerPerMinute);
+
+        /// <summary>
+        ///     Get Speed in KilometersPerSecond.
+        /// </summary>
+        public double KilometersPerSecond => As(SpeedUnit.KilometerPerSecond);
+
+        /// <summary>
+        ///     Get Speed in Knots.
+        /// </summary>
+        public double Knots => As(SpeedUnit.Knot);
+
+        /// <summary>
+        ///     Get Speed in MetersPerHour.
+        /// </summary>
+        public double MetersPerHour => As(SpeedUnit.MeterPerHour);
+
+        /// <summary>
+        ///     Get Speed in MetersPerMinutes.
+        /// </summary>
+        public double MetersPerMinutes => As(SpeedUnit.MeterPerMinute);
+
+        /// <summary>
+        ///     Get Speed in MetersPerSecond.
+        /// </summary>
+        public double MetersPerSecond => As(SpeedUnit.MeterPerSecond);
+
+        /// <summary>
+        ///     Get Speed in MicrometersPerMinutes.
+        /// </summary>
+        public double MicrometersPerMinutes => As(SpeedUnit.MicrometerPerMinute);
+
+        /// <summary>
+        ///     Get Speed in MicrometersPerSecond.
+        /// </summary>
+        public double MicrometersPerSecond => As(SpeedUnit.MicrometerPerSecond);
+
+        /// <summary>
+        ///     Get Speed in MilesPerHour.
+        /// </summary>
+        public double MilesPerHour => As(SpeedUnit.MilePerHour);
+
+        /// <summary>
+        ///     Get Speed in MillimetersPerHour.
+        /// </summary>
+        public double MillimetersPerHour => As(SpeedUnit.MillimeterPerHour);
+
+        /// <summary>
+        ///     Get Speed in MillimetersPerMinutes.
+        /// </summary>
+        public double MillimetersPerMinutes => As(SpeedUnit.MillimeterPerMinute);
+
+        /// <summary>
+        ///     Get Speed in MillimetersPerSecond.
+        /// </summary>
+        public double MillimetersPerSecond => As(SpeedUnit.MillimeterPerSecond);
+
+        /// <summary>
+        ///     Get Speed in NanometersPerMinutes.
+        /// </summary>
+        public double NanometersPerMinutes => As(SpeedUnit.NanometerPerMinute);
+
+        /// <summary>
+        ///     Get Speed in NanometersPerSecond.
+        /// </summary>
+        public double NanometersPerSecond => As(SpeedUnit.NanometerPerSecond);
+
+        /// <summary>
+        ///     Get Speed in UsSurveyFeetPerHour.
+        /// </summary>
+        public double UsSurveyFeetPerHour => As(SpeedUnit.UsSurveyFootPerHour);
+
+        /// <summary>
+        ///     Get Speed in UsSurveyFeetPerMinute.
+        /// </summary>
+        public double UsSurveyFeetPerMinute => As(SpeedUnit.UsSurveyFootPerMinute);
+
+        /// <summary>
+        ///     Get Speed in UsSurveyFeetPerSecond.
+        /// </summary>
+        public double UsSurveyFeetPerSecond => As(SpeedUnit.UsSurveyFootPerSecond);
+
+        /// <summary>
+        ///     Get Speed in YardsPerHour.
+        /// </summary>
+        public double YardsPerHour => As(SpeedUnit.YardPerHour);
+
+        /// <summary>
+        ///     Get Speed in YardsPerMinute.
+        /// </summary>
+        public double YardsPerMinute => As(SpeedUnit.YardPerMinute);
+
+        /// <summary>
+        ///     Get Speed in YardsPerSecond.
+        /// </summary>
+        public double YardsPerSecond => As(SpeedUnit.YardPerSecond);
+
+        #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        public static string GetAbbreviation(SpeedUnit unit)
         {
-            return centimetersperhour.HasValue ? FromCentimetersPerHour(centimetersperhour.Value) : default(Speed?);
+            return GetAbbreviation(unit, null);
         }
 
         /// <summary>
-        ///     Get nullable Speed from nullable CentimetersPerMinutes.
+        ///     Get unit abbreviation string.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromCentimetersPerMinutes(QuantityValue? centimetersperminutes)
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static string GetAbbreviation(SpeedUnit unit, [CanBeNull] IFormatProvider provider)
         {
-            return centimetersperminutes.HasValue ? FromCentimetersPerMinutes(centimetersperminutes.Value) : default(Speed?);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
-        /// <summary>
-        ///     Get nullable Speed from nullable CentimetersPerSecond.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromCentimetersPerSecond(QuantityValue? centimeterspersecond)
-        {
-            return centimeterspersecond.HasValue ? FromCentimetersPerSecond(centimeterspersecond.Value) : default(Speed?);
-        }
+        #endregion
+
+        #region Static Factory Methods
 
         /// <summary>
-        ///     Get nullable Speed from nullable DecimetersPerMinutes.
+        ///     Get Speed from CentimetersPerHour.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromDecimetersPerMinutes(QuantityValue? decimetersperminutes)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromCentimetersPerHour(QuantityValue centimetersperhour)
         {
-            return decimetersperminutes.HasValue ? FromDecimetersPerMinutes(decimetersperminutes.Value) : default(Speed?);
+            double value = (double) centimetersperhour;
+            return new Speed(value, SpeedUnit.CentimeterPerHour);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable DecimetersPerSecond.
+        ///     Get Speed from CentimetersPerMinutes.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromDecimetersPerSecond(QuantityValue? decimeterspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromCentimetersPerMinutes(QuantityValue centimetersperminutes)
         {
-            return decimeterspersecond.HasValue ? FromDecimetersPerSecond(decimeterspersecond.Value) : default(Speed?);
+            double value = (double) centimetersperminutes;
+            return new Speed(value, SpeedUnit.CentimeterPerMinute);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable FeetPerHour.
+        ///     Get Speed from CentimetersPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromFeetPerHour(QuantityValue? feetperhour)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromCentimetersPerSecond(QuantityValue centimeterspersecond)
         {
-            return feetperhour.HasValue ? FromFeetPerHour(feetperhour.Value) : default(Speed?);
+            double value = (double) centimeterspersecond;
+            return new Speed(value, SpeedUnit.CentimeterPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable FeetPerMinute.
+        ///     Get Speed from DecimetersPerMinutes.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromFeetPerMinute(QuantityValue? feetperminute)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromDecimetersPerMinutes(QuantityValue decimetersperminutes)
         {
-            return feetperminute.HasValue ? FromFeetPerMinute(feetperminute.Value) : default(Speed?);
+            double value = (double) decimetersperminutes;
+            return new Speed(value, SpeedUnit.DecimeterPerMinute);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable FeetPerSecond.
+        ///     Get Speed from DecimetersPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromFeetPerSecond(QuantityValue? feetpersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromDecimetersPerSecond(QuantityValue decimeterspersecond)
         {
-            return feetpersecond.HasValue ? FromFeetPerSecond(feetpersecond.Value) : default(Speed?);
+            double value = (double) decimeterspersecond;
+            return new Speed(value, SpeedUnit.DecimeterPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable InchesPerHour.
+        ///     Get Speed from FeetPerHour.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromInchesPerHour(QuantityValue? inchesperhour)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromFeetPerHour(QuantityValue feetperhour)
         {
-            return inchesperhour.HasValue ? FromInchesPerHour(inchesperhour.Value) : default(Speed?);
+            double value = (double) feetperhour;
+            return new Speed(value, SpeedUnit.FootPerHour);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable InchesPerMinute.
+        ///     Get Speed from FeetPerMinute.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromInchesPerMinute(QuantityValue? inchesperminute)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromFeetPerMinute(QuantityValue feetperminute)
         {
-            return inchesperminute.HasValue ? FromInchesPerMinute(inchesperminute.Value) : default(Speed?);
+            double value = (double) feetperminute;
+            return new Speed(value, SpeedUnit.FootPerMinute);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable InchesPerSecond.
+        ///     Get Speed from FeetPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromInchesPerSecond(QuantityValue? inchespersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromFeetPerSecond(QuantityValue feetpersecond)
         {
-            return inchespersecond.HasValue ? FromInchesPerSecond(inchespersecond.Value) : default(Speed?);
+            double value = (double) feetpersecond;
+            return new Speed(value, SpeedUnit.FootPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable KilometersPerHour.
+        ///     Get Speed from InchesPerHour.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromKilometersPerHour(QuantityValue? kilometersperhour)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromInchesPerHour(QuantityValue inchesperhour)
         {
-            return kilometersperhour.HasValue ? FromKilometersPerHour(kilometersperhour.Value) : default(Speed?);
+            double value = (double) inchesperhour;
+            return new Speed(value, SpeedUnit.InchPerHour);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable KilometersPerMinutes.
+        ///     Get Speed from InchesPerMinute.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromKilometersPerMinutes(QuantityValue? kilometersperminutes)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromInchesPerMinute(QuantityValue inchesperminute)
         {
-            return kilometersperminutes.HasValue ? FromKilometersPerMinutes(kilometersperminutes.Value) : default(Speed?);
+            double value = (double) inchesperminute;
+            return new Speed(value, SpeedUnit.InchPerMinute);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable KilometersPerSecond.
+        ///     Get Speed from InchesPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromKilometersPerSecond(QuantityValue? kilometerspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromInchesPerSecond(QuantityValue inchespersecond)
         {
-            return kilometerspersecond.HasValue ? FromKilometersPerSecond(kilometerspersecond.Value) : default(Speed?);
+            double value = (double) inchespersecond;
+            return new Speed(value, SpeedUnit.InchPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable Knots.
+        ///     Get Speed from KilometersPerHour.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromKnots(QuantityValue? knots)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromKilometersPerHour(QuantityValue kilometersperhour)
         {
-            return knots.HasValue ? FromKnots(knots.Value) : default(Speed?);
+            double value = (double) kilometersperhour;
+            return new Speed(value, SpeedUnit.KilometerPerHour);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable MetersPerHour.
+        ///     Get Speed from KilometersPerMinutes.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromMetersPerHour(QuantityValue? metersperhour)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromKilometersPerMinutes(QuantityValue kilometersperminutes)
         {
-            return metersperhour.HasValue ? FromMetersPerHour(metersperhour.Value) : default(Speed?);
+            double value = (double) kilometersperminutes;
+            return new Speed(value, SpeedUnit.KilometerPerMinute);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable MetersPerMinutes.
+        ///     Get Speed from KilometersPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromMetersPerMinutes(QuantityValue? metersperminutes)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromKilometersPerSecond(QuantityValue kilometerspersecond)
         {
-            return metersperminutes.HasValue ? FromMetersPerMinutes(metersperminutes.Value) : default(Speed?);
+            double value = (double) kilometerspersecond;
+            return new Speed(value, SpeedUnit.KilometerPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable MetersPerSecond.
+        ///     Get Speed from Knots.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromMetersPerSecond(QuantityValue? meterspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromKnots(QuantityValue knots)
         {
-            return meterspersecond.HasValue ? FromMetersPerSecond(meterspersecond.Value) : default(Speed?);
+            double value = (double) knots;
+            return new Speed(value, SpeedUnit.Knot);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable MicrometersPerMinutes.
+        ///     Get Speed from MetersPerHour.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromMicrometersPerMinutes(QuantityValue? micrometersperminutes)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromMetersPerHour(QuantityValue metersperhour)
         {
-            return micrometersperminutes.HasValue ? FromMicrometersPerMinutes(micrometersperminutes.Value) : default(Speed?);
+            double value = (double) metersperhour;
+            return new Speed(value, SpeedUnit.MeterPerHour);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable MicrometersPerSecond.
+        ///     Get Speed from MetersPerMinutes.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromMicrometersPerSecond(QuantityValue? micrometerspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromMetersPerMinutes(QuantityValue metersperminutes)
         {
-            return micrometerspersecond.HasValue ? FromMicrometersPerSecond(micrometerspersecond.Value) : default(Speed?);
+            double value = (double) metersperminutes;
+            return new Speed(value, SpeedUnit.MeterPerMinute);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable MilesPerHour.
+        ///     Get Speed from MetersPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromMilesPerHour(QuantityValue? milesperhour)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromMetersPerSecond(QuantityValue meterspersecond)
         {
-            return milesperhour.HasValue ? FromMilesPerHour(milesperhour.Value) : default(Speed?);
+            double value = (double) meterspersecond;
+            return new Speed(value, SpeedUnit.MeterPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable MillimetersPerHour.
+        ///     Get Speed from MicrometersPerMinutes.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromMillimetersPerHour(QuantityValue? millimetersperhour)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromMicrometersPerMinutes(QuantityValue micrometersperminutes)
         {
-            return millimetersperhour.HasValue ? FromMillimetersPerHour(millimetersperhour.Value) : default(Speed?);
+            double value = (double) micrometersperminutes;
+            return new Speed(value, SpeedUnit.MicrometerPerMinute);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable MillimetersPerMinutes.
+        ///     Get Speed from MicrometersPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromMillimetersPerMinutes(QuantityValue? millimetersperminutes)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromMicrometersPerSecond(QuantityValue micrometerspersecond)
         {
-            return millimetersperminutes.HasValue ? FromMillimetersPerMinutes(millimetersperminutes.Value) : default(Speed?);
+            double value = (double) micrometerspersecond;
+            return new Speed(value, SpeedUnit.MicrometerPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable MillimetersPerSecond.
+        ///     Get Speed from MilesPerHour.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromMillimetersPerSecond(QuantityValue? millimeterspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromMilesPerHour(QuantityValue milesperhour)
         {
-            return millimeterspersecond.HasValue ? FromMillimetersPerSecond(millimeterspersecond.Value) : default(Speed?);
+            double value = (double) milesperhour;
+            return new Speed(value, SpeedUnit.MilePerHour);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable NanometersPerMinutes.
+        ///     Get Speed from MillimetersPerHour.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromNanometersPerMinutes(QuantityValue? nanometersperminutes)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromMillimetersPerHour(QuantityValue millimetersperhour)
         {
-            return nanometersperminutes.HasValue ? FromNanometersPerMinutes(nanometersperminutes.Value) : default(Speed?);
+            double value = (double) millimetersperhour;
+            return new Speed(value, SpeedUnit.MillimeterPerHour);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable NanometersPerSecond.
+        ///     Get Speed from MillimetersPerMinutes.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromNanometersPerSecond(QuantityValue? nanometerspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromMillimetersPerMinutes(QuantityValue millimetersperminutes)
         {
-            return nanometerspersecond.HasValue ? FromNanometersPerSecond(nanometerspersecond.Value) : default(Speed?);
+            double value = (double) millimetersperminutes;
+            return new Speed(value, SpeedUnit.MillimeterPerMinute);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable UsSurveyFeetPerHour.
+        ///     Get Speed from MillimetersPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromUsSurveyFeetPerHour(QuantityValue? ussurveyfeetperhour)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromMillimetersPerSecond(QuantityValue millimeterspersecond)
         {
-            return ussurveyfeetperhour.HasValue ? FromUsSurveyFeetPerHour(ussurveyfeetperhour.Value) : default(Speed?);
+            double value = (double) millimeterspersecond;
+            return new Speed(value, SpeedUnit.MillimeterPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable UsSurveyFeetPerMinute.
+        ///     Get Speed from NanometersPerMinutes.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromUsSurveyFeetPerMinute(QuantityValue? ussurveyfeetperminute)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromNanometersPerMinutes(QuantityValue nanometersperminutes)
         {
-            return ussurveyfeetperminute.HasValue ? FromUsSurveyFeetPerMinute(ussurveyfeetperminute.Value) : default(Speed?);
+            double value = (double) nanometersperminutes;
+            return new Speed(value, SpeedUnit.NanometerPerMinute);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable UsSurveyFeetPerSecond.
+        ///     Get Speed from NanometersPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromUsSurveyFeetPerSecond(QuantityValue? ussurveyfeetpersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromNanometersPerSecond(QuantityValue nanometerspersecond)
         {
-            return ussurveyfeetpersecond.HasValue ? FromUsSurveyFeetPerSecond(ussurveyfeetpersecond.Value) : default(Speed?);
+            double value = (double) nanometerspersecond;
+            return new Speed(value, SpeedUnit.NanometerPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable YardsPerHour.
+        ///     Get Speed from UsSurveyFeetPerHour.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromYardsPerHour(QuantityValue? yardsperhour)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromUsSurveyFeetPerHour(QuantityValue ussurveyfeetperhour)
         {
-            return yardsperhour.HasValue ? FromYardsPerHour(yardsperhour.Value) : default(Speed?);
+            double value = (double) ussurveyfeetperhour;
+            return new Speed(value, SpeedUnit.UsSurveyFootPerHour);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable YardsPerMinute.
+        ///     Get Speed from UsSurveyFeetPerMinute.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromYardsPerMinute(QuantityValue? yardsperminute)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromUsSurveyFeetPerMinute(QuantityValue ussurveyfeetperminute)
         {
-            return yardsperminute.HasValue ? FromYardsPerMinute(yardsperminute.Value) : default(Speed?);
+            double value = (double) ussurveyfeetperminute;
+            return new Speed(value, SpeedUnit.UsSurveyFootPerMinute);
         }
-
         /// <summary>
-        ///     Get nullable Speed from nullable YardsPerSecond.
+        ///     Get Speed from UsSurveyFeetPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static Speed? FromYardsPerSecond(QuantityValue? yardspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromUsSurveyFeetPerSecond(QuantityValue ussurveyfeetpersecond)
         {
-            return yardspersecond.HasValue ? FromYardsPerSecond(yardspersecond.Value) : default(Speed?);
+            double value = (double) ussurveyfeetpersecond;
+            return new Speed(value, SpeedUnit.UsSurveyFootPerSecond);
+        }
+        /// <summary>
+        ///     Get Speed from YardsPerHour.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromYardsPerHour(QuantityValue yardsperhour)
+        {
+            double value = (double) yardsperhour;
+            return new Speed(value, SpeedUnit.YardPerHour);
+        }
+        /// <summary>
+        ///     Get Speed from YardsPerMinute.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromYardsPerMinute(QuantityValue yardsperminute)
+        {
+            double value = (double) yardsperminute;
+            return new Speed(value, SpeedUnit.YardPerMinute);
+        }
+        /// <summary>
+        ///     Get Speed from YardsPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Speed FromYardsPerSecond(QuantityValue yardspersecond)
+        {
+            double value = (double) yardspersecond;
+            return new Speed(value, SpeedUnit.YardPerSecond);
         }
 
         /// <summary>
@@ -356,27 +631,155 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>Speed unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static Speed? From(QuantityValue? value, SpeedUnit fromUnit)
+        public static Speed From(QuantityValue value, SpeedUnit fromUnit)
         {
-            return value.HasValue ? new Speed((double)value.Value, fromUnit) : default(Speed?);
+            return new Speed((double)value, fromUnit);
         }
 
         #endregion
 
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(SpeedUnit unit, [CanBeNull] IFormatProvider provider)
-        {
-            provider = provider ?? UnitSystem.DefaultCulture;
+        #region Static Parse Methods
 
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        public static Speed Parse(string str)
+        {
+            return Parse(str, null);
         }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static Speed Parse(string str, [CanBeNull] IFormatProvider provider)
+        {
+            return QuantityParser.Default.Parse<Speed, SpeedUnit>(
+                str,
+                provider,
+                From);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        public static bool TryParse([CanBeNull] string str, out Speed result)
+        {
+            return TryParse(str, null, out result);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Speed result)
+        {
+            return QuantityParser.Default.TryParse<Speed, SpeedUnit>(
+                str,
+                provider,
+                From,
+                out result);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static SpeedUnit ParseUnit(string str)
+        {
+            return ParseUnit(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static SpeedUnit ParseUnit(string str, IFormatProvider provider = null)
+        {
+            return UnitParser.Default.Parse<SpeedUnit>(str, provider);
+        }
+
+        public static bool TryParseUnit(string str, out SpeedUnit unit)
+        {
+            return TryParseUnit(str, null, out unit);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="unit">The parsed unit if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static bool TryParseUnit(string str, IFormatProvider provider, out SpeedUnit unit)
+        {
+            return UnitParser.Default.TryParse<SpeedUnit>(str, provider, out unit);
+        }
+
+        #endregion
 
         #region Arithmetic Operators
 
@@ -417,6 +820,8 @@ namespace UnitsNet
 
         #endregion
 
+        #region Equality / IComparable
+
         public static bool operator <=(Speed left, Speed right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
@@ -437,127 +842,220 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Speed, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator ==(Speed left, Speed right)
+        public static bool operator ==(Speed left, Speed right)	
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
+            return left.Equals(right);
         }
 
-        [Obsolete("It is not safe to compare equality due to using System.Double as the internal representation. It is very easy to get slightly different values due to floating point operations. Instead use Equals(Speed, double, ComparisonType) to provide the max allowed absolute or relative error.")]
-        public static bool operator !=(Speed left, Speed right)
+        public static bool operator !=(Speed left, Speed right)	
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
+            return !(left == right);
         }
 
-        #region Parsing
-
-        /// <summary>
-        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="ArgumentException">
-        ///     Expected string to have one or two pairs of quantity and unit in the format
-        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
-        /// </exception>
-        /// <exception cref="AmbiguousUnitParseException">
-        ///     More than one unit is represented by the specified unit abbreviation.
-        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
-        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
-        /// </exception>
-        /// <exception cref="UnitsNetException">
-        ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-        ///     Units.NET exceptions from other exceptions.
-        /// </exception>
-        public static Speed Parse(string str, [CanBeNull] IFormatProvider provider)
+        public int CompareTo(object obj)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            if(obj is null) throw new ArgumentNullException(nameof(obj));
+            if(!(obj is Speed objSpeed)) throw new ArgumentException("Expected type Speed.", nameof(obj));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            return QuantityParser.Parse<Speed, SpeedUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    double parsedValue = double.Parse(value, formatProvider2);
-                    SpeedUnit parsedUnit = ParseUnit(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => FromMetersPerSecond(x.MetersPerSecond + y.MetersPerSecond));
+            return CompareTo(objSpeed);
         }
 
-        /// <summary>
-        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="result">Resulting unit quantity if successful.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out Speed result)
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        public int CompareTo(Speed other)
         {
-            provider = provider ?? UnitSystem.DefaultCulture;
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
 
-            try
-            {
-                result = Parse(str, provider);
-                return true;
-            }
-            catch
-            {
-                result = default(Speed);
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is Speed objSpeed))
                 return false;
-            }
+
+            return Equals(objSpeed);
+        }
+
+        public bool Equals(Speed other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
-        ///     Parse a unit string.
+        ///     <para>
+        ///     Compare equality to another Speed within the given absolute or relative tolerance.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
+        ///     this quantity's value to be considered equal.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        ///     </para>
         /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
-        public static SpeedUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(Speed other, double tolerance, ComparisonType comparisonType)
         {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
+
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
-        ///     Parse a unit string.
+        ///     Returns the hash code for this instance.
         /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static SpeedUnit ParseUnit(string str, IFormatProvider provider = null)
+        /// <returns>A hash code for the current Speed.</returns>
+        public override int GetHashCode()
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            return new { QuantityType, Value, Unit }.GetHashCode();
+        }
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<SpeedUnit>(str.Trim());
+        #endregion
 
-            if (unit == SpeedUnit.Undefined)
+        #region Conversion Methods
+
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(SpeedUnit unit)
+        {
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts this Speed to another Speed with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A Speed with the specified unit.</returns>
+        public Speed ToUnit(SpeedUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new Speed(convertedValue, unit);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private double AsBaseUnit()
+        {
+            switch(Unit)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized SpeedUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
+                case SpeedUnit.CentimeterPerHour: return (_value/3600) * 1e-2d;
+                case SpeedUnit.CentimeterPerMinute: return (_value/60) * 1e-2d;
+                case SpeedUnit.CentimeterPerSecond: return (_value) * 1e-2d;
+                case SpeedUnit.DecimeterPerMinute: return (_value/60) * 1e-1d;
+                case SpeedUnit.DecimeterPerSecond: return (_value) * 1e-1d;
+                case SpeedUnit.FootPerHour: return _value*0.3048/3600;
+                case SpeedUnit.FootPerMinute: return _value*0.3048/60;
+                case SpeedUnit.FootPerSecond: return _value*0.3048;
+                case SpeedUnit.InchPerHour: return (_value/3600)*2.54e-2;
+                case SpeedUnit.InchPerMinute: return (_value/60)*2.54e-2;
+                case SpeedUnit.InchPerSecond: return _value*2.54e-2;
+                case SpeedUnit.KilometerPerHour: return (_value/3600) * 1e3d;
+                case SpeedUnit.KilometerPerMinute: return (_value/60) * 1e3d;
+                case SpeedUnit.KilometerPerSecond: return (_value) * 1e3d;
+                case SpeedUnit.Knot: return _value*0.514444;
+                case SpeedUnit.MeterPerHour: return _value/3600;
+                case SpeedUnit.MeterPerMinute: return _value/60;
+                case SpeedUnit.MeterPerSecond: return _value;
+                case SpeedUnit.MicrometerPerMinute: return (_value/60) * 1e-6d;
+                case SpeedUnit.MicrometerPerSecond: return (_value) * 1e-6d;
+                case SpeedUnit.MilePerHour: return _value*0.44704;
+                case SpeedUnit.MillimeterPerHour: return (_value/3600) * 1e-3d;
+                case SpeedUnit.MillimeterPerMinute: return (_value/60) * 1e-3d;
+                case SpeedUnit.MillimeterPerSecond: return (_value) * 1e-3d;
+                case SpeedUnit.NanometerPerMinute: return (_value/60) * 1e-9d;
+                case SpeedUnit.NanometerPerSecond: return (_value) * 1e-9d;
+                case SpeedUnit.UsSurveyFootPerHour: return (_value*1200/3937)/3600;
+                case SpeedUnit.UsSurveyFootPerMinute: return (_value*1200/3937)/60;
+                case SpeedUnit.UsSurveyFootPerSecond: return _value*1200/3937;
+                case SpeedUnit.YardPerHour: return _value*0.9144/3600;
+                case SpeedUnit.YardPerMinute: return _value*0.9144/60;
+                case SpeedUnit.YardPerSecond: return _value*0.9144;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            return unit;
+        private double AsBaseNumericType(SpeedUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
+
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
+            {
+                case SpeedUnit.CentimeterPerHour: return (baseUnitValue*3600) / 1e-2d;
+                case SpeedUnit.CentimeterPerMinute: return (baseUnitValue*60) / 1e-2d;
+                case SpeedUnit.CentimeterPerSecond: return (baseUnitValue) / 1e-2d;
+                case SpeedUnit.DecimeterPerMinute: return (baseUnitValue*60) / 1e-1d;
+                case SpeedUnit.DecimeterPerSecond: return (baseUnitValue) / 1e-1d;
+                case SpeedUnit.FootPerHour: return baseUnitValue/0.3048*3600;
+                case SpeedUnit.FootPerMinute: return baseUnitValue/0.3048*60;
+                case SpeedUnit.FootPerSecond: return baseUnitValue/0.3048;
+                case SpeedUnit.InchPerHour: return (baseUnitValue/2.54e-2)*3600;
+                case SpeedUnit.InchPerMinute: return (baseUnitValue/2.54e-2)*60;
+                case SpeedUnit.InchPerSecond: return baseUnitValue/2.54e-2;
+                case SpeedUnit.KilometerPerHour: return (baseUnitValue*3600) / 1e3d;
+                case SpeedUnit.KilometerPerMinute: return (baseUnitValue*60) / 1e3d;
+                case SpeedUnit.KilometerPerSecond: return (baseUnitValue) / 1e3d;
+                case SpeedUnit.Knot: return baseUnitValue/0.514444;
+                case SpeedUnit.MeterPerHour: return baseUnitValue*3600;
+                case SpeedUnit.MeterPerMinute: return baseUnitValue*60;
+                case SpeedUnit.MeterPerSecond: return baseUnitValue;
+                case SpeedUnit.MicrometerPerMinute: return (baseUnitValue*60) / 1e-6d;
+                case SpeedUnit.MicrometerPerSecond: return (baseUnitValue) / 1e-6d;
+                case SpeedUnit.MilePerHour: return baseUnitValue/0.44704;
+                case SpeedUnit.MillimeterPerHour: return (baseUnitValue*3600) / 1e-3d;
+                case SpeedUnit.MillimeterPerMinute: return (baseUnitValue*60) / 1e-3d;
+                case SpeedUnit.MillimeterPerSecond: return (baseUnitValue) / 1e-3d;
+                case SpeedUnit.NanometerPerMinute: return (baseUnitValue*60) / 1e-9d;
+                case SpeedUnit.NanometerPerSecond: return (baseUnitValue) / 1e-9d;
+                case SpeedUnit.UsSurveyFootPerHour: return (baseUnitValue*3937/1200)*3600;
+                case SpeedUnit.UsSurveyFootPerMinute: return (baseUnitValue*3937/1200)*60;
+                case SpeedUnit.UsSurveyFootPerSecond: return baseUnitValue*3937/1200;
+                case SpeedUnit.YardPerHour: return baseUnitValue/0.9144*3600;
+                case SpeedUnit.YardPerMinute: return baseUnitValue/0.9144*60;
+                case SpeedUnit.YardPerSecond: return baseUnitValue/0.9144;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         #endregion
@@ -565,52 +1063,57 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
+        ///     Get default string representation of value and unit.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        public override string ToString()
+        {
+            return ToString(null);
+        }
+
+        /// <summary>
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <returns>String representation.</returns>
-        public string ToString(SpeedUnit unit, [CanBeNull] IFormatProvider provider)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider)
         {
-            return ToString(unit, provider, 2);
+            return ToString(provider, 2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(SpeedUnit unit, [CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
-            double value = As(unit);
-            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, provider, format);
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(SpeedUnit unit, [CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
+            provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
         }
 
         #endregion
+
     }
 }

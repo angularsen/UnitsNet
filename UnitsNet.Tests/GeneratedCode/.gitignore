@@ -1,0 +1,4 @@
+*.g.cs
+!InformationTestsBase.g.cs
+!LengthTestsBase.g.cs
+!LevelTestsBase.g.cs

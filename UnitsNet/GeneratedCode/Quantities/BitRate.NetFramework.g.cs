@@ -9,8 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -37,12 +36,11 @@
 // THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Linq;
 using JetBrains.Annotations;
 using UnitsNet.Units;
+using UnitsNet.InternalHelpers;
 
 // ReSharper disable once CheckNamespace
 
@@ -51,249 +49,499 @@ namespace UnitsNet
     /// <summary>
     ///     In telecommunications and computing, bit rate is the number of bits that are conveyed or processed per unit of time.
     /// </summary>
-    // ReSharper disable once PartialTypeWithSinglePart
-
-    public partial struct BitRate : IComparable, IComparable<BitRate>
+    /// <remarks>
+    ///     https://en.wikipedia.org/wiki/Bit_rate
+    /// </remarks>
+    public partial struct BitRate : IQuantity<BitRateUnit>, IEquatable<BitRate>, IComparable, IComparable<BitRate>
     {
+        /// <summary>
+        ///     The numeric value this quantity was constructed with.
+        /// </summary>
+        private readonly decimal _value;
+
+        /// <summary>
+        ///     The unit this quantity was constructed with.
+        /// </summary>
+        private readonly BitRateUnit? _unit;
+
+        static BitRate()
+        {
+            BaseDimensions = BaseDimensions.Dimensionless;
+        }
+
+        /// <summary>
+        ///     Creates the quantity with the given numeric value and unit.
+        /// </summary>
+        /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
+        /// <param name="unit">The unit representation to contruct this quantity with.</param>
+        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public BitRate(decimal numericValue, BitRateUnit unit)
+        {
+            if(unit == BitRateUnit.Undefined)
+              throw new ArgumentException("The quantity can not be created with an undefined unit.", nameof(unit));
+
+            _value = numericValue;
+            _unit = unit;
+        }
+
+        #region Static Properties
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public static BaseDimensions BaseDimensions { get; }
+
+        /// <summary>
+        ///     The base unit of BitRate, which is BitPerSecond. All conversions go via this value.
+        /// </summary>
+        public static BitRateUnit BaseUnit => BitRateUnit.BitPerSecond;
+
+        /// <summary>
+        /// Represents the largest possible value of BitRate
+        /// </summary>
+        public static BitRate MaxValue => new BitRate(decimal.MaxValue, BaseUnit);
+
+        /// <summary>
+        /// Represents the smallest possible value of BitRate
+        /// </summary>
+        public static BitRate MinValue => new BitRate(decimal.MinValue, BaseUnit);
+
+        /// <summary>
+        ///     The <see cref="QuantityType" /> of this quantity.
+        /// </summary>
+        public static QuantityType QuantityType => QuantityType.BitRate;
+
+        /// <summary>
+        ///     All units of measurement for the BitRate quantity.
+        /// </summary>
+        public static BitRateUnit[] Units { get; } = Enum.GetValues(typeof(BitRateUnit)).Cast<BitRateUnit>().Except(new BitRateUnit[]{ BitRateUnit.Undefined }).ToArray();
+
+        /// <summary>
+        ///     Gets an instance of this quantity with a value of 0 in the base unit BitPerSecond.
+        /// </summary>
+        public static BitRate Zero => new BitRate(0, BaseUnit);
+
+        #endregion
+
+        #region Properties
+
         /// <summary>
         ///     The numeric value this quantity was constructed with.
         /// </summary>
         public decimal Value => _value;
 
-        #region Nullable From Methods
+        /// <summary>
+        ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
+        /// </summary>
+        public BitRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
         /// <summary>
-        ///     Get nullable BitRate from nullable BitsPerSecond.
+        ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromBitsPerSecond(QuantityValue? bitspersecond)
+        public QuantityType Type => BitRate.QuantityType;
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> of this quantity.
+        /// </summary>
+        public BaseDimensions Dimensions => BitRate.BaseDimensions;
+
+        #endregion
+
+        #region Conversion Properties
+
+        /// <summary>
+        ///     Get BitRate in BitsPerSecond.
+        /// </summary>
+        public double BitsPerSecond => As(BitRateUnit.BitPerSecond);
+
+        /// <summary>
+        ///     Get BitRate in BytesPerSecond.
+        /// </summary>
+        public double BytesPerSecond => As(BitRateUnit.BytePerSecond);
+
+        /// <summary>
+        ///     Get BitRate in ExabitsPerSecond.
+        /// </summary>
+        public double ExabitsPerSecond => As(BitRateUnit.ExabitPerSecond);
+
+        /// <summary>
+        ///     Get BitRate in ExabytesPerSecond.
+        /// </summary>
+        public double ExabytesPerSecond => As(BitRateUnit.ExabytePerSecond);
+
+        /// <summary>
+        ///     Get BitRate in ExbibitsPerSecond.
+        /// </summary>
+        public double ExbibitsPerSecond => As(BitRateUnit.ExbibitPerSecond);
+
+        /// <summary>
+        ///     Get BitRate in ExbibytesPerSecond.
+        /// </summary>
+        public double ExbibytesPerSecond => As(BitRateUnit.ExbibytePerSecond);
+
+        /// <summary>
+        ///     Get BitRate in GibibitsPerSecond.
+        /// </summary>
+        public double GibibitsPerSecond => As(BitRateUnit.GibibitPerSecond);
+
+        /// <summary>
+        ///     Get BitRate in GibibytesPerSecond.
+        /// </summary>
+        public double GibibytesPerSecond => As(BitRateUnit.GibibytePerSecond);
+
+        /// <summary>
+        ///     Get BitRate in GigabitsPerSecond.
+        /// </summary>
+        public double GigabitsPerSecond => As(BitRateUnit.GigabitPerSecond);
+
+        /// <summary>
+        ///     Get BitRate in GigabytesPerSecond.
+        /// </summary>
+        public double GigabytesPerSecond => As(BitRateUnit.GigabytePerSecond);
+
+        /// <summary>
+        ///     Get BitRate in KibibitsPerSecond.
+        /// </summary>
+        public double KibibitsPerSecond => As(BitRateUnit.KibibitPerSecond);
+
+        /// <summary>
+        ///     Get BitRate in KibibytesPerSecond.
+        /// </summary>
+        public double KibibytesPerSecond => As(BitRateUnit.KibibytePerSecond);
+
+        /// <summary>
+        ///     Get BitRate in KilobitsPerSecond.
+        /// </summary>
+        public double KilobitsPerSecond => As(BitRateUnit.KilobitPerSecond);
+
+        /// <summary>
+        ///     Get BitRate in KilobytesPerSecond.
+        /// </summary>
+        public double KilobytesPerSecond => As(BitRateUnit.KilobytePerSecond);
+
+        /// <summary>
+        ///     Get BitRate in MebibitsPerSecond.
+        /// </summary>
+        public double MebibitsPerSecond => As(BitRateUnit.MebibitPerSecond);
+
+        /// <summary>
+        ///     Get BitRate in MebibytesPerSecond.
+        /// </summary>
+        public double MebibytesPerSecond => As(BitRateUnit.MebibytePerSecond);
+
+        /// <summary>
+        ///     Get BitRate in MegabitsPerSecond.
+        /// </summary>
+        public double MegabitsPerSecond => As(BitRateUnit.MegabitPerSecond);
+
+        /// <summary>
+        ///     Get BitRate in MegabytesPerSecond.
+        /// </summary>
+        public double MegabytesPerSecond => As(BitRateUnit.MegabytePerSecond);
+
+        /// <summary>
+        ///     Get BitRate in PebibitsPerSecond.
+        /// </summary>
+        public double PebibitsPerSecond => As(BitRateUnit.PebibitPerSecond);
+
+        /// <summary>
+        ///     Get BitRate in PebibytesPerSecond.
+        /// </summary>
+        public double PebibytesPerSecond => As(BitRateUnit.PebibytePerSecond);
+
+        /// <summary>
+        ///     Get BitRate in PetabitsPerSecond.
+        /// </summary>
+        public double PetabitsPerSecond => As(BitRateUnit.PetabitPerSecond);
+
+        /// <summary>
+        ///     Get BitRate in PetabytesPerSecond.
+        /// </summary>
+        public double PetabytesPerSecond => As(BitRateUnit.PetabytePerSecond);
+
+        /// <summary>
+        ///     Get BitRate in TebibitsPerSecond.
+        /// </summary>
+        public double TebibitsPerSecond => As(BitRateUnit.TebibitPerSecond);
+
+        /// <summary>
+        ///     Get BitRate in TebibytesPerSecond.
+        /// </summary>
+        public double TebibytesPerSecond => As(BitRateUnit.TebibytePerSecond);
+
+        /// <summary>
+        ///     Get BitRate in TerabitsPerSecond.
+        /// </summary>
+        public double TerabitsPerSecond => As(BitRateUnit.TerabitPerSecond);
+
+        /// <summary>
+        ///     Get BitRate in TerabytesPerSecond.
+        /// </summary>
+        public double TerabytesPerSecond => As(BitRateUnit.TerabytePerSecond);
+
+        #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        ///     Get unit abbreviation string.
+        /// </summary>
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        public static string GetAbbreviation(BitRateUnit unit)
         {
-            return bitspersecond.HasValue ? FromBitsPerSecond(bitspersecond.Value) : default(BitRate?);
+            return GetAbbreviation(unit, null);
         }
 
         /// <summary>
-        ///     Get nullable BitRate from nullable BytesPerSecond.
+        ///     Get unit abbreviation string.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromBytesPerSecond(QuantityValue? bytespersecond)
+        /// <param name="unit">Unit to get abbreviation for.</param>
+        /// <returns>Unit abbreviation string.</returns>
+        /// <param name="provider">Format to use for localization. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static string GetAbbreviation(BitRateUnit unit, [CanBeNull] IFormatProvider provider)
         {
-            return bytespersecond.HasValue ? FromBytesPerSecond(bytespersecond.Value) : default(BitRate?);
+            return UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit, provider);
         }
 
-        /// <summary>
-        ///     Get nullable BitRate from nullable ExabitsPerSecond.
-        /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromExabitsPerSecond(QuantityValue? exabitspersecond)
-        {
-            return exabitspersecond.HasValue ? FromExabitsPerSecond(exabitspersecond.Value) : default(BitRate?);
-        }
+        #endregion
+
+        #region Static Factory Methods
 
         /// <summary>
-        ///     Get nullable BitRate from nullable ExabytesPerSecond.
+        ///     Get BitRate from BitsPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromExabytesPerSecond(QuantityValue? exabytespersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromBitsPerSecond(QuantityValue bitspersecond)
         {
-            return exabytespersecond.HasValue ? FromExabytesPerSecond(exabytespersecond.Value) : default(BitRate?);
+            decimal value = (decimal) bitspersecond;
+            return new BitRate(value, BitRateUnit.BitPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable ExbibitsPerSecond.
+        ///     Get BitRate from BytesPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromExbibitsPerSecond(QuantityValue? exbibitspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromBytesPerSecond(QuantityValue bytespersecond)
         {
-            return exbibitspersecond.HasValue ? FromExbibitsPerSecond(exbibitspersecond.Value) : default(BitRate?);
+            decimal value = (decimal) bytespersecond;
+            return new BitRate(value, BitRateUnit.BytePerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable ExbibytesPerSecond.
+        ///     Get BitRate from ExabitsPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromExbibytesPerSecond(QuantityValue? exbibytespersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromExabitsPerSecond(QuantityValue exabitspersecond)
         {
-            return exbibytespersecond.HasValue ? FromExbibytesPerSecond(exbibytespersecond.Value) : default(BitRate?);
+            decimal value = (decimal) exabitspersecond;
+            return new BitRate(value, BitRateUnit.ExabitPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable GibibitsPerSecond.
+        ///     Get BitRate from ExabytesPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromGibibitsPerSecond(QuantityValue? gibibitspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromExabytesPerSecond(QuantityValue exabytespersecond)
         {
-            return gibibitspersecond.HasValue ? FromGibibitsPerSecond(gibibitspersecond.Value) : default(BitRate?);
+            decimal value = (decimal) exabytespersecond;
+            return new BitRate(value, BitRateUnit.ExabytePerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable GibibytesPerSecond.
+        ///     Get BitRate from ExbibitsPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromGibibytesPerSecond(QuantityValue? gibibytespersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromExbibitsPerSecond(QuantityValue exbibitspersecond)
         {
-            return gibibytespersecond.HasValue ? FromGibibytesPerSecond(gibibytespersecond.Value) : default(BitRate?);
+            decimal value = (decimal) exbibitspersecond;
+            return new BitRate(value, BitRateUnit.ExbibitPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable GigabitsPerSecond.
+        ///     Get BitRate from ExbibytesPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromGigabitsPerSecond(QuantityValue? gigabitspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromExbibytesPerSecond(QuantityValue exbibytespersecond)
         {
-            return gigabitspersecond.HasValue ? FromGigabitsPerSecond(gigabitspersecond.Value) : default(BitRate?);
+            decimal value = (decimal) exbibytespersecond;
+            return new BitRate(value, BitRateUnit.ExbibytePerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable GigabytesPerSecond.
+        ///     Get BitRate from GibibitsPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromGigabytesPerSecond(QuantityValue? gigabytespersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromGibibitsPerSecond(QuantityValue gibibitspersecond)
         {
-            return gigabytespersecond.HasValue ? FromGigabytesPerSecond(gigabytespersecond.Value) : default(BitRate?);
+            decimal value = (decimal) gibibitspersecond;
+            return new BitRate(value, BitRateUnit.GibibitPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable KibibitsPerSecond.
+        ///     Get BitRate from GibibytesPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromKibibitsPerSecond(QuantityValue? kibibitspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromGibibytesPerSecond(QuantityValue gibibytespersecond)
         {
-            return kibibitspersecond.HasValue ? FromKibibitsPerSecond(kibibitspersecond.Value) : default(BitRate?);
+            decimal value = (decimal) gibibytespersecond;
+            return new BitRate(value, BitRateUnit.GibibytePerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable KibibytesPerSecond.
+        ///     Get BitRate from GigabitsPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromKibibytesPerSecond(QuantityValue? kibibytespersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromGigabitsPerSecond(QuantityValue gigabitspersecond)
         {
-            return kibibytespersecond.HasValue ? FromKibibytesPerSecond(kibibytespersecond.Value) : default(BitRate?);
+            decimal value = (decimal) gigabitspersecond;
+            return new BitRate(value, BitRateUnit.GigabitPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable KilobitsPerSecond.
+        ///     Get BitRate from GigabytesPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromKilobitsPerSecond(QuantityValue? kilobitspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromGigabytesPerSecond(QuantityValue gigabytespersecond)
         {
-            return kilobitspersecond.HasValue ? FromKilobitsPerSecond(kilobitspersecond.Value) : default(BitRate?);
+            decimal value = (decimal) gigabytespersecond;
+            return new BitRate(value, BitRateUnit.GigabytePerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable KilobytesPerSecond.
+        ///     Get BitRate from KibibitsPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromKilobytesPerSecond(QuantityValue? kilobytespersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromKibibitsPerSecond(QuantityValue kibibitspersecond)
         {
-            return kilobytespersecond.HasValue ? FromKilobytesPerSecond(kilobytespersecond.Value) : default(BitRate?);
+            decimal value = (decimal) kibibitspersecond;
+            return new BitRate(value, BitRateUnit.KibibitPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable MebibitsPerSecond.
+        ///     Get BitRate from KibibytesPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromMebibitsPerSecond(QuantityValue? mebibitspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromKibibytesPerSecond(QuantityValue kibibytespersecond)
         {
-            return mebibitspersecond.HasValue ? FromMebibitsPerSecond(mebibitspersecond.Value) : default(BitRate?);
+            decimal value = (decimal) kibibytespersecond;
+            return new BitRate(value, BitRateUnit.KibibytePerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable MebibytesPerSecond.
+        ///     Get BitRate from KilobitsPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromMebibytesPerSecond(QuantityValue? mebibytespersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromKilobitsPerSecond(QuantityValue kilobitspersecond)
         {
-            return mebibytespersecond.HasValue ? FromMebibytesPerSecond(mebibytespersecond.Value) : default(BitRate?);
+            decimal value = (decimal) kilobitspersecond;
+            return new BitRate(value, BitRateUnit.KilobitPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable MegabitsPerSecond.
+        ///     Get BitRate from KilobytesPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromMegabitsPerSecond(QuantityValue? megabitspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromKilobytesPerSecond(QuantityValue kilobytespersecond)
         {
-            return megabitspersecond.HasValue ? FromMegabitsPerSecond(megabitspersecond.Value) : default(BitRate?);
+            decimal value = (decimal) kilobytespersecond;
+            return new BitRate(value, BitRateUnit.KilobytePerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable MegabytesPerSecond.
+        ///     Get BitRate from MebibitsPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromMegabytesPerSecond(QuantityValue? megabytespersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromMebibitsPerSecond(QuantityValue mebibitspersecond)
         {
-            return megabytespersecond.HasValue ? FromMegabytesPerSecond(megabytespersecond.Value) : default(BitRate?);
+            decimal value = (decimal) mebibitspersecond;
+            return new BitRate(value, BitRateUnit.MebibitPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable PebibitsPerSecond.
+        ///     Get BitRate from MebibytesPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromPebibitsPerSecond(QuantityValue? pebibitspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromMebibytesPerSecond(QuantityValue mebibytespersecond)
         {
-            return pebibitspersecond.HasValue ? FromPebibitsPerSecond(pebibitspersecond.Value) : default(BitRate?);
+            decimal value = (decimal) mebibytespersecond;
+            return new BitRate(value, BitRateUnit.MebibytePerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable PebibytesPerSecond.
+        ///     Get BitRate from MegabitsPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromPebibytesPerSecond(QuantityValue? pebibytespersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromMegabitsPerSecond(QuantityValue megabitspersecond)
         {
-            return pebibytespersecond.HasValue ? FromPebibytesPerSecond(pebibytespersecond.Value) : default(BitRate?);
+            decimal value = (decimal) megabitspersecond;
+            return new BitRate(value, BitRateUnit.MegabitPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable PetabitsPerSecond.
+        ///     Get BitRate from MegabytesPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromPetabitsPerSecond(QuantityValue? petabitspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromMegabytesPerSecond(QuantityValue megabytespersecond)
         {
-            return petabitspersecond.HasValue ? FromPetabitsPerSecond(petabitspersecond.Value) : default(BitRate?);
+            decimal value = (decimal) megabytespersecond;
+            return new BitRate(value, BitRateUnit.MegabytePerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable PetabytesPerSecond.
+        ///     Get BitRate from PebibitsPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromPetabytesPerSecond(QuantityValue? petabytespersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromPebibitsPerSecond(QuantityValue pebibitspersecond)
         {
-            return petabytespersecond.HasValue ? FromPetabytesPerSecond(petabytespersecond.Value) : default(BitRate?);
+            decimal value = (decimal) pebibitspersecond;
+            return new BitRate(value, BitRateUnit.PebibitPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable TebibitsPerSecond.
+        ///     Get BitRate from PebibytesPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromTebibitsPerSecond(QuantityValue? tebibitspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromPebibytesPerSecond(QuantityValue pebibytespersecond)
         {
-            return tebibitspersecond.HasValue ? FromTebibitsPerSecond(tebibitspersecond.Value) : default(BitRate?);
+            decimal value = (decimal) pebibytespersecond;
+            return new BitRate(value, BitRateUnit.PebibytePerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable TebibytesPerSecond.
+        ///     Get BitRate from PetabitsPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromTebibytesPerSecond(QuantityValue? tebibytespersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromPetabitsPerSecond(QuantityValue petabitspersecond)
         {
-            return tebibytespersecond.HasValue ? FromTebibytesPerSecond(tebibytespersecond.Value) : default(BitRate?);
+            decimal value = (decimal) petabitspersecond;
+            return new BitRate(value, BitRateUnit.PetabitPerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable TerabitsPerSecond.
+        ///     Get BitRate from PetabytesPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromTerabitsPerSecond(QuantityValue? terabitspersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromPetabytesPerSecond(QuantityValue petabytespersecond)
         {
-            return terabitspersecond.HasValue ? FromTerabitsPerSecond(terabitspersecond.Value) : default(BitRate?);
+            decimal value = (decimal) petabytespersecond;
+            return new BitRate(value, BitRateUnit.PetabytePerSecond);
         }
-
         /// <summary>
-        ///     Get nullable BitRate from nullable TerabytesPerSecond.
+        ///     Get BitRate from TebibitsPerSecond.
         /// </summary>
-        [Obsolete("Nullable type support is obsolete and will be removed in a future release.")]
-        public static BitRate? FromTerabytesPerSecond(QuantityValue? terabytespersecond)
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromTebibitsPerSecond(QuantityValue tebibitspersecond)
         {
-            return terabytespersecond.HasValue ? FromTerabytesPerSecond(terabytespersecond.Value) : default(BitRate?);
+            decimal value = (decimal) tebibitspersecond;
+            return new BitRate(value, BitRateUnit.TebibitPerSecond);
+        }
+        /// <summary>
+        ///     Get BitRate from TebibytesPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromTebibytesPerSecond(QuantityValue tebibytespersecond)
+        {
+            decimal value = (decimal) tebibytespersecond;
+            return new BitRate(value, BitRateUnit.TebibytePerSecond);
+        }
+        /// <summary>
+        ///     Get BitRate from TerabitsPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromTerabitsPerSecond(QuantityValue terabitspersecond)
+        {
+            decimal value = (decimal) terabitspersecond;
+            return new BitRate(value, BitRateUnit.TerabitPerSecond);
+        }
+        /// <summary>
+        ///     Get BitRate from TerabytesPerSecond.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static BitRate FromTerabytesPerSecond(QuantityValue terabytespersecond)
+        {
+            decimal value = (decimal) terabytespersecond;
+            return new BitRate(value, BitRateUnit.TerabytePerSecond);
         }
 
         /// <summary>
@@ -302,27 +550,155 @@ namespace UnitsNet
         /// <param name="value">Value to convert from.</param>
         /// <param name="fromUnit">Unit to convert from.</param>
         /// <returns>BitRate unit value.</returns>
-        [Obsolete("Nullable type support has been deprecated and will be removed in a future release.")]
-        public static BitRate? From(QuantityValue? value, BitRateUnit fromUnit)
+        public static BitRate From(QuantityValue value, BitRateUnit fromUnit)
         {
-            return value.HasValue ? new BitRate((decimal)value.Value, fromUnit) : default(BitRate?);
+            return new BitRate((decimal)value, fromUnit);
         }
 
         #endregion
 
-        /// <summary>
-        ///     Get unit abbreviation string.
-        /// </summary>
-        /// <param name="unit">Unit to get abbreviation for.</param>
-        /// <param name="provider">Format to use for localization. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <returns>Unit abbreviation string.</returns>
-        [UsedImplicitly]
-        public static string GetAbbreviation(BitRateUnit unit, [CanBeNull] IFormatProvider provider)
-        {
-            provider = provider ?? UnitSystem.DefaultCulture;
+        #region Static Parse Methods
 
-            return UnitSystem.GetCached(provider).GetDefaultAbbreviation(unit);
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        public static BitRate Parse(string str)
+        {
+            return Parse(str, null);
         }
+
+        /// <summary>
+        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="ArgumentException">
+        ///     Expected string to have one or two pairs of quantity and unit in the format
+        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
+        /// </exception>
+        /// <exception cref="AmbiguousUnitParseException">
+        ///     More than one unit is represented by the specified unit abbreviation.
+        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
+        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
+        /// </exception>
+        /// <exception cref="UnitsNetException">
+        ///     If anything else goes wrong, typically due to a bug or unhandled case.
+        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
+        ///     Units.NET exceptions from other exceptions.
+        /// </exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static BitRate Parse(string str, [CanBeNull] IFormatProvider provider)
+        {
+            return QuantityParser.Default.Parse<BitRate, BitRateUnit>(
+                str,
+                provider,
+                From);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        public static bool TryParse([CanBeNull] string str, out BitRate result)
+        {
+            return TryParse(str, null, out result);
+        }
+
+        /// <summary>
+        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="result">Resulting unit quantity if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out BitRate result)
+        {
+            return QuantityParser.Default.TryParse<BitRate, BitRateUnit>(
+                str,
+                provider,
+                From,
+                out result);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        public static BitRateUnit ParseUnit(string str)
+        {
+            return ParseUnit(str, null);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <example>
+        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
+        /// <exception cref="UnitsNetException">Error parsing string.</exception>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static BitRateUnit ParseUnit(string str, IFormatProvider provider = null)
+        {
+            return UnitParser.Default.Parse<BitRateUnit>(str, provider);
+        }
+
+        public static bool TryParseUnit(string str, out BitRateUnit unit)
+        {
+            return TryParseUnit(str, null, out unit);
+        }
+
+        /// <summary>
+        ///     Parse a unit string.
+        /// </summary>
+        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
+        /// <param name="unit">The parsed unit if successful.</param>
+        /// <returns>True if successful, otherwise false.</returns>
+        /// <example>
+        ///     Length.TryParseUnit("m", new CultureInfo("en-US"));
+        /// </example>
+        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public static bool TryParseUnit(string str, IFormatProvider provider, out BitRateUnit unit)
+        {
+            return UnitParser.Default.TryParse<BitRateUnit>(str, provider, out unit);
+        }
+
+        #endregion
 
         #region Arithmetic Operators
 
@@ -363,6 +739,8 @@ namespace UnitsNet
 
         #endregion
 
+        #region Equality / IComparable
+
         public static bool operator <=(BitRate left, BitRate right)
         {
             return left.Value <= right.AsBaseNumericType(left.Unit);
@@ -383,125 +761,208 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(BitRate left, BitRate right)
+        public static bool operator ==(BitRate left, BitRate right)	
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value == right.AsBaseNumericType(left.Unit);
+            return left.Equals(right);
         }
 
-        public static bool operator !=(BitRate left, BitRate right)
+        public static bool operator !=(BitRate left, BitRate right)	
         {
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            return left.Value != right.AsBaseNumericType(left.Unit);
+            return !(left == right);
         }
 
-        #region Parsing
-
-        /// <summary>
-        ///     Parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="ArgumentException">
-        ///     Expected string to have one or two pairs of quantity and unit in the format
-        ///     "&lt;quantity&gt; &lt;unit&gt;". Eg. "5.5 m" or "1ft 2in"
-        /// </exception>
-        /// <exception cref="AmbiguousUnitParseException">
-        ///     More than one unit is represented by the specified unit abbreviation.
-        ///     Example: Volume.Parse("1 cup") will throw, because it can refer to any of
-        ///     <see cref="VolumeUnit.MetricCup" />, <see cref="VolumeUnit.UsLegalCup" /> and <see cref="VolumeUnit.UsCustomaryCup" />.
-        /// </exception>
-        /// <exception cref="UnitsNetException">
-        ///     If anything else goes wrong, typically due to a bug or unhandled case.
-        ///     We wrap exceptions in <see cref="UnitsNetException" /> to allow you to distinguish
-        ///     Units.NET exceptions from other exceptions.
-        /// </exception>
-        public static BitRate Parse(string str, [CanBeNull] IFormatProvider provider)
+        public int CompareTo(object obj)
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            if(obj is null) throw new ArgumentNullException(nameof(obj));
+            if(!(obj is BitRate objBitRate)) throw new ArgumentException("Expected type BitRate.", nameof(obj));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
-
-            return QuantityParser.Parse<BitRate, BitRateUnit>(str, provider,
-                delegate(string value, string unit, IFormatProvider formatProvider2)
-                {
-                    double parsedValue = double.Parse(value, formatProvider2);
-                    BitRateUnit parsedUnit = ParseUnit(unit, formatProvider2);
-                    return From(parsedValue, parsedUnit);
-                }, (x, y) => FromBitsPerSecond(x.BitsPerSecond + y.BitsPerSecond));
+            return CompareTo(objBitRate);
         }
 
-        /// <summary>
-        ///     Try to parse a string with one or two quantities of the format "&lt;quantity&gt; &lt;unit&gt;".
-        /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="result">Resulting unit quantity if successful.</param>
-        /// <example>
-        ///     Length.Parse("5.5 m", new CultureInfo("en-US"));
-        /// </example>
-        public static bool TryParse([CanBeNull] string str, [CanBeNull] IFormatProvider provider, out BitRate result)
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+        public int CompareTo(BitRate other)
         {
-            provider = provider ?? UnitSystem.DefaultCulture;
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+        }
 
-            try
-            {
-                result = Parse(str, provider);
-                return true;
-            }
-            catch
-            {
-                result = default(BitRate);
+        public override bool Equals(object obj)
+        {
+            if(obj is null || !(obj is BitRate objBitRate))
                 return false;
-            }
+
+            return Equals(objBitRate);
+        }
+
+        public bool Equals(BitRate other)
+        {
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
-        ///     Parse a unit string.
+        ///     <para>
+        ///     Compare equality to another BitRate within the given absolute or relative tolerance.
+        ///     </para>
+        ///     <para>
+        ///     Relative tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a percentage of this quantity's value. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison. A relative tolerance of 0.01 means the absolute difference must be within +/- 1% of
+        ///     this quantity's value to be considered equal.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within +/- 1% of a (0.02m or 2cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Relative);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Absolute tolerance is defined as the maximum allowable absolute difference between this quantity's value and
+        ///     <paramref name="other"/> as a fixed number in this quantity's unit. <paramref name="other"/> will be converted into
+        ///     this quantity's unit for comparison.
+        ///     <example>
+        ///     In this example, the two quantities will be equal if the value of b is within 0.01 of a (0.01m or 1cm).
+        ///     <code>
+        ///     var a = Length.FromMeters(2.0);
+        ///     var b = Length.FromInches(50.0);
+        ///     a.Equals(b, 0.01, ComparisonType.Absolute);
+        ///     </code>
+        ///     </example>
+        ///     </para>
+        ///     <para>
+        ///     Note that it is advised against specifying zero difference, due to the nature
+        ///     of floating point operations and using System.Double internally.
+        ///     </para>
         /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use when parsing number and unit. Defaults to <see cref="UnitSystem" />'s default culture.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        [Obsolete("Use overload that takes IFormatProvider instead of culture name. This method was only added to support WindowsRuntimeComponent and will be removed from .NET Framework targets.")]
-        public static BitRateUnit ParseUnit(string str, [CanBeNull] string cultureName)
+        /// <param name="other">The other quantity to compare to.</param>
+        /// <param name="tolerance">The absolute or relative tolerance value. Must be greater than or equal to 0.</param>
+        /// <param name="comparisonType">The comparison type: either relative or absolute.</param>
+        /// <returns>True if the absolute difference between the two values is not greater than the specified relative or absolute tolerance.</returns>
+        public bool Equals(BitRate other, double tolerance, ComparisonType comparisonType)
         {
-            return ParseUnit(str, cultureName == null ? null : new CultureInfo(cultureName));
+            if(tolerance < 0)
+                throw new ArgumentOutOfRangeException("tolerance", "Tolerance must be greater than or equal to 0.");
+
+            double thisValue = (double)this.Value;
+            double otherValueInThisUnits = other.As(this.Unit);
+
+            return UnitsNet.Comparison.Equals(thisValue, otherValueInThisUnits, tolerance, comparisonType);
         }
 
         /// <summary>
-        ///     Parse a unit string.
+        ///     Returns the hash code for this instance.
         /// </summary>
-        /// <param name="str">String to parse. Typically in the form: {number} {unit}</param>
-        /// <param name="provider">Format to use when parsing number and unit. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <example>
-        ///     Length.ParseUnit("m", new CultureInfo("en-US"));
-        /// </example>
-        /// <exception cref="ArgumentNullException">The value of 'str' cannot be null. </exception>
-        /// <exception cref="UnitsNetException">Error parsing string.</exception>
-        public static BitRateUnit ParseUnit(string str, IFormatProvider provider = null)
+        /// <returns>A hash code for the current BitRate.</returns>
+        public override int GetHashCode()
         {
-            if (str == null) throw new ArgumentNullException(nameof(str));
+            return new { QuantityType, Value, Unit }.GetHashCode();
+        }
 
-            var unitSystem = UnitSystem.GetCached(provider);
-            var unit = unitSystem.Parse<BitRateUnit>(str.Trim());
+        #endregion
 
-            if (unit == BitRateUnit.Undefined)
+        #region Conversion Methods
+
+        /// <summary>
+        ///     Convert to the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>Value converted to the specified unit.</returns>
+        public double As(BitRateUnit unit)
+        {
+            if(Unit == unit)
+                return Convert.ToDouble(Value);
+
+            var converted = AsBaseNumericType(unit);
+            return Convert.ToDouble(converted);
+        }
+
+        /// <summary>
+        ///     Converts this BitRate to another BitRate with the unit representation <paramref name="unit" />.
+        /// </summary>
+        /// <returns>A BitRate with the specified unit.</returns>
+        public BitRate ToUnit(BitRateUnit unit)
+        {
+            var convertedValue = AsBaseNumericType(unit);
+            return new BitRate(convertedValue, unit);
+        }
+
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        private decimal AsBaseUnit()
+        {
+            switch(Unit)
             {
-                var newEx = new UnitsNetException("Error parsing string. The unit is not a recognized BitRateUnit.");
-                newEx.Data["input"] = str;
-                newEx.Data["provider"] = provider?.ToString() ?? "(null)";
-                throw newEx;
+                case BitRateUnit.BitPerSecond: return _value;
+                case BitRateUnit.BytePerSecond: return _value*8m;
+                case BitRateUnit.ExabitPerSecond: return (_value) * 1e18m;
+                case BitRateUnit.ExabytePerSecond: return (_value*8m) * 1e18m;
+                case BitRateUnit.ExbibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.ExbibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.GibibitPerSecond: return (_value) * (1024m * 1024 * 1024);
+                case BitRateUnit.GibibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024);
+                case BitRateUnit.GigabitPerSecond: return (_value) * 1e9m;
+                case BitRateUnit.GigabytePerSecond: return (_value*8m) * 1e9m;
+                case BitRateUnit.KibibitPerSecond: return (_value) * 1024m;
+                case BitRateUnit.KibibytePerSecond: return (_value*8m) * 1024m;
+                case BitRateUnit.KilobitPerSecond: return (_value) * 1e3m;
+                case BitRateUnit.KilobytePerSecond: return (_value*8m) * 1e3m;
+                case BitRateUnit.MebibitPerSecond: return (_value) * (1024m * 1024);
+                case BitRateUnit.MebibytePerSecond: return (_value*8m) * (1024m * 1024);
+                case BitRateUnit.MegabitPerSecond: return (_value) * 1e6m;
+                case BitRateUnit.MegabytePerSecond: return (_value*8m) * 1e6m;
+                case BitRateUnit.PebibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.PebibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.PetabitPerSecond: return (_value) * 1e15m;
+                case BitRateUnit.PetabytePerSecond: return (_value*8m) * 1e15m;
+                case BitRateUnit.TebibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024);
+                case BitRateUnit.TebibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024);
+                case BitRateUnit.TerabitPerSecond: return (_value) * 1e12m;
+                case BitRateUnit.TerabytePerSecond: return (_value*8m) * 1e12m;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
+        }
 
-            return unit;
+        private decimal AsBaseNumericType(BitRateUnit unit)
+        {
+            if(Unit == unit)
+                return _value;
+
+            var baseUnitValue = AsBaseUnit();
+
+            switch(unit)
+            {
+                case BitRateUnit.BitPerSecond: return baseUnitValue;
+                case BitRateUnit.BytePerSecond: return baseUnitValue/8m;
+                case BitRateUnit.ExabitPerSecond: return (baseUnitValue) / 1e18m;
+                case BitRateUnit.ExabytePerSecond: return (baseUnitValue/8m) / 1e18m;
+                case BitRateUnit.ExbibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.ExbibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.GibibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024);
+                case BitRateUnit.GibibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024);
+                case BitRateUnit.GigabitPerSecond: return (baseUnitValue) / 1e9m;
+                case BitRateUnit.GigabytePerSecond: return (baseUnitValue/8m) / 1e9m;
+                case BitRateUnit.KibibitPerSecond: return (baseUnitValue) / 1024m;
+                case BitRateUnit.KibibytePerSecond: return (baseUnitValue/8m) / 1024m;
+                case BitRateUnit.KilobitPerSecond: return (baseUnitValue) / 1e3m;
+                case BitRateUnit.KilobytePerSecond: return (baseUnitValue/8m) / 1e3m;
+                case BitRateUnit.MebibitPerSecond: return (baseUnitValue) / (1024m * 1024);
+                case BitRateUnit.MebibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024);
+                case BitRateUnit.MegabitPerSecond: return (baseUnitValue) / 1e6m;
+                case BitRateUnit.MegabytePerSecond: return (baseUnitValue/8m) / 1e6m;
+                case BitRateUnit.PebibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.PebibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024 * 1024);
+                case BitRateUnit.PetabitPerSecond: return (baseUnitValue) / 1e15m;
+                case BitRateUnit.PetabytePerSecond: return (baseUnitValue/8m) / 1e15m;
+                case BitRateUnit.TebibitPerSecond: return (baseUnitValue) / (1024m * 1024 * 1024 * 1024);
+                case BitRateUnit.TebibytePerSecond: return (baseUnitValue/8m) / (1024m * 1024 * 1024 * 1024);
+                case BitRateUnit.TerabitPerSecond: return (baseUnitValue) / 1e12m;
+                case BitRateUnit.TerabytePerSecond: return (baseUnitValue/8m) / 1e12m;
+                default:
+                    throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
+            }
         }
 
         #endregion
@@ -509,52 +970,57 @@ namespace UnitsNet
         #region ToString Methods
 
         /// <summary>
+        ///     Get default string representation of value and unit.
+        /// </summary>
+        /// <returns>String representation.</returns>
+        public override string ToString()
+        {
+            return ToString(null);
+        }
+
+        /// <summary>
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <returns>String representation.</returns>
-        public string ToString(BitRateUnit unit, [CanBeNull] IFormatProvider provider)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider)
         {
-            return ToString(unit, provider, 2);
+            return ToString(provider, 2);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="unit">Unit representation to use.</param>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
         /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(BitRateUnit unit, [CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider, int significantDigitsAfterRadix)
         {
-            double value = As(unit);
-            string format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
-            return ToString(unit, provider, format);
+            var value = Convert.ToDouble(Value);
+            var format = UnitFormatter.GetFormat(value, significantDigitsAfterRadix);
+            return ToString(provider, format);
         }
 
         /// <summary>
         ///     Get string representation of value and unit.
         /// </summary>
-        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="UnitSystem.DefaultCulture" />.</param>
-        /// <param name="unit">Unit representation to use.</param>
         /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
         /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
         /// <returns>String representation.</returns>
-        [UsedImplicitly]
-        public string ToString(BitRateUnit unit, [CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
+        /// <param name="provider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        public string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args)
         {
             if (format == null) throw new ArgumentNullException(nameof(format));
             if (args == null) throw new ArgumentNullException(nameof(args));
 
-            provider = provider ?? UnitSystem.DefaultCulture;
+            provider = provider ?? GlobalConfiguration.DefaultCulture;
 
-            double value = As(unit);
-            object[] formatArgs = UnitFormatter.GetFormatArgs(unit, value, provider, args);
+            var value = Convert.ToDouble(Value);
+            var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
         }
 
         #endregion
+
     }
 }
