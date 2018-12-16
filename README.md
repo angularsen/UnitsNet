@@ -156,7 +156,28 @@ For more examples on dynamic parsing and conversion, see the unit conversion app
 ![image](https://user-images.githubusercontent.com/787816/34920961-9b697004-f97b-11e7-9e9a-51ff7142969b.png)
 
 
-This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Length` or `Mass`, then selects to convert from `Meter` to `Centimeter` and types in a value for how many meters.
+This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Temperature`, then selects to convert from `DegreeCelsius` to `DegreeFahrenheit` and types in a numeric value for how many degrees Celsius to convert.
+
+Pseudo-code for converter app:
+```c#
+// Populate quantity selector ("Length", "Mass", "Force" etc)
+string[] quantityNames = UnitsHelper.QuantityNames;
+
+string selectedQuantityName = "Temperature"; // Selected by user
+QuantityType selectedQuantity = Enum.Parse<QuantityType>(selectedQuantityName); // QuantityType.Temperature
+
+// Populate from/to unit selectors when quantity selection changes
+string[] unitNames = UnitsHelper.GetUnitNamesForQuantity(selectedQuantity).ToArray();
+myGui.UpdateFromToListsOfUnits(unitNames);
+
+// Assign these from GUI selection
+double fromValue = 25;
+string fromUnitName = "DegreeCelsius";
+string toUnitName = "DegreeFahrenheit";
+
+// Convert using from value and selected quantity/unit names
+double convertedValue = UnitConverter.ConvertByName(fromValue, selectedQuantityName, fromUnitName, toUnitName);
+```
 
 NOTE: There are still some limitations in the library that requires reflection to enumerate units for quantity and getting the abbreviation for a unit, when we want to dynamically enumerate and convert between units.
 
