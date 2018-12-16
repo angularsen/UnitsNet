@@ -122,9 +122,9 @@ Example:
 ### Dynamically Parsing and Converting Quantities
 Sometimes you need to work with quantities and units at runtime, such as parsing user input.
 There are three classes to help with this:
-- [UnitParser]() for parsing unit abbreviation strings like `cm` to `LengthUnit.Centimeter`
-- [UnitAbbreviationsCache]() for looking up unit abbreviations like `cm` given type `LengthUnit` and value `1` (`Centimeter`)
-- [UnitConverter]() for converting values given a quantity name `Length`, a value `1` and from/to unit names `Centimeter` and `Meter`
+- [UnitParser](UnitsNet/CustomCode/UnitParser.cs) for parsing unit abbreviation strings like `cm` to `LengthUnit.Centimeter`
+- [UnitAbbreviationsCache](UnitsNet/CustomCode/UnitAbbreviationsCache.cs) for looking up unit abbreviations like `cm` given type `LengthUnit` and value `1` (`Centimeter`)
+- [UnitConverter](UnitsNet/UnitConverter.cs) for converting values given a quantity name `Length`, a value `1` and from/to unit names `Centimeter` and `Meter`
 
 ```c#
 // This type was perhaps selected by the user in GUI from a list of units
