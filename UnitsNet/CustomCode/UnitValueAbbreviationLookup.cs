@@ -77,6 +77,9 @@ namespace UnitsNet
             if(!abbreviationToUnitMap.TryGetValue(abbreviation, out var unitsForAbbreviation))
                 abbreviationToUnitMap[abbreviation] = unitsForAbbreviation = new List<int>();
 
+            abbreviationsForUnit.Remove(abbreviation);
+            unitsForAbbreviation.Remove(unit);
+
             if (useAsDefault)
                 abbreviationsForUnit.Insert(0, abbreviation);
             else
