@@ -182,24 +182,7 @@ namespace UnitsNet
 #endif
             void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] params string[] abbreviations)
         {
-            if (!unitType.IsEnum())
-                throw new ArgumentException("Must be an enum type.", nameof(unitType));
-
-            if (abbreviations == null)
-                throw new ArgumentNullException(nameof(abbreviations));
-
-            formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
-
-            if(!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
-                quantitiesForProvider = _lookupsForCulture[formatProvider] = new UnitTypeToLookup();
-
-            if(!quantitiesForProvider.TryGetValue(unitType, out var unitToAbbreviations))
-                unitToAbbreviations = quantitiesForProvider[unitType] = new UnitValueAbbreviationLookup();
-
-            foreach(var abbr in abbreviations)
-            {
-                unitToAbbreviations.Add(unitValue, abbr);
-            }
+            PerformAbbreviationMapping(unitType, unitValue, formatProvider, false, abbreviations);
         }
 
         /// <summary>
@@ -220,21 +203,29 @@ namespace UnitsNet
 #endif
             void MapUnitToDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] string abbreviation)
         {
+            PerformAbbreviationMapping(unitType, unitValue, formatProvider, true, abbreviation);
+        }
+
+        private void PerformAbbreviationMapping(Type unitType, int unitValue, IFormatProvider formatProvider, bool setAsDefault, [NotNull] params string[] abbreviations)
+        {
             if (!unitType.IsEnum())
                 throw new ArgumentException("Must be an enum type.", nameof(unitType));
 
-            if (abbreviation == null)
-                throw new ArgumentNullException(nameof(abbreviation));
+            if (abbreviations == null)
+                throw new ArgumentNullException(nameof(abbreviations));
 
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 
-            if(!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
+            if (!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
                 quantitiesForProvider = _lookupsForCulture[formatProvider] = new UnitTypeToLookup();
 
-            if(!quantitiesForProvider.TryGetValue(unitType, out var unitToAbbreviations))
+            if (!quantitiesForProvider.TryGetValue(unitType, out var unitToAbbreviations))
                 unitToAbbreviations = quantitiesForProvider[unitType] = new UnitValueAbbreviationLookup();
 
-            unitToAbbreviations.Add(unitValue, abbreviation, true);
+            foreach (var abbr in abbreviations)
+            {
+                unitToAbbreviations.Add(unitValue, abbr, setAsDefault);
+            }
         }
 
         /// <summary>
