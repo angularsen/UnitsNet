@@ -308,6 +308,15 @@ namespace UnitsNet.Tests
             Assert.Equal("m²", cache.GetDefaultAbbreviation(AreaUnit.SquareMeter));
         }
 
+        [Fact]
+        public void MapUnitToDefaultAbbreviation_AddCustomAbbreviation_UsesNewAbbreviationWithToString()
+        {
+            var cache = new UnitAbbreviationsCache();
+            cache.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, AmericanCulture, "m^2");
+
+            Assert.Equal("m^2", cache.GetDefaultAbbreviation(AreaUnit.SquareMeter));
+        }
+
         /// <summary>
         ///     Convenience method to the proper culture parameter type.
         /// </summary>
