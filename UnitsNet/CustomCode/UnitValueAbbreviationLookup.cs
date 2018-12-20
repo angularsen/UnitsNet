@@ -69,7 +69,7 @@ namespace UnitsNet
             return units.Distinct().ToList();
         }
 
-        internal void Add(int unit, string abbreviation)
+        internal void Add(int unit, string abbreviation, bool setAsDefault = false)
         {
             if(!unitToAbbreviationMap.TryGetValue(unit, out var abbreviationsForUnit))
                 abbreviationsForUnit = unitToAbbreviationMap[unit] = new List<string>();
@@ -77,7 +77,13 @@ namespace UnitsNet
             if(!abbreviationToUnitMap.TryGetValue(abbreviation, out var unitsForAbbreviation))
                 abbreviationToUnitMap[abbreviation] = unitsForAbbreviation = new List<int>();
 
-            abbreviationsForUnit.Add(abbreviation);
+            abbreviationsForUnit.Remove(abbreviation);
+            unitsForAbbreviation.Remove(unit);
+
+            if (setAsDefault)
+                abbreviationsForUnit.Insert(0, abbreviation);
+            else
+                abbreviationsForUnit.Add(abbreviation);
             unitsForAbbreviation.Add(unit);
         }
     }

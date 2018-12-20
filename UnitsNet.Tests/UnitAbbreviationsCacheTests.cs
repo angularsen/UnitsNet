@@ -308,6 +308,25 @@ namespace UnitsNet.Tests
             Assert.Equal("m²", cache.GetDefaultAbbreviation(AreaUnit.SquareMeter));
         }
 
+        [Fact]
+        public void MapUnitToDefaultAbbreviation_GivenUnitAndCulture_SetsDefaultAbbreviationForUnitAndCulture()
+        {
+            var cache = new UnitAbbreviationsCache();
+            cache.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, AmericanCulture, "m^2");
+
+            Assert.Equal("m^2", cache.GetDefaultAbbreviation(AreaUnit.SquareMeter, AmericanCulture));
+        }
+
+        [Fact]
+        public void MapUnitToDefaultAbbreviation_GivenCustomAbbreviation_SetsAbbreviationUsedByQuantityToString()
+        {
+            // Use a distinct culture here so that we don't mess up other tests that may rely on the default cache.
+            var newZealandCulture = GetCulture("en-NZ");
+            UnitAbbreviationsCache.Default.MapUnitToDefaultAbbreviation(AreaUnit.SquareMeter, newZealandCulture, "m^2");
+
+            Assert.Equal("1 m^2", Area.FromSquareMeters(1).ToString(newZealandCulture));
+        }
+
         /// <summary>
         ///     Convenience method to the proper culture parameter type.
         /// </summary>

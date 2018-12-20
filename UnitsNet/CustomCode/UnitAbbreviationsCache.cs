@@ -91,6 +91,26 @@ namespace UnitsNet
         }
 
         /// <summary>
+        /// Adds a unit abbreviation for the given unit enum value and sets it as the default.
+        /// This is used to dynamically add abbreviations for existing unit enums such as <see cref="UnitsNet.Units.LengthUnit"/> or to extend with third-party unit enums
+        /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultAbbreviation{TUnitType}"/> on them later.
+        /// </summary>
+        /// <param name="unit">The unit enum value.</param>
+        /// <param name="abbreviation">Unit abbreviations to add as default.</param>
+        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
+        [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+            void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, string abbreviation) where TUnitType : Enum
+        {
+            MapUnitToDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), GlobalConfiguration.DefaultCulture, abbreviation);
+        }
+
+        /// <summary>
         /// Adds one or more unit abbreviation for the given unit enum value.
         /// This is used to dynamically add abbreviations for existing unit enums such as <see cref="LengthUnit"/> or to extend with third-party unit enums
         /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultAbbreviation{TUnitType}"/> on them later.
@@ -118,6 +138,33 @@ namespace UnitsNet
         }
 
         /// <summary>
+        /// Adds a unit abbreviation for the given unit enum value and sets it as the default.
+        /// This is used to dynamically add abbreviations for existing unit enums such as <see cref="LengthUnit"/> or to extend with third-party unit enums
+        /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultAbbreviation{TUnitType}"/> on them later.
+        /// </summary>
+        /// <param name="unit">The unit enum value.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="abbreviation">Unit abbreviation to add as default.</param>
+        /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
+        [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+            void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, string abbreviation) where TUnitType : Enum
+        {
+            // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
+            // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
+            // http://stackoverflow.com/questions/79126/create-generic-method-constraining-t-to-an-enum
+            var unitValue = Convert.ToInt32(unit);
+            var unitType = typeof(TUnitType);
+
+            MapUnitToDefaultAbbreviation(unitType, unitValue, formatProvider, abbreviation);
+        }
+
+        /// <summary>
         /// Adds one or more unit abbreviation for the given unit enum value.
         /// This is used to dynamically add abbreviations for existing unit enums such as <see cref="LengthUnit"/> or to extend with third-party unit enums
         /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultAbbreviation{TUnitType}"/> on them later.
@@ -134,7 +181,33 @@ namespace UnitsNet
         public
 #endif
             void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] params string[] abbreviations)
-		{
+        {
+            PerformAbbreviationMapping(unitType, unitValue, formatProvider, false, abbreviations);
+        }
+
+        /// <summary>
+        /// Adds a unit abbreviation for the given unit enum value and sets it as the default.
+        /// This is used to dynamically add abbreviations for existing unit enums such as <see cref="LengthUnit"/> or to extend with third-party unit enums
+        /// in order to <see cref="UnitParser.Parse{TUnitType}"/> or <see cref="GetDefaultAbbreviation{TUnitType}"/> on them later.
+        /// </summary>
+        /// <param name="unitType">The unit enum type.</param>
+        /// <param name="unitValue">The unit enum value.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <param name="abbreviation">Unit abbreviation to add as default.</param>
+        [PublicAPI]
+        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+            void MapUnitToDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] string abbreviation)
+        {
+            PerformAbbreviationMapping(unitType, unitValue, formatProvider, true, abbreviation);
+        }
+
+        private void PerformAbbreviationMapping(Type unitType, int unitValue, IFormatProvider formatProvider, bool setAsDefault, [NotNull] params string[] abbreviations)
+        {
             if (!unitType.IsEnum())
                 throw new ArgumentException("Must be an enum type.", nameof(unitType));
 
@@ -143,15 +216,15 @@ namespace UnitsNet
 
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 
-            if(!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
+            if (!_lookupsForCulture.TryGetValue(formatProvider, out var quantitiesForProvider))
                 quantitiesForProvider = _lookupsForCulture[formatProvider] = new UnitTypeToLookup();
 
-            if(!quantitiesForProvider.TryGetValue(unitType, out var unitToAbbreviations))
+            if (!quantitiesForProvider.TryGetValue(unitType, out var unitToAbbreviations))
                 unitToAbbreviations = quantitiesForProvider[unitType] = new UnitValueAbbreviationLookup();
 
-            foreach(var abbr in abbreviations)
+            foreach (var abbr in abbreviations)
             {
-                unitToAbbreviations.Add(unitValue, abbr);
+                unitToAbbreviations.Add(unitValue, abbr, setAsDefault);
             }
         }
 
