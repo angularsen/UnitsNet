@@ -22,8 +22,11 @@ See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgr
 
 * [90 quantities with 800+ units](UnitsNet/GeneratedCode/Units) generated from [JSON](Common/UnitDefinitions/) by [Powershell scripts](UnitsNet/Scripts)
 * [2500+ unit tests](https://ci.appveyor.com/project/angularsen/unitsnet) on conversions and localizations
-* Immutable structs that implement `Equatable`, `IComparable`
-* [Static typing](#static-typing) to avoid ambiguous values or units
+* Conforms to [Microsoft's open-source library guidance](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/), in particular:
+  * [SourceLink](https://github.com/dotnet/sourcelink) to step into source code of NuGet package while debugging
+  * [Strong naming](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/get-started#strong-naming) to make the library available to all developers
+* Immutable structs that implement `IEquatable`, `IComparable`
+* [Statically typed quantities and units](#static-typing) to avoid mistakes and communicate intent
 * [Operator overloads](#operator-overloads) for arithmetic on quantities
 * [Parse and ToString()](#culture) supports cultures and localization
 * [Dynamically parsing and converting](#dynamic-parsing) quantities and units
