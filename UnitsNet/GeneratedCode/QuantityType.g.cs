@@ -65,7 +65,6 @@ namespace UnitsNet
         Duration,
         DynamicViscosity,
         ElectricAdmittance,
-        ElectricCapacitance,
         ElectricCharge,
         ElectricChargeDensity,
         ElectricConductance,

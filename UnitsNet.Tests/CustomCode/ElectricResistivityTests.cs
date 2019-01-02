@@ -48,30 +48,30 @@ namespace UnitsNet.Tests.CustomCode
         // TODO Override properties in base class here
         protected override double KiloohmsCentimeterInOneOhmMeter => 1e-1;
 
-        protected override double KiloohmsMetersInOneOhmMeter => 1e-3;
+        protected override double KiloohmMetersInOneOhmMeter => 1e-3;
 
         protected override double MegaohmsCentimeterInOneOhmMeter => 1e-4;
 
-        protected override double MegaohmsMetersInOneOhmMeter => 1e-6;
+        protected override double MegaohmMetersInOneOhmMeter => 1e-6;
 
         protected override double MicroohmsCentimeterInOneOhmMeter => 1e8;
 
-        protected override double MicroohmsMetersInOneOhmMeter => 1e6;
+        protected override double MicroohmMetersInOneOhmMeter => 1e6;
 
         protected override double MilliohmsCentimeterInOneOhmMeter => 1e5;
 
-        protected override double MilliohmsMetersInOneOhmMeter => 1e3;
+        protected override double MilliohmMetersInOneOhmMeter => 1e3;
 
         protected override double NanoohmsCentimeterInOneOhmMeter => 1e11;
 
-        protected override double NanoohmsMetersInOneOhmMeter => 1e9;
+        protected override double NanoohmMetersInOneOhmMeter => 1e9;
 
         protected override double OhmsCentimeterInOneOhmMeter => 1e2;
 
-        protected override double OhmsMetersInOneOhmMeter => 1;
+        protected override double OhmMetersInOneOhmMeter => 1;
 
         protected override double PicoohmsCentimeterInOneOhmMeter => 1e14;
 
-        protected override double PicoohmsMetersInOneOhmMeter => 1e+12;
+        protected override double PicoohmMetersInOneOhmMeter => 1e+12;
     }
 }

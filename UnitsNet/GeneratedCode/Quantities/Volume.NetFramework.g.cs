@@ -148,6 +148,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Volume in AcreFeet.
+        /// </summary>
+        public double AcreFeet => As(VolumeUnit.AcreFoot);
+
+        /// <summary>
         ///     Get Volume in AuTablespoons.
         /// </summary>
         public double AuTablespoons => As(VolumeUnit.AuTablespoon);
@@ -283,6 +288,11 @@ namespace UnitsNet
         public double MegaimperialGallons => As(VolumeUnit.MegaimperialGallon);
 
         /// <summary>
+        ///     Get Volume in Megaliters.
+        /// </summary>
+        public double Megaliters => As(VolumeUnit.Megaliter);
+
+        /// <summary>
         ///     Get Volume in MegausGallons.
         /// </summary>
         public double MegausGallons => As(VolumeUnit.MegausGallon);
@@ -391,6 +401,15 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get Volume from AcreFeet.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromAcreFeet(QuantityValue acrefeet)
+        {
+            double value = (double) acrefeet;
+            return new Volume(value, VolumeUnit.AcreFoot);
+        }
         /// <summary>
         ///     Get Volume from AuTablespoons.
         /// </summary>
@@ -633,6 +652,15 @@ namespace UnitsNet
         {
             double value = (double) megaimperialgallons;
             return new Volume(value, VolumeUnit.MegaimperialGallon);
+        }
+        /// <summary>
+        ///     Get Volume from Megaliters.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Volume FromMegaliters(QuantityValue megaliters)
+        {
+            double value = (double) megaliters;
+            return new Volume(value, VolumeUnit.Megaliter);
         }
         /// <summary>
         ///     Get Volume from MegausGallons.
@@ -1129,6 +1157,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case VolumeUnit.AcreFoot: return _value/0.000810714;
                 case VolumeUnit.AuTablespoon: return _value*2e-5;
                 case VolumeUnit.Centiliter: return (_value/1e3) * 1e-2d;
                 case VolumeUnit.CubicCentimeter: return _value/1e6;
@@ -1156,6 +1185,7 @@ namespace UnitsNet
                 case VolumeUnit.Liter: return _value/1e3;
                 case VolumeUnit.MegacubicFoot: return (_value*0.0283168) * 1e6d;
                 case VolumeUnit.MegaimperialGallon: return (_value*0.00454609000000181429905810072407) * 1e6d;
+                case VolumeUnit.Megaliter: return (_value/1e3) * 1e6d;
                 case VolumeUnit.MegausGallon: return (_value*0.00378541) * 1e6d;
                 case VolumeUnit.MetricCup: return _value*0.00025;
                 case VolumeUnit.MetricTeaspoon: return _value*0.5e-5;
@@ -1186,6 +1216,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case VolumeUnit.AcreFoot: return baseUnitValue*0.000810714;
                 case VolumeUnit.AuTablespoon: return baseUnitValue/2e-5;
                 case VolumeUnit.Centiliter: return (baseUnitValue*1e3) / 1e-2d;
                 case VolumeUnit.CubicCentimeter: return baseUnitValue*1e6;
@@ -1213,6 +1244,7 @@ namespace UnitsNet
                 case VolumeUnit.Liter: return baseUnitValue*1e3;
                 case VolumeUnit.MegacubicFoot: return (baseUnitValue/0.0283168) / 1e6d;
                 case VolumeUnit.MegaimperialGallon: return (baseUnitValue/0.00454609000000181429905810072407) / 1e6d;
+                case VolumeUnit.Megaliter: return (baseUnitValue*1e3) / 1e6d;
                 case VolumeUnit.MegausGallon: return (baseUnitValue/0.00378541) / 1e6d;
                 case VolumeUnit.MetricCup: return baseUnitValue/0.00025;
                 case VolumeUnit.MetricTeaspoon: return baseUnitValue/0.5e-5;

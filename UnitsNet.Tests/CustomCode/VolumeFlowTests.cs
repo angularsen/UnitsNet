@@ -95,7 +95,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double AcreFeetPerHourInOneCubicMeterPerSecond => 2.91857;
 
-        protected override double AcreFeetPerMinuteInOneCubicMeterPerSecond => 0.0486429;
+        protected override double AcreFeetPerMinuteInOneCubicMeterPerSecond => 0.0486427916;
 
         protected override double AcreFeetPerSecondInOneCubicMeterPerSecond => 0.000810714;
 

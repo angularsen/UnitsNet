@@ -62,6 +62,7 @@ namespace UnitsNet.Units
         MegapoundPerDay,
         MegapoundPerHour,
         MegapoundPerMinute,
+        MicrogramPerDay,
         MicrogramPerSecond,
         MilligramPerDay,
         MilligramPerSecond,

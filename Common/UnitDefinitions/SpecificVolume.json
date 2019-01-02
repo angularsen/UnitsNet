@@ -12,7 +12,7 @@
       "PluralName": "CubicMetersPerKilogram",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [],
+      "Prefixes": [ "Milli" ],
       "Localization": [
         {
           "Culture": "en-US",

@@ -106,8 +106,6 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double AcreFeetInOneCubicMeter => 0.000810714;
 
-        protected override double KilolitersInOneCubicMeter => 1;
-
         protected override double MegalitersInOneCubicMeter => 0.001;
 
         [Fact]
