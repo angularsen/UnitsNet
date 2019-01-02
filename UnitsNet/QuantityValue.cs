@@ -21,9 +21,9 @@
 
 // Operator overloads not supported in Windows Runtime Components, we use 'double' type instead
 
-#if !WINDOWS_UWP
-using System;
+using UnitsNet.InternalHelpers;
 
+#if !WINDOWS_UWP
 namespace UnitsNet
 {
     /// <summary>
@@ -57,7 +57,7 @@ namespace UnitsNet
 
         private QuantityValue(double val)
         {
-            _value = val;
+            _value = Guard.EnsureValidNumber(val, nameof(val));
             _valueDecimal = null;
         }
 

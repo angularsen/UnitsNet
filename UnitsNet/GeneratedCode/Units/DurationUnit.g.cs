@@ -9,8 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -39,6 +38,9 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
+    // Disable missing XML comment warnings for the generated unit enums.
+    #pragma warning disable 1591
+
     public enum DurationUnit
     {
         Undefined = 0,
@@ -47,14 +49,12 @@ namespace UnitsNet.Units
         Microsecond,
         Millisecond,
         Minute,
-        [System.Obsolete("Use Month30 instead, which makes it clear that this is an approximate unit based on 30 days per month. The duration of a month varies, but the Gregorian solar calendar has 365.2425/12 = 30.44 days on average.")]
-        Month,
         Month30,
         Nanosecond,
         Second,
         Week,
-        [System.Obsolete("Use Year365 instead, which makes it clear that this is an approximate unit based on 365 days per year. The duration of a year varies due to corrections such as leap years, since a Gregorian solar calendar has 365.2425 days.")]
-        Year,
         Year365,
     }
+
+    #pragma warning restore 1591
 }

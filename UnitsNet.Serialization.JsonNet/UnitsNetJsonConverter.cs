@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,7 +25,8 @@ using System.Reflection;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UnitsNet.InternalHelpers;
+using UnitsNet.Serialization.JsonNet.Internal;
+using UnitsNet.Units;
 
 namespace UnitsNet.Serialization.JsonNet
 {
@@ -129,9 +130,7 @@ namespace UnitsNet.Serialization.JsonNet
             object quantityValue = GetFromMethodValueArgument(notNullableFromMethod, value);
 
             // Ex: Mass.From(55, MassUnit.Gram)
-            // TODO: there is a possible loss of precision if base value requires higher precision than double can represent.
-            // Example: Serializing Information.FromExabytes(100) then deserializing to Information 
-            // will likely return a very different result. Not sure how we can handle this?
+            // See ValueUnit about precision loss for quantities using decimal type.
             return notNullableFromMethod.Invoke(null, new[] {quantityValue, unitValue});
         }
 
@@ -196,7 +195,7 @@ namespace UnitsNet.Serialization.JsonNet
                     TypeNameHandling = serializer.TypeNameHandling,
                 };
                 JToken t = JToken.FromObject(obj, localSerializer);
-                
+
                 t.WriteTo(writer);
                 return;
             }
@@ -206,7 +205,7 @@ namespace UnitsNet.Serialization.JsonNet
 
             serializer.Serialize(writer, new ValueUnit
             {
-                // TODO Should we serialize long, decimal and long differently?
+                // See ValueUnit about precision loss for quantities using decimal type.
                 Value = Convert.ToDouble(quantityValue),
                 Unit = quantityUnitName
             });
@@ -221,7 +220,7 @@ namespace UnitsNet.Serialization.JsonNet
         private static string GetUnitFullNameOfQuantity(object obj, Type quantityType)
         {
             // Get value of Unit property
-            PropertyInfo unitProperty = quantityType.GetPropety("Unit");
+            PropertyInfo unitProperty = quantityType.GetProperty("Unit");
             Enum quantityUnit = (Enum) unitProperty.GetValue(obj, null); // MassUnit.Kilogram
 
             Type unitType = quantityUnit.GetType(); // MassUnit
@@ -232,9 +231,7 @@ namespace UnitsNet.Serialization.JsonNet
         {
             FieldInfo valueField = GetPrivateInstanceField(quantityType, ValueFieldName);
 
-            // Unit base type can be double, long or decimal,
-            // so make sure we serialize the real type to avoid
-            // loss of precision
+            // See ValueUnit about precision loss for quantities using decimal type.
             object quantityValue = valueField.GetValue(value);
             return quantityValue;
         }
@@ -277,10 +274,13 @@ namespace UnitsNet.Serialization.JsonNet
         ///     A structure used to serialize/deserialize Units.NET unit instances.
         /// </summary>
         /// <remarks>
-        ///     TODO Units may use decimal, long or double as base value type and might result
+        ///     Quantities may use decimal, long or double as base value type and this might result
         ///     in a loss of precision when serializing/deserializing to decimal.
         ///     Decimal is the highest precision type available in .NET, but has a smaller
         ///     range than double.
+        ///
+        ///     Json: Support decimal precision #503
+        ///     https://github.com/angularsen/UnitsNet/issues/503
         /// </remarks>
         private class ValueUnit
         {
@@ -288,7 +288,7 @@ namespace UnitsNet.Serialization.JsonNet
             public double Value { get; [UsedImplicitly] set; }
         }
 
-#region Can Convert
+        #region Can Convert
 
         /// <summary>
         ///     Determines whether this instance can convert the specified object type.
@@ -331,6 +331,7 @@ namespace UnitsNet.Serialization.JsonNet
             return objectType.FullName != null && objectType.FullName.Contains(nameof(UnitsNet) + ".");
         }
 
-#endregion
+        #endregion
+
     }
 }

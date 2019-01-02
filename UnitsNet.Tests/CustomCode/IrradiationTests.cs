@@ -12,7 +12,6 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
 //     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
@@ -48,8 +47,8 @@ namespace UnitsNet.Tests.CustomCode
     {
         protected override double JoulesPerSquareMeterInOneJoulePerSquareMeter => 1;
 
-        protected override double WattHoursPerSquareMeterInOneJoulePerSquareMeter => 2.78E-04;
+        protected override double WattHoursPerSquareMeterInOneJoulePerSquareMeter => 2.777777777777778e-4;
 
-        protected override double KilowattHoursPerSquareMeterInOneJoulePerSquareMeter => 2.78E-07;
+        protected override double KilowattHoursPerSquareMeterInOneJoulePerSquareMeter => 2.777777777777778e-7;
     }
 }

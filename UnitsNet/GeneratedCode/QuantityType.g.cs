@@ -9,25 +9,24 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
 
 // Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -40,12 +39,12 @@
 
 namespace UnitsNet
 {
-	/// <summary>
-	///     Lists all generated quantities with the same name as the quantity struct type,
-	///     such as Length, Mass, Force etc.
-	///     This is useful for populating options in the UI, such as creating a generic conversion
-	///     tool with inputValue, quantityName, fromUnit and toUnit selectors.
-	/// </summary>
+    /// <summary>
+    ///     Lists all generated quantities with the same name as the quantity struct type,
+    ///     such as Length, Mass, Force etc.
+    ///     This is useful for populating options in the UI, such as creating a generic conversion
+    ///     tool with inputValue, quantityName, fromUnit and toUnit selectors.
+    /// </summary>
     public enum QuantityType
     {
         Undefined = 0,
@@ -61,6 +60,7 @@ namespace UnitsNet
         BitRate,
         BrakeSpecificFuelConsumption,
         Capacitance,
+        CoefficientOfThermalExpansion,
         Density,
         Duration,
         DynamicViscosity,
@@ -82,7 +82,6 @@ namespace UnitsNet
         ElectricResistivity,
         Energy,
         Entropy,
-        Flow,
         Force,
         ForceChangeRate,
         ForcePerLength,
@@ -114,6 +113,7 @@ namespace UnitsNet
         Permeability,
         Permittivity,
         Power,
+        PowerDensity,
         PowerRatio,
         Pressure,
         PressureChangeRate,

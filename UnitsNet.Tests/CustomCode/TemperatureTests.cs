@@ -61,7 +61,7 @@ namespace UnitsNet.Tests.CustomCode
             // Act
             Temperature resultTemp = temperature.Divide(divisor, unit);
 
-            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToUnit(unit).ToString(CultureInfo.InvariantCulture, "{0:0} {1}");
             Assert.Equal(expected, actual);
         }
 
@@ -81,7 +81,7 @@ namespace UnitsNet.Tests.CustomCode
             // Act
             Temperature resultTemp = temperature.Multiply(factor, unit);
 
-            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToUnit(unit).ToString(CultureInfo.InvariantCulture, "{0:0} {1}");
             Assert.Equal(expected, actual);
         }
 
@@ -100,7 +100,7 @@ namespace UnitsNet.Tests.CustomCode
             // Act
             Temperature resultTemp = delta + temperature;
 
-            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToUnit(unit).ToString(CultureInfo.InvariantCulture, "{0:0} {1}");
             Assert.Equal(expected, actual);
         }
 
@@ -119,7 +119,7 @@ namespace UnitsNet.Tests.CustomCode
             // Act
             Temperature resultTemp = temperature - delta;
 
-            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToUnit(unit).ToString(CultureInfo.InvariantCulture, "{0:0} {1}");
             Assert.Equal(expected, actual);
         }
 
@@ -138,7 +138,7 @@ namespace UnitsNet.Tests.CustomCode
             // Act
             Temperature resultTemp = temperature + delta;
 
-            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToUnit(unit).ToString(CultureInfo.InvariantCulture, "{0:0} {1}");
             Assert.Equal(expected, actual);
         }
     }

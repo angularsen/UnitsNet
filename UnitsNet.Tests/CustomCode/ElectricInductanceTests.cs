@@ -12,7 +12,6 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
 //     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
@@ -47,5 +46,8 @@ namespace UnitsNet.Tests.CustomCode
     public class ElectricInductanceTests : ElectricInductanceTestsBase
     {
         protected override double HenriesInOneHenry => 1;
+        protected override double NanohenriesInOneHenry => 1e9;
+        protected override double MicrohenriesInOneHenry => 1e6;
+        protected override double MillihenriesInOneHenry => 1e3;
     }
 }

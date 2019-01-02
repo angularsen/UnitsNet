@@ -12,7 +12,6 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
 //     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
@@ -39,16 +38,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-
-using System;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificVolumeTests : SpecificVolumeTestsBase
     {
+        protected override double CubicMetersPerKilogramInOneCubicMeterPerKilogram => 1;        
 
-        protected override double CubicMetersPerKilogramInOneCubicMeterPerKilogram => 1;
+        protected override double CubicFeetPerPoundInOneCubicMeterPerKilogram => 16.01846353;
 
         protected override double MillicubicMetersPerKilogramInOneCubicMeterPerKilogram => 1e3;
 
@@ -65,8 +63,5 @@ namespace UnitsNet.Tests.CustomCode
             Density density = 5 / SpecificVolume.FromCubicMetersPerKilogram(20);
             Assert.Equal(density, Density.FromKilogramsPerCubicMeter(0.25));
         }
-
-
-
     }
 }

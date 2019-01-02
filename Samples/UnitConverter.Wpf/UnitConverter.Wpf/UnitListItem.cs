@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace UnitsNet.Samples.UnitConverter.Wpf
 {
@@ -14,7 +14,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
             UnitEnumValue = val;
             UnitEnumValueInt = (int) val;
             UnitEnumType = val.GetType();
-            Abbreviation = UnitSystem.Default.GetDefaultAbbreviation(UnitEnumType, UnitEnumValueInt);
+            Abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(UnitEnumType, UnitEnumValueInt);
 
             Text = $"{val} [{Abbreviation}]";
         }

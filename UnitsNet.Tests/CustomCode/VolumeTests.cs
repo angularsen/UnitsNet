@@ -40,7 +40,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CubicMetersInOneCubicMeter => 1;
 
-        protected override double CubicMilesInOneCubicMeter => 3.86102*1E-7;
+        protected override double CubicMilesInOneCubicMeter => 2.399127585789277e-10;
 
         protected override double CubicMillimetersInOneCubicMeter => 1E9;
 
@@ -64,6 +64,8 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KilousGallonsInOneCubicMeter => 2.6417217e-1;
 
         protected override double LitersInOneCubicMeter => 1E3;
+        protected override double KilolitersInOneCubicMeter => 1;
+
         protected override double MegacubicFeetInOneCubicMeter => 3.531472e-5;
         protected override double MegaimperialGallonsInOneCubicMeter => 2.1996924e-4;
         protected override double MegausGallonsInOneCubicMeter => 2.6417217e-4;
@@ -75,24 +77,16 @@ namespace UnitsNet.Tests.CustomCode
         protected override double AuTablespoonsInOneCubicMeter => 50000;
 
         protected override double UsTablespoonsInOneCubicMeter => 67628.0454;
-        
-        protected override double TablespoonsInOneCubicMeter => 67628.0454;
-
-        protected override double TablespoonsTolerance => 1E-4;
 
         protected override double MetricTeaspoonsInOneCubicMeter => 200000;
 
         protected override double UsTeaspoonsInOneCubicMeter => 202884.13621105801;
-
-        protected override double TeaspoonsInOneCubicMeter => 202884.13621105801;
 
         protected override double ImperialBeerBarrelsInOneCubicMeter => 6.1102568972;
 
         protected override double UkTablespoonsInOneCubicMeter => 66666.6666667;
 
         protected override double UsBeerBarrelsInOneCubicMeter => 8.5216790723083;
-
-        protected override double TeaspoonsTolerance => 1E-3;
 
         protected override double UsGallonsInOneCubicMeter => 264.17217;
         

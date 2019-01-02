@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -30,11 +29,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double BarsInOnePascal => 1E-5;
 
-        protected override double KilogramsForcePerSquareCentimeterInOnePascal => 0.101971621e-5;
+        protected override double KilogramsForcePerSquareCentimeterInOnePascal => 1.019716212977928e-5;
 
         protected override double KilogramsForcePerSquareMeterInOnePascal => 0.101971621;
 
-        protected override double KilogramsForcePerSquareMillimeterInOnePascal => 0.101971621e-7;
+        protected override double KilogramsForcePerSquareMillimeterInOnePascal => 1.019716212977928e-7;
 
         protected override double KilonewtonsPerSquareCentimeterInOnePascal => 1e-7;
 
@@ -44,9 +43,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilopascalsInOnePascal => 1e-3;
 
-        protected override double KilopoundsForcePerSquareFootInOnePascal => 2.089e-5;
+        protected override double KilopoundsForcePerSquareFootInOnePascal => 2.088543423315013e-5;
 
-        protected override double KilopoundsForcePerSquareInchInOnePascal => 1.45e-7;
+        protected override double KilopoundsForcePerSquareInchInOnePascal => 1.450377377302092e-7;
 
         protected override double MegapascalsInOnePascal => 1E-6;
 
@@ -64,17 +63,15 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsForcePerSquareFootInOnePascal => 0.0208854342;
 
-        protected override double PoundsForcePerSquareInchInOnePascal => 0.000145037737730209;
-
-        protected override double PsiInOnePascal => 1.450377*1E-4;
+        protected override double PoundsForcePerSquareInchInOnePascal => 1.450377377302092e-4;
 
         protected override double TechnicalAtmospheresInOnePascal => 1.0197*1E-5;
 
-        protected override double TonnesForcePerSquareCentimeterInOnePascal => 1e-8;
+        protected override double TonnesForcePerSquareCentimeterInOnePascal => 1.019716212977928e-8;
 
-        protected override double TonnesForcePerSquareMeterInOnePascal => 1e-4;
+        protected override double TonnesForcePerSquareMeterInOnePascal => 1.019716212977928e-4;
 
-        protected override double TonnesForcePerSquareMillimeterInOnePascal => 1e-10;
+        protected override double TonnesForcePerSquareMillimeterInOnePascal => 1.019716212977928e-10;
 
         protected override double TorrsInOnePascal => 7.5006*1E-3;
 
@@ -97,11 +94,19 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MillibarsInOnePascal => 1e-2;
 
+        protected override double MicrobarsInOnePascal => 1.0e1;
+
         protected override double MillimetersOfMercuryInOnePascal => 7.50061561302643e-3;
 
         protected override double InchesOfMercuryInOnePascal => 2.95299830714159e-4;
 
         protected override double InchesOfWaterColumnInOnePascal => 4.014630786617777e-3;
+
+        protected override double DynesPerSquareCentimeterInOnePascal => 1.0e1;
+
+        protected override double PoundsPerInchSecondSquaredInOnePascal => 5.599741459495891e-2;
+
+        protected override double MillipascalsInOnePascal => 1e3;
 
         [Fact]
         public void AreaTimesPressureEqualsForce()
@@ -115,6 +120,20 @@ namespace UnitsNet.Tests.CustomCode
         {
             Force force = Pressure.FromPascals(20)*Area.FromSquareMeters(3);
             Assert.Equal(force, Force.FromNewtons(60));
+        }
+
+        [Fact]
+        public void PressureDividedBySpecificWeightEqualsLength()
+        {
+            Length length = Pressure.FromPascals(20) / SpecificWeight.FromNewtonsPerCubicMeter(2);
+            Assert.Equal(Length.FromMeters(10), length);
+        }
+
+        [Fact]
+        public void PressureDividedByLengthEqualsSpecificWeight()
+        {
+            SpecificWeight specificWeight = Pressure.FromPascals(20) / Length.FromMeters(2);
+            Assert.Equal(SpecificWeight.FromNewtonsPerCubicMeter(10), specificWeight);
         }
     }
 }

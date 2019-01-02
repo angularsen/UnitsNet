@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -42,11 +43,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilotonnesInOneKilogram => 1E-6;
 
-        protected override double LongTonsInOneKilogram => 0.000984207;
+        protected override double LongTonsInOneKilogram => 9.842065276110606e-4;
 
         protected override double MegapoundsInOneKilogram => 2.2046226218487757e-6;
 
-        protected override double MegatonnesInOneKilogram => 1E-6;
+        protected override double MegatonnesInOneKilogram => 1E-9;
 
         protected override double MicrogramsInOneKilogram => 1E9;
 
@@ -60,7 +61,9 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsInOneKilogram => 2.2046226218487757d;
 
-        protected override double ShortTonsInOneKilogram => 0.00110231;
+        protected override double ShortTonsInOneKilogram => 1.102311310924388e-3;
+
+        protected override double SlugsInOneKilogram => 6.852176556196105e-2;
 
         protected override double StoneInOneKilogram => 0.1574731728702698;
 
@@ -103,6 +106,22 @@ namespace UnitsNet.Tests.CustomCode
         {
             Force force = Mass.FromKilograms(18)*Acceleration.FromMetersPerSecondSquared(3);
             Assert.Equal(force, Force.FromNewtons(54));
+        }
+
+        [Fact]
+        public void NegativeMassToStonePoundsReturnsCorrectValues()
+        {
+            var negativeMass = Mass.FromPounds(-1.0);
+            var stonePounds = negativeMass.StonePounds;
+
+            Assert.Equal(0, stonePounds.Stone);
+            Assert.Equal(-1.0, stonePounds.Pounds);
+
+            negativeMass = Mass.FromPounds(-25.0);
+            stonePounds = negativeMass.StonePounds;
+
+            Assert.Equal(-1.0, stonePounds.Stone);
+            Assert.Equal(-11.0, stonePounds.Pounds);
         }
     }
 }

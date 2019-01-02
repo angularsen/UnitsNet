@@ -12,7 +12,6 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\UnitClasses\MyQuantity.extra.cs files to add code to generated unit classes.
-//     Add Extensions\MyQuantityExtensions.cs to decorate unit classes with new behavior.
 //     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or unit classes.
 //
 // </auto-generated>
@@ -73,6 +72,10 @@ namespace UnitsNet.Tests.CustomCode
         protected override double PoundSquareFeetInOneKilogramSquareMeter => 1 / 4.21401101e-2;
 
         protected override double PoundSquareInchesInOneKilogramSquareMeter => 1 / 2.9263965e-4;
+
+        protected override double SlugSquareFeetInOneKilogramSquareMeter => 1 / 1.3558179619;
+
+        protected override double SlugSquareInchesInOneKilogramSquareMeter => 1 / 9.41540242e-3;
 
         protected override double KilotonneSquareCentimetersInOneKilogramSquareMeter => 1e-2;
 

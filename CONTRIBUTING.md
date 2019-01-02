@@ -1,4 +1,4 @@
-# Contributing to Units.NET
+﻿# Contributing to Units.NET
 
 Guidelines for contributing to the repo.
 
@@ -7,7 +7,7 @@ Adding a new unit or a new quantity is easy! We have detailed the steps here and
 
 https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit
 
-We also want the person with the idea, suggestion or bugreport to implement the change in code and get a sense of ownership for that piece of the library.
+We also want the person with the idea, suggestion or bug report to implement the change in code and get a sense of ownership for that piece of the library.
 This is to help grow the number of people that can contribute to the project and after someone new lands that first PR we often see more PRs from that person later.
 
 ## Coding Conventions
@@ -22,7 +22,7 @@ This is to help grow the number of people that can contribute to the project and
 * If there are many tests for a single method, you can wrap those in an inner class named the same as the method and then you can skip that part of the test method names
 
 ## Unit definitions (.JSON)
-For a fairly complete summary of the unit definition JSON schema, see [Meter of Length](https://github.com/angularsen/UnitsNet/blob/master/UnitsNet/UnitDefinitions/Length.json#L7). It has prefix units and multiple cultures.
+For a fairly complete summary of the unit definition JSON schema, see [Meter of Length](https://github.com/angularsen/UnitsNet/blob/master/Common/UnitDefinitions/Length.json). It has prefix units and multiple cultures.
 
 ### Conversion functions
 Converting from unit A to B is achieved by first converting from unit A to the base unit, then from the base unit to unit B. To achieve this, each unit defines two conversion functions.

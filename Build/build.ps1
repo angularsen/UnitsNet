@@ -28,7 +28,6 @@ import-module $PSScriptRoot\build-functions.psm1
 
 try {
   Remove-ArtifactsDir
-  Start-NugetRestore
   Update-GeneratedCode
   Start-Build $skipUWP
   Start-Tests

@@ -1,0 +1,25 @@
+﻿{
+  "Name": "MassFlux",
+  "BaseUnit": "KilogramPerSecondPerSquareMeter",
+  "XmlDoc": "Mass flux is the mass flow rate per unit area.",
+  "BaseDimensions": {
+    "L": -2,
+    "M": 1,
+    "T": -1
+  },
+  "Units": [
+    {
+      "SingularName": "GramPerSecondPerSquareMeter",
+      "PluralName": "GramsPerSecondPerSquareMeter",
+      "FromUnitToBaseFunc": "x/1e3",
+      "FromBaseToUnitFunc": "x*1e3",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g·s⁻¹·m⁻²" ]
+        }
+      ]
+    }
+  ]
+}

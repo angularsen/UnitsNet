@@ -90,9 +90,9 @@ namespace UnitsNet
         /// <param name="args">The list of format arguments.</param>
         /// <returns>An array of ToString format arguments.</returns>
         public static object[] GetFormatArgs<TUnitType>(TUnitType unit, double value, [CanBeNull] IFormatProvider culture, IEnumerable<object> args)
-            where TUnitType : struct, IComparable, IFormattable
+            where TUnitType : Enum
         {
-            string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit));
+            string abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), culture);
             return new object[] {value, abbreviation}.Concat(args).ToArray();
         }
     }

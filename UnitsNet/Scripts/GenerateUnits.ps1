@@ -1,4 +1,8 @@
-﻿# Set Write-Output used by Include- files to UTF8 encoding to fix copyright character
+﻿using module ".\Types.psm1"
+
+#Requires -Version 5.1
+
+# Set Write-Output used by Include- files to UTF8 encoding to fix copyright character
 [Console]::OutputEncoding = [Text.UTF8Encoding]::UTF8
 $OutputEncoding = [Text.UTF8Encoding]::UTF8
 
@@ -8,18 +12,24 @@ function ToCamelCase($str)
     return $str.Substring(0,1).ToLowerInvariant() + $str.Substring(1)
 }
 
-
-function GenerateQuantity($quantity, $outDir)
-{
-    $outFileName = "$outDir/$($quantity.Name).g.cs"
-    GenerateQuantitySourceCode $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
-    if (!$?) {
-        exit 1
-    }
-    Write-Host -NoNewline "quantity(OK) "
+function ValueOrDefault($value, $defaultValue){
+  if ($value -ne $null) { $value } else { $defaultValue }
 }
 
-function GenerateUnitTestBaseClass($quantity, $outDir)
+function GenerateQuantity([Quantity]$quantity, $outDir)
+{
+    $outFileName = "$outDir/$($quantity.Name).NetFramework.g.cs"
+    GenerateQuantitySourceCodeNetFramework $quantity "NetFramework" | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    if (!$?) { exit 1 }
+    Write-Host -NoNewline "quantity .NET(OK) "
+
+    $outFileName = "$outDir/../../../UnitsNet.WindowsRuntimeComponent/GeneratedCode/Quantities/$($quantity.Name).WindowsRuntimeComponent.g.cs"
+    GenerateQuantitySourceCodeNetFramework $quantity "WindowsRuntimeComponent" | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    if (!$?) { exit 1 }
+    Write-Host -NoNewline "quantity WRC(OK) "
+}
+
+function GenerateUnitTestBaseClass([Quantity]$quantity, $outDir)
 {
     $outFileName = "$outDir/$($quantity.Name)TestsBase.g.cs"
     GenerateUnitTestBaseClassSourceCode $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
@@ -29,7 +39,7 @@ function GenerateUnitTestBaseClass($quantity, $outDir)
     Write-Host -NoNewline "test base(OK) "
 }
 
-function GenerateUnitTestClassIfNotExists($quantity, $outDir)
+function GenerateUnitTestClassIfNotExists([Quantity]$quantity, $outDir)
 {
     Write-Host -NoNewline "test stub"
     $outFileName = "$outDir/$($quantity.Name)Tests.cs"
@@ -48,7 +58,7 @@ function GenerateUnitTestClassIfNotExists($quantity, $outDir)
     }
 }
 
-function GenerateUnitType($quantity, $outDir)
+function GenerateUnitType([Quantity]$quantity, $outDir)
 {
     $outFileName = "$outDir/$($quantity.Name)Unit.g.cs"
 
@@ -61,8 +71,8 @@ function GenerateUnitType($quantity, $outDir)
 
 function GenerateUnitSystemDefault($quantities, $outDir)
 {
-    Write-Host -NoNewline "UnitSystem.Default.g.cs: "
-    $outFileName = "$outDir/UnitSystem.Default.g.cs"
+    Write-Host -NoNewline "UnitAbbreviationsCache.g.cs: "
+    $outFileName = "$outDir/UnitAbbreviationsCache.g.cs"
 
     GenerateUnitSystemDefaultSourceCode $quantities | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
     if (!$?) {
@@ -85,46 +95,10 @@ function GenerateQuantityType($quantities, $outDir)
     Write-Host "(OK) "
 }
 
-function GenerateNumberExtensions($quantity, $numberExtensionsDir)
-{
-	$outDir = "$numberExtensionsDir"
-    $fileName = "NumberTo$($quantity.Name)Extensions.g.cs"
-    $outFilePath = "$outDir/$fileName"
-	EnsureDirExists $outDir
-    Write-Host -NoNewline "NumberExtensions"
-
-    GenerateNumberExtensionsSourceCode $quantity | Out-File -Encoding "UTF8" -Force $outFilePath | Out-Null
-    if (!$?) {
-        Write-Host -NoNewline "(error) "
-        exit 1
-    }
-    Write-Host -NoNewline "(OK) "
-}
-
 function EnsureDirExists([String] $dirPath) {
     New-Item -ItemType Directory -Force -Path $dirPath | Out-Null
     if (!$?) {
         exit 1
-    }
-}
-
-function Set-DefaultValues {
-    param ([Parameter(Mandatory = $true, ValueFromPipeline=$true)] $quantity)
-    PROCESS {
-        if (!$quantity.BaseType) {
-            $quantity | Add-Member BaseType "double"
-        }
-        if ($quantity.GenerateArithmetic -eq $null) {
-            $quantity | Add-Member GenerateArithmetic $true
-        }
-        # 'Logarithmic' is optional in the .json file and assumed to be false if not specified
-        if (!$quantity.Logarithmic) {
-            $quantity | Add-Member Logarithmic $false
-        }
-        elseif (!$quantity.LogarithmicScalingFactor) {
-            $quantity | Add-Member LogarithmicScalingFactor 1
-        }
-        return $quantity
     }
 }
 
@@ -141,15 +115,8 @@ function Set-ConversionFunctions
             }
 
             # Convert to/from double for other base types
-            if ($quantity.BaseType -eq "decimal") {
-                $u.FromUnitToBaseFunc = "Convert.ToDecimal($($u.FromUnitToBaseFunc))"
-                $u.FromBaseToUnitFunc = "Convert.ToDouble($($u.FromBaseToUnitFunc))"
-            } else {
-                if ($quantity.BaseType -eq "long") {
-                  $u.FromUnitToBaseFunc = "Convert.ToInt64($($u.FromUnitToBaseFunc))"
-                  $u.FromBaseToUnitFunc = "Convert.ToDouble($($u.FromBaseToUnitFunc))"
-                }
-            }
+            $u.FromUnitToBaseFunc = "$($u.FromUnitToBaseFunc)"
+            $u.FromBaseToUnitFunc = "$($u.FromBaseToUnitFunc)"
         }
         return $quantity
     }
@@ -162,6 +129,14 @@ function Add-PrefixUnits {
 
         foreach ($unit in $quantity.Units)
         {
+            foreach ($localization in $unit.Localization){
+                if($localization.AbbreviationsWithPrefixes.Count -gt 0){
+                    if($unit.Prefixes.Count -ne $localization.AbbreviationsWithPrefixes.Count){
+                        Write-Error "The prefix count ($($unit.Prefixes.Count)) does not match the abbreviations with prefixes count ($($localization.AbbreviationsWithPrefixes.Count)) for $($quantity.Name).$($unit.SingularName)" -ErrorAction Stop
+                    }
+                }
+            }
+
             $prefixIndex = 0
             foreach ($prefix in $unit.Prefixes)
             {
@@ -208,6 +183,7 @@ function Add-PrefixUnits {
                     PluralName=$prefix + $(ToCamelCase $unit.PluralName)
                     FromUnitToBaseFunc="("+$unit.FromUnitToBaseFunc+") * $prefixFactor"
                     FromBaseToUnitFunc="("+$unit.FromBaseToUnitFunc+") / $prefixFactor"
+
                     Localization=$unit.Localization | % {
                         $abbrev = $prefixAbbreviation + $_.Abbreviations[0]
                         if ($_.AbbreviationsWithPrefixes) {
@@ -222,7 +198,7 @@ function Add-PrefixUnits {
 
                 # Append prefix unit
                 $prefixUnits += $prefixUnit
-				$prefixIndex++;
+                $prefixIndex++;
             } # foreach prefixes
         } # foreach units
 
@@ -239,7 +215,7 @@ function Set-UnitsOrderedByName {
     }
 }
 
-function Add-InheritedUnits($quantity, $quantities) {
+function Add-InheritedUnits([Quantity]$quantity, $quantities) {
 
     foreach ($inheritFromQuantityName in $quantity.InheritUnitsFrom) {
         $inheritFromQuantity = $quantities | Where { $_.Name -eq $inheritFromQuantityName } | Select -First 1
@@ -251,11 +227,9 @@ function Add-InheritedUnits($quantity, $quantities) {
 
 # Load external generator functions with same name as file
 . "$PSScriptRoot/Include-GenerateTemplates.ps1"
-. "$PSScriptRoot/Include-GenerateLogarithmicCode.ps1"
-. "$PSScriptRoot/Include-GenerateNumberExtensionsSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantityTypeSourceCode.ps1"
-. "$PSScriptRoot/Include-GenerateQuantitySourceCode.ps1"
+. "$PSScriptRoot/Include-GenerateQuantitySourceCodeNetFramework.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTypeSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestBaseClassSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestPlaceholderSourceCode.ps1"
@@ -264,17 +238,59 @@ EnsureDirExists ($quantityDir = "$PSScriptRoot/../GeneratedCode/Quantities")
 EnsureDirExists ($unitEnumDir = "$PSScriptRoot/../GeneratedCode/Units")
 EnsureDirExists ($unitSystemDir = "$PSScriptRoot/../GeneratedCode")
 EnsureDirExists ($testsDir = "$PSScriptRoot/../../UnitsNet.Tests/GeneratedCode")
-EnsureDirExists ($numberExtensionsDir = "$PSScriptRoot/../GeneratedCode/Extensions/Number")
 EnsureDirExists ($testsCustomCodeDir = "$PSScriptRoot/../../UnitsNet.Tests/CustomCode")
 
-$templatesDir = "$PSScriptRoot/../UnitDefinitions"
+$templatesDir = "$PSScriptRoot/../../Common/UnitDefinitions"
 $pad = 25
 
-# Parse unit definitions from .json files and populate properties
+# Parse unit definitions from .json files
+# TODO Find a way to automap from JSON into Quantity type
 $quantities = Get-ChildItem -Path $templatesDir -filter "*.json" `
     | %{(Get-Content $_.FullName -Encoding "UTF8" | Out-String)} `
     | ConvertFrom-Json `
-    | Set-DefaultValues `
+    | %{
+      # $_ | fl | out-string | write-host -foreground blue
+      # New-Object -TypeName Quantity -Verbose -Property @{
+      [Quantity]@{
+        Name = $_.Name
+        XmlDocSummary = $_.XmlDoc
+        XmlDocRemarks = $_.XmlDocRemarks
+        BaseUnit = $_.BaseUnit
+        BaseType = ValueOrDefault $_.BaseType "double"
+        BaseDimensions = @{
+          Length = ValueOrDefault $_.BaseDimensions.L 0
+          Mass = ValueOrDefault $_.BaseDimensions.M 0
+          Time = ValueOrDefault $_.BaseDimensions.T 0
+          ElectricCurrent = ValueOrDefault $_.BaseDimensions.I 0
+          Temperature = ValueOrDefault $_.BaseDimensions.Θ 0
+          AmountOfSubstance = ValueOrDefault $_.BaseDimensions.N 0
+          LuminousIntensity = ValueOrDefault $_.BaseDimensions.J 0
+        }
+        GenerateArithmetic = ValueOrDefault $_.GenerateArithmetic $true
+        Logarithmic = ValueOrDefault $_.Logarithmic $false
+        LogarithmicScalingFactor = ValueOrDefault $_.LogarithmicScalingFactor 1
+        Units = $_.Units | %{
+          # $_ | fl | out-string | Write-Host -ForegroundColor blue
+          [Unit]@{
+            SingularName = $_.SingularName
+            PluralName = $_.PluralName
+            XmlDocSummary = $_.XmlDocSummary
+            XmlDocRemarks = $_.XmlDocRemarks
+            FromUnitToBaseFunc = $_.FromUnitToBaseFunc
+            FromBaseToUnitFunc = $_.FromBaseToUnitFunc
+            Prefixes = [string[]](ValueOrDefault $_.Prefixes @())
+            Localization = $_.Localization | %{
+              # $_ | fl | out-string | Write-Host -ForegroundColor blue
+              [Localization]@{
+                Culture = $_.Culture
+                Abbreviations = $_.Abbreviations
+                AbbreviationsWithPrefixes = $_.AbbreviationsWithPrefixes
+              }
+            }
+          }
+        }
+      }
+    } `
     | Add-PrefixUnits `
     | Set-ConversionFunctions `
     | Set-UnitsOrderedByName
@@ -286,7 +302,6 @@ foreach ($quantity in $quantities) {
 
     GenerateQuantity $quantity $quantityDir
     GenerateUnitType $quantity $unitEnumDir
-    GenerateNumberExtensions $quantity $numberExtensionsDir
     GenerateUnitTestBaseClass $quantity $testsDir
     GenerateUnitTestClassIfNotExists $quantity $testsCustomCodeDir
 

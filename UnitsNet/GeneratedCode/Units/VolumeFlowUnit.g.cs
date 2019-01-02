@@ -9,8 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -39,15 +38,13 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
+    // Disable missing XML comment warnings for the generated unit enums.
+    #pragma warning disable 1591
+
     public enum VolumeFlowUnit
     {
         Undefined = 0,
-        AcreFootPerDay,
-        AcreFootPerHour,
-        AcreFootPerMinute,
-        AcreFootPerSecond,
-        CentilitersPerDay,
-        CentilitersPerMinute,
+        CentiliterPerMinute,
         CubicDecimeterPerMinute,
         CubicFootPerHour,
         CubicFootPerMinute,
@@ -56,35 +53,27 @@ namespace UnitsNet.Units
         CubicMeterPerHour,
         CubicMeterPerMinute,
         CubicMeterPerSecond,
+        CubicMillimeterPerSecond,
         CubicYardPerHour,
         CubicYardPerMinute,
         CubicYardPerSecond,
-        CubicYardsPerDay,
-        DecilitersPerDay,
-        DecilitersPerMinute,
-        KilolitersPerDay,
-        KilolitersPerMinute,
-        LitersPerDay,
-        LitersPerHour,
-        LitersPerMinute,
-        LitersPerSecond,
-        MegalitersPerDay,
-        MegaukGallonsPerSecond,
-        MicrolitersPerDay,
-        MicrolitersPerMinute,
-        MillilitersPerDay,
-        MillilitersPerMinute,
+        DeciliterPerMinute,
+        KiloliterPerMinute,
+        KilousGallonsPerMinute,
+        LiterPerHour,
+        LiterPerMinute,
+        LiterPerSecond,
+        MicroliterPerMinute,
+        MilliliterPerMinute,
         MillionUsGallonsPerDay,
-        NanolitersPerDay,
-        NanolitersPerMinute,
-        OilBarrelsPerDay,
-        OilBarrelsPerSecond,
-        UkGallonsPerDay,
-        UkGallonsPerMinute,
-        UkGallonsPerSecond,
-        UsGallonsPerDay,
-        UsGallonsPerHour,
-        UsGallonsPerMinute,
-        UsGallonsPerSecond,
+        NanoliterPerMinute,
+        OilBarrelPerDay,
+        OilBarrelPerHour,
+        OilBarrelPerMinute,
+        UsGallonPerHour,
+        UsGallonPerMinute,
+        UsGallonPerSecond,
     }
+
+    #pragma warning restore 1591
 }

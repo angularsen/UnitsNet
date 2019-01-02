@@ -12,7 +12,6 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
 //     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
@@ -47,5 +46,11 @@ namespace UnitsNet.Tests.CustomCode
     public class CapacitanceTests : CapacitanceTestsBase
     {
         protected override double FaradsInOneFarad => 1;
+
+        protected override double MillifaradsInOneFarad => 1e3;
+        protected override double MicrofaradsInOneFarad => 1e6;
+
+        protected override double NanofaradsInOneFarad => 1e9;
+        protected override double PicofaradsInOneFarad => 1e12;
     }
 }

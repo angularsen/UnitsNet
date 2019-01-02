@@ -9,8 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -39,32 +38,21 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
+    // Disable missing XML comment warnings for the generated unit enums.
+    #pragma warning disable 1591
+
     public enum TemperatureDeltaUnit
     {
         Undefined = 0,
         DegreeCelsius,
-        [System.Obsolete("Deprecated due to github issue #180, please use DegreeCelsius instead")]
-        DegreeCelsiusDelta,
         DegreeDelisle,
-        [System.Obsolete("Deprecated due to github issue #180, please use DegreeDelisle instead")]
-        DegreeDelisleDelta,
         DegreeFahrenheit,
-        [System.Obsolete("Deprecated due to github issue #180, please use DegreeFahrenheit instead")]
-        DegreeFahrenheitDelta,
         DegreeNewton,
-        [System.Obsolete("Deprecated due to github issue #180, please use DegreeNewton instead")]
-        DegreeNewtonDelta,
         DegreeRankine,
-        [System.Obsolete("Deprecated due to github issue #180, please use DegreeRankine instead")]
-        DegreeRankineDelta,
         DegreeReaumur,
-        [System.Obsolete("Deprecated due to github issue #180, please use DegreeReaumur instead")]
-        DegreeReaumurDelta,
         DegreeRoemer,
-        [System.Obsolete("Deprecated due to github issue #180, please use DegreeRoemer instead")]
-        DegreeRoemerDelta,
         Kelvin,
-        [System.Obsolete("Deprecated due to github issue #180, please use Kelvin instead")]
-        KelvinDelta,
     }
+
+    #pragma warning restore 1591
 }

@@ -1,0 +1,25 @@
+﻿{
+  "Name": "RotationalStiffnessPerLength",
+  "BaseUnit": "NewtonMeterPerRadianPerMeter",
+  "XmlDoc": "https://en.wikipedia.org/wiki/Stiffness#Rotational_stiffness",
+  "BaseDimensions": {
+    "L": 1,
+    "M": 1,
+    "T": -2
+  },
+  "Units": [
+    {
+      "SingularName": "NewtonMeterPerRadianPerMeter",
+      "PluralName": "NewtonMetersPerRadianPerMeter",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "N·m/rad/m", "Nm/rad/m" ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+﻿{
+  "Name": "Entropy",
+  "BaseUnit": "JoulePerKelvin",
+  "XmlDoc": "Entropy is an important concept in the branch of science known as thermodynamics. The idea of \"irreversibility\" is central to the understanding of entropy.  It is often said that entropy is an expression of the disorder, or randomness of a system, or of our lack of information about it. Entropy is an extensive property. It has the dimension of energy divided by temperature, which has a unit of joules per kelvin (J/K) in the International System of Units",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -2,
+    "Θ": -1
+  },
+  "Units": [
+    {
+      "SingularName": "JoulePerKelvin",
+      "PluralName": "JoulesPerKelvin",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J/K" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "CaloriePerKelvin",
+      "PluralName": "CaloriesPerKelvin",
+      "FromUnitToBaseFunc": "x*4.184",
+      "FromBaseToUnitFunc": "x/4.184",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "cal/K" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "JoulePerDegreeCelsius",
+      "PluralName": "JoulesPerDegreeCelsius",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Prefixes": [ "Kilo" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J/C" ]
+        }
+      ]
+    }
+  ]
+}

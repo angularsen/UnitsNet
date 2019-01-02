@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace UnitsNet.Tests
 {
@@ -7,9 +8,22 @@ namespace UnitsNet.Tests
     /// </summary>
     public static class AssertEx
     {
-        public static void EqualTolerance(double expected, double actual, double tolerance)
+        public static void EqualTolerance(double expected, double actual, double tolerance, ComparisonType comparisonType = ComparisonType.Relative)
         {
-            Assert.True(actual >= expected - tolerance && actual <= expected + tolerance, $"Values are not equal within tolerance: {tolerance}\nExpected: {expected}\nActual: {actual}\nDiff: {actual - expected:e}");
+            if(comparisonType == ComparisonType.Relative)
+            {
+                bool areEqual = Comparison.EqualsRelative(expected, actual, tolerance);
+
+                double difference = Math.Abs(expected - actual);
+                double relativeDifference = difference / expected;
+
+                Assert.True( areEqual, $"Values are not equal within relative tolerance: {tolerance:P4}\nExpected: {expected}\nActual: {actual}\nDiff: {relativeDifference:P4}" );
+            }
+            else if( comparisonType == ComparisonType.Absolute )
+            {
+                bool areEqual = Comparison.EqualsAbsolute(expected, actual, tolerance);
+                Assert.True( areEqual, $"Values are not equal within absolute tolerance: {tolerance}\nExpected: {expected}\nActual: {actual}\nDiff: {actual - expected:e}" );
+            }
         }
     }
 }

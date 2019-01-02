@@ -21,6 +21,7 @@
 
 using UnitsNet.Units;
 
+// ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
@@ -41,7 +42,7 @@ namespace UnitsNet
         /// <returns>The new temperature.</returns>
         public static Temperature operator +(Temperature left, TemperatureDelta right)
         {
-            return new Temperature(left.Kelvins + right.KelvinsDelta);
+            return new Temperature(left.Kelvins + right.Kelvins, TemperatureUnit.Kelvin);
         }
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace UnitsNet
         /// <returns>The new temperature.</returns>
         public static Temperature operator +(TemperatureDelta left, Temperature right)
         {
-            return new Temperature(left.KelvinsDelta + right.Kelvins);
+            return new Temperature(left.Kelvins + right.Kelvins, TemperatureUnit.Kelvin);
         }
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace UnitsNet
         /// <returns>The new temperature.</returns>
         public static Temperature operator -(Temperature left, TemperatureDelta right)
         {
-            return new Temperature(left.Kelvins - right.KelvinsDelta);
+            return new Temperature(left.Kelvins - right.Kelvins, TemperatureUnit.Kelvin);
         }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace UnitsNet
         /// <returns>The delta temperature (difference).</returns>
         public static TemperatureDelta operator -(Temperature left, Temperature right)
         {
-            return new TemperatureDelta(left.Kelvins - right.Kelvins);
+            return new TemperatureDelta(left.Kelvins - right.Kelvins, TemperatureDeltaUnit.Kelvin);
         }
 #endif
 

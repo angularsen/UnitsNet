@@ -9,8 +9,7 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
-//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -39,6 +38,9 @@
 // ReSharper disable once CheckNamespace
 namespace UnitsNet.Units
 {
+    // Disable missing XML comment warnings for the generated unit enums.
+    #pragma warning disable 1591
+
     public enum PressureUnit
     {
         Undefined = 0,
@@ -47,6 +49,7 @@ namespace UnitsNet.Units
         Centibar,
         Decapascal,
         Decibar,
+        DynePerSquareCentimeter,
         FootOfHead,
         Gigapascal,
         Hectopascal,
@@ -66,21 +69,24 @@ namespace UnitsNet.Units
         MeganewtonPerSquareMeter,
         Megapascal,
         MeterOfHead,
+        Microbar,
         Micropascal,
         Millibar,
         MillimeterOfMercury,
+        Millipascal,
         NewtonPerSquareCentimeter,
         NewtonPerSquareMeter,
         NewtonPerSquareMillimeter,
         Pascal,
         PoundForcePerSquareFoot,
         PoundForcePerSquareInch,
-        [System.Obsolete("Deprecated due to github issue #215, please use PoundForcePerSquareInch instead")]
-        Psi,
+        PoundPerInchSecondSquared,
         TechnicalAtmosphere,
         TonneForcePerSquareCentimeter,
         TonneForcePerSquareMeter,
         TonneForcePerSquareMillimeter,
         Torr,
     }
+
+    #pragma warning restore 1591
 }

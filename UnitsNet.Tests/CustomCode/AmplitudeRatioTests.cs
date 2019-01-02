@@ -21,7 +21,6 @@
 
 using System;
 using Xunit;
-using UnitsNet.CustomCode.Extensions;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -84,7 +83,7 @@ namespace UnitsNet.Tests.CustomCode
             // Voltage increases by powers of 10 for every 20 dBV increase in amplitude ratio.
             AmplitudeRatio ar = AmplitudeRatio.FromDecibelVolts(amplitudeRatio);
 
-            double actual = AmplitudeRatio.ToElectricPotential(ar).Volts;
+            double actual = ar.ToElectricPotential().Volts;
             Assert.Equal(expected, actual);
         }
 

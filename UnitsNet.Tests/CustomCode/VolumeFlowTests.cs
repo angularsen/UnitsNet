@@ -12,7 +12,6 @@
 //     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
 //     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
-//     Add Extensions\MyQuantityExtensions.cs to decorate quantities with new behavior.
 //     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or quantities.
 //
 // </auto-generated>
@@ -131,6 +130,14 @@ namespace UnitsNet.Tests.CustomCode
         protected override double UsGallonsPerDayInOneCubicMeterPerSecond => 22824465.227;
 
         protected override double MegaukGallonsPerSecondInOneCubicMeterPerSecond => 219.969 * 1e-6;
+
+        protected override double OilBarrelsPerHourInOneCubicMeterPerSecond => 2.26431877E4;
+
+        protected override double OilBarrelsPerMinuteInOneCubicMeterPerSecond => 3.77388865E2;
+
+        protected override double KilousGallonsPerMinuteInOneCubicMeterPerSecond => 1.5850323141489e1;
+
+        protected override double CubicMillimetersPerSecondInOneCubicMeterPerSecond => 1e9;
 
         [Theory]
         [InlineData(20, 2, 40)]
