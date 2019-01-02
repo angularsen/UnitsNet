@@ -195,6 +195,10 @@ namespace UnitsNet
         /// </summary>
         public double Hectopascals => As(PressureUnit.Hectopascal);
         /// <summary>
+        ///     Get Pressure in InchesOfWaterColumn.
+        /// </summary>
+        public double InchesOfWaterColumn => As(PressureUnit.IncheOfWaterColumn);
+        /// <summary>
         ///     Get Pressure in InchesOfMercury.
         /// </summary>
         public double InchesOfMercury => As(PressureUnit.InchOfMercury);
@@ -432,6 +436,20 @@ namespace UnitsNet
         {
             double value = (double) hectopascals;
             return new Pressure(value, PressureUnit.Hectopascal);
+        }
+
+        /// <summary>
+        ///     Get Pressure from InchesOfWaterColumn.
+        /// </summary>
+#if WINDOWS_UWP
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Pressure FromInchesOfWaterColumn(double inchesofwatercolumn)
+#else
+        public static Pressure FromInchesOfWaterColumn(QuantityValue inchesofwatercolumn)
+#endif
+        {
+            double value = (double) inchesofwatercolumn;
+            return new Pressure(value, PressureUnit.IncheOfWaterColumn);
         }
 
         /// <summary>
@@ -969,6 +987,21 @@ namespace UnitsNet
             if (hectopascals.HasValue)
             {
                 return FromHectopascals(hectopascals.Value);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///     Get nullable Pressure from nullable InchesOfWaterColumn.
+        /// </summary>
+        public static Pressure? FromInchesOfWaterColumn(QuantityValue? inchesofwatercolumn)
+        {
+            if (inchesofwatercolumn.HasValue)
+            {
+                return FromInchesOfWaterColumn(inchesofwatercolumn.Value);
             }
             else
             {
@@ -1661,6 +1694,7 @@ namespace UnitsNet
                 case PressureUnit.FootOfHead: return baseUnitValue*0.000334552565551;
                 case PressureUnit.Gigapascal: return (baseUnitValue) / 1e9d;
                 case PressureUnit.Hectopascal: return (baseUnitValue) / 1e2d;
+                case PressureUnit.IncheOfWaterColumn: return baseUnitValue/249.08890833333;
                 case PressureUnit.InchOfMercury: return baseUnitValue*2.95299830714159e-4;
                 case PressureUnit.Kilobar: return (baseUnitValue/1e5) / 1e3d;
                 case PressureUnit.KilogramForcePerSquareCentimeter: return baseUnitValue/(9.80665*1e4);
@@ -2062,6 +2096,7 @@ namespace UnitsNet
                 case PressureUnit.FootOfHead: return _value*2989.0669;
                 case PressureUnit.Gigapascal: return (_value) * 1e9d;
                 case PressureUnit.Hectopascal: return (_value) * 1e2d;
+                case PressureUnit.IncheOfWaterColumn: return _value*249.08890833333;
                 case PressureUnit.InchOfMercury: return _value/2.95299830714159e-4;
                 case PressureUnit.Kilobar: return (_value*1e5) * 1e3d;
                 case PressureUnit.KilogramForcePerSquareCentimeter: return _value*9.80665*1e4;

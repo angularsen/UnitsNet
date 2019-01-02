@@ -101,6 +101,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double InchesOfMercuryInOnePascal => 2.95299830714159e-4;
 
+        protected override double InchesOfWaterColumnInOnePascal => 4.014630786617777e-3;
+
         [Fact]
         public void AreaTimesPressureEqualsForce()
         {

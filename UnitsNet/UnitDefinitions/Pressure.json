@@ -316,6 +316,18 @@
           "Abbreviations": [ "inHg" ]
         }
       ]
+    },
+    {
+      "SingularName": "IncheOfWaterColumn",
+      "PluralName": "InchesOfWaterColumn",
+      "FromUnitToBaseFunc": "x*249.08890833333",
+      "FromBaseToUnitFunc": "x/249.08890833333",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "wc" ]
+        }
+      ]
     }
   ]
 }

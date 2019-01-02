@@ -3200,6 +3200,11 @@ namespace UnitsNet
                                 new AbbreviationsForCulture("en-US", "hPa"),
                                 new AbbreviationsForCulture("ru-RU", "гПа"),
                             }),
+                        new CulturesForEnumValue((int) PressureUnit.IncheOfWaterColumn,
+                            new[]
+                            {
+                                new AbbreviationsForCulture("en-US", "wc"),
+                            }),
                         new CulturesForEnumValue((int) PressureUnit.InchOfMercury,
                             new[]
                             {

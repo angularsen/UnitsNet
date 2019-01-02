@@ -316,6 +316,40 @@ namespace UnitsNet.Extensions.NumberToPressure
 
         #endregion
 
+        #region IncheOfWaterColumn
+
+        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(double)"/>
+        public static Pressure InchesOfWaterColumn(this int value) => Pressure.FromInchesOfWaterColumn(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(double?)"/>
+        public static Pressure? InchesOfWaterColumn(this int? value) => Pressure.FromInchesOfWaterColumn(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(double)"/>
+        public static Pressure InchesOfWaterColumn(this long value) => Pressure.FromInchesOfWaterColumn(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(double?)"/>
+        public static Pressure? InchesOfWaterColumn(this long? value) => Pressure.FromInchesOfWaterColumn(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(double)"/>
+        public static Pressure InchesOfWaterColumn(this double value) => Pressure.FromInchesOfWaterColumn(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(double?)"/>
+        public static Pressure? InchesOfWaterColumn(this double? value) => Pressure.FromInchesOfWaterColumn(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(double)"/>
+        public static Pressure InchesOfWaterColumn(this float value) => Pressure.FromInchesOfWaterColumn(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(double?)"/>
+        public static Pressure? InchesOfWaterColumn(this float? value) => Pressure.FromInchesOfWaterColumn(value);
+
+        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(double)"/>
+        public static Pressure InchesOfWaterColumn(this decimal value) => Pressure.FromInchesOfWaterColumn(Convert.ToDouble(value));
+
+        /// <inheritdoc cref="Pressure.FromInchesOfWaterColumn(double?)"/>
+        public static Pressure? InchesOfWaterColumn(this decimal? value) => Pressure.FromInchesOfWaterColumn(value == null ? (double?)null : Convert.ToDouble(value.Value));
+
+        #endregion
+
         #region InchOfMercury
 
         /// <inheritdoc cref="Pressure.FromInchesOfMercury(double)"/>

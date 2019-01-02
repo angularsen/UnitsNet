@@ -60,6 +60,7 @@ namespace UnitsNet.Tests
         protected abstract double FeetOfHeadInOnePascal { get; }
         protected abstract double GigapascalsInOnePascal { get; }
         protected abstract double HectopascalsInOnePascal { get; }
+        protected abstract double InchesOfWaterColumnInOnePascal { get; }
         protected abstract double InchesOfMercuryInOnePascal { get; }
         protected abstract double KilobarsInOnePascal { get; }
         protected abstract double KilogramsForcePerSquareCentimeterInOnePascal { get; }
@@ -100,6 +101,7 @@ namespace UnitsNet.Tests
         protected virtual double FeetOfHeadTolerance { get { return 1e-5; } }
         protected virtual double GigapascalsTolerance { get { return 1e-5; } }
         protected virtual double HectopascalsTolerance { get { return 1e-5; } }
+        protected virtual double InchesOfWaterColumnTolerance { get { return 1e-5; } }
         protected virtual double InchesOfMercuryTolerance { get { return 1e-5; } }
         protected virtual double KilobarsTolerance { get { return 1e-5; } }
         protected virtual double KilogramsForcePerSquareCentimeterTolerance { get { return 1e-5; } }
@@ -144,6 +146,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(FeetOfHeadInOnePascal, pascal.FeetOfHead, FeetOfHeadTolerance);
             AssertEx.EqualTolerance(GigapascalsInOnePascal, pascal.Gigapascals, GigapascalsTolerance);
             AssertEx.EqualTolerance(HectopascalsInOnePascal, pascal.Hectopascals, HectopascalsTolerance);
+            AssertEx.EqualTolerance(InchesOfWaterColumnInOnePascal, pascal.InchesOfWaterColumn, InchesOfWaterColumnTolerance);
             AssertEx.EqualTolerance(InchesOfMercuryInOnePascal, pascal.InchesOfMercury, InchesOfMercuryTolerance);
             AssertEx.EqualTolerance(KilobarsInOnePascal, pascal.Kilobars, KilobarsTolerance);
             AssertEx.EqualTolerance(KilogramsForcePerSquareCentimeterInOnePascal, pascal.KilogramsForcePerSquareCentimeter, KilogramsForcePerSquareCentimeterTolerance);
@@ -187,6 +190,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.FootOfHead).FeetOfHead, FeetOfHeadTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Gigapascal).Gigapascals, GigapascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Hectopascal).Hectopascals, HectopascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.IncheOfWaterColumn).InchesOfWaterColumn, InchesOfWaterColumnTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.InchOfMercury).InchesOfMercury, InchesOfMercuryTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.Kilobar).Kilobars, KilobarsTolerance);
             AssertEx.EqualTolerance(1, Pressure.From(1, PressureUnit.KilogramForcePerSquareCentimeter).KilogramsForcePerSquareCentimeter, KilogramsForcePerSquareCentimeterTolerance);
@@ -231,6 +235,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(FeetOfHeadInOnePascal, pascal.As(PressureUnit.FootOfHead), FeetOfHeadTolerance);
             AssertEx.EqualTolerance(GigapascalsInOnePascal, pascal.As(PressureUnit.Gigapascal), GigapascalsTolerance);
             AssertEx.EqualTolerance(HectopascalsInOnePascal, pascal.As(PressureUnit.Hectopascal), HectopascalsTolerance);
+            AssertEx.EqualTolerance(InchesOfWaterColumnInOnePascal, pascal.As(PressureUnit.IncheOfWaterColumn), InchesOfWaterColumnTolerance);
             AssertEx.EqualTolerance(InchesOfMercuryInOnePascal, pascal.As(PressureUnit.InchOfMercury), InchesOfMercuryTolerance);
             AssertEx.EqualTolerance(KilobarsInOnePascal, pascal.As(PressureUnit.Kilobar), KilobarsTolerance);
             AssertEx.EqualTolerance(KilogramsForcePerSquareCentimeterInOnePascal, pascal.As(PressureUnit.KilogramForcePerSquareCentimeter), KilogramsForcePerSquareCentimeterTolerance);
@@ -275,6 +280,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, Pressure.FromFeetOfHead(pascal.FeetOfHead).Pascals, FeetOfHeadTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromGigapascals(pascal.Gigapascals).Pascals, GigapascalsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromHectopascals(pascal.Hectopascals).Pascals, HectopascalsTolerance);
+            AssertEx.EqualTolerance(1, Pressure.FromInchesOfWaterColumn(pascal.InchesOfWaterColumn).Pascals, InchesOfWaterColumnTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromInchesOfMercury(pascal.InchesOfMercury).Pascals, InchesOfMercuryTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromKilobars(pascal.Kilobars).Pascals, KilobarsTolerance);
             AssertEx.EqualTolerance(1, Pressure.FromKilogramsForcePerSquareCentimeter(pascal.KilogramsForcePerSquareCentimeter).Pascals, KilogramsForcePerSquareCentimeterTolerance);
