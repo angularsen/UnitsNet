@@ -14,7 +14,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "yr", "year", "years" ]
+          "Abbreviations": [ "yr", "year", "Year", "years" ]
         },
         {
           "Culture": "ru-RU",
@@ -30,7 +30,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "mo", "month", "months" ]
+          "Abbreviations": [ "mo", "month", "Month", "months" ]
         },
         {
           "Culture": "ru-RU",

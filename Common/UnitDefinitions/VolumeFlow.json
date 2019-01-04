@@ -136,7 +136,7 @@
       ]
     },
     {
-      "SingularName": "CubicYardsPerDay",
+      "SingularName": "CubicYardPerDay",
       "PluralName": "CubicYardsPerDay",
       "FromUnitToBaseFunc": "x/113007",
       "FromBaseToUnitFunc": "x*113007",
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "SingularName": "MillionUsGallonsPerDay",
+      "SingularName": "MillionUsGallonPerDay",
       "PluralName": "MillionUsGallonsPerDay",
       "FromUnitToBaseFunc": "x/22.824465227",
       "FromBaseToUnitFunc": "x*22.824465227",
@@ -160,7 +160,7 @@
       ]
     },
     {
-      "SingularName": "UsGallonsPerDay",
+      "SingularName": "UsGallonPerDay",
       "PluralName": "UsGallonsPerDay",
       "FromUnitToBaseFunc": "x/22824465.227",
       "FromBaseToUnitFunc": "x*22824465.227",
@@ -213,7 +213,7 @@
       ]
     },
     {
-      "SingularName": "LitersPerDay",
+      "SingularName": "LiterPerDay",
       "PluralName": "LitersPerDay",
       "FromUnitToBaseFunc": "x/86400000",
       "FromBaseToUnitFunc": "x*86400000",
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "SingularName": "UkGallonsPerDay",
+      "SingularName": "UkGallonPerDay",
       "PluralName": "UkGallonsPerDay",
       "FromUnitToBaseFunc": "x/19005304",
       "FromBaseToUnitFunc": "x*19005304",
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "SingularName": "UkGallonsPerMinute",
+      "SingularName": "UkGallonPerMinute",
       "PluralName": "UkGallonsPerMinute",
       "FromUnitToBaseFunc": "x/13198.2",
       "FromBaseToUnitFunc": "x*13198.2",
@@ -274,7 +274,7 @@
       ]
     },
     {
-      "SingularName": "UkGallonsPerSecond",
+      "SingularName": "UkGallonPerSecond",
       "PluralName": "UkGallonsPerSecond",
       "FromUnitToBaseFunc": "x/219.969",
       "FromBaseToUnitFunc": "x*219.969",
@@ -287,7 +287,7 @@
       ]
     },
     {
-      "SingularName": "KilousGallonsPerMinute",
+      "SingularName": "KilousGallonPerMinute",
       "PluralName": "KilousGallonsPerMinute",
       "FromUnitToBaseFunc": "x/15.850323141489",
       "FromBaseToUnitFunc": "x*15.850323141489",
@@ -363,7 +363,7 @@
       ]
     },
     {
-      "SingularName": "OilBarrelsPerSecond",
+      "SingularName": "OilBarrelPerSecond",
       "PluralName": "OilBarrelsPerSecond",
       "FromUnitToBaseFunc": "x/6.28981",
       "FromBaseToUnitFunc": "x*6.28981",
