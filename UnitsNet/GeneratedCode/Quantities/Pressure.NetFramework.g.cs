@@ -193,14 +193,14 @@ namespace UnitsNet
         public double Hectopascals => As(PressureUnit.Hectopascal);
 
         /// <summary>
-        ///     Get Pressure in InchesOfWaterColumn.
-        /// </summary>
-        public double InchesOfWaterColumn => As(PressureUnit.IncheOfWaterColumn);
-
-        /// <summary>
         ///     Get Pressure in InchesOfMercury.
         /// </summary>
         public double InchesOfMercury => As(PressureUnit.InchOfMercury);
+
+        /// <summary>
+        ///     Get Pressure in InchesOfWaterColumn.
+        /// </summary>
+        public double InchesOfWaterColumn => As(PressureUnit.InchOfWaterColumn);
 
         /// <summary>
         ///     Get Pressure in Kilobars.
@@ -468,15 +468,6 @@ namespace UnitsNet
             return new Pressure(value, PressureUnit.Hectopascal);
         }
         /// <summary>
-        ///     Get Pressure from InchesOfWaterColumn.
-        /// </summary>
-        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
-        public static Pressure FromInchesOfWaterColumn(QuantityValue inchesofwatercolumn)
-        {
-            double value = (double) inchesofwatercolumn;
-            return new Pressure(value, PressureUnit.IncheOfWaterColumn);
-        }
-        /// <summary>
         ///     Get Pressure from InchesOfMercury.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -484,6 +475,15 @@ namespace UnitsNet
         {
             double value = (double) inchesofmercury;
             return new Pressure(value, PressureUnit.InchOfMercury);
+        }
+        /// <summary>
+        ///     Get Pressure from InchesOfWaterColumn.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Pressure FromInchesOfWaterColumn(QuantityValue inchesofwatercolumn)
+        {
+            double value = (double) inchesofwatercolumn;
+            return new Pressure(value, PressureUnit.InchOfWaterColumn);
         }
         /// <summary>
         ///     Get Pressure from Kilobars.
@@ -1124,8 +1124,8 @@ namespace UnitsNet
                 case PressureUnit.FootOfHead: return _value*2989.0669;
                 case PressureUnit.Gigapascal: return (_value) * 1e9d;
                 case PressureUnit.Hectopascal: return (_value) * 1e2d;
-                case PressureUnit.IncheOfWaterColumn: return _value*249.08890833333;
                 case PressureUnit.InchOfMercury: return _value/2.95299830714159e-4;
+                case PressureUnit.InchOfWaterColumn: return _value*249.08890833333;
                 case PressureUnit.Kilobar: return (_value*1e5) * 1e3d;
                 case PressureUnit.KilogramForcePerSquareCentimeter: return _value*9.80665e4;
                 case PressureUnit.KilogramForcePerSquareMeter: return _value*9.80665019960652;
@@ -1180,8 +1180,8 @@ namespace UnitsNet
                 case PressureUnit.FootOfHead: return baseUnitValue*0.000334552565551;
                 case PressureUnit.Gigapascal: return (baseUnitValue) / 1e9d;
                 case PressureUnit.Hectopascal: return (baseUnitValue) / 1e2d;
-                case PressureUnit.IncheOfWaterColumn: return baseUnitValue/249.08890833333;
                 case PressureUnit.InchOfMercury: return baseUnitValue*2.95299830714159e-4;
+                case PressureUnit.InchOfWaterColumn: return baseUnitValue/249.08890833333;
                 case PressureUnit.Kilobar: return (baseUnitValue/1e5) / 1e3d;
                 case PressureUnit.KilogramForcePerSquareCentimeter: return baseUnitValue/9.80665e4;
                 case PressureUnit.KilogramForcePerSquareMeter: return baseUnitValue*0.101971619222242;
