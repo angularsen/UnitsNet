@@ -202,7 +202,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "psi", "Psi", "PSI", "lb/in²" ],
+          "Abbreviations": [ "psi", "lb/in²" ],
           "AbbreviationsWithPrefixes": [ "kipf/in²" ]
         }
       ]

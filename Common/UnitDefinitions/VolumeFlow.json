@@ -148,7 +148,7 @@
       ]
     },
     {
-      "SingularName": "MillionUsGallonPerDay",
+      "SingularName": "MillionUsGallonsPerDay",
       "PluralName": "MillionUsGallonsPerDay",
       "FromUnitToBaseFunc": "x/22.824465227",
       "FromBaseToUnitFunc": "x*22.824465227",
@@ -221,7 +221,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "LPD" ]
+          "Abbreviations": [ "l/day", "L/d", "LPD" ]
         }
       ]
     },
@@ -269,7 +269,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "gal (U. K.)/min" ]
+          "Abbreviations": [ "gal (imp.)/min" ]
         }
       ]
     },
@@ -282,7 +282,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "gal (U. K.)/s" ]
+          "Abbreviations": [ "gal (imp.)/s" ]
         }
       ]
     },
@@ -422,7 +422,7 @@
       "Localization": [
         {
           "Culture": "en-US",
-          "Abbreviations": [ "af/m" ]
+          "Abbreviations": [ "af/h" ]
         }
       ]
     },
