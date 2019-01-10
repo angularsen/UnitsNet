@@ -66,7 +66,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DecagramsPerDayInOneGramPerSecond => 8.64e3;
 
-        protected override double DecigramsPerDayInOneGramPerSecond => 8.640e5;
+        protected override double DecigramsPerDayInOneGramPerSecond => 8.64e5;
 
         protected override double GramsPerDayInOneGramPerSecond => 8.64e4;
 
