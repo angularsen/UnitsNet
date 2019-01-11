@@ -1,5 +1,5 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/anjdreas/UnitsNet
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -31,15 +31,25 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramForceMillimetersInOneNewtonMeter => 101.971621;
 
+        protected override double MeganewtonCentimetersInOneNewtonMeter => 1E-4;
+
         protected override double KilonewtonCentimetersInOneNewtonMeter => 0.1;
+
+        protected override double MeganewtonMetersInOneNewtonMeter => 1E-6;
 
         protected override double KilonewtonMetersInOneNewtonMeter => 0.001;
 
+        protected override double MeganewtonMillimetersInOneNewtonMeter => 1E-3;
+
         protected override double KilonewtonMillimetersInOneNewtonMeter => 1;
 
-        protected override double KilopoundForceFeetInOneNewtonMeter => 7.376e-4;
+        protected override double MegapoundForceFeetInOneNewtonMeter => 7.375621492772654e-7;
 
-        protected override double KilopoundForceInchesInOneNewtonMeter => 0.008851;
+        protected override double KilopoundForceFeetInOneNewtonMeter => 7.375621492772654e-4;
+
+        protected override double MegapoundForceInchesInOneNewtonMeter => 8.850745791327184e-6;
+
+        protected override double KilopoundForceInchesInOneNewtonMeter => 8.850745791327184e-3;
 
         protected override double NewtonCentimetersInOneNewtonMeter => 100;
 

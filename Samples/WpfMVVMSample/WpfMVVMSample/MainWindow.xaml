@@ -1,0 +1,111 @@
+﻿<Window x:Class="WpfMVVMSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:conv="clr-namespace:WpfMVVMSample.Converters"
+        xmlns:local="clr-namespace:WpfMVVMSample"
+        xmlns:units="clr-namespace:UnitsNet.Units;assembly=UnitsNet"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        
+        mc:Ignorable="d"
+        Title="MainWindow">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="Label" x:Key="ResultLabel">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,0"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <Expander Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" FontSize="16" Background="WhiteSmoke">
+            <Expander.Header>
+                <Border>
+                    <Label Content="Settings"></Label>
+                </Border>
+            </Expander.Header>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Content="Mass"/>
+                <ComboBox Grid.Column="1" 
+                  ItemsSource="{Binding Source={conv:EnumBindingSource {x:Type units:MassUnit}}}"
+                  SelectedItem="{Binding Settings.DefaultMassUnit}"/>
+
+                <Label Grid.Column="0" Grid.Row="1" Content="G" />
+                <ComboBox Grid.Column="1" Grid.Row="1"
+                  ItemsSource="{Binding Source={conv:EnumBindingSource {x:Type units:AccelerationUnit}}}"
+                  SelectedItem="{Binding Settings.DefaultAccelerationUnit}"/>
+
+                <Label Grid.Column="0" Grid.Row="2" Content="Weight" />
+                <ComboBox Grid.Column="1" Grid.Row="2"
+                  ItemsSource="{Binding Source={conv:EnumBindingSource {x:Type units:ForceUnit}}}"
+                  SelectedItem="{Binding Settings.DefaultForceUnit}"/>
+
+                <Label Grid.Column="0" Grid.Row="3" Content="No. Digits" />
+                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Settings.SignificantDigits}"/>
+            </Grid>
+        </Expander>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Content="Mass"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding ObjectMass, Converter={conv:UnitToStringConverter}}"/>
+            
+            <Label Grid.Column="0" Grid.Row="1" Content="G" />
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding G, Converter={conv:UnitToStringConverter}}"/>
+
+            <Label Grid.Column="0" Grid.Row="2" Content="Weight" />
+            <Label Grid.Column="1" Grid.Row="2" Content="{Binding Weight, Converter={conv:UnitToStringConverter}}" Style="{StaticResource ResultLabel}"/>
+
+        </Grid>
+    </StackPanel>
+</Window>

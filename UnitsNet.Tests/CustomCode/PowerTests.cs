@@ -1,5 +1,5 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/anjdreas/UnitsNet
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MilliwattsInOneWatt => 1e3;
 
+        protected override double DeciwattsInOneWatt => 1e1;
+
         protected override double WattsInOneWatt => 1;
+
+        protected override double DecawattsInOneWatt => 1e-1;
 
         protected override double KilowattsInOneWatt => 1e-3;
 
@@ -48,7 +52,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PetawattsInOneWatt => 1e-15;
 
+        protected override double KilobritishThermalUnitsPerHourInOneWatt => 3.412141633e-3;
+
         protected override double BoilerHorsepowerInOneWatt => 1.0191082802547770700636942675159e-4;
+
+        protected override double BritishThermalUnitsPerHourInOneWatt => 3.412141633;
 
         protected override double ElectricalHorsepowerInOneWatt => 0.00134048257372654155495978552279;
 
@@ -61,49 +69,49 @@ namespace UnitsNet.Tests.CustomCode
         [Fact]
         public void DurationTimesPowerEqualsEnergy()
         {
-            Energy energy = Duration.FromSeconds(8.0)*Power.FromWatts(5.0);
+            Energy energy = Duration.FromSeconds(8.0) * Power.FromWatts(5.0);
             Assert.Equal(energy, Energy.FromJoules(40.0));
         }
 
         [Fact]
         public void PowerDividedByRotationalSpeedEqualsForce()
         {
-            Torque torque = Power.FromWatts(15.0)/RotationalSpeed.FromRadiansPerSecond(3);
+            Torque torque = Power.FromWatts(15.0) / RotationalSpeed.FromRadiansPerSecond(3);
             Assert.Equal(torque, Torque.FromNewtonMeters(5));
         }
 
         [Fact]
         public void PowerDividedBySpeedEqualsForce()
         {
-            Force force = Power.FromWatts(15.0)/Speed.FromMetersPerSecond(3);
+            Force force = Power.FromWatts(15.0) / Speed.FromMetersPerSecond(3);
             Assert.Equal(force, Force.FromNewtons(5));
         }
 
         [Fact]
         public void PowerDividedByTorqueEqualsRotationalSpeed()
         {
-            RotationalSpeed rotationalSpeed = Power.FromWatts(15.0)/Torque.FromNewtonMeters(3);
+            RotationalSpeed rotationalSpeed = Power.FromWatts(15.0) / Torque.FromNewtonMeters(3);
             Assert.Equal(rotationalSpeed, RotationalSpeed.FromRadiansPerSecond(5));
         }
 
         [Fact]
         public void PowerTimesDurationEqualsEnergy()
         {
-            Energy energy = Power.FromWatts(5.0)*Duration.FromSeconds(8.0);
+            Energy energy = Power.FromWatts(5.0) * Duration.FromSeconds(8.0);
             Assert.Equal(energy, Energy.FromJoules(40.0));
         }
 
         [Fact]
         public void PowerTimesTimeSpanEqualsEnergy()
         {
-            Energy energy = Power.FromWatts(5.0)*TimeSpan.FromSeconds(8.0);
+            Energy energy = Power.FromWatts(5.0) * TimeSpan.FromSeconds(8.0);
             Assert.Equal(energy, Energy.FromJoules(40.0));
         }
 
         [Fact]
         public void TimeSpanTimesPowerEqualsEnergy()
         {
-            Energy energy = TimeSpan.FromSeconds(8.0)*Power.FromWatts(5.0);
+            Energy energy = TimeSpan.FromSeconds(8.0) * Power.FromWatts(5.0);
             Assert.Equal(energy, Energy.FromJoules(40.0));
         }
 

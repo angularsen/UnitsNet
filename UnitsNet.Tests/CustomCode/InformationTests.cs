@@ -1,5 +1,5 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/anjdreas/UnitsNet
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double ExbibitsInOneBit => 1d/Math.Pow(1024, 6);
 
-        protected override double ExbibytesInOneBit => 8d/Math.Pow(1024, 6);
+        protected override double ExbibytesInOneBit => 1/8d/Math.Pow(1024, 6);
 
         protected override double GibibitsInOneBit => 1d/Math.Pow(1024, 3);
 

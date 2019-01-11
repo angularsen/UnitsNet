@@ -6,17 +6,16 @@
 //     The build server regenerates the code before each build and a pre-build
 //     step will regenerate the code on each local build.
 //
-//     See https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
-//     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
+//     Add CustomCode\Quantities\MyQuantity.extra.cs files to add code to generated quantities.
+//     Add UnitDefinitions\MyQuantity.json and run generate-code.bat to generate new units or quantities.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -37,6 +36,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -58,12 +58,18 @@ namespace UnitsNet.Tests
         protected abstract double GramsPerSecondInOneGramPerSecond { get; }
         protected abstract double HectogramsPerSecondInOneGramPerSecond { get; }
         protected abstract double KilogramsPerHourInOneGramPerSecond { get; }
+        protected abstract double KilogramsPerMinuteInOneGramPerSecond { get; }
         protected abstract double KilogramsPerSecondInOneGramPerSecond { get; }
+        protected abstract double MegapoundsPerHourInOneGramPerSecond { get; }
+        protected abstract double MegapoundsPerMinuteInOneGramPerSecond { get; }
         protected abstract double MicrogramsPerSecondInOneGramPerSecond { get; }
         protected abstract double MilligramsPerSecondInOneGramPerSecond { get; }
         protected abstract double NanogramsPerSecondInOneGramPerSecond { get; }
         protected abstract double PoundsPerHourInOneGramPerSecond { get; }
+        protected abstract double PoundsPerMinuteInOneGramPerSecond { get; }
+        protected abstract double ShortTonsPerHourInOneGramPerSecond { get; }
         protected abstract double TonnesPerDayInOneGramPerSecond { get; }
+        protected abstract double TonnesPerHourInOneGramPerSecond { get; }
 
 // ReSharper disable VirtualMemberNeverOverriden.Global
         protected virtual double CentigramsPerSecondTolerance { get { return 1e-5; } }
@@ -72,13 +78,38 @@ namespace UnitsNet.Tests
         protected virtual double GramsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double HectogramsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double KilogramsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double KilogramsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double KilogramsPerSecondTolerance { get { return 1e-5; } }
+        protected virtual double MegapoundsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double MegapoundsPerMinuteTolerance { get { return 1e-5; } }
         protected virtual double MicrogramsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double MilligramsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double NanogramsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double PoundsPerHourTolerance { get { return 1e-5; } }
+        protected virtual double PoundsPerMinuteTolerance { get { return 1e-5; } }
+        protected virtual double ShortTonsPerHourTolerance { get { return 1e-5; } }
         protected virtual double TonnesPerDayTolerance { get { return 1e-5; } }
+        protected virtual double TonnesPerHourTolerance { get { return 1e-5; } }
 // ReSharper restore VirtualMemberNeverOverriden.Global
+
+        [Fact]
+        public void Ctor_WithUndefinedUnit_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassFlow((double)0.0, MassFlowUnit.Undefined));
+        }
+
+        [Fact]
+        public void Ctor_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassFlow(double.PositiveInfinity, MassFlowUnit.GramPerSecond));
+            Assert.Throws<ArgumentException>(() => new MassFlow(double.NegativeInfinity, MassFlowUnit.GramPerSecond));
+        }
+
+        [Fact]
+        public void Ctor_WithNaNValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new MassFlow(double.NaN, MassFlowUnit.GramPerSecond));
+        }
 
         [Fact]
         public void GramPerSecondToMassFlowUnits()
@@ -90,12 +121,18 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(GramsPerSecondInOneGramPerSecond, grampersecond.GramsPerSecond, GramsPerSecondTolerance);
             AssertEx.EqualTolerance(HectogramsPerSecondInOneGramPerSecond, grampersecond.HectogramsPerSecond, HectogramsPerSecondTolerance);
             AssertEx.EqualTolerance(KilogramsPerHourInOneGramPerSecond, grampersecond.KilogramsPerHour, KilogramsPerHourTolerance);
+            AssertEx.EqualTolerance(KilogramsPerMinuteInOneGramPerSecond, grampersecond.KilogramsPerMinute, KilogramsPerMinuteTolerance);
             AssertEx.EqualTolerance(KilogramsPerSecondInOneGramPerSecond, grampersecond.KilogramsPerSecond, KilogramsPerSecondTolerance);
+            AssertEx.EqualTolerance(MegapoundsPerHourInOneGramPerSecond, grampersecond.MegapoundsPerHour, MegapoundsPerHourTolerance);
+            AssertEx.EqualTolerance(MegapoundsPerMinuteInOneGramPerSecond, grampersecond.MegapoundsPerMinute, MegapoundsPerMinuteTolerance);
             AssertEx.EqualTolerance(MicrogramsPerSecondInOneGramPerSecond, grampersecond.MicrogramsPerSecond, MicrogramsPerSecondTolerance);
             AssertEx.EqualTolerance(MilligramsPerSecondInOneGramPerSecond, grampersecond.MilligramsPerSecond, MilligramsPerSecondTolerance);
             AssertEx.EqualTolerance(NanogramsPerSecondInOneGramPerSecond, grampersecond.NanogramsPerSecond, NanogramsPerSecondTolerance);
             AssertEx.EqualTolerance(PoundsPerHourInOneGramPerSecond, grampersecond.PoundsPerHour, PoundsPerHourTolerance);
+            AssertEx.EqualTolerance(PoundsPerMinuteInOneGramPerSecond, grampersecond.PoundsPerMinute, PoundsPerMinuteTolerance);
+            AssertEx.EqualTolerance(ShortTonsPerHourInOneGramPerSecond, grampersecond.ShortTonsPerHour, ShortTonsPerHourTolerance);
             AssertEx.EqualTolerance(TonnesPerDayInOneGramPerSecond, grampersecond.TonnesPerDay, TonnesPerDayTolerance);
+            AssertEx.EqualTolerance(TonnesPerHourInOneGramPerSecond, grampersecond.TonnesPerHour, TonnesPerHourTolerance);
         }
 
         [Fact]
@@ -107,12 +144,31 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.GramPerSecond).GramsPerSecond, GramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.HectogramPerSecond).HectogramsPerSecond, HectogramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.KilogramPerHour).KilogramsPerHour, KilogramsPerHourTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.KilogramPerMinute).KilogramsPerMinute, KilogramsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.KilogramPerSecond).KilogramsPerSecond, KilogramsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.MegapoundPerHour).MegapoundsPerHour, MegapoundsPerHourTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.MegapoundPerMinute).MegapoundsPerMinute, MegapoundsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.MicrogramPerSecond).MicrogramsPerSecond, MicrogramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.MilligramPerSecond).MilligramsPerSecond, MilligramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.NanogramPerSecond).NanogramsPerSecond, NanogramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.PoundPerHour).PoundsPerHour, PoundsPerHourTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.PoundPerMinute).PoundsPerMinute, PoundsPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.ShortTonPerHour).ShortTonsPerHour, ShortTonsPerHourTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.TonnePerDay).TonnesPerDay, TonnesPerDayTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.TonnePerHour).TonnesPerHour, TonnesPerHourTolerance);
+        }
+
+        [Fact]
+        public void FromGramsPerSecond_WithInfinityValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MassFlow.FromGramsPerSecond(double.PositiveInfinity));
+            Assert.Throws<ArgumentException>(() => MassFlow.FromGramsPerSecond(double.NegativeInfinity));
+        }
+
+        [Fact]
+        public void FromGramsPerSecond_WithNanValue_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => MassFlow.FromGramsPerSecond(double.NaN));
         }
 
         [Fact]
@@ -125,12 +181,96 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(GramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.GramPerSecond), GramsPerSecondTolerance);
             AssertEx.EqualTolerance(HectogramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.HectogramPerSecond), HectogramsPerSecondTolerance);
             AssertEx.EqualTolerance(KilogramsPerHourInOneGramPerSecond, grampersecond.As(MassFlowUnit.KilogramPerHour), KilogramsPerHourTolerance);
+            AssertEx.EqualTolerance(KilogramsPerMinuteInOneGramPerSecond, grampersecond.As(MassFlowUnit.KilogramPerMinute), KilogramsPerMinuteTolerance);
             AssertEx.EqualTolerance(KilogramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.KilogramPerSecond), KilogramsPerSecondTolerance);
+            AssertEx.EqualTolerance(MegapoundsPerHourInOneGramPerSecond, grampersecond.As(MassFlowUnit.MegapoundPerHour), MegapoundsPerHourTolerance);
+            AssertEx.EqualTolerance(MegapoundsPerMinuteInOneGramPerSecond, grampersecond.As(MassFlowUnit.MegapoundPerMinute), MegapoundsPerMinuteTolerance);
             AssertEx.EqualTolerance(MicrogramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.MicrogramPerSecond), MicrogramsPerSecondTolerance);
             AssertEx.EqualTolerance(MilligramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.MilligramPerSecond), MilligramsPerSecondTolerance);
             AssertEx.EqualTolerance(NanogramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.NanogramPerSecond), NanogramsPerSecondTolerance);
             AssertEx.EqualTolerance(PoundsPerHourInOneGramPerSecond, grampersecond.As(MassFlowUnit.PoundPerHour), PoundsPerHourTolerance);
+            AssertEx.EqualTolerance(PoundsPerMinuteInOneGramPerSecond, grampersecond.As(MassFlowUnit.PoundPerMinute), PoundsPerMinuteTolerance);
+            AssertEx.EqualTolerance(ShortTonsPerHourInOneGramPerSecond, grampersecond.As(MassFlowUnit.ShortTonPerHour), ShortTonsPerHourTolerance);
             AssertEx.EqualTolerance(TonnesPerDayInOneGramPerSecond, grampersecond.As(MassFlowUnit.TonnePerDay), TonnesPerDayTolerance);
+            AssertEx.EqualTolerance(TonnesPerHourInOneGramPerSecond, grampersecond.As(MassFlowUnit.TonnePerHour), TonnesPerHourTolerance);
+        }
+
+        [Fact]
+        public void ToUnit()
+        {
+            var grampersecond = MassFlow.FromGramsPerSecond(1);
+
+            var centigrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.CentigramPerSecond);
+            AssertEx.EqualTolerance(CentigramsPerSecondInOneGramPerSecond, (double)centigrampersecondQuantity.Value, CentigramsPerSecondTolerance);
+            Assert.Equal(MassFlowUnit.CentigramPerSecond, centigrampersecondQuantity.Unit);
+
+            var decagrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.DecagramPerSecond);
+            AssertEx.EqualTolerance(DecagramsPerSecondInOneGramPerSecond, (double)decagrampersecondQuantity.Value, DecagramsPerSecondTolerance);
+            Assert.Equal(MassFlowUnit.DecagramPerSecond, decagrampersecondQuantity.Unit);
+
+            var decigrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.DecigramPerSecond);
+            AssertEx.EqualTolerance(DecigramsPerSecondInOneGramPerSecond, (double)decigrampersecondQuantity.Value, DecigramsPerSecondTolerance);
+            Assert.Equal(MassFlowUnit.DecigramPerSecond, decigrampersecondQuantity.Unit);
+
+            var grampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.GramPerSecond);
+            AssertEx.EqualTolerance(GramsPerSecondInOneGramPerSecond, (double)grampersecondQuantity.Value, GramsPerSecondTolerance);
+            Assert.Equal(MassFlowUnit.GramPerSecond, grampersecondQuantity.Unit);
+
+            var hectogrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.HectogramPerSecond);
+            AssertEx.EqualTolerance(HectogramsPerSecondInOneGramPerSecond, (double)hectogrampersecondQuantity.Value, HectogramsPerSecondTolerance);
+            Assert.Equal(MassFlowUnit.HectogramPerSecond, hectogrampersecondQuantity.Unit);
+
+            var kilogramperhourQuantity = grampersecond.ToUnit(MassFlowUnit.KilogramPerHour);
+            AssertEx.EqualTolerance(KilogramsPerHourInOneGramPerSecond, (double)kilogramperhourQuantity.Value, KilogramsPerHourTolerance);
+            Assert.Equal(MassFlowUnit.KilogramPerHour, kilogramperhourQuantity.Unit);
+
+            var kilogramperminuteQuantity = grampersecond.ToUnit(MassFlowUnit.KilogramPerMinute);
+            AssertEx.EqualTolerance(KilogramsPerMinuteInOneGramPerSecond, (double)kilogramperminuteQuantity.Value, KilogramsPerMinuteTolerance);
+            Assert.Equal(MassFlowUnit.KilogramPerMinute, kilogramperminuteQuantity.Unit);
+
+            var kilogrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.KilogramPerSecond);
+            AssertEx.EqualTolerance(KilogramsPerSecondInOneGramPerSecond, (double)kilogrampersecondQuantity.Value, KilogramsPerSecondTolerance);
+            Assert.Equal(MassFlowUnit.KilogramPerSecond, kilogrampersecondQuantity.Unit);
+
+            var megapoundperhourQuantity = grampersecond.ToUnit(MassFlowUnit.MegapoundPerHour);
+            AssertEx.EqualTolerance(MegapoundsPerHourInOneGramPerSecond, (double)megapoundperhourQuantity.Value, MegapoundsPerHourTolerance);
+            Assert.Equal(MassFlowUnit.MegapoundPerHour, megapoundperhourQuantity.Unit);
+
+            var megapoundperminuteQuantity = grampersecond.ToUnit(MassFlowUnit.MegapoundPerMinute);
+            AssertEx.EqualTolerance(MegapoundsPerMinuteInOneGramPerSecond, (double)megapoundperminuteQuantity.Value, MegapoundsPerMinuteTolerance);
+            Assert.Equal(MassFlowUnit.MegapoundPerMinute, megapoundperminuteQuantity.Unit);
+
+            var microgrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.MicrogramPerSecond);
+            AssertEx.EqualTolerance(MicrogramsPerSecondInOneGramPerSecond, (double)microgrampersecondQuantity.Value, MicrogramsPerSecondTolerance);
+            Assert.Equal(MassFlowUnit.MicrogramPerSecond, microgrampersecondQuantity.Unit);
+
+            var milligrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.MilligramPerSecond);
+            AssertEx.EqualTolerance(MilligramsPerSecondInOneGramPerSecond, (double)milligrampersecondQuantity.Value, MilligramsPerSecondTolerance);
+            Assert.Equal(MassFlowUnit.MilligramPerSecond, milligrampersecondQuantity.Unit);
+
+            var nanogrampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.NanogramPerSecond);
+            AssertEx.EqualTolerance(NanogramsPerSecondInOneGramPerSecond, (double)nanogrampersecondQuantity.Value, NanogramsPerSecondTolerance);
+            Assert.Equal(MassFlowUnit.NanogramPerSecond, nanogrampersecondQuantity.Unit);
+
+            var poundperhourQuantity = grampersecond.ToUnit(MassFlowUnit.PoundPerHour);
+            AssertEx.EqualTolerance(PoundsPerHourInOneGramPerSecond, (double)poundperhourQuantity.Value, PoundsPerHourTolerance);
+            Assert.Equal(MassFlowUnit.PoundPerHour, poundperhourQuantity.Unit);
+
+            var poundperminuteQuantity = grampersecond.ToUnit(MassFlowUnit.PoundPerMinute);
+            AssertEx.EqualTolerance(PoundsPerMinuteInOneGramPerSecond, (double)poundperminuteQuantity.Value, PoundsPerMinuteTolerance);
+            Assert.Equal(MassFlowUnit.PoundPerMinute, poundperminuteQuantity.Unit);
+
+            var shorttonperhourQuantity = grampersecond.ToUnit(MassFlowUnit.ShortTonPerHour);
+            AssertEx.EqualTolerance(ShortTonsPerHourInOneGramPerSecond, (double)shorttonperhourQuantity.Value, ShortTonsPerHourTolerance);
+            Assert.Equal(MassFlowUnit.ShortTonPerHour, shorttonperhourQuantity.Unit);
+
+            var tonneperdayQuantity = grampersecond.ToUnit(MassFlowUnit.TonnePerDay);
+            AssertEx.EqualTolerance(TonnesPerDayInOneGramPerSecond, (double)tonneperdayQuantity.Value, TonnesPerDayTolerance);
+            Assert.Equal(MassFlowUnit.TonnePerDay, tonneperdayQuantity.Unit);
+
+            var tonneperhourQuantity = grampersecond.ToUnit(MassFlowUnit.TonnePerHour);
+            AssertEx.EqualTolerance(TonnesPerHourInOneGramPerSecond, (double)tonneperhourQuantity.Value, TonnesPerHourTolerance);
+            Assert.Equal(MassFlowUnit.TonnePerHour, tonneperhourQuantity.Unit);
         }
 
         [Fact]
@@ -143,12 +283,18 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MassFlow.FromGramsPerSecond(grampersecond.GramsPerSecond).GramsPerSecond, GramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromHectogramsPerSecond(grampersecond.HectogramsPerSecond).GramsPerSecond, HectogramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromKilogramsPerHour(grampersecond.KilogramsPerHour).GramsPerSecond, KilogramsPerHourTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.FromKilogramsPerMinute(grampersecond.KilogramsPerMinute).GramsPerSecond, KilogramsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromKilogramsPerSecond(grampersecond.KilogramsPerSecond).GramsPerSecond, KilogramsPerSecondTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.FromMegapoundsPerHour(grampersecond.MegapoundsPerHour).GramsPerSecond, MegapoundsPerHourTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.FromMegapoundsPerMinute(grampersecond.MegapoundsPerMinute).GramsPerSecond, MegapoundsPerMinuteTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromMicrogramsPerSecond(grampersecond.MicrogramsPerSecond).GramsPerSecond, MicrogramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromMilligramsPerSecond(grampersecond.MilligramsPerSecond).GramsPerSecond, MilligramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromNanogramsPerSecond(grampersecond.NanogramsPerSecond).GramsPerSecond, NanogramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromPoundsPerHour(grampersecond.PoundsPerHour).GramsPerSecond, PoundsPerHourTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.FromPoundsPerMinute(grampersecond.PoundsPerMinute).GramsPerSecond, PoundsPerMinuteTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.FromShortTonsPerHour(grampersecond.ShortTonsPerHour).GramsPerSecond, ShortTonsPerHourTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromTonnesPerDay(grampersecond.TonnesPerDay).GramsPerSecond, TonnesPerDayTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.FromTonnesPerHour(grampersecond.TonnesPerHour).GramsPerSecond, TonnesPerHourTolerance);
         }
 
         [Fact]
@@ -204,28 +350,43 @@ namespace UnitsNet.Tests
             Assert.Throws<ArgumentNullException>(() => grampersecond.CompareTo(null));
         }
 
-
         [Fact]
         public void EqualityOperators()
         {
-            MassFlow a = MassFlow.FromGramsPerSecond(1);
-            MassFlow b = MassFlow.FromGramsPerSecond(2);
+            var a = MassFlow.FromGramsPerSecond(1);
+            var b = MassFlow.FromGramsPerSecond(2);
 
-// ReSharper disable EqualExpressionComparison
+ // ReSharper disable EqualExpressionComparison
+
             Assert.True(a == a);
-            Assert.True(a != b);
-
-            Assert.False(a == b);
             Assert.False(a != a);
+
+            Assert.True(a != b);
+            Assert.False(a == b);
+
+            Assert.False(a == null);
+            Assert.False(null == a);
+
 // ReSharper restore EqualExpressionComparison
         }
 
         [Fact]
         public void EqualsIsImplemented()
         {
-            MassFlow v = MassFlow.FromGramsPerSecond(1);
-            Assert.True(v.Equals(MassFlow.FromGramsPerSecond(1)));
-            Assert.False(v.Equals(MassFlow.Zero));
+            var a = MassFlow.FromGramsPerSecond(1);
+            var b = MassFlow.FromGramsPerSecond(2);
+
+            Assert.True(a.Equals(a));
+            Assert.False(a.Equals(b));
+            Assert.False(a.Equals(null));
+        }
+
+        [Fact]
+        public void EqualsRelativeToleranceIsImplemented()
+        {
+            var v = MassFlow.FromGramsPerSecond(1);
+            Assert.True(v.Equals(MassFlow.FromGramsPerSecond(1), GramsPerSecondTolerance, ComparisonType.Relative));
+            Assert.False(v.Equals(MassFlow.Zero, GramsPerSecondTolerance, ComparisonType.Relative));
         }
 
         [Fact]
@@ -240,6 +401,31 @@ namespace UnitsNet.Tests
         {
             MassFlow grampersecond = MassFlow.FromGramsPerSecond(1);
             Assert.False(grampersecond.Equals(null));
+        }
+
+        [Fact]
+        public void UnitsDoesNotContainUndefined()
+        {
+            Assert.DoesNotContain(MassFlowUnit.Undefined, MassFlow.Units);
+        }
+
+        [Fact]
+        public void HasAtLeastOneAbbreviationSpecified()
+        {
+            var units = Enum.GetValues(typeof(MassFlowUnit)).Cast<MassFlowUnit>();
+            foreach(var unit in units)
+            {
+                if(unit == MassFlowUnit.Undefined)
+                    continue;
+
+                var defaultAbbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(unit);
+            }
+        }
+
+        [Fact]
+        public void BaseDimensionsShouldNeverBeNull()
+        {
+            Assert.False(MassFlow.BaseDimensions is null);
         }
     }
 }

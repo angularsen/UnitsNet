@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Xunit;
@@ -60,7 +61,7 @@ namespace UnitsNet.Tests.CustomCode
             // Act
             Temperature resultTemp = temperature.Divide(divisor, unit);
 
-            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToUnit(unit).ToString(CultureInfo.InvariantCulture, "{0:0} {1}");
             Assert.Equal(expected, actual);
         }
 
@@ -80,7 +81,7 @@ namespace UnitsNet.Tests.CustomCode
             // Act
             Temperature resultTemp = temperature.Multiply(factor, unit);
 
-            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToUnit(unit).ToString(CultureInfo.InvariantCulture, "{0:0} {1}");
             Assert.Equal(expected, actual);
         }
 
@@ -94,12 +95,12 @@ namespace UnitsNet.Tests.CustomCode
         public void TemperatureDeltaPlusTemperatureEqualsTemperature(TemperatureUnit unit, int deltaVal, int temperatureVal, string expected)
         {
             Temperature temperature = Temperature.From(temperatureVal, unit);
-            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit) unit);
+            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit)Enum.Parse(typeof(TemperatureDeltaUnit), unit.ToString()));
 
             // Act
             Temperature resultTemp = delta + temperature;
 
-            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToUnit(unit).ToString(CultureInfo.InvariantCulture, "{0:0} {1}");
             Assert.Equal(expected, actual);
         }
 
@@ -113,12 +114,12 @@ namespace UnitsNet.Tests.CustomCode
         public void TemperatureMinusTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int deltaVal, string expected)
         {
             Temperature temperature = Temperature.From(temperatureVal, unit);
-            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit) unit);
+            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit)Enum.Parse(typeof(TemperatureDeltaUnit), unit.ToString()));
 
             // Act
             Temperature resultTemp = temperature - delta;
 
-            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToUnit(unit).ToString(CultureInfo.InvariantCulture, "{0:0} {1}");
             Assert.Equal(expected, actual);
         }
 
@@ -132,12 +133,12 @@ namespace UnitsNet.Tests.CustomCode
         public void TemperaturePlusTemperatureDeltaEqualsTemperature(TemperatureUnit unit, int temperatureVal, int deltaVal, string expected)
         {
             Temperature temperature = Temperature.From(temperatureVal, unit);
-            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit) unit);
+            TemperatureDelta delta = TemperatureDelta.From(deltaVal, (TemperatureDeltaUnit)Enum.Parse(typeof(TemperatureDeltaUnit), unit.ToString()));
 
             // Act
             Temperature resultTemp = temperature + delta;
 
-            string actual = resultTemp.ToString(unit, CultureInfo.InvariantCulture, "{0:0} {1}");
+            string actual = resultTemp.ToUnit(unit).ToString(CultureInfo.InvariantCulture, "{0:0} {1}");
             Assert.Equal(expected, actual);
         }
     }

@@ -1,5 +1,5 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/anjdreas/UnitsNet
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -50,11 +50,55 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double SquareYardsInOneSquareMeter => 1.19599;
 
+        protected override double UsSurveySquareFeetInOneSquareMeter => 10.76386736111121;
+
         [Fact]
         public void AreaDividedByLengthEqualsLength()
         {
             Length length = Area.FromSquareMeters(50)/Length.FromMeters(5);
             Assert.Equal(length, Length.FromMeters(10));
+        }
+
+        [Fact]
+        public void AreaTimesMassFluxEqualsMassFlow()
+        {
+            MassFlow massFlow = Area.FromSquareMeters(20) * MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
+            Assert.Equal(massFlow, MassFlow.FromKilogramsPerSecond(40));
+        }
+
+        [Theory]
+        [InlineData(0, 0)]
+        [InlineData(0.5, 0.19634954084936208)]
+        [InlineData(1, 0.7853981633974483)]
+        [InlineData(2, 3.141592653589793)]
+        public void AreaFromCicleDiameterCalculatedCorrectly(double diameterMeters, double expected)
+        {
+            Length diameter = Length.FromMeters(diameterMeters);
+
+            double actual = Area.FromCircleDiameter(diameter).SquareMeters;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData(0, 0)]
+        [InlineData(0.5, 0.7853981633974483)]
+        [InlineData(1, 3.141592653589793)]
+        [InlineData(2, 12.566370614359173)]
+        public void AreaFromCicleRadiusCalculatedCorrectly(double radiusMeters, double expected)
+        {
+            Length radius = Length.FromMeters(radiusMeters);
+
+            double actual = Area.FromCircleRadius(radius).SquareMeters;
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void AreaTimesSpeedEqualsVolumeFlow()
+        {
+            VolumeFlow volumeFlow = Area.FromSquareMeters(20) * Speed.FromMetersPerSecond(2);
+            Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(40), volumeFlow);
         }
     }
 }

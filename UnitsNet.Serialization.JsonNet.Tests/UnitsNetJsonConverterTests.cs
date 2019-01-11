@@ -1,16 +1,16 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/anjdreas/UnitsNet
-// 
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -51,7 +51,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             public void Information_CanSerializeVeryLargeValues()
             {
                 Information i = Information.FromExabytes(1E+9);
-                var expectedJson = "{\n  \"Unit\": \"InformationUnit.Bit\",\n  \"Value\": 8E+27\n}";
+                var expectedJson = "{\n  \"Unit\": \"InformationUnit.Exabyte\",\n  \"Value\": 1000000000.0\n}";
 
                 string json = SerializeObject(i);
 
@@ -59,12 +59,23 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             }
 
             [Fact]
-            public void Mass_ExpectKilogramsUsedAsBaseValueAndUnit()
+            public void Mass_ExpectConstructedValueAndUnit()
             {
                 Mass mass = Mass.FromPounds(200);
-                var expectedJson = "{\n  \"Unit\": \"MassUnit.Kilogram\",\n  \"Value\": 90.718474\n}";
+                var expectedJson = "{\n  \"Unit\": \"MassUnit.Pound\",\n  \"Value\": 200.0\n}";
 
                 string json = SerializeObject(mass);
+
+                Assert.Equal(expectedJson, json);
+            }
+
+            [Fact]
+            public void Information_ExpectConstructedValueAndUnit()
+            {
+                Information quantity = Information.FromKilobytes(54);
+                var expectedJson = "{\n  \"Unit\": \"InformationUnit.Kilobyte\",\n  \"Value\": 54.0\n}";
+
+                string json = SerializeObject(quantity);
 
                 Assert.Equal(expectedJson, json);
             }
@@ -110,19 +121,15 @@ namespace UnitsNet.Serialization.JsonNet.Tests
             [Fact]
             public void NullValue_ExpectJsonContainsNullString()
             {
-                Mass? nullMass = null;
-                var expectedJson = "null";
-
-                string json = SerializeObject(nullMass);
-
-                Assert.Equal(expectedJson, json);
+                string json = SerializeObject(null);
+                Assert.Equal("null", json);
             }
 
             [Fact]
             public void Ratio_ExpectDecimalFractionsUsedAsBaseValueAndUnit()
             {
                 Ratio ratio = Ratio.FromPartsPerThousand(250);
-                var expectedJson = "{\n  \"Unit\": \"RatioUnit.DecimalFraction\",\n  \"Value\": 0.25\n}";
+                var expectedJson = "{\n  \"Unit\": \"RatioUnit.PartPerThousand\",\n  \"Value\": 250.0\n}";
 
                 string json = SerializeObject(ratio);
 
@@ -231,7 +238,7 @@ namespace UnitsNet.Serialization.JsonNet.Tests
                 string json = JsonConvert.SerializeObject(testObjWithIComparable, jsonSerializerSettings);
 
                 var deserializedTestObject = JsonConvert.DeserializeObject<TestObjWithIComparable>(json,jsonSerializerSettings);
-               
+
                 Assert.Equal(typeof(Power), deserializedTestObject.Value.GetType());
                 Assert.Equal(Power.FromWatts(10), (Power)deserializedTestObject.Value);
             }

@@ -1,0 +1,13 @@
+<Project>
+  <!-- This file will be implicitly linked by all projects in folder -folders -->
+  <PropertyGroup>
+    <!-- Avoid sharing obj folder with multiple .csproj files in same folder -->
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)obj/$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <OutputPath>$(MSBuildThisFileDirectory)Artifacts/$(MSBuildProjectName)</OutputPath>
+  </PropertyGroup>
+
+  <!-- Workaround for `dotnet test UnitsNet.sln`: https://dasmulli.blog/2018/01/20/make-dotnet-test-work-on-solution-files/ -->
+  <Target Name="VSTestIfTestProject">
+    <CallTarget Targets="VSTest" Condition="'$(IsTestProject)' == 'true'" />
+  </Target>
+</Project>

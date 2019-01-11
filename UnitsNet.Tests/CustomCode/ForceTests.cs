@@ -1,16 +1,16 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/anjdreas/UnitsNet
-// 
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,6 +30,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsForceInOneNewton => 0.101972;
 
+        protected override double MeganewtonsInOneNewton => 1E-6;
         protected override double KilonewtonsInOneNewton => 1E-3;
 
         protected override double KiloPondsInOneNewton => 0.101972;
@@ -40,7 +41,13 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PoundsForceInOneNewton => 0.22481;
 
-        protected override double TonnesForceInOneNewton => 1.02e-4;
+        protected override double TonnesForceInOneNewton => 1.019716212977928e-4;
+
+        protected override double MillinewtonsInOneNewton => 1.0e3;
+
+        protected override double MicronewtonsInOneNewton => 1.0e6;
+
+        protected override double OunceForceInOneNewton => 3.596943089595368;
 
         [Fact]
         public void ForceDividedByAreaEqualsPressure()
@@ -50,30 +57,23 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void PressureByAreaEqualsForceUsingArea()
+        public void PressureByAreaEqualsForce()
         {
             Force force = Force.FromPressureByArea(Pressure.FromNewtonsPerSquareMeter(5), Area.FromSquareMeters(7));
             Assert.Equal(force, Force.FromNewtons(35));
         }
 
         [Fact]
-        public void PressureByAreaEqualsForceUsingLength2D()
-        {
-            var force = Force.FromPressureByArea(Pressure.FromNewtonsPerSquareMeter(6), Length2d.FromMeters(5, 2));
-            Assert.Equal(force, Force.FromNewtons(60));
-        }
-    
-        [Fact]
         public void ForceDividedByMassEqualsAcceleration()
         {
             Acceleration acceleration = Force.FromNewtons(27)/Mass.FromKilograms(9);
-            Assert.Equal(acceleration, Acceleration.FromMeterPerSecondSquared(3));
+            Assert.Equal(acceleration, Acceleration.FromMetersPerSecondSquared(3));
         }
-    
+
         [Fact]
         public void ForceDividedByAccelerationEqualsMass()
         {
-          Mass acceleration = Force.FromNewtons(200)/Acceleration.FromMeterPerSecondSquared(50);
+          Mass acceleration = Force.FromNewtons(200)/Acceleration.FromMetersPerSecondSquared(50);
           Assert.Equal(acceleration, Mass.FromKilograms(4));
         }
 
@@ -85,15 +85,9 @@ namespace UnitsNet.Tests.CustomCode
         }
 
         [Fact]
-        public void MassByAccelerationEqualsForceUsingDouble()
-        {
-            var force = Force.FromMassByAcceleration(Mass.FromKilograms(9), 3);
-            Assert.Equal(force, Force.FromNewtons(27));
-        }
-        [Fact]
         public void MassByAccelerationEqualsForce()
         {
-            Force force = Force.FromMassByAcceleration(Mass.FromKilograms(85), Acceleration.FromMeterPerSecondSquared(-4));
+            Force force = Force.FromMassByAcceleration(Mass.FromKilograms(85), Acceleration.FromMetersPerSecondSquared(-4));
             Assert.Equal(force, Force.FromNewtons(-340));
         }
 

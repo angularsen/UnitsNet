@@ -1,5 +1,5 @@
-﻿// Copyright © 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -90,9 +90,9 @@ namespace UnitsNet
         /// <param name="args">The list of format arguments.</param>
         /// <returns>An array of ToString format arguments.</returns>
         public static object[] GetFormatArgs<TUnitType>(TUnitType unit, double value, [CanBeNull] IFormatProvider culture, IEnumerable<object> args)
-            where TUnitType : struct, IComparable, IFormattable
+            where TUnitType : Enum
         {
-            string abbreviation = UnitSystem.GetCached(culture).GetDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit));
+            string abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), culture);
             return new object[] {value, abbreviation}.Concat(args).ToArray();
         }
     }

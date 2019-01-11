@@ -9,17 +9,16 @@
 //     in this derived class, reminding the developer to implement the test case
 //     for the new unit.
 //
-//     See https://github.com/anjdreas/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
+//     See https://github.com/angularsen/UnitsNet/wiki/Adding-a-New-Unit for how to add or edit units.
 //
-//     Add CustomCode\UnitClasses\MyUnit.extra.cs files to add code to generated unit classes.
-//     Add Extensions\MyUnitExtensions.cs to decorate unit classes with new behavior.
-//     Add UnitDefinitions\MyUnit.json and run GeneratUnits.bat to generate new units or unit classes.
+//     Add CustomCode\UnitClasses\MyQuantity.extra.cs files to add code to generated unit classes.
+//     Add UnitDefinitions\MyQuantity.json and run GeneratUnits.bat to generate new units or unit classes.
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Copyright (c) 2007 Andreas Gullberg Larsen (anjdreas@gmail.com).
-// https://github.com/anjdreas/UnitsNet
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -38,19 +37,27 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-
+using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
     public class TemperatureDeltaTests : TemperatureDeltaTestsBase
     {
-        protected override double DegreesCelsiusDeltaInOneKelvinDelta => 1;
-        protected override double DegreesDelisleDeltaInOneKelvinDelta => -1.5d;
-        protected override double DegreesFahrenheitDeltaInOneKelvinDelta => 1.8;
-        protected override double DegreesNewtonDeltaInOneKelvinDelta => 0.33d;
-        protected override double DegreesRankineDeltaInOneKelvinDelta => 1.8;
-        protected override double DegreesReaumurDeltaInOneKelvinDelta => 0.8;
-        protected override double DegreesRoemerDeltaInOneKelvinDelta => 21/40d;
-        protected override double KelvinsDeltaInOneKelvinDelta => 1;
+        protected override double DegreesCelsiusInOneKelvin => 1;
+        protected override double DegreesDelisleInOneKelvin => -1.5d;
+        protected override double DegreesFahrenheitInOneKelvin => 1.8;
+        protected override double DegreesNewtonInOneKelvin => 0.33d;
+        protected override double DegreesRankineInOneKelvin => 1.8;
+        protected override double DegreesReaumurInOneKelvin => 0.8;
+        protected override double DegreesRoemerInOneKelvin => 21 / 40d;
+        protected override double KelvinsInOneKelvin => 1;
+
+        [Fact]
+        public void TemperatureDeltaTimesSpecificEntropyEqualsSpecificEnergy()
+        {
+            SpecificEnergy specificEnergy =  SpecificEntropy.FromJoulesPerKilogramKelvin(10) * TemperatureDelta.FromKelvins(6);
+            Assert.Equal(specificEnergy, SpecificEnergy.FromJoulesPerKilogram(60));
+        }
     }
 }

@@ -1,5 +1,5 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/anjdreas/UnitsNet
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,22 +25,14 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class SpecificEnergyTests : SpecificEnergyTestsBase
     {
-        protected override double JoulesPerKilogramInOneJoulePerKilogram => 1.0;
-
-        protected override double CaloriesPerGramInOneJoulePerKilogram => 1.0/4.184E3;
-
-        protected override double KilocaloriesPerGramInOneJoulePerKilogram => 1.0/4.184E6;
-
-
-        protected override double KilojoulesPerKilogramInOneJoulePerKilogram => 1.0E-3;
-
+        protected override double JoulesPerKilogramInOneJoulePerKilogram => 1e0;
+        protected override double KilojoulesPerKilogramInOneJoulePerKilogram => 1e-3;
+        protected override double MegajoulesPerKilogramInOneJoulePerKilogram => 1e-6;
+        protected override double CaloriesPerGramInOneJoulePerKilogram => 2.3900573613766730401529636711281e-4;
+        protected override double KilocaloriesPerGramInOneJoulePerKilogram => 2.3900573613766730401529636711281e-7;
+        protected override double WattHoursPerKilogramInOneJoulePerKilogram => 2.77777778e-4;
         protected override double KilowattHoursPerKilogramInOneJoulePerKilogram => 2.77777778e-7;
-
-        protected override double MegajoulesPerKilogramInOneJoulePerKilogram => 1.0E-6;
-
-        protected override double MegawattHoursPerKilogramInOneJoulePerKilogram => 2.77777778E-10;
-
-        protected override double WattHoursPerKilogramInOneJoulePerKilogram => 1.0/3.6e3;
+        protected override double MegawattHoursPerKilogramInOneJoulePerKilogram => 2.77777778e-10;
 
         [Fact]
         public void MassTimesSpecificEnergyEqualsEnergy()

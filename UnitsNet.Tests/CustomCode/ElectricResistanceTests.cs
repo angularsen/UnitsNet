@@ -1,5 +1,5 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/anjdreas/UnitsNet
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -30,5 +30,7 @@ namespace UnitsNet.Tests.CustomCode
         protected override double KiloohmsInOneOhm => 1e-3;
 
         protected override double MegaohmsInOneOhm => 1e-6;
+
+        protected override double GigaohmsInOneOhm => 1e-9;
     }
 }

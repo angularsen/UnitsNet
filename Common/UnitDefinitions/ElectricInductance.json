@@ -1,0 +1,27 @@
+﻿{
+  "Name": "ElectricInductance",
+  "BaseUnit": "Henry",
+  "XmlDoc": "Inductance is a property of an electrical conductor which opposes a change in current.",
+  "XmlDocRemarks": "https://en.wikipedia.org/wiki/Inductance",
+  "BaseDimensions": {
+    "L": 2,
+    "M": 1,
+    "T": -2,
+    "I": -2
+  },
+  "Units": [
+    {
+      "SingularName": "Henry",
+      "PluralName": "Henries",
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+	  "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "H" ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+﻿{
+  "Name": "Angle",
+  "BaseUnit": "Degree",
+  "XmlDoc": "In geometry, an angle is the figure formed by two rays, called the sides of the angle, sharing a common endpoint, called the vertex of the angle.",
+  "Units": [
+    {
+      "SingularName": "Radian",
+      "PluralName": "Radians",
+      "FromUnitToBaseFunc": "x*180/Math.PI",
+      "FromBaseToUnitFunc": "x/180*Math.PI",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "rad" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "рад" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Degree",
+      "PluralName": "Degrees",
+      "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "FromUnitToBaseFunc": "x",
+      "FromBaseToUnitFunc": "x",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "°", "deg" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "°" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Arcminute",
+      "PluralName": "Arcminutes",
+      "FromUnitToBaseFunc": "x/60",
+      "FromBaseToUnitFunc": "x*60",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "'", "arcmin", "amin", "min" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Arcsecond",
+      "PluralName": "Arcseconds",
+      "FromUnitToBaseFunc": "x/3600",
+      "FromBaseToUnitFunc": "x*3600",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "″", "arcsec", "asec", "sec" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Gradian",
+      "PluralName": "Gradians",
+      "FromUnitToBaseFunc": "x*0.9",
+      "FromBaseToUnitFunc": "x/0.9",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "g" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "Revolution",
+      "PluralName": "Revolutions",
+      "FromUnitToBaseFunc": "x*360",
+      "FromBaseToUnitFunc": "x/360",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "r" ]
+        },
+        {
+          "Culture": "ru-RU",
+          "Abbreviations": [ "r" ]
+        }
+      ]
+    }
+  ]
+}

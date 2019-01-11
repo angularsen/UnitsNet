@@ -1,5 +1,5 @@
-﻿// Copyright(c) 2007 Andreas Gullberg Larsen
-// https://github.com/anjdreas/UnitsNet
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,11 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double KilogramsPerHourInOneGramPerSecond => 3.6;
 
+        protected override double TonnesPerHourInOneGramPerSecond => 3.6E-3;
+
         protected override double KilogramsPerSecondInOneGramPerSecond => 1E-3;
+
+        protected override double MegapoundsPerHourInOneGramPerSecond => 7.93664e-6;
 
         protected override double DecigramsPerSecondInOneGramPerSecond => 1E1;
 
@@ -46,9 +50,17 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double NanogramsPerSecondInOneGramPerSecond => 1E9;
 
+        protected override double ShortTonsPerHourInOneGramPerSecond => 3.96832e-3;
+
         protected override double TonnesPerDayInOneGramPerSecond => 60.0*60*24/1E6;
 
         protected override double PoundsPerHourInOneGramPerSecond => 7.93664;
+
+        protected override double PoundsPerMinuteInOneGramPerSecond => 0.132277;
+
+        protected override double MegapoundsPerMinuteInOneGramPerSecond => 0.132277e-6;
+
+        protected override double KilogramsPerMinuteInOneGramPerSecond => 0.06;
 
         [Fact]
         public void DurationTimesMassFlowEqualsMass()
@@ -97,6 +109,34 @@ namespace UnitsNet.Tests.CustomCode
         {
             Power power = MassFlow.FromKilogramsPerSecond(20.0) * SpecificEnergy.FromJoulesPerKilogram(10.0);
             Assert.Equal(200, power.Watts);
+        }
+
+        [Fact]
+        public void MassFlowDividedByAreaEqualsMassFlux()
+        {
+            MassFlux massFlux = MassFlow.FromKilogramsPerSecond(20) / Area.FromSquareMeters(2);
+            Assert.Equal(10, massFlux.KilogramsPerSecondPerSquareMeter);
+        }
+
+        [Fact]
+        public void MassFlowDividedByMassFluxEqualsArea()
+        {
+            Area area = MassFlow.FromKilogramsPerSecond(20) / MassFlux.FromKilogramsPerSecondPerSquareMeter(2);
+            Assert.Equal(10, area.SquareMeters);
+        }
+
+        [Fact]
+        public void MassFlowDividedByVolumeFlowEqualsDensity()
+        {
+            Density density = MassFlow.FromKilogramsPerSecond(12) / VolumeFlow.FromCubicMetersPerSecond(3);
+            Assert.Equal(4, density.KilogramsPerCubicMeter);
+        }
+
+        [Fact]
+        public void MassFlowDividedByDensityEqualsVolumeFlow()
+        {
+            VolumeFlow volumeFlow = MassFlow.FromKilogramsPerSecond(20) / Density.FromKilogramsPerCubicMeter(4);
+            Assert.Equal(5, volumeFlow.CubicMetersPerSecond);
         }
     }
 }
