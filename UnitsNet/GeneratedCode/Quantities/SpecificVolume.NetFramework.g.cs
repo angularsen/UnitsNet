@@ -157,6 +157,11 @@ namespace UnitsNet
         /// </summary>
         public double CubicMetersPerKilogram => As(SpecificVolumeUnit.CubicMeterPerKilogram);
 
+        /// <summary>
+        ///     Get SpecificVolume in MillicubicMetersPerKilogram.
+        /// </summary>
+        public double MillicubicMetersPerKilogram => As(SpecificVolumeUnit.MillicubicMeterPerKilogram);
+
         #endregion
 
         #region Static Methods
@@ -203,6 +208,15 @@ namespace UnitsNet
         {
             double value = (double) cubicmetersperkilogram;
             return new SpecificVolume(value, SpecificVolumeUnit.CubicMeterPerKilogram);
+        }
+        /// <summary>
+        ///     Get SpecificVolume from MillicubicMetersPerKilogram.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static SpecificVolume FromMillicubicMetersPerKilogram(QuantityValue millicubicmetersperkilogram)
+        {
+            double value = (double) millicubicmetersperkilogram;
+            return new SpecificVolume(value, SpecificVolumeUnit.MillicubicMeterPerKilogram);
         }
 
         /// <summary>
@@ -557,6 +571,7 @@ namespace UnitsNet
             {
                 case SpecificVolumeUnit.CubicFootPerPound: return _value/16.01846353;
                 case SpecificVolumeUnit.CubicMeterPerKilogram: return _value;
+                case SpecificVolumeUnit.MillicubicMeterPerKilogram: return (_value) * 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -573,6 +588,7 @@ namespace UnitsNet
             {
                 case SpecificVolumeUnit.CubicFootPerPound: return baseUnitValue*16.01846353;
                 case SpecificVolumeUnit.CubicMeterPerKilogram: return baseUnitValue;
+                case SpecificVolumeUnit.MillicubicMeterPerKilogram: return (baseUnitValue) / 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }

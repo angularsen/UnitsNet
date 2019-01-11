@@ -45,14 +45,32 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class IrradianceTests : IrradianceTestsBase
     {
-        /// <summary>
-        /// Gets the kilowatt per square meter in one watt per square meter.
-        /// </summary>
-        protected override double KilowattsPerSquareMeterInOneWattPerSquareMeter => 1E-3;
+        protected override double KilowattsPerSquareCentimeterInOneWattPerSquareMeter => 1e-7;
 
-        /// <summary>
-        /// Gets the watt per square meter in one watt per square meter.
-        /// </summary>
+        protected override double KilowattsPerSquareMeterInOneWattPerSquareMeter => 1e-3;
+
+        protected override double MegawattsPerSquareCentimeterInOneWattPerSquareMeter => 1e-10;
+
+        protected override double MegawattsPerSquareMeterInOneWattPerSquareMeter => 1e-6;
+
+        protected override double MicrowattsPerSquareCentimeterInOneWattPerSquareMeter => 100;
+
+        protected override double MicrowattsPerSquareMeterInOneWattPerSquareMeter => 1e6;
+
+        protected override double MilliwattsPerSquareCentimeterInOneWattPerSquareMeter => 0.1;
+
+        protected override double MilliwattsPerSquareMeterInOneWattPerSquareMeter => 1e3;
+
+        protected override double NanowattsPerSquareCentimeterInOneWattPerSquareMeter => 1e5;
+
+        protected override double NanowattsPerSquareMeterInOneWattPerSquareMeter => 1e+9;
+
+        protected override double PicowattsPerSquareCentimeterInOneWattPerSquareMeter => 1e+8;
+
+        protected override double PicowattsPerSquareMeterInOneWattPerSquareMeter => 1e+12;
+
+        protected override double WattsPerSquareCentimeterInOneWattPerSquareMeter => 1e-4;
+
         protected override double WattsPerSquareMeterInOneWattPerSquareMeter => 1;
     }
 }

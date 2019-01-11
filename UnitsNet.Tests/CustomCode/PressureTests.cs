@@ -100,6 +100,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double InchesOfMercuryInOnePascal => 2.95299830714159e-4;
 
+        protected override double InchesOfWaterColumnInOnePascal => 4.014630786617777e-3;
+
         protected override double DynesPerSquareCentimeterInOnePascal => 1.0e1;
 
         protected override double PoundsPerInchSecondSquaredInOnePascal => 5.599741459495891e-2;

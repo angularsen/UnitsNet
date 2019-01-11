@@ -48,6 +48,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double CubicFeetPerPoundInOneCubicMeterPerKilogram => 16.01846353;
 
+        protected override double MillicubicMetersPerKilogramInOneCubicMeterPerKilogram => 1e3;
+
         [Fact]
         public static void SpecificVolumeTimesMassEqualsVolume()
         {

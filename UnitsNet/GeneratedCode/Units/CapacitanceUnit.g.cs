@@ -45,6 +45,8 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         Farad,
+        Kilofarad,
+        Megafarad,
         Microfarad,
         Millifarad,
         Nanofarad,

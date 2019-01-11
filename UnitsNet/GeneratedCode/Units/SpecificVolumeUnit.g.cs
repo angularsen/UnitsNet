@@ -46,6 +46,7 @@ namespace UnitsNet.Units
         Undefined = 0,
         CubicFootPerPound,
         CubicMeterPerKilogram,
+        MillicubicMeterPerKilogram,
     }
 
     #pragma warning restore 1591

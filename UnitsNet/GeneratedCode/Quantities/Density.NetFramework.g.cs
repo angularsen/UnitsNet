@@ -236,6 +236,11 @@ namespace UnitsNet
         public double KilopoundsPerCubicInch => As(DensityUnit.KilopoundPerCubicInch);
 
         /// <summary>
+        ///     Get Density in MicrogramsPerCubicMeter.
+        /// </summary>
+        public double MicrogramsPerCubicMeter => As(DensityUnit.MicrogramPerCubicMeter);
+
+        /// <summary>
         ///     Get Density in MicrogramsPerDeciLiter.
         /// </summary>
         public double MicrogramsPerDeciLiter => As(DensityUnit.MicrogramPerDeciliter);
@@ -521,6 +526,15 @@ namespace UnitsNet
         {
             double value = (double) kilopoundspercubicinch;
             return new Density(value, DensityUnit.KilopoundPerCubicInch);
+        }
+        /// <summary>
+        ///     Get Density from MicrogramsPerCubicMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Density FromMicrogramsPerCubicMeter(QuantityValue microgramspercubicmeter)
+        {
+            double value = (double) microgramspercubicmeter;
+            return new Density(value, DensityUnit.MicrogramPerCubicMeter);
         }
         /// <summary>
         ///     Get Density from MicrogramsPerDeciLiter.
@@ -1079,6 +1093,7 @@ namespace UnitsNet
                 case DensityUnit.KilogramPerCubicMillimeter: return (_value/1e-6) * 1e3d;
                 case DensityUnit.KilopoundPerCubicFoot: return (_value/0.062427961) * 1e3d;
                 case DensityUnit.KilopoundPerCubicInch: return (_value/3.6127298147753e-5) * 1e3d;
+                case DensityUnit.MicrogramPerCubicMeter: return (_value/1e3) * 1e-6d;
                 case DensityUnit.MicrogramPerDeciliter: return (_value/1e-1) * 1e-6d;
                 case DensityUnit.MicrogramPerLiter: return (_value/1) * 1e-6d;
                 case DensityUnit.MicrogramPerMilliliter: return (_value/1e-3) * 1e-6d;
@@ -1131,6 +1146,7 @@ namespace UnitsNet
                 case DensityUnit.KilogramPerCubicMillimeter: return (baseUnitValue*1e-6) / 1e3d;
                 case DensityUnit.KilopoundPerCubicFoot: return (baseUnitValue*0.062427961) / 1e3d;
                 case DensityUnit.KilopoundPerCubicInch: return (baseUnitValue*3.6127298147753e-5) / 1e3d;
+                case DensityUnit.MicrogramPerCubicMeter: return (baseUnitValue*1e3) / 1e-6d;
                 case DensityUnit.MicrogramPerDeciliter: return (baseUnitValue*1e-1) / 1e-6d;
                 case DensityUnit.MicrogramPerLiter: return (baseUnitValue*1) / 1e-6d;
                 case DensityUnit.MicrogramPerMilliliter: return (baseUnitValue*1e-3) / 1e-6d;

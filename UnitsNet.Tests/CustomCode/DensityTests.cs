@@ -100,6 +100,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PicogramsPerMilliliterInOneKilogramPerCubicMeter => 1e9;
 
+        protected override double MicrogramsPerCubicMeterInOneKilogramPerCubicMeter => 1e9;
 
         [Fact]
         public static void DensityTimesVolumeEqualsMass()

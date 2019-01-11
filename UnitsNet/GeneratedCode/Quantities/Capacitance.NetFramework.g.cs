@@ -156,6 +156,16 @@ namespace UnitsNet
         public double Farads => As(CapacitanceUnit.Farad);
 
         /// <summary>
+        ///     Get Capacitance in Kilofarads.
+        /// </summary>
+        public double Kilofarads => As(CapacitanceUnit.Kilofarad);
+
+        /// <summary>
+        ///     Get Capacitance in Megafarads.
+        /// </summary>
+        public double Megafarads => As(CapacitanceUnit.Megafarad);
+
+        /// <summary>
         ///     Get Capacitance in Microfarads.
         /// </summary>
         public double Microfarads => As(CapacitanceUnit.Microfarad);
@@ -212,6 +222,24 @@ namespace UnitsNet
         {
             double value = (double) farads;
             return new Capacitance(value, CapacitanceUnit.Farad);
+        }
+        /// <summary>
+        ///     Get Capacitance from Kilofarads.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Capacitance FromKilofarads(QuantityValue kilofarads)
+        {
+            double value = (double) kilofarads;
+            return new Capacitance(value, CapacitanceUnit.Kilofarad);
+        }
+        /// <summary>
+        ///     Get Capacitance from Megafarads.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Capacitance FromMegafarads(QuantityValue megafarads)
+        {
+            double value = (double) megafarads;
+            return new Capacitance(value, CapacitanceUnit.Megafarad);
         }
         /// <summary>
         ///     Get Capacitance from Microfarads.
@@ -601,6 +629,8 @@ namespace UnitsNet
             switch(Unit)
             {
                 case CapacitanceUnit.Farad: return _value;
+                case CapacitanceUnit.Kilofarad: return (_value) * 1e3d;
+                case CapacitanceUnit.Megafarad: return (_value) * 1e6d;
                 case CapacitanceUnit.Microfarad: return (_value) * 1e-6d;
                 case CapacitanceUnit.Millifarad: return (_value) * 1e-3d;
                 case CapacitanceUnit.Nanofarad: return (_value) * 1e-9d;
@@ -620,6 +650,8 @@ namespace UnitsNet
             switch(unit)
             {
                 case CapacitanceUnit.Farad: return baseUnitValue;
+                case CapacitanceUnit.Kilofarad: return (baseUnitValue) / 1e3d;
+                case CapacitanceUnit.Megafarad: return (baseUnitValue) / 1e6d;
                 case CapacitanceUnit.Microfarad: return (baseUnitValue) / 1e-6d;
                 case CapacitanceUnit.Millifarad: return (baseUnitValue) / 1e-3d;
                 case CapacitanceUnit.Nanofarad: return (baseUnitValue) / 1e-9d;

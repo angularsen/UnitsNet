@@ -39,7 +39,7 @@
       "PluralName": "GramsPerCubicMeter",
       "FromUnitToBaseFunc": "x/1e3",
       "FromBaseToUnitFunc": "x*1e3",
-      "Prefixes": [ "Milli", "Kilo" ],
+      "Prefixes": [ "Kilo", "Milli", "Micro" ],
       "Localization": [
         {
           "Culture": "en-US",
