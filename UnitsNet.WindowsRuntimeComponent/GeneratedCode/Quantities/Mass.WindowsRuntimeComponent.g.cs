@@ -828,7 +828,7 @@ namespace UnitsNet
                 case MassUnit.Centigram: return (_value/1e3) * 1e-2d;
                 case MassUnit.Decagram: return (_value/1e3) * 1e1d;
                 case MassUnit.Decigram: return (_value/1e3) * 1e-1d;
-                case MassUnit.Grain: return _value/15432.35811478375;
+                case MassUnit.Grain: return _value/15432.358352941431;
                 case MassUnit.Gram: return _value/1e3;
                 case MassUnit.Hectogram: return (_value/1e3) * 1e2d;
                 case MassUnit.Kilogram: return (_value/1e3) * 1e3d;
@@ -865,7 +865,7 @@ namespace UnitsNet
                 case MassUnit.Centigram: return (baseUnitValue*1e3) / 1e-2d;
                 case MassUnit.Decagram: return (baseUnitValue*1e3) / 1e1d;
                 case MassUnit.Decigram: return (baseUnitValue*1e3) / 1e-1d;
-                case MassUnit.Grain: return baseUnitValue*15432.35811478375;
+                case MassUnit.Grain: return baseUnitValue*15432.358352941431;
                 case MassUnit.Gram: return baseUnitValue*1e3;
                 case MassUnit.Hectogram: return (baseUnitValue*1e3) / 1e2d;
                 case MassUnit.Kilogram: return (baseUnitValue*1e3) / 1e3d;
