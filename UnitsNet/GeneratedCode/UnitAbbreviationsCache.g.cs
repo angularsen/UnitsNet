@@ -447,6 +447,7 @@ namespace UnitsNet
                 ("en-US", typeof(IrradianceUnit), (int)IrradianceUnit.KilowattPerSquareMeter, new string[]{"kW/m²"}),
                 ("en-US", typeof(IrradianceUnit), (int)IrradianceUnit.WattPerSquareMeter, new string[]{"W/m²"}),
                 ("en-US", typeof(IrradiationUnit), (int)IrradiationUnit.JoulePerSquareMeter, new string[]{"J/m²"}),
+                ("en-US", typeof(IrradiationUnit), (int)IrradiationUnit.JoulePerSquareMillimeter, new string[]{"J/mm²"}),
                 ("en-US", typeof(IrradiationUnit), (int)IrradiationUnit.KilowattHourPerSquareMeter, new string[]{"kWh/m²"}),
                 ("en-US", typeof(IrradiationUnit), (int)IrradiationUnit.WattHourPerSquareMeter, new string[]{"Wh/m²"}),
                 ("en-US", typeof(KinematicViscosityUnit), (int)KinematicViscosityUnit.Centistokes, new string[]{"cSt"}),

@@ -21,6 +21,18 @@
       ]
     },
     {
+      "SingularName": "JoulePerSquareMillimeter",
+      "PluralName": "JoulesPerSquareMillimeter",
+      "FromUnitToBaseFunc": "x*1e6",
+      "FromBaseToUnitFunc": "x/1e6",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "J/mm²" ]
+        }
+      ]
+    },
+    {
       "SingularName": "WattHourPerSquareMeter",
       "PluralName": "WattHoursPerSquareMeter",
       "FromUnitToBaseFunc": "x*3600d",
