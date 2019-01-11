@@ -76,7 +76,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MegagramsPerDayInOneGramPerSecond => 8.64e-2;
 
-        protected override double MegapoundsPerDayInOneGramPerSecond => 190.479395 * 1e-6;
+        protected override double MegapoundsPerDayInOneGramPerSecond => 1.90479395e-4;
 
         protected override double MicrogramsPerDayInOneGramPerSecond => 8.64e+10;
 
@@ -84,7 +84,7 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double NanogramsPerDayInOneGramPerSecond => 8.64e+13;
 
-        protected override double PoundsPerDayInOneGramPerSecond => 190.47936;
+        protected override double PoundsPerDayInOneGramPerSecond => 1.9047936e2;
 
         [Fact]
         public void DurationTimesMassFlowEqualsMass()

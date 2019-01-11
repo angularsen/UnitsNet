@@ -45,7 +45,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class IrradianceTests : IrradianceTestsBase
     {
-        // TODO Override properties in base class here
         protected override double KilowattsPerSquareCentimeterInOneWattPerSquareMeter => 1e-7;
 
         protected override double KilowattsPerSquareMeterInOneWattPerSquareMeter => 1e-3;
@@ -56,13 +55,13 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double MicrowattsPerSquareCentimeterInOneWattPerSquareMeter => 100;
 
-        protected override double MicrowattsPerSquareMeterInOneWattPerSquareMeter => 1000000;
+        protected override double MicrowattsPerSquareMeterInOneWattPerSquareMeter => 1e6;
 
         protected override double MilliwattsPerSquareCentimeterInOneWattPerSquareMeter => 0.1;
 
-        protected override double MilliwattsPerSquareMeterInOneWattPerSquareMeter => 1000;
+        protected override double MilliwattsPerSquareMeterInOneWattPerSquareMeter => 1e3;
 
-        protected override double NanowattsPerSquareCentimeterInOneWattPerSquareMeter => 100000;
+        protected override double NanowattsPerSquareCentimeterInOneWattPerSquareMeter => 1e5;
 
         protected override double NanowattsPerSquareMeterInOneWattPerSquareMeter => 1e+9;
 
@@ -70,9 +69,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double PicowattsPerSquareMeterInOneWattPerSquareMeter => 1e+12;
 
-        protected override double WattsPerSquareCentimeterInOneWattPerSquareMeter => 0.0001;
+        protected override double WattsPerSquareCentimeterInOneWattPerSquareMeter => 1e-4;
 
         protected override double WattsPerSquareMeterInOneWattPerSquareMeter => 1;
-
     }
 }

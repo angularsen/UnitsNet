@@ -45,19 +45,6 @@ namespace UnitsNet.Tests.CustomCode
 {
     public class ElectricCurrentDensityTests : ElectricCurrentDensityTestsBase
     {
-        // TODO Override properties in base class here
         protected override double AmperesPerSquareMeterInOneAmperePerSquareMeter => 1;
-
-        //protected override double KiloamperesPerSquareMeterInOneAmperePerSquareMeter => 0.001;
-
-        //protected override double MegaamperesPerSquareMeterInOneAmperePerSquareMeter => 1e-6;
-
-        //protected override double MicroamperesPerSquareMeterInOneAmperePerSquareMeter => 1000000;
-
-        //protected override double MilliamperesPerSquareMeterInOneAmperePerSquareMeter => 1000;
-
-        //protected override double NanoamperesPerSquareMeterInOneAmperePerSquareMeter => 1e+9;
-
-        //protected override double PicoamperesPerSquareMeterInOneAmperePerSquareMeter => 1e+12;
     }
 }
