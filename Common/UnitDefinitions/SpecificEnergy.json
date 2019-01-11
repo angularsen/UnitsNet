@@ -46,6 +46,18 @@
           "Abbreviations": [ "Wh/kg" ]
         }
       ]
+    },
+    {
+      "SingularName": "BtuPerPound",
+      "PluralName": "BtuPerPound",
+      "FromUnitToBaseFunc": "x*2326.000075362",
+      "FromBaseToUnitFunc": "x/2326.000075362",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "btu/lb" ]
+        }
+      ]
     }
 
   ]

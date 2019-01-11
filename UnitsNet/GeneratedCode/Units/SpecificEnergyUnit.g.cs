@@ -44,6 +44,7 @@ namespace UnitsNet.Units
     public enum SpecificEnergyUnit
     {
         Undefined = 0,
+        BtuPerPound,
         CaloriePerGram,
         JoulePerKilogram,
         KilocaloriePerGram,

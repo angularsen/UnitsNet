@@ -165,6 +165,20 @@
           "Abbreviations": [ "cwt" ]
         }
       ]
+    },
+    {
+      "SingularName": "Grain",
+      "PluralName": "Grains",
+      "FromUnitToBaseFunc": "x/15432.358352941431",
+      "FromBaseToUnitFunc": "x*15432.358352941431",
+      "XmlDocSummary": "A grain is a unit of measurement of mass, and in the troy weight, avoirdupois, and Apothecaries' system, equal to exactly 64.79891 milligrams.",
+      "XmlDocRemarks": "https://en.wikipedia.org/wiki/Grain_(unit)",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "gr" ]
+        }
+      ]
     }
   ]
 }
