@@ -165,6 +165,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get SpecificEnergy in BtuPerPound.
+        /// </summary>
+        public double BtuPerPound => As(SpecificEnergyUnit.BtuPerPound);
+
+        /// <summary>
         ///     Get SpecificEnergy in CaloriesPerGram.
         /// </summary>
         public double CaloriesPerGram => As(SpecificEnergyUnit.CaloriePerGram);
@@ -234,6 +239,16 @@ namespace UnitsNet
 
         #region Static Factory Methods
 
+        /// <summary>
+        ///     Get SpecificEnergy from BtuPerPound.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static SpecificEnergy FromBtuPerPound(double btuperpound)
+        {
+            double value = (double) btuperpound;
+            return new SpecificEnergy(value, SpecificEnergyUnit.BtuPerPound);
+        }
         /// <summary>
         ///     Get SpecificEnergy from CaloriesPerGram.
         /// </summary>
@@ -603,6 +618,7 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case SpecificEnergyUnit.BtuPerPound: return _value*2326.000075362;
                 case SpecificEnergyUnit.CaloriePerGram: return _value*4.184e3;
                 case SpecificEnergyUnit.JoulePerKilogram: return _value;
                 case SpecificEnergyUnit.KilocaloriePerGram: return (_value*4.184e3) * 1e3d;
@@ -625,6 +641,7 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case SpecificEnergyUnit.BtuPerPound: return baseUnitValue/2326.000075362;
                 case SpecificEnergyUnit.CaloriePerGram: return baseUnitValue/4.184e3;
                 case SpecificEnergyUnit.JoulePerKilogram: return baseUnitValue;
                 case SpecificEnergyUnit.KilocaloriePerGram: return (baseUnitValue/4.184e3) / 1e3d;

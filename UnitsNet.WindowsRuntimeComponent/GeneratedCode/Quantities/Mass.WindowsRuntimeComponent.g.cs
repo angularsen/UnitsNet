@@ -177,6 +177,11 @@ namespace UnitsNet
         public double Decigrams => As(MassUnit.Decigram);
 
         /// <summary>
+        ///     Get Mass in Grains.
+        /// </summary>
+        public double Grains => As(MassUnit.Grain);
+
+        /// <summary>
         ///     Get Mass in Grams.
         /// </summary>
         public double Grams => As(MassUnit.Gram);
@@ -330,6 +335,16 @@ namespace UnitsNet
         {
             double value = (double) decigrams;
             return new Mass(value, MassUnit.Decigram);
+        }
+        /// <summary>
+        ///     Get Mass from Grains.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Mass FromGrains(double grains)
+        {
+            double value = (double) grains;
+            return new Mass(value, MassUnit.Grain);
         }
         /// <summary>
         ///     Get Mass from Grams.
@@ -813,6 +828,7 @@ namespace UnitsNet
                 case MassUnit.Centigram: return (_value/1e3) * 1e-2d;
                 case MassUnit.Decagram: return (_value/1e3) * 1e1d;
                 case MassUnit.Decigram: return (_value/1e3) * 1e-1d;
+                case MassUnit.Grain: return _value/15432.35811478375;
                 case MassUnit.Gram: return _value/1e3;
                 case MassUnit.Hectogram: return (_value/1e3) * 1e2d;
                 case MassUnit.Kilogram: return (_value/1e3) * 1e3d;
@@ -849,6 +865,7 @@ namespace UnitsNet
                 case MassUnit.Centigram: return (baseUnitValue*1e3) / 1e-2d;
                 case MassUnit.Decagram: return (baseUnitValue*1e3) / 1e1d;
                 case MassUnit.Decigram: return (baseUnitValue*1e3) / 1e-1d;
+                case MassUnit.Grain: return baseUnitValue*15432.35811478375;
                 case MassUnit.Gram: return baseUnitValue*1e3;
                 case MassUnit.Hectogram: return (baseUnitValue*1e3) / 1e2d;
                 case MassUnit.Kilogram: return (baseUnitValue*1e3) / 1e3d;
