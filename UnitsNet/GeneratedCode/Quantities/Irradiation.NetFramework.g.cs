@@ -156,6 +156,11 @@ namespace UnitsNet
         public double JoulesPerSquareMeter => As(IrradiationUnit.JoulePerSquareMeter);
 
         /// <summary>
+        ///     Get Irradiation in JoulesPerSquareMillimeter.
+        /// </summary>
+        public double JoulesPerSquareMillimeter => As(IrradiationUnit.JoulePerSquareMillimeter);
+
+        /// <summary>
         ///     Get Irradiation in KilowattHoursPerSquareMeter.
         /// </summary>
         public double KilowattHoursPerSquareMeter => As(IrradiationUnit.KilowattHourPerSquareMeter);
@@ -202,6 +207,15 @@ namespace UnitsNet
         {
             double value = (double) joulespersquaremeter;
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMeter);
+        }
+        /// <summary>
+        ///     Get Irradiation from JoulesPerSquareMillimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Irradiation FromJoulesPerSquareMillimeter(QuantityValue joulespersquaremillimeter)
+        {
+            double value = (double) joulespersquaremillimeter;
+            return new Irradiation(value, IrradiationUnit.JoulePerSquareMillimeter);
         }
         /// <summary>
         ///     Get Irradiation from KilowattHoursPerSquareMeter.
@@ -573,6 +587,7 @@ namespace UnitsNet
             switch(Unit)
             {
                 case IrradiationUnit.JoulePerSquareMeter: return _value;
+                case IrradiationUnit.JoulePerSquareMillimeter: return _value*1e6;
                 case IrradiationUnit.KilowattHourPerSquareMeter: return (_value*3600d) * 1e3d;
                 case IrradiationUnit.WattHourPerSquareMeter: return _value*3600d;
                 default:
@@ -590,6 +605,7 @@ namespace UnitsNet
             switch(unit)
             {
                 case IrradiationUnit.JoulePerSquareMeter: return baseUnitValue;
+                case IrradiationUnit.JoulePerSquareMillimeter: return baseUnitValue/1e6;
                 case IrradiationUnit.KilowattHourPerSquareMeter: return (baseUnitValue/3600d) / 1e3d;
                 case IrradiationUnit.WattHourPerSquareMeter: return baseUnitValue/3600d;
                 default:

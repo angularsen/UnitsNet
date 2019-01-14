@@ -104,6 +104,10 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double UsQuartsInOneCubicMeter => 1056.6882094326;
 
+        protected override double AcreFeetInOneCubicMeter => 0.000810714;
+
+        protected override double MegalitersInOneCubicMeter => 0.001;
+
         [Fact]
         public void VolumeDividedByAreaEqualsLength()
         {

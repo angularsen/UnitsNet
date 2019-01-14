@@ -61,6 +61,7 @@ namespace UnitsNet.Units
         KilogramPerCubicMillimeter,
         KilopoundPerCubicFoot,
         KilopoundPerCubicInch,
+        MicrogramPerCubicMeter,
         MicrogramPerDeciliter,
         MicrogramPerLiter,
         MicrogramPerMilliliter,

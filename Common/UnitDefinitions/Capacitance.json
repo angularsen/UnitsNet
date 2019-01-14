@@ -15,7 +15,7 @@
       "PluralName": "Farads",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-	  "Prefixes": [ "Pico", "Nano", "Micro", "Milli" ],
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",

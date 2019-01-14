@@ -45,6 +45,7 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         JoulePerSquareMeter,
+        JoulePerSquareMillimeter,
         KilowattHourPerSquareMeter,
         WattHourPerSquareMeter,
     }

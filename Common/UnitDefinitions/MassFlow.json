@@ -21,6 +21,19 @@
       ]
     },
     {
+      "SingularName": "GramPerDay",
+      "PluralName": "GramsPerDay",
+      "FromUnitToBaseFunc": "x/86400",
+      "FromBaseToUnitFunc": "x*86400",
+      "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Deca", "Hecto", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "g/d" ]
+        }
+      ]
+    },
+    {
       "SingularName": "KilogramPerHour",
       "PluralName": "KilogramsPerHour",
       "FromUnitToBaseFunc": "x/3.6",
@@ -61,6 +74,20 @@
         {
           "Culture": "en-US",
           "Abbreviations": [ "t/h" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "PoundPerDay",
+      "PluralName": "PoundsPerDay",
+      "FromUnitToBaseFunc": "x/190.47936",
+      "FromBaseToUnitFunc": "x*190.47936",
+      "Prefixes": [ "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "lb/d" ],
+          "AbbreviationsWithPrefixes": [ "Mlb/d" ]
         }
       ]
     },

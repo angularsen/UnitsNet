@@ -162,9 +162,19 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get MassFlow in CentigramsPerDay.
+        /// </summary>
+        public double CentigramsPerDay => As(MassFlowUnit.CentigramPerDay);
+
+        /// <summary>
         ///     Get MassFlow in CentigramsPerSecond.
         /// </summary>
         public double CentigramsPerSecond => As(MassFlowUnit.CentigramPerSecond);
+
+        /// <summary>
+        ///     Get MassFlow in DecagramsPerDay.
+        /// </summary>
+        public double DecagramsPerDay => As(MassFlowUnit.DecagramPerDay);
 
         /// <summary>
         ///     Get MassFlow in DecagramsPerSecond.
@@ -172,9 +182,19 @@ namespace UnitsNet
         public double DecagramsPerSecond => As(MassFlowUnit.DecagramPerSecond);
 
         /// <summary>
+        ///     Get MassFlow in DecigramsPerDay.
+        /// </summary>
+        public double DecigramsPerDay => As(MassFlowUnit.DecigramPerDay);
+
+        /// <summary>
         ///     Get MassFlow in DecigramsPerSecond.
         /// </summary>
         public double DecigramsPerSecond => As(MassFlowUnit.DecigramPerSecond);
+
+        /// <summary>
+        ///     Get MassFlow in GramsPerDay.
+        /// </summary>
+        public double GramsPerDay => As(MassFlowUnit.GramPerDay);
 
         /// <summary>
         ///     Get MassFlow in GramsPerSecond.
@@ -182,9 +202,19 @@ namespace UnitsNet
         public double GramsPerSecond => As(MassFlowUnit.GramPerSecond);
 
         /// <summary>
+        ///     Get MassFlow in HectogramsPerDay.
+        /// </summary>
+        public double HectogramsPerDay => As(MassFlowUnit.HectogramPerDay);
+
+        /// <summary>
         ///     Get MassFlow in HectogramsPerSecond.
         /// </summary>
         public double HectogramsPerSecond => As(MassFlowUnit.HectogramPerSecond);
+
+        /// <summary>
+        ///     Get MassFlow in KilogramsPerDay.
+        /// </summary>
+        public double KilogramsPerDay => As(MassFlowUnit.KilogramPerDay);
 
         /// <summary>
         ///     Get MassFlow in KilogramsPerHour.
@@ -202,6 +232,16 @@ namespace UnitsNet
         public double KilogramsPerSecond => As(MassFlowUnit.KilogramPerSecond);
 
         /// <summary>
+        ///     Get MassFlow in MegagramsPerDay.
+        /// </summary>
+        public double MegagramsPerDay => As(MassFlowUnit.MegagramPerDay);
+
+        /// <summary>
+        ///     Get MassFlow in MegapoundsPerDay.
+        /// </summary>
+        public double MegapoundsPerDay => As(MassFlowUnit.MegapoundPerDay);
+
+        /// <summary>
         ///     Get MassFlow in MegapoundsPerHour.
         /// </summary>
         public double MegapoundsPerHour => As(MassFlowUnit.MegapoundPerHour);
@@ -212,9 +252,19 @@ namespace UnitsNet
         public double MegapoundsPerMinute => As(MassFlowUnit.MegapoundPerMinute);
 
         /// <summary>
+        ///     Get MassFlow in MicrogramsPerDay.
+        /// </summary>
+        public double MicrogramsPerDay => As(MassFlowUnit.MicrogramPerDay);
+
+        /// <summary>
         ///     Get MassFlow in MicrogramsPerSecond.
         /// </summary>
         public double MicrogramsPerSecond => As(MassFlowUnit.MicrogramPerSecond);
+
+        /// <summary>
+        ///     Get MassFlow in MilligramsPerDay.
+        /// </summary>
+        public double MilligramsPerDay => As(MassFlowUnit.MilligramPerDay);
 
         /// <summary>
         ///     Get MassFlow in MilligramsPerSecond.
@@ -222,9 +272,19 @@ namespace UnitsNet
         public double MilligramsPerSecond => As(MassFlowUnit.MilligramPerSecond);
 
         /// <summary>
+        ///     Get MassFlow in NanogramsPerDay.
+        /// </summary>
+        public double NanogramsPerDay => As(MassFlowUnit.NanogramPerDay);
+
+        /// <summary>
         ///     Get MassFlow in NanogramsPerSecond.
         /// </summary>
         public double NanogramsPerSecond => As(MassFlowUnit.NanogramPerSecond);
+
+        /// <summary>
+        ///     Get MassFlow in PoundsPerDay.
+        /// </summary>
+        public double PoundsPerDay => As(MassFlowUnit.PoundPerDay);
 
         /// <summary>
         ///     Get MassFlow in PoundsPerHour.
@@ -282,6 +342,16 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get MassFlow from CentigramsPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromCentigramsPerDay(double centigramsperday)
+        {
+            double value = (double) centigramsperday;
+            return new MassFlow(value, MassFlowUnit.CentigramPerDay);
+        }
+        /// <summary>
         ///     Get MassFlow from CentigramsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -290,6 +360,16 @@ namespace UnitsNet
         {
             double value = (double) centigramspersecond;
             return new MassFlow(value, MassFlowUnit.CentigramPerSecond);
+        }
+        /// <summary>
+        ///     Get MassFlow from DecagramsPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromDecagramsPerDay(double decagramsperday)
+        {
+            double value = (double) decagramsperday;
+            return new MassFlow(value, MassFlowUnit.DecagramPerDay);
         }
         /// <summary>
         ///     Get MassFlow from DecagramsPerSecond.
@@ -302,6 +382,16 @@ namespace UnitsNet
             return new MassFlow(value, MassFlowUnit.DecagramPerSecond);
         }
         /// <summary>
+        ///     Get MassFlow from DecigramsPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromDecigramsPerDay(double decigramsperday)
+        {
+            double value = (double) decigramsperday;
+            return new MassFlow(value, MassFlowUnit.DecigramPerDay);
+        }
+        /// <summary>
         ///     Get MassFlow from DecigramsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -310,6 +400,16 @@ namespace UnitsNet
         {
             double value = (double) decigramspersecond;
             return new MassFlow(value, MassFlowUnit.DecigramPerSecond);
+        }
+        /// <summary>
+        ///     Get MassFlow from GramsPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromGramsPerDay(double gramsperday)
+        {
+            double value = (double) gramsperday;
+            return new MassFlow(value, MassFlowUnit.GramPerDay);
         }
         /// <summary>
         ///     Get MassFlow from GramsPerSecond.
@@ -322,6 +422,16 @@ namespace UnitsNet
             return new MassFlow(value, MassFlowUnit.GramPerSecond);
         }
         /// <summary>
+        ///     Get MassFlow from HectogramsPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromHectogramsPerDay(double hectogramsperday)
+        {
+            double value = (double) hectogramsperday;
+            return new MassFlow(value, MassFlowUnit.HectogramPerDay);
+        }
+        /// <summary>
         ///     Get MassFlow from HectogramsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -330,6 +440,16 @@ namespace UnitsNet
         {
             double value = (double) hectogramspersecond;
             return new MassFlow(value, MassFlowUnit.HectogramPerSecond);
+        }
+        /// <summary>
+        ///     Get MassFlow from KilogramsPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromKilogramsPerDay(double kilogramsperday)
+        {
+            double value = (double) kilogramsperday;
+            return new MassFlow(value, MassFlowUnit.KilogramPerDay);
         }
         /// <summary>
         ///     Get MassFlow from KilogramsPerHour.
@@ -362,6 +482,26 @@ namespace UnitsNet
             return new MassFlow(value, MassFlowUnit.KilogramPerSecond);
         }
         /// <summary>
+        ///     Get MassFlow from MegagramsPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromMegagramsPerDay(double megagramsperday)
+        {
+            double value = (double) megagramsperday;
+            return new MassFlow(value, MassFlowUnit.MegagramPerDay);
+        }
+        /// <summary>
+        ///     Get MassFlow from MegapoundsPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromMegapoundsPerDay(double megapoundsperday)
+        {
+            double value = (double) megapoundsperday;
+            return new MassFlow(value, MassFlowUnit.MegapoundPerDay);
+        }
+        /// <summary>
         ///     Get MassFlow from MegapoundsPerHour.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -382,6 +522,16 @@ namespace UnitsNet
             return new MassFlow(value, MassFlowUnit.MegapoundPerMinute);
         }
         /// <summary>
+        ///     Get MassFlow from MicrogramsPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromMicrogramsPerDay(double microgramsperday)
+        {
+            double value = (double) microgramsperday;
+            return new MassFlow(value, MassFlowUnit.MicrogramPerDay);
+        }
+        /// <summary>
         ///     Get MassFlow from MicrogramsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -390,6 +540,16 @@ namespace UnitsNet
         {
             double value = (double) microgramspersecond;
             return new MassFlow(value, MassFlowUnit.MicrogramPerSecond);
+        }
+        /// <summary>
+        ///     Get MassFlow from MilligramsPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromMilligramsPerDay(double milligramsperday)
+        {
+            double value = (double) milligramsperday;
+            return new MassFlow(value, MassFlowUnit.MilligramPerDay);
         }
         /// <summary>
         ///     Get MassFlow from MilligramsPerSecond.
@@ -402,6 +562,16 @@ namespace UnitsNet
             return new MassFlow(value, MassFlowUnit.MilligramPerSecond);
         }
         /// <summary>
+        ///     Get MassFlow from NanogramsPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromNanogramsPerDay(double nanogramsperday)
+        {
+            double value = (double) nanogramsperday;
+            return new MassFlow(value, MassFlowUnit.NanogramPerDay);
+        }
+        /// <summary>
         ///     Get MassFlow from NanogramsPerSecond.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -410,6 +580,16 @@ namespace UnitsNet
         {
             double value = (double) nanogramspersecond;
             return new MassFlow(value, MassFlowUnit.NanogramPerSecond);
+        }
+        /// <summary>
+        ///     Get MassFlow from PoundsPerDay.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static MassFlow FromPoundsPerDay(double poundsperday)
+        {
+            double value = (double) poundsperday;
+            return new MassFlow(value, MassFlowUnit.PoundPerDay);
         }
         /// <summary>
         ///     Get MassFlow from PoundsPerHour.
@@ -750,19 +930,31 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case MassFlowUnit.CentigramPerDay: return (_value/86400) * 1e-2d;
                 case MassFlowUnit.CentigramPerSecond: return (_value) * 1e-2d;
+                case MassFlowUnit.DecagramPerDay: return (_value/86400) * 1e1d;
                 case MassFlowUnit.DecagramPerSecond: return (_value) * 1e1d;
+                case MassFlowUnit.DecigramPerDay: return (_value/86400) * 1e-1d;
                 case MassFlowUnit.DecigramPerSecond: return (_value) * 1e-1d;
+                case MassFlowUnit.GramPerDay: return _value/86400;
                 case MassFlowUnit.GramPerSecond: return _value;
+                case MassFlowUnit.HectogramPerDay: return (_value/86400) * 1e2d;
                 case MassFlowUnit.HectogramPerSecond: return (_value) * 1e2d;
+                case MassFlowUnit.KilogramPerDay: return (_value/86400) * 1e3d;
                 case MassFlowUnit.KilogramPerHour: return _value/3.6;
                 case MassFlowUnit.KilogramPerMinute: return _value/0.06;
                 case MassFlowUnit.KilogramPerSecond: return (_value) * 1e3d;
+                case MassFlowUnit.MegagramPerDay: return (_value/86400) * 1e6d;
+                case MassFlowUnit.MegapoundPerDay: return (_value/190.47936) * 1e6d;
                 case MassFlowUnit.MegapoundPerHour: return (_value/7.93664) * 1e6d;
                 case MassFlowUnit.MegapoundPerMinute: return (_value/0.132277) * 1e6d;
+                case MassFlowUnit.MicrogramPerDay: return (_value/86400) * 1e-6d;
                 case MassFlowUnit.MicrogramPerSecond: return (_value) * 1e-6d;
+                case MassFlowUnit.MilligramPerDay: return (_value/86400) * 1e-3d;
                 case MassFlowUnit.MilligramPerSecond: return (_value) * 1e-3d;
+                case MassFlowUnit.NanogramPerDay: return (_value/86400) * 1e-9d;
                 case MassFlowUnit.NanogramPerSecond: return (_value) * 1e-9d;
+                case MassFlowUnit.PoundPerDay: return _value/190.47936;
                 case MassFlowUnit.PoundPerHour: return _value/7.93664;
                 case MassFlowUnit.PoundPerMinute: return _value/0.132277;
                 case MassFlowUnit.ShortTonPerHour: return _value*251.9957611;
@@ -782,19 +974,31 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case MassFlowUnit.CentigramPerDay: return (baseUnitValue*86400) / 1e-2d;
                 case MassFlowUnit.CentigramPerSecond: return (baseUnitValue) / 1e-2d;
+                case MassFlowUnit.DecagramPerDay: return (baseUnitValue*86400) / 1e1d;
                 case MassFlowUnit.DecagramPerSecond: return (baseUnitValue) / 1e1d;
+                case MassFlowUnit.DecigramPerDay: return (baseUnitValue*86400) / 1e-1d;
                 case MassFlowUnit.DecigramPerSecond: return (baseUnitValue) / 1e-1d;
+                case MassFlowUnit.GramPerDay: return baseUnitValue*86400;
                 case MassFlowUnit.GramPerSecond: return baseUnitValue;
+                case MassFlowUnit.HectogramPerDay: return (baseUnitValue*86400) / 1e2d;
                 case MassFlowUnit.HectogramPerSecond: return (baseUnitValue) / 1e2d;
+                case MassFlowUnit.KilogramPerDay: return (baseUnitValue*86400) / 1e3d;
                 case MassFlowUnit.KilogramPerHour: return baseUnitValue*3.6;
                 case MassFlowUnit.KilogramPerMinute: return baseUnitValue*0.06;
                 case MassFlowUnit.KilogramPerSecond: return (baseUnitValue) / 1e3d;
+                case MassFlowUnit.MegagramPerDay: return (baseUnitValue*86400) / 1e6d;
+                case MassFlowUnit.MegapoundPerDay: return (baseUnitValue*190.47936) / 1e6d;
                 case MassFlowUnit.MegapoundPerHour: return (baseUnitValue*7.93664) / 1e6d;
                 case MassFlowUnit.MegapoundPerMinute: return (baseUnitValue*0.132277) / 1e6d;
+                case MassFlowUnit.MicrogramPerDay: return (baseUnitValue*86400) / 1e-6d;
                 case MassFlowUnit.MicrogramPerSecond: return (baseUnitValue) / 1e-6d;
+                case MassFlowUnit.MilligramPerDay: return (baseUnitValue*86400) / 1e-3d;
                 case MassFlowUnit.MilligramPerSecond: return (baseUnitValue) / 1e-3d;
+                case MassFlowUnit.NanogramPerDay: return (baseUnitValue*86400) / 1e-9d;
                 case MassFlowUnit.NanogramPerSecond: return (baseUnitValue) / 1e-9d;
+                case MassFlowUnit.PoundPerDay: return baseUnitValue*190.47936;
                 case MassFlowUnit.PoundPerHour: return baseUnitValue*7.93664;
                 case MassFlowUnit.PoundPerMinute: return baseUnitValue*0.132277;
                 case MassFlowUnit.ShortTonPerHour: return baseUnitValue/251.9957611;

@@ -44,7 +44,19 @@ namespace UnitsNet.Units
     public enum IrradianceUnit
     {
         Undefined = 0,
+        KilowattPerSquareCentimeter,
         KilowattPerSquareMeter,
+        MegawattPerSquareCentimeter,
+        MegawattPerSquareMeter,
+        MicrowattPerSquareCentimeter,
+        MicrowattPerSquareMeter,
+        MilliwattPerSquareCentimeter,
+        MilliwattPerSquareMeter,
+        NanowattPerSquareCentimeter,
+        NanowattPerSquareMeter,
+        PicowattPerSquareCentimeter,
+        PicowattPerSquareMeter,
+        WattPerSquareCentimeter,
         WattPerSquareMeter,
     }
 

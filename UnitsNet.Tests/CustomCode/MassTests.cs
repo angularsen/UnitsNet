@@ -33,6 +33,8 @@ namespace UnitsNet.Tests.CustomCode
 
         protected override double DecigramsInOneKilogram => 1E4;
 
+        protected override double GrainsInOneKilogram => 15432.358352941431d;
+
         protected override double GramsInOneKilogram => 1E3;
 
         protected override double HectogramsInOneKilogram => 10;

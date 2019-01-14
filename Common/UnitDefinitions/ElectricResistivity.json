@@ -15,11 +15,24 @@
       "PluralName": "OhmMeters",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
-      "Prefixes": [ "Nano", "Micro", "Milli" ],
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
       "Localization": [
         {
           "Culture": "en-US",
           "Abbreviations": [ "Ω·m" ]
+        }
+      ]
+    },
+    {
+      "SingularName": "OhmCentimeter",
+      "PluralName": "OhmsCentimeter",
+      "FromUnitToBaseFunc": "x/100",
+      "FromBaseToUnitFunc": "x*100",
+      "Prefixes": [ "Pico", "Nano", "Micro", "Milli", "Kilo", "Mega" ],
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "Ω·cm" ]
         }
       ]
     }

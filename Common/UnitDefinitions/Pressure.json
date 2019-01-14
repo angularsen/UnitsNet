@@ -328,6 +328,18 @@
           "Abbreviations": [ "lbm/(in·s²)", "lb/(in·s²)" ]
         }
       ]
+    },
+    {
+      "SingularName": "InchOfWaterColumn",
+      "PluralName": "InchesOfWaterColumn",
+      "FromUnitToBaseFunc": "x*249.08890833333",
+      "FromBaseToUnitFunc": "x/249.08890833333",
+      "Localization": [
+        {
+          "Culture": "en-US",
+          "Abbreviations": [ "wc" ]
+        }
+      ]
     }
   ]
 }

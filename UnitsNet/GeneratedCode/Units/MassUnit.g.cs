@@ -47,6 +47,12 @@ namespace UnitsNet.Units
         Centigram,
         Decagram,
         Decigram,
+
+        /// <summary>
+        ///     A grain is a unit of measurement of mass, and in the troy weight, avoirdupois, and Apothecaries' system, equal to exactly 64.79891 milligrams.
+        /// </summary>
+        /// <remarks>https://en.wikipedia.org/wiki/Grain_(unit)</remarks>
+        Grain,
         Gram,
         Hectogram,
         Kilogram,

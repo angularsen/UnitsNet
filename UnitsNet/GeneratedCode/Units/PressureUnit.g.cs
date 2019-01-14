@@ -54,6 +54,7 @@ namespace UnitsNet.Units
         Gigapascal,
         Hectopascal,
         InchOfMercury,
+        InchOfWaterColumn,
         Kilobar,
         KilogramForcePerSquareCentimeter,
         KilogramForcePerSquareMeter,
