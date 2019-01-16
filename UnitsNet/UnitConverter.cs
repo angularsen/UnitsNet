@@ -386,7 +386,7 @@ namespace UnitsNet
         {
             unitValue = null;
             var eNames = Enum.GetNames(unitType);
-            unitName = eNames.FirstOrDefault(x => x.Equals(unitName, StringComparison.InvariantCultureIgnoreCase));
+            unitName = eNames.FirstOrDefault(x => x.Equals(unitName, StringComparison.OrdinalIgnoreCase));
             if(unitName is null)
                 return false;
 
@@ -405,7 +405,7 @@ namespace UnitsNet
         {
             quantityName += "Unit";
             unitType = QuantityTypes.FirstOrDefault(x => 
-                x.Name.Equals(quantityName, StringComparison.InvariantCultureIgnoreCase));
+                x.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
 
             if(unitType == null)
                 return false;
@@ -419,7 +419,7 @@ namespace UnitsNet
 
         private static bool TryGetQuantityType(string quantityName, out Type quantityType)
         {
-            quantityType = QuantityTypes.FirstOrDefault(x => x.Name.Equals(quantityName, StringComparison.InvariantCultureIgnoreCase));
+            quantityType = QuantityTypes.FirstOrDefault(x => x.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
             
             if(quantityType == null)
                 return false;

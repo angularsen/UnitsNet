@@ -64,7 +64,7 @@ namespace UnitsNet
         internal List<int> GetUnitsForAbbreviation(string abbreviation)
         {
             return abbreviationToUnitMap
-                .Where(x => x.Key.Equals(abbreviation, StringComparison.InvariantCultureIgnoreCase))
+                .Where(x => x.Key.Equals(abbreviation, StringComparison.OrdinalIgnoreCase))
                 .SelectMany(x => x.Value).Distinct().ToList();
         }
 
