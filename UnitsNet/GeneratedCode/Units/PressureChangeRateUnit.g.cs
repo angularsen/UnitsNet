@@ -45,8 +45,11 @@ namespace UnitsNet.Units
     {
         Undefined = 0,
         AtmospherePerSecond,
+        KilopascalPerMinute,
         KilopascalPerSecond,
+        MegapascalPerMinute,
         MegapascalPerSecond,
+        PascalPerMinute,
         PascalPerSecond,
     }
 
