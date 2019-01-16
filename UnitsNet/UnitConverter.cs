@@ -397,7 +397,7 @@ namespace UnitsNet
             return true;
         }
 
-        private static List<Type> UnitTypes = UnitsNetAssembly.ExportedTypes
+        private static List<Type> UnitTypes = UnitsNetAssembly.GetTypes()
             .Where(x => x.FullName.StartsWith(UnitTypeNamespace))
             .ToList();
 
@@ -413,7 +413,7 @@ namespace UnitsNet
             return true;
         }
 
-        private static List<Type> QuantityTypes = UnitsNetAssembly.ExportedTypes
+        private static List<Type> QuantityTypes = UnitsNetAssembly.GetTypes()
             .Where(x => x.FullName.StartsWith(QuantityNamespace))
             .ToList();
 
