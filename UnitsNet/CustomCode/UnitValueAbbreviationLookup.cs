@@ -63,10 +63,9 @@ namespace UnitsNet
 
         internal List<int> GetUnitsForAbbreviation(string abbreviation)
         {
-            if(!abbreviationToUnitMap.TryGetValue(abbreviation, out var units))
-                abbreviationToUnitMap[abbreviation] = units = new List<int>();
-
-            return units.Distinct().ToList();
+            return abbreviationToUnitMap
+                .Where(x => x.Key.Equals(abbreviation, StringComparison.InvariantCultureIgnoreCase))
+                .SelectMany(x => x.Value).Distinct().ToList();
         }
 
         internal void Add(int unit, string abbreviation, bool setAsDefault = false)

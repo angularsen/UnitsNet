@@ -42,6 +42,23 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Parse_AbbreviationCaseInsensitive()
+        {
+            var abbreviation = "years";
+            var expected = DurationUnit.Year365;
+            var parser = UnitParser.Default;
+
+            var actual = parser.Parse<DurationUnit>(abbreviation);
+
+            Assert.Equal(expected, actual);
+
+            abbreviation = "Years";
+            actual = parser.Parse<DurationUnit>(abbreviation);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void Parse_UnknownAbbreviationThrowsUnitNotFoundException()
         {
             Assert.Throws<UnitNotFoundException>(() => UnitParser.Default.Parse<AreaUnit>("nonexistingunit"));

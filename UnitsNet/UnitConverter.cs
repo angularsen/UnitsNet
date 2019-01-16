@@ -20,6 +20,7 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
@@ -384,8 +385,9 @@ namespace UnitsNet
         private static bool TryParseUnit(Type unitType, string unitName, out object unitValue)
         {
             unitValue = null;
-
-            if(!Enum.IsDefined(unitType, unitName))
+            var eNames = Enum.GetNames(unitType);
+            unitName = eNames.FirstOrDefault(x => x.Equals(unitName, StringComparison.InvariantCultureIgnoreCase));
+            if(unitName is null)
                 return false;
 
             unitValue = Enum.Parse(unitType, unitName);
@@ -395,22 +397,30 @@ namespace UnitsNet
             return true;
         }
 
+        private static List<Type> UnitTypes = UnitsNetAssembly.ExportedTypes
+            .Where(x => x.FullName.StartsWith(UnitTypeNamespace))
+            .ToList();
+
         private static bool TryGetUnitType(string quantityName, out Type unitType)
         {
-            string unitTypeName = $"{UnitTypeNamespace}.{quantityName}Unit";
+            quantityName += "Unit";
+            unitType = QuantityTypes.FirstOrDefault(x => 
+                x.Name.Equals(quantityName, StringComparison.InvariantCultureIgnoreCase));
 
-            unitType = UnitsNetAssembly.GetType(unitTypeName); // ex: UnitsNet.Units.LengthUnit enum
             if(unitType == null)
                 return false;
 
             return true;
         }
 
+        private static List<Type> QuantityTypes = UnitsNetAssembly.ExportedTypes
+            .Where(x => x.FullName.StartsWith(QuantityNamespace))
+            .ToList();
+
         private static bool TryGetQuantityType(string quantityName, out Type quantityType)
         {
-            string quantityTypeName = $"{QuantityNamespace}.{quantityName}";
-
-            quantityType = UnitsNetAssembly.GetType(quantityTypeName); // ex: UnitsNet.Length struct
+            quantityType = QuantityTypes.FirstOrDefault(x => x.Name.Equals(quantityName, StringComparison.InvariantCultureIgnoreCase));
+            
             if(quantityType == null)
                 return false;
 
