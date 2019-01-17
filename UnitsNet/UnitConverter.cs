@@ -45,6 +45,14 @@ namespace UnitsNet
         private static readonly string UnitTypeNamespace = typeof(LengthUnit).Namespace;
         private static readonly Assembly UnitsNetAssembly = typeof(Length).GetAssembly();
 
+        private static readonly List<Type> QuantityTypes = UnitsNetAssembly.GetTypes()
+            .Where(x => x.FullName.StartsWith(QuantityNamespace))
+            .ToList();
+
+        private static readonly List<Type> UnitTypes = UnitsNetAssembly.GetTypes()
+            .Where(x => x.FullName.StartsWith(UnitTypeNamespace))
+            .ToList();
+
         /// <summary>
         ///     Convert between any two quantity units by their names, such as converting a "Length" of N "Meter" to "Centimeter".
         ///     This is particularly useful for creating things like a generated unit conversion UI,
@@ -387,7 +395,7 @@ namespace UnitsNet
             unitValue = null;
             var eNames = Enum.GetNames(unitType);
             unitName = eNames.FirstOrDefault(x => x.Equals(unitName, StringComparison.OrdinalIgnoreCase));
-            if(unitName is null)
+            if(unitName == null)
                 return false;
 
             unitValue = Enum.Parse(unitType, unitName);
@@ -397,14 +405,10 @@ namespace UnitsNet
             return true;
         }
 
-        private static List<Type> UnitTypes = UnitsNetAssembly.GetTypes()
-            .Where(x => x.FullName.StartsWith(UnitTypeNamespace))
-            .ToList();
-
         private static bool TryGetUnitType(string quantityName, out Type unitType)
         {
             quantityName += "Unit";
-            unitType = QuantityTypes.FirstOrDefault(x => 
+            unitType = UnitTypes.FirstOrDefault(x => 
                 x.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
 
             if(unitType == null)
@@ -412,10 +416,6 @@ namespace UnitsNet
 
             return true;
         }
-
-        private static List<Type> QuantityTypes = UnitsNetAssembly.GetTypes()
-            .Where(x => x.FullName.StartsWith(QuantityNamespace))
-            .ToList();
 
         private static bool TryGetQuantityType(string quantityName, out Type quantityType)
         {

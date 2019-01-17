@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -65,7 +65,9 @@ namespace UnitsNet
         {
             return abbreviationToUnitMap
                 .Where(x => x.Key.Equals(abbreviation, StringComparison.OrdinalIgnoreCase))
-                .SelectMany(x => x.Value).Distinct().ToList();
+                .SelectMany(x => x.Value)
+                .Distinct()
+                .ToList();
         }
 
         internal void Add(int unit, string abbreviation, bool setAsDefault = false)
