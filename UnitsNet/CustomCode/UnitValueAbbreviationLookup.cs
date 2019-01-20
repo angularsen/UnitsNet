@@ -63,20 +63,22 @@ namespace UnitsNet
 
         internal List<int> GetUnitsForAbbreviation(string abbreviation)
         {
-            return abbreviationToUnitMap
-                .Where(x => x.Key.Equals(abbreviation, StringComparison.OrdinalIgnoreCase))
-                .SelectMany(x => x.Value)
-                .Distinct()
-                .ToList();
+            abbreviation = abbreviation.ToLower();
+            if(!abbreviationToUnitMap.TryGetValue(abbreviation, out var units))
+                abbreviationToUnitMap[abbreviation] = units = new List<int>();
+
+            return units.Distinct().ToList();
         }
 
         internal void Add(int unit, string abbreviation, bool setAsDefault = false)
         {
+            // abbreviation = abbreviation.ToLower();
+            var lower = abbreviation.ToLower();
             if(!unitToAbbreviationMap.TryGetValue(unit, out var abbreviationsForUnit))
                 abbreviationsForUnit = unitToAbbreviationMap[unit] = new List<string>();
 
-            if(!abbreviationToUnitMap.TryGetValue(abbreviation, out var unitsForAbbreviation))
-                abbreviationToUnitMap[abbreviation] = unitsForAbbreviation = new List<int>();
+            if(!abbreviationToUnitMap.TryGetValue(lower, out var unitsForAbbreviation))
+                abbreviationToUnitMap[lower] = unitsForAbbreviation = new List<int>();
 
             abbreviationsForUnit.Remove(abbreviation);
             unitsForAbbreviation.Remove(unit);

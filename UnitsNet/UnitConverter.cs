@@ -45,13 +45,13 @@ namespace UnitsNet
         private static readonly string UnitTypeNamespace = typeof(LengthUnit).Namespace;
         private static readonly Assembly UnitsNetAssembly = typeof(Length).GetAssembly();
 
-        private static readonly List<Type> QuantityTypes = UnitsNetAssembly.GetTypes()
+        private static readonly Type[] QuantityTypes = UnitsNetAssembly.GetTypes()
             .Where(x => x.FullName.StartsWith(QuantityNamespace))
-            .ToList();
+            .ToArray();
 
-        private static readonly List<Type> UnitTypes = UnitsNetAssembly.GetTypes()
+        private static readonly Type[] UnitTypes = UnitsNetAssembly.GetTypes()
             .Where(x => x.FullName.StartsWith(UnitTypeNamespace))
-            .ToList();
+            .ToArray();
 
         /// <summary>
         ///     Convert between any two quantity units by their names, such as converting a "Length" of N "Meter" to "Centimeter".
