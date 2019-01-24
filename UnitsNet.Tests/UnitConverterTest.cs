@@ -19,12 +19,22 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests
 {
     public class UnitConverterTest
     {
+        [Fact]
+        public void CustomVersionFunctionWorks()
+        {
+            UnitsNet.ConversionFunction conversionFunction = ( from ) => Length.FromInches( 18 );
+            UnitConverter.Default.AddConversionFunction( LengthUnit.Meter, LengthUnit.Inch, conversionFunction );
+            var converter = UnitConverter.Default.GetConversionFunction( LengthUnit.Meter, LengthUnit.Inch );
+            var converted = converter( Length.FromMeters( 1.0 ) );
+        }
+
         [Theory]
         [InlineData(0, 0, "Length", "Meter", "Centimeter")]
         [InlineData(100, 1, "Length", "Meter", "Centimeter")]

@@ -20,29 +20,65 @@
 // THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+
 #if WINDOWS_UWP
-using Culture = System.String;
-using FromValue = System.Double;
+    using FromValue = System.Double;
 #else
-using Culture = System.IFormatProvider;
-using FromValue = UnitsNet.QuantityValue;
+    using FromValue = UnitsNet.QuantityValue;
 #endif
 
 namespace UnitsNet
 {
+    using FromToPair = ValueTuple<Enum, Enum>;
+
+    public delegate IQuantity ConversionFunction( IQuantity value );
+
     /// <summary>
     ///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
     /// </summary>
-    public static class UnitConverter
+    public sealed class UnitConverter
     {
+        public static UnitConverter Default { get; }
+
         private static readonly string QuantityNamespace = typeof(Length).Namespace;
         private static readonly string UnitTypeNamespace = typeof(LengthUnit).Namespace;
         private static readonly Assembly UnitsNetAssembly = typeof(Length).GetAssembly();
+
+        private Dictionary<FromToPair, ConversionFunction> conversionFunctions;
+
+        public UnitConverter()
+        {
+            conversionFunctions = new Dictionary<FromToPair, ConversionFunction>();
+        }
+
+        public void AddConversionFunction( Enum from, Enum to, ConversionFunction conversionFunction )
+        {
+            var fromTo = new FromToPair( from, to );
+            conversionFunctions.Add( fromTo, conversionFunction );
+        }
+
+        public ConversionFunction GetConversionFunction( Enum from, Enum to )
+        {
+            var fromTo = new FromToPair( from, to );
+            return conversionFunctions[ fromTo ];
+        }
+
+        public bool TryGetConversionFunction( Enum from, Enum to, out ConversionFunction conversionFunction )
+        {
+            var fromTo = new FromToPair( from, to );
+            return conversionFunctions.TryGetValue( fromTo, out conversionFunction );
+        }
+
+        static UnitConverter()
+        {
+            Default = new UnitConverter();
+        }
 
         /// <summary>
         ///     Convert between any two quantity units by their names, such as converting a "Length" of N "Meter" to "Centimeter".
