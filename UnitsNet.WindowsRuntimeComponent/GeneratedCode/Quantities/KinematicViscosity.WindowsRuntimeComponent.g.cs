@@ -599,18 +599,26 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal KinematicViscosity AsBaseUnit()
         {
             switch(Unit)
             {
-                case KinematicViscosityUnit.Centistokes: return (_value/1e4) * 1e-2d;
-                case KinematicViscosityUnit.Decistokes: return (_value/1e4) * 1e-1d;
-                case KinematicViscosityUnit.Kilostokes: return (_value/1e4) * 1e3d;
-                case KinematicViscosityUnit.Microstokes: return (_value/1e4) * 1e-6d;
-                case KinematicViscosityUnit.Millistokes: return (_value/1e4) * 1e-3d;
-                case KinematicViscosityUnit.Nanostokes: return (_value/1e4) * 1e-9d;
-                case KinematicViscosityUnit.SquareMeterPerSecond: return _value;
-                case KinematicViscosityUnit.Stokes: return _value/1e4;
+                case KinematicViscosityUnit.Centistokes:
+                    return new KinematicViscosity((_value/1e4) * 1e-2d, BaseUnit);
+                case KinematicViscosityUnit.Decistokes:
+                    return new KinematicViscosity((_value/1e4) * 1e-1d, BaseUnit);
+                case KinematicViscosityUnit.Kilostokes:
+                    return new KinematicViscosity((_value/1e4) * 1e3d, BaseUnit);
+                case KinematicViscosityUnit.Microstokes:
+                    return new KinematicViscosity((_value/1e4) * 1e-6d, BaseUnit);
+                case KinematicViscosityUnit.Millistokes:
+                    return new KinematicViscosity((_value/1e4) * 1e-3d, BaseUnit);
+                case KinematicViscosityUnit.Nanostokes:
+                    return new KinematicViscosity((_value/1e4) * 1e-9d, BaseUnit);
+                case KinematicViscosityUnit.SquareMeterPerSecond:
+                    return new KinematicViscosity(_value, BaseUnit);
+                case KinematicViscosityUnit.Stokes:
+                    return new KinematicViscosity(_value/1e4, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -621,7 +629,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

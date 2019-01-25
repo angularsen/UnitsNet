@@ -764,27 +764,44 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal SpecificWeight AsBaseUnit()
         {
             switch(Unit)
             {
-                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return _value*9.80665e6;
-                case SpecificWeightUnit.KilogramForcePerCubicMeter: return _value*9.80665;
-                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return _value*9.80665e9;
-                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (_value*1000000) * 1e3d;
-                case SpecificWeightUnit.KilonewtonPerCubicMeter: return (_value) * 1e3d;
-                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (_value*1000000000) * 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (_value*1.570874638462462e2) * 1e3d;
-                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (_value*2.714471375263134e5) * 1e3d;
-                case SpecificWeightUnit.MeganewtonPerCubicMeter: return (_value) * 1e6d;
-                case SpecificWeightUnit.NewtonPerCubicCentimeter: return _value*1000000;
-                case SpecificWeightUnit.NewtonPerCubicMeter: return _value;
-                case SpecificWeightUnit.NewtonPerCubicMillimeter: return _value*1000000000;
-                case SpecificWeightUnit.PoundForcePerCubicFoot: return _value*1.570874638462462e2;
-                case SpecificWeightUnit.PoundForcePerCubicInch: return _value*2.714471375263134e5;
-                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return _value*9.80665e9;
-                case SpecificWeightUnit.TonneForcePerCubicMeter: return _value*9.80665e3;
-                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return _value*9.80665e12;
+                case SpecificWeightUnit.KilogramForcePerCubicCentimeter:
+                    return new SpecificWeight(_value*9.80665e6, BaseUnit);
+                case SpecificWeightUnit.KilogramForcePerCubicMeter:
+                    return new SpecificWeight(_value*9.80665, BaseUnit);
+                case SpecificWeightUnit.KilogramForcePerCubicMillimeter:
+                    return new SpecificWeight(_value*9.80665e9, BaseUnit);
+                case SpecificWeightUnit.KilonewtonPerCubicCentimeter:
+                    return new SpecificWeight((_value*1000000) * 1e3d, BaseUnit);
+                case SpecificWeightUnit.KilonewtonPerCubicMeter:
+                    return new SpecificWeight((_value) * 1e3d, BaseUnit);
+                case SpecificWeightUnit.KilonewtonPerCubicMillimeter:
+                    return new SpecificWeight((_value*1000000000) * 1e3d, BaseUnit);
+                case SpecificWeightUnit.KilopoundForcePerCubicFoot:
+                    return new SpecificWeight((_value*1.570874638462462e2) * 1e3d, BaseUnit);
+                case SpecificWeightUnit.KilopoundForcePerCubicInch:
+                    return new SpecificWeight((_value*2.714471375263134e5) * 1e3d, BaseUnit);
+                case SpecificWeightUnit.MeganewtonPerCubicMeter:
+                    return new SpecificWeight((_value) * 1e6d, BaseUnit);
+                case SpecificWeightUnit.NewtonPerCubicCentimeter:
+                    return new SpecificWeight(_value*1000000, BaseUnit);
+                case SpecificWeightUnit.NewtonPerCubicMeter:
+                    return new SpecificWeight(_value, BaseUnit);
+                case SpecificWeightUnit.NewtonPerCubicMillimeter:
+                    return new SpecificWeight(_value*1000000000, BaseUnit);
+                case SpecificWeightUnit.PoundForcePerCubicFoot:
+                    return new SpecificWeight(_value*1.570874638462462e2, BaseUnit);
+                case SpecificWeightUnit.PoundForcePerCubicInch:
+                    return new SpecificWeight(_value*2.714471375263134e5, BaseUnit);
+                case SpecificWeightUnit.TonneForcePerCubicCentimeter:
+                    return new SpecificWeight(_value*9.80665e9, BaseUnit);
+                case SpecificWeightUnit.TonneForcePerCubicMeter:
+                    return new SpecificWeight(_value*9.80665e3, BaseUnit);
+                case SpecificWeightUnit.TonneForcePerCubicMillimeter:
+                    return new SpecificWeight(_value*9.80665e12, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -795,7 +812,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

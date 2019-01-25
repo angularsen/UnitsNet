@@ -652,19 +652,28 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal SpecificEnergy AsBaseUnit()
         {
             switch(Unit)
             {
-                case SpecificEnergyUnit.BtuPerPound: return _value*2326.000075362;
-                case SpecificEnergyUnit.CaloriePerGram: return _value*4.184e3;
-                case SpecificEnergyUnit.JoulePerKilogram: return _value;
-                case SpecificEnergyUnit.KilocaloriePerGram: return (_value*4.184e3) * 1e3d;
-                case SpecificEnergyUnit.KilojoulePerKilogram: return (_value) * 1e3d;
-                case SpecificEnergyUnit.KilowattHourPerKilogram: return (_value*3.6e3) * 1e3d;
-                case SpecificEnergyUnit.MegajoulePerKilogram: return (_value) * 1e6d;
-                case SpecificEnergyUnit.MegawattHourPerKilogram: return (_value*3.6e3) * 1e6d;
-                case SpecificEnergyUnit.WattHourPerKilogram: return _value*3.6e3;
+                case SpecificEnergyUnit.BtuPerPound:
+                    return new SpecificEnergy(_value*2326.000075362, BaseUnit);
+                case SpecificEnergyUnit.CaloriePerGram:
+                    return new SpecificEnergy(_value*4.184e3, BaseUnit);
+                case SpecificEnergyUnit.JoulePerKilogram:
+                    return new SpecificEnergy(_value, BaseUnit);
+                case SpecificEnergyUnit.KilocaloriePerGram:
+                    return new SpecificEnergy((_value*4.184e3) * 1e3d, BaseUnit);
+                case SpecificEnergyUnit.KilojoulePerKilogram:
+                    return new SpecificEnergy((_value) * 1e3d, BaseUnit);
+                case SpecificEnergyUnit.KilowattHourPerKilogram:
+                    return new SpecificEnergy((_value*3.6e3) * 1e3d, BaseUnit);
+                case SpecificEnergyUnit.MegajoulePerKilogram:
+                    return new SpecificEnergy((_value) * 1e6d, BaseUnit);
+                case SpecificEnergyUnit.MegawattHourPerKilogram:
+                    return new SpecificEnergy((_value*3.6e3) * 1e6d, BaseUnit);
+                case SpecificEnergyUnit.WattHourPerKilogram:
+                    return new SpecificEnergy(_value*3.6e3, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -675,7 +684,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

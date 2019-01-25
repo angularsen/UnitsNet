@@ -686,24 +686,38 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Irradiance AsBaseUnit()
         {
             switch(Unit)
             {
-                case IrradianceUnit.KilowattPerSquareCentimeter: return (_value*10000) * 1e3d;
-                case IrradianceUnit.KilowattPerSquareMeter: return (_value) * 1e3d;
-                case IrradianceUnit.MegawattPerSquareCentimeter: return (_value*10000) * 1e6d;
-                case IrradianceUnit.MegawattPerSquareMeter: return (_value) * 1e6d;
-                case IrradianceUnit.MicrowattPerSquareCentimeter: return (_value*10000) * 1e-6d;
-                case IrradianceUnit.MicrowattPerSquareMeter: return (_value) * 1e-6d;
-                case IrradianceUnit.MilliwattPerSquareCentimeter: return (_value*10000) * 1e-3d;
-                case IrradianceUnit.MilliwattPerSquareMeter: return (_value) * 1e-3d;
-                case IrradianceUnit.NanowattPerSquareCentimeter: return (_value*10000) * 1e-9d;
-                case IrradianceUnit.NanowattPerSquareMeter: return (_value) * 1e-9d;
-                case IrradianceUnit.PicowattPerSquareCentimeter: return (_value*10000) * 1e-12d;
-                case IrradianceUnit.PicowattPerSquareMeter: return (_value) * 1e-12d;
-                case IrradianceUnit.WattPerSquareCentimeter: return _value*10000;
-                case IrradianceUnit.WattPerSquareMeter: return _value;
+                case IrradianceUnit.KilowattPerSquareCentimeter:
+                    return new Irradiance((_value*10000) * 1e3d, BaseUnit);
+                case IrradianceUnit.KilowattPerSquareMeter:
+                    return new Irradiance((_value) * 1e3d, BaseUnit);
+                case IrradianceUnit.MegawattPerSquareCentimeter:
+                    return new Irradiance((_value*10000) * 1e6d, BaseUnit);
+                case IrradianceUnit.MegawattPerSquareMeter:
+                    return new Irradiance((_value) * 1e6d, BaseUnit);
+                case IrradianceUnit.MicrowattPerSquareCentimeter:
+                    return new Irradiance((_value*10000) * 1e-6d, BaseUnit);
+                case IrradianceUnit.MicrowattPerSquareMeter:
+                    return new Irradiance((_value) * 1e-6d, BaseUnit);
+                case IrradianceUnit.MilliwattPerSquareCentimeter:
+                    return new Irradiance((_value*10000) * 1e-3d, BaseUnit);
+                case IrradianceUnit.MilliwattPerSquareMeter:
+                    return new Irradiance((_value) * 1e-3d, BaseUnit);
+                case IrradianceUnit.NanowattPerSquareCentimeter:
+                    return new Irradiance((_value*10000) * 1e-9d, BaseUnit);
+                case IrradianceUnit.NanowattPerSquareMeter:
+                    return new Irradiance((_value) * 1e-9d, BaseUnit);
+                case IrradianceUnit.PicowattPerSquareCentimeter:
+                    return new Irradiance((_value*10000) * 1e-12d, BaseUnit);
+                case IrradianceUnit.PicowattPerSquareMeter:
+                    return new Irradiance((_value) * 1e-12d, BaseUnit);
+                case IrradianceUnit.WattPerSquareCentimeter:
+                    return new Irradiance(_value*10000, BaseUnit);
+                case IrradianceUnit.WattPerSquareMeter:
+                    return new Irradiance(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -714,7 +728,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

@@ -624,17 +624,24 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Capacitance AsBaseUnit()
         {
             switch(Unit)
             {
-                case CapacitanceUnit.Farad: return _value;
-                case CapacitanceUnit.Kilofarad: return (_value) * 1e3d;
-                case CapacitanceUnit.Megafarad: return (_value) * 1e6d;
-                case CapacitanceUnit.Microfarad: return (_value) * 1e-6d;
-                case CapacitanceUnit.Millifarad: return (_value) * 1e-3d;
-                case CapacitanceUnit.Nanofarad: return (_value) * 1e-9d;
-                case CapacitanceUnit.Picofarad: return (_value) * 1e-12d;
+                case CapacitanceUnit.Farad:
+                    return new Capacitance(_value, BaseUnit);
+                case CapacitanceUnit.Kilofarad:
+                    return new Capacitance((_value) * 1e3d, BaseUnit);
+                case CapacitanceUnit.Megafarad:
+                    return new Capacitance((_value) * 1e6d, BaseUnit);
+                case CapacitanceUnit.Microfarad:
+                    return new Capacitance((_value) * 1e-6d, BaseUnit);
+                case CapacitanceUnit.Millifarad:
+                    return new Capacitance((_value) * 1e-3d, BaseUnit);
+                case CapacitanceUnit.Nanofarad:
+                    return new Capacitance((_value) * 1e-9d, BaseUnit);
+                case CapacitanceUnit.Picofarad:
+                    return new Capacitance((_value) * 1e-12d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -645,7 +652,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

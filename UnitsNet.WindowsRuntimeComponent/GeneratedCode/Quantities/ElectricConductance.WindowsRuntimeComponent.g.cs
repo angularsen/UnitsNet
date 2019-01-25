@@ -524,13 +524,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal ElectricConductance AsBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricConductanceUnit.Microsiemens: return (_value) * 1e-6d;
-                case ElectricConductanceUnit.Millisiemens: return (_value) * 1e-3d;
-                case ElectricConductanceUnit.Siemens: return _value;
+                case ElectricConductanceUnit.Microsiemens:
+                    return new ElectricConductance((_value) * 1e-6d, BaseUnit);
+                case ElectricConductanceUnit.Millisiemens:
+                    return new ElectricConductance((_value) * 1e-3d, BaseUnit);
+                case ElectricConductanceUnit.Siemens:
+                    return new ElectricConductance(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -541,7 +544,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

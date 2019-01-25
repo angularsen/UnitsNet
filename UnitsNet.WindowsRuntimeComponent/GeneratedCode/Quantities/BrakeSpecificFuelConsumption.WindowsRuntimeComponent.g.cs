@@ -521,13 +521,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal BrakeSpecificFuelConsumption AsBaseUnit()
         {
             switch(Unit)
             {
-                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return _value/3.6e9;
-                case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule: return _value;
-                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return _value*1.689659410672e-7;
+                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour:
+                    return new BrakeSpecificFuelConsumption(_value/3.6e9, BaseUnit);
+                case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule:
+                    return new BrakeSpecificFuelConsumption(_value, BaseUnit);
+                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour:
+                    return new BrakeSpecificFuelConsumption(_value*1.689659410672e-7, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -538,7 +541,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

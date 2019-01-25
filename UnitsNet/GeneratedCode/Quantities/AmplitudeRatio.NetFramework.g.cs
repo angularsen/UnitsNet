@@ -587,14 +587,18 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal AmplitudeRatio AsBaseUnit()
         {
             switch(Unit)
             {
-                case AmplitudeRatioUnit.DecibelMicrovolt: return _value - 120;
-                case AmplitudeRatioUnit.DecibelMillivolt: return _value - 60;
-                case AmplitudeRatioUnit.DecibelUnloaded: return _value - 2.218487499;
-                case AmplitudeRatioUnit.DecibelVolt: return _value;
+                case AmplitudeRatioUnit.DecibelMicrovolt:
+                    return new AmplitudeRatio(_value - 120, BaseUnit);
+                case AmplitudeRatioUnit.DecibelMillivolt:
+                    return new AmplitudeRatio(_value - 60, BaseUnit);
+                case AmplitudeRatioUnit.DecibelUnloaded:
+                    return new AmplitudeRatio(_value - 2.218487499, BaseUnit);
+                case AmplitudeRatioUnit.DecibelVolt:
+                    return new AmplitudeRatio(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -605,7 +609,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

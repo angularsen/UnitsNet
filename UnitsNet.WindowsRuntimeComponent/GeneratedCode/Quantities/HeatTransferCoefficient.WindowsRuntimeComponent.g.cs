@@ -506,12 +506,14 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal HeatTransferCoefficient AsBaseUnit()
         {
             switch(Unit)
             {
-                case HeatTransferCoefficientUnit.WattPerSquareMeterCelsius: return _value;
-                case HeatTransferCoefficientUnit.WattPerSquareMeterKelvin: return _value;
+                case HeatTransferCoefficientUnit.WattPerSquareMeterCelsius:
+                    return new HeatTransferCoefficient(_value, BaseUnit);
+                case HeatTransferCoefficientUnit.WattPerSquareMeterKelvin:
+                    return new HeatTransferCoefficient(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -522,7 +524,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

@@ -663,20 +663,30 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Duration AsBaseUnit()
         {
             switch(Unit)
             {
-                case DurationUnit.Day: return _value*24*3600;
-                case DurationUnit.Hour: return _value*3600;
-                case DurationUnit.Microsecond: return (_value) * 1e-6d;
-                case DurationUnit.Millisecond: return (_value) * 1e-3d;
-                case DurationUnit.Minute: return _value*60;
-                case DurationUnit.Month30: return _value*30*24*3600;
-                case DurationUnit.Nanosecond: return (_value) * 1e-9d;
-                case DurationUnit.Second: return _value;
-                case DurationUnit.Week: return _value*7*24*3600;
-                case DurationUnit.Year365: return _value*365*24*3600;
+                case DurationUnit.Day:
+                    return new Duration(_value*24*3600, BaseUnit);
+                case DurationUnit.Hour:
+                    return new Duration(_value*3600, BaseUnit);
+                case DurationUnit.Microsecond:
+                    return new Duration((_value) * 1e-6d, BaseUnit);
+                case DurationUnit.Millisecond:
+                    return new Duration((_value) * 1e-3d, BaseUnit);
+                case DurationUnit.Minute:
+                    return new Duration(_value*60, BaseUnit);
+                case DurationUnit.Month30:
+                    return new Duration(_value*30*24*3600, BaseUnit);
+                case DurationUnit.Nanosecond:
+                    return new Duration((_value) * 1e-9d, BaseUnit);
+                case DurationUnit.Second:
+                    return new Duration(_value, BaseUnit);
+                case DurationUnit.Week:
+                    return new Duration(_value*7*24*3600, BaseUnit);
+                case DurationUnit.Year365:
+                    return new Duration(_value*365*24*3600, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -687,7 +697,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

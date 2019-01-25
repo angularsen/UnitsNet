@@ -705,23 +705,36 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal RotationalSpeed AsBaseUnit()
         {
             switch(Unit)
             {
-                case RotationalSpeedUnit.CentiradianPerSecond: return (_value) * 1e-2d;
-                case RotationalSpeedUnit.DeciradianPerSecond: return (_value) * 1e-1d;
-                case RotationalSpeedUnit.DegreePerMinute: return (Math.PI/(180*60))*_value;
-                case RotationalSpeedUnit.DegreePerSecond: return (Math.PI/180)*_value;
-                case RotationalSpeedUnit.MicrodegreePerSecond: return ((Math.PI/180)*_value) * 1e-6d;
-                case RotationalSpeedUnit.MicroradianPerSecond: return (_value) * 1e-6d;
-                case RotationalSpeedUnit.MillidegreePerSecond: return ((Math.PI/180)*_value) * 1e-3d;
-                case RotationalSpeedUnit.MilliradianPerSecond: return (_value) * 1e-3d;
-                case RotationalSpeedUnit.NanodegreePerSecond: return ((Math.PI/180)*_value) * 1e-9d;
-                case RotationalSpeedUnit.NanoradianPerSecond: return (_value) * 1e-9d;
-                case RotationalSpeedUnit.RadianPerSecond: return _value;
-                case RotationalSpeedUnit.RevolutionPerMinute: return (_value*6.2831853072)/60;
-                case RotationalSpeedUnit.RevolutionPerSecond: return _value*6.2831853072;
+                case RotationalSpeedUnit.CentiradianPerSecond:
+                    return new RotationalSpeed((_value) * 1e-2d, BaseUnit);
+                case RotationalSpeedUnit.DeciradianPerSecond:
+                    return new RotationalSpeed((_value) * 1e-1d, BaseUnit);
+                case RotationalSpeedUnit.DegreePerMinute:
+                    return new RotationalSpeed((Math.PI/(180*60))*_value, BaseUnit);
+                case RotationalSpeedUnit.DegreePerSecond:
+                    return new RotationalSpeed((Math.PI/180)*_value, BaseUnit);
+                case RotationalSpeedUnit.MicrodegreePerSecond:
+                    return new RotationalSpeed(((Math.PI/180)*_value) * 1e-6d, BaseUnit);
+                case RotationalSpeedUnit.MicroradianPerSecond:
+                    return new RotationalSpeed((_value) * 1e-6d, BaseUnit);
+                case RotationalSpeedUnit.MillidegreePerSecond:
+                    return new RotationalSpeed(((Math.PI/180)*_value) * 1e-3d, BaseUnit);
+                case RotationalSpeedUnit.MilliradianPerSecond:
+                    return new RotationalSpeed((_value) * 1e-3d, BaseUnit);
+                case RotationalSpeedUnit.NanodegreePerSecond:
+                    return new RotationalSpeed(((Math.PI/180)*_value) * 1e-9d, BaseUnit);
+                case RotationalSpeedUnit.NanoradianPerSecond:
+                    return new RotationalSpeed((_value) * 1e-9d, BaseUnit);
+                case RotationalSpeedUnit.RadianPerSecond:
+                    return new RotationalSpeed(_value, BaseUnit);
+                case RotationalSpeedUnit.RevolutionPerMinute:
+                    return new RotationalSpeed((_value*6.2831853072)/60, BaseUnit);
+                case RotationalSpeedUnit.RevolutionPerSecond:
+                    return new RotationalSpeed(_value*6.2831853072, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -732,7 +745,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

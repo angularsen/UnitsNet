@@ -686,24 +686,38 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Angle AsBaseUnit()
         {
             switch(Unit)
             {
-                case AngleUnit.Arcminute: return _value/60;
-                case AngleUnit.Arcsecond: return _value/3600;
-                case AngleUnit.Centiradian: return (_value*180/Math.PI) * 1e-2d;
-                case AngleUnit.Deciradian: return (_value*180/Math.PI) * 1e-1d;
-                case AngleUnit.Degree: return _value;
-                case AngleUnit.Gradian: return _value*0.9;
-                case AngleUnit.Microdegree: return (_value) * 1e-6d;
-                case AngleUnit.Microradian: return (_value*180/Math.PI) * 1e-6d;
-                case AngleUnit.Millidegree: return (_value) * 1e-3d;
-                case AngleUnit.Milliradian: return (_value*180/Math.PI) * 1e-3d;
-                case AngleUnit.Nanodegree: return (_value) * 1e-9d;
-                case AngleUnit.Nanoradian: return (_value*180/Math.PI) * 1e-9d;
-                case AngleUnit.Radian: return _value*180/Math.PI;
-                case AngleUnit.Revolution: return _value*360;
+                case AngleUnit.Arcminute:
+                    return new Angle(_value/60, BaseUnit);
+                case AngleUnit.Arcsecond:
+                    return new Angle(_value/3600, BaseUnit);
+                case AngleUnit.Centiradian:
+                    return new Angle((_value*180/Math.PI) * 1e-2d, BaseUnit);
+                case AngleUnit.Deciradian:
+                    return new Angle((_value*180/Math.PI) * 1e-1d, BaseUnit);
+                case AngleUnit.Degree:
+                    return new Angle(_value, BaseUnit);
+                case AngleUnit.Gradian:
+                    return new Angle(_value*0.9, BaseUnit);
+                case AngleUnit.Microdegree:
+                    return new Angle((_value) * 1e-6d, BaseUnit);
+                case AngleUnit.Microradian:
+                    return new Angle((_value*180/Math.PI) * 1e-6d, BaseUnit);
+                case AngleUnit.Millidegree:
+                    return new Angle((_value) * 1e-3d, BaseUnit);
+                case AngleUnit.Milliradian:
+                    return new Angle((_value*180/Math.PI) * 1e-3d, BaseUnit);
+                case AngleUnit.Nanodegree:
+                    return new Angle((_value) * 1e-9d, BaseUnit);
+                case AngleUnit.Nanoradian:
+                    return new Angle((_value*180/Math.PI) * 1e-9d, BaseUnit);
+                case AngleUnit.Radian:
+                    return new Angle(_value*180/Math.PI, BaseUnit);
+                case AngleUnit.Revolution:
+                    return new Angle(_value*360, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -714,7 +728,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

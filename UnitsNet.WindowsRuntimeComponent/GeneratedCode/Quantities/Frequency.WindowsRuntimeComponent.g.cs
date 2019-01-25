@@ -596,18 +596,26 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Frequency AsBaseUnit()
         {
             switch(Unit)
             {
-                case FrequencyUnit.CyclePerHour: return _value/3600;
-                case FrequencyUnit.CyclePerMinute: return _value/60;
-                case FrequencyUnit.Gigahertz: return (_value) * 1e9d;
-                case FrequencyUnit.Hertz: return _value;
-                case FrequencyUnit.Kilohertz: return (_value) * 1e3d;
-                case FrequencyUnit.Megahertz: return (_value) * 1e6d;
-                case FrequencyUnit.RadianPerSecond: return _value/6.2831853072;
-                case FrequencyUnit.Terahertz: return (_value) * 1e12d;
+                case FrequencyUnit.CyclePerHour:
+                    return new Frequency(_value/3600, BaseUnit);
+                case FrequencyUnit.CyclePerMinute:
+                    return new Frequency(_value/60, BaseUnit);
+                case FrequencyUnit.Gigahertz:
+                    return new Frequency((_value) * 1e9d, BaseUnit);
+                case FrequencyUnit.Hertz:
+                    return new Frequency(_value, BaseUnit);
+                case FrequencyUnit.Kilohertz:
+                    return new Frequency((_value) * 1e3d, BaseUnit);
+                case FrequencyUnit.Megahertz:
+                    return new Frequency((_value) * 1e6d, BaseUnit);
+                case FrequencyUnit.RadianPerSecond:
+                    return new Frequency(_value/6.2831853072, BaseUnit);
+                case FrequencyUnit.Terahertz:
+                    return new Frequency((_value) * 1e12d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -618,7 +626,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

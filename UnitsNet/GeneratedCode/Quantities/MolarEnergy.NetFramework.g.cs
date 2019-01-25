@@ -565,13 +565,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal MolarEnergy AsBaseUnit()
         {
             switch(Unit)
             {
-                case MolarEnergyUnit.JoulePerMole: return _value;
-                case MolarEnergyUnit.KilojoulePerMole: return (_value) * 1e3d;
-                case MolarEnergyUnit.MegajoulePerMole: return (_value) * 1e6d;
+                case MolarEnergyUnit.JoulePerMole:
+                    return new MolarEnergy(_value, BaseUnit);
+                case MolarEnergyUnit.KilojoulePerMole:
+                    return new MolarEnergy((_value) * 1e3d, BaseUnit);
+                case MolarEnergyUnit.MegajoulePerMole:
+                    return new MolarEnergy((_value) * 1e6d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -582,7 +585,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

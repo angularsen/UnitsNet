@@ -521,13 +521,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal RotationalStiffnessPerLength AsBaseUnit()
         {
             switch(Unit)
             {
-                case RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter: return (_value) * 1e3d;
-                case RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter: return (_value) * 1e6d;
-                case RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter: return _value;
+                case RotationalStiffnessPerLengthUnit.KilonewtonMeterPerRadianPerMeter:
+                    return new RotationalStiffnessPerLength((_value) * 1e3d, BaseUnit);
+                case RotationalStiffnessPerLengthUnit.MeganewtonMeterPerRadianPerMeter:
+                    return new RotationalStiffnessPerLength((_value) * 1e6d, BaseUnit);
+                case RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter:
+                    return new RotationalStiffnessPerLength(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -538,7 +541,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

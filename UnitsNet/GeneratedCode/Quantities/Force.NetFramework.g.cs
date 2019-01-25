@@ -705,23 +705,36 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Force AsBaseUnit()
         {
             switch(Unit)
             {
-                case ForceUnit.Decanewton: return (_value) * 1e1d;
-                case ForceUnit.Dyn: return _value/1e5;
-                case ForceUnit.KilogramForce: return _value*9.80665002864;
-                case ForceUnit.Kilonewton: return (_value) * 1e3d;
-                case ForceUnit.KiloPond: return _value*9.80665002864;
-                case ForceUnit.Meganewton: return (_value) * 1e6d;
-                case ForceUnit.Micronewton: return (_value) * 1e-6d;
-                case ForceUnit.Millinewton: return (_value) * 1e-3d;
-                case ForceUnit.Newton: return _value;
-                case ForceUnit.OunceForce: return _value*2.780138509537812e-1;
-                case ForceUnit.Poundal: return _value*0.13825502798973041652092282466083;
-                case ForceUnit.PoundForce: return _value*4.4482216152605095551842641431421;
-                case ForceUnit.TonneForce: return _value*9.80665002864e3;
+                case ForceUnit.Decanewton:
+                    return new Force((_value) * 1e1d, BaseUnit);
+                case ForceUnit.Dyn:
+                    return new Force(_value/1e5, BaseUnit);
+                case ForceUnit.KilogramForce:
+                    return new Force(_value*9.80665002864, BaseUnit);
+                case ForceUnit.Kilonewton:
+                    return new Force((_value) * 1e3d, BaseUnit);
+                case ForceUnit.KiloPond:
+                    return new Force(_value*9.80665002864, BaseUnit);
+                case ForceUnit.Meganewton:
+                    return new Force((_value) * 1e6d, BaseUnit);
+                case ForceUnit.Micronewton:
+                    return new Force((_value) * 1e-6d, BaseUnit);
+                case ForceUnit.Millinewton:
+                    return new Force((_value) * 1e-3d, BaseUnit);
+                case ForceUnit.Newton:
+                    return new Force(_value, BaseUnit);
+                case ForceUnit.OunceForce:
+                    return new Force(_value*2.780138509537812e-1, BaseUnit);
+                case ForceUnit.Poundal:
+                    return new Force(_value*0.13825502798973041652092282466083, BaseUnit);
+                case ForceUnit.PoundForce:
+                    return new Force(_value*4.4482216152605095551842641431421, BaseUnit);
+                case ForceUnit.TonneForce:
+                    return new Force(_value*9.80665002864e3, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -732,7 +745,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

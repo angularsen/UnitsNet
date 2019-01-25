@@ -621,17 +621,24 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal PressureChangeRate AsBaseUnit()
         {
             switch(Unit)
             {
-                case PressureChangeRateUnit.AtmospherePerSecond: return _value * 1.01325*1e5;
-                case PressureChangeRateUnit.KilopascalPerMinute: return (_value/60) * 1e3d;
-                case PressureChangeRateUnit.KilopascalPerSecond: return (_value) * 1e3d;
-                case PressureChangeRateUnit.MegapascalPerMinute: return (_value/60) * 1e6d;
-                case PressureChangeRateUnit.MegapascalPerSecond: return (_value) * 1e6d;
-                case PressureChangeRateUnit.PascalPerMinute: return _value/60;
-                case PressureChangeRateUnit.PascalPerSecond: return _value;
+                case PressureChangeRateUnit.AtmospherePerSecond:
+                    return new PressureChangeRate(_value * 1.01325*1e5, BaseUnit);
+                case PressureChangeRateUnit.KilopascalPerMinute:
+                    return new PressureChangeRate((_value/60) * 1e3d, BaseUnit);
+                case PressureChangeRateUnit.KilopascalPerSecond:
+                    return new PressureChangeRate((_value) * 1e3d, BaseUnit);
+                case PressureChangeRateUnit.MegapascalPerMinute:
+                    return new PressureChangeRate((_value/60) * 1e6d, BaseUnit);
+                case PressureChangeRateUnit.MegapascalPerSecond:
+                    return new PressureChangeRate((_value) * 1e6d, BaseUnit);
+                case PressureChangeRateUnit.PascalPerMinute:
+                    return new PressureChangeRate(_value/60, BaseUnit);
+                case PressureChangeRateUnit.PascalPerSecond:
+                    return new PressureChangeRate(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -642,7 +649,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

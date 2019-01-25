@@ -568,13 +568,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal LinearDensity AsBaseUnit()
         {
             switch(Unit)
             {
-                case LinearDensityUnit.GramPerMeter: return _value*1e-3;
-                case LinearDensityUnit.KilogramPerMeter: return (_value*1e-3) * 1e3d;
-                case LinearDensityUnit.PoundPerFoot: return _value*1.48816394;
+                case LinearDensityUnit.GramPerMeter:
+                    return new LinearDensity(_value*1e-3, BaseUnit);
+                case LinearDensityUnit.KilogramPerMeter:
+                    return new LinearDensity((_value*1e-3) * 1e3d, BaseUnit);
+                case LinearDensityUnit.PoundPerFoot:
+                    return new LinearDensity(_value*1.48816394, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -585,7 +588,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

@@ -536,14 +536,18 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal ApparentPower AsBaseUnit()
         {
             switch(Unit)
             {
-                case ApparentPowerUnit.Gigavoltampere: return (_value) * 1e9d;
-                case ApparentPowerUnit.Kilovoltampere: return (_value) * 1e3d;
-                case ApparentPowerUnit.Megavoltampere: return (_value) * 1e6d;
-                case ApparentPowerUnit.Voltampere: return _value;
+                case ApparentPowerUnit.Gigavoltampere:
+                    return new ApparentPower((_value) * 1e9d, BaseUnit);
+                case ApparentPowerUnit.Kilovoltampere:
+                    return new ApparentPower((_value) * 1e3d, BaseUnit);
+                case ApparentPowerUnit.Megavoltampere:
+                    return new ApparentPower((_value) * 1e6d, BaseUnit);
+                case ApparentPowerUnit.Voltampere:
+                    return new ApparentPower(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -554,7 +558,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

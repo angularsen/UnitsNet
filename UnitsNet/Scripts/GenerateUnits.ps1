@@ -69,6 +69,19 @@ function GenerateUnitType([Quantity]$quantity, $outDir)
     Write-Host -NoNewline "unit(OK) "
 }
 
+function GenerateUnitConverterDefault($quantities, $outDir)
+{
+    Write-Host -NoNewline "UnitConverter.g.cs: "
+    $outFileName = "$outDir/UnitConverter.g.cs"
+
+    GenerateUnitConverterDefaultSourceCode $quantities | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
+    if (!$?) {
+        Write-Host "(error) "
+        exit 1
+    }
+    Write-Host "(OK) "
+}
+
 function GenerateUnitSystemDefault($quantities, $outDir)
 {
     Write-Host -NoNewline "UnitAbbreviationsCache.g.cs: "
@@ -227,6 +240,7 @@ function Add-InheritedUnits([Quantity]$quantity, $quantities) {
 
 # Load external generator functions with same name as file
 . "$PSScriptRoot/Include-GenerateTemplates.ps1"
+. "$PSScriptRoot/Include-GenerateUnitConverterDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantityTypeSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantitySourceCodeNetFramework.ps1"
@@ -309,6 +323,7 @@ foreach ($quantity in $quantities) {
 }
 
 Write-Host ""
+GenerateUnitConverterDefault $quantities $unitSystemDir
 GenerateUnitSystemDefault $quantities $unitSystemDir
 GenerateQuantityType $quantities $unitSystemDir
 

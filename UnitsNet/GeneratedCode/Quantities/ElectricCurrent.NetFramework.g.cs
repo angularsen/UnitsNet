@@ -635,18 +635,26 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal ElectricCurrent AsBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricCurrentUnit.Ampere: return _value;
-                case ElectricCurrentUnit.Centiampere: return (_value) * 1e-2d;
-                case ElectricCurrentUnit.Kiloampere: return (_value) * 1e3d;
-                case ElectricCurrentUnit.Megaampere: return (_value) * 1e6d;
-                case ElectricCurrentUnit.Microampere: return (_value) * 1e-6d;
-                case ElectricCurrentUnit.Milliampere: return (_value) * 1e-3d;
-                case ElectricCurrentUnit.Nanoampere: return (_value) * 1e-9d;
-                case ElectricCurrentUnit.Picoampere: return (_value) * 1e-12d;
+                case ElectricCurrentUnit.Ampere:
+                    return new ElectricCurrent(_value, BaseUnit);
+                case ElectricCurrentUnit.Centiampere:
+                    return new ElectricCurrent((_value) * 1e-2d, BaseUnit);
+                case ElectricCurrentUnit.Kiloampere:
+                    return new ElectricCurrent((_value) * 1e3d, BaseUnit);
+                case ElectricCurrentUnit.Megaampere:
+                    return new ElectricCurrent((_value) * 1e6d, BaseUnit);
+                case ElectricCurrentUnit.Microampere:
+                    return new ElectricCurrent((_value) * 1e-6d, BaseUnit);
+                case ElectricCurrentUnit.Milliampere:
+                    return new ElectricCurrent((_value) * 1e-3d, BaseUnit);
+                case ElectricCurrentUnit.Nanoampere:
+                    return new ElectricCurrent((_value) * 1e-9d, BaseUnit);
+                case ElectricCurrentUnit.Picoampere:
+                    return new ElectricCurrent((_value) * 1e-12d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -657,7 +665,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

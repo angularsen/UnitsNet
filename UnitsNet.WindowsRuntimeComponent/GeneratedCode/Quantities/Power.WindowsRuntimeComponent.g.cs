@@ -776,30 +776,50 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private decimal AsBaseUnit()
+        internal Power AsBaseUnit()
         {
             switch(Unit)
             {
-                case PowerUnit.BoilerHorsepower: return _value*9812.5m;
-                case PowerUnit.BritishThermalUnitPerHour: return _value*0.293071m;
-                case PowerUnit.Decawatt: return (_value) * 1e1m;
-                case PowerUnit.Deciwatt: return (_value) * 1e-1m;
-                case PowerUnit.ElectricalHorsepower: return _value*746m;
-                case PowerUnit.Femtowatt: return (_value) * 1e-15m;
-                case PowerUnit.Gigawatt: return (_value) * 1e9m;
-                case PowerUnit.HydraulicHorsepower: return _value*745.69988145m;
-                case PowerUnit.KilobritishThermalUnitPerHour: return (_value*0.293071m) * 1e3m;
-                case PowerUnit.Kilowatt: return (_value) * 1e3m;
-                case PowerUnit.MechanicalHorsepower: return _value*745.69m;
-                case PowerUnit.Megawatt: return (_value) * 1e6m;
-                case PowerUnit.MetricHorsepower: return _value*735.49875m;
-                case PowerUnit.Microwatt: return (_value) * 1e-6m;
-                case PowerUnit.Milliwatt: return (_value) * 1e-3m;
-                case PowerUnit.Nanowatt: return (_value) * 1e-9m;
-                case PowerUnit.Petawatt: return (_value) * 1e15m;
-                case PowerUnit.Picowatt: return (_value) * 1e-12m;
-                case PowerUnit.Terawatt: return (_value) * 1e12m;
-                case PowerUnit.Watt: return _value;
+                case PowerUnit.BoilerHorsepower:
+                    return new Power(_value*9812.5m, BaseUnit);
+                case PowerUnit.BritishThermalUnitPerHour:
+                    return new Power(_value*0.293071m, BaseUnit);
+                case PowerUnit.Decawatt:
+                    return new Power((_value) * 1e1m, BaseUnit);
+                case PowerUnit.Deciwatt:
+                    return new Power((_value) * 1e-1m, BaseUnit);
+                case PowerUnit.ElectricalHorsepower:
+                    return new Power(_value*746m, BaseUnit);
+                case PowerUnit.Femtowatt:
+                    return new Power((_value) * 1e-15m, BaseUnit);
+                case PowerUnit.Gigawatt:
+                    return new Power((_value) * 1e9m, BaseUnit);
+                case PowerUnit.HydraulicHorsepower:
+                    return new Power(_value*745.69988145m, BaseUnit);
+                case PowerUnit.KilobritishThermalUnitPerHour:
+                    return new Power((_value*0.293071m) * 1e3m, BaseUnit);
+                case PowerUnit.Kilowatt:
+                    return new Power((_value) * 1e3m, BaseUnit);
+                case PowerUnit.MechanicalHorsepower:
+                    return new Power(_value*745.69m, BaseUnit);
+                case PowerUnit.Megawatt:
+                    return new Power((_value) * 1e6m, BaseUnit);
+                case PowerUnit.MetricHorsepower:
+                    return new Power(_value*735.49875m, BaseUnit);
+                case PowerUnit.Microwatt:
+                    return new Power((_value) * 1e-6m, BaseUnit);
+                case PowerUnit.Milliwatt:
+                    return new Power((_value) * 1e-3m, BaseUnit);
+                case PowerUnit.Nanowatt:
+                    return new Power((_value) * 1e-9m, BaseUnit);
+                case PowerUnit.Petawatt:
+                    return new Power((_value) * 1e15m, BaseUnit);
+                case PowerUnit.Picowatt:
+                    return new Power((_value) * 1e-12m, BaseUnit);
+                case PowerUnit.Terawatt:
+                    return new Power((_value) * 1e12m, BaseUnit);
+                case PowerUnit.Watt:
+                    return new Power(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -810,7 +830,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

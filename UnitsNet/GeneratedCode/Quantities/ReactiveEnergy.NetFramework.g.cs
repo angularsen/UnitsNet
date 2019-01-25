@@ -565,13 +565,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal ReactiveEnergy AsBaseUnit()
         {
             switch(Unit)
             {
-                case ReactiveEnergyUnit.KilovoltampereReactiveHour: return (_value) * 1e3d;
-                case ReactiveEnergyUnit.MegavoltampereReactiveHour: return (_value) * 1e6d;
-                case ReactiveEnergyUnit.VoltampereReactiveHour: return _value;
+                case ReactiveEnergyUnit.KilovoltampereReactiveHour:
+                    return new ReactiveEnergy((_value) * 1e3d, BaseUnit);
+                case ReactiveEnergyUnit.MegavoltampereReactiveHour:
+                    return new ReactiveEnergy((_value) * 1e6d, BaseUnit);
+                case ReactiveEnergyUnit.VoltampereReactiveHour:
+                    return new ReactiveEnergy(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -582,7 +585,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

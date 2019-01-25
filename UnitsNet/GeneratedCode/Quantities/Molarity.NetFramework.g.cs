@@ -638,18 +638,26 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Molarity AsBaseUnit()
         {
             switch(Unit)
             {
-                case MolarityUnit.CentimolesPerLiter: return (_value/1e-3) * 1e-2d;
-                case MolarityUnit.DecimolesPerLiter: return (_value/1e-3) * 1e-1d;
-                case MolarityUnit.MicromolesPerLiter: return (_value/1e-3) * 1e-6d;
-                case MolarityUnit.MillimolesPerLiter: return (_value/1e-3) * 1e-3d;
-                case MolarityUnit.MolesPerCubicMeter: return _value;
-                case MolarityUnit.MolesPerLiter: return _value/1e-3;
-                case MolarityUnit.NanomolesPerLiter: return (_value/1e-3) * 1e-9d;
-                case MolarityUnit.PicomolesPerLiter: return (_value/1e-3) * 1e-12d;
+                case MolarityUnit.CentimolesPerLiter:
+                    return new Molarity((_value/1e-3) * 1e-2d, BaseUnit);
+                case MolarityUnit.DecimolesPerLiter:
+                    return new Molarity((_value/1e-3) * 1e-1d, BaseUnit);
+                case MolarityUnit.MicromolesPerLiter:
+                    return new Molarity((_value/1e-3) * 1e-6d, BaseUnit);
+                case MolarityUnit.MillimolesPerLiter:
+                    return new Molarity((_value/1e-3) * 1e-3d, BaseUnit);
+                case MolarityUnit.MolesPerCubicMeter:
+                    return new Molarity(_value, BaseUnit);
+                case MolarityUnit.MolesPerLiter:
+                    return new Molarity(_value/1e-3, BaseUnit);
+                case MolarityUnit.NanomolesPerLiter:
+                    return new Molarity((_value/1e-3) * 1e-9d, BaseUnit);
+                case MolarityUnit.PicomolesPerLiter:
+                    return new Molarity((_value/1e-3) * 1e-12d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -660,7 +668,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

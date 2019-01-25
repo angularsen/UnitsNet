@@ -582,14 +582,18 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Illuminance AsBaseUnit()
         {
             switch(Unit)
             {
-                case IlluminanceUnit.Kilolux: return (_value) * 1e3d;
-                case IlluminanceUnit.Lux: return _value;
-                case IlluminanceUnit.Megalux: return (_value) * 1e6d;
-                case IlluminanceUnit.Millilux: return (_value) * 1e-3d;
+                case IlluminanceUnit.Kilolux:
+                    return new Illuminance((_value) * 1e3d, BaseUnit);
+                case IlluminanceUnit.Lux:
+                    return new Illuminance(_value, BaseUnit);
+                case IlluminanceUnit.Megalux:
+                    return new Illuminance((_value) * 1e6d, BaseUnit);
+                case IlluminanceUnit.Millilux:
+                    return new Illuminance((_value) * 1e-3d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -600,7 +604,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

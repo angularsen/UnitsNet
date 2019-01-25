@@ -539,14 +539,18 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal ElectricInductance AsBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricInductanceUnit.Henry: return _value;
-                case ElectricInductanceUnit.Microhenry: return (_value) * 1e-6d;
-                case ElectricInductanceUnit.Millihenry: return (_value) * 1e-3d;
-                case ElectricInductanceUnit.Nanohenry: return (_value) * 1e-9d;
+                case ElectricInductanceUnit.Henry:
+                    return new ElectricInductance(_value, BaseUnit);
+                case ElectricInductanceUnit.Microhenry:
+                    return new ElectricInductance((_value) * 1e-6d, BaseUnit);
+                case ElectricInductanceUnit.Millihenry:
+                    return new ElectricInductance((_value) * 1e-3d, BaseUnit);
+                case ElectricInductanceUnit.Nanohenry:
+                    return new ElectricInductance((_value) * 1e-9d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -557,7 +561,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

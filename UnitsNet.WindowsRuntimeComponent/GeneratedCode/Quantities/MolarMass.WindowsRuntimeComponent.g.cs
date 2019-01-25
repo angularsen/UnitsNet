@@ -656,22 +656,34 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal MolarMass AsBaseUnit()
         {
             switch(Unit)
             {
-                case MolarMassUnit.CentigramPerMole: return (_value/1e3) * 1e-2d;
-                case MolarMassUnit.DecagramPerMole: return (_value/1e3) * 1e1d;
-                case MolarMassUnit.DecigramPerMole: return (_value/1e3) * 1e-1d;
-                case MolarMassUnit.GramPerMole: return _value/1e3;
-                case MolarMassUnit.HectogramPerMole: return (_value/1e3) * 1e2d;
-                case MolarMassUnit.KilogramPerMole: return (_value/1e3) * 1e3d;
-                case MolarMassUnit.KilopoundPerMole: return (_value*0.45359237) * 1e3d;
-                case MolarMassUnit.MegapoundPerMole: return (_value*0.45359237) * 1e6d;
-                case MolarMassUnit.MicrogramPerMole: return (_value/1e3) * 1e-6d;
-                case MolarMassUnit.MilligramPerMole: return (_value/1e3) * 1e-3d;
-                case MolarMassUnit.NanogramPerMole: return (_value/1e3) * 1e-9d;
-                case MolarMassUnit.PoundPerMole: return _value*0.45359237;
+                case MolarMassUnit.CentigramPerMole:
+                    return new MolarMass((_value/1e3) * 1e-2d, BaseUnit);
+                case MolarMassUnit.DecagramPerMole:
+                    return new MolarMass((_value/1e3) * 1e1d, BaseUnit);
+                case MolarMassUnit.DecigramPerMole:
+                    return new MolarMass((_value/1e3) * 1e-1d, BaseUnit);
+                case MolarMassUnit.GramPerMole:
+                    return new MolarMass(_value/1e3, BaseUnit);
+                case MolarMassUnit.HectogramPerMole:
+                    return new MolarMass((_value/1e3) * 1e2d, BaseUnit);
+                case MolarMassUnit.KilogramPerMole:
+                    return new MolarMass((_value/1e3) * 1e3d, BaseUnit);
+                case MolarMassUnit.KilopoundPerMole:
+                    return new MolarMass((_value*0.45359237) * 1e3d, BaseUnit);
+                case MolarMassUnit.MegapoundPerMole:
+                    return new MolarMass((_value*0.45359237) * 1e6d, BaseUnit);
+                case MolarMassUnit.MicrogramPerMole:
+                    return new MolarMass((_value/1e3) * 1e-6d, BaseUnit);
+                case MolarMassUnit.MilligramPerMole:
+                    return new MolarMass((_value/1e3) * 1e-3d, BaseUnit);
+                case MolarMassUnit.NanogramPerMole:
+                    return new MolarMass((_value/1e3) * 1e-9d, BaseUnit);
+                case MolarMassUnit.PoundPerMole:
+                    return new MolarMass(_value*0.45359237, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -682,7 +694,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

@@ -521,13 +521,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal RotationalAcceleration AsBaseUnit()
         {
             switch(Unit)
             {
-                case RotationalAccelerationUnit.DegreePerSecondSquared: return (Math.PI/180)*_value;
-                case RotationalAccelerationUnit.RadianPerSecondSquared: return _value;
-                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return ((2*Math.PI)/60)*_value;
+                case RotationalAccelerationUnit.DegreePerSecondSquared:
+                    return new RotationalAcceleration((Math.PI/180)*_value, BaseUnit);
+                case RotationalAccelerationUnit.RadianPerSecondSquared:
+                    return new RotationalAcceleration(_value, BaseUnit);
+                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond:
+                    return new RotationalAcceleration(((2*Math.PI)/60)*_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -538,7 +541,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

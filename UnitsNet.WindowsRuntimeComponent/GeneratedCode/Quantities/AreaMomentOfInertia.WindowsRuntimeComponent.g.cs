@@ -566,16 +566,22 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal AreaMomentOfInertia AsBaseUnit()
         {
             switch(Unit)
             {
-                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return _value/1e8;
-                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return _value/1e4;
-                case AreaMomentOfInertiaUnit.FootToTheFourth: return _value*Math.Pow(0.3048, 4);
-                case AreaMomentOfInertiaUnit.InchToTheFourth: return _value*Math.Pow(2.54e-2, 4);
-                case AreaMomentOfInertiaUnit.MeterToTheFourth: return _value;
-                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return _value/1e12;
+                case AreaMomentOfInertiaUnit.CentimeterToTheFourth:
+                    return new AreaMomentOfInertia(_value/1e8, BaseUnit);
+                case AreaMomentOfInertiaUnit.DecimeterToTheFourth:
+                    return new AreaMomentOfInertia(_value/1e4, BaseUnit);
+                case AreaMomentOfInertiaUnit.FootToTheFourth:
+                    return new AreaMomentOfInertia(_value*Math.Pow(0.3048, 4), BaseUnit);
+                case AreaMomentOfInertiaUnit.InchToTheFourth:
+                    return new AreaMomentOfInertia(_value*Math.Pow(2.54e-2, 4), BaseUnit);
+                case AreaMomentOfInertiaUnit.MeterToTheFourth:
+                    return new AreaMomentOfInertia(_value, BaseUnit);
+                case AreaMomentOfInertiaUnit.MillimeterToTheFourth:
+                    return new AreaMomentOfInertia(_value/1e12, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -586,7 +592,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

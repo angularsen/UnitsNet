@@ -506,12 +506,14 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal MassFlux AsBaseUnit()
         {
             switch(Unit)
             {
-                case MassFluxUnit.GramPerSecondPerSquareMeter: return _value/1e3;
-                case MassFluxUnit.KilogramPerSecondPerSquareMeter: return (_value/1e3) * 1e3d;
+                case MassFluxUnit.GramPerSecondPerSquareMeter:
+                    return new MassFlux(_value/1e3, BaseUnit);
+                case MassFluxUnit.KilogramPerSecondPerSquareMeter:
+                    return new MassFlux((_value/1e3) * 1e3d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -522,7 +524,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

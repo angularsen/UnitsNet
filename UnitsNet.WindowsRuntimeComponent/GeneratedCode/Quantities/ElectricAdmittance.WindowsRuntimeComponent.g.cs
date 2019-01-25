@@ -536,14 +536,18 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal ElectricAdmittance AsBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricAdmittanceUnit.Microsiemens: return (_value) * 1e-6d;
-                case ElectricAdmittanceUnit.Millisiemens: return (_value) * 1e-3d;
-                case ElectricAdmittanceUnit.Nanosiemens: return (_value) * 1e-9d;
-                case ElectricAdmittanceUnit.Siemens: return _value;
+                case ElectricAdmittanceUnit.Microsiemens:
+                    return new ElectricAdmittance((_value) * 1e-6d, BaseUnit);
+                case ElectricAdmittanceUnit.Millisiemens:
+                    return new ElectricAdmittance((_value) * 1e-3d, BaseUnit);
+                case ElectricAdmittanceUnit.Nanosiemens:
+                    return new ElectricAdmittance((_value) * 1e-9d, BaseUnit);
+                case ElectricAdmittanceUnit.Siemens:
+                    return new ElectricAdmittance(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -554,7 +558,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

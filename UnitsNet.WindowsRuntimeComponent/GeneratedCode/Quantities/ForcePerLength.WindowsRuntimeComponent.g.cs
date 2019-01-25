@@ -611,19 +611,28 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal ForcePerLength AsBaseUnit()
         {
             switch(Unit)
             {
-                case ForcePerLengthUnit.CentinewtonPerMeter: return (_value) * 1e-2d;
-                case ForcePerLengthUnit.DecinewtonPerMeter: return (_value) * 1e-1d;
-                case ForcePerLengthUnit.KilogramForcePerMeter: return _value*9.80665002864;
-                case ForcePerLengthUnit.KilonewtonPerMeter: return (_value) * 1e3d;
-                case ForcePerLengthUnit.MeganewtonPerMeter: return (_value) * 1e6d;
-                case ForcePerLengthUnit.MicronewtonPerMeter: return (_value) * 1e-6d;
-                case ForcePerLengthUnit.MillinewtonPerMeter: return (_value) * 1e-3d;
-                case ForcePerLengthUnit.NanonewtonPerMeter: return (_value) * 1e-9d;
-                case ForcePerLengthUnit.NewtonPerMeter: return _value;
+                case ForcePerLengthUnit.CentinewtonPerMeter:
+                    return new ForcePerLength((_value) * 1e-2d, BaseUnit);
+                case ForcePerLengthUnit.DecinewtonPerMeter:
+                    return new ForcePerLength((_value) * 1e-1d, BaseUnit);
+                case ForcePerLengthUnit.KilogramForcePerMeter:
+                    return new ForcePerLength(_value*9.80665002864, BaseUnit);
+                case ForcePerLengthUnit.KilonewtonPerMeter:
+                    return new ForcePerLength((_value) * 1e3d, BaseUnit);
+                case ForcePerLengthUnit.MeganewtonPerMeter:
+                    return new ForcePerLength((_value) * 1e6d, BaseUnit);
+                case ForcePerLengthUnit.MicronewtonPerMeter:
+                    return new ForcePerLength((_value) * 1e-6d, BaseUnit);
+                case ForcePerLengthUnit.MillinewtonPerMeter:
+                    return new ForcePerLength((_value) * 1e-3d, BaseUnit);
+                case ForcePerLengthUnit.NanonewtonPerMeter:
+                    return new ForcePerLength((_value) * 1e-9d, BaseUnit);
+                case ForcePerLengthUnit.NewtonPerMeter:
+                    return new ForcePerLength(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -634,7 +643,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

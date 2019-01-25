@@ -671,23 +671,36 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Area AsBaseUnit()
         {
             switch(Unit)
             {
-                case AreaUnit.Acre: return _value*4046.85642;
-                case AreaUnit.Hectare: return _value*1e4;
-                case AreaUnit.SquareCentimeter: return _value*1e-4;
-                case AreaUnit.SquareDecimeter: return _value*1e-2;
-                case AreaUnit.SquareFoot: return _value*0.092903;
-                case AreaUnit.SquareInch: return _value*0.00064516;
-                case AreaUnit.SquareKilometer: return _value*1e6;
-                case AreaUnit.SquareMeter: return _value;
-                case AreaUnit.SquareMicrometer: return _value*1e-12;
-                case AreaUnit.SquareMile: return _value*2.59e6;
-                case AreaUnit.SquareMillimeter: return _value*1e-6;
-                case AreaUnit.SquareYard: return _value*0.836127;
-                case AreaUnit.UsSurveySquareFoot: return _value*0.09290341161;
+                case AreaUnit.Acre:
+                    return new Area(_value*4046.85642, BaseUnit);
+                case AreaUnit.Hectare:
+                    return new Area(_value*1e4, BaseUnit);
+                case AreaUnit.SquareCentimeter:
+                    return new Area(_value*1e-4, BaseUnit);
+                case AreaUnit.SquareDecimeter:
+                    return new Area(_value*1e-2, BaseUnit);
+                case AreaUnit.SquareFoot:
+                    return new Area(_value*0.092903, BaseUnit);
+                case AreaUnit.SquareInch:
+                    return new Area(_value*0.00064516, BaseUnit);
+                case AreaUnit.SquareKilometer:
+                    return new Area(_value*1e6, BaseUnit);
+                case AreaUnit.SquareMeter:
+                    return new Area(_value, BaseUnit);
+                case AreaUnit.SquareMicrometer:
+                    return new Area(_value*1e-12, BaseUnit);
+                case AreaUnit.SquareMile:
+                    return new Area(_value*2.59e6, BaseUnit);
+                case AreaUnit.SquareMillimeter:
+                    return new Area(_value*1e-6, BaseUnit);
+                case AreaUnit.SquareYard:
+                    return new Area(_value*0.836127, BaseUnit);
+                case AreaUnit.UsSurveySquareFoot:
+                    return new Area(_value*0.09290341161, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -698,7 +711,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

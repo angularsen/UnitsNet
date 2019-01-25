@@ -566,16 +566,22 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Ratio AsBaseUnit()
         {
             switch(Unit)
             {
-                case RatioUnit.DecimalFraction: return _value;
-                case RatioUnit.PartPerBillion: return _value/1e9;
-                case RatioUnit.PartPerMillion: return _value/1e6;
-                case RatioUnit.PartPerThousand: return _value/1e3;
-                case RatioUnit.PartPerTrillion: return _value/1e12;
-                case RatioUnit.Percent: return _value/1e2;
+                case RatioUnit.DecimalFraction:
+                    return new Ratio(_value, BaseUnit);
+                case RatioUnit.PartPerBillion:
+                    return new Ratio(_value/1e9, BaseUnit);
+                case RatioUnit.PartPerMillion:
+                    return new Ratio(_value/1e6, BaseUnit);
+                case RatioUnit.PartPerThousand:
+                    return new Ratio(_value/1e3, BaseUnit);
+                case RatioUnit.PartPerTrillion:
+                    return new Ratio(_value/1e12, BaseUnit);
+                case RatioUnit.Percent:
+                    return new Ratio(_value/1e2, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -586,7 +592,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

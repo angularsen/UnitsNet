@@ -593,15 +593,20 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal ElectricPotentialAc AsBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricPotentialAcUnit.KilovoltAc: return (_value) * 1e3d;
-                case ElectricPotentialAcUnit.MegavoltAc: return (_value) * 1e6d;
-                case ElectricPotentialAcUnit.MicrovoltAc: return (_value) * 1e-6d;
-                case ElectricPotentialAcUnit.MillivoltAc: return (_value) * 1e-3d;
-                case ElectricPotentialAcUnit.VoltAc: return _value;
+                case ElectricPotentialAcUnit.KilovoltAc:
+                    return new ElectricPotentialAc((_value) * 1e3d, BaseUnit);
+                case ElectricPotentialAcUnit.MegavoltAc:
+                    return new ElectricPotentialAc((_value) * 1e6d, BaseUnit);
+                case ElectricPotentialAcUnit.MicrovoltAc:
+                    return new ElectricPotentialAc((_value) * 1e-6d, BaseUnit);
+                case ElectricPotentialAcUnit.MillivoltAc:
+                    return new ElectricPotentialAc((_value) * 1e-3d, BaseUnit);
+                case ElectricPotentialAcUnit.VoltAc:
+                    return new ElectricPotentialAc(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -612,7 +617,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

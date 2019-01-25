@@ -593,15 +593,20 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal ThermalResistance AsBaseUnit()
         {
             switch(Unit)
             {
-                case ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu: return _value*176.1121482159839;
-                case ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie: return _value*0.0859779507590433;
-                case ThermalResistanceUnit.SquareCentimeterKelvinPerWatt: return _value*0.0999964777570357;
-                case ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt: return _value*1000.088056074108;
-                case ThermalResistanceUnit.SquareMeterKelvinPerKilowatt: return _value;
+                case ThermalResistanceUnit.HourSquareFeetDegreeFahrenheitPerBtu:
+                    return new ThermalResistance(_value*176.1121482159839, BaseUnit);
+                case ThermalResistanceUnit.SquareCentimeterHourDegreeCelsiusPerKilocalorie:
+                    return new ThermalResistance(_value*0.0859779507590433, BaseUnit);
+                case ThermalResistanceUnit.SquareCentimeterKelvinPerWatt:
+                    return new ThermalResistance(_value*0.0999964777570357, BaseUnit);
+                case ThermalResistanceUnit.SquareMeterDegreeCelsiusPerWatt:
+                    return new ThermalResistance(_value*1000.088056074108, BaseUnit);
+                case ThermalResistanceUnit.SquareMeterKelvinPerKilowatt:
+                    return new ThermalResistance(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -612,7 +617,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

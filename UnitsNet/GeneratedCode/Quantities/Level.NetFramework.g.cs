@@ -559,12 +559,14 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Level AsBaseUnit()
         {
             switch(Unit)
             {
-                case LevelUnit.Decibel: return _value;
-                case LevelUnit.Neper: return (1/0.115129254)*_value;
+                case LevelUnit.Decibel:
+                    return new Level(_value, BaseUnit);
+                case LevelUnit.Neper:
+                    return new Level((1/0.115129254)*_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -575,7 +577,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

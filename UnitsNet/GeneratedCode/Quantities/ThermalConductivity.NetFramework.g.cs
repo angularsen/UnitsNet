@@ -554,12 +554,14 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal ThermalConductivity AsBaseUnit()
         {
             switch(Unit)
             {
-                case ThermalConductivityUnit.BtuPerHourFootFahrenheit: return _value*1.73073467;
-                case ThermalConductivityUnit.WattPerMeterKelvin: return _value;
+                case ThermalConductivityUnit.BtuPerHourFootFahrenheit:
+                    return new ThermalConductivity(_value*1.73073467, BaseUnit);
+                case ThermalConductivityUnit.WattPerMeterKelvin:
+                    return new ThermalConductivity(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -570,7 +572,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

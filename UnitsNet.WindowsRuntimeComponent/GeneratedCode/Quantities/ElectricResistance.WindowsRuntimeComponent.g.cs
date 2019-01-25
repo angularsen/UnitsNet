@@ -551,15 +551,20 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal ElectricResistance AsBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricResistanceUnit.Gigaohm: return (_value) * 1e9d;
-                case ElectricResistanceUnit.Kiloohm: return (_value) * 1e3d;
-                case ElectricResistanceUnit.Megaohm: return (_value) * 1e6d;
-                case ElectricResistanceUnit.Milliohm: return (_value) * 1e-3d;
-                case ElectricResistanceUnit.Ohm: return _value;
+                case ElectricResistanceUnit.Gigaohm:
+                    return new ElectricResistance((_value) * 1e9d, BaseUnit);
+                case ElectricResistanceUnit.Kiloohm:
+                    return new ElectricResistance((_value) * 1e3d, BaseUnit);
+                case ElectricResistanceUnit.Megaohm:
+                    return new ElectricResistance((_value) * 1e6d, BaseUnit);
+                case ElectricResistanceUnit.Milliohm:
+                    return new ElectricResistance((_value) * 1e-3d, BaseUnit);
+                case ElectricResistanceUnit.Ohm:
+                    return new ElectricResistance(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -570,7 +575,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

@@ -521,13 +521,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal SpecificVolume AsBaseUnit()
         {
             switch(Unit)
             {
-                case SpecificVolumeUnit.CubicFootPerPound: return _value/16.01846353;
-                case SpecificVolumeUnit.CubicMeterPerKilogram: return _value;
-                case SpecificVolumeUnit.MillicubicMeterPerKilogram: return (_value) * 1e-3d;
+                case SpecificVolumeUnit.CubicFootPerPound:
+                    return new SpecificVolume(_value/16.01846353, BaseUnit);
+                case SpecificVolumeUnit.CubicMeterPerKilogram:
+                    return new SpecificVolume(_value, BaseUnit);
+                case SpecificVolumeUnit.MillicubicMeterPerKilogram:
+                    return new SpecificVolume((_value) * 1e-3d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -538,7 +541,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

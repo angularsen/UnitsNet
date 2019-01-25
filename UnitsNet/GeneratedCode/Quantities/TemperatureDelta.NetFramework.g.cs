@@ -635,18 +635,26 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal TemperatureDelta AsBaseUnit()
         {
             switch(Unit)
             {
-                case TemperatureDeltaUnit.DegreeCelsius: return _value;
-                case TemperatureDeltaUnit.DegreeDelisle: return _value*-2/3;
-                case TemperatureDeltaUnit.DegreeFahrenheit: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeNewton: return _value*100/33;
-                case TemperatureDeltaUnit.DegreeRankine: return _value*5/9;
-                case TemperatureDeltaUnit.DegreeReaumur: return _value*5/4;
-                case TemperatureDeltaUnit.DegreeRoemer: return _value*40/21;
-                case TemperatureDeltaUnit.Kelvin: return _value;
+                case TemperatureDeltaUnit.DegreeCelsius:
+                    return new TemperatureDelta(_value, BaseUnit);
+                case TemperatureDeltaUnit.DegreeDelisle:
+                    return new TemperatureDelta(_value*-2/3, BaseUnit);
+                case TemperatureDeltaUnit.DegreeFahrenheit:
+                    return new TemperatureDelta(_value*5/9, BaseUnit);
+                case TemperatureDeltaUnit.DegreeNewton:
+                    return new TemperatureDelta(_value*100/33, BaseUnit);
+                case TemperatureDeltaUnit.DegreeRankine:
+                    return new TemperatureDelta(_value*5/9, BaseUnit);
+                case TemperatureDeltaUnit.DegreeReaumur:
+                    return new TemperatureDelta(_value*5/4, BaseUnit);
+                case TemperatureDeltaUnit.DegreeRoemer:
+                    return new TemperatureDelta(_value*40/21, BaseUnit);
+                case TemperatureDeltaUnit.Kelvin:
+                    return new TemperatureDelta(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -657,7 +665,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

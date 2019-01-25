@@ -35,14 +35,14 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    using FromToPair = ValueTuple<Enum, Enum>;
+    using ConversionFunctionLookup = ValueTuple<Type, Enum, Type, Enum>;
 
-    public delegate IQuantity ConversionFunction( IQuantity value );
+    public delegate IQuantity ConversionFunction( IQuantity inputValue );
 
     /// <summary>
     ///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
     /// </summary>
-    public sealed class UnitConverter
+    public sealed partial class UnitConverter
     {
         public static UnitConverter Default { get; }
 
@@ -50,35 +50,56 @@ namespace UnitsNet
         private static readonly string UnitTypeNamespace = typeof(LengthUnit).Namespace;
         private static readonly Assembly UnitsNetAssembly = typeof(Length).GetAssembly();
 
-        private Dictionary<FromToPair, ConversionFunction> conversionFunctions;
-
-        public UnitConverter()
-        {
-            conversionFunctions = new Dictionary<FromToPair, ConversionFunction>();
-        }
-
-        public void AddConversionFunction( Enum from, Enum to, ConversionFunction conversionFunction )
-        {
-            var fromTo = new FromToPair( from, to );
-            conversionFunctions.Add( fromTo, conversionFunction );
-        }
-
-        public ConversionFunction GetConversionFunction( Enum from, Enum to )
-        {
-            var fromTo = new FromToPair( from, to );
-            return conversionFunctions[ fromTo ];
-        }
-
-        public bool TryGetConversionFunction( Enum from, Enum to, out ConversionFunction conversionFunction )
-        {
-            var fromTo = new FromToPair( from, to );
-            return conversionFunctions.TryGetValue( fromTo, out conversionFunction );
-        }
+        private Dictionary<ConversionFunctionLookup, ConversionFunction> conversionFunctions;
 
         static UnitConverter()
         {
             Default = new UnitConverter();
+
+            RegisterDefaultConversions(Default);
         }
+
+        public UnitConverter()
+        {
+            conversionFunctions = new Dictionary<ConversionFunctionLookup, ConversionFunction>();
+        }
+
+#if !WINDOWS_UWP
+
+        public void SetConversionFunction<T>( Enum from, Enum to, ConversionFunction conversionFunction ) where T : IQuantity
+        {
+            SetConversionFunction( typeof(T), from, typeof( T ), to, conversionFunction );
+        }
+
+        public void SetConversionFunction( Type fromType, Enum from, Type toType, Enum to, ConversionFunction conversionFunction )
+        {
+            var conversionLookup = new ConversionFunctionLookup( fromType, from, toType, to );
+            conversionFunctions[ conversionLookup ] = conversionFunction;
+        }
+
+        public ConversionFunction GetConversionFunction<T>( Enum from, Enum to ) where T : IQuantity
+        {
+            return GetConversionFunction( typeof( T ), from, typeof( T ), to );
+        }
+
+        public ConversionFunction GetConversionFunction( Type fromType, Enum from, Type toType, Enum to )
+        {
+            var conversionLookup = new ConversionFunctionLookup( fromType, from, toType, to );
+            return conversionFunctions[ conversionLookup ];
+        }
+
+        public bool TryGetConversionFunction<T>( Enum from, Enum to, out ConversionFunction conversionFunction ) where T : IQuantity
+        {
+            return TryGetConversionFunction( typeof( T ), from, typeof( T ), to, out conversionFunction );
+        }
+
+        public bool TryGetConversionFunction( Type fromType, Enum from, Type toType, Enum to, out ConversionFunction conversionFunction )
+        {
+            var conversionLookup = new ConversionFunctionLookup( fromType, from, toType, to );
+            return conversionFunctions.TryGetValue( conversionLookup, out conversionFunction );
+        }
+
+#endif
 
         /// <summary>
         ///     Convert between any two quantity units by their names, such as converting a "Length" of N "Meter" to "Centimeter".

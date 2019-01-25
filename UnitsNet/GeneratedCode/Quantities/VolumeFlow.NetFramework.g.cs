@@ -1195,58 +1195,106 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal VolumeFlow AsBaseUnit()
         {
             switch(Unit)
             {
-                case VolumeFlowUnit.AcreFootPerDay: return _value/70.0457;
-                case VolumeFlowUnit.AcreFootPerHour: return _value/2.91857;
-                case VolumeFlowUnit.AcreFootPerMinute: return _value/0.0486427916;
-                case VolumeFlowUnit.AcreFootPerSecond: return _value/0.000810713194;
-                case VolumeFlowUnit.CentiliterPerDay: return (_value/86400000) * 1e-2d;
-                case VolumeFlowUnit.CentiliterPerMinute: return (_value/60000.00000) * 1e-2d;
-                case VolumeFlowUnit.CubicDecimeterPerMinute: return _value/60000.00000;
-                case VolumeFlowUnit.CubicFootPerHour: return _value*7.8657907199999087346816086183876e-6;
-                case VolumeFlowUnit.CubicFootPerMinute: return _value/2118.88000326;
-                case VolumeFlowUnit.CubicFootPerSecond: return _value/35.314666721;
-                case VolumeFlowUnit.CubicMeterPerDay: return _value/86400;
-                case VolumeFlowUnit.CubicMeterPerHour: return _value/3600;
-                case VolumeFlowUnit.CubicMeterPerMinute: return _value/60;
-                case VolumeFlowUnit.CubicMeterPerSecond: return _value;
-                case VolumeFlowUnit.CubicMillimeterPerSecond: return _value*1e-9;
-                case VolumeFlowUnit.CubicYardPerDay: return _value/113007;
-                case VolumeFlowUnit.CubicYardPerHour: return _value*2.1237634944E-4;
-                case VolumeFlowUnit.CubicYardPerMinute: return _value*0.0127425809664;
-                case VolumeFlowUnit.CubicYardPerSecond: return _value*0.764554857984;
-                case VolumeFlowUnit.DeciliterPerDay: return (_value/86400000) * 1e-1d;
-                case VolumeFlowUnit.DeciliterPerMinute: return (_value/60000.00000) * 1e-1d;
-                case VolumeFlowUnit.KiloliterPerDay: return (_value/86400000) * 1e3d;
-                case VolumeFlowUnit.KiloliterPerMinute: return (_value/60000.00000) * 1e3d;
-                case VolumeFlowUnit.KilousGallonPerMinute: return _value/15.850323141489;
-                case VolumeFlowUnit.LiterPerDay: return _value/86400000;
-                case VolumeFlowUnit.LiterPerHour: return _value/3600000.000;
-                case VolumeFlowUnit.LiterPerMinute: return _value/60000.00000;
-                case VolumeFlowUnit.LiterPerSecond: return _value/1000;
-                case VolumeFlowUnit.MegaliterPerDay: return (_value/86400000) * 1e6d;
-                case VolumeFlowUnit.MegaukGallonPerSecond: return (_value/219.969) * 1e6d;
-                case VolumeFlowUnit.MicroliterPerDay: return (_value/86400000) * 1e-6d;
-                case VolumeFlowUnit.MicroliterPerMinute: return (_value/60000.00000) * 1e-6d;
-                case VolumeFlowUnit.MilliliterPerDay: return (_value/86400000) * 1e-3d;
-                case VolumeFlowUnit.MilliliterPerMinute: return (_value/60000.00000) * 1e-3d;
-                case VolumeFlowUnit.MillionUsGallonsPerDay: return _value/22.824465227;
-                case VolumeFlowUnit.NanoliterPerDay: return (_value/86400000) * 1e-9d;
-                case VolumeFlowUnit.NanoliterPerMinute: return (_value/60000.00000) * 1e-9d;
-                case VolumeFlowUnit.OilBarrelPerDay: return _value*1.8401307283333333333333333333333e-6;
-                case VolumeFlowUnit.OilBarrelPerHour: return _value*4.41631375e-5;
-                case VolumeFlowUnit.OilBarrelPerMinute: return _value*2.64978825e-3;
-                case VolumeFlowUnit.OilBarrelPerSecond: return _value/6.28981;
-                case VolumeFlowUnit.UkGallonPerDay: return _value/19005304;
-                case VolumeFlowUnit.UkGallonPerMinute: return _value/13198.2;
-                case VolumeFlowUnit.UkGallonPerSecond: return _value/219.969;
-                case VolumeFlowUnit.UsGallonPerDay: return _value/22824465.227;
-                case VolumeFlowUnit.UsGallonPerHour: return _value/951019.38848933424;
-                case VolumeFlowUnit.UsGallonPerMinute: return _value/15850.323141489;
-                case VolumeFlowUnit.UsGallonPerSecond: return _value/264.1720523581484;
+                case VolumeFlowUnit.AcreFootPerDay:
+                    return new VolumeFlow(_value/70.0457, BaseUnit);
+                case VolumeFlowUnit.AcreFootPerHour:
+                    return new VolumeFlow(_value/2.91857, BaseUnit);
+                case VolumeFlowUnit.AcreFootPerMinute:
+                    return new VolumeFlow(_value/0.0486427916, BaseUnit);
+                case VolumeFlowUnit.AcreFootPerSecond:
+                    return new VolumeFlow(_value/0.000810713194, BaseUnit);
+                case VolumeFlowUnit.CentiliterPerDay:
+                    return new VolumeFlow((_value/86400000) * 1e-2d, BaseUnit);
+                case VolumeFlowUnit.CentiliterPerMinute:
+                    return new VolumeFlow((_value/60000.00000) * 1e-2d, BaseUnit);
+                case VolumeFlowUnit.CubicDecimeterPerMinute:
+                    return new VolumeFlow(_value/60000.00000, BaseUnit);
+                case VolumeFlowUnit.CubicFootPerHour:
+                    return new VolumeFlow(_value*7.8657907199999087346816086183876e-6, BaseUnit);
+                case VolumeFlowUnit.CubicFootPerMinute:
+                    return new VolumeFlow(_value/2118.88000326, BaseUnit);
+                case VolumeFlowUnit.CubicFootPerSecond:
+                    return new VolumeFlow(_value/35.314666721, BaseUnit);
+                case VolumeFlowUnit.CubicMeterPerDay:
+                    return new VolumeFlow(_value/86400, BaseUnit);
+                case VolumeFlowUnit.CubicMeterPerHour:
+                    return new VolumeFlow(_value/3600, BaseUnit);
+                case VolumeFlowUnit.CubicMeterPerMinute:
+                    return new VolumeFlow(_value/60, BaseUnit);
+                case VolumeFlowUnit.CubicMeterPerSecond:
+                    return new VolumeFlow(_value, BaseUnit);
+                case VolumeFlowUnit.CubicMillimeterPerSecond:
+                    return new VolumeFlow(_value*1e-9, BaseUnit);
+                case VolumeFlowUnit.CubicYardPerDay:
+                    return new VolumeFlow(_value/113007, BaseUnit);
+                case VolumeFlowUnit.CubicYardPerHour:
+                    return new VolumeFlow(_value*2.1237634944E-4, BaseUnit);
+                case VolumeFlowUnit.CubicYardPerMinute:
+                    return new VolumeFlow(_value*0.0127425809664, BaseUnit);
+                case VolumeFlowUnit.CubicYardPerSecond:
+                    return new VolumeFlow(_value*0.764554857984, BaseUnit);
+                case VolumeFlowUnit.DeciliterPerDay:
+                    return new VolumeFlow((_value/86400000) * 1e-1d, BaseUnit);
+                case VolumeFlowUnit.DeciliterPerMinute:
+                    return new VolumeFlow((_value/60000.00000) * 1e-1d, BaseUnit);
+                case VolumeFlowUnit.KiloliterPerDay:
+                    return new VolumeFlow((_value/86400000) * 1e3d, BaseUnit);
+                case VolumeFlowUnit.KiloliterPerMinute:
+                    return new VolumeFlow((_value/60000.00000) * 1e3d, BaseUnit);
+                case VolumeFlowUnit.KilousGallonPerMinute:
+                    return new VolumeFlow(_value/15.850323141489, BaseUnit);
+                case VolumeFlowUnit.LiterPerDay:
+                    return new VolumeFlow(_value/86400000, BaseUnit);
+                case VolumeFlowUnit.LiterPerHour:
+                    return new VolumeFlow(_value/3600000.000, BaseUnit);
+                case VolumeFlowUnit.LiterPerMinute:
+                    return new VolumeFlow(_value/60000.00000, BaseUnit);
+                case VolumeFlowUnit.LiterPerSecond:
+                    return new VolumeFlow(_value/1000, BaseUnit);
+                case VolumeFlowUnit.MegaliterPerDay:
+                    return new VolumeFlow((_value/86400000) * 1e6d, BaseUnit);
+                case VolumeFlowUnit.MegaukGallonPerSecond:
+                    return new VolumeFlow((_value/219.969) * 1e6d, BaseUnit);
+                case VolumeFlowUnit.MicroliterPerDay:
+                    return new VolumeFlow((_value/86400000) * 1e-6d, BaseUnit);
+                case VolumeFlowUnit.MicroliterPerMinute:
+                    return new VolumeFlow((_value/60000.00000) * 1e-6d, BaseUnit);
+                case VolumeFlowUnit.MilliliterPerDay:
+                    return new VolumeFlow((_value/86400000) * 1e-3d, BaseUnit);
+                case VolumeFlowUnit.MilliliterPerMinute:
+                    return new VolumeFlow((_value/60000.00000) * 1e-3d, BaseUnit);
+                case VolumeFlowUnit.MillionUsGallonsPerDay:
+                    return new VolumeFlow(_value/22.824465227, BaseUnit);
+                case VolumeFlowUnit.NanoliterPerDay:
+                    return new VolumeFlow((_value/86400000) * 1e-9d, BaseUnit);
+                case VolumeFlowUnit.NanoliterPerMinute:
+                    return new VolumeFlow((_value/60000.00000) * 1e-9d, BaseUnit);
+                case VolumeFlowUnit.OilBarrelPerDay:
+                    return new VolumeFlow(_value*1.8401307283333333333333333333333e-6, BaseUnit);
+                case VolumeFlowUnit.OilBarrelPerHour:
+                    return new VolumeFlow(_value*4.41631375e-5, BaseUnit);
+                case VolumeFlowUnit.OilBarrelPerMinute:
+                    return new VolumeFlow(_value*2.64978825e-3, BaseUnit);
+                case VolumeFlowUnit.OilBarrelPerSecond:
+                    return new VolumeFlow(_value/6.28981, BaseUnit);
+                case VolumeFlowUnit.UkGallonPerDay:
+                    return new VolumeFlow(_value/19005304, BaseUnit);
+                case VolumeFlowUnit.UkGallonPerMinute:
+                    return new VolumeFlow(_value/13198.2, BaseUnit);
+                case VolumeFlowUnit.UkGallonPerSecond:
+                    return new VolumeFlow(_value/219.969, BaseUnit);
+                case VolumeFlowUnit.UsGallonPerDay:
+                    return new VolumeFlow(_value/22824465.227, BaseUnit);
+                case VolumeFlowUnit.UsGallonPerHour:
+                    return new VolumeFlow(_value/951019.38848933424, BaseUnit);
+                case VolumeFlowUnit.UsGallonPerMinute:
+                    return new VolumeFlow(_value/15850.323141489, BaseUnit);
+                case VolumeFlowUnit.UsGallonPerSecond:
+                    return new VolumeFlow(_value/264.1720523581484, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -1257,7 +1305,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

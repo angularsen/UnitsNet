@@ -971,42 +971,74 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Speed AsBaseUnit()
         {
             switch(Unit)
             {
-                case SpeedUnit.CentimeterPerHour: return (_value/3600) * 1e-2d;
-                case SpeedUnit.CentimeterPerMinute: return (_value/60) * 1e-2d;
-                case SpeedUnit.CentimeterPerSecond: return (_value) * 1e-2d;
-                case SpeedUnit.DecimeterPerMinute: return (_value/60) * 1e-1d;
-                case SpeedUnit.DecimeterPerSecond: return (_value) * 1e-1d;
-                case SpeedUnit.FootPerHour: return _value*0.3048/3600;
-                case SpeedUnit.FootPerMinute: return _value*0.3048/60;
-                case SpeedUnit.FootPerSecond: return _value*0.3048;
-                case SpeedUnit.InchPerHour: return (_value/3600)*2.54e-2;
-                case SpeedUnit.InchPerMinute: return (_value/60)*2.54e-2;
-                case SpeedUnit.InchPerSecond: return _value*2.54e-2;
-                case SpeedUnit.KilometerPerHour: return (_value/3600) * 1e3d;
-                case SpeedUnit.KilometerPerMinute: return (_value/60) * 1e3d;
-                case SpeedUnit.KilometerPerSecond: return (_value) * 1e3d;
-                case SpeedUnit.Knot: return _value*0.514444;
-                case SpeedUnit.MeterPerHour: return _value/3600;
-                case SpeedUnit.MeterPerMinute: return _value/60;
-                case SpeedUnit.MeterPerSecond: return _value;
-                case SpeedUnit.MicrometerPerMinute: return (_value/60) * 1e-6d;
-                case SpeedUnit.MicrometerPerSecond: return (_value) * 1e-6d;
-                case SpeedUnit.MilePerHour: return _value*0.44704;
-                case SpeedUnit.MillimeterPerHour: return (_value/3600) * 1e-3d;
-                case SpeedUnit.MillimeterPerMinute: return (_value/60) * 1e-3d;
-                case SpeedUnit.MillimeterPerSecond: return (_value) * 1e-3d;
-                case SpeedUnit.NanometerPerMinute: return (_value/60) * 1e-9d;
-                case SpeedUnit.NanometerPerSecond: return (_value) * 1e-9d;
-                case SpeedUnit.UsSurveyFootPerHour: return (_value*1200/3937)/3600;
-                case SpeedUnit.UsSurveyFootPerMinute: return (_value*1200/3937)/60;
-                case SpeedUnit.UsSurveyFootPerSecond: return _value*1200/3937;
-                case SpeedUnit.YardPerHour: return _value*0.9144/3600;
-                case SpeedUnit.YardPerMinute: return _value*0.9144/60;
-                case SpeedUnit.YardPerSecond: return _value*0.9144;
+                case SpeedUnit.CentimeterPerHour:
+                    return new Speed((_value/3600) * 1e-2d, BaseUnit);
+                case SpeedUnit.CentimeterPerMinute:
+                    return new Speed((_value/60) * 1e-2d, BaseUnit);
+                case SpeedUnit.CentimeterPerSecond:
+                    return new Speed((_value) * 1e-2d, BaseUnit);
+                case SpeedUnit.DecimeterPerMinute:
+                    return new Speed((_value/60) * 1e-1d, BaseUnit);
+                case SpeedUnit.DecimeterPerSecond:
+                    return new Speed((_value) * 1e-1d, BaseUnit);
+                case SpeedUnit.FootPerHour:
+                    return new Speed(_value*0.3048/3600, BaseUnit);
+                case SpeedUnit.FootPerMinute:
+                    return new Speed(_value*0.3048/60, BaseUnit);
+                case SpeedUnit.FootPerSecond:
+                    return new Speed(_value*0.3048, BaseUnit);
+                case SpeedUnit.InchPerHour:
+                    return new Speed((_value/3600)*2.54e-2, BaseUnit);
+                case SpeedUnit.InchPerMinute:
+                    return new Speed((_value/60)*2.54e-2, BaseUnit);
+                case SpeedUnit.InchPerSecond:
+                    return new Speed(_value*2.54e-2, BaseUnit);
+                case SpeedUnit.KilometerPerHour:
+                    return new Speed((_value/3600) * 1e3d, BaseUnit);
+                case SpeedUnit.KilometerPerMinute:
+                    return new Speed((_value/60) * 1e3d, BaseUnit);
+                case SpeedUnit.KilometerPerSecond:
+                    return new Speed((_value) * 1e3d, BaseUnit);
+                case SpeedUnit.Knot:
+                    return new Speed(_value*0.514444, BaseUnit);
+                case SpeedUnit.MeterPerHour:
+                    return new Speed(_value/3600, BaseUnit);
+                case SpeedUnit.MeterPerMinute:
+                    return new Speed(_value/60, BaseUnit);
+                case SpeedUnit.MeterPerSecond:
+                    return new Speed(_value, BaseUnit);
+                case SpeedUnit.MicrometerPerMinute:
+                    return new Speed((_value/60) * 1e-6d, BaseUnit);
+                case SpeedUnit.MicrometerPerSecond:
+                    return new Speed((_value) * 1e-6d, BaseUnit);
+                case SpeedUnit.MilePerHour:
+                    return new Speed(_value*0.44704, BaseUnit);
+                case SpeedUnit.MillimeterPerHour:
+                    return new Speed((_value/3600) * 1e-3d, BaseUnit);
+                case SpeedUnit.MillimeterPerMinute:
+                    return new Speed((_value/60) * 1e-3d, BaseUnit);
+                case SpeedUnit.MillimeterPerSecond:
+                    return new Speed((_value) * 1e-3d, BaseUnit);
+                case SpeedUnit.NanometerPerMinute:
+                    return new Speed((_value/60) * 1e-9d, BaseUnit);
+                case SpeedUnit.NanometerPerSecond:
+                    return new Speed((_value) * 1e-9d, BaseUnit);
+                case SpeedUnit.UsSurveyFootPerHour:
+                    return new Speed((_value*1200/3937)/3600, BaseUnit);
+                case SpeedUnit.UsSurveyFootPerMinute:
+                    return new Speed((_value*1200/3937)/60, BaseUnit);
+                case SpeedUnit.UsSurveyFootPerSecond:
+                    return new Speed(_value*1200/3937, BaseUnit);
+                case SpeedUnit.YardPerHour:
+                    return new Speed(_value*0.9144/3600, BaseUnit);
+                case SpeedUnit.YardPerMinute:
+                    return new Speed(_value*0.9144/60, BaseUnit);
+                case SpeedUnit.YardPerSecond:
+                    return new Speed(_value*0.9144, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -1017,7 +1049,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

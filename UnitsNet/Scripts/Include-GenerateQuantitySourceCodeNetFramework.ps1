@@ -957,13 +957,14 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private $valueType AsBaseUnit()
+        internal $quantityName AsBaseUnit()
         {
             switch(Unit)
             {
 "@; foreach ($unit in $units) {
   $func = $unit.FromUnitToBaseFunc.Replace("x", "_value");@"
-                case $unitEnumName.$($unit.SingularName): return $func;
+                case $unitEnumName.$($unit.SingularName):
+                    return new $quantityName($func, BaseUnit);
 "@; }@"
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
@@ -975,7 +976,8 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

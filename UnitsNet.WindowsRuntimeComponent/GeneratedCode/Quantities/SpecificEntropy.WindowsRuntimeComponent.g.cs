@@ -596,18 +596,26 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal SpecificEntropy AsBaseUnit()
         {
             switch(Unit)
             {
-                case SpecificEntropyUnit.CaloriePerGramKelvin: return _value*4.184e3;
-                case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return _value;
-                case SpecificEntropyUnit.JoulePerKilogramKelvin: return _value;
-                case SpecificEntropyUnit.KilocaloriePerGramKelvin: return (_value*4.184e3) * 1e3d;
-                case SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius: return (_value) * 1e3d;
-                case SpecificEntropyUnit.KilojoulePerKilogramKelvin: return (_value) * 1e3d;
-                case SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius: return (_value) * 1e6d;
-                case SpecificEntropyUnit.MegajoulePerKilogramKelvin: return (_value) * 1e6d;
+                case SpecificEntropyUnit.CaloriePerGramKelvin:
+                    return new SpecificEntropy(_value*4.184e3, BaseUnit);
+                case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius:
+                    return new SpecificEntropy(_value, BaseUnit);
+                case SpecificEntropyUnit.JoulePerKilogramKelvin:
+                    return new SpecificEntropy(_value, BaseUnit);
+                case SpecificEntropyUnit.KilocaloriePerGramKelvin:
+                    return new SpecificEntropy((_value*4.184e3) * 1e3d, BaseUnit);
+                case SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius:
+                    return new SpecificEntropy((_value) * 1e3d, BaseUnit);
+                case SpecificEntropyUnit.KilojoulePerKilogramKelvin:
+                    return new SpecificEntropy((_value) * 1e3d, BaseUnit);
+                case SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius:
+                    return new SpecificEntropy((_value) * 1e6d, BaseUnit);
+                case SpecificEntropyUnit.MegajoulePerKilogramKelvin:
+                    return new SpecificEntropy((_value) * 1e6d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -618,7 +626,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

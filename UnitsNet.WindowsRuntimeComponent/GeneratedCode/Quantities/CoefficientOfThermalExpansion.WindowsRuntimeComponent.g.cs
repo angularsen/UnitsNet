@@ -521,13 +521,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal CoefficientOfThermalExpansion AsBaseUnit()
         {
             switch(Unit)
             {
-                case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return _value;
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return _value*5/9;
-                case CoefficientOfThermalExpansionUnit.InverseKelvin: return _value;
+                case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius:
+                    return new CoefficientOfThermalExpansion(_value, BaseUnit);
+                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit:
+                    return new CoefficientOfThermalExpansion(_value*5/9, BaseUnit);
+                case CoefficientOfThermalExpansionUnit.InverseKelvin:
+                    return new CoefficientOfThermalExpansion(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -538,7 +541,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

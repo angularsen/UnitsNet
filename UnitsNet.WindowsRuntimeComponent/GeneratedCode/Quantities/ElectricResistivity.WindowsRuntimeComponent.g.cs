@@ -689,24 +689,38 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal ElectricResistivity AsBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricResistivityUnit.KiloohmCentimeter: return (_value/100) * 1e3d;
-                case ElectricResistivityUnit.KiloohmMeter: return (_value) * 1e3d;
-                case ElectricResistivityUnit.MegaohmCentimeter: return (_value/100) * 1e6d;
-                case ElectricResistivityUnit.MegaohmMeter: return (_value) * 1e6d;
-                case ElectricResistivityUnit.MicroohmCentimeter: return (_value/100) * 1e-6d;
-                case ElectricResistivityUnit.MicroohmMeter: return (_value) * 1e-6d;
-                case ElectricResistivityUnit.MilliohmCentimeter: return (_value/100) * 1e-3d;
-                case ElectricResistivityUnit.MilliohmMeter: return (_value) * 1e-3d;
-                case ElectricResistivityUnit.NanoohmCentimeter: return (_value/100) * 1e-9d;
-                case ElectricResistivityUnit.NanoohmMeter: return (_value) * 1e-9d;
-                case ElectricResistivityUnit.OhmCentimeter: return _value/100;
-                case ElectricResistivityUnit.OhmMeter: return _value;
-                case ElectricResistivityUnit.PicoohmCentimeter: return (_value/100) * 1e-12d;
-                case ElectricResistivityUnit.PicoohmMeter: return (_value) * 1e-12d;
+                case ElectricResistivityUnit.KiloohmCentimeter:
+                    return new ElectricResistivity((_value/100) * 1e3d, BaseUnit);
+                case ElectricResistivityUnit.KiloohmMeter:
+                    return new ElectricResistivity((_value) * 1e3d, BaseUnit);
+                case ElectricResistivityUnit.MegaohmCentimeter:
+                    return new ElectricResistivity((_value/100) * 1e6d, BaseUnit);
+                case ElectricResistivityUnit.MegaohmMeter:
+                    return new ElectricResistivity((_value) * 1e6d, BaseUnit);
+                case ElectricResistivityUnit.MicroohmCentimeter:
+                    return new ElectricResistivity((_value/100) * 1e-6d, BaseUnit);
+                case ElectricResistivityUnit.MicroohmMeter:
+                    return new ElectricResistivity((_value) * 1e-6d, BaseUnit);
+                case ElectricResistivityUnit.MilliohmCentimeter:
+                    return new ElectricResistivity((_value/100) * 1e-3d, BaseUnit);
+                case ElectricResistivityUnit.MilliohmMeter:
+                    return new ElectricResistivity((_value) * 1e-3d, BaseUnit);
+                case ElectricResistivityUnit.NanoohmCentimeter:
+                    return new ElectricResistivity((_value/100) * 1e-9d, BaseUnit);
+                case ElectricResistivityUnit.NanoohmMeter:
+                    return new ElectricResistivity((_value) * 1e-9d, BaseUnit);
+                case ElectricResistivityUnit.OhmCentimeter:
+                    return new ElectricResistivity(_value/100, BaseUnit);
+                case ElectricResistivityUnit.OhmMeter:
+                    return new ElectricResistivity(_value, BaseUnit);
+                case ElectricResistivityUnit.PicoohmCentimeter:
+                    return new ElectricResistivity((_value/100) * 1e-12d, BaseUnit);
+                case ElectricResistivityUnit.PicoohmMeter:
+                    return new ElectricResistivity((_value) * 1e-12d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -717,7 +731,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

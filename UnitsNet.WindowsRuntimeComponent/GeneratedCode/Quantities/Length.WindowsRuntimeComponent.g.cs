@@ -806,32 +806,54 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Length AsBaseUnit()
         {
             switch(Unit)
             {
-                case LengthUnit.Centimeter: return (_value) * 1e-2d;
-                case LengthUnit.Decimeter: return (_value) * 1e-1d;
-                case LengthUnit.DtpPica: return _value/236.220472441;
-                case LengthUnit.DtpPoint: return (_value/72)*2.54e-2;
-                case LengthUnit.Fathom: return _value*1.8288;
-                case LengthUnit.Foot: return _value*0.3048;
-                case LengthUnit.Inch: return _value*2.54e-2;
-                case LengthUnit.Kilometer: return (_value) * 1e3d;
-                case LengthUnit.Meter: return _value;
-                case LengthUnit.Microinch: return _value*2.54e-8;
-                case LengthUnit.Micrometer: return (_value) * 1e-6d;
-                case LengthUnit.Mil: return _value*2.54e-5;
-                case LengthUnit.Mile: return _value*1609.34;
-                case LengthUnit.Millimeter: return (_value) * 1e-3d;
-                case LengthUnit.Nanometer: return (_value) * 1e-9d;
-                case LengthUnit.NauticalMile: return _value*1852;
-                case LengthUnit.PrinterPica: return _value/237.106301584;
-                case LengthUnit.PrinterPoint: return (_value/72.27)*2.54e-2;
-                case LengthUnit.Shackle: return _value*27.432;
-                case LengthUnit.Twip: return _value/56692.913385826;
-                case LengthUnit.UsSurveyFoot: return _value*1200/3937;
-                case LengthUnit.Yard: return _value*0.9144;
+                case LengthUnit.Centimeter:
+                    return new Length((_value) * 1e-2d, BaseUnit);
+                case LengthUnit.Decimeter:
+                    return new Length((_value) * 1e-1d, BaseUnit);
+                case LengthUnit.DtpPica:
+                    return new Length(_value/236.220472441, BaseUnit);
+                case LengthUnit.DtpPoint:
+                    return new Length((_value/72)*2.54e-2, BaseUnit);
+                case LengthUnit.Fathom:
+                    return new Length(_value*1.8288, BaseUnit);
+                case LengthUnit.Foot:
+                    return new Length(_value*0.3048, BaseUnit);
+                case LengthUnit.Inch:
+                    return new Length(_value*2.54e-2, BaseUnit);
+                case LengthUnit.Kilometer:
+                    return new Length((_value) * 1e3d, BaseUnit);
+                case LengthUnit.Meter:
+                    return new Length(_value, BaseUnit);
+                case LengthUnit.Microinch:
+                    return new Length(_value*2.54e-8, BaseUnit);
+                case LengthUnit.Micrometer:
+                    return new Length((_value) * 1e-6d, BaseUnit);
+                case LengthUnit.Mil:
+                    return new Length(_value*2.54e-5, BaseUnit);
+                case LengthUnit.Mile:
+                    return new Length(_value*1609.34, BaseUnit);
+                case LengthUnit.Millimeter:
+                    return new Length((_value) * 1e-3d, BaseUnit);
+                case LengthUnit.Nanometer:
+                    return new Length((_value) * 1e-9d, BaseUnit);
+                case LengthUnit.NauticalMile:
+                    return new Length(_value*1852, BaseUnit);
+                case LengthUnit.PrinterPica:
+                    return new Length(_value/237.106301584, BaseUnit);
+                case LengthUnit.PrinterPoint:
+                    return new Length((_value/72.27)*2.54e-2, BaseUnit);
+                case LengthUnit.Shackle:
+                    return new Length(_value*27.432, BaseUnit);
+                case LengthUnit.Twip:
+                    return new Length(_value/56692.913385826, BaseUnit);
+                case LengthUnit.UsSurveyFoot:
+                    return new Length(_value*1200/3937, BaseUnit);
+                case LengthUnit.Yard:
+                    return new Length(_value*0.9144, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -842,7 +864,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

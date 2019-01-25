@@ -27,12 +27,31 @@ namespace UnitsNet.Tests
     public class UnitConverterTest
     {
         [Fact]
-        public void CustomVersionFunctionWorks()
+        public void CustomConversionFunctionWorks()
         {
-            UnitsNet.ConversionFunction conversionFunction = ( from ) => Length.FromInches( 18 );
-            UnitConverter.Default.AddConversionFunction( LengthUnit.Meter, LengthUnit.Inch, conversionFunction );
-            var converter = UnitConverter.Default.GetConversionFunction( LengthUnit.Meter, LengthUnit.Inch );
-            var converted = converter( Length.FromMeters( 1.0 ) );
+            ConversionFunction conversionFunction = ( from ) => Length.FromInches( 18 );
+
+            var unitConverter = new UnitConverter();
+            unitConverter.SetConversionFunction<Length>( LengthUnit.Meter, LengthUnit.Inch, conversionFunction );
+
+            var foundConversionFunction = unitConverter.GetConversionFunction<Length>( LengthUnit.Meter, LengthUnit.Inch );
+            var converted = foundConversionFunction( Length.FromMeters( 1.0 ) );
+
+            Assert.Equal( Length.FromInches( 18 ), converted );
+        }
+
+        [Fact]
+        public void TryCustomConversionForOilBarrelsToUsGallons()
+        {
+            ConversionFunction conversionFunction = ( from ) => Volume.FromUsGallons( ((Volume)from).Value * 42 );
+
+            var unitConverter = new UnitConverter();
+            unitConverter.SetConversionFunction<Volume>( VolumeUnit.OilBarrel, VolumeUnit.UsGallon, conversionFunction );
+
+            var foundConversionFunction = unitConverter.GetConversionFunction<Volume>( VolumeUnit.OilBarrel, VolumeUnit.UsGallon );
+            var converted = foundConversionFunction( Volume.FromOilBarrels( 1 ) );
+
+            Assert.Equal( Volume.FromUsGallons( 42 ), converted );
         }
 
         [Theory]

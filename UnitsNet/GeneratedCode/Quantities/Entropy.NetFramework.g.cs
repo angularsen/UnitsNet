@@ -621,17 +621,24 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Entropy AsBaseUnit()
         {
             switch(Unit)
             {
-                case EntropyUnit.CaloriePerKelvin: return _value*4.184;
-                case EntropyUnit.JoulePerDegreeCelsius: return _value;
-                case EntropyUnit.JoulePerKelvin: return _value;
-                case EntropyUnit.KilocaloriePerKelvin: return (_value*4.184) * 1e3d;
-                case EntropyUnit.KilojoulePerDegreeCelsius: return (_value) * 1e3d;
-                case EntropyUnit.KilojoulePerKelvin: return (_value) * 1e3d;
-                case EntropyUnit.MegajoulePerKelvin: return (_value) * 1e6d;
+                case EntropyUnit.CaloriePerKelvin:
+                    return new Entropy(_value*4.184, BaseUnit);
+                case EntropyUnit.JoulePerDegreeCelsius:
+                    return new Entropy(_value, BaseUnit);
+                case EntropyUnit.JoulePerKelvin:
+                    return new Entropy(_value, BaseUnit);
+                case EntropyUnit.KilocaloriePerKelvin:
+                    return new Entropy((_value*4.184) * 1e3d, BaseUnit);
+                case EntropyUnit.KilojoulePerDegreeCelsius:
+                    return new Entropy((_value) * 1e3d, BaseUnit);
+                case EntropyUnit.KilojoulePerKelvin:
+                    return new Entropy((_value) * 1e3d, BaseUnit);
+                case EntropyUnit.MegajoulePerKelvin:
+                    return new Entropy((_value) * 1e6d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -642,7 +649,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

@@ -582,14 +582,18 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal Irradiation AsBaseUnit()
         {
             switch(Unit)
             {
-                case IrradiationUnit.JoulePerSquareMeter: return _value;
-                case IrradiationUnit.JoulePerSquareMillimeter: return _value*1e6;
-                case IrradiationUnit.KilowattHourPerSquareMeter: return (_value*3600d) * 1e3d;
-                case IrradiationUnit.WattHourPerSquareMeter: return _value*3600d;
+                case IrradiationUnit.JoulePerSquareMeter:
+                    return new Irradiation(_value, BaseUnit);
+                case IrradiationUnit.JoulePerSquareMillimeter:
+                    return new Irradiation(_value*1e6, BaseUnit);
+                case IrradiationUnit.KilowattHourPerSquareMeter:
+                    return new Irradiation((_value*3600d) * 1e3d, BaseUnit);
+                case IrradiationUnit.WattHourPerSquareMeter:
+                    return new Irradiation(_value*3600d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -600,7 +604,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

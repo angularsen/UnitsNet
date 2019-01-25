@@ -701,25 +701,40 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal AmountOfSubstance AsBaseUnit()
         {
             switch(Unit)
             {
-                case AmountOfSubstanceUnit.Centimole: return (_value) * 1e-2d;
-                case AmountOfSubstanceUnit.CentipoundMole: return (_value*453.59237) * 1e-2d;
-                case AmountOfSubstanceUnit.Decimole: return (_value) * 1e-1d;
-                case AmountOfSubstanceUnit.DecipoundMole: return (_value*453.59237) * 1e-1d;
-                case AmountOfSubstanceUnit.Kilomole: return (_value) * 1e3d;
-                case AmountOfSubstanceUnit.KilopoundMole: return (_value*453.59237) * 1e3d;
-                case AmountOfSubstanceUnit.Megamole: return (_value) * 1e6d;
-                case AmountOfSubstanceUnit.Micromole: return (_value) * 1e-6d;
-                case AmountOfSubstanceUnit.MicropoundMole: return (_value*453.59237) * 1e-6d;
-                case AmountOfSubstanceUnit.Millimole: return (_value) * 1e-3d;
-                case AmountOfSubstanceUnit.MillipoundMole: return (_value*453.59237) * 1e-3d;
-                case AmountOfSubstanceUnit.Mole: return _value;
-                case AmountOfSubstanceUnit.Nanomole: return (_value) * 1e-9d;
-                case AmountOfSubstanceUnit.NanopoundMole: return (_value*453.59237) * 1e-9d;
-                case AmountOfSubstanceUnit.PoundMole: return _value*453.59237;
+                case AmountOfSubstanceUnit.Centimole:
+                    return new AmountOfSubstance((_value) * 1e-2d, BaseUnit);
+                case AmountOfSubstanceUnit.CentipoundMole:
+                    return new AmountOfSubstance((_value*453.59237) * 1e-2d, BaseUnit);
+                case AmountOfSubstanceUnit.Decimole:
+                    return new AmountOfSubstance((_value) * 1e-1d, BaseUnit);
+                case AmountOfSubstanceUnit.DecipoundMole:
+                    return new AmountOfSubstance((_value*453.59237) * 1e-1d, BaseUnit);
+                case AmountOfSubstanceUnit.Kilomole:
+                    return new AmountOfSubstance((_value) * 1e3d, BaseUnit);
+                case AmountOfSubstanceUnit.KilopoundMole:
+                    return new AmountOfSubstance((_value*453.59237) * 1e3d, BaseUnit);
+                case AmountOfSubstanceUnit.Megamole:
+                    return new AmountOfSubstance((_value) * 1e6d, BaseUnit);
+                case AmountOfSubstanceUnit.Micromole:
+                    return new AmountOfSubstance((_value) * 1e-6d, BaseUnit);
+                case AmountOfSubstanceUnit.MicropoundMole:
+                    return new AmountOfSubstance((_value*453.59237) * 1e-6d, BaseUnit);
+                case AmountOfSubstanceUnit.Millimole:
+                    return new AmountOfSubstance((_value) * 1e-3d, BaseUnit);
+                case AmountOfSubstanceUnit.MillipoundMole:
+                    return new AmountOfSubstance((_value*453.59237) * 1e-3d, BaseUnit);
+                case AmountOfSubstanceUnit.Mole:
+                    return new AmountOfSubstance(_value, BaseUnit);
+                case AmountOfSubstanceUnit.Nanomole:
+                    return new AmountOfSubstance((_value) * 1e-9d, BaseUnit);
+                case AmountOfSubstanceUnit.NanopoundMole:
+                    return new AmountOfSubstance((_value*453.59237) * 1e-9d, BaseUnit);
+                case AmountOfSubstanceUnit.PoundMole:
+                    return new AmountOfSubstance(_value*453.59237, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -730,7 +745,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

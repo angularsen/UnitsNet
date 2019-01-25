@@ -641,21 +641,32 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal ForceChangeRate AsBaseUnit()
         {
             switch(Unit)
             {
-                case ForceChangeRateUnit.CentinewtonPerSecond: return (_value) * 1e-2d;
-                case ForceChangeRateUnit.DecanewtonPerMinute: return (_value/60) * 1e1d;
-                case ForceChangeRateUnit.DecanewtonPerSecond: return (_value) * 1e1d;
-                case ForceChangeRateUnit.DecinewtonPerSecond: return (_value) * 1e-1d;
-                case ForceChangeRateUnit.KilonewtonPerMinute: return (_value/60) * 1e3d;
-                case ForceChangeRateUnit.KilonewtonPerSecond: return (_value) * 1e3d;
-                case ForceChangeRateUnit.MicronewtonPerSecond: return (_value) * 1e-6d;
-                case ForceChangeRateUnit.MillinewtonPerSecond: return (_value) * 1e-3d;
-                case ForceChangeRateUnit.NanonewtonPerSecond: return (_value) * 1e-9d;
-                case ForceChangeRateUnit.NewtonPerMinute: return _value/60;
-                case ForceChangeRateUnit.NewtonPerSecond: return _value;
+                case ForceChangeRateUnit.CentinewtonPerSecond:
+                    return new ForceChangeRate((_value) * 1e-2d, BaseUnit);
+                case ForceChangeRateUnit.DecanewtonPerMinute:
+                    return new ForceChangeRate((_value/60) * 1e1d, BaseUnit);
+                case ForceChangeRateUnit.DecanewtonPerSecond:
+                    return new ForceChangeRate((_value) * 1e1d, BaseUnit);
+                case ForceChangeRateUnit.DecinewtonPerSecond:
+                    return new ForceChangeRate((_value) * 1e-1d, BaseUnit);
+                case ForceChangeRateUnit.KilonewtonPerMinute:
+                    return new ForceChangeRate((_value/60) * 1e3d, BaseUnit);
+                case ForceChangeRateUnit.KilonewtonPerSecond:
+                    return new ForceChangeRate((_value) * 1e3d, BaseUnit);
+                case ForceChangeRateUnit.MicronewtonPerSecond:
+                    return new ForceChangeRate((_value) * 1e-6d, BaseUnit);
+                case ForceChangeRateUnit.MillinewtonPerSecond:
+                    return new ForceChangeRate((_value) * 1e-3d, BaseUnit);
+                case ForceChangeRateUnit.NanonewtonPerSecond:
+                    return new ForceChangeRate((_value) * 1e-9d, BaseUnit);
+                case ForceChangeRateUnit.NewtonPerMinute:
+                    return new ForceChangeRate(_value/60, BaseUnit);
+                case ForceChangeRateUnit.NewtonPerSecond:
+                    return new ForceChangeRate(_value, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -666,7 +677,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

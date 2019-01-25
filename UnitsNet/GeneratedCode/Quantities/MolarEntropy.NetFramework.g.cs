@@ -565,13 +565,16 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double AsBaseUnit()
+        internal MolarEntropy AsBaseUnit()
         {
             switch(Unit)
             {
-                case MolarEntropyUnit.JoulePerMoleKelvin: return _value;
-                case MolarEntropyUnit.KilojoulePerMoleKelvin: return (_value) * 1e3d;
-                case MolarEntropyUnit.MegajoulePerMoleKelvin: return (_value) * 1e6d;
+                case MolarEntropyUnit.JoulePerMoleKelvin:
+                    return new MolarEntropy(_value, BaseUnit);
+                case MolarEntropyUnit.KilojoulePerMoleKelvin:
+                    return new MolarEntropy((_value) * 1e3d, BaseUnit);
+                case MolarEntropyUnit.MegajoulePerMoleKelvin:
+                    return new MolarEntropy((_value) * 1e6d, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -582,7 +585,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {

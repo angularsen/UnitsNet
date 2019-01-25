@@ -890,36 +890,62 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private decimal AsBaseUnit()
+        internal BitRate AsBaseUnit()
         {
             switch(Unit)
             {
-                case BitRateUnit.BitPerSecond: return _value;
-                case BitRateUnit.BytePerSecond: return _value*8m;
-                case BitRateUnit.ExabitPerSecond: return (_value) * 1e18m;
-                case BitRateUnit.ExabytePerSecond: return (_value*8m) * 1e18m;
-                case BitRateUnit.ExbibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.ExbibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.GibibitPerSecond: return (_value) * (1024m * 1024 * 1024);
-                case BitRateUnit.GibibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024);
-                case BitRateUnit.GigabitPerSecond: return (_value) * 1e9m;
-                case BitRateUnit.GigabytePerSecond: return (_value*8m) * 1e9m;
-                case BitRateUnit.KibibitPerSecond: return (_value) * 1024m;
-                case BitRateUnit.KibibytePerSecond: return (_value*8m) * 1024m;
-                case BitRateUnit.KilobitPerSecond: return (_value) * 1e3m;
-                case BitRateUnit.KilobytePerSecond: return (_value*8m) * 1e3m;
-                case BitRateUnit.MebibitPerSecond: return (_value) * (1024m * 1024);
-                case BitRateUnit.MebibytePerSecond: return (_value*8m) * (1024m * 1024);
-                case BitRateUnit.MegabitPerSecond: return (_value) * 1e6m;
-                case BitRateUnit.MegabytePerSecond: return (_value*8m) * 1e6m;
-                case BitRateUnit.PebibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.PebibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024);
-                case BitRateUnit.PetabitPerSecond: return (_value) * 1e15m;
-                case BitRateUnit.PetabytePerSecond: return (_value*8m) * 1e15m;
-                case BitRateUnit.TebibitPerSecond: return (_value) * (1024m * 1024 * 1024 * 1024);
-                case BitRateUnit.TebibytePerSecond: return (_value*8m) * (1024m * 1024 * 1024 * 1024);
-                case BitRateUnit.TerabitPerSecond: return (_value) * 1e12m;
-                case BitRateUnit.TerabytePerSecond: return (_value*8m) * 1e12m;
+                case BitRateUnit.BitPerSecond:
+                    return new BitRate(_value, BaseUnit);
+                case BitRateUnit.BytePerSecond:
+                    return new BitRate(_value*8m, BaseUnit);
+                case BitRateUnit.ExabitPerSecond:
+                    return new BitRate((_value) * 1e18m, BaseUnit);
+                case BitRateUnit.ExabytePerSecond:
+                    return new BitRate((_value*8m) * 1e18m, BaseUnit);
+                case BitRateUnit.ExbibitPerSecond:
+                    return new BitRate((_value) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024), BaseUnit);
+                case BitRateUnit.ExbibytePerSecond:
+                    return new BitRate((_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024), BaseUnit);
+                case BitRateUnit.GibibitPerSecond:
+                    return new BitRate((_value) * (1024m * 1024 * 1024), BaseUnit);
+                case BitRateUnit.GibibytePerSecond:
+                    return new BitRate((_value*8m) * (1024m * 1024 * 1024), BaseUnit);
+                case BitRateUnit.GigabitPerSecond:
+                    return new BitRate((_value) * 1e9m, BaseUnit);
+                case BitRateUnit.GigabytePerSecond:
+                    return new BitRate((_value*8m) * 1e9m, BaseUnit);
+                case BitRateUnit.KibibitPerSecond:
+                    return new BitRate((_value) * 1024m, BaseUnit);
+                case BitRateUnit.KibibytePerSecond:
+                    return new BitRate((_value*8m) * 1024m, BaseUnit);
+                case BitRateUnit.KilobitPerSecond:
+                    return new BitRate((_value) * 1e3m, BaseUnit);
+                case BitRateUnit.KilobytePerSecond:
+                    return new BitRate((_value*8m) * 1e3m, BaseUnit);
+                case BitRateUnit.MebibitPerSecond:
+                    return new BitRate((_value) * (1024m * 1024), BaseUnit);
+                case BitRateUnit.MebibytePerSecond:
+                    return new BitRate((_value*8m) * (1024m * 1024), BaseUnit);
+                case BitRateUnit.MegabitPerSecond:
+                    return new BitRate((_value) * 1e6m, BaseUnit);
+                case BitRateUnit.MegabytePerSecond:
+                    return new BitRate((_value*8m) * 1e6m, BaseUnit);
+                case BitRateUnit.PebibitPerSecond:
+                    return new BitRate((_value) * (1024m * 1024 * 1024 * 1024 * 1024), BaseUnit);
+                case BitRateUnit.PebibytePerSecond:
+                    return new BitRate((_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024), BaseUnit);
+                case BitRateUnit.PetabitPerSecond:
+                    return new BitRate((_value) * 1e15m, BaseUnit);
+                case BitRateUnit.PetabytePerSecond:
+                    return new BitRate((_value*8m) * 1e15m, BaseUnit);
+                case BitRateUnit.TebibitPerSecond:
+                    return new BitRate((_value) * (1024m * 1024 * 1024 * 1024), BaseUnit);
+                case BitRateUnit.TebibytePerSecond:
+                    return new BitRate((_value*8m) * (1024m * 1024 * 1024 * 1024), BaseUnit);
+                case BitRateUnit.TerabitPerSecond:
+                    return new BitRate((_value) * 1e12m, BaseUnit);
+                case BitRateUnit.TerabytePerSecond:
+                    return new BitRate((_value*8m) * 1e12m, BaseUnit);
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
@@ -930,7 +956,8 @@ namespace UnitsNet
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = AsBaseUnit();
+            var asBaseUnit = AsBaseUnit();
+            var baseUnitValue = asBaseUnit._value;
 
             switch(unit)
             {
