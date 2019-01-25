@@ -27,7 +27,7 @@ namespace UnitsNet.Tests
     public class UnitConverterTest
     {
         [Fact]
-        public void CustomConversionFunctionWorks()
+        public void CustomConversionWithSameQuantityType()
         {
             ConversionFunction conversionFunction = (from) => Length.FromInches(18);
 
@@ -36,6 +36,20 @@ namespace UnitsNet.Tests
 
             var foundConversionFunction = unitConverter.GetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch);
             var converted = foundConversionFunction(Length.FromMeters(1.0));
+
+            Assert.Equal(Length.FromInches(18), converted);
+        }
+
+        [Fact]
+        public void CustomConversionWithDifferentQuantityTypes()
+        {
+            ConversionFunction conversionFunction = (from) => Length.FromInches(18);
+
+            var unitConverter = new UnitConverter();
+            unitConverter.SetConversionFunction<Mass, Length>(MassUnit.Grain, LengthUnit.Inch, conversionFunction);
+
+            var foundConversionFunction = unitConverter.GetConversionFunction<Mass, Length>(MassUnit.Grain, LengthUnit.Inch);
+            var converted = foundConversionFunction(Mass.FromGrains(100));
 
             Assert.Equal(Length.FromInches(18), converted);
         }

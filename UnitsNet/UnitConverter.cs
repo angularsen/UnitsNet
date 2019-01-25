@@ -66,15 +66,28 @@ namespace UnitsNet
 
 #if !WINDOWS_UWP
 
-        public void SetConversionFunction<T>(Enum from, Enum to, ConversionFunction conversionFunction) where T : IQuantity
+        public void SetConversionFunction<QuantityType>(Enum from, Enum to, ConversionFunction conversionFunction)
+            where QuantityType : IQuantity
         {
-            SetConversionFunction(typeof(T), from, typeof(T), to, conversionFunction);
+            SetConversionFunction(typeof(QuantityType), from, typeof(QuantityType), to, conversionFunction);
+        }
+
+        public void SetConversionFunction<SourceQuantity, TargetQuantity>(Enum from, Enum to, ConversionFunction conversionFunction)
+            where SourceQuantity : IQuantity
+            where TargetQuantity : IQuantity
+        {
+            SetConversionFunction(typeof(SourceQuantity), from, typeof(TargetQuantity), to, conversionFunction);
         }
 
         public void SetConversionFunction(Type fromType, Enum from, Type toType, Enum to, ConversionFunction conversionFunction)
         {
             var conversionLookup = new ConversionFunctionLookup(fromType, from, toType, to);
-            conversionFunctions[ conversionLookup ] = conversionFunction;
+            SetConversionFunction(conversionLookup, conversionFunction);
+        }
+
+        public void SetConversionFunction(ConversionFunctionLookup conversionLookup, ConversionFunction conversionFunction)
+        {
+            conversionFunctions[conversionLookup] = conversionFunction;
         }
 
         public ConversionFunction GetConversionFunction<T>(Enum from, Enum to) where T : IQuantity
@@ -82,10 +95,22 @@ namespace UnitsNet
             return GetConversionFunction(typeof(T), from, typeof(T), to);
         }
 
+        public ConversionFunction GetConversionFunction<SourceQuantity, TargetQuantity>(Enum from, Enum to)
+            where SourceQuantity : IQuantity
+            where TargetQuantity : IQuantity
+        {
+            return GetConversionFunction(typeof(SourceQuantity), from, typeof(TargetQuantity), to);
+        }
+
         public ConversionFunction GetConversionFunction(Type fromType, Enum from, Type toType, Enum to)
         {
             var conversionLookup = new ConversionFunctionLookup(fromType, from, toType, to);
-            return conversionFunctions[ conversionLookup ];
+            return GetConversionFunction(conversionLookup);
+        }
+
+        public ConversionFunction GetConversionFunction(ConversionFunctionLookup conversionLookup)
+        {
+            return conversionFunctions[conversionLookup];
         }
 
         public bool TryGetConversionFunction<T>(Enum from, Enum to, out ConversionFunction conversionFunction) where T : IQuantity
@@ -93,9 +118,21 @@ namespace UnitsNet
             return TryGetConversionFunction(typeof(T), from, typeof(T), to, out conversionFunction);
         }
 
+        public bool TryGetConversionFunction<SourceQuantity, TargetQuantity>(Enum from, Enum to, out ConversionFunction conversionFunction)
+            where SourceQuantity : IQuantity
+            where TargetQuantity : IQuantity
+        {
+            return TryGetConversionFunction(typeof(SourceQuantity), from, typeof(TargetQuantity), to, out conversionFunction);
+        }
+
         public bool TryGetConversionFunction(Type fromType, Enum from, Type toType, Enum to, out ConversionFunction conversionFunction)
         {
             var conversionLookup = new ConversionFunctionLookup(fromType, from, toType, to);
+            return TryGetConversionFunction(conversionLookup, out conversionFunction);
+        }
+
+        public bool TryGetConversionFunction(ConversionFunctionLookup conversionLookup, out ConversionFunction conversionFunction)
+        {
             return conversionFunctions.TryGetValue(conversionLookup, out conversionFunction);
         }
 
