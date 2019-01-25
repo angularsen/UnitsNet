@@ -29,29 +29,29 @@ namespace UnitsNet.Tests
         [Fact]
         public void CustomConversionFunctionWorks()
         {
-            ConversionFunction conversionFunction = ( from ) => Length.FromInches( 18 );
+            ConversionFunction conversionFunction = (from) => Length.FromInches(18);
 
             var unitConverter = new UnitConverter();
-            unitConverter.SetConversionFunction<Length>( LengthUnit.Meter, LengthUnit.Inch, conversionFunction );
+            unitConverter.SetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch, conversionFunction);
 
-            var foundConversionFunction = unitConverter.GetConversionFunction<Length>( LengthUnit.Meter, LengthUnit.Inch );
-            var converted = foundConversionFunction( Length.FromMeters( 1.0 ) );
+            var foundConversionFunction = unitConverter.GetConversionFunction<Length>(LengthUnit.Meter, LengthUnit.Inch);
+            var converted = foundConversionFunction(Length.FromMeters(1.0));
 
-            Assert.Equal( Length.FromInches( 18 ), converted );
+            Assert.Equal(Length.FromInches(18), converted);
         }
 
         [Fact]
         public void TryCustomConversionForOilBarrelsToUsGallons()
         {
-            ConversionFunction conversionFunction = ( from ) => Volume.FromUsGallons( ((Volume)from).Value * 42 );
+            ConversionFunction conversionFunction = (from) => Volume.FromUsGallons(((Volume)from).Value * 42);
 
             var unitConverter = new UnitConverter();
-            unitConverter.SetConversionFunction<Volume>( VolumeUnit.OilBarrel, VolumeUnit.UsGallon, conversionFunction );
+            unitConverter.SetConversionFunction<Volume>(VolumeUnit.OilBarrel, VolumeUnit.UsGallon, conversionFunction);
 
-            var foundConversionFunction = unitConverter.GetConversionFunction<Volume>( VolumeUnit.OilBarrel, VolumeUnit.UsGallon );
-            var converted = foundConversionFunction( Volume.FromOilBarrels( 1 ) );
+            var foundConversionFunction = unitConverter.GetConversionFunction<Volume>(VolumeUnit.OilBarrel, VolumeUnit.UsGallon);
+            var converted = foundConversionFunction(Volume.FromOilBarrels(1));
 
-            Assert.Equal( Volume.FromUsGallons( 42 ), converted );
+            Assert.Equal(Volume.FromUsGallons(42), converted);
         }
 
         [Theory]

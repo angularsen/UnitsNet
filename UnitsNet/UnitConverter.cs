@@ -37,7 +37,7 @@ namespace UnitsNet
 {
     using ConversionFunctionLookup = ValueTuple<Type, Enum, Type, Enum>;
 
-    public delegate IQuantity ConversionFunction( IQuantity inputValue );
+    public delegate IQuantity ConversionFunction(IQuantity inputValue);
 
     /// <summary>
     ///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
@@ -66,37 +66,37 @@ namespace UnitsNet
 
 #if !WINDOWS_UWP
 
-        public void SetConversionFunction<T>( Enum from, Enum to, ConversionFunction conversionFunction ) where T : IQuantity
+        public void SetConversionFunction<T>(Enum from, Enum to, ConversionFunction conversionFunction) where T : IQuantity
         {
-            SetConversionFunction( typeof(T), from, typeof( T ), to, conversionFunction );
+            SetConversionFunction(typeof(T), from, typeof(T), to, conversionFunction);
         }
 
-        public void SetConversionFunction( Type fromType, Enum from, Type toType, Enum to, ConversionFunction conversionFunction )
+        public void SetConversionFunction(Type fromType, Enum from, Type toType, Enum to, ConversionFunction conversionFunction)
         {
-            var conversionLookup = new ConversionFunctionLookup( fromType, from, toType, to );
+            var conversionLookup = new ConversionFunctionLookup(fromType, from, toType, to);
             conversionFunctions[ conversionLookup ] = conversionFunction;
         }
 
-        public ConversionFunction GetConversionFunction<T>( Enum from, Enum to ) where T : IQuantity
+        public ConversionFunction GetConversionFunction<T>(Enum from, Enum to) where T : IQuantity
         {
-            return GetConversionFunction( typeof( T ), from, typeof( T ), to );
+            return GetConversionFunction(typeof(T), from, typeof(T), to);
         }
 
-        public ConversionFunction GetConversionFunction( Type fromType, Enum from, Type toType, Enum to )
+        public ConversionFunction GetConversionFunction(Type fromType, Enum from, Type toType, Enum to)
         {
-            var conversionLookup = new ConversionFunctionLookup( fromType, from, toType, to );
+            var conversionLookup = new ConversionFunctionLookup(fromType, from, toType, to);
             return conversionFunctions[ conversionLookup ];
         }
 
-        public bool TryGetConversionFunction<T>( Enum from, Enum to, out ConversionFunction conversionFunction ) where T : IQuantity
+        public bool TryGetConversionFunction<T>(Enum from, Enum to, out ConversionFunction conversionFunction) where T : IQuantity
         {
-            return TryGetConversionFunction( typeof( T ), from, typeof( T ), to, out conversionFunction );
+            return TryGetConversionFunction(typeof(T), from, typeof(T), to, out conversionFunction);
         }
 
-        public bool TryGetConversionFunction( Type fromType, Enum from, Type toType, Enum to, out ConversionFunction conversionFunction )
+        public bool TryGetConversionFunction(Type fromType, Enum from, Type toType, Enum to, out ConversionFunction conversionFunction)
         {
-            var conversionLookup = new ConversionFunctionLookup( fromType, from, toType, to );
-            return conversionFunctions.TryGetValue( conversionLookup, out conversionFunction );
+            var conversionLookup = new ConversionFunctionLookup(fromType, from, toType, to);
+            return conversionFunctions.TryGetValue(conversionLookup, out conversionFunction);
         }
 
 #endif
