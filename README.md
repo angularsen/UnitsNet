@@ -270,3 +270,13 @@ https://bitbucket.org/MartinEden/Crawlspace
 
 *- Martin Eden, project maintainer*
 
+![ANSYS, Inc. Logo](https://www.ansys.com/-/media/ansys/global/brandings/logo-ansys.jpg "ANSYS, Inc. Logo")
+
+#### ANSYS, Inc. (ANSYS Discovery Live)
+> ANSYS Discovery Live provides instantaneous 3D simulation, tightly coupled with direct geometry modeling, to enable interactive design exploration and rapid product innovation. It is an interactive experience in which you can manipulate geometry, material types or physics inputs, then instantaneously see changes in performance.
+
+https://www.ansys.com
+https://www.ansys.com/products/3d-design/ansys-discovery-live
+
+*- Tristan Milnthorp, Principal Software Architect (tristan.milnthorp@ansys.com)*
+
