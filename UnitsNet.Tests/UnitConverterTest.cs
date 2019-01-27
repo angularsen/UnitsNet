@@ -26,6 +26,7 @@ namespace UnitsNet.Tests
     public class UnitConverterTest
     {
         [Theory]
+        [InlineData(0, 0, "length", "meter", "centimeter")]
         [InlineData(0, 0, "Length", "Meter", "Centimeter")]
         [InlineData(100, 1, "Length", "Meter", "Centimeter")]
         [InlineData(1, 1000, "Mass", "Gram", "Kilogram")]
@@ -33,6 +34,18 @@ namespace UnitsNet.Tests
         public void ConvertByName_ConvertsTheValueToGivenUnit(double expectedValue, double inputValue, string quantityTypeName, string fromUnit, string toUnit)
         {
             Assert.Equal(expectedValue, UnitConverter.ConvertByName(inputValue, quantityTypeName, fromUnit, toUnit));
+        }
+
+        [Fact]
+        public void ConvertByName_QuantityCaseInsensitive()
+        {
+            Assert.Equal(0, UnitConverter.ConvertByName(0, "length", "Meter", "Centimeter"));
+        }
+
+        [Fact]
+        public void ConvertByName_UnitTypeCaseInsensitive()
+        {
+            Assert.Equal(0, UnitConverter.ConvertByName(0, "Length", "meter", "Centimeter"));
         }
 
         [Theory]

@@ -42,6 +42,30 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Parse_AbbreviationCaseInsensitive_Lowercase_years()
+        {
+            var abbreviation = "years";
+            var expected = DurationUnit.Year365;
+            var parser = UnitParser.Default;
+
+            var actual = parser.Parse<DurationUnit>(abbreviation);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Parse_AbbreviationCaseInsensitive_Uppercase_Years()
+        {
+            var abbreviation = "Years";
+            var expected = DurationUnit.Year365;
+            var parser = UnitParser.Default;
+
+            var actual = parser.Parse<DurationUnit>(abbreviation);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void Parse_UnknownAbbreviationThrowsUnitNotFoundException()
         {
             Assert.Throws<UnitNotFoundException>(() => UnitParser.Default.Parse<AreaUnit>("nonexistingunit"));

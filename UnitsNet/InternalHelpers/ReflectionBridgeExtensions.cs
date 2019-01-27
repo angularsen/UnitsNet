@@ -51,6 +51,15 @@ namespace UnitsNet.InternalHelpers
 #endif
         }
 
+        internal static bool IsClass(this Type type)
+        {
+#if !(NET40 || NET35 || NET20 || SILVERLIGHT)
+            return type.GetTypeInfo().IsClass;
+#else
+            return type.IsClass;
+#endif
+        }
+
         internal static bool IsValueType(this Type type)
         {
 #if !(NET40 || NET35 || NET20 || SILVERLIGHT)

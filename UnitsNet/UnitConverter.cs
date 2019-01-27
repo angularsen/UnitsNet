@@ -40,9 +40,17 @@ namespace UnitsNet
     /// </summary>
     public static class UnitConverter
     {
-        private static readonly string QuantityNamespace = typeof(Length).Namespace;
         private static readonly string UnitTypeNamespace = typeof(LengthUnit).Namespace;
         private static readonly Assembly UnitsNetAssembly = typeof(Length).GetAssembly();
+
+        private static readonly Type[] QuantityTypes = UnitsNetAssembly.GetTypes()
+            .Where(typeof(IQuantity).IsAssignableFrom)
+            .Where(x => x.IsClass() || x.IsValueType()) // Future-proofing: we are discussing changing quantities from struct to class
+            .ToArray();
+
+        private static readonly Type[] UnitTypes = UnitsNetAssembly.GetTypes()
+            .Where(x => x.Namespace == UnitTypeNamespace && x.IsEnum() && x.Name.EndsWith("Unit"))
+            .ToArray();
 
         /// <summary>
         ///     Convert between any two quantity units by their names, such as converting a "Length" of N "Meter" to "Centimeter".
@@ -72,7 +80,7 @@ namespace UnitsNet
         /// <returns>Output value as the result of converting to <paramref name="toUnit" />.</returns>
         /// <exception cref="QuantityNotFoundException">No quantities were found that match <paramref name="quantityName" />.</exception>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
-        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbrevation.</exception>
+        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByName(FromValue fromValue, string quantityName, string fromUnit, string toUnit)
         {
             if(!TryGetQuantityType(quantityName, out var quantityType))
@@ -219,7 +227,7 @@ namespace UnitsNet
         /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
         /// <exception cref="QuantityNotFoundException">No quantity types match the <paramref name="quantityName"/>.</exception>
         /// <exception cref="UnitNotFoundException">No unit types match the prefix of <paramref name="quantityName"/> or no units are mapped to the abbreviation.</exception>
-        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbrevation.</exception>
+        /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByAbbreviation(FromValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string culture)
         {
             if(!TryGetQuantityType(quantityName, out var quantityType))
@@ -384,37 +392,30 @@ namespace UnitsNet
         private static bool TryParseUnit(Type unitType, string unitName, out object unitValue)
         {
             unitValue = null;
-
-            if(!Enum.IsDefined(unitType, unitName))
+            var eNames = Enum.GetNames(unitType);
+            unitName = eNames.FirstOrDefault(x => x.Equals(unitName, StringComparison.OrdinalIgnoreCase));
+            if(unitName == null)
                 return false;
 
             unitValue = Enum.Parse(unitType, unitName);
-            if(unitValue == null)
-                return false;
-
             return true;
         }
 
         private static bool TryGetUnitType(string quantityName, out Type unitType)
         {
-            string unitTypeName = $"{UnitTypeNamespace}.{quantityName}Unit";
+            var unitTypeName = quantityName + "Unit"; // ex. LengthUnit
 
-            unitType = UnitsNetAssembly.GetType(unitTypeName); // ex: UnitsNet.Units.LengthUnit enum
-            if(unitType == null)
-                return false;
+            unitType = UnitTypes.FirstOrDefault(x =>
+                x.Name.Equals(unitTypeName, StringComparison.OrdinalIgnoreCase));
 
-            return true;
+            return unitType != null;
         }
 
         private static bool TryGetQuantityType(string quantityName, out Type quantityType)
         {
-            string quantityTypeName = $"{QuantityNamespace}.{quantityName}";
+            quantityType = QuantityTypes.FirstOrDefault(x => x.Name.Equals(quantityName, StringComparison.OrdinalIgnoreCase));
 
-            quantityType = UnitsNetAssembly.GetType(quantityTypeName); // ex: UnitsNet.Length struct
-            if(quantityType == null)
-                return false;
-
-            return true;
+            return quantityType != null;
         }
     }
 }
