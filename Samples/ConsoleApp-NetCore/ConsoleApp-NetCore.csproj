@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <PackageReference Include="UnitsNet" Version="4.0.0-beta1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\UnitsNet\UnitsNet.csproj" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>
