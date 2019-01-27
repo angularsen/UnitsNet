@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -15,7 +14,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
     {
         public MainWindowDesignVm()
         {
-            Quantities = ToReadOnly(Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Skip(1));
+            Quantities = ToReadOnly(UnitsHelper.QuantityTypes);
             Units = ToReadOnly(Length.Units.Select(u => new UnitListItem(u)));
             SelectedQuantity = QuantityType.Length;
             SelectedFromUnit = Units[1];

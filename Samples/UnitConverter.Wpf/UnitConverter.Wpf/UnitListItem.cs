@@ -9,10 +9,10 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
     /// </summary>
     public sealed class UnitListItem
     {
-        public UnitListItem(object val)
+        public UnitListItem(Enum val)
         {
             UnitEnumValue = val;
-            UnitEnumValueInt = (int) val;
+            UnitEnumValueInt = Convert.ToInt32(val);
             UnitEnumType = val.GetType();
             Abbreviation = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(UnitEnumType, UnitEnumValueInt);
 
@@ -20,7 +20,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         }
 
         public string Text { get; }
-        public object UnitEnumValue { get; }
+        public Enum UnitEnumValue { get; }
         public int UnitEnumValueInt { get; }
         public Type UnitEnumType { get; }
         public string Abbreviation { get; }

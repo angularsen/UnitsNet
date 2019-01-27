@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Markup;
 
 namespace WpfMVVMSample.Converters
@@ -13,10 +10,10 @@ namespace WpfMVVMSample.Converters
         private Type _enumType;
         private Type EnumType
         {
-            get { return this._enumType; }
+            get => _enumType;
             set
             {
-                if (value != this._enumType)
+                if (value != _enumType)
                 {
                     if (value != null)
                     {
@@ -26,27 +23,29 @@ namespace WpfMVVMSample.Converters
                             throw new ArgumentException("Type must be for an Enum.");
                     }
 
-                    this._enumType = value;
+                    _enumType = value;
                 }
             }
         }
 
+        // Instantiated by GUI
+        // ReSharper disable once UnusedMember.Global
         public EnumBindingSourceExtension() { }
 
         public EnumBindingSourceExtension(Type enumType)
         {
-            this.EnumType = enumType;
+            EnumType = enumType;
         }
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            if (this._enumType== null)
+            if (_enumType== null)
                 throw new InvalidOperationException("The EnumType must be specified.");
 
-            Type actualEnumType = Nullable.GetUnderlyingType(this._enumType) ?? this._enumType;
-            
-            //omits the first enum element, typically "undefined"
-            var enumValues = Enum.GetValues(actualEnumType).Cast<object>().Skip(1);
+            Type actualEnumType = Nullable.GetUnderlyingType(_enumType) ?? _enumType;
+
+            // Omits the first unit enum element, such as LengthUnit.Undefined
+            IEnumerable<object> enumValues = Enum.GetValues(actualEnumType).Cast<Enum>().Skip(1);
 
             return enumValues;
         }

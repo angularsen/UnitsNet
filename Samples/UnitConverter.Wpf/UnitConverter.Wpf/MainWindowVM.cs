@@ -29,7 +29,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         public MainWindowVm()
         {
-            Quantities = ToReadOnly(Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Skip(1));
+            Quantities = ToReadOnly(UnitsHelper.QuantityTypes);
 
             _units = new ObservableCollection<UnitListItem>();
             Units = new ReadOnlyObservableCollection<UnitListItem>(_units);
@@ -131,21 +131,25 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
         {
             if (SelectedFromUnit == null || SelectedToUnit == null) return;
 
-            ToValue = Convert.ToDecimal(UnitsNet.UnitConverter.ConvertByName(FromValue,
-                SelectedQuantity.ToString(),
-                SelectedFromUnit.UnitEnumValue.ToString(),
-                SelectedToUnit.UnitEnumValue.ToString()));
+            double convertedValue = UnitsNet.UnitConverter.Convert(FromValue,
+                SelectedFromUnit.UnitEnumValue,
+                SelectedToUnit.UnitEnumValue);
+
+            ToValue = Convert.ToDecimal(convertedValue);
         }
 
-        private void OnSelectedQuantity(QuantityType quantity)
+        private void OnSelectedQuantity(QuantityType quantityType)
         {
-            _units.Clear();
-            IEnumerable<object> unitValues = UnitHelper.GetUnits(quantity);
-            foreach (object unitValue in unitValues) _units.Add(new UnitListItem(unitValue));
+            QuantityInfo quantityInfo = Quantity.GetInfo(quantityType);
 
-            SelectedQuantity = quantity;
-            SelectedFromUnit = Units.FirstOrDefault();
-            SelectedToUnit = Units.Skip(1).FirstOrDefault() ?? SelectedFromUnit; // Try to pick a different to-unit
+            _units.Clear();
+            foreach (Enum unitValue in quantityInfo.Units)
+            {
+                _units.Add(new UnitListItem(unitValue));
+            }
+
+            SelectedFromUnit = _units.FirstOrDefault();
+            SelectedToUnit = _units.Skip(1).FirstOrDefault() ?? SelectedFromUnit; // Try to pick a different to-unit
         }
 
         private static ReadOnlyObservableCollection<T> ToReadOnly<T>(IEnumerable<T> items)
