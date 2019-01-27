@@ -131,6 +131,8 @@ There are three classes to help with this:
 - [UnitParser](UnitsNet/CustomCode/UnitParser.cs) for parsing unit abbreviation strings like `cm` to `LengthUnit.Centimeter`
 - [UnitAbbreviationsCache](UnitsNet/CustomCode/UnitAbbreviationsCache.cs) for looking up unit abbreviations like `cm` given type `LengthUnit` and value `1` (`Centimeter`)
 - [UnitConverter](UnitsNet/UnitConverter.cs) for converting values given a quantity name `Length`, a value `1` and from/to unit names `Centimeter` and `Meter`
+- [Quantity](UnitsNet/CustomCode/Quantity.cs) for parsing and constructing quantities as well as looking up units, names and quantity information dynamically.
+- [QuantityInfo](UnitsNet/QuantityInfo.cs) for representing information about a quantity, such as names, units and conversion functions.
 
 ```c#
 // This type was perhaps selected by the user in GUI from a list of units
@@ -161,13 +163,13 @@ This example shows how you can create a dynamic unit converter, where the user s
 Pseudo-code for converter app:
 ```c#
 // Populate quantity selector ("Length", "Mass", "Force" etc)
-string[] quantityNames = UnitsHelper.QuantityNames;
+string[] quantityNames = Quantity.Names;
 
 string selectedQuantityName = "Temperature"; // Selected by user
 QuantityType selectedQuantity = Enum.Parse<QuantityType>(selectedQuantityName); // QuantityType.Temperature
 
 // Populate from/to unit selectors when quantity selection changes
-string[] unitNames = UnitsHelper.GetUnitNamesForQuantity(selectedQuantity).ToArray();
+string[] unitNames = Quantity.GetUnitNamesForQuantity(selectedQuantity).ToArray();
 myGui.UpdateFromToListsOfUnits(unitNames);
 
 // Assign these from GUI selection
@@ -178,8 +180,6 @@ string toUnitName = "DegreeFahrenheit";
 // Convert using from value and selected quantity/unit names
 double convertedValue = UnitConverter.ConvertByName(fromValue, selectedQuantityName, fromUnitName, toUnitName);
 ```
-
-NOTE: There are still some limitations in the library that requires reflection to enumerate units for quantity and getting the abbreviation for a unit, when we want to dynamically enumerate and convert between units.
 
 ### <a name="example-app-hardcoded"></a>Example: Creating a unit converter app with hard coded quantities
 
@@ -204,10 +204,7 @@ Src: [Samples/WpfMVVMSample](https://github.com/angularsen/UnitsNet/tree/master/
 
 ![wpfmvvmsample_219w](https://user-images.githubusercontent.com/787816/34913417-094332e2-f8fd-11e7-9d8a-92db105fbbc9.png)
 
-
 The purpose of this app is to show how to create an `IValueConverter` in order to bind XAML to quantities.
-
-NOTE: A lot of reflection and complexity were introduced due to not having a base type. See #371 for discussion on adding base types.
 
 ### <a name="precision"></a>Precision and Accuracy
 
