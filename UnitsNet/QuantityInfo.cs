@@ -42,7 +42,7 @@ namespace UnitsNet
             if (units == null) throw new ArgumentNullException(nameof(units));
             Name = quantityType.ToString();
             QuantityType = quantityType;
-            UnitType = UnitsHelper.GetUnitType(quantityType);
+            UnitType = Quantity.GetUnitType(quantityType);
             UnitNames = units.Select(u => u.ToString()).ToArray();
             Units = units;
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));

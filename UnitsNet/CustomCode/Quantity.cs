@@ -1,24 +1,3 @@
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
-// https://github.com/angularsen/UnitsNet
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,11 +7,7 @@ using UnitsNet.Units;
 
 namespace UnitsNet
 {
-    /// <summary>
-    /// This class helps enumerating quantities and units at runtime.
-    /// </summary>
-    /// <seealso cref="QuantityInfo" />
-    public static class UnitsHelper
+    public partial class Quantity
     {
         private static readonly string UnitEnumNamespace = typeof(LengthUnit).Namespace;
 
@@ -41,14 +16,15 @@ namespace UnitsNet
             .Where(t => t.IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
             .ToArray();
 
-        static UnitsHelper()
+
+        static Quantity()
         {
             var quantityTypes = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().ToArray();
-            QuantityTypes = quantityTypes;
-            QuantityNames = Enum.GetNames(typeof(QuantityType));
+            Types = quantityTypes;
+            Names = Enum.GetNames(typeof(QuantityType));
 
             // A bunch of reflection to enumerate quantity types, instantiate with the default constructor and return its QuantityInfo property
-            QuantityInfos = Assembly.GetAssembly(typeof(Length))
+            Infos = Assembly.GetAssembly(typeof(Length))
                 .GetExportedTypes()
                 .Where(typeof(IQuantity).IsAssignableFrom)
                 .Where(t => t.IsClass() || t.IsValueType()) // Future-proofing: Considering changing quantities from struct to class
@@ -61,17 +37,17 @@ namespace UnitsNet
         /// <summary>
         /// All enum values of <see cref="QuantityType"/>, such as <see cref="QuantityType.Length"/> and <see cref="QuantityType.Mass"/>.
         /// </summary>
-        public static QuantityType[] QuantityTypes { get; }
+        public static QuantityType[] Types { get; }
 
         /// <summary>
         /// All enum value names of <see cref="QuantityType"/>, such as "Length" and "Mass".
         /// </summary>
-        public static string[] QuantityNames { get; }
+        public static string[] Names { get; }
 
         /// <summary>
         /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>.
         /// </summary>
-        public static QuantityInfo[] QuantityInfos { get; }
+        public static QuantityInfo[] Infos { get; }
 
         /// <summary>
         /// Returns the enum values for the given <paramref name="quantity"/>, excluding the Undefined=0 value.

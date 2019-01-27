@@ -95,6 +95,19 @@ function GenerateQuantityType($quantities, $outDir)
     Write-Host "(OK) "
 }
 
+function GenerateStaticQuantity($quantities, $outDir)
+{
+  Write-Host -NoNewline "Quantity.g.cs: "
+  $outFileName = "$outDir/Quantity.g.cs"
+
+  GenerateStaticQuantitySourceCode $quantities | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
+  if (!$?) {
+    Write-Host "(error) "
+    exit 1
+  }
+  Write-Host "(OK) "
+}
+
 function EnsureDirExists([String] $dirPath) {
     New-Item -ItemType Directory -Force -Path $dirPath | Out-Null
     if (!$?) {
@@ -229,6 +242,7 @@ function Add-InheritedUnits([Quantity]$quantity, $quantities) {
 . "$PSScriptRoot/Include-GenerateTemplates.ps1"
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantityTypeSourceCode.ps1"
+. "$PSScriptRoot/Include-GenerateStaticQuantitySourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantitySourceCodeNetFramework.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTypeSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestBaseClassSourceCode.ps1"
@@ -311,6 +325,7 @@ foreach ($quantity in $quantities) {
 Write-Host ""
 GenerateUnitSystemDefault $quantities $unitSystemDir
 GenerateQuantityType $quantities $unitSystemDir
+GenerateStaticQuantity $quantities $unitSystemDir
 
 $unitCount = ($quantities | %{$_.Units.Count} | Measure -Sum).Sum
 
