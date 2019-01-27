@@ -46,11 +46,12 @@ namespace UnitsNet
         private static readonly Assembly UnitsNetAssembly = typeof(Length).GetAssembly();
 
         private static readonly Type[] QuantityTypes = UnitsNetAssembly.GetTypes()
-            .Where(x => x.FullName.StartsWith(QuantityNamespace))
+            .Where(typeof(IQuantity).IsAssignableFrom)
+            .Where(x => x.IsClass || x.IsValueType) // Future-proofing: we are discussing changing quantities from struct to class
             .ToArray();
 
         private static readonly Type[] UnitTypes = UnitsNetAssembly.GetTypes()
-            .Where(x => x.FullName.StartsWith(UnitTypeNamespace))
+            .Where(x => x.Namespace == UnitTypeNamespace && x.IsEnum && x.Name.EndsWith("Unit"))
             .ToArray();
 
         /// <summary>
