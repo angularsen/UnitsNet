@@ -61,9 +61,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="UnitsNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f8601875a1f041da, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\UnitsNet.4.0.0-beta1\lib\net40\UnitsNet.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -122,6 +119,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logo-512.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\UnitsNet\UnitsNet.csproj">
+      <Project>{a50f418c-55d4-4b24-87a3-afb4b4336e1c}</Project>
+      <Name>UnitsNet</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
