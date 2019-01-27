@@ -407,9 +407,9 @@ namespace UnitsNet
 
         private static bool TryGetUnitType(string quantityName, out Type unitType)
         {
-            var quantityTypeName = quantityName += "Unit"; // ex. LengthUnit
+            var unitTypeName = quantityName += "Unit"; // ex. LengthUnit
             unitType = UnitTypes.FirstOrDefault(x => 
-                x.Name.Equals(quantityTypeName, StringComparison.OrdinalIgnoreCase));
+                x.Name.Equals(unitTypeName, StringComparison.OrdinalIgnoreCase));
 
             if(unitType == null)
                 return false;
