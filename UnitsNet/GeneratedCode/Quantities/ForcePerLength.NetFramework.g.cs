@@ -64,6 +64,7 @@ namespace UnitsNet
         static ForcePerLength()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+            Info = new QuantityInfo<ForcePerLengthUnit>(QuantityType.ForcePerLength, Units, Zero);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<ForcePerLengthUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -132,6 +136,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ForcePerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<ForcePerLengthUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -520,12 +528,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ForcePerLength left, ForcePerLength right)	
+        public static bool operator ==(ForcePerLength left, ForcePerLength right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ForcePerLength left, ForcePerLength right)	
+        public static bool operator !=(ForcePerLength left, ForcePerLength right)
         {
             return !(left == right);
         }

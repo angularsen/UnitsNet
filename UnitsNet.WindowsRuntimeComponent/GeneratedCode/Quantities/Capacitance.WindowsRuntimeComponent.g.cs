@@ -70,6 +70,7 @@ namespace UnitsNet
         static Capacitance()
         {
             BaseDimensions = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
+            Info = new QuantityInfo<CapacitanceUnit>(QuantityType.Capacitance, Units, Zero);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Farad.
@@ -100,6 +101,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<CapacitanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -149,6 +153,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public CapacitanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<CapacitanceUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.

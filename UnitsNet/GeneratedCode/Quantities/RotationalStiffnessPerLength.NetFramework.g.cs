@@ -64,6 +64,7 @@ namespace UnitsNet
         static RotationalStiffnessPerLength()
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
+            Info = new QuantityInfo<RotationalStiffnessPerLengthUnit>(QuantityType.RotationalStiffnessPerLength, Units, Zero);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<RotationalStiffnessPerLengthUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -132,6 +136,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public RotationalStiffnessPerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<RotationalStiffnessPerLengthUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -436,12 +444,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)	
+        public static bool operator ==(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)	
+        public static bool operator !=(RotationalStiffnessPerLength left, RotationalStiffnessPerLength right)
         {
             return !(left == right);
         }

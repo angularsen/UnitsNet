@@ -64,6 +64,7 @@ namespace UnitsNet
         static Level()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            Info = new QuantityInfo<LevelUnit>(QuantityType.Level, Units, Zero);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<LevelUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -132,6 +136,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public LevelUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<LevelUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -430,12 +438,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Level left, Level right)	
+        public static bool operator ==(Level left, Level right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Level left, Level right)	
+        public static bool operator !=(Level left, Level right)
         {
             return !(left == right);
         }

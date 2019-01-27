@@ -67,6 +67,7 @@ namespace UnitsNet
         static ElectricAdmittance()
         {
             BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
+            Info = new QuantityInfo<ElectricAdmittanceUnit>(QuantityType.ElectricAdmittance, Units, Zero);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Siemens.
@@ -97,6 +98,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<ElectricAdmittanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -146,6 +150,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ElectricAdmittanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<ElectricAdmittanceUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.

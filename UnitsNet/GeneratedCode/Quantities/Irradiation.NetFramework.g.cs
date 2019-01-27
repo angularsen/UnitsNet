@@ -67,6 +67,7 @@ namespace UnitsNet
         static Irradiation()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+            Info = new QuantityInfo<IrradiationUnit>(QuantityType.Irradiation, Units, Zero);
         }
 
         /// <summary>
@@ -86,6 +87,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<IrradiationUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -135,6 +139,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public IrradiationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<IrradiationUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -453,12 +461,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Irradiation left, Irradiation right)	
+        public static bool operator ==(Irradiation left, Irradiation right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Irradiation left, Irradiation right)	
+        public static bool operator !=(Irradiation left, Irradiation right)
         {
             return !(left == right);
         }

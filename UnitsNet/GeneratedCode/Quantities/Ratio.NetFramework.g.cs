@@ -64,6 +64,7 @@ namespace UnitsNet
         static Ratio()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            Info = new QuantityInfo<RatioUnit>(QuantityType.Ratio, Units, Zero);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<RatioUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -132,6 +136,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public RatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<RatioUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -478,12 +486,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Ratio left, Ratio right)	
+        public static bool operator ==(Ratio left, Ratio right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Ratio left, Ratio right)	
+        public static bool operator !=(Ratio left, Ratio right)
         {
             return !(left == right);
         }

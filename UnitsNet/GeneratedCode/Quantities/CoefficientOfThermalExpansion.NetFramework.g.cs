@@ -64,6 +64,7 @@ namespace UnitsNet
         static CoefficientOfThermalExpansion()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, -1, 0, 0);
+            Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>(QuantityType.CoefficientOfThermalExpansion, Units, Zero);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<CoefficientOfThermalExpansionUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -132,6 +136,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public CoefficientOfThermalExpansionUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<CoefficientOfThermalExpansionUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -436,12 +444,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)	
+        public static bool operator ==(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)	
+        public static bool operator !=(CoefficientOfThermalExpansion left, CoefficientOfThermalExpansion right)
         {
             return !(left == right);
         }

@@ -67,6 +67,7 @@ namespace UnitsNet
         static Magnetization()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
+            Info = new QuantityInfo<MagnetizationUnit>(QuantityType.Magnetization, Units, Zero);
         }
 
         /// <summary>
@@ -86,6 +87,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<MagnetizationUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -135,6 +139,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MagnetizationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<MagnetizationUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -411,12 +419,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Magnetization left, Magnetization right)	
+        public static bool operator ==(Magnetization left, Magnetization right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Magnetization left, Magnetization right)	
+        public static bool operator !=(Magnetization left, Magnetization right)
         {
             return !(left == right);
         }

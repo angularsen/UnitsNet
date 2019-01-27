@@ -67,6 +67,7 @@ namespace UnitsNet
         static Length()
         {
             BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
+            Info = new QuantityInfo<LengthUnit>(QuantityType.Length, Units, Zero);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Meter.
@@ -97,6 +98,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<LengthUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -146,6 +150,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public LengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<LengthUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.

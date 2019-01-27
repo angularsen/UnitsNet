@@ -67,6 +67,7 @@ namespace UnitsNet
         static ElectricResistivity()
         {
             BaseDimensions = new BaseDimensions(3, 1, -3, -2, 0, 0, 0);
+            Info = new QuantityInfo<ElectricResistivityUnit>(QuantityType.ElectricResistivity, Units, Zero);
         }
 
         /// <summary>
@@ -86,6 +87,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<ElectricResistivityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -135,6 +139,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ElectricResistivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<ElectricResistivityUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -593,12 +601,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ElectricResistivity left, ElectricResistivity right)	
+        public static bool operator ==(ElectricResistivity left, ElectricResistivity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ElectricResistivity left, ElectricResistivity right)	
+        public static bool operator !=(ElectricResistivity left, ElectricResistivity right)
         {
             return !(left == right);
         }

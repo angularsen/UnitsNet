@@ -70,6 +70,7 @@ namespace UnitsNet
         static DynamicViscosity()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -1, 0, 0, 0, 0);
+            Info = new QuantityInfo<DynamicViscosityUnit>(QuantityType.DynamicViscosity, Units, Zero);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit NewtonSecondPerMeterSquared.
@@ -100,6 +101,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<DynamicViscosityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -149,6 +153,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public DynamicViscosityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<DynamicViscosityUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.

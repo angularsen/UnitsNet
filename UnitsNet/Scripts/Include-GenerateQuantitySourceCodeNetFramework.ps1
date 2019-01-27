@@ -123,6 +123,7 @@ if ($obsoleteAttribute)
             BaseDimensions = new BaseDimensions($($baseDimensions.Length), $($baseDimensions.Mass), $($baseDimensions.Time), $($baseDimensions.ElectricCurrent), $($baseDimensions.Temperature), $($baseDimensions.AmountOfSubstance), $($baseDimensions.LuminousIntensity));
 "@; }
 @"
+            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName, Units, Zero);
         }
 "@; # Windows Runtime Component requires a default constructor
     if ($wrc) {@"
@@ -271,6 +272,9 @@ function GenerateStaticProperties([GeneratorArgs]$genArgs)
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<$unitEnumName> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -336,6 +340,10 @@ function GenerateProperties([GeneratorArgs]$genArgs)
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public $unitEnumName Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<$unitEnumName> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -812,12 +820,12 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==($quantityName left, $quantityName right)	
+        public static bool operator ==($quantityName left, $quantityName right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=($quantityName left, $quantityName right)	
+        public static bool operator !=($quantityName left, $quantityName right)
         {
             return !(left == right);
         }

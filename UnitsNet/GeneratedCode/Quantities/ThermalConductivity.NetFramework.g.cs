@@ -67,6 +67,7 @@ namespace UnitsNet
         static ThermalConductivity()
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, -1, 0, 0);
+            Info = new QuantityInfo<ThermalConductivityUnit>(QuantityType.ThermalConductivity, Units, Zero);
         }
 
         /// <summary>
@@ -86,6 +87,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<ThermalConductivityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -135,6 +139,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ThermalConductivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<ThermalConductivityUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -425,12 +433,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ThermalConductivity left, ThermalConductivity right)	
+        public static bool operator ==(ThermalConductivity left, ThermalConductivity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ThermalConductivity left, ThermalConductivity right)	
+        public static bool operator !=(ThermalConductivity left, ThermalConductivity right)
         {
             return !(left == right);
         }

@@ -67,6 +67,7 @@ namespace UnitsNet
         static LapseRate()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
+            Info = new QuantityInfo<LapseRateUnit>(QuantityType.LapseRate, Units, Zero);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit DegreeCelsiusPerKilometer.
@@ -97,6 +98,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<LapseRateUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -146,6 +150,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public LapseRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<LapseRateUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.

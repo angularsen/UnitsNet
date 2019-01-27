@@ -64,6 +64,7 @@ namespace UnitsNet
         static ElectricCurrentGradient()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
+            Info = new QuantityInfo<ElectricCurrentGradientUnit>(QuantityType.ElectricCurrentGradient, Units, Zero);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<ElectricCurrentGradientUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -132,6 +136,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ElectricCurrentGradientUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<ElectricCurrentGradientUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -408,12 +416,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ElectricCurrentGradient left, ElectricCurrentGradient right)	
+        public static bool operator ==(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ElectricCurrentGradient left, ElectricCurrentGradient right)	
+        public static bool operator !=(ElectricCurrentGradient left, ElectricCurrentGradient right)
         {
             return !(left == right);
         }

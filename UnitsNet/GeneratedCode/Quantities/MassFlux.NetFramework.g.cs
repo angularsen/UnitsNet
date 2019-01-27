@@ -64,6 +64,7 @@ namespace UnitsNet
         static MassFlux()
         {
             BaseDimensions = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
+            Info = new QuantityInfo<MassFluxUnit>(QuantityType.MassFlux, Units, Zero);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<MassFluxUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -132,6 +136,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MassFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<MassFluxUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -422,12 +430,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(MassFlux left, MassFlux right)	
+        public static bool operator ==(MassFlux left, MassFlux right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(MassFlux left, MassFlux right)	
+        public static bool operator !=(MassFlux left, MassFlux right)
         {
             return !(left == right);
         }

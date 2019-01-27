@@ -64,6 +64,7 @@ namespace UnitsNet
         static Mass()
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
+            Info = new QuantityInfo<MassUnit>(QuantityType.Mass, Units, Zero);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<MassUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -132,6 +136,10 @@ namespace UnitsNet
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MassUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<MassUnit> QuantityInfo => Info;
+
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -716,12 +724,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Mass left, Mass right)	
+        public static bool operator ==(Mass left, Mass right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Mass left, Mass right)	
+        public static bool operator !=(Mass left, Mass right)
         {
             return !(left == right);
         }
