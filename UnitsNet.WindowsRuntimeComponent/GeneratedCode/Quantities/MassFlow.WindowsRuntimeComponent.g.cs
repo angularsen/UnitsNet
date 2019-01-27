@@ -919,6 +919,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MassFlowUnit) unit);
+
         /// <summary>
         ///     Converts this MassFlow to another MassFlow with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -928,6 +930,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new MassFlow(convertedValue, unit);
         }
+
+        IQuantity<MassFlowUnit> IQuantity<MassFlowUnit>.ToUnit(MassFlowUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MassFlowUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

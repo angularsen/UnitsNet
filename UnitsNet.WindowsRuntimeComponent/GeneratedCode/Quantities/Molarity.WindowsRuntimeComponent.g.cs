@@ -592,6 +592,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MolarityUnit) unit);
+
         /// <summary>
         ///     Converts this Molarity to another Molarity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -601,6 +603,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Molarity(convertedValue, unit);
         }
+
+        IQuantity<MolarityUnit> IQuantity<MolarityUnit>.ToUnit(MolarityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MolarityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

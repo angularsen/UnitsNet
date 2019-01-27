@@ -103,6 +103,11 @@ namespace UnitsNet
         }
 
         #endregion
+
+        public override string ToString()
+        {
+            return _value.HasValue ? _value.ToString() : _valueDecimal.ToString();
+        }
     }
 }
 #endif

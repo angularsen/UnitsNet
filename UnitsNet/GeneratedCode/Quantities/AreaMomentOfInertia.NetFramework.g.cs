@@ -600,6 +600,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((AreaMomentOfInertiaUnit) unit);
+
         /// <summary>
         ///     Converts this AreaMomentOfInertia to another AreaMomentOfInertia with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -609,6 +611,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new AreaMomentOfInertia(convertedValue, unit);
         }
+
+        IQuantity<AreaMomentOfInertiaUnit> IQuantity<AreaMomentOfInertiaUnit>.ToUnit(AreaMomentOfInertiaUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((AreaMomentOfInertiaUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

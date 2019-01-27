@@ -589,6 +589,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((TemperatureDeltaUnit) unit);
+
         /// <summary>
         ///     Converts this TemperatureDelta to another TemperatureDelta with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -598,6 +600,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new TemperatureDelta(convertedValue, unit);
         }
+
+        IQuantity<TemperatureDeltaUnit> IQuantity<TemperatureDeltaUnit>.ToUnit(TemperatureDeltaUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((TemperatureDeltaUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

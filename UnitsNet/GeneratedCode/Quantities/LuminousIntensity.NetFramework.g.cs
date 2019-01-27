@@ -533,6 +533,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((LuminousIntensityUnit) unit);
+
         /// <summary>
         ///     Converts this LuminousIntensity to another LuminousIntensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -542,6 +544,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new LuminousIntensity(convertedValue, unit);
         }
+
+        IQuantity<LuminousIntensityUnit> IQuantity<LuminousIntensityUnit>.ToUnit(LuminousIntensityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((LuminousIntensityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

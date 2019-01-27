@@ -784,6 +784,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((TorqueUnit) unit);
+
         /// <summary>
         ///     Converts this Torque to another Torque with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -793,6 +795,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Torque(convertedValue, unit);
         }
+
+        IQuantity<TorqueUnit> IQuantity<TorqueUnit>.ToUnit(TorqueUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((TorqueUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

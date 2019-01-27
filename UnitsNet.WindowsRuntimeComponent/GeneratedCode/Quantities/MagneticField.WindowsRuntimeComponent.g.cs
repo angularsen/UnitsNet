@@ -532,6 +532,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MagneticFieldUnit) unit);
+
         /// <summary>
         ///     Converts this MagneticField to another MagneticField with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -541,6 +543,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new MagneticField(convertedValue, unit);
         }
+
+        IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(MagneticFieldUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MagneticFieldUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

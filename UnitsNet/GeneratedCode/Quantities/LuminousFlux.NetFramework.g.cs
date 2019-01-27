@@ -533,6 +533,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((LuminousFluxUnit) unit);
+
         /// <summary>
         ///     Converts this LuminousFlux to another LuminousFlux with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -542,6 +544,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new LuminousFlux(convertedValue, unit);
         }
+
+        IQuantity<LuminousFluxUnit> IQuantity<LuminousFluxUnit>.ToUnit(LuminousFluxUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((LuminousFluxUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

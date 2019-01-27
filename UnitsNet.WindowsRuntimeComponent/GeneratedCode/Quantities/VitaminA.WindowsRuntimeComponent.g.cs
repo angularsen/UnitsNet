@@ -484,6 +484,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((VitaminAUnit) unit);
+
         /// <summary>
         ///     Converts this VitaminA to another VitaminA with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -493,6 +495,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new VitaminA(convertedValue, unit);
         }
+
+        IQuantity<VitaminAUnit> IQuantity<VitaminAUnit>.ToUnit(VitaminAUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((VitaminAUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -1132,6 +1132,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((PowerDensityUnit) unit);
+
         /// <summary>
         ///     Converts this PowerDensity to another PowerDensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1141,6 +1143,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new PowerDensity(convertedValue, unit);
         }
+
+        IQuantity<PowerDensityUnit> IQuantity<PowerDensityUnit>.ToUnit(PowerDensityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((PowerDensityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

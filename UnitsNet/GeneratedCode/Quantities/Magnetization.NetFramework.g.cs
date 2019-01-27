@@ -533,6 +533,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MagnetizationUnit) unit);
+
         /// <summary>
         ///     Converts this Magnetization to another Magnetization with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -542,6 +544,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Magnetization(convertedValue, unit);
         }
+
+        IQuantity<MagnetizationUnit> IQuantity<MagnetizationUnit>.ToUnit(MagnetizationUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MagnetizationUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

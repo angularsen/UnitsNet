@@ -572,6 +572,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ElectricAdmittanceUnit) unit);
+
         /// <summary>
         ///     Converts this ElectricAdmittance to another ElectricAdmittance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -581,6 +583,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricAdmittance(convertedValue, unit);
         }
+
+        IQuantity<ElectricAdmittanceUnit> IQuantity<ElectricAdmittanceUnit>.ToUnit(ElectricAdmittanceUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricAdmittanceUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

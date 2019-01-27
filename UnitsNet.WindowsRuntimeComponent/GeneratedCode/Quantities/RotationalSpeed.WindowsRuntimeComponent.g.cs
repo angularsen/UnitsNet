@@ -664,6 +664,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((RotationalSpeedUnit) unit);
+
         /// <summary>
         ///     Converts this RotationalSpeed to another RotationalSpeed with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -673,6 +675,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new RotationalSpeed(convertedValue, unit);
         }
+
+        IQuantity<RotationalSpeedUnit> IQuantity<RotationalSpeedUnit>.ToUnit(RotationalSpeedUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((RotationalSpeedUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

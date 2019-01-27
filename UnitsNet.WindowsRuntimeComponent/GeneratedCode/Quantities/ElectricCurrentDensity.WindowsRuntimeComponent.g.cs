@@ -487,6 +487,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ElectricCurrentDensityUnit) unit);
+
         /// <summary>
         ///     Converts this ElectricCurrentDensity to another ElectricCurrentDensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -496,6 +498,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricCurrentDensity(convertedValue, unit);
         }
+
+        IQuantity<ElectricCurrentDensityUnit> IQuantity<ElectricCurrentDensityUnit>.ToUnit(ElectricCurrentDensityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricCurrentDensityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -575,6 +575,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((IrradiationUnit) unit);
+
         /// <summary>
         ///     Converts this Irradiation to another Irradiation with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -584,6 +586,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Irradiation(convertedValue, unit);
         }
+
+        IQuantity<IrradiationUnit> IQuantity<IrradiationUnit>.ToUnit(IrradiationUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((IrradiationUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

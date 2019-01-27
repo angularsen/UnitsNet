@@ -487,6 +487,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ElectricFieldUnit) unit);
+
         /// <summary>
         ///     Converts this ElectricField to another ElectricField with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -496,6 +498,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricField(convertedValue, unit);
         }
+
+        IQuantity<ElectricFieldUnit> IQuantity<ElectricFieldUnit>.ToUnit(ElectricFieldUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricFieldUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

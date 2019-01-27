@@ -712,6 +712,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((AngleUnit) unit);
+
         /// <summary>
         ///     Converts this Angle to another Angle with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -721,6 +723,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Angle(convertedValue, unit);
         }
+
+        IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(AngleUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((AngleUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

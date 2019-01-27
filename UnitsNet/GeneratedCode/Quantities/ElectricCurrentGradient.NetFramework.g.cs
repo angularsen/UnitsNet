@@ -530,6 +530,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ElectricCurrentGradientUnit) unit);
+
         /// <summary>
         ///     Converts this ElectricCurrentGradient to another ElectricCurrentGradient with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -539,6 +541,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricCurrentGradient(convertedValue, unit);
         }
+
+        IQuantity<ElectricCurrentGradientUnit> IQuantity<ElectricCurrentGradientUnit>.ToUnit(ElectricCurrentGradientUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricCurrentGradientUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

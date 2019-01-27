@@ -964,6 +964,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((SpeedUnit) unit);
+
         /// <summary>
         ///     Converts this Speed to another Speed with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -973,6 +975,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Speed(convertedValue, unit);
         }
+
+        IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(SpeedUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((SpeedUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

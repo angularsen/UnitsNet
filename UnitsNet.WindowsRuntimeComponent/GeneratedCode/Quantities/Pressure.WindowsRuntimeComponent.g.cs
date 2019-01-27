@@ -1099,6 +1099,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((PressureUnit) unit);
+
         /// <summary>
         ///     Converts this Pressure to another Pressure with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1108,6 +1110,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Pressure(convertedValue, unit);
         }
+
+        IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(PressureUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((PressureUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

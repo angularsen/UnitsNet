@@ -514,6 +514,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((CoefficientOfThermalExpansionUnit) unit);
+
         /// <summary>
         ///     Converts this CoefficientOfThermalExpansion to another CoefficientOfThermalExpansion with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -523,6 +525,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new CoefficientOfThermalExpansion(convertedValue, unit);
         }
+
+        IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(CoefficientOfThermalExpansionUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((CoefficientOfThermalExpansionUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

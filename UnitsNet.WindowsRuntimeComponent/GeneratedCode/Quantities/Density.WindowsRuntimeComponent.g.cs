@@ -1057,6 +1057,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((DensityUnit) unit);
+
         /// <summary>
         ///     Converts this Density to another Density with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1066,6 +1068,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Density(convertedValue, unit);
         }
+
+        IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(DensityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((DensityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

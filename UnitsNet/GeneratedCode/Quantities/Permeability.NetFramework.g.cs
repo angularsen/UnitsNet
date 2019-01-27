@@ -533,6 +533,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((PermeabilityUnit) unit);
+
         /// <summary>
         ///     Converts this Permeability to another Permeability with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -542,6 +544,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Permeability(convertedValue, unit);
         }
+
+        IQuantity<PermeabilityUnit> IQuantity<PermeabilityUnit>.ToUnit(PermeabilityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((PermeabilityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

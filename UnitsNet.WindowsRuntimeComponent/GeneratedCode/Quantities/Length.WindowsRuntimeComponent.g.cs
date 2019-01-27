@@ -799,6 +799,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((LengthUnit) unit);
+
         /// <summary>
         ///     Converts this Length to another Length with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -808,6 +810,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Length(convertedValue, unit);
         }
+
+        IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(LengthUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((LengthUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -517,6 +517,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ElectricConductanceUnit) unit);
+
         /// <summary>
         ///     Converts this ElectricConductance to another ElectricConductance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -526,6 +528,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricConductance(convertedValue, unit);
         }
+
+        IQuantity<ElectricConductanceUnit> IQuantity<ElectricConductanceUnit>.ToUnit(ElectricConductanceUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricConductanceUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

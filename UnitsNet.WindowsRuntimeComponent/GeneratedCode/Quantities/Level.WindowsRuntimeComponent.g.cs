@@ -499,6 +499,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((LevelUnit) unit);
+
         /// <summary>
         ///     Converts this Level to another Level with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -508,6 +510,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Level(convertedValue, unit);
         }
+
+        IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(LevelUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((LevelUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

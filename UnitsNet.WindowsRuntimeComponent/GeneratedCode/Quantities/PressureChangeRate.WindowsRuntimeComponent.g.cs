@@ -574,6 +574,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((PressureChangeRateUnit) unit);
+
         /// <summary>
         ///     Converts this PressureChangeRate to another PressureChangeRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -583,6 +585,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new PressureChangeRate(convertedValue, unit);
         }
+
+        IQuantity<PressureChangeRateUnit> IQuantity<PressureChangeRateUnit>.ToUnit(PressureChangeRateUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((PressureChangeRateUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

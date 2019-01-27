@@ -642,6 +642,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ForcePerLengthUnit) unit);
+
         /// <summary>
         ///     Converts this ForcePerLength to another ForcePerLength with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -651,6 +653,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ForcePerLength(convertedValue, unit);
         }
+
+        IQuantity<ForcePerLengthUnit> IQuantity<ForcePerLengthUnit>.ToUnit(ForcePerLengthUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ForcePerLengthUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

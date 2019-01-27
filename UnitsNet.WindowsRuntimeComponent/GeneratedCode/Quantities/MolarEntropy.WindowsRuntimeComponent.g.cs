@@ -514,6 +514,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MolarEntropyUnit) unit);
+
         /// <summary>
         ///     Converts this MolarEntropy to another MolarEntropy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -523,6 +525,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new MolarEntropy(convertedValue, unit);
         }
+
+        IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(MolarEntropyUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MolarEntropyUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

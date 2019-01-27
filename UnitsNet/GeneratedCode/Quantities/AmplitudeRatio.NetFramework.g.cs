@@ -580,6 +580,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((AmplitudeRatioUnit) unit);
+
         /// <summary>
         ///     Converts this AmplitudeRatio to another AmplitudeRatio with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -589,6 +591,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new AmplitudeRatio(convertedValue, unit);
         }
+
+        IQuantity<AmplitudeRatioUnit> IQuantity<AmplitudeRatioUnit>.ToUnit(AmplitudeRatioUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((AmplitudeRatioUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

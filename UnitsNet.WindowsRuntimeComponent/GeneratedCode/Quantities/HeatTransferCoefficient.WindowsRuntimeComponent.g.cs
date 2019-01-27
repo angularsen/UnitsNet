@@ -499,6 +499,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((HeatTransferCoefficientUnit) unit);
+
         /// <summary>
         ///     Converts this HeatTransferCoefficient to another HeatTransferCoefficient with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -508,6 +510,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new HeatTransferCoefficient(convertedValue, unit);
         }
+
+        IQuantity<HeatTransferCoefficientUnit> IQuantity<HeatTransferCoefficientUnit>.ToUnit(HeatTransferCoefficientUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((HeatTransferCoefficientUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

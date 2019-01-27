@@ -561,6 +561,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((LinearDensityUnit) unit);
+
         /// <summary>
         ///     Converts this LinearDensity to another LinearDensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -570,6 +572,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new LinearDensity(convertedValue, unit);
         }
+
+        IQuantity<LinearDensityUnit> IQuantity<LinearDensityUnit>.ToUnit(LinearDensityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((LinearDensityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

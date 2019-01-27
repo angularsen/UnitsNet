@@ -558,6 +558,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ApparentEnergyUnit) unit);
+
         /// <summary>
         ///     Converts this ApparentEnergy to another ApparentEnergy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -567,6 +569,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ApparentEnergy(convertedValue, unit);
         }
+
+        IQuantity<ApparentEnergyUnit> IQuantity<ApparentEnergyUnit>.ToUnit(ApparentEnergyUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ApparentEnergyUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

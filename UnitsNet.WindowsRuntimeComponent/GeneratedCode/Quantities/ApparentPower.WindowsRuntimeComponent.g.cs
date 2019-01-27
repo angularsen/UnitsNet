@@ -529,6 +529,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ApparentPowerUnit) unit);
+
         /// <summary>
         ///     Converts this ApparentPower to another ApparentPower with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -538,6 +540,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ApparentPower(convertedValue, unit);
         }
+
+        IQuantity<ApparentPowerUnit> IQuantity<ApparentPowerUnit>.ToUnit(ApparentPowerUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ApparentPowerUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

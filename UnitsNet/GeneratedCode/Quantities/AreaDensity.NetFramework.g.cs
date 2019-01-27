@@ -530,6 +530,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((AreaDensityUnit) unit);
+
         /// <summary>
         ///     Converts this AreaDensity to another AreaDensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -539,6 +541,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new AreaDensity(convertedValue, unit);
         }
+
+        IQuantity<AreaDensityUnit> IQuantity<AreaDensityUnit>.ToUnit(AreaDensityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((AreaDensityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -694,6 +694,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((AmountOfSubstanceUnit) unit);
+
         /// <summary>
         ///     Converts this AmountOfSubstance to another AmountOfSubstance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -703,6 +705,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new AmountOfSubstance(convertedValue, unit);
         }
+
+        IQuantity<AmountOfSubstanceUnit> IQuantity<AmountOfSubstanceUnit>.ToUnit(AmountOfSubstanceUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((AmountOfSubstanceUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

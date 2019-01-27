@@ -614,6 +614,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((EntropyUnit) unit);
+
         /// <summary>
         ///     Converts this Entropy to another Entropy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -623,6 +625,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Entropy(convertedValue, unit);
         }
+
+        IQuantity<EntropyUnit> IQuantity<EntropyUnit>.ToUnit(EntropyUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((EntropyUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

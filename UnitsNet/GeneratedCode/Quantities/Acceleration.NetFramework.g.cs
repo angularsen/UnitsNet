@@ -698,6 +698,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((AccelerationUnit) unit);
+
         /// <summary>
         ///     Converts this Acceleration to another Acceleration with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -707,6 +709,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Acceleration(convertedValue, unit);
         }
+
+        IQuantity<AccelerationUnit> IQuantity<AccelerationUnit>.ToUnit(AccelerationUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((AccelerationUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

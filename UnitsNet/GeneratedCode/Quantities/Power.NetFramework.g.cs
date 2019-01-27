@@ -796,6 +796,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((PowerUnit) unit);
+
         /// <summary>
         ///     Converts this Power to another Power with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -805,6 +807,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Power(convertedValue, unit);
         }
+
+        IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(PowerUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((PowerUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

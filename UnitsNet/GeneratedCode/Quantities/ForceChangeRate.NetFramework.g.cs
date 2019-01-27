@@ -670,6 +670,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ForceChangeRateUnit) unit);
+
         /// <summary>
         ///     Converts this ForceChangeRate to another ForceChangeRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -679,6 +681,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ForceChangeRate(convertedValue, unit);
         }
+
+        IQuantity<ForceChangeRateUnit> IQuantity<ForceChangeRateUnit>.ToUnit(ForceChangeRateUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ForceChangeRateUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

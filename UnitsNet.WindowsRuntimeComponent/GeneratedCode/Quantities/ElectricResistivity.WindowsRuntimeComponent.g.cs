@@ -682,6 +682,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ElectricResistivityUnit) unit);
+
         /// <summary>
         ///     Converts this ElectricResistivity to another ElectricResistivity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -691,6 +693,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricResistivity(convertedValue, unit);
         }
+
+        IQuantity<ElectricResistivityUnit> IQuantity<ElectricResistivityUnit>.ToUnit(ElectricResistivityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricResistivityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

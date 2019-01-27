@@ -559,6 +559,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((RatioUnit) unit);
+
         /// <summary>
         ///     Converts this Ratio to another Ratio with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -568,6 +570,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Ratio(convertedValue, unit);
         }
+
+        IQuantity<RatioUnit> IQuantity<RatioUnit>.ToUnit(RatioUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((RatioUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

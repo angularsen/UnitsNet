@@ -619,6 +619,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((TemperatureChangeRateUnit) unit);
+
         /// <summary>
         ///     Converts this TemperatureChangeRate to another TemperatureChangeRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -628,6 +630,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new TemperatureChangeRate(convertedValue, unit);
         }
+
+        IQuantity<TemperatureChangeRateUnit> IQuantity<TemperatureChangeRateUnit>.ToUnit(TemperatureChangeRateUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((TemperatureChangeRateUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

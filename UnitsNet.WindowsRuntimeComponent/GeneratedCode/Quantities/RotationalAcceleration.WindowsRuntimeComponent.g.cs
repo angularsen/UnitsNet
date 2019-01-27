@@ -514,6 +514,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((RotationalAccelerationUnit) unit);
+
         /// <summary>
         ///     Converts this RotationalAcceleration to another RotationalAcceleration with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -523,6 +525,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new RotationalAcceleration(convertedValue, unit);
         }
+
+        IQuantity<RotationalAccelerationUnit> IQuantity<RotationalAccelerationUnit>.ToUnit(RotationalAccelerationUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((RotationalAccelerationUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

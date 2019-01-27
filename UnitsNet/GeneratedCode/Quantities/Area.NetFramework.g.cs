@@ -698,6 +698,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((AreaUnit) unit);
+
         /// <summary>
         ///     Converts this Area to another Area with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -707,6 +709,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Area(convertedValue, unit);
         }
+
+        IQuantity<AreaUnit> IQuantity<AreaUnit>.ToUnit(AreaUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((AreaUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -649,6 +649,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MolarMassUnit) unit);
+
         /// <summary>
         ///     Converts this MolarMass to another MolarMass with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -658,6 +660,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new MolarMass(convertedValue, unit);
         }
+
+        IQuantity<MolarMassUnit> IQuantity<MolarMassUnit>.ToUnit(MolarMassUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MolarMassUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

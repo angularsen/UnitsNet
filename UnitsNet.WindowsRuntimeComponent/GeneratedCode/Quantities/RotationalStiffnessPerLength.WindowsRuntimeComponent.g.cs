@@ -514,6 +514,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((RotationalStiffnessPerLengthUnit) unit);
+
         /// <summary>
         ///     Converts this RotationalStiffnessPerLength to another RotationalStiffnessPerLength with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -523,6 +525,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new RotationalStiffnessPerLength(convertedValue, unit);
         }
+
+        IQuantity<RotationalStiffnessPerLengthUnit> IQuantity<RotationalStiffnessPerLengthUnit>.ToUnit(RotationalStiffnessPerLengthUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((RotationalStiffnessPerLengthUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

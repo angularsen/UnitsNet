@@ -617,6 +617,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((CapacitanceUnit) unit);
+
         /// <summary>
         ///     Converts this Capacitance to another Capacitance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -626,6 +628,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Capacitance(convertedValue, unit);
         }
+
+        IQuantity<CapacitanceUnit> IQuantity<CapacitanceUnit>.ToUnit(CapacitanceUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((CapacitanceUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

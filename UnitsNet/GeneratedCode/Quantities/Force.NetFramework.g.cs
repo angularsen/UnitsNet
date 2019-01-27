@@ -698,6 +698,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ForceUnit) unit);
+
         /// <summary>
         ///     Converts this Force to another Force with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -707,6 +709,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Force(convertedValue, unit);
         }
+
+        IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(ForceUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ForceUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

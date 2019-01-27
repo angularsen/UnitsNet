@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -37,25 +38,40 @@ namespace UnitsNet
 
         private static readonly Type[] UnitEnumTypes = Assembly.GetAssembly(typeof(Length))
             .GetExportedTypes()
-            .Where(t => t.IsEnum && t.Namespace == UnitEnumNamespace)
+            .Where(t => t.IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
             .ToArray();
 
         static UnitsHelper()
         {
             var quantityTypes = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().ToArray();
-            Quantities = quantityTypes;
+            QuantityTypes = quantityTypes;
             QuantityNames = Enum.GetNames(typeof(QuantityType));
+
+            // A bunch of reflection to enumerate quantity types, instantiate with the default constructor and return its QuantityInfo property
+            QuantityInfos = Assembly.GetAssembly(typeof(Length))
+                .GetExportedTypes()
+                .Where(typeof(IQuantity).IsAssignableFrom)
+                .Where(t => t.IsClass() || t.IsValueType()) // Future-proofing: Considering changing quantities from struct to class
+                .Select(Activator.CreateInstance)
+                .Cast<IQuantity>()
+                .Select(quantity => quantity.QuantityInfo)
+                .ToArray();
         }
 
         /// <summary>
         /// All enum values of <see cref="QuantityType"/>, such as <see cref="QuantityType.Length"/> and <see cref="QuantityType.Mass"/>.
         /// </summary>
-        public static QuantityType[] Quantities { get; }
+        public static QuantityType[] QuantityTypes { get; }
 
         /// <summary>
         /// All enum value names of <see cref="QuantityType"/>, such as "Length" and "Mass".
         /// </summary>
         public static string[] QuantityNames { get; }
+
+        /// <summary>
+        /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>.
+        /// </summary>
+        public static QuantityInfo[] QuantityInfos { get; }
 
         /// <summary>
         /// Returns the enum values for the given <paramref name="quantity"/>, excluding the Undefined=0 value.
@@ -68,13 +84,13 @@ namespace UnitsNet
         /// </example>
         /// <param name="quantity">The quantity type.</param>
         /// <returns>Unit enum values.</returns>
-        public static IEnumerable<object> GetUnitEnumValuesForQuantity(QuantityType quantity)
+        public static IEnumerable<Enum> GetUnitEnumValuesForQuantity(QuantityType quantity)
         {
             // QuantityType.Length => "UnitsNet.Units.LengthUnit"
             Type unitEnumType = GetUnitType(quantity);
 
             // Skip Undefined, which is only really used to help catch uninitialized values
-            return Enum.GetValues(unitEnumType).Cast<object>().Skip(1).ToArray();
+            return Enum.GetValues(unitEnumType).Cast<Enum>().Skip(1).ToArray();
         }
 
         /// <summary>
@@ -99,8 +115,7 @@ namespace UnitsNet
         /// <returns></returns>
         public static Type GetUnitType(QuantityType quantity)
         {
-            return UnitEnumTypes
-                .First(t => t.FullName == $"{UnitEnumNamespace}.{quantity}Unit");
+            return UnitEnumTypes.First(t => t.Name == $"{quantity}Unit");
         }
     }
 }

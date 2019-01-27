@@ -558,6 +558,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ReactiveEnergyUnit) unit);
+
         /// <summary>
         ///     Converts this ReactiveEnergy to another ReactiveEnergy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -567,6 +569,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ReactiveEnergy(convertedValue, unit);
         }
+
+        IQuantity<ReactiveEnergyUnit> IQuantity<ReactiveEnergyUnit>.ToUnit(ReactiveEnergyUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ReactiveEnergyUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

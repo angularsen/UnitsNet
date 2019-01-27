@@ -838,6 +838,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MassUnit) unit);
+
         /// <summary>
         ///     Converts this Mass to another Mass with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -847,6 +849,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Mass(convertedValue, unit);
         }
+
+        IQuantity<MassUnit> IQuantity<MassUnit>.ToUnit(MassUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MassUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

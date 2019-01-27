@@ -552,6 +552,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((PowerRatioUnit) unit);
+
         /// <summary>
         ///     Converts this PowerRatio to another PowerRatio with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -561,6 +563,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new PowerRatio(convertedValue, unit);
         }
+
+        IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(PowerRatioUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((PowerRatioUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

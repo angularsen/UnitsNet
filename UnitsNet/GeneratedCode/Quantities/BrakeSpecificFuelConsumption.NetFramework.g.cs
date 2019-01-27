@@ -558,6 +558,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((BrakeSpecificFuelConsumptionUnit) unit);
+
         /// <summary>
         ///     Converts this BrakeSpecificFuelConsumption to another BrakeSpecificFuelConsumption with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -567,6 +569,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new BrakeSpecificFuelConsumption(convertedValue, unit);
         }
+
+        IQuantity<BrakeSpecificFuelConsumptionUnit> IQuantity<BrakeSpecificFuelConsumptionUnit>.ToUnit(BrakeSpecificFuelConsumptionUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((BrakeSpecificFuelConsumptionUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

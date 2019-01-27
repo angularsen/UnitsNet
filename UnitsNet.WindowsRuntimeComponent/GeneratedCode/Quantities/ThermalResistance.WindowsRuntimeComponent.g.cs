@@ -544,6 +544,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ThermalResistanceUnit) unit);
+
         /// <summary>
         ///     Converts this ThermalResistance to another ThermalResistance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -553,6 +555,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ThermalResistance(convertedValue, unit);
         }
+
+        IQuantity<ThermalResistanceUnit> IQuantity<ThermalResistanceUnit>.ToUnit(ThermalResistanceUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ThermalResistanceUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

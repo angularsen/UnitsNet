@@ -499,6 +499,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MassFluxUnit) unit);
+
         /// <summary>
         ///     Converts this MassFlux to another MassFlux with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -508,6 +510,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new MassFlux(convertedValue, unit);
         }
+
+        IQuantity<MassFluxUnit> IQuantity<MassFluxUnit>.ToUnit(MassFluxUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MassFluxUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

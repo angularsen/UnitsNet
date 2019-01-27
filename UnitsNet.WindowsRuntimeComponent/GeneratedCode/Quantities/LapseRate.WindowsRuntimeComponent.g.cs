@@ -484,6 +484,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((LapseRateUnit) unit);
+
         /// <summary>
         ///     Converts this LapseRate to another LapseRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -493,6 +495,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new LapseRate(convertedValue, unit);
         }
+
+        IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(LapseRateUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((LapseRateUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

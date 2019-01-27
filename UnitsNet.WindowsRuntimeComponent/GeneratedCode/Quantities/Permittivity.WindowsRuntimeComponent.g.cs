@@ -487,6 +487,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((PermittivityUnit) unit);
+
         /// <summary>
         ///     Converts this Permittivity to another Permittivity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -496,6 +498,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Permittivity(convertedValue, unit);
         }
+
+        IQuantity<PermittivityUnit> IQuantity<PermittivityUnit>.ToUnit(PermittivityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((PermittivityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

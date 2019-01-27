@@ -544,6 +544,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ElectricPotentialDcUnit) unit);
+
         /// <summary>
         ///     Converts this ElectricPotentialDc to another ElectricPotentialDc with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -553,6 +555,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricPotentialDc(convertedValue, unit);
         }
+
+        IQuantity<ElectricPotentialDcUnit> IQuantity<ElectricPotentialDcUnit>.ToUnit(ElectricPotentialDcUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricPotentialDcUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

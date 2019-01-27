@@ -645,6 +645,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((SpecificEnergyUnit) unit);
+
         /// <summary>
         ///     Converts this SpecificEnergy to another SpecificEnergy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -654,6 +656,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new SpecificEnergy(convertedValue, unit);
         }
+
+        IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(SpecificEnergyUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((SpecificEnergyUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

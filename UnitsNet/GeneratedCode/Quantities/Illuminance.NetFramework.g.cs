@@ -575,6 +575,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((IlluminanceUnit) unit);
+
         /// <summary>
         ///     Converts this Illuminance to another Illuminance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -584,6 +586,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Illuminance(convertedValue, unit);
         }
+
+        IQuantity<IlluminanceUnit> IQuantity<IlluminanceUnit>.ToUnit(IlluminanceUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((IlluminanceUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -547,6 +547,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ThermalConductivityUnit) unit);
+
         /// <summary>
         ///     Converts this ThermalConductivity to another ThermalConductivity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -556,6 +558,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ThermalConductivity(convertedValue, unit);
         }
+
+        IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(ThermalConductivityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ThermalConductivityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

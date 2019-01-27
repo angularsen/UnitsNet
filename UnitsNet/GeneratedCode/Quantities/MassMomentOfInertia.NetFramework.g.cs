@@ -908,6 +908,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MassMomentOfInertiaUnit) unit);
+
         /// <summary>
         ///     Converts this MassMomentOfInertia to another MassMomentOfInertia with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -917,6 +919,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new MassMomentOfInertia(convertedValue, unit);
         }
+
+        IQuantity<MassMomentOfInertiaUnit> IQuantity<MassMomentOfInertiaUnit>.ToUnit(MassMomentOfInertiaUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MassMomentOfInertiaUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

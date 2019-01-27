@@ -950,6 +950,8 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As(($unitEnumName) unit);
+
         /// <summary>
         ///     Converts this $quantityName to another $quantityName with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -959,6 +961,10 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             var convertedValue = AsBaseNumericType(unit);
             return new $quantityName(convertedValue, unit);
         }
+
+        IQuantity<$unitEnumName> IQuantity<$unitEnumName>.ToUnit($unitEnumName unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit(($unitEnumName) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

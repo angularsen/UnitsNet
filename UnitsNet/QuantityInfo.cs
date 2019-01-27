@@ -42,9 +42,11 @@ namespace UnitsNet
             if (units == null) throw new ArgumentNullException(nameof(units));
             Name = quantityType.ToString();
             QuantityType = quantityType;
+            UnitType = UnitsHelper.GetUnitType(quantityType);
             UnitNames = units.Select(u => u.ToString()).ToArray();
             Units = units;
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
+            ValueType = zero.GetType();
         }
 
 
@@ -73,6 +75,16 @@ namespace UnitsNet
         ///     Zero value of quantity, such as <see cref="Length.Zero" />.
         /// </summary>
         public IQuantity Zero { get; }
+
+        /// <summary>
+        ///     Unit enum type, such as <see cref="LengthUnit"/> or <see cref="MassUnit"/>.
+        /// </summary>
+        public Type UnitType { get; }
+
+        /// <summary>
+        ///     Quantity value type, such as <see cref="Length"/> or <see cref="Mass"/>.
+        /// </summary>
+        public Type ValueType { get; }
     }
 
     /// <inheritdoc cref="QuantityInfo" />

@@ -859,6 +859,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((InformationUnit) unit);
+
         /// <summary>
         ///     Converts this Information to another Information with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -868,6 +870,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Information(convertedValue, unit);
         }
+
+        IQuantity<InformationUnit> IQuantity<InformationUnit>.ToUnit(InformationUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((InformationUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

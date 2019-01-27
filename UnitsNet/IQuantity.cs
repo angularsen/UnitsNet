@@ -21,6 +21,7 @@
 
 using System;
 using JetBrains.Annotations;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -43,6 +44,21 @@ namespace UnitsNet
         ///     Information about the quantity type, such as unit values and names.
         /// </summary>
         QuantityInfo QuantityInfo { get; }
+
+        /// <summary>
+        ///     Dynamically convert to another unit representation.
+        /// </summary>
+        /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
+        /// <returns>Value converted to the specified unit.</returns>
+        /// <exception cref="InvalidCastException">Wrong unit enum type was given.</exception>
+        double As(Enum unit);
+
+        /// <summary>
+        ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        /// </summary>
+        /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
+        /// <returns>A new quantity with the given unit as default unit representation.</returns>
+        IQuantity ToUnit(Enum unit);
     }
 
 #if !WINDOWS_UWP
@@ -122,6 +138,13 @@ namespace UnitsNet
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         new QuantityInfo<TUnitType> QuantityInfo { get; }
+
+        /// <summary>
+        ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <returns></returns>
+        IQuantity<TUnitType> ToUnit(TUnitType unit);
     }
 
 #endif

@@ -1144,6 +1144,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((VolumeUnit) unit);
+
         /// <summary>
         ///     Converts this Volume to another Volume with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1153,6 +1155,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Volume(convertedValue, unit);
         }
+
+        IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(VolumeUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((VolumeUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -727,6 +727,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((SpecificWeightUnit) unit);
+
         /// <summary>
         ///     Converts this SpecificWeight to another SpecificWeight with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -736,6 +738,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new SpecificWeight(convertedValue, unit);
         }
+
+        IQuantity<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.ToUnit(SpecificWeightUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((SpecificWeightUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

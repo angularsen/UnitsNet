@@ -558,6 +558,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((RotationalStiffnessUnit) unit);
+
         /// <summary>
         ///     Converts this RotationalStiffness to another RotationalStiffness with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -567,6 +569,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new RotationalStiffness(convertedValue, unit);
         }
+
+        IQuantity<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.ToUnit(RotationalStiffnessUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((RotationalStiffnessUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

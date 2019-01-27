@@ -487,6 +487,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ElectricChargeUnit) unit);
+
         /// <summary>
         ///     Converts this ElectricCharge to another ElectricCharge with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -496,6 +498,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricCharge(convertedValue, unit);
         }
+
+        IQuantity<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.ToUnit(ElectricChargeUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricChargeUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
