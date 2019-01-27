@@ -115,17 +115,17 @@ namespace UnitsNet
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
         public static double ConvertByName(FromValue fromValue, string quantityName, string fromUnit, string toUnit)
         {
-            if (!TryGetUnitType(quantityName, out var unitType))
+            if (!TryGetUnitType(quantityName, out Type unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
 
-            if (!TryParseUnit(unitType, fromUnit, out var fromUnitValue)) // ex: LengthUnit.Meter
+            if (!TryParseUnit(unitType, fromUnit, out Enum fromUnitValue)) // ex: LengthUnit.Meter
             {
                 var e = new UnitNotFoundException($"Unit not found [{fromUnit}].");
                 e.Data["unitName"] = fromUnit;
                 throw e;
             }
 
-            if (!TryParseUnit(unitType, toUnit, out var toUnitValue)) // ex: LengthUnit.Centimeter
+            if (!TryParseUnit(unitType, toUnit, out Enum toUnitValue)) // ex: LengthUnit.Centimeter
             {
                 var e = new UnitNotFoundException($"Unit not found [{toUnit}].");
                 e.Data["unitName"] = toUnit;
