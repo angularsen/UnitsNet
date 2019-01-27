@@ -37,13 +37,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
-        public void ConvertByName__QuantityCaseInsensitive()
+        public void ConvertByName_QuantityCaseInsensitive()
         {
             Assert.Equal(0, UnitConverter.ConvertByName(0, "length", "Meter", "Centimeter"));
         }
 
         [Fact]
-        public void ConvertByName__UnitTypeCaseInsensitive()
+        public void ConvertByName_UnitTypeCaseInsensitive()
         {
             Assert.Equal(0, UnitConverter.ConvertByName(0, "Length", "meter", "Centimeter"));
         }
