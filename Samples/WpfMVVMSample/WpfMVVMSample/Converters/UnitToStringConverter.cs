@@ -57,7 +57,7 @@ namespace WpfMVVMSample.Converters
                 // If input is just a number, use the configured default unit
                 if (double.TryParse((string) value, out double number))
                 {
-                    Type unitEnumType = UnitsHelper.QuantityInfos.First(qi => qi.ValueType == targetType).UnitType;
+                    Type unitEnumType = Quantity.Infos.First(qi => qi.ValueType == targetType).UnitType;
                     Enum defaultUnit = _settings.GetDefaultUnit(unitEnumType);
                     return Quantity.From(number, defaultUnit);
                 }

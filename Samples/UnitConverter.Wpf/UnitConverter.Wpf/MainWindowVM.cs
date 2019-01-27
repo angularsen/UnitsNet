@@ -29,7 +29,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         public MainWindowVm()
         {
-            Quantities = ToReadOnly(UnitsHelper.QuantityTypes);
+            Quantities = ToReadOnly(Quantity.Types);
 
             _units = new ObservableCollection<UnitListItem>();
             Units = new ReadOnlyObservableCollection<UnitListItem>(_units);

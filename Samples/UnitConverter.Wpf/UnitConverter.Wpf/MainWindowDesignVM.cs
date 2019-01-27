@@ -14,7 +14,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
     {
         public MainWindowDesignVm()
         {
-            Quantities = ToReadOnly(UnitsHelper.QuantityTypes);
+            Quantities = ToReadOnly(Quantity.Types);
             Units = ToReadOnly(Length.Units.Select(u => new UnitListItem(u)));
             SelectedQuantity = QuantityType.Length;
             SelectedFromUnit = Units[1];
