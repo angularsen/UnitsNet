@@ -73,7 +73,12 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryFrom(FromValue,System.Enum,out UnitsNet.IQuantity)"/>
-        public static bool TryFrom(double value, Enum unit, out IQuantity quantity)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+            static bool TryFrom(double value, Enum unit, out IQuantity quantity)
         {
             // Implicit cast to FromValue would prevent TryFrom from being called,
             // so we need to explicitly check this here for double arguments.
@@ -381,9 +386,9 @@ namespace UnitsNet
         /// <summary>
         ///     Dynamically parse a quantity string representation.
         /// </summary>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>The parsed quantity.</returns>
         /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
         public static IQuantity Parse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString)
@@ -403,10 +408,10 @@ namespace UnitsNet
         /// <summary>
         ///     Try to dynamically parse a quantity string representation.
         /// </summary>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
-        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>The parsed quantity.</returns>
         public static bool TryParse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString, out IQuantity quantity)
         {
