@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AngleUnit> Info { get; }
+        internal static QuantityInfo<AngleUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public AngleUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<AngleUnit> QuantityInfo => Info;
+        internal QuantityInfo<AngleUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -679,8 +679,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((AngleUnit) unit);
-
         /// <summary>
         ///     Converts this Angle to another Angle with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -690,8 +688,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Angle(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((AngleUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

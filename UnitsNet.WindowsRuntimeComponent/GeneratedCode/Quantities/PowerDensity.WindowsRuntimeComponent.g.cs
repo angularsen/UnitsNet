@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PowerDensityUnit> Info { get; }
+        internal static QuantityInfo<PowerDensityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public PowerDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<PowerDensityUnit> QuantityInfo => Info;
+        internal QuantityInfo<PowerDensityUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -1129,8 +1129,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((PowerDensityUnit) unit);
-
         /// <summary>
         ///     Converts this PowerDensity to another PowerDensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1140,8 +1138,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new PowerDensity(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((PowerDensityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

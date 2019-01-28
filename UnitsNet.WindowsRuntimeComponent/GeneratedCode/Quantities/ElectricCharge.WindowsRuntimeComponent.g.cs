@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricChargeUnit> Info { get; }
+        internal static QuantityInfo<ElectricChargeUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public ElectricChargeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<ElectricChargeUnit> QuantityInfo => Info;
+        internal QuantityInfo<ElectricChargeUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -487,8 +487,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((ElectricChargeUnit) unit);
-
         /// <summary>
         ///     Converts this ElectricCharge to another ElectricCharge with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -498,8 +496,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricCharge(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricChargeUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

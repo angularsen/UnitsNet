@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ThermalResistanceUnit> Info { get; }
+        internal static QuantityInfo<ThermalResistanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public ThermalResistanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<ThermalResistanceUnit> QuantityInfo => Info;
+        internal QuantityInfo<ThermalResistanceUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -544,8 +544,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((ThermalResistanceUnit) unit);
-
         /// <summary>
         ///     Converts this ThermalResistance to another ThermalResistance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -555,8 +553,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ThermalResistance(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((ThermalResistanceUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

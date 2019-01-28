@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ApparentPowerUnit> Info { get; }
+        internal static QuantityInfo<ApparentPowerUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public ApparentPowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<ApparentPowerUnit> QuantityInfo => Info;
+        internal QuantityInfo<ApparentPowerUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -529,8 +529,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((ApparentPowerUnit) unit);
-
         /// <summary>
         ///     Converts this ApparentPower to another ApparentPower with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -540,8 +538,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ApparentPower(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((ApparentPowerUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<BrakeSpecificFuelConsumptionUnit> Info { get; }
+        internal static QuantityInfo<BrakeSpecificFuelConsumptionUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public BrakeSpecificFuelConsumptionUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<BrakeSpecificFuelConsumptionUnit> QuantityInfo => Info;
+        internal QuantityInfo<BrakeSpecificFuelConsumptionUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -514,8 +514,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((BrakeSpecificFuelConsumptionUnit) unit);
-
         /// <summary>
         ///     Converts this BrakeSpecificFuelConsumption to another BrakeSpecificFuelConsumption with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -525,8 +523,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new BrakeSpecificFuelConsumption(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((BrakeSpecificFuelConsumptionUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

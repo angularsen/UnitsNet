@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<FrequencyUnit> Info { get; }
+        internal static QuantityInfo<FrequencyUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public FrequencyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<FrequencyUnit> QuantityInfo => Info;
+        internal QuantityInfo<FrequencyUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -589,8 +589,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((FrequencyUnit) unit);
-
         /// <summary>
         ///     Converts this Frequency to another Frequency with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -600,8 +598,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Frequency(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((FrequencyUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

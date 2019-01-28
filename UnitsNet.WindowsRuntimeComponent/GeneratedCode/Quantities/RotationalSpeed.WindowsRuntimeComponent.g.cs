@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RotationalSpeedUnit> Info { get; }
+        internal static QuantityInfo<RotationalSpeedUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public RotationalSpeedUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<RotationalSpeedUnit> QuantityInfo => Info;
+        internal QuantityInfo<RotationalSpeedUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -664,8 +664,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((RotationalSpeedUnit) unit);
-
         /// <summary>
         ///     Converts this RotationalSpeed to another RotationalSpeed with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -675,8 +673,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new RotationalSpeed(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((RotationalSpeedUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AreaDensityUnit> Info { get; }
+        internal static QuantityInfo<AreaDensityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public AreaDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<AreaDensityUnit> QuantityInfo => Info;
+        internal QuantityInfo<AreaDensityUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -484,8 +484,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((AreaDensityUnit) unit);
-
         /// <summary>
         ///     Converts this AreaDensity to another AreaDensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -495,8 +493,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new AreaDensity(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((AreaDensityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

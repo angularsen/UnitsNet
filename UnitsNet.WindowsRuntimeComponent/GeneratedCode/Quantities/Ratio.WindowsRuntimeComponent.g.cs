@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RatioUnit> Info { get; }
+        internal static QuantityInfo<RatioUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public RatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<RatioUnit> QuantityInfo => Info;
+        internal QuantityInfo<RatioUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -559,8 +559,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((RatioUnit) unit);
-
         /// <summary>
         ///     Converts this Ratio to another Ratio with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -570,8 +568,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Ratio(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((RatioUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

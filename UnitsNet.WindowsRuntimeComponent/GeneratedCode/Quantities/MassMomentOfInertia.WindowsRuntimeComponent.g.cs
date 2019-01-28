@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MassMomentOfInertiaUnit> Info { get; }
+        internal static QuantityInfo<MassMomentOfInertiaUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public MassMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<MassMomentOfInertiaUnit> QuantityInfo => Info;
+        internal QuantityInfo<MassMomentOfInertiaUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -889,8 +889,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((MassMomentOfInertiaUnit) unit);
-
         /// <summary>
         ///     Converts this MassMomentOfInertia to another MassMomentOfInertia with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -900,8 +898,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new MassMomentOfInertia(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((MassMomentOfInertiaUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

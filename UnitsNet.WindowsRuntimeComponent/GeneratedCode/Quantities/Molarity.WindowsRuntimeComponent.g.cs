@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MolarityUnit> Info { get; }
+        internal static QuantityInfo<MolarityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public MolarityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<MolarityUnit> QuantityInfo => Info;
+        internal QuantityInfo<MolarityUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -592,8 +592,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((MolarityUnit) unit);
-
         /// <summary>
         ///     Converts this Molarity to another Molarity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -603,8 +601,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Molarity(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((MolarityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

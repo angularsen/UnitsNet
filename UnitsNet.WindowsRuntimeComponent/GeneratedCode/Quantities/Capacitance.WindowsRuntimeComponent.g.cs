@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<CapacitanceUnit> Info { get; }
+        internal static QuantityInfo<CapacitanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public CapacitanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<CapacitanceUnit> QuantityInfo => Info;
+        internal QuantityInfo<CapacitanceUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -577,8 +577,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((CapacitanceUnit) unit);
-
         /// <summary>
         ///     Converts this Capacitance to another Capacitance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -588,8 +586,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Capacitance(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((CapacitanceUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

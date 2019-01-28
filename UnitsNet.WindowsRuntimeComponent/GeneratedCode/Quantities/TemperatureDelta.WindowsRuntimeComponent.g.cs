@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<TemperatureDeltaUnit> Info { get; }
+        internal static QuantityInfo<TemperatureDeltaUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public TemperatureDeltaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<TemperatureDeltaUnit> QuantityInfo => Info;
+        internal QuantityInfo<TemperatureDeltaUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -589,8 +589,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((TemperatureDeltaUnit) unit);
-
         /// <summary>
         ///     Converts this TemperatureDelta to another TemperatureDelta with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -600,8 +598,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new TemperatureDelta(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((TemperatureDeltaUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

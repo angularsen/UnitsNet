@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MassFluxUnit> Info { get; }
+        internal static QuantityInfo<MassFluxUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public MassFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<MassFluxUnit> QuantityInfo => Info;
+        internal QuantityInfo<MassFluxUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -499,8 +499,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((MassFluxUnit) unit);
-
         /// <summary>
         ///     Converts this MassFlux to another MassFlux with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -510,8 +508,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new MassFlux(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((MassFluxUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

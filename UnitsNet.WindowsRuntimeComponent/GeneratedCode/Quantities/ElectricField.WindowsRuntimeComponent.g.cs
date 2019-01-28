@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricFieldUnit> Info { get; }
+        internal static QuantityInfo<ElectricFieldUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public ElectricFieldUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<ElectricFieldUnit> QuantityInfo => Info;
+        internal QuantityInfo<ElectricFieldUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -487,8 +487,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((ElectricFieldUnit) unit);
-
         /// <summary>
         ///     Converts this ElectricField to another ElectricField with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -498,8 +496,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricField(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricFieldUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

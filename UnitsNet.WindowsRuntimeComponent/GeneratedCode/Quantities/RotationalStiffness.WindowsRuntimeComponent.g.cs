@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<RotationalStiffnessUnit> Info { get; }
+        internal static QuantityInfo<RotationalStiffnessUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public RotationalStiffnessUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<RotationalStiffnessUnit> QuantityInfo => Info;
+        internal QuantityInfo<RotationalStiffnessUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -514,8 +514,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((RotationalStiffnessUnit) unit);
-
         /// <summary>
         ///     Converts this RotationalStiffness to another RotationalStiffness with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -525,8 +523,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new RotationalStiffness(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((RotationalStiffnessUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

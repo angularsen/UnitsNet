@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ReactiveEnergyUnit> Info { get; }
+        internal static QuantityInfo<ReactiveEnergyUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public ReactiveEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<ReactiveEnergyUnit> QuantityInfo => Info;
+        internal QuantityInfo<ReactiveEnergyUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -514,8 +514,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((ReactiveEnergyUnit) unit);
-
         /// <summary>
         ///     Converts this ReactiveEnergy to another ReactiveEnergy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -525,8 +523,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ReactiveEnergy(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((ReactiveEnergyUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

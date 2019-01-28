@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -35,7 +35,12 @@ namespace UnitsNet
     /// <remarks>
     ///     Typically you obtain this by looking it up via <see cref="IQuantity.QuantityInfo" />.
     /// </remarks>
-    public class QuantityInfo
+#if WINDOWS_UWP
+    public
+#else
+    public
+#endif
+    class QuantityInfo
     {
         public QuantityInfo(QuantityType quantityType, [NotNull] Enum[] units, [NotNull] IQuantity zero)
         {
@@ -94,7 +99,12 @@ namespace UnitsNet
     ///     <see cref="Length.QuantityInfo" />, or dynamically via <see cref="IQuantity{TUnitType}.QuantityInfo" />.
     /// </remarks>
     /// <typeparam name="TUnit">The unit enum type, such as <see cref="LengthUnit" />. </typeparam>
-    public class QuantityInfo<TUnit> : QuantityInfo
+#if WINDOWS_UWP
+    internal
+#else
+    public
+#endif
+    class QuantityInfo<TUnit> : QuantityInfo
         where TUnit : Enum
     {
         public QuantityInfo(QuantityType quantityType, TUnit[] units, IQuantity<TUnit> zero)

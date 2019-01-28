@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AccelerationUnit> Info { get; }
+        internal static QuantityInfo<AccelerationUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public AccelerationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<AccelerationUnit> QuantityInfo => Info;
+        internal QuantityInfo<AccelerationUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -664,8 +664,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((AccelerationUnit) unit);
-
         /// <summary>
         ///     Converts this Acceleration to another Acceleration with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -675,8 +673,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Acceleration(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((AccelerationUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

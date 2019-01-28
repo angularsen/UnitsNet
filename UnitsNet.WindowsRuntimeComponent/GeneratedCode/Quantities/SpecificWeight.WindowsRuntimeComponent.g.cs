@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<SpecificWeightUnit> Info { get; }
+        internal static QuantityInfo<SpecificWeightUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public SpecificWeightUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<SpecificWeightUnit> QuantityInfo => Info;
+        internal QuantityInfo<SpecificWeightUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -727,8 +727,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((SpecificWeightUnit) unit);
-
         /// <summary>
         ///     Converts this SpecificWeight to another SpecificWeight with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -738,8 +736,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new SpecificWeight(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((SpecificWeightUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

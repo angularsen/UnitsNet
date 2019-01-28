@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ForceUnit> Info { get; }
+        internal static QuantityInfo<ForceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public ForceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<ForceUnit> QuantityInfo => Info;
+        internal QuantityInfo<ForceUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -664,8 +664,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((ForceUnit) unit);
-
         /// <summary>
         ///     Converts this Force to another Force with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -675,8 +673,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Force(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((ForceUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

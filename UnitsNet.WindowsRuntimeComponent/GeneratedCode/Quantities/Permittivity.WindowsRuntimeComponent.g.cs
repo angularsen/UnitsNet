@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PermittivityUnit> Info { get; }
+        internal static QuantityInfo<PermittivityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public PermittivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<PermittivityUnit> QuantityInfo => Info;
+        internal QuantityInfo<PermittivityUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -487,8 +487,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((PermittivityUnit) unit);
-
         /// <summary>
         ///     Converts this Permittivity to another Permittivity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -498,8 +496,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Permittivity(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((PermittivityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

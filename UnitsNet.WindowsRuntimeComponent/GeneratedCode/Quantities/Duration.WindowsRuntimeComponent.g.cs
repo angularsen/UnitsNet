@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<DurationUnit> Info { get; }
+        internal static QuantityInfo<DurationUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public DurationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<DurationUnit> QuantityInfo => Info;
+        internal QuantityInfo<DurationUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -619,8 +619,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((DurationUnit) unit);
-
         /// <summary>
         ///     Converts this Duration to another Duration with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -630,8 +628,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Duration(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((DurationUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricPotentialUnit> Info { get; }
+        internal static QuantityInfo<ElectricPotentialUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public ElectricPotentialUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<ElectricPotentialUnit> QuantityInfo => Info;
+        internal QuantityInfo<ElectricPotentialUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -544,8 +544,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((ElectricPotentialUnit) unit);
-
         /// <summary>
         ///     Converts this ElectricPotential to another ElectricPotential with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -555,8 +553,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricPotential(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricPotentialUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

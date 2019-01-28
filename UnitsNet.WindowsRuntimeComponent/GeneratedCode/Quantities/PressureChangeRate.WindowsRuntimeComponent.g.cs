@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<PressureChangeRateUnit> Info { get; }
+        internal static QuantityInfo<PressureChangeRateUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public PressureChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<PressureChangeRateUnit> QuantityInfo => Info;
+        internal QuantityInfo<PressureChangeRateUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -574,8 +574,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((PressureChangeRateUnit) unit);
-
         /// <summary>
         ///     Converts this PressureChangeRate to another PressureChangeRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -585,8 +583,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new PressureChangeRate(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((PressureChangeRateUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

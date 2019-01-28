@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LevelUnit> Info { get; }
+        internal static QuantityInfo<LevelUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public LevelUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<LevelUnit> QuantityInfo => Info;
+        internal QuantityInfo<LevelUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -499,8 +499,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((LevelUnit) unit);
-
         /// <summary>
         ///     Converts this Level to another Level with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -510,8 +508,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Level(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((LevelUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

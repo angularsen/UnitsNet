@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ThermalConductivityUnit> Info { get; }
+        internal static QuantityInfo<ThermalConductivityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public ThermalConductivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<ThermalConductivityUnit> QuantityInfo => Info;
+        internal QuantityInfo<ThermalConductivityUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -502,8 +502,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((ThermalConductivityUnit) unit);
-
         /// <summary>
         ///     Converts this ThermalConductivity to another ThermalConductivity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -513,8 +511,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ThermalConductivity(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((ThermalConductivityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

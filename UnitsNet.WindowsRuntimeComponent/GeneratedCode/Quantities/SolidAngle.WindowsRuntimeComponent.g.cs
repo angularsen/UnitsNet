@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<SolidAngleUnit> Info { get; }
+        internal static QuantityInfo<SolidAngleUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public SolidAngleUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<SolidAngleUnit> QuantityInfo => Info;
+        internal QuantityInfo<SolidAngleUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -487,8 +487,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((SolidAngleUnit) unit);
-
         /// <summary>
         ///     Converts this SolidAngle to another SolidAngle with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -498,8 +496,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new SolidAngle(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((SolidAngleUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

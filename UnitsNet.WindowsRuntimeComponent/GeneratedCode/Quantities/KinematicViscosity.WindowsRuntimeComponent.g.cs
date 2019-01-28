@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<KinematicViscosityUnit> Info { get; }
+        internal static QuantityInfo<KinematicViscosityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public KinematicViscosityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<KinematicViscosityUnit> QuantityInfo => Info;
+        internal QuantityInfo<KinematicViscosityUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -592,8 +592,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((KinematicViscosityUnit) unit);
-
         /// <summary>
         ///     Converts this KinematicViscosity to another KinematicViscosity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -603,8 +601,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new KinematicViscosity(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((KinematicViscosityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

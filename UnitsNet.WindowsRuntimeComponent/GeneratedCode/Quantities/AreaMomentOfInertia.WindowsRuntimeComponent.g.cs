@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AreaMomentOfInertiaUnit> Info { get; }
+        internal static QuantityInfo<AreaMomentOfInertiaUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public AreaMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<AreaMomentOfInertiaUnit> QuantityInfo => Info;
+        internal QuantityInfo<AreaMomentOfInertiaUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -559,8 +559,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((AreaMomentOfInertiaUnit) unit);
-
         /// <summary>
         ///     Converts this AreaMomentOfInertia to another AreaMomentOfInertia with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -570,8 +568,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new AreaMomentOfInertia(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((AreaMomentOfInertiaUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

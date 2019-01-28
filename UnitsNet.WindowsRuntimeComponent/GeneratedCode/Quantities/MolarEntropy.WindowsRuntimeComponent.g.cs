@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MolarEntropyUnit> Info { get; }
+        internal static QuantityInfo<MolarEntropyUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public MolarEntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<MolarEntropyUnit> QuantityInfo => Info;
+        internal QuantityInfo<MolarEntropyUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -514,8 +514,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((MolarEntropyUnit) unit);
-
         /// <summary>
         ///     Converts this MolarEntropy to another MolarEntropy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -525,8 +523,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new MolarEntropy(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((MolarEntropyUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

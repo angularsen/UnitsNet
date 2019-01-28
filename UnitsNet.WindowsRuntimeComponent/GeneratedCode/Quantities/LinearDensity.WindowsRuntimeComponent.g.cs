@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LinearDensityUnit> Info { get; }
+        internal static QuantityInfo<LinearDensityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public LinearDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<LinearDensityUnit> QuantityInfo => Info;
+        internal QuantityInfo<LinearDensityUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -517,8 +517,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((LinearDensityUnit) unit);
-
         /// <summary>
         ///     Converts this LinearDensity to another LinearDensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -528,8 +526,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new LinearDensity(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((LinearDensityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

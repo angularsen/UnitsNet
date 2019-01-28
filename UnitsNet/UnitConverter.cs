@@ -25,13 +25,13 @@ using System.Linq;
 using System.Reflection;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
+
 #if WINDOWS_UWP
 using Culture = System.String;
 using FromValue = System.Double;
 #else
 using Culture = System.IFormatProvider;
 using FromValue = UnitsNet.QuantityValue;
-
 #endif
 
 namespace UnitsNet
@@ -60,14 +60,14 @@ namespace UnitsNet
         /// <param name="fromUnitValue">From unit enum value.</param>
         /// <param name="toUnitValue">To unit enum value, must be compatible with <paramref name="fromUnitValue" />.</param>
         /// <returns>The converted value in the new unit representation.</returns>
-        public static double Convert(QuantityValue fromValue, Enum fromUnitValue, Enum toUnitValue)
+        public static double Convert(FromValue fromValue, Enum fromUnitValue, Enum toUnitValue)
         {
             return Quantity
                 .From(fromValue, fromUnitValue)
                 .As(toUnitValue);
         }
 
-        public static bool TryConvert(QuantityValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
+        public static bool TryConvert(FromValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
         {
             convertedValue = 0;
             if (!Quantity.TryFrom(fromValue, fromUnitValue, out IQuantity from)) return false;

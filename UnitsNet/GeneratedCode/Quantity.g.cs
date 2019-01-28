@@ -39,6 +39,14 @@ using System;
 using System.Linq;
 using UnitsNet.Units;
 
+#if WINDOWS_UWP
+using Culture = System.String;
+using FromValue = System.Double;
+#else
+using Culture = System.IFormatProvider;
+using FromValue = UnitsNet.QuantityValue;
+#endif
+
 namespace UnitsNet
 {
     /// <summary>
@@ -53,7 +61,7 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <returns>An <see cref="IQuantity"/> object.</returns>
         /// <exception cref="ArgumentException">Unit value is not a know unit enum type.</exception>
-        public static IQuantity From(QuantityValue value, Enum unit)
+        public static IQuantity From(FromValue value, Enum unit)
         {
             if (TryFrom(value, unit, out IQuantity quantity))
                 return quantity;
@@ -69,7 +77,7 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns><c>True</c> if successful with <paramref name="quantity"/> assigned the value, otherwise <c>false</c>.</returns>
-        public static bool TryFrom(QuantityValue value, Enum unit, out IQuantity quantity)
+        public static bool TryFrom(FromValue value, Enum unit, out IQuantity quantity)
         {
             switch (unit)
             {

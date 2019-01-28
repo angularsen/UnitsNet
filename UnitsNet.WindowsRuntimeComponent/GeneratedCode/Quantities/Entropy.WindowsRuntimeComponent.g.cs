@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<EntropyUnit> Info { get; }
+        internal static QuantityInfo<EntropyUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public EntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<EntropyUnit> QuantityInfo => Info;
+        internal QuantityInfo<EntropyUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -574,8 +574,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((EntropyUnit) unit);
-
         /// <summary>
         ///     Converts this Entropy to another Entropy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -585,8 +583,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Entropy(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((EntropyUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

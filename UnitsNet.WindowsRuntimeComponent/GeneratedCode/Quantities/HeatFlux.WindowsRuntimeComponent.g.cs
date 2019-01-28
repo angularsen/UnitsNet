@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<HeatFluxUnit> Info { get; }
+        internal static QuantityInfo<HeatFluxUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public HeatFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<HeatFluxUnit> QuantityInfo => Info;
+        internal QuantityInfo<HeatFluxUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -739,8 +739,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((HeatFluxUnit) unit);
-
         /// <summary>
         ///     Converts this HeatFlux to another HeatFlux with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -750,8 +748,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new HeatFlux(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((HeatFluxUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

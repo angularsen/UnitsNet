@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LuminousIntensityUnit> Info { get; }
+        internal static QuantityInfo<LuminousIntensityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public LuminousIntensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<LuminousIntensityUnit> QuantityInfo => Info;
+        internal QuantityInfo<LuminousIntensityUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -487,8 +487,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((LuminousIntensityUnit) unit);
-
         /// <summary>
         ///     Converts this LuminousIntensity to another LuminousIntensity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -498,8 +496,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new LuminousIntensity(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((LuminousIntensityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

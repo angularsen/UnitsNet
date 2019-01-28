@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<VolumeUnit> Info { get; }
+        internal static QuantityInfo<VolumeUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public VolumeUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<VolumeUnit> QuantityInfo => Info;
+        internal QuantityInfo<VolumeUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -1144,8 +1144,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((VolumeUnit) unit);
-
         /// <summary>
         ///     Converts this Volume to another Volume with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1155,8 +1153,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Volume(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((VolumeUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

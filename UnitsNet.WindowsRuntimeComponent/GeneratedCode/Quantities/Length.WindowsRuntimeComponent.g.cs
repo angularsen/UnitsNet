@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<LengthUnit> Info { get; }
+        internal static QuantityInfo<LengthUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public LengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<LengthUnit> QuantityInfo => Info;
+        internal QuantityInfo<LengthUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -799,8 +799,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((LengthUnit) unit);
-
         /// <summary>
         ///     Converts this Length to another Length with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -810,8 +808,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Length(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((LengthUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

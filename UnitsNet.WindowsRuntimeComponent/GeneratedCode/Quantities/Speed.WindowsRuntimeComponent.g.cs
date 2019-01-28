@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<SpeedUnit> Info { get; }
+        internal static QuantityInfo<SpeedUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public SpeedUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<SpeedUnit> QuantityInfo => Info;
+        internal QuantityInfo<SpeedUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -949,8 +949,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((SpeedUnit) unit);
-
         /// <summary>
         ///     Converts this Speed to another Speed with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -960,8 +958,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Speed(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((SpeedUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<VitaminAUnit> Info { get; }
+        internal static QuantityInfo<VitaminAUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public VitaminAUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<VitaminAUnit> QuantityInfo => Info;
+        internal QuantityInfo<VitaminAUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -484,8 +484,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((VitaminAUnit) unit);
-
         /// <summary>
         ///     Converts this VitaminA to another VitaminA with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -495,8 +493,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new VitaminA(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((VitaminAUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

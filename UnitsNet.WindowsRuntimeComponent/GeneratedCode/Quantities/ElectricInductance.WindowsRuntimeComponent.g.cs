@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<ElectricInductanceUnit> Info { get; }
+        internal static QuantityInfo<ElectricInductanceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public ElectricInductanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<ElectricInductanceUnit> QuantityInfo => Info;
+        internal QuantityInfo<ElectricInductanceUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -532,8 +532,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((ElectricInductanceUnit) unit);
-
         /// <summary>
         ///     Converts this ElectricInductance to another ElectricInductance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -543,8 +541,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ElectricInductance(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((ElectricInductanceUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

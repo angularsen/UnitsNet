@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<AmplitudeRatioUnit> Info { get; }
+        internal static QuantityInfo<AmplitudeRatioUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public AmplitudeRatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<AmplitudeRatioUnit> QuantityInfo => Info;
+        internal QuantityInfo<AmplitudeRatioUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -529,8 +529,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((AmplitudeRatioUnit) unit);
-
         /// <summary>
         ///     Converts this AmplitudeRatio to another AmplitudeRatio with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -540,8 +538,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new AmplitudeRatio(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((AmplitudeRatioUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

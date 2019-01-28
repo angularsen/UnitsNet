@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MolarMassUnit> Info { get; }
+        internal static QuantityInfo<MolarMassUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public MolarMassUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<MolarMassUnit> QuantityInfo => Info;
+        internal QuantityInfo<MolarMassUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -649,8 +649,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((MolarMassUnit) unit);
-
         /// <summary>
         ///     Converts this MolarMass to another MolarMass with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -660,8 +658,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new MolarMass(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((MolarMassUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

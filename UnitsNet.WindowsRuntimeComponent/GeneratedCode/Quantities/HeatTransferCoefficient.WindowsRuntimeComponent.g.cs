@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<HeatTransferCoefficientUnit> Info { get; }
+        internal static QuantityInfo<HeatTransferCoefficientUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public HeatTransferCoefficientUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<HeatTransferCoefficientUnit> QuantityInfo => Info;
+        internal QuantityInfo<HeatTransferCoefficientUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -499,8 +499,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((HeatTransferCoefficientUnit) unit);
-
         /// <summary>
         ///     Converts this HeatTransferCoefficient to another HeatTransferCoefficient with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -510,8 +508,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new HeatTransferCoefficient(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((HeatTransferCoefficientUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

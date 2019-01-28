@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<BitRateUnit> Info { get; }
+        internal static QuantityInfo<BitRateUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public BitRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<BitRateUnit> QuantityInfo => Info;
+        internal QuantityInfo<BitRateUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -862,8 +862,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((BitRateUnit) unit);
-
         /// <summary>
         ///     Converts this BitRate to another BitRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -873,8 +871,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new BitRate(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((BitRateUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

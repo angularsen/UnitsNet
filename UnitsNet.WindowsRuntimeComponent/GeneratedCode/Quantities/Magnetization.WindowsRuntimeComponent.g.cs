@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<MagnetizationUnit> Info { get; }
+        internal static QuantityInfo<MagnetizationUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,7 +154,7 @@ namespace UnitsNet
         /// </summary>
         public MagnetizationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<MagnetizationUnit> QuantityInfo => Info;
+        internal QuantityInfo<MagnetizationUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -487,8 +487,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((MagnetizationUnit) unit);
-
         /// <summary>
         ///     Converts this Magnetization to another Magnetization with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -498,8 +496,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Magnetization(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((MagnetizationUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

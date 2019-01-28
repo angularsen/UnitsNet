@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        public static QuantityInfo<TemperatureChangeRateUnit> Info { get; }
+        internal static QuantityInfo<TemperatureChangeRateUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,7 +151,7 @@ namespace UnitsNet
         /// </summary>
         public TemperatureChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        public QuantityInfo<TemperatureChangeRateUnit> QuantityInfo => Info;
+        internal QuantityInfo<TemperatureChangeRateUnit> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
 
@@ -619,8 +619,6 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
-        public double As(Enum unit) => As((TemperatureChangeRateUnit) unit);
-
         /// <summary>
         ///     Converts this TemperatureChangeRate to another TemperatureChangeRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -630,8 +628,6 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new TemperatureChangeRate(convertedValue, unit);
         }
-
-        public IQuantity ToUnit(Enum unit) => ToUnit((TemperatureChangeRateUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
