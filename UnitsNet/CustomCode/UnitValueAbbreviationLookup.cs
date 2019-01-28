@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -63,19 +63,21 @@ namespace UnitsNet
 
         internal List<int> GetUnitsForAbbreviation(string abbreviation)
         {
-            if(!abbreviationToUnitMap.TryGetValue(abbreviation, out var units))
-                abbreviationToUnitMap[abbreviation] = units = new List<int>();
+            var lowerCaseAbbreviation = abbreviation.ToLower();
+            if(!abbreviationToUnitMap.TryGetValue(lowerCaseAbbreviation, out var units))
+                abbreviationToUnitMap[lowerCaseAbbreviation] = units = new List<int>();
 
             return units.Distinct().ToList();
         }
 
         internal void Add(int unit, string abbreviation, bool setAsDefault = false)
         {
+            var lowerCaseAbbreviation = abbreviation.ToLower();
             if(!unitToAbbreviationMap.TryGetValue(unit, out var abbreviationsForUnit))
                 abbreviationsForUnit = unitToAbbreviationMap[unit] = new List<string>();
 
-            if(!abbreviationToUnitMap.TryGetValue(abbreviation, out var unitsForAbbreviation))
-                abbreviationToUnitMap[abbreviation] = unitsForAbbreviation = new List<int>();
+            if(!abbreviationToUnitMap.TryGetValue(lowerCaseAbbreviation, out var unitsForAbbreviation))
+                abbreviationToUnitMap[lowerCaseAbbreviation] = unitsForAbbreviation = new List<int>();
 
             abbreviationsForUnit.Remove(abbreviation);
             unitsForAbbreviation.Remove(unit);
