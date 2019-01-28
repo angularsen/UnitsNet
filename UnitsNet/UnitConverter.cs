@@ -50,7 +50,7 @@ namespace UnitsNet
         private static readonly string UnitTypeNamespace = typeof(LengthUnit).Namespace;
         private static readonly Assembly UnitsNetAssembly = typeof(Length).GetAssembly();
 
-        private Dictionary<ConversionFunctionLookup, ConversionFunction> conversionFunctions;
+        private readonly Dictionary<ConversionFunctionLookup, ConversionFunction> _conversionFunctions = new Dictionary<ConversionFunctionLookup, ConversionFunction>();
 
         static UnitConverter()
         {
@@ -61,7 +61,6 @@ namespace UnitsNet
 
         public UnitConverter()
         {
-            conversionFunctions = new Dictionary<ConversionFunctionLookup, ConversionFunction>();
         }
 
 #if !WINDOWS_UWP
@@ -87,7 +86,7 @@ namespace UnitsNet
 
         public void SetConversionFunction(ConversionFunctionLookup conversionLookup, ConversionFunction conversionFunction)
         {
-            conversionFunctions[conversionLookup] = conversionFunction;
+            _conversionFunctions[conversionLookup] = conversionFunction;
         }
 
         public ConversionFunction GetConversionFunction<T>(Enum from, Enum to) where T : IQuantity
@@ -110,7 +109,7 @@ namespace UnitsNet
 
         public ConversionFunction GetConversionFunction(ConversionFunctionLookup conversionLookup)
         {
-            return conversionFunctions[conversionLookup];
+            return _conversionFunctions[conversionLookup];
         }
 
         public bool TryGetConversionFunction<T>(Enum from, Enum to, out ConversionFunction conversionFunction) where T : IQuantity
@@ -133,7 +132,7 @@ namespace UnitsNet
 
         public bool TryGetConversionFunction(ConversionFunctionLookup conversionLookup, out ConversionFunction conversionFunction)
         {
-            return conversionFunctions.TryGetValue(conversionLookup, out conversionFunction);
+            return _conversionFunctions.TryGetValue(conversionLookup, out conversionFunction);
         }
 
 #endif
