@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace UnitsNet.Samples.UnitConverter.Wpf
@@ -21,6 +22,7 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
             SelectedToUnit = Units[2];
         }
 
+
         public ReadOnlyObservableCollection<QuantityType> Quantities { get; }
         public ReadOnlyObservableCollection<UnitListItem> Units { get; }
         public QuantityType SelectedQuantity { get; set; }
@@ -34,7 +36,10 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         public ICommand SwapCommand { get; } = new RoutedCommand();
 
+        // Is never used
+#pragma warning disable CS0067
         public event PropertyChangedEventHandler PropertyChanged;
+#pragma warning restore CS0067
 
         private static ReadOnlyObservableCollection<T> ToReadOnly<T>(IEnumerable<T> items)
         {
