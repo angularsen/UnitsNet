@@ -29,7 +29,7 @@ See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgr
 * [Statically typed quantities and units](#static-typing) to avoid mistakes and communicate intent
 * [Operator overloads](#operator-overloads) for arithmetic on quantities
 * [Parse and ToString()](#culture) supports cultures and localization
-* [Dynamically parsing and converting](#dynamic-parsing) quantities and units
+* [Dynamically parse and convert](#dynamic-parsing) quantities and units
 * [Example: Creating a unit converter app](#example-app)
 * [Example: WPF app using IValueConverter to parse quantities from input](#example-wpf-app-using-ivalueconverter-to-parse-quantities-from-input)
 * [Precision and accuracy](#precision)
@@ -125,12 +125,12 @@ Unfortunately there is no built-in way to avoid this, either you need to ensure 
 Example:
 `Length.Parse("1 pt")` throws `AmbiguousUnitParseException` with message `Cannot parse "pt" since it could be either of these: DtpPoint, PrinterPoint`.
 
-### <a name="dynamic-parsing"></a>Dynamically Parse Quantities and Convert Units
+### <a name="dynamic-parsing"></a>Dynamically Parse Quantities and Convert to Units
 Sometimes you need to work with quantities and units at runtime, such as parsing user input.
 
 There are a handful of classes to help with this:
 
-- [Quantity](UnitsNet/CustomCode/Quantity.cs) for parsing and constructing quantities as well as looking up units, names and quantity information dynamically.
+- [Quantity](UnitsNet/CustomCode/Quantity.cs) for parsing and constructing quantities as well as looking up units, names and quantity information dynamically
 - [UnitConverter](UnitsNet/UnitConverter.cs) for converting values to a different unit, with only strings or enum values
 - [UnitParser](UnitsNet/CustomCode/UnitParser.cs) for parsing unit abbreviation strings, such as `"cm"` to `LengthUnit.Centimeter`
 
@@ -140,6 +140,7 @@ There are a handful of classes to help with this:
 string[] Quantity.Names;       // ["Length", "Mass", ...]
 QuantityType[] Quantity.Types; // [QuantityType.Length, QuantityType.Mass, ...]
 QuantityInfo[] Quantity.Infos; // Information about all quantities and their units, types, values etc., see more below
+
 QuantityInfo Quantity.GetInfo(QuantityType.Length); // Get information about Length
 ```
 
