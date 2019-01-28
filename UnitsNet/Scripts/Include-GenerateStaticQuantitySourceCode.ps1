@@ -142,7 +142,7 @@ namespace UnitsNet
         /// <returns>Information about the quantity and its units.</returns>
         public static QuantityInfo GetInfo(QuantityType quantityType)
         {
-            return UnitsHelper.QuantityInfos.First(qi => qi.QuantityType == quantityType);
+            return Infos.First(qi => qi.QuantityType == quantityType);
         }
     }
 }
