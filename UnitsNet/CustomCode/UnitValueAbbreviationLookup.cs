@@ -31,14 +31,9 @@ namespace UnitsNet
 {
     internal class UnitValueAbbreviationLookup
     {
-        private UnitToAbbreviationMap unitToAbbreviationMap = new UnitToAbbreviationMap();
-        private AbbreviationToUnitMap abbreviationToUnitMap = new AbbreviationToUnitMap();
-
-        internal UnitValueAbbreviationLookup()
-        {
-            unitToAbbreviationMap = new UnitToAbbreviationMap();
-            abbreviationToUnitMap = new AbbreviationToUnitMap();
-        }
+        private readonly UnitToAbbreviationMap unitToAbbreviationMap = new UnitToAbbreviationMap();
+        private readonly AbbreviationToUnitMap abbreviationToUnitMap = new AbbreviationToUnitMap();
+        private readonly AbbreviationToUnitMap lowerCaseAbbreviationToUnitMap = new AbbreviationToUnitMap();
 
         internal string[] GetAllUnitAbbreviationsForQuantity()
         {
@@ -61,11 +56,14 @@ namespace UnitsNet
             return abbreviations.Distinct().ToList();
         }
 
-        internal List<int> GetUnitsForAbbreviation(string abbreviation)
+        internal List<int> GetUnitsForAbbreviation(string abbreviation, bool ignoreCase)
         {
             var lowerCaseAbbreviation = abbreviation.ToLower();
-            if(!abbreviationToUnitMap.TryGetValue(lowerCaseAbbreviation, out var units))
-                abbreviationToUnitMap[lowerCaseAbbreviation] = units = new List<int>();
+            var key = ignoreCase ? lowerCaseAbbreviation : abbreviation;
+            var map = ignoreCase ? lowerCaseAbbreviationToUnitMap : abbreviationToUnitMap;
+
+            if(!map.TryGetValue(key, out List<int> units))
+                map[key] = units = new List<int>();
 
             return units.Distinct().ToList();
         }
@@ -73,20 +71,28 @@ namespace UnitsNet
         internal void Add(int unit, string abbreviation, bool setAsDefault = false)
         {
             var lowerCaseAbbreviation = abbreviation.ToLower();
+
             if(!unitToAbbreviationMap.TryGetValue(unit, out var abbreviationsForUnit))
                 abbreviationsForUnit = unitToAbbreviationMap[unit] = new List<string>();
 
-            if(!abbreviationToUnitMap.TryGetValue(lowerCaseAbbreviation, out var unitsForAbbreviation))
-                abbreviationToUnitMap[lowerCaseAbbreviation] = unitsForAbbreviation = new List<int>();
+            if(!abbreviationToUnitMap.TryGetValue(abbreviation, out var unitsForAbbreviation))
+                abbreviationToUnitMap[abbreviation] = unitsForAbbreviation = new List<int>();
+
+            if(!lowerCaseAbbreviationToUnitMap.TryGetValue(lowerCaseAbbreviation, out var unitsForLowerCaseAbbreviation))
+                lowerCaseAbbreviationToUnitMap[lowerCaseAbbreviation] = unitsForLowerCaseAbbreviation = new List<int>();
+
+            unitsForLowerCaseAbbreviation.Remove(unit);
+            unitsForLowerCaseAbbreviation.Add(unit);
+
+            unitsForAbbreviation.Remove(unit);
+            unitsForAbbreviation.Add(unit);
 
             abbreviationsForUnit.Remove(abbreviation);
-            unitsForAbbreviation.Remove(unit);
-
             if (setAsDefault)
                 abbreviationsForUnit.Insert(0, abbreviation);
             else
                 abbreviationsForUnit.Add(abbreviation);
-            unitsForAbbreviation.Add(unit);
+
         }
     }
 }
