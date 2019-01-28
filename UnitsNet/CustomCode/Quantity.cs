@@ -24,14 +24,15 @@ namespace UnitsNet
             Names = Enum.GetNames(typeof(QuantityType));
 
             // A bunch of reflection to enumerate quantity types, instantiate with the default constructor and return its QuantityInfo property
-            Infos = Assembly.GetAssembly(typeof(Length))
+            InfosLazy = new Lazy<QuantityInfo[]>(() => Assembly.GetAssembly(typeof(Length))
                 .GetExportedTypes()
                 .Where(typeof(IQuantity).IsAssignableFrom)
                 .Where(t => t.IsClass() || t.IsValueType()) // Future-proofing: Considering changing quantities from struct to class
                 .Select(Activator.CreateInstance)
                 .Cast<IQuantity>()
-                .Select(quantity => quantity.QuantityInfo)
-                .ToArray();
+                .Select(q => q.QuantityInfo)
+                .OrderBy(q => q.Name)
+                .ToArray());
         }
 
         /// <summary>
@@ -47,7 +48,9 @@ namespace UnitsNet
         /// <summary>
         /// All quantity information objects, such as <see cref="Length.Info"/> and <see cref="Mass.Info"/>.
         /// </summary>
-        public static QuantityInfo[] Infos { get; }
+        public static QuantityInfo[] Infos => InfosLazy.Value;
+
+        private static readonly Lazy<QuantityInfo[]> InfosLazy;
 
         /// <summary>
         /// Returns the enum values for the given <paramref name="quantity"/>, excluding the Undefined=0 value.
