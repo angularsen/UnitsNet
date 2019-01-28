@@ -259,10 +259,10 @@ namespace UnitsNet
             var toUnitValue = UnitParser.Default.Parse(toUnitAbbrev, unitType, cultureInfo); // ex:("cm", LengthUnit) => LengthUnit.Centimeter
 
             var fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
-            var fromResult = fromMethod.Invoke(null, new[] {fromValue, fromUnitValue}); // ex: Length quantity = UnitsNet.Length.From(5, LengthUnit.Meter)
+            var fromResult = fromMethod.Invoke(null, new object[] {fromValue, fromUnitValue}); // ex: Length quantity = UnitsNet.Length.From(5, LengthUnit.Meter)
 
             var asMethod = GetAsMethod(quantityType, unitType); // ex: quantity.As(LengthUnit outputUnit)
-            var asResult = asMethod.Invoke(fromResult, new[] {toUnitValue}); // ex: double outputValue = quantity.As(LengthUnit.Centimeter)
+            var asResult = asMethod.Invoke(fromResult, new object[] {toUnitValue}); // ex: double outputValue = quantity.As(LengthUnit.Centimeter)
 
             return (double) asResult;
         }
@@ -347,10 +347,10 @@ namespace UnitsNet
                 return false;
 
             var fromMethod = GetStaticFromMethod(quantityType, unitType); // ex: UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
-            var fromResult = fromMethod.Invoke(null, new[] {fromValue, fromUnitValue}); // ex: Length quantity = UnitsNet.Length.From(5, LengthUnit.Meter)
+            var fromResult = fromMethod.Invoke(null, new object[] {fromValue, fromUnitValue}); // ex: Length quantity = UnitsNet.Length.From(5, LengthUnit.Meter)
 
             var asMethod = GetAsMethod(quantityType, unitType); // ex: quantity.As(LengthUnit outputUnit)
-            var asResult = asMethod.Invoke(fromResult, new[] {toUnitValue}); // ex: double outputValue = quantity.As(LengthUnit.Centimeter)
+            var asResult = asMethod.Invoke(fromResult, new object[] {toUnitValue}); // ex: double outputValue = quantity.As(LengthUnit.Centimeter)
 
             result = (double) asResult;
             return true;

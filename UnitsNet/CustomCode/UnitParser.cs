@@ -22,7 +22,6 @@
 using System;
 using System.Linq;
 using JetBrains.Annotations;
-using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 // ReSharper disable once CheckNamespace
@@ -82,7 +81,7 @@ namespace UnitsNet
 #else
         public
 #endif
-        object Parse([NotNull] string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider = null)
+        Enum Parse([NotNull] string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider = null)
         {
             if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
             unitAbbreviation = unitAbbreviation.Trim();
@@ -99,7 +98,7 @@ namespace UnitsNet
             switch (unitIntValues.Count)
             {
                 case 1:
-                    return unitIntValues[0];
+                    return (Enum) Enum.ToObject(unitType, unitIntValues[0]);
                 case 0:
                     throw new UnitNotFoundException($"Unit not found with abbreviation [{unitAbbreviation}] for unit type [{unitType}].");
                 default:
@@ -162,7 +161,7 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
         [PublicAPI]
-        public bool TryParse(string unitAbbreviation, Type unitType, out object unit)
+        public bool TryParse(string unitAbbreviation, Type unitType, out Enum unit)
         {
             return TryParse(unitAbbreviation, unitType, null, out unit);
         }
@@ -181,7 +180,7 @@ namespace UnitsNet
 #else
         public
 #endif
-        bool TryParse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider, out object unit)
+        bool TryParse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider, out Enum unit)
         {
             if (unitAbbreviation == null)
             {
@@ -190,7 +189,7 @@ namespace UnitsNet
             }
 
             unitAbbreviation = unitAbbreviation.Trim();
-            unit = GetDefault(unitType);
+            unit = default;
 
             if(!_unitAbbreviationsCache.TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var abbreviations))
                 return false;
@@ -204,19 +203,8 @@ namespace UnitsNet
             if(unitIntValues.Count != 1)
                 return false;
 
-            unit = unitIntValues[0];
+            unit = (Enum)Enum.ToObject(unitType, unitIntValues[0]);
             return true;
-        }
-
-        /// <summary>
-        ///     Get default(Type) of
-        ///     <param name="type"></param>
-        ///     .
-        ///     Null for reference types, 0 for numeric types and default constructor for the rest.
-        /// </summary>
-        private static object GetDefault(Type type)
-        {
-            return type.IsValueType() ? Activator.CreateInstance(type): null;
         }
     }
 }
