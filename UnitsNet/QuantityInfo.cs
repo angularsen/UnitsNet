@@ -21,6 +21,7 @@
 
 using System;
 using System.Linq;
+using System.Reflection;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
@@ -42,12 +43,20 @@ namespace UnitsNet
 #endif
     class QuantityInfo
     {
+        private static readonly string UnitEnumNamespace = typeof(LengthUnit).Namespace;
+
+        private static readonly Type[] UnitEnumTypes = Assembly.GetAssembly(typeof(Length))
+            .GetExportedTypes()
+            .Where(t => t.IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
+            .ToArray();
+
         public QuantityInfo(QuantityType quantityType, [NotNull] Enum[] units, [NotNull] IQuantity zero)
         {
             if (units == null) throw new ArgumentNullException(nameof(units));
+
             Name = quantityType.ToString();
             QuantityType = quantityType;
-            UnitType = Quantity.GetUnitType(quantityType);
+            UnitType = UnitEnumTypes.First(t => t.Name == $"{quantityType}Unit");
             UnitNames = units.Select(u => u.ToString()).ToArray();
             Units = units;
             Zero = zero ?? throw new ArgumentNullException(nameof(zero));
