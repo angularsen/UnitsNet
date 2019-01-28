@@ -8,7 +8,7 @@ class GeneratorArgs
     [boolean]$TargetIsWindowsRuntimeComponent
 }
 
-function GenerateQuantitySourceCodeNetFramework([Quantity]$quantity, [string]$target)
+function GenerateQuantitySourceCode([Quantity]$quantity, [string]$target)
 {
     $quantityName = $quantity.Name;
     $units = $quantity.Units;

@@ -19,12 +19,12 @@ function ValueOrDefault($value, $defaultValue){
 function GenerateQuantity([Quantity]$quantity, $outDir)
 {
     $outFileName = "$outDir/$($quantity.Name).NetFramework.g.cs"
-    GenerateQuantitySourceCodeNetFramework $quantity "NetFramework" | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    GenerateQuantitySourceCode $quantity "NetFramework" | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) { exit 1 }
     Write-Host -NoNewline "quantity .NET(OK) "
 
     $outFileName = "$outDir/../../../UnitsNet.WindowsRuntimeComponent/GeneratedCode/Quantities/$($quantity.Name).WindowsRuntimeComponent.g.cs"
-    GenerateQuantitySourceCodeNetFramework $quantity "WindowsRuntimeComponent" | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    GenerateQuantitySourceCode $quantity "WindowsRuntimeComponent" | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) { exit 1 }
     Write-Host -NoNewline "quantity WRC(OK) "
 }
@@ -243,7 +243,7 @@ function Add-InheritedUnits([Quantity]$quantity, $quantities) {
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantityTypeSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateStaticQuantitySourceCode.ps1"
-. "$PSScriptRoot/Include-GenerateQuantitySourceCodeNetFramework.ps1"
+. "$PSScriptRoot/Include-GenerateQuantitySourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTypeSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestBaseClassSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestPlaceholderSourceCode.ps1"
