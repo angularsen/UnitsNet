@@ -232,43 +232,23 @@ UnitConverter.ConvertByAbbreviation(1, "Length", "cm", "mm"); // 10 mm
 
 This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Temperature`, then selects to convert from `DegreeCelsius` to `DegreeFahrenheit` and types in a numeric value for how many degrees Celsius to convert.
 
-Pseudo-code for converter app:
-```c#
-// Populate quantity selector ("Length", "Mass", "Force" etc)
-string[] quantityNames = Quantity.Names;
+#### Populate quantity selector
+Use `Quantity` to enumerate all quantity type enum values, such as `QuantityType.Length` and `QuantityType.Mass`.
 
-string selectedQuantityName = "Temperature"; // Selected by user
-QuantityType selectedQuantity = Enum.Parse<QuantityType>(selectedQuantityName); // QuantityType.Temperature
+**TODO Update me with new hash after merging PR.**
+https://github.com/angularsen/UnitsNet/blob/82eed32d6bc607eeaf09a54958d566561ab19017/Samples/UnitConverter.Wpf/UnitConverter.Wpf/MainWindowVM.cs#L32
 
-// Populate from/to unit selectors when quantity selection changes
-string[] unitNames = Quantity.GetUnitNamesForQuantity(selectedQuantity).ToArray();
-myGui.UpdateFromToListsOfUnits(unitNames);
+#### Update unit lists when selecting new quantity
+So user can only choose from/to units compatible with the quantity type.
 
-// Assign these from GUI selection
-double fromValue = 25;
-string fromUnitName = "DegreeCelsius";
-string toUnitName = "DegreeFahrenheit";
+**TODO Update me with new hash after merging PR.**
+https://github.com/angularsen/UnitsNet/blob/82eed32d6bc607eeaf09a54958d566561ab19017/Samples/UnitConverter.Wpf/UnitConverter.Wpf/MainWindowVM.cs#L140-L149
 
-// Convert using from value and selected quantity/unit names
-double convertedValue = UnitConverter.ConvertByName(fromValue, selectedQuantityName, fromUnitName, toUnitName);
-```
+#### Update calculation on unit selection changed
+Using `UnitConverter` to convert by quantity name such as `"Length"` and unit names like `"Centimeter"` and `"Meter"`.
 
-### <a name="example-app-hardcoded"></a>Example: Creating a unit converter app with hard coded quantities
-
-If you can live with hard coding what quantities to convert between, then the following code snippet shows you one way to go about it:
-
-```C#
-// Get quantities for populating quantity UI selector
-QuantityType[] quantityTypes = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().ToArray();
-
-// If Length is selected, get length units for populating from/to UI selectors
-LengthUnit[] lengthUnits = Length.Units;
-
-// Perform conversion using input value and selected from/to units
-double inputValue; // Obtain from textbox
-LengthUnit fromUnit, toUnit; // Obtain from ListBox selections
-double resultValue = Length.From(inputValue, fromUnit).As(toUnit);
-```
+**TODO Update me with new hash after merging PR.**
+https://github.com/angularsen/UnitsNet/blob/82eed32d6bc607eeaf09a54958d566561ab19017/Samples/UnitConverter.Wpf/UnitConverter.Wpf/MainWindowVM.cs#L130-L138
 
 ### Example: WPF app using IValueConverter to parse quantities from input
 
