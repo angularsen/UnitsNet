@@ -601,8 +601,6 @@ namespace UnitsNet
             return new TemperatureDelta(convertedValue, unit);
         }
 
-        IQuantity<TemperatureDeltaUnit> IQuantity<TemperatureDeltaUnit>.ToUnit(TemperatureDeltaUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((TemperatureDeltaUnit) unit);
 
         /// <summary>

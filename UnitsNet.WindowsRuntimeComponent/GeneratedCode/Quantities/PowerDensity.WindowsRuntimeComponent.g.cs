@@ -1141,8 +1141,6 @@ namespace UnitsNet
             return new PowerDensity(convertedValue, unit);
         }
 
-        IQuantity<PowerDensityUnit> IQuantity<PowerDensityUnit>.ToUnit(PowerDensityUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((PowerDensityUnit) unit);
 
         /// <summary>

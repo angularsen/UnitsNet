@@ -526,8 +526,6 @@ namespace UnitsNet
             return new ApparentEnergy(convertedValue, unit);
         }
 
-        IQuantity<ApparentEnergyUnit> IQuantity<ApparentEnergyUnit>.ToUnit(ApparentEnergyUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ApparentEnergyUnit) unit);
 
         /// <summary>

@@ -544,8 +544,6 @@ namespace UnitsNet
             return new MagneticField(convertedValue, unit);
         }
 
-        IQuantity<MagneticFieldUnit> IQuantity<MagneticFieldUnit>.ToUnit(MagneticFieldUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((MagneticFieldUnit) unit);
 
         /// <summary>

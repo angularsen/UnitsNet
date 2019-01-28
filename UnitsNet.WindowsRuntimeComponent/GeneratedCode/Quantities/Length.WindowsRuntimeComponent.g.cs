@@ -811,8 +811,6 @@ namespace UnitsNet
             return new Length(convertedValue, unit);
         }
 
-        IQuantity<LengthUnit> IQuantity<LengthUnit>.ToUnit(LengthUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((LengthUnit) unit);
 
         /// <summary>

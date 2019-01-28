@@ -616,8 +616,6 @@ namespace UnitsNet
             return new ForcePerLength(convertedValue, unit);
         }
 
-        IQuantity<ForcePerLengthUnit> IQuantity<ForcePerLengthUnit>.ToUnit(ForcePerLengthUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ForcePerLengthUnit) unit);
 
         /// <summary>

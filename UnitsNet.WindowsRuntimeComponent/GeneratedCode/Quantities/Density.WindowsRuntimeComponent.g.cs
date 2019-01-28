@@ -1069,8 +1069,6 @@ namespace UnitsNet
             return new Density(convertedValue, unit);
         }
 
-        IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(DensityUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((DensityUnit) unit);
 
         /// <summary>

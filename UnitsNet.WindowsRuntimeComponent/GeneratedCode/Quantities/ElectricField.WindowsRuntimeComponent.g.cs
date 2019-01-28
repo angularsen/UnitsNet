@@ -499,8 +499,6 @@ namespace UnitsNet
             return new ElectricField(convertedValue, unit);
         }
 
-        IQuantity<ElectricFieldUnit> IQuantity<ElectricFieldUnit>.ToUnit(ElectricFieldUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricFieldUnit) unit);
 
         /// <summary>

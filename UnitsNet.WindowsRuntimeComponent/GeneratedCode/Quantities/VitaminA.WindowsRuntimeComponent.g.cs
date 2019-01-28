@@ -496,8 +496,6 @@ namespace UnitsNet
             return new VitaminA(convertedValue, unit);
         }
 
-        IQuantity<VitaminAUnit> IQuantity<VitaminAUnit>.ToUnit(VitaminAUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((VitaminAUnit) unit);
 
         /// <summary>

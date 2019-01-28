@@ -1156,8 +1156,6 @@ namespace UnitsNet
             return new Volume(convertedValue, unit);
         }
 
-        IQuantity<VolumeUnit> IQuantity<VolumeUnit>.ToUnit(VolumeUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((VolumeUnit) unit);
 
         /// <summary>

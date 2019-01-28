@@ -511,8 +511,6 @@ namespace UnitsNet
             return new HeatTransferCoefficient(convertedValue, unit);
         }
 
-        IQuantity<HeatTransferCoefficientUnit> IQuantity<HeatTransferCoefficientUnit>.ToUnit(HeatTransferCoefficientUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((HeatTransferCoefficientUnit) unit);
 
         /// <summary>

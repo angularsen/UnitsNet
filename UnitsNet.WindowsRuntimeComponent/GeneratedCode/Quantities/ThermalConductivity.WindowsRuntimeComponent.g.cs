@@ -514,8 +514,6 @@ namespace UnitsNet
             return new ThermalConductivity(convertedValue, unit);
         }
 
-        IQuantity<ThermalConductivityUnit> IQuantity<ThermalConductivityUnit>.ToUnit(ThermalConductivityUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ThermalConductivityUnit) unit);
 
         /// <summary>

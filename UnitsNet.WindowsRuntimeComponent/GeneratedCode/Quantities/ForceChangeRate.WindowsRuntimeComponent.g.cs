@@ -646,8 +646,6 @@ namespace UnitsNet
             return new ForceChangeRate(convertedValue, unit);
         }
 
-        IQuantity<ForceChangeRateUnit> IQuantity<ForceChangeRateUnit>.ToUnit(ForceChangeRateUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ForceChangeRateUnit) unit);
 
         /// <summary>

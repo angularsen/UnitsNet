@@ -601,8 +601,6 @@ namespace UnitsNet
             return new Frequency(convertedValue, unit);
         }
 
-        IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(FrequencyUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((FrequencyUnit) unit);
 
         /// <summary>

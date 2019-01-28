@@ -871,8 +871,6 @@ namespace UnitsNet
             return new Information(convertedValue, unit);
         }
 
-        IQuantity<InformationUnit> IQuantity<InformationUnit>.ToUnit(InformationUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((InformationUnit) unit);
 
         /// <summary>

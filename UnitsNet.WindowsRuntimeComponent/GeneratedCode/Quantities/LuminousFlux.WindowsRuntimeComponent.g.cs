@@ -499,8 +499,6 @@ namespace UnitsNet
             return new LuminousFlux(convertedValue, unit);
         }
 
-        IQuantity<LuminousFluxUnit> IQuantity<LuminousFluxUnit>.ToUnit(LuminousFluxUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((LuminousFluxUnit) unit);
 
         /// <summary>

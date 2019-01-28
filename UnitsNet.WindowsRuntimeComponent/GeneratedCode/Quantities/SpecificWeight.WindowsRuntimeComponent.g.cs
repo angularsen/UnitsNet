@@ -739,8 +739,6 @@ namespace UnitsNet
             return new SpecificWeight(convertedValue, unit);
         }
 
-        IQuantity<SpecificWeightUnit> IQuantity<SpecificWeightUnit>.ToUnit(SpecificWeightUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((SpecificWeightUnit) unit);
 
         /// <summary>

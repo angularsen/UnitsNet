@@ -619,8 +619,6 @@ namespace UnitsNet
             return new SpecificEnergy(convertedValue, unit);
         }
 
-        IQuantity<SpecificEnergyUnit> IQuantity<SpecificEnergyUnit>.ToUnit(SpecificEnergyUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((SpecificEnergyUnit) unit);
 
         /// <summary>

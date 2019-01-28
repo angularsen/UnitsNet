@@ -526,8 +526,6 @@ namespace UnitsNet
             return new MolarEnergy(convertedValue, unit);
         }
 
-        IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(MolarEnergyUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((MolarEnergyUnit) unit);
 
         /// <summary>

@@ -962,8 +962,10 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             return new $quantityName(convertedValue, unit);
         }
 
+"@; if (-not $wrc) {@"
         IQuantity<$unitEnumName> IQuantity<$unitEnumName>.ToUnit($unitEnumName unit) => ToUnit(unit);
 
+"@; }@"
         public IQuantity ToUnit(Enum unit) => ToUnit(($unitEnumName) unit);
 
         /// <summary>

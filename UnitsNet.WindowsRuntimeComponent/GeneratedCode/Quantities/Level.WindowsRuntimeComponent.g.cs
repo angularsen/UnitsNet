@@ -511,8 +511,6 @@ namespace UnitsNet
             return new Level(convertedValue, unit);
         }
 
-        IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(LevelUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((LevelUnit) unit);
 
         /// <summary>

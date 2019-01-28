@@ -961,8 +961,6 @@ namespace UnitsNet
             return new Speed(convertedValue, unit);
         }
 
-        IQuantity<SpeedUnit> IQuantity<SpeedUnit>.ToUnit(SpeedUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((SpeedUnit) unit);
 
         /// <summary>

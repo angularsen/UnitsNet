@@ -574,8 +574,6 @@ namespace UnitsNet
             return new DynamicViscosity(convertedValue, unit);
         }
 
-        IQuantity<DynamicViscosityUnit> IQuantity<DynamicViscosityUnit>.ToUnit(DynamicViscosityUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((DynamicViscosityUnit) unit);
 
         /// <summary>

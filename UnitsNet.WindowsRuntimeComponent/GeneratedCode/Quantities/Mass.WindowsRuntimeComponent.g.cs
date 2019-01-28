@@ -826,8 +826,6 @@ namespace UnitsNet
             return new Mass(convertedValue, unit);
         }
 
-        IQuantity<MassUnit> IQuantity<MassUnit>.ToUnit(MassUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((MassUnit) unit);
 
         /// <summary>

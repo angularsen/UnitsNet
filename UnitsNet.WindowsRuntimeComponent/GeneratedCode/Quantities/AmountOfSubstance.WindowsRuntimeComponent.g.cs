@@ -706,8 +706,6 @@ namespace UnitsNet
             return new AmountOfSubstance(convertedValue, unit);
         }
 
-        IQuantity<AmountOfSubstanceUnit> IQuantity<AmountOfSubstanceUnit>.ToUnit(AmountOfSubstanceUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((AmountOfSubstanceUnit) unit);
 
         /// <summary>

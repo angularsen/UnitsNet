@@ -529,8 +529,6 @@ namespace UnitsNet
             return new LinearDensity(convertedValue, unit);
         }
 
-        IQuantity<LinearDensityUnit> IQuantity<LinearDensityUnit>.ToUnit(LinearDensityUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((LinearDensityUnit) unit);
 
         /// <summary>

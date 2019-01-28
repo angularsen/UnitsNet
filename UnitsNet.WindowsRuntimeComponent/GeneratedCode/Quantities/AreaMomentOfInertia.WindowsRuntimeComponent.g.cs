@@ -571,8 +571,6 @@ namespace UnitsNet
             return new AreaMomentOfInertia(convertedValue, unit);
         }
 
-        IQuantity<AreaMomentOfInertiaUnit> IQuantity<AreaMomentOfInertiaUnit>.ToUnit(AreaMomentOfInertiaUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((AreaMomentOfInertiaUnit) unit);
 
         /// <summary>

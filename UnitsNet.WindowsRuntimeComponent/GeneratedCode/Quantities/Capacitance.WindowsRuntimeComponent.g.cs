@@ -589,8 +589,6 @@ namespace UnitsNet
             return new Capacitance(convertedValue, unit);
         }
 
-        IQuantity<CapacitanceUnit> IQuantity<CapacitanceUnit>.ToUnit(CapacitanceUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((CapacitanceUnit) unit);
 
         /// <summary>

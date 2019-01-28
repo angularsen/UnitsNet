@@ -631,8 +631,6 @@ namespace UnitsNet
             return new Duration(convertedValue, unit);
         }
 
-        IQuantity<DurationUnit> IQuantity<DurationUnit>.ToUnit(DurationUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((DurationUnit) unit);
 
         /// <summary>

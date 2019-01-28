@@ -499,8 +499,6 @@ namespace UnitsNet
             return new Permittivity(convertedValue, unit);
         }
 
-        IQuantity<PermittivityUnit> IQuantity<PermittivityUnit>.ToUnit(PermittivityUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((PermittivityUnit) unit);
 
         /// <summary>

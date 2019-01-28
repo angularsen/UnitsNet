@@ -781,8 +781,6 @@ namespace UnitsNet
             return new Power(convertedValue, unit);
         }
 
-        IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(PowerUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((PowerUnit) unit);
 
         /// <summary>

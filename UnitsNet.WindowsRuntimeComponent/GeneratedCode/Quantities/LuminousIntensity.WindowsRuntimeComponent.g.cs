@@ -499,8 +499,6 @@ namespace UnitsNet
             return new LuminousIntensity(convertedValue, unit);
         }
 
-        IQuantity<LuminousIntensityUnit> IQuantity<LuminousIntensityUnit>.ToUnit(LuminousIntensityUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((LuminousIntensityUnit) unit);
 
         /// <summary>

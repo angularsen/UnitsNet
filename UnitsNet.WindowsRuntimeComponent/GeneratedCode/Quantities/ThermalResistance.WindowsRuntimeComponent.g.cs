@@ -556,8 +556,6 @@ namespace UnitsNet
             return new ThermalResistance(convertedValue, unit);
         }
 
-        IQuantity<ThermalResistanceUnit> IQuantity<ThermalResistanceUnit>.ToUnit(ThermalResistanceUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ThermalResistanceUnit) unit);
 
         /// <summary>

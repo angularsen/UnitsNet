@@ -499,8 +499,6 @@ namespace UnitsNet
             return new MagneticFlux(convertedValue, unit);
         }
 
-        IQuantity<MagneticFluxUnit> IQuantity<MagneticFluxUnit>.ToUnit(MagneticFluxUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((MagneticFluxUnit) unit);
 
         /// <summary>

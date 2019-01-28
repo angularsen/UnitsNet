@@ -499,8 +499,6 @@ namespace UnitsNet
             return new ElectricCharge(convertedValue, unit);
         }
 
-        IQuantity<ElectricChargeUnit> IQuantity<ElectricChargeUnit>.ToUnit(ElectricChargeUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricChargeUnit) unit);
 
         /// <summary>

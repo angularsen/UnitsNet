@@ -544,8 +544,6 @@ namespace UnitsNet
             return new ElectricInductance(convertedValue, unit);
         }
 
-        IQuantity<ElectricInductanceUnit> IQuantity<ElectricInductanceUnit>.ToUnit(ElectricInductanceUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricInductanceUnit) unit);
 
         /// <summary>

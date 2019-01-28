@@ -526,8 +526,6 @@ namespace UnitsNet
             return new MolarEntropy(convertedValue, unit);
         }
 
-        IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(MolarEntropyUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((MolarEntropyUnit) unit);
 
         /// <summary>

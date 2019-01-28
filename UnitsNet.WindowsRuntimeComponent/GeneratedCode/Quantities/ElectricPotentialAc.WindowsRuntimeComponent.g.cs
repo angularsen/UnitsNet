@@ -556,8 +556,6 @@ namespace UnitsNet
             return new ElectricPotentialAc(convertedValue, unit);
         }
 
-        IQuantity<ElectricPotentialAcUnit> IQuantity<ElectricPotentialAcUnit>.ToUnit(ElectricPotentialAcUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricPotentialAcUnit) unit);
 
         /// <summary>

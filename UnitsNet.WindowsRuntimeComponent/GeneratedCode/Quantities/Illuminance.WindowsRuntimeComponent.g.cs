@@ -544,8 +544,6 @@ namespace UnitsNet
             return new Illuminance(convertedValue, unit);
         }
 
-        IQuantity<IlluminanceUnit> IQuantity<IlluminanceUnit>.ToUnit(IlluminanceUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((IlluminanceUnit) unit);
 
         /// <summary>

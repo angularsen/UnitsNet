@@ -676,8 +676,6 @@ namespace UnitsNet
             return new RotationalSpeed(convertedValue, unit);
         }
 
-        IQuantity<RotationalSpeedUnit> IQuantity<RotationalSpeedUnit>.ToUnit(RotationalSpeedUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((RotationalSpeedUnit) unit);
 
         /// <summary>

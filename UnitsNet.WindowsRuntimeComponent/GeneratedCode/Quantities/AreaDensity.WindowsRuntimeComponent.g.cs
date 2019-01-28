@@ -496,8 +496,6 @@ namespace UnitsNet
             return new AreaDensity(convertedValue, unit);
         }
 
-        IQuantity<AreaDensityUnit> IQuantity<AreaDensityUnit>.ToUnit(AreaDensityUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((AreaDensityUnit) unit);
 
         /// <summary>

@@ -526,8 +526,6 @@ namespace UnitsNet
             return new ReactiveEnergy(convertedValue, unit);
         }
 
-        IQuantity<ReactiveEnergyUnit> IQuantity<ReactiveEnergyUnit>.ToUnit(ReactiveEnergyUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ReactiveEnergyUnit) unit);
 
         /// <summary>

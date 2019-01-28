@@ -556,8 +556,6 @@ namespace UnitsNet
             return new ElectricResistance(convertedValue, unit);
         }
 
-        IQuantity<ElectricResistanceUnit> IQuantity<ElectricResistanceUnit>.ToUnit(ElectricResistanceUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricResistanceUnit) unit);
 
         /// <summary>

@@ -499,8 +499,6 @@ namespace UnitsNet
             return new ElectricCurrentDensity(convertedValue, unit);
         }
 
-        IQuantity<ElectricCurrentDensityUnit> IQuantity<ElectricCurrentDensityUnit>.ToUnit(ElectricCurrentDensityUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricCurrentDensityUnit) unit);
 
         /// <summary>

@@ -604,8 +604,6 @@ namespace UnitsNet
             return new Molarity(convertedValue, unit);
         }
 
-        IQuantity<MolarityUnit> IQuantity<MolarityUnit>.ToUnit(MolarityUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((MolarityUnit) unit);
 
         /// <summary>

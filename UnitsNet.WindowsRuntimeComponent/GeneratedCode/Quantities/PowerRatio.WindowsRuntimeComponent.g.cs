@@ -511,8 +511,6 @@ namespace UnitsNet
             return new PowerRatio(convertedValue, unit);
         }
 
-        IQuantity<PowerRatioUnit> IQuantity<PowerRatioUnit>.ToUnit(PowerRatioUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((PowerRatioUnit) unit);
 
         /// <summary>

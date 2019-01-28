@@ -499,8 +499,6 @@ namespace UnitsNet
             return new Magnetization(convertedValue, unit);
         }
 
-        IQuantity<MagnetizationUnit> IQuantity<MagnetizationUnit>.ToUnit(MagnetizationUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((MagnetizationUnit) unit);
 
         /// <summary>

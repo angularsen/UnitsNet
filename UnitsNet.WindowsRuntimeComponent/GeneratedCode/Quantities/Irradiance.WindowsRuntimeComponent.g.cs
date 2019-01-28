@@ -691,8 +691,6 @@ namespace UnitsNet
             return new Irradiance(convertedValue, unit);
         }
 
-        IQuantity<IrradianceUnit> IQuantity<IrradianceUnit>.ToUnit(IrradianceUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((IrradianceUnit) unit);
 
         /// <summary>

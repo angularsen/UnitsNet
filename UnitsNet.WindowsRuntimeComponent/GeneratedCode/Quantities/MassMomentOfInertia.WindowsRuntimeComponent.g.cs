@@ -901,8 +901,6 @@ namespace UnitsNet
             return new MassMomentOfInertia(convertedValue, unit);
         }
 
-        IQuantity<MassMomentOfInertiaUnit> IQuantity<MassMomentOfInertiaUnit>.ToUnit(MassMomentOfInertiaUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((MassMomentOfInertiaUnit) unit);
 
         /// <summary>

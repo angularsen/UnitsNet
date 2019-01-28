@@ -811,8 +811,6 @@ namespace UnitsNet
             return new Energy(convertedValue, unit);
         }
 
-        IQuantity<EnergyUnit> IQuantity<EnergyUnit>.ToUnit(EnergyUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((EnergyUnit) unit);
 
         /// <summary>

@@ -601,8 +601,6 @@ namespace UnitsNet
             return new ElectricCurrent(convertedValue, unit);
         }
 
-        IQuantity<ElectricCurrentUnit> IQuantity<ElectricCurrentUnit>.ToUnit(ElectricCurrentUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricCurrentUnit) unit);
 
         /// <summary>

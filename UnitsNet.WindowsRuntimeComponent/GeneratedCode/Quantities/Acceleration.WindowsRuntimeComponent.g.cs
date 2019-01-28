@@ -676,8 +676,6 @@ namespace UnitsNet
             return new Acceleration(convertedValue, unit);
         }
 
-        IQuantity<AccelerationUnit> IQuantity<AccelerationUnit>.ToUnit(AccelerationUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((AccelerationUnit) unit);
 
         /// <summary>

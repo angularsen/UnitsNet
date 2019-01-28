@@ -1201,8 +1201,6 @@ namespace UnitsNet
             return new VolumeFlow(convertedValue, unit);
         }
 
-        IQuantity<VolumeFlowUnit> IQuantity<VolumeFlowUnit>.ToUnit(VolumeFlowUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((VolumeFlowUnit) unit);
 
         /// <summary>

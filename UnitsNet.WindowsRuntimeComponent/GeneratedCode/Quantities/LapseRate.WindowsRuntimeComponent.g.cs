@@ -496,8 +496,6 @@ namespace UnitsNet
             return new LapseRate(convertedValue, unit);
         }
 
-        IQuantity<LapseRateUnit> IQuantity<LapseRateUnit>.ToUnit(LapseRateUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((LapseRateUnit) unit);
 
         /// <summary>

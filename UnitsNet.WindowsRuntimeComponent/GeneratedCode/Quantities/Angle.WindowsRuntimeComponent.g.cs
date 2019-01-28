@@ -691,8 +691,6 @@ namespace UnitsNet
             return new Angle(convertedValue, unit);
         }
 
-        IQuantity<AngleUnit> IQuantity<AngleUnit>.ToUnit(AngleUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((AngleUnit) unit);
 
         /// <summary>

@@ -796,8 +796,6 @@ namespace UnitsNet
             return new Torque(convertedValue, unit);
         }
 
-        IQuantity<TorqueUnit> IQuantity<TorqueUnit>.ToUnit(TorqueUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((TorqueUnit) unit);
 
         /// <summary>

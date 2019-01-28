@@ -544,8 +544,6 @@ namespace UnitsNet
             return new Irradiation(convertedValue, unit);
         }
 
-        IQuantity<IrradiationUnit> IQuantity<IrradiationUnit>.ToUnit(IrradiationUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((IrradiationUnit) unit);
 
         /// <summary>

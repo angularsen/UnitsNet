@@ -604,8 +604,6 @@ namespace UnitsNet
             return new KinematicViscosity(convertedValue, unit);
         }
 
-        IQuantity<KinematicViscosityUnit> IQuantity<KinematicViscosityUnit>.ToUnit(KinematicViscosityUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((KinematicViscosityUnit) unit);
 
         /// <summary>

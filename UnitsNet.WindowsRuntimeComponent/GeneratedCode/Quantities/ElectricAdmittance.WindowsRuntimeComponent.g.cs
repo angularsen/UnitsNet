@@ -541,8 +541,6 @@ namespace UnitsNet
             return new ElectricAdmittance(convertedValue, unit);
         }
 
-        IQuantity<ElectricAdmittanceUnit> IQuantity<ElectricAdmittanceUnit>.ToUnit(ElectricAdmittanceUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricAdmittanceUnit) unit);
 
         /// <summary>

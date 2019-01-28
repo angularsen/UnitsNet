@@ -571,8 +571,6 @@ namespace UnitsNet
             return new Ratio(convertedValue, unit);
         }
 
-        IQuantity<RatioUnit> IQuantity<RatioUnit>.ToUnit(RatioUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((RatioUnit) unit);
 
         /// <summary>

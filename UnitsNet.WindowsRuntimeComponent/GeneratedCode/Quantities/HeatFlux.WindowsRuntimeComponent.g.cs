@@ -751,8 +751,6 @@ namespace UnitsNet
             return new HeatFlux(convertedValue, unit);
         }
 
-        IQuantity<HeatFluxUnit> IQuantity<HeatFluxUnit>.ToUnit(HeatFluxUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((HeatFluxUnit) unit);
 
         /// <summary>

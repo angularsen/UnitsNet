@@ -874,8 +874,6 @@ namespace UnitsNet
             return new BitRate(convertedValue, unit);
         }
 
-        IQuantity<BitRateUnit> IQuantity<BitRateUnit>.ToUnit(BitRateUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((BitRateUnit) unit);
 
         /// <summary>

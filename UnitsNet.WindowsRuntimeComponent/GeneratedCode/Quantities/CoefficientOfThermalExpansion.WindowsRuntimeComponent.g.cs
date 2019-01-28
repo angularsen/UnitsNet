@@ -526,8 +526,6 @@ namespace UnitsNet
             return new CoefficientOfThermalExpansion(convertedValue, unit);
         }
 
-        IQuantity<CoefficientOfThermalExpansionUnit> IQuantity<CoefficientOfThermalExpansionUnit>.ToUnit(CoefficientOfThermalExpansionUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((CoefficientOfThermalExpansionUnit) unit);
 
         /// <summary>

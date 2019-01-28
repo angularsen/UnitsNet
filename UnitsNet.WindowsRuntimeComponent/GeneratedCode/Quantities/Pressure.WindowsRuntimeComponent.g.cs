@@ -1111,8 +1111,6 @@ namespace UnitsNet
             return new Pressure(convertedValue, unit);
         }
 
-        IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(PressureUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((PressureUnit) unit);
 
         /// <summary>

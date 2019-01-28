@@ -676,8 +676,6 @@ namespace UnitsNet
             return new Area(convertedValue, unit);
         }
 
-        IQuantity<AreaUnit> IQuantity<AreaUnit>.ToUnit(AreaUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((AreaUnit) unit);
 
         /// <summary>

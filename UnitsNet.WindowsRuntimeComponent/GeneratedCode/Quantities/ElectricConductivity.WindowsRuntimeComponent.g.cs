@@ -499,8 +499,6 @@ namespace UnitsNet
             return new ElectricConductivity(convertedValue, unit);
         }
 
-        IQuantity<ElectricConductivityUnit> IQuantity<ElectricConductivityUnit>.ToUnit(ElectricConductivityUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricConductivityUnit) unit);
 
         /// <summary>

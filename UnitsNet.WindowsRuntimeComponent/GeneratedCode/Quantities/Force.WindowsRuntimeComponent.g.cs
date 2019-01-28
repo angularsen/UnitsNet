@@ -676,8 +676,6 @@ namespace UnitsNet
             return new Force(convertedValue, unit);
         }
 
-        IQuantity<ForceUnit> IQuantity<ForceUnit>.ToUnit(ForceUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ForceUnit) unit);
 
         /// <summary>

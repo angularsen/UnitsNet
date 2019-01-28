@@ -541,8 +541,6 @@ namespace UnitsNet
             return new ApparentPower(convertedValue, unit);
         }
 
-        IQuantity<ApparentPowerUnit> IQuantity<ApparentPowerUnit>.ToUnit(ApparentPowerUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ApparentPowerUnit) unit);
 
         /// <summary>

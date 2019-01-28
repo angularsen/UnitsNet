@@ -586,8 +586,6 @@ namespace UnitsNet
             return new PressureChangeRate(convertedValue, unit);
         }
 
-        IQuantity<PressureChangeRateUnit> IQuantity<PressureChangeRateUnit>.ToUnit(PressureChangeRateUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((PressureChangeRateUnit) unit);
 
         /// <summary>

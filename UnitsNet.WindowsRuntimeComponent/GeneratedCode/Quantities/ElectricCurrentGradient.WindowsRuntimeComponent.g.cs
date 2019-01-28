@@ -496,8 +496,6 @@ namespace UnitsNet
             return new ElectricCurrentGradient(convertedValue, unit);
         }
 
-        IQuantity<ElectricCurrentGradientUnit> IQuantity<ElectricCurrentGradientUnit>.ToUnit(ElectricCurrentGradientUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((ElectricCurrentGradientUnit) unit);
 
         /// <summary>

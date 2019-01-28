@@ -499,8 +499,6 @@ namespace UnitsNet
             return new SolidAngle(convertedValue, unit);
         }
 
-        IQuantity<SolidAngleUnit> IQuantity<SolidAngleUnit>.ToUnit(SolidAngleUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((SolidAngleUnit) unit);
 
         /// <summary>

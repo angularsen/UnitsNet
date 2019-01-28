@@ -499,8 +499,6 @@ namespace UnitsNet
             return new Permeability(convertedValue, unit);
         }
 
-        IQuantity<PermeabilityUnit> IQuantity<PermeabilityUnit>.ToUnit(PermeabilityUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((PermeabilityUnit) unit);
 
         /// <summary>

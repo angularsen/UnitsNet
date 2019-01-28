@@ -661,8 +661,6 @@ namespace UnitsNet
             return new MolarMass(convertedValue, unit);
         }
 
-        IQuantity<MolarMassUnit> IQuantity<MolarMassUnit>.ToUnit(MolarMassUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((MolarMassUnit) unit);
 
         /// <summary>

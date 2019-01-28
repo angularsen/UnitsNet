@@ -511,8 +511,6 @@ namespace UnitsNet
             return new MassFlux(convertedValue, unit);
         }
 
-        IQuantity<MassFluxUnit> IQuantity<MassFluxUnit>.ToUnit(MassFluxUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((MassFluxUnit) unit);
 
         /// <summary>

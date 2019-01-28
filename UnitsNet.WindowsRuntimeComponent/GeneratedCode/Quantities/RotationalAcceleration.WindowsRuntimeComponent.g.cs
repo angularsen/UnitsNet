@@ -526,8 +526,6 @@ namespace UnitsNet
             return new RotationalAcceleration(convertedValue, unit);
         }
 
-        IQuantity<RotationalAccelerationUnit> IQuantity<RotationalAccelerationUnit>.ToUnit(RotationalAccelerationUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((RotationalAccelerationUnit) unit);
 
         /// <summary>

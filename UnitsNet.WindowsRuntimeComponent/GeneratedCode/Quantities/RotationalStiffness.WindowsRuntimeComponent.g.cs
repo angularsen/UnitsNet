@@ -526,8 +526,6 @@ namespace UnitsNet
             return new RotationalStiffness(convertedValue, unit);
         }
 
-        IQuantity<RotationalStiffnessUnit> IQuantity<RotationalStiffnessUnit>.ToUnit(RotationalStiffnessUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((RotationalStiffnessUnit) unit);
 
         /// <summary>

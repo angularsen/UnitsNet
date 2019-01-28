@@ -526,8 +526,6 @@ namespace UnitsNet
             return new BrakeSpecificFuelConsumption(convertedValue, unit);
         }
 
-        IQuantity<BrakeSpecificFuelConsumptionUnit> IQuantity<BrakeSpecificFuelConsumptionUnit>.ToUnit(BrakeSpecificFuelConsumptionUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((BrakeSpecificFuelConsumptionUnit) unit);
 
         /// <summary>

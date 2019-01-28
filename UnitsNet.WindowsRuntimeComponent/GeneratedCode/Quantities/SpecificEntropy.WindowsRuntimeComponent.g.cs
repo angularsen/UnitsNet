@@ -601,8 +601,6 @@ namespace UnitsNet
             return new SpecificEntropy(convertedValue, unit);
         }
 
-        IQuantity<SpecificEntropyUnit> IQuantity<SpecificEntropyUnit>.ToUnit(SpecificEntropyUnit unit) => ToUnit(unit);
-
         public IQuantity ToUnit(Enum unit) => ToUnit((SpecificEntropyUnit) unit);
 
         /// <summary>
