@@ -412,7 +412,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(ApparentEnergy other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -426,7 +426,7 @@ namespace UnitsNet
 
         public bool Equals(ApparentEnergy other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -502,7 +502,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -512,7 +512,7 @@ namespace UnitsNet
         /// <returns>A ApparentEnergy with the specified unit.</returns>
         public ApparentEnergy ToUnit(ApparentEnergyUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new ApparentEnergy(convertedValue, unit);
         }
 
@@ -521,28 +521,35 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ApparentEnergy AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ApparentEnergyUnit.KilovoltampereHour:
-                    return new ApparentEnergy((_value) * 1e3d, BaseUnit);
-                case ApparentEnergyUnit.MegavoltampereHour:
-                    return new ApparentEnergy((_value) * 1e6d, BaseUnit);
-                case ApparentEnergyUnit.VoltampereHour:
-                    return new ApparentEnergy(_value, BaseUnit);
+                case ApparentEnergyUnit.KilovoltampereHour: return (_value) * 1e3d;
+                case ApparentEnergyUnit.MegavoltampereHour: return (_value) * 1e6d;
+                case ApparentEnergyUnit.VoltampereHour: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(ApparentEnergyUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal ApparentEnergy ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new ApparentEnergy(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(ApparentEnergyUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

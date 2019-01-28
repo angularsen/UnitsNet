@@ -517,7 +517,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(TemperatureChangeRate other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -531,7 +531,7 @@ namespace UnitsNet
 
         public bool Equals(TemperatureChangeRate other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -607,7 +607,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -617,7 +617,7 @@ namespace UnitsNet
         /// <returns>A TemperatureChangeRate with the specified unit.</returns>
         public TemperatureChangeRate ToUnit(TemperatureChangeRateUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new TemperatureChangeRate(convertedValue, unit);
         }
 
@@ -626,42 +626,42 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal TemperatureChangeRate AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond:
-                    return new TemperatureChangeRate((_value) * 1e-2d, BaseUnit);
-                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond:
-                    return new TemperatureChangeRate((_value) * 1e1d, BaseUnit);
-                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond:
-                    return new TemperatureChangeRate((_value) * 1e-1d, BaseUnit);
-                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute:
-                    return new TemperatureChangeRate(_value/60, BaseUnit);
-                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond:
-                    return new TemperatureChangeRate(_value, BaseUnit);
-                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond:
-                    return new TemperatureChangeRate((_value) * 1e2d, BaseUnit);
-                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond:
-                    return new TemperatureChangeRate((_value) * 1e3d, BaseUnit);
-                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond:
-                    return new TemperatureChangeRate((_value) * 1e-6d, BaseUnit);
-                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond:
-                    return new TemperatureChangeRate((_value) * 1e-3d, BaseUnit);
-                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond:
-                    return new TemperatureChangeRate((_value) * 1e-9d, BaseUnit);
+                case TemperatureChangeRateUnit.CentidegreeCelsiusPerSecond: return (_value) * 1e-2d;
+                case TemperatureChangeRateUnit.DecadegreeCelsiusPerSecond: return (_value) * 1e1d;
+                case TemperatureChangeRateUnit.DecidegreeCelsiusPerSecond: return (_value) * 1e-1d;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerMinute: return _value/60;
+                case TemperatureChangeRateUnit.DegreeCelsiusPerSecond: return _value;
+                case TemperatureChangeRateUnit.HectodegreeCelsiusPerSecond: return (_value) * 1e2d;
+                case TemperatureChangeRateUnit.KilodegreeCelsiusPerSecond: return (_value) * 1e3d;
+                case TemperatureChangeRateUnit.MicrodegreeCelsiusPerSecond: return (_value) * 1e-6d;
+                case TemperatureChangeRateUnit.MillidegreeCelsiusPerSecond: return (_value) * 1e-3d;
+                case TemperatureChangeRateUnit.NanodegreeCelsiusPerSecond: return (_value) * 1e-9d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(TemperatureChangeRateUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal TemperatureChangeRate ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new TemperatureChangeRate(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(TemperatureChangeRateUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

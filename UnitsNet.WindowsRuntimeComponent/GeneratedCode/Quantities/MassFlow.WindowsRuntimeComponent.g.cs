@@ -817,7 +817,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(MassFlow other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -831,7 +831,7 @@ namespace UnitsNet
 
         public bool Equals(MassFlow other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -907,7 +907,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -917,7 +917,7 @@ namespace UnitsNet
         /// <returns>A MassFlow with the specified unit.</returns>
         public MassFlow ToUnit(MassFlowUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new MassFlow(convertedValue, unit);
         }
 
@@ -926,82 +926,62 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal MassFlow AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case MassFlowUnit.CentigramPerDay:
-                    return new MassFlow((_value/86400) * 1e-2d, BaseUnit);
-                case MassFlowUnit.CentigramPerSecond:
-                    return new MassFlow((_value) * 1e-2d, BaseUnit);
-                case MassFlowUnit.DecagramPerDay:
-                    return new MassFlow((_value/86400) * 1e1d, BaseUnit);
-                case MassFlowUnit.DecagramPerSecond:
-                    return new MassFlow((_value) * 1e1d, BaseUnit);
-                case MassFlowUnit.DecigramPerDay:
-                    return new MassFlow((_value/86400) * 1e-1d, BaseUnit);
-                case MassFlowUnit.DecigramPerSecond:
-                    return new MassFlow((_value) * 1e-1d, BaseUnit);
-                case MassFlowUnit.GramPerDay:
-                    return new MassFlow(_value/86400, BaseUnit);
-                case MassFlowUnit.GramPerSecond:
-                    return new MassFlow(_value, BaseUnit);
-                case MassFlowUnit.HectogramPerDay:
-                    return new MassFlow((_value/86400) * 1e2d, BaseUnit);
-                case MassFlowUnit.HectogramPerSecond:
-                    return new MassFlow((_value) * 1e2d, BaseUnit);
-                case MassFlowUnit.KilogramPerDay:
-                    return new MassFlow((_value/86400) * 1e3d, BaseUnit);
-                case MassFlowUnit.KilogramPerHour:
-                    return new MassFlow(_value/3.6, BaseUnit);
-                case MassFlowUnit.KilogramPerMinute:
-                    return new MassFlow(_value/0.06, BaseUnit);
-                case MassFlowUnit.KilogramPerSecond:
-                    return new MassFlow((_value) * 1e3d, BaseUnit);
-                case MassFlowUnit.MegagramPerDay:
-                    return new MassFlow((_value/86400) * 1e6d, BaseUnit);
-                case MassFlowUnit.MegapoundPerDay:
-                    return new MassFlow((_value/190.47936) * 1e6d, BaseUnit);
-                case MassFlowUnit.MegapoundPerHour:
-                    return new MassFlow((_value/7.93664) * 1e6d, BaseUnit);
-                case MassFlowUnit.MegapoundPerMinute:
-                    return new MassFlow((_value/0.132277) * 1e6d, BaseUnit);
-                case MassFlowUnit.MicrogramPerDay:
-                    return new MassFlow((_value/86400) * 1e-6d, BaseUnit);
-                case MassFlowUnit.MicrogramPerSecond:
-                    return new MassFlow((_value) * 1e-6d, BaseUnit);
-                case MassFlowUnit.MilligramPerDay:
-                    return new MassFlow((_value/86400) * 1e-3d, BaseUnit);
-                case MassFlowUnit.MilligramPerSecond:
-                    return new MassFlow((_value) * 1e-3d, BaseUnit);
-                case MassFlowUnit.NanogramPerDay:
-                    return new MassFlow((_value/86400) * 1e-9d, BaseUnit);
-                case MassFlowUnit.NanogramPerSecond:
-                    return new MassFlow((_value) * 1e-9d, BaseUnit);
-                case MassFlowUnit.PoundPerDay:
-                    return new MassFlow(_value/190.47936, BaseUnit);
-                case MassFlowUnit.PoundPerHour:
-                    return new MassFlow(_value/7.93664, BaseUnit);
-                case MassFlowUnit.PoundPerMinute:
-                    return new MassFlow(_value/0.132277, BaseUnit);
-                case MassFlowUnit.ShortTonPerHour:
-                    return new MassFlow(_value*251.9957611, BaseUnit);
-                case MassFlowUnit.TonnePerDay:
-                    return new MassFlow(_value/0.0864000, BaseUnit);
-                case MassFlowUnit.TonnePerHour:
-                    return new MassFlow(1000*_value/3.6, BaseUnit);
+                case MassFlowUnit.CentigramPerDay: return (_value/86400) * 1e-2d;
+                case MassFlowUnit.CentigramPerSecond: return (_value) * 1e-2d;
+                case MassFlowUnit.DecagramPerDay: return (_value/86400) * 1e1d;
+                case MassFlowUnit.DecagramPerSecond: return (_value) * 1e1d;
+                case MassFlowUnit.DecigramPerDay: return (_value/86400) * 1e-1d;
+                case MassFlowUnit.DecigramPerSecond: return (_value) * 1e-1d;
+                case MassFlowUnit.GramPerDay: return _value/86400;
+                case MassFlowUnit.GramPerSecond: return _value;
+                case MassFlowUnit.HectogramPerDay: return (_value/86400) * 1e2d;
+                case MassFlowUnit.HectogramPerSecond: return (_value) * 1e2d;
+                case MassFlowUnit.KilogramPerDay: return (_value/86400) * 1e3d;
+                case MassFlowUnit.KilogramPerHour: return _value/3.6;
+                case MassFlowUnit.KilogramPerMinute: return _value/0.06;
+                case MassFlowUnit.KilogramPerSecond: return (_value) * 1e3d;
+                case MassFlowUnit.MegagramPerDay: return (_value/86400) * 1e6d;
+                case MassFlowUnit.MegapoundPerDay: return (_value/190.47936) * 1e6d;
+                case MassFlowUnit.MegapoundPerHour: return (_value/7.93664) * 1e6d;
+                case MassFlowUnit.MegapoundPerMinute: return (_value/0.132277) * 1e6d;
+                case MassFlowUnit.MicrogramPerDay: return (_value/86400) * 1e-6d;
+                case MassFlowUnit.MicrogramPerSecond: return (_value) * 1e-6d;
+                case MassFlowUnit.MilligramPerDay: return (_value/86400) * 1e-3d;
+                case MassFlowUnit.MilligramPerSecond: return (_value) * 1e-3d;
+                case MassFlowUnit.NanogramPerDay: return (_value/86400) * 1e-9d;
+                case MassFlowUnit.NanogramPerSecond: return (_value) * 1e-9d;
+                case MassFlowUnit.PoundPerDay: return _value/190.47936;
+                case MassFlowUnit.PoundPerHour: return _value/7.93664;
+                case MassFlowUnit.PoundPerMinute: return _value/0.132277;
+                case MassFlowUnit.ShortTonPerHour: return _value*251.9957611;
+                case MassFlowUnit.TonnePerDay: return _value/0.0864000;
+                case MassFlowUnit.TonnePerHour: return 1000*_value/3.6;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(MassFlowUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal MassFlow ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new MassFlow(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(MassFlowUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

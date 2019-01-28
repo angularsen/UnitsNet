@@ -401,12 +401,12 @@ namespace UnitsNet
 
         public static MagneticField operator +(MagneticField left, MagneticField right)
         {
-            return new MagneticField(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MagneticField(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static MagneticField operator -(MagneticField left, MagneticField right)
         {
-            return new MagneticField(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MagneticField(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static MagneticField operator *(double left, MagneticField right)
@@ -435,22 +435,22 @@ namespace UnitsNet
 
         public static bool operator <=(MagneticField left, MagneticField right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(MagneticField left, MagneticField right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(MagneticField left, MagneticField right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(MagneticField left, MagneticField right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(MagneticField left, MagneticField right)	
@@ -474,7 +474,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(MagneticField other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -487,7 +487,7 @@ namespace UnitsNet
 
         public bool Equals(MagneticField other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -563,7 +563,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -573,7 +573,7 @@ namespace UnitsNet
         /// <returns>A MagneticField with the specified unit.</returns>
         public MagneticField ToUnit(MagneticFieldUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new MagneticField(convertedValue, unit);
         }
 
@@ -582,30 +582,36 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal MagneticField AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case MagneticFieldUnit.Microtesla:
-                    return new MagneticField((_value) * 1e-6d, BaseUnit);
-                case MagneticFieldUnit.Millitesla:
-                    return new MagneticField((_value) * 1e-3d, BaseUnit);
-                case MagneticFieldUnit.Nanotesla:
-                    return new MagneticField((_value) * 1e-9d, BaseUnit);
-                case MagneticFieldUnit.Tesla:
-                    return new MagneticField(_value, BaseUnit);
+                case MagneticFieldUnit.Microtesla: return (_value) * 1e-6d;
+                case MagneticFieldUnit.Millitesla: return (_value) * 1e-3d;
+                case MagneticFieldUnit.Nanotesla: return (_value) * 1e-9d;
+                case MagneticFieldUnit.Tesla: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(MagneticFieldUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal MagneticField ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new MagneticField(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(MagneticFieldUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

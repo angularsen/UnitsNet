@@ -687,14 +687,14 @@ function GenerateLogarithmicArithmeticOperators([GeneratorArgs]$genArgs)
         {
             // Logarithmic addition
             // Formula: $x*log10(10^(x/$x) + 10^(y/$x))
-            return new $quantityName($x*Math.Log10(Math.Pow(10, left.Value/$x) + Math.Pow(10, right.AsBaseNumericType(left.Unit)/$x)), left.Unit);
+            return new $quantityName($x*Math.Log10(Math.Pow(10, left.Value/$x) + Math.Pow(10, right.GetValueAs(left.Unit)/$x)), left.Unit);
         }
 
         public static $quantityName operator -($quantityName left, $quantityName right)
         {
             // Logarithmic subtraction
             // Formula: $x*log10(10^(x/$x) - 10^(y/$x))
-            return new $quantityName($x*Math.Log10(Math.Pow(10, left.Value/$x) - Math.Pow(10, right.AsBaseNumericType(left.Unit)/$x)), left.Unit);
+            return new $quantityName($x*Math.Log10(Math.Pow(10, left.Value/$x) - Math.Pow(10, right.GetValueAs(left.Unit)/$x)), left.Unit);
         }
 
         public static $quantityName operator *($valueType left, $quantityName right)
@@ -718,7 +718,7 @@ function GenerateLogarithmicArithmeticOperators([GeneratorArgs]$genArgs)
         public static double operator /($quantityName left, $quantityName right)
         {
             // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.AsBaseNumericType(left.Unit));
+            return Convert.ToDouble(left.Value - right.GetValueAs(left.Unit));
         }
 
         #endregion
@@ -750,12 +750,12 @@ function GenerateArithmeticOperators([GeneratorArgs]$genArgs)
 
         public static $quantityName operator +($quantityName left, $quantityName right)
         {
-            return new $quantityName(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new $quantityName(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static $quantityName operator -($quantityName left, $quantityName right)
         {
-            return new $quantityName(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new $quantityName(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static $quantityName operator *($valueType left, $quantityName right)
@@ -794,22 +794,22 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
     if (-not $wrc) {@"
         public static bool operator <=($quantityName left, $quantityName right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=($quantityName left, $quantityName right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <($quantityName left, $quantityName right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >($quantityName left, $quantityName right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==($quantityName left, $quantityName right)	
@@ -836,7 +836,7 @@ $accessModifier = if ($wrc) { "internal" } else { "public" } @"
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         $accessModifier int CompareTo($quantityName other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
 "@;
@@ -853,7 +853,7 @@ $accessModifier = if ($wrc) { "internal" } else { "public" } @"
 
         public bool Equals($quantityName other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -938,7 +938,7 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -948,7 +948,7 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
         /// <returns>A $quantityName with the specified unit.</returns>
         public $quantityName ToUnit($unitEnumName unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new $quantityName(convertedValue, unit);
         }
 
@@ -957,27 +957,36 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal $quantityName AsBaseUnit()
+        private $valueType GetValueInBaseUnit()
         {
             switch(Unit)
             {
 "@; foreach ($unit in $units) {
   $func = $unit.FromUnitToBaseFunc.Replace("x", "_value");@"
-                case $unitEnumName.$($unit.SingularName):
-                    return new $quantityName($func, BaseUnit);
+                case $unitEnumName.$($unit.SingularName): return $func;
 "@; }@"
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private $valueType AsBaseNumericType($unitEnumName unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal $quantityName ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new $quantityName(baseUnitValue, BaseUnit);
+        }
+
+        private $valueType GetValueAs($unitEnumName unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

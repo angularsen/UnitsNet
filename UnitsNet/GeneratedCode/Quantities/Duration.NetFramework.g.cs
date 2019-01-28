@@ -482,12 +482,12 @@ namespace UnitsNet
 
         public static Duration operator +(Duration left, Duration right)
         {
-            return new Duration(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Duration(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Duration operator -(Duration left, Duration right)
         {
-            return new Duration(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Duration(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Duration operator *(double left, Duration right)
@@ -516,22 +516,22 @@ namespace UnitsNet
 
         public static bool operator <=(Duration left, Duration right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(Duration left, Duration right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(Duration left, Duration right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(Duration left, Duration right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(Duration left, Duration right)	
@@ -555,7 +555,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Duration other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -568,7 +568,7 @@ namespace UnitsNet
 
         public bool Equals(Duration other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -644,7 +644,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -654,7 +654,7 @@ namespace UnitsNet
         /// <returns>A Duration with the specified unit.</returns>
         public Duration ToUnit(DurationUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Duration(convertedValue, unit);
         }
 
@@ -663,42 +663,42 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Duration AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case DurationUnit.Day:
-                    return new Duration(_value*24*3600, BaseUnit);
-                case DurationUnit.Hour:
-                    return new Duration(_value*3600, BaseUnit);
-                case DurationUnit.Microsecond:
-                    return new Duration((_value) * 1e-6d, BaseUnit);
-                case DurationUnit.Millisecond:
-                    return new Duration((_value) * 1e-3d, BaseUnit);
-                case DurationUnit.Minute:
-                    return new Duration(_value*60, BaseUnit);
-                case DurationUnit.Month30:
-                    return new Duration(_value*30*24*3600, BaseUnit);
-                case DurationUnit.Nanosecond:
-                    return new Duration((_value) * 1e-9d, BaseUnit);
-                case DurationUnit.Second:
-                    return new Duration(_value, BaseUnit);
-                case DurationUnit.Week:
-                    return new Duration(_value*7*24*3600, BaseUnit);
-                case DurationUnit.Year365:
-                    return new Duration(_value*365*24*3600, BaseUnit);
+                case DurationUnit.Day: return _value*24*3600;
+                case DurationUnit.Hour: return _value*3600;
+                case DurationUnit.Microsecond: return (_value) * 1e-6d;
+                case DurationUnit.Millisecond: return (_value) * 1e-3d;
+                case DurationUnit.Minute: return _value*60;
+                case DurationUnit.Month30: return _value*30*24*3600;
+                case DurationUnit.Nanosecond: return (_value) * 1e-9d;
+                case DurationUnit.Second: return _value;
+                case DurationUnit.Week: return _value*7*24*3600;
+                case DurationUnit.Year365: return _value*365*24*3600;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(DurationUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Duration ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Duration(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(DurationUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

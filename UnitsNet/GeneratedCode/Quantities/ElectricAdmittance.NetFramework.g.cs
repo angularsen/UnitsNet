@@ -398,12 +398,12 @@ namespace UnitsNet
 
         public static ElectricAdmittance operator +(ElectricAdmittance left, ElectricAdmittance right)
         {
-            return new ElectricAdmittance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ElectricAdmittance(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static ElectricAdmittance operator -(ElectricAdmittance left, ElectricAdmittance right)
         {
-            return new ElectricAdmittance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ElectricAdmittance(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static ElectricAdmittance operator *(double left, ElectricAdmittance right)
@@ -432,22 +432,22 @@ namespace UnitsNet
 
         public static bool operator <=(ElectricAdmittance left, ElectricAdmittance right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(ElectricAdmittance left, ElectricAdmittance right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(ElectricAdmittance left, ElectricAdmittance right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(ElectricAdmittance left, ElectricAdmittance right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(ElectricAdmittance left, ElectricAdmittance right)	
@@ -471,7 +471,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ElectricAdmittance other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -484,7 +484,7 @@ namespace UnitsNet
 
         public bool Equals(ElectricAdmittance other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -560,7 +560,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -570,7 +570,7 @@ namespace UnitsNet
         /// <returns>A ElectricAdmittance with the specified unit.</returns>
         public ElectricAdmittance ToUnit(ElectricAdmittanceUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new ElectricAdmittance(convertedValue, unit);
         }
 
@@ -579,30 +579,36 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ElectricAdmittance AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricAdmittanceUnit.Microsiemens:
-                    return new ElectricAdmittance((_value) * 1e-6d, BaseUnit);
-                case ElectricAdmittanceUnit.Millisiemens:
-                    return new ElectricAdmittance((_value) * 1e-3d, BaseUnit);
-                case ElectricAdmittanceUnit.Nanosiemens:
-                    return new ElectricAdmittance((_value) * 1e-9d, BaseUnit);
-                case ElectricAdmittanceUnit.Siemens:
-                    return new ElectricAdmittance(_value, BaseUnit);
+                case ElectricAdmittanceUnit.Microsiemens: return (_value) * 1e-6d;
+                case ElectricAdmittanceUnit.Millisiemens: return (_value) * 1e-3d;
+                case ElectricAdmittanceUnit.Nanosiemens: return (_value) * 1e-9d;
+                case ElectricAdmittanceUnit.Siemens: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(ElectricAdmittanceUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal ElectricAdmittance ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new ElectricAdmittance(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(ElectricAdmittanceUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

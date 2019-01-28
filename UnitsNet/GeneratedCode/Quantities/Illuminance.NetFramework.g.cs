@@ -401,12 +401,12 @@ namespace UnitsNet
 
         public static Illuminance operator +(Illuminance left, Illuminance right)
         {
-            return new Illuminance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Illuminance(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Illuminance operator -(Illuminance left, Illuminance right)
         {
-            return new Illuminance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Illuminance(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Illuminance operator *(double left, Illuminance right)
@@ -435,22 +435,22 @@ namespace UnitsNet
 
         public static bool operator <=(Illuminance left, Illuminance right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(Illuminance left, Illuminance right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(Illuminance left, Illuminance right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(Illuminance left, Illuminance right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(Illuminance left, Illuminance right)	
@@ -474,7 +474,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Illuminance other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -487,7 +487,7 @@ namespace UnitsNet
 
         public bool Equals(Illuminance other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -563,7 +563,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -573,7 +573,7 @@ namespace UnitsNet
         /// <returns>A Illuminance with the specified unit.</returns>
         public Illuminance ToUnit(IlluminanceUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Illuminance(convertedValue, unit);
         }
 
@@ -582,30 +582,36 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Illuminance AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case IlluminanceUnit.Kilolux:
-                    return new Illuminance((_value) * 1e3d, BaseUnit);
-                case IlluminanceUnit.Lux:
-                    return new Illuminance(_value, BaseUnit);
-                case IlluminanceUnit.Megalux:
-                    return new Illuminance((_value) * 1e6d, BaseUnit);
-                case IlluminanceUnit.Millilux:
-                    return new Illuminance((_value) * 1e-3d, BaseUnit);
+                case IlluminanceUnit.Kilolux: return (_value) * 1e3d;
+                case IlluminanceUnit.Lux: return _value;
+                case IlluminanceUnit.Megalux: return (_value) * 1e6d;
+                case IlluminanceUnit.Millilux: return (_value) * 1e-3d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(IlluminanceUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Illuminance ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Illuminance(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(IlluminanceUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

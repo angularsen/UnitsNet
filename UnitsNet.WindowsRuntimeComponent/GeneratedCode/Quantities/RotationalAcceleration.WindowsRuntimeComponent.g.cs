@@ -412,7 +412,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(RotationalAcceleration other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -426,7 +426,7 @@ namespace UnitsNet
 
         public bool Equals(RotationalAcceleration other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -502,7 +502,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -512,7 +512,7 @@ namespace UnitsNet
         /// <returns>A RotationalAcceleration with the specified unit.</returns>
         public RotationalAcceleration ToUnit(RotationalAccelerationUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new RotationalAcceleration(convertedValue, unit);
         }
 
@@ -521,28 +521,35 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal RotationalAcceleration AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case RotationalAccelerationUnit.DegreePerSecondSquared:
-                    return new RotationalAcceleration((Math.PI/180)*_value, BaseUnit);
-                case RotationalAccelerationUnit.RadianPerSecondSquared:
-                    return new RotationalAcceleration(_value, BaseUnit);
-                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond:
-                    return new RotationalAcceleration(((2*Math.PI)/60)*_value, BaseUnit);
+                case RotationalAccelerationUnit.DegreePerSecondSquared: return (Math.PI/180)*_value;
+                case RotationalAccelerationUnit.RadianPerSecondSquared: return _value;
+                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond: return ((2*Math.PI)/60)*_value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(RotationalAccelerationUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal RotationalAcceleration ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new RotationalAcceleration(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(RotationalAccelerationUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

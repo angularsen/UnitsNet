@@ -412,12 +412,12 @@ namespace UnitsNet
 
         public static ElectricPotentialAc operator +(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return new ElectricPotentialAc(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ElectricPotentialAc(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static ElectricPotentialAc operator -(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return new ElectricPotentialAc(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ElectricPotentialAc(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static ElectricPotentialAc operator *(double left, ElectricPotentialAc right)
@@ -446,22 +446,22 @@ namespace UnitsNet
 
         public static bool operator <=(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(ElectricPotentialAc left, ElectricPotentialAc right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(ElectricPotentialAc left, ElectricPotentialAc right)	
@@ -485,7 +485,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ElectricPotentialAc other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -498,7 +498,7 @@ namespace UnitsNet
 
         public bool Equals(ElectricPotentialAc other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -574,7 +574,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -584,7 +584,7 @@ namespace UnitsNet
         /// <returns>A ElectricPotentialAc with the specified unit.</returns>
         public ElectricPotentialAc ToUnit(ElectricPotentialAcUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new ElectricPotentialAc(convertedValue, unit);
         }
 
@@ -593,32 +593,37 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ElectricPotentialAc AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricPotentialAcUnit.KilovoltAc:
-                    return new ElectricPotentialAc((_value) * 1e3d, BaseUnit);
-                case ElectricPotentialAcUnit.MegavoltAc:
-                    return new ElectricPotentialAc((_value) * 1e6d, BaseUnit);
-                case ElectricPotentialAcUnit.MicrovoltAc:
-                    return new ElectricPotentialAc((_value) * 1e-6d, BaseUnit);
-                case ElectricPotentialAcUnit.MillivoltAc:
-                    return new ElectricPotentialAc((_value) * 1e-3d, BaseUnit);
-                case ElectricPotentialAcUnit.VoltAc:
-                    return new ElectricPotentialAc(_value, BaseUnit);
+                case ElectricPotentialAcUnit.KilovoltAc: return (_value) * 1e3d;
+                case ElectricPotentialAcUnit.MegavoltAc: return (_value) * 1e6d;
+                case ElectricPotentialAcUnit.MicrovoltAc: return (_value) * 1e-6d;
+                case ElectricPotentialAcUnit.MillivoltAc: return (_value) * 1e-3d;
+                case ElectricPotentialAcUnit.VoltAc: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(ElectricPotentialAcUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal ElectricPotentialAc ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new ElectricPotentialAc(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(ElectricPotentialAcUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

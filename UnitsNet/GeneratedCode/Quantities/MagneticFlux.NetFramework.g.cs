@@ -359,12 +359,12 @@ namespace UnitsNet
 
         public static MagneticFlux operator +(MagneticFlux left, MagneticFlux right)
         {
-            return new MagneticFlux(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MagneticFlux(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static MagneticFlux operator -(MagneticFlux left, MagneticFlux right)
         {
-            return new MagneticFlux(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MagneticFlux(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static MagneticFlux operator *(double left, MagneticFlux right)
@@ -393,22 +393,22 @@ namespace UnitsNet
 
         public static bool operator <=(MagneticFlux left, MagneticFlux right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(MagneticFlux left, MagneticFlux right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(MagneticFlux left, MagneticFlux right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(MagneticFlux left, MagneticFlux right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(MagneticFlux left, MagneticFlux right)	
@@ -432,7 +432,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(MagneticFlux other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -445,7 +445,7 @@ namespace UnitsNet
 
         public bool Equals(MagneticFlux other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -521,7 +521,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -531,7 +531,7 @@ namespace UnitsNet
         /// <returns>A MagneticFlux with the specified unit.</returns>
         public MagneticFlux ToUnit(MagneticFluxUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new MagneticFlux(convertedValue, unit);
         }
 
@@ -540,24 +540,33 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal MagneticFlux AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case MagneticFluxUnit.Weber:
-                    return new MagneticFlux(_value, BaseUnit);
+                case MagneticFluxUnit.Weber: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(MagneticFluxUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal MagneticFlux ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new MagneticFlux(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(MagneticFluxUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

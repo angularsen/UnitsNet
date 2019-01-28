@@ -460,7 +460,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(DynamicViscosity other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -474,7 +474,7 @@ namespace UnitsNet
 
         public bool Equals(DynamicViscosity other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -550,7 +550,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -560,7 +560,7 @@ namespace UnitsNet
         /// <returns>A DynamicViscosity with the specified unit.</returns>
         public DynamicViscosity ToUnit(DynamicViscosityUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new DynamicViscosity(convertedValue, unit);
         }
 
@@ -569,34 +569,38 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal DynamicViscosity AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case DynamicViscosityUnit.Centipoise:
-                    return new DynamicViscosity((_value/10) * 1e-2d, BaseUnit);
-                case DynamicViscosityUnit.MicropascalSecond:
-                    return new DynamicViscosity((_value) * 1e-6d, BaseUnit);
-                case DynamicViscosityUnit.MillipascalSecond:
-                    return new DynamicViscosity((_value) * 1e-3d, BaseUnit);
-                case DynamicViscosityUnit.NewtonSecondPerMeterSquared:
-                    return new DynamicViscosity(_value, BaseUnit);
-                case DynamicViscosityUnit.PascalSecond:
-                    return new DynamicViscosity(_value, BaseUnit);
-                case DynamicViscosityUnit.Poise:
-                    return new DynamicViscosity(_value/10, BaseUnit);
+                case DynamicViscosityUnit.Centipoise: return (_value/10) * 1e-2d;
+                case DynamicViscosityUnit.MicropascalSecond: return (_value) * 1e-6d;
+                case DynamicViscosityUnit.MillipascalSecond: return (_value) * 1e-3d;
+                case DynamicViscosityUnit.NewtonSecondPerMeterSquared: return _value;
+                case DynamicViscosityUnit.PascalSecond: return _value;
+                case DynamicViscosityUnit.Poise: return _value/10;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(DynamicViscosityUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal DynamicViscosity ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new DynamicViscosity(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(DynamicViscosityUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

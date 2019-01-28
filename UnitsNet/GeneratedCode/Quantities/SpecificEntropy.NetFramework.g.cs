@@ -454,12 +454,12 @@ namespace UnitsNet
 
         public static SpecificEntropy operator +(SpecificEntropy left, SpecificEntropy right)
         {
-            return new SpecificEntropy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new SpecificEntropy(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static SpecificEntropy operator -(SpecificEntropy left, SpecificEntropy right)
         {
-            return new SpecificEntropy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new SpecificEntropy(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static SpecificEntropy operator *(double left, SpecificEntropy right)
@@ -488,22 +488,22 @@ namespace UnitsNet
 
         public static bool operator <=(SpecificEntropy left, SpecificEntropy right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(SpecificEntropy left, SpecificEntropy right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(SpecificEntropy left, SpecificEntropy right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(SpecificEntropy left, SpecificEntropy right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(SpecificEntropy left, SpecificEntropy right)	
@@ -527,7 +527,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(SpecificEntropy other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -540,7 +540,7 @@ namespace UnitsNet
 
         public bool Equals(SpecificEntropy other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -616,7 +616,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -626,7 +626,7 @@ namespace UnitsNet
         /// <returns>A SpecificEntropy with the specified unit.</returns>
         public SpecificEntropy ToUnit(SpecificEntropyUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new SpecificEntropy(convertedValue, unit);
         }
 
@@ -635,38 +635,40 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal SpecificEntropy AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case SpecificEntropyUnit.CaloriePerGramKelvin:
-                    return new SpecificEntropy(_value*4.184e3, BaseUnit);
-                case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius:
-                    return new SpecificEntropy(_value, BaseUnit);
-                case SpecificEntropyUnit.JoulePerKilogramKelvin:
-                    return new SpecificEntropy(_value, BaseUnit);
-                case SpecificEntropyUnit.KilocaloriePerGramKelvin:
-                    return new SpecificEntropy((_value*4.184e3) * 1e3d, BaseUnit);
-                case SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius:
-                    return new SpecificEntropy((_value) * 1e3d, BaseUnit);
-                case SpecificEntropyUnit.KilojoulePerKilogramKelvin:
-                    return new SpecificEntropy((_value) * 1e3d, BaseUnit);
-                case SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius:
-                    return new SpecificEntropy((_value) * 1e6d, BaseUnit);
-                case SpecificEntropyUnit.MegajoulePerKilogramKelvin:
-                    return new SpecificEntropy((_value) * 1e6d, BaseUnit);
+                case SpecificEntropyUnit.CaloriePerGramKelvin: return _value*4.184e3;
+                case SpecificEntropyUnit.JoulePerKilogramDegreeCelsius: return _value;
+                case SpecificEntropyUnit.JoulePerKilogramKelvin: return _value;
+                case SpecificEntropyUnit.KilocaloriePerGramKelvin: return (_value*4.184e3) * 1e3d;
+                case SpecificEntropyUnit.KilojoulePerKilogramDegreeCelsius: return (_value) * 1e3d;
+                case SpecificEntropyUnit.KilojoulePerKilogramKelvin: return (_value) * 1e3d;
+                case SpecificEntropyUnit.MegajoulePerKilogramDegreeCelsius: return (_value) * 1e6d;
+                case SpecificEntropyUnit.MegajoulePerKilogramKelvin: return (_value) * 1e6d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(SpecificEntropyUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal SpecificEntropy ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new SpecificEntropy(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(SpecificEntropyUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

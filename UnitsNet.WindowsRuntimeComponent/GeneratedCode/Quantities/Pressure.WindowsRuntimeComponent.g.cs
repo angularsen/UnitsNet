@@ -997,7 +997,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(Pressure other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -1011,7 +1011,7 @@ namespace UnitsNet
 
         public bool Equals(Pressure other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -1087,7 +1087,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -1097,7 +1097,7 @@ namespace UnitsNet
         /// <returns>A Pressure with the specified unit.</returns>
         public Pressure ToUnit(PressureUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Pressure(convertedValue, unit);
         }
 
@@ -1106,106 +1106,74 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Pressure AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case PressureUnit.Atmosphere:
-                    return new Pressure(_value*1.01325*1e5, BaseUnit);
-                case PressureUnit.Bar:
-                    return new Pressure(_value*1e5, BaseUnit);
-                case PressureUnit.Centibar:
-                    return new Pressure((_value*1e5) * 1e-2d, BaseUnit);
-                case PressureUnit.Decapascal:
-                    return new Pressure((_value) * 1e1d, BaseUnit);
-                case PressureUnit.Decibar:
-                    return new Pressure((_value*1e5) * 1e-1d, BaseUnit);
-                case PressureUnit.DynePerSquareCentimeter:
-                    return new Pressure(_value*1.0e-1, BaseUnit);
-                case PressureUnit.FootOfHead:
-                    return new Pressure(_value*2989.0669, BaseUnit);
-                case PressureUnit.Gigapascal:
-                    return new Pressure((_value) * 1e9d, BaseUnit);
-                case PressureUnit.Hectopascal:
-                    return new Pressure((_value) * 1e2d, BaseUnit);
-                case PressureUnit.InchOfMercury:
-                    return new Pressure(_value/2.95299830714159e-4, BaseUnit);
-                case PressureUnit.InchOfWaterColumn:
-                    return new Pressure(_value*249.08890833333, BaseUnit);
-                case PressureUnit.Kilobar:
-                    return new Pressure((_value*1e5) * 1e3d, BaseUnit);
-                case PressureUnit.KilogramForcePerSquareCentimeter:
-                    return new Pressure(_value*9.80665e4, BaseUnit);
-                case PressureUnit.KilogramForcePerSquareMeter:
-                    return new Pressure(_value*9.80665019960652, BaseUnit);
-                case PressureUnit.KilogramForcePerSquareMillimeter:
-                    return new Pressure(_value*9.80665e6, BaseUnit);
-                case PressureUnit.KilonewtonPerSquareCentimeter:
-                    return new Pressure((_value*1e4) * 1e3d, BaseUnit);
-                case PressureUnit.KilonewtonPerSquareMeter:
-                    return new Pressure((_value) * 1e3d, BaseUnit);
-                case PressureUnit.KilonewtonPerSquareMillimeter:
-                    return new Pressure((_value*1e6) * 1e3d, BaseUnit);
-                case PressureUnit.Kilopascal:
-                    return new Pressure((_value) * 1e3d, BaseUnit);
-                case PressureUnit.KilopoundForcePerSquareFoot:
-                    return new Pressure((_value*4.788025898033584e1) * 1e3d, BaseUnit);
-                case PressureUnit.KilopoundForcePerSquareInch:
-                    return new Pressure((_value*6.894757293168361e3) * 1e3d, BaseUnit);
-                case PressureUnit.Megabar:
-                    return new Pressure((_value*1e5) * 1e6d, BaseUnit);
-                case PressureUnit.MeganewtonPerSquareMeter:
-                    return new Pressure((_value) * 1e6d, BaseUnit);
-                case PressureUnit.Megapascal:
-                    return new Pressure((_value) * 1e6d, BaseUnit);
-                case PressureUnit.MeterOfHead:
-                    return new Pressure(_value*9804.139432, BaseUnit);
-                case PressureUnit.Microbar:
-                    return new Pressure((_value*1e5) * 1e-6d, BaseUnit);
-                case PressureUnit.Micropascal:
-                    return new Pressure((_value) * 1e-6d, BaseUnit);
-                case PressureUnit.Millibar:
-                    return new Pressure((_value*1e5) * 1e-3d, BaseUnit);
-                case PressureUnit.MillimeterOfMercury:
-                    return new Pressure(_value/7.50061561302643e-3, BaseUnit);
-                case PressureUnit.Millipascal:
-                    return new Pressure((_value) * 1e-3d, BaseUnit);
-                case PressureUnit.NewtonPerSquareCentimeter:
-                    return new Pressure(_value*1e4, BaseUnit);
-                case PressureUnit.NewtonPerSquareMeter:
-                    return new Pressure(_value, BaseUnit);
-                case PressureUnit.NewtonPerSquareMillimeter:
-                    return new Pressure(_value*1e6, BaseUnit);
-                case PressureUnit.Pascal:
-                    return new Pressure(_value, BaseUnit);
-                case PressureUnit.PoundForcePerSquareFoot:
-                    return new Pressure(_value*4.788025898033584e1, BaseUnit);
-                case PressureUnit.PoundForcePerSquareInch:
-                    return new Pressure(_value*6.894757293168361e3, BaseUnit);
-                case PressureUnit.PoundPerInchSecondSquared:
-                    return new Pressure(_value*1.785796732283465e1, BaseUnit);
-                case PressureUnit.TechnicalAtmosphere:
-                    return new Pressure(_value*9.80680592331*1e4, BaseUnit);
-                case PressureUnit.TonneForcePerSquareCentimeter:
-                    return new Pressure(_value*9.80665e7, BaseUnit);
-                case PressureUnit.TonneForcePerSquareMeter:
-                    return new Pressure(_value*9.80665e3, BaseUnit);
-                case PressureUnit.TonneForcePerSquareMillimeter:
-                    return new Pressure(_value*9.80665e9, BaseUnit);
-                case PressureUnit.Torr:
-                    return new Pressure(_value*1.3332266752*1e2, BaseUnit);
+                case PressureUnit.Atmosphere: return _value*1.01325*1e5;
+                case PressureUnit.Bar: return _value*1e5;
+                case PressureUnit.Centibar: return (_value*1e5) * 1e-2d;
+                case PressureUnit.Decapascal: return (_value) * 1e1d;
+                case PressureUnit.Decibar: return (_value*1e5) * 1e-1d;
+                case PressureUnit.DynePerSquareCentimeter: return _value*1.0e-1;
+                case PressureUnit.FootOfHead: return _value*2989.0669;
+                case PressureUnit.Gigapascal: return (_value) * 1e9d;
+                case PressureUnit.Hectopascal: return (_value) * 1e2d;
+                case PressureUnit.InchOfMercury: return _value/2.95299830714159e-4;
+                case PressureUnit.InchOfWaterColumn: return _value*249.08890833333;
+                case PressureUnit.Kilobar: return (_value*1e5) * 1e3d;
+                case PressureUnit.KilogramForcePerSquareCentimeter: return _value*9.80665e4;
+                case PressureUnit.KilogramForcePerSquareMeter: return _value*9.80665019960652;
+                case PressureUnit.KilogramForcePerSquareMillimeter: return _value*9.80665e6;
+                case PressureUnit.KilonewtonPerSquareCentimeter: return (_value*1e4) * 1e3d;
+                case PressureUnit.KilonewtonPerSquareMeter: return (_value) * 1e3d;
+                case PressureUnit.KilonewtonPerSquareMillimeter: return (_value*1e6) * 1e3d;
+                case PressureUnit.Kilopascal: return (_value) * 1e3d;
+                case PressureUnit.KilopoundForcePerSquareFoot: return (_value*4.788025898033584e1) * 1e3d;
+                case PressureUnit.KilopoundForcePerSquareInch: return (_value*6.894757293168361e3) * 1e3d;
+                case PressureUnit.Megabar: return (_value*1e5) * 1e6d;
+                case PressureUnit.MeganewtonPerSquareMeter: return (_value) * 1e6d;
+                case PressureUnit.Megapascal: return (_value) * 1e6d;
+                case PressureUnit.MeterOfHead: return _value*9804.139432;
+                case PressureUnit.Microbar: return (_value*1e5) * 1e-6d;
+                case PressureUnit.Micropascal: return (_value) * 1e-6d;
+                case PressureUnit.Millibar: return (_value*1e5) * 1e-3d;
+                case PressureUnit.MillimeterOfMercury: return _value/7.50061561302643e-3;
+                case PressureUnit.Millipascal: return (_value) * 1e-3d;
+                case PressureUnit.NewtonPerSquareCentimeter: return _value*1e4;
+                case PressureUnit.NewtonPerSquareMeter: return _value;
+                case PressureUnit.NewtonPerSquareMillimeter: return _value*1e6;
+                case PressureUnit.Pascal: return _value;
+                case PressureUnit.PoundForcePerSquareFoot: return _value*4.788025898033584e1;
+                case PressureUnit.PoundForcePerSquareInch: return _value*6.894757293168361e3;
+                case PressureUnit.PoundPerInchSecondSquared: return _value*1.785796732283465e1;
+                case PressureUnit.TechnicalAtmosphere: return _value*9.80680592331*1e4;
+                case PressureUnit.TonneForcePerSquareCentimeter: return _value*9.80665e7;
+                case PressureUnit.TonneForcePerSquareMeter: return _value*9.80665e3;
+                case PressureUnit.TonneForcePerSquareMillimeter: return _value*9.80665e9;
+                case PressureUnit.Torr: return _value*1.3332266752*1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(PressureUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Pressure ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Pressure(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(PressureUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

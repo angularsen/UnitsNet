@@ -487,7 +487,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(ElectricCurrent other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -501,7 +501,7 @@ namespace UnitsNet
 
         public bool Equals(ElectricCurrent other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -577,7 +577,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -587,7 +587,7 @@ namespace UnitsNet
         /// <returns>A ElectricCurrent with the specified unit.</returns>
         public ElectricCurrent ToUnit(ElectricCurrentUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new ElectricCurrent(convertedValue, unit);
         }
 
@@ -596,38 +596,40 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ElectricCurrent AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricCurrentUnit.Ampere:
-                    return new ElectricCurrent(_value, BaseUnit);
-                case ElectricCurrentUnit.Centiampere:
-                    return new ElectricCurrent((_value) * 1e-2d, BaseUnit);
-                case ElectricCurrentUnit.Kiloampere:
-                    return new ElectricCurrent((_value) * 1e3d, BaseUnit);
-                case ElectricCurrentUnit.Megaampere:
-                    return new ElectricCurrent((_value) * 1e6d, BaseUnit);
-                case ElectricCurrentUnit.Microampere:
-                    return new ElectricCurrent((_value) * 1e-6d, BaseUnit);
-                case ElectricCurrentUnit.Milliampere:
-                    return new ElectricCurrent((_value) * 1e-3d, BaseUnit);
-                case ElectricCurrentUnit.Nanoampere:
-                    return new ElectricCurrent((_value) * 1e-9d, BaseUnit);
-                case ElectricCurrentUnit.Picoampere:
-                    return new ElectricCurrent((_value) * 1e-12d, BaseUnit);
+                case ElectricCurrentUnit.Ampere: return _value;
+                case ElectricCurrentUnit.Centiampere: return (_value) * 1e-2d;
+                case ElectricCurrentUnit.Kiloampere: return (_value) * 1e3d;
+                case ElectricCurrentUnit.Megaampere: return (_value) * 1e6d;
+                case ElectricCurrentUnit.Microampere: return (_value) * 1e-6d;
+                case ElectricCurrentUnit.Milliampere: return (_value) * 1e-3d;
+                case ElectricCurrentUnit.Nanoampere: return (_value) * 1e-9d;
+                case ElectricCurrentUnit.Picoampere: return (_value) * 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(ElectricCurrentUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal ElectricCurrent ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new ElectricCurrent(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(ElectricCurrentUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

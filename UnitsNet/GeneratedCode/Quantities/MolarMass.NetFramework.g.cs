@@ -510,12 +510,12 @@ namespace UnitsNet
 
         public static MolarMass operator +(MolarMass left, MolarMass right)
         {
-            return new MolarMass(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MolarMass(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static MolarMass operator -(MolarMass left, MolarMass right)
         {
-            return new MolarMass(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new MolarMass(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static MolarMass operator *(double left, MolarMass right)
@@ -544,22 +544,22 @@ namespace UnitsNet
 
         public static bool operator <=(MolarMass left, MolarMass right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(MolarMass left, MolarMass right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(MolarMass left, MolarMass right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(MolarMass left, MolarMass right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(MolarMass left, MolarMass right)	
@@ -583,7 +583,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(MolarMass other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -596,7 +596,7 @@ namespace UnitsNet
 
         public bool Equals(MolarMass other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -672,7 +672,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -682,7 +682,7 @@ namespace UnitsNet
         /// <returns>A MolarMass with the specified unit.</returns>
         public MolarMass ToUnit(MolarMassUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new MolarMass(convertedValue, unit);
         }
 
@@ -691,46 +691,44 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal MolarMass AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case MolarMassUnit.CentigramPerMole:
-                    return new MolarMass((_value/1e3) * 1e-2d, BaseUnit);
-                case MolarMassUnit.DecagramPerMole:
-                    return new MolarMass((_value/1e3) * 1e1d, BaseUnit);
-                case MolarMassUnit.DecigramPerMole:
-                    return new MolarMass((_value/1e3) * 1e-1d, BaseUnit);
-                case MolarMassUnit.GramPerMole:
-                    return new MolarMass(_value/1e3, BaseUnit);
-                case MolarMassUnit.HectogramPerMole:
-                    return new MolarMass((_value/1e3) * 1e2d, BaseUnit);
-                case MolarMassUnit.KilogramPerMole:
-                    return new MolarMass((_value/1e3) * 1e3d, BaseUnit);
-                case MolarMassUnit.KilopoundPerMole:
-                    return new MolarMass((_value*0.45359237) * 1e3d, BaseUnit);
-                case MolarMassUnit.MegapoundPerMole:
-                    return new MolarMass((_value*0.45359237) * 1e6d, BaseUnit);
-                case MolarMassUnit.MicrogramPerMole:
-                    return new MolarMass((_value/1e3) * 1e-6d, BaseUnit);
-                case MolarMassUnit.MilligramPerMole:
-                    return new MolarMass((_value/1e3) * 1e-3d, BaseUnit);
-                case MolarMassUnit.NanogramPerMole:
-                    return new MolarMass((_value/1e3) * 1e-9d, BaseUnit);
-                case MolarMassUnit.PoundPerMole:
-                    return new MolarMass(_value*0.45359237, BaseUnit);
+                case MolarMassUnit.CentigramPerMole: return (_value/1e3) * 1e-2d;
+                case MolarMassUnit.DecagramPerMole: return (_value/1e3) * 1e1d;
+                case MolarMassUnit.DecigramPerMole: return (_value/1e3) * 1e-1d;
+                case MolarMassUnit.GramPerMole: return _value/1e3;
+                case MolarMassUnit.HectogramPerMole: return (_value/1e3) * 1e2d;
+                case MolarMassUnit.KilogramPerMole: return (_value/1e3) * 1e3d;
+                case MolarMassUnit.KilopoundPerMole: return (_value*0.45359237) * 1e3d;
+                case MolarMassUnit.MegapoundPerMole: return (_value*0.45359237) * 1e6d;
+                case MolarMassUnit.MicrogramPerMole: return (_value/1e3) * 1e-6d;
+                case MolarMassUnit.MilligramPerMole: return (_value/1e3) * 1e-3d;
+                case MolarMassUnit.NanogramPerMole: return (_value/1e3) * 1e-9d;
+                case MolarMassUnit.PoundPerMole: return _value*0.45359237;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(MolarMassUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal MolarMass ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new MolarMass(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(MolarMassUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

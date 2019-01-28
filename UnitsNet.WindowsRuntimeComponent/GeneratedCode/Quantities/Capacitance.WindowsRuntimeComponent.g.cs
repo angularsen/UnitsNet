@@ -475,7 +475,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(Capacitance other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -489,7 +489,7 @@ namespace UnitsNet
 
         public bool Equals(Capacitance other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -565,7 +565,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -575,7 +575,7 @@ namespace UnitsNet
         /// <returns>A Capacitance with the specified unit.</returns>
         public Capacitance ToUnit(CapacitanceUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Capacitance(convertedValue, unit);
         }
 
@@ -584,36 +584,39 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Capacitance AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case CapacitanceUnit.Farad:
-                    return new Capacitance(_value, BaseUnit);
-                case CapacitanceUnit.Kilofarad:
-                    return new Capacitance((_value) * 1e3d, BaseUnit);
-                case CapacitanceUnit.Megafarad:
-                    return new Capacitance((_value) * 1e6d, BaseUnit);
-                case CapacitanceUnit.Microfarad:
-                    return new Capacitance((_value) * 1e-6d, BaseUnit);
-                case CapacitanceUnit.Millifarad:
-                    return new Capacitance((_value) * 1e-3d, BaseUnit);
-                case CapacitanceUnit.Nanofarad:
-                    return new Capacitance((_value) * 1e-9d, BaseUnit);
-                case CapacitanceUnit.Picofarad:
-                    return new Capacitance((_value) * 1e-12d, BaseUnit);
+                case CapacitanceUnit.Farad: return _value;
+                case CapacitanceUnit.Kilofarad: return (_value) * 1e3d;
+                case CapacitanceUnit.Megafarad: return (_value) * 1e6d;
+                case CapacitanceUnit.Microfarad: return (_value) * 1e-6d;
+                case CapacitanceUnit.Millifarad: return (_value) * 1e-3d;
+                case CapacitanceUnit.Nanofarad: return (_value) * 1e-9d;
+                case CapacitanceUnit.Picofarad: return (_value) * 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(CapacitanceUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Capacitance ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Capacitance(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(CapacitanceUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

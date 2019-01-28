@@ -449,22 +449,22 @@ namespace UnitsNet
 
         public static bool operator <=(Temperature left, Temperature right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(Temperature left, Temperature right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(Temperature left, Temperature right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(Temperature left, Temperature right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(Temperature left, Temperature right)	
@@ -488,7 +488,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Temperature other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -501,7 +501,7 @@ namespace UnitsNet
 
         public bool Equals(Temperature other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -577,7 +577,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -587,7 +587,7 @@ namespace UnitsNet
         /// <returns>A Temperature with the specified unit.</returns>
         public Temperature ToUnit(TemperatureUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Temperature(convertedValue, unit);
         }
 
@@ -596,38 +596,40 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Temperature AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case TemperatureUnit.DegreeCelsius:
-                    return new Temperature(_value + 273.15, BaseUnit);
-                case TemperatureUnit.DegreeDelisle:
-                    return new Temperature(_value*-2/3 + 373.15, BaseUnit);
-                case TemperatureUnit.DegreeFahrenheit:
-                    return new Temperature(_value*5/9 + 459.67*5/9, BaseUnit);
-                case TemperatureUnit.DegreeNewton:
-                    return new Temperature(_value*100/33 + 273.15, BaseUnit);
-                case TemperatureUnit.DegreeRankine:
-                    return new Temperature(_value*5/9, BaseUnit);
-                case TemperatureUnit.DegreeReaumur:
-                    return new Temperature(_value*5/4 + 273.15, BaseUnit);
-                case TemperatureUnit.DegreeRoemer:
-                    return new Temperature(_value*40/21 + 273.15 - 7.5*40d/21, BaseUnit);
-                case TemperatureUnit.Kelvin:
-                    return new Temperature(_value, BaseUnit);
+                case TemperatureUnit.DegreeCelsius: return _value + 273.15;
+                case TemperatureUnit.DegreeDelisle: return _value*-2/3 + 373.15;
+                case TemperatureUnit.DegreeFahrenheit: return _value*5/9 + 459.67*5/9;
+                case TemperatureUnit.DegreeNewton: return _value*100/33 + 273.15;
+                case TemperatureUnit.DegreeRankine: return _value*5/9;
+                case TemperatureUnit.DegreeReaumur: return _value*5/4 + 273.15;
+                case TemperatureUnit.DegreeRoemer: return _value*40/21 + 273.15 - 7.5*40d/21;
+                case TemperatureUnit.Kelvin: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(TemperatureUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Temperature ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Temperature(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(TemperatureUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

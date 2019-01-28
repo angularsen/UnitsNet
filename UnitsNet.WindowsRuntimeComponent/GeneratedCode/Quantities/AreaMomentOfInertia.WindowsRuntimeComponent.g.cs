@@ -457,7 +457,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(AreaMomentOfInertia other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -471,7 +471,7 @@ namespace UnitsNet
 
         public bool Equals(AreaMomentOfInertia other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -547,7 +547,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -557,7 +557,7 @@ namespace UnitsNet
         /// <returns>A AreaMomentOfInertia with the specified unit.</returns>
         public AreaMomentOfInertia ToUnit(AreaMomentOfInertiaUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new AreaMomentOfInertia(convertedValue, unit);
         }
 
@@ -566,34 +566,38 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal AreaMomentOfInertia AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case AreaMomentOfInertiaUnit.CentimeterToTheFourth:
-                    return new AreaMomentOfInertia(_value/1e8, BaseUnit);
-                case AreaMomentOfInertiaUnit.DecimeterToTheFourth:
-                    return new AreaMomentOfInertia(_value/1e4, BaseUnit);
-                case AreaMomentOfInertiaUnit.FootToTheFourth:
-                    return new AreaMomentOfInertia(_value*Math.Pow(0.3048, 4), BaseUnit);
-                case AreaMomentOfInertiaUnit.InchToTheFourth:
-                    return new AreaMomentOfInertia(_value*Math.Pow(2.54e-2, 4), BaseUnit);
-                case AreaMomentOfInertiaUnit.MeterToTheFourth:
-                    return new AreaMomentOfInertia(_value, BaseUnit);
-                case AreaMomentOfInertiaUnit.MillimeterToTheFourth:
-                    return new AreaMomentOfInertia(_value/1e12, BaseUnit);
+                case AreaMomentOfInertiaUnit.CentimeterToTheFourth: return _value/1e8;
+                case AreaMomentOfInertiaUnit.DecimeterToTheFourth: return _value/1e4;
+                case AreaMomentOfInertiaUnit.FootToTheFourth: return _value*Math.Pow(0.3048, 4);
+                case AreaMomentOfInertiaUnit.InchToTheFourth: return _value*Math.Pow(2.54e-2, 4);
+                case AreaMomentOfInertiaUnit.MeterToTheFourth: return _value;
+                case AreaMomentOfInertiaUnit.MillimeterToTheFourth: return _value/1e12;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(AreaMomentOfInertiaUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal AreaMomentOfInertia ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new AreaMomentOfInertia(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(AreaMomentOfInertiaUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

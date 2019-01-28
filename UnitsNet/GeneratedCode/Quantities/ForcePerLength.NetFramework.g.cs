@@ -468,12 +468,12 @@ namespace UnitsNet
 
         public static ForcePerLength operator +(ForcePerLength left, ForcePerLength right)
         {
-            return new ForcePerLength(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ForcePerLength(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static ForcePerLength operator -(ForcePerLength left, ForcePerLength right)
         {
-            return new ForcePerLength(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ForcePerLength(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static ForcePerLength operator *(double left, ForcePerLength right)
@@ -502,22 +502,22 @@ namespace UnitsNet
 
         public static bool operator <=(ForcePerLength left, ForcePerLength right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(ForcePerLength left, ForcePerLength right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(ForcePerLength left, ForcePerLength right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(ForcePerLength left, ForcePerLength right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(ForcePerLength left, ForcePerLength right)	
@@ -541,7 +541,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ForcePerLength other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -554,7 +554,7 @@ namespace UnitsNet
 
         public bool Equals(ForcePerLength other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -630,7 +630,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -640,7 +640,7 @@ namespace UnitsNet
         /// <returns>A ForcePerLength with the specified unit.</returns>
         public ForcePerLength ToUnit(ForcePerLengthUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new ForcePerLength(convertedValue, unit);
         }
 
@@ -649,40 +649,41 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ForcePerLength AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ForcePerLengthUnit.CentinewtonPerMeter:
-                    return new ForcePerLength((_value) * 1e-2d, BaseUnit);
-                case ForcePerLengthUnit.DecinewtonPerMeter:
-                    return new ForcePerLength((_value) * 1e-1d, BaseUnit);
-                case ForcePerLengthUnit.KilogramForcePerMeter:
-                    return new ForcePerLength(_value*9.80665002864, BaseUnit);
-                case ForcePerLengthUnit.KilonewtonPerMeter:
-                    return new ForcePerLength((_value) * 1e3d, BaseUnit);
-                case ForcePerLengthUnit.MeganewtonPerMeter:
-                    return new ForcePerLength((_value) * 1e6d, BaseUnit);
-                case ForcePerLengthUnit.MicronewtonPerMeter:
-                    return new ForcePerLength((_value) * 1e-6d, BaseUnit);
-                case ForcePerLengthUnit.MillinewtonPerMeter:
-                    return new ForcePerLength((_value) * 1e-3d, BaseUnit);
-                case ForcePerLengthUnit.NanonewtonPerMeter:
-                    return new ForcePerLength((_value) * 1e-9d, BaseUnit);
-                case ForcePerLengthUnit.NewtonPerMeter:
-                    return new ForcePerLength(_value, BaseUnit);
+                case ForcePerLengthUnit.CentinewtonPerMeter: return (_value) * 1e-2d;
+                case ForcePerLengthUnit.DecinewtonPerMeter: return (_value) * 1e-1d;
+                case ForcePerLengthUnit.KilogramForcePerMeter: return _value*9.80665002864;
+                case ForcePerLengthUnit.KilonewtonPerMeter: return (_value) * 1e3d;
+                case ForcePerLengthUnit.MeganewtonPerMeter: return (_value) * 1e6d;
+                case ForcePerLengthUnit.MicronewtonPerMeter: return (_value) * 1e-6d;
+                case ForcePerLengthUnit.MillinewtonPerMeter: return (_value) * 1e-3d;
+                case ForcePerLengthUnit.NanonewtonPerMeter: return (_value) * 1e-9d;
+                case ForcePerLengthUnit.NewtonPerMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(ForcePerLengthUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal ForcePerLength ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new ForcePerLength(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(ForcePerLengthUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

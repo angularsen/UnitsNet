@@ -426,12 +426,12 @@ namespace UnitsNet
 
         public static Ratio operator +(Ratio left, Ratio right)
         {
-            return new Ratio(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Ratio(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Ratio operator -(Ratio left, Ratio right)
         {
-            return new Ratio(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Ratio(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Ratio operator *(double left, Ratio right)
@@ -460,22 +460,22 @@ namespace UnitsNet
 
         public static bool operator <=(Ratio left, Ratio right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(Ratio left, Ratio right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(Ratio left, Ratio right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(Ratio left, Ratio right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(Ratio left, Ratio right)	
@@ -499,7 +499,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Ratio other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -512,7 +512,7 @@ namespace UnitsNet
 
         public bool Equals(Ratio other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -588,7 +588,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -598,7 +598,7 @@ namespace UnitsNet
         /// <returns>A Ratio with the specified unit.</returns>
         public Ratio ToUnit(RatioUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Ratio(convertedValue, unit);
         }
 
@@ -607,34 +607,38 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Ratio AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case RatioUnit.DecimalFraction:
-                    return new Ratio(_value, BaseUnit);
-                case RatioUnit.PartPerBillion:
-                    return new Ratio(_value/1e9, BaseUnit);
-                case RatioUnit.PartPerMillion:
-                    return new Ratio(_value/1e6, BaseUnit);
-                case RatioUnit.PartPerThousand:
-                    return new Ratio(_value/1e3, BaseUnit);
-                case RatioUnit.PartPerTrillion:
-                    return new Ratio(_value/1e12, BaseUnit);
-                case RatioUnit.Percent:
-                    return new Ratio(_value/1e2, BaseUnit);
+                case RatioUnit.DecimalFraction: return _value;
+                case RatioUnit.PartPerBillion: return _value/1e9;
+                case RatioUnit.PartPerMillion: return _value/1e6;
+                case RatioUnit.PartPerThousand: return _value/1e3;
+                case RatioUnit.PartPerTrillion: return _value/1e12;
+                case RatioUnit.Percent: return _value/1e2;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(RatioUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Ratio ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Ratio(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(RatioUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

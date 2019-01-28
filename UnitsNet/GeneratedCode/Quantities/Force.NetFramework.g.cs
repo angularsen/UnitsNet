@@ -524,12 +524,12 @@ namespace UnitsNet
 
         public static Force operator +(Force left, Force right)
         {
-            return new Force(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Force(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Force operator -(Force left, Force right)
         {
-            return new Force(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Force(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Force operator *(double left, Force right)
@@ -558,22 +558,22 @@ namespace UnitsNet
 
         public static bool operator <=(Force left, Force right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(Force left, Force right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(Force left, Force right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(Force left, Force right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(Force left, Force right)	
@@ -597,7 +597,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Force other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -610,7 +610,7 @@ namespace UnitsNet
 
         public bool Equals(Force other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -686,7 +686,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -696,7 +696,7 @@ namespace UnitsNet
         /// <returns>A Force with the specified unit.</returns>
         public Force ToUnit(ForceUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Force(convertedValue, unit);
         }
 
@@ -705,48 +705,45 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Force AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ForceUnit.Decanewton:
-                    return new Force((_value) * 1e1d, BaseUnit);
-                case ForceUnit.Dyn:
-                    return new Force(_value/1e5, BaseUnit);
-                case ForceUnit.KilogramForce:
-                    return new Force(_value*9.80665002864, BaseUnit);
-                case ForceUnit.Kilonewton:
-                    return new Force((_value) * 1e3d, BaseUnit);
-                case ForceUnit.KiloPond:
-                    return new Force(_value*9.80665002864, BaseUnit);
-                case ForceUnit.Meganewton:
-                    return new Force((_value) * 1e6d, BaseUnit);
-                case ForceUnit.Micronewton:
-                    return new Force((_value) * 1e-6d, BaseUnit);
-                case ForceUnit.Millinewton:
-                    return new Force((_value) * 1e-3d, BaseUnit);
-                case ForceUnit.Newton:
-                    return new Force(_value, BaseUnit);
-                case ForceUnit.OunceForce:
-                    return new Force(_value*2.780138509537812e-1, BaseUnit);
-                case ForceUnit.Poundal:
-                    return new Force(_value*0.13825502798973041652092282466083, BaseUnit);
-                case ForceUnit.PoundForce:
-                    return new Force(_value*4.4482216152605095551842641431421, BaseUnit);
-                case ForceUnit.TonneForce:
-                    return new Force(_value*9.80665002864e3, BaseUnit);
+                case ForceUnit.Decanewton: return (_value) * 1e1d;
+                case ForceUnit.Dyn: return _value/1e5;
+                case ForceUnit.KilogramForce: return _value*9.80665002864;
+                case ForceUnit.Kilonewton: return (_value) * 1e3d;
+                case ForceUnit.KiloPond: return _value*9.80665002864;
+                case ForceUnit.Meganewton: return (_value) * 1e6d;
+                case ForceUnit.Micronewton: return (_value) * 1e-6d;
+                case ForceUnit.Millinewton: return (_value) * 1e-3d;
+                case ForceUnit.Newton: return _value;
+                case ForceUnit.OunceForce: return _value*2.780138509537812e-1;
+                case ForceUnit.Poundal: return _value*0.13825502798973041652092282466083;
+                case ForceUnit.PoundForce: return _value*4.4482216152605095551842641431421;
+                case ForceUnit.TonneForce: return _value*9.80665002864e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(ForceUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Force ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Force(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(ForceUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

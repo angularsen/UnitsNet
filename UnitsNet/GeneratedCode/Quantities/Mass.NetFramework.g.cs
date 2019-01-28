@@ -664,12 +664,12 @@ namespace UnitsNet
 
         public static Mass operator +(Mass left, Mass right)
         {
-            return new Mass(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Mass(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Mass operator -(Mass left, Mass right)
         {
-            return new Mass(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Mass(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Mass operator *(double left, Mass right)
@@ -698,22 +698,22 @@ namespace UnitsNet
 
         public static bool operator <=(Mass left, Mass right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(Mass left, Mass right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(Mass left, Mass right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(Mass left, Mass right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(Mass left, Mass right)	
@@ -737,7 +737,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Mass other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -750,7 +750,7 @@ namespace UnitsNet
 
         public bool Equals(Mass other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -826,7 +826,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -836,7 +836,7 @@ namespace UnitsNet
         /// <returns>A Mass with the specified unit.</returns>
         public Mass ToUnit(MassUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Mass(convertedValue, unit);
         }
 
@@ -845,68 +845,55 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Mass AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case MassUnit.Centigram:
-                    return new Mass((_value/1e3) * 1e-2d, BaseUnit);
-                case MassUnit.Decagram:
-                    return new Mass((_value/1e3) * 1e1d, BaseUnit);
-                case MassUnit.Decigram:
-                    return new Mass((_value/1e3) * 1e-1d, BaseUnit);
-                case MassUnit.Grain:
-                    return new Mass(_value/15432.358352941431, BaseUnit);
-                case MassUnit.Gram:
-                    return new Mass(_value/1e3, BaseUnit);
-                case MassUnit.Hectogram:
-                    return new Mass((_value/1e3) * 1e2d, BaseUnit);
-                case MassUnit.Kilogram:
-                    return new Mass((_value/1e3) * 1e3d, BaseUnit);
-                case MassUnit.Kilopound:
-                    return new Mass((_value*0.45359237) * 1e3d, BaseUnit);
-                case MassUnit.Kilotonne:
-                    return new Mass((_value*1e3) * 1e3d, BaseUnit);
-                case MassUnit.LongHundredweight:
-                    return new Mass(_value/0.01968413055222121, BaseUnit);
-                case MassUnit.LongTon:
-                    return new Mass(_value*1.0160469088e3, BaseUnit);
-                case MassUnit.Megapound:
-                    return new Mass((_value*0.45359237) * 1e6d, BaseUnit);
-                case MassUnit.Megatonne:
-                    return new Mass((_value*1e3) * 1e6d, BaseUnit);
-                case MassUnit.Microgram:
-                    return new Mass((_value/1e3) * 1e-6d, BaseUnit);
-                case MassUnit.Milligram:
-                    return new Mass((_value/1e3) * 1e-3d, BaseUnit);
-                case MassUnit.Nanogram:
-                    return new Mass((_value/1e3) * 1e-9d, BaseUnit);
-                case MassUnit.Ounce:
-                    return new Mass(_value/35.2739619, BaseUnit);
-                case MassUnit.Pound:
-                    return new Mass(_value*0.45359237, BaseUnit);
-                case MassUnit.ShortHundredweight:
-                    return new Mass(_value/0.022046226218487758, BaseUnit);
-                case MassUnit.ShortTon:
-                    return new Mass(_value*9.0718474e2, BaseUnit);
-                case MassUnit.Slug:
-                    return new Mass(_value/6.852176556196105e-2, BaseUnit);
-                case MassUnit.Stone:
-                    return new Mass(_value/0.1574731728702698, BaseUnit);
-                case MassUnit.Tonne:
-                    return new Mass(_value*1e3, BaseUnit);
+                case MassUnit.Centigram: return (_value/1e3) * 1e-2d;
+                case MassUnit.Decagram: return (_value/1e3) * 1e1d;
+                case MassUnit.Decigram: return (_value/1e3) * 1e-1d;
+                case MassUnit.Grain: return _value/15432.358352941431;
+                case MassUnit.Gram: return _value/1e3;
+                case MassUnit.Hectogram: return (_value/1e3) * 1e2d;
+                case MassUnit.Kilogram: return (_value/1e3) * 1e3d;
+                case MassUnit.Kilopound: return (_value*0.45359237) * 1e3d;
+                case MassUnit.Kilotonne: return (_value*1e3) * 1e3d;
+                case MassUnit.LongHundredweight: return _value/0.01968413055222121;
+                case MassUnit.LongTon: return _value*1.0160469088e3;
+                case MassUnit.Megapound: return (_value*0.45359237) * 1e6d;
+                case MassUnit.Megatonne: return (_value*1e3) * 1e6d;
+                case MassUnit.Microgram: return (_value/1e3) * 1e-6d;
+                case MassUnit.Milligram: return (_value/1e3) * 1e-3d;
+                case MassUnit.Nanogram: return (_value/1e3) * 1e-9d;
+                case MassUnit.Ounce: return _value/35.2739619;
+                case MassUnit.Pound: return _value*0.45359237;
+                case MassUnit.ShortHundredweight: return _value/0.022046226218487758;
+                case MassUnit.ShortTon: return _value*9.0718474e2;
+                case MassUnit.Slug: return _value/6.852176556196105e-2;
+                case MassUnit.Stone: return _value/0.1574731728702698;
+                case MassUnit.Tonne: return _value*1e3;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(MassUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Mass ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Mass(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(MassUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

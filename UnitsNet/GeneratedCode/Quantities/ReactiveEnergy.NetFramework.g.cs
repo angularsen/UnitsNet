@@ -384,12 +384,12 @@ namespace UnitsNet
 
         public static ReactiveEnergy operator +(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return new ReactiveEnergy(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ReactiveEnergy(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static ReactiveEnergy operator -(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return new ReactiveEnergy(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ReactiveEnergy(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static ReactiveEnergy operator *(double left, ReactiveEnergy right)
@@ -418,22 +418,22 @@ namespace UnitsNet
 
         public static bool operator <=(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(ReactiveEnergy left, ReactiveEnergy right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(ReactiveEnergy left, ReactiveEnergy right)	
@@ -457,7 +457,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ReactiveEnergy other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -470,7 +470,7 @@ namespace UnitsNet
 
         public bool Equals(ReactiveEnergy other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -546,7 +546,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -556,7 +556,7 @@ namespace UnitsNet
         /// <returns>A ReactiveEnergy with the specified unit.</returns>
         public ReactiveEnergy ToUnit(ReactiveEnergyUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new ReactiveEnergy(convertedValue, unit);
         }
 
@@ -565,28 +565,35 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ReactiveEnergy AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ReactiveEnergyUnit.KilovoltampereReactiveHour:
-                    return new ReactiveEnergy((_value) * 1e3d, BaseUnit);
-                case ReactiveEnergyUnit.MegavoltampereReactiveHour:
-                    return new ReactiveEnergy((_value) * 1e6d, BaseUnit);
-                case ReactiveEnergyUnit.VoltampereReactiveHour:
-                    return new ReactiveEnergy(_value, BaseUnit);
+                case ReactiveEnergyUnit.KilovoltampereReactiveHour: return (_value) * 1e3d;
+                case ReactiveEnergyUnit.MegavoltampereReactiveHour: return (_value) * 1e6d;
+                case ReactiveEnergyUnit.VoltampereReactiveHour: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(ReactiveEnergyUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal ReactiveEnergy ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new ReactiveEnergy(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(ReactiveEnergyUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

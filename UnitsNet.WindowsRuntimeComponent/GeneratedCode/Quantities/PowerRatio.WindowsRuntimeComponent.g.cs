@@ -397,7 +397,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(PowerRatio other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -411,7 +411,7 @@ namespace UnitsNet
 
         public bool Equals(PowerRatio other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -487,7 +487,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -497,7 +497,7 @@ namespace UnitsNet
         /// <returns>A PowerRatio with the specified unit.</returns>
         public PowerRatio ToUnit(PowerRatioUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new PowerRatio(convertedValue, unit);
         }
 
@@ -506,26 +506,34 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal PowerRatio AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case PowerRatioUnit.DecibelMilliwatt:
-                    return new PowerRatio(_value - 30, BaseUnit);
-                case PowerRatioUnit.DecibelWatt:
-                    return new PowerRatio(_value, BaseUnit);
+                case PowerRatioUnit.DecibelMilliwatt: return _value - 30;
+                case PowerRatioUnit.DecibelWatt: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(PowerRatioUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal PowerRatio ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new PowerRatio(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(PowerRatioUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

@@ -412,7 +412,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(CoefficientOfThermalExpansion other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -426,7 +426,7 @@ namespace UnitsNet
 
         public bool Equals(CoefficientOfThermalExpansion other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -502,7 +502,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -512,7 +512,7 @@ namespace UnitsNet
         /// <returns>A CoefficientOfThermalExpansion with the specified unit.</returns>
         public CoefficientOfThermalExpansion ToUnit(CoefficientOfThermalExpansionUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new CoefficientOfThermalExpansion(convertedValue, unit);
         }
 
@@ -521,28 +521,35 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal CoefficientOfThermalExpansion AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius:
-                    return new CoefficientOfThermalExpansion(_value, BaseUnit);
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit:
-                    return new CoefficientOfThermalExpansion(_value*5/9, BaseUnit);
-                case CoefficientOfThermalExpansionUnit.InverseKelvin:
-                    return new CoefficientOfThermalExpansion(_value, BaseUnit);
+                case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius: return _value;
+                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit: return _value*5/9;
+                case CoefficientOfThermalExpansionUnit.InverseKelvin: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(CoefficientOfThermalExpansionUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal CoefficientOfThermalExpansion ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new CoefficientOfThermalExpansion(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(CoefficientOfThermalExpansionUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

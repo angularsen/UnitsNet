@@ -625,7 +625,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(SpecificWeight other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -639,7 +639,7 @@ namespace UnitsNet
 
         public bool Equals(SpecificWeight other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -715,7 +715,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -725,7 +725,7 @@ namespace UnitsNet
         /// <returns>A SpecificWeight with the specified unit.</returns>
         public SpecificWeight ToUnit(SpecificWeightUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new SpecificWeight(convertedValue, unit);
         }
 
@@ -734,56 +734,49 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal SpecificWeight AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case SpecificWeightUnit.KilogramForcePerCubicCentimeter:
-                    return new SpecificWeight(_value*9.80665e6, BaseUnit);
-                case SpecificWeightUnit.KilogramForcePerCubicMeter:
-                    return new SpecificWeight(_value*9.80665, BaseUnit);
-                case SpecificWeightUnit.KilogramForcePerCubicMillimeter:
-                    return new SpecificWeight(_value*9.80665e9, BaseUnit);
-                case SpecificWeightUnit.KilonewtonPerCubicCentimeter:
-                    return new SpecificWeight((_value*1000000) * 1e3d, BaseUnit);
-                case SpecificWeightUnit.KilonewtonPerCubicMeter:
-                    return new SpecificWeight((_value) * 1e3d, BaseUnit);
-                case SpecificWeightUnit.KilonewtonPerCubicMillimeter:
-                    return new SpecificWeight((_value*1000000000) * 1e3d, BaseUnit);
-                case SpecificWeightUnit.KilopoundForcePerCubicFoot:
-                    return new SpecificWeight((_value*1.570874638462462e2) * 1e3d, BaseUnit);
-                case SpecificWeightUnit.KilopoundForcePerCubicInch:
-                    return new SpecificWeight((_value*2.714471375263134e5) * 1e3d, BaseUnit);
-                case SpecificWeightUnit.MeganewtonPerCubicMeter:
-                    return new SpecificWeight((_value) * 1e6d, BaseUnit);
-                case SpecificWeightUnit.NewtonPerCubicCentimeter:
-                    return new SpecificWeight(_value*1000000, BaseUnit);
-                case SpecificWeightUnit.NewtonPerCubicMeter:
-                    return new SpecificWeight(_value, BaseUnit);
-                case SpecificWeightUnit.NewtonPerCubicMillimeter:
-                    return new SpecificWeight(_value*1000000000, BaseUnit);
-                case SpecificWeightUnit.PoundForcePerCubicFoot:
-                    return new SpecificWeight(_value*1.570874638462462e2, BaseUnit);
-                case SpecificWeightUnit.PoundForcePerCubicInch:
-                    return new SpecificWeight(_value*2.714471375263134e5, BaseUnit);
-                case SpecificWeightUnit.TonneForcePerCubicCentimeter:
-                    return new SpecificWeight(_value*9.80665e9, BaseUnit);
-                case SpecificWeightUnit.TonneForcePerCubicMeter:
-                    return new SpecificWeight(_value*9.80665e3, BaseUnit);
-                case SpecificWeightUnit.TonneForcePerCubicMillimeter:
-                    return new SpecificWeight(_value*9.80665e12, BaseUnit);
+                case SpecificWeightUnit.KilogramForcePerCubicCentimeter: return _value*9.80665e6;
+                case SpecificWeightUnit.KilogramForcePerCubicMeter: return _value*9.80665;
+                case SpecificWeightUnit.KilogramForcePerCubicMillimeter: return _value*9.80665e9;
+                case SpecificWeightUnit.KilonewtonPerCubicCentimeter: return (_value*1000000) * 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMeter: return (_value) * 1e3d;
+                case SpecificWeightUnit.KilonewtonPerCubicMillimeter: return (_value*1000000000) * 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicFoot: return (_value*1.570874638462462e2) * 1e3d;
+                case SpecificWeightUnit.KilopoundForcePerCubicInch: return (_value*2.714471375263134e5) * 1e3d;
+                case SpecificWeightUnit.MeganewtonPerCubicMeter: return (_value) * 1e6d;
+                case SpecificWeightUnit.NewtonPerCubicCentimeter: return _value*1000000;
+                case SpecificWeightUnit.NewtonPerCubicMeter: return _value;
+                case SpecificWeightUnit.NewtonPerCubicMillimeter: return _value*1000000000;
+                case SpecificWeightUnit.PoundForcePerCubicFoot: return _value*1.570874638462462e2;
+                case SpecificWeightUnit.PoundForcePerCubicInch: return _value*2.714471375263134e5;
+                case SpecificWeightUnit.TonneForcePerCubicCentimeter: return _value*9.80665e9;
+                case SpecificWeightUnit.TonneForcePerCubicMeter: return _value*9.80665e3;
+                case SpecificWeightUnit.TonneForcePerCubicMillimeter: return _value*9.80665e12;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(SpecificWeightUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal SpecificWeight ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new SpecificWeight(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(SpecificWeightUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

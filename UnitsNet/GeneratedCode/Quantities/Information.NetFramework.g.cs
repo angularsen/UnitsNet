@@ -706,12 +706,12 @@ namespace UnitsNet
 
         public static Information operator +(Information left, Information right)
         {
-            return new Information(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Information(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Information operator -(Information left, Information right)
         {
-            return new Information(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Information(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Information operator *(decimal left, Information right)
@@ -740,22 +740,22 @@ namespace UnitsNet
 
         public static bool operator <=(Information left, Information right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(Information left, Information right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(Information left, Information right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(Information left, Information right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(Information left, Information right)	
@@ -779,7 +779,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Information other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -792,7 +792,7 @@ namespace UnitsNet
 
         public bool Equals(Information other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -868,7 +868,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -878,7 +878,7 @@ namespace UnitsNet
         /// <returns>A Information with the specified unit.</returns>
         public Information ToUnit(InformationUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Information(convertedValue, unit);
         }
 
@@ -887,74 +887,58 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Information AsBaseUnit()
+        private decimal GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case InformationUnit.Bit:
-                    return new Information(_value, BaseUnit);
-                case InformationUnit.Byte:
-                    return new Information(_value*8m, BaseUnit);
-                case InformationUnit.Exabit:
-                    return new Information((_value) * 1e18m, BaseUnit);
-                case InformationUnit.Exabyte:
-                    return new Information((_value*8m) * 1e18m, BaseUnit);
-                case InformationUnit.Exbibit:
-                    return new Information((_value) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024), BaseUnit);
-                case InformationUnit.Exbibyte:
-                    return new Information((_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024), BaseUnit);
-                case InformationUnit.Gibibit:
-                    return new Information((_value) * (1024m * 1024 * 1024), BaseUnit);
-                case InformationUnit.Gibibyte:
-                    return new Information((_value*8m) * (1024m * 1024 * 1024), BaseUnit);
-                case InformationUnit.Gigabit:
-                    return new Information((_value) * 1e9m, BaseUnit);
-                case InformationUnit.Gigabyte:
-                    return new Information((_value*8m) * 1e9m, BaseUnit);
-                case InformationUnit.Kibibit:
-                    return new Information((_value) * 1024m, BaseUnit);
-                case InformationUnit.Kibibyte:
-                    return new Information((_value*8m) * 1024m, BaseUnit);
-                case InformationUnit.Kilobit:
-                    return new Information((_value) * 1e3m, BaseUnit);
-                case InformationUnit.Kilobyte:
-                    return new Information((_value*8m) * 1e3m, BaseUnit);
-                case InformationUnit.Mebibit:
-                    return new Information((_value) * (1024m * 1024), BaseUnit);
-                case InformationUnit.Mebibyte:
-                    return new Information((_value*8m) * (1024m * 1024), BaseUnit);
-                case InformationUnit.Megabit:
-                    return new Information((_value) * 1e6m, BaseUnit);
-                case InformationUnit.Megabyte:
-                    return new Information((_value*8m) * 1e6m, BaseUnit);
-                case InformationUnit.Pebibit:
-                    return new Information((_value) * (1024m * 1024 * 1024 * 1024 * 1024), BaseUnit);
-                case InformationUnit.Pebibyte:
-                    return new Information((_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024), BaseUnit);
-                case InformationUnit.Petabit:
-                    return new Information((_value) * 1e15m, BaseUnit);
-                case InformationUnit.Petabyte:
-                    return new Information((_value*8m) * 1e15m, BaseUnit);
-                case InformationUnit.Tebibit:
-                    return new Information((_value) * (1024m * 1024 * 1024 * 1024), BaseUnit);
-                case InformationUnit.Tebibyte:
-                    return new Information((_value*8m) * (1024m * 1024 * 1024 * 1024), BaseUnit);
-                case InformationUnit.Terabit:
-                    return new Information((_value) * 1e12m, BaseUnit);
-                case InformationUnit.Terabyte:
-                    return new Information((_value*8m) * 1e12m, BaseUnit);
+                case InformationUnit.Bit: return _value;
+                case InformationUnit.Byte: return _value*8m;
+                case InformationUnit.Exabit: return (_value) * 1e18m;
+                case InformationUnit.Exabyte: return (_value*8m) * 1e18m;
+                case InformationUnit.Exbibit: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case InformationUnit.Exbibyte: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024 * 1024);
+                case InformationUnit.Gibibit: return (_value) * (1024m * 1024 * 1024);
+                case InformationUnit.Gibibyte: return (_value*8m) * (1024m * 1024 * 1024);
+                case InformationUnit.Gigabit: return (_value) * 1e9m;
+                case InformationUnit.Gigabyte: return (_value*8m) * 1e9m;
+                case InformationUnit.Kibibit: return (_value) * 1024m;
+                case InformationUnit.Kibibyte: return (_value*8m) * 1024m;
+                case InformationUnit.Kilobit: return (_value) * 1e3m;
+                case InformationUnit.Kilobyte: return (_value*8m) * 1e3m;
+                case InformationUnit.Mebibit: return (_value) * (1024m * 1024);
+                case InformationUnit.Mebibyte: return (_value*8m) * (1024m * 1024);
+                case InformationUnit.Megabit: return (_value) * 1e6m;
+                case InformationUnit.Megabyte: return (_value*8m) * 1e6m;
+                case InformationUnit.Pebibit: return (_value) * (1024m * 1024 * 1024 * 1024 * 1024);
+                case InformationUnit.Pebibyte: return (_value*8m) * (1024m * 1024 * 1024 * 1024 * 1024);
+                case InformationUnit.Petabit: return (_value) * 1e15m;
+                case InformationUnit.Petabyte: return (_value*8m) * 1e15m;
+                case InformationUnit.Tebibit: return (_value) * (1024m * 1024 * 1024 * 1024);
+                case InformationUnit.Tebibyte: return (_value*8m) * (1024m * 1024 * 1024 * 1024);
+                case InformationUnit.Terabit: return (_value) * 1e12m;
+                case InformationUnit.Terabyte: return (_value*8m) * 1e12m;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private decimal AsBaseNumericType(InformationUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Information ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Information(baseUnitValue, BaseUnit);
+        }
+
+        private decimal GetValueAs(InformationUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

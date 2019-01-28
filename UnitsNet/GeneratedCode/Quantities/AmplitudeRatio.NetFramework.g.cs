@@ -400,14 +400,14 @@ namespace UnitsNet
         {
             // Logarithmic addition
             // Formula: 20*log10(10^(x/20) + 10^(y/20))
-            return new AmplitudeRatio(20*Math.Log10(Math.Pow(10, left.Value/20) + Math.Pow(10, right.AsBaseNumericType(left.Unit)/20)), left.Unit);
+            return new AmplitudeRatio(20*Math.Log10(Math.Pow(10, left.Value/20) + Math.Pow(10, right.GetValueAs(left.Unit)/20)), left.Unit);
         }
 
         public static AmplitudeRatio operator -(AmplitudeRatio left, AmplitudeRatio right)
         {
             // Logarithmic subtraction
             // Formula: 20*log10(10^(x/20) - 10^(y/20))
-            return new AmplitudeRatio(20*Math.Log10(Math.Pow(10, left.Value/20) - Math.Pow(10, right.AsBaseNumericType(left.Unit)/20)), left.Unit);
+            return new AmplitudeRatio(20*Math.Log10(Math.Pow(10, left.Value/20) - Math.Pow(10, right.GetValueAs(left.Unit)/20)), left.Unit);
         }
 
         public static AmplitudeRatio operator *(double left, AmplitudeRatio right)
@@ -431,7 +431,7 @@ namespace UnitsNet
         public static double operator /(AmplitudeRatio left, AmplitudeRatio right)
         {
             // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.AsBaseNumericType(left.Unit));
+            return Convert.ToDouble(left.Value - right.GetValueAs(left.Unit));
         }
 
         #endregion
@@ -440,22 +440,22 @@ namespace UnitsNet
 
         public static bool operator <=(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(AmplitudeRatio left, AmplitudeRatio right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(AmplitudeRatio left, AmplitudeRatio right)	
@@ -479,7 +479,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(AmplitudeRatio other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -492,7 +492,7 @@ namespace UnitsNet
 
         public bool Equals(AmplitudeRatio other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -568,7 +568,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -578,7 +578,7 @@ namespace UnitsNet
         /// <returns>A AmplitudeRatio with the specified unit.</returns>
         public AmplitudeRatio ToUnit(AmplitudeRatioUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new AmplitudeRatio(convertedValue, unit);
         }
 
@@ -587,30 +587,36 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal AmplitudeRatio AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case AmplitudeRatioUnit.DecibelMicrovolt:
-                    return new AmplitudeRatio(_value - 120, BaseUnit);
-                case AmplitudeRatioUnit.DecibelMillivolt:
-                    return new AmplitudeRatio(_value - 60, BaseUnit);
-                case AmplitudeRatioUnit.DecibelUnloaded:
-                    return new AmplitudeRatio(_value - 2.218487499, BaseUnit);
-                case AmplitudeRatioUnit.DecibelVolt:
-                    return new AmplitudeRatio(_value, BaseUnit);
+                case AmplitudeRatioUnit.DecibelMicrovolt: return _value - 120;
+                case AmplitudeRatioUnit.DecibelMillivolt: return _value - 60;
+                case AmplitudeRatioUnit.DecibelUnloaded: return _value - 2.218487499;
+                case AmplitudeRatioUnit.DecibelVolt: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(AmplitudeRatioUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal AmplitudeRatio ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new AmplitudeRatio(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(AmplitudeRatioUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

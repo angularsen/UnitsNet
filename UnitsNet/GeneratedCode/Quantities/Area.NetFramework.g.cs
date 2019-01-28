@@ -524,12 +524,12 @@ namespace UnitsNet
 
         public static Area operator +(Area left, Area right)
         {
-            return new Area(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Area(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Area operator -(Area left, Area right)
         {
-            return new Area(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Area(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Area operator *(double left, Area right)
@@ -558,22 +558,22 @@ namespace UnitsNet
 
         public static bool operator <=(Area left, Area right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(Area left, Area right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(Area left, Area right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(Area left, Area right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(Area left, Area right)	
@@ -597,7 +597,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Area other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -610,7 +610,7 @@ namespace UnitsNet
 
         public bool Equals(Area other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -686,7 +686,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -696,7 +696,7 @@ namespace UnitsNet
         /// <returns>A Area with the specified unit.</returns>
         public Area ToUnit(AreaUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Area(convertedValue, unit);
         }
 
@@ -705,48 +705,45 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Area AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case AreaUnit.Acre:
-                    return new Area(_value*4046.85642, BaseUnit);
-                case AreaUnit.Hectare:
-                    return new Area(_value*1e4, BaseUnit);
-                case AreaUnit.SquareCentimeter:
-                    return new Area(_value*1e-4, BaseUnit);
-                case AreaUnit.SquareDecimeter:
-                    return new Area(_value*1e-2, BaseUnit);
-                case AreaUnit.SquareFoot:
-                    return new Area(_value*0.092903, BaseUnit);
-                case AreaUnit.SquareInch:
-                    return new Area(_value*0.00064516, BaseUnit);
-                case AreaUnit.SquareKilometer:
-                    return new Area(_value*1e6, BaseUnit);
-                case AreaUnit.SquareMeter:
-                    return new Area(_value, BaseUnit);
-                case AreaUnit.SquareMicrometer:
-                    return new Area(_value*1e-12, BaseUnit);
-                case AreaUnit.SquareMile:
-                    return new Area(_value*2.59e6, BaseUnit);
-                case AreaUnit.SquareMillimeter:
-                    return new Area(_value*1e-6, BaseUnit);
-                case AreaUnit.SquareYard:
-                    return new Area(_value*0.836127, BaseUnit);
-                case AreaUnit.UsSurveySquareFoot:
-                    return new Area(_value*0.09290341161, BaseUnit);
+                case AreaUnit.Acre: return _value*4046.85642;
+                case AreaUnit.Hectare: return _value*1e4;
+                case AreaUnit.SquareCentimeter: return _value*1e-4;
+                case AreaUnit.SquareDecimeter: return _value*1e-2;
+                case AreaUnit.SquareFoot: return _value*0.092903;
+                case AreaUnit.SquareInch: return _value*0.00064516;
+                case AreaUnit.SquareKilometer: return _value*1e6;
+                case AreaUnit.SquareMeter: return _value;
+                case AreaUnit.SquareMicrometer: return _value*1e-12;
+                case AreaUnit.SquareMile: return _value*2.59e6;
+                case AreaUnit.SquareMillimeter: return _value*1e-6;
+                case AreaUnit.SquareYard: return _value*0.836127;
+                case AreaUnit.UsSurveySquareFoot: return _value*0.09290341161;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(AreaUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Area ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Area(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(AreaUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

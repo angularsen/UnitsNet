@@ -490,7 +490,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(KinematicViscosity other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -504,7 +504,7 @@ namespace UnitsNet
 
         public bool Equals(KinematicViscosity other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -580,7 +580,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -590,7 +590,7 @@ namespace UnitsNet
         /// <returns>A KinematicViscosity with the specified unit.</returns>
         public KinematicViscosity ToUnit(KinematicViscosityUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new KinematicViscosity(convertedValue, unit);
         }
 
@@ -599,38 +599,40 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal KinematicViscosity AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case KinematicViscosityUnit.Centistokes:
-                    return new KinematicViscosity((_value/1e4) * 1e-2d, BaseUnit);
-                case KinematicViscosityUnit.Decistokes:
-                    return new KinematicViscosity((_value/1e4) * 1e-1d, BaseUnit);
-                case KinematicViscosityUnit.Kilostokes:
-                    return new KinematicViscosity((_value/1e4) * 1e3d, BaseUnit);
-                case KinematicViscosityUnit.Microstokes:
-                    return new KinematicViscosity((_value/1e4) * 1e-6d, BaseUnit);
-                case KinematicViscosityUnit.Millistokes:
-                    return new KinematicViscosity((_value/1e4) * 1e-3d, BaseUnit);
-                case KinematicViscosityUnit.Nanostokes:
-                    return new KinematicViscosity((_value/1e4) * 1e-9d, BaseUnit);
-                case KinematicViscosityUnit.SquareMeterPerSecond:
-                    return new KinematicViscosity(_value, BaseUnit);
-                case KinematicViscosityUnit.Stokes:
-                    return new KinematicViscosity(_value/1e4, BaseUnit);
+                case KinematicViscosityUnit.Centistokes: return (_value/1e4) * 1e-2d;
+                case KinematicViscosityUnit.Decistokes: return (_value/1e4) * 1e-1d;
+                case KinematicViscosityUnit.Kilostokes: return (_value/1e4) * 1e3d;
+                case KinematicViscosityUnit.Microstokes: return (_value/1e4) * 1e-6d;
+                case KinematicViscosityUnit.Millistokes: return (_value/1e4) * 1e-3d;
+                case KinematicViscosityUnit.Nanostokes: return (_value/1e4) * 1e-9d;
+                case KinematicViscosityUnit.SquareMeterPerSecond: return _value;
+                case KinematicViscosityUnit.Stokes: return _value/1e4;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(KinematicViscosityUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal KinematicViscosity ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new KinematicViscosity(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(KinematicViscosityUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

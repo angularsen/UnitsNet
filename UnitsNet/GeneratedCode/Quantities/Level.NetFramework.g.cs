@@ -372,14 +372,14 @@ namespace UnitsNet
         {
             // Logarithmic addition
             // Formula: 10*log10(10^(x/10) + 10^(y/10))
-            return new Level(10*Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.AsBaseNumericType(left.Unit)/10)), left.Unit);
+            return new Level(10*Math.Log10(Math.Pow(10, left.Value/10) + Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
         }
 
         public static Level operator -(Level left, Level right)
         {
             // Logarithmic subtraction
             // Formula: 10*log10(10^(x/10) - 10^(y/10))
-            return new Level(10*Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.AsBaseNumericType(left.Unit)/10)), left.Unit);
+            return new Level(10*Math.Log10(Math.Pow(10, left.Value/10) - Math.Pow(10, right.GetValueAs(left.Unit)/10)), left.Unit);
         }
 
         public static Level operator *(double left, Level right)
@@ -403,7 +403,7 @@ namespace UnitsNet
         public static double operator /(Level left, Level right)
         {
             // Logarithmic division = subtraction
-            return Convert.ToDouble(left.Value - right.AsBaseNumericType(left.Unit));
+            return Convert.ToDouble(left.Value - right.GetValueAs(left.Unit));
         }
 
         #endregion
@@ -412,22 +412,22 @@ namespace UnitsNet
 
         public static bool operator <=(Level left, Level right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(Level left, Level right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(Level left, Level right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(Level left, Level right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(Level left, Level right)	
@@ -451,7 +451,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Level other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -464,7 +464,7 @@ namespace UnitsNet
 
         public bool Equals(Level other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -540,7 +540,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -550,7 +550,7 @@ namespace UnitsNet
         /// <returns>A Level with the specified unit.</returns>
         public Level ToUnit(LevelUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Level(convertedValue, unit);
         }
 
@@ -559,26 +559,34 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Level AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case LevelUnit.Decibel:
-                    return new Level(_value, BaseUnit);
-                case LevelUnit.Neper:
-                    return new Level((1/0.115129254)*_value, BaseUnit);
+                case LevelUnit.Decibel: return _value;
+                case LevelUnit.Neper: return (1/0.115129254)*_value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(LevelUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Level ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Level(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(LevelUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

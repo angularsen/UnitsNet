@@ -412,7 +412,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(BrakeSpecificFuelConsumption other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -426,7 +426,7 @@ namespace UnitsNet
 
         public bool Equals(BrakeSpecificFuelConsumption other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -502,7 +502,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -512,7 +512,7 @@ namespace UnitsNet
         /// <returns>A BrakeSpecificFuelConsumption with the specified unit.</returns>
         public BrakeSpecificFuelConsumption ToUnit(BrakeSpecificFuelConsumptionUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new BrakeSpecificFuelConsumption(convertedValue, unit);
         }
 
@@ -521,28 +521,35 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal BrakeSpecificFuelConsumption AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour:
-                    return new BrakeSpecificFuelConsumption(_value/3.6e9, BaseUnit);
-                case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule:
-                    return new BrakeSpecificFuelConsumption(_value, BaseUnit);
-                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour:
-                    return new BrakeSpecificFuelConsumption(_value*1.689659410672e-7, BaseUnit);
+                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour: return _value/3.6e9;
+                case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule: return _value;
+                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour: return _value*1.689659410672e-7;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(BrakeSpecificFuelConsumptionUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal BrakeSpecificFuelConsumption ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new BrakeSpecificFuelConsumption(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(BrakeSpecificFuelConsumptionUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

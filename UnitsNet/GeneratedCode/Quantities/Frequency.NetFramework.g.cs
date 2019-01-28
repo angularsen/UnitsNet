@@ -454,12 +454,12 @@ namespace UnitsNet
 
         public static Frequency operator +(Frequency left, Frequency right)
         {
-            return new Frequency(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Frequency(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Frequency operator -(Frequency left, Frequency right)
         {
-            return new Frequency(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Frequency(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Frequency operator *(double left, Frequency right)
@@ -488,22 +488,22 @@ namespace UnitsNet
 
         public static bool operator <=(Frequency left, Frequency right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(Frequency left, Frequency right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(Frequency left, Frequency right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(Frequency left, Frequency right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(Frequency left, Frequency right)	
@@ -527,7 +527,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Frequency other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -540,7 +540,7 @@ namespace UnitsNet
 
         public bool Equals(Frequency other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -616,7 +616,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -626,7 +626,7 @@ namespace UnitsNet
         /// <returns>A Frequency with the specified unit.</returns>
         public Frequency ToUnit(FrequencyUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Frequency(convertedValue, unit);
         }
 
@@ -635,38 +635,40 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Frequency AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case FrequencyUnit.CyclePerHour:
-                    return new Frequency(_value/3600, BaseUnit);
-                case FrequencyUnit.CyclePerMinute:
-                    return new Frequency(_value/60, BaseUnit);
-                case FrequencyUnit.Gigahertz:
-                    return new Frequency((_value) * 1e9d, BaseUnit);
-                case FrequencyUnit.Hertz:
-                    return new Frequency(_value, BaseUnit);
-                case FrequencyUnit.Kilohertz:
-                    return new Frequency((_value) * 1e3d, BaseUnit);
-                case FrequencyUnit.Megahertz:
-                    return new Frequency((_value) * 1e6d, BaseUnit);
-                case FrequencyUnit.RadianPerSecond:
-                    return new Frequency(_value/6.2831853072, BaseUnit);
-                case FrequencyUnit.Terahertz:
-                    return new Frequency((_value) * 1e12d, BaseUnit);
+                case FrequencyUnit.CyclePerHour: return _value/3600;
+                case FrequencyUnit.CyclePerMinute: return _value/60;
+                case FrequencyUnit.Gigahertz: return (_value) * 1e9d;
+                case FrequencyUnit.Hertz: return _value;
+                case FrequencyUnit.Kilohertz: return (_value) * 1e3d;
+                case FrequencyUnit.Megahertz: return (_value) * 1e6d;
+                case FrequencyUnit.RadianPerSecond: return _value/6.2831853072;
+                case FrequencyUnit.Terahertz: return (_value) * 1e12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(FrequencyUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Frequency ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Frequency(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(FrequencyUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

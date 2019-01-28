@@ -401,12 +401,12 @@ namespace UnitsNet
 
         public static Irradiation operator +(Irradiation left, Irradiation right)
         {
-            return new Irradiation(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Irradiation(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Irradiation operator -(Irradiation left, Irradiation right)
         {
-            return new Irradiation(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Irradiation(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Irradiation operator *(double left, Irradiation right)
@@ -435,22 +435,22 @@ namespace UnitsNet
 
         public static bool operator <=(Irradiation left, Irradiation right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(Irradiation left, Irradiation right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(Irradiation left, Irradiation right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(Irradiation left, Irradiation right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(Irradiation left, Irradiation right)	
@@ -474,7 +474,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Irradiation other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -487,7 +487,7 @@ namespace UnitsNet
 
         public bool Equals(Irradiation other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -563,7 +563,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -573,7 +573,7 @@ namespace UnitsNet
         /// <returns>A Irradiation with the specified unit.</returns>
         public Irradiation ToUnit(IrradiationUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Irradiation(convertedValue, unit);
         }
 
@@ -582,30 +582,36 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Irradiation AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case IrradiationUnit.JoulePerSquareMeter:
-                    return new Irradiation(_value, BaseUnit);
-                case IrradiationUnit.JoulePerSquareMillimeter:
-                    return new Irradiation(_value*1e6, BaseUnit);
-                case IrradiationUnit.KilowattHourPerSquareMeter:
-                    return new Irradiation((_value*3600d) * 1e3d, BaseUnit);
-                case IrradiationUnit.WattHourPerSquareMeter:
-                    return new Irradiation(_value*3600d, BaseUnit);
+                case IrradiationUnit.JoulePerSquareMeter: return _value;
+                case IrradiationUnit.JoulePerSquareMillimeter: return _value*1e6;
+                case IrradiationUnit.KilowattHourPerSquareMeter: return (_value*3600d) * 1e3d;
+                case IrradiationUnit.WattHourPerSquareMeter: return _value*3600d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(IrradiationUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Irradiation ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Irradiation(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(IrradiationUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

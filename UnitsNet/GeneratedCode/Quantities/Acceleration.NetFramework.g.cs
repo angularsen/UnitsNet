@@ -524,12 +524,12 @@ namespace UnitsNet
 
         public static Acceleration operator +(Acceleration left, Acceleration right)
         {
-            return new Acceleration(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Acceleration(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Acceleration operator -(Acceleration left, Acceleration right)
         {
-            return new Acceleration(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new Acceleration(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static Acceleration operator *(double left, Acceleration right)
@@ -558,22 +558,22 @@ namespace UnitsNet
 
         public static bool operator <=(Acceleration left, Acceleration right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(Acceleration left, Acceleration right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(Acceleration left, Acceleration right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(Acceleration left, Acceleration right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(Acceleration left, Acceleration right)	
@@ -597,7 +597,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(Acceleration other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -610,7 +610,7 @@ namespace UnitsNet
 
         public bool Equals(Acceleration other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -686,7 +686,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -696,7 +696,7 @@ namespace UnitsNet
         /// <returns>A Acceleration with the specified unit.</returns>
         public Acceleration ToUnit(AccelerationUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Acceleration(convertedValue, unit);
         }
 
@@ -705,48 +705,45 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Acceleration AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case AccelerationUnit.CentimeterPerSecondSquared:
-                    return new Acceleration((_value) * 1e-2d, BaseUnit);
-                case AccelerationUnit.DecimeterPerSecondSquared:
-                    return new Acceleration((_value) * 1e-1d, BaseUnit);
-                case AccelerationUnit.FootPerSecondSquared:
-                    return new Acceleration(_value*0.304800, BaseUnit);
-                case AccelerationUnit.InchPerSecondSquared:
-                    return new Acceleration(_value*0.0254, BaseUnit);
-                case AccelerationUnit.KilometerPerSecondSquared:
-                    return new Acceleration((_value) * 1e3d, BaseUnit);
-                case AccelerationUnit.KnotPerHour:
-                    return new Acceleration(_value*0.5144444444444/3600, BaseUnit);
-                case AccelerationUnit.KnotPerMinute:
-                    return new Acceleration(_value*0.5144444444444/60, BaseUnit);
-                case AccelerationUnit.KnotPerSecond:
-                    return new Acceleration(_value*0.5144444444444, BaseUnit);
-                case AccelerationUnit.MeterPerSecondSquared:
-                    return new Acceleration(_value, BaseUnit);
-                case AccelerationUnit.MicrometerPerSecondSquared:
-                    return new Acceleration((_value) * 1e-6d, BaseUnit);
-                case AccelerationUnit.MillimeterPerSecondSquared:
-                    return new Acceleration((_value) * 1e-3d, BaseUnit);
-                case AccelerationUnit.NanometerPerSecondSquared:
-                    return new Acceleration((_value) * 1e-9d, BaseUnit);
-                case AccelerationUnit.StandardGravity:
-                    return new Acceleration(_value*9.80665, BaseUnit);
+                case AccelerationUnit.CentimeterPerSecondSquared: return (_value) * 1e-2d;
+                case AccelerationUnit.DecimeterPerSecondSquared: return (_value) * 1e-1d;
+                case AccelerationUnit.FootPerSecondSquared: return _value*0.304800;
+                case AccelerationUnit.InchPerSecondSquared: return _value*0.0254;
+                case AccelerationUnit.KilometerPerSecondSquared: return (_value) * 1e3d;
+                case AccelerationUnit.KnotPerHour: return _value*0.5144444444444/3600;
+                case AccelerationUnit.KnotPerMinute: return _value*0.5144444444444/60;
+                case AccelerationUnit.KnotPerSecond: return _value*0.5144444444444;
+                case AccelerationUnit.MeterPerSecondSquared: return _value;
+                case AccelerationUnit.MicrometerPerSecondSquared: return (_value) * 1e-6d;
+                case AccelerationUnit.MillimeterPerSecondSquared: return (_value) * 1e-3d;
+                case AccelerationUnit.NanometerPerSecondSquared: return (_value) * 1e-9d;
+                case AccelerationUnit.StandardGravity: return _value*9.80665;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(AccelerationUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Acceleration ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Acceleration(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(AccelerationUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

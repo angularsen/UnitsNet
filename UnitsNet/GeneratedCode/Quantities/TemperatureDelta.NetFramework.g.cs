@@ -454,12 +454,12 @@ namespace UnitsNet
 
         public static TemperatureDelta operator +(TemperatureDelta left, TemperatureDelta right)
         {
-            return new TemperatureDelta(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new TemperatureDelta(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static TemperatureDelta operator -(TemperatureDelta left, TemperatureDelta right)
         {
-            return new TemperatureDelta(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new TemperatureDelta(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static TemperatureDelta operator *(double left, TemperatureDelta right)
@@ -488,22 +488,22 @@ namespace UnitsNet
 
         public static bool operator <=(TemperatureDelta left, TemperatureDelta right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(TemperatureDelta left, TemperatureDelta right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(TemperatureDelta left, TemperatureDelta right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(TemperatureDelta left, TemperatureDelta right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(TemperatureDelta left, TemperatureDelta right)	
@@ -527,7 +527,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(TemperatureDelta other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -540,7 +540,7 @@ namespace UnitsNet
 
         public bool Equals(TemperatureDelta other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -616,7 +616,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -626,7 +626,7 @@ namespace UnitsNet
         /// <returns>A TemperatureDelta with the specified unit.</returns>
         public TemperatureDelta ToUnit(TemperatureDeltaUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new TemperatureDelta(convertedValue, unit);
         }
 
@@ -635,38 +635,40 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal TemperatureDelta AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case TemperatureDeltaUnit.DegreeCelsius:
-                    return new TemperatureDelta(_value, BaseUnit);
-                case TemperatureDeltaUnit.DegreeDelisle:
-                    return new TemperatureDelta(_value*-2/3, BaseUnit);
-                case TemperatureDeltaUnit.DegreeFahrenheit:
-                    return new TemperatureDelta(_value*5/9, BaseUnit);
-                case TemperatureDeltaUnit.DegreeNewton:
-                    return new TemperatureDelta(_value*100/33, BaseUnit);
-                case TemperatureDeltaUnit.DegreeRankine:
-                    return new TemperatureDelta(_value*5/9, BaseUnit);
-                case TemperatureDeltaUnit.DegreeReaumur:
-                    return new TemperatureDelta(_value*5/4, BaseUnit);
-                case TemperatureDeltaUnit.DegreeRoemer:
-                    return new TemperatureDelta(_value*40/21, BaseUnit);
-                case TemperatureDeltaUnit.Kelvin:
-                    return new TemperatureDelta(_value, BaseUnit);
+                case TemperatureDeltaUnit.DegreeCelsius: return _value;
+                case TemperatureDeltaUnit.DegreeDelisle: return _value*-2/3;
+                case TemperatureDeltaUnit.DegreeFahrenheit: return _value*5/9;
+                case TemperatureDeltaUnit.DegreeNewton: return _value*100/33;
+                case TemperatureDeltaUnit.DegreeRankine: return _value*5/9;
+                case TemperatureDeltaUnit.DegreeReaumur: return _value*5/4;
+                case TemperatureDeltaUnit.DegreeRoemer: return _value*40/21;
+                case TemperatureDeltaUnit.Kelvin: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(TemperatureDeltaUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal TemperatureDelta ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new TemperatureDelta(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(TemperatureDeltaUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

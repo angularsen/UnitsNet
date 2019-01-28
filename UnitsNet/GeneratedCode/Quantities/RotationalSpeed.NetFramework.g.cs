@@ -524,12 +524,12 @@ namespace UnitsNet
 
         public static RotationalSpeed operator +(RotationalSpeed left, RotationalSpeed right)
         {
-            return new RotationalSpeed(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new RotationalSpeed(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static RotationalSpeed operator -(RotationalSpeed left, RotationalSpeed right)
         {
-            return new RotationalSpeed(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new RotationalSpeed(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static RotationalSpeed operator *(double left, RotationalSpeed right)
@@ -558,22 +558,22 @@ namespace UnitsNet
 
         public static bool operator <=(RotationalSpeed left, RotationalSpeed right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(RotationalSpeed left, RotationalSpeed right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(RotationalSpeed left, RotationalSpeed right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(RotationalSpeed left, RotationalSpeed right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(RotationalSpeed left, RotationalSpeed right)	
@@ -597,7 +597,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(RotationalSpeed other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -610,7 +610,7 @@ namespace UnitsNet
 
         public bool Equals(RotationalSpeed other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -686,7 +686,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -696,7 +696,7 @@ namespace UnitsNet
         /// <returns>A RotationalSpeed with the specified unit.</returns>
         public RotationalSpeed ToUnit(RotationalSpeedUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new RotationalSpeed(convertedValue, unit);
         }
 
@@ -705,48 +705,45 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal RotationalSpeed AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case RotationalSpeedUnit.CentiradianPerSecond:
-                    return new RotationalSpeed((_value) * 1e-2d, BaseUnit);
-                case RotationalSpeedUnit.DeciradianPerSecond:
-                    return new RotationalSpeed((_value) * 1e-1d, BaseUnit);
-                case RotationalSpeedUnit.DegreePerMinute:
-                    return new RotationalSpeed((Math.PI/(180*60))*_value, BaseUnit);
-                case RotationalSpeedUnit.DegreePerSecond:
-                    return new RotationalSpeed((Math.PI/180)*_value, BaseUnit);
-                case RotationalSpeedUnit.MicrodegreePerSecond:
-                    return new RotationalSpeed(((Math.PI/180)*_value) * 1e-6d, BaseUnit);
-                case RotationalSpeedUnit.MicroradianPerSecond:
-                    return new RotationalSpeed((_value) * 1e-6d, BaseUnit);
-                case RotationalSpeedUnit.MillidegreePerSecond:
-                    return new RotationalSpeed(((Math.PI/180)*_value) * 1e-3d, BaseUnit);
-                case RotationalSpeedUnit.MilliradianPerSecond:
-                    return new RotationalSpeed((_value) * 1e-3d, BaseUnit);
-                case RotationalSpeedUnit.NanodegreePerSecond:
-                    return new RotationalSpeed(((Math.PI/180)*_value) * 1e-9d, BaseUnit);
-                case RotationalSpeedUnit.NanoradianPerSecond:
-                    return new RotationalSpeed((_value) * 1e-9d, BaseUnit);
-                case RotationalSpeedUnit.RadianPerSecond:
-                    return new RotationalSpeed(_value, BaseUnit);
-                case RotationalSpeedUnit.RevolutionPerMinute:
-                    return new RotationalSpeed((_value*6.2831853072)/60, BaseUnit);
-                case RotationalSpeedUnit.RevolutionPerSecond:
-                    return new RotationalSpeed(_value*6.2831853072, BaseUnit);
+                case RotationalSpeedUnit.CentiradianPerSecond: return (_value) * 1e-2d;
+                case RotationalSpeedUnit.DeciradianPerSecond: return (_value) * 1e-1d;
+                case RotationalSpeedUnit.DegreePerMinute: return (Math.PI/(180*60))*_value;
+                case RotationalSpeedUnit.DegreePerSecond: return (Math.PI/180)*_value;
+                case RotationalSpeedUnit.MicrodegreePerSecond: return ((Math.PI/180)*_value) * 1e-6d;
+                case RotationalSpeedUnit.MicroradianPerSecond: return (_value) * 1e-6d;
+                case RotationalSpeedUnit.MillidegreePerSecond: return ((Math.PI/180)*_value) * 1e-3d;
+                case RotationalSpeedUnit.MilliradianPerSecond: return (_value) * 1e-3d;
+                case RotationalSpeedUnit.NanodegreePerSecond: return ((Math.PI/180)*_value) * 1e-9d;
+                case RotationalSpeedUnit.NanoradianPerSecond: return (_value) * 1e-9d;
+                case RotationalSpeedUnit.RadianPerSecond: return _value;
+                case RotationalSpeedUnit.RevolutionPerMinute: return (_value*6.2831853072)/60;
+                case RotationalSpeedUnit.RevolutionPerSecond: return _value*6.2831853072;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(RotationalSpeedUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal RotationalSpeed ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new RotationalSpeed(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(RotationalSpeedUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

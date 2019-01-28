@@ -356,12 +356,12 @@ namespace UnitsNet
 
         public static AreaDensity operator +(AreaDensity left, AreaDensity right)
         {
-            return new AreaDensity(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new AreaDensity(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static AreaDensity operator -(AreaDensity left, AreaDensity right)
         {
-            return new AreaDensity(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new AreaDensity(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static AreaDensity operator *(double left, AreaDensity right)
@@ -390,22 +390,22 @@ namespace UnitsNet
 
         public static bool operator <=(AreaDensity left, AreaDensity right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(AreaDensity left, AreaDensity right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(AreaDensity left, AreaDensity right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(AreaDensity left, AreaDensity right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(AreaDensity left, AreaDensity right)	
@@ -429,7 +429,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(AreaDensity other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -442,7 +442,7 @@ namespace UnitsNet
 
         public bool Equals(AreaDensity other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -518,7 +518,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -528,7 +528,7 @@ namespace UnitsNet
         /// <returns>A AreaDensity with the specified unit.</returns>
         public AreaDensity ToUnit(AreaDensityUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new AreaDensity(convertedValue, unit);
         }
 
@@ -537,24 +537,33 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal AreaDensity AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case AreaDensityUnit.KilogramPerSquareMeter:
-                    return new AreaDensity(_value, BaseUnit);
+                case AreaDensityUnit.KilogramPerSquareMeter: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(AreaDensityUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal AreaDensity ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new AreaDensity(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(AreaDensityUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

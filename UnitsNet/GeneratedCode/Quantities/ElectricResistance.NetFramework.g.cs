@@ -412,12 +412,12 @@ namespace UnitsNet
 
         public static ElectricResistance operator +(ElectricResistance left, ElectricResistance right)
         {
-            return new ElectricResistance(left.Value + right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ElectricResistance(left.Value + right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static ElectricResistance operator -(ElectricResistance left, ElectricResistance right)
         {
-            return new ElectricResistance(left.Value - right.AsBaseNumericType(left.Unit), left.Unit);
+            return new ElectricResistance(left.Value - right.GetValueAs(left.Unit), left.Unit);
         }
 
         public static ElectricResistance operator *(double left, ElectricResistance right)
@@ -446,22 +446,22 @@ namespace UnitsNet
 
         public static bool operator <=(ElectricResistance left, ElectricResistance right)
         {
-            return left.Value <= right.AsBaseNumericType(left.Unit);
+            return left.Value <= right.GetValueAs(left.Unit);
         }
 
         public static bool operator >=(ElectricResistance left, ElectricResistance right)
         {
-            return left.Value >= right.AsBaseNumericType(left.Unit);
+            return left.Value >= right.GetValueAs(left.Unit);
         }
 
         public static bool operator <(ElectricResistance left, ElectricResistance right)
         {
-            return left.Value < right.AsBaseNumericType(left.Unit);
+            return left.Value < right.GetValueAs(left.Unit);
         }
 
         public static bool operator >(ElectricResistance left, ElectricResistance right)
         {
-            return left.Value > right.AsBaseNumericType(left.Unit);
+            return left.Value > right.GetValueAs(left.Unit);
         }
 
         public static bool operator ==(ElectricResistance left, ElectricResistance right)	
@@ -485,7 +485,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(ElectricResistance other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         public override bool Equals(object obj)
@@ -498,7 +498,7 @@ namespace UnitsNet
 
         public bool Equals(ElectricResistance other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -574,7 +574,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -584,7 +584,7 @@ namespace UnitsNet
         /// <returns>A ElectricResistance with the specified unit.</returns>
         public ElectricResistance ToUnit(ElectricResistanceUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new ElectricResistance(convertedValue, unit);
         }
 
@@ -593,32 +593,37 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ElectricResistance AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ElectricResistanceUnit.Gigaohm:
-                    return new ElectricResistance((_value) * 1e9d, BaseUnit);
-                case ElectricResistanceUnit.Kiloohm:
-                    return new ElectricResistance((_value) * 1e3d, BaseUnit);
-                case ElectricResistanceUnit.Megaohm:
-                    return new ElectricResistance((_value) * 1e6d, BaseUnit);
-                case ElectricResistanceUnit.Milliohm:
-                    return new ElectricResistance((_value) * 1e-3d, BaseUnit);
-                case ElectricResistanceUnit.Ohm:
-                    return new ElectricResistance(_value, BaseUnit);
+                case ElectricResistanceUnit.Gigaohm: return (_value) * 1e9d;
+                case ElectricResistanceUnit.Kiloohm: return (_value) * 1e3d;
+                case ElectricResistanceUnit.Megaohm: return (_value) * 1e6d;
+                case ElectricResistanceUnit.Milliohm: return (_value) * 1e-3d;
+                case ElectricResistanceUnit.Ohm: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(ElectricResistanceUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal ElectricResistance ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new ElectricResistance(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(ElectricResistanceUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

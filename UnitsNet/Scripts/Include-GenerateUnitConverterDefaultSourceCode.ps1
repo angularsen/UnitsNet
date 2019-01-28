@@ -71,7 +71,7 @@ foreach ($quantity in $quantities)
         {
 @"
             unitConverter.SetConversionFunction<$quantityName>($quantityName.BaseUnit, $unitEnumName.$enumValue, (q) => (($quantityName)q).ToUnit($unitEnumName.$enumValue));
-            unitConverter.SetConversionFunction<$quantityName>($unitEnumName.$enumValue, $quantityName.BaseUnit, (q) => (($quantityName)q).AsBaseUnit());
+            unitConverter.SetConversionFunction<$quantityName>($unitEnumName.$enumValue, $quantityName.BaseUnit, (q) => (($quantityName)q).ToBaseUnit());
 "@;
         }
     }

@@ -490,7 +490,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(Molarity other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -504,7 +504,7 @@ namespace UnitsNet
 
         public bool Equals(Molarity other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -580,7 +580,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -590,7 +590,7 @@ namespace UnitsNet
         /// <returns>A Molarity with the specified unit.</returns>
         public Molarity ToUnit(MolarityUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new Molarity(convertedValue, unit);
         }
 
@@ -599,38 +599,40 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal Molarity AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case MolarityUnit.CentimolesPerLiter:
-                    return new Molarity((_value/1e-3) * 1e-2d, BaseUnit);
-                case MolarityUnit.DecimolesPerLiter:
-                    return new Molarity((_value/1e-3) * 1e-1d, BaseUnit);
-                case MolarityUnit.MicromolesPerLiter:
-                    return new Molarity((_value/1e-3) * 1e-6d, BaseUnit);
-                case MolarityUnit.MillimolesPerLiter:
-                    return new Molarity((_value/1e-3) * 1e-3d, BaseUnit);
-                case MolarityUnit.MolesPerCubicMeter:
-                    return new Molarity(_value, BaseUnit);
-                case MolarityUnit.MolesPerLiter:
-                    return new Molarity(_value/1e-3, BaseUnit);
-                case MolarityUnit.NanomolesPerLiter:
-                    return new Molarity((_value/1e-3) * 1e-9d, BaseUnit);
-                case MolarityUnit.PicomolesPerLiter:
-                    return new Molarity((_value/1e-3) * 1e-12d, BaseUnit);
+                case MolarityUnit.CentimolesPerLiter: return (_value/1e-3) * 1e-2d;
+                case MolarityUnit.DecimolesPerLiter: return (_value/1e-3) * 1e-1d;
+                case MolarityUnit.MicromolesPerLiter: return (_value/1e-3) * 1e-6d;
+                case MolarityUnit.MillimolesPerLiter: return (_value/1e-3) * 1e-3d;
+                case MolarityUnit.MolesPerCubicMeter: return _value;
+                case MolarityUnit.MolesPerLiter: return _value/1e-3;
+                case MolarityUnit.NanomolesPerLiter: return (_value/1e-3) * 1e-9d;
+                case MolarityUnit.PicomolesPerLiter: return (_value/1e-3) * 1e-12d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(MolarityUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal Molarity ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new Molarity(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(MolarityUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {

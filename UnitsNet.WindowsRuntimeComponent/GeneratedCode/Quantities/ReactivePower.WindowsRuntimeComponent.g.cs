@@ -427,7 +427,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(ReactivePower other)
         {
-            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
+            return _value.CompareTo(other.GetValueAs(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -441,7 +441,7 @@ namespace UnitsNet
 
         public bool Equals(ReactivePower other)
         {
-            return _value.Equals(other.AsBaseNumericType(this.Unit));
+            return _value.Equals(other.GetValueAs(this.Unit));
         }
 
         /// <summary>
@@ -517,7 +517,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = AsBaseNumericType(unit);
+            var converted = GetValueAs(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -527,7 +527,7 @@ namespace UnitsNet
         /// <returns>A ReactivePower with the specified unit.</returns>
         public ReactivePower ToUnit(ReactivePowerUnit unit)
         {
-            var convertedValue = AsBaseNumericType(unit);
+            var convertedValue = GetValueAs(unit);
             return new ReactivePower(convertedValue, unit);
         }
 
@@ -536,30 +536,36 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        internal ReactivePower AsBaseUnit()
+        private double GetValueInBaseUnit()
         {
             switch(Unit)
             {
-                case ReactivePowerUnit.GigavoltampereReactive:
-                    return new ReactivePower((_value) * 1e9d, BaseUnit);
-                case ReactivePowerUnit.KilovoltampereReactive:
-                    return new ReactivePower((_value) * 1e3d, BaseUnit);
-                case ReactivePowerUnit.MegavoltampereReactive:
-                    return new ReactivePower((_value) * 1e6d, BaseUnit);
-                case ReactivePowerUnit.VoltampereReactive:
-                    return new ReactivePower(_value, BaseUnit);
+                case ReactivePowerUnit.GigavoltampereReactive: return (_value) * 1e9d;
+                case ReactivePowerUnit.KilovoltampereReactive: return (_value) * 1e3d;
+                case ReactivePowerUnit.MegavoltampereReactive: return (_value) * 1e6d;
+                case ReactivePowerUnit.VoltampereReactive: return _value;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to base units.");
             }
         }
 
-        private double AsBaseNumericType(ReactivePowerUnit unit)
+        /// <summary>
+        ///     Converts the current value + unit to the base unit.
+        ///     This is typically the first step in converting from one unit to another.
+        /// </summary>
+        /// <returns>The value in the base unit representation.</returns>
+        internal ReactivePower ToBaseUnit()
+        {
+            var baseUnitValue = GetValueInBaseUnit();
+            return new ReactivePower(baseUnitValue, BaseUnit);
+        }
+
+        private double GetValueAs(ReactivePowerUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var asBaseUnit = AsBaseUnit();
-            var baseUnitValue = asBaseUnit._value;
+            var baseUnitValue = GetValueInBaseUnit();
 
             switch(unit)
             {
