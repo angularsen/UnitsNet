@@ -67,6 +67,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="value">Numeric value.</param>
         /// <param name="unit">Unit enum value.</param>
+        /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns><c>True</c> if successful with <paramref name="quantity"/> assigned the value, otherwise <c>false</c>.</returns>
         public static bool TryFrom(QuantityValue value, Enum unit, out IQuantity quantity)
         {
@@ -372,6 +373,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
+        /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns>The parsed quantity.</returns>
         public static bool TryParse(Type quantityType, string quantityString, out IQuantity quantity)
         {
