@@ -383,6 +383,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>The parsed quantity.</returns>
         /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
         public static IQuantity Parse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString)
@@ -405,6 +406,7 @@ namespace UnitsNet
         /// <param name="quantityType">Type of quantity, such as <see cref="Length"/>.</param>
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
+        /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>The parsed quantity.</returns>
         public static bool TryParse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString, out IQuantity quantity)
         {
