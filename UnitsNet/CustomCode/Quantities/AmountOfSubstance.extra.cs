@@ -35,7 +35,7 @@ namespace UnitsNet
     public partial struct AmountOfSubstance
 #endif
     {
-        public const double AvogadroConstant = 6.02214076e23;
+        public static double AvogadroConstant { get; } = 6.02214076e23;
 
         /// <summary>
         /// Calculates the number of particles (atoms or molecules) in this amount of substance using the <see cref="AvogadroConstant"/>.
