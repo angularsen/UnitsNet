@@ -70,7 +70,7 @@ namespace UnitsNet
         static LinearDensity()
         {
             BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<LinearDensityUnit>(QuantityType.LinearDensity, Units, Zero);
+            Info = new QuantityInfo<LinearDensityUnit>(QuantityType.LinearDensity, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit KilogramPerMeter.

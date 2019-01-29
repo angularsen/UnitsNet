@@ -64,7 +64,7 @@ namespace UnitsNet
         static Pressure()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<PressureUnit>(QuantityType.Pressure, Units, Zero);
+            Info = new QuantityInfo<PressureUnit>(QuantityType.Pressure, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

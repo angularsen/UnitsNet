@@ -70,7 +70,7 @@ namespace UnitsNet
         static ElectricResistivity()
         {
             BaseDimensions = new BaseDimensions(3, 1, -3, -2, 0, 0, 0);
-            Info = new QuantityInfo<ElectricResistivityUnit>(QuantityType.ElectricResistivity, Units, Zero);
+            Info = new QuantityInfo<ElectricResistivityUnit>(QuantityType.ElectricResistivity, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit OhmMeter.

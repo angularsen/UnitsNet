@@ -67,7 +67,7 @@ namespace UnitsNet
         static DynamicViscosity()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<DynamicViscosityUnit>(QuantityType.DynamicViscosity, Units, Zero);
+            Info = new QuantityInfo<DynamicViscosityUnit>(QuantityType.DynamicViscosity, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

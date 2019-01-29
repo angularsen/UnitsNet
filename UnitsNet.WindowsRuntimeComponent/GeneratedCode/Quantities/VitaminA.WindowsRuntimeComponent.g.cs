@@ -67,7 +67,7 @@ namespace UnitsNet
         static VitaminA()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<VitaminAUnit>(QuantityType.VitaminA, Units, Zero);
+            Info = new QuantityInfo<VitaminAUnit>(QuantityType.VitaminA, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit InternationalUnit.

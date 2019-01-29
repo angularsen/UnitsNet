@@ -67,7 +67,7 @@ namespace UnitsNet
         static MassFlux()
         {
             BaseDimensions = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<MassFluxUnit>(QuantityType.MassFlux, Units, Zero);
+            Info = new QuantityInfo<MassFluxUnit>(QuantityType.MassFlux, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit KilogramPerSecondPerSquareMeter.

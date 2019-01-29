@@ -67,7 +67,7 @@ namespace UnitsNet
         static ThermalResistance()
         {
             BaseDimensions = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
-            Info = new QuantityInfo<ThermalResistanceUnit>(QuantityType.ThermalResistance, Units, Zero);
+            Info = new QuantityInfo<ThermalResistanceUnit>(QuantityType.ThermalResistance, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit SquareMeterKelvinPerKilowatt.

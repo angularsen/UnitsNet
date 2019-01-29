@@ -64,7 +64,7 @@ namespace UnitsNet
         static AmplitudeRatio()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<AmplitudeRatioUnit>(QuantityType.AmplitudeRatio, Units, Zero);
+            Info = new QuantityInfo<AmplitudeRatioUnit>(QuantityType.AmplitudeRatio, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

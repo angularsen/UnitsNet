@@ -64,7 +64,7 @@ namespace UnitsNet
         static RotationalStiffnessPerLength()
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<RotationalStiffnessPerLengthUnit>(QuantityType.RotationalStiffnessPerLength, Units, Zero);
+            Info = new QuantityInfo<RotationalStiffnessPerLengthUnit>(QuantityType.RotationalStiffnessPerLength, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

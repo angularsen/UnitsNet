@@ -67,7 +67,7 @@ namespace UnitsNet
         static Density()
         {
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<DensityUnit>(QuantityType.Density, Units, Zero);
+            Info = new QuantityInfo<DensityUnit>(QuantityType.Density, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

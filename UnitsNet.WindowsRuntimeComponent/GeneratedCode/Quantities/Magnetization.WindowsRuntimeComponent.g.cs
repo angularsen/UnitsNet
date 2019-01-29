@@ -70,7 +70,7 @@ namespace UnitsNet
         static Magnetization()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
-            Info = new QuantityInfo<MagnetizationUnit>(QuantityType.Magnetization, Units, Zero);
+            Info = new QuantityInfo<MagnetizationUnit>(QuantityType.Magnetization, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit AmperePerMeter.

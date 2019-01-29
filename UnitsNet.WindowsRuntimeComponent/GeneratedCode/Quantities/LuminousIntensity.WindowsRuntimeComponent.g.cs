@@ -70,7 +70,7 @@ namespace UnitsNet
         static LuminousIntensity()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
-            Info = new QuantityInfo<LuminousIntensityUnit>(QuantityType.LuminousIntensity, Units, Zero);
+            Info = new QuantityInfo<LuminousIntensityUnit>(QuantityType.LuminousIntensity, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Candela.

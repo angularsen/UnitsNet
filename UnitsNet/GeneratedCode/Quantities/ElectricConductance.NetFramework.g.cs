@@ -67,7 +67,7 @@ namespace UnitsNet
         static ElectricConductance()
         {
             BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
-            Info = new QuantityInfo<ElectricConductanceUnit>(QuantityType.ElectricConductance, Units, Zero);
+            Info = new QuantityInfo<ElectricConductanceUnit>(QuantityType.ElectricConductance, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

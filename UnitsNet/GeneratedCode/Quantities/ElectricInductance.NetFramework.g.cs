@@ -67,7 +67,7 @@ namespace UnitsNet
         static ElectricInductance()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -2, 0, 0, 0);
-            Info = new QuantityInfo<ElectricInductanceUnit>(QuantityType.ElectricInductance, Units, Zero);
+            Info = new QuantityInfo<ElectricInductanceUnit>(QuantityType.ElectricInductance, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -64,7 +64,7 @@ namespace UnitsNet
         static Duration()
         {
             BaseDimensions = new BaseDimensions(0, 0, 1, 0, 0, 0, 0);
-            Info = new QuantityInfo<DurationUnit>(QuantityType.Duration, Units, Zero);
+            Info = new QuantityInfo<DurationUnit>(QuantityType.Duration, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

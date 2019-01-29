@@ -70,7 +70,7 @@ namespace UnitsNet
         static SolidAngle()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<SolidAngleUnit>(QuantityType.SolidAngle, Units, Zero);
+            Info = new QuantityInfo<SolidAngleUnit>(QuantityType.SolidAngle, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Steradian.

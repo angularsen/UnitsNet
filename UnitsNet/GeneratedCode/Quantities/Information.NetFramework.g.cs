@@ -64,7 +64,7 @@ namespace UnitsNet
         static Information()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<InformationUnit>(QuantityType.Information, Units, Zero);
+            Info = new QuantityInfo<InformationUnit>(QuantityType.Information, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -67,7 +67,7 @@ namespace UnitsNet
         static Length()
         {
             BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<LengthUnit>(QuantityType.Length, Units, Zero);
+            Info = new QuantityInfo<LengthUnit>(QuantityType.Length, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Meter.

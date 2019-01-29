@@ -124,7 +124,7 @@ if ($obsoleteAttribute)
             BaseDimensions = new BaseDimensions($($baseDimensions.Length), $($baseDimensions.Mass), $($baseDimensions.Time), $($baseDimensions.ElectricCurrent), $($baseDimensions.Temperature), $($baseDimensions.AmountOfSubstance), $($baseDimensions.LuminousIntensity));
 "@; }
 @"
-            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName, Units, Zero);
+            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName, Units, Zero, BaseDimensions);
         }
 "@; # Windows Runtime Component requires a default constructor
     if ($wrc) {@"

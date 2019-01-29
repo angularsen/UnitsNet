@@ -64,7 +64,7 @@ namespace UnitsNet
         static PressureChangeRate()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo<PressureChangeRateUnit>(QuantityType.PressureChangeRate, Units, Zero);
+            Info = new QuantityInfo<PressureChangeRateUnit>(QuantityType.PressureChangeRate, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

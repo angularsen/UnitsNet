@@ -67,7 +67,7 @@ namespace UnitsNet
         static MolarMass()
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
-            Info = new QuantityInfo<MolarMassUnit>(QuantityType.MolarMass, Units, Zero);
+            Info = new QuantityInfo<MolarMassUnit>(QuantityType.MolarMass, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit KilogramPerMole.

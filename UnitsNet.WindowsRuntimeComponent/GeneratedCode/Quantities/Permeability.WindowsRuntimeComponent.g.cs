@@ -70,7 +70,7 @@ namespace UnitsNet
         static Permeability()
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
-            Info = new QuantityInfo<PermeabilityUnit>(QuantityType.Permeability, Units, Zero);
+            Info = new QuantityInfo<PermeabilityUnit>(QuantityType.Permeability, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit HenryPerMeter.

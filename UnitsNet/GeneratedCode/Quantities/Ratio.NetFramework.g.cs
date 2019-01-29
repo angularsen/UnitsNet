@@ -64,7 +64,7 @@ namespace UnitsNet
         static Ratio()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<RatioUnit>(QuantityType.Ratio, Units, Zero);
+            Info = new QuantityInfo<RatioUnit>(QuantityType.Ratio, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -67,7 +67,7 @@ namespace UnitsNet
         static TemperatureDelta()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<TemperatureDeltaUnit>(QuantityType.TemperatureDelta, Units, Zero);
+            Info = new QuantityInfo<TemperatureDeltaUnit>(QuantityType.TemperatureDelta, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Kelvin.

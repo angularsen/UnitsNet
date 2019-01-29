@@ -67,7 +67,7 @@ namespace UnitsNet
         static ElectricAdmittance()
         {
             BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
-            Info = new QuantityInfo<ElectricAdmittanceUnit>(QuantityType.ElectricAdmittance, Units, Zero);
+            Info = new QuantityInfo<ElectricAdmittanceUnit>(QuantityType.ElectricAdmittance, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Siemens.

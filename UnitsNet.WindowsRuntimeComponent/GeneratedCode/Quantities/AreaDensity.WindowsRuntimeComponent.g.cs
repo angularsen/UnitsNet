@@ -67,7 +67,7 @@ namespace UnitsNet
         static AreaDensity()
         {
             BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<AreaDensityUnit>(QuantityType.AreaDensity, Units, Zero);
+            Info = new QuantityInfo<AreaDensityUnit>(QuantityType.AreaDensity, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit KilogramPerSquareMeter.

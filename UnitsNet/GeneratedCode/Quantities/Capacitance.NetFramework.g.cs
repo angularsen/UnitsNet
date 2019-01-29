@@ -67,7 +67,7 @@ namespace UnitsNet
         static Capacitance()
         {
             BaseDimensions = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
-            Info = new QuantityInfo<CapacitanceUnit>(QuantityType.Capacitance, Units, Zero);
+            Info = new QuantityInfo<CapacitanceUnit>(QuantityType.Capacitance, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

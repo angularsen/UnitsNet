@@ -64,7 +64,7 @@ namespace UnitsNet
         static AreaMomentOfInertia()
         {
             BaseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<AreaMomentOfInertiaUnit>(QuantityType.AreaMomentOfInertia, Units, Zero);
+            Info = new QuantityInfo<AreaMomentOfInertiaUnit>(QuantityType.AreaMomentOfInertia, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

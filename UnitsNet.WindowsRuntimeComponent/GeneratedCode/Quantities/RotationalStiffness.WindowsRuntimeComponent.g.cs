@@ -67,7 +67,7 @@ namespace UnitsNet
         static RotationalStiffness()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<RotationalStiffnessUnit>(QuantityType.RotationalStiffness, Units, Zero);
+            Info = new QuantityInfo<RotationalStiffnessUnit>(QuantityType.RotationalStiffness, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit NewtonMeterPerRadian.

@@ -67,7 +67,7 @@ namespace UnitsNet
         static HeatFlux()
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo<HeatFluxUnit>(QuantityType.HeatFlux, Units, Zero);
+            Info = new QuantityInfo<HeatFluxUnit>(QuantityType.HeatFlux, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit WattPerSquareMeter.

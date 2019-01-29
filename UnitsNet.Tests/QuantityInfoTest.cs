@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,6 +21,7 @@
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using UnitsNet.Units;
 using Xunit;
 
@@ -34,14 +35,16 @@ namespace UnitsNet.Tests
             var expectedZero = Length.FromCentimeters(10);
             var expectedUnits = new Enum[] {LengthUnit.Centimeter, LengthUnit.Kilometer};
             var expectedQuantityType = QuantityType.Length;
+            var expectedBaseDimensions = Length.BaseDimensions;
 
-            var info = new QuantityInfo(expectedQuantityType, expectedUnits, expectedZero);
+            var info = new QuantityInfo(expectedQuantityType, expectedUnits, expectedZero, expectedBaseDimensions);
 
             Assert.Equal(expectedZero, info.Zero);
             Assert.Equal("Length", info.Name);
             Assert.Equal(expectedUnits, info.Units);
             Assert.Equal(new[]{"Centimeter", "Kilometer"}, info.UnitNames);
             Assert.Equal(expectedQuantityType, info.QuantityType);
+            Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
         }
 
         [Fact]
@@ -50,42 +53,70 @@ namespace UnitsNet.Tests
             var expectedZero = Length.FromCentimeters(10);
             var expectedUnits = new[] {LengthUnit.Centimeter, LengthUnit.Kilometer};
             var expectedQuantityType = QuantityType.Length;
+            var expectedBaseDimensions = Length.BaseDimensions;
 
-            var info = new QuantityInfo<LengthUnit>(expectedQuantityType, expectedUnits, expectedZero);
+            var info = new QuantityInfo<LengthUnit>(expectedQuantityType, expectedUnits, expectedZero, expectedBaseDimensions);
 
             Assert.Equal(expectedZero, info.Zero);
             Assert.Equal("Length", info.Name);
             Assert.Equal(expectedUnits, info.Units);
             Assert.Equal(new[]{"Centimeter", "Kilometer"}, info.UnitNames);
             Assert.Equal(expectedQuantityType, info.QuantityType);
+            Assert.Equal(expectedBaseDimensions, info.BaseDimensions);
+        }
+
+        [Fact]
+        public void Constructor_GivenNullAsQuantityType_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new QuantityInfo(QuantityType.Undefined, new Enum[0], Length.Zero, Length.BaseDimensions));
+        }
+
+        [Fact]
+        public void GenericsConstructor_GivenNullAsQuantityType_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() => new QuantityInfo<LengthUnit>(QuantityType.Undefined, Length.Units, Length.Zero, Length.BaseDimensions));
         }
 
         [Fact]
         [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public void Constructor_GivenNullAsUnits_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new QuantityInfo(QuantityType.Length, null, null));
+            Assert.Throws<ArgumentNullException>(() => new QuantityInfo(QuantityType.Length, null, Length.Zero, Length.BaseDimensions));
         }
 
         [Fact]
         [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public void GenericsConstructor_GivenNullAsUnits_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(QuantityType.Length, null, null));
+            Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(QuantityType.Length, null, Length.Zero, Length.BaseDimensions));
         }
 
         [Fact]
         [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public void Constructor_GivenNullAsZero_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new QuantityInfo(QuantityType.Length, new Enum[0], null));
+            Assert.Throws<ArgumentNullException>(() => new QuantityInfo(QuantityType.Length, new Enum[0], null, Length.BaseDimensions));
         }
 
         [Fact]
         [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         public void GenericsConstructor_GivenNullAsZero_ThrowsArgumentNullException()
         {
-            Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(QuantityType.Length, new LengthUnit[0], null));
+            Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(QuantityType.Length, Length.Units, null, Length.BaseDimensions));
+        }
+
+        [Fact]
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        public void Constructor_GivenNullAsBaseDimensions_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new QuantityInfo(QuantityType.Length, new Enum[0], Length.Zero, null));
+        }
+
+        [Fact]
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
+        public void GenericsConstructor_GivenNullAsBaseDimensions_ThrowsArgumentNullException()
+        {
+            Assert.Throws<ArgumentNullException>(() => new QuantityInfo<LengthUnit>(QuantityType.Length, Length.Units, Length.Zero, null));
         }
     }
 }

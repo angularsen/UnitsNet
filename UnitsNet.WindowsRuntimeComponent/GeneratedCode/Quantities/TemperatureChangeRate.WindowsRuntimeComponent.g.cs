@@ -67,7 +67,7 @@ namespace UnitsNet
         static TemperatureChangeRate()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
-            Info = new QuantityInfo<TemperatureChangeRateUnit>(QuantityType.TemperatureChangeRate, Units, Zero);
+            Info = new QuantityInfo<TemperatureChangeRateUnit>(QuantityType.TemperatureChangeRate, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit DegreeCelsiusPerSecond.

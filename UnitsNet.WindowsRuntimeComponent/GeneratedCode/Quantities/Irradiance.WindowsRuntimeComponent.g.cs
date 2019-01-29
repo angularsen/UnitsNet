@@ -67,7 +67,7 @@ namespace UnitsNet
         static Irradiance()
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo<IrradianceUnit>(QuantityType.Irradiance, Units, Zero);
+            Info = new QuantityInfo<IrradianceUnit>(QuantityType.Irradiance, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit WattPerSquareMeter.

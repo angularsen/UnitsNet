@@ -64,7 +64,7 @@ namespace UnitsNet
         static Angle()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<AngleUnit>(QuantityType.Angle, Units, Zero);
+            Info = new QuantityInfo<AngleUnit>(QuantityType.Angle, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -67,7 +67,7 @@ namespace UnitsNet
         static LapseRate()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
-            Info = new QuantityInfo<LapseRateUnit>(QuantityType.LapseRate, Units, Zero);
+            Info = new QuantityInfo<LapseRateUnit>(QuantityType.LapseRate, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit DegreeCelsiusPerKilometer.

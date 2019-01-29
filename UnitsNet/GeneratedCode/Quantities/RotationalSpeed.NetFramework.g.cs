@@ -64,7 +64,7 @@ namespace UnitsNet
         static RotationalSpeed()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<RotationalSpeedUnit>(QuantityType.RotationalSpeed, Units, Zero);
+            Info = new QuantityInfo<RotationalSpeedUnit>(QuantityType.RotationalSpeed, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

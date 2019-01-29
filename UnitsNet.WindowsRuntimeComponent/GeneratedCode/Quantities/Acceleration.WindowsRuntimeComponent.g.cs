@@ -67,7 +67,7 @@ namespace UnitsNet
         static Acceleration()
         {
             BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<AccelerationUnit>(QuantityType.Acceleration, Units, Zero);
+            Info = new QuantityInfo<AccelerationUnit>(QuantityType.Acceleration, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit MeterPerSecondSquared.

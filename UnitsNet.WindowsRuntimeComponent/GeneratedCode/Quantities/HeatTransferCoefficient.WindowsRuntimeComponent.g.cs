@@ -67,7 +67,7 @@ namespace UnitsNet
         static HeatTransferCoefficient()
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, -1, 0, 0);
-            Info = new QuantityInfo<HeatTransferCoefficientUnit>(QuantityType.HeatTransferCoefficient, Units, Zero);
+            Info = new QuantityInfo<HeatTransferCoefficientUnit>(QuantityType.HeatTransferCoefficient, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit WattPerSquareMeterKelvin.

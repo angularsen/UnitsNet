@@ -70,7 +70,7 @@ namespace UnitsNet
         static MagneticFlux()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
-            Info = new QuantityInfo<MagneticFluxUnit>(QuantityType.MagneticFlux, Units, Zero);
+            Info = new QuantityInfo<MagneticFluxUnit>(QuantityType.MagneticFlux, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Weber.

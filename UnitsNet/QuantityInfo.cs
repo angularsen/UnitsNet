@@ -50,19 +50,22 @@ namespace UnitsNet
             .Where(t => t.IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
             .ToArray();
 
-        public QuantityInfo(QuantityType quantityType, [NotNull] Enum[] units, [NotNull] IQuantity zero)
+        public QuantityInfo(QuantityType quantityType, [NotNull] Enum[] units, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
         {
+            if(quantityType == QuantityType.Undefined) throw new ArgumentException("Quantity type can not be undefined.", nameof(quantityType));
             if (units == null) throw new ArgumentNullException(nameof(units));
+            if (zero == null) throw new ArgumentNullException(nameof(zero));
+            if (baseDimensions == null) throw new ArgumentNullException(nameof(baseDimensions));
 
             Name = quantityType.ToString();
             QuantityType = quantityType;
             UnitType = UnitEnumTypes.First(t => t.Name == $"{quantityType}Unit");
             UnitNames = units.Select(u => u.ToString()).ToArray();
             Units = units;
-            Zero = zero ?? throw new ArgumentNullException(nameof(zero));
+            Zero = zero;
             ValueType = zero.GetType();
+            BaseDimensions = baseDimensions;
         }
-
 
         /// <summary>
         ///     Quantity name, such as "Length" or "Mass".
@@ -99,6 +102,11 @@ namespace UnitsNet
         ///     Quantity value type, such as <see cref="Length"/> or <see cref="Mass"/>.
         /// </summary>
         public Type ValueType { get; }
+
+        /// <summary>
+        ///     The <see cref="BaseDimensions" /> for a quantity.
+        /// </summary>
+        public BaseDimensions BaseDimensions { get; }
     }
 
     /// <inheritdoc cref="QuantityInfo" />
@@ -116,8 +124,8 @@ namespace UnitsNet
     class QuantityInfo<TUnit> : QuantityInfo
         where TUnit : Enum
     {
-        public QuantityInfo(QuantityType quantityType, TUnit[] units, IQuantity<TUnit> zero)
-            : base(quantityType, units.Cast<Enum>().ToArray(), zero)
+        public QuantityInfo(QuantityType quantityType, TUnit[] units, IQuantity<TUnit> zero, BaseDimensions baseDimensions)
+            : base(quantityType, units.Cast<Enum>().ToArray(), zero, baseDimensions)
         {
             Zero = zero;
             Units = units;

@@ -64,7 +64,7 @@ namespace UnitsNet
         static ReactiveEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<ReactiveEnergyUnit>(QuantityType.ReactiveEnergy, Units, Zero);
+            Info = new QuantityInfo<ReactiveEnergyUnit>(QuantityType.ReactiveEnergy, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

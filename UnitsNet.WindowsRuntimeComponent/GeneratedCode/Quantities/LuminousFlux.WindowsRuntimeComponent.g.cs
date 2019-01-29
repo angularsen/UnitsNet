@@ -70,7 +70,7 @@ namespace UnitsNet
         static LuminousFlux()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
-            Info = new QuantityInfo<LuminousFluxUnit>(QuantityType.LuminousFlux, Units, Zero);
+            Info = new QuantityInfo<LuminousFluxUnit>(QuantityType.LuminousFlux, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Lumen.

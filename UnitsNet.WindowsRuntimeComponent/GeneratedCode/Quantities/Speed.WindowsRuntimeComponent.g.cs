@@ -67,7 +67,7 @@ namespace UnitsNet
         static Speed()
         {
             BaseDimensions = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<SpeedUnit>(QuantityType.Speed, Units, Zero);
+            Info = new QuantityInfo<SpeedUnit>(QuantityType.Speed, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit MeterPerSecond.

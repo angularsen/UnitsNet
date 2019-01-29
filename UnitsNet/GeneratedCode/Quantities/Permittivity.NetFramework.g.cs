@@ -67,7 +67,7 @@ namespace UnitsNet
         static Permittivity()
         {
             BaseDimensions = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
-            Info = new QuantityInfo<PermittivityUnit>(QuantityType.Permittivity, Units, Zero);
+            Info = new QuantityInfo<PermittivityUnit>(QuantityType.Permittivity, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

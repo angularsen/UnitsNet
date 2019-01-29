@@ -64,7 +64,7 @@ namespace UnitsNet
         static Torque()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<TorqueUnit>(QuantityType.Torque, Units, Zero);
+            Info = new QuantityInfo<TorqueUnit>(QuantityType.Torque, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

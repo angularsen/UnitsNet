@@ -70,7 +70,7 @@ namespace UnitsNet
         static Irradiation()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<IrradiationUnit>(QuantityType.Irradiation, Units, Zero);
+            Info = new QuantityInfo<IrradiationUnit>(QuantityType.Irradiation, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit JoulePerSquareMeter.

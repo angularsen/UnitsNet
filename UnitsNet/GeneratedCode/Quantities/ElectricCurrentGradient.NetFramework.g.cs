@@ -64,7 +64,7 @@ namespace UnitsNet
         static ElectricCurrentGradient()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 1, 0, 0, 0);
-            Info = new QuantityInfo<ElectricCurrentGradientUnit>(QuantityType.ElectricCurrentGradient, Units, Zero);
+            Info = new QuantityInfo<ElectricCurrentGradientUnit>(QuantityType.ElectricCurrentGradient, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

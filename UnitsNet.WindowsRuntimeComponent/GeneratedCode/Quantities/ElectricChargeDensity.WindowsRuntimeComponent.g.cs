@@ -70,7 +70,7 @@ namespace UnitsNet
         static ElectricChargeDensity()
         {
             BaseDimensions = new BaseDimensions(-3, 0, 1, 1, 0, 0, 0);
-            Info = new QuantityInfo<ElectricChargeDensityUnit>(QuantityType.ElectricChargeDensity, Units, Zero);
+            Info = new QuantityInfo<ElectricChargeDensityUnit>(QuantityType.ElectricChargeDensity, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit CoulombPerCubicMeter.

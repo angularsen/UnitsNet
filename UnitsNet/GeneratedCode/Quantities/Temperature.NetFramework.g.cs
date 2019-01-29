@@ -64,7 +64,7 @@ namespace UnitsNet
         static Temperature()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
-            Info = new QuantityInfo<TemperatureUnit>(QuantityType.Temperature, Units, Zero);
+            Info = new QuantityInfo<TemperatureUnit>(QuantityType.Temperature, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

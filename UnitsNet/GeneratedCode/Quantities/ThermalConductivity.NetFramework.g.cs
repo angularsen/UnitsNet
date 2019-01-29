@@ -67,7 +67,7 @@ namespace UnitsNet
         static ThermalConductivity()
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, -1, 0, 0);
-            Info = new QuantityInfo<ThermalConductivityUnit>(QuantityType.ThermalConductivity, Units, Zero);
+            Info = new QuantityInfo<ThermalConductivityUnit>(QuantityType.ThermalConductivity, Units, Zero, BaseDimensions);
         }
 
         /// <summary>

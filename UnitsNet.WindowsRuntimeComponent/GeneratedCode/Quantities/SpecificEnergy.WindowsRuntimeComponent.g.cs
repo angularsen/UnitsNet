@@ -70,7 +70,7 @@ namespace UnitsNet
         static SpecificEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<SpecificEnergyUnit>(QuantityType.SpecificEnergy, Units, Zero);
+            Info = new QuantityInfo<SpecificEnergyUnit>(QuantityType.SpecificEnergy, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit JoulePerKilogram.

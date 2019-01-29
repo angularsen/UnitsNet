@@ -70,7 +70,7 @@ namespace UnitsNet
         static KinematicViscosity()
         {
             BaseDimensions = new BaseDimensions(2, 0, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<KinematicViscosityUnit>(QuantityType.KinematicViscosity, Units, Zero);
+            Info = new QuantityInfo<KinematicViscosityUnit>(QuantityType.KinematicViscosity, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit SquareMeterPerSecond.

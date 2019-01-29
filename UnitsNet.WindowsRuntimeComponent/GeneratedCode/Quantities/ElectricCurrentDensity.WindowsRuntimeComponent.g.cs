@@ -70,7 +70,7 @@ namespace UnitsNet
         static ElectricCurrentDensity()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 1, 0, 0, 0);
-            Info = new QuantityInfo<ElectricCurrentDensityUnit>(QuantityType.ElectricCurrentDensity, Units, Zero);
+            Info = new QuantityInfo<ElectricCurrentDensityUnit>(QuantityType.ElectricCurrentDensity, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit AmperePerSquareMeter.

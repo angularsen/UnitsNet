@@ -67,7 +67,7 @@ namespace UnitsNet
         static VolumeFlow()
         {
             BaseDimensions = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<VolumeFlowUnit>(QuantityType.VolumeFlow, Units, Zero);
+            Info = new QuantityInfo<VolumeFlowUnit>(QuantityType.VolumeFlow, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit CubicMeterPerSecond.

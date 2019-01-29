@@ -67,7 +67,7 @@ namespace UnitsNet
         static BrakeSpecificFuelConsumption()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
-            Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>(QuantityType.BrakeSpecificFuelConsumption, Units, Zero);
+            Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>(QuantityType.BrakeSpecificFuelConsumption, Units, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit KilogramPerJoule.
