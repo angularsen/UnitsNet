@@ -39,6 +39,7 @@
 // THE SOFTWARE.
 
 using System;
+using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
 {
@@ -59,5 +60,21 @@ namespace UnitsNet.Tests.CustomCode
         protected override double NanopoundMolesInOneMole => 0.002204622621848776 * 1e9;
         protected override double PoundMolesInOneMole => 0.002204622621848776;
         protected override double MegamolesInOneMole => 1e-6;
+
+        [Fact]
+        public void NumberOfParticlesInOneMoleEqualsAvogadroConstant()
+        {
+            var oneMole = AmountOfSubstance.FromMoles(1);
+            var numberOfParticles = oneMole.NumberOfParticles();
+            Assert.Equal(AmountOfSubstance.AvogadroConstant, numberOfParticles);
+        }
+
+        [Fact]
+        public void NumberOfParticlesInTwoMolesIsDoubleAvogadroConstant()
+        {
+            var oneMole = AmountOfSubstance.FromMoles(2);
+            var numberOfParticles = oneMole.NumberOfParticles();
+            Assert.Equal(AmountOfSubstance.AvogadroConstant * 2, numberOfParticles);
+        }
     }
 }
