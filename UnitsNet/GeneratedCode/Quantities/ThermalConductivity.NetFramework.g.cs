@@ -95,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ThermalConductivity, which is WattPerMeterKelvin. All conversions go via this value.
         /// </summary>
-        public static ThermalConductivityUnit BaseUnit => ThermalConductivityUnit.WattPerMeterKelvin;
+        public static ThermalConductivityUnit BaseUnit { get; } = ThermalConductivityUnit.WattPerMeterKelvin;
 
         /// <summary>
         /// Represents the largest possible value of ThermalConductivity
         /// </summary>
-        public static ThermalConductivity MaxValue => new ThermalConductivity(double.MaxValue, BaseUnit);
+        public static ThermalConductivity MaxValue { get; } = new ThermalConductivity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ThermalConductivity
         /// </summary>
-        public static ThermalConductivity MinValue => new ThermalConductivity(double.MinValue, BaseUnit);
+        public static ThermalConductivity MinValue { get; } = new ThermalConductivity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ThermalConductivity;
+        public static QuantityType QuantityType { get; } = QuantityType.ThermalConductivity;
 
         /// <summary>
         ///     All units of measurement for the ThermalConductivity quantity.
@@ -120,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerMeterKelvin.
         /// </summary>
-        public static ThermalConductivity Zero => new ThermalConductivity(0, BaseUnit);
+        public static ThermalConductivity Zero { get; } = new ThermalConductivity(0, BaseUnit);
 
         #endregion
 

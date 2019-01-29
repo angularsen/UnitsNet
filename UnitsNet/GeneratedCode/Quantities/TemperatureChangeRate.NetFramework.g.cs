@@ -92,22 +92,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of TemperatureChangeRate, which is DegreeCelsiusPerSecond. All conversions go via this value.
         /// </summary>
-        public static TemperatureChangeRateUnit BaseUnit => TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
+        public static TemperatureChangeRateUnit BaseUnit { get; } = TemperatureChangeRateUnit.DegreeCelsiusPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of TemperatureChangeRate
         /// </summary>
-        public static TemperatureChangeRate MaxValue => new TemperatureChangeRate(double.MaxValue, BaseUnit);
+        public static TemperatureChangeRate MaxValue { get; } = new TemperatureChangeRate(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of TemperatureChangeRate
         /// </summary>
-        public static TemperatureChangeRate MinValue => new TemperatureChangeRate(double.MinValue, BaseUnit);
+        public static TemperatureChangeRate MinValue { get; } = new TemperatureChangeRate(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.TemperatureChangeRate;
+        public static QuantityType QuantityType { get; } = QuantityType.TemperatureChangeRate;
 
         /// <summary>
         ///     All units of measurement for the TemperatureChangeRate quantity.
@@ -117,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DegreeCelsiusPerSecond.
         /// </summary>
-        public static TemperatureChangeRate Zero => new TemperatureChangeRate(0, BaseUnit);
+        public static TemperatureChangeRate Zero { get; } = new TemperatureChangeRate(0, BaseUnit);
 
         #endregion
 

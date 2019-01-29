@@ -92,22 +92,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of AmplitudeRatio, which is DecibelVolt. All conversions go via this value.
         /// </summary>
-        public static AmplitudeRatioUnit BaseUnit => AmplitudeRatioUnit.DecibelVolt;
+        public static AmplitudeRatioUnit BaseUnit { get; } = AmplitudeRatioUnit.DecibelVolt;
 
         /// <summary>
         /// Represents the largest possible value of AmplitudeRatio
         /// </summary>
-        public static AmplitudeRatio MaxValue => new AmplitudeRatio(double.MaxValue, BaseUnit);
+        public static AmplitudeRatio MaxValue { get; } = new AmplitudeRatio(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of AmplitudeRatio
         /// </summary>
-        public static AmplitudeRatio MinValue => new AmplitudeRatio(double.MinValue, BaseUnit);
+        public static AmplitudeRatio MinValue { get; } = new AmplitudeRatio(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.AmplitudeRatio;
+        public static QuantityType QuantityType { get; } = QuantityType.AmplitudeRatio;
 
         /// <summary>
         ///     All units of measurement for the AmplitudeRatio quantity.
@@ -117,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecibelVolt.
         /// </summary>
-        public static AmplitudeRatio Zero => new AmplitudeRatio(0, BaseUnit);
+        public static AmplitudeRatio Zero { get; } = new AmplitudeRatio(0, BaseUnit);
 
         #endregion
 

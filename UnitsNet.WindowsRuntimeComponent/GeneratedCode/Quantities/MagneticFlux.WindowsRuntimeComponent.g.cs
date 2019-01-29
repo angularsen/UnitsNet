@@ -109,22 +109,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MagneticFlux, which is Weber. All conversions go via this value.
         /// </summary>
-        public static MagneticFluxUnit BaseUnit => MagneticFluxUnit.Weber;
+        public static MagneticFluxUnit BaseUnit { get; } = MagneticFluxUnit.Weber;
 
         /// <summary>
         /// Represents the largest possible value of MagneticFlux
         /// </summary>
-        public static MagneticFlux MaxValue => new MagneticFlux(double.MaxValue, BaseUnit);
+        public static MagneticFlux MaxValue { get; } = new MagneticFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MagneticFlux
         /// </summary>
-        public static MagneticFlux MinValue => new MagneticFlux(double.MinValue, BaseUnit);
+        public static MagneticFlux MinValue { get; } = new MagneticFlux(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.MagneticFlux;
+        public static QuantityType QuantityType { get; } = QuantityType.MagneticFlux;
 
         /// <summary>
         ///     All units of measurement for the MagneticFlux quantity.
@@ -134,7 +134,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Weber.
         /// </summary>
-        public static MagneticFlux Zero => new MagneticFlux(0, BaseUnit);
+        public static MagneticFlux Zero { get; } = new MagneticFlux(0, BaseUnit);
 
         #endregion
 

@@ -92,22 +92,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ReactiveEnergy, which is VoltampereReactiveHour. All conversions go via this value.
         /// </summary>
-        public static ReactiveEnergyUnit BaseUnit => ReactiveEnergyUnit.VoltampereReactiveHour;
+        public static ReactiveEnergyUnit BaseUnit { get; } = ReactiveEnergyUnit.VoltampereReactiveHour;
 
         /// <summary>
         /// Represents the largest possible value of ReactiveEnergy
         /// </summary>
-        public static ReactiveEnergy MaxValue => new ReactiveEnergy(double.MaxValue, BaseUnit);
+        public static ReactiveEnergy MaxValue { get; } = new ReactiveEnergy(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ReactiveEnergy
         /// </summary>
-        public static ReactiveEnergy MinValue => new ReactiveEnergy(double.MinValue, BaseUnit);
+        public static ReactiveEnergy MinValue { get; } = new ReactiveEnergy(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ReactiveEnergy;
+        public static QuantityType QuantityType { get; } = QuantityType.ReactiveEnergy;
 
         /// <summary>
         ///     All units of measurement for the ReactiveEnergy quantity.
@@ -117,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereReactiveHour.
         /// </summary>
-        public static ReactiveEnergy Zero => new ReactiveEnergy(0, BaseUnit);
+        public static ReactiveEnergy Zero { get; } = new ReactiveEnergy(0, BaseUnit);
 
         #endregion
 

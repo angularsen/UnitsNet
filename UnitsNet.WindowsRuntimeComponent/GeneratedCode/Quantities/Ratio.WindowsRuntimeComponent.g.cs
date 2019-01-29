@@ -106,22 +106,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Ratio, which is DecimalFraction. All conversions go via this value.
         /// </summary>
-        public static RatioUnit BaseUnit => RatioUnit.DecimalFraction;
+        public static RatioUnit BaseUnit { get; } = RatioUnit.DecimalFraction;
 
         /// <summary>
         /// Represents the largest possible value of Ratio
         /// </summary>
-        public static Ratio MaxValue => new Ratio(double.MaxValue, BaseUnit);
+        public static Ratio MaxValue { get; } = new Ratio(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Ratio
         /// </summary>
-        public static Ratio MinValue => new Ratio(double.MinValue, BaseUnit);
+        public static Ratio MinValue { get; } = new Ratio(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Ratio;
+        public static QuantityType QuantityType { get; } = QuantityType.Ratio;
 
         /// <summary>
         ///     All units of measurement for the Ratio quantity.
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecimalFraction.
         /// </summary>
-        public static Ratio Zero => new Ratio(0, BaseUnit);
+        public static Ratio Zero { get; } = new Ratio(0, BaseUnit);
 
         #endregion
 

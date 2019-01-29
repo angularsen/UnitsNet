@@ -95,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricChargeDensity, which is CoulombPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricChargeDensityUnit BaseUnit => ElectricChargeDensityUnit.CoulombPerCubicMeter;
+        public static ElectricChargeDensityUnit BaseUnit { get; } = ElectricChargeDensityUnit.CoulombPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of ElectricChargeDensity
         /// </summary>
-        public static ElectricChargeDensity MaxValue => new ElectricChargeDensity(double.MaxValue, BaseUnit);
+        public static ElectricChargeDensity MaxValue { get; } = new ElectricChargeDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricChargeDensity
         /// </summary>
-        public static ElectricChargeDensity MinValue => new ElectricChargeDensity(double.MinValue, BaseUnit);
+        public static ElectricChargeDensity MinValue { get; } = new ElectricChargeDensity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricChargeDensity;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricChargeDensity;
 
         /// <summary>
         ///     All units of measurement for the ElectricChargeDensity quantity.
@@ -120,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CoulombPerCubicMeter.
         /// </summary>
-        public static ElectricChargeDensity Zero => new ElectricChargeDensity(0, BaseUnit);
+        public static ElectricChargeDensity Zero { get; } = new ElectricChargeDensity(0, BaseUnit);
 
         #endregion
 

@@ -106,22 +106,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Area, which is SquareMeter. All conversions go via this value.
         /// </summary>
-        public static AreaUnit BaseUnit => AreaUnit.SquareMeter;
+        public static AreaUnit BaseUnit { get; } = AreaUnit.SquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of Area
         /// </summary>
-        public static Area MaxValue => new Area(double.MaxValue, BaseUnit);
+        public static Area MaxValue { get; } = new Area(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Area
         /// </summary>
-        public static Area MinValue => new Area(double.MinValue, BaseUnit);
+        public static Area MinValue { get; } = new Area(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Area;
+        public static QuantityType QuantityType { get; } = QuantityType.Area;
 
         /// <summary>
         ///     All units of measurement for the Area quantity.
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeter.
         /// </summary>
-        public static Area Zero => new Area(0, BaseUnit);
+        public static Area Zero { get; } = new Area(0, BaseUnit);
 
         #endregion
 

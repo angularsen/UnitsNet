@@ -95,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Irradiation, which is JoulePerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static IrradiationUnit BaseUnit => IrradiationUnit.JoulePerSquareMeter;
+        public static IrradiationUnit BaseUnit { get; } = IrradiationUnit.JoulePerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of Irradiation
         /// </summary>
-        public static Irradiation MaxValue => new Irradiation(double.MaxValue, BaseUnit);
+        public static Irradiation MaxValue { get; } = new Irradiation(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Irradiation
         /// </summary>
-        public static Irradiation MinValue => new Irradiation(double.MinValue, BaseUnit);
+        public static Irradiation MinValue { get; } = new Irradiation(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Irradiation;
+        public static QuantityType QuantityType { get; } = QuantityType.Irradiation;
 
         /// <summary>
         ///     All units of measurement for the Irradiation quantity.
@@ -120,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerSquareMeter.
         /// </summary>
-        public static Irradiation Zero => new Irradiation(0, BaseUnit);
+        public static Irradiation Zero { get; } = new Irradiation(0, BaseUnit);
 
         #endregion
 

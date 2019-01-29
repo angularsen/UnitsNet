@@ -109,22 +109,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Permittivity, which is FaradPerMeter. All conversions go via this value.
         /// </summary>
-        public static PermittivityUnit BaseUnit => PermittivityUnit.FaradPerMeter;
+        public static PermittivityUnit BaseUnit { get; } = PermittivityUnit.FaradPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Permittivity
         /// </summary>
-        public static Permittivity MaxValue => new Permittivity(double.MaxValue, BaseUnit);
+        public static Permittivity MaxValue { get; } = new Permittivity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Permittivity
         /// </summary>
-        public static Permittivity MinValue => new Permittivity(double.MinValue, BaseUnit);
+        public static Permittivity MinValue { get; } = new Permittivity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Permittivity;
+        public static QuantityType QuantityType { get; } = QuantityType.Permittivity;
 
         /// <summary>
         ///     All units of measurement for the Permittivity quantity.
@@ -134,7 +134,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit FaradPerMeter.
         /// </summary>
-        public static Permittivity Zero => new Permittivity(0, BaseUnit);
+        public static Permittivity Zero { get; } = new Permittivity(0, BaseUnit);
 
         #endregion
 

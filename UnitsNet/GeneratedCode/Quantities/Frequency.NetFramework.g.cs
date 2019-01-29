@@ -92,22 +92,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Frequency, which is Hertz. All conversions go via this value.
         /// </summary>
-        public static FrequencyUnit BaseUnit => FrequencyUnit.Hertz;
+        public static FrequencyUnit BaseUnit { get; } = FrequencyUnit.Hertz;
 
         /// <summary>
         /// Represents the largest possible value of Frequency
         /// </summary>
-        public static Frequency MaxValue => new Frequency(double.MaxValue, BaseUnit);
+        public static Frequency MaxValue { get; } = new Frequency(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Frequency
         /// </summary>
-        public static Frequency MinValue => new Frequency(double.MinValue, BaseUnit);
+        public static Frequency MinValue { get; } = new Frequency(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Frequency;
+        public static QuantityType QuantityType { get; } = QuantityType.Frequency;
 
         /// <summary>
         ///     All units of measurement for the Frequency quantity.
@@ -117,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Hertz.
         /// </summary>
-        public static Frequency Zero => new Frequency(0, BaseUnit);
+        public static Frequency Zero { get; } = new Frequency(0, BaseUnit);
 
         #endregion
 

@@ -109,22 +109,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Molarity, which is MolesPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static MolarityUnit BaseUnit => MolarityUnit.MolesPerCubicMeter;
+        public static MolarityUnit BaseUnit { get; } = MolarityUnit.MolesPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of Molarity
         /// </summary>
-        public static Molarity MaxValue => new Molarity(double.MaxValue, BaseUnit);
+        public static Molarity MaxValue { get; } = new Molarity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Molarity
         /// </summary>
-        public static Molarity MinValue => new Molarity(double.MinValue, BaseUnit);
+        public static Molarity MinValue { get; } = new Molarity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Molarity;
+        public static QuantityType QuantityType { get; } = QuantityType.Molarity;
 
         /// <summary>
         ///     All units of measurement for the Molarity quantity.
@@ -134,7 +134,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MolesPerCubicMeter.
         /// </summary>
-        public static Molarity Zero => new Molarity(0, BaseUnit);
+        public static Molarity Zero { get; } = new Molarity(0, BaseUnit);
 
         #endregion
 

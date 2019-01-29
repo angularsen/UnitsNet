@@ -95,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SpecificEnergy, which is JoulePerKilogram. All conversions go via this value.
         /// </summary>
-        public static SpecificEnergyUnit BaseUnit => SpecificEnergyUnit.JoulePerKilogram;
+        public static SpecificEnergyUnit BaseUnit { get; } = SpecificEnergyUnit.JoulePerKilogram;
 
         /// <summary>
         /// Represents the largest possible value of SpecificEnergy
         /// </summary>
-        public static SpecificEnergy MaxValue => new SpecificEnergy(double.MaxValue, BaseUnit);
+        public static SpecificEnergy MaxValue { get; } = new SpecificEnergy(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SpecificEnergy
         /// </summary>
-        public static SpecificEnergy MinValue => new SpecificEnergy(double.MinValue, BaseUnit);
+        public static SpecificEnergy MinValue { get; } = new SpecificEnergy(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.SpecificEnergy;
+        public static QuantityType QuantityType { get; } = QuantityType.SpecificEnergy;
 
         /// <summary>
         ///     All units of measurement for the SpecificEnergy quantity.
@@ -120,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKilogram.
         /// </summary>
-        public static SpecificEnergy Zero => new SpecificEnergy(0, BaseUnit);
+        public static SpecificEnergy Zero { get; } = new SpecificEnergy(0, BaseUnit);
 
         #endregion
 

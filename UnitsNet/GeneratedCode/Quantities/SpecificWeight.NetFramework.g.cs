@@ -95,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SpecificWeight, which is NewtonPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static SpecificWeightUnit BaseUnit => SpecificWeightUnit.NewtonPerCubicMeter;
+        public static SpecificWeightUnit BaseUnit { get; } = SpecificWeightUnit.NewtonPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of SpecificWeight
         /// </summary>
-        public static SpecificWeight MaxValue => new SpecificWeight(double.MaxValue, BaseUnit);
+        public static SpecificWeight MaxValue { get; } = new SpecificWeight(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SpecificWeight
         /// </summary>
-        public static SpecificWeight MinValue => new SpecificWeight(double.MinValue, BaseUnit);
+        public static SpecificWeight MinValue { get; } = new SpecificWeight(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.SpecificWeight;
+        public static QuantityType QuantityType { get; } = QuantityType.SpecificWeight;
 
         /// <summary>
         ///     All units of measurement for the SpecificWeight quantity.
@@ -120,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerCubicMeter.
         /// </summary>
-        public static SpecificWeight Zero => new SpecificWeight(0, BaseUnit);
+        public static SpecificWeight Zero { get; } = new SpecificWeight(0, BaseUnit);
 
         #endregion
 

@@ -106,22 +106,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Torque, which is NewtonMeter. All conversions go via this value.
         /// </summary>
-        public static TorqueUnit BaseUnit => TorqueUnit.NewtonMeter;
+        public static TorqueUnit BaseUnit { get; } = TorqueUnit.NewtonMeter;
 
         /// <summary>
         /// Represents the largest possible value of Torque
         /// </summary>
-        public static Torque MaxValue => new Torque(double.MaxValue, BaseUnit);
+        public static Torque MaxValue { get; } = new Torque(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Torque
         /// </summary>
-        public static Torque MinValue => new Torque(double.MinValue, BaseUnit);
+        public static Torque MinValue { get; } = new Torque(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Torque;
+        public static QuantityType QuantityType { get; } = QuantityType.Torque;
 
         /// <summary>
         ///     All units of measurement for the Torque quantity.
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeter.
         /// </summary>
-        public static Torque Zero => new Torque(0, BaseUnit);
+        public static Torque Zero { get; } = new Torque(0, BaseUnit);
 
         #endregion
 

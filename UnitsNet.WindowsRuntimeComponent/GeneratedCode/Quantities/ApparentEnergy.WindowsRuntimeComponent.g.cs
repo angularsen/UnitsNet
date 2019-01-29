@@ -106,22 +106,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ApparentEnergy, which is VoltampereHour. All conversions go via this value.
         /// </summary>
-        public static ApparentEnergyUnit BaseUnit => ApparentEnergyUnit.VoltampereHour;
+        public static ApparentEnergyUnit BaseUnit { get; } = ApparentEnergyUnit.VoltampereHour;
 
         /// <summary>
         /// Represents the largest possible value of ApparentEnergy
         /// </summary>
-        public static ApparentEnergy MaxValue => new ApparentEnergy(double.MaxValue, BaseUnit);
+        public static ApparentEnergy MaxValue { get; } = new ApparentEnergy(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ApparentEnergy
         /// </summary>
-        public static ApparentEnergy MinValue => new ApparentEnergy(double.MinValue, BaseUnit);
+        public static ApparentEnergy MinValue { get; } = new ApparentEnergy(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ApparentEnergy;
+        public static QuantityType QuantityType { get; } = QuantityType.ApparentEnergy;
 
         /// <summary>
         ///     All units of measurement for the ApparentEnergy quantity.
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltampereHour.
         /// </summary>
-        public static ApparentEnergy Zero => new ApparentEnergy(0, BaseUnit);
+        public static ApparentEnergy Zero { get; } = new ApparentEnergy(0, BaseUnit);
 
         #endregion
 

@@ -95,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricConductivity, which is SiemensPerMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricConductivityUnit BaseUnit => ElectricConductivityUnit.SiemensPerMeter;
+        public static ElectricConductivityUnit BaseUnit { get; } = ElectricConductivityUnit.SiemensPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of ElectricConductivity
         /// </summary>
-        public static ElectricConductivity MaxValue => new ElectricConductivity(double.MaxValue, BaseUnit);
+        public static ElectricConductivity MaxValue { get; } = new ElectricConductivity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricConductivity
         /// </summary>
-        public static ElectricConductivity MinValue => new ElectricConductivity(double.MinValue, BaseUnit);
+        public static ElectricConductivity MinValue { get; } = new ElectricConductivity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricConductivity;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricConductivity;
 
         /// <summary>
         ///     All units of measurement for the ElectricConductivity quantity.
@@ -120,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SiemensPerMeter.
         /// </summary>
-        public static ElectricConductivity Zero => new ElectricConductivity(0, BaseUnit);
+        public static ElectricConductivity Zero { get; } = new ElectricConductivity(0, BaseUnit);
 
         #endregion
 

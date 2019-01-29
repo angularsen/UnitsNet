@@ -92,22 +92,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricResistance, which is Ohm. All conversions go via this value.
         /// </summary>
-        public static ElectricResistanceUnit BaseUnit => ElectricResistanceUnit.Ohm;
+        public static ElectricResistanceUnit BaseUnit { get; } = ElectricResistanceUnit.Ohm;
 
         /// <summary>
         /// Represents the largest possible value of ElectricResistance
         /// </summary>
-        public static ElectricResistance MaxValue => new ElectricResistance(double.MaxValue, BaseUnit);
+        public static ElectricResistance MaxValue { get; } = new ElectricResistance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricResistance
         /// </summary>
-        public static ElectricResistance MinValue => new ElectricResistance(double.MinValue, BaseUnit);
+        public static ElectricResistance MinValue { get; } = new ElectricResistance(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricResistance;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricResistance;
 
         /// <summary>
         ///     All units of measurement for the ElectricResistance quantity.
@@ -117,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ohm.
         /// </summary>
-        public static ElectricResistance Zero => new ElectricResistance(0, BaseUnit);
+        public static ElectricResistance Zero { get; } = new ElectricResistance(0, BaseUnit);
 
         #endregion
 

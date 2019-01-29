@@ -92,22 +92,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ForceChangeRate, which is NewtonPerSecond. All conversions go via this value.
         /// </summary>
-        public static ForceChangeRateUnit BaseUnit => ForceChangeRateUnit.NewtonPerSecond;
+        public static ForceChangeRateUnit BaseUnit { get; } = ForceChangeRateUnit.NewtonPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of ForceChangeRate
         /// </summary>
-        public static ForceChangeRate MaxValue => new ForceChangeRate(double.MaxValue, BaseUnit);
+        public static ForceChangeRate MaxValue { get; } = new ForceChangeRate(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ForceChangeRate
         /// </summary>
-        public static ForceChangeRate MinValue => new ForceChangeRate(double.MinValue, BaseUnit);
+        public static ForceChangeRate MinValue { get; } = new ForceChangeRate(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ForceChangeRate;
+        public static QuantityType QuantityType { get; } = QuantityType.ForceChangeRate;
 
         /// <summary>
         ///     All units of measurement for the ForceChangeRate quantity.
@@ -117,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerSecond.
         /// </summary>
-        public static ForceChangeRate Zero => new ForceChangeRate(0, BaseUnit);
+        public static ForceChangeRate Zero { get; } = new ForceChangeRate(0, BaseUnit);
 
         #endregion
 

@@ -92,22 +92,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Energy, which is Joule. All conversions go via this value.
         /// </summary>
-        public static EnergyUnit BaseUnit => EnergyUnit.Joule;
+        public static EnergyUnit BaseUnit { get; } = EnergyUnit.Joule;
 
         /// <summary>
         /// Represents the largest possible value of Energy
         /// </summary>
-        public static Energy MaxValue => new Energy(double.MaxValue, BaseUnit);
+        public static Energy MaxValue { get; } = new Energy(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Energy
         /// </summary>
-        public static Energy MinValue => new Energy(double.MinValue, BaseUnit);
+        public static Energy MinValue { get; } = new Energy(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Energy;
+        public static QuantityType QuantityType { get; } = QuantityType.Energy;
 
         /// <summary>
         ///     All units of measurement for the Energy quantity.
@@ -117,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Joule.
         /// </summary>
-        public static Energy Zero => new Energy(0, BaseUnit);
+        public static Energy Zero { get; } = new Energy(0, BaseUnit);
 
         #endregion
 

@@ -92,22 +92,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of RotationalSpeed, which is RadianPerSecond. All conversions go via this value.
         /// </summary>
-        public static RotationalSpeedUnit BaseUnit => RotationalSpeedUnit.RadianPerSecond;
+        public static RotationalSpeedUnit BaseUnit { get; } = RotationalSpeedUnit.RadianPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of RotationalSpeed
         /// </summary>
-        public static RotationalSpeed MaxValue => new RotationalSpeed(double.MaxValue, BaseUnit);
+        public static RotationalSpeed MaxValue { get; } = new RotationalSpeed(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of RotationalSpeed
         /// </summary>
-        public static RotationalSpeed MinValue => new RotationalSpeed(double.MinValue, BaseUnit);
+        public static RotationalSpeed MinValue { get; } = new RotationalSpeed(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.RotationalSpeed;
+        public static QuantityType QuantityType { get; } = QuantityType.RotationalSpeed;
 
         /// <summary>
         ///     All units of measurement for the RotationalSpeed quantity.
@@ -117,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit RadianPerSecond.
         /// </summary>
-        public static RotationalSpeed Zero => new RotationalSpeed(0, BaseUnit);
+        public static RotationalSpeed Zero { get; } = new RotationalSpeed(0, BaseUnit);
 
         #endregion
 
