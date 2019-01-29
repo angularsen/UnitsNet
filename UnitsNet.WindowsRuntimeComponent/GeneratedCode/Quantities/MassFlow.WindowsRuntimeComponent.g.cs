@@ -106,22 +106,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassFlow, which is GramPerSecond. All conversions go via this value.
         /// </summary>
-        public static MassFlowUnit BaseUnit => MassFlowUnit.GramPerSecond;
+        public static MassFlowUnit BaseUnit { get; } = MassFlowUnit.GramPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of MassFlow
         /// </summary>
-        public static MassFlow MaxValue => new MassFlow(double.MaxValue, BaseUnit);
+        public static MassFlow MaxValue { get; } = new MassFlow(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MassFlow
         /// </summary>
-        public static MassFlow MinValue => new MassFlow(double.MinValue, BaseUnit);
+        public static MassFlow MinValue { get; } = new MassFlow(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.MassFlow;
+        public static QuantityType QuantityType { get; } = QuantityType.MassFlow;
 
         /// <summary>
         ///     All units of measurement for the MassFlow quantity.
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit GramPerSecond.
         /// </summary>
-        public static MassFlow Zero => new MassFlow(0, BaseUnit);
+        public static MassFlow Zero { get; } = new MassFlow(0, BaseUnit);
 
         #endregion
 

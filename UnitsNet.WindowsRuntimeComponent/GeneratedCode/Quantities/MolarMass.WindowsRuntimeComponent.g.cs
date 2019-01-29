@@ -106,22 +106,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MolarMass, which is KilogramPerMole. All conversions go via this value.
         /// </summary>
-        public static MolarMassUnit BaseUnit => MolarMassUnit.KilogramPerMole;
+        public static MolarMassUnit BaseUnit { get; } = MolarMassUnit.KilogramPerMole;
 
         /// <summary>
         /// Represents the largest possible value of MolarMass
         /// </summary>
-        public static MolarMass MaxValue => new MolarMass(double.MaxValue, BaseUnit);
+        public static MolarMass MaxValue { get; } = new MolarMass(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MolarMass
         /// </summary>
-        public static MolarMass MinValue => new MolarMass(double.MinValue, BaseUnit);
+        public static MolarMass MinValue { get; } = new MolarMass(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.MolarMass;
+        public static QuantityType QuantityType { get; } = QuantityType.MolarMass;
 
         /// <summary>
         ///     All units of measurement for the MolarMass quantity.
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerMole.
         /// </summary>
-        public static MolarMass Zero => new MolarMass(0, BaseUnit);
+        public static MolarMass Zero { get; } = new MolarMass(0, BaseUnit);
 
         #endregion
 

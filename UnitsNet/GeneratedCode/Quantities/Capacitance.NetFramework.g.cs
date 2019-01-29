@@ -95,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Capacitance, which is Farad. All conversions go via this value.
         /// </summary>
-        public static CapacitanceUnit BaseUnit => CapacitanceUnit.Farad;
+        public static CapacitanceUnit BaseUnit { get; } = CapacitanceUnit.Farad;
 
         /// <summary>
         /// Represents the largest possible value of Capacitance
         /// </summary>
-        public static Capacitance MaxValue => new Capacitance(double.MaxValue, BaseUnit);
+        public static Capacitance MaxValue { get; } = new Capacitance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Capacitance
         /// </summary>
-        public static Capacitance MinValue => new Capacitance(double.MinValue, BaseUnit);
+        public static Capacitance MinValue { get; } = new Capacitance(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Capacitance;
+        public static QuantityType QuantityType { get; } = QuantityType.Capacitance;
 
         /// <summary>
         ///     All units of measurement for the Capacitance quantity.
@@ -120,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Farad.
         /// </summary>
-        public static Capacitance Zero => new Capacitance(0, BaseUnit);
+        public static Capacitance Zero { get; } = new Capacitance(0, BaseUnit);
 
         #endregion
 

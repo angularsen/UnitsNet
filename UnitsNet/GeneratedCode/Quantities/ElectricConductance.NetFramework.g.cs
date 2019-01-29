@@ -95,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricConductance, which is Siemens. All conversions go via this value.
         /// </summary>
-        public static ElectricConductanceUnit BaseUnit => ElectricConductanceUnit.Siemens;
+        public static ElectricConductanceUnit BaseUnit { get; } = ElectricConductanceUnit.Siemens;
 
         /// <summary>
         /// Represents the largest possible value of ElectricConductance
         /// </summary>
-        public static ElectricConductance MaxValue => new ElectricConductance(double.MaxValue, BaseUnit);
+        public static ElectricConductance MaxValue { get; } = new ElectricConductance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricConductance
         /// </summary>
-        public static ElectricConductance MinValue => new ElectricConductance(double.MinValue, BaseUnit);
+        public static ElectricConductance MinValue { get; } = new ElectricConductance(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricConductance;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricConductance;
 
         /// <summary>
         ///     All units of measurement for the ElectricConductance quantity.
@@ -120,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Siemens.
         /// </summary>
-        public static ElectricConductance Zero => new ElectricConductance(0, BaseUnit);
+        public static ElectricConductance Zero { get; } = new ElectricConductance(0, BaseUnit);
 
         #endregion
 

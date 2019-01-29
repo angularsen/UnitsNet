@@ -106,22 +106,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricPotential, which is Volt. All conversions go via this value.
         /// </summary>
-        public static ElectricPotentialUnit BaseUnit => ElectricPotentialUnit.Volt;
+        public static ElectricPotentialUnit BaseUnit { get; } = ElectricPotentialUnit.Volt;
 
         /// <summary>
         /// Represents the largest possible value of ElectricPotential
         /// </summary>
-        public static ElectricPotential MaxValue => new ElectricPotential(double.MaxValue, BaseUnit);
+        public static ElectricPotential MaxValue { get; } = new ElectricPotential(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricPotential
         /// </summary>
-        public static ElectricPotential MinValue => new ElectricPotential(double.MinValue, BaseUnit);
+        public static ElectricPotential MinValue { get; } = new ElectricPotential(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricPotential;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricPotential;
 
         /// <summary>
         ///     All units of measurement for the ElectricPotential quantity.
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Volt.
         /// </summary>
-        public static ElectricPotential Zero => new ElectricPotential(0, BaseUnit);
+        public static ElectricPotential Zero { get; } = new ElectricPotential(0, BaseUnit);
 
         #endregion
 

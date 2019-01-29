@@ -95,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of KinematicViscosity, which is SquareMeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static KinematicViscosityUnit BaseUnit => KinematicViscosityUnit.SquareMeterPerSecond;
+        public static KinematicViscosityUnit BaseUnit { get; } = KinematicViscosityUnit.SquareMeterPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of KinematicViscosity
         /// </summary>
-        public static KinematicViscosity MaxValue => new KinematicViscosity(double.MaxValue, BaseUnit);
+        public static KinematicViscosity MaxValue { get; } = new KinematicViscosity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of KinematicViscosity
         /// </summary>
-        public static KinematicViscosity MinValue => new KinematicViscosity(double.MinValue, BaseUnit);
+        public static KinematicViscosity MinValue { get; } = new KinematicViscosity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.KinematicViscosity;
+        public static QuantityType QuantityType { get; } = QuantityType.KinematicViscosity;
 
         /// <summary>
         ///     All units of measurement for the KinematicViscosity quantity.
@@ -120,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit SquareMeterPerSecond.
         /// </summary>
-        public static KinematicViscosity Zero => new KinematicViscosity(0, BaseUnit);
+        public static KinematicViscosity Zero { get; } = new KinematicViscosity(0, BaseUnit);
 
         #endregion
 

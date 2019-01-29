@@ -92,22 +92,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Information, which is Bit. All conversions go via this value.
         /// </summary>
-        public static InformationUnit BaseUnit => InformationUnit.Bit;
+        public static InformationUnit BaseUnit { get; } = InformationUnit.Bit;
 
         /// <summary>
         /// Represents the largest possible value of Information
         /// </summary>
-        public static Information MaxValue => new Information(decimal.MaxValue, BaseUnit);
+        public static Information MaxValue { get; } = new Information(decimal.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Information
         /// </summary>
-        public static Information MinValue => new Information(decimal.MinValue, BaseUnit);
+        public static Information MinValue { get; } = new Information(decimal.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Information;
+        public static QuantityType QuantityType { get; } = QuantityType.Information;
 
         /// <summary>
         ///     All units of measurement for the Information quantity.
@@ -117,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Bit.
         /// </summary>
-        public static Information Zero => new Information(0, BaseUnit);
+        public static Information Zero { get; } = new Information(0, BaseUnit);
 
         #endregion
 

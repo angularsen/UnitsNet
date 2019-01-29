@@ -106,22 +106,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VolumeFlow, which is CubicMeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static VolumeFlowUnit BaseUnit => VolumeFlowUnit.CubicMeterPerSecond;
+        public static VolumeFlowUnit BaseUnit { get; } = VolumeFlowUnit.CubicMeterPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of VolumeFlow
         /// </summary>
-        public static VolumeFlow MaxValue => new VolumeFlow(double.MaxValue, BaseUnit);
+        public static VolumeFlow MaxValue { get; } = new VolumeFlow(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of VolumeFlow
         /// </summary>
-        public static VolumeFlow MinValue => new VolumeFlow(double.MinValue, BaseUnit);
+        public static VolumeFlow MinValue { get; } = new VolumeFlow(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.VolumeFlow;
+        public static QuantityType QuantityType { get; } = QuantityType.VolumeFlow;
 
         /// <summary>
         ///     All units of measurement for the VolumeFlow quantity.
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerSecond.
         /// </summary>
-        public static VolumeFlow Zero => new VolumeFlow(0, BaseUnit);
+        public static VolumeFlow Zero { get; } = new VolumeFlow(0, BaseUnit);
 
         #endregion
 

@@ -106,22 +106,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ForcePerLength, which is NewtonPerMeter. All conversions go via this value.
         /// </summary>
-        public static ForcePerLengthUnit BaseUnit => ForcePerLengthUnit.NewtonPerMeter;
+        public static ForcePerLengthUnit BaseUnit { get; } = ForcePerLengthUnit.NewtonPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of ForcePerLength
         /// </summary>
-        public static ForcePerLength MaxValue => new ForcePerLength(double.MaxValue, BaseUnit);
+        public static ForcePerLength MaxValue { get; } = new ForcePerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ForcePerLength
         /// </summary>
-        public static ForcePerLength MinValue => new ForcePerLength(double.MinValue, BaseUnit);
+        public static ForcePerLength MinValue { get; } = new ForcePerLength(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ForcePerLength;
+        public static QuantityType QuantityType { get; } = QuantityType.ForcePerLength;
 
         /// <summary>
         ///     All units of measurement for the ForcePerLength quantity.
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonPerMeter.
         /// </summary>
-        public static ForcePerLength Zero => new ForcePerLength(0, BaseUnit);
+        public static ForcePerLength Zero { get; } = new ForcePerLength(0, BaseUnit);
 
         #endregion
 

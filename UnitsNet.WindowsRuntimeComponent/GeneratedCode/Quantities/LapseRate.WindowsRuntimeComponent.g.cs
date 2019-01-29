@@ -106,22 +106,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of LapseRate, which is DegreeCelsiusPerKilometer. All conversions go via this value.
         /// </summary>
-        public static LapseRateUnit BaseUnit => LapseRateUnit.DegreeCelsiusPerKilometer;
+        public static LapseRateUnit BaseUnit { get; } = LapseRateUnit.DegreeCelsiusPerKilometer;
 
         /// <summary>
         /// Represents the largest possible value of LapseRate
         /// </summary>
-        public static LapseRate MaxValue => new LapseRate(double.MaxValue, BaseUnit);
+        public static LapseRate MaxValue { get; } = new LapseRate(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of LapseRate
         /// </summary>
-        public static LapseRate MinValue => new LapseRate(double.MinValue, BaseUnit);
+        public static LapseRate MinValue { get; } = new LapseRate(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.LapseRate;
+        public static QuantityType QuantityType { get; } = QuantityType.LapseRate;
 
         /// <summary>
         ///     All units of measurement for the LapseRate quantity.
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DegreeCelsiusPerKilometer.
         /// </summary>
-        public static LapseRate Zero => new LapseRate(0, BaseUnit);
+        public static LapseRate Zero { get; } = new LapseRate(0, BaseUnit);
 
         #endregion
 

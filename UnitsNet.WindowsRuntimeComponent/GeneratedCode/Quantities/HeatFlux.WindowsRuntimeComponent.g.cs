@@ -106,22 +106,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of HeatFlux, which is WattPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static HeatFluxUnit BaseUnit => HeatFluxUnit.WattPerSquareMeter;
+        public static HeatFluxUnit BaseUnit { get; } = HeatFluxUnit.WattPerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of HeatFlux
         /// </summary>
-        public static HeatFlux MaxValue => new HeatFlux(double.MaxValue, BaseUnit);
+        public static HeatFlux MaxValue { get; } = new HeatFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of HeatFlux
         /// </summary>
-        public static HeatFlux MinValue => new HeatFlux(double.MinValue, BaseUnit);
+        public static HeatFlux MinValue { get; } = new HeatFlux(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.HeatFlux;
+        public static QuantityType QuantityType { get; } = QuantityType.HeatFlux;
 
         /// <summary>
         ///     All units of measurement for the HeatFlux quantity.
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeter.
         /// </summary>
-        public static HeatFlux Zero => new HeatFlux(0, BaseUnit);
+        public static HeatFlux Zero { get; } = new HeatFlux(0, BaseUnit);
 
         #endregion
 

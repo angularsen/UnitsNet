@@ -95,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricField, which is VoltPerMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricFieldUnit BaseUnit => ElectricFieldUnit.VoltPerMeter;
+        public static ElectricFieldUnit BaseUnit { get; } = ElectricFieldUnit.VoltPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of ElectricField
         /// </summary>
-        public static ElectricField MaxValue => new ElectricField(double.MaxValue, BaseUnit);
+        public static ElectricField MaxValue { get; } = new ElectricField(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricField
         /// </summary>
-        public static ElectricField MinValue => new ElectricField(double.MinValue, BaseUnit);
+        public static ElectricField MinValue { get; } = new ElectricField(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricField;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricField;
 
         /// <summary>
         ///     All units of measurement for the ElectricField quantity.
@@ -120,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltPerMeter.
         /// </summary>
-        public static ElectricField Zero => new ElectricField(0, BaseUnit);
+        public static ElectricField Zero { get; } = new ElectricField(0, BaseUnit);
 
         #endregion
 

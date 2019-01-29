@@ -106,22 +106,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of PowerRatio, which is DecibelWatt. All conversions go via this value.
         /// </summary>
-        public static PowerRatioUnit BaseUnit => PowerRatioUnit.DecibelWatt;
+        public static PowerRatioUnit BaseUnit { get; } = PowerRatioUnit.DecibelWatt;
 
         /// <summary>
         /// Represents the largest possible value of PowerRatio
         /// </summary>
-        public static PowerRatio MaxValue => new PowerRatio(double.MaxValue, BaseUnit);
+        public static PowerRatio MaxValue { get; } = new PowerRatio(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of PowerRatio
         /// </summary>
-        public static PowerRatio MinValue => new PowerRatio(double.MinValue, BaseUnit);
+        public static PowerRatio MinValue { get; } = new PowerRatio(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.PowerRatio;
+        public static QuantityType QuantityType { get; } = QuantityType.PowerRatio;
 
         /// <summary>
         ///     All units of measurement for the PowerRatio quantity.
@@ -131,7 +131,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit DecibelWatt.
         /// </summary>
-        public static PowerRatio Zero => new PowerRatio(0, BaseUnit);
+        public static PowerRatio Zero { get; } = new PowerRatio(0, BaseUnit);
 
         #endregion
 

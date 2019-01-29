@@ -92,22 +92,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Acceleration, which is MeterPerSecondSquared. All conversions go via this value.
         /// </summary>
-        public static AccelerationUnit BaseUnit => AccelerationUnit.MeterPerSecondSquared;
+        public static AccelerationUnit BaseUnit { get; } = AccelerationUnit.MeterPerSecondSquared;
 
         /// <summary>
         /// Represents the largest possible value of Acceleration
         /// </summary>
-        public static Acceleration MaxValue => new Acceleration(double.MaxValue, BaseUnit);
+        public static Acceleration MaxValue { get; } = new Acceleration(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Acceleration
         /// </summary>
-        public static Acceleration MinValue => new Acceleration(double.MinValue, BaseUnit);
+        public static Acceleration MinValue { get; } = new Acceleration(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Acceleration;
+        public static QuantityType QuantityType { get; } = QuantityType.Acceleration;
 
         /// <summary>
         ///     All units of measurement for the Acceleration quantity.
@@ -117,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecondSquared.
         /// </summary>
-        public static Acceleration Zero => new Acceleration(0, BaseUnit);
+        public static Acceleration Zero { get; } = new Acceleration(0, BaseUnit);
 
         #endregion
 

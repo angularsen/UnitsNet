@@ -92,22 +92,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of RotationalStiffnessPerLength, which is NewtonMeterPerRadianPerMeter. All conversions go via this value.
         /// </summary>
-        public static RotationalStiffnessPerLengthUnit BaseUnit => RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter;
+        public static RotationalStiffnessPerLengthUnit BaseUnit { get; } = RotationalStiffnessPerLengthUnit.NewtonMeterPerRadianPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of RotationalStiffnessPerLength
         /// </summary>
-        public static RotationalStiffnessPerLength MaxValue => new RotationalStiffnessPerLength(double.MaxValue, BaseUnit);
+        public static RotationalStiffnessPerLength MaxValue { get; } = new RotationalStiffnessPerLength(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of RotationalStiffnessPerLength
         /// </summary>
-        public static RotationalStiffnessPerLength MinValue => new RotationalStiffnessPerLength(double.MinValue, BaseUnit);
+        public static RotationalStiffnessPerLength MinValue { get; } = new RotationalStiffnessPerLength(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.RotationalStiffnessPerLength;
+        public static QuantityType QuantityType { get; } = QuantityType.RotationalStiffnessPerLength;
 
         /// <summary>
         ///     All units of measurement for the RotationalStiffnessPerLength quantity.
@@ -117,7 +117,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeterPerRadianPerMeter.
         /// </summary>
-        public static RotationalStiffnessPerLength Zero => new RotationalStiffnessPerLength(0, BaseUnit);
+        public static RotationalStiffnessPerLength Zero { get; } = new RotationalStiffnessPerLength(0, BaseUnit);
 
         #endregion
 

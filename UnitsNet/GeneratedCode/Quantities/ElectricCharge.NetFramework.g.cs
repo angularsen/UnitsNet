@@ -95,22 +95,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricCharge, which is Coulomb. All conversions go via this value.
         /// </summary>
-        public static ElectricChargeUnit BaseUnit => ElectricChargeUnit.Coulomb;
+        public static ElectricChargeUnit BaseUnit { get; } = ElectricChargeUnit.Coulomb;
 
         /// <summary>
         /// Represents the largest possible value of ElectricCharge
         /// </summary>
-        public static ElectricCharge MaxValue => new ElectricCharge(double.MaxValue, BaseUnit);
+        public static ElectricCharge MaxValue { get; } = new ElectricCharge(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCharge
         /// </summary>
-        public static ElectricCharge MinValue => new ElectricCharge(double.MinValue, BaseUnit);
+        public static ElectricCharge MinValue { get; } = new ElectricCharge(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricCharge;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricCharge;
 
         /// <summary>
         ///     All units of measurement for the ElectricCharge quantity.
@@ -120,7 +120,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Coulomb.
         /// </summary>
-        public static ElectricCharge Zero => new ElectricCharge(0, BaseUnit);
+        public static ElectricCharge Zero { get; } = new ElectricCharge(0, BaseUnit);
 
         #endregion
 
