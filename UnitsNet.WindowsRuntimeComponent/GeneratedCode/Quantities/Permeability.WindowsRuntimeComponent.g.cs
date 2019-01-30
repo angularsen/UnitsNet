@@ -70,7 +70,7 @@ namespace UnitsNet
         static Permeability()
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, -2, 0, 0, 0);
-            Info = new QuantityInfo<PermeabilityUnit>(QuantityType.Permeability, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Permeability, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit HenryPerMeter.
@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<PermeabilityUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,9 +154,7 @@ namespace UnitsNet
         /// </summary>
         public PermeabilityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<PermeabilityUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -473,6 +471,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((PermeabilityUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

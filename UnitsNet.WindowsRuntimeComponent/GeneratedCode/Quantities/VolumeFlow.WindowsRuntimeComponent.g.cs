@@ -67,7 +67,7 @@ namespace UnitsNet
         static VolumeFlow()
         {
             BaseDimensions = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<VolumeFlowUnit>(QuantityType.VolumeFlow, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.VolumeFlow, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit CubicMeterPerSecond.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<VolumeFlowUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public VolumeFlowUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<VolumeFlowUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -1175,6 +1173,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((VolumeFlowUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

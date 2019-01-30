@@ -67,7 +67,7 @@ namespace UnitsNet
         static ThermalResistance()
         {
             BaseDimensions = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
-            Info = new QuantityInfo<ThermalResistanceUnit>(QuantityType.ThermalResistance, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ThermalResistance, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit SquareMeterKelvinPerKilowatt.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<ThermalResistanceUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public ThermalResistanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<ThermalResistanceUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -530,6 +528,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((ThermalResistanceUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

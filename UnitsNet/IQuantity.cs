@@ -40,11 +40,12 @@ namespace UnitsNet
         /// </summary>
         BaseDimensions Dimensions { get; }
 
+#if !WINDOWS_UWP
         /// <summary>
         ///     Information about the quantity type, such as unit values and names.
         /// </summary>
         QuantityInfo QuantityInfo { get; }
-#if !WINDOWS_UWP
+#endif
 
         /// <summary>
         ///     Dynamically convert to another unit representation.
@@ -52,8 +53,13 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
         /// <returns>Value converted to the specified unit.</returns>
         /// <exception cref="InvalidCastException">Wrong unit enum type was given.</exception>
+#if WINDOWS_UWP
+        double As(object unit);
+#else
         double As(Enum unit);
+#endif
 
+#if !WINDOWS_UWP
         /// <summary>
         ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
         /// </summary>
@@ -123,15 +129,11 @@ namespace UnitsNet
 
 #endif
 
-#if WINDOWS_UWP
-    internal
-#else
-    public
-#endif
-    interface IQuantity<TUnitType> : IQuantity where TUnitType : Enum
+#if !WINDOWS_UWP
+    public interface IQuantity<TUnitType> : IQuantity where TUnitType : Enum
     {
         /// <summary>
-        ///     Convert to the unit representation <typeparamref name="TUnitType"/>.
+        ///     Convert to a unit representation <typeparamref name="TUnitType"/>.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
         double As(TUnitType unit);
@@ -151,4 +153,5 @@ namespace UnitsNet
         /// <returns></returns>
         IQuantity<TUnitType> ToUnit(TUnitType unit);
     }
+#endif
 }

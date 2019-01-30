@@ -67,7 +67,7 @@ namespace UnitsNet
         static RotationalStiffnessPerLength()
         {
             BaseDimensions = new BaseDimensions(1, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<RotationalStiffnessPerLengthUnit>(QuantityType.RotationalStiffnessPerLength, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.RotationalStiffnessPerLength, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit NewtonMeterPerRadianPerMeter.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<RotationalStiffnessPerLengthUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public RotationalStiffnessPerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<RotationalStiffnessPerLengthUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -500,6 +498,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((RotationalStiffnessPerLengthUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

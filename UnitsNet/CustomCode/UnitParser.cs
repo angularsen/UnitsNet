@@ -161,7 +161,12 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
         [PublicAPI]
-        public bool TryParse(string unitAbbreviation, Type unitType, out Enum unit)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        bool TryParse(string unitAbbreviation, Type unitType, out Enum unit)
         {
             return TryParse(unitAbbreviation, unitType, null, out unit);
         }

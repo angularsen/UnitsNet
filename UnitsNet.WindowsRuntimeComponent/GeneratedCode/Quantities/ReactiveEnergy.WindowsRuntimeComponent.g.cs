@@ -67,7 +67,7 @@ namespace UnitsNet
         static ReactiveEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<ReactiveEnergyUnit>(QuantityType.ReactiveEnergy, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ReactiveEnergy, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit VoltampereReactiveHour.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<ReactiveEnergyUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public ReactiveEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<ReactiveEnergyUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -500,6 +498,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((ReactiveEnergyUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

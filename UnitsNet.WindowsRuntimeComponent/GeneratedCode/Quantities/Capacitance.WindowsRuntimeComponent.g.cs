@@ -70,7 +70,7 @@ namespace UnitsNet
         static Capacitance()
         {
             BaseDimensions = new BaseDimensions(-2, -1, 4, 2, 0, 0, 0);
-            Info = new QuantityInfo<CapacitanceUnit>(QuantityType.Capacitance, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Capacitance, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Farad.
@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<CapacitanceUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,9 +154,7 @@ namespace UnitsNet
         /// </summary>
         public CapacitanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<CapacitanceUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -563,6 +561,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((CapacitanceUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

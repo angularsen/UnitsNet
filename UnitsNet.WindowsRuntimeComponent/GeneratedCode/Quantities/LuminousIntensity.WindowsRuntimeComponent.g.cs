@@ -70,7 +70,7 @@ namespace UnitsNet
         static LuminousIntensity()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
-            Info = new QuantityInfo<LuminousIntensityUnit>(QuantityType.LuminousIntensity, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.LuminousIntensity, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Candela.
@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<LuminousIntensityUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,9 +154,7 @@ namespace UnitsNet
         /// </summary>
         public LuminousIntensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<LuminousIntensityUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -473,6 +471,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((LuminousIntensityUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

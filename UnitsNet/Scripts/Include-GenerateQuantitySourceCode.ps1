@@ -20,6 +20,7 @@ function GenerateQuantitySourceCode([Quantity]$quantity, [string]$target)
     $wrc = $target -eq "WindowsRuntimeComponent"
     $privateAccessModifierIfWrc = if ($wrc) { "private" } else { "public" }
     $accessModifier = if ($wrc) { "internal" } else { "public" }
+    $enumOrObject = if ($wrc) { "object" } else { "Enum" }
 
     $baseDimensions = $quantity.BaseDimensions;
     $isDimensionless = $baseDimensions -eq $null -or ( $baseDimensions.Length -eq 0 -and $baseDimensions.Mass -eq 0 -and $baseDimensions.Time -eq 0 -and $baseDimensions.ElectricCurrent -eq 0 -and $baseDimensions.Temperature -eq 0 -and $baseDimensions.AmountOfSubstance -eq 0 -and $baseDimensions.LuminousIntensity -eq 0 )
@@ -123,8 +124,11 @@ if ($obsoleteAttribute)
     {@"
             BaseDimensions = new BaseDimensions($($baseDimensions.Length), $($baseDimensions.Mass), $($baseDimensions.Time), $($baseDimensions.ElectricCurrent), $($baseDimensions.Temperature), $($baseDimensions.AmountOfSubstance), $($baseDimensions.LuminousIntensity));
 "@; }
-@"
+    if ($wrc) {@"
+            Info = new QuantityInfo(QuantityType.$quantityName, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
+"@; } else {@"
             Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName, Units, Zero, BaseDimensions);
+"@; }@"
         }
 "@; # Windows Runtime Component requires a default constructor
     if ($wrc) {@"
@@ -274,7 +278,11 @@ function GenerateStaticProperties([GeneratorArgs]$genArgs)
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        $accessModifier static QuantityInfo<$unitEnumName> Info { get; }
+"@; if ($wrc) {@"
+        internal static QuantityInfo Info { get; }
+"@; } else {@"
+        public static QuantityInfo<$unitEnumName> Info { get; }
+"@; }@"
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -330,7 +338,7 @@ function GenerateProperties([GeneratorArgs]$genArgs)
         ///     The numeric value this quantity was constructed with.
         /// </summary>
 "@; # Windows Runtime Component does not support decimal
-        if ($wrc) {@"
+    if ($wrc) {@"
         public double Value => Convert.ToDouble(_value);
 "@; } else {@"
         public $valueType Value => _value;
@@ -342,9 +350,13 @@ function GenerateProperties([GeneratorArgs]$genArgs)
         /// </summary>
         public $unitEnumName Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        $accessModifier QuantityInfo<$unitEnumName> QuantityInfo => Info;
+"@; if ($wrc) {@"
+        internal QuantityInfo QuantityInfo => Info;
+"@; } else {@"
+        public QuantityInfo<$unitEnumName> QuantityInfo => Info;
 
         QuantityInfo IQuantity.QuantityInfo => Info;
+"@; }@"
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -935,6 +947,8 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
 @"
 
         #region Conversion Methods
+
+        double IQuantity.As($enumOrObject unit) => As(($unitEnumName)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

@@ -67,7 +67,7 @@ namespace UnitsNet
         static AmountOfSubstance()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
-            Info = new QuantityInfo<AmountOfSubstanceUnit>(QuantityType.AmountOfSubstance, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.AmountOfSubstance, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Mole.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<AmountOfSubstanceUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public AmountOfSubstanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<AmountOfSubstanceUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -680,6 +678,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((AmountOfSubstanceUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

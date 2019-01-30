@@ -67,7 +67,7 @@ namespace UnitsNet
         static Acceleration()
         {
             BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<AccelerationUnit>(QuantityType.Acceleration, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Acceleration, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit MeterPerSecondSquared.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<AccelerationUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public AccelerationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<AccelerationUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -650,6 +648,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((AccelerationUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

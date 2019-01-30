@@ -67,7 +67,7 @@ namespace UnitsNet
         static ElectricAdmittance()
         {
             BaseDimensions = new BaseDimensions(-2, -1, 3, 2, 0, 0, 0);
-            Info = new QuantityInfo<ElectricAdmittanceUnit>(QuantityType.ElectricAdmittance, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ElectricAdmittance, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Siemens.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<ElectricAdmittanceUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public ElectricAdmittanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<ElectricAdmittanceUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -515,6 +513,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((ElectricAdmittanceUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

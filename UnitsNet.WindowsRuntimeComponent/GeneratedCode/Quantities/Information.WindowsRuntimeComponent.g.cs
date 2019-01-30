@@ -67,7 +67,7 @@ namespace UnitsNet
         static Information()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<InformationUnit>(QuantityType.Information, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Information, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Bit.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<InformationUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public InformationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<InformationUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -845,6 +843,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((InformationUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

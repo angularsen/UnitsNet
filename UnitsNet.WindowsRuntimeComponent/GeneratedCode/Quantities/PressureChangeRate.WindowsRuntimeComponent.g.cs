@@ -67,7 +67,7 @@ namespace UnitsNet
         static PressureChangeRate()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo<PressureChangeRateUnit>(QuantityType.PressureChangeRate, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.PressureChangeRate, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit PascalPerSecond.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<PressureChangeRateUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public PressureChangeRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<PressureChangeRateUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -560,6 +558,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((PressureChangeRateUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

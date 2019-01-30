@@ -70,7 +70,7 @@ namespace UnitsNet
         static ElectricResistivity()
         {
             BaseDimensions = new BaseDimensions(3, 1, -3, -2, 0, 0, 0);
-            Info = new QuantityInfo<ElectricResistivityUnit>(QuantityType.ElectricResistivity, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ElectricResistivity, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit OhmMeter.
@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<ElectricResistivityUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,9 +154,7 @@ namespace UnitsNet
         /// </summary>
         public ElectricResistivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<ElectricResistivityUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -668,6 +666,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((ElectricResistivityUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

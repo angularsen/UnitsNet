@@ -60,14 +60,14 @@ namespace UnitsNet
         /// <param name="fromUnitValue">From unit enum value.</param>
         /// <param name="toUnitValue">To unit enum value, must be compatible with <paramref name="fromUnitValue" />.</param>
         /// <returns>The converted value in the new unit representation.</returns>
-        public static double Convert(FromValue fromValue, Enum fromUnitValue, Enum toUnitValue)
+        internal static double Convert(FromValue fromValue, Enum fromUnitValue, Enum toUnitValue)
         {
             return Quantity
                 .From(fromValue, fromUnitValue)
                 .As(toUnitValue);
         }
 
-        public static bool TryConvert(FromValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
+        internal static bool TryConvert(FromValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
         {
             convertedValue = 0;
             if (!Quantity.TryFrom(fromValue, fromUnitValue, out IQuantity from)) return false;

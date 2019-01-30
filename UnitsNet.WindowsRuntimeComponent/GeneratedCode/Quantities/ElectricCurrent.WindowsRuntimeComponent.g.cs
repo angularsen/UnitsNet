@@ -67,7 +67,7 @@ namespace UnitsNet
         static ElectricCurrent()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 1, 0, 0, 0);
-            Info = new QuantityInfo<ElectricCurrentUnit>(QuantityType.ElectricCurrent, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ElectricCurrent, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Ampere.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<ElectricCurrentUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public ElectricCurrentUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<ElectricCurrentUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -575,6 +573,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((ElectricCurrentUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

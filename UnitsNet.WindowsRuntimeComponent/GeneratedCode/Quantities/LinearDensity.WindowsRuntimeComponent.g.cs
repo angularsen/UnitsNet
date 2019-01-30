@@ -70,7 +70,7 @@ namespace UnitsNet
         static LinearDensity()
         {
             BaseDimensions = new BaseDimensions(-1, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<LinearDensityUnit>(QuantityType.LinearDensity, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.LinearDensity, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit KilogramPerMeter.
@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<LinearDensityUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,9 +154,7 @@ namespace UnitsNet
         /// </summary>
         public LinearDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<LinearDensityUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -503,6 +501,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((LinearDensityUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

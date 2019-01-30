@@ -67,7 +67,7 @@ namespace UnitsNet
         static Pressure()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<PressureUnit>(QuantityType.Pressure, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Pressure, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Pascal.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<PressureUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public PressureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<PressureUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -1085,6 +1083,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((PressureUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

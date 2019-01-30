@@ -70,7 +70,7 @@ namespace UnitsNet
         static Magnetization()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
-            Info = new QuantityInfo<MagnetizationUnit>(QuantityType.Magnetization, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Magnetization, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit AmperePerMeter.
@@ -103,7 +103,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<MagnetizationUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -154,9 +154,7 @@ namespace UnitsNet
         /// </summary>
         public MagnetizationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<MagnetizationUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -473,6 +471,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((MagnetizationUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

@@ -67,7 +67,7 @@ namespace UnitsNet
         static AreaDensity()
         {
             BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<AreaDensityUnit>(QuantityType.AreaDensity, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.AreaDensity, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit KilogramPerSquareMeter.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<AreaDensityUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public AreaDensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<AreaDensityUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -470,6 +468,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((AreaDensityUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

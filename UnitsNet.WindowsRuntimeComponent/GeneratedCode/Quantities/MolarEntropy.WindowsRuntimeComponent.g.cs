@@ -67,7 +67,7 @@ namespace UnitsNet
         static MolarEntropy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
-            Info = new QuantityInfo<MolarEntropyUnit>(QuantityType.MolarEntropy, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.MolarEntropy, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit JoulePerMoleKelvin.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<MolarEntropyUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public MolarEntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<MolarEntropyUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -500,6 +498,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((MolarEntropyUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

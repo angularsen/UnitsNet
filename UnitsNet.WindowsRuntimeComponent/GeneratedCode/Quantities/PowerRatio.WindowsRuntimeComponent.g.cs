@@ -67,7 +67,7 @@ namespace UnitsNet
         static PowerRatio()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<PowerRatioUnit>(QuantityType.PowerRatio, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.PowerRatio, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit DecibelWatt.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<PowerRatioUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public PowerRatioUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<PowerRatioUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -485,6 +483,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((PowerRatioUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

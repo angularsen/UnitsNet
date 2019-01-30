@@ -67,7 +67,7 @@ namespace UnitsNet
         static TemperatureDelta()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<TemperatureDeltaUnit>(QuantityType.TemperatureDelta, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.TemperatureDelta, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Kelvin.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<TemperatureDeltaUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public TemperatureDeltaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<TemperatureDeltaUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -575,6 +573,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((TemperatureDeltaUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

@@ -67,7 +67,7 @@ namespace UnitsNet
         static Level()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<LevelUnit>(QuantityType.Level, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Level, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Decibel.
@@ -100,7 +100,7 @@ namespace UnitsNet
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
-        internal static QuantityInfo<LevelUnit> Info { get; }
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -151,9 +151,7 @@ namespace UnitsNet
         /// </summary>
         public LevelUnit Unit => _unit.GetValueOrDefault(BaseUnit);
 
-        internal QuantityInfo<LevelUnit> QuantityInfo => Info;
-
-        QuantityInfo IQuantity.QuantityInfo => Info;
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -485,6 +483,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((LevelUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
