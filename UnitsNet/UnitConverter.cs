@@ -42,15 +42,15 @@ namespace UnitsNet
     public static class UnitConverter
     {
         private static readonly string UnitTypeNamespace = typeof(LengthUnit).Namespace;
-        private static readonly Assembly UnitsNetAssembly = typeof(Length).GetAssembly();
+        private static readonly Assembly UnitsNetAssembly = typeof(Length).Wrap().Assembly;
 
         private static readonly Type[] QuantityTypes = UnitsNetAssembly.GetTypes()
-            .Where(typeof(IQuantity).IsAssignableFrom)
-            .Where(x => x.IsClass() || x.IsValueType()) // Future-proofing: we are discussing changing quantities from struct to class
+            .Where(typeof(IQuantity).Wrap().IsAssignableFrom)
+            .Where(x => x.Wrap().IsClass || x.Wrap().IsValueType) // Future-proofing: we are discussing changing quantities from struct to class
             .ToArray();
 
         private static readonly Type[] UnitTypes = UnitsNetAssembly.GetTypes()
-            .Where(x => x.Namespace == UnitTypeNamespace && x.IsEnum() && x.Name.EndsWith("Unit"))
+            .Where(x => x.Namespace == UnitTypeNamespace && x.Wrap().IsEnum && x.Name.EndsWith("Unit"))
             .ToArray();
 
         /// <summary>
@@ -360,7 +360,7 @@ namespace UnitsNet
         {
             // Only a single As() method as of this writing, but let's safe-guard a bit for future-proofing
             // ex: double result = quantity.As(LengthUnit outputUnit);
-            return quantityType.GetDeclaredMethods()
+            return quantityType.Wrap().GetDeclaredMethods()
                 .Single(m => m.Name == "As" &&
                              !m.IsStatic &&
                              m.IsPublic &&
@@ -372,7 +372,7 @@ namespace UnitsNet
         {
             // Want to match: Length l = UnitsNet.Length.From(double inputValue, LengthUnit inputUnit)
             // Do NOT match : Length? UnitsNet.Length.From(double? inputValue, LengthUnit inputUnit)
-            return quantityType.GetDeclaredMethods()
+            return quantityType.Wrap().GetDeclaredMethods()
                 .Single(m => m.Name == "From" &&
                              m.IsStatic &&
                              m.IsPublic &&

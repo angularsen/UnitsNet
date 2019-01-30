@@ -23,6 +23,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
+using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
 namespace UnitsNet
@@ -45,9 +46,11 @@ namespace UnitsNet
     {
         private static readonly string UnitEnumNamespace = typeof(LengthUnit).Namespace;
 
-        private static readonly Type[] UnitEnumTypes = Assembly.GetAssembly(typeof(Length))
+        private static readonly Type[] UnitEnumTypes = typeof(Length)
+            .Wrap()
+            .Assembly
             .GetExportedTypes()
-            .Where(t => t.IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
+            .Where(t => t.Wrap().IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
             .ToArray();
 
         public QuantityInfo(QuantityType quantityType, [NotNull] Enum[] units, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)

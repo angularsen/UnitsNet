@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Reflection;
 using UnitsNet.InternalHelpers;
@@ -14,10 +14,12 @@ namespace UnitsNet
             Names = quantityTypes.Select(qt => qt.ToString()).ToArray();
 
             // A bunch of reflection to enumerate quantity types, instantiate with the default constructor and return its QuantityInfo property
-            InfosLazy = new Lazy<QuantityInfo[]>(() => Assembly.GetAssembly(typeof(Length))
+            InfosLazy = new Lazy<QuantityInfo[]>(() => typeof(Length)
+                .Wrap()
+                .Assembly
                 .GetExportedTypes()
                 .Where(typeof(IQuantity).IsAssignableFrom)
-                .Where(t => t.IsClass() || t.IsValueType()) // Future-proofing: Considering changing quantities from struct to class
+                .Where(t => t.Wrap().IsClass || t.Wrap().IsValueType) // Future-proofing: Considering changing quantities from struct to class
                 .Select(Activator.CreateInstance)
                 .Cast<IQuantity>()
                 .Select(q => q.QuantityInfo)
