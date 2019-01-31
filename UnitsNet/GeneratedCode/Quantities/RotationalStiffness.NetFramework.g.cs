@@ -132,6 +132,9 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
@@ -139,6 +142,7 @@ namespace UnitsNet
 
         public QuantityInfo<RotationalStiffnessUnit> QuantityInfo => Info;
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>

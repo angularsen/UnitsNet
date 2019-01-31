@@ -59,6 +59,16 @@ namespace UnitsNet
         double As(Enum unit);
 #endif
 
+        /// <summary>
+        ///     The unit this quantity was constructed with or the BaseUnit if the default constructor was used.
+        /// </summary>
+
+#if WINDOWS_UWP
+        object Unit { get; }
+#else
+        Enum Unit { get; }
+#endif
+
 #if !WINDOWS_UWP
         /// <summary>
         ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
@@ -138,10 +148,8 @@ namespace UnitsNet
         /// <returns>Value converted to the specified unit.</returns>
         double As(TUnitType unit);
 
-        /// <summary>
-        ///     The unit this quantity was constructed with or the BaseUnit if the default constructor was used.
-        /// </summary>
-        TUnitType Unit { get; }
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        new TUnitType Unit { get; }
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         new QuantityInfo<TUnitType> QuantityInfo { get; }

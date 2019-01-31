@@ -345,6 +345,9 @@ function GenerateProperties([GeneratorArgs]$genArgs)
 "@; }
 @"
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        $enumOrObject IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
@@ -355,6 +358,7 @@ function GenerateProperties([GeneratorArgs]$genArgs)
 "@; } else {@"
         public QuantityInfo<$unitEnumName> QuantityInfo => Info;
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
         QuantityInfo IQuantity.QuantityInfo => Info;
 "@; }@"
 

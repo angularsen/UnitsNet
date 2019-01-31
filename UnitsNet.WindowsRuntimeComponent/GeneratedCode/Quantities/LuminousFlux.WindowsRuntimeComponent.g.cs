@@ -149,6 +149,9 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
