@@ -74,7 +74,7 @@ namespace UnitsNet.InternalHelpers
 #endif
                     yield return m;
 
-                t = t.BaseType.ToUniformType();
+                t = t.BaseType?.ToUniformType();
             }
         }
     }
