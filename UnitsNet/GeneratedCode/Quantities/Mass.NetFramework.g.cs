@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Mass, which is Kilogram. All conversions go via this value.
         /// </summary>
-        public static MassUnit BaseUnit => MassUnit.Kilogram;
+        public static MassUnit BaseUnit { get; } = MassUnit.Kilogram;
 
         /// <summary>
         /// Represents the largest possible value of Mass
         /// </summary>
-        public static Mass MaxValue => new Mass(double.MaxValue, BaseUnit);
+        public static Mass MaxValue { get; } = new Mass(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Mass
         /// </summary>
-        public static Mass MinValue => new Mass(double.MinValue, BaseUnit);
+        public static Mass MinValue { get; } = new Mass(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Mass;
+        public static QuantityType QuantityType { get; } = QuantityType.Mass;
 
         /// <summary>
         ///     All units of measurement for the Mass quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kilogram.
         /// </summary>
-        public static Mass Zero => new Mass(0, BaseUnit);
+        public static Mass Zero { get; } = new Mass(0, BaseUnit);
 
         #endregion
 

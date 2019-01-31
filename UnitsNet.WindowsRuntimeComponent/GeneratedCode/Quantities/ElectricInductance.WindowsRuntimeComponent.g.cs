@@ -113,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricInductance, which is Henry. All conversions go via this value.
         /// </summary>
-        public static ElectricInductanceUnit BaseUnit => ElectricInductanceUnit.Henry;
+        public static ElectricInductanceUnit BaseUnit { get; } = ElectricInductanceUnit.Henry;
 
         /// <summary>
         /// Represents the largest possible value of ElectricInductance
         /// </summary>
-        public static ElectricInductance MaxValue => new ElectricInductance(double.MaxValue, BaseUnit);
+        public static ElectricInductance MaxValue { get; } = new ElectricInductance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricInductance
         /// </summary>
-        public static ElectricInductance MinValue => new ElectricInductance(double.MinValue, BaseUnit);
+        public static ElectricInductance MinValue { get; } = new ElectricInductance(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricInductance;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricInductance;
 
         /// <summary>
         ///     All units of measurement for the ElectricInductance quantity.
@@ -138,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Henry.
         /// </summary>
-        public static ElectricInductance Zero => new ElectricInductance(0, BaseUnit);
+        public static ElectricInductance Zero { get; } = new ElectricInductance(0, BaseUnit);
 
         #endregion
 

@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SpecificEntropy, which is JoulePerKilogramKelvin. All conversions go via this value.
         /// </summary>
-        public static SpecificEntropyUnit BaseUnit => SpecificEntropyUnit.JoulePerKilogramKelvin;
+        public static SpecificEntropyUnit BaseUnit { get; } = SpecificEntropyUnit.JoulePerKilogramKelvin;
 
         /// <summary>
         /// Represents the largest possible value of SpecificEntropy
         /// </summary>
-        public static SpecificEntropy MaxValue => new SpecificEntropy(double.MaxValue, BaseUnit);
+        public static SpecificEntropy MaxValue { get; } = new SpecificEntropy(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SpecificEntropy
         /// </summary>
-        public static SpecificEntropy MinValue => new SpecificEntropy(double.MinValue, BaseUnit);
+        public static SpecificEntropy MinValue { get; } = new SpecificEntropy(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.SpecificEntropy;
+        public static QuantityType QuantityType { get; } = QuantityType.SpecificEntropy;
 
         /// <summary>
         ///     All units of measurement for the SpecificEntropy quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKilogramKelvin.
         /// </summary>
-        public static SpecificEntropy Zero => new SpecificEntropy(0, BaseUnit);
+        public static SpecificEntropy Zero { get; } = new SpecificEntropy(0, BaseUnit);
 
         #endregion
 

@@ -110,22 +110,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MolarEnergy, which is JoulePerMole. All conversions go via this value.
         /// </summary>
-        public static MolarEnergyUnit BaseUnit => MolarEnergyUnit.JoulePerMole;
+        public static MolarEnergyUnit BaseUnit { get; } = MolarEnergyUnit.JoulePerMole;
 
         /// <summary>
         /// Represents the largest possible value of MolarEnergy
         /// </summary>
-        public static MolarEnergy MaxValue => new MolarEnergy(double.MaxValue, BaseUnit);
+        public static MolarEnergy MaxValue { get; } = new MolarEnergy(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MolarEnergy
         /// </summary>
-        public static MolarEnergy MinValue => new MolarEnergy(double.MinValue, BaseUnit);
+        public static MolarEnergy MinValue { get; } = new MolarEnergy(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.MolarEnergy;
+        public static QuantityType QuantityType { get; } = QuantityType.MolarEnergy;
 
         /// <summary>
         ///     All units of measurement for the MolarEnergy quantity.
@@ -135,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerMole.
         /// </summary>
-        public static MolarEnergy Zero => new MolarEnergy(0, BaseUnit);
+        public static MolarEnergy Zero { get; } = new MolarEnergy(0, BaseUnit);
 
         #endregion
 

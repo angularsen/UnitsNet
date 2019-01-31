@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of RotationalStiffness, which is NewtonMeterPerRadian. All conversions go via this value.
         /// </summary>
-        public static RotationalStiffnessUnit BaseUnit => RotationalStiffnessUnit.NewtonMeterPerRadian;
+        public static RotationalStiffnessUnit BaseUnit { get; } = RotationalStiffnessUnit.NewtonMeterPerRadian;
 
         /// <summary>
         /// Represents the largest possible value of RotationalStiffness
         /// </summary>
-        public static RotationalStiffness MaxValue => new RotationalStiffness(double.MaxValue, BaseUnit);
+        public static RotationalStiffness MaxValue { get; } = new RotationalStiffness(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of RotationalStiffness
         /// </summary>
-        public static RotationalStiffness MinValue => new RotationalStiffness(double.MinValue, BaseUnit);
+        public static RotationalStiffness MinValue { get; } = new RotationalStiffness(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.RotationalStiffness;
+        public static QuantityType QuantityType { get; } = QuantityType.RotationalStiffness;
 
         /// <summary>
         ///     All units of measurement for the RotationalStiffness quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonMeterPerRadian.
         /// </summary>
-        public static RotationalStiffness Zero => new RotationalStiffness(0, BaseUnit);
+        public static RotationalStiffness Zero { get; } = new RotationalStiffness(0, BaseUnit);
 
         #endregion
 

@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of HeatTransferCoefficient, which is WattPerSquareMeterKelvin. All conversions go via this value.
         /// </summary>
-        public static HeatTransferCoefficientUnit BaseUnit => HeatTransferCoefficientUnit.WattPerSquareMeterKelvin;
+        public static HeatTransferCoefficientUnit BaseUnit { get; } = HeatTransferCoefficientUnit.WattPerSquareMeterKelvin;
 
         /// <summary>
         /// Represents the largest possible value of HeatTransferCoefficient
         /// </summary>
-        public static HeatTransferCoefficient MaxValue => new HeatTransferCoefficient(double.MaxValue, BaseUnit);
+        public static HeatTransferCoefficient MaxValue { get; } = new HeatTransferCoefficient(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of HeatTransferCoefficient
         /// </summary>
-        public static HeatTransferCoefficient MinValue => new HeatTransferCoefficient(double.MinValue, BaseUnit);
+        public static HeatTransferCoefficient MinValue { get; } = new HeatTransferCoefficient(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.HeatTransferCoefficient;
+        public static QuantityType QuantityType { get; } = QuantityType.HeatTransferCoefficient;
 
         /// <summary>
         ///     All units of measurement for the HeatTransferCoefficient quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeterKelvin.
         /// </summary>
-        public static HeatTransferCoefficient Zero => new HeatTransferCoefficient(0, BaseUnit);
+        public static HeatTransferCoefficient Zero { get; } = new HeatTransferCoefficient(0, BaseUnit);
 
         #endregion
 

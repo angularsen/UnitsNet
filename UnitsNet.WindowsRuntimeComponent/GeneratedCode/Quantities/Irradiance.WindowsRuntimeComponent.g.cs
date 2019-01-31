@@ -110,22 +110,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Irradiance, which is WattPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static IrradianceUnit BaseUnit => IrradianceUnit.WattPerSquareMeter;
+        public static IrradianceUnit BaseUnit { get; } = IrradianceUnit.WattPerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of Irradiance
         /// </summary>
-        public static Irradiance MaxValue => new Irradiance(double.MaxValue, BaseUnit);
+        public static Irradiance MaxValue { get; } = new Irradiance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Irradiance
         /// </summary>
-        public static Irradiance MinValue => new Irradiance(double.MinValue, BaseUnit);
+        public static Irradiance MinValue { get; } = new Irradiance(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Irradiance;
+        public static QuantityType QuantityType { get; } = QuantityType.Irradiance;
 
         /// <summary>
         ///     All units of measurement for the Irradiance quantity.
@@ -135,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerSquareMeter.
         /// </summary>
-        public static Irradiance Zero => new Irradiance(0, BaseUnit);
+        public static Irradiance Zero { get; } = new Irradiance(0, BaseUnit);
 
         #endregion
 

@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Speed, which is MeterPerSecond. All conversions go via this value.
         /// </summary>
-        public static SpeedUnit BaseUnit => SpeedUnit.MeterPerSecond;
+        public static SpeedUnit BaseUnit { get; } = SpeedUnit.MeterPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of Speed
         /// </summary>
-        public static Speed MaxValue => new Speed(double.MaxValue, BaseUnit);
+        public static Speed MaxValue { get; } = new Speed(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Speed
         /// </summary>
-        public static Speed MinValue => new Speed(double.MinValue, BaseUnit);
+        public static Speed MinValue { get; } = new Speed(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Speed;
+        public static QuantityType QuantityType { get; } = QuantityType.Speed;
 
         /// <summary>
         ///     All units of measurement for the Speed quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MeterPerSecond.
         /// </summary>
-        public static Speed Zero => new Speed(0, BaseUnit);
+        public static Speed Zero { get; } = new Speed(0, BaseUnit);
 
         #endregion
 

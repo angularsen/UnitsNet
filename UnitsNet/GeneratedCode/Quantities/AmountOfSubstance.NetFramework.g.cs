@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of AmountOfSubstance, which is Mole. All conversions go via this value.
         /// </summary>
-        public static AmountOfSubstanceUnit BaseUnit => AmountOfSubstanceUnit.Mole;
+        public static AmountOfSubstanceUnit BaseUnit { get; } = AmountOfSubstanceUnit.Mole;
 
         /// <summary>
         /// Represents the largest possible value of AmountOfSubstance
         /// </summary>
-        public static AmountOfSubstance MaxValue => new AmountOfSubstance(double.MaxValue, BaseUnit);
+        public static AmountOfSubstance MaxValue { get; } = new AmountOfSubstance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of AmountOfSubstance
         /// </summary>
-        public static AmountOfSubstance MinValue => new AmountOfSubstance(double.MinValue, BaseUnit);
+        public static AmountOfSubstance MinValue { get; } = new AmountOfSubstance(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.AmountOfSubstance;
+        public static QuantityType QuantityType { get; } = QuantityType.AmountOfSubstance;
 
         /// <summary>
         ///     All units of measurement for the AmountOfSubstance quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Mole.
         /// </summary>
-        public static AmountOfSubstance Zero => new AmountOfSubstance(0, BaseUnit);
+        public static AmountOfSubstance Zero { get; } = new AmountOfSubstance(0, BaseUnit);
 
         #endregion
 

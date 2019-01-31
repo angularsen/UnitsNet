@@ -110,22 +110,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Length, which is Meter. All conversions go via this value.
         /// </summary>
-        public static LengthUnit BaseUnit => LengthUnit.Meter;
+        public static LengthUnit BaseUnit { get; } = LengthUnit.Meter;
 
         /// <summary>
         /// Represents the largest possible value of Length
         /// </summary>
-        public static Length MaxValue => new Length(double.MaxValue, BaseUnit);
+        public static Length MaxValue { get; } = new Length(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Length
         /// </summary>
-        public static Length MinValue => new Length(double.MinValue, BaseUnit);
+        public static Length MinValue { get; } = new Length(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Length;
+        public static QuantityType QuantityType { get; } = QuantityType.Length;
 
         /// <summary>
         ///     All units of measurement for the Length quantity.
@@ -135,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Meter.
         /// </summary>
-        public static Length Zero => new Length(0, BaseUnit);
+        public static Length Zero { get; } = new Length(0, BaseUnit);
 
         #endregion
 

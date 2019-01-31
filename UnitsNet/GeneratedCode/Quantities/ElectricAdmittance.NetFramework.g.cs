@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricAdmittance, which is Siemens. All conversions go via this value.
         /// </summary>
-        public static ElectricAdmittanceUnit BaseUnit => ElectricAdmittanceUnit.Siemens;
+        public static ElectricAdmittanceUnit BaseUnit { get; } = ElectricAdmittanceUnit.Siemens;
 
         /// <summary>
         /// Represents the largest possible value of ElectricAdmittance
         /// </summary>
-        public static ElectricAdmittance MaxValue => new ElectricAdmittance(double.MaxValue, BaseUnit);
+        public static ElectricAdmittance MaxValue { get; } = new ElectricAdmittance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricAdmittance
         /// </summary>
-        public static ElectricAdmittance MinValue => new ElectricAdmittance(double.MinValue, BaseUnit);
+        public static ElectricAdmittance MinValue { get; } = new ElectricAdmittance(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricAdmittance;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricAdmittance;
 
         /// <summary>
         ///     All units of measurement for the ElectricAdmittance quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Siemens.
         /// </summary>
-        public static ElectricAdmittance Zero => new ElectricAdmittance(0, BaseUnit);
+        public static ElectricAdmittance Zero { get; } = new ElectricAdmittance(0, BaseUnit);
 
         #endregion
 

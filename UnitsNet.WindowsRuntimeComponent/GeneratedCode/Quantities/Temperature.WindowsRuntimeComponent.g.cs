@@ -110,22 +110,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Temperature, which is Kelvin. All conversions go via this value.
         /// </summary>
-        public static TemperatureUnit BaseUnit => TemperatureUnit.Kelvin;
+        public static TemperatureUnit BaseUnit { get; } = TemperatureUnit.Kelvin;
 
         /// <summary>
         /// Represents the largest possible value of Temperature
         /// </summary>
-        public static Temperature MaxValue => new Temperature(double.MaxValue, BaseUnit);
+        public static Temperature MaxValue { get; } = new Temperature(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Temperature
         /// </summary>
-        public static Temperature MinValue => new Temperature(double.MinValue, BaseUnit);
+        public static Temperature MinValue { get; } = new Temperature(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Temperature;
+        public static QuantityType QuantityType { get; } = QuantityType.Temperature;
 
         /// <summary>
         ///     All units of measurement for the Temperature quantity.
@@ -135,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Kelvin.
         /// </summary>
-        public static Temperature Zero => new Temperature(0, BaseUnit);
+        public static Temperature Zero { get; } = new Temperature(0, BaseUnit);
 
         #endregion
 

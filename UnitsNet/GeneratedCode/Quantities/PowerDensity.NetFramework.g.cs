@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of PowerDensity, which is WattPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static PowerDensityUnit BaseUnit => PowerDensityUnit.WattPerCubicMeter;
+        public static PowerDensityUnit BaseUnit { get; } = PowerDensityUnit.WattPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of PowerDensity
         /// </summary>
-        public static PowerDensity MaxValue => new PowerDensity(double.MaxValue, BaseUnit);
+        public static PowerDensity MaxValue { get; } = new PowerDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of PowerDensity
         /// </summary>
-        public static PowerDensity MinValue => new PowerDensity(double.MinValue, BaseUnit);
+        public static PowerDensity MinValue { get; } = new PowerDensity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.PowerDensity;
+        public static QuantityType QuantityType { get; } = QuantityType.PowerDensity;
 
         /// <summary>
         ///     All units of measurement for the PowerDensity quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit WattPerCubicMeter.
         /// </summary>
-        public static PowerDensity Zero => new PowerDensity(0, BaseUnit);
+        public static PowerDensity Zero { get; } = new PowerDensity(0, BaseUnit);
 
         #endregion
 

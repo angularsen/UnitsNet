@@ -110,22 +110,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricCurrent, which is Ampere. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentUnit BaseUnit => ElectricCurrentUnit.Ampere;
+        public static ElectricCurrentUnit BaseUnit { get; } = ElectricCurrentUnit.Ampere;
 
         /// <summary>
         /// Represents the largest possible value of ElectricCurrent
         /// </summary>
-        public static ElectricCurrent MaxValue => new ElectricCurrent(double.MaxValue, BaseUnit);
+        public static ElectricCurrent MaxValue { get; } = new ElectricCurrent(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCurrent
         /// </summary>
-        public static ElectricCurrent MinValue => new ElectricCurrent(double.MinValue, BaseUnit);
+        public static ElectricCurrent MinValue { get; } = new ElectricCurrent(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricCurrent;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrent;
 
         /// <summary>
         ///     All units of measurement for the ElectricCurrent quantity.
@@ -135,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Ampere.
         /// </summary>
-        public static ElectricCurrent Zero => new ElectricCurrent(0, BaseUnit);
+        public static ElectricCurrent Zero { get; } = new ElectricCurrent(0, BaseUnit);
 
         #endregion
 

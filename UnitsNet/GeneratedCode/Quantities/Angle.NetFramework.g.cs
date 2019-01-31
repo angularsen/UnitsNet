@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Angle, which is Degree. All conversions go via this value.
         /// </summary>
-        public static AngleUnit BaseUnit => AngleUnit.Degree;
+        public static AngleUnit BaseUnit { get; } = AngleUnit.Degree;
 
         /// <summary>
         /// Represents the largest possible value of Angle
         /// </summary>
-        public static Angle MaxValue => new Angle(double.MaxValue, BaseUnit);
+        public static Angle MaxValue { get; } = new Angle(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Angle
         /// </summary>
-        public static Angle MinValue => new Angle(double.MinValue, BaseUnit);
+        public static Angle MinValue { get; } = new Angle(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Angle;
+        public static QuantityType QuantityType { get; } = QuantityType.Angle;
 
         /// <summary>
         ///     All units of measurement for the Angle quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Degree.
         /// </summary>
-        public static Angle Zero => new Angle(0, BaseUnit);
+        public static Angle Zero { get; } = new Angle(0, BaseUnit);
 
         #endregion
 

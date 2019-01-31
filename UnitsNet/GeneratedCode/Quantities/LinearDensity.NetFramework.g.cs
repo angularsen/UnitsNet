@@ -99,22 +99,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of LinearDensity, which is KilogramPerMeter. All conversions go via this value.
         /// </summary>
-        public static LinearDensityUnit BaseUnit => LinearDensityUnit.KilogramPerMeter;
+        public static LinearDensityUnit BaseUnit { get; } = LinearDensityUnit.KilogramPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of LinearDensity
         /// </summary>
-        public static LinearDensity MaxValue => new LinearDensity(double.MaxValue, BaseUnit);
+        public static LinearDensity MaxValue { get; } = new LinearDensity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of LinearDensity
         /// </summary>
-        public static LinearDensity MinValue => new LinearDensity(double.MinValue, BaseUnit);
+        public static LinearDensity MinValue { get; } = new LinearDensity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.LinearDensity;
+        public static QuantityType QuantityType { get; } = QuantityType.LinearDensity;
 
         /// <summary>
         ///     All units of measurement for the LinearDensity quantity.
@@ -124,7 +124,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerMeter.
         /// </summary>
-        public static LinearDensity Zero => new LinearDensity(0, BaseUnit);
+        public static LinearDensity Zero { get; } = new LinearDensity(0, BaseUnit);
 
         #endregion
 

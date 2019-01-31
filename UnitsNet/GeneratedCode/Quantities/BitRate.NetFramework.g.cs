@@ -99,22 +99,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of BitRate, which is BitPerSecond. All conversions go via this value.
         /// </summary>
-        public static BitRateUnit BaseUnit => BitRateUnit.BitPerSecond;
+        public static BitRateUnit BaseUnit { get; } = BitRateUnit.BitPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of BitRate
         /// </summary>
-        public static BitRate MaxValue => new BitRate(decimal.MaxValue, BaseUnit);
+        public static BitRate MaxValue { get; } = new BitRate(decimal.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of BitRate
         /// </summary>
-        public static BitRate MinValue => new BitRate(decimal.MinValue, BaseUnit);
+        public static BitRate MinValue { get; } = new BitRate(decimal.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.BitRate;
+        public static QuantityType QuantityType { get; } = QuantityType.BitRate;
 
         /// <summary>
         ///     All units of measurement for the BitRate quantity.
@@ -124,7 +124,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit BitPerSecond.
         /// </summary>
-        public static BitRate Zero => new BitRate(0, BaseUnit);
+        public static BitRate Zero { get; } = new BitRate(0, BaseUnit);
 
         #endregion
 

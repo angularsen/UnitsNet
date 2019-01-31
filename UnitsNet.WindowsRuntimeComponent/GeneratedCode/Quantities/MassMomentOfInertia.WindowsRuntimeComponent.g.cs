@@ -110,22 +110,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassMomentOfInertia, which is KilogramSquareMeter. All conversions go via this value.
         /// </summary>
-        public static MassMomentOfInertiaUnit BaseUnit => MassMomentOfInertiaUnit.KilogramSquareMeter;
+        public static MassMomentOfInertiaUnit BaseUnit { get; } = MassMomentOfInertiaUnit.KilogramSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of MassMomentOfInertia
         /// </summary>
-        public static MassMomentOfInertia MaxValue => new MassMomentOfInertia(double.MaxValue, BaseUnit);
+        public static MassMomentOfInertia MaxValue { get; } = new MassMomentOfInertia(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MassMomentOfInertia
         /// </summary>
-        public static MassMomentOfInertia MinValue => new MassMomentOfInertia(double.MinValue, BaseUnit);
+        public static MassMomentOfInertia MinValue { get; } = new MassMomentOfInertia(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.MassMomentOfInertia;
+        public static QuantityType QuantityType { get; } = QuantityType.MassMomentOfInertia;
 
         /// <summary>
         ///     All units of measurement for the MassMomentOfInertia quantity.
@@ -135,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramSquareMeter.
         /// </summary>
-        public static MassMomentOfInertia Zero => new MassMomentOfInertia(0, BaseUnit);
+        public static MassMomentOfInertia Zero { get; } = new MassMomentOfInertia(0, BaseUnit);
 
         #endregion
 

@@ -110,22 +110,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of VitaminA, which is InternationalUnit. All conversions go via this value.
         /// </summary>
-        public static VitaminAUnit BaseUnit => VitaminAUnit.InternationalUnit;
+        public static VitaminAUnit BaseUnit { get; } = VitaminAUnit.InternationalUnit;
 
         /// <summary>
         /// Represents the largest possible value of VitaminA
         /// </summary>
-        public static VitaminA MaxValue => new VitaminA(double.MaxValue, BaseUnit);
+        public static VitaminA MaxValue { get; } = new VitaminA(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of VitaminA
         /// </summary>
-        public static VitaminA MinValue => new VitaminA(double.MinValue, BaseUnit);
+        public static VitaminA MinValue { get; } = new VitaminA(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.VitaminA;
+        public static QuantityType QuantityType { get; } = QuantityType.VitaminA;
 
         /// <summary>
         ///     All units of measurement for the VitaminA quantity.
@@ -135,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit InternationalUnit.
         /// </summary>
-        public static VitaminA Zero => new VitaminA(0, BaseUnit);
+        public static VitaminA Zero { get; } = new VitaminA(0, BaseUnit);
 
         #endregion
 

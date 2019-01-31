@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Entropy, which is JoulePerKelvin. All conversions go via this value.
         /// </summary>
-        public static EntropyUnit BaseUnit => EntropyUnit.JoulePerKelvin;
+        public static EntropyUnit BaseUnit { get; } = EntropyUnit.JoulePerKelvin;
 
         /// <summary>
         /// Represents the largest possible value of Entropy
         /// </summary>
-        public static Entropy MaxValue => new Entropy(double.MaxValue, BaseUnit);
+        public static Entropy MaxValue { get; } = new Entropy(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Entropy
         /// </summary>
-        public static Entropy MinValue => new Entropy(double.MinValue, BaseUnit);
+        public static Entropy MinValue { get; } = new Entropy(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Entropy;
+        public static QuantityType QuantityType { get; } = QuantityType.Entropy;
 
         /// <summary>
         ///     All units of measurement for the Entropy quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit JoulePerKelvin.
         /// </summary>
-        public static Entropy Zero => new Entropy(0, BaseUnit);
+        public static Entropy Zero { get; } = new Entropy(0, BaseUnit);
 
         #endregion
 

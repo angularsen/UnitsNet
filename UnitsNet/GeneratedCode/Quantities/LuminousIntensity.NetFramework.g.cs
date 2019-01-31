@@ -99,22 +99,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of LuminousIntensity, which is Candela. All conversions go via this value.
         /// </summary>
-        public static LuminousIntensityUnit BaseUnit => LuminousIntensityUnit.Candela;
+        public static LuminousIntensityUnit BaseUnit { get; } = LuminousIntensityUnit.Candela;
 
         /// <summary>
         /// Represents the largest possible value of LuminousIntensity
         /// </summary>
-        public static LuminousIntensity MaxValue => new LuminousIntensity(double.MaxValue, BaseUnit);
+        public static LuminousIntensity MaxValue { get; } = new LuminousIntensity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of LuminousIntensity
         /// </summary>
-        public static LuminousIntensity MinValue => new LuminousIntensity(double.MinValue, BaseUnit);
+        public static LuminousIntensity MinValue { get; } = new LuminousIntensity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.LuminousIntensity;
+        public static QuantityType QuantityType { get; } = QuantityType.LuminousIntensity;
 
         /// <summary>
         ///     All units of measurement for the LuminousIntensity quantity.
@@ -124,7 +124,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Candela.
         /// </summary>
-        public static LuminousIntensity Zero => new LuminousIntensity(0, BaseUnit);
+        public static LuminousIntensity Zero { get; } = new LuminousIntensity(0, BaseUnit);
 
         #endregion
 

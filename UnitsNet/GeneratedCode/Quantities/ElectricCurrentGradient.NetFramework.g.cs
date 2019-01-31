@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricCurrentGradient, which is AmperePerSecond. All conversions go via this value.
         /// </summary>
-        public static ElectricCurrentGradientUnit BaseUnit => ElectricCurrentGradientUnit.AmperePerSecond;
+        public static ElectricCurrentGradientUnit BaseUnit { get; } = ElectricCurrentGradientUnit.AmperePerSecond;
 
         /// <summary>
         /// Represents the largest possible value of ElectricCurrentGradient
         /// </summary>
-        public static ElectricCurrentGradient MaxValue => new ElectricCurrentGradient(double.MaxValue, BaseUnit);
+        public static ElectricCurrentGradient MaxValue { get; } = new ElectricCurrentGradient(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricCurrentGradient
         /// </summary>
-        public static ElectricCurrentGradient MinValue => new ElectricCurrentGradient(double.MinValue, BaseUnit);
+        public static ElectricCurrentGradient MinValue { get; } = new ElectricCurrentGradient(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricCurrentGradient;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricCurrentGradient;
 
         /// <summary>
         ///     All units of measurement for the ElectricCurrentGradient quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit AmperePerSecond.
         /// </summary>
-        public static ElectricCurrentGradient Zero => new ElectricCurrentGradient(0, BaseUnit);
+        public static ElectricCurrentGradient Zero { get; } = new ElectricCurrentGradient(0, BaseUnit);
 
         #endregion
 

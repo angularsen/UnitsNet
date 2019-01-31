@@ -99,22 +99,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Permeability, which is HenryPerMeter. All conversions go via this value.
         /// </summary>
-        public static PermeabilityUnit BaseUnit => PermeabilityUnit.HenryPerMeter;
+        public static PermeabilityUnit BaseUnit { get; } = PermeabilityUnit.HenryPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Permeability
         /// </summary>
-        public static Permeability MaxValue => new Permeability(double.MaxValue, BaseUnit);
+        public static Permeability MaxValue { get; } = new Permeability(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Permeability
         /// </summary>
-        public static Permeability MinValue => new Permeability(double.MinValue, BaseUnit);
+        public static Permeability MinValue { get; } = new Permeability(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Permeability;
+        public static QuantityType QuantityType { get; } = QuantityType.Permeability;
 
         /// <summary>
         ///     All units of measurement for the Permeability quantity.
@@ -124,7 +124,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit HenryPerMeter.
         /// </summary>
-        public static Permeability Zero => new Permeability(0, BaseUnit);
+        public static Permeability Zero { get; } = new Permeability(0, BaseUnit);
 
         #endregion
 

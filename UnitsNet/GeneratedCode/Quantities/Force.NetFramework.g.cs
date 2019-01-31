@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Force, which is Newton. All conversions go via this value.
         /// </summary>
-        public static ForceUnit BaseUnit => ForceUnit.Newton;
+        public static ForceUnit BaseUnit { get; } = ForceUnit.Newton;
 
         /// <summary>
         /// Represents the largest possible value of Force
         /// </summary>
-        public static Force MaxValue => new Force(double.MaxValue, BaseUnit);
+        public static Force MaxValue { get; } = new Force(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Force
         /// </summary>
-        public static Force MinValue => new Force(double.MinValue, BaseUnit);
+        public static Force MinValue { get; } = new Force(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Force;
+        public static QuantityType QuantityType { get; } = QuantityType.Force;
 
         /// <summary>
         ///     All units of measurement for the Force quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Newton.
         /// </summary>
-        public static Force Zero => new Force(0, BaseUnit);
+        public static Force Zero { get; } = new Force(0, BaseUnit);
 
         #endregion
 

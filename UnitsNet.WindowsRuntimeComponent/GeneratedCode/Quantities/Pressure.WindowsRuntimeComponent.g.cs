@@ -110,22 +110,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Pressure, which is Pascal. All conversions go via this value.
         /// </summary>
-        public static PressureUnit BaseUnit => PressureUnit.Pascal;
+        public static PressureUnit BaseUnit { get; } = PressureUnit.Pascal;
 
         /// <summary>
         /// Represents the largest possible value of Pressure
         /// </summary>
-        public static Pressure MaxValue => new Pressure(double.MaxValue, BaseUnit);
+        public static Pressure MaxValue { get; } = new Pressure(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Pressure
         /// </summary>
-        public static Pressure MinValue => new Pressure(double.MinValue, BaseUnit);
+        public static Pressure MinValue { get; } = new Pressure(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Pressure;
+        public static QuantityType QuantityType { get; } = QuantityType.Pressure;
 
         /// <summary>
         ///     All units of measurement for the Pressure quantity.
@@ -135,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Pascal.
         /// </summary>
-        public static Pressure Zero => new Pressure(0, BaseUnit);
+        public static Pressure Zero { get; } = new Pressure(0, BaseUnit);
 
         #endregion
 

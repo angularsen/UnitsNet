@@ -110,22 +110,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of MassFlux, which is KilogramPerSecondPerSquareMeter. All conversions go via this value.
         /// </summary>
-        public static MassFluxUnit BaseUnit => MassFluxUnit.KilogramPerSecondPerSquareMeter;
+        public static MassFluxUnit BaseUnit { get; } = MassFluxUnit.KilogramPerSecondPerSquareMeter;
 
         /// <summary>
         /// Represents the largest possible value of MassFlux
         /// </summary>
-        public static MassFlux MaxValue => new MassFlux(double.MaxValue, BaseUnit);
+        public static MassFlux MaxValue { get; } = new MassFlux(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of MassFlux
         /// </summary>
-        public static MassFlux MinValue => new MassFlux(double.MinValue, BaseUnit);
+        public static MassFlux MinValue { get; } = new MassFlux(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.MassFlux;
+        public static QuantityType QuantityType { get; } = QuantityType.MassFlux;
 
         /// <summary>
         ///     All units of measurement for the MassFlux quantity.
@@ -135,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerSecondPerSquareMeter.
         /// </summary>
-        public static MassFlux Zero => new MassFlux(0, BaseUnit);
+        public static MassFlux Zero { get; } = new MassFlux(0, BaseUnit);
 
         #endregion
 

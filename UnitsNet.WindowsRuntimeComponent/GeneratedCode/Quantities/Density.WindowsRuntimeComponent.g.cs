@@ -113,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Density, which is KilogramPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static DensityUnit BaseUnit => DensityUnit.KilogramPerCubicMeter;
+        public static DensityUnit BaseUnit { get; } = DensityUnit.KilogramPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of Density
         /// </summary>
-        public static Density MaxValue => new Density(double.MaxValue, BaseUnit);
+        public static Density MaxValue { get; } = new Density(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Density
         /// </summary>
-        public static Density MinValue => new Density(double.MinValue, BaseUnit);
+        public static Density MinValue { get; } = new Density(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Density;
+        public static QuantityType QuantityType { get; } = QuantityType.Density;
 
         /// <summary>
         ///     All units of measurement for the Density quantity.
@@ -138,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit KilogramPerCubicMeter.
         /// </summary>
-        public static Density Zero => new Density(0, BaseUnit);
+        public static Density Zero { get; } = new Density(0, BaseUnit);
 
         #endregion
 

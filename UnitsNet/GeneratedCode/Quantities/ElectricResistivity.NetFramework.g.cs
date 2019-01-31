@@ -99,22 +99,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricResistivity, which is OhmMeter. All conversions go via this value.
         /// </summary>
-        public static ElectricResistivityUnit BaseUnit => ElectricResistivityUnit.OhmMeter;
+        public static ElectricResistivityUnit BaseUnit { get; } = ElectricResistivityUnit.OhmMeter;
 
         /// <summary>
         /// Represents the largest possible value of ElectricResistivity
         /// </summary>
-        public static ElectricResistivity MaxValue => new ElectricResistivity(double.MaxValue, BaseUnit);
+        public static ElectricResistivity MaxValue { get; } = new ElectricResistivity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricResistivity
         /// </summary>
-        public static ElectricResistivity MinValue => new ElectricResistivity(double.MinValue, BaseUnit);
+        public static ElectricResistivity MinValue { get; } = new ElectricResistivity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricResistivity;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricResistivity;
 
         /// <summary>
         ///     All units of measurement for the ElectricResistivity quantity.
@@ -124,7 +124,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit OhmMeter.
         /// </summary>
-        public static ElectricResistivity Zero => new ElectricResistivity(0, BaseUnit);
+        public static ElectricResistivity Zero { get; } = new ElectricResistivity(0, BaseUnit);
 
         #endregion
 

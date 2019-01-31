@@ -113,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of DynamicViscosity, which is NewtonSecondPerMeterSquared. All conversions go via this value.
         /// </summary>
-        public static DynamicViscosityUnit BaseUnit => DynamicViscosityUnit.NewtonSecondPerMeterSquared;
+        public static DynamicViscosityUnit BaseUnit { get; } = DynamicViscosityUnit.NewtonSecondPerMeterSquared;
 
         /// <summary>
         /// Represents the largest possible value of DynamicViscosity
         /// </summary>
-        public static DynamicViscosity MaxValue => new DynamicViscosity(double.MaxValue, BaseUnit);
+        public static DynamicViscosity MaxValue { get; } = new DynamicViscosity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of DynamicViscosity
         /// </summary>
-        public static DynamicViscosity MinValue => new DynamicViscosity(double.MinValue, BaseUnit);
+        public static DynamicViscosity MinValue { get; } = new DynamicViscosity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.DynamicViscosity;
+        public static QuantityType QuantityType { get; } = QuantityType.DynamicViscosity;
 
         /// <summary>
         ///     All units of measurement for the DynamicViscosity quantity.
@@ -138,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit NewtonSecondPerMeterSquared.
         /// </summary>
-        public static DynamicViscosity Zero => new DynamicViscosity(0, BaseUnit);
+        public static DynamicViscosity Zero { get; } = new DynamicViscosity(0, BaseUnit);
 
         #endregion
 

@@ -292,22 +292,22 @@ function GenerateStaticProperties([GeneratorArgs]$genArgs)
         /// <summary>
         ///     The base unit of $quantityName, which is $baseUnitSingularName. All conversions go via this value.
         /// </summary>
-        public static $unitEnumName BaseUnit => $unitEnumName.$baseUnitSingularName;
+        public static $unitEnumName BaseUnit { get; } = $unitEnumName.$baseUnitSingularName;
 
         /// <summary>
         /// Represents the largest possible value of $quantityName
         /// </summary>
-        public static $quantityName MaxValue => new $quantityName($valueType.MaxValue, BaseUnit);
+        public static $quantityName MaxValue { get; } = new $quantityName($valueType.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of $quantityName
         /// </summary>
-        public static $quantityName MinValue => new $quantityName($valueType.MinValue, BaseUnit);
+        public static $quantityName MinValue { get; } = new $quantityName($valueType.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.$quantityName;
+        public static QuantityType QuantityType { get; } = QuantityType.$quantityName;
 
         /// <summary>
         ///     All units of measurement for the $quantityName quantity.
@@ -317,7 +317,7 @@ function GenerateStaticProperties([GeneratorArgs]$genArgs)
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit $baseUnitSingularName.
         /// </summary>
-        public static $quantityName Zero => new $quantityName(0, BaseUnit);
+        public static $quantityName Zero { get; } = new $quantityName(0, BaseUnit);
 
         #endregion
 "@;

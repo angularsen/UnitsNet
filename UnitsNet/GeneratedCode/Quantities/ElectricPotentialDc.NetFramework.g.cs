@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricPotentialDc, which is VoltDc. All conversions go via this value.
         /// </summary>
-        public static ElectricPotentialDcUnit BaseUnit => ElectricPotentialDcUnit.VoltDc;
+        public static ElectricPotentialDcUnit BaseUnit { get; } = ElectricPotentialDcUnit.VoltDc;
 
         /// <summary>
         /// Represents the largest possible value of ElectricPotentialDc
         /// </summary>
-        public static ElectricPotentialDc MaxValue => new ElectricPotentialDc(double.MaxValue, BaseUnit);
+        public static ElectricPotentialDc MaxValue { get; } = new ElectricPotentialDc(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricPotentialDc
         /// </summary>
-        public static ElectricPotentialDc MinValue => new ElectricPotentialDc(double.MinValue, BaseUnit);
+        public static ElectricPotentialDc MinValue { get; } = new ElectricPotentialDc(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricPotentialDc;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricPotentialDc;
 
         /// <summary>
         ///     All units of measurement for the ElectricPotentialDc quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit VoltDc.
         /// </summary>
-        public static ElectricPotentialDc Zero => new ElectricPotentialDc(0, BaseUnit);
+        public static ElectricPotentialDc Zero { get; } = new ElectricPotentialDc(0, BaseUnit);
 
         #endregion
 

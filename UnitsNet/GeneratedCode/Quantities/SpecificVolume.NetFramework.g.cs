@@ -96,22 +96,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of SpecificVolume, which is CubicMeterPerKilogram. All conversions go via this value.
         /// </summary>
-        public static SpecificVolumeUnit BaseUnit => SpecificVolumeUnit.CubicMeterPerKilogram;
+        public static SpecificVolumeUnit BaseUnit { get; } = SpecificVolumeUnit.CubicMeterPerKilogram;
 
         /// <summary>
         /// Represents the largest possible value of SpecificVolume
         /// </summary>
-        public static SpecificVolume MaxValue => new SpecificVolume(double.MaxValue, BaseUnit);
+        public static SpecificVolume MaxValue { get; } = new SpecificVolume(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of SpecificVolume
         /// </summary>
-        public static SpecificVolume MinValue => new SpecificVolume(double.MinValue, BaseUnit);
+        public static SpecificVolume MinValue { get; } = new SpecificVolume(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.SpecificVolume;
+        public static QuantityType QuantityType { get; } = QuantityType.SpecificVolume;
 
         /// <summary>
         ///     All units of measurement for the SpecificVolume quantity.
@@ -121,7 +121,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit CubicMeterPerKilogram.
         /// </summary>
-        public static SpecificVolume Zero => new SpecificVolume(0, BaseUnit);
+        public static SpecificVolume Zero { get; } = new SpecificVolume(0, BaseUnit);
 
         #endregion
 

@@ -110,22 +110,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ApparentPower, which is Voltampere. All conversions go via this value.
         /// </summary>
-        public static ApparentPowerUnit BaseUnit => ApparentPowerUnit.Voltampere;
+        public static ApparentPowerUnit BaseUnit { get; } = ApparentPowerUnit.Voltampere;
 
         /// <summary>
         /// Represents the largest possible value of ApparentPower
         /// </summary>
-        public static ApparentPower MaxValue => new ApparentPower(double.MaxValue, BaseUnit);
+        public static ApparentPower MaxValue { get; } = new ApparentPower(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ApparentPower
         /// </summary>
-        public static ApparentPower MinValue => new ApparentPower(double.MinValue, BaseUnit);
+        public static ApparentPower MinValue { get; } = new ApparentPower(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ApparentPower;
+        public static QuantityType QuantityType { get; } = QuantityType.ApparentPower;
 
         /// <summary>
         ///     All units of measurement for the ApparentPower quantity.
@@ -135,7 +135,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Voltampere.
         /// </summary>
-        public static ApparentPower Zero => new ApparentPower(0, BaseUnit);
+        public static ApparentPower Zero { get; } = new ApparentPower(0, BaseUnit);
 
         #endregion
 
