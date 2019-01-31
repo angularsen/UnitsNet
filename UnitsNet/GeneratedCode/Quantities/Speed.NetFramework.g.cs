@@ -64,7 +64,7 @@ namespace UnitsNet
         static Speed()
         {
             BaseDimensions = new BaseDimensions(1, 0, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<SpeedUnit>(QuantityType.Speed, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<SpeedUnit>(QuantityType.Speed, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

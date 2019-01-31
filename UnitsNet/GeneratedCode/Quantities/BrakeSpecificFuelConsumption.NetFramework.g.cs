@@ -64,7 +64,7 @@ namespace UnitsNet
         static BrakeSpecificFuelConsumption()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
-            Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>(QuantityType.BrakeSpecificFuelConsumption, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>(QuantityType.BrakeSpecificFuelConsumption, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

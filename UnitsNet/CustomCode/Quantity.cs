@@ -1,14 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnitsNet.InternalHelpers;
 
 #if WINDOWS_UWP
-using Culture = System.String;
-using FromValue = System.Double;
+    using FromValue = System.Double;
 #else
-using Culture = System.IFormatProvider;
-using FromValue = UnitsNet.QuantityValue;
+    using FromValue = UnitsNet.QuantityValue;
 #endif
 
 namespace UnitsNet
@@ -79,6 +78,11 @@ namespace UnitsNet
 
             throw new ArgumentException(
                 $"Unit value {unit} of type {unit.GetType()} is not a known unit enum type. Expected types like UnitsNet.Units.LengthUnit. Did you pass in a third-party enum type defined outside UnitsNet library?");
+        }
+
+        public static IEnumerable<QuantityInfo> GetQuantitiesWithBaseDimensions(BaseDimensions baseDimensions)
+        {
+            return InfosLazy.Value.Where(info => info.BaseDimensions.Equals(baseDimensions));
         }
     }
 }

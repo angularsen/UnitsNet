@@ -67,7 +67,7 @@ namespace UnitsNet
         static MolarEntropy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
-            Info = new QuantityInfo(QuantityType.MolarEntropy, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.MolarEntropy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit JoulePerMoleKelvin.

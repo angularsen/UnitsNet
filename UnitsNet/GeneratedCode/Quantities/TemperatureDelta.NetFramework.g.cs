@@ -64,7 +64,7 @@ namespace UnitsNet
         static TemperatureDelta()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<TemperatureDeltaUnit>(QuantityType.TemperatureDelta, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<TemperatureDeltaUnit>(QuantityType.TemperatureDelta, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -64,7 +64,7 @@ namespace UnitsNet
         static Acceleration()
         {
             BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<AccelerationUnit>(QuantityType.Acceleration, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<AccelerationUnit>(QuantityType.Acceleration, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

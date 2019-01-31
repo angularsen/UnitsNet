@@ -64,7 +64,7 @@ namespace UnitsNet
         static ForceChangeRate()
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo<ForceChangeRateUnit>(QuantityType.ForceChangeRate, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<ForceChangeRateUnit>(QuantityType.ForceChangeRate, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

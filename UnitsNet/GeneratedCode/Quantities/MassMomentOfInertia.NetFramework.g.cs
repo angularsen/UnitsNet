@@ -64,7 +64,7 @@ namespace UnitsNet
         static MassMomentOfInertia()
         {
             BaseDimensions = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<MassMomentOfInertiaUnit>(QuantityType.MassMomentOfInertia, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<MassMomentOfInertiaUnit>(QuantityType.MassMomentOfInertia, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

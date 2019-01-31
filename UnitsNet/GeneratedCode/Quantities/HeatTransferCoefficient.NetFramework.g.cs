@@ -64,7 +64,7 @@ namespace UnitsNet
         static HeatTransferCoefficient()
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, -1, 0, 0);
-            Info = new QuantityInfo<HeatTransferCoefficientUnit>(QuantityType.HeatTransferCoefficient, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<HeatTransferCoefficientUnit>(QuantityType.HeatTransferCoefficient, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

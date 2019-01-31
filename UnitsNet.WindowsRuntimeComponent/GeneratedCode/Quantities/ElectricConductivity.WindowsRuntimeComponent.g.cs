@@ -70,7 +70,7 @@ namespace UnitsNet
         static ElectricConductivity()
         {
             BaseDimensions = new BaseDimensions(-3, -1, 3, 2, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.ElectricConductivity, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ElectricConductivity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit SiemensPerMeter.

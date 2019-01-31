@@ -64,7 +64,7 @@ namespace UnitsNet
         static SpecificEntropy()
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
-            Info = new QuantityInfo<SpecificEntropyUnit>(QuantityType.SpecificEntropy, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<SpecificEntropyUnit>(QuantityType.SpecificEntropy, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

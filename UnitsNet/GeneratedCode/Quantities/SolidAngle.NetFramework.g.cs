@@ -67,7 +67,7 @@ namespace UnitsNet
         static SolidAngle()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<SolidAngleUnit>(QuantityType.SolidAngle, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<SolidAngleUnit>(QuantityType.SolidAngle, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

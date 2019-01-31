@@ -64,7 +64,7 @@ namespace UnitsNet
         static Frequency()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<FrequencyUnit>(QuantityType.Frequency, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<FrequencyUnit>(QuantityType.Frequency, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -67,7 +67,7 @@ namespace UnitsNet
         static ForcePerLength()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.ForcePerLength, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ForcePerLength, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit NewtonPerMeter.

@@ -70,7 +70,7 @@ namespace UnitsNet
         static ElectricCharge()
         {
             BaseDimensions = new BaseDimensions(0, 0, 1, 1, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.ElectricCharge, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ElectricCharge, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Coulomb.

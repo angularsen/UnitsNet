@@ -64,7 +64,7 @@ namespace UnitsNet
         static ElectricCurrent()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 1, 0, 0, 0);
-            Info = new QuantityInfo<ElectricCurrentUnit>(QuantityType.ElectricCurrent, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<ElectricCurrentUnit>(QuantityType.ElectricCurrent, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

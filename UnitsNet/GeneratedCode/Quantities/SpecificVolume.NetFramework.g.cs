@@ -64,7 +64,7 @@ namespace UnitsNet
         static SpecificVolume()
         {
             BaseDimensions = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<SpecificVolumeUnit>(QuantityType.SpecificVolume, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<SpecificVolumeUnit>(QuantityType.SpecificVolume, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

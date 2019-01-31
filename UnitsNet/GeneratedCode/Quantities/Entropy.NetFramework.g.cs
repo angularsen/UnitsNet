@@ -64,7 +64,7 @@ namespace UnitsNet
         static Entropy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, 0, 0);
-            Info = new QuantityInfo<EntropyUnit>(QuantityType.Entropy, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<EntropyUnit>(QuantityType.Entropy, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

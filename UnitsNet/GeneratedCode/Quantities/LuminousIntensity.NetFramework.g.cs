@@ -67,7 +67,7 @@ namespace UnitsNet
         static LuminousIntensity()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
-            Info = new QuantityInfo<LuminousIntensityUnit>(QuantityType.LuminousIntensity, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<LuminousIntensityUnit>(QuantityType.LuminousIntensity, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

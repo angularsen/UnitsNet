@@ -64,7 +64,7 @@ namespace UnitsNet
         static RotationalAcceleration()
         {
             BaseDimensions = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<RotationalAccelerationUnit>(QuantityType.RotationalAcceleration, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<RotationalAccelerationUnit>(QuantityType.RotationalAcceleration, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

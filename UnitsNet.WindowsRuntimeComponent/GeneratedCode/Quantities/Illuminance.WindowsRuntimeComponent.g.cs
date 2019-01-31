@@ -70,7 +70,7 @@ namespace UnitsNet
         static Illuminance()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
-            Info = new QuantityInfo(QuantityType.Illuminance, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Illuminance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Lux.

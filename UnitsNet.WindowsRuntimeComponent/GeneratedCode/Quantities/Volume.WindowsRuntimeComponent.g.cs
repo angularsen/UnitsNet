@@ -67,7 +67,7 @@ namespace UnitsNet
         static Volume()
         {
             BaseDimensions = new BaseDimensions(3, 0, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.Volume, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Volume, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit CubicMeter.

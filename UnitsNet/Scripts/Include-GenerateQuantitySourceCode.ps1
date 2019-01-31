@@ -125,9 +125,9 @@ if ($obsoleteAttribute)
             BaseDimensions = new BaseDimensions($($baseDimensions.Length), $($baseDimensions.Mass), $($baseDimensions.Time), $($baseDimensions.ElectricCurrent), $($baseDimensions.Temperature), $($baseDimensions.AmountOfSubstance), $($baseDimensions.LuminousIntensity));
 "@; }
     if ($wrc) {@"
-            Info = new QuantityInfo(QuantityType.$quantityName, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.$quantityName, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
 "@; } else {@"
-            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName, Units, BaseUnit, Zero, BaseDimensions);
 "@; }@"
         }
 "@; # Windows Runtime Component requires a default constructor

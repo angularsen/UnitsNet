@@ -64,7 +64,7 @@ namespace UnitsNet
         static Mass()
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<MassUnit>(QuantityType.Mass, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<MassUnit>(QuantityType.Mass, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

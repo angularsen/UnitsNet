@@ -64,7 +64,7 @@ namespace UnitsNet
         static ThermalResistance()
         {
             BaseDimensions = new BaseDimensions(0, -1, 3, 0, 1, 0, 0);
-            Info = new QuantityInfo<ThermalResistanceUnit>(QuantityType.ThermalResistance, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<ThermalResistanceUnit>(QuantityType.ThermalResistance, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

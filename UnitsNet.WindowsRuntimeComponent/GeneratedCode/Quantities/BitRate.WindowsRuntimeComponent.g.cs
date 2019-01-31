@@ -70,7 +70,7 @@ namespace UnitsNet
         static BitRate()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo(QuantityType.BitRate, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.BitRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit BitPerSecond.

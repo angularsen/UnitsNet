@@ -67,7 +67,7 @@ namespace UnitsNet
         static Molarity()
         {
             BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
-            Info = new QuantityInfo<MolarityUnit>(QuantityType.Molarity, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<MolarityUnit>(QuantityType.Molarity, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

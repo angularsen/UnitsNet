@@ -67,7 +67,7 @@ namespace UnitsNet
         static ForceChangeRate()
         {
             BaseDimensions = new BaseDimensions(1, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.ForceChangeRate, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ForceChangeRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit NewtonPerSecond.

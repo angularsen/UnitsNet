@@ -67,7 +67,7 @@ namespace UnitsNet
         static MagneticField()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, -1, 0, 0, 0);
-            Info = new QuantityInfo<MagneticFieldUnit>(QuantityType.MagneticField, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<MagneticFieldUnit>(QuantityType.MagneticField, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

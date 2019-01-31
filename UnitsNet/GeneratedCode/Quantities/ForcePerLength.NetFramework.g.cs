@@ -64,7 +64,7 @@ namespace UnitsNet
         static ForcePerLength()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<ForcePerLengthUnit>(QuantityType.ForcePerLength, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<ForcePerLengthUnit>(QuantityType.ForcePerLength, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

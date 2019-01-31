@@ -64,7 +64,7 @@ namespace UnitsNet
         static Energy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<EnergyUnit>(QuantityType.Energy, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<EnergyUnit>(QuantityType.Energy, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

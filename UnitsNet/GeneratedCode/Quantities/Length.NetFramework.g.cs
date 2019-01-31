@@ -64,7 +64,7 @@ namespace UnitsNet
         static Length()
         {
             BaseDimensions = new BaseDimensions(1, 0, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<LengthUnit>(QuantityType.Length, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<LengthUnit>(QuantityType.Length, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

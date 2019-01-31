@@ -64,7 +64,7 @@ namespace UnitsNet
         static AmountOfSubstance()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
-            Info = new QuantityInfo<AmountOfSubstanceUnit>(QuantityType.AmountOfSubstance, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<AmountOfSubstanceUnit>(QuantityType.AmountOfSubstance, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

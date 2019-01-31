@@ -53,18 +53,20 @@ namespace UnitsNet
             .Where(t => t.Wrap().IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
             .ToArray();
 
-        public QuantityInfo(QuantityType quantityType, [NotNull] Enum[] units, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
+        public QuantityInfo(QuantityType quantityType, [NotNull] Enum[] units, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
         {
             if(quantityType == QuantityType.Undefined) throw new ArgumentException("Quantity type can not be undefined.", nameof(quantityType));
-            if (units == null) throw new ArgumentNullException(nameof(units));
-            if (zero == null) throw new ArgumentNullException(nameof(zero));
-            if (baseDimensions == null) throw new ArgumentNullException(nameof(baseDimensions));
+            if(units == null) throw new ArgumentNullException(nameof(units));
+            if(baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
+            if(zero == null) throw new ArgumentNullException(nameof(zero));
+            if(baseDimensions == null) throw new ArgumentNullException(nameof(baseDimensions));
 
             Name = quantityType.ToString();
             QuantityType = quantityType;
             UnitType = UnitEnumTypes.First(t => t.Name == $"{quantityType}Unit");
             UnitNames = units.Select(u => u.ToString()).ToArray();
             Units = units;
+            BaseUnit = baseUnit;
             Zero = zero;
             ValueType = zero.GetType();
             BaseDimensions = baseDimensions;
@@ -90,6 +92,11 @@ namespace UnitsNet
         ///     <see cref="LengthUnit.Decimeter" />, <see cref="LengthUnit.Meter" />, ...].
         /// </summary>
         public Enum[] Units { get; }
+
+        /// <summary>
+        ///     The base unit for the quantity, such as <see cref="LengthUnit.Meter" />.
+        /// </summary>
+        public Enum BaseUnit { get; }
 
         /// <summary>
         ///     Zero value of quantity, such as <see cref="Length.Zero" />.
@@ -123,18 +130,24 @@ namespace UnitsNet
     public class QuantityInfo<TUnit> : QuantityInfo
         where TUnit : Enum
     {
-        public QuantityInfo(QuantityType quantityType, TUnit[] units, IQuantity<TUnit> zero, BaseDimensions baseDimensions)
-            : base(quantityType, units.Cast<Enum>().ToArray(), zero, baseDimensions)
+        public QuantityInfo(QuantityType quantityType, TUnit[] units, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions)
+            : base(quantityType, units.Cast<Enum>().ToArray(), baseUnit, zero, baseDimensions)
         {
             Zero = zero;
             Units = units;
+            BaseUnit = baseUnit;
         }
 
         /// <inheritdoc cref="QuantityInfo.Units" />
         public new TUnit[] Units { get; }
 
+        public new TUnit BaseUnit { get; }
+
         /// <inheritdoc cref="QuantityInfo.Zero" />
         public new IQuantity<TUnit> Zero { get; }
+
+        /// <inheritdoc cref="QuantityInfo.UnitType" />
+        public new TUnit UnitType { get; }
     }
 #endif
 }

@@ -64,7 +64,7 @@ namespace UnitsNet
         static TemperatureChangeRate()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 1, 0, 0);
-            Info = new QuantityInfo<TemperatureChangeRateUnit>(QuantityType.TemperatureChangeRate, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<TemperatureChangeRateUnit>(QuantityType.TemperatureChangeRate, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

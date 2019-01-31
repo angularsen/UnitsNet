@@ -67,7 +67,7 @@ namespace UnitsNet
         static ApparentPower()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
-            Info = new QuantityInfo(QuantityType.ApparentPower, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.ApparentPower, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Voltampere.

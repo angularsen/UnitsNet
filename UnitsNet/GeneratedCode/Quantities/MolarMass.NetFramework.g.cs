@@ -64,7 +64,7 @@ namespace UnitsNet
         static MolarMass()
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, -1, 0);
-            Info = new QuantityInfo<MolarMassUnit>(QuantityType.MolarMass, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<MolarMassUnit>(QuantityType.MolarMass, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

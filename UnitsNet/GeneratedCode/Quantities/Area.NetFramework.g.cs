@@ -64,7 +64,7 @@ namespace UnitsNet
         static Area()
         {
             BaseDimensions = new BaseDimensions(2, 0, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<AreaUnit>(QuantityType.Area, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<AreaUnit>(QuantityType.Area, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

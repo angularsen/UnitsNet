@@ -64,7 +64,7 @@ namespace UnitsNet
         static LapseRate()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
-            Info = new QuantityInfo<LapseRateUnit>(QuantityType.LapseRate, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<LapseRateUnit>(QuantityType.LapseRate, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

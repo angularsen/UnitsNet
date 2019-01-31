@@ -64,7 +64,7 @@ namespace UnitsNet
         static PowerRatio()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<PowerRatioUnit>(QuantityType.PowerRatio, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<PowerRatioUnit>(QuantityType.PowerRatio, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

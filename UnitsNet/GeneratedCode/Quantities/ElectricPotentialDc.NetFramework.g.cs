@@ -64,7 +64,7 @@ namespace UnitsNet
         static ElectricPotentialDc()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<ElectricPotentialDcUnit>(QuantityType.ElectricPotentialDc, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<ElectricPotentialDcUnit>(QuantityType.ElectricPotentialDc, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

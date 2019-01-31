@@ -64,7 +64,7 @@ namespace UnitsNet
         static CoefficientOfThermalExpansion()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, -1, 0, 0);
-            Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>(QuantityType.CoefficientOfThermalExpansion, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>(QuantityType.CoefficientOfThermalExpansion, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

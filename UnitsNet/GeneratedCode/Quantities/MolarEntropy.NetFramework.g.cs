@@ -64,7 +64,7 @@ namespace UnitsNet
         static MolarEntropy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
-            Info = new QuantityInfo<MolarEntropyUnit>(QuantityType.MolarEntropy, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<MolarEntropyUnit>(QuantityType.MolarEntropy, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>

@@ -67,7 +67,7 @@ namespace UnitsNet
         static Temperature()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 1, 0, 0);
-            Info = new QuantityInfo(QuantityType.Temperature, Units.Cast<Enum>().ToArray(), Zero, BaseDimensions);
+            Info = new QuantityInfo(QuantityType.Temperature, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Kelvin.

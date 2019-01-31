@@ -67,7 +67,7 @@ namespace UnitsNet
         static BitRate()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<BitRateUnit>(QuantityType.BitRate, Units, Zero, BaseDimensions);
+            Info = new QuantityInfo<BitRateUnit>(QuantityType.BitRate, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
