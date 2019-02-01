@@ -66,6 +66,13 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void Parse_GivenAbbreviationsThatAreAmbiguousWhenLowerCase_ReturnsCorrectUnit()
+        {
+            Assert.Equal(PressureUnit.Megabar, Pressure.ParseUnit("Mbar"));
+            Assert.Equal(PressureUnit.Millibar, Pressure.ParseUnit("mbar"));
+        }
+
+        [Fact]
         public void Parse_UnknownAbbreviationThrowsUnitNotFoundException()
         {
             Assert.Throws<UnitNotFoundException>(() => UnitParser.Default.Parse<AreaUnit>("nonexistingunit"));
