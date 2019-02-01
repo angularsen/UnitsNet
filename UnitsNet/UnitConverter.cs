@@ -60,14 +60,32 @@ namespace UnitsNet
         /// <param name="fromUnitValue">From unit enum value.</param>
         /// <param name="toUnitValue">To unit enum value, must be compatible with <paramref name="fromUnitValue" />.</param>
         /// <returns>The converted value in the new unit representation.</returns>
-        internal static double Convert(FromValue fromValue, Enum fromUnitValue, Enum toUnitValue)
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        static double Convert(FromValue fromValue, Enum fromUnitValue, Enum toUnitValue)
         {
             return Quantity
                 .From(fromValue, fromUnitValue)
                 .As(toUnitValue);
         }
 
-        internal static bool TryConvert(FromValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
+        /// <summary>
+        ///     Try to convert between any two quantity units given a numeric value and two unit enum values.
+        /// </summary>
+        /// <param name="fromValue">Numeric value.</param>
+        /// <param name="fromUnitValue">From unit enum value.</param>
+        /// <param name="toUnitValue">To unit enum value, must be compatible with <paramref name="fromUnitValue" />.</param>
+        /// <param name="convertedValue">The converted value, if successful. Otherwise default.</param>
+        /// <returns>True if successful.</returns>
+#if WINDOWS_UWP
+        internal
+#else
+        public
+#endif
+        static bool TryConvert(FromValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
         {
             convertedValue = 0;
             if (!Quantity.TryFrom(fromValue, fromUnitValue, out IQuantity from)) return false;
