@@ -51,6 +51,7 @@ namespace UnitsNet.Units
         DecigramPerDay,
         DecigramPerSecond,
         GramPerDay,
+        GramPerHour,
         GramPerSecond,
         HectogramPerDay,
         HectogramPerSecond,
