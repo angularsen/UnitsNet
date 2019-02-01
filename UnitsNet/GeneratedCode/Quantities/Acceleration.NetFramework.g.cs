@@ -64,6 +64,7 @@ namespace UnitsNet
         static Acceleration()
         {
             BaseDimensions = new BaseDimensions(1, 0, -2, 0, 0, 0, 0);
+            Info = new QuantityInfo<AccelerationUnit>(QuantityType.Acceleration, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<AccelerationUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -128,10 +132,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public AccelerationUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<AccelerationUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -576,12 +588,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Acceleration left, Acceleration right)	
+        public static bool operator ==(Acceleration left, Acceleration right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Acceleration left, Acceleration right)	
+        public static bool operator !=(Acceleration left, Acceleration right)
         {
             return !(left == right);
         }
@@ -677,6 +689,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((AccelerationUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -690,6 +704,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((AccelerationUnit) unit);
+
         /// <summary>
         ///     Converts this Acceleration to another Acceleration with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -699,6 +715,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Acceleration(convertedValue, unit);
         }
+
+        IQuantity<AccelerationUnit> IQuantity<AccelerationUnit>.ToUnit(AccelerationUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((AccelerationUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

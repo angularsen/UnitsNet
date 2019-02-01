@@ -64,6 +64,7 @@ namespace UnitsNet
         static Level()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            Info = new QuantityInfo<LevelUnit>(QuantityType.Level, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<LevelUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -128,10 +132,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public LevelUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<LevelUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -430,12 +442,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Level left, Level right)	
+        public static bool operator ==(Level left, Level right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Level left, Level right)	
+        public static bool operator !=(Level left, Level right)
         {
             return !(left == right);
         }
@@ -531,6 +543,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((LevelUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -544,6 +558,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((LevelUnit) unit);
+
         /// <summary>
         ///     Converts this Level to another Level with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -553,6 +569,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Level(convertedValue, unit);
         }
+
+        IQuantity<LevelUnit> IQuantity<LevelUnit>.ToUnit(LevelUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((LevelUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

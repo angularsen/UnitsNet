@@ -19,12 +19,12 @@ function ValueOrDefault($value, $defaultValue){
 function GenerateQuantity([Quantity]$quantity, $outDir)
 {
     $outFileName = "$outDir/$($quantity.Name).NetFramework.g.cs"
-    GenerateQuantitySourceCodeNetFramework $quantity "NetFramework" | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    GenerateQuantitySourceCode $quantity "NetFramework" | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) { exit 1 }
     Write-Host -NoNewline "quantity .NET(OK) "
 
     $outFileName = "$outDir/../../../UnitsNet.WindowsRuntimeComponent/GeneratedCode/Quantities/$($quantity.Name).WindowsRuntimeComponent.g.cs"
-    GenerateQuantitySourceCodeNetFramework $quantity "WindowsRuntimeComponent" | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    GenerateQuantitySourceCode $quantity "WindowsRuntimeComponent" | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) { exit 1 }
     Write-Host -NoNewline "quantity WRC(OK) "
 }
@@ -93,6 +93,19 @@ function GenerateQuantityType($quantities, $outDir)
         exit 1
     }
     Write-Host "(OK) "
+}
+
+function GenerateStaticQuantity($quantities, $outDir)
+{
+  Write-Host -NoNewline "Quantity.g.cs: "
+  $outFileName = "$outDir/Quantity.g.cs"
+
+  GenerateStaticQuantitySourceCode $quantities | Out-File -Encoding "UTF8" -Force $outFileName | Out-Null
+  if (!$?) {
+    Write-Host "(error) "
+    exit 1
+  }
+  Write-Host "(OK) "
 }
 
 function EnsureDirExists([String] $dirPath) {
@@ -229,7 +242,8 @@ function Add-InheritedUnits([Quantity]$quantity, $quantities) {
 . "$PSScriptRoot/Include-GenerateTemplates.ps1"
 . "$PSScriptRoot/Include-GenerateUnitSystemDefaultSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateQuantityTypeSourceCode.ps1"
-. "$PSScriptRoot/Include-GenerateQuantitySourceCodeNetFramework.ps1"
+. "$PSScriptRoot/Include-GenerateStaticQuantitySourceCode.ps1"
+. "$PSScriptRoot/Include-GenerateQuantitySourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTypeSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestBaseClassSourceCode.ps1"
 . "$PSScriptRoot/Include-GenerateUnitTestPlaceholderSourceCode.ps1"
@@ -311,6 +325,7 @@ foreach ($quantity in $quantities) {
 Write-Host ""
 GenerateUnitSystemDefault $quantities $unitSystemDir
 GenerateQuantityType $quantities $unitSystemDir
+GenerateStaticQuantity $quantities $unitSystemDir
 
 $unitCount = ($quantities | %{$_.Units.Count} | Measure -Sum).Sum
 

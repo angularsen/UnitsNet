@@ -67,6 +67,7 @@ namespace UnitsNet
         static Density()
         {
             BaseDimensions = new BaseDimensions(-3, 1, 0, 0, 0, 0, 0);
+            Info = new QuantityInfo<DensityUnit>(QuantityType.Density, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -86,6 +87,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<DensityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -131,10 +135,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public DensityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<DensityUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -943,12 +955,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Density left, Density right)	
+        public static bool operator ==(Density left, Density right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Density left, Density right)	
+        public static bool operator !=(Density left, Density right)
         {
             return !(left == right);
         }
@@ -1044,6 +1056,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((DensityUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1057,6 +1071,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((DensityUnit) unit);
+
         /// <summary>
         ///     Converts this Density to another Density with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1066,6 +1082,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Density(convertedValue, unit);
         }
+
+        IQuantity<DensityUnit> IQuantity<DensityUnit>.ToUnit(DensityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((DensityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

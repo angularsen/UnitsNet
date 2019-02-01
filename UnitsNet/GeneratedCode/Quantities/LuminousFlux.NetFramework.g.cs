@@ -67,6 +67,7 @@ namespace UnitsNet
         static LuminousFlux()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
+            Info = new QuantityInfo<LuminousFluxUnit>(QuantityType.LuminousFlux, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -86,6 +87,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<LuminousFluxUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -131,10 +135,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public LuminousFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<LuminousFluxUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -411,12 +423,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(LuminousFlux left, LuminousFlux right)	
+        public static bool operator ==(LuminousFlux left, LuminousFlux right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(LuminousFlux left, LuminousFlux right)	
+        public static bool operator !=(LuminousFlux left, LuminousFlux right)
         {
             return !(left == right);
         }
@@ -512,6 +524,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((LuminousFluxUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -525,6 +539,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((LuminousFluxUnit) unit);
+
         /// <summary>
         ///     Converts this LuminousFlux to another LuminousFlux with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -534,6 +550,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new LuminousFlux(convertedValue, unit);
         }
+
+        IQuantity<LuminousFluxUnit> IQuantity<LuminousFluxUnit>.ToUnit(LuminousFluxUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((LuminousFluxUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -64,6 +64,7 @@ namespace UnitsNet
         static Power()
         {
             BaseDimensions = new BaseDimensions(2, 1, -3, 0, 0, 0, 0);
+            Info = new QuantityInfo<PowerUnit>(QuantityType.Power, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<PowerUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -128,10 +132,18 @@ namespace UnitsNet
         /// </summary>
         public decimal Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public PowerUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<PowerUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -674,12 +686,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Power left, Power right)	
+        public static bool operator ==(Power left, Power right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Power left, Power right)	
+        public static bool operator !=(Power left, Power right)
         {
             return !(left == right);
         }
@@ -775,6 +787,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((PowerUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -788,6 +802,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((PowerUnit) unit);
+
         /// <summary>
         ///     Converts this Power to another Power with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -797,6 +813,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Power(convertedValue, unit);
         }
+
+        IQuantity<PowerUnit> IQuantity<PowerUnit>.ToUnit(PowerUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((PowerUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

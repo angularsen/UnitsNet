@@ -1,8 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace UnitsNet.Samples.UnitConverter.Wpf
@@ -15,12 +15,13 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
     {
         public MainWindowDesignVm()
         {
-            Quantities = ToReadOnly(Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().Skip(1));
+            Quantities = ToReadOnly(Quantity.Types);
             Units = ToReadOnly(Length.Units.Select(u => new UnitListItem(u)));
             SelectedQuantity = QuantityType.Length;
             SelectedFromUnit = Units[1];
             SelectedToUnit = Units[2];
         }
+
 
         public ReadOnlyObservableCollection<QuantityType> Quantities { get; }
         public ReadOnlyObservableCollection<UnitListItem> Units { get; }
@@ -35,7 +36,10 @@ namespace UnitsNet.Samples.UnitConverter.Wpf
 
         public ICommand SwapCommand { get; } = new RoutedCommand();
 
+        // Is never used
+#pragma warning disable CS0067
         public event PropertyChangedEventHandler PropertyChanged;
+#pragma warning restore CS0067
 
         private static ReadOnlyObservableCollection<T> ToReadOnly<T>(IEnumerable<T> items)
         {

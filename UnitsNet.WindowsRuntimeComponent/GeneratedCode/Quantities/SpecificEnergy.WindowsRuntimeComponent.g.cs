@@ -70,6 +70,7 @@ namespace UnitsNet
         static SpecificEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.SpecificEnergy, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit JoulePerKilogram.
@@ -100,6 +101,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        internal static QuantityInfo Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -145,10 +149,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public SpecificEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -585,6 +594,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((SpecificEnergyUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

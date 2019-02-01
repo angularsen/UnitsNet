@@ -29,7 +29,7 @@ See [Upgrading from 3.x to 4.x](https://github.com/angularsen/UnitsNet/wiki/Upgr
 * [Statically typed quantities and units](#static-typing) to avoid mistakes and communicate intent
 * [Operator overloads](#operator-overloads) for arithmetic on quantities
 * [Parse and ToString()](#culture) supports cultures and localization
-* [Dynamically parsing and converting](#dynamic-parsing) quantities and units
+* [Dynamically parse and convert](#dynamic-parsing) quantities and units
 * [Example: Creating a unit converter app](#example-app)
 * [Example: WPF app using IValueConverter to parse quantities from input](#example-wpf-app-using-ivalueconverter-to-parse-quantities-from-input)
 * [Precision and accuracy](#precision)
@@ -125,29 +125,105 @@ Unfortunately there is no built-in way to avoid this, either you need to ensure 
 Example:
 `Length.Parse("1 pt")` throws `AmbiguousUnitParseException` with message `Cannot parse "pt" since it could be either of these: DtpPoint, PrinterPoint`.
 
-### <a name="dynamic-parsing"></a>Dynamically Parsing and Converting Quantities
+### <a name="dynamic-parsing"></a>Dynamically Parse Quantities and Convert to Units
 Sometimes you need to work with quantities and units at runtime, such as parsing user input.
-There are three classes to help with this:
-- [UnitParser](UnitsNet/CustomCode/UnitParser.cs) for parsing unit abbreviation strings like `cm` to `LengthUnit.Centimeter`
-- [UnitAbbreviationsCache](UnitsNet/CustomCode/UnitAbbreviationsCache.cs) for looking up unit abbreviations like `cm` given type `LengthUnit` and value `1` (`Centimeter`)
-- [UnitConverter](UnitsNet/UnitConverter.cs) for converting values given a quantity name `Length`, a value `1` and from/to unit names `Centimeter` and `Meter`
 
+There are a handful of classes to help with this:
+
+- [Quantity](UnitsNet/CustomCode/Quantity.cs) for parsing and constructing quantities as well as looking up units, names and quantity information dynamically
+- [UnitConverter](UnitsNet/UnitConverter.cs) for converting values to a different unit, with only strings or enum values
+- [UnitParser](UnitsNet/CustomCode/UnitParser.cs) for parsing unit abbreviation strings, such as `"cm"` to `LengthUnit.Centimeter`
+
+#### Enumerate quantities and units
+`Quantity` is the go-to class for looking up information about quantities at runtime.
 ```c#
-// This type was perhaps selected by the user in GUI from a list of units
-Type lengthUnitType = typeof(LengthUnit); // Selected by user in GUI from a list of units
+string[] Quantity.Names;       // ["Length", "Mass", ...]
+QuantityType[] Quantity.Types; // [QuantityType.Length, QuantityType.Mass, ...]
+QuantityInfo[] Quantity.Infos; // Information about all quantities and their units, types, values etc., see more below
 
-// Parse units dynamically
-UnitParser parser = UnitParser.Default;
-int fromUnitValue = (int)parser.Parse("cm", lengthUnitType); // LengthUnit.Centimeter == 1
-
-// Get unit abbreviations dynamically
-var cache = UnitAbbreviationsCache.Default;
-string fromUnitAbbreviation = cache.GetDefaultAbbreviation(lengthUnitType, 1); // "cm"
-
-double centimeters = UnitConverter.ConvertByName(1, "Length", "Meter", "Centimeter"); // 100
+QuantityInfo Quantity.GetInfo(QuantityType.Length); // Get information about Length
 ```
 
-For more examples on dynamic parsing and conversion, see the unit conversion applications below.
+#### Information about quantity type
+`QuantityInfo` makes it easy to enumerate names, units, types and values for the quantity type.
+This is useful for populating lists of quantities and units for the user to choose.
+
+```c#
+QuantityInfo lengthInfo = Quantity.GetInfo(QuantityType.Length); // You can get it statically here
+lengthInfo = Length.Info;                                        // or statically per quantity
+lengthInfo = Length.Zero.QuantityInfo;                           // or dynamically from quantity instances
+
+lengthInfo.Name;         // "Length"
+lengthInfo.QuantityType; // QuantityType.Length
+lengthInfo.UnitNames;    // ["Centimeter", "Meter", ...]
+lengthInfo.Units;        // [LengthUnit.Centimeter, LengthUnit.Meter, ...]
+lengthInfo.UnitType;     // typeof(LengthUnit)
+lengthInfo.ValueType;    // typeof(Length)
+lengthInfo.Zero;         // Length.Zero
+```
+
+#### Construct quantity
+All you need is the value and the unit enum value.
+
+```c#
+IQuantity quantity = Quantity.From(3, LengthUnit.Centimeter); // Length
+
+if (Quantity.TryFrom(3, LengthUnit.Centimeter, out IQuantity quantity2))
+{	
+}
+```
+#### Parse quantity
+Parse any string to a quantity instance of the given the quantity type.
+
+```c#
+IQuantity quantity = Quantity.Parse(typeof(Length), "3 cm"); // Length
+
+if (Quantity.TryParse(typeof(Length), "3cm", out IQuantity quantity2)
+{
+}
+```
+
+#### Parse unit
+[UnitParser](UnitsNet/CustomCode/UnitParser.cs) parses unit abbreviation strings to unit enum values.
+
+```c#
+Enum unit = UnitParser.Default.Parse("cm", typeof(LengthUnit)); // LengthUnit.Centimeter
+
+if (UnitParser.Default.TryParse("cm", typeof(LengthUnit), out Enum unit2))
+{
+    // Use unit2 as LengthUnit.Centimeter
+}
+```
+
+#### Convert quantity to unit - IQuantity and Enum
+Convert any `IQuantity` instance to a different unit by providing a target unit enum value.
+```c#
+// Assume these are passed in at runtime, we don't know their values or type
+Enum userSelectedUnit = LengthUnit.Millimeter;
+IQuantity quantity = Length.FromCentimeters(3);
+
+// Later we convert to a unit
+quantity.ToUnit(userSelectedUnit).Value;      // 30
+quantity.ToUnit(userSelectedUnit).Unit;       // LengthUnit.Millimeter
+quantity.ToUnit(userSelectedUnit).ToString(); // "30 mm"
+quantity.ToUnit(PressureUnit.Pascal);         // Throws exception, not compatible
+quantity.As(userSelectedUnit);                // 30
+```
+
+#### Convert quantity to unit - From/To Enums
+Useful when populating lists with unit enum values for the user to choose.
+
+```c#
+UnitConverter.Convert(1, LengthUnit.Centimeter, LengthUnit.Millimeter); // 10 mm
+```
+
+#### Convert quantity to unit - Names or abbreviation strings
+Sometimes you only have strings to work with, that works too!
+
+```c#
+UnitConverter.ConvertByName(1, "Length", "Centimeter", "Millimeter"); // 10 mm
+UnitConverter.ConvertByAbbreviation(1, "Length", "cm", "mm"); // 10 mm
+```
 
 ### <a name="example-app"></a>Example: Creating a dynamic unit converter app
 [Source code](https://github.com/angularsen/UnitsNet/tree/master/Samples/UnitConverter.Wpf) for `Samples/UnitConverter.Wpf`<br/>
@@ -156,25 +232,37 @@ For more examples on dynamic parsing and conversion, see the unit conversion app
 ![image](https://user-images.githubusercontent.com/787816/34920961-9b697004-f97b-11e7-9e9a-51ff7142969b.png)
 
 
-This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Length` or `Mass`, then selects to convert from `Meter` to `Centimeter` and types in a value for how many meters.
+This example shows how you can create a dynamic unit converter, where the user selects the quantity to convert, such as `Temperature`, then selects to convert from `DegreeCelsius` to `DegreeFahrenheit` and types in a numeric value for how many degrees Celsius to convert.
+The quantity list box contains `QuantityType` values such as `QuantityType.Length` and the two unit list boxes contain `Enum` values, such as `LengthUnit.Meter`.
 
-NOTE: There are still some limitations in the library that requires reflection to enumerate units for quantity and getting the abbreviation for a unit, when we want to dynamically enumerate and convert between units.
+#### Populate quantity selector
+Use `Quantity` to enumerate all quantity type enum values, such as `QuantityType.Length` and `QuantityType.Mass`.
 
-### <a name="example-app-hardcoded"></a>Example: Creating a unit converter app with hard coded quantities
+```c#
+this.Quantities = Quantity.Types; // QuantityType[]
+```
 
-If you can live with hard coding what quantities to convert between, then the following code snippet shows you one way to go about it:
+#### Update unit lists when selecting new quantity
+So user can only choose from/to units compatible with the quantity type.
 
-```C#
-// Get quantities for populating quantity UI selector
-QuantityType[] quantityTypes = Enum.GetValues(typeof(QuantityType)).Cast<QuantityType>().ToArray();
+```c#
+QuantityInfo quantityInfo = Quantity.GetInfo(quantityType);
 
-// If Length is selected, get length units for populating from/to UI selectors
-LengthUnit[] lengthUnits = Length.Units;
+_units.Clear();
+foreach (Enum unitValue in quantityInfo.Units)
+{
+    _units.Add(unitValue);
+}
+```
 
-// Perform conversion using input value and selected from/to units
-double inputValue; // Obtain from textbox
-LengthUnit fromUnit, toUnit; // Obtain from ListBox selections
-double resultValue = Length.From(inputValue, fromUnit).As(toUnit);
+#### Update calculation on unit selection changed
+Using `UnitConverter` to convert by unit enum values as given by the list selection `"Length"` and unit names like `"Centimeter"` and `"Meter"`.
+
+```c#
+double convertedValue = UnitConverter.Convert(
+    FromValue,                      // numeric value
+    SelectedFromUnit.UnitEnumValue, // Enum, such as LengthUnit.Meter
+    SelectedToUnit.UnitEnumValue);  // Enum, such as LengthUnit.Centimeter
 ```
 
 ### Example: WPF app using IValueConverter to parse quantities from input
@@ -183,10 +271,7 @@ Src: [Samples/WpfMVVMSample](https://github.com/angularsen/UnitsNet/tree/master/
 
 ![wpfmvvmsample_219w](https://user-images.githubusercontent.com/787816/34913417-094332e2-f8fd-11e7-9d8a-92db105fbbc9.png)
 
-
 The purpose of this app is to show how to create an `IValueConverter` in order to bind XAML to quantities.
-
-NOTE: A lot of reflection and complexity were introduced due to not having a base type. See #371 for discussion on adding base types.
 
 ### <a name="precision"></a>Precision and Accuracy
 

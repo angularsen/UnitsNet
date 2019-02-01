@@ -64,6 +64,7 @@ namespace UnitsNet
         static Frequency()
         {
             BaseDimensions = new BaseDimensions(0, 0, -1, 0, 0, 0, 0);
+            Info = new QuantityInfo<FrequencyUnit>(QuantityType.Frequency, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<FrequencyUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -128,10 +132,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public FrequencyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<FrequencyUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -506,12 +518,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Frequency left, Frequency right)	
+        public static bool operator ==(Frequency left, Frequency right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Frequency left, Frequency right)	
+        public static bool operator !=(Frequency left, Frequency right)
         {
             return !(left == right);
         }
@@ -607,6 +619,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((FrequencyUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -620,6 +634,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((FrequencyUnit) unit);
+
         /// <summary>
         ///     Converts this Frequency to another Frequency with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -629,6 +645,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Frequency(convertedValue, unit);
         }
+
+        IQuantity<FrequencyUnit> IQuantity<FrequencyUnit>.ToUnit(FrequencyUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((FrequencyUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

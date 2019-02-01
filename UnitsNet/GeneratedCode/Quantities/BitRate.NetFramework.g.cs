@@ -67,6 +67,7 @@ namespace UnitsNet
         static BitRate()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            Info = new QuantityInfo<BitRateUnit>(QuantityType.BitRate, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -86,6 +87,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<BitRateUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -131,10 +135,18 @@ namespace UnitsNet
         /// </summary>
         public decimal Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public BitRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<BitRateUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -761,12 +773,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(BitRate left, BitRate right)	
+        public static bool operator ==(BitRate left, BitRate right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(BitRate left, BitRate right)	
+        public static bool operator !=(BitRate left, BitRate right)
         {
             return !(left == right);
         }
@@ -862,6 +874,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((BitRateUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -875,6 +889,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((BitRateUnit) unit);
+
         /// <summary>
         ///     Converts this BitRate to another BitRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -884,6 +900,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new BitRate(convertedValue, unit);
         }
+
+        IQuantity<BitRateUnit> IQuantity<BitRateUnit>.ToUnit(BitRateUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((BitRateUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

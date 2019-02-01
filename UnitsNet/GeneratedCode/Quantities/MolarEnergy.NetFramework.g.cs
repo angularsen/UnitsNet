@@ -64,6 +64,7 @@ namespace UnitsNet
         static MolarEnergy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, 0, -1, 0);
+            Info = new QuantityInfo<MolarEnergyUnit>(QuantityType.MolarEnergy, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<MolarEnergyUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -128,10 +132,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MolarEnergyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<MolarEnergyUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -436,12 +448,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(MolarEnergy left, MolarEnergy right)	
+        public static bool operator ==(MolarEnergy left, MolarEnergy right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(MolarEnergy left, MolarEnergy right)	
+        public static bool operator !=(MolarEnergy left, MolarEnergy right)
         {
             return !(left == right);
         }
@@ -537,6 +549,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((MolarEnergyUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -550,6 +564,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MolarEnergyUnit) unit);
+
         /// <summary>
         ///     Converts this MolarEnergy to another MolarEnergy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -559,6 +575,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new MolarEnergy(convertedValue, unit);
         }
+
+        IQuantity<MolarEnergyUnit> IQuantity<MolarEnergyUnit>.ToUnit(MolarEnergyUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MolarEnergyUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

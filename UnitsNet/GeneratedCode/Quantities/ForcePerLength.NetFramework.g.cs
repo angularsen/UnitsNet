@@ -64,6 +64,7 @@ namespace UnitsNet
         static ForcePerLength()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
+            Info = new QuantityInfo<ForcePerLengthUnit>(QuantityType.ForcePerLength, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<ForcePerLengthUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -128,10 +132,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ForcePerLengthUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<ForcePerLengthUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -520,12 +532,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(ForcePerLength left, ForcePerLength right)	
+        public static bool operator ==(ForcePerLength left, ForcePerLength right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(ForcePerLength left, ForcePerLength right)	
+        public static bool operator !=(ForcePerLength left, ForcePerLength right)
         {
             return !(left == right);
         }
@@ -621,6 +633,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((ForcePerLengthUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -634,6 +648,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((ForcePerLengthUnit) unit);
+
         /// <summary>
         ///     Converts this ForcePerLength to another ForcePerLength with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -643,6 +659,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new ForcePerLength(convertedValue, unit);
         }
+
+        IQuantity<ForcePerLengthUnit> IQuantity<ForcePerLengthUnit>.ToUnit(ForcePerLengthUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((ForcePerLengthUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

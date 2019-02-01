@@ -64,6 +64,7 @@ namespace UnitsNet
         static Pressure()
         {
             BaseDimensions = new BaseDimensions(-1, 1, -2, 0, 0, 0, 0);
+            Info = new QuantityInfo<PressureUnit>(QuantityType.Pressure, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<PressureUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -128,10 +132,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public PressureUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<PressureUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -982,12 +994,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Pressure left, Pressure right)	
+        public static bool operator ==(Pressure left, Pressure right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Pressure left, Pressure right)	
+        public static bool operator !=(Pressure left, Pressure right)
         {
             return !(left == right);
         }
@@ -1083,6 +1095,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((PressureUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1096,6 +1110,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((PressureUnit) unit);
+
         /// <summary>
         ///     Converts this Pressure to another Pressure with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -1105,6 +1121,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Pressure(convertedValue, unit);
         }
+
+        IQuantity<PressureUnit> IQuantity<PressureUnit>.ToUnit(PressureUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((PressureUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -8,7 +8,7 @@ class GeneratorArgs
     [boolean]$TargetIsWindowsRuntimeComponent
 }
 
-function GenerateQuantitySourceCodeNetFramework([Quantity]$quantity, [string]$target)
+function GenerateQuantitySourceCode([Quantity]$quantity, [string]$target)
 {
     $quantityName = $quantity.Name;
     $units = $quantity.Units;
@@ -19,6 +19,8 @@ function GenerateQuantitySourceCodeNetFramework([Quantity]$quantity, [string]$ta
     $unitEnumName = "$quantityName" + "Unit"
     $wrc = $target -eq "WindowsRuntimeComponent"
     $privateAccessModifierIfWrc = if ($wrc) { "private" } else { "public" }
+    $accessModifier = if ($wrc) { "internal" } else { "public" }
+    $enumOrObject = if ($wrc) { "object" } else { "Enum" }
 
     $baseDimensions = $quantity.BaseDimensions;
     $isDimensionless = $baseDimensions -eq $null -or ( $baseDimensions.Length -eq 0 -and $baseDimensions.Mass -eq 0 -and $baseDimensions.Time -eq 0 -and $baseDimensions.ElectricCurrent -eq 0 -and $baseDimensions.Temperature -eq 0 -and $baseDimensions.AmountOfSubstance -eq 0 -and $baseDimensions.LuminousIntensity -eq 0 )
@@ -122,7 +124,11 @@ if ($obsoleteAttribute)
     {@"
             BaseDimensions = new BaseDimensions($($baseDimensions.Length), $($baseDimensions.Mass), $($baseDimensions.Time), $($baseDimensions.ElectricCurrent), $($baseDimensions.Temperature), $($baseDimensions.AmountOfSubstance), $($baseDimensions.LuminousIntensity));
 "@; }
-@"
+    if ($wrc) {@"
+            Info = new QuantityInfo(QuantityType.$quantityName, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
+"@; } else {@"
+            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName, Units, BaseUnit, Zero, BaseDimensions);
+"@; }@"
         }
 "@; # Windows Runtime Component requires a default constructor
     if ($wrc) {@"
@@ -271,6 +277,13 @@ function GenerateStaticProperties([GeneratorArgs]$genArgs)
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+"@; if ($wrc) {@"
+        internal static QuantityInfo Info { get; }
+"@; } else {@"
+        public static QuantityInfo<$unitEnumName> Info { get; }
+"@; }@"
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -325,17 +338,29 @@ function GenerateProperties([GeneratorArgs]$genArgs)
         ///     The numeric value this quantity was constructed with.
         /// </summary>
 "@; # Windows Runtime Component does not support decimal
-        if ($wrc) {@"
+    if ($wrc) {@"
         public double Value => Convert.ToDouble(_value);
 "@; } else {@"
         public $valueType Value => _value;
 "@; }
 @"
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        $enumOrObject IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public $unitEnumName Unit => _unit.GetValueOrDefault(BaseUnit);
+
+"@; if ($wrc) {@"
+        internal QuantityInfo QuantityInfo => Info;
+"@; } else {@"
+        public QuantityInfo<$unitEnumName> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
+"@; }@"
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -812,12 +837,12 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==($quantityName left, $quantityName right)	
+        public static bool operator ==($quantityName left, $quantityName right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=($quantityName left, $quantityName right)	
+        public static bool operator !=($quantityName left, $quantityName right)
         {
             return !(left == right);
         }
@@ -831,8 +856,6 @@ function GenerateEqualityAndComparison([GeneratorArgs]$genArgs)
             return CompareTo(obj$quantityName);
         }
 
-"@; # Windows Runtime Component does not support overloads with same number of parameters
-$accessModifier = if ($wrc) { "internal" } else { "public" } @"
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         $accessModifier int CompareTo($quantityName other)
         {
@@ -929,6 +952,8 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
 
         #region Conversion Methods
 
+        double IQuantity.As($enumOrObject unit) => As(($unitEnumName)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -942,6 +967,10 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             return Convert.ToDouble(converted);
         }
 
+"@; if (-not $wrc) {@"
+        public double As(Enum unit) => As(($unitEnumName) unit);
+
+"@; }@"
         /// <summary>
         ///     Converts this $quantityName to another $quantityName with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -952,6 +981,12 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             return new $quantityName(convertedValue, unit);
         }
 
+"@; if (-not $wrc) {@"
+        IQuantity<$unitEnumName> IQuantity<$unitEnumName>.ToUnit($unitEnumName unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit(($unitEnumName) unit);
+
+"@; }@"
         /// <summary>
         ///     Converts the current value + unit to the base unit.
         ///     This is typically the first step in converting from one unit to another.

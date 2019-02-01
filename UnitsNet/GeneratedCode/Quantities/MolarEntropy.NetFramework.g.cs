@@ -64,6 +64,7 @@ namespace UnitsNet
         static MolarEntropy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
+            Info = new QuantityInfo<MolarEntropyUnit>(QuantityType.MolarEntropy, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<MolarEntropyUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -128,10 +132,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MolarEntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<MolarEntropyUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -436,12 +448,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(MolarEntropy left, MolarEntropy right)	
+        public static bool operator ==(MolarEntropy left, MolarEntropy right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(MolarEntropy left, MolarEntropy right)	
+        public static bool operator !=(MolarEntropy left, MolarEntropy right)
         {
             return !(left == right);
         }
@@ -537,6 +549,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((MolarEntropyUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -550,6 +564,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MolarEntropyUnit) unit);
+
         /// <summary>
         ///     Converts this MolarEntropy to another MolarEntropy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -559,6 +575,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new MolarEntropy(convertedValue, unit);
         }
+
+        IQuantity<MolarEntropyUnit> IQuantity<MolarEntropyUnit>.ToUnit(MolarEntropyUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MolarEntropyUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

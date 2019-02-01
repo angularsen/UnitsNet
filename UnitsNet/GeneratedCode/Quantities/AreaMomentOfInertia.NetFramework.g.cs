@@ -64,6 +64,7 @@ namespace UnitsNet
         static AreaMomentOfInertia()
         {
             BaseDimensions = new BaseDimensions(4, 0, 0, 0, 0, 0, 0);
+            Info = new QuantityInfo<AreaMomentOfInertiaUnit>(QuantityType.AreaMomentOfInertia, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<AreaMomentOfInertiaUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -128,10 +132,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public AreaMomentOfInertiaUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<AreaMomentOfInertiaUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -478,12 +490,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(AreaMomentOfInertia left, AreaMomentOfInertia right)	
+        public static bool operator ==(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(AreaMomentOfInertia left, AreaMomentOfInertia right)	
+        public static bool operator !=(AreaMomentOfInertia left, AreaMomentOfInertia right)
         {
             return !(left == right);
         }
@@ -579,6 +591,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((AreaMomentOfInertiaUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -592,6 +606,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((AreaMomentOfInertiaUnit) unit);
+
         /// <summary>
         ///     Converts this AreaMomentOfInertia to another AreaMomentOfInertia with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -601,6 +617,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new AreaMomentOfInertia(convertedValue, unit);
         }
+
+        IQuantity<AreaMomentOfInertiaUnit> IQuantity<AreaMomentOfInertiaUnit>.ToUnit(AreaMomentOfInertiaUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((AreaMomentOfInertiaUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

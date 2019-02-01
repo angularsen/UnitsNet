@@ -64,6 +64,7 @@ namespace UnitsNet
         static SpecificEntropy()
         {
             BaseDimensions = new BaseDimensions(2, 0, -2, 0, -1, 0, 0);
+            Info = new QuantityInfo<SpecificEntropyUnit>(QuantityType.SpecificEntropy, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<SpecificEntropyUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -128,10 +132,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public SpecificEntropyUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<SpecificEntropyUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -506,12 +518,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(SpecificEntropy left, SpecificEntropy right)	
+        public static bool operator ==(SpecificEntropy left, SpecificEntropy right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(SpecificEntropy left, SpecificEntropy right)	
+        public static bool operator !=(SpecificEntropy left, SpecificEntropy right)
         {
             return !(left == right);
         }
@@ -607,6 +619,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((SpecificEntropyUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -620,6 +634,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((SpecificEntropyUnit) unit);
+
         /// <summary>
         ///     Converts this SpecificEntropy to another SpecificEntropy with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -629,6 +645,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new SpecificEntropy(convertedValue, unit);
         }
+
+        IQuantity<SpecificEntropyUnit> IQuantity<SpecificEntropyUnit>.ToUnit(SpecificEntropyUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((SpecificEntropyUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
