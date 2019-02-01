@@ -790,8 +790,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PressureChangeRateUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(PressureChangeRate)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return PressureChangeRate.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return PressureChangeRate.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(PressureChangeRate)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

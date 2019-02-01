@@ -690,8 +690,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(BrakeSpecificFuelConsumptionUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(BrakeSpecificFuelConsumption)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return BrakeSpecificFuelConsumption.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return BrakeSpecificFuelConsumption.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(BrakeSpecificFuelConsumption)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

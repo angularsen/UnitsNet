@@ -843,8 +843,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MolarMassUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(MolarMass)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return MolarMass.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return MolarMass.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(MolarMass)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

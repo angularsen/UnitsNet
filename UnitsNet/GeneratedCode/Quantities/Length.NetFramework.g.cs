@@ -1030,8 +1030,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LengthUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Length)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Length.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Length.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Length)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

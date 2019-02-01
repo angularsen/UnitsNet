@@ -697,8 +697,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricConductivityUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(ElectricConductivity)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return ElectricConductivity.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return ElectricConductivity.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(ElectricConductivity)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

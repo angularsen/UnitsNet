@@ -1094,8 +1094,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(InformationUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Information)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Information.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Information.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Information)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

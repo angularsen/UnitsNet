@@ -822,8 +822,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ForcePerLengthUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(ForcePerLength)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return ForcePerLength.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return ForcePerLength.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(ForcePerLength)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

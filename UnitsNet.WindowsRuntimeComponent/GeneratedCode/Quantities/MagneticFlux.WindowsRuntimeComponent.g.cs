@@ -659,8 +659,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MagneticFluxUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(MagneticFlux)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return MagneticFlux.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return MagneticFlux.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(MagneticFlux)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

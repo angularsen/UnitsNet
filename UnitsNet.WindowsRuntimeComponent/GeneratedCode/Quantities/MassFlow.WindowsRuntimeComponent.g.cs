@@ -1166,8 +1166,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassFlowUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(MassFlow)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return MassFlow.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return MassFlow.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(MassFlow)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

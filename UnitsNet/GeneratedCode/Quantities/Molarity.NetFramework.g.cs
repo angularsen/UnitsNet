@@ -809,8 +809,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MolarityUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Molarity)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Molarity.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Molarity.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Molarity)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

@@ -673,8 +673,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(HeatTransferCoefficientUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(HeatTransferCoefficient)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return HeatTransferCoefficient.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return HeatTransferCoefficient.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(HeatTransferCoefficient)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

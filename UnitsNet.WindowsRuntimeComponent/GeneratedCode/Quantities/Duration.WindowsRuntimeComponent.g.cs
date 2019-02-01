@@ -809,8 +809,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(DurationUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Duration)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Duration.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Duration.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Duration)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

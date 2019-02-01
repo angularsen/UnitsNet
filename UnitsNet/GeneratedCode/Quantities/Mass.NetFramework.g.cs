@@ -1046,8 +1046,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Mass)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Mass.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Mass.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Mass)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

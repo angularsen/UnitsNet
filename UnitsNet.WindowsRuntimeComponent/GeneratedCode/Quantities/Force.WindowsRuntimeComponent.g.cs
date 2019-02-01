@@ -860,8 +860,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ForceUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Force)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Force.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Force.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Force)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

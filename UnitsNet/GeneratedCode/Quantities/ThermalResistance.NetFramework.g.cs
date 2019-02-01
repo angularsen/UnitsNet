@@ -758,8 +758,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ThermalResistanceUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(ThermalResistance)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return ThermalResistance.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return ThermalResistance.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(ThermalResistance)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

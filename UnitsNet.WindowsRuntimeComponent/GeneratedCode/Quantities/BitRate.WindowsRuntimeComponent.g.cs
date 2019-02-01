@@ -1084,8 +1084,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(BitRateUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(BitRate)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return BitRate.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return BitRate.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(BitRate)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

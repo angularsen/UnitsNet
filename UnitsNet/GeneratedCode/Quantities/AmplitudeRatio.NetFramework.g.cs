@@ -750,8 +750,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AmplitudeRatioUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(AmplitudeRatio)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return AmplitudeRatio.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return AmplitudeRatio.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(AmplitudeRatio)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

@@ -710,8 +710,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MagneticFieldUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(MagneticField)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return MagneticField.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return MagneticField.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(MagneticField)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

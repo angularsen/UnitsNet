@@ -918,8 +918,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AmountOfSubstanceUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(AmountOfSubstance)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return AmountOfSubstance.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return AmountOfSubstance.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(AmountOfSubstance)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

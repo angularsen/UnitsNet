@@ -767,8 +767,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TemperatureUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Temperature)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Temperature.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Temperature.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Temperature)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

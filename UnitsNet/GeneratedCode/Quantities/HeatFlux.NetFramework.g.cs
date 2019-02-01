@@ -966,8 +966,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(HeatFluxUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(HeatFlux)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return HeatFlux.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return HeatFlux.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(HeatFlux)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

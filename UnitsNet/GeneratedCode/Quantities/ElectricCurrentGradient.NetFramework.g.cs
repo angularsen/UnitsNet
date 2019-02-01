@@ -694,8 +694,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricCurrentGradientUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(ElectricCurrentGradient)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return ElectricCurrentGradient.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return ElectricCurrentGradient.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(ElectricCurrentGradient)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

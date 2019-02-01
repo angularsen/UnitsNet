@@ -1350,8 +1350,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PressureUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Pressure)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Pressure.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Pressure.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Pressure)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

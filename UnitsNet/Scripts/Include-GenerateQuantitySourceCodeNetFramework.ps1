@@ -331,8 +331,12 @@ if ($obsoleteAttribute)
                 return this;
             else if(conversionType == typeof($unitEnumName))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof($quantityName)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return $quantityName.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return $quantityName.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof($quantityName)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

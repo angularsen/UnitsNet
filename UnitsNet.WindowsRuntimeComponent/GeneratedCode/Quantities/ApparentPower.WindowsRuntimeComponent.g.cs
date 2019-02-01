@@ -707,8 +707,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ApparentPowerUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(ApparentPower)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return ApparentPower.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return ApparentPower.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(ApparentPower)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

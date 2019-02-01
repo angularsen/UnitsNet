@@ -726,8 +726,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MolarEnergyUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(MolarEnergy)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return MolarEnergy.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return MolarEnergy.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(MolarEnergy)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

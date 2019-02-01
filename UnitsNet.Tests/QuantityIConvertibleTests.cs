@@ -136,10 +136,17 @@ namespace UnitsNet.Tests
             Assert.Throws<InvalidCastException>(() => lengthAsIConvertible.ToType(typeof(Duration), null));
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(length, typeof(Duration)));
 
-
             // Different unit type
             Assert.Throws<InvalidCastException>(() => lengthAsIConvertible.ToType(typeof(DurationUnit), null));
             Assert.Throws<InvalidCastException>(() => Convert.ChangeType(length, typeof(DurationUnit)));
+
+            // QuantityType
+            Assert.Equal(Length.QuantityType, lengthAsIConvertible.ToType(typeof(QuantityType), null));
+            Assert.Equal(Length.QuantityType, Convert.ChangeType(length, typeof(QuantityType)));
+
+            // BaseDimensions
+            Assert.Equal(Length.BaseDimensions, lengthAsIConvertible.ToType(typeof(BaseDimensions), null));
+            Assert.Equal(Length.BaseDimensions, Convert.ChangeType(length, typeof(BaseDimensions)));
         }
 
         [Fact]

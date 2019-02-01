@@ -806,8 +806,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricCurrentUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(ElectricCurrent)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return ElectricCurrent.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return ElectricCurrent.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(ElectricCurrent)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

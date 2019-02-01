@@ -694,8 +694,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(VitaminAUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(VitaminA)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return VitaminA.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return VitaminA.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(VitaminA)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

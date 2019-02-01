@@ -659,8 +659,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PermittivityUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Permittivity)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Permittivity.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Permittivity.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Permittivity)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

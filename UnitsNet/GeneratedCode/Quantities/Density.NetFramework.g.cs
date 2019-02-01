@@ -1305,8 +1305,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(DensityUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Density)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Density.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Density.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Density)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

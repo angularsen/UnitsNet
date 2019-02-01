@@ -1014,8 +1014,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TorqueUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Torque)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Torque.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Torque.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Torque)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

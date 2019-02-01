@@ -724,8 +724,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricResistanceUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(ElectricResistance)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return ElectricResistance.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return ElectricResistance.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(ElectricResistance)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

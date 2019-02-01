@@ -676,8 +676,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ThermalConductivityUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(ThermalConductivity)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return ThermalConductivity.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return ThermalConductivity.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(ThermalConductivity)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

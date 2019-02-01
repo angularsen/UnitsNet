@@ -726,8 +726,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MolarEntropyUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(MolarEntropy)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return MolarEntropy.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return MolarEntropy.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(MolarEntropy)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

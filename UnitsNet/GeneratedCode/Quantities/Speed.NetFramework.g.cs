@@ -1190,8 +1190,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(SpeedUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Speed)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Speed.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Speed.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Speed)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

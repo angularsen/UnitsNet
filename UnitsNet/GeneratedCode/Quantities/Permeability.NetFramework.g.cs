@@ -697,8 +697,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(PermeabilityUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Permeability)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Permeability.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Permeability.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Permeability)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

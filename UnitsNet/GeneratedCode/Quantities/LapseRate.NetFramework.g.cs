@@ -694,8 +694,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(LapseRateUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(LapseRate)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return LapseRate.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return LapseRate.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(LapseRate)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

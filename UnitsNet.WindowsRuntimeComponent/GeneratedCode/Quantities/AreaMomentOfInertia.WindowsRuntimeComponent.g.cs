@@ -741,8 +741,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AreaMomentOfInertiaUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(AreaMomentOfInertia)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return AreaMomentOfInertia.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return AreaMomentOfInertia.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(AreaMomentOfInertia)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

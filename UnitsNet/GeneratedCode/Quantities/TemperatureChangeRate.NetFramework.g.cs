@@ -838,8 +838,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(TemperatureChangeRateUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(TemperatureChangeRate)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return TemperatureChangeRate.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return TemperatureChangeRate.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(TemperatureChangeRate)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

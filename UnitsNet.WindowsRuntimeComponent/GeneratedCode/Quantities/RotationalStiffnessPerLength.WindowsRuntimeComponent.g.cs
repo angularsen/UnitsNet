@@ -690,8 +690,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(RotationalStiffnessPerLengthUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(RotationalStiffnessPerLength)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return RotationalStiffnessPerLength.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return RotationalStiffnessPerLength.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(RotationalStiffnessPerLength)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

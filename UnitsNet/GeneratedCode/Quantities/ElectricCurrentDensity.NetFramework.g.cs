@@ -697,8 +697,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ElectricCurrentDensityUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(ElectricCurrentDensity)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return ElectricCurrentDensity.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return ElectricCurrentDensity.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(ElectricCurrentDensity)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

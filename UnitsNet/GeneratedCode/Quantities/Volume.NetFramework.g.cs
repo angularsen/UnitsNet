@@ -1398,8 +1398,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(VolumeUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Volume)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Volume.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Volume.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Volume)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

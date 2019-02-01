@@ -774,8 +774,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(RatioUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Ratio)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Ratio.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Ratio.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Ratio)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

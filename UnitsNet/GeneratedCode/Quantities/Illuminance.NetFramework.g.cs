@@ -745,8 +745,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(IlluminanceUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Illuminance)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Illuminance.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Illuminance.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Illuminance)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

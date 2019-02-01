@@ -761,8 +761,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(CapacitanceUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Capacitance)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Capacitance.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Capacitance.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Capacitance)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

@@ -1126,8 +1126,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(MassMomentOfInertiaUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(MassMomentOfInertia)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return MassMomentOfInertia.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return MassMomentOfInertia.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(MassMomentOfInertia)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

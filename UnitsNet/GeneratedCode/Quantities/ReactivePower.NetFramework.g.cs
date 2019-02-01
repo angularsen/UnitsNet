@@ -742,8 +742,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(ReactivePowerUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(ReactivePower)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return ReactivePower.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return ReactivePower.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(ReactivePower)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

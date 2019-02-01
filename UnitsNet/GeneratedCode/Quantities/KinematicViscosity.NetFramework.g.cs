@@ -809,8 +809,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(KinematicViscosityUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(KinematicViscosity)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return KinematicViscosity.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return KinematicViscosity.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(KinematicViscosity)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)

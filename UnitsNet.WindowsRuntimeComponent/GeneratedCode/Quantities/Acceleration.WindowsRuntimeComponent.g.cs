@@ -860,8 +860,12 @@ namespace UnitsNet
                 return this;
             else if(conversionType == typeof(AccelerationUnit))
                 return Unit;
-
-            throw new InvalidCastException($"Converting {typeof(Acceleration)} to {conversionType} is not supported.");
+            else if(conversionType == typeof(QuantityType))
+                return Acceleration.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return Acceleration.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(Acceleration)} to {conversionType} is not supported.");
         }
 
         ushort IConvertible.ToUInt16(IFormatProvider provider)
