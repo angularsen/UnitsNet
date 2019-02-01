@@ -59,6 +59,7 @@ namespace UnitsNet.Tests
         protected abstract double DecigramsPerDayInOneGramPerSecond { get; }
         protected abstract double DecigramsPerSecondInOneGramPerSecond { get; }
         protected abstract double GramsPerDayInOneGramPerSecond { get; }
+        protected abstract double GramsPerHourInOneGramPerSecond { get; }
         protected abstract double GramsPerSecondInOneGramPerSecond { get; }
         protected abstract double HectogramsPerDayInOneGramPerSecond { get; }
         protected abstract double HectogramsPerSecondInOneGramPerSecond { get; }
@@ -91,6 +92,7 @@ namespace UnitsNet.Tests
         protected virtual double DecigramsPerDayTolerance { get { return 1e-5; } }
         protected virtual double DecigramsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double GramsPerDayTolerance { get { return 1e-5; } }
+        protected virtual double GramsPerHourTolerance { get { return 1e-5; } }
         protected virtual double GramsPerSecondTolerance { get { return 1e-5; } }
         protected virtual double HectogramsPerDayTolerance { get { return 1e-5; } }
         protected virtual double HectogramsPerSecondTolerance { get { return 1e-5; } }
@@ -146,6 +148,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DecigramsPerDayInOneGramPerSecond, grampersecond.DecigramsPerDay, DecigramsPerDayTolerance);
             AssertEx.EqualTolerance(DecigramsPerSecondInOneGramPerSecond, grampersecond.DecigramsPerSecond, DecigramsPerSecondTolerance);
             AssertEx.EqualTolerance(GramsPerDayInOneGramPerSecond, grampersecond.GramsPerDay, GramsPerDayTolerance);
+            AssertEx.EqualTolerance(GramsPerHourInOneGramPerSecond, grampersecond.GramsPerHour, GramsPerHourTolerance);
             AssertEx.EqualTolerance(GramsPerSecondInOneGramPerSecond, grampersecond.GramsPerSecond, GramsPerSecondTolerance);
             AssertEx.EqualTolerance(HectogramsPerDayInOneGramPerSecond, grampersecond.HectogramsPerDay, HectogramsPerDayTolerance);
             AssertEx.EqualTolerance(HectogramsPerSecondInOneGramPerSecond, grampersecond.HectogramsPerSecond, HectogramsPerSecondTolerance);
@@ -181,6 +184,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.DecigramPerDay).DecigramsPerDay, DecigramsPerDayTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.DecigramPerSecond).DecigramsPerSecond, DecigramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.GramPerDay).GramsPerDay, GramsPerDayTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.GramPerHour).GramsPerHour, GramsPerHourTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.GramPerSecond).GramsPerSecond, GramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.HectogramPerDay).HectogramsPerDay, HectogramsPerDayTolerance);
             AssertEx.EqualTolerance(1, MassFlow.From(1, MassFlowUnit.HectogramPerSecond).HectogramsPerSecond, HectogramsPerSecondTolerance);
@@ -230,6 +234,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(DecigramsPerDayInOneGramPerSecond, grampersecond.As(MassFlowUnit.DecigramPerDay), DecigramsPerDayTolerance);
             AssertEx.EqualTolerance(DecigramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.DecigramPerSecond), DecigramsPerSecondTolerance);
             AssertEx.EqualTolerance(GramsPerDayInOneGramPerSecond, grampersecond.As(MassFlowUnit.GramPerDay), GramsPerDayTolerance);
+            AssertEx.EqualTolerance(GramsPerHourInOneGramPerSecond, grampersecond.As(MassFlowUnit.GramPerHour), GramsPerHourTolerance);
             AssertEx.EqualTolerance(GramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.GramPerSecond), GramsPerSecondTolerance);
             AssertEx.EqualTolerance(HectogramsPerDayInOneGramPerSecond, grampersecond.As(MassFlowUnit.HectogramPerDay), HectogramsPerDayTolerance);
             AssertEx.EqualTolerance(HectogramsPerSecondInOneGramPerSecond, grampersecond.As(MassFlowUnit.HectogramPerSecond), HectogramsPerSecondTolerance);
@@ -287,6 +292,10 @@ namespace UnitsNet.Tests
             var gramperdayQuantity = grampersecond.ToUnit(MassFlowUnit.GramPerDay);
             AssertEx.EqualTolerance(GramsPerDayInOneGramPerSecond, (double)gramperdayQuantity.Value, GramsPerDayTolerance);
             Assert.Equal(MassFlowUnit.GramPerDay, gramperdayQuantity.Unit);
+
+            var gramperhourQuantity = grampersecond.ToUnit(MassFlowUnit.GramPerHour);
+            AssertEx.EqualTolerance(GramsPerHourInOneGramPerSecond, (double)gramperhourQuantity.Value, GramsPerHourTolerance);
+            Assert.Equal(MassFlowUnit.GramPerHour, gramperhourQuantity.Unit);
 
             var grampersecondQuantity = grampersecond.ToUnit(MassFlowUnit.GramPerSecond);
             AssertEx.EqualTolerance(GramsPerSecondInOneGramPerSecond, (double)grampersecondQuantity.Value, GramsPerSecondTolerance);
@@ -392,6 +401,7 @@ namespace UnitsNet.Tests
             AssertEx.EqualTolerance(1, MassFlow.FromDecigramsPerDay(grampersecond.DecigramsPerDay).GramsPerSecond, DecigramsPerDayTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromDecigramsPerSecond(grampersecond.DecigramsPerSecond).GramsPerSecond, DecigramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromGramsPerDay(grampersecond.GramsPerDay).GramsPerSecond, GramsPerDayTolerance);
+            AssertEx.EqualTolerance(1, MassFlow.FromGramsPerHour(grampersecond.GramsPerHour).GramsPerSecond, GramsPerHourTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromGramsPerSecond(grampersecond.GramsPerSecond).GramsPerSecond, GramsPerSecondTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromHectogramsPerDay(grampersecond.HectogramsPerDay).GramsPerSecond, HectogramsPerDayTolerance);
             AssertEx.EqualTolerance(1, MassFlow.FromHectogramsPerSecond(grampersecond.HectogramsPerSecond).GramsPerSecond, HectogramsPerSecondTolerance);

@@ -589,6 +589,7 @@ namespace UnitsNet
                 ("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.DecigramPerDay, new string[]{"dg/d"}),
                 ("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.DecigramPerSecond, new string[]{"dg/S"}),
                 ("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.GramPerDay, new string[]{"g/d"}),
+                ("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.GramPerHour, new string[]{"g/h"}),
                 ("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.GramPerSecond, new string[]{"g/S"}),
                 ("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.HectogramPerDay, new string[]{"hg/d"}),
                 ("en-US", typeof(MassFlowUnit), (int)MassFlowUnit.HectogramPerSecond, new string[]{"hg/S"}),
