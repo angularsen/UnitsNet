@@ -256,9 +256,8 @@ if ($obsoleteAttribute)
         }
 "@; }@"
 
+"@; if (!$wrc) {@"
         #region IConvertible Methods
-
-#if !WINDOWS_UWP
 
         TypeCode IConvertible.GetTypeCode()
         {
@@ -354,9 +353,8 @@ if ($obsoleteAttribute)
             return Convert.ToUInt64(_value);
         }
 
-#endif
-
         #endregion
+"@; }@"
     }
 }
 "@;

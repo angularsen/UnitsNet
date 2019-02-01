@@ -624,8 +624,6 @@ namespace UnitsNet
 
         #region IConvertible Methods
 
-#if !WINDOWS_UWP
-
         TypeCode IConvertible.GetTypeCode()
         {
             return TypeCode.Object;
@@ -719,8 +717,6 @@ namespace UnitsNet
         {
             return Convert.ToUInt64(_value);
         }
-
-#endif
 
         #endregion
     }
