@@ -1,4 +1,4 @@
-﻿function GenerateQuantityTypeSourceCode($quantityNames)
+﻿function GenerateQuantityTypeSourceCode($quantities)
 {
 @"
 //------------------------------------------------------------------------------
@@ -51,9 +51,9 @@ namespace UnitsNet
     public enum QuantityType
     {
         Undefined = 0,
-"@; foreach ($quantityName in $quantityNames) {
+"@; foreach ($quantity in $quantities) {
 @"
-        $($quantityName.Name),
+        $($quantity.Name),
 "@; }@"
     }
 }

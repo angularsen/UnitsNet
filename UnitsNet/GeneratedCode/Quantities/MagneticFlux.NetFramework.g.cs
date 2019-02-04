@@ -67,6 +67,7 @@ namespace UnitsNet
         static MagneticFlux()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
+            Info = new QuantityInfo<MagneticFluxUnit>(QuantityType.MagneticFlux, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -86,6 +87,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<MagneticFluxUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -131,10 +135,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MagneticFluxUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<MagneticFluxUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -411,12 +423,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(MagneticFlux left, MagneticFlux right)	
+        public static bool operator ==(MagneticFlux left, MagneticFlux right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(MagneticFlux left, MagneticFlux right)	
+        public static bool operator !=(MagneticFlux left, MagneticFlux right)
         {
             return !(left == right);
         }
@@ -512,6 +524,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((MagneticFluxUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -525,6 +539,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MagneticFluxUnit) unit);
+
         /// <summary>
         ///     Converts this MagneticFlux to another MagneticFlux with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -534,6 +550,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new MagneticFlux(convertedValue, unit);
         }
+
+        IQuantity<MagneticFluxUnit> IQuantity<MagneticFluxUnit>.ToUnit(MagneticFluxUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MagneticFluxUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

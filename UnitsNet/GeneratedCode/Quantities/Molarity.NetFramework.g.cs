@@ -67,6 +67,7 @@ namespace UnitsNet
         static Molarity()
         {
             BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
+            Info = new QuantityInfo<MolarityUnit>(QuantityType.Molarity, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -86,6 +87,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<MolarityUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -131,10 +135,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MolarityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<MolarityUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -509,12 +521,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Molarity left, Molarity right)	
+        public static bool operator ==(Molarity left, Molarity right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Molarity left, Molarity right)	
+        public static bool operator !=(Molarity left, Molarity right)
         {
             return !(left == right);
         }
@@ -610,6 +622,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((MolarityUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -623,6 +637,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((MolarityUnit) unit);
+
         /// <summary>
         ///     Converts this Molarity to another Molarity with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -632,6 +648,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Molarity(convertedValue, unit);
         }
+
+        IQuantity<MolarityUnit> IQuantity<MolarityUnit>.ToUnit(MolarityUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((MolarityUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

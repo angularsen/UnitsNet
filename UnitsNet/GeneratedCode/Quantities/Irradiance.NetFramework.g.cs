@@ -64,6 +64,7 @@ namespace UnitsNet
         static Irradiance()
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, 0, 0, 0);
+            Info = new QuantityInfo<IrradianceUnit>(QuantityType.Irradiance, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -83,6 +84,9 @@ namespace UnitsNet
         }
 
         #region Static Properties
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<IrradianceUnit> Info { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
@@ -128,10 +132,18 @@ namespace UnitsNet
         /// </summary>
         public double Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public IrradianceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<IrradianceUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -590,12 +602,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(Irradiance left, Irradiance right)	
+        public static bool operator ==(Irradiance left, Irradiance right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(Irradiance left, Irradiance right)	
+        public static bool operator !=(Irradiance left, Irradiance right)
         {
             return !(left == right);
         }
@@ -691,6 +703,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((IrradianceUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -704,6 +718,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((IrradianceUnit) unit);
+
         /// <summary>
         ///     Converts this Irradiance to another Irradiance with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -713,6 +729,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new Irradiance(convertedValue, unit);
         }
+
+        IQuantity<IrradianceUnit> IQuantity<IrradianceUnit>.ToUnit(IrradianceUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((IrradianceUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.

@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,6 +21,7 @@
 
 using System;
 using JetBrains.Annotations;
+using UnitsNet.Units;
 
 namespace UnitsNet
 {
@@ -32,18 +33,50 @@ namespace UnitsNet
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        QuantityType Type
-        {
-            get;
-        }
+        QuantityType Type { get; }
 
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
-        BaseDimensions Dimensions
-        {
-            get;
-        }
+        BaseDimensions Dimensions { get; }
+
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        QuantityInfo QuantityInfo { get; }
+#endif
+
+        /// <summary>
+        ///     Dynamically convert to another unit representation.
+        /// </summary>
+        /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
+        /// <returns>Value converted to the specified unit.</returns>
+        /// <exception cref="InvalidCastException">Wrong unit enum type was given.</exception>
+#if WINDOWS_UWP
+        double As(object unit);
+#else
+        double As(Enum unit);
+#endif
+
+        /// <summary>
+        ///     The unit this quantity was constructed with or the BaseUnit if the default constructor was used.
+        /// </summary>
+
+#if WINDOWS_UWP
+        object Unit { get; }
+#else
+        Enum Unit { get; }
+#endif
+
+#if !WINDOWS_UWP
+        /// <summary>
+        ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
+        /// </summary>
+        /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
+        /// <returns>A new quantity with the given unit as default unit representation.</returns>
+        IQuantity ToUnit(Enum unit);
+#endif
     }
 
 #if !WINDOWS_UWP
@@ -107,23 +140,26 @@ namespace UnitsNet
 #endif
 
 #if !WINDOWS_UWP
-
-    public interface IQuantity<UnitType> : IQuantity where UnitType : Enum
+    public interface IQuantity<TUnitType> : IQuantity where TUnitType : Enum
     {
         /// <summary>
-        ///     Convert to the unit representation <typeparamref name="UnitType"/>.
+        ///     Convert to a unit representation <typeparamref name="TUnitType"/>.
         /// </summary>
         /// <returns>Value converted to the specified unit.</returns>
-        double As(UnitType unit);
+        double As(TUnitType unit);
+
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        new TUnitType Unit { get; }
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        new QuantityInfo<TUnitType> QuantityInfo { get; }
 
         /// <summary>
-        ///     The unit this quantity was constructed with or the BaseUnit if the default constructor was used.
+        ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
         /// </summary>
-        UnitType Unit
-        {
-            get;
-        }
+        /// <param name="unit"></param>
+        /// <returns></returns>
+        IQuantity<TUnitType> ToUnit(TUnitType unit);
     }
-
 #endif
 }

@@ -208,7 +208,7 @@ namespace UnitsNet
 
         private void PerformAbbreviationMapping(Type unitType, int unitValue, IFormatProvider formatProvider, bool setAsDefault, [NotNull] params string[] abbreviations)
         {
-            if (!unitType.IsEnum())
+            if (!unitType.Wrap().IsEnum)
                 throw new ArgumentException("Must be an enum type.", nameof(unitType));
 
             if (abbreviations == null)
