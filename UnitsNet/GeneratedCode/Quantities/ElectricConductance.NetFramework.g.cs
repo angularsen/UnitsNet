@@ -722,7 +722,7 @@ namespace UnitsNet
                 case "S":
                     return ToString(formatProvider, digits);
                 default:
-                    throw new FormatException($"The {formatString} format string is not supported.");
+                    throw new FormatException($"The {format} format string is not supported.");
             }
         }
 
