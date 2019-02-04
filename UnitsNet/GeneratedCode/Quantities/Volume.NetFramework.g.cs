@@ -49,7 +49,7 @@ namespace UnitsNet
     /// <summary>
     ///     Volume is the quantity of three-dimensional space enclosed by some closed boundary, for example, the space that a substance (solid, liquid, gas, or plasma) or shape occupies or contains.[1] Volume is often quantified numerically using the SI derived unit, the cubic metre. The volume of a container is generally understood to be the capacity of the container, i. e. the amount of fluid (gas or liquid) that the container could hold, rather than the amount of space the container itself displaces.
     /// </summary>
-    public partial struct Volume : IQuantity<VolumeUnit>, IEquatable<Volume>, IComparable, IComparable<Volume>, IConvertible
+    public partial struct Volume : IQuantity<VolumeUnit>, IEquatable<Volume>, IComparable, IComparable<Volume>, IConvertible, IFormattable
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -1296,7 +1296,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(null);
+            return ToString(null, 2);
         }
 
         /// <summary>
@@ -1339,6 +1339,60 @@ namespace UnitsNet
             var value = Convert.ToDouble(Value);
             var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
+        }
+
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using <see cref="GlobalConfiguration.DefaultCulture" />.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format)
+        {
+            return ToString(format, GlobalConfiguration.DefaultCulture);
+        }
+
+        /// <summary>
+        /// Gets the string representation of this instance in the specified format string using the specified format provider, or <see cref="GlobalConfiguration.DefaultCulture" /> if null.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <param name="formatProvider">Format to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
+        /// <returns>The string representation.</returns>
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
+
+            int digits = 0;
+            string formatString = format;
+
+            if(string.IsNullOrWhiteSpace(formatString))
+                formatString = "G";
+
+            formatString = formatString.ToUpper();
+
+            if(formatString.StartsWith("A") || formatString.StartsWith("S"))
+            {
+                if(formatString.Length > 1 && !int.TryParse(formatString.Substring(1), out digits))
+                    throw new FormatException($"The {format} format string is not supported.");
+
+                formatString = formatString.Substring(0, 1);
+            }
+
+            switch(formatString)
+            {
+                case "G":
+                    return ToString(formatProvider, 2);
+                case "A":
+                    var abbreviations = UnitAbbreviationsCache.Default.GetUnitAbbreviations<VolumeUnit>(Unit, formatProvider);
+                    return abbreviations[digits];
+                case "V":
+                    return Value.ToString(formatProvider);
+                case "Q":
+                    return Info.Name;
+                case "S":
+                    return ToString(formatProvider, digits);
+                default:
+                    throw new FormatException($"The {formatString} format string is not supported.");
+            }
         }
 
         #endregion

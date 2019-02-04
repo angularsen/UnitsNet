@@ -639,7 +639,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(null);
+            return ToString(null, 2);
         }
 
         /// <summary>
