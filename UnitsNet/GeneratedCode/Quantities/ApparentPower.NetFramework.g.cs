@@ -83,6 +83,22 @@ namespace UnitsNet
             _unit = unit;
         }
 
+        public ApparentPower(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = GetUnitForBaseUnits(unitSystem.BaseUnits);
+        }
+
+        public ApparentPower(double numericValue, BaseUnits baseUnits)
+        {
+            if(baseUnits == null) throw new ArgumentNullException(nameof(baseUnits));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = GetUnitForBaseUnits(baseUnits);
+        }
+
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -628,6 +644,39 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        public BaseUnits GetBaseUnits()
+        {
+          return GetBaseUnits(Unit);
+        }
+
+        public static BaseUnits GetBaseUnits(ApparentPowerUnit unit)
+        {
+            switch(unit)
+            {
+                case ApparentPowerUnit.Gigavoltampere:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case ApparentPowerUnit.Kilovoltampere:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case ApparentPowerUnit.Megavoltampere:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case ApparentPowerUnit.Voltampere:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                default:
+                    throw new ArgumentException($"Base units not supported for {unit}.");
+            }
+        }
+
+        public static ApparentPowerUnit GetUnitForBaseUnits(BaseUnits baseUnits)
+        {
+            foreach(var unit in Units)
+            {
+                if(baseUnits.Equals(GetBaseUnits(unit)))
+                    return unit;
+            }
+
+            throw new NotImplementedException($"No ApparentPowerUnit was found for the given baseUnits.");
         }
 
         #endregion

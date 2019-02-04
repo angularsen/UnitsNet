@@ -97,6 +97,22 @@ namespace UnitsNet
             _unit = unit;
         }
 
+        public ElectricCurrentGradient(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = GetUnitForBaseUnits(unitSystem.BaseUnits);
+        }
+
+        public ElectricCurrentGradient(double numericValue, BaseUnits baseUnits)
+        {
+            if(baseUnits == null) throw new ArgumentNullException(nameof(baseUnits));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = GetUnitForBaseUnits(baseUnits);
+        }
+
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -525,6 +541,33 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        public BaseUnits GetBaseUnits()
+        {
+          return GetBaseUnits(Unit);
+        }
+
+        public static BaseUnits GetBaseUnits(ElectricCurrentGradientUnit unit)
+        {
+            switch(unit)
+            {
+                case ElectricCurrentGradientUnit.AmperePerSecond:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                default:
+                    throw new ArgumentException($"Base units not supported for {unit}.");
+            }
+        }
+
+        public static ElectricCurrentGradientUnit GetUnitForBaseUnits(BaseUnits baseUnits)
+        {
+            foreach(var unit in Units)
+            {
+                if(baseUnits.Equals(GetBaseUnits(unit)))
+                    return unit;
+            }
+
+            throw new NotImplementedException($"No ElectricCurrentGradientUnit was found for the given baseUnits.");
         }
 
         #endregion

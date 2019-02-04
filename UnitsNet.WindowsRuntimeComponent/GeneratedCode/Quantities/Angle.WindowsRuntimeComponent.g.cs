@@ -97,6 +97,22 @@ namespace UnitsNet
             _unit = unit;
         }
 
+        public Angle(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = GetUnitForBaseUnits(unitSystem.BaseUnits);
+        }
+
+        public Angle(double numericValue, BaseUnits baseUnits)
+        {
+            if(baseUnits == null) throw new ArgumentNullException(nameof(baseUnits));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = GetUnitForBaseUnits(baseUnits);
+        }
+
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -746,6 +762,59 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        public BaseUnits GetBaseUnits()
+        {
+          return GetBaseUnits(Unit);
+        }
+
+        public static BaseUnits GetBaseUnits(AngleUnit unit)
+        {
+            switch(unit)
+            {
+                case AngleUnit.Arcminute:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case AngleUnit.Arcsecond:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case AngleUnit.Centiradian:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case AngleUnit.Deciradian:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case AngleUnit.Degree:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case AngleUnit.Gradian:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case AngleUnit.Microdegree:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case AngleUnit.Microradian:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case AngleUnit.Millidegree:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case AngleUnit.Milliradian:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case AngleUnit.Nanodegree:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case AngleUnit.Nanoradian:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case AngleUnit.Radian:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case AngleUnit.Revolution:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                default:
+                    throw new ArgumentException($"Base units not supported for {unit}.");
+            }
+        }
+
+        public static AngleUnit GetUnitForBaseUnits(BaseUnits baseUnits)
+        {
+            foreach(var unit in Units)
+            {
+                if(baseUnits.Equals(GetBaseUnits(unit)))
+                    return unit;
+            }
+
+            throw new NotImplementedException($"No AngleUnit was found for the given baseUnits.");
         }
 
         #endregion

@@ -83,6 +83,22 @@ namespace UnitsNet
             _unit = unit;
         }
 
+        public ForcePerLength(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = GetUnitForBaseUnits(unitSystem.BaseUnits);
+        }
+
+        public ForcePerLength(double numericValue, BaseUnits baseUnits)
+        {
+            if(baseUnits == null) throw new ArgumentNullException(nameof(baseUnits));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = GetUnitForBaseUnits(baseUnits);
+        }
+
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -708,6 +724,49 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        public BaseUnits GetBaseUnits()
+        {
+          return GetBaseUnits(Unit);
+        }
+
+        public static BaseUnits GetBaseUnits(ForcePerLengthUnit unit)
+        {
+            switch(unit)
+            {
+                case ForcePerLengthUnit.CentinewtonPerMeter:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case ForcePerLengthUnit.DecinewtonPerMeter:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case ForcePerLengthUnit.KilogramForcePerMeter:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case ForcePerLengthUnit.KilonewtonPerMeter:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case ForcePerLengthUnit.MeganewtonPerMeter:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case ForcePerLengthUnit.MicronewtonPerMeter:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case ForcePerLengthUnit.MillinewtonPerMeter:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case ForcePerLengthUnit.NanonewtonPerMeter:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case ForcePerLengthUnit.NewtonPerMeter:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                default:
+                    throw new ArgumentException($"Base units not supported for {unit}.");
+            }
+        }
+
+        public static ForcePerLengthUnit GetUnitForBaseUnits(BaseUnits baseUnits)
+        {
+            foreach(var unit in Units)
+            {
+                if(baseUnits.Equals(GetBaseUnits(unit)))
+                    return unit;
+            }
+
+            throw new NotImplementedException($"No ForcePerLengthUnit was found for the given baseUnits.");
         }
 
         #endregion

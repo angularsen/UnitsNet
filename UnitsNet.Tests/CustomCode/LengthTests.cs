@@ -169,5 +169,12 @@ namespace UnitsNet.Tests.CustomCode
             Assert.Equal(-2.0, feetInches.Feet);
             Assert.Equal(-1.0, feetInches.Inches);
         }
+
+        [Fact]
+        public void LengthCreatedInSISystem()
+        {
+            var length = new Length(1.0, UnitSystem.SI);
+            Assert.Equal(LengthUnit.Meter, length.Unit);
+        }
     }
 }

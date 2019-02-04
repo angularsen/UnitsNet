@@ -11,6 +11,9 @@
       "PluralName": "Moles",
       "FromUnitToBaseFunc": "x",
       "FromBaseToUnitFunc": "x",
+      "BaseUnits": {
+        "N": "Mole"
+      },
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo", "Mega"],
       "Localization": [
         {
@@ -22,6 +25,9 @@
     {
       "SingularName": "PoundMole",
       "PluralName": "PoundMoles",
+      "BaseUnits": {
+        "N": "PoundMole"
+      },
       "FromUnitToBaseFunc": "x*453.59237",
       "FromBaseToUnitFunc": "x/453.59237",
       "Prefixes": [ "Nano", "Micro", "Milli", "Centi", "Deci", "Kilo" ],

@@ -66,5 +66,28 @@ namespace UnitsNet.Tests
             var lengthUnitNames = lengthUnits.Select(x => x.ToString());
             Assert.Equal(lengthUnitNames, quantityInfo.UnitNames);
         }
+
+        [Fact]
+        public void TestGenericMultiplication()
+        {
+            var length1 = Length.FromInches( 2.0 );
+            var length2 = Length.FromMeters( 2.0 );
+
+            var calculated = Multiply( length1, length2 );
+            Assert.Equal( length1 * length2, calculated );
+        }
+
+        private IQuantity Multiply(IQuantity left, IQuantity right)
+        {
+            var multipliedBaseDimensions = left.Dimensions * right.Dimensions;
+            var multipliedQuantityInfo = Quantity.Infos.Where( info => info.BaseDimensions == multipliedBaseDimensions ).First();
+
+            var lhsBaseUnits = left.GetBaseUnits();
+            var areaUnit = Area.GetUnitForBaseUnits( lhsBaseUnits );
+            // var areaUnit = multipliedQuantityInfo.UnitBaseUnits.Where( BaseUnits => baseUnit == lhsBaseUnits );
+
+            var multipliedValue = left.As( left.Unit ) * right.As( left.Unit );
+            return Quantity.From( multipliedValue, areaUnit );
+        }
     }
 }

@@ -16,6 +16,10 @@ function ValueOrDefault($value, $defaultValue){
   if ($value -ne $null) { $value } else { $defaultValue }
 }
 
+function Ternary($value, $one, $two){
+  if ($value -ne $null) { $one } else { $two }
+}
+
 function GenerateQuantity([Quantity]$quantity, $outDir)
 {
     $outFileName = "$outDir/$($quantity.Name).NetFramework.g.cs"
@@ -194,6 +198,15 @@ function Add-PrefixUnits {
                 $prefixUnit = New-Object PsObject -Property @{
                     SingularName=$prefix + $(ToCamelCase $unit.SingularName)
                     PluralName=$prefix + $(ToCamelCase $unit.PluralName)
+                    BaseUnits = @{
+                      Length = $unit.BaseUnits.Length
+                      Mass = $unit.BaseUnits.Mass
+                      Time = $unit.BaseUnits.Time
+                      ElectricCurrent = $unit.BaseUnits.ElectricCurrent
+                      Temperature = $unit.BaseUnits.Temperature
+                      AmountOfSubstance = $unit.BaseUnits.AmountOfSubstance
+                      LuminousIntensity = $unit.BaseUnits.LuminousIntensity
+                    }
                     FromUnitToBaseFunc="("+$unit.FromUnitToBaseFunc+") * $prefixFactor"
                     FromBaseToUnitFunc="("+$unit.FromBaseToUnitFunc+") / $prefixFactor"
 
@@ -288,6 +301,16 @@ $quantities = Get-ChildItem -Path $templatesDir -filter "*.json" `
           [Unit]@{
             SingularName = $_.SingularName
             PluralName = $_.PluralName
+            BaseUnits = @{
+              # $_ | fl | out-string | Write-Host -ForegroundColor green
+              Length = Ternary $_.BaseUnits.L "LengthUnit.$($_.BaseUnits.L)" "LengthUnit.Undefined"
+              Mass = Ternary $_.BaseUnits.M "MassUnit.$($_.BaseUnits.M)" "MassUnit.Undefined"
+              Time = Ternary $_.BaseUnits.T "DurationUnit.$($_.BaseUnits.T)" "DurationUnit.Undefined"
+              ElectricCurrent = Ternary $_.BaseUnits.I "ElectricCurrentUnit.$($_.BaseUnits.I)" "ElectricCurrentUnit.Undefined"
+              Temperature = Ternary $_.BaseUnits.Θ "TemperatureUnit.$($_.BaseUnits.Θ)" "TemperatureUnit.Undefined"
+              AmountOfSubstance = Ternary $_.BaseUnits.N "AmountOfSubstanceUnit.$($_.BaseUnits.N)" "AmountOfSubstanceUnit.Undefined"
+              LuminousIntensity = Ternary $_.BaseUnits.J "LuminousIntensityUnit.$($_.BaseUnits.J)" "LuminousIntensityUnit.Undefined"
+            }
             XmlDocSummary = $_.XmlDocSummary
             XmlDocRemarks = $_.XmlDocRemarks
             FromUnitToBaseFunc = $_.FromUnitToBaseFunc

@@ -164,6 +164,30 @@ if ($obsoleteAttribute)
 "@; }@"
             _unit = unit;
         }
+
+        public $quantityName($valueType numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+"@; if ($quantity.BaseType -eq "double") {@"
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+"@; } else {@"
+            _value = numericValue;
+"@; }@"
+            _unit = GetUnitForBaseUnits(unitSystem.BaseUnits);
+        }
+
+        public $quantityName($valueType numericValue, BaseUnits baseUnits)
+        {
+            if(baseUnits == null) throw new ArgumentNullException(nameof(baseUnits));
+
+"@; if ($quantity.BaseType -eq "double") {@"
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+"@; } else {@"
+            _value = numericValue;
+"@; }@"
+            _unit = GetUnitForBaseUnits(baseUnits);
+        }
 "@;
     GenerateStaticProperties $genArgs
     GenerateProperties $genArgs
@@ -1120,6 +1144,35 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        public BaseUnits GetBaseUnits()
+        {
+          return GetBaseUnits(Unit);
+        }
+
+        public static BaseUnits GetBaseUnits($unitEnumName unit)
+        {
+            switch(unit)
+            {
+"@; foreach ($unit in $units) {@"
+                case $unitEnumName.$($unit.SingularName):
+                    return new BaseUnits($($unit.BaseUnits.Length), $($unit.BaseUnits.Mass), $($unit.BaseUnits.Time), $($unit.BaseUnits.ElectricCurrent), $($unit.BaseUnits.Temperature), $($unit.BaseUnits.AmountOfSubstance), $($unit.BaseUnits.LuminousIntensity));
+"@; }@"
+                default:
+                    throw new ArgumentException($"Base units not supported for {unit}.");
+            }
+        }
+
+        public static $unitEnumName GetUnitForBaseUnits(BaseUnits baseUnits)
+        {
+            foreach(var unit in Units)
+            {
+                if(baseUnits.Equals(GetBaseUnits(unit)))
+                    return unit;
+            }
+
+            throw new NotImplementedException($"No $unitEnumName was found for the given baseUnits.");
         }
 
         #endregion

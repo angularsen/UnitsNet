@@ -40,6 +40,8 @@ namespace UnitsNet
         /// </summary>
         BaseDimensions Dimensions { get; }
 
+        BaseUnits GetBaseUnits();
+
 #if !WINDOWS_UWP
         /// <summary>
         ///     Information about the quantity type, such as unit values and names.

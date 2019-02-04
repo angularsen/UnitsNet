@@ -83,6 +83,22 @@ namespace UnitsNet
             _unit = unit;
         }
 
+        public Temperature(double numericValue, UnitSystem unitSystem)
+        {
+            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = GetUnitForBaseUnits(unitSystem.BaseUnits);
+        }
+
+        public Temperature(double numericValue, BaseUnits baseUnits)
+        {
+            if(baseUnits == null) throw new ArgumentNullException(nameof(baseUnits));
+
+            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
+            _unit = GetUnitForBaseUnits(baseUnits);
+        }
+
         #region Static Properties
 
         /// <inheritdoc cref="IQuantity.QuantityInfo"/>
@@ -653,6 +669,47 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
+        }
+
+        public BaseUnits GetBaseUnits()
+        {
+          return GetBaseUnits(Unit);
+        }
+
+        public static BaseUnits GetBaseUnits(TemperatureUnit unit)
+        {
+            switch(unit)
+            {
+                case TemperatureUnit.DegreeCelsius:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeCelsius, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case TemperatureUnit.DegreeDelisle:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeDelisle, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case TemperatureUnit.DegreeFahrenheit:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeFahrenheit, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case TemperatureUnit.DegreeNewton:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeNewton, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case TemperatureUnit.DegreeRankine:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeRankine, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case TemperatureUnit.DegreeReaumur:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeReaumur, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case TemperatureUnit.DegreeRoemer:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.DegreeRoemer, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                case TemperatureUnit.Kelvin:
+                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Kelvin, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
+                default:
+                    throw new ArgumentException($"Base units not supported for {unit}.");
+            }
+        }
+
+        public static TemperatureUnit GetUnitForBaseUnits(BaseUnits baseUnits)
+        {
+            foreach(var unit in Units)
+            {
+                if(baseUnits.Equals(GetBaseUnits(unit)))
+                    return unit;
+            }
+
+            throw new NotImplementedException($"No TemperatureUnit was found for the given baseUnits.");
         }
 
         #endregion
