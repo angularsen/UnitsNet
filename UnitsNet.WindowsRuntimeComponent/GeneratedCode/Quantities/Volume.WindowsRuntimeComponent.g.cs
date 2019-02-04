@@ -1339,5 +1339,6 @@ namespace UnitsNet
         {
             return cultureName != null ? new CultureInfo(cultureName) : (IFormatProvider)null;
         }
+
     }
 }
