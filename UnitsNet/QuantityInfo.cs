@@ -64,9 +64,11 @@ namespace UnitsNet
             Name = quantityType.ToString();
             QuantityType = quantityType;
             UnitType = UnitEnumTypes.First(t => t.Name == $"{quantityType}Unit");
-            UnitNames = units.Select(u => u.ToString()).ToArray();
+            UnitInfos = units.Select(unit => new UnitInfo(unit)).ToArray();
+            UnitNames = UnitInfos.Select(unitInfo => unitInfo.Name).ToArray();
             Units = units;
-            BaseUnit = baseUnit;
+            BaseUnitInfo = new UnitInfo(baseUnit);
+            BaseUnit = BaseUnitInfo.Value;
             Zero = zero;
             ValueType = zero.GetType();
             BaseDimensions = baseDimensions;
@@ -82,20 +84,27 @@ namespace UnitsNet
         /// </summary>
         public QuantityType QuantityType { get; }
 
+        public UnitInfo[] UnitInfos { get; }
+
         /// <summary>
         ///     All unit names for the quantity, such as ["Centimeter", "Decimeter", "Meter", ...].
         /// </summary>
+        [Obsolete("This property is deprecated and will be removed at a future release. Please use the UnitInfos property.")]
         public string[] UnitNames { get; }
 
         /// <summary>
         ///     All unit enum values for the quantity, such as [<see cref="LengthUnit.Centimeter" />,
         ///     <see cref="LengthUnit.Decimeter" />, <see cref="LengthUnit.Meter" />, ...].
         /// </summary>
+        [Obsolete("This property is deprecated and will be removed at a future release. Please use the UnitInfos property.")]
         public Enum[] Units { get; }
+
+        public UnitInfo BaseUnitInfo { get; }
 
         /// <summary>
         ///     The base unit for the quantity, such as <see cref="LengthUnit.Meter" />.
         /// </summary>
+        [Obsolete("This property is deprecated and will be removed at a future release. Please use the BaseUnitInfo property.")]
         public Enum BaseUnit { get; }
 
         /// <summary>
@@ -134,13 +143,24 @@ namespace UnitsNet
             : base(quantityType, units.Cast<Enum>().ToArray(), baseUnit, zero, baseDimensions)
         {
             Zero = zero;
+            UnitInfos = units.Select(unit => new UnitInfo<TUnit>(unit)).ToArray();
             Units = units;
-            BaseUnit = baseUnit;
+            BaseUnitInfo = new UnitInfo<TUnit>(baseUnit);
+            BaseUnit = BaseUnitInfo.Value;
         }
 
+        /// <inheritdoc cref="QuantityInfo.UnitInfos" />
+        public new UnitInfo<TUnit>[] UnitInfos { get; }
+
         /// <inheritdoc cref="QuantityInfo.Units" />
+        [Obsolete("This property is deprecated and will be removed at a future release. Please use the UnitInfos property.")]
         public new TUnit[] Units { get; }
 
+        /// <inheritdoc cref="QuantityInfo.BaseUnitInfo" />
+        public new UnitInfo<TUnit> BaseUnitInfo { get; }
+
+        /// <inheritdoc cref="QuantityInfo.BaseUnit" />
+        [Obsolete("This property is deprecated and will be removed at a future release. Please use the BaseUnitInfo property.")]
         public new TUnit BaseUnit { get; }
 
         /// <inheritdoc cref="QuantityInfo.Zero" />
