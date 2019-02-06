@@ -46,5 +46,8 @@ namespace UnitsNet.Tests.CustomCode
     public class DrillStringCapacityTests : DrillStringCapacityTestsBase
     {
         // Override properties in base class here
+        protected override double LitersPerMeterInOneOilBarrelPerFoot => 521.61089238;
+
+        protected override double OilBarrelsPerFootInOneOilBarrelPerFoot => 1;
     }
 }
