@@ -62,6 +62,7 @@ namespace UnitsNet
         Capacitance,
         CoefficientOfThermalExpansion,
         Density,
+        DrillStringCapacity,
         Duration,
         DynamicViscosity,
         ElectricAdmittance,

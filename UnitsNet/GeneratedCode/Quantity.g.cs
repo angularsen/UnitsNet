@@ -133,6 +133,9 @@ namespace UnitsNet
                 case DensityUnit densityUnit:
                     quantity = Density.From(value, densityUnit);
                     return true;
+                case DrillStringCapacityUnit drillStringCapacityUnit:
+                    quantity = DrillStringCapacity.From(value, drillStringCapacityUnit);
+                    return true;
                 case DurationUnit durationUnit:
                     quantity = Duration.From(value, durationUnit);
                     return true;
@@ -472,6 +475,9 @@ namespace UnitsNet
 
             if (quantityType == typeof(Density))
                 return parser.TryParse<Density, DensityUnit>(quantityString, formatProvider, Density.From, out quantity);
+
+            if (quantityType == typeof(DrillStringCapacity))
+                return parser.TryParse<DrillStringCapacity, DrillStringCapacityUnit>(quantityString, formatProvider, DrillStringCapacity.From, out quantity);
 
             if (quantityType == typeof(Duration))
                 return parser.TryParse<Duration, DurationUnit>(quantityString, formatProvider, Duration.From, out quantity);

@@ -225,6 +225,8 @@ namespace UnitsNet
                 ("en-US", typeof(DensityUnit), (int)DensityUnit.TonnePerCubicCentimeter, new string[]{"t/cm³"}),
                 ("en-US", typeof(DensityUnit), (int)DensityUnit.TonnePerCubicMeter, new string[]{"t/m³"}),
                 ("en-US", typeof(DensityUnit), (int)DensityUnit.TonnePerCubicMillimeter, new string[]{"t/mm³"}),
+                ("en-US", typeof(DrillStringCapacityUnit), (int)DrillStringCapacityUnit.LiterPerMeter, new string[]{"l/m"}),
+                ("en-US", typeof(DrillStringCapacityUnit), (int)DrillStringCapacityUnit.OilBarrelPerFoot, new string[]{"bbl/ft"}),
                 ("en-US", typeof(DurationUnit), (int)DurationUnit.Day, new string[]{"d", "day", "days"}),
                 ("ru-RU", typeof(DurationUnit), (int)DurationUnit.Day, new string[]{"д"}),
                 ("en-US", typeof(DurationUnit), (int)DurationUnit.Hour, new string[]{"h", "hr", "hrs", "hour", "hours"}),
