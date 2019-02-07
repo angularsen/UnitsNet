@@ -27,7 +27,7 @@ namespace UnitsNet
     /// <summary>
     ///     Information about the unit, such as its name and value.
     ///     This is useful to enumerate units and present names with quantities and units
-    ///     chose dynamically at runtime, such as unit conversion apps or allowing the user to change the
+    ///     chosen dynamically at runtime, such as unit conversion apps or allowing the user to change the
     ///     unit representation.
     /// </summary>
     /// <remarks>
