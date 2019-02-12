@@ -11,7 +11,7 @@ if ($msbuild) {
 
 function Remove-ArtifactsDir {
   write-host -foreground blue "Clean up...`n"
-  rm $artifactsDir -Recurse -ErrorAction Ignore
+  rm $artifactsDir -Recurse -Force -ErrorAction Stop
   write-host -foreground blue "Clean up...END`n"
 }
 
@@ -23,10 +23,17 @@ function Update-GeneratedCode {
   & "$root\UnitsNet\Scripts\GenerateUnits.ps1"
   if ($lastexitcode -ne 0) { exit 1 }
 
+  if (-not $IncludeWindowsRuntimeComponent) {
+    write-host -foreground yellow "Skipping WindowsRuntimeComponent code regen."
+  } else {
+    & "$root\UnitsNet.WindowsRuntimeComponent\Scripts\GenerateUnits.ps1"
+    if ($lastexitcode -ne 0) { exit 1 }
+  }
+
   write-host -foreground blue "Generate code...END`n"
 }
 
-function Start-Build([boolean] $skipUWP = $false) {
+function Start-Build([boolean] $IncludeWindowsRuntimeComponent = $false) {
   write-host -foreground blue "Start-Build...`n---"
 
   $fileLoggerArg = "/logger:FileLogger,Microsoft.Build;logfile=$testReportDir\UnitsNet.msbuild.log"
@@ -38,9 +45,9 @@ function Start-Build([boolean] $skipUWP = $false) {
   dotnet build --configuration Release "$root\UnitsNet.sln" $fileLoggerArg $appVeyorLoggerArg
   if ($lastexitcode -ne 0) { exit 1 }
 
-  if ($skipUWP -eq $true)
+  if (-not $IncludeWindowsRuntimeComponent)
   {
-    write-host -foreground yellow "Skipping WindowsRuntimeComponent build by user-specified flag."
+    write-host -foreground yellow "Skipping WindowsRuntimeComponent build."
   }
   else
   {
@@ -98,8 +105,12 @@ function Start-PackNugets {
     if ($lastexitcode -ne 0) { exit 1 }
   }
 
-  write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using nuget.exe instead"
-  & $nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+  if (-not $IncludeWindowsRuntimeComponent) {
+    write-host -foreground yellow "Skipping WindowsRuntimeComponent nuget pack."
+  } else {
+    write-host -foreground yellow "WindowsRuntimeComponent project not yet supported by dotnet CLI, using nuget.exe instead"
+    & $nuget pack "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec" -Verbosity detailed -OutputDirectory "$nugetOutDir"
+  }
 
   write-host -foreground blue "Pack nugets...END`n"
 }
