@@ -72,6 +72,7 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(-2, 0, 0, 0, 0, 0, 1);
             Info = new QuantityInfo(QuantityType.Illuminance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Lux.
         /// </summary>
@@ -102,7 +103,9 @@ namespace UnitsNet
 
         #region Static Properties
 
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
         internal static QuantityInfo Info { get; }
 
         /// <summary>
@@ -645,6 +648,5 @@ namespace UnitsNet
         {
             return cultureName != null ? new CultureInfo(cultureName) : (IFormatProvider)null;
         }
-
     }
 }

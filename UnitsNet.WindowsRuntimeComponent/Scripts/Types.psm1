@@ -41,3 +41,10 @@ class BaseDimensions
     [int]$AmountOfSubstance = 0
     [int]$LuminousIntensity = 0
 }
+
+class GeneratorArgs
+{
+    [Quantity]$Quantity
+    [Unit]$BaseUnit
+    [string]$UnitEnumName
+}

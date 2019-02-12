@@ -18,15 +18,10 @@ function ValueOrDefault($value, $defaultValue){
 
 function GenerateQuantity([Quantity]$quantity, $outDir)
 {
-    $outFileName = "$outDir/$($quantity.Name).NetFramework.g.cs"
-    GenerateQuantitySourceCode $quantity "NetFramework" | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    $outFileName = "$outDir/$($quantity.Name).WindowsRuntimeComponent.g.cs"
+    GenerateQuantitySourceCode $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) { exit 1 }
-    Write-Host -NoNewline "quantity .NET(OK) "
-
-    $outFileName = "$outDir/../../../UnitsNet.WindowsRuntimeComponent/GeneratedCode/Quantities/$($quantity.Name).WindowsRuntimeComponent.g.cs"
-    GenerateQuantitySourceCode $quantity "WindowsRuntimeComponent" | Out-File -Encoding "UTF8" $outFileName | Out-Null
-    if (!$?) { exit 1 }
-    Write-Host -NoNewline "quantity WRC(OK) "
+    Write-Host -NoNewline "quantity(OK) "
 }
 
 function GenerateUnitTestBaseClass([Quantity]$quantity, $outDir)
