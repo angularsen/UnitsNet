@@ -48,7 +48,7 @@ namespace UnitsNet
         /// <returns>True if the dimensions represent a base quantity, otherwise false.</returns>
         public bool IsBaseQuantity()
         {
-            var dimensionsArray = new int[]{Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity};
+            var dimensionsArray = new[]{Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity};
             bool onlyOneEqualsOne = dimensionsArray.Where(dimension => dimension == 1).Take(2).Count() == 1;
             return onlyOneEqualsOne;
         }
@@ -68,13 +68,13 @@ namespace UnitsNet
         /// <returns>True if this object represents a dimensionless quantity, otherwise false.</returns>
         public bool IsDimensionless()
         {
-            return this == Dimensionless;
+            return Equals(this, Dimensionless);
         }
 
         /// <inheritdoc />
         public override bool Equals(object obj)
         {
-            if(obj is null || !(obj is BaseDimensions))
+            if(!(obj is BaseDimensions))
                 return false;
 
             var other = (BaseDimensions)obj;
@@ -133,64 +133,6 @@ namespace UnitsNet
                 Amount - right.Amount,
                 LuminousIntensity - right.LuminousIntensity);
         }
-
-#if !WINDOWS_UWP
-
-        /// <summary>
-        /// Check if two dimensions are equal.
-        /// </summary>
-        /// <param name="left">Left.</param>
-        /// <param name="right">Right.</param>
-        /// <returns>True if equal.</returns>
-        public static bool operator ==(BaseDimensions left, BaseDimensions right)
-        {
-            return left is null ? right is null : left.Equals(right);
-        }
-
-        /// <summary>
-        /// Check if two dimensions are unequal.
-        /// </summary>
-        /// <param name="left">Left.</param>
-        /// <param name="right">Right.</param>
-        /// <returns>True if not equal.</returns>
-        public static bool operator !=(BaseDimensions left, BaseDimensions right)
-        {
-            return !(left == right);
-        }
-
-        /// <summary>
-        /// Multiply two dimensions.
-        /// </summary>
-        /// <param name="left">Left.</param>
-        /// <param name="right">Right.</param>
-        /// <returns>Resulting dimensions.</returns>
-        public static BaseDimensions operator *(BaseDimensions left, BaseDimensions right)
-        {
-            if(left is null)
-                throw new ArgumentNullException(nameof(left));
-            else if(right is null)
-                throw new ArgumentNullException(nameof(right));
-
-            return left.Multiply(right);
-        }
-
-        /// <summary>
-        /// Divide two dimensions.
-        /// </summary>
-        /// <param name="left">Left.</param>
-        /// <param name="right">Right.</param>
-        /// <returns>Resulting dimensions.</returns>
-        public static BaseDimensions operator /(BaseDimensions left, BaseDimensions right)
-        {
-            if(left is null)
-                throw new ArgumentNullException(nameof(left));
-            else if(right is null)
-                throw new ArgumentNullException(nameof(right));
-
-            return left.Divide(right);
-        }
-
-#endif
 
         /// <inheritdoc />
         public override string ToString()

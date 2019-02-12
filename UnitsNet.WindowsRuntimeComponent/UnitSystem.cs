@@ -20,16 +20,11 @@
 // THE SOFTWARE.
 
 using System;
-using System.Text;
 using UnitsNet.Units;
 
 namespace UnitsNet
 {
-#if !WINDOWS_UWP
-    public sealed partial class UnitSystem : IEquatable<UnitSystem> { }
-#endif
-
-    public sealed partial class UnitSystem
+    public sealed class UnitSystem
     {
         /// <summary>
         /// Creates an instance of a unit system with the specified base units.
@@ -67,9 +62,7 @@ namespace UnitsNet
             return Equals((UnitSystem)obj);
         }
 
-#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public bool Equals(UnitSystem other)
         {
             if(other is null)
@@ -77,34 +70,6 @@ namespace UnitsNet
 
             return BaseUnits.Equals(other.BaseUnits);
         }
-
-#if !WINDOWS_UWP
-
-        /// <summary>
-        /// Checks if this instance is equal to another.
-        /// </summary>
-        /// <param name="left">The left instance.</param>
-        /// <param name="right">The right instance.</param>
-        /// <returns>True if equal, otherwise false.</returns>
-        /// <seealso cref="Equals(UnitSystem)"/>
-        public static bool operator ==(UnitSystem left, UnitSystem right)
-        {
-            return left is null ? right is null : left.Equals(right);
-        }
-
-        /// <summary>
-        /// Checks if this instance is equal to another.
-        /// </summary>
-        /// <param name="left">The left instance.</param>
-        /// <param name="right">The right instance.</param>
-        /// <returns>True if equal, otherwise false.</returns>
-        /// <seealso cref="Equals(UnitSystem)"/>
-        public static bool operator !=(UnitSystem left, UnitSystem right)
-        {
-            return !(left == right);
-        }
-
-#endif
 
         /// <inheritdoc />
         public override int GetHashCode()

@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,15 +19,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 
-#if WINDOWS_UWP
 using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
-#endif
 
 [assembly: AssemblyTitle("Units.NET")]
 [assembly: AssemblyDescription("Units.NET gives you all the common units of measurement and the conversions between them. It is light-weight, unit tested and supports PCL.")]

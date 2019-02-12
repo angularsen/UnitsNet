@@ -23,12 +23,7 @@ using System;
 
 namespace UnitsNet
 {
-#if WINDOWS_UWP
-    internal
-#else
-    public
-#endif
-        class UnitsNetException : Exception
+    internal class UnitsNetException : Exception
     {
         public UnitsNetException()
         {

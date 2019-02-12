@@ -31,12 +31,7 @@ namespace UnitsNet
         ///     Defaults to <see cref="CultureInfo.CurrentUICulture" /> when creating an instance with no culture provided.
         ///     Can be overridden, but note that this is static and will affect all subsequent usages.
         /// </summary>
-#if WINDOWS_UWP
         // Windows Runtime Component does not support exposing the IFormatProvider type in public API
-        internal
-#else
-        public
-#endif
-            static IFormatProvider DefaultCulture { get; set; } = CultureInfo.CurrentUICulture;
+        internal static IFormatProvider DefaultCulture { get; set; } = CultureInfo.CurrentUICulture;
     }
 }

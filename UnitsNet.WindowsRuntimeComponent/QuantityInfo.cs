@@ -35,14 +35,9 @@ namespace UnitsNet
     ///     unit representation.
     /// </summary>
     /// <remarks>
-    ///     Typically you obtain this by looking it up via <see cref="IQuantity.QuantityInfo" />.
+    ///     Typically you obtain this by looking it up via quantities, like <see cref="Length.Info" /> or <see cref="Length.QuantityInfo"/>.
     /// </remarks>
-#if WINDOWS_UWP
-    internal
-#else
-    public
-#endif
-    class QuantityInfo
+    internal class QuantityInfo
     {
         private static readonly string UnitEnumNamespace = typeof(LengthUnit).Namespace;
 
@@ -127,47 +122,4 @@ namespace UnitsNet
         /// </summary>
         public BaseDimensions BaseDimensions { get; }
     }
-
-#if !WINDOWS_UWP
-    /// <inheritdoc cref="QuantityInfo" />
-    /// <remarks>
-    ///     This is a specialization of <see cref="QuantityInfo" />, for when the unit type is known.
-    ///     Typically you obtain this by looking it up statically from <see cref="Length.Info" /> or
-    ///     <see cref="Length.QuantityInfo" />, or dynamically via <see cref="IQuantity{TUnitType}.QuantityInfo" />.
-    /// </remarks>
-    /// <typeparam name="TUnit">The unit enum type, such as <see cref="LengthUnit" />. </typeparam>
-    public class QuantityInfo<TUnit> : QuantityInfo
-        where TUnit : Enum
-    {
-        public QuantityInfo(QuantityType quantityType, TUnit[] units, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions)
-            : base(quantityType, units.Cast<Enum>().ToArray(), baseUnit, zero, baseDimensions)
-        {
-            Zero = zero;
-            UnitInfos = units.Select(unit => new UnitInfo<TUnit>(unit)).ToArray();
-            Units = units;
-            BaseUnitInfo = new UnitInfo<TUnit>(baseUnit);
-            BaseUnit = BaseUnitInfo.Value;
-        }
-
-        /// <inheritdoc cref="QuantityInfo.UnitInfos" />
-        public new UnitInfo<TUnit>[] UnitInfos { get; }
-
-        /// <inheritdoc cref="QuantityInfo.Units" />
-        [Obsolete("This property is deprecated and will be removed at a future release. Please use the UnitInfos property.")]
-        public new TUnit[] Units { get; }
-
-        /// <inheritdoc cref="QuantityInfo.BaseUnitInfo" />
-        public new UnitInfo<TUnit> BaseUnitInfo { get; }
-
-        /// <inheritdoc cref="QuantityInfo.BaseUnit" />
-        [Obsolete("This property is deprecated and will be removed at a future release. Please use the BaseUnitInfo property.")]
-        public new TUnit BaseUnit { get; }
-
-        /// <inheritdoc cref="QuantityInfo.Zero" />
-        public new IQuantity<TUnit> Zero { get; }
-
-        /// <inheritdoc cref="QuantityInfo.UnitType" />
-        public new TUnit UnitType { get; }
-    }
-#endif
 }

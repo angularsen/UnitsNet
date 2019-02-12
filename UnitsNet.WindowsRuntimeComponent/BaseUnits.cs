@@ -19,21 +19,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
 using System.Text;
 using UnitsNet.Units;
 
 namespace UnitsNet
 {
-#if !WINDOWS_UWP
-    public sealed partial class BaseUnits : IEquatable<BaseUnits> { }
-#endif
-
     /// <summary>
     ///     Represents the base units for a quantity. All quantities, both base and derived, can be
     ///     represented by a combination of these seven base units.
     /// </summary>
-    public sealed partial class BaseUnits
+    public sealed class BaseUnits
     {
         /// <summary>
         /// Creates an instance of if the base units class that represents the base units for a quantity.
@@ -72,9 +67,7 @@ namespace UnitsNet
         /// </summary>
         /// <param name="other">The other instance to check if equal to.</param>
         /// <returns>True if equal, otherwise false.</returns>
-#if WINDOWS_UWP
         [Windows.Foundation.Metadata.DefaultOverload]
-#endif
         public bool Equals(BaseUnits other)
         {
             if(other is null)
@@ -94,34 +87,6 @@ namespace UnitsNet
         {
             return new {Length, Mass, Time, Current, Temperature, Amount, LuminousIntensity}.GetHashCode();
         }
-
-#if !WINDOWS_UWP
-
-        /// <summary>
-        /// Checks if this instance is equal to another.
-        /// </summary>
-        /// <param name="left">The left instance.</param>
-        /// <param name="right">The right instance.</param>
-        /// <returns>True if equal, otherwise false.</returns>
-        /// <seealso cref="Equals(BaseUnits)"/>
-        public static bool operator ==(BaseUnits left, BaseUnits right)
-        {
-            return left is null ? right is null : left.Equals(right);
-        }
-
-        /// <summary>
-        /// Checks if this instance is not equal to another.
-        /// </summary>
-        /// <param name="left">The left instance.</param>
-        /// <param name="right">The right instance.</param>
-        /// <returns>True if not equal, otherwise false.</returns>
-        /// <seealso cref="Equals(BaseUnits)"/>
-        public static bool operator !=(BaseUnits left, BaseUnits right)
-        {
-            return !(left == right);
-        }
-
-#endif
 
         /// <inheritdoc />
         public override string ToString()

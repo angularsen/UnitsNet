@@ -30,12 +30,7 @@ namespace UnitsNet
     ///     <see cref="LengthUnit.DtpPoint" /> and
     ///     <see cref="LengthUnit.PrinterPoint" /> have "pt" as their abbreviation.
     /// </summary>
-#if WINDOWS_UWP
-    internal
-#else
-    public
-#endif
-        class AmbiguousUnitParseException : UnitsNetException
+    internal class AmbiguousUnitParseException : UnitsNetException
     {
         /// <inheritdoc />
         public AmbiguousUnitParseException(string message) : base(message)

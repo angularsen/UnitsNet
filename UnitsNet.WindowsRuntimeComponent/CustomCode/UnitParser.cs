@@ -51,13 +51,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <typeparam name="TUnitType"></typeparam>
         /// <returns></returns>
-        [PublicAPI]
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            TUnitType Parse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider = null) where TUnitType : Enum
+        internal TUnitType Parse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider = null) where TUnitType : Enum
         {
             return (TUnitType)Parse(unitAbbreviation, typeof(TUnitType));
         }
@@ -75,13 +69,7 @@ namespace UnitsNet
         /// <returns>Unit enum value, such as <see cref="MassUnit.Kilogram" />.</returns>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        [PublicAPI]
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        Enum Parse([NotNull] string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider = null)
+        internal Enum Parse([NotNull] string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider = null)
         {
             if (unitAbbreviation == null) throw new ArgumentNullException(nameof(unitAbbreviation));
             unitAbbreviation = unitAbbreviation.Trim();
@@ -115,14 +103,8 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value as out result.</param>
         /// <typeparam name="TUnitType">Type of unit enum.</typeparam>
         /// <returns>True if successful.</returns>
-        [PublicAPI]
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            bool TryParse<TUnitType>(string unitAbbreviation, out TUnitType unit) where TUnitType : Enum
+        internal bool TryParse<TUnitType>(string unitAbbreviation, out TUnitType unit) where TUnitType : Enum
         {
             return TryParse(unitAbbreviation, null, out unit);
         }
@@ -135,14 +117,8 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value as out result.</param>
         /// <typeparam name="TUnitType">Type of unit enum.</typeparam>
         /// <returns>True if successful.</returns>
-        [PublicAPI]
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            bool TryParse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider, out TUnitType unit) where TUnitType : Enum
+        internal bool TryParse<TUnitType>(string unitAbbreviation, [CanBeNull] IFormatProvider formatProvider, out TUnitType unit) where TUnitType : Enum
         {
             unit = default;
 
@@ -160,13 +136,7 @@ namespace UnitsNet
         /// <param name="unitType">Type of unit enum.</param>
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
-        [PublicAPI]
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        bool TryParse(string unitAbbreviation, Type unitType, out Enum unit)
+        internal bool TryParse(string unitAbbreviation, Type unitType, out Enum unit)
         {
             return TryParse(unitAbbreviation, unitType, null, out unit);
         }
@@ -179,13 +149,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <param name="unit">The unit enum value as out result.</param>
         /// <returns>True if successful.</returns>
-        [PublicAPI]
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        bool TryParse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider, out Enum unit)
+        internal bool TryParse(string unitAbbreviation, Type unitType, [CanBeNull] IFormatProvider formatProvider, out Enum unit)
         {
             if (unitAbbreviation == null)
             {

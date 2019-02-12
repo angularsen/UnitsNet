@@ -1,4 +1,4 @@
-// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
+﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,12 +27,7 @@ namespace UnitsNet
     ///     Quantity type was not found. This is typically thrown for dynamic conversions,
     ///     such as <see cref="UnitConverter.ConvertByName" />.
     /// </summary>
-#if WINDOWS_UWP
-    internal
-#else
-    public
-#endif
-        class QuantityNotFoundException : UnitsNetException
+    internal class QuantityNotFoundException : UnitsNetException
     {
         public QuantityNotFoundException()
         {

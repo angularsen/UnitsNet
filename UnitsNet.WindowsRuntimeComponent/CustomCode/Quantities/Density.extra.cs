@@ -26,12 +26,7 @@ namespace UnitsNet
 {
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
     public sealed partial class Density
-#else
-    public partial struct Density
-#endif
     {
         /// <summary>
         ///     Gets <see cref="Molarity" /> from this <see cref="Density" />.
@@ -55,33 +50,5 @@ namespace UnitsNet
         }
 
         #endregion
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static Mass operator *(Density density, Volume volume)
-        {
-            return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
-        }
-
-        public static Mass operator *(Volume volume, Density density)
-        {
-            return Mass.FromKilograms(density.KilogramsPerCubicMeter * volume.CubicMeters);
-        }
-
-        public static DynamicViscosity operator *(Density density, KinematicViscosity kinematicViscosity)
-        {
-            return DynamicViscosity.FromNewtonSecondsPerMeterSquared(kinematicViscosity.SquareMetersPerSecond * density.KilogramsPerCubicMeter);
-        }
-
-        public static MassFlux operator *(Density density, Speed speed)
-        {
-            return MassFlux.FromKilogramsPerSecondPerSquareMeter(density.KilogramsPerCubicMeter * speed.MetersPerSecond);
-        }
-
-        public static SpecificWeight operator *(Density density, Acceleration acceleration)
-        {
-            return new SpecificWeight(density.KilogramsPerCubicMeter * acceleration.MetersPerSecondSquared, SpecificWeightUnit.NewtonPerCubicMeter);
-        }
-#endif
     }
 }

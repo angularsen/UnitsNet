@@ -20,14 +20,9 @@
 // THE SOFTWARE.
 
 using System;
+using System.Globalization;
 using JetBrains.Annotations;
 using UnitsNet.Units;
-
-#if WINDOWS_UWP
-using Culture = System.String;
-#else
-using Culture = System.IFormatProvider;
-#endif
 
 // ReSharper disable once CheckNamespace
 namespace UnitsNet
@@ -35,11 +30,7 @@ namespace UnitsNet
     // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
     // Public structures can't have any members other than public fields, and those fields must be value types or strings.
     // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
     public sealed partial class Mass
-#else
-    public partial struct Mass
-#endif
     {
         public static Mass FromGravitationalForce(Force f)
         {
@@ -75,39 +66,6 @@ namespace UnitsNet
         {
             return FromPounds(StonesInOnePound*stone + pounds);
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
-        public static MassFlow operator /(Mass mass, TimeSpan timeSpan)
-        {
-            return MassFlow.FromKilogramsPerSecond(mass.Kilograms/timeSpan.TotalSeconds);
-        }
-
-        public static MassFlow operator /(Mass mass, Duration duration)
-        {
-            return MassFlow.FromKilogramsPerSecond(mass.Kilograms/duration.Seconds);
-        }
-
-        public static Density operator /(Mass mass, Volume volume)
-        {
-            return Density.FromKilogramsPerCubicMeter(mass.Kilograms/volume.CubicMeters);
-        }
-
-        public static Volume operator /(Mass mass, Density density)
-        {
-            return Volume.FromCubicMeters(mass.Kilograms / density.KilogramsPerCubicMeter);
-        }
-
-        public static Force operator *(Mass mass, Acceleration acceleration)
-        {
-            return Force.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
-        }
-
-        public static Force operator *(Acceleration acceleration, Mass mass)
-        {
-            return Force.FromNewtons(mass.Kilograms*acceleration.MetersPerSecondSquared);
-        }
-#endif
     }
 
     public sealed class StonePounds
@@ -126,15 +84,16 @@ namespace UnitsNet
             return ToString(null);
         }
 
-        public string ToString([CanBeNull] Culture cultureInfo)
+        public string ToString([CanBeNull] string cultureInfo)
         {
             // Note that it isn't customary to use fractions - one wouldn't say "I am 11 stone and 4.5 pounds".
             // So pounds are rounded here.
 
-            var stoneUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Stone);
-            var poundUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Pound);
+            var culture = cultureInfo != null ? new CultureInfo(cultureInfo) : GlobalConfiguration.DefaultCulture;
+            var stoneUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Stone, culture);
+            var poundUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(MassUnit.Pound, culture);
 
-            return string.Format(GlobalConfiguration.DefaultCulture, "{0:n0} {1} {2:n0} {3}",
+            return string.Format(culture, "{0:n0} {1} {2:n0} {3}",
                 Stone, stoneUnit, Math.Round(Pounds), poundUnit);
         }
     }
