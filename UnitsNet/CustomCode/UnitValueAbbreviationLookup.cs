@@ -26,7 +26,6 @@ using System.Linq;
 using UnitToAbbreviationMap = System.Collections.Generic.Dictionary<int, System.Collections.Generic.List<string>>;
 using AbbreviationToUnitMap = System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<int>>;
 
-// ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
     internal class UnitValueAbbreviationLookup

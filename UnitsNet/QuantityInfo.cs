@@ -37,12 +37,7 @@ namespace UnitsNet
     /// <remarks>
     ///     Typically you obtain this by looking it up via <see cref="IQuantity.QuantityInfo" />.
     /// </remarks>
-#if WINDOWS_UWP
-    internal
-#else
-    public
-#endif
-    class QuantityInfo
+    public class QuantityInfo
     {
         private static readonly string UnitEnumNamespace = typeof(LengthUnit).Namespace;
 
@@ -128,7 +123,6 @@ namespace UnitsNet
         public BaseDimensions BaseDimensions { get; }
     }
 
-#if !WINDOWS_UWP
     /// <inheritdoc cref="QuantityInfo" />
     /// <remarks>
     ///     This is a specialization of <see cref="QuantityInfo" />, for when the unit type is known.
@@ -169,5 +163,4 @@ namespace UnitsNet
         /// <inheritdoc cref="QuantityInfo.UnitType" />
         public new TUnit UnitType { get; }
     }
-#endif
 }
