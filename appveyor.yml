@@ -20,7 +20,7 @@ build_script:
     # Build, test, pack and push nugets
     #####################################
 
-    .\\build.bat
+    .\\build-with-wrc.bat
     $BuildExitCode = $LASTEXITCODE
 
     #####################################
