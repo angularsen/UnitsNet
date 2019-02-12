@@ -72,7 +72,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public MassMomentOfInertia(double numericValue, MassMomentOfInertiaUnit unit)
         {
@@ -816,7 +815,6 @@ namespace UnitsNet
             return CompareTo(objMassMomentOfInertia);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(MassMomentOfInertia other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
