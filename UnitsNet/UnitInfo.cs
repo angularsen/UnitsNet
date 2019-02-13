@@ -33,12 +33,7 @@ namespace UnitsNet
     /// <remarks>
     ///     Typically you obtain this by looking it up via <see cref="QuantityInfo.UnitInfos" />.
     /// </remarks>
-#if WINDOWS_UWP
-    internal
-#else
-    public
-#endif
-    class UnitInfo
+    public class UnitInfo
     {
         public UnitInfo(Enum value)
         {
@@ -58,7 +53,6 @@ namespace UnitsNet
         public string Name { get; }
     }
 
-#if !WINDOWS_UWP
     /// <inheritdoc cref="UnitInfo" />
     /// <remarks>
     ///     This is a specialization of <see cref="UnitInfo" />, for when the unit type is known.
@@ -76,5 +70,4 @@ namespace UnitsNet
 
         public new TUnit Value { get; }
     }
-#endif
 }

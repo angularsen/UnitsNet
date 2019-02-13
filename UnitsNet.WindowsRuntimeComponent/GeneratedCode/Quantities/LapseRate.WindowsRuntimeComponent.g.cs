@@ -69,6 +69,7 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(-1, 0, 0, 0, 1, 0, 0);
             Info = new QuantityInfo(QuantityType.LapseRate, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit DegreeCelsiusPerKilometer.
         /// </summary>
@@ -99,7 +100,9 @@ namespace UnitsNet
 
         #region Static Properties
 
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
         internal static QuantityInfo Info { get; }
 
         /// <summary>
@@ -591,6 +594,5 @@ namespace UnitsNet
         {
             return cultureName != null ? new CultureInfo(cultureName) : (IFormatProvider)null;
         }
-
     }
 }

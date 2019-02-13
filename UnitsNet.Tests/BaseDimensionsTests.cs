@@ -410,7 +410,6 @@ namespace UnitsNet.Tests
             Assert.True(calculatedDimensions == Force.BaseDimensions);
         }
 
-#if !WINDOWS_UWP
         [Fact]
         public void EqualityWorksAsExpectedWithOperatorOverloads()
         {
@@ -692,7 +691,6 @@ namespace UnitsNet.Tests
             var calculatedDimensions = mass.Dimensions * acceleration.Dimensions;
             Assert.True(calculatedDimensions == Force.BaseDimensions);
         }
-#endif
 
         [Fact]
         public void CheckToStringUsingMolarEntropy()

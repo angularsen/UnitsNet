@@ -23,22 +23,16 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
-
-#if WINDOWS_UWP
-using Culture = System.String;
-using FromValue = System.Double;
-#else
-using Culture = System.IFormatProvider;
-using FromValue = UnitsNet.QuantityValue;
-#endif
 
 namespace UnitsNet
 {
     /// <summary>
     ///     Convert between units of a quantity, such as converting from meters to centimeters of a given length.
     /// </summary>
+    [PublicAPI]
     public static class UnitConverter
     {
         private static readonly string UnitTypeNamespace = typeof(LengthUnit).Namespace;
@@ -60,12 +54,7 @@ namespace UnitsNet
         /// <param name="fromUnitValue">From unit enum value.</param>
         /// <param name="toUnitValue">To unit enum value, must be compatible with <paramref name="fromUnitValue" />.</param>
         /// <returns>The converted value in the new unit representation.</returns>
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        static double Convert(FromValue fromValue, Enum fromUnitValue, Enum toUnitValue)
+        public static double Convert(QuantityValue fromValue, Enum fromUnitValue, Enum toUnitValue)
         {
             return Quantity
                 .From(fromValue, fromUnitValue)
@@ -80,12 +69,7 @@ namespace UnitsNet
         /// <param name="toUnitValue">To unit enum value, must be compatible with <paramref name="fromUnitValue" />.</param>
         /// <param name="convertedValue">The converted value, if successful. Otherwise default.</param>
         /// <returns>True if successful.</returns>
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        static bool TryConvert(FromValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
+        public static bool TryConvert(QuantityValue fromValue, Enum fromUnitValue, Enum toUnitValue, out double convertedValue)
         {
             convertedValue = 0;
             if (!Quantity.TryFrom(fromValue, fromUnitValue, out IQuantity from)) return false;
@@ -131,7 +115,7 @@ namespace UnitsNet
         /// <exception cref="QuantityNotFoundException">No quantities were found that match <paramref name="quantityName" />.</exception>
         /// <exception cref="UnitNotFoundException">No units match the abbreviation.</exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        public static double ConvertByName(FromValue fromValue, string quantityName, string fromUnit, string toUnit)
+        public static double ConvertByName(QuantityValue fromValue, string quantityName, string fromUnit, string toUnit)
         {
             if (!TryGetUnitType(quantityName, out Type unitType))
                 throw new UnitNotFoundException($"The unit type for the given quantity was not found: {quantityName}");
@@ -180,7 +164,7 @@ namespace UnitsNet
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>bool ok = TryConvertByName(5, "Length", "Meter", "Centimeter", out double centimeters); // 500</example>
         /// <returns>True if conversion was successful.</returns>
-        public static bool TryConvertByName(FromValue inputValue, string quantityName, string fromUnit, string toUnit, out double result)
+        public static bool TryConvertByName(QuantityValue inputValue, string quantityName, string fromUnit, string toUnit, out double result)
         {
             result = 0d;
 
@@ -223,10 +207,8 @@ namespace UnitsNet
         /// </param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>Output value as the result of converting to <paramref name="toUnitAbbrev" />.</returns>
-        public static double ConvertByAbbreviation(FromValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
+        public static double ConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev)
         {
-            // WindowsRuntimeComponent does not support default values on public methods
-            // ReSharper disable once IntroduceOptionalParameters.Global
             return ConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, null);
         }
 
@@ -263,7 +245,7 @@ namespace UnitsNet
         ///     are mapped to the abbreviation.
         /// </exception>
         /// <exception cref="AmbiguousUnitParseException">More than one unit matches the abbreviation.</exception>
-        public static double ConvertByAbbreviation(FromValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string culture)
+        public static double ConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, string culture)
         {
             if (!TryGetQuantityType(quantityName, out var quantityType))
                 throw new QuantityNotFoundException($"The given quantity name was not found: {quantityName}");
@@ -312,7 +294,7 @@ namespace UnitsNet
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>True if conversion was successful.</returns>
-        public static bool TryConvertByAbbreviation(FromValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result)
+        public static bool TryConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result)
         {
             return TryConvertByAbbreviation(fromValue, quantityName, fromUnitAbbrev, toUnitAbbrev, out result, null);
         }
@@ -345,7 +327,7 @@ namespace UnitsNet
         /// <param name="result">Result if conversion was successful, 0 if not.</param>
         /// <example>double centimeters = ConvertByName(5, "Length", "m", "cm"); // 500</example>
         /// <returns>True if conversion was successful.</returns>
-        public static bool TryConvertByAbbreviation(FromValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result,
+        public static bool TryConvertByAbbreviation(QuantityValue fromValue, string quantityName, string fromUnitAbbrev, string toUnitAbbrev, out double result,
             string culture)
         {
             result = 0d;
@@ -394,7 +376,7 @@ namespace UnitsNet
                 .Single(m => m.Name == "From" &&
                              m.IsStatic &&
                              m.IsPublic &&
-                             HasParameterTypes(m, typeof(FromValue), unitType) &&
+                             HasParameterTypes(m, typeof(QuantityValue), unitType) &&
                              m.ReturnType == quantityType);
         }
 

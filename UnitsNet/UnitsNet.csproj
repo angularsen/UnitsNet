@@ -47,7 +47,7 @@
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 
-  <!-- Link in common .json files, exclude WindowsRuntimeComponent files -->
+  <!-- Link in common unit definition .json files -->
   <ItemGroup>
     <None Include="..\Common\**\*">
       <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
@@ -55,7 +55,6 @@
     <Compile Remove="UnitDefinitions\**" />
     <EmbeddedResource Remove="UnitDefinitions\**" />
     <None Remove="UnitDefinitions\**" />
-    <Compile Remove="Properties\AssemblyInfo.WindowsRuntimeComponent.cs" />
   </ItemGroup>
 
 </Project>
