@@ -10,9 +10,11 @@ if ($msbuild) {
 }
 
 function Remove-ArtifactsDir {
-  write-host -foreground blue "Clean up...`n"
-  rm $artifactsDir -Recurse -Force -ErrorAction Stop
-  write-host -foreground blue "Clean up...END`n"
+  if (Test-Path $artifactsDir) {
+    write-host -foreground blue "Clean up...`n"
+    rm $artifactsDir -Recurse -Force -ErrorAction Stop
+    write-host -foreground blue "Clean up...END`n"
+  }
 }
 
 function Update-GeneratedCode {
