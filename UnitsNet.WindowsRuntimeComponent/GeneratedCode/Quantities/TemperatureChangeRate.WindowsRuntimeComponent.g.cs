@@ -693,7 +693,7 @@ namespace UnitsNet
         /// <returns>String representation.</returns>
         public override string ToString()
         {
-            return ToString(null, 2);
+            return ToString(null);
         }
 
         /// <summary>

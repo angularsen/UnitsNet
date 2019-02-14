@@ -187,8 +187,6 @@ if ($obsoleteAttribute)
             var formatArgs = UnitFormatter.GetFormatArgs(Unit, value, provider, args);
             return string.Format(provider, format, formatArgs);
         }
-"@; # Windows Runtime Component does not support IFormatProvider type
-    if (!$wrc) {@"
 
         /// <summary>
         /// Gets the string representation of this instance in the specified format string using <see cref="GlobalConfiguration.DefaultCulture" />.
@@ -243,7 +241,6 @@ if ($obsoleteAttribute)
                     throw new FormatException($"The {format} format string is not supported.");
             }
         }
-"@; }@"
 
         #endregion
 
