@@ -162,6 +162,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Irradiation in JoulesPerSquareCentimeter.
+        /// </summary>
+        public double JoulesPerSquareCentimeter => As(IrradiationUnit.JoulePerSquareCentimeter);
+
+        /// <summary>
         ///     Get Irradiation in JoulesPerSquareMeter.
         /// </summary>
         public double JoulesPerSquareMeter => As(IrradiationUnit.JoulePerSquareMeter);
@@ -170,6 +175,11 @@ namespace UnitsNet
         ///     Get Irradiation in JoulesPerSquareMillimeter.
         /// </summary>
         public double JoulesPerSquareMillimeter => As(IrradiationUnit.JoulePerSquareMillimeter);
+
+        /// <summary>
+        ///     Get Irradiation in KilojoulesPerSquareMeter.
+        /// </summary>
+        public double KilojoulesPerSquareMeter => As(IrradiationUnit.KilojoulePerSquareMeter);
 
         /// <summary>
         ///     Get Irradiation in KilowattHoursPerSquareMeter.
@@ -211,6 +221,15 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get Irradiation from JoulesPerSquareCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Irradiation FromJoulesPerSquareCentimeter(QuantityValue joulespersquarecentimeter)
+        {
+            double value = (double) joulespersquarecentimeter;
+            return new Irradiation(value, IrradiationUnit.JoulePerSquareCentimeter);
+        }
+        /// <summary>
         ///     Get Irradiation from JoulesPerSquareMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -227,6 +246,15 @@ namespace UnitsNet
         {
             double value = (double) joulespersquaremillimeter;
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMillimeter);
+        }
+        /// <summary>
+        ///     Get Irradiation from KilojoulesPerSquareMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        public static Irradiation FromKilojoulesPerSquareMeter(QuantityValue kilojoulespersquaremeter)
+        {
+            double value = (double) kilojoulespersquaremeter;
+            return new Irradiation(value, IrradiationUnit.KilojoulePerSquareMeter);
         }
         /// <summary>
         ///     Get Irradiation from KilowattHoursPerSquareMeter.
@@ -604,8 +632,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case IrradiationUnit.JoulePerSquareCentimeter: return _value*1e4;
                 case IrradiationUnit.JoulePerSquareMeter: return _value;
                 case IrradiationUnit.JoulePerSquareMillimeter: return _value*1e6;
+                case IrradiationUnit.KilojoulePerSquareMeter: return (_value) * 1e3d;
                 case IrradiationUnit.KilowattHourPerSquareMeter: return (_value*3600d) * 1e3d;
                 case IrradiationUnit.WattHourPerSquareMeter: return _value*3600d;
                 default:
@@ -622,8 +652,10 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case IrradiationUnit.JoulePerSquareCentimeter: return baseUnitValue/1e4;
                 case IrradiationUnit.JoulePerSquareMeter: return baseUnitValue;
                 case IrradiationUnit.JoulePerSquareMillimeter: return baseUnitValue/1e6;
+                case IrradiationUnit.KilojoulePerSquareMeter: return (baseUnitValue) / 1e3d;
                 case IrradiationUnit.KilowattHourPerSquareMeter: return (baseUnitValue/3600d) / 1e3d;
                 case IrradiationUnit.WattHourPerSquareMeter: return baseUnitValue/3600d;
                 default:
