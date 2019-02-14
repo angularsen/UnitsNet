@@ -40,12 +40,10 @@ namespace UnitsNet
         /// </summary>
         BaseDimensions Dimensions { get; }
 
-#if !WINDOWS_UWP
         /// <summary>
         ///     Information about the quantity type, such as unit values and names.
         /// </summary>
         QuantityInfo QuantityInfo { get; }
-#endif
 
         /// <summary>
         ///     Dynamically convert to another unit representation.
@@ -53,36 +51,20 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
         /// <returns>Value converted to the specified unit.</returns>
         /// <exception cref="InvalidCastException">Wrong unit enum type was given.</exception>
-#if WINDOWS_UWP
-        double As(object unit);
-#else
         double As(Enum unit);
-#endif
 
         /// <summary>
         ///     The unit this quantity was constructed with or the BaseUnit if the default constructor was used.
         /// </summary>
-
-#if WINDOWS_UWP
-        object Unit { get; }
-#else
         Enum Unit { get; }
-#endif
 
-#if !WINDOWS_UWP
         /// <summary>
         ///     Change the default unit representation of the quantity, which affects things like <see cref="IQuantity.ToString(System.IFormatProvider)"/>.
         /// </summary>
         /// <param name="unit">The unit enum value. The unit must be compatible, so for <see cref="Length"/> you should provide a <see cref="LengthUnit"/> value.</param>
         /// <returns>A new quantity with the given unit as default unit representation.</returns>
         IQuantity ToUnit(Enum unit);
-#endif
-    }
 
-#if !WINDOWS_UWP
-
-    public partial interface IQuantity
-    {
         /// <summary>
         ///     Get string representation of value and unit. Using two significant digits after radix.
         /// </summary>
@@ -108,38 +90,6 @@ namespace UnitsNet
         string ToString([CanBeNull] IFormatProvider provider, [NotNull] string format, [NotNull] params object[] args);
     }
 
-#else
-
-    public partial interface IQuantity
-    {
-        /// <summary>
-        ///     Get string representation of value and unit. Using two significant digits after radix.
-        /// </summary>
-        /// <returns>String representation.</returns>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        string ToString([CanBeNull] string cultureName);
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="significantDigitsAfterRadix">The number of significant digits after the radix point.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        string ToString(string cultureName, int significantDigitsAfterRadix);
-
-        /// <summary>
-        ///     Get string representation of value and unit.
-        /// </summary>
-        /// <param name="format">String format to use. Default:  "{0:0.##} {1} for value and unit abbreviation respectively."</param>
-        /// <param name="args">Arguments for string format. Value and unit are implictly included as arguments 0 and 1.</param>
-        /// <returns>String representation.</returns>
-        /// <param name="cultureName">Name of culture (ex: "en-US") to use for localization and number formatting. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
-        string ToString([CanBeNull] string cultureName, [NotNull] string format, [NotNull] params object[] args);
-    }
-
-#endif
-
-#if !WINDOWS_UWP
     public interface IQuantity<TUnitType> : IQuantity where TUnitType : Enum
     {
         /// <summary>
@@ -161,5 +111,4 @@ namespace UnitsNet
         /// <returns></returns>
         IQuantity<TUnitType> ToUnit(TUnitType unit);
     }
-#endif
 }

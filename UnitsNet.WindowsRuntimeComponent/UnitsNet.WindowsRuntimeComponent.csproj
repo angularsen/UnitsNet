@@ -104,21 +104,11 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="GeneratedCode\**\*.cs" />
+    <Compile Include="**\*.cs;" Exclude="**\obj\**" />
     <None Include="UnitsNet.WindowsRuntimeComponent.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\Common\**\*.cs;" Exclude="**\obj\**">
+    <None Include="Scripts\**\*.*" />
+    <None Include="..\Common\**\*">
       <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </Compile>
-    <None Include="..\Common\**\*" Exclude="**\obj\**;**\*.cs">
-      <Link>Common\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </None>
-    <Compile Include="..\UnitsNet\**\*.cs;" Exclude="**\AssemblyInfo.cs;**\*NetFramework*.cs;**\obj\**">
-      <Link>UnitsNet\%(RecursiveDir)%(Filename)%(Extension)</Link>
-    </Compile>
-    <None Include="..\UnitsNet\Scripts\**\*.*">
-      <Link>UnitsNet\Scripts\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -19,11 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// Operator overloads not supported in Windows Runtime Components, we use 'double' type instead
-
 using UnitsNet.InternalHelpers;
 
-#if !WINDOWS_UWP
 namespace UnitsNet
 {
     /// <summary>
@@ -110,4 +107,3 @@ namespace UnitsNet
         }
     }
 }
-#endif
