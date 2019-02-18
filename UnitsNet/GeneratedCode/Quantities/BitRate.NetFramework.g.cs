@@ -1061,10 +1061,10 @@ namespace UnitsNet
             int digits = 0;
             string formatString = format;
 
-            if(string.IsNullOrWhiteSpace(formatString))
+            if(string.IsNullOrEmpty(formatString))
                 formatString = "G";
 
-            formatString = formatString.ToUpper();
+            formatString = formatString.ToUpperInvariant();
 
             if(formatString.StartsWith("A") || formatString.StartsWith("S"))
             {
