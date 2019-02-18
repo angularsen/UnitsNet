@@ -1,4 +1,5 @@
-﻿using UnitsNet.Units;
+﻿using System;
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests
@@ -62,6 +63,12 @@ namespace UnitsNet.Tests
             Assert.Equal(length.ToString("v"), length.ToString("V"));
             Assert.Equal(length.ToString("q"), length.ToString("Q"));
             Assert.Equal(length.ToString("s"), length.ToString("S"));
+        }
+
+        [Fact]
+        public void UnsupportedFormatStringThrowsException()
+        {
+            Assert.Throws<FormatException>(() => length.ToString("Z"));
         }
     }
 }
