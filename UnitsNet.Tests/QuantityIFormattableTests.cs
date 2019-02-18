@@ -53,5 +53,15 @@ namespace UnitsNet.Tests
             Assert.Equal(length.ToString(null, 4), length.ToString("S4"));
             Assert.Equal(length.ToString(null, 5), length.ToString("S5"));
         }
+
+        [Fact]
+        public void FormatStringsAreCaseInsensitive()
+        {
+            Assert.Equal(length.ToString("g"), length.ToString("G"));
+            Assert.Equal(length.ToString("a"), length.ToString("A"));
+            Assert.Equal(length.ToString("v"), length.ToString("V"));
+            Assert.Equal(length.ToString("q"), length.ToString("Q"));
+            Assert.Equal(length.ToString("s"), length.ToString("S"));
+        }
     }
 }
