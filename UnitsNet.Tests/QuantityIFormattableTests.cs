@@ -19,7 +19,6 @@ namespace UnitsNet.Tests
         {
             Assert.Equal(length.ToString("G"), length.ToString(string.Empty));
             Assert.Equal(length.ToString("G"), length.ToString((string)null));
-            Assert.Equal(length.ToString("G"), length.ToString(" "));
         }
 
         [Fact]
