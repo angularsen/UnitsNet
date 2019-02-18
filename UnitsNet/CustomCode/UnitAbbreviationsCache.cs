@@ -79,13 +79,7 @@ namespace UnitsNet
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         [PublicAPI]
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            void MapUnitToAbbreviation<TUnitType>(TUnitType unit, params string[] abbreviations) where TUnitType : Enum
+        public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, params string[] abbreviations) where TUnitType : Enum
         {
             MapUnitToAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), GlobalConfiguration.DefaultCulture, abbreviations);
         }
@@ -98,14 +92,7 @@ namespace UnitsNet
         /// <param name="unit">The unit enum value.</param>
         /// <param name="abbreviation">Unit abbreviations to add as default.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
-        [PublicAPI]
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, string abbreviation) where TUnitType : Enum
+        public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, string abbreviation) where TUnitType : Enum
         {
             MapUnitToDefaultAbbreviation(typeof(TUnitType), Convert.ToInt32(unit), GlobalConfiguration.DefaultCulture, abbreviation);
         }
@@ -120,13 +107,7 @@ namespace UnitsNet
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         [PublicAPI]
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, params string[] abbreviations) where TUnitType : Enum
+        public void MapUnitToAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, params string[] abbreviations) where TUnitType : Enum
         {
             // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
             // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
@@ -147,13 +128,7 @@ namespace UnitsNet
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         [PublicAPI]
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, string abbreviation) where TUnitType : Enum
+        public void MapUnitToDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider, string abbreviation) where TUnitType : Enum
         {
             // Assuming TUnitType is an enum, this conversion is safe. Seems not possible to enforce this today.
             // Src: http://stackoverflow.com/questions/908543/how-to-convert-from-system-enum-to-base-integer
@@ -174,13 +149,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <param name="abbreviations">Unit abbreviations to add.</param>
         [PublicAPI]
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] params string[] abbreviations)
+        public void MapUnitToAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] params string[] abbreviations)
         {
             PerformAbbreviationMapping(unitType, unitValue, formatProvider, false, abbreviations);
         }
@@ -195,20 +164,14 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <param name="abbreviation">Unit abbreviation to add as default.</param>
         [PublicAPI]
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            void MapUnitToDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] string abbreviation)
+        public void MapUnitToDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider, [NotNull] string abbreviation)
         {
             PerformAbbreviationMapping(unitType, unitValue, formatProvider, true, abbreviation);
         }
 
         private void PerformAbbreviationMapping(Type unitType, int unitValue, IFormatProvider formatProvider, bool setAsDefault, [NotNull] params string[] abbreviations)
         {
-            if (!unitType.IsEnum())
+            if (!unitType.Wrap().IsEnum)
                 throw new ArgumentException("Must be an enum type.", nameof(unitType));
 
             if (abbreviations == null)
@@ -237,13 +200,7 @@ namespace UnitsNet
         /// <typeparam name="TUnitType">The type of unit enum.</typeparam>
         /// <returns>The default unit abbreviation string.</returns>
         [PublicAPI]
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            string GetDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider = null) where TUnitType : Enum
+        public string GetDefaultAbbreviation<TUnitType>(TUnitType unit, IFormatProvider formatProvider = null) where TUnitType : Enum
         {
             var unitType = typeof(TUnitType);
 
@@ -277,12 +234,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>The default unit abbreviation string.</returns>
         [PublicAPI]
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        string GetDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider = null)
+        public string GetDefaultAbbreviation(Type unitType, int unitValue, IFormatProvider formatProvider = null)
         {
             if(!TryGetUnitValueAbbreviationLookup(unitType, formatProvider, out var lookup))
             {
@@ -312,13 +264,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
         [PublicAPI]
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-            string[] GetUnitAbbreviations<TUnitType>(TUnitType unit, IFormatProvider formatProvider = null) where TUnitType : Enum
+        public string[] GetUnitAbbreviations<TUnitType>(TUnitType unit, IFormatProvider formatProvider = null) where TUnitType : Enum
         {
             return GetUnitAbbreviations(typeof(TUnitType), Convert.ToInt32(unit), formatProvider);
         }
@@ -331,12 +277,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
         [PublicAPI]
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        string[] GetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider formatProvider = null)
+        public string[] GetUnitAbbreviations(Type unitType, int unitValue, IFormatProvider formatProvider = null)
         {
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 
@@ -357,12 +298,7 @@ namespace UnitsNet
         /// <param name="formatProvider">The format provider to use for lookup. Defaults to <see cref="GlobalConfiguration.DefaultCulture" /> if null.</param>
         /// <returns>Unit abbreviations associated with unit.</returns>
         [PublicAPI]
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        string[] GetAllUnitAbbreviationsForQuantity(Type unitEnumType, IFormatProvider formatProvider = null)
+        public string[] GetAllUnitAbbreviationsForQuantity(Type unitEnumType, IFormatProvider formatProvider = null)
         {
             formatProvider = formatProvider ?? GlobalConfiguration.DefaultCulture;
 

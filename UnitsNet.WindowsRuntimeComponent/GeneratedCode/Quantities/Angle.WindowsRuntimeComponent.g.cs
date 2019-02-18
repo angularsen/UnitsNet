@@ -67,7 +67,9 @@ namespace UnitsNet
         static Angle()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            Info = new QuantityInfo(QuantityType.Angle, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Degree.
         /// </summary>
@@ -99,6 +101,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -106,22 +113,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Angle, which is Degree. All conversions go via this value.
         /// </summary>
-        public static AngleUnit BaseUnit => AngleUnit.Degree;
+        public static AngleUnit BaseUnit { get; } = AngleUnit.Degree;
 
         /// <summary>
         /// Represents the largest possible value of Angle
         /// </summary>
-        public static Angle MaxValue => new Angle(double.MaxValue, BaseUnit);
+        public static Angle MaxValue { get; } = new Angle(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Angle
         /// </summary>
-        public static Angle MinValue => new Angle(double.MinValue, BaseUnit);
+        public static Angle MinValue { get; } = new Angle(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Angle;
+        public static QuantityType QuantityType { get; } = QuantityType.Angle;
 
         /// <summary>
         ///     All units of measurement for the Angle quantity.
@@ -131,7 +138,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Degree.
         /// </summary>
-        public static Angle Zero => new Angle(0, BaseUnit);
+        public static Angle Zero { get; } = new Angle(0, BaseUnit);
 
         #endregion
 
@@ -142,10 +149,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public AngleUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -657,6 +669,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((AngleUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

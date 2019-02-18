@@ -70,7 +70,9 @@ namespace UnitsNet
         static Molarity()
         {
             BaseDimensions = new BaseDimensions(-3, 0, 0, 0, 0, 1, 0);
+            Info = new QuantityInfo(QuantityType.Molarity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit MolesPerCubicMeter.
         /// </summary>
@@ -102,6 +104,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -109,22 +116,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Molarity, which is MolesPerCubicMeter. All conversions go via this value.
         /// </summary>
-        public static MolarityUnit BaseUnit => MolarityUnit.MolesPerCubicMeter;
+        public static MolarityUnit BaseUnit { get; } = MolarityUnit.MolesPerCubicMeter;
 
         /// <summary>
         /// Represents the largest possible value of Molarity
         /// </summary>
-        public static Molarity MaxValue => new Molarity(double.MaxValue, BaseUnit);
+        public static Molarity MaxValue { get; } = new Molarity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Molarity
         /// </summary>
-        public static Molarity MinValue => new Molarity(double.MinValue, BaseUnit);
+        public static Molarity MinValue { get; } = new Molarity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Molarity;
+        public static QuantityType QuantityType { get; } = QuantityType.Molarity;
 
         /// <summary>
         ///     All units of measurement for the Molarity quantity.
@@ -134,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit MolesPerCubicMeter.
         /// </summary>
-        public static Molarity Zero => new Molarity(0, BaseUnit);
+        public static Molarity Zero { get; } = new Molarity(0, BaseUnit);
 
         #endregion
 
@@ -145,10 +152,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public MolarityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -570,6 +582,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((MolarityUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

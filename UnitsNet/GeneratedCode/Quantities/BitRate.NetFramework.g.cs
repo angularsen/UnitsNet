@@ -52,7 +52,7 @@ namespace UnitsNet
     /// <remarks>
     ///     https://en.wikipedia.org/wiki/Bit_rate
     /// </remarks>
-    public partial struct BitRate : IQuantity<BitRateUnit>, IEquatable<BitRate>, IComparable, IComparable<BitRate>
+    public partial struct BitRate : IQuantity<BitRateUnit>, IEquatable<BitRate>, IComparable, IComparable<BitRate>, IConvertible
     {
         /// <summary>
         ///     The numeric value this quantity was constructed with.
@@ -67,6 +67,7 @@ namespace UnitsNet
         static BitRate()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
+            Info = new QuantityInfo<BitRateUnit>(QuantityType.BitRate, Units, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -74,7 +75,6 @@ namespace UnitsNet
         /// </summary>
         /// <param name="numericValue">The numeric value  to contruct this quantity with.</param>
         /// <param name="unit">The unit representation to contruct this quantity with.</param>
-        /// <remarks>Value parameter cannot be named 'value' due to constraint when targeting Windows Runtime Component.</remarks>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
         public BitRate(decimal numericValue, BitRateUnit unit)
         {
@@ -87,6 +87,9 @@ namespace UnitsNet
 
         #region Static Properties
 
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        public static QuantityInfo<BitRateUnit> Info { get; }
+
         /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
@@ -95,22 +98,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of BitRate, which is BitPerSecond. All conversions go via this value.
         /// </summary>
-        public static BitRateUnit BaseUnit => BitRateUnit.BitPerSecond;
+        public static BitRateUnit BaseUnit { get; } = BitRateUnit.BitPerSecond;
 
         /// <summary>
         /// Represents the largest possible value of BitRate
         /// </summary>
-        public static BitRate MaxValue => new BitRate(decimal.MaxValue, BaseUnit);
+        public static BitRate MaxValue { get; } = new BitRate(decimal.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of BitRate
         /// </summary>
-        public static BitRate MinValue => new BitRate(decimal.MinValue, BaseUnit);
+        public static BitRate MinValue { get; } = new BitRate(decimal.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.BitRate;
+        public static QuantityType QuantityType { get; } = QuantityType.BitRate;
 
         /// <summary>
         ///     All units of measurement for the BitRate quantity.
@@ -120,7 +123,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit BitPerSecond.
         /// </summary>
-        public static BitRate Zero => new BitRate(0, BaseUnit);
+        public static BitRate Zero { get; } = new BitRate(0, BaseUnit);
 
         #endregion
 
@@ -131,10 +134,18 @@ namespace UnitsNet
         /// </summary>
         public decimal Value => _value;
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        Enum IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public BitRateUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        public QuantityInfo<BitRateUnit> QuantityInfo => Info;
+
+        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        QuantityInfo IQuantity.QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -761,12 +772,12 @@ namespace UnitsNet
             return left.Value > right.AsBaseNumericType(left.Unit);
         }
 
-        public static bool operator ==(BitRate left, BitRate right)	
+        public static bool operator ==(BitRate left, BitRate right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(BitRate left, BitRate right)	
+        public static bool operator !=(BitRate left, BitRate right)
         {
             return !(left == right);
         }
@@ -779,7 +790,6 @@ namespace UnitsNet
             return CompareTo(objBitRate);
         }
 
-        // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         public int CompareTo(BitRate other)
         {
             return _value.CompareTo(other.AsBaseNumericType(this.Unit));
@@ -862,6 +872,8 @@ namespace UnitsNet
 
         #region Conversion Methods
 
+        double IQuantity.As(Enum unit) => As((BitRateUnit)unit);
+
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
         /// </summary>
@@ -875,6 +887,8 @@ namespace UnitsNet
             return Convert.ToDouble(converted);
         }
 
+        public double As(Enum unit) => As((BitRateUnit) unit);
+
         /// <summary>
         ///     Converts this BitRate to another BitRate with the unit representation <paramref name="unit" />.
         /// </summary>
@@ -884,6 +898,10 @@ namespace UnitsNet
             var convertedValue = AsBaseNumericType(unit);
             return new BitRate(convertedValue, unit);
         }
+
+        IQuantity<BitRateUnit> IQuantity<BitRateUnit>.ToUnit(BitRateUnit unit) => ToUnit(unit);
+
+        public IQuantity ToUnit(Enum unit) => ToUnit((BitRateUnit) unit);
 
         /// <summary>
         ///     Converts the current value + unit to the base unit.
@@ -1022,5 +1040,102 @@ namespace UnitsNet
 
         #endregion
 
+        #region IConvertible Methods
+
+        TypeCode IConvertible.GetTypeCode()
+        {
+            return TypeCode.Object;
+        }
+
+        bool IConvertible.ToBoolean(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(BitRate)} to bool is not supported.");
+        }
+
+        byte IConvertible.ToByte(IFormatProvider provider)
+        {
+            return Convert.ToByte(_value);
+        }
+
+        char IConvertible.ToChar(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(BitRate)} to char is not supported.");
+        }
+
+        DateTime IConvertible.ToDateTime(IFormatProvider provider)
+        {
+            throw new InvalidCastException($"Converting {typeof(BitRate)} to DateTime is not supported.");
+        }
+
+        decimal IConvertible.ToDecimal(IFormatProvider provider)
+        {
+            return Convert.ToDecimal(_value);
+        }
+
+        double IConvertible.ToDouble(IFormatProvider provider)
+        {
+            return Convert.ToDouble(_value);
+        }
+
+        short IConvertible.ToInt16(IFormatProvider provider)
+        {
+            return Convert.ToInt16(_value);
+        }
+
+        int IConvertible.ToInt32(IFormatProvider provider)
+        {
+            return Convert.ToInt32(_value);
+        }
+
+        long IConvertible.ToInt64(IFormatProvider provider)
+        {
+            return Convert.ToInt64(_value);
+        }
+
+        sbyte IConvertible.ToSByte(IFormatProvider provider)
+        {
+            return Convert.ToSByte(_value);
+        }
+
+        float IConvertible.ToSingle(IFormatProvider provider)
+        {
+            return Convert.ToSingle(_value);
+        }
+
+        string IConvertible.ToString(IFormatProvider provider)
+        {
+            return ToString(provider);
+        }
+
+        object IConvertible.ToType(Type conversionType, IFormatProvider provider)
+        {
+            if(conversionType == typeof(BitRate))
+                return this;
+            else if(conversionType == typeof(BitRateUnit))
+                return Unit;
+            else if(conversionType == typeof(QuantityType))
+                return BitRate.QuantityType;
+            else if(conversionType == typeof(BaseDimensions))
+                return BitRate.BaseDimensions;
+            else
+                throw new InvalidCastException($"Converting {typeof(BitRate)} to {conversionType} is not supported.");
+        }
+
+        ushort IConvertible.ToUInt16(IFormatProvider provider)
+        {
+            return Convert.ToUInt16(_value);
+        }
+
+        uint IConvertible.ToUInt32(IFormatProvider provider)
+        {
+            return Convert.ToUInt32(_value);
+        }
+
+        ulong IConvertible.ToUInt64(IFormatProvider provider)
+        {
+            return Convert.ToUInt64(_value);
+        }
+
+        #endregion
     }
 }

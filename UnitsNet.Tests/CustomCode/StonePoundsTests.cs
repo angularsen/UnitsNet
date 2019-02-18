@@ -1,16 +1,16 @@
 ﻿// Copyright (c) 2013 Andreas Gullberg Larsen (andreas.larsen84@gmail.com).
 // https://github.com/angularsen/UnitsNet
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System.Globalization;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -45,6 +46,29 @@ namespace UnitsNet.Tests.CustomCode
             StonePounds stonePounds = m.StonePounds;
             AssertEx.EqualTolerance(2, stonePounds.Stone, StoneTolerance);
             AssertEx.EqualTolerance(3, stonePounds.Pounds, PoundsTolerance);
+        }
+
+        [Fact]
+        public void StonePoundsToString_FormatsNumberInDefaultCulture()
+        {
+            Mass m = Mass.FromStonePounds(3500, 1);
+            StonePounds stonePounds = m.StonePounds;
+            string numberInCurrentCulture =  3500.ToString("n0", GlobalConfiguration.DefaultCulture); // Varies between machines, can't hard code it
+
+            Assert.Equal($"{numberInCurrentCulture} st 1 lb", stonePounds.ToString());
+        }
+
+        // These cultures use a thin space in digit grouping
+        [Theory]
+        [InlineData("nn-NO")]
+        [InlineData("fr-FR")]
+        public void StonePoundsToString_GivenCultureWithThinSpaceDigitGroup_ReturnsNumberWithThinSpaceDigitGroup(string cultureName)
+        {
+            var formatProvider = new CultureInfo(cultureName);
+            Mass m = Mass.FromStonePounds(3500, 1);
+            StonePounds stonePounds = m.StonePounds;
+
+            Assert.Equal("3 500 st 1 lb", stonePounds.ToString(formatProvider));
         }
     }
 }

@@ -61,7 +61,7 @@ namespace UnitsNet
         {
             return !IsBaseQuantity() && !IsDimensionless();
         }
-        
+
         /// <summary>
         /// Checks if this base dimensions object represents a dimensionless quantity.
         /// </summary>
@@ -134,8 +134,6 @@ namespace UnitsNet
                 LuminousIntensity - right.LuminousIntensity);
         }
 
-#if !WINDOWS_UWP
-
         /// <summary>
         /// Check if two dimensions are equal.
         /// </summary>
@@ -189,8 +187,6 @@ namespace UnitsNet
 
             return left.Divide(right);
         }
-
-#endif
 
         /// <inheritdoc />
         public override string ToString()

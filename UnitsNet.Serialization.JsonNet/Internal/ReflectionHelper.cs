@@ -19,7 +19,6 @@ namespace UnitsNet.Serialization.JsonNet.Internal
 #endif
         }
 
-        // Ambiguous method conflict with GetMethods() name WindowsRuntimeComponent, so use GetDeclaredMethods() instead
         internal static IEnumerable<MethodInfo> GetDeclaredMethods(this Type someType)
         {
             Type t = someType;

@@ -31,15 +31,9 @@ using JetBrains.Annotations;
 namespace UnitsNet
 {
 
-#if !WINDOWS_UWP
     internal delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
         where TQuantity : IQuantity
         where TUnitType : Enum;
-#else
-    internal delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(double value, TUnitType fromUnit)
-        where TQuantity : IQuantity
-        where TUnitType : Enum;
-#endif
 
     internal class QuantityParser
     {
@@ -119,6 +113,27 @@ namespace UnitsNet
                 return false;
 
             return TryParseWithRegex(valueString, unitString, fromDelegate, formatProvider, out result);
+        }
+
+        /// <summary>
+        ///     Workaround for C# not allowing to pass on 'out' param from type Length to IQuantity, even though the are compatible.
+        /// </summary>
+        [SuppressMessage("ReSharper", "UseStringInterpolation")]
+        internal bool TryParse<TQuantity, TUnitType>([NotNull] string str,
+            [CanBeNull] IFormatProvider formatProvider,
+            [NotNull] QuantityFromDelegate<TQuantity, TUnitType> fromDelegate,
+            out IQuantity result)
+            where TQuantity : IQuantity
+            where TUnitType : Enum
+        {
+            if (TryParse(str, formatProvider, fromDelegate, out TQuantity parsedQuantity))
+            {
+                result = parsedQuantity;
+                return true;
+            }
+
+            result = default;
+            return false;
         }
 
         internal string CreateRegexPatternForUnit<TUnitType>(

@@ -20,7 +20,7 @@
     #>
 [CmdletBinding()]
 Param(
-    [switch] $skipUWP
+    [switch] $IncludeWindowsRuntimeComponent
   )
 
 remove-module build-functions -ErrorAction SilentlyContinue
@@ -29,7 +29,7 @@ import-module $PSScriptRoot\build-functions.psm1
 try {
   Remove-ArtifactsDir
   Update-GeneratedCode
-  Start-Build $skipUWP
+  Start-Build -IncludeWindowsRuntimeComponent $IncludeWindowsRuntimeComponent
   Start-Tests
   Start-PackNugets
   Compress-ArtifactsAsZip

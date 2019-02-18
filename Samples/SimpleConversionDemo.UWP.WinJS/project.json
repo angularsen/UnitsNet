@@ -2,7 +2,7 @@
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.1.9",
     "System.ValueTuple": "4.5.0",
-    "UnitsNet.WindowsRuntimeComponent": "4.0.0-beta1"
+    "UnitsNet.WindowsRuntimeComponent": "4.7.0"
   },
   "frameworks": {
     "uap10.0": {}

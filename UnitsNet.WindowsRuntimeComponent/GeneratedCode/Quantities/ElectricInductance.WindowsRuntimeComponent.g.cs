@@ -70,7 +70,9 @@ namespace UnitsNet
         static ElectricInductance()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -2, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.ElectricInductance, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit Henry.
         /// </summary>
@@ -102,6 +104,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -109,22 +116,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of ElectricInductance, which is Henry. All conversions go via this value.
         /// </summary>
-        public static ElectricInductanceUnit BaseUnit => ElectricInductanceUnit.Henry;
+        public static ElectricInductanceUnit BaseUnit { get; } = ElectricInductanceUnit.Henry;
 
         /// <summary>
         /// Represents the largest possible value of ElectricInductance
         /// </summary>
-        public static ElectricInductance MaxValue => new ElectricInductance(double.MaxValue, BaseUnit);
+        public static ElectricInductance MaxValue { get; } = new ElectricInductance(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of ElectricInductance
         /// </summary>
-        public static ElectricInductance MinValue => new ElectricInductance(double.MinValue, BaseUnit);
+        public static ElectricInductance MinValue { get; } = new ElectricInductance(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.ElectricInductance;
+        public static QuantityType QuantityType { get; } = QuantityType.ElectricInductance;
 
         /// <summary>
         ///     All units of measurement for the ElectricInductance quantity.
@@ -134,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit Henry.
         /// </summary>
-        public static ElectricInductance Zero => new ElectricInductance(0, BaseUnit);
+        public static ElectricInductance Zero { get; } = new ElectricInductance(0, BaseUnit);
 
         #endregion
 
@@ -145,10 +152,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public ElectricInductanceUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -510,6 +522,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((ElectricInductanceUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.

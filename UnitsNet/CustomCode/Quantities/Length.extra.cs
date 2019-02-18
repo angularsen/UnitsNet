@@ -24,23 +24,9 @@ using System.Text.RegularExpressions;
 using JetBrains.Annotations;
 using UnitsNet.Units;
 
-#if WINDOWS_UWP
-using Culture=System.String;
-#else
-using Culture=System.IFormatProvider;
-#endif
-
-// ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class Length
-#else
     public partial struct Length
-#endif
     {
         private const double InchesInOneFoot = 12;
 
@@ -66,9 +52,6 @@ namespace UnitsNet
         {
             return FromInches(InchesInOneFoot*feet + inches);
         }
-
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
 
         /// <summary>
         /// Special parsing of feet/inches strings, commonly used.
@@ -188,7 +171,6 @@ namespace UnitsNet
         {
             return new Pressure(length.Meters * specificWeight.NewtonsPerCubicMeter, PressureUnit.Pascal);
         }
-#endif
     }
 
     public sealed class FeetInches
@@ -207,15 +189,16 @@ namespace UnitsNet
             return ToString(null);
         }
 
-        public string ToString([CanBeNull] Culture cultureInfo)
+        public string ToString([CanBeNull] IFormatProvider cultureInfo)
         {
+            cultureInfo = cultureInfo ?? GlobalConfiguration.DefaultCulture;
+
+            var footUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Foot, cultureInfo);
+            var inchUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Inch, cultureInfo);
+
             // Note that it isn't customary to use fractions - one wouldn't say "I am 5 feet and 4.5 inches".
             // So inches are rounded when converting from base units to feet/inches.
-            var footUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Foot);
-            var inchUnit = UnitAbbreviationsCache.Default.GetDefaultAbbreviation(LengthUnit.Inch);
-
-            return string.Format(GlobalConfiguration.DefaultCulture, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches),
-                inchUnit);
+            return string.Format(cultureInfo, "{0:n0} {1} {2:n0} {3}", Feet, footUnit, Math.Round(Inches), inchUnit);
         }
     }
 }

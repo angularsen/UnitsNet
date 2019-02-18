@@ -19,20 +19,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-// ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class SpecificVolume
-#else
     public partial struct SpecificVolume
-#endif
     {
-
-#if !WINDOWS_UWP
         public static Density operator /(double constant, SpecificVolume volume)
         {
             return Density.FromKilogramsPerCubicMeter(constant / volume.CubicMetersPerKilogram);
@@ -42,7 +32,5 @@ namespace UnitsNet
         {
             return Volume.FromCubicMeters(volume.CubicMetersPerKilogram * mass.Kilograms);
         }
-
-#endif
     }
 }

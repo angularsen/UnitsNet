@@ -51,7 +51,7 @@ Import-Module "$PSScriptRoot\set-version.psm1"
 $root = Resolve-Path "$PSScriptRoot\.."
 $paramSet = $PsCmdlet.ParameterSetName
 $projFile = "$root\UnitsNet\UnitsNet.csproj"
-$winrtAssemblyInfoFile = "$root\UnitsNet\Properties\AssemblyInfo.WindowsRuntimeComponent.cs"
+$winrtAssemblyInfoFile = "$root\UnitsNet.WindowsRuntimeComponent\Properties\AssemblyInfo.cs"
 $winrtNuspecFile = "$root\UnitsNet.WindowsRuntimeComponent\UnitsNet.WindowsRuntimeComponent.nuspec"
 $versionFiles = @($projFile, $winrtAssemblyInfoFile, $winrtNuspecFile)
 $projectName = "UnitsNet"

@@ -70,7 +70,9 @@ namespace UnitsNet
         static Permittivity()
         {
             BaseDimensions = new BaseDimensions(-3, -1, 4, 2, 0, 0, 0);
+            Info = new QuantityInfo(QuantityType.Permittivity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit FaradPerMeter.
         /// </summary>
@@ -102,6 +104,11 @@ namespace UnitsNet
         #region Static Properties
 
         /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
+        internal static QuantityInfo Info { get; }
+
+        /// <summary>
         ///     The <see cref="BaseDimensions" /> of this quantity.
         /// </summary>
         public static BaseDimensions BaseDimensions { get; }
@@ -109,22 +116,22 @@ namespace UnitsNet
         /// <summary>
         ///     The base unit of Permittivity, which is FaradPerMeter. All conversions go via this value.
         /// </summary>
-        public static PermittivityUnit BaseUnit => PermittivityUnit.FaradPerMeter;
+        public static PermittivityUnit BaseUnit { get; } = PermittivityUnit.FaradPerMeter;
 
         /// <summary>
         /// Represents the largest possible value of Permittivity
         /// </summary>
-        public static Permittivity MaxValue => new Permittivity(double.MaxValue, BaseUnit);
+        public static Permittivity MaxValue { get; } = new Permittivity(double.MaxValue, BaseUnit);
 
         /// <summary>
         /// Represents the smallest possible value of Permittivity
         /// </summary>
-        public static Permittivity MinValue => new Permittivity(double.MinValue, BaseUnit);
+        public static Permittivity MinValue { get; } = new Permittivity(double.MinValue, BaseUnit);
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
         /// </summary>
-        public static QuantityType QuantityType => QuantityType.Permittivity;
+        public static QuantityType QuantityType { get; } = QuantityType.Permittivity;
 
         /// <summary>
         ///     All units of measurement for the Permittivity quantity.
@@ -134,7 +141,7 @@ namespace UnitsNet
         /// <summary>
         ///     Gets an instance of this quantity with a value of 0 in the base unit FaradPerMeter.
         /// </summary>
-        public static Permittivity Zero => new Permittivity(0, BaseUnit);
+        public static Permittivity Zero { get; } = new Permittivity(0, BaseUnit);
 
         #endregion
 
@@ -145,10 +152,15 @@ namespace UnitsNet
         /// </summary>
         public double Value => Convert.ToDouble(_value);
 
+        /// <inheritdoc cref="IQuantity.Unit"/>
+        object IQuantity.Unit => Unit;
+
         /// <summary>
         ///     The unit this quantity was constructed with -or- <see cref="BaseUnit" /> if default ctor was used.
         /// </summary>
         public PermittivityUnit Unit => _unit.GetValueOrDefault(BaseUnit);
+
+        internal QuantityInfo QuantityInfo => Info;
 
         /// <summary>
         ///     The <see cref="QuantityType" /> of this quantity.
@@ -465,6 +477,8 @@ namespace UnitsNet
         #endregion
 
         #region Conversion Methods
+
+        double IQuantity.As(object unit) => As((PermittivityUnit)unit);
 
         /// <summary>
         ///     Convert to the unit representation <paramref name="unit" />.
