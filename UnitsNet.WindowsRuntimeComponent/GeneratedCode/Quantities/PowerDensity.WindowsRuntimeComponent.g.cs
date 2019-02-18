@@ -69,6 +69,7 @@ namespace UnitsNet
             BaseDimensions = new BaseDimensions(-1, 1, -3, 0, 0, 0, 0);
             Info = new QuantityInfo(QuantityType.PowerDensity, Units.Cast<Enum>().ToArray(), BaseUnit, Zero, BaseDimensions);
         }
+
         /// <summary>
         ///     Creates the quantity with a value of 0 in the base unit WattPerCubicMeter.
         /// </summary>
@@ -115,7 +116,9 @@ namespace UnitsNet
 
         #region Static Properties
 
-        /// <inheritdoc cref="IQuantity.QuantityInfo"/>
+        /// <summary>
+        ///     Information about the quantity type, such as unit values and names.
+        /// </summary>
         internal static QuantityInfo Info { get; }
 
         /// <summary>
@@ -1451,6 +1454,5 @@ namespace UnitsNet
         {
             return cultureName != null ? new CultureInfo(cultureName) : (IFormatProvider)null;
         }
-
     }
 }

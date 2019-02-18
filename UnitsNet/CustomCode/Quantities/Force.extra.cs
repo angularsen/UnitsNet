@@ -21,17 +21,9 @@
 
 using UnitsNet.Units;
 
-// ReSharper disable once CheckNamespace
 namespace UnitsNet
 {
-    // Windows Runtime Component has constraints on public types: https://msdn.microsoft.com/en-us/library/br230301.aspx#Declaring types in Windows Runtime Components
-    // Public structures can't have any members other than public fields, and those fields must be value types or strings.
-    // Public classes must be sealed (NotInheritable in Visual Basic). If your programming model requires polymorphism, you can create a public interface and implement that interface on the classes that must be polymorphic.
-#if WINDOWS_UWP
-    public sealed partial class Force
-#else
     public partial struct Force
-#endif
     {
         public static Force FromPressureByArea(Pressure p, Area area)
         {
@@ -44,8 +36,6 @@ namespace UnitsNet
             return new Force(mass.Kilograms * acceleration.MetersPerSecondSquared, ForceUnit.Newton);
         }
 
-        // Windows Runtime Component does not allow operator overloads: https://msdn.microsoft.com/en-us/library/br230301.aspx
-#if !WINDOWS_UWP
         public static Power operator *(Force force, Speed speed)
         {
             return Power.FromWatts(force.Newtons * speed.MetersPerSecond);
@@ -75,6 +65,5 @@ namespace UnitsNet
         {
             return ForcePerLength.FromNewtonsPerMeter(force.Newtons / length.Meters);
         }
-#endif
     }
 }

@@ -13,7 +13,7 @@ function ToCamelCase($str)
 }
 
 function ValueOrDefault($value, $defaultValue){
-  if ($value -ne $null) { $value } else { $defaultValue }
+  if ($null -ne $value) { $value } else { $defaultValue }
 }
 
 function Ternary($value, $one, $two){
@@ -23,14 +23,9 @@ function Ternary($value, $one, $two){
 function GenerateQuantity([Quantity]$quantity, $outDir)
 {
     $outFileName = "$outDir/$($quantity.Name).NetFramework.g.cs"
-    GenerateQuantitySourceCode $quantity "NetFramework" | Out-File -Encoding "UTF8" $outFileName | Out-Null
+    GenerateQuantitySourceCode $quantity | Out-File -Encoding "UTF8" $outFileName | Out-Null
     if (!$?) { exit 1 }
-    Write-Host -NoNewline "quantity .NET(OK) "
-
-    $outFileName = "$outDir/../../../UnitsNet.WindowsRuntimeComponent/GeneratedCode/Quantities/$($quantity.Name).WindowsRuntimeComponent.g.cs"
-    GenerateQuantitySourceCode $quantity "WindowsRuntimeComponent" | Out-File -Encoding "UTF8" $outFileName | Out-Null
-    if (!$?) { exit 1 }
-    Write-Host -NoNewline "quantity WRC(OK) "
+    Write-Host -NoNewline "quantity(OK) "
 }
 
 function GenerateUnitTestBaseClass([Quantity]$quantity, $outDir)

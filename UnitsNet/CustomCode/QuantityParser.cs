@@ -31,15 +31,9 @@ using JetBrains.Annotations;
 namespace UnitsNet
 {
 
-#if !WINDOWS_UWP
     internal delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(QuantityValue value, TUnitType fromUnit)
         where TQuantity : IQuantity
         where TUnitType : Enum;
-#else
-    internal delegate TQuantity QuantityFromDelegate<out TQuantity, in TUnitType>(double value, TUnitType fromUnit)
-        where TQuantity : IQuantity
-        where TUnitType : Enum;
-#endif
 
     internal class QuantityParser
     {

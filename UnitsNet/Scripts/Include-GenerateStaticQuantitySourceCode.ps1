@@ -46,29 +46,17 @@ using JetBrains.Annotations;
 using UnitsNet.InternalHelpers;
 using UnitsNet.Units;
 
-#if WINDOWS_UWP
-using FromValue = System.Double;
-#else
-using FromValue = UnitsNet.QuantityValue;
-#endif
-
 namespace UnitsNet
 {
     /// <summary>
     ///     Dynamically parse or construct quantities when types are only known at runtime.
     /// </summary>
-#if WINDOWS_UWP
-    internal
-#else
-    public
-#endif
-    static partial class Quantity
+    public static partial class Quantity
     {
-#if !WINDOWS_UWP
-        /// <inheritdoc cref="TryFrom(FromValue,System.Enum,out UnitsNet.IQuantity)"/>
+        /// <inheritdoc cref="TryFrom(QuantityValue,System.Enum,out UnitsNet.IQuantity)"/>
         public static bool TryFrom(double value, Enum unit, out IQuantity quantity)
         {
-            // Implicit cast to FromValue would prevent TryFrom from being called,
+            // Implicit cast to QuantityValue would prevent TryFrom from being called,
             // so we need to explicitly check this here for double arguments.
             if (double.IsNaN(value) || double.IsInfinity(value))
             {
@@ -76,9 +64,8 @@ namespace UnitsNet
                 return false;
             }
 
-            return TryFrom((FromValue) value, unit, out quantity);
+            return TryFrom((QuantityValue) value, unit, out quantity);
         }
-#endif
 
         /// <summary>
         ///     Try to dynamically construct a quantity.
@@ -87,12 +74,7 @@ namespace UnitsNet
         /// <param name="unit">Unit enum value.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns><c>True</c> if successful with <paramref name="quantity"/> assigned the value, otherwise <c>false</c>.</returns>
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-         static bool TryFrom(FromValue value, Enum unit, out IQuantity quantity)
+        public static bool TryFrom(QuantityValue value, Enum unit, out IQuantity quantity)
         {
             switch (unit)
             {
@@ -113,12 +95,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="Parse(IFormatProvider, System.Type,string)"/>
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        static IQuantity Parse(Type quantityType, string quantityString) => Parse(null, quantityType, quantityString);
+        public static IQuantity Parse(Type quantityType, string quantityString) => Parse(null, quantityType, quantityString);
 
         /// <summary>
         ///     Dynamically parse a quantity string representation.
@@ -128,12 +105,7 @@ namespace UnitsNet
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <returns>The parsed quantity.</returns>
         /// <exception cref="ArgumentException">Type must be of type UnitsNet.IQuantity -or- Type is not a known quantity type.</exception>
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        static IQuantity Parse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString)
+        public static IQuantity Parse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString)
         {
             if (!typeof(IQuantity).Wrap().IsAssignableFrom(quantityType))
                 throw new ArgumentException($"Type {quantityType} must be of type UnitsNet.IQuantity.");
@@ -144,12 +116,7 @@ namespace UnitsNet
         }
 
         /// <inheritdoc cref="TryParse(IFormatProvider,System.Type,string,out UnitsNet.IQuantity)"/>
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        static bool TryParse(Type quantityType, string quantityString, out IQuantity quantity) =>
+        public static bool TryParse(Type quantityType, string quantityString, out IQuantity quantity) =>
             TryParse(null, quantityType, quantityString, out quantity);
 
         /// <summary>
@@ -160,12 +127,7 @@ namespace UnitsNet
         /// <param name="quantityString">Quantity string representation, such as "1.5 kg". Must be compatible with given quantity type.</param>
         /// <param name="quantity">The resulting quantity if successful, otherwise <c>default</c>.</param>
         /// <returns>The parsed quantity.</returns>
-#if WINDOWS_UWP
-        internal
-#else
-        public
-#endif
-        static bool TryParse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString, out IQuantity quantity)
+        public static bool TryParse([CanBeNull] IFormatProvider formatProvider, Type quantityType, string quantityString, out IQuantity quantity)
         {
             quantity = default(IQuantity);
 
@@ -184,7 +146,6 @@ namespace UnitsNet
                 $"Type {quantityType} is not a known quantity type. Did you pass in a third-party quantity type defined outside UnitsNet library?");
         }
 
-#if !WINDOWS_UWP
         /// <summary>
         ///     Get information about the given quantity type.
         /// </summary>
@@ -194,7 +155,6 @@ namespace UnitsNet
         {
             return Infos.First(qi => qi.QuantityType == quantityType);
         }
-#endif
     }
 }
 "@;
