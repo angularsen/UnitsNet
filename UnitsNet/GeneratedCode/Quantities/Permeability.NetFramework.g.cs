@@ -683,6 +683,8 @@ namespace UnitsNet
                     return abbreviations[digits];
                 case "V":
                     return Value.ToString(formatProvider);
+                case "U":
+                    return Unit.ToString();
                 case "Q":
                     return Info.Name;
                 case "S":

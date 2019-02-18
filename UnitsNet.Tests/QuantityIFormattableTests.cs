@@ -56,6 +56,12 @@ namespace UnitsNet.Tests
         }
 
         [Fact]
+        public void UFormatEqualsUnitToString()
+        {
+            Assert.Equal(length.Unit.ToString(), length.ToString("U"));
+        }
+
+        [Fact]
         public void FormatStringsAreCaseInsensitive()
         {
             Assert.Equal(length.ToString("g"), length.ToString("G"));
@@ -63,6 +69,7 @@ namespace UnitsNet.Tests
             Assert.Equal(length.ToString("v"), length.ToString("V"));
             Assert.Equal(length.ToString("q"), length.ToString("Q"));
             Assert.Equal(length.ToString("s"), length.ToString("S"));
+            Assert.Equal(length.ToString("u"), length.ToString("U"));
         }
 
         [Fact]
