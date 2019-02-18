@@ -98,22 +98,6 @@ namespace UnitsNet
             _unit = unit;
         }
 
-        public ElectricPotential(double numericValue, UnitSystem unitSystem)
-        {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
-
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = GetUnitForBaseUnits(unitSystem.BaseUnits);
-        }
-
-        public ElectricPotential(double numericValue, BaseUnits baseUnits)
-        {
-            if(baseUnits == null) throw new ArgumentNullException(nameof(baseUnits));
-
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = GetUnitForBaseUnits(baseUnits);
-        }
-
         #region Static Properties
 
         /// <summary>
@@ -612,41 +596,6 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
-        }
-
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(ElectricPotentialUnit unit)
-        {
-            switch(unit)
-            {
-                case ElectricPotentialUnit.Kilovolt:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricPotentialUnit.Megavolt:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricPotentialUnit.Microvolt:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricPotentialUnit.Millivolt:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricPotentialUnit.Volt:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
-        public static ElectricPotentialUnit GetUnitForBaseUnits(BaseUnits baseUnits)
-        {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
-
-            throw new NotImplementedException($"No ElectricPotentialUnit was found for the given baseUnits.");
         }
 
         #endregion

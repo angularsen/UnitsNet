@@ -98,22 +98,6 @@ namespace UnitsNet
             _unit = unit;
         }
 
-        public Area(double numericValue, UnitSystem unitSystem)
-        {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
-
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = GetUnitForBaseUnits(unitSystem.BaseUnits);
-        }
-
-        public Area(double numericValue, BaseUnits baseUnits)
-        {
-            if(baseUnits == null) throw new ArgumentNullException(nameof(baseUnits));
-
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = GetUnitForBaseUnits(baseUnits);
-        }
-
         #region Static Properties
 
         /// <summary>
@@ -748,57 +732,6 @@ namespace UnitsNet
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
-        }
-
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(AreaUnit unit)
-        {
-            switch(unit)
-            {
-                case AreaUnit.Acre:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case AreaUnit.Hectare:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case AreaUnit.SquareCentimeter:
-                    return new BaseUnits(LengthUnit.Centimeter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case AreaUnit.SquareDecimeter:
-                    return new BaseUnits(LengthUnit.Decimeter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case AreaUnit.SquareFoot:
-                    return new BaseUnits(LengthUnit.Foot, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case AreaUnit.SquareInch:
-                    return new BaseUnits(LengthUnit.Inch, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case AreaUnit.SquareKilometer:
-                    return new BaseUnits(LengthUnit.Kilometer, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case AreaUnit.SquareMeter:
-                    return new BaseUnits(LengthUnit.Meter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case AreaUnit.SquareMicrometer:
-                    return new BaseUnits(LengthUnit.Micrometer, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case AreaUnit.SquareMile:
-                    return new BaseUnits(LengthUnit.Mile, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case AreaUnit.SquareMillimeter:
-                    return new BaseUnits(LengthUnit.Millimeter, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case AreaUnit.SquareYard:
-                    return new BaseUnits(LengthUnit.Yard, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case AreaUnit.UsSurveySquareFoot:
-                    return new BaseUnits(LengthUnit.UsSurveyFoot, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
-        public static AreaUnit GetUnitForBaseUnits(BaseUnits baseUnits)
-        {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
-
-            throw new NotImplementedException($"No AreaUnit was found for the given baseUnits.");
         }
 
         #endregion

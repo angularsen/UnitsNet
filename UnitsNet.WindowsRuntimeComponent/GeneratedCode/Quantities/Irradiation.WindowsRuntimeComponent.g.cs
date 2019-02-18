@@ -101,22 +101,6 @@ namespace UnitsNet
             _unit = unit;
         }
 
-        public Irradiation(double numericValue, UnitSystem unitSystem)
-        {
-            if(unitSystem == null) throw new ArgumentNullException(nameof(unitSystem));
-
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = GetUnitForBaseUnits(unitSystem.BaseUnits);
-        }
-
-        public Irradiation(double numericValue, BaseUnits baseUnits)
-        {
-            if(baseUnits == null) throw new ArgumentNullException(nameof(baseUnits));
-
-            _value = Guard.EnsureValidNumber(numericValue, nameof(numericValue));
-            _unit = GetUnitForBaseUnits(baseUnits);
-        }
-
         #region Static Properties
 
         /// <summary>
@@ -193,6 +177,11 @@ namespace UnitsNet
         #region Conversion Properties
 
         /// <summary>
+        ///     Get Irradiation in JoulesPerSquareCentimeter.
+        /// </summary>
+        public double JoulesPerSquareCentimeter => As(IrradiationUnit.JoulePerSquareCentimeter);
+
+        /// <summary>
         ///     Get Irradiation in JoulesPerSquareMeter.
         /// </summary>
         public double JoulesPerSquareMeter => As(IrradiationUnit.JoulePerSquareMeter);
@@ -201,6 +190,11 @@ namespace UnitsNet
         ///     Get Irradiation in JoulesPerSquareMillimeter.
         /// </summary>
         public double JoulesPerSquareMillimeter => As(IrradiationUnit.JoulePerSquareMillimeter);
+
+        /// <summary>
+        ///     Get Irradiation in KilojoulesPerSquareMeter.
+        /// </summary>
+        public double KilojoulesPerSquareMeter => As(IrradiationUnit.KilojoulePerSquareMeter);
 
         /// <summary>
         ///     Get Irradiation in KilowattHoursPerSquareMeter.
@@ -243,6 +237,16 @@ namespace UnitsNet
         #region Static Factory Methods
 
         /// <summary>
+        ///     Get Irradiation from JoulesPerSquareCentimeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Irradiation FromJoulesPerSquareCentimeter(double joulespersquarecentimeter)
+        {
+            double value = (double) joulespersquarecentimeter;
+            return new Irradiation(value, IrradiationUnit.JoulePerSquareCentimeter);
+        }
+        /// <summary>
         ///     Get Irradiation from JoulesPerSquareMeter.
         /// </summary>
         /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
@@ -261,6 +265,16 @@ namespace UnitsNet
         {
             double value = (double) joulespersquaremillimeter;
             return new Irradiation(value, IrradiationUnit.JoulePerSquareMillimeter);
+        }
+        /// <summary>
+        ///     Get Irradiation from KilojoulesPerSquareMeter.
+        /// </summary>
+        /// <exception cref="ArgumentException">If value is NaN or Infinity.</exception>
+        [Windows.Foundation.Metadata.DefaultOverload]
+        public static Irradiation FromKilojoulesPerSquareMeter(double kilojoulespersquaremeter)
+        {
+            double value = (double) kilojoulespersquaremeter;
+            return new Irradiation(value, IrradiationUnit.KilojoulePerSquareMeter);
         }
         /// <summary>
         ///     Get Irradiation from KilowattHoursPerSquareMeter.
@@ -573,8 +587,10 @@ namespace UnitsNet
         {
             switch(Unit)
             {
+                case IrradiationUnit.JoulePerSquareCentimeter: return _value*1e4;
                 case IrradiationUnit.JoulePerSquareMeter: return _value;
                 case IrradiationUnit.JoulePerSquareMillimeter: return _value*1e6;
+                case IrradiationUnit.KilojoulePerSquareMeter: return (_value) * 1e3d;
                 case IrradiationUnit.KilowattHourPerSquareMeter: return (_value*3600d) * 1e3d;
                 case IrradiationUnit.WattHourPerSquareMeter: return _value*3600d;
                 default:
@@ -591,46 +607,15 @@ namespace UnitsNet
 
             switch(unit)
             {
+                case IrradiationUnit.JoulePerSquareCentimeter: return baseUnitValue/1e4;
                 case IrradiationUnit.JoulePerSquareMeter: return baseUnitValue;
                 case IrradiationUnit.JoulePerSquareMillimeter: return baseUnitValue/1e6;
+                case IrradiationUnit.KilojoulePerSquareMeter: return (baseUnitValue) / 1e3d;
                 case IrradiationUnit.KilowattHourPerSquareMeter: return (baseUnitValue/3600d) / 1e3d;
                 case IrradiationUnit.WattHourPerSquareMeter: return baseUnitValue/3600d;
                 default:
                     throw new NotImplementedException($"Can not convert {Unit} to {unit}.");
             }
-        }
-
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(IrradiationUnit unit)
-        {
-            switch(unit)
-            {
-                case IrradiationUnit.JoulePerSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case IrradiationUnit.JoulePerSquareMillimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case IrradiationUnit.KilowattHourPerSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case IrradiationUnit.WattHourPerSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
-        public static IrradiationUnit GetUnitForBaseUnits(BaseUnits baseUnits)
-        {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
-
-            throw new NotImplementedException($"No IrradiationUnit was found for the given baseUnits.");
         }
 
         #endregion
