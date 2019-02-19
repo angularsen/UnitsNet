@@ -19,6 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using UnitsNet.Units;
 using Xunit;
 
 namespace UnitsNet.Tests.CustomCode
@@ -99,6 +100,13 @@ namespace UnitsNet.Tests.CustomCode
         {
             VolumeFlow volumeFlow = Area.FromSquareMeters(20) * Speed.FromMetersPerSecond(2);
             Assert.Equal(VolumeFlow.FromCubicMetersPerSecond(40), volumeFlow);
+        }
+
+        [Fact]
+        public void UnitSystemConstructorWorksWithSI()
+        {
+            var area = new Area(1.0, UnitSystem.SI);
+            Assert.Equal(AreaUnit.SquareMeter, area.Unit);
         }
     }
 }
