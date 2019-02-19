@@ -769,7 +769,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(Information other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -783,7 +783,7 @@ namespace UnitsNet
 
         public bool Equals(Information other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
@@ -861,7 +861,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = GetValueAs(unit);
+            var converted = AsBaseNumericType(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -871,7 +871,7 @@ namespace UnitsNet
         /// <returns>A Information with the specified unit.</returns>
         public Information ToUnit(InformationUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
+            var convertedValue = AsBaseNumericType(unit);
             return new Information(convertedValue, unit);
         }
 
@@ -880,7 +880,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private decimal GetValueInBaseUnit()
+        private decimal AsBaseUnit()
         {
             switch(Unit)
             {
@@ -915,23 +915,12 @@ namespace UnitsNet
             }
         }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Information ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Information(baseUnitValue, BaseUnit);
-        }
-
-        private decimal GetValueAs(InformationUnit unit)
+        private decimal AsBaseNumericType(InformationUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = AsBaseUnit();
 
             switch(unit)
             {

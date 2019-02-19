@@ -44,8 +44,10 @@ namespace UnitsNet.Units
     public enum IrradiationUnit
     {
         Undefined = 0,
+        JoulePerSquareCentimeter,
         JoulePerSquareMeter,
         JoulePerSquareMillimeter,
+        KilojoulePerSquareMeter,
         KilowattHourPerSquareMeter,
         WattHourPerSquareMeter,
     }

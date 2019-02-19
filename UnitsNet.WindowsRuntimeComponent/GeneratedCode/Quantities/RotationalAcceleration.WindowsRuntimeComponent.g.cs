@@ -424,7 +424,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(RotationalAcceleration other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -438,7 +438,7 @@ namespace UnitsNet
 
         public bool Equals(RotationalAcceleration other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
@@ -516,7 +516,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = GetValueAs(unit);
+            var converted = AsBaseNumericType(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -526,7 +526,7 @@ namespace UnitsNet
         /// <returns>A RotationalAcceleration with the specified unit.</returns>
         public RotationalAcceleration ToUnit(RotationalAccelerationUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
+            var convertedValue = AsBaseNumericType(unit);
             return new RotationalAcceleration(convertedValue, unit);
         }
 
@@ -535,7 +535,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private double AsBaseUnit()
         {
             switch(Unit)
             {
@@ -547,23 +547,12 @@ namespace UnitsNet
             }
         }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal RotationalAcceleration ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new RotationalAcceleration(baseUnitValue, BaseUnit);
-        }
-
-        private double GetValueAs(RotationalAccelerationUnit unit)
+        private double AsBaseNumericType(RotationalAccelerationUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = AsBaseUnit();
 
             switch(unit)
             {

@@ -469,7 +469,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(AreaMomentOfInertia other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -483,7 +483,7 @@ namespace UnitsNet
 
         public bool Equals(AreaMomentOfInertia other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
@@ -561,7 +561,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = GetValueAs(unit);
+            var converted = AsBaseNumericType(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -571,7 +571,7 @@ namespace UnitsNet
         /// <returns>A AreaMomentOfInertia with the specified unit.</returns>
         public AreaMomentOfInertia ToUnit(AreaMomentOfInertiaUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
+            var convertedValue = AsBaseNumericType(unit);
             return new AreaMomentOfInertia(convertedValue, unit);
         }
 
@@ -580,7 +580,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private double AsBaseUnit()
         {
             switch(Unit)
             {
@@ -595,23 +595,12 @@ namespace UnitsNet
             }
         }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal AreaMomentOfInertia ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new AreaMomentOfInertia(baseUnitValue, BaseUnit);
-        }
-
-        private double GetValueAs(AreaMomentOfInertiaUnit unit)
+        private double AsBaseNumericType(AreaMomentOfInertiaUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = AsBaseUnit();
 
             switch(unit)
             {

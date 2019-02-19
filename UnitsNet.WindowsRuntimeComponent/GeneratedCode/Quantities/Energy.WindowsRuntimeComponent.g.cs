@@ -709,7 +709,7 @@ namespace UnitsNet
         // Windows Runtime Component does not allow public methods/ctors with same number of parameters: https://msdn.microsoft.com/en-us/library/br230301.aspx#Overloaded methods
         internal int CompareTo(Energy other)
         {
-            return _value.CompareTo(other.GetValueAs(this.Unit));
+            return _value.CompareTo(other.AsBaseNumericType(this.Unit));
         }
 
         [Windows.Foundation.Metadata.DefaultOverload]
@@ -723,7 +723,7 @@ namespace UnitsNet
 
         public bool Equals(Energy other)
         {
-            return _value.Equals(other.GetValueAs(this.Unit));
+            return _value.Equals(other.AsBaseNumericType(this.Unit));
         }
 
         /// <summary>
@@ -801,7 +801,7 @@ namespace UnitsNet
             if(Unit == unit)
                 return Convert.ToDouble(Value);
 
-            var converted = GetValueAs(unit);
+            var converted = AsBaseNumericType(unit);
             return Convert.ToDouble(converted);
         }
 
@@ -811,7 +811,7 @@ namespace UnitsNet
         /// <returns>A Energy with the specified unit.</returns>
         public Energy ToUnit(EnergyUnit unit)
         {
-            var convertedValue = GetValueAs(unit);
+            var convertedValue = AsBaseNumericType(unit);
             return new Energy(convertedValue, unit);
         }
 
@@ -820,7 +820,7 @@ namespace UnitsNet
         ///     This is typically the first step in converting from one unit to another.
         /// </summary>
         /// <returns>The value in the base unit representation.</returns>
-        private double GetValueInBaseUnit()
+        private double AsBaseUnit()
         {
             switch(Unit)
             {
@@ -851,23 +851,12 @@ namespace UnitsNet
             }
         }
 
-        /// <summary>
-        ///     Converts the current value + unit to the base unit.
-        ///     This is typically the first step in converting from one unit to another.
-        /// </summary>
-        /// <returns>The value in the base unit representation.</returns>
-        internal Energy ToBaseUnit()
-        {
-            var baseUnitValue = GetValueInBaseUnit();
-            return new Energy(baseUnitValue, BaseUnit);
-        }
-
-        private double GetValueAs(EnergyUnit unit)
+        private double AsBaseNumericType(EnergyUnit unit)
         {
             if(Unit == unit)
                 return _value;
 
-            var baseUnitValue = GetValueInBaseUnit();
+            var baseUnitValue = AsBaseUnit();
 
             switch(unit)
             {
