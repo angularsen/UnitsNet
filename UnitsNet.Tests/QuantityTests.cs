@@ -30,10 +30,10 @@ namespace UnitsNet.Tests
         [Fact]
         public void GetHashCodeForDifferentQuantitiesWithSameValuesAreNotEqual()
         {
-            var length = new Length( 1.0, (LengthUnit)2 );
-            var area = new Area( 1.0, (AreaUnit)2 );
+            var length = new Length(1.0, (LengthUnit)2);
+            var area = new Area(1.0, (AreaUnit)2);
 
-            Assert.NotEqual( length.GetHashCode(), area.GetHashCode() );
+            Assert.NotEqual(length.GetHashCode(), area.GetHashCode());
         }
 
         [Fact]
@@ -70,24 +70,24 @@ namespace UnitsNet.Tests
         [Fact]
         public void TestGenericMultiplication()
         {
-            var length1 = Length.FromInches( 2.0 );
-            var length2 = Length.FromMeters( 2.0 );
+            var length1 = Length.FromInches(2.0);
+            var length2 = Length.FromMeters(2.0);
 
-            var calculated = Multiply( length1, length2 );
-            Assert.Equal( length1 * length2, calculated );
+            var calculated = Multiply(length1, length2);
+            Assert.Equal(length1 * length2, calculated);
         }
 
         private IQuantity Multiply(IQuantity left, IQuantity right)
         {
             var multipliedBaseDimensions = left.Dimensions * right.Dimensions;
-            var multipliedQuantityInfo = Quantity.Infos.Where( info => info.BaseDimensions == multipliedBaseDimensions ).First();
+            var multipliedQuantityInfo = Quantity.Infos.Where(info => info.BaseDimensions == multipliedBaseDimensions).First();
 
-            var lhsBaseUnits = left.QuantityInfo.BaseUnitInfo.BaseUnits;
-            var areaUnit = Area.GetUnitForBaseUnits( lhsBaseUnits );
-            // var areaUnit = multipliedQuantityInfo.UnitBaseUnits.Where( BaseUnits => baseUnit == lhsBaseUnits );
+            var lhsBaseUnits = left.QuantityInfo.UnitInfos.First((unitInfo) => unitInfo.Value.Equals(left.Unit));
+            var areaUnit = Area.GetUnitForBaseUnits(lhsBaseUnits.BaseUnits);
+            // var areaUnit = multipliedQuantityInfo.UnitBaseUnits.Where(BaseUnits => baseUnit == lhsBaseUnits);
 
-            var multipliedValue = left.As( left.Unit ) * right.As( left.Unit );
-            return Quantity.From( multipliedValue, areaUnit );
+            var multipliedValue = left.As(left.Unit) * right.As(left.Unit);
+            return Quantity.From(multipliedValue, areaUnit);
         }
     }
 }

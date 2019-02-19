@@ -194,13 +194,13 @@ function Add-PrefixUnits {
                     SingularName=$prefix + $(ToCamelCase $unit.SingularName)
                     PluralName=$prefix + $(ToCamelCase $unit.PluralName)
                     BaseUnits = @{
-                      Length = $unit.BaseUnits.Length
-                      Mass = $unit.BaseUnits.Mass
-                      Time = $unit.BaseUnits.Time
-                      ElectricCurrent = $unit.BaseUnits.ElectricCurrent
-                      Temperature = $unit.BaseUnits.Temperature
-                      AmountOfSubstance = $unit.BaseUnits.AmountOfSubstance
-                      LuminousIntensity = $unit.BaseUnits.LuminousIntensity
+                      Length = "LengthUnit.Undefined"
+                      Mass = "MassUnit.Undefined"
+                      Time = "DurationUnit.Undefined"
+                      ElectricCurrent = "ElectricCurrentUnit.Undefined"
+                      Temperature = "TemperatureUnit.Undefined"
+                      AmountOfSubstance = "AmountOfSubstanceUnit.Undefined"
+                      LuminousIntensity = "LuminousIntensityUnit.Undefined"
                     }
                     FromUnitToBaseFunc="("+$unit.FromUnitToBaseFunc+") * $prefixFactor"
                     FromBaseToUnitFunc="("+$unit.FromBaseToUnitFunc+") / $prefixFactor"

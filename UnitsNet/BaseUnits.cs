@@ -33,6 +33,8 @@ namespace UnitsNet
     /// </summary>
     public sealed partial class BaseUnits
     {
+        public static BaseUnits Undefined { get; } = new BaseUnits();
+
         /// <summary>
         /// Creates an instance of if the base units class that represents the base units for a quantity.
         /// All quantities, both base and derived, can be represented by a combination of these seven base units.
@@ -89,6 +91,9 @@ namespace UnitsNet
         public bool EqualsIgnoreUndefined(BaseUnits other)
         {
             if(other is null)
+                return false;
+
+            if(Equals(Undefined) || other.Equals(Undefined))
                 return false;
 
             return (Length == other.Length || Length == LengthUnit.Undefined || other.Length == LengthUnit.Undefined) &&

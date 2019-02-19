@@ -51,7 +51,7 @@ namespace UnitsNet
         public QuantityInfo(QuantityType quantityType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
         {
             if(quantityType == QuantityType.Undefined) throw new ArgumentException("Quantity type can not be undefined.", nameof(quantityType));
-            if( baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
+            if(baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
 
             Name = quantityType.ToString();
             QuantityType = quantityType;
