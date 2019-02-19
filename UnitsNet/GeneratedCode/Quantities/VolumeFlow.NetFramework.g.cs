@@ -64,7 +64,57 @@ namespace UnitsNet
         static VolumeFlow()
         {
             BaseDimensions = new BaseDimensions(3, 0, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<VolumeFlowUnit>(QuantityType.VolumeFlow, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<VolumeFlowUnit>(QuantityType.VolumeFlow, new UnitInfo<VolumeFlowUnit>[] {
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.AcreFootPerSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CentiliterPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicDecimeterPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicFootPerSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMeterPerSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicMillimeterPerSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.CubicYardPerSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.DeciliterPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KiloliterPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.KilousGallonPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.LiterPerSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaliterPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MegaukGallonPerSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MicroliterPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MilliliterPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.MillionUsGallonsPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.NanoliterPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.OilBarrelPerSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UkGallonPerSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerDay, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerMinute, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<VolumeFlowUnit>(VolumeFlowUnit.UsGallonPerSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -1348,125 +1398,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(VolumeFlowUnit unit)
-        {
-            switch(unit)
-            {
-                case VolumeFlowUnit.AcreFootPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.AcreFootPerHour:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.AcreFootPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.AcreFootPerSecond:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CentiliterPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CentiliterPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CubicDecimeterPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CubicFootPerHour:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CubicFootPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CubicFootPerSecond:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CubicMeterPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CubicMeterPerHour:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CubicMeterPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CubicMeterPerSecond:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CubicMillimeterPerSecond:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CubicYardPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CubicYardPerHour:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CubicYardPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.CubicYardPerSecond:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.DeciliterPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.DeciliterPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.KiloliterPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.KiloliterPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.KilousGallonPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.LiterPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.LiterPerHour:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.LiterPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.LiterPerSecond:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.MegaliterPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.MegaukGallonPerSecond:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.MicroliterPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.MicroliterPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.MilliliterPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.MilliliterPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.MillionUsGallonsPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.NanoliterPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.NanoliterPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.OilBarrelPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.OilBarrelPerHour:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.OilBarrelPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.OilBarrelPerSecond:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.UkGallonPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.UkGallonPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.UkGallonPerSecond:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.UsGallonPerDay:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.UsGallonPerHour:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.UsGallonPerMinute:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case VolumeFlowUnit.UsGallonPerSecond:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static VolumeFlowUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No VolumeFlowUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

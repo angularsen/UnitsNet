@@ -67,7 +67,23 @@ namespace UnitsNet
         static ElectricResistivity()
         {
             BaseDimensions = new BaseDimensions(3, 1, -3, -2, 0, 0, 0);
-            Info = new QuantityInfo<ElectricResistivityUnit>(QuantityType.ElectricResistivity, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<ElectricResistivityUnit>(QuantityType.ElectricResistivity, new UnitInfo<ElectricResistivityUnit>[] {
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.KiloohmMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MegaohmCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MegaohmMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MicroohmMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.MilliohmMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.NanoohmMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.OhmMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricResistivityUnit>(ElectricResistivityUnit.PicoohmMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -807,57 +823,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(ElectricResistivityUnit unit)
-        {
-            switch(unit)
-            {
-                case ElectricResistivityUnit.KiloohmCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricResistivityUnit.KiloohmMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricResistivityUnit.MegaohmCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricResistivityUnit.MegaohmMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricResistivityUnit.MicroohmCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricResistivityUnit.MicroohmMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricResistivityUnit.MilliohmCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricResistivityUnit.MilliohmMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricResistivityUnit.NanoohmCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricResistivityUnit.NanoohmMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricResistivityUnit.OhmCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricResistivityUnit.OhmMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricResistivityUnit.PicoohmCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricResistivityUnit.PicoohmMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static ElectricResistivityUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No ElectricResistivityUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

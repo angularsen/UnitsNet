@@ -67,7 +67,13 @@ namespace UnitsNet
         static ElectricInductance()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -2, 0, 0, 0);
-            Info = new QuantityInfo<ElectricInductanceUnit>(QuantityType.ElectricInductance, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<ElectricInductanceUnit>(QuantityType.ElectricInductance, new UnitInfo<ElectricInductanceUnit>[] {
+                new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Henry, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Microhenry, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Millihenry, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<ElectricInductanceUnit>(ElectricInductanceUnit.Nanohenry, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -647,37 +653,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(ElectricInductanceUnit unit)
-        {
-            switch(unit)
-            {
-                case ElectricInductanceUnit.Henry:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricInductanceUnit.Microhenry:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricInductanceUnit.Millihenry:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case ElectricInductanceUnit.Nanohenry:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static ElectricInductanceUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No ElectricInductanceUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

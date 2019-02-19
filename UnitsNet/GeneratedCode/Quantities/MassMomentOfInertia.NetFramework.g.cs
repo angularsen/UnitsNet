@@ -64,7 +64,37 @@ namespace UnitsNet
         static MassMomentOfInertia()
         {
             BaseDimensions = new BaseDimensions(2, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<MassMomentOfInertiaUnit>(QuantityType.MassMomentOfInertia, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<MassMomentOfInertiaUnit>(QuantityType.MassMomentOfInertia, new UnitInfo<MassMomentOfInertiaUnit>[] {
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareDecimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.GramSquareMillimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareDecimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilogramSquareMillimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareDecimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.KilotonneSquareMilimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareDecimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MegatonneSquareMilimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareDecimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.MilligramSquareMillimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareFoot, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.PoundSquareInch, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareFoot, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.SlugSquareInch, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareDecimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassMomentOfInertiaUnit>(MassMomentOfInertiaUnit.TonneSquareMilimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -1028,85 +1058,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(MassMomentOfInertiaUnit unit)
-        {
-            switch(unit)
-            {
-                case MassMomentOfInertiaUnit.GramSquareCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.GramSquareDecimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.GramSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.GramSquareMillimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.KilogramSquareCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.KilogramSquareDecimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.KilogramSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.KilogramSquareMillimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.KilotonneSquareCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.KilotonneSquareDecimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.KilotonneSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.KilotonneSquareMilimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.MegatonneSquareCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.MegatonneSquareDecimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.MegatonneSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.MegatonneSquareMilimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.MilligramSquareCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.MilligramSquareDecimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.MilligramSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.MilligramSquareMillimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.PoundSquareFoot:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.PoundSquareInch:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.SlugSquareFoot:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.SlugSquareInch:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.TonneSquareCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.TonneSquareDecimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.TonneSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassMomentOfInertiaUnit.TonneSquareMilimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static MassMomentOfInertiaUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No MassMomentOfInertiaUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

@@ -67,7 +67,15 @@ namespace UnitsNet
         static Irradiation()
         {
             BaseDimensions = new BaseDimensions(0, 1, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<IrradiationUnit>(QuantityType.Irradiation, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<IrradiationUnit>(QuantityType.Irradiation, new UnitInfo<IrradiationUnit>[] {
+                new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareCentimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<IrradiationUnit>(IrradiationUnit.JoulePerSquareMillimeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<IrradiationUnit>(IrradiationUnit.KilojoulePerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<IrradiationUnit>(IrradiationUnit.KilowattHourPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<IrradiationUnit>(IrradiationUnit.WattHourPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -679,41 +687,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(IrradiationUnit unit)
-        {
-            switch(unit)
-            {
-                case IrradiationUnit.JoulePerSquareCentimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case IrradiationUnit.JoulePerSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case IrradiationUnit.JoulePerSquareMillimeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case IrradiationUnit.KilojoulePerSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case IrradiationUnit.KilowattHourPerSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case IrradiationUnit.WattHourPerSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static IrradiationUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No IrradiationUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

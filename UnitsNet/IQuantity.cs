@@ -40,8 +40,6 @@ namespace UnitsNet
         /// </summary>
         BaseDimensions Dimensions { get; }
 
-        BaseUnits GetBaseUnits();
-
         /// <summary>
         ///     Information about the quantity type, such as unit values and names.
         /// </summary>

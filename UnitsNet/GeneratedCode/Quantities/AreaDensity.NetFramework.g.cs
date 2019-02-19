@@ -64,7 +64,10 @@ namespace UnitsNet
         static AreaDensity()
         {
             BaseDimensions = new BaseDimensions(-2, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<AreaDensityUnit>(QuantityType.AreaDensity, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<AreaDensityUnit>(QuantityType.AreaDensity, new UnitInfo<AreaDensityUnit>[] {
+                new UnitInfo<AreaDensityUnit>(AreaDensityUnit.KilogramPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -596,31 +599,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(AreaDensityUnit unit)
-        {
-            switch(unit)
-            {
-                case AreaDensityUnit.KilogramPerSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static AreaDensityUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No AreaDensityUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

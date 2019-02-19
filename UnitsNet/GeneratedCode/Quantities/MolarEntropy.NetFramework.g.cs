@@ -64,7 +64,12 @@ namespace UnitsNet
         static MolarEntropy()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, 0, -1, -1, 0);
-            Info = new QuantityInfo<MolarEntropyUnit>(QuantityType.MolarEntropy, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<MolarEntropyUnit>(QuantityType.MolarEntropy, new UnitInfo<MolarEntropyUnit>[] {
+                new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.JoulePerMoleKelvin, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.KilojoulePerMoleKelvin, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MolarEntropyUnit>(MolarEntropyUnit.MegajoulePerMoleKelvin, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -628,35 +633,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(MolarEntropyUnit unit)
-        {
-            switch(unit)
-            {
-                case MolarEntropyUnit.JoulePerMoleKelvin:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MolarEntropyUnit.KilojoulePerMoleKelvin:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MolarEntropyUnit.MegajoulePerMoleKelvin:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static MolarEntropyUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No MolarEntropyUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

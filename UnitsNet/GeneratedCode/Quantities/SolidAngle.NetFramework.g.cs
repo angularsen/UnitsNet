@@ -67,7 +67,10 @@ namespace UnitsNet
         static SolidAngle()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<SolidAngleUnit>(QuantityType.SolidAngle, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<SolidAngleUnit>(QuantityType.SolidAngle, new UnitInfo<SolidAngleUnit>[] {
+                new UnitInfo<SolidAngleUnit>(SolidAngleUnit.Steradian, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -599,31 +602,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(SolidAngleUnit unit)
-        {
-            switch(unit)
-            {
-                case SolidAngleUnit.Steradian:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static SolidAngleUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No SolidAngleUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

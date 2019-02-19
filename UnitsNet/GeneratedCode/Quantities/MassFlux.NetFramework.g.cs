@@ -64,7 +64,11 @@ namespace UnitsNet
         static MassFlux()
         {
             BaseDimensions = new BaseDimensions(-2, 1, -1, 0, 0, 0, 0);
-            Info = new QuantityInfo<MassFluxUnit>(QuantityType.MassFlux, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<MassFluxUnit>(QuantityType.MassFlux, new UnitInfo<MassFluxUnit>[] {
+                new UnitInfo<MassFluxUnit>(MassFluxUnit.GramPerSecondPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassFluxUnit>(MassFluxUnit.KilogramPerSecondPerSquareMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -612,33 +616,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(MassFluxUnit unit)
-        {
-            switch(unit)
-            {
-                case MassFluxUnit.GramPerSecondPerSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassFluxUnit.KilogramPerSecondPerSquareMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static MassFluxUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No MassFluxUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

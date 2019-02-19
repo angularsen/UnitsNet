@@ -64,7 +64,12 @@ namespace UnitsNet
         static BrakeSpecificFuelConsumption()
         {
             BaseDimensions = new BaseDimensions(-2, 0, 2, 0, 0, 0, 0);
-            Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>(QuantityType.BrakeSpecificFuelConsumption, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<BrakeSpecificFuelConsumptionUnit>(QuantityType.BrakeSpecificFuelConsumption, new UnitInfo<BrakeSpecificFuelConsumptionUnit>[] {
+                new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.KilogramPerJoule, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<BrakeSpecificFuelConsumptionUnit>(BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -628,35 +633,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(BrakeSpecificFuelConsumptionUnit unit)
-        {
-            switch(unit)
-            {
-                case BrakeSpecificFuelConsumptionUnit.GramPerKiloWattHour:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case BrakeSpecificFuelConsumptionUnit.KilogramPerJoule:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case BrakeSpecificFuelConsumptionUnit.PoundPerMechanicalHorsepowerHour:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static BrakeSpecificFuelConsumptionUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No BrakeSpecificFuelConsumptionUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

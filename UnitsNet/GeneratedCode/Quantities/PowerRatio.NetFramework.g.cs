@@ -64,7 +64,11 @@ namespace UnitsNet
         static PowerRatio()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<PowerRatioUnit>(QuantityType.PowerRatio, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<PowerRatioUnit>(QuantityType.PowerRatio, new UnitInfo<PowerRatioUnit>[] {
+                new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelMilliwatt, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<PowerRatioUnit>(PowerRatioUnit.DecibelWatt, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -620,33 +624,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(PowerRatioUnit unit)
-        {
-            switch(unit)
-            {
-                case PowerRatioUnit.DecibelMilliwatt:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case PowerRatioUnit.DecibelWatt:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static PowerRatioUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No PowerRatioUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

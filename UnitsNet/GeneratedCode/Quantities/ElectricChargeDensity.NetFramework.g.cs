@@ -67,7 +67,10 @@ namespace UnitsNet
         static ElectricChargeDensity()
         {
             BaseDimensions = new BaseDimensions(-3, 0, 1, 1, 0, 0, 0);
-            Info = new QuantityInfo<ElectricChargeDensityUnit>(QuantityType.ElectricChargeDensity, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<ElectricChargeDensityUnit>(QuantityType.ElectricChargeDensity, new UnitInfo<ElectricChargeDensityUnit>[] {
+                new UnitInfo<ElectricChargeDensityUnit>(ElectricChargeDensityUnit.CoulombPerCubicMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -599,31 +602,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(ElectricChargeDensityUnit unit)
-        {
-            switch(unit)
-            {
-                case ElectricChargeDensityUnit.CoulombPerCubicMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static ElectricChargeDensityUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No ElectricChargeDensityUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

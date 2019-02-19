@@ -64,7 +64,11 @@ namespace UnitsNet
         static HeatTransferCoefficient()
         {
             BaseDimensions = new BaseDimensions(0, 1, -3, 0, -1, 0, 0);
-            Info = new QuantityInfo<HeatTransferCoefficientUnit>(QuantityType.HeatTransferCoefficient, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<HeatTransferCoefficientUnit>(QuantityType.HeatTransferCoefficient, new UnitInfo<HeatTransferCoefficientUnit>[] {
+                new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterCelsius, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<HeatTransferCoefficientUnit>(HeatTransferCoefficientUnit.WattPerSquareMeterKelvin, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -612,33 +616,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(HeatTransferCoefficientUnit unit)
-        {
-            switch(unit)
-            {
-                case HeatTransferCoefficientUnit.WattPerSquareMeterCelsius:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case HeatTransferCoefficientUnit.WattPerSquareMeterKelvin:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static HeatTransferCoefficientUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No HeatTransferCoefficientUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

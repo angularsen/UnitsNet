@@ -64,7 +64,32 @@ namespace UnitsNet
         static Mass()
         {
             BaseDimensions = new BaseDimensions(0, 1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<MassUnit>(QuantityType.Mass, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<MassUnit>(QuantityType.Mass, new UnitInfo<MassUnit>[] {
+                new UnitInfo<MassUnit>(MassUnit.Centigram, new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Decagram, new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Decigram, new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Grain, new BaseUnits(LengthUnit.Undefined, MassUnit.Grain, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Gram, new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Hectogram, new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Kilogram, new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Kilopound, new BaseUnits(LengthUnit.Undefined, MassUnit.Pound, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Kilotonne, new BaseUnits(LengthUnit.Undefined, MassUnit.Tonne, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.LongHundredweight, new BaseUnits(LengthUnit.Undefined, MassUnit.LongHundredweight, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.LongTon, new BaseUnits(LengthUnit.Undefined, MassUnit.LongTon, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Megapound, new BaseUnits(LengthUnit.Undefined, MassUnit.Pound, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Megatonne, new BaseUnits(LengthUnit.Undefined, MassUnit.Tonne, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Microgram, new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Milligram, new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Nanogram, new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Ounce, new BaseUnits(LengthUnit.Undefined, MassUnit.Ounce, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Pound, new BaseUnits(LengthUnit.Undefined, MassUnit.Pound, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.ShortHundredweight, new BaseUnits(LengthUnit.Undefined, MassUnit.ShortHundredweight, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.ShortTon, new BaseUnits(LengthUnit.Undefined, MassUnit.ShortTon, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Slug, new BaseUnits(LengthUnit.Undefined, MassUnit.Slug, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Stone, new BaseUnits(LengthUnit.Undefined, MassUnit.Stone, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<MassUnit>(MassUnit.Tonne, new BaseUnits(LengthUnit.Undefined, MassUnit.Tonne, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -948,75 +973,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(MassUnit unit)
-        {
-            switch(unit)
-            {
-                case MassUnit.Centigram:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Decagram:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Decigram:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Grain:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Grain, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Gram:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Hectogram:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Kilogram:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Kilopound:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Pound, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Kilotonne:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Tonne, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.LongHundredweight:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.LongHundredweight, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.LongTon:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.LongTon, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Megapound:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Pound, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Megatonne:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Tonne, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Microgram:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Milligram:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Nanogram:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Gram, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Ounce:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Ounce, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Pound:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Pound, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.ShortHundredweight:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.ShortHundredweight, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.ShortTon:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.ShortTon, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Slug:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Slug, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Stone:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Stone, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case MassUnit.Tonne:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Tonne, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static MassUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No MassUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

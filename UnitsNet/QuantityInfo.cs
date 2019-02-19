@@ -48,25 +48,22 @@ namespace UnitsNet
             .Where(t => t.Wrap().IsEnum && t.Namespace == UnitEnumNamespace && t.Name.EndsWith("Unit"))
             .ToArray();
 
-        public QuantityInfo(QuantityType quantityType, [NotNull] Enum[] units, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
+        public QuantityInfo(QuantityType quantityType, [NotNull] UnitInfo[] unitInfos, [NotNull] Enum baseUnit, [NotNull] IQuantity zero, [NotNull] BaseDimensions baseDimensions)
         {
             if(quantityType == QuantityType.Undefined) throw new ArgumentException("Quantity type can not be undefined.", nameof(quantityType));
-            if(units == null) throw new ArgumentNullException(nameof(units));
-            if(baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
-            if(zero == null) throw new ArgumentNullException(nameof(zero));
-            if(baseDimensions == null) throw new ArgumentNullException(nameof(baseDimensions));
+            if( baseUnit == null) throw new ArgumentNullException(nameof(baseUnit));
 
             Name = quantityType.ToString();
             QuantityType = quantityType;
             UnitType = UnitEnumTypes.First(t => t.Name == $"{quantityType}Unit");
-            UnitInfos = units.Select(unit => new UnitInfo(unit)).ToArray();
+            UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
             UnitNames = UnitInfos.Select(unitInfo => unitInfo.Name).ToArray();
-            Units = units;
-            BaseUnitInfo = new UnitInfo(baseUnit);
+            Units = UnitInfos.Select(unitInfo => unitInfo.Value).ToArray();
+            BaseUnitInfo = UnitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
             BaseUnit = BaseUnitInfo.Value;
-            Zero = zero;
+            Zero = zero ?? throw new ArgumentNullException(nameof(zero));
             ValueType = zero.GetType();
-            BaseDimensions = baseDimensions;
+            BaseDimensions = baseDimensions ?? throw new ArgumentNullException(nameof(baseDimensions));
         }
 
         /// <summary>
@@ -133,13 +130,13 @@ namespace UnitsNet
     public class QuantityInfo<TUnit> : QuantityInfo
         where TUnit : Enum
     {
-        public QuantityInfo(QuantityType quantityType, TUnit[] units, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions)
-            : base(quantityType, units.Cast<Enum>().ToArray(), baseUnit, zero, baseDimensions)
+        public QuantityInfo(QuantityType quantityType, UnitInfo<TUnit>[] unitInfos, TUnit baseUnit, IQuantity<TUnit> zero, BaseDimensions baseDimensions)
+            : base(quantityType, unitInfos, baseUnit, zero, baseDimensions)
         {
             Zero = zero;
-            UnitInfos = units.Select(unit => new UnitInfo<TUnit>(unit)).ToArray();
-            Units = units;
-            BaseUnitInfo = new UnitInfo<TUnit>(baseUnit);
+            UnitInfos = unitInfos ?? throw new ArgumentNullException(nameof(unitInfos));
+            Units = UnitInfos.Select(unitInfo => unitInfo.Value).ToArray();
+            BaseUnitInfo = UnitInfos.First(unitInfo => unitInfo.Value.Equals(baseUnit));
             BaseUnit = BaseUnitInfo.Value;
         }
 

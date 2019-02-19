@@ -67,7 +67,10 @@ namespace UnitsNet
         static LuminousIntensity()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 0, 1);
-            Info = new QuantityInfo<LuminousIntensityUnit>(QuantityType.LuminousIntensity, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<LuminousIntensityUnit>(QuantityType.LuminousIntensity, new UnitInfo<LuminousIntensityUnit>[] {
+                new UnitInfo<LuminousIntensityUnit>(LuminousIntensityUnit.Candela, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Candela)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -599,31 +602,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(LuminousIntensityUnit unit)
-        {
-            switch(unit)
-            {
-                case LuminousIntensityUnit.Candela:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Candela);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static LuminousIntensityUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No LuminousIntensityUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

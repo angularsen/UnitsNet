@@ -64,7 +64,24 @@ namespace UnitsNet
         static AmountOfSubstance()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, 0, 1, 0);
-            Info = new QuantityInfo<AmountOfSubstanceUnit>(QuantityType.AmountOfSubstance, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<AmountOfSubstanceUnit>(QuantityType.AmountOfSubstance, new UnitInfo<AmountOfSubstanceUnit>[] {
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Centimole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.CentipoundMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Decimole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.DecipoundMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Kilomole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.KilopoundMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Megamole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Micromole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MicropoundMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Millimole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.MillipoundMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Mole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.Nanomole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.NanopoundMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<AmountOfSubstanceUnit>(AmountOfSubstanceUnit.PoundMole, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -820,59 +837,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(AmountOfSubstanceUnit unit)
-        {
-            switch(unit)
-            {
-                case AmountOfSubstanceUnit.Centimole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.CentipoundMole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.Decimole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.DecipoundMole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.Kilomole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.KilopoundMole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.Megamole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.Micromole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.MicropoundMole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.Millimole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.MillipoundMole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.Mole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.Nanomole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Mole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.NanopoundMole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined);
-                case AmountOfSubstanceUnit.PoundMole:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.PoundMole, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static AmountOfSubstanceUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No AmountOfSubstanceUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

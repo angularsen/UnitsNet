@@ -102,7 +102,12 @@ if ($obsoleteAttribute)
 "@; } else {@"
             BaseDimensions = new BaseDimensions($($baseDimensions.Length), $($baseDimensions.Mass), $($baseDimensions.Time), $($baseDimensions.ElectricCurrent), $($baseDimensions.Temperature), $($baseDimensions.AmountOfSubstance), $($baseDimensions.LuminousIntensity));
 "@; }@"
-            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<$unitEnumName>(QuantityType.$quantityName, new UnitInfo<$unitEnumName>[] {
+"@; foreach ($unit in $units) {@"
+                new UnitInfo<$unitEnumName>($unitEnumName.$($unit.SingularName), new BaseUnits($($unit.BaseUnits.Length), $($unit.BaseUnits.Mass), $($unit.BaseUnits.Time), $($unit.BaseUnits.ElectricCurrent), $($unit.BaseUnits.Temperature), $($unit.BaseUnits.AmountOfSubstance), $($unit.BaseUnits.LuminousIntensity))),
+"@; }@"
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -987,33 +992,13 @@ function GenerateConversionMethods([GeneratorArgs]$genArgs)
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits($unitEnumName unit)
-        {
-            switch(unit)
-            {
-"@; foreach ($unit in $units) {@"
-                case $unitEnumName.$($unit.SingularName):
-                    return new BaseUnits($($unit.BaseUnits.Length), $($unit.BaseUnits.Mass), $($unit.BaseUnits.Time), $($unit.BaseUnits.ElectricCurrent), $($unit.BaseUnits.Temperature), $($unit.BaseUnits.AmountOfSubstance), $($unit.BaseUnits.LuminousIntensity));
-"@; }@"
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static $unitEnumName GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No $unitEnumName was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

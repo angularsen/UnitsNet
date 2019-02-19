@@ -82,7 +82,7 @@ namespace UnitsNet.Tests
             var multipliedBaseDimensions = left.Dimensions * right.Dimensions;
             var multipliedQuantityInfo = Quantity.Infos.Where( info => info.BaseDimensions == multipliedBaseDimensions ).First();
 
-            var lhsBaseUnits = left.GetBaseUnits();
+            var lhsBaseUnits = left.QuantityInfo.BaseUnitInfo.BaseUnits;
             var areaUnit = Area.GetUnitForBaseUnits( lhsBaseUnits );
             // var areaUnit = multipliedQuantityInfo.UnitBaseUnits.Where( BaseUnits => baseUnit == lhsBaseUnits );
 

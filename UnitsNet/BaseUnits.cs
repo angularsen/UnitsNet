@@ -86,6 +86,20 @@ namespace UnitsNet
                 LuminousIntensity == other.LuminousIntensity;
         }
 
+        public bool EqualsIgnoreUndefined(BaseUnits other)
+        {
+            if(other is null)
+                return false;
+
+            return (Length == other.Length || Length == LengthUnit.Undefined || other.Length == LengthUnit.Undefined) &&
+                (Mass == other.Mass || Mass == MassUnit.Undefined || other.Mass == MassUnit.Undefined) &&
+                (Time == other.Time || Time == DurationUnit.Undefined || other.Time == DurationUnit.Undefined) &&
+                (Current == other.Current || Current == ElectricCurrentUnit.Undefined || other.Current == ElectricCurrentUnit.Undefined) &&
+                (Temperature == other.Temperature || Temperature == TemperatureUnit.Undefined || other.Temperature == TemperatureUnit.Undefined) &&
+                (Amount == other.Amount || Amount == AmountOfSubstanceUnit.Undefined || other.Amount == AmountOfSubstanceUnit.Undefined) &&
+                (LuminousIntensity == other.LuminousIntensity || LuminousIntensity == LuminousIntensityUnit.Undefined || other.LuminousIntensity == LuminousIntensityUnit.Undefined);
+        }
+
         /// <inheritdoc />
         public override int GetHashCode()
         {

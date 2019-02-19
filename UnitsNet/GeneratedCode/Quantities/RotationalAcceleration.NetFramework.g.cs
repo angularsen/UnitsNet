@@ -64,7 +64,12 @@ namespace UnitsNet
         static RotationalAcceleration()
         {
             BaseDimensions = new BaseDimensions(0, 0, -2, 0, 0, 0, 0);
-            Info = new QuantityInfo<RotationalAccelerationUnit>(QuantityType.RotationalAcceleration, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<RotationalAccelerationUnit>(QuantityType.RotationalAcceleration, new UnitInfo<RotationalAccelerationUnit>[] {
+                new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.DegreePerSecondSquared, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RadianPerSecondSquared, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<RotationalAccelerationUnit>(RotationalAccelerationUnit.RevolutionPerMinutePerSecond, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -628,35 +633,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(RotationalAccelerationUnit unit)
-        {
-            switch(unit)
-            {
-                case RotationalAccelerationUnit.DegreePerSecondSquared:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case RotationalAccelerationUnit.RadianPerSecondSquared:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case RotationalAccelerationUnit.RevolutionPerMinutePerSecond:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static RotationalAccelerationUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No RotationalAccelerationUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

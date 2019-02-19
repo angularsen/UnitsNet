@@ -64,7 +64,10 @@ namespace UnitsNet
         static VitaminA()
         {
             BaseDimensions = BaseDimensions.Dimensionless;
-            Info = new QuantityInfo<VitaminAUnit>(QuantityType.VitaminA, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<VitaminAUnit>(QuantityType.VitaminA, new UnitInfo<VitaminAUnit>[] {
+                new UnitInfo<VitaminAUnit>(VitaminAUnit.InternationalUnit, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -596,31 +599,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(VitaminAUnit unit)
-        {
-            switch(unit)
-            {
-                case VitaminAUnit.InternationalUnit:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static VitaminAUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No VitaminAUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

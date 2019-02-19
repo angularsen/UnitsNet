@@ -67,7 +67,10 @@ namespace UnitsNet
         static Magnetization()
         {
             BaseDimensions = new BaseDimensions(-1, 0, 0, 1, 0, 0, 0);
-            Info = new QuantityInfo<MagnetizationUnit>(QuantityType.Magnetization, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<MagnetizationUnit>(QuantityType.Magnetization, new UnitInfo<MagnetizationUnit>[] {
+                new UnitInfo<MagnetizationUnit>(MagnetizationUnit.AmperePerMeter, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -599,31 +602,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(MagnetizationUnit unit)
-        {
-            switch(unit)
-            {
-                case MagnetizationUnit.AmperePerMeter:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static MagnetizationUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No MagnetizationUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

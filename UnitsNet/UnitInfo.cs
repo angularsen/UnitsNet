@@ -35,22 +35,28 @@ namespace UnitsNet
     /// </remarks>
     public class UnitInfo
     {
-        public UnitInfo(Enum value)
+        public UnitInfo(Enum value, BaseUnits baseUnits)
         {
-            Value = value;
+            Value = value ?? throw new ArgumentNullException(nameof(value));
             Name = value.ToString();
+            BaseUnits = baseUnits ?? throw new ArgumentNullException(nameof(baseUnits));
         }
 
         /// <summary>
         /// The enum value of the unit, such as [<see cref="LengthUnit.Centimeter" />,
         /// <see cref="LengthUnit.Decimeter" />, <see cref="LengthUnit.Meter" />, ...].
         /// </summary>
-        public Enum Value;
+        public Enum Value { get; }
 
         /// <summary>
         /// The name of the unit, such as ["Centimeter", "Decimeter", "Meter", ...].
         /// </summary>
         public string Name { get; }
+
+        /// <summary>
+        /// Gets the <see cref="BaseUnits"/> for this unit.
+        /// </summary>
+        public BaseUnits BaseUnits { get; }
     }
 
     /// <inheritdoc cref="UnitInfo" />
@@ -63,7 +69,7 @@ namespace UnitsNet
     public class UnitInfo<TUnit> : UnitInfo
         where TUnit : Enum
     {
-        public UnitInfo(TUnit value) : base(value)
+        public UnitInfo(TUnit value, BaseUnits baseUnits) : base(value, baseUnits)
         {
             Value = value;
         }

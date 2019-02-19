@@ -64,7 +64,12 @@ namespace UnitsNet
         static SpecificVolume()
         {
             BaseDimensions = new BaseDimensions(3, -1, 0, 0, 0, 0, 0);
-            Info = new QuantityInfo<SpecificVolumeUnit>(QuantityType.SpecificVolume, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<SpecificVolumeUnit>(QuantityType.SpecificVolume, new UnitInfo<SpecificVolumeUnit>[] {
+                new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicFootPerPound, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.CubicMeterPerKilogram, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<SpecificVolumeUnit>(SpecificVolumeUnit.MillicubicMeterPerKilogram, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -628,35 +633,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(SpecificVolumeUnit unit)
-        {
-            switch(unit)
-            {
-                case SpecificVolumeUnit.CubicFootPerPound:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case SpecificVolumeUnit.CubicMeterPerKilogram:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case SpecificVolumeUnit.MillicubicMeterPerKilogram:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static SpecificVolumeUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No SpecificVolumeUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

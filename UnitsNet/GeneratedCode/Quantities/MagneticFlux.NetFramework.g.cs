@@ -67,7 +67,10 @@ namespace UnitsNet
         static MagneticFlux()
         {
             BaseDimensions = new BaseDimensions(2, 1, -2, -1, 0, 0, 0);
-            Info = new QuantityInfo<MagneticFluxUnit>(QuantityType.MagneticFlux, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<MagneticFluxUnit>(QuantityType.MagneticFlux, new UnitInfo<MagneticFluxUnit>[] {
+                new UnitInfo<MagneticFluxUnit>(MagneticFluxUnit.Weber, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -599,31 +602,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(MagneticFluxUnit unit)
-        {
-            switch(unit)
-            {
-                case MagneticFluxUnit.Weber:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static MagneticFluxUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No MagneticFluxUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

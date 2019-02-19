@@ -67,7 +67,10 @@ namespace UnitsNet
         static ElectricCharge()
         {
             BaseDimensions = new BaseDimensions(0, 0, 1, 1, 0, 0, 0);
-            Info = new QuantityInfo<ElectricChargeUnit>(QuantityType.ElectricCharge, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<ElectricChargeUnit>(QuantityType.ElectricCharge, new UnitInfo<ElectricChargeUnit>[] {
+                new UnitInfo<ElectricChargeUnit>(ElectricChargeUnit.Coulomb, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -599,31 +602,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(ElectricChargeUnit unit)
-        {
-            switch(unit)
-            {
-                case ElectricChargeUnit.Coulomb:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static ElectricChargeUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No ElectricChargeUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion

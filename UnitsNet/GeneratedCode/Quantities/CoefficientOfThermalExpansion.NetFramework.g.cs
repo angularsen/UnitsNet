@@ -64,7 +64,12 @@ namespace UnitsNet
         static CoefficientOfThermalExpansion()
         {
             BaseDimensions = new BaseDimensions(0, 0, 0, 0, -1, 0, 0);
-            Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>(QuantityType.CoefficientOfThermalExpansion, Units, BaseUnit, Zero, BaseDimensions);
+
+            Info = new QuantityInfo<CoefficientOfThermalExpansionUnit>(QuantityType.CoefficientOfThermalExpansion, new UnitInfo<CoefficientOfThermalExpansionUnit>[] {
+                new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                new UnitInfo<CoefficientOfThermalExpansionUnit>(CoefficientOfThermalExpansionUnit.InverseKelvin, new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined)),
+                }, BaseUnit, Zero, BaseDimensions);
         }
 
         /// <summary>
@@ -628,35 +633,13 @@ namespace UnitsNet
             }
         }
 
-        public BaseUnits GetBaseUnits()
-        {
-          return GetBaseUnits(Unit);
-        }
-
-        public static BaseUnits GetBaseUnits(CoefficientOfThermalExpansionUnit unit)
-        {
-            switch(unit)
-            {
-                case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                case CoefficientOfThermalExpansionUnit.InverseKelvin:
-                    return new BaseUnits(LengthUnit.Undefined, MassUnit.Undefined, DurationUnit.Undefined, ElectricCurrentUnit.Undefined, TemperatureUnit.Undefined, AmountOfSubstanceUnit.Undefined, LuminousIntensityUnit.Undefined);
-                default:
-                    throw new ArgumentException($"Base units not supported for {unit}.");
-            }
-        }
-
         public static CoefficientOfThermalExpansionUnit GetUnitForBaseUnits(BaseUnits baseUnits)
         {
-            foreach(var unit in Units)
-            {
-                if(baseUnits.Equals(GetBaseUnits(unit)))
-                    return unit;
-            }
+            var unit = Info.UnitInfos.Where((unitInfo) => unitInfo.BaseUnits.EqualsIgnoreUndefined(baseUnits)).FirstOrDefault();
+            if(unit == null)
+                throw new NotImplementedException($"No LengthUnit was found for the given BaseUnits.");
 
-            throw new NotImplementedException($"No CoefficientOfThermalExpansionUnit was found for the given baseUnits.");
+            return unit.Value;
         }
 
         #endregion
